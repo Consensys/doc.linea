@@ -1,0 +1,19 @@
+---
+name: Check file name case
+
+on: [pull_request]
+
+concurrency:
+  group: case-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Check file name case
+    runs-on: [self-hosted, linux, X64, generic]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check file name case
+        uses: ConsenSys/doctools.action-builder/actions/tests/case@main

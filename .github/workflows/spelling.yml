@@ -1,0 +1,34 @@
+---
+name: Verify spelling and guidelines
+
+on: [pull_request]
+
+concurrency:
+  group: spelling-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CONFIG: /docs/.github/vale/.vale.ini
+
+jobs:
+  check:
+    name: Run check
+    runs-on: [self-hosted, linux, X64, generic]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Sync Vale styles
+        run: |
+          docker run --rm \
+          -v "$(pwd)":"/docs" \
+          -w "/docs" \
+          jdkato/vale --config "$CONFIG" sync
+
+      - name: Run Vale check
+        run: |
+          docker run --rm \
+          -v "$(pwd)":"/docs" \
+          -w "/docs" \
+          jdkato/vale --config "$CONFIG" --glob='!docs/assets/*' ./docs/

@@ -1,0 +1,15 @@
+---
+version: '3.2'
+services:
+  mkdocs:
+    container_name: mkdocs-serve-zk-evm-site
+    ports:
+      - "0.0.0.0:8000:8000"
+    image: ghcr.io/consensys/doctools-builder:latest
+    working_dir: /workspace/
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+    environment:
+      - PREBUILD_INDEX=false

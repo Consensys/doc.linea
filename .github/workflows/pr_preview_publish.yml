@@ -1,0 +1,30 @@
+---
+name: Publish PR preview
+
+on: [ pull_request_target ]
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: [self-hosted, linux, X64, generic]
+    environment: preview
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: checkout code from repos
+        uses: actions/checkout@v3
+        with:
+          ref: refs/pull/${{ github.event.number }}/merge # required to pull the PR code instead of the main one
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
+
+      - name: Build and publish PR preview
+        uses: ConsenSys/doctools.action-builder/actions/pr-preview-publish@main
+        with:
+          LANGUAGE: 'en' # we do not have any other languages for the moment, will update when needed
+          PREVIEW_DOMAIN: 'https://improved-engine-aa489d15.pages.github.io/'

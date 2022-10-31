@@ -1,0 +1,26 @@
+---
+# Copyright 2021 ConsenSys Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+# an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+
+# This configuration must inherit the base configuration file available in the Doctools docker image.
+# See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
+INHERIT: mkdocs.navigation.yml # DO NOT MODIFY THIS LINE
+
+# Configure redirects.
+# All page removed or with changed path (moved in another directory) has to be redirected here.
+plugins:
+  redirects:
+    redirect_maps:
+      # Configure redirects using key:value pairs:
+      # old_path.md: new_path.md
+      # you can't use an already redirected path as an old_path.
+      # new_path can be a file inside the docs/ folder or any URL (http://...)
+#      support.md: examples/support.md

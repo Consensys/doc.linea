@@ -1,0 +1,44 @@
+---
+# Copyright 2021 ConsenSys Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+# an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+
+# This configuration must inherit the base configuration file available in the Doctools docker image.
+# See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
+INHERIT: mkdocs.exclude.yml # DO NOT MODIFY THIS LINE
+
+# Extra data configures some specific aspect of the theme.
+# You can find a full description of the values in the Doctool doc site:
+# https://consensys.net/docs/doctools/en/latest/howto/advanced/extra-configuration
+extra:
+  support: /support/ # The path to the default support page, for instance displayed in 404 pages
+  inverted_logo: 'assets/logo_inverted.svg' # Path for a colour inverted logo, for instance displayed in 404 pages
+  # Announce can contain HTML but limit it to small images or links. NO BIG DIRTY HACKS PLEASE.
+  # If announce is removed or commented, the banner will be hidden
+  announce: 'ConsenSys zk-EVM will soon launch a private testnet to receive feedback from the community!'
+  logo_is_text: true # indicates if logo is using text or is only a shape and if we have to add the project name as text.
+  analytics: # information for Analytics. Default is Google Tag manager.
+    gtmid: GTM-TDPJF89
+  social: # list of social media links and icons to display ion the pages footer.
+  # See https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/?h=social#configuration
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/5U9Jwp7
+    - icon: fontawesome/solid/envelope
+      link: mailto:quorum@consensys.net
+    - icon: material/web
+      link: https://consensys.net/
+  version:
+    switch: true # displays the version dropdown
+
+# Uncomment and update the path if you're using custom scripts and CSS
+#extra_css:
+#  - assets/stylesheets/a_custom_style.css
+#extra_javascript:
+#  - assets/javascripts/a_custom_script.js

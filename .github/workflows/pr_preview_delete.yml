@@ -1,0 +1,32 @@
+---
+name: Delete PR preview
+
+on:
+  pull_request_target:
+    types: [closed]
+
+concurrency:
+  group: preview-delete-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  remove:
+    name: Remove
+    runs-on: [self-hosted, linux, X64, generic]
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 'checkout code from repos'
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+
+      - name: Checkout actions
+        uses: actions/checkout@v3
+        with:
+          path: actions
+
+      - name: Remove PR preview from pages
+        uses: ConsenSys/doctools.action-builder/actions/pr_preview_delete@main

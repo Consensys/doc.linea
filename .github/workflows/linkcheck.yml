@@ -1,0 +1,21 @@
+---
+name: Verify links
+
+on: [pull_request]
+
+concurrency:
+  group: links-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Run check
+    runs-on: [self-hosted, linux, X64, generic]
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Links check
+        uses: ConsenSys/doctools.action-builder/actions/tests/links@main

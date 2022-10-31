@@ -1,0 +1,39 @@
+---
+name: Publish latest doc site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: publish-latest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: [self-hosted, linux, X64, generic]
+    environment: production
+    permissions:
+      contents: read
+    # secrets are not usable from outside ConsenSys org
+    # The workflow will then be disabled for non ConsenSys repositories to prevent useless failure.
+    # Restricting to refs/heads/main here to prevent workflow_dispatch to run on another branch
+    if: github.event.repository.fork == false && github.repository_owner == 'ConsenSys' && github.ref == 'refs/heads/main'
+    steps:
+      - name: checkout code from repos
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Required for mkdocs to be able to display pages last update info
+
+      - name: Publish latest version to AWS
+        uses: ConsenSys/doctools.action-builder/actions/latest-publish@main
+        with:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SITE_ROOT: ${{ secrets.SITE_ROOT }} # must point at project level. No lang. No version.
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          PROJECT: ${{ secrets.PROJECT }}
+          LANGUAGE: 'en'
