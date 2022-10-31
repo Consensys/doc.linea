@@ -6,9 +6,9 @@
 [![Publish release doc site](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/release_publish.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/release_publish.yml)
 <!-- markdown-link-check-enable -->
 
-# ConsenSys ZK EVM documentation site
+# ConsenSys zk-EVM documentation site
 
-ConsenSys ZK EVM documentation uses ConsenSys Doctools to build enterprise grade documentation.
+ConsenSys zk-EVM documentation uses ConsenSys Doctools to build enterprise grade documentation.
 
 Please refer to the [ConsenSys Doctools website](https://consensys.net/docs/doctools/) for an
 explanation about how to use this tool and contribute to the documentation.
