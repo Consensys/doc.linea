@@ -2,15 +2,6 @@
 template: home_with_content.html
 title: ConsenSys zk-EVM
 description: Type 2 EVM-equivalent Zero Knowledge Ethereum Virtual Machine
-action:
-  title: Get started
-  link: get-started/
-hide:
-  - toc
-  - navigation
-background:
-  light: "assets/illustrations/home-light.png"
-  dark: "assets/illustrations/home-dark.png"
 ---
 
 # ConsenSys zk-EVM

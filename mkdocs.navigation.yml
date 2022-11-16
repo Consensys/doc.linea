@@ -14,6 +14,12 @@
 # See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
 INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
+# Disable tabbed navigation
+theme:
+  features:
+    - navigation.tabs: false
+    - navigation.tabs.sticky: false
+
 nav:
   - Get started: get-started.md
   - How to:
