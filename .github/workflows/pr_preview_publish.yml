@@ -1,7 +1,7 @@
 ---
 name: Publish PR preview
 
-on: [ pull_request_target ]
+on: [ pull_request ]
 
 concurrency:
   group: preview-${{ github.ref }}
