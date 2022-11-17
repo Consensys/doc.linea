@@ -9,5 +9,5 @@ ConsenSys zk-EVM has a bridge on the Ethereum Goerli testnet. You therefore need
 to the ConsenSys zk-EVM rollup.
 
 Use a faucet to obtain Goerli ETH. Transactions are much cheaper than mainnet, therefore 0.1 ETH is enough
-to execute the basic workflow. The [Faucetlink website contains a list of faucets](https://faucetlink.to/goerli)
+to execute the basic workflow. You can [view a list of faucets](https://faucetlink.to/goerli)
 for the Goerli network.
