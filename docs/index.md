@@ -1,5 +1,4 @@
 ---
-template: home_with_content.html
 title: ConsenSys zk-EVM
 description: Type 2 EVM-equivalent Zero Knowledge Ethereum Virtual Machine
 ---
