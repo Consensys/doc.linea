@@ -8,7 +8,7 @@ You can use your MetaMask wallet to transfer funds between accounts in the Conse
 
 To do this:
 
-1. Open MetaMask and select **ConsenSys zkEVM** fron the network drop-down
+1. Open MetaMask and select **ConsenSys zkEVM** from the network drop-down
 1. Click **Send**.
 1. Type the address that you want to transfer funds to, or select **Transfer between my accounts**
     if the account belongs to your wallet.
