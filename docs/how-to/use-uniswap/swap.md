@@ -19,4 +19,3 @@ To swap tokens using Uniswap v3 on ConsenSys zkEVM:
 
 1. Click **Swap** and check the details.
 1. Confirm the swap clicking **Confirm Swap**.
-
