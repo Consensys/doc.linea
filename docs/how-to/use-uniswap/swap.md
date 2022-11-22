@@ -4,7 +4,7 @@ title: Swap tokens on  Uniswap v3
 
 # Swap tokens
 
-You can swap a portion of your funds to provide liquitidy for a token pair. To swap tokens using
+You can swap a portion of your funds to provide liquidity for a token pair. To swap tokens using
 Uniswap v3 on ConsenSys zkEVM:
 
 1. Select the ConsenSys zkEVM network in your MetaMask wallet.

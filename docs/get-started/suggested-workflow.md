@@ -4,8 +4,7 @@ title: Get started
 
 # Get started
 
-You can freely test the ConsenSys zkEVM testnet, however, here is a recommended workflow to get started
-and test the ConsenSys zkEVM testnet:
+The following recommended workflow will help you get started testing the ConsenSys zkEVM testnet:
 
 1. [Fund your wallet with Goerli ETH](fund.md).
 1. [Add ConsenSys zkEVM to your MetaMask wallet](configure-metamask.md).
@@ -15,3 +14,7 @@ and test the ConsenSys zkEVM testnet:
     provide liquidity.
 1. View the status of your transactions in a block explorer.
 1. [Bridge funds from ConsenSys zkEVM back to Goerli](bridge-funds.md#consensys-zkevm-to-goerli).
+
+!!! note
+
+    The workflow above is a recomendation, but you are free to test the network however you want.

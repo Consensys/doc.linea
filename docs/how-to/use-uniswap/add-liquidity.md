@@ -19,6 +19,3 @@ To add liquidity to Uniswap v3 on ConsenSys zkEVM:
 
 1. Click **Supply** and check the details.
 1. Click the **Confirm Supply** to confirm and approve the transaction.
-
-
-

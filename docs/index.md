@@ -5,6 +5,8 @@ description: Type 2 EVM-equivalent Zero Knowledge Ethereum Virtual Machine
 
 # ConsenSys zkEVM
 
+## What is ConsenSys zkEVM?
+
 ConsenSys zkEVM is a type 2 zero knowledge Ethereum Virtual Machine (zkEVM). A zkEVM replicates
 the Ethereum environment as a rollup, and allows developers to build on it as they would on Ethereum mainnet.
 The ConsenSys zkEVM network allows you to deploy any smart contract, use any tool, and develop
@@ -18,10 +20,3 @@ Dapp developers, users, researchers, and existing protocols are encouraged to jo
 
 Once your wallet address is granted access, you'll be allowed to bridge funds (Goerli ETH) to the
 network and begin using it. Until then, please wait for an email to confirm that your account has access.
-
-## How do I report issues?
-
-If, during your testing, you encounter any problems, please fill out our form to report an issue. You
-can also post your problem in the Discord channel under the official ConsenSys discord. The more
-information you provide the better: transaction Id, screenshots, and detailed steps taken to reproduce
-the issue will help resolve the issues quicker.
