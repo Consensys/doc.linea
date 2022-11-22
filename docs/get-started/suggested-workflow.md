@@ -4,11 +4,6 @@ title: Get started
 
 # Get started
 
-ConsenSys zkEVM is a private beta testnet, so you must be
-[registered](../index.md#how-do-i-join-the-private-testnet) to use the testnet.
-
-You can then use your registered account to bridge funds (Goerli ETH) to ConsenSys zkEVM and begin testing.
-
 You can freely test the ConsenSys zkEVM testnet, however, here is a recommended workflow to get started
 and test the ConsenSys zkEVM testnet:
 
