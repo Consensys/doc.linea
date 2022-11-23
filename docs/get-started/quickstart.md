@@ -2,7 +2,7 @@
 title: Get started
 ---
 
-# Get started
+# Quickstart
 
 The following recommended workflow will help you get started testing the ConsenSys zkEVM testnet:
 
@@ -17,4 +17,4 @@ The following recommended workflow will help you get started testing the ConsenS
 
 !!! note
 
-    The workflow above is a recomendation, but you are free to test the network however you want.
+    The workflow above is a recommendation, but you are free to test the network however you want.

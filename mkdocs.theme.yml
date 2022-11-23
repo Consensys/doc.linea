@@ -29,5 +29,7 @@ theme:
   logo: 'assets/logo.svg'
   favicon: 'assets/favicon.svg'
   features:
-    - navigation.indexes
-    - navigation.sections
+    - navigation.tabs: false # Disable tabbed navigation
+    - navigation.tabs.sticky: false # Disable tabbed sticky navigation
+    - navigation.indexes # Allow using index files in folders
+    - navigation.sections # Add section headers to navigation

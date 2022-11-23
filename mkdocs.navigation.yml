@@ -14,15 +14,9 @@
 # See source at https://github.com/ConsenSys/doctools.action-builder/blob/main/common/custom_theme/base.yml
 INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
-# Disable tabbed navigation
-theme:
-  features:
-    - navigation.tabs: false
-    - navigation.tabs.sticky: false
-
 nav:
   - Get started:
-      - Recommended workflow: get-started/suggested-workflow.md
+      - Quickstart: get-started/quickstart.md
       - Fund your wallet: get-started/fund.md
       - Configure MetaMask: get-started/configure-metamask.md
       - Bridge your funds: get-started/bridge-funds.md
@@ -37,6 +31,6 @@ nav:
       - concepts/index.md
   - Reference:
       - reference/index.md
-  - Feedback:
-      - Report an issue: feedback/report-issues.md
-      - Provide feedback: feedback/provide-feedback.md
+  - Contact us:
+      - Report an issue: contact/report-issues.md
+      - Provide feedback: contact/provide-feedback.md
