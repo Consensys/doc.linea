@@ -15,6 +15,7 @@
 INHERIT: mkdocs.theme.yml # DO NOT MODIFY THIS LINE
 
 watch:
+  - /common/custom_theme/base.yml
   - mkdocs.exclude.yml
   - mkdocs.extra.yml
   - mkdocs.navigation.yml
