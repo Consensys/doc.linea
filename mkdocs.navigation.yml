@@ -15,10 +15,22 @@
 INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
 nav:
-  - Get started: get-started.md
+  - Get started:
+      - Quickstart: get-started/quickstart.md
+      - Fund your wallet: get-started/fund.md
+      - Configure MetaMask: get-started/configure-metamask.md
+      - Bridge your funds: get-started/bridge-funds.md
   - How to:
-      - how-to/index.md
+      - Transfer funds between accounts: how-to/transfer-funds.md
+      - Use Uniswap:
+          - how-to/use-uniswap/index.md
+          - Swap tokens: how-to/use-uniswap/swap.md
+          - Add liquidity: how-to/use-uniswap/add-liquidity.md
+      - Deploy a smart contract: how-to/deploy-smart-contracts.md
   - Concepts:
       - concepts/index.md
   - Reference:
       - reference/index.md
+  - Contact us:
+      - Report an issue: contact/report-issues.md
+      - Provide feedback: contact/provide-feedback.md

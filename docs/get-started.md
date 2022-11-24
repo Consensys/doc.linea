@@ -1,1 +1,0 @@
-# zk-EVM getting started

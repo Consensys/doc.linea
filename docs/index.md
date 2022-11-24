@@ -1,28 +1,22 @@
 ---
-template: home_with_content.html
-title: ConsenSys zk-EVM
+title: ConsenSys zkEVM
 description: Type 2 EVM-equivalent Zero Knowledge Ethereum Virtual Machine
-action:
-  title: Get started
-  link: get-started/
-hide:
-  - toc
-  - navigation
-background:
-  light: "assets/illustrations/home-light.png"
-  dark: "assets/illustrations/home-dark.png"
 ---
 
-# ConsenSys zk-EVM
+# ConsenSys zkEVM
 
-ConsenSys R&D has a deep experience with rollups, exploring trustless transfers between rollups back
-in 2019, before formalizing the first account-based anonymous rollup which we later extended to a
-partially-anonymous rollup.
+## What is ConsenSys zkEVM?
 
-After identifying the challenges discussed above, we spent the last years developing a Type 2
-EVM-equivalent zk-EVM. We hope this latest contribution will complement the great work by other teams
-in the ecosystem, such as Polygon zk-EVM and Scroll, and complete the possible infrastructural choices
-for decentralized application (dApp) developers, startups, and enterprises to choose and scale on Ethereum.
+ConsenSys zkEVM is a type 2 zero knowledge Ethereum Virtual Machine (zkEVM). A zkEVM replicates
+the Ethereum environment as a rollup, and allows developers to build on it as they would on Ethereum mainnet.
+The ConsenSys zkEVM network allows you to deploy any smart contract, use any tool, and develop
+as if you're building on Ethereum. For users, this enables the experience and security guarantees
+of Ethereum, but with lower transaction costs.
 
-Our team is working hard to implement the full design of the zk-EVM and will soon be launching a private
-testnet to receive feedback from the community.
+## How do I join the private testnet?
+
+If you’re interested in joining the private testnet, then [join the waiting list](https://consensys-software.typeform.com/rollups).
+Dapp developers, users, researchers, and existing protocols are encouraged to join and help scale Ethereum.
+
+Once your wallet address is granted access, you'll be allowed to bridge funds (Goerli ETH) to the
+network and begin using it. Until then, please wait for an email to confirm that your account has access.
