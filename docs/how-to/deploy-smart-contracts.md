@@ -39,6 +39,7 @@ Alternatively, below is a short tutorial with further details on how to deploy a
       }
     }
     ```
+*Please note: the above contract is just for testing purposes and has not been audited. It is just for testing. Please do not use it in production!*
 
 4. Compile the contract by running `truffle compile`. The ConsenSys zkEVM will accept compilations from the `solc` Solidity compiler, just like Mainnet Ethereum.
 5. Create a migration script in the `migrations` directory. A migration script is a special Truffle file that describes how to deploy and manage the contract on the network deployed to (in this case the ConsenSys zkEVM). For example, to deploy the Token contract, create a file called `1_deploy_token.js` in the migrations directory and write the migration script:
