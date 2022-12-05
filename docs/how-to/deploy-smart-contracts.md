@@ -29,19 +29,19 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
     mkdir myToken; cd myToken
     ```
 
-1. In your project directory, create the bare project containing the files and directories for the Truffle
+2. In your project directory, create the bare project containing the files and directories for the Truffle
     project:
 
     ```bash
     truffle init
     ```
 
-1. Create your smart contract in the `contracts` directory. For example, to create a simple
+3. Create your smart contract in the `contracts` directory. For example, to create a simple
     token contract, create a file called `Token.sol` in the `contracts` directory and add the following
     contract code:
 
     ```javascript
-    pragma solidity 0.8.10;
+    pragma solidity 0.8.17;
 
     // SPDX-License-Identifier: MIT
 
@@ -71,13 +71,13 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 
         The above contract is for testing purposes and has not been audited.
 
-1. In the root of your project folder, compile the contract:
+4. In the root of your project folder, compile the contract:
 
     ```bash
     truffle compile
     ```
 
-1. Create a migration script in the `migrations` directory to deploy and manage the
+5. Create a migration script in the `migrations` directory to deploy and manage the
     contract on the ConsenSys zkEVM network. For example, to deploy the token contract, create a file called
     `1_deploy_token.js` in the `migrations` directory, and add the following code:
 
@@ -89,7 +89,7 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
     };
     ```
 
-1. Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
+6. Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
 
     ```javascript
     const HDWalletProvider = require('@truffle/hdwallet-provider')
@@ -110,8 +110,10 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
     }
     ```
 
-1. Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
+7. Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
 
     !!! important
 
         We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
+
+8. Deploy your contract(s) by running `truffle migrate`.
