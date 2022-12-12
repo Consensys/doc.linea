@@ -92,14 +92,14 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 1. Truffle offers two ways of deploying your contracts:
 
 - Truffle Dashboard: You can find more information about Truffle Dashboard [here](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/). Truffle Dashboard allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. Follow these steps to use Truffle Dashboard with the ConsenSys zkEVM:
-    * Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](https://consensys.net/docs/zk-evm/en/latest/get-started/configure-metamask/).
-    * Set your MetaMask network to the ConsenSys zkEVM.
-    * Run `truffle dashboard` in your CLI. A window on port 24012 will open.
-    * The Truffle Dashboard will ask you to confirm that your network is correct. *For reference, the ConsenSys zkEVM testnet network id is 59140.*
-    * In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
+    - Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](https://consensys.net/docs/zk-evm/en/latest/get-started/configure-metamask/).
+    - Set your MetaMask network to the ConsenSys zkEVM.
+    - Run `truffle dashboard` in your CLI. A window on port 24012 will open.
+    - The Truffle Dashboard will ask you to confirm that your network is correct. *For reference, the ConsenSys zkEVM testnet network id is 59140.*
+    - In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
 
 - Classic Truffle:
-    * Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
+    - Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
 
       ```javascript
       const HDWalletProvider = require('@truffle/hdwallet-provider')
@@ -120,10 +120,10 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
       }
       ```
 
-    * Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
+    - Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
 
       !!! important
 
           We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
 
-    * Deploy your contracts by running `truffle migrate --network="consensys-goerli"`.
+    - Deploy your contracts by running `truffle migrate --network="consensys-goerli"`.
