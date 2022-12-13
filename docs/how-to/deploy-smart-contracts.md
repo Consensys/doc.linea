@@ -122,8 +122,8 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 
     - Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
 
-      !!! important
+        !!! important
 
-          We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
+            We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
 
     - Deploy your contracts by running `truffle migrate --network="consensys-goerli"`.
