@@ -4,7 +4,7 @@ title: Bridge your funds
 
 # Bridge your funds
 
-Use the ConsenSys zkEVM bridge to bridge funds (in ETH) between Goerli and the ConsenSys zkEVM network.
+Use the ConsenSys zkEVM token bridge to bridge funds (in ETH) between Goerli and the ConsenSys zkEVM network.
 
 ## Goerli to ConsenSys zkEVM
 
