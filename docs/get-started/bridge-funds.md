@@ -20,7 +20,7 @@ Perform the following steps to bridge your Goerli ETH to ConsenSys zkEVM:
 5. Select **Send**.
 6. Select **Add USDC to MetaMask**.
 7. In your MetaMask wallet, select **ConsenSys zkEVM**. You will see a balance for crUSDC.
-8. Select the **ETH** token
+8. Select the **ETH** token.
 9. Specify an amount less than your balance to send.
 10. Select **Send**.
 
