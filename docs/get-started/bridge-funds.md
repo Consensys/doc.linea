@@ -4,25 +4,31 @@ title: Bridge your funds
 
 # Bridge your funds
 
-Use the ConsenSys zkEVM bridge to bridge funds (in ETH) between Goerli and the ConsenSys zkEVM network.
+Use the ConsenSys zkEVM bridge to bridge tokens between Goerli and the ConsenSys zkEVM network.
 
 ## Goerli to ConsenSys zkEVM
 
-Ensure your [MetaMask wallet has funds](fund.md) and is [configured](configure-metamask.md) to
+Ensure your [MetaMask wallet has ETH](fund.md) and is [configured](configure-metamask.md) to
 use the ConsenSys zkEVM network.
 
 Perform the following steps to bridge your Goerli ETH to ConsenSys zkEVM:
 
 1. Access the bridge on the Goerli testnet.
-1. In the top drop-down select **Goerli**, and in the bottom drop-down select **ConsenSys zkEVM**.
-1. Select the **ETH** token.
-1. Click **Send**.
+2. In the top dropdown menu select **Goerli**, and in the bottom dropdown menu select **ConsenSys zkEVM**.
+3. Select the **USDC** token.
+4. Specify an amount less than your balance to send.
+5. Select **Send**.
+6. Select **Add USDC to Metamask**.
+7. In your Metamask wallet, select **ConsenSys zkEVM**. You will see a balance for crUSDC.
+8. Select the **ETH** token
+9. Specify an amount less than your balance to send.
+10. Select **Send**.
 
     !!! important
 
         First time users need to approve the ConsenSys zkEVM bridge to allow the transfer of your test ETH.
 
-1. In the MetaMask window, confirm the transfer.
+11. In the MetaMask window, confirm the transfer.
 
 The sent amount is deducted from your Goerli account on MetaMask. Switch to the ConsenSys zkEVM
 network in your wallet to view the bridged funds.
@@ -30,6 +36,10 @@ network in your wallet to view the bridged funds.
 You can now use the funds on ConsenSys zkEVM to transfer funds between accounts or interact with
 smart contracts on the network. For example, use the Uniswap v3 protocol that's deployed on the
 network.
+
+!!! note
+
+    This process can take up to 15 minutes to complete.
 
 ## ConsenSys zkEVM to Goerli
 
@@ -39,10 +49,14 @@ Goerli ETH in your account on the ConsenSys zkEVM network.
 Perform the following steps to bridge your Goerli ETH from ConsenSys zkEVM to Goerli:
 
 1. Access the bridge on the Goerli testnet.
-1. In the top drop-down select **ConsenSys zkEVM**, and in the bottom drop-down select **Goerli**.
+1. In the top dropdown menu select **ConsenSys zkEVM**, and in the bottom dropdown menu select **Goerli**.
 1. Select the **ETH** token.
-1. Click **Send**.
+1. Select **Send**.
 1. In the MetaMask window, confirm the transfer.
 
 The sent amount is deducted from your account on ConsenSys zkEVM. Switch to the Goerli network in
 your wallet to view the bridged funds.
+
+!!! note
+
+    This process can take up to 5 mintues to complete.
