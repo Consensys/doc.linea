@@ -15,7 +15,7 @@ of Ethereum, but with lower transaction costs.
 
 ## How do I join the private testnet?
 
-If you’re interested in joining the private testnet, then [join the waiting list](https://consensys-software.typeform.com/rollups).
+If you’re interested in joining the private testnet, then [join the waiting list](https://www.infura.io/resources/network/consensys-zkevm-beta-signup).
 Dapp developers, users, researchers, and existing protocols are encouraged to join and help scale Ethereum.
 
 Once your wallet address is granted access, you'll be allowed to bridge funds (Goerli ETH) to the
