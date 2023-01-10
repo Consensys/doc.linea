@@ -13,3 +13,5 @@ You need to [bridge Goerli ETH to the ConsenSys zkEVM network](bridge-funds.md) 
 Use a faucet to obtain Goerli ETH. Transactions are much cheaper than Mainnet, therefore 0.1 ETH is enough
 to execute a basic workflow. You can [view a list of faucets](https://faucetlink.to/goerli)
 for the Goerli network.
+
+To obtain test USDC on Goerli you can use the [USDC faucet](https://bridge.goerli.zkevm.consensys.net/faucet?token=USDC) via our bridge to mint 10 USDC. You must have some Goerli test ETH to pay for the transaction to mint USDC.
