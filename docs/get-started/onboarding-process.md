@@ -21,7 +21,7 @@ receive an email confirming that you are on the waiting list.
 
 If you're not a registered Infura user, you'll receive an email with the steps required to
 participate in the ConsenSys zkEVM private beta. You must create a free Infura account to be eligible
-for testing Consensys zkEVM. Once this is complete, you'll be ready for the onboarding process.
+for testing ConsenSys zkEVM. Once this is complete, you'll be ready for the onboarding process.
 
 Onboarded users will receive an email with instructions to access the unique
 RPC URL in Infura to configure MetaMask and begin testing the network. You can follow the testing environment
