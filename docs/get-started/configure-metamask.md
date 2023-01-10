@@ -27,6 +27,7 @@ To retrieve your unique RPC URL:
     The ConsenSys zkEVM card only appears in your Infura dashboard after you have been allowlisted
     and have received the confirmation email.
 
+<!-- markdown-link-check-disable -->
 [Add the ConsenSys zkEVM network manually](https://metamask.zendesk.com/hc/en-us/articles/360043227612#h_01G63GGJ83DGDRCS2ZWXM37CV5)
 to your MetaMask wallet using the following settings:
 
@@ -35,6 +36,7 @@ to your MetaMask wallet using the following settings:
     ConsenSys zkEVM found within your Infura account
 - **Chain ID**: 59140
 - **Currency symbol**: crETH
-- **Block explorer URL**: https://explorer.goerli.zkevm.consensys.net
+- **Block explorer URL**: `https://explorer.goerli.zkevm.consensys.net`
 
 [You can also set up a custom network manually](https://metamask.zendesk.com/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+<!--markdown-link-check-enable -->
