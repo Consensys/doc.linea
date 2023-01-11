@@ -16,6 +16,7 @@ INHERIT: mkdocs.extra.yml # DO NOT MODIFY THIS LINE
 
 nav:
   - Get started:
+      - Onboarding process: get-started/onboarding-process.md
       - Quickstart: get-started/quickstart.md
       - Fund your wallet: get-started/fund.md
       - Configure MetaMask: get-started/configure-metamask.md
@@ -26,8 +27,6 @@ nav:
           - how-to/use-uniswap/index.md
           - Swap tokens: how-to/use-uniswap/swap.md
           - Add liquidity: how-to/use-uniswap/add-liquidity.md
-  - Concepts:
-      - concepts/index.md
   - Developers:
       - Deploy a smart contract: developers/deploy-smart-contracts.md
       - Use the message bridge: developers/use-message-bridge.md

@@ -6,6 +6,11 @@ title: Bridge your funds
 
 Use the ConsenSys zkEVM token bridge to bridge funds (in ETH) between Goerli and the ConsenSys zkEVM network.
 
+    !!! important
+
+        Do not bridge funds to the ConsenSys zkEVM network until you have been [onboarded](onboarding-process.md).
+        Bridged funds will be inaccessible until you have been onboarded.
+
 ## Goerli to ConsenSys zkEVM
 
 Ensure your [MetaMask wallet has ETH](fund.md) and is [configured](configure-metamask.md) to
