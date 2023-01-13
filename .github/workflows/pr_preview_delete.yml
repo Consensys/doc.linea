@@ -12,7 +12,7 @@ concurrency:
 jobs:
   remove:
     name: Remove
-    runs-on: [self-hosted, linux, X64, generic]
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
