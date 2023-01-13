@@ -36,8 +36,12 @@ The process to onboard to the ConsenSys zkEVM network is as follows:
     participate in the ConsenSys zkEVM private beta. You must create a free Infura account to be eligible
     for testing ConsenSys zkEVM.
 
-1. Receive an email confirming access to ConsenSys zkEVM. This email provides instructions on how to
-    access your unique RPC URL.
+    ![Steps required email](../assets/steps_required.png)
+
+1. After you've been onboarded you'll receive an email confirming access to ConsenSys zkEVM. This email
+    provides instructions on how to access your unique RPC URL.
+
+    ![Confirmation email](../assets/confirmation.png)
 
 You can now use the RPC URL in Infura to configure MetaMask and begin testing the network. Follow the
 [testing environment setup](https://goerli.zkevm.consensys.net/) to set up MetaMask and bridge funds
@@ -45,4 +49,4 @@ to ConsenSys zkEVM to start testing.
 
 !!! note
 
-    We recommended testing ConsenSys zkEVM on a desktop browser rather than tablet or mobile.
+    We recommend testing ConsenSys zkEVM on a desktop browser rather than tablet or mobile.
