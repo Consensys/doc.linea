@@ -31,10 +31,10 @@ The process to onboard to the ConsenSys zkEVM network is as follows:
 1. If you're a registered Infura user, you'll receive an Infura email confirming your place on the waiting list.
 
     ![Wait-list confirmation email](../assets/waitlist_confirm.png)
- 
-     If you're not a registered Infura user, you'll receive an email with the steps required to
-     participate in the ConsenSys zkEVM private beta. You must create a free Infura account to be eligible
-     for testing ConsenSys zkEVM.
+
+    If you're not a registered Infura user, you'll receive an email with the steps required to
+    participate in the ConsenSys zkEVM private beta. You must create a free Infura account to be eligible
+    for testing ConsenSys zkEVM.
 
 
 1. Receive an email confirming access to ConsenSys zkEVM. This email provides instructions on how to
