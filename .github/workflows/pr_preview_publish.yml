@@ -10,7 +10,7 @@ concurrency:
 jobs:
   deploy:
     name: Deploy
-    runs-on: [self-hosted, linux, X64, generic]
+    runs-on: ubuntu-latest
     environment: preview
     permissions:
       contents: write
