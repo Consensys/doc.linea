@@ -36,7 +36,6 @@ The process to onboard to the ConsenSys zkEVM network is as follows:
     participate in the ConsenSys zkEVM private beta. You must create a free Infura account to be eligible
     for testing ConsenSys zkEVM.
 
-
 1. Receive an email confirming access to ConsenSys zkEVM. This email provides instructions on how to
     access your unique RPC URL.
 
