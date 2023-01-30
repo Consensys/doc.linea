@@ -106,15 +106,18 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
     ...
     module.exports = {
       networks: {
-        ...
-        // for testnet
-        'consensys-goerli': {
-          provider: () => {
-            return new HDWalletProvider(MNEMONIC, 'https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY')
+      ...
+      module.exports = {
+        networks: {
+          ...
+          // for testnet
+          'consensys-goerli': {
+            provider: () => {
+              return new HDWalletProvider(MNEMONIC, 'https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY')
+            },
+            network_id: "59140"
           }
-          network_id: "59140"
-        }
-      },
+        },
       ...
     }
     ```
