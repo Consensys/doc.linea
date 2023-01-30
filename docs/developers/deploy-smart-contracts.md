@@ -21,6 +21,12 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 
 [Install Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
+You can use [Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) for your deployment. Truffle Dashboard allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. Follow these steps to set up Truffle Dashboard for use with the ConsenSys zkEVM:
+  - Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](https://consensys.net/docs/zk-evm/en/latest/get-started/configure-metamask/).
+  - Set your MetaMask network to the ConsenSys zkEVM.
+  - Run `truffle dashboard` in your CLI. A window on port 24012 will open.
+  - The Truffle Dashboard will ask you to confirm that your network is correct. *For reference, the ConsenSys zkEVM testnet network id is 59140.*
+
 ## Steps
 
 1. Create a project directory for your Truffle project. For example, `myToken`.
@@ -91,12 +97,7 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 
 1. Truffle offers two ways of deploying your contracts:
 
-- Truffle Dashboard: You can find more information about Truffle Dashboard [here](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/). Truffle Dashboard allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. Follow these steps to use Truffle Dashboard with the ConsenSys zkEVM:
-    - Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](https://consensys.net/docs/zk-evm/en/latest/get-started/configure-metamask/).
-    - Set your MetaMask network to the ConsenSys zkEVM.
-    - Run `truffle dashboard` in your CLI. A window on port 24012 will open.
-    - The Truffle Dashboard will ask you to confirm that your network is correct. *For reference, the ConsenSys zkEVM testnet network id is 59140.*
-    - In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
+- Truffle Dashboard: If you have set up Truffle Dashboard per the steps in the Prerequisites section above, deploying via the Truffle Dashboard simply requires triggering the deployment flow: In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
 
 - Classic Truffle:
     - Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
