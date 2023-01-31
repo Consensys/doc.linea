@@ -22,6 +22,7 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
 [Install Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
 You can use [Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) for your deployment. Truffle Dashboard allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. Follow these steps to set up Truffle Dashboard for use with the ConsenSys zkEVM:
+
 - Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](https://consensys.net/docs/zk-evm/en/latest/get-started/configure-metamask/).
 - Set your MetaMask network to the ConsenSys zkEVM.
 - Run `truffle dashboard` in your CLI. A window on port 24012 will open.
