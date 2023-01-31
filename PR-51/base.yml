@@ -1,0 +1,90 @@
+#SPDX-License-Identifier: Apache-2.0
+site_url: !ENV [SITE_URL, 'http://0.0.0.0:8000/']
+
+extra:
+  debug: !ENV [DEBUG , false]
+  latest_version_warning: # a warning text that displays on the latest version.
+    text: 'You are reading the development version of this documentation and
+    some displayed features may not be available in the stable release.
+    You can switch to stable version using the switch in the header.'
+  site_root: !ENV [SITE_ROOT ,'http://0.0.0.0:8000/']
+  version:
+    number: !ENV [VERSION ,'latest']
+    switch: false
+  analytics:
+    provider: gtm
+
+# TODO Add a version file path here to be used in version JS
+
+theme:
+  name: material
+  custom_dir: /common/custom_theme
+  language: !ENV [LANGUAGE, 'en']
+  features:
+    - search.suggest
+    - search.highlight
+    - search.share
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.indexes
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      permalink_title: Link to this section
+      toc_depth: 4
+  - codehilite
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - markdown_include.include:
+      base_path: docs
+  - admonition
+  - footnotes
+  - def_list
+  - attr_list
+  - abbr
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.keys
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - meta
+  - smarty
+  - plantuml_markdown:
+      server: http://www.plantuml.com/plantuml
+
+plugins:
+  search:
+    lang: en # static as no other available for now
+    separator: '[\s\-\.\_]+'
+    prebuild_index: !ENV [PREBUILD_INDEX , false]
+  minify:
+    minify_html: !ENV [MINIFY , true]
+    minify_js: !ENV [MINIFY , true]
+    htmlmin_opts:
+      remove_comments: !ENV [MINIFY , true]
+  macros:
+    on_error_fail: !ENV [FAIL_ON_ERROR , true]
+    modules:
+      - mkdocs_macros_katacoda
+      - mkdocs_macros_redoc
+  git-revision-date-localized:
+    locale: !ENV [LANGUAGE, 'en']
+  mkdocs-video:
+    css_style:
+      weight: "50%"
+  render_swagger: {}

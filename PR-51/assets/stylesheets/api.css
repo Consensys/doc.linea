@@ -1,0 +1,43 @@
+[data-md-color-scheme="consensys"] {
+  --dt-api-nav-bg-color: rgb(234, 241, 253);
+}
+
+[data-md-color-scheme="consensys-dark"] {
+  --dt-api-nav-bg-color: rgb(14, 34, 93);
+}
+
+
+.redoc-container .api-content {
+  color: var(--md-default-fg-color) !important;
+}
+
+.redoc-container .api-content table tr {
+  background-color: var(--md-default-bg-color);
+  border-top: 1px solid var(--md-default-bg-color);
+}
+
+.redoc-container:not([fullscreen*='true']) .scrollbar-container > div {
+  position: unset;
+}
+
+.redoc-container:not([fullscreen*='true']) div.menu-content{
+  height: unset !important;
+}
+
+.redoc-container h1,
+.redoc-container h2,
+.redoc-container h3,
+.redoc-container h4,
+.redoc-container h5,
+.redoc-container h6 {
+  color: var(--md-default-fg-color);
+}
+
+.redoc-container h5 span {
+  color: var(--md-default-fg-color);
+}
+
+.redoc-container a {
+  color: var(--md-code-hl-keyword-color);
+}
+

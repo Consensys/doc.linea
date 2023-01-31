@@ -1,0 +1,130 @@
+.md-announce a {
+  color: var(--md-footer-fg-color);
+}
+
+.md-announce a[href^="http"]:after {
+  font-family: "Material Icons", monospace;
+  font-weight: 900;
+  font-size: small;
+  content: " \e89e";
+}
+
+.md-announce a[href^="http"]:after {
+  font-family: "Material Icons", monospace;
+  font-weight: 900;
+  font-size: small;
+  content: " \e89e";
+}
+
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+  width: unset;
+}
+
+.md-nav__title .md-nav__button.md-logo img, .md-nav__title .md-nav__button.md-logo svg {
+  width: 6rem;
+}
+
+.md-nav--primary .md-nav__title {
+  font-weight: lighter;
+  height: unset;
+  font-size: 0.9em;
+  line-height: unset;
+  white-space: unset;
+}
+
+.md-nav--secondary .md-nav__item .md-nav__item a.md-nav__link {
+  font-weight: normal;
+  font-size: inherit;
+}
+
+.md-nav--secondary a.md-nav__link {
+    font-weight: bolder;
+}
+
+.md-nav__source {
+  background-color: var(--md-footer-bg-color);
+}
+
+.md-footer {
+  margin-top: 3em;
+}
+
+.md-content a[href^="http"]:not(.md-content__icon):after {
+  font-family: "Material Icons", monospace;
+  font-weight: 900;
+  font-size: small;
+  content: " \e89e";
+}
+
+.md-source-date {
+  font-style: italic;
+}
+
+:root {
+  --md-admonition-icon--critical: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2 1 21z'/></svg>");
+  --mdx-version-bg-color: rgba(33, 63, 164, 0.9);
+}
+
+.md-typeset .admonition.critical,
+.md-typeset details.critical {
+  border-color: rgb(222, 0, 0);
+  background-color: #ffaaaa;
+}
+
+.md-typeset .admonition.critical strong{
+  font-size: large;
+}
+
+.md-typeset .critical > .admonition-title,
+.md-typeset .critical > summary {
+  color: white;
+  background-color: rgb(222, 0, 0);
+  border-color: rgb(222, 0, 0);
+}
+.md-typeset .critical > .admonition-title::before,
+.md-typeset .critical > summary::before {
+  background-color: white;
+  -webkit-mask-image: var(--md-admonition-icon--critical);
+  mask-image: var(--md-admonition-icon--critical);
+}
+
+[data-md-color-scheme="consensys"] {
+  --md-primary-fg-color: #2C56DD;
+  --md-primary-fg-color--light: #ABBBF1;
+  --md-primary-fg-color--dark:  #121212;
+  --md-default-bg-color: #fff;
+  --md-footer-bg-color: #213fa4;
+}
+
+[data-md-color-scheme="consensys-dark"] {
+  --md-primary-fg-color: #2C56DD;
+  --md-primary-fg-color--light: #fff;
+  --md-primary-fg-color--dark:  #fff;
+  --md-default-fg-color: #fff;
+  --md-default-bg-color: #1a1a1a;
+  --md-typeset-color: #fff;
+  --md-code-bg-color: #262626;
+  --md-default-fg-color--light: #fff;
+  --md-code-fg-color: #ffffff;
+  --md-code-hl-color: rgba(255, 255, 0, 0.7);
+  --md-code-hl-number-color: #f53131;
+  --md-code-hl-special-color: #db1457;
+  --md-code-hl-function-color: #cb55de;
+  --md-code-hl-constant-color: #8268ff;
+  --md-code-hl-keyword-color: #5490ff;
+  --md-code-hl-string-color: #2fde18;
+}
+
+.md-selected_language_item{
+  border: solid;
+  border-width: thin;
+  border-radius: 0.1em;
+}
+
+article img {
+  background-color: #ffffff80;
+}
+
+.md-grid {
+  max-width: 95%;
+}
