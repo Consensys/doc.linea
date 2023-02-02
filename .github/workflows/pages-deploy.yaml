@@ -1,29 +1,23 @@
 ---
-name: Check file name case
+name: Build and deploy to GitHub Pages
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
   workflow_call:
 
 jobs:
-  case:
-    name: Check for case being inconsistent
+  pages-deploy:
+    name: Deploy to GitHub Pages
     runs-on: [self-hosted, linux, X64, large]
-    strategy:
-      matrix:
-        folder: ["docs"]
     # the enviroment to deploy to / use secrets from
     environment: no-secret
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
-      - name: Case check action
-        uses: ConsenSys/docs-gha/case@main
+      - name: Deploy
+        uses: ConsenSys/docs-gha/pages-deploy@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOC_DIR: ${{ matrix.folder }}

@@ -1,0 +1,38 @@
+---
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+  case:
+    uses: ./.github/workflows/case.yml
+  build:
+    needs: [lint, case]
+    uses: ./.github/workflows/build.yml
+  release:
+    needs: build
+    name: Create Release
+    runs-on: [self-hosted, linux, X64, large]
+    # the enviroment to deploy to / use secrets from
+    environment: no-secret
+    # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Release
+        uses: ConsenSys/docs-gha/release@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs: release
+    uses: ./.github/workflows/pages-deploy.yaml

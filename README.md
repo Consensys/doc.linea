@@ -1,14 +1,17 @@
-<!-- markdown-link-check-disable -->
-[![Lint codebase](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/lint.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/lint.yml)
-[![Test spelling and guidelines](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/spelling.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/spelling.yml)
-[![Test the links](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/linkcheck.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/linkcheck.yml)
-[![Publish latest doc site](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/latest_publish.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/latest_publish.yml)
-[![Publish release doc site](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/release_publish.yml/badge.svg)](https://github.com/ConsenSys/doc.zk-evm/actions/workflows/release_publish.yml)
-<!-- markdown-link-check-enable -->
+# ConsenSys zkEVM
 
-# ConsenSys zk-EVM documentation site
+This documentation repo is built using [Docusaurus 2](https://docusaurus.io/).
 
-ConsenSys zk-EVM documentation uses ConsenSys Doctools to build enterprise grade documentation.
+### Local Development
 
-Please refer to the [ConsenSys Doctools website](https://consensys.net/docs/doctools/) for an
-explanation about how to use this tool and contribute to the documentation.
+    $ npm install
+    $ npm run prepare
+    $ npm start
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+    $ npm run build
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.

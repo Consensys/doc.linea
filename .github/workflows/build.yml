@@ -1,19 +1,18 @@
 ---
-name: Check file name case
+name: Build
 
 on:
   pull_request:
     branches:
       - main
   workflow_call:
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
-  case:
-    name: Check for case being inconsistent
+  build:
+    name: Build
     runs-on: [self-hosted, linux, X64, large]
-    strategy:
-      matrix:
-        folder: ["docs"]
     # the enviroment to deploy to / use secrets from
     environment: no-secret
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
@@ -22,8 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Case check action
-        uses: ConsenSys/docs-gha/case@main
+      - name: Build
+        uses: ConsenSys/docs-gha/build@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOC_DIR: ${{ matrix.folder }}

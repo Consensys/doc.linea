@@ -1,6 +1,6 @@
 # Pull request checklist
 
-Use the following template to make sure your PR fits the Doctools documentation standard.
+Use the following template to make sure your PR fits the ConsenSys documentation standard.
 
 ## Before creating the PR
 
