@@ -24,8 +24,8 @@ const CardList: CardItem[] = [
     link: "/category/get-started",
     description: (
       <>
-        Get started with GoQuorum by installing as binary, through Ansible,
-        Docker, or Kubernetes. Hit the ground running in less than 5 minutes!
+        Get started with zkEVM by discovering our onboarding process,
+        quickstart, funding your wallet and more!
       </>
     ),
     buttonName: "Go to installation",
@@ -36,8 +36,8 @@ const CardList: CardItem[] = [
     link: "/category/how-to",
     description: (
       <>
-        Check out some general concepts that will help you understand how
-        GoQuorum works under the hood and architected.
+        Check out how some tutorials on using zkEVM such as transferring funds
+        between accounts or using Uniswap.
       </>
     ),
     buttonName: "Go and learn",
