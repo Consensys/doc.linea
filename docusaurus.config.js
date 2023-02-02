@@ -215,7 +215,21 @@ const config = {
         },
       ],
     }),
-  plugins: [],
+  plugins: [
+    [
+      "@docusaurus/plugin-google-gtag",
+      {
+        trackingID: "G-",
+        anonymizeIP: true,
+      },
+    ],
+    [
+      "@docusaurus/plugin-google-tag-manager",
+      {
+        containerId: "GTM-",
+      },
+    ],
+  ],
   themes: [],
 };
 
