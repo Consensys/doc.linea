@@ -10,7 +10,7 @@ on:
 jobs:
   case:
     name: Check for case being inconsistent
-    runs-on: [self-hosted, linux, X64, large]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         folder: ["docs"]

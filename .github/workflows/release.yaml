@@ -19,7 +19,7 @@ jobs:
   release:
     needs: build
     name: Create Release
-    runs-on: [self-hosted, linux, X64, large]
+    runs-on: ubuntu-latest
     # the enviroment to deploy to / use secrets from
     environment: no-secret
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
@@ -33,6 +33,3 @@ jobs:
         uses: ConsenSys/docs-gha/release@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  deploy:
-    needs: release
-    uses: ./.github/workflows/pages-deploy.yaml

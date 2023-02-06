@@ -10,7 +10,7 @@ on:
 jobs:
   lint:
     name: Lint Code Base, Spelling, Link Check
-    runs-on: [self-hosted, linux, X64, large]
+    runs-on: ubuntu-latest
     # the enviroment to deploy to / use secrets from
     environment: no-secret
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges

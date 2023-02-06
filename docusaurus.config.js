@@ -87,13 +87,13 @@ const config = {
 
         // ... other Algolia params
       },
-      announcementBar: {
-        id: "announcement_bar",
-        content: "⛔️ This documentation site is still under construction! 🚧",
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
-        isCloseable: false,
-      },
+      // announcementBar: {
+      //   id: "announcement_bar",
+      //   content: "⛔️ This documentation site is still under construction! 🚧",
+      //   backgroundColor: "#fafbfc",
+      //   textColor: "#091E42",
+      //   isCloseable: false,
+      // },
       colorMode: {
         defaultMode: "light",
         disableSwitch: false,
