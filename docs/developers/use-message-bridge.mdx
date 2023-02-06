@@ -3,6 +3,10 @@ title: Use the message bridge
 sidebar_position: 2
 ---
 
+import CodeBlock from "@theme/CodeBlock";
+import IBridge from "!!raw-loader!./contracts/IBridge.sol";
+import IL1Bridge from "!!raw-loader!./contracts/IL1Bridge.sol";
+
 # Build your dapp using the message bridge
 
 Use the ConsenSys zkEVM message bridge to bridge funds (in ETH) or arbitrary messages between Goerli and the ConsenSys zkEVM network to enable your use case.
@@ -40,10 +44,10 @@ The contracts are deployed at the following addresses:
 
 ## Interfaces
 
-```solidity linenums="1" title="IBridge.sol"
---8<-- "docs/developers/contracts/IBridge.sol"
-```
+<CodeBlock language="solidity" title="IBridge.sol">
+  {IBridge}
+</CodeBlock>
 
-```solidity linenums="1" title="IL1Bridge.sol"
---8<-- "docs/developers/contracts/IL1Bridge.sol"
-```
+<CodeBlock language="solidity" title="IL1Bridge.sol">
+  {IL1Bridge}
+</CodeBlock>

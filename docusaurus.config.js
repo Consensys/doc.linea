@@ -9,7 +9,7 @@ const config = {
   title: "ConsenSys zkEVM",
   tagline:
     "A type 2 zero knowledge Ethereum Virtual Machine that replicates an Ethereum environment by leveraging rollups.",
-  url: "https://consensys.github.io",
+  url: "https://docs.zkevm.consensys.net",
   baseUrl,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
