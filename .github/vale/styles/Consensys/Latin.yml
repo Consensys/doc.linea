@@ -1,8 +1,0 @@
-extends: substitution
-message: "Prefer English '%s' over Latin '%s' term."
-level: error
-ignorecase: true
-action:
-  name: replace
-swap:
-  de facto: default

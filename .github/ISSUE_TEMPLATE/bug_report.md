@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Create a bug report.
-title: ''
-labels: DocOps
-assignees: NicolasMassart
-
+title: ""
+labels: Documentation
+assignees: Ezzahhh
 ---
 
 ## Describe the bug

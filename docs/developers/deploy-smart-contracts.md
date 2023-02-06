@@ -1,19 +1,19 @@
 ---
 title: How to deploy a smart contract
+sidebar_position: 1
 ---
 
 # Deploy a smart contract
 
-You can use the [Truffle](https://www.trufflesuite.com) development framework to build, test, and deploy
-smart contracts on the ConsenSys zkEVM.
+You can use the [Truffle](https://www.trufflesuite.com) development framework to build, test, and deploy smart contracts on the ConsenSys zkEVM.
 
-Use the [Truffle quickstart instructions](https://trufflesuite.com/docs/truffle/quickstart/)
-to quickly start using Truffle with ConsenSys zkEVM.
+Use the [Truffle quickstart instructions](https://trufflesuite.com/docs/truffle/quickstart/) to quickly start using Truffle with ConsenSys zkEVM.
 
-!!! important
+:::tip
 
-    Ensure you change your RPC endpoint to `https://consensys-zkevm-goerli-prealpha.infura.io/v3/<INFURA_API_KEY>`
-    in the `truffle-config.js` file.
+Ensure you change your RPC endpoint to `https://consensys-zkevm-goerli-prealpha.infura.io/v3/<INFURA_API_KEY>` in the `truffle-config.js` file.
+
+:::
 
 Alternatively, use the steps below to deploy a smart contract using Truffle.
 
@@ -30,24 +30,21 @@ You can use [Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use
 
 ## Steps
 
-1. Create a project directory for your Truffle project. For example, `myToken`.
+1.  Create a project directory for your Truffle project. For example, `myToken`.
 
     ```bash
     mkdir myToken; cd myToken
     ```
 
-1. In your project directory, create the bare project containing the files and directories for the Truffle
-    project:
+2.  In your project directory, create the bare project containing the files and directories for the Truffle project:
 
     ```bash
     truffle init
     ```
 
-1. Create your smart contract in the `contracts` directory. For example, to create a simple
-    token contract, create a file called `Token.sol` in the `contracts` directory and add the following
-    contract code:
+3.  Create your smart contract in the `contracts` directory. For example, to create a simple token contract, create a file called `Token.sol` in the `contracts` directory and add the following contract code:
 
-    ```javascript
+    ```sol
     pragma solidity 0.8.17;
 
     // SPDX-License-Identifier: MIT
@@ -74,58 +71,61 @@ You can use [Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use
     }
     ```
 
-    !!! warning "Do not use this contract code in production"
+    :::warning Do not use this contract code in production
 
-        The above contract is for testing purposes and has not been audited.
+    The above contract is for testing purposes and has not been audited.
 
-1. In the root of your project folder, compile the contract:
+    :::
+
+4.  In the root of your project folder, compile the contract:
 
     ```bash
     truffle compile
     ```
 
-1. Create a migration script in the `migrations` directory to deploy and manage the
-    contract on the ConsenSys zkEVM network. For example, to deploy the token contract, create a file called
-    `1_deploy_token.js` in the `migrations` directory, and add the following code:
+5.  Create a migration script in the `migrations` directory to deploy and manage the contract on the ConsenSys zkEVM network. For example, to deploy the token contract, create a file called `1_deploy_token.js` in the `migrations` directory, and add the following code:
 
     ```javascript
-    const Token = artifacts.require('Token');
+    const Token = artifacts.require("Token");
 
-    module.exports = function(deployer) {
+    module.exports = function (deployer) {
       deployer.deploy(Token);
     };
     ```
 
-1. Truffle offers two ways of deploying your contracts:
+6.  Truffle offers two ways of deploying your contracts:
 
 - Truffle Dashboard: If you have set up Truffle Dashboard per the steps in the Prerequisites section above, deploying via the Truffle Dashboard simply requires triggering the deployment flow: In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
 
 - Classic Truffle:
-    - Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
 
-      ```javascript
-      const HDWalletProvider = require('@truffle/hdwallet-provider')
+  - Connect to the ConsenSys zkEVM testnet, by adding the following configuration to the `truffle-config.js` file:
 
-      ...
-      module.exports = {
-        networks: {
-          ...
-          // for testnet
-          'consensys-goerli': {
-            provider: () => {
-              return new HDWalletProvider(MNEMONIC, 'https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY')
-            }
-            network_id: "59140"
-          }
-        },
+    ```javascript
+    const HDWalletProvider = require('@truffle/hdwallet-provider')
+
+    ...
+    module.exports = {
+      networks: {
         ...
-      }
-      ```
+        // for testnet
+        'consensys-goerli': {
+          provider: () => {
+            return new HDWalletProvider(MNEMONIC, 'https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY')
+          }
+          network_id: "59140"
+        }
+      },
+      ...
+    }
+    ```
 
-    - Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
+  - Set your `MNEMONIC` and `INFURA_API_KEY` as environment variables.
 
-        !!! important
+    :::warning
 
-            We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
+    We recommend using a `.env` file for this purpose. Please do not check your keys into source control!
 
-    - Deploy your contracts by running `truffle migrate --network="consensys-goerli"`.
+    :::
+
+  - Deploy your contracts by running `truffle migrate --network="consensys-goerli"`.
