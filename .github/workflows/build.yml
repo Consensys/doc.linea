@@ -25,7 +25,7 @@ jobs:
         uses: ConsenSys/docs-gha/build@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./
+      - uses: amondnet/vercel-action@v25.1.1
         id: vercel-action-staging
         if: github.event_name == 'pull_request'
         with:
@@ -37,7 +37,7 @@ jobs:
           alias-domains: |
             staging.angular.vercel-action.amond.dev
             pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
-      - uses: ./
+      - uses: amondnet/vercel-action@v25.1.1
         id: vercel-action-production
         if: github.event_name == 'push'
         with:
