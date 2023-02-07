@@ -1,8 +1,11 @@
 ---
-name: Build
+name: Build and Preview
 
 on:
   pull_request:
+    branches:
+      - main
+  push:
     branches:
       - main
 
@@ -11,14 +14,36 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     # the enviroment to deploy to / use secrets from
-    environment: no-secret
-    # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
+    environment: vercel
+    # modify the default permissions of the GITHUB_TOKEN, so as to only allow least privileges
     permissions:
       contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
-
       - name: Build
         uses: ConsenSys/docs-gha/build@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./
+        id: vercel-action-staging
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          working-directory: ./build
+          alias-domains: |
+            staging.angular.vercel-action.amond.dev
+            pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
+      - uses: ./
+        id: vercel-action-production
+        if: github.event_name == 'push'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          working-directory: ./build
+          vercel-args: "--prod "
