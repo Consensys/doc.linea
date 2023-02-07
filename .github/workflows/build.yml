@@ -2,9 +2,9 @@
 name: Build
 
 on:
-  workflow_call:
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
