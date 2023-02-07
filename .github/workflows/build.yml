@@ -34,9 +34,6 @@ jobs:
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
           working-directory: ./build
-          alias-domains: |
-            staging.angular.vercel-action.amond.dev
-            pr-{{PR_NUMBER}}.angular.vercel-action.amond.dev
       - uses: amondnet/vercel-action@v25.1.1
         id: vercel-action-production
         if: github.event_name == 'push'
