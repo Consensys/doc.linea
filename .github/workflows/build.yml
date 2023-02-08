@@ -17,9 +17,8 @@ jobs:
     environment: vercel
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least privileges
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
-      metadata: read
     steps:
       - uses: actions/checkout@v3
       - name: Build
