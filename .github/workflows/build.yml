@@ -17,7 +17,7 @@ jobs:
     environment: vercel
     # modify the default permissions of the GITHUB_TOKEN, so as to only allow least privileges
     permissions:
-      contents: write
+      contents: read
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
@@ -46,3 +46,4 @@ jobs:
           working-directory: ./build
           vercel-args: "--prod "
           scope: infura-web
+          github-comment: false
