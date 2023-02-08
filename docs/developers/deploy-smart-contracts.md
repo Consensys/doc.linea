@@ -5,8 +5,7 @@ sidebar_position: 1
 
 # Deploy a smart contract
 
-You can use the [Truffle](https://www.trufflesuite.com) development framework to
-build, test, and deploy smart contracts on the ConsenSys zkEVM.
+You can use the [Truffle](https://www.trufflesuite.com) development framework to build, test, and deploy smart contracts on the ConsenSys zkEVM.
 
 Use the [Truffle quickstart instructions](https://trufflesuite.com/docs/truffle/quickstart/) to quickly start using Truffle with ConsenSys zkEVM.
 
