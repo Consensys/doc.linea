@@ -10,9 +10,6 @@ jobs:
   lint:
     name: Lint Code Base, Spelling, Link Check
     runs-on: ubuntu-latest
-    # the enviroment to deploy to / use secrets from
-    environment: no-secret
-    # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
     permissions:
       contents: read
     steps:
@@ -26,7 +23,6 @@ jobs:
   linkCheck:
     name: Link Checking
     runs-on: ubuntu-latest
-    environment: no-secret
     strategy:
       matrix:
         file-extensions: [".md", ".mdx"]

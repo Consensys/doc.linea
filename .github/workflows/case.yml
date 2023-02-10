@@ -13,9 +13,6 @@ jobs:
     strategy:
       matrix:
         folder: ["docs"]
-    # the enviroment to deploy to / use secrets from
-    environment: no-secret
-    # modify the default permissions of the GITHUB_TOKEN, so as to only allow least priveleges
     permissions:
       contents: read
     steps:
