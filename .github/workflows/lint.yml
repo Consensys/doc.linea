@@ -25,7 +25,7 @@ jobs:
 
   linkCheck:
     name: Link Checking
-    runs-on: [self-hosted, linux, X64, large]
+    runs-on: ubuntu-latest
     environment: no-secret
     strategy:
       matrix:
