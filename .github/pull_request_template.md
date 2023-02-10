@@ -6,8 +6,8 @@ Use the following template to make sure your PR fits the ConsenSys documentation
 
 Make sure that:
 
-- [ ] You've read the [contribution guidelines](https://consensys.net/docs/doctools/).
-- [ ] You've [previewed your changes locally](https://consensys.net/docs/doctools/en/latest/preview/new-system/#preview-locally).
+- [ ] You've read the [contribution guidelines](https://docs-template.consensys.net/getting-started/style-guide).
+- [ ] You've previewed your changes locally.
 
 ## Describe the change
 
@@ -41,5 +41,5 @@ For tool changes:
 
 Make sure that:
 
-- [ ] You've [fixed any issues](https://consensys.net/docs/doctools/en/latest/contribute/fix-cicd-errors/) raised by the tests.
+- [ ] You've fixed any issues raised by the tests.
 - [ ] You've previewed your changes on Vercel below.
