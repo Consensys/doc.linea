@@ -1,4 +1,19 @@
 {
-  "public": false,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/en/latest", "destination": "/", "permanent": true },
+    { "source": "/en/latest/", "destination": "/", "permanent": true },
+    {
+      "source": "/en/latest/:match*",
+      "destination": "/:match*",
+      "permanent": true
+    },
+    { "source": "/en/stable", "destination": "/", "permanent": true },
+    { "source": "/en/stable/", "destination": "/", "permanent": true },
+    {
+      "source": "/en/stable/:match*",
+      "destination": "/:match*",
+      "permanent": true
+    }
+  ]
 }
