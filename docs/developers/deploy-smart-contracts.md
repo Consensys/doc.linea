@@ -93,8 +93,8 @@ Alternatively, use the steps below to deploy a smart contract using Truffle.
   - Configure your MetaMask wallet to connect to the ConsenSys zkEVM, using [these instructions](../get-started/configure-metamask.md).
   - Set your MetaMask network to the ConsenSys zkEVM.
   - Run `truffle dashboard` in your CLI. A window on port 24012 will open.
-  - The Truffle Dashboard will ask you to confirm that your network is correct. _For reference, the ConsenSys zkEVM testnet network id is 59140._
-  - In your CLI, run `truffle migrate`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
+  - The Truffle Dashboard will ask you to confirm that your network is correct. Please ensure that Dashboard is connected to the ConsenSys zkEVM testnet. _For reference, the ConsenSys zkEVM testnet network id is 59140._
+  - In your CLI, run `truffle migrate --network dashboard`. You will see a signature request for each contract in the Truffle Dashboard. Confirm each request, and your contracts will deploy.
 
 - Classic Truffle:
 
