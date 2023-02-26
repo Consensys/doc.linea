@@ -10,6 +10,4 @@ ConsenSys zkEVM is a type 2 zero knowledge Ethereum Virtual Machine (zkEVM). A z
 
 ## How do I join the private testnet?
 
-If you’re interested in joining the private testnet, then [join the waiting list](https://www.infura.io/resources/network/consensys-zkevm-beta-signup). Dapp developers, users, researchers, and existing protocols are encouraged to join and help scale Ethereum.
-
-Once your wallet address is granted access, you'll be allowed to bridge funds (Goerli ETH) to the network and begin using it. Until then, please wait for an email to confirm that your account has access.
+Sign ups for the private testnet are closed. If your wallet was granted access, you should have received a confirmation email. Afterwards, you'll be allowed to bridge funds and begin using the ConsenSys zkEVM network.

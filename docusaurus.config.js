@@ -142,18 +142,14 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Learn",
             items: [
               {
-                label: "Get started",
-                to: "/category/get-started",
+                label: "Use ConsenSys zkEVM",
+                to: "/category/use-consensys-zkevm",
               },
               {
-                label: "How to",
-                to: "/category/how-to",
-              },
-              {
-                label: "Developers",
+                label: "Build on ConsenSys zkEVM",
                 to: "/category/developers",
               },
             ],
@@ -162,12 +158,16 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Discord",
+                label: "Join our Discord",
                 href: "https://discord.com/invite/consensys",
               },
               {
-                label: "Contact us",
-                to: "/category/contact-us",
+                label: "Get Help",
+                to: "https://community.zkevm.consensys.net/",
+              },
+              {
+                label: "Give Feedback",
+                to: "https://community.zkevm.consensys.net/c/feedback",
               },
             ],
           },
@@ -175,11 +175,11 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Documentation on GitHub",
+                label: "Contribute to our documentation",
                 href: "https://github.com/ConsenSys/doc.zk-evm",
               },
               {
-                label: "ConsenSys",
+                label: "About ConsenSys",
                 href: "https://consensys.net",
               },
             ],

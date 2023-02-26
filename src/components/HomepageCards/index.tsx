@@ -20,39 +20,39 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "🏁 Getting Started",
-    link: "/category/get-started",
+    title: "Wallet Set Up",
+    link: "/category/use-consensys-zkevm",
     description: (
       <>
-        Get started with zkEVM by discovering our onboarding process,
-        quickstart, funding your wallet and more!
+        Set up and fund your wallet to start bridging, swapping, and transacting
+        on the ConsenSys zkEVM network!
       </>
     ),
-    buttonName: "Go to installation",
+    buttonName: "Transact",
+    buttonType: "primary",
+  },
+  {
+    title: "Developer Quick Start",
+    link: "/developers/quickstart",
+    description: (
+      <>
+        Learn how to deploy and verify your first smart contract on ConsenSys
+        zkEVM using your favorite developer tools!
+      </>
+    ),
+    buttonName: "Build",
     buttonType: "success",
   },
   {
-    title: "💭 Learn",
-    link: "/category/how-to",
+    title: "ConsenSys zkEVM Block Explorer",
+    link: "https://explorer.goerli.zkevm.consensys.net/",
     description: (
       <>
-        Check out how some tutorials on using zkEVM such as transferring funds
-        between accounts or using Uniswap.
+        View layer 2 transactions and find deployed contracts on the ConsenSys
+        zkEVM network on BlockScout!
       </>
     ),
-    buttonName: "Go and learn",
-    buttonType: "secondary",
-  },
-  {
-    title: "👨‍💻 Developers",
-    link: "/category/developers",
-    description: (
-      <>
-        Information for developers to learn about deploying a smart contract and
-        using the message bridge on zkEVM.
-      </>
-    ),
-    buttonName: "Go to reference",
+    buttonName: "Explore",
     buttonType: "info",
   },
 ];
