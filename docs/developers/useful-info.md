@@ -12,7 +12,7 @@ sidebar_position: 2
     </tr>
     <tr>
         <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://consensys-zkevm-goerli-prealpha.infura.io/v3/INUFRA_API_KEY</td>
+        <td align="left">https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY</td>
     </tr>
     <tr>
         <td align="left"><b>Chain ID</b></td>
