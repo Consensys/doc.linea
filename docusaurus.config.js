@@ -229,6 +229,26 @@ const config = {
         containerId: "GTM-TB58STH",
       },
     ],
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          // /docs/oldDoc -> /docs/newDoc
+          {
+            to: "/category/use-consensys-zkevm",
+            from: "/category/get-started",
+          },
+          {
+            to: "/use-zkevm/onboarding-process",
+            from: "/get-started/onboarding-process",
+          },
+          {
+            to: "/developers/quickstart",
+            from: "/developers/deploy-smart-contracts",
+          },
+        ],
+      },
+    ],
   ],
   themes: [],
 };
