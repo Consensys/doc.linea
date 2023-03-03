@@ -233,7 +233,6 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          // /docs/oldDoc -> /docs/newDoc
           {
             to: "/developers/quickstart",
             from: "/developers/deploy-smart-contracts",
