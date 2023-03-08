@@ -239,8 +239,14 @@ const config = {
           },
           {
             to: "/category/use-consensys-zkevm",
-            from: ["/category/get-started", "/get-started/bridge-funds", "/get-started/fund",
-            "/get-started/onboarding-process", "/get-started/configure-metamask", "/get-started/quickstart"],
+            from: [
+              "/category/get-started",
+              "/get-started/bridge-funds",
+              "/get-started/fund",
+              "/get-started/onboarding-process",
+              "/get-started/configure-metamask",
+              "/get-started/quickstart",
+            ],
           },
         ],
       },
