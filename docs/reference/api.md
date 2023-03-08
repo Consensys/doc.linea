@@ -1,5 +1,6 @@
 ---
 title: JSON-RPC API
+description: ConsenSys zkEVM uses the Ethereum JSON-RPC API
 sidebar_position: 2
 ---
 
