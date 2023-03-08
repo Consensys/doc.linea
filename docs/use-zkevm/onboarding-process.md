@@ -1,5 +1,6 @@
 ---
 title: Onboard onto ConsenSys zkEVM
+description: How to onboard to ConsenSys zkEVM
 sidebar_position: 1
 ---
 
