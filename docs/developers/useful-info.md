@@ -10,11 +10,11 @@ sidebar_position: 2
 <table>
     <tr>
         <td align="left"><b>Network Name</b></td>
-        <td align="left">ConsenSys zkEVM</td>
+        <td align="left">Linea</td>
     </tr>
     <tr>
         <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY</td>
+        <td align="left">https://rpc.goerli.linea.build/</td>
     </tr>
     <tr>
         <td align="left"><b>Chain ID</b></td>
@@ -26,7 +26,7 @@ sidebar_position: 2
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left">https://explorer.goerli.zkevm.consensys.net/</td>
+        <td align="left">https://explorer.goerli.linea.build/</td>
     </tr>
 </table>
 
@@ -34,5 +34,5 @@ sidebar_position: 2
 
 | Contract | Address |
 | --- | --- |
-| zkEVM rollup and L1Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
-| L2Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://explorer.goerli.zkevm.consensys.net/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) |
+| Linea rollup and L1Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
+| L2Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) |

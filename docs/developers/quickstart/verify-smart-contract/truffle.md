@@ -31,31 +31,30 @@ Then, you'll need to get an Etherscan key by creating an account at https://ethe
 
 ```
 MNEMONIC=YOUR_MNEMONIC_HERE
-INFURA_API_KEY=YOUR_API_KEY_HERE
 ETHERSCAN_API_KEY=YOUR_API_KEY_HERE
 ```
 
 ## Add the custom chain
 
-Because ConsenSys zkEVM is not supported by the network yet, we'll have to get our Etherscan API key and add a custom chain:
+Because Linea is not supported by the network yet, we'll have to get our Etherscan API key and add a custom chain:
 
 ```javascript
 require("dotenv").config();
-const { MNEMONIC, INFURA_API_KEY, ETHERSCAN_API_KEY } = process.env;
+const { MNEMONIC, ETHERSCAN_API_KEY } = process.env;
 // ... rest of truffle-config
 module.exports = {
   networks: {
-    consensyszkevmgoerli: {
+    linea: {
       provider: () => {
         return new HDWalletProvider(
           MNEMONIC,
-          `https://consensys-zkevm-goerli-prealpha.infura.io/v3/${INFURA_API_KEY}`,
+          `https://rpc.goerli.linea.build/`,
         );
       },
       verify: {
-        apiUrl: "https://explorer.goerli.zkevm.consensys.net/api",
+        apiUrl: "https://explorer.goerli.linea.build/api",
         apiKey: ETHERSCAN_API_KEY,
-        explorerUrl: "https://explorer.goerli.zkevm.consensys.net/",
+        explorerUrl: "https://explorer.goerli.linea.build/",
       },
       network_id: "59140",
     },
@@ -69,13 +68,13 @@ module.exports = {
 Run the following to verify the most recently deployed contract:
 
 ```bash
-truffle run verify <DEPLOYED_CONTRACT_NAME> --network consensyszkevmgoerli
+truffle run verify <DEPLOYED_CONTRACT_NAME> --network linea
 ```
 
 Alternatively, verify a contract at a specific address:
 
 ```bash
-truffle run verify <DEPLOYED_CONTRACT_NAME>@<ADDRESS> --network consensyszkevmgoerli
+truffle run verify <DEPLOYED_CONTRACT_NAME>@<ADDRESS> --network linea
 ```
 
 Your output should be similar to the following:
@@ -83,12 +82,12 @@ Your output should be similar to the following:
 ```bash
 Verifying contracts on consensys
    Verifying Token
-   Pass - Verified: https://explorer.goerli.zkevm.consensys.net//0xD104FE0116aFdB588798133B13965FEC5d2eEd35#code
+   Pass - Verified: https://explorer.goerli.linea.build//0xD104FE0116aFdB588798133B13965FEC5d2eEd35#code
    Successfully verified 1 contract(s).
 Verifying contracts on sourcify
-   Sourcify has no support for network consensyszkevmgoerli with chain id 59140
+   Sourcify has no support for network linea with chain id 59140
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.zkevm.consensys.net/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.linea.build/) and pasting in the deployed contract address.
 
 ![verified contract](../../../assets/blockscout_verification.png)

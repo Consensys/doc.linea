@@ -39,7 +39,6 @@ Next, you'll need to get an Etherscan key by creating an account at https://ethe
 
 ```
 PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-INFURA_API_KEY=YOUR_API_KEY_HERE
 ETHERSCAN_API_KEY=YOUR_API_KEY_HERE
 ```
 
@@ -48,38 +47,38 @@ Then, add the key to your `hardhat.config.js` as follows:
 ```javascript
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
-const { PRIVATE_KEY, INFURA_API_KEY, ETHERSCAN_API_KEY } = process.env;
+const { PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
   solidity: "0.8.17",
   networks: {
-    consensys-zkevm-goerli: {
-      url: `https://consensys-zkevm-goerli-prealpha.infura.io/v3/${INFURA_API_KEY}`,
+    linea: {
+      url: `https://rpc.goerli.linea.build/`,
       accounts: [PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: consensyszkevmgoerli,
+    apiKey: linea,
   },
 };
 ```
 
 ## Add the custom chain
 
-Because ConsenSys zkEVM is not supported by the network yet, we'll have to add a custom chain like so:
+Because Linea is not supported by the network yet, we'll have to add a custom chain like so:
 
 ```javascript
 etherscan: {
   apiKey: {
-    consensyszkevmgoerli: ETHERSCAN_API_KEY
+    linea: ETHERSCAN_API_KEY
   },
   customChains: [
     {
-      network: "consensyszkevmgoerli",
+      network: "linea",
       chainId: 59140,
       urls: {
-        apiURL: "https://explorer.goerli.zkevm.consensys.net/api",
-        browserURL: "https://explorer.goerli.zkevm.consensys.net/"
+        apiURL: "https://explorer.goerli.linea.build/api",
+        browserURL: "https://explorer.goerli.linea.build/"
       }
     }
   ]
@@ -97,7 +96,7 @@ The Etherscan apiKey and network name for your custom chain must match the netwo
 To verify your contract, run the following command:
 
 ```bash
-npx hardhat verify --network consensyszkevmgoerli <DEPLOYED_CONTRACT_ADDRESS>
+npx hardhat verify --network linea <DEPLOYED_CONTRACT_ADDRESS>
 ```
 
 Don't worry if your result looks like this:
@@ -114,7 +113,7 @@ Message: Unknown UID
 For more info run Hardhat with --show-stack-traces
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.zkevm.consensys.net/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [block explorer](https://rpc.goerli.linea.build/) and pasting in the deployed contract address.
 
 ![verified contract](../../../assets/blockscout_verification.png)
 

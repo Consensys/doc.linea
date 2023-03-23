@@ -11,9 +11,9 @@ In this tutorial, we'll walk through creating a basic [Foundry](https://book.get
 
 Before you begin, Ensure you've:
 
-1. [Set up your wallet](../../../use-zkevm/set-up-your-wallet.md)
-1. [Funded your wallet with goerli ETH](../../../use-zkevm/fund.md)
-1. [Bridged Goerli ETH to ConsenSys zkEVM](../../../use-zkevm/bridge-funds.md)
+1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
+1. [Funded your wallet with goerli ETH](../../../use-linea/fund.md)
+1. [Bridged Goerli ETH to Linea](../../../use-linea/bridge-funds.md)
 1. Downloaded Foundry using the following command:
 
    ```bash
@@ -27,26 +27,26 @@ Before you begin, Ensure you've:
 To create an empty Foundry project, run:
 
 ```bash
-forge init zkevm-tutorial
+forge init linea-tutorial
+```
+
+And change into the directory:
+
+```bash
+cd linea-tutorial
 ```
 
 ## Write the smart contract
 
-`forge init` sets you up with a sample contract, test, and script for `Counter.sol`. To build it, simply run `forge build`.
+Running `forge init` sets you up with a sample contract, test, and script for `Counter.sol`. To build it, simply run `forge build`.
 
 ## Deploy the smart contract
 
 To deploy a smart contract, run:
 
 ```bash
-forge create --rpc-url https://consensys-zkevm-goerli-prealpha.infura.io/v3/INFURA_API_KEY --private-key YOUR_PRIVATE_KEY src/Counter.sol:Counter
+forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter
 ```
-
-:::info
-
-Ensure you replace `INFURA_API_KEY` and `YOUR_PRIVATE_KEY` in the above command.
-
-:::
 
 Your output should look a little something like this:
 

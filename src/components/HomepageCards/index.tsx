@@ -21,11 +21,11 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Wallet Set Up",
-    link: "/category/use-consensys-zkevm",
+    link: "/category/use-linea",
     description: (
       <>
         Set up and fund your wallet to start bridging, swapping, and transacting
-        on the ConsenSys zkEVM network!
+        on Linea!
       </>
     ),
     buttonName: "Transact",
@@ -36,20 +36,20 @@ const CardList: CardItem[] = [
     link: "/developers/quickstart",
     description: (
       <>
-        Learn how to deploy and verify your first smart contract on ConsenSys
-        zkEVM using your favorite developer tools!
+        Deploy and verify your first smart contract on Linea using your favorite
+        developer tools!
       </>
     ),
     buttonName: "Build",
     buttonType: "success",
   },
   {
-    title: "ConsenSys zkEVM Block Explorer",
-    link: "https://explorer.goerli.zkevm.consensys.net/",
+    title: "Linea Block Explorer",
+    link: "https://explorer.goerli.linea.build/",
     description: (
       <>
-        View layer 2 transactions and find deployed contracts on the ConsenSys
-        zkEVM network on BlockScout!
+        View Linea transactions and find deployed contracts and wallet addresses
+        on BlockScout!
       </>
     ),
     buttonName: "Explore",

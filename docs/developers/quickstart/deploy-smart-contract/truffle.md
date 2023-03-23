@@ -11,9 +11,9 @@ In this tutorial, we'll walk through creating a basic Truffle project and deploy
 
 Before you begin, ensure you've:
 
-1. [Set up your wallet](../../../use-zkevm/set-up-your-wallet.md)
-1. [Funded your wallet with goerli ETH](../../../use-zkevm/fund.md)
-1. [Bridged Goerli ETH to ConsenSys zkEVM](../../../use-zkevm/bridge-funds.md)
+1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
+1. [Funded your wallet with goerli ETH](../../../use-linea/fund.md)
+1. [Bridged Goerli ETH to Linea](../../../use-linea/bridge-funds.md)
 1. [Installed Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
 ## Create a Truffle project
@@ -21,13 +21,13 @@ Before you begin, ensure you've:
 To create an empty Truffle project, run:
 
 ```bash
-truffle init zkevm-tutorial
+truffle init linea-tutorial
 ```
 
 Change into the new directory:
 
 ```bash
-cd zkevm-tutorial
+cd linea-tutorial
 ```
 
 ## Write the smart contract
@@ -92,7 +92,7 @@ Truffle offers two ways of deploying your contracts, through the [Truffle Dashbo
 [Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. To deploy with Truffle Dashboard, you need to:
 
 1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
-1. Navigate to `localhost:24012` in your browser. Please ensure that Dashboard is connected to the ConsenSys zkEVM testnet by connecting your MetaMask wallet to ConsenSys zkEVM. For reference, the ConsenSys zkEVM testnet network ID is `59140`.
+1. Navigate to `localhost:24012` in your browser. Please ensure that Dashboard is connected to the Linea testnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
 
    ![confirm network](../../../assets/dashboard_network.png)
 
@@ -103,13 +103,12 @@ Truffle offers two ways of deploying your contracts, through the [Truffle Dashbo
 
 ### truffle-config.js
 
-You can deploy with Truffle using the command line, by specifying the ConsenSys zkEVM network in `truffle-config.js`. To do so, you need to:
+You can deploy with Truffle using the command line, by specifying the Linea in `truffle-config.js`. To do so, you need to:
 
-1. Create a `.env` file in the root folder with your wallet's mnemonic and Infura API key.
+1. Create a `.env` file in the root folder with your wallet's mnemonic.
 
    ```
    MNEMONIC=<MNEMONIC>
-   INFURA_API_KEY=<YOUR_API_KEY_HERE>
    ```
 
    :::warning
@@ -123,21 +122,21 @@ You can deploy with Truffle using the command line, by specifying the ConsenSys 
    npm i -D dotenv
    npm i -D @truffle/hdwallet-provider
    ```
-1. Add the ConsenSys zkEVM network to your `truffle-config.js` file:
+1. Add the Linea testnet to your `truffle-config.js` file:
 
    ```javascript
    require("dotenv").config();
-   const { MNEMONIC, INFURA_API_KEY } = process.env;
+   const { MNEMONIC } = process.env;
 
    const HDWalletProvider = require("@truffle/hdwallet-provider");
 
    module.exports = {
      networks: {
-       consensyszkevmgoerli: {
+       linea: {
          provider: () => {
            return new HDWalletProvider(
              MNEMONIC,
-             `https://consensys-zkevm-goerli-prealpha.infura.io/v3/${INFURA_API_KEY}`,
+             `https://rpc.goerli.linea.build/`,
            );
          },
          network_id: "59140",
@@ -147,11 +146,7 @@ You can deploy with Truffle using the command line, by specifying the ConsenSys 
    };
    ```
 
-1. Install `@truffle/hdwallet-provider`.
-   ```bash
-   npm i @truffle/hdwallet-provider
-   ```
-1. Call `truffle migrate --network consensyszkevmgoerli` from the CLI. Your output should look similar to the following:
+1. Call `truffle migrate --network linea` from the CLI. Your output should look similar to the following:
 
    ```bash
    Compiling your contracts...
@@ -160,7 +155,7 @@ You can deploy with Truffle using the command line, by specifying the ConsenSys 
 
    Starting migrations...
    ======================
-   > Network name:    'consensyszkevmgoerli'
+   > Network name:    'linea'
    > Network id:      59140
    > Block gas limit: 30000000 (0x1c9c380)
 

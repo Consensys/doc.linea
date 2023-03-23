@@ -6,10 +6,10 @@ const baseUrl = isDev ? "/" : "/";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "ConsenSys zkEVM",
+  title: "Linea",
   tagline:
     "A type 2 zero knowledge Ethereum Virtual Machine that replicates an Ethereum environment by leveraging rollups.",
-  url: "https://docs.zkevm.consensys.net",
+  url: "https://docs.linea.build",
   baseUrl,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -71,7 +71,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: "cea41b975ad6c9a01408dfda6e0061d3",
 
-        indexName: "zkevm",
+        indexName: "linea",
 
         // Optional: see doc section below
         contextualSearch: true,
@@ -110,13 +110,12 @@ const config = {
         },
       },
       navbar: {
-        title: "ZK EVM",
         logo: {
-          alt: "ZK EVM",
+          alt: "Linea",
           src: "img/logo.svg",
           srcDark: "img/logo_dark.svg",
-          width: 32,
-          height: 32,
+          width: 55,
+          height: 55,
         },
         items: [
           {
@@ -145,11 +144,11 @@ const config = {
             title: "Learn",
             items: [
               {
-                label: "Use ConsenSys zkEVM",
-                to: "/category/use-consensys-zkevm",
+                label: "Use Linea",
+                to: "/category/use-linea",
               },
               {
-                label: "Build on ConsenSys zkEVM",
+                label: "Build on Linea",
                 to: "/category/developers",
               },
             ],
@@ -163,7 +162,7 @@ const config = {
               },
               {
                 label: "Get Help",
-                to: "https://community.zkevm.consensys.net/",
+                to: "https://zkevm.zendesk.com/",
               },
               {
                 label: "Give Feedback",
@@ -238,14 +237,14 @@ const config = {
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/category/use-consensys-zkevm",
+            to: "/category/use-linea",
             from: [
               "/category/get-started",
               "/get-started/bridge-funds",
               "/get-started/fund",
-              "/get-started/onboarding-process",
               "/get-started/configure-metamask",
               "/get-started/quickstart",
+              "/category/use-zkevm",
             ],
           },
         ],

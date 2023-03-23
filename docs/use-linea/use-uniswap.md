@@ -4,7 +4,7 @@ description: Use Uniswap to swap tokens and add liquidity
 sidebar_position: 5
 ---
 
-ConsenSys zkEVM includes a fork of the Uniswap v3 protocol. Use the [Uniswap app](https://swap.goerli.zkevm.consensys.net/) to swap tokens or add liquidity.
+Linea includes a fork of the Uniswap v3 protocol. Use the [Uniswap app](https://swap.goerli.linea.build/#/swap) to swap tokens or add liquidity.
 
 ## Add liquidity
 
@@ -14,7 +14,7 @@ If this is the first time adding liquidity, you'll need to approve the pool.
 
 :::
 
-1. Navigate to the [Uniswap app](https://swap.goerli.zkevm.consensys.net/), and select the ConsenSys zkEVM network in your MetaMask wallet.
+1. Navigate to the [Uniswap app](https://swap.goerli.linea.build/#/swap), and select the Linea network in your MetaMask wallet.
 1. Connect your wallet to the app, by clicking **Connect wallet** and selecting **MetaMask**. Your wallet address will appear in the top-right corner.
 1. Select the **Pool** tab.
 1. Select the pair of tokens you want to add liquidity for.
@@ -30,7 +30,7 @@ If this is the first time swapping this token, you'll need to approve the swap.
 
 :::
 
-1.  Navigate to the [Uniswap app](https://swap.goerli.zkevm.consensys.net/), and select the ConsenSys zkEVM network in your MetaMask wallet.
+1.  Navigate to the [Uniswap app](https://swap.goerli.linea.build/#/swap), and select Linea in your MetaMask wallet.
 1.  Connect your wallet to the app. Click **Connect wallet** and select **MetaMask**. Your wallet address will appear in the top-right corner.
 1.  Select the **Swap** tab.
 1.  Enter the tokens that you want to swap.
