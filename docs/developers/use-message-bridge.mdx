@@ -1,5 +1,5 @@
 ---
-title: ConsenSys zkEVM message bridge
+title: Linea message bridge
 description: Use the message bridge to bridge funds or messages
 sidebar_position: 4
 ---
@@ -8,19 +8,19 @@ import CodeBlock from "@theme/CodeBlock";
 import IBridge from "!!raw-loader!./contracts/IBridge.sol";
 import IL1Bridge from "!!raw-loader!./contracts/IL1Bridge.sol";
 
-# ConsenSys zkEVM message bridge
+# Linea message bridge
 
-Use the ConsenSys zkEVM message bridge to bridge funds or arbitrary messages between Goerli and ConsenSys zkEVM to enable your use case.
+Use the Linea message bridge to bridge funds or arbitrary messages between Goerli and Linea to enable your use case.
 
 :::tip
 
-If you are bridging funds, we recommend using our bridge [here](../use-zkevm/bridge-funds.md).
+If you are bridging funds, we recommend using our bridge [here](../use-linea/bridge-funds.md).
 
 :::
 
 ## Overview
 
-The ConsenSys zkEVM message bridge operates using the following patterns:
+The Linea message bridge operates using the following patterns:
 
 ### L1 to L2
 
@@ -46,7 +46,7 @@ The four first steps are identical to [L1 to L2](#l1-to-l2) but in the opposite 
 The contracts are deployed at the following addresses:
 
 - The L1 bridge, implementing the `IBridge.sol` and `IL1Bridge.sol` interfaces, is located at [`0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40`](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40).
-- The L2 bridge, implementing the `IBridge.sol` interface, is located at [`0xA59477f7742Ba7d51bb1E487a8540aB339d6801d`](https://explorer.goerli.zkevm.consensys.net/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d).
+- The L2 bridge, implementing the `IBridge.sol` interface, is located at [`0xA59477f7742Ba7d51bb1E487a8540aB339d6801d`](https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d).
 
 ## Interfaces
 

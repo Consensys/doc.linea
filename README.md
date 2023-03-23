@@ -1,4 +1,4 @@
-# ConsenSys zkEVM
+# Linea
 
 This documentation repo is built using [Docusaurus 2](https://docusaurus.io/).
 

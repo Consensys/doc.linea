@@ -9,6 +9,6 @@ sidebar_position: 3
 
 All EVM opcodes are managed identical to Ethereum unless presented in the following table. This table will be updated following each release.
 
-| Opcode Name                 | ConsenSys zkEVM        |
+| Opcode Name                 | Linea                  |
 | --------------------------- | ---------------------- |
 | `DIFFICULTY` / `PREVRANDAO` | Returns a fixed number |

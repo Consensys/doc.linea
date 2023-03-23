@@ -1,0 +1,55 @@
+---
+title: Bridge your funds
+description: Bridge funds between Goerli and Linea
+sidebar_position: 4
+---
+
+# Set up
+
+Before you begin, ensure your wallet is:
+
+1. [Configured to use Linea](./set-up-your-wallet.md)
+1. [Funded with test tokens](./fund.md)
+
+## Bridge from Goerli to Linea
+
+1.  [Navigate to the token bridge](https://bridge.goerli.linea.build/send?token=ETH) and select the Goerli network in your MetaMask wallet.
+1.  In the top dropdown menu, select **Goerli**, and in the bottom dropdown menu, select **Linea**.
+1.  Select your desired token (**USDC** or **ETH**).
+1.  Specify an amount less than your balance to send.
+1.  If you are sending **USDC**, you'll need to select approve before selecting send.
+1.  Select **Send**. First time users need to approve the Linea bridge to allow token transfers.
+1.  In your MetaMask wallet, confirm the transfer.
+
+The sent amount is deducted from your Goerli account on MetaMask. Switch to Linea in your wallet to view the bridged funds.
+
+<!--markdown-link-check-enable -->
+
+:::note
+
+This process can take up to 15 minutes to complete. You can view the status of your funds on the [block explorer](https://explorer.goerli.linea.build/).
+
+:::
+
+You can now use the funds on Linea to transfer funds between accounts or interact with smart contracts on the network. For example, you can use the [Uniswap v3 protocol](use-uniswap.md) that's deployed on the network.
+
+## Bridge from Linea to Goerli
+
+Ensure that you have bridged funds from Goerli to Linea. Then:
+
+1. [Navigate to the token bridge](https://bridge.goerli.linea.build/send?token=ETH) and select Linea in your MetaMask wallet.
+1. In the top dropdown menu, select **Linea**, and in the bottom dropdown menu, select **Goerli**.
+1. Select your desired token (**USDC** or **ETH**).
+1. If you are sending **USDC**, you'll need to select approve before selecting send.
+1. Select send. First time users need to approve the Linea bridge to allow token transfer.
+1. In your MetaMask wallet, confirm the transfer.
+
+The sent amount is deducted from your account on Linea. Switch to the Goerli network in your wallet to view the bridged funds.
+
+:::note
+
+This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://explorer.goerli.linea.build/).
+
+:::
+
+<!--markdown-link-check-enable -->
