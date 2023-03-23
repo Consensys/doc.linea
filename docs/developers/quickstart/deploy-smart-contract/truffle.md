@@ -151,7 +151,7 @@ You can deploy with Truffle using the command line, by specifying the ConsenSys 
    ```bash
    npm i @truffle/hdwallet-provider
    ```
-1. Call `truffle migrate --network consensys-zkevm-goerli` from the CLI. Your output should look similar to the following:
+1. Call `truffle migrate --network consensyszkevmgoerli` from the CLI. Your output should look similar to the following:
 
    ```bash
    Compiling your contracts...
