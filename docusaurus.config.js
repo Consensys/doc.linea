@@ -163,11 +163,11 @@ const config = {
               },
               {
                 label: "Get Help",
-                to: "https://zkevm.zendesk.com/",
+                to: "https://support.linea.build/",
               },
               {
                 label: "Give Feedback",
-                to: "https://community.zkevm.consensys.net/c/feedback",
+                to: "https://community.linea.build/c/feedback",
               },
             ],
           },
@@ -245,6 +245,7 @@ const config = {
               "/get-started/fund",
               "/get-started/configure-metamask",
               "/get-started/quickstart",
+              "/category/use-zkevm",
               "/category/use-zkevm",
             ],
           },
