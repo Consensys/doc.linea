@@ -10,26 +10,46 @@
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
+.footer--dark {
+  --ifm-footer-background-color: #000;
+}
+
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
   --ifm-color-primary-lightest: #fff;
   --ifm-color-primary-lighter: #fff;
-  --ifm-color-primary-light: #feffff;
-  --ifm-color-primary: #a2aeec;
-  --ifm-color-primary-dark: #657cdf;
-  --ifm-color-primary-darker: #657cdf;
-  --ifm-color-primary-darkest: #657cdf;
+  --ifm-color-primary-light: #BFE8FF;
+  --ifm-color-primary: #fff;
+  --ifm-color-primary-dark: #dcf1fd;
+  --ifm-color-primary-darker: #61DFFF;
+  --ifm-color-primary-darkest: #58cbe8;
+  --ifm-color-success: #61DFFF;
+  --ifm-color-success-dark: #58cbe8;
+  --ifm-color-info: #C0C0C0;
+  --ifm-color-info-dark: #989898;
+  --ifm-link-color: #2eb9dc;
+  --ifm-menu-color-active: #2eb9dc;
+  --ifm-footer-background-color: #000;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
 }
 
 [data-theme="light"] {
-  --ifm-color-primary-lightest: #788de3;
-  --ifm-color-primary-lighter: #5771dc;
-  --ifm-color-primary-light: #4c68da;
-  --ifm-color-primary: #3655d5;
-  --ifm-color-primary-dark: #2a48c7;
-  --ifm-color-primary-darker: #2744bc;
-  --ifm-color-primary-darkest: #20389b;
+  --ifm-color-primary-lightest: #EAF0FF;
+  --ifm-color-primary-lighter: #A5E5FF;
+  --ifm-color-primary-light: #61DFFF ;
+  --ifm-color-primary: #000;
+  --ifm-color-primary-dark: #313131;
+  --ifm-color-primary-darker: #545454;
+  --ifm-color-primary-darkest: #818181;
+  --ifm-color-success: #61DFFF;
+  --ifm-color-success-dark: #58cbe8;
+  --ifm-link-color: #2eb9dc;
+  --ifm-link-hover-color: #2eb9dc;
+  --ifm-menu-color-active: #2eb9dc;
+  --ifm-color-info: #C0C0C0;
+  --ifm-color-info-dark: #989898;
+  --ifm-footer-background-color: #000;
+  --ifm-footer-link-hover-color: #C0C0C0;
 }
 
 /* github */
