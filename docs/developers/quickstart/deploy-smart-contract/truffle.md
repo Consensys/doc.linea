@@ -85,7 +85,7 @@ module.exports = function (deployer) {
 
 ## Deploy your contract
 
-Truffle offers two ways of deploying your contracts, through the [Truffle Dashboard](#truffle-dashboard) or through the [CLI by modifying `truffle-config.js`](#truffle-configjs)
+Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard) using your MetaMask wallet!
 
 ### Truffle Dashboard
 
@@ -101,7 +101,7 @@ Truffle offers two ways of deploying your contracts, through the [Truffle Dashbo
 
    ![confirm deployment](../../../assets/dashboard_deploy.png)
 
-### truffle-config.js
+<!-- ### truffle-config.js
 
 You can deploy with Truffle using the command line, by specifying the Linea in `truffle-config.js`. To do so, you need to:
 
@@ -184,6 +184,6 @@ You can deploy with Truffle using the command line, by specifying the Linea in `
    =======
    > Total deployments:   1
    > Final cost:          0.001599180004477704 ETH
-   ```
+   ``` -->
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/truffle.md).
