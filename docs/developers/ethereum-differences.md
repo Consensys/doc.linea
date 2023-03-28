@@ -1,13 +1,13 @@
 ---
-description: Ethereum Differences
+description: Ethereum differences
 sidebar_position: 3
 ---
 
-# Ethereum Differences
+# Ethereum differences
 
-## EVM Opcodes
+## EVM opcodes
 
-All EVM opcodes are managed identical to Ethereum unless presented in the following table. This table will be updated following each release.
+All EVM opcodes are managed identically to Ethereum unless presented in the following table.
 
 | Opcode name                 | Linea                  |
 | --------------------------- | ---------------------- |
