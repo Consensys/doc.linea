@@ -246,7 +246,6 @@ const config = {
               "/get-started/configure-metamask",
               "/get-started/quickstart",
               "/category/use-zkevm",
-              "/category/use-zkevm",
             ],
           },
         ],
