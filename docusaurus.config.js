@@ -163,11 +163,11 @@ const config = {
               },
               {
                 label: "Get Help",
-                to: "https://zkevm.zendesk.com/",
+                to: "https://support.linea.build/",
               },
               {
                 label: "Give Feedback",
-                to: "https://community.zkevm.consensys.net/c/feedback",
+                to: "https://community.linea.build/c/feedback",
               },
             ],
           },

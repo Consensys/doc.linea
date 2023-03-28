@@ -49,17 +49,17 @@ const sidebars = {
         {
           type: "link",
           label: "Get help",
-          href: "https://zkevm.zendesk.com/",
+          href: "https://support.linea.build/",
         },
         {
           type: "link",
           label: "Provide feedback",
-          href: "https://community.zkevm.consensys.net/c/feedback",
+          href: "https://community.linea.build/c/feedback",
         },
         {
           type: "link",
           label: "Report an issue",
-          href: "https://community.zkevm.consensys.net/c/bug-reports/",
+          href: "https://community.linea.build/c/bug-reports/",
         },
         {
           type: "link",
