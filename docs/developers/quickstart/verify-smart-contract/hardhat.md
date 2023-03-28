@@ -15,13 +15,13 @@ These steps assume you stored your secret keys in a `.env` file, which you can r
 
 ## Download the plugin
 
-If you aren't already using `@nomicfoundation/hardhat-toolbox`, download the plugin in your project directory:
+If you aren't already using `@nomicfoundation/hardhat-toolbox`, download the etherscan plugin:
 
 ```bash
 npm install --save-dev @nomiclabs/hardhat-etherscan
 ```
 
-Add the plugin to the top of your `hardhat.config.js` file:
+And add the plugin to the top of your `hardhat.config.js` file:
 
 ```javascript
 require("@nomiclabs/hardhat-etherscan");
