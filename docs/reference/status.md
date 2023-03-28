@@ -12,4 +12,4 @@ To find the status of the Linea network, you'll need to:
 1. Expand the **Infura Ethereum Layer 2 APIs** section.
 1. Scroll down and find the status for Linea.
 
-For important announcements, navigate to our [community page](https://community.linea.build/).
+For important announcements, navigate to our [community page](https://community.linea.build/c/announcements/).

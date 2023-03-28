@@ -13,7 +13,7 @@ Before you begin, ensure your wallet is:
 
 ## Bridge from Goerli to Linea
 
-1.  [Navigate to the token bridge](https://bridge.goerli.linea.build/send?token=ETH) and select the Goerli network in your MetaMask wallet.
+1.  [Navigate to the token bridge](https://goerli.hop.exchange/#/send?token=ETH) and select the Goerli network in your MetaMask wallet.
 1.  In the top dropdown menu, select **Goerli**, and in the bottom dropdown menu, select **Linea**.
 1.  Select your desired token (**USDC** or **ETH**).
 1.  Specify an amount less than your balance to send.
@@ -37,7 +37,7 @@ You can now use the funds on Linea to transfer funds between accounts or interac
 
 Ensure that you have bridged funds from Goerli to Linea. Then:
 
-1. [Navigate to the token bridge](https://bridge.goerli.linea.build/send?token=ETH) and select Linea in your MetaMask wallet.
+1. [Navigate to the token bridge](https://goerli.hop.exchange/#/send?token=ETH) and select Linea in your MetaMask wallet.
 1. In the top dropdown menu, select **Linea**, and in the bottom dropdown menu, select **Goerli**.
 1. Select your desired token (**USDC** or **ETH**).
 1. If you are sending **USDC**, you'll need to select approve before selecting send.

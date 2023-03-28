@@ -22,7 +22,7 @@ sidebar_position: 2
     </tr>
     <tr>
         <td align="left"><b>Currency Symbol</b></td>
-        <td align="left">crETH</td>
+        <td align="left">ETH</td>
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
