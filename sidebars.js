@@ -36,6 +36,7 @@ const sidebars = {
         },
         "reference/status",
         "reference/api",
+        "reference/glossary",
       ],
       collapsible: false,
     },
