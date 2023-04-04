@@ -127,6 +127,21 @@ const config = {
             label: "Docs",
           },
           {
+            type: "dropdown",
+            label: "Learn",
+            position: "left",
+            items: [
+              {
+                label: "Community tutorials",
+                to: "blog",
+              },
+              {
+                label: "ZK Glossary",
+                to: "/reference/glossary",
+              },
+            ],
+          },
+          {
             href: "https://discord.com/invite/consensys",
             className: "header-discord-link",
             position: "right",
@@ -172,15 +187,19 @@ const config = {
             ],
           },
           {
-            title: "More",
+            title: "Contribute",
             items: [
               {
                 label: "Contribute to our documentation",
                 href: "https://github.com/ConsenSys/doc.zk-evm",
               },
               {
-                label: "About ConsenSys",
-                href: "https://consensys.net",
+                label: "Contribute to our gnark repo",
+                href: "https://github.com/ConsenSys/gnark",
+              },
+              {
+                label: "Contribute to our gnark-crypto repo",
+                href: "https://github.com/ConsenSys/gnark-crypto",
               },
             ],
           },
