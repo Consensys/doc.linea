@@ -16,6 +16,10 @@ This glossary is open source and consistently being updated. If you'd like a ter
 
 The blockchain trilemma is a “pick 2” situation between decentralization, security, and scalability. Between the 3, the Ethereum community has chosen decentralization and security. Sacrificing scalability means increasing gas prices, which jeopardizes the adoption of Ethereum by pricing out users.
 
+**Bridge**
+
+Bridge is a mechanism that connects two different blockchain networks or applications together, allowing them to share data or assets.
+
 ## C
 
 ## D

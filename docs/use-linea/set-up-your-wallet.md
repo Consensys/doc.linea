@@ -8,7 +8,7 @@ The MetaMask extension wallet provides a default Linea network. There's no speci
 
 Because Linea is currently only in public testnet, you'll need to click on `Show/hide test networks` to have it displayed. Afterwards, select the Linea network, and you're good to go!
 
-<img src="../static/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
+<img src="/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
 
 ## Using Linea on MetaMask mobile
 
