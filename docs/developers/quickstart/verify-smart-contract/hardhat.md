@@ -113,7 +113,7 @@ Message: Unknown UID
 For more info run Hardhat with --show-stack-traces
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://rpc.goerli.linea.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.linea.build/) and pasting in the deployed contract address.
 
 ![verified contract](../../../assets/blockscout_verification.png)
 
