@@ -9,7 +9,6 @@ sidebar_position: 1
 To find the status of the Linea network, you'll need to:
 
 1. Navigate to the [Infura status page](https://status.infura.io/).
-1. Expand the **Infura Ethereum Layer 2 APIs** section.
-1. Scroll down and find the status for Linea.
+1. Scroll down and find the status under **Infura Linea APIs**
 
 For important announcements, navigate to our [community page](https://community.linea.build/c/announcements/).
