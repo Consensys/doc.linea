@@ -45,7 +45,7 @@ Running `forge init` sets you up with a sample contract, test, and script for `C
 To deploy a smart contract, run:
 
 ```bash
-forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter
+forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
 ```
 
 Your output should look a little something like this:
