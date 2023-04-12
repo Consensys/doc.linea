@@ -7,6 +7,10 @@ sidebar_position: 3
 
 In this tutorial, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
 
+Here's a video walkthrough:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TO9XhLCoqgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Prerequisites
 
 Before you begin, Ensure you've:

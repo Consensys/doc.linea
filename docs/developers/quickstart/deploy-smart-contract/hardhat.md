@@ -7,6 +7,10 @@ sidebar_position: 2
 
 In this tutorial, we'll walk through creating a basic Hardhat project and deploying a token contract.
 
+Here's a video walkthrough:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cZ4F2uDBl_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Prerequisites
 
 <!--markdown-link-check-enable -->
