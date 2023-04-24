@@ -12,7 +12,7 @@ Because Linea is currently only in public testnet, you'll need to click on `Show
 
 ## Using Linea on MetaMask mobile
 
-If you want to use Linea on mobile, you'll need to follow the mobile instructions to [add it manually](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) using [this network information](../developers/useful-info.md#network-information).
+The MetaMask mobile wallet also provides a default Linea network. In order to display it, you'll need to enable `Show/hide test networks` on your mobile app.
 
 ## Other wallets
 
