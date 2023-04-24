@@ -29,6 +29,7 @@ const sidebars = {
         type: "generated-index",
       },
       items: [
+        "reference/linea-voyage-faq",
         {
           type: "link",
           label: "Block explorer",

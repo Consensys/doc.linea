@@ -8,6 +8,8 @@ sidebar_position: 4
 
 In order to transact on Linea, you'll need to bridge Goerli ETH from Goerli to Linea. The following steps take you through bridging USDC and Goerli ETH using the Hop bridge.
 
+You can find examples of how to bridge other tokens such as BNB and MATIC by exploring some of our partner bridges under the [explore section](./explore/).
+
 ## Set up
 
 Before you begin, ensure your wallet is:
@@ -35,7 +37,7 @@ This process can take up to 15 minutes to complete. You can view the status of y
 
 :::
 
-You can now use the funds on Linea to transfer funds between accounts or interact with smart contracts on the network. For example, you can use the [Uniswap v3 protocol](../use-linea/use-uniswap.md) that's deployed on the network.
+You can now use the funds on Linea to transfer funds between accounts or interact with smart contracts on the network. For example, you can use the [Uniswap v3 protocol](./explore/use-uniswap.md) that's deployed on the network.
 
 ## Bridge from Linea to Goerli
 

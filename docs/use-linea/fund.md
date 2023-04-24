@@ -14,7 +14,14 @@ Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-
 
 ## Get test ETH on Goerli
 
-Use a faucet to obtain Goerli ETH. Transactions are much cheaper than Ethereum mainnet. Therefore 0.1 ETH is enough to execute a basic workflow. You can view a [list of faucets](https://faucetlink.to/goerli) for the Goerli network.
+To get Goerli ETH, you'll need to:
+
+1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
+1. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks) ![goerli eth card](../assets/goerlieth_faucet.png)
+1. Navigate to the list of faucets linked through the Goerli card
+1. Select a faucet and drip Goerli ETH
+
+Transactions on Linea are much cheaper than Ethereum mainnet. Therefore, 0.2 ETH is enough to execute a basic workflow, but feel free to get as much as you need!
 
 ## Get test ETH on Linea
 
