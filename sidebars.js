@@ -29,10 +29,16 @@ const sidebars = {
         type: "generated-index",
       },
       items: [
+        "reference/linea-voyage-faq",
         {
           type: "link",
           label: "Block explorer",
           href: "https://explorer.goerli.linea.build/",
+        },
+        {
+          type: "link",
+          label: "Faucet",
+          href: "/use-linea/fund",
         },
         "reference/status",
         "reference/api",
