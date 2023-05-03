@@ -59,3 +59,5 @@ Deployer: YOUR_ACCOUNT_NUMBER
 Deployed to: 0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83
 Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647d7ee
 ```
+
+Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
