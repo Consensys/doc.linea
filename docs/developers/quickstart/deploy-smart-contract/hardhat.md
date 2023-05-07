@@ -205,4 +205,10 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/hardhat.md).
 
+:::note
+
+You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
+
+:::
+
 <!--markdown-link-check-enable -->
