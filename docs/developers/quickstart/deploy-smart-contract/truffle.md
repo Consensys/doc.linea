@@ -191,3 +191,9 @@ You can deploy with Truffle using the command line, by specifying the Linea in `
    ``` -->
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/truffle.md).
+
+:::note
+
+You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
+
+:::

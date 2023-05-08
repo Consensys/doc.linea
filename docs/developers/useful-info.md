@@ -30,6 +30,10 @@ sidebar_position: 2
     </tr>
 </table>
 
+## Connect with Infura
+
+If your dapp is using the public endpoint, it may encounter rate limiting. You can get more details and find out how to request full access to an Infura endpoint [here](https://support.infura.io/hc/en-us/articles/15116941373979).
+
 ## Deployed Contracts
 
 | Contract | Address |

@@ -61,3 +61,9 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
+
+:::note
+
+You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
+
+:::
