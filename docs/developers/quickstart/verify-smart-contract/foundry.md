@@ -19,11 +19,11 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 
 Enter the address in the Blockscout search bar, then select the **Code** tab on the page. An unverified contract should look something like this:
 
-![unverified contract](../../../assets/foundry_verification_1.png)
+![unverified contract](../../../assets/foundry/foundry_verification_1.png)
 
 To verify the contract, select **Verify & Publish**, which takes you to the Blockscout verification page pre-populated with your contract address. Select **Via flattened source code**, and select **Next**.
 
-![flattened source code option](../../../assets/foundry_verification_2.png)
+![flattened source code option](../../../assets/foundry/foundry_verification_2.png)
 
 ## Flatten the contract source code
 
@@ -70,14 +70,14 @@ In our case, the flattened code matches the `Counter.sol` code, but oftentimes y
 
 Foundry compiles your code using the compiler version found in `~/.svm`. To get the compiler version, run `ls ~/.svm`. In this example, the compiler version is `0.8.17`.
 
-![get compiler version](../../../assets/foundry_verification_3.png)
+![get compiler version](../../../assets/foundry/foundry_verification_3.png)
 
 ## Fill out the Blockscout verification page
 
 Now, you have all the information to fill out the verification page. It should look something like this:
 
-![fill out page](../../../assets/foundry_verification_4.png)
+![fill out page](../../../assets/foundry/foundry_verification_4.png)
 
 Click **Verify & Publish** and you'll be directed to the verified contract page:
 
-![verified contract](../../../assets/foundry_verification_5.png)
+![verified contract](../../../assets/foundry/foundry_verification_5.png)

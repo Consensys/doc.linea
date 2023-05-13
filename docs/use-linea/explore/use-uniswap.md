@@ -1,7 +1,7 @@
 ---
 title: Use Uniswap
 description: Use Uniswap to swap tokens and add liquidity
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 Linea includes a fork of the Uniswap v3 protocol. Use the [Uniswap app](https://swap.goerli.linea.build/#/swap) to swap tokens or add liquidity.
