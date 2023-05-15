@@ -16,6 +16,11 @@ Within the marketplace, a user will be able to perform the following actions:
 - delist an NFT (not part of the campaign)
 - mint an NFT of NFT Factory collection
 
+Before you begin, ensure your wallet is:
+
+1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
+
 ## Mint a collection
 
 The user opens the marketplace and lands on the homepage where she/he can view the last three collections in the preview and two other collection sections, which show cards from the last 10 collections.
