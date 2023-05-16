@@ -16,6 +16,6 @@ The MetaMask mobile wallet also provides a default Linea network. In order to di
 
 ## Other wallets
 
-Linea is compatible with any EVM-compatible wallet. If you want to add the Linea network, you can find the relevant network information under [Network information and deployed contracts](../developers/useful-info.md#network-information).
+Linea is compatible with any EVM-compatible wallet. If you want to add the Linea network, you can find the relevant network information under [Network information and deployed contracts](../reference/useful-info.md#network-information).
 
 <!--markdown-link-check-enable -->
