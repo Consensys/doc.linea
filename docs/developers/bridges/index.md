@@ -8,5 +8,5 @@ Linea has a lot of bridges, and knowing how to use them properly as a developer 
 
 This section may be updated often as bridges come online, and are updated.
 
-- [The USDC Bridge, Step by Step](./USDCBridge.md/)
+- [The USDC Bridge, Step by Step](./usdcbridge.md/)
 - [The Linea Message Bridge](./use-message-bridge.mdx)
