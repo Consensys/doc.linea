@@ -3,7 +3,7 @@ title: Smart Wallets
 sidebar_position: 2
 ---
 
-# thirdweb
+# Smart Wallets
 
 thirdweb released their Smart Wallet SDK implementing EIP-4337 and leveraging Pimlico infrastructure for Bundler and Paymaster.
 
