@@ -301,4 +301,4 @@ Yuhu!! “vitalik.eth” can now claim its revenue!
 
 ## Get Support
 
-If you run into issues using the Hop bridge, you can find their support channel in their Discord.
+If you run into issues using the NFTs2me, you can find their support channel in their Discord at this link:https://discord.com/invite/8nVSkdAwtP.
