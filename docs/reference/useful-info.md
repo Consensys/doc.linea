@@ -1,6 +1,6 @@
 ---
 description: Network information and deployed contracts
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Network information and deployed contracts

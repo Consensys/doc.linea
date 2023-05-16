@@ -1,7 +1,7 @@
 ---
 title: Linea Voyage FAQ
 description: How you can help test Linea for mainnet
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 # Linea Voyage FAQ
