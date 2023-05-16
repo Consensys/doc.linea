@@ -43,7 +43,9 @@ If your dapp is using the public endpoint, it may encounter rate limiting. You c
 
 ## Token Contract Addresses and Bridges
 
-You can find faucets for these tokens [going to the Linea faucet](https://faucet.goerli.linea.build/), connecting your MetaMask wallet, and switching to the Linea network.
+You can find faucets for these tokens by going to the [Linea faucet](https://faucet.goerli.linea.build/), connecting your MetaMask wallet, and switching to the Linea network.
+
+If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea faucet](https://infura.io/faucet/linea)
 
 <table>
   <tbody>
@@ -133,3 +135,11 @@ You can find faucets for these tokens [going to the Linea faucet](https://faucet
     </tr>
   </tbody>
 </table>
+
+## Faucets
+
+If you want to drip Goerli ETH directly to Linea, find the [Infura Linea faucet here](https://infura.io/faucet/linea).
+
+If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
+
+You can find instructions on how to use the Linea faucet [here](../use-linea/fund.md).

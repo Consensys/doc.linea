@@ -6,7 +6,9 @@ sidebar_position: 3
 
 # Use the Linea faucet
 
-You can find the Linea faucet [here](https://faucet.goerli.linea.build/), which lists different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
+If you want to drip Goerli ETH directly to Linea, find the [Infura Linea faucet here](https://infura.io/faucet/linea).
+
+If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
 ## Set up
 
@@ -25,7 +27,10 @@ Transactions on Linea are much cheaper than Ethereum mainnet. Therefore, 0.2 ETH
 
 ## Get test ETH on Linea
 
-In order to interact with Linea, you'll need to [bridge Goerli ETH to Linea](bridge-funds.md).
+In order to interact with Linea, you can either:
+
+1. [Drip 0.5 Goerli ETH directly to Linea through the Infura faucet](https://infura.io/faucet/linea)
+1. [Bridge Goerli ETH to Linea](bridge-funds.md)
 
 ## Get other tokens on Goerli
 

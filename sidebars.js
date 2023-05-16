@@ -38,7 +38,7 @@ const sidebars = {
         {
           type: "link",
           label: "Faucet",
-          href: "/use-linea/fund",
+          href: "/developers/useful-info#faucets",
         },
         "reference/status",
         "reference/api",
