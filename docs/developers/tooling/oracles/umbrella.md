@@ -26,16 +26,20 @@ Contact us here (https://www.umb.network/contact#form).
 ## SOLUTIONS   
 At Umbrella, we are committed to providing easy-to-use solutions for using off-chain data on-chain. We understand that different projects have unique requirements. That's why we offer several ways to consume data:
 
-###ON-CHAIN DATA
+### ON-CHAIN DATA
 For projects needing their custom data feeds on-chain with defined parameters such as deviation triggers and heartbeat. This solution is perfect for vault tokens, volatility monitoring, TWAPs, and more. Real-time, customizable data at your fingertips.
 
-###LAYER 2 DATA
+### LAYER 2 DATA
 For projects needing data secured on-chain at scale, our Layer-2 Data solution is the answer. Whether you're in the DeFi space, prediction markets, or building data-heavy Web3 solutions, we ensure your data is secure and readily available to support your applications.
 
-###ON DEMAND DATA
+### ON DEMAND DATA
 For projects requiring high-frequency data. Signed off-chain data written into any smart contract on demand. This feature is ideal for high-frequency perps or spot trading platforms where timing is crucial. Access the data you need, precisely when you need it.
 Planned for Q3 2023
 
-##TECHNICAL DOCUMENTATION
+## TECHNICAL DOCUMENTATION
 
-Find our technical documentation here (https://umbrella-network.readme.io/docs).
+Find our technical documentation [here](https://umbrella-network.readme.io/docs).
+
+## FOLLOW UMBRELLA NETWORK
+
+[Discord](https://discord.com/invite/Gryaa9p4X7) | [Twitter](https://twitter.com/UmbNetwork) | [Announcements](https://t.me/umbnetannouncement) | [Website](https://www.umb.network/) | [Governance](https://gov.umb.network/)
