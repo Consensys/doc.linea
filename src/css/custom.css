@@ -5,8 +5,91 @@
  */
 
 /* You can override the default Infima variables here. */
+
+html {
+  line-height: 1.5;
+  tab-size: 4;
+  font-family: inherit;
+  font-feature-settings: normal;
+}
+
+body {
+  font-family: inherit;
+  margin: 0;
+  line-height: inherit;
+}
+
+hr {
+  font-family: inherit;
+  height: 0;
+  color: inherit;
+  border-top-width: 1px
+}
+
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: inherit;
+  font-weight: inherit
+}
+
+a {
+  font-family: inherit;
+  color: #2eb9dc;
+  text-decoration: inherit
+}
+
+#b,#strong {
+  font-family: inherit;
+}
+
+code,kbd,pre,samp {
+  font-family: inherit;
+  font-size: 1em
+}
+
+small {
+  font-family: inherit;
+  font-size: 80%;
+}
+
+sub,sup {
+  font-family: inherit;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+
+sub {
+  bottom: -.25em
+}
+
+sup {
+  top: -.5em
+}
+
+table {
+  font-family: inherit;
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse
+}
+
+button,input,optgroup,select,textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0
+}
+
 :root {
-  --ifm-code-font-size: 95%;
+  font-family: "__atypfont_6511b3", serif;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
@@ -184,7 +267,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-size: 12px;
   line-height: 20px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: medium;
   border-radius: 0.25rem;
   border: 1px solid;
   border-inline-start-width: 5px;
@@ -291,3 +374,149 @@ html[data-theme="dark"] .header-dockerhub-link::before {
     var(--ifm-color-emphasis-100) 100%
   );
 }
+
+/* Atyp css dump hereinafter */
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/777c300fd084f815-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/7f1839f881dbbeff-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: normal;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/9e377721614461a4-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/3c8a644e9b7c319f-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic
+}
+/* This is the font for body text. */
+@font-face {
+    font-family: "__atypFont_6511b3";
+    src: url("./../../static/atyp/7e645729c45a19f7-s.p.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal
+}
+
+/* This is the font for bold body text */
+@font-face {
+    font-family: "__atypFont_6511b3";
+    src: url("./../../static/atyp/3cf36425de0165ec-s.p.woff2") format("woff2");
+    font-display: swap;
+    font-weight: medium;
+    font-style: italic
+}
+
+@font-face {
+  font-family: "__atypFont_Fallback_6511b3";
+  src: local("Arial");
+  ascent-override:71.89%;descent-override:20.39%;line-gap-override:37.84%;size-adjust:108.36%}
+
+.__className_6511b3 {
+  font-family: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif
+}
+
+.__variable_6511b3 {
+  --font-atyp: "__atypFont_6511b3","__atypFont_Fallback_6511b3"
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/3faf8ff31e4c5afe-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal
+}
+
+/* @font-face {
+    font-family: "__atypTextFont_34d2cd";
+    src: url(./../../static/atyp/d168b7bd17e59ad8-s.p.woff2) format("woff2");
+    font-display: swap;
+    font-weight: 300;
+    font-style: italic
+} */
+
+/* @font-face {
+    font-family: "__atypTextFont_34d2cd";
+    src: url(./../../static/atyp/cec5d6dd42aaa433-s.p.woff2) format("woff2");
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal
+} */
+
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/3be625d83915aa2a-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/8db346cdb2d82fe7-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/270d58506c584a49-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 500;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/a790aba49d3d1f9b-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/1884d75f1c99687f-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/5e26eabd16cb5e58-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal
+}
+
+
+/* @font-face {
+    font-family: "__atypTextFont_34d2cd";
+    src: url(./../../static/atyp/e0e16a8115e3957f-s.p.woff2) format("woff2");
+    font-display: swap;
+    font-weight: 700;
+    font-style: italic
+} */
