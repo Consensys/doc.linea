@@ -7,20 +7,20 @@ sidebar_position: 2
 
 Umbrella Network, is a decentralized oracle service that provides blockchain projects with secure, scalable, and customizable data solutions.
 
-Umbrella offers smart contracts a broad suite of solutions, whether it is high frequency pricing updates, aggregating large volumes of data at scale, or providing tailored price feeds for specific needs. Secured by a network of decentralized community validators, Umbrella can provide any data that you need when you need it.
+Umbrella offers smart contracts a broad suite of solutions, whether it is any type of price feed for specific/custom needs, high frequency pricing updates, or aggregating large volumes of data at scale. Secured by a network of decentralized community validators, Umbrella can provide any data that you need when you need it.
 
 The following price feeds are currently available on Linea testnet:
-DAI-USDC
-USDC-USD
-ETH-USDC
-WBTC-USDC
-COMP-USDC
-LINK-USDC
-UNI-USDC
-UMB-USD
-ARB-USD
+- DAI-USDC
+- USDC-USD
+- ETH-USDC
+- WBTC-USDC
+- COMP-USDC
+- LINK-USDC
+- UNI-USDC
+- UMB-USD
+- ARB-USD
 
-Umbrella can create any custom price feeds for your project.
+Umbrella can create any custom price feed for your project.
 Contact us here (https://www.umb.network/contact#form).
 
 ## SOLUTIONS   
@@ -36,9 +36,11 @@ For projects needing data secured on-chain at scale, our Layer-2 Data solution i
 For projects requiring high-frequency data. Signed off-chain data written into any smart contract on demand. This feature is ideal for high-frequency perps or spot trading platforms where timing is crucial. Access the data you need, precisely when you need it.
 Planned for Q3 2023
 
+
 ## TECHNICAL DOCUMENTATION
 
 Find our technical documentation [here](https://umbrella-network.readme.io/docs).
+
 
 ## FOLLOW UMBRELLA NETWORK
 
