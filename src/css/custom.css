@@ -89,7 +89,7 @@ button,input,optgroup,select,textarea {
 }
 
 :root {
-  font-family: "__atypfont_6511b3", serif;
+  font-family: "__atypFont_6511b3", serif;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
@@ -376,6 +376,37 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 /* Atyp css dump hereinafter */
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/32057ef78076f171-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/507e37d0da6e0458-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/a9d3087643e88082-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/ca04421ef285dfef-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic
+}
 
 @font-face {
   font-family: "__atypFont_6511b3";
@@ -389,7 +420,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-family: "__atypFont_6511b3";
   src: url("./../../static/atyp/7f1839f881dbbeff-s.p.woff2") format("woff2");
   font-display: swap;
-  font-weight: normal;
+  font-weight: 500;
   font-style: italic
 }
 
@@ -408,22 +439,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-weight: 600;
   font-style: italic
 }
-/* This is the font for body text. */
+
 @font-face {
-    font-family: "__atypFont_6511b3";
-    src: url("./../../static/atyp/7e645729c45a19f7-s.p.woff2") format("woff2");
-    font-display: swap;
-    font-weight: 700;
-    font-style: normal
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/7e645729c45a19f7-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal
 }
 
-/* This is the font for bold body text */
 @font-face {
-    font-family: "__atypFont_6511b3";
-    src: url("./../../static/atyp/3cf36425de0165ec-s.p.woff2") format("woff2");
-    font-display: swap;
-    font-weight: medium;
-    font-style: italic
+  font-family: "__atypFont_6511b3";
+  src: url("./../../static/atyp/3cf36425de0165ec-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic
 }
 
 @font-face {
@@ -432,11 +462,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   ascent-override:71.89%;descent-override:20.39%;line-gap-override:37.84%;size-adjust:108.36%}
 
 .__className_6511b3 {
-  font-family: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif
+  font-family: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif;
 }
 
 .__variable_6511b3 {
-  --font-atyp: "__atypFont_6511b3","__atypFont_Fallback_6511b3"
+  --font-atyp: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif;
 }
 
 @font-face {
@@ -447,22 +477,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-style: normal
 }
 
-/* @font-face {
-    font-family: "__atypTextFont_34d2cd";
-    src: url(./../../static/atyp/d168b7bd17e59ad8-s.p.woff2) format("woff2");
-    font-display: swap;
-    font-weight: 300;
-    font-style: italic
-} */
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/d168b7bd17e59ad8-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300;
+  font-style: italic
+}
 
-/* @font-face {
-    font-family: "__atypTextFont_34d2cd";
-    src: url(./../../static/atyp/cec5d6dd42aaa433-s.p.woff2) format("woff2");
-    font-display: swap;
-    font-weight: 400;
-    font-style: normal
-} */
-
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/cec5d6dd42aaa433-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal
+}
 
 @font-face {
   font-family: "__atypTextFont_34d2cd";
@@ -512,11 +541,23 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-style: normal
 }
 
+@font-face {
+  font-family: "__atypTextFont_34d2cd";
+  src: url("./../../static/atyp/e0e16a8115e3957f-s.p.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic
+}
 
-/* @font-face {
-    font-family: "__atypTextFont_34d2cd";
-    src: url(./../../static/atyp/e0e16a8115e3957f-s.p.woff2) format("woff2");
-    font-display: swap;
-    font-weight: 700;
-    font-style: italic
-} */
+@font-face {
+  font-family:"__atypTextFont_Fallback_34d2cd";
+  src: local("Arial");
+  ascent-override:71.89%;descent-override:20.39%;line-gap-override:37.84%;size-adjust:108.36%}
+
+.__className_34d2cd {
+  font-family: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd", serif;
+}
+
+.__variable_34d2cd {
+  --font-atyp-text: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd"
+}
