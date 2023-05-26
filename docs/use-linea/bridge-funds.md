@@ -33,7 +33,7 @@ The sent amount is deducted from your Goerli account on MetaMask. Switch to Line
 
 :::note
 
-This process can take up to 15 minutes to complete. You can view the status of your funds on the [block explorer](https://explorer.goerli.linea.build/).
+This process can take up to 15 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
 :::
 
@@ -54,7 +54,7 @@ The sent amount is deducted from your account on Linea. Switch to the Goerli net
 
 :::note
 
-This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://explorer.goerli.linea.build/).
+This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
 :::
 

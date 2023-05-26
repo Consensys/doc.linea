@@ -26,7 +26,7 @@ sidebar_position: 2
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left">https://explorer.goerli.linea.build/</td>
+        <td align="left">https://goerli.lineascan.build/</td>
     </tr>
 </table>
 

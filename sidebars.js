@@ -33,7 +33,7 @@ const sidebars = {
         {
           type: "link",
           label: "Block explorer",
-          href: "https://explorer.goerli.linea.build/",
+          href: "https://goerli.lineascan.build",
         },
         {
           type: "link",
