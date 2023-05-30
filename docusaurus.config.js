@@ -142,12 +142,12 @@ const config = {
             ],
           },
           {
-            href: "https://support.linea.build/hc/",
+            to: "https://support.linea.build/hc/",
             position: "left",
             label: "Support",
           },
           {
-            href: "https://linea.build/",
+            to: "https://linea.build/",
             position: "left",
             label: "Linea home",
           },
