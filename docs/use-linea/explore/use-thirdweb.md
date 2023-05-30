@@ -42,6 +42,8 @@ Before you begin, ensure that you have a wallet that is [configured to use Linea
 
 ![deploy-token-drop.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/deploy-token-drop.png)
 
+       (note: do not uncheck the 'add to dashboard' option)
+
 Once you’ve confirmed the transactions with your wallet the contract will be deployed and you will be redirected to that smart contract’s Overview page on the Dashboard.  
 
 ### Make Your Token Claimable by Users
