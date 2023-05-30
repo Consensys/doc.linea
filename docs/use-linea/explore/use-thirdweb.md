@@ -29,12 +29,14 @@ Before you begin, ensure that you have a wallet that is [configured to use Linea
 
 1. [Visit](https://thirdweb.com/linea-testnet) Linea Testnet chain page at thirdweb
 2. Deploy TokenDrop (ERC contract) using the thirdweb Dashboard
+
    1. Connect wallet to Dashboard
    2. Change network on connect wallet to Linea Testnet
 
       ![connect-wallet.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/connect-wallet.png)
 
       ![select-network.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/select-network.png)
+
 3. Click on **Token** contract on the contract explorer page, and deploy the smart contract by clicking on the **Deploy now** button. Give your contract a Name and a Symbol
 
 ![linea-landing.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/linea-landing.png)
