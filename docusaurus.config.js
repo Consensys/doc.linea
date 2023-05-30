@@ -277,6 +277,10 @@ const config = {
               "/category/use-zkevm",
             ],
           },
+          {
+            to: "/developers/tooling",
+            from: "/developers/partners",
+          },
         ],
       },
     ],
