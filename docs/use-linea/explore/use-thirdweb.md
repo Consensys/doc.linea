@@ -34,11 +34,11 @@ Before you begin, ensure that you have a wallet that is [configured to use Linea
         
         ![select-network.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/select-network.png)
         
-3. Click on **Token** contract on the contract explorer page and deploy the smart contract by clicking on the **Deploy now** button.  Give your contract a Name and Symbol  
+3. Click on **Token Drop** contract on the contract explorer page and deploy the smart contract by clicking on the **Deploy now** button.  Give your contract a Name and Symbol  
 
-![linea-landing.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/linea-landing.png)
+![linea-landing.png](https://gateway.ipfscdn.io/ipfs/QmZCuC8yEQGnexf5RqgFTUhEteXJfpGkk6xxpg5SRrgPKj/token-drop-explorev2.png)
 
-![explore-token-drop.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/explore-token-drop.png)
+![explore-token-drop.png](https://gateway.ipfscdn.io/ipfs/QmP8Ppd5eVbFvaW8ozZADr9edHaKwCTLn4SwKzU9LHmJoT/token-drop.png)
 
 ![deploy-token-drop.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/deploy-token-drop.png)
 
