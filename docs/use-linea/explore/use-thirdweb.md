@@ -67,7 +67,7 @@ Save the claim phase by clicking the “Save Phases” button. Your wallet will 
 ### Claim 10 tokens to your wallet
 
 1. Click on the Embed tab of the Dashboard.
-2. The Embed tab shows embeddable `<iframe>` code that you can copy to your clipboard and paste into any website which will render the token claiming embed.
+2. The Embed tab shows an embeddable `<iframe>` code that you can copy to your clipboard and paste into any website which will render the token claiming embed.
 
 ![embed-code.png](https://gateway.ipfscdn.io/ipfs/QmVGRGndHPYPMDwqY7ARDZbEEMuJVMoXYzSBoB2mhkddh9/embed-code.png)
 
