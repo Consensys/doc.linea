@@ -1,6 +1,6 @@
 ---
 description: Ethereum and Linea differences
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Differences between Ethereum and Linea
