@@ -142,6 +142,16 @@ const config = {
             ],
           },
           {
+            to: "https://support.linea.build/hc/",
+            position: "left",
+            label: "Support",
+          },
+          {
+            to: "https://linea.build/",
+            position: "left",
+            label: "Linea home",
+          },
+          {
             href: "https://discord.com/invite/consensys",
             className: "header-discord-link",
             position: "right",
