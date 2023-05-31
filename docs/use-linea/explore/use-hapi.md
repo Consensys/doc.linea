@@ -81,6 +81,10 @@ Make the screenshot of the “L” letter with visibility on the HAPI Terminal a
 
 ![image](https://github.com/ConsenSys/doc.zk-evm/assets/45225985/d26f9f66-9dc0-40d6-96ae-78840990e2be)
 
+OR
+
+Don’t feel comfortable sharing your address publicly on Twitter? 
+Post the Quote Tweet as shown above, using the #I_am_Linea hashtag, without including your address, and then fill the following form, providing your Twitter handle and your Linea 1 address (the one you used to connect on Hapi): https://forms.gle/FuMznRWeee3ayETD7
 
 
 
