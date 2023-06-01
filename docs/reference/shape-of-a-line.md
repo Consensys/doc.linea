@@ -4,7 +4,11 @@ description: An overview of how Linea works
 sidebar_position: 2
 ---
 
+import bluecircle from '../../static/img/bluecircle.png'; import redcircle from '../../static/img/redcircle.png';
+
 # The Shape of a Line: Linea's Architecture
+
+<img src={bluecircle}  style={{width:200}}></img>
 
 ## Linea's ideal state
 
@@ -23,18 +27,19 @@ As Linea is still a beta testnet, and there's lots of development to be done, we
 - Centralized Sequencer & Prover
 - Bridge Relayer
 
+> _Note: in general, we will be explaining Linea and its relationship to Ethereum. Linea is currently in beta testnet, so mentions to Ethereum should be understood to refer to either testnet Ethereum, if discussing the current state of the network, or mainnet Ethereum, if discussing a future state of development._
+
 ## First of all: what _is_ Linea, anyway? What's a zkEVM L2?
 
 There are a number of different mental models that people in web3 use to explain these different networks and how they relate to one another. Some people prefer to call them "rollup networks", or "scaling solutions"; probably the most popular way of discussing them is by imagining them as "layers", where one network is "built on top of another". Let's try and set metaphor aside for a moment, and speak in clear terms:
 
-> The Ethereum network has several functional areas:
+**The Ethereum network has several functional areas:**
 
-- It has the _blockchain_, where it keeps track of addresses, and which tokens are allocated to which addresses.
-- It has the _consensus_ mechanism, wherein many many nodes communicate about the movement of tokens from one address to another, and each keeps their local copy of the ledger up to date.
-- And it has the _execution environment_, wherein computer programs can be run. That's the "EVM", or "Ethereum Virtual Machine", part of things.
-  >
+> - It has the _blockchain_, where it keeps track of addresses, and which tokens are allocated to which addresses.
+> - It has the _consensus_ mechanism, wherein many many nodes communicate about the movement of tokens from one address to another, and each keeps their local copy of the ledger up to date.
+> - And it has the _execution environment_, wherein computer programs can be run. That's the "EVM", or "Ethereum Virtual Machine", part of things.
 
-These three areas are heavily interconnected, and this is a simplification, but it's a helpful one to understand what's going on with other networks.
+**These three areas are heavily interconnected, and this is a simplification, but it's a helpful one to understand what's going on with other networks.**
 
 Ethereum prioritizes security: that consensus mechanism is designed to ensure that no one can singlehandedly alter the state of the network. This is a very impressive feat of engineering, and it comes with a tradeoff: the execution environment is highly limited in the amount of work it can do, because the consensus mechanism intentionally runs slowly, to keep everything safe.
 
@@ -50,35 +55,31 @@ So, now that we've walked through some concepts, we can roll it all up: **Linea 
 
 At a high level, if you were to follow a flow from Ethereum, through Linea, and back to Ethereum, it would go like this:
 
+> #### Ethereum bridge contract >
 >
-
-#### Ethereum bridge contract >
-
-#### Linea bridge contract >
-
-#### Coordinator >
-
-#### Sequencer (Block building > Execution > Trace data generation) >
-
-#### Coordinator >
-
-#### Trace Conflation >
-
-#### EVM State Manager >
-
-#### Trace Expansion and Proving (Corset > gnark) >
-
-#### Coordinator >
-
-#### zk-proof and updated Merkle tree >
-
-#### Linea bridge contract >
-
-#### Ethereum bridge contract >
-
-#### Ethereum blockchain
-
+> #### Linea bridge contract >
 >
+> #### Coordinator >
+>
+> #### Sequencer (Block building > Execution > Trace data generation) >
+>
+> #### Coordinator >
+>
+> #### Trace Conflation >
+>
+> #### EVM State Manager >
+>
+> #### Trace Expansion and Proving (Corset > gnark) >
+>
+> #### Coordinator >
+>
+> #### zk-proof and updated Merkle tree >
+>
+> #### Linea bridge contract >
+>
+> #### Ethereum bridge contract >
+>
+> #### Ethereum blockchain
 
 _...in other words, there's a lot involved. _
 
@@ -86,27 +87,49 @@ _...in other words, there's a lot involved. _
 
 In order to make this explanation as clear and navigable as possible, we'll break each component down, and explain it in three steps:
 
+> #### What is it?
 >
-
-#### What is it?
-
-#### What does it do?
-
-#### How does it do it?
-
+> #### What does it do?
 >
+> #### How does it do it?
 
 Let's start with the thing that a lot of users encounter when trying to access an L2 for the first time: **a bridge**.
 
-There are a lot of data to pass back and forth between Linea and other networks, and therefore, Linea has more than one bridge; and that number is likely to continue to grow. Here are some that have been built so far:
+But not just any bridge; there are a lot of data to pass back and forth between Linea and other networks, and therefore, Linea has more than one bridge; and that number is likely to continue to grow. But there's one in particular that matters: the **Linea Canonical Message Service**.
 
-## The Linea Consensus Bridge
+## Linea Canonical Message Service
+
+### What is it?
+
+The Canonical Message Service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between Linea and other networks.
+
+### What does it do?
+
+If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The Canonical Message Service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The Service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
+
+One of the most important things that the Message Service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the Canonical Message Service transmits the rollup data.
+
+However, the Service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
+
+### How does it do it?
+
+The Canonical Message Service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](https://docs.linea.build/developers/bridge-architecture/message-service#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+
+A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the Postbots.
+
+The Postbots are one part of Linea that are currently centralized while in beta testnet, but will be decentralized when the network goes to mainnet. In fact, anyone will be able to participate and serve as a Postbot. The Postbots are essentially actors that "listen" for calls being made to one of the contracts, either on Linea or Ethereum, and pass the information submitted to the other network.
+
+Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users currently have to then _pull_ the transferred assets out of the destination end of the bridge, although soon functionality will be available to allow the user to pay up-front and allow the assets to be _pushed_ directly to the destination address.
+
+> ### OK, so we've transferred assets to Linea. What's going on up here? How do things work on Layer 2?
+
+Meet the Coordinator.
 
 ## The Coordinator
 
 ### What is it?
 
-The Coordinator is Linea’s Coordination Module across a number of functions. It is also the channel through which information on the state of Ethereum comes into Linea, and through which information on the state of Linea returns to Ethereum.
+The Coordinator is Linea’s coordination module across a number of functions. It is also the channel through which information on the state of Ethereum comes into Linea, and through which information on the state of Linea returns to Ethereum.
 
 ### What does it do?
 
@@ -140,8 +163,7 @@ The part of Linea’s sequencer responsible for generating the data used by the 
 
 #### What does it do?
 
-- It executes blocks that have been built by the sequencer, and preserves data relating to the traces of each transaction.
-- It also receives and carries out instructions from the Coordinator to _conflate_ multiple blocks into one set of data, for subsequent consumption by the prover and publication as rollup data on Ethereum.
+The traces generator executes blocks that have been built by the sequencer, and preserves data relating to the traces of each transaction.
 
 #### How does it do it?
 
@@ -249,7 +271,11 @@ gnark’s codebase is divided into two separate APIs: a [frontend](https://pkg.g
 
 ## Submission to L1
 
-Now that the Coordinator has all it needs to update Ethereum--the current state of the network, as represented by the Merkle tree, and the proof that all the transactions occurred, in the proof, it can submit them in a transaction to the smart contract on Linea that will, in turn, trigger the process to pass the data off to the Ethereum network, where a corresponding transaction is submitted to the Ethereum "end of the bridge". The zk-proof can then be used to satisfy Ethereum that Linea's state is correct and valid.
+Remember when we were talking about the Canonical Message Service? Yeah, that was a while ago. Well, here we are: we've come full circle.
+
+The Coordinator now has all it needs to update Ethereum: the current state of the network, as represented by the Merkle tree, and the proof, with all the transactions occurred. A call is made from the Coordinator to the Canonical Message Service smart contract on Linea, containing that data. The Postbots pass the data off to the smart contract on the Ethereum network. The zk-proof can then be used to satisfy Ethereum that Linea's state is correct and valid.
+
+<img src={redcircle}  style={{width:200}}></img>
 
 ## Other Functions: Network Data
 
