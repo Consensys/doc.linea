@@ -1,7 +1,7 @@
 ---
 title: Zero-Knowledge Glossary
 description: An open source glossary to aid you zero knowledge journey!
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 This glossary is open source and consistently being updated. If you'd like a term to be added, please [create an issue](https://github.com/ConsenSys/doc.zk-evm/issues) or create a pull request and define one yourself!
