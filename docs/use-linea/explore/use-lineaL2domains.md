@@ -1,15 +1,18 @@
 ---
-title: Use Patch Wallet
+title: Use LineaL2 domains
 sidebar_position: 1
 ---
 
 # Celer
 
-[Celer cBridge](https://dev-cbridge-v2.netlify.app/97/59140/BNB) is a decentralized and non-custodial asset bridge, which you can read more about [here](https://celer.network/).
+[Linea L2 Domains](https://www.lineal2.domains/) are Community Namespaces for the Linea network. They are ownable, tradable usernames, are compatible with ENS at `joe.linea.usr.id`, and all fees go towards funding public goods for the Linea ecosystem!
 
-In this guide, we'll walk you through how to bridge TBNB and tBUSD from Binance Smart Chain (BSC) over to Linea!
+In this guide, we'll walk you through how to buy a community namespace!
 
 Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md).
+
+
+
 
 ## Add BSC testnet to your MetaMask wallet
 
