@@ -33,7 +33,7 @@ For projects needing their custom data feeds on-chain with defined parameters su
 For projects needing data secured on-chain at scale, our Layer-2 Data solution is the answer. Whether you're in the DeFi space, prediction markets, or building data-heavy Web3 solutions, we ensure your data is secure and readily available to support your applications.
 
 ### ON DEMAND DATA
-For projects requiring high-frequency data. Signed off-chain data written into any smart contract on demand. This feature is ideal for high-frequency perps or spot trading platforms where timing is crucial. Access the data you need, precisely when you need it.
+For projects requiring high-frequency data. Signed off-chain data written into any smart contract on demand. This feature is ideal for high-frequency perpetual futures or spot trading platforms where timing is crucial. Access the data you need, precisely when you need it.
 Planned for Q3 2023
 
 
