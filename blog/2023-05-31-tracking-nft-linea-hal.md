@@ -66,3 +66,5 @@ Tracking NFT minting can be applied in various scenarios. And with Linea’s sca
 ## 5. Conclusion
 
 Tracking NFT minting is essential for businesses and developers in the NFT space. With Hal Stream, monitoring these minting events on Linea becomes a breeze. Start tracking NFT minting on Linea with Hal Stream today, and unlock the valuable insights you need to thrive in the NFT market.
+
+For the whole duration of the Linea Quest, users can increase their Hal limits using the **`linea-quest`** code that can be redeemed in the belling section. We hope this helps you take advantage of Hal. Please share with us what you're building!
