@@ -69,4 +69,4 @@ You can easily list an NFT for sale with just a couple of clicks.
 
 ## Get support
 
-If you run into an issue using Apetimism Launchpad, you can find their support channel in their [Twitter](https://twitter.com/zonic) or [Discord](https://discord.gg/zonic).
+If you run into an issue using Apetimism Launchpad, you can find their support channel in their [Twitter](https://www.twitter.com/zonic) or [Discord](https://discord.gg/zonic).
