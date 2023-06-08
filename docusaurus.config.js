@@ -171,11 +171,11 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/category/use-linea",
+                to: "/use-linea",
               },
               {
                 label: "Build on Linea",
-                to: "/category/developers",
+                to: "/developers",
               },
             ],
           },
@@ -271,14 +271,14 @@ const config = {
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/category/use-linea",
+            to: "/use-linea",
             from: [
-              "/category/get-started",
+              "/get-started",
               "/get-started/bridge-funds",
               "/get-started/fund",
               "/get-started/configure-metamask",
               "/get-started/quickstart",
-              "/category/use-zkevm",
+              "/use-zkevm",
             ],
           },
           {
