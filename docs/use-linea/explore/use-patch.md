@@ -15,7 +15,7 @@ In this guide, we'll walk you through how to access your Patch wallet connected 
 
 ![Patch shot](../../assets/patch/patch-1.png)
 
-1. Search for your Twitter username to find your Patch wallet.
+2. Search for your Twitter username to find your Patch wallet.
 
 ![Patch shot](../../assets/patch/patch-2.png)
 
