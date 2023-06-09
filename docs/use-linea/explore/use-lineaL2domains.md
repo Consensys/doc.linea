@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Linea L2 Domains
 
-[Linea L2 Domains](https://www.lineal2.domains/) offer .linea Community Namespaces for the Linea network. They are ownable/tradable usernames, are compatible with ENS at `joe.linea.usr.id`, and all fees go towards funding public goods for the Linea ecosystem!
+[Linea L2 Domains](https://www.lineal2.domains/) offers .linea Community Namespaces for the Linea network. They are ownable/tradable usernames, are compatible with ENS at `joe.linea.usr.id`, and all fees go towards funding public goods for the Linea ecosystem!
 
 In this guide, we'll walk you through how to buy a username!
 
