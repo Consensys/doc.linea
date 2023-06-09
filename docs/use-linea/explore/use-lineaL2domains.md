@@ -12,15 +12,15 @@ In this guide, we'll walk you through how to buy a username!
 Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md).
 
 ## Buy a Username
-1. First, navigate to the [Linea L2 Domains](https://www.lineal2.domains/) and connect your wallet.
+1. First, navigate to the [Linea L2 Domains](https://www.lineal2.domains/) website and connect your wallet.
 
 ![LineaL2 domains shot 1](../../assets/patch/domain-1.png)
 
-If needed, switch to the Linea testnet.
+If needed, switch to the Linea testnet in your wallet.
 
 ![LineaL2 domains shot 2](../../assets/patch/domain-2.png)
 
-2. Type a username into the textbox to check whether it's available. It can be any length 3+ characters and registered for any number of years.
+2. Type a username into the textbox to check whether it's available. It must be 3+ characters, not taken, and you can register it for any number of years.
 
 ![LineaL2 domains shot 3](../../assets/patch/domain-3.png)
 
