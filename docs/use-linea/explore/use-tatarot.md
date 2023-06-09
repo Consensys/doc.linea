@@ -23,7 +23,7 @@ Before you begin, ensure your wallet is:
    ![Tatarot Landing Page](../../assets/tatarot/landing_page.png)
 
 1. Click “Connect Wallet” on the top right of the page to connect your wallet.
-1. Click "Unlock the secrets".
+1. Click "Unlock The Secrets".
 1. Type in your question to receive a customized tarot reading.
 
    ![Enter question to ask](../../assets/tatarot/question.png)
