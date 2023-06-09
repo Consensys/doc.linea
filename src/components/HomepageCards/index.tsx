@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Wallet Set Up",
-    link: "/category/use-linea",
+    link: "/use-linea",
     description: (
       <>
         Set up and fund your wallet to start bridging, swapping, and transacting

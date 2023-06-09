@@ -2,6 +2,7 @@
 title: Overview
 description: Type 2 EVM-equivalent Zero Knowledge Ethereum Virtual Machine
 slug: overview
+sidebar_position: 1
 ---
 
 # Linea
