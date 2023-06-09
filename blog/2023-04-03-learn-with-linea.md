@@ -4,9 +4,7 @@ description: Welcome to the start of community sourced tutorials
 slug: learn-with-the-linea-community
 authors:
   - name: Emily Lin
-  <!-- markdown-link-check-disable -->
     url: https://twitter.com/_emjlin
-  <!-- markdown-link-check-enable -->
 hide_table_of_contents: false
 date: 2023-04-03
 ---
