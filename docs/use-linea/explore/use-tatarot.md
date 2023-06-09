@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Tatarot
 
-[Tatarot](https://tatarot.ai/) is using AI-powered computer engineering to allow users to entwine the intricate threads of their fate into the timeless images of the tarot. This allows Tatarot to generate an infinite array of new cards that is infused with unique blockchain technology. Enter into this mystical realm of digital enchantment.
+[Tatarot](https://tatarot.ai/) is an AI-powered Tarot app that allows users to entwine the intricate threads of their fate into the timeless images of the tarot. This allows Tatarot to generate an infinite array of new cards that is infused with unique blockchain technology. Enter into this mystical realm of digital enchantment.
 
 This guide will provide step-by-step instructions on how to mint a magical Tatarot NFT card on Linea.
 
