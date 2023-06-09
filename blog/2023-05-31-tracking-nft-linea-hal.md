@@ -4,7 +4,9 @@ description: Learn how to use Hal Stream to access NFT blockchain data
 slug: track-nft-minting-hal-stream
 authors:
   - name: Mélen
-    url: https://www.twitter.com/melenxyz
+  <!-- markdown-link-check-disable -->
+    url: https://twitter.com/melenxyz
+    <!-- markdown-link-check-enable -->
 hide_table_of_contents: false
 date: 2023-05-31
 ---

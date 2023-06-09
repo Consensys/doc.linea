@@ -45,4 +45,4 @@ Find our technical documentation [here](https://umbrella-network.readme.io/docs)
 
 ## FOLLOW UMBRELLA NETWORK
 
-[Discord](https://discord.com/invite/Gryaa9p4X7) | [Twitter](https://www.twitter.com/UmbNetwork) | [Announcements](https://t.me/umbnetannouncement) | [Website](https://www.umb.network/) | [Governance](https://gov.umb.network/)
+[Discord](https://discord.com/invite/Gryaa9p4X7) | <!-- markdown-link-check-disable -->[Twitter](https://twitter.com/UmbNetwork) <!-- markdown-link-check-enable -->| [Announcements](https://t.me/umbnetannouncement) | [Website](https://www.umb.network/) | [Governance](https://gov.umb.network/)

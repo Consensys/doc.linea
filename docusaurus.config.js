@@ -157,7 +157,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://www.twitter.com/consensys",
+            href: "https://twitter.com/consensys",
             className: "header-twitter-link",
             position: "right",
           },

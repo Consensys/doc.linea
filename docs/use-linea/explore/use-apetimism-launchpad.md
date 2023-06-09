@@ -33,4 +33,4 @@ We have already prepared a sample collection.
 
 ## Get support
 
-If you run into an issue using Apetimism Launchpad, you can find their support channel in their [Twitter](https://www.twitter.com/apetimism) or [Discord](https://discord.gg/apetimism).
+If you run into an issue using Apetimism Launchpad, you can find their support channel in their [Twitter](https://twitter.com/apetimism) or [Discord](https://discord.gg/apetimism).

@@ -4,7 +4,9 @@ description: Learn how to incorporate smart contracts into your Unity game using
 slug: build-a-web3-game-on-linea
 authors:
   - name: Emily Lin
-    url: https://www.twitter.com/_emjlin
+  <!-- markdown-link-check-disable -->
+    url: https://twitter.com/_emjlin
+  <!-- markdown-link-check-enable -->
 hide_table_of_contents: false
 date: 2023-04-05
 ---
