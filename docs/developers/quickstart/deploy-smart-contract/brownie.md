@@ -76,7 +76,7 @@ Brownie is a Python-based development and testing framework for Ethereum smart c
    ii. Add your WEB3 Infura project ID to the `.env` file in the following format:
 
    ```bash
-   NETWORK_URL=<https://linea-goerli.infura.io/v3/YOUR-INFURA-PROJECT-ID-HERE>
+   NETWORK_URL=https://linea-goerli.infura.io/v3/<YOUR-INFURA-PROJECT-ID-HERE>
    ```
 
    iii. In the root of your project's directory, create another file and name it `brownie.config.yaml`.
