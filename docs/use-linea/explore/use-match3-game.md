@@ -1,3 +1,8 @@
+---
+title: Use MetaMerge
+sidebar_position: 1
+---
+
 # Meta Merge Match3 Linea Game
 
 ## What is Meta Merge?
