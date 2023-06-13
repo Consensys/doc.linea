@@ -1,6 +1,6 @@
-# "Cataclysm: Zero Mission" - How to complete the tasks of the Linea Voyage Quest
+# Cataclysm: Zero Mission
 
-To complete in the tasks of the game "Cataclysm: Zero Mission", users will need to access the game page through the [provided link](https://cataclysm-game.com/zero-mission), available on the Linea’s space on Galxe, in the Cataclysm tasks.
+To complete the tasks of the game "Cataclysm: Zero Mission" for the Linea Voyage Quest, users will need to access the game page through the [provided link](https://cataclysm-game.com/zero-mission), available on the Linea’s space on Galxe, in the Cataclysm tasks.
 
 ![img1](../../assets/cataclysm/connect-wallet.png)
 
