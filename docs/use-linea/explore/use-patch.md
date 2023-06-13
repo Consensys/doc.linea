@@ -10,6 +10,10 @@ In this guide, we'll walk you through how to access your Patch wallet connected 
 
 **You will not need to set up a MetaMask wallet to use Patch Wallet**
 
+**You will need an email input in your Twitter account. If not, you will not be able to complete the quest.**
+
+![Patch shot](../../assets/patch/patch-twitter.png)
+
 ## Start Linea Quest
 1. First, Navigate to the [Linea Patch Wallet site](https://linea.patchwallet.com) where you'll find web wallets for all Twitter usernames, emails, and phone numbers.
 
