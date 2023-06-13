@@ -16,7 +16,7 @@ _In this guide, we'll walk you through the steps to experience DegenReborn and a
 
 [https://t.me/DegenRebornCommunity](https://t.me/DegenRebornCommunity)
 
-**Join Season2 to Receive 2100,000 $DEGEN on mainnet**
+**Join Season2 to Receive 2,100,000 $DEGEN on mainnet**
 
 [https://degenreborn.xyz/?code=u69qr](https://degenreborn.xyz/?code=u69qr)
 
@@ -77,7 +77,7 @@ _In this guide, we'll walk you through the steps to experience DegenReborn and a
 
 $DEGEN Contract: 0xBc29956d8f9903e905b22af7bcB80Bcc78e4359a
 
-## **Quest 1.** Complete In-Game Guide Missions
+## **Quest 1. Complete In-Game Guide Missions**
 
 **Homepage -> Mission**
 
@@ -181,7 +181,7 @@ Check out your LifeScore and $DEGEN earnings on the settlement page, calculated 
   </div>    
 </div>
 
-### **3. Claim** $DEGEN Rewards in the Game Rewards Center
+### **3. Claim $DEGEN Rewards in the Game Rewards Center**
 
 **Homepage -> Tomb -> Claim**
 
@@ -298,19 +298,19 @@ Check out Leaderboard, Click Exhume to buy other player's tombstone. You will be
 
 _**The following quests are optional, but completing them will earn you mainnet $DEGEN token and more rewards for the future Linea mainnet launch!**_
 
-## Quest 5. Play Game on Mainnet to Receive 2100,000 DEGEN
+## **Quest 5. Play Game on Mainnet to Receive 2,100,000 $DEGEN**
 
 After getting familiar with the DegenReborn gameplay on the testnet, you can now join the ongoing season 2 of Degen on the mainnet, which also started on June 13th.&#x20;
 
-**Click on the link below** **to enter the game, and you'll be rewarded with 1800,000 $DEGEN**!
+**Click on the link below** **to enter the game, and you'll be rewarded with 2,100,000 $DEGEN**!
 
 [**https://degenreborn.xyz/?code=u69qr**](https://degenreborn.xyz/?code=u69qr)
 
-## Quest 6. **Join Degen Community and Get Rewards**
+## **Quest 6. Join Degen Community and Get Rewards**
 
 **Community is a support that all users will need, hop in NOW!**
 
-[https://t.me/DegenRebornCommunity](https://t.me/DegenRebornCommunity)
+[**https://t.me/DegenRebornCommunity**](https://t.me/DegenRebornCommunity)
 
 Communities are very hyped during an ongoing season. Join the community to stay informed and adjust your game strategy. This is the most important step!&#x20;
 
@@ -325,7 +325,7 @@ Communities are very hyped during an ongoing season. Join the community to stay 
   </div>    
 </div>
 
-## Quest 7. **Use Referral Link to Invite 3 New Players**
+## **Quest 7. Use Referral Link to Invite 3 New Players**
 
 **1) Homepage -> Referral Link**
 
@@ -346,7 +346,7 @@ Get 8% of $ETH spent & 18% of $DEGEN spent as referral bonus.
   </div>    
 </div>
 
-### Get Support
+## **Get Support**
 
 **Join the community and ask anything!**
 
