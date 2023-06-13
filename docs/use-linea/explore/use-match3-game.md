@@ -52,8 +52,7 @@ After players click on the cards in the central area of the game, the cards will
 
 When there are no cards that can be eliminated by forming a set of 3 on the game board, players can observe the temporarily unused cards in the lower layer. By clicking on the cards in the upper layer, the cards in the lower layer become available for use. However, when using this technique, it is important to avoid accumulating useless cards in hand, as it can ultimately lead to game failure.
 
-If the cards in hand has already been 7 and there are not 3 identical cards here. Then unfortunately
-The game is over, Please start over again from level one.
+If the cards in hand has already been 7 and there are not 3 identical cards here. Then unfortunately The game is over, Please start over again from level one.
 
 ![](../../assets/meta_merge/game_failed.png)
 
