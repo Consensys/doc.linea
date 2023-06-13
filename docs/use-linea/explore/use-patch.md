@@ -37,7 +37,7 @@ In this guide, we'll walk you through how to access your Patch wallet connected 
 
 6. Once the NFT is minted, it's in your Patch wallet. Choose a Twitter user to send the NFT to and click 'Send'. Stay on the page. There will not be a MetaMask/external wallet transaction.
 
-The Twitter user could be a family member, a friend, a celebrity, a politician, or anyone with the Twitter account!
+The Twitter user could be a family member, a friend, a celebrity, a politician, or anyone with a Twitter account!
 
 ![Patch shot](../../assets/patch/patch-6.png)
 
