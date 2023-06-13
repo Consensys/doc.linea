@@ -11,7 +11,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ### Mandatory action: create a Linea ENS domain
 
-1. Go to <https://ensfront.dev.linea.build/> ![ENS domain](../../assets/lineaster/ens.png)
+1. Go to <https://ens.goerli.linea.build/> ![ENS domain](../../assets/lineaster/ens.png)
 
 2. Register a domain
 3. Wait for it to be confirmed on L2 (not L1)
@@ -19,7 +19,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 ### Create a Lineaster profile
 
 1. You must have created a Linea ENS domain to create your Lineaster profile!
-2. Go to <https://lineaster.goerli.linea.build/> ![Lineaster homepage](../../assets/lineaster/step1_2.png)
+2. Go to <https://lineaster.dev.linea.build/> ![Lineaster homepage](../../assets/lineaster/step1_2.png)
 
 3. Click on ‘Login’ (top right)
 4. Connect via MetaMask 🦊 ![Connect via MetaMask](../../assets/lineaster/step1_4.png)
@@ -34,7 +34,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ## Step 2: Create a post
 
-1. From the [homepage](https://lineaster.goerli.linea.build/) or from your profile page, click on ‘What’s happening?’ ![Start creating a post](../../assets/lineaster/step2_1.png)
+1. From the [homepage](https://lineaster.dev.linea.build/) or from your profile page, click on ‘What’s happening?’ ![Start creating a post](../../assets/lineaster/step2_1.png)
 
 2. Write your post, you can add pictures, etc.
 
@@ -45,7 +45,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ## Step 3: Super Follow @Linea
 
-1. Go to <https://lineaster.goerli.linea.build/u/linea>
+1. Go to <https://lineaster.dev.linea.build/u/linea>
 2. Click on ‘Super Follow’ ![Click on ‘Super Follow’](../../assets/lineaster/step3_2.png)
 
 3. Allow the Follow Module with 10 USDC or more  
@@ -59,7 +59,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ## Step 4: Collect a post from @Linea
 
-1. Go to <https://lineaster.goerli.linea.build/posts/0x26-0x01>
+1. Go to <https://lineaster.dev.linea.build/posts/0x26-0x01>
 2. Click on ‘Collect’, then sign the transaction ![Collect a post](../../assets/lineaster/step4_2.png)
 
 3. Wait for the transaction to be confirmed
@@ -82,7 +82,7 @@ _When the Linea network is massively used, our RPC endpoints might have trouble 
 5. Go to [Zonic](https://testnet.zonic.app/profile?filter=%7B%22tab%22:0,%22chain%22:59140%7D) marketplace testnet
 6. Select the token representing your Lineaster handle
 7. Transfer it to another address (for example `0x0000000000000000000000000000000000000000`)
-8. Create your handle once again from [Lineaster](https://lineaster.goerli.linea.build/)
+8. Create your handle once again from [Lineaster](https://lineaster.dev.linea.build/)
 
 ### I created a post, but it’s not displayed
 
@@ -96,7 +96,7 @@ _When the Linea network is massively used, our RPC endpoints might have trouble 
 _When the Linea network is massively used, our RPC endpoints might have trouble handling the load. This leads to some transactions not being indexed by the Lens 🌿 API, and your post not being picked up by Lineaster._
 
 1. I’ve created a post, but it is displayed as ‘indexing’ on the homepage for more than 1 hour
-2. You can clean your publications pending for indexation via your [Cleanup](https://lineaster.goerli.linea.build/settings/cleanup) menu
+2. You can clean your publications pending for indexation via your [Cleanup](https://lineaster.dev.linea.build/settings/cleanup) menu
 3. Please create a new post, for it to be indexed successfully this time
 
 ### I need some USDC to complete the tasks, where can I get some?
