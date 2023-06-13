@@ -1,4 +1,10 @@
-# ReadON Linea Profile
+---
+title: Use ReadON
+sidebar_position: 1
+
+---
+
+# Use ReadON on Linea
 
 # ReadON
 
