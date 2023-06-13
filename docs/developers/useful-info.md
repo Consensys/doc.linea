@@ -1,11 +1,15 @@
 ---
 description: Network information and deployed contracts
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Network information and deployed contracts
 
-## Network Information
+## Network status
+
+You can find out how to navigate to Linea network status [here](../reference/status.md).
+
+## Network information
 
 <table>
     <tr>
@@ -14,7 +18,7 @@ sidebar_position: 2
     </tr>
     <tr>
         <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://rpc.goerli.linea.build/</td>
+        <td align="left">https://rpc.goerli.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
     </tr>
     <tr>
         <td align="left"><b>Chain ID</b></td>
@@ -32,16 +36,16 @@ sidebar_position: 2
 
 ## Connect with Infura
 
-If your dapp is using the public endpoint, it may encounter rate limiting. You can get more details and find out how to request full access to an Infura endpoint [here](https://support.infura.io/hc/en-us/articles/15116941373979).
+If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147).
 
-## Deployed Contracts
+## Deployed contracts
 
 | Contract | Address |
 | --- | --- |
 | Linea rollup and L1Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
 | L2Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) |
 
-## Token Contract Addresses and Bridges
+## Token contract addresses and bridges
 
 You can find faucets for these tokens by going to the [Linea faucet](https://faucet.goerli.linea.build/), connecting your MetaMask wallet, and switching to the Linea network.
 

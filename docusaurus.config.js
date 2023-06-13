@@ -90,7 +90,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          "📣 <b>As of the 28th March 2023, ConsenSys zkEVM is now called Linea.</b>",
+          '📣 <b>Linea will undergo an upgrade on June 13, 2023. Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes#linea-alpha-v020-june-6-2023">release notes</a> for more details.</b>',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
@@ -142,6 +142,16 @@ const config = {
             ],
           },
           {
+            to: "https://support.linea.build/hc/",
+            position: "left",
+            label: "Support",
+          },
+          {
+            to: "https://linea.build/",
+            position: "left",
+            label: "Linea home",
+          },
+          {
             href: "https://discord.com/invite/consensys",
             className: "header-discord-link",
             position: "right",
@@ -161,11 +171,11 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/category/use-linea",
+                to: "/use-linea",
               },
               {
                 label: "Build on Linea",
-                to: "/category/developers",
+                to: "/developers",
               },
             ],
           },
@@ -253,19 +263,27 @@ const config = {
       {
         redirects: [
           {
+            to: "/developers/bridge-architecture/message-service",
+            from: "/developers/use-message-bridge",
+          },
+          {
             to: "/developers/quickstart",
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/category/use-linea",
+            to: "/use-linea",
             from: [
-              "/category/get-started",
+              "/get-started",
               "/get-started/bridge-funds",
               "/get-started/fund",
               "/get-started/configure-metamask",
               "/get-started/quickstart",
-              "/category/use-zkevm",
+              "/use-zkevm",
             ],
+          },
+          {
+            to: "/developers/tooling",
+            from: "/developers/partners",
           },
         ],
       },
