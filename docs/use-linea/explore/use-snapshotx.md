@@ -25,7 +25,7 @@ Each space specifies their [Voting Strategies](https://docs.snapshotx.xyz/protoc
 In case of Linea at the time of the quest every address has 1 Voting Power.
 
 
-# Quest - Cast a vote <a href="#cast-a-vote" id="cast-a-vote"></a>
+# Quest - Cast a vote
 
 {% hint style="info" %}
 On-chain voting on Snapshot X doesn't cost you anything nor does it affect your funds in any way.
