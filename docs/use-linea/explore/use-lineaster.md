@@ -5,6 +5,16 @@ sidebar_position: 1
 
 # Lineaster
 
+Lineaster is the Linea version of [Lenster](https://lenster.xyz/), the most popular frontend built on top of the [Lens Protocol](https://www.lens.xyz/) 🌿.
+
+:::danger
+
+Lineaster is an awesome decentralized social network that promotes a welcoming community.  
+However, it is important to be cautious and not blindly trust everything you read or click on suspicious links.  
+Stay safe frens!
+
+:::
+
 ## Step 1: Create a Lineaster profile
 
 To create a Lineaster handle, you must have a Linea ENS domain
