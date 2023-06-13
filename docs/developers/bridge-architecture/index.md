@@ -4,7 +4,7 @@ title: Bridge architecture
 
 # Architecture overview
 
-![bridge architecture](../../assets/architecture/bridge_architecture.png)
+![bridge architecture](./../../../static/img/docs/Linea-bridge-arch-V1.png)
 
 ## Layers of the bridging ecosystem
 

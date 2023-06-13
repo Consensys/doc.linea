@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Wallet Set Up",
-    link: "/category/use-linea",
+    link: "/use-linea",
     description: (
       <>
         Set up and fund your wallet to start bridging, swapping, and transacting
@@ -45,11 +45,11 @@ const CardList: CardItem[] = [
   },
   {
     title: "Linea Block Explorer",
-    link: "https://explorer.goerli.linea.build/",
+    link: "https://goerli.lineascan.build/",
     description: (
       <>
         View Linea transactions and find deployed contracts and wallet addresses
-        on BlockScout!
+        on Etherscan!
       </>
     ),
     buttonName: "Explore",
