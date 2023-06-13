@@ -1,5 +1,5 @@
 ---
-title: Use Atticc for Linea Voyage Quest
+title: Use Atticc
 sidebar_position: 1
 ---
 
