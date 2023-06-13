@@ -101,7 +101,7 @@ Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard)
    ![confirm network](../../../assets/dashboard_network.png)
 
 1. Run `truffle migrate --network dashboard` in a separate terminal.
-1. Navigate back to `localhost:24012`. You should see a prompt asking your to confirm the deployment. Click **Confirm**.
+1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
 
    ![confirm deployment](../../../assets/dashboard_deploy.png)
 
