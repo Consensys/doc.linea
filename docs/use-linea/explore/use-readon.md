@@ -4,7 +4,7 @@ sidebar_position: 1
 
 ---
 
-# Use ReadON on Linea
+# Use ReadON
 
 # ReadON
 
