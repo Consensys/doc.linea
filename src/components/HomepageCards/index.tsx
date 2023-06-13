@@ -45,11 +45,11 @@ const CardList: CardItem[] = [
   },
   {
     title: "Linea Block Explorer",
-    link: "https://explorer.goerli.linea.build/",
+    link: "https://goerli.lineascan.build/",
     description: (
       <>
         View Linea transactions and find deployed contracts and wallet addresses
-        on BlockScout!
+        on Etherscan!
       </>
     ),
     buttonName: "Explore",

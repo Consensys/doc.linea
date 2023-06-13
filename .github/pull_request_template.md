@@ -13,6 +13,8 @@ Make sure that:
 
 <!-- Add a clear and concise description of what your PR changes in the documentation. -->
 
+Updated the links that went to blockscout and changed them to the goerli.lineascan.build
+
 ## Issue fixed
 
 <!-- Link to the GitHub issue that your PR addresses.
@@ -22,13 +24,15 @@ Add "fixes #{your issue number}" to close the issue automatically when the PR is
 If your PR doesn't completely fix the issue, add "see #{your issue number}" to link to the issue
 without automatically closing it. -->
 
+No current issue exists
+
 ## Impacted parts
 
 <!-- Check the item from the following lists that your PR impacts. You can check multiple boxes. -->
 
 For content changes:
 
-- [ ] Documentation content
+- [ x] Documentation content
 - [ ] Documentation page organization
 
 For tool changes:
