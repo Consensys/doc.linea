@@ -11,25 +11,21 @@ If anything in these docs is unclear or you would like more detail, do not hesit
 
 Let's quickly go over the core elements of the voting process:
 
-* **Space** - You can think of a space as an organization's account on Snapshot which can be viewed by anyone visiting the platform. It serves as a hub for all proposals related to the organization and a source of information for the users.
-* **Proposal** - Proposal is the key element of the voting system. It presents a change suggestion related to a specific organization and enables eligible users to cast their vote. 
-* **Voting Strategies** - Voting strategies are the contracts used to determine the voting power (VP) of users.
-
+- **Space** - You can think of a space as an organization's account on Snapshot which can be viewed by anyone visiting the platform. It serves as a hub for all proposals related to the organization and a source of information for the users.
+- **Proposal** - Proposal is the key element of the voting system. It presents a change suggestion related to a specific organization and enables eligible users to cast their vote.
+- **Voting Strategies** - Voting strategies are the contracts used to determine the voting power (VP) of users.
 
 # Voting
 
-## Who can vote on proposals? <a href="#who-can-vote-on-proposals" id="who-can-vote-on-proposals"></a>
+## Who can vote on proposals?
 
 Each space specifies their [Voting Strategies](https://docs.snapshotx.xyz/protocol-sx-evm/voting-strategies.md) in its settings. You can see the custom setup by opening the space settings. This setup can define if you are eligible to take part in the voting and what is your Voting Power calculated at the timestamp of proposal creation.
 
 In case of Linea at the time of the quest every address has 1 Voting Power.
 
-
 # Quest - Cast a vote
 
-{% hint style="info" %}
-On-chain voting on Snapshot X doesn't cost you anything nor does it affect your funds in any way.
-{% endhint %}
+{% hint style="info" %} On-chain voting on Snapshot X doesn't cost you anything nor does it affect your funds in any way. {% endhint %}
 
 ### 1. Connect your wallet
 
@@ -43,7 +39,6 @@ Go to the Linea's space page on Snapshot. You can vote directly from this view o
 
 In the proposal page you can see your Voting Power. If it shows `0` it means you cannot vote on the selected proposal. \
 
-
 ### 3. Vote!
 
 Select the option you want to vote for - **Accept, Reject, Abstain**.
@@ -52,19 +47,15 @@ Select the option you want to vote for - **Accept, Reject, Abstain**.
 
 Depending on the space settings you will have to sign a gasless Ethereum message and/or sign a transaction to confirm your action.
 
-{% hint style="info" %}
-If you are using MetaMask you'll need to scroll to the end of the signature and click on the arrow down for the Sign button to become active. Voting on Snapshot doesn't affect your account or the funds that are associated to it.
-{% endhint %}
+{% hint style="info" %} If you are using MetaMask you'll need to scroll to the end of the signature and click on the arrow down for the Sign button to become active. Voting on Snapshot doesn't affect your account or the funds that are associated to it. {% endhint %}
 
 You will notice that a new icon has appeared in the top right corner, just next to your avatar:
-
 
 <img src="/img/snapshotx/tx_queue.png" alt="pending transaction" width="30%" height="15%"/>
 
 The number indicates the number of pending transactions. Once it disappeared you can reload to page to view your vote.\
 \
 Voilà! You have just cast a vote 🎉​
-
 
 # Support
 
