@@ -20,7 +20,7 @@ MAKE SURE YOU READ THE DOCUMENT LINKED HERE
 
 3. Enter the AsMatch app - you can visit our [website](https://asmatch.app) to download the app on Android or iOS. Once you have created and set up your account, tap your profile at the bottom right hand corner of the screen. Tap ‘Edit’ and then tap the icon on the top right hand corner to flip your Profile Card. Next to ‘Credentials’, tap ‘Add’ and then paste in your zkPioneer Proof Key. After pressing confirm, you have successfully bonded your zkPioneer to your AsMatch profile - which will appear as a badge on your profile.
 
-![asmatch](../../assets/asmatch/asmatch.png)
+![AsMatch](../../assets/asmatch/asmatch.png)
 
 **Note**: Make sure to connect your zkPioneer-minted wallet address when you login to the official [AsMatch website](https://asmatch.app) to be eligible to participate in this campaign.
 
