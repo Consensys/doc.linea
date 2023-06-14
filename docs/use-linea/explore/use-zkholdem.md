@@ -28,7 +28,7 @@ Before you begin, ensure your wallet is:
 Click **Play** to connect your wallet & switch to Linea Goerli Network.
 
 
-![Play](https://ibb.co/SwXFMYD)
+![Play](https://i.ibb.co/5WyrFRP/Entry-Not-connected-to-wallet.png)
 
   
 
@@ -43,7 +43,7 @@ _To Create a Room_, Click **Create**
 
   
 
-![Create Game](https://ibb.co/MggPgnc)
+![Create Game](https://i.ibb.co/PN5H5XX/createjoin.png)
 
   
 
@@ -53,7 +53,7 @@ Select the number of players you want this room to support, then click **Create 
 
  
 
-![Number of Players](https://imgur.com/hkI91ju)
+![Number of Players](https://i.ibb.co/3y0Yk3j/number.png)
 
   
 
@@ -63,7 +63,7 @@ Select the amount of chips you want to buy in for this game, then click **Buy In
 
 
 
-![Buy In](https://imgur.com/uoiU5cg)
+![Buy In](https://i.ibb.co/2yK4Bwn/buyin.png)
 
   
 
@@ -86,7 +86,7 @@ _To Join a Room_, click **Join**
 
   
 
-![Join Game](https://ibb.co/MggPgnc)
+![Join Game](https://i.ibb.co/PN5H5XX/createjoin.png)
 
   
 
@@ -96,7 +96,7 @@ Type in the Room ID of the room you want to join, then click **Join**
 
 
 
-![Join](https://imgur.com/a/VIyyQ4b)
+![Join](https://i.ibb.co/jHmqd5K/join.png)
 
   
 
@@ -107,7 +107,7 @@ The Room ID of a specific poker room is being displayed on the top right corner 
 
   
 
-![Room ID](https://imgur.com/gqQQJVU)
+![Room ID](https://i.ibb.co/HDFb0m0/Room-Number.png)
 
   
 
@@ -117,7 +117,7 @@ Select the amount of chips you want to buy in for this game, then click **Buy In
 
  
 
-![Buy In](https://imgur.com/uoiU5cg)
+![Buy In](https://i.ibb.co/2yK4Bwn/buyin.png)
 
   
 
@@ -137,7 +137,7 @@ After the game is completed, winner will be shown as below
 
   
 
-![Complete a Game](https://imgur.com/KaxAOpY)
+![Complete a Game](https://i.ibb.co/s58nyTG/after-player-has-won-the-game-it-will-show-the-following-banner-for-x-seconds.png)
 
 ## Get Support
 If you have any feedback, suggestions or questions, feel free to join the zkHoldem [discord](https://discord.gg/jjbSHQVnwg), or send us a dm on [Twitter](https://twitter.com/zkholdem). 
