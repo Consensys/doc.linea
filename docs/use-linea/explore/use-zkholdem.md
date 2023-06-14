@@ -1,4 +1,3 @@
-
 ---
 title: Use zkHoldem
 sidebar_position: 1
