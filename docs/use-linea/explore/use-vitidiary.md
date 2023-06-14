@@ -56,9 +56,29 @@ By now, you should already completed the task 1 and click the "Complete Campaign
 
 ![Two Tasks](../../assets/vitidiary/two_tasks.png)
 
-After completing task 2, you will be able to mint the Remembrance NFT by signing the transaction on Linea Testnet.
+Click the "Complete Campaign Tasks" button to start minting the Remembrance NFT
 
-![Two Tasks](../../assets/vitidiary/last_step.png)
+![Two Tasks](../../assets/vitidiary/viti_step2.png)
+
+Follow the Viti Diary’s twitter by clicking on the “Follow Now”
+
+
+*How to get the Grape Gurus Role?*
+
+Connect with Discord if you haven't. 
+
+Go to the “Verify” channel and interact with the “grape” emoji to get the “Grape Guru” role. 
+![Discord](../../assets/vitidiary/viti_discord.png)
+
+Tick the box to read and agree with the community rule and click “Submit” to enter.
+![DiscordTick](../../assets/vitidiary/viti_discord_tick.png)
+
+Step3. Congratulations! Your badge is waiting for you!
+![Congrats](../../assets/vitidiary/viti_congrats.png)
+
+Click “Mint Voyage NFT”
+
+![Mint Badge](../../assets/vitidiary/viti_mint.png)
 
 Congratulations, you have completed all tasks we prepared. Please stay tuned for our official launch on Linea. 
 
