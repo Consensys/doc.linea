@@ -107,6 +107,6 @@ _When trying to follow the @linea profile, I get the following error message:_
 
 > You do not have enough allowance to follow this profile
 
-1. Got to https://lineaster.goerli.linea.build/settings/allowance
+1. Go to https://lineaster.goerli.linea.build/settings/allowance
 2. Revoke the **Fee Follow** allowance by clicking on the corresponding ‘Revoke’ yellow button and validating the transaction
 3. Then, retry following @linea, and this time increase the allowance above 10 USDC![Revoke the Fee Follow module](../../assets/lineaster/revoke.png)
