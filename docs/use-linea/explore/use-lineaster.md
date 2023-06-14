@@ -59,7 +59,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ## Step 4: Collect a post from @Linea
 
-1. Go to <https://lineaster.goerli.linea.build/posts/0x26-0x01>
+1. Go to <https://lineaster.goerli.linea.build/posts/0x26-0x03>
 2. Click on ‘Collect’, then sign the transaction ![Collect a post](../../assets/lineaster/step4_2.png)
 3. Wait for the transaction to be confirmed
 4. You are now a proud supporter of Linea, and you can see the post you collected on your profile (‘Collected’ tab)
