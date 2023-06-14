@@ -76,7 +76,7 @@ _When the Linea network is massively used, our RPC endpoints might have trouble 
 4. Second solution is to get rid of the token you got from the first handle creation:
 5. Go to [Zonic](https://testnet.zonic.app/profile?filter=%7B%22tab%22:0,%22chain%22:59140%7D) marketplace testnet
 6. Select the token representing your Lineaster handle
-7. Transfer it to another address (for example `0x0000000000000000000000000000000000000000`)
+7. Transfer it to another address
 8. Create your handle once again from [Lineaster](https://lineaster.goerli.linea.build/)
 
 ### I created a post, but it is not displayed
@@ -100,3 +100,13 @@ _As we are on a testnet, you can get test tokens such as USDC easily._
 
 1. Go to the Linea testnet faucet: [ _https://faucet.goerli.linea.build/_](https://faucet.goerli.linea.build/)
 2. Lock some ETH to get USDC in exchange
+
+### I get an error when trying to follow @linea
+
+_When trying to follow the @linea profile, I get the following error message:_
+
+> You do not have enough allowance to follow this profile
+
+1. Go to https://lineaster.goerli.linea.build/settings/allowance
+2. Revoke the **Fee Follow** allowance by clicking on the corresponding ‘Revoke’ yellow button and validating the transaction
+3. Then, retry following @linea, and this time increase the allowance above 10 USDC![Revoke the Fee Follow module](../../assets/lineaster/revoke.png)
