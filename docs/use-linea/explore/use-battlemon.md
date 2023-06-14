@@ -6,7 +6,8 @@ sidebar_position: 1
 
 # Battlemon
 
-A GameFi ecosystem built around interactive 3D NFTs with utilities and on-chain mechanics with outcome probabilities. Mix, craft, play, stake - and get rewarded.
+A GameFi ecosystem built around interactive 3D NFTs with utilities and on-chain mechanics with outcome probabilities.
+Mix, craft, play, stake - and get rewarded.
 
 Before you begin, ensure your wallet is:
 
@@ -18,11 +19,11 @@ Before you begin, ensure your wallet is:
 
 Go to https://battlemon.com/ and connect your wallet to the website.
 
-https://github.com/d-lol-b/doc.zk-evm/assets/78548938/367d616d-9937-4350-8d5d-76292aa35490
+![connect](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/970817b2-6088-45e9-bd5b-6eef9999ebf3)
+
+Sign message from wallet
 
 ![signMessage](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/69932c19-5a20-4340-bee4-17cb7709f4f3)
-
-Activate your code
 
 Go to https://battlemon.com/city/mint
 
@@ -32,7 +33,7 @@ Go to https://battlemon.com/city/mint
  2. Copy the string containing "/activate code: *yourcode*"
  3. Go to the [Discord special channel](https://discordapp.com/channels/893433519110488064/1116478869118144532)
 
- Activate your code  
+Activate your code
 
 ![activate](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/4a768a55-07e7-4088-ae10-29ebe2c90d63)
     
@@ -47,7 +48,7 @@ Go to https://battlemon.com/city/mint and mint your NFT: "Key-pass"
 ![minKeyPass](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/75807067-1f64-4068-949e-b48c1711be9c)
 
 
-https://github.com/d-lol-b/doc.zk-evm/assets/78548938/add34943-da71-41a9-9bad-22c1e947a898
+![mint-key](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/079db208-72d5-475e-9acd-5ad8abb439cb)
 
 
 ## Mint NFT: "Pickaxe"
@@ -101,7 +102,5 @@ Craft NFT: "Gem third level (Yellow)"
 ## Social
 
 [Discord](https://discord.gg/battlemon)
-
 [Twitter](https://twitter.com/BATTLEM0N)
-
 [Medium](https://medium.com/@Battlemon)
