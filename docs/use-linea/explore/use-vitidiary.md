@@ -32,19 +32,19 @@ In order to get the Linea ETH please use this step-by-step [guide](https://docs.
 
 ![Tutorial](../../assets/vitidiary/tutorial_login.png)
 
-Click the login button, connect to Linea Test network to start the game tutorial
+Click the login button, select "Linea Test" network to start the game tutorial
 
 ![Start Tutorial](../../assets/vitidiary/start_tutorial.png)
 
 Follow the on-screen instructions to navigate through the tutorial steps and once you reach the end of the tutorial, you'll be prompted to complete the tutorial.
 
-At the end of the tutorial, you will be prompted to complete the tutorial
+At the end of the journey, you will be prompted to click the "Complete" button to finish. 
 
 ![Complete Tutorial](../../assets/vitidiary/complete_tutorial.png)
 
-And you will need to sign the transaction which will prove your wallet completes the tutorial on chain.
+And you will need to sign the transaction which will prove your wallet's completion on chain.
 
-At the end of the step, click the Continue button which will redirect you to our website for the information about the second task.
+Once you've completed the step, click the 'Continue' button to be redirected to our website for information regarding the second task.
 
 ![Continue](../../assets/vitidiary/complete_tutorial.png)
 
@@ -52,4 +52,14 @@ At the end of the step, click the Continue button which will redirect you to our
 
 Make sure you already have testETH to cover the gas for the minting.
 
-Click the "Complete Campaign Tasks" button to start minting the Remembrance NFT
+By now, you should already completed the task 1 and click the "Complete Campaign Tasks" button to start minting the Remembrance NFT process. 
+
+![Two Tasks](../../assets/vitidiary/two_tasks.png)
+
+After completing task 2, you will be able to mint the Remembrance NFT by signing the transaction on Linea Testnet.
+
+![Two Tasks](../../assets/vitidiary/last_step.png)
+
+Congratulations, you have completed all tasks we prepared. Please stay tuned for our official launch on Linea. 
+
+![All done](../../assets/vitidiary/all_completed.png)
