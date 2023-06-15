@@ -25,7 +25,7 @@ In case of Linea at the time of the quest every address has 1 Voting Power.
 
 # Quest - Cast a vote
 
-{% hint style="info" %} On-chain voting on Snapshot X doesn't cost you anything nor does it affect your funds in any way. {% endhint %}
+_On-chain voting on Snapshot X doesn't cost you anything nor does it affect your funds in any way._
 
 ### 1. Connect your wallet
 
@@ -35,9 +35,9 @@ Click the `Connect wallet` button in the top right corner.
 
 ### 2. Find the proposal
 
-Go to the Linea's space page on Snapshot. You can vote directly from this view or go to the proposal to read more details before you vote.
+Go to the [Linea's space page](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1) on Snapshot. You can vote directly from this view or go to [the proposal](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1/proposal/7) to read more details before you vote.
 
-In the proposal page you can see your Voting Power. If it shows `0` it means you cannot vote on the selected proposal. \
+In the [proposal page](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1/proposal/7) you can see your Voting Power. If it shows `0` it means you cannot vote on the selected proposal. \
 
 ### 3. Vote!
 
@@ -47,7 +47,7 @@ Select the option you want to vote for - **Accept, Reject, Abstain**.
 
 Depending on the space settings you will have to sign a gasless Ethereum message and/or sign a transaction to confirm your action.
 
-{% hint style="info" %} If you are using MetaMask you'll need to scroll to the end of the signature and click on the arrow down for the Sign button to become active. Voting on Snapshot doesn't affect your account or the funds that are associated to it. {% endhint %}
+_If you are using MetaMask you'll need to scroll to the end of the signature and click on the arrow down for the Sign button to become active. Voting on Snapshot doesn't affect your account or the funds that are associated to it._
 
 You will notice that a new icon has appeared in the top right corner, just next to your avatar:
 

@@ -18,11 +18,11 @@ Before you begin, ensure your wallet is:
 
 Go to https://battlemon.com/ and connect your wallet to the website.
 
-https://github.com/d-lol-b/doc.zk-evm/assets/78548938/367d616d-9937-4350-8d5d-76292aa35490
+![connect](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/970817b2-6088-45e9-bd5b-6eef9999ebf3)
+
+Sign message from wallet
 
 ![signMessage](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/69932c19-5a20-4340-bee4-17cb7709f4f3)
-
-Activate your code
 
 Go to https://battlemon.com/city/mint
 
@@ -46,7 +46,7 @@ Go to https://battlemon.com/city/mint and mint your NFT: "Key-pass"
 
 ![minKeyPass](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/75807067-1f64-4068-949e-b48c1711be9c)
 
-https://github.com/d-lol-b/doc.zk-evm/assets/78548938/add34943-da71-41a9-9bad-22c1e947a898
+![mint-key](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/079db208-72d5-475e-9acd-5ad8abb439cb)
 
 ## Mint NFT: "Pickaxe"
 
@@ -90,8 +90,4 @@ Craft NFT: "Gem third level (Yellow)"
 
 ## Social
 
-[Discord](https://discord.gg/battlemon)
-
-[Twitter](https://twitter.com/BATTLEM0N)
-
-[Medium](https://medium.com/@Battlemon)
+[Discord](https://discord.gg/battlemon) [Twitter](https://twitter.com/BATTLEM0N) [Medium](https://medium.com/@Battlemon)

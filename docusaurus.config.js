@@ -90,7 +90,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <b>Linea will undergo an upgrade on June 13, 2023. Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes#linea-alpha-v020-june-6-2023">release notes</a> for more details.</b>',
+          '📣 <b>Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
