@@ -54,11 +54,11 @@ There are a number of faucets available, including [Infura's](https://www.infura
 
 Do you know someone who's a Linea 🐳?
 
-Maybe they'd be willing to send you some test ETH. Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](/use-linea/transfer-funds).
+Maybe they'd be willing to send you some test ETH. Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](./use-linea/transfer-funds).
 
 ### Bridge your own
 
-If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](/use-linea/bridge-funds).
+If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./use-linea/bridge-funds).
 
 ## Is it a MetaMask problem, or a network problem, or dapp problem?
 
