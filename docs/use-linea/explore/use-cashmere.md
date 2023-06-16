@@ -30,7 +30,7 @@ After typing the amount, wait for the frontend to calculate the amount of assets
 
 <figure><img src="../../assets/cashmere/sign_approve.png" alt=""><figcaption></figcaption></figure>
 
-After calculating the amount you will receive in the opposite chain, press the 'Swap' button. Confirm the signature used for the security of users. Then confirm the transaction on your wallet and your swap process will be started. Make sure you have enough assets and gas in your wallet. We recommend using **high and aggressive gas** due to network densities. If you have an unexpected error use [troubleshooting.md](../developers/troubleshooting.md "mention")to report and get support from [support.md](../overview/support.md "mention").
+After calculating the amount you will receive in the opposite chain, press the 'Swap' button. Confirm the signature used for the security of users. Then confirm the transaction on your wallet and your swap process will be started. Make sure you have enough assets and gas in your wallet. We recommend using **high and aggressive gas** due to network densities. If you have an unexpected error use [Form](https://forms.monday.com/forms/7d8708dec61b7a1bfda8a5b98b094427?r=euc1)to report and get support from [Discord](https://discord.gg/cashmerelabs).
 
 ### 5- Follow-up swap process
 
