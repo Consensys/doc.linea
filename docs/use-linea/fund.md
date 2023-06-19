@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Use the Linea faucet
 
-If you want to drip Goerli ETH directly to Linea, find the [Infura Linea faucet here](https://infura.io/faucet/linea).
+If you want to drip Goerli ETH directly to Linea, find the [Infura Linea faucet here](https://infura.io/faucet/linea). Note that you will need to enter your actual address — ENS names will not work.
 
 If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
