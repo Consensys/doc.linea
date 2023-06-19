@@ -10,7 +10,6 @@ The product offerings include secure Authentication and Wallet-as-a-Service Midd
 Particle Network's solutions have demonstrated remarkable results for their clients, increasing new user conversion rate from 15% to 95%.
 
 In this guide, we’ll walk you through how to
-
 - Create a Particle Account Abstraction (AA) Wallet and
 - Claim tUSDC gaslessly
 - Swap the tUSDC to tUSDT gaslessly with your Galxe Address as the recipient
