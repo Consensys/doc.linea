@@ -9,7 +9,7 @@ sidebar_position: 1
 
 In this guide, we'll walk you through how to send crypto directly on Twitter with the IDriss browser extension using Linea!
 
-Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md) and [funded with Goerli ETH](../fund.md#get-test-eth-on-goerli).
+Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md) and [funded with Goerli ETH](../use-linea/fund.md#get-test-eth-on-goerli).
 
 ## Send crypto directly on Twitter
 

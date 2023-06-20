@@ -10,14 +10,14 @@ ghostNFT is the first application of ERC721Envious Standard aimed at adding coll
 Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
-1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli) (at least .06 ETH)
+1. [Funded with Goerli ETH](../use-linea/fund.md#get-test-eth-on-goerli) (at least .06 ETH)
 
 ## Get DAI on Linea testnet
 
-You can get DAI by navigating to the [Linea faucet](../fund.md). Then,
+You can get DAI by navigating to the [Linea faucet](../use-linea/fund.md). Then,
 
 1. Connect your wallet to Goerli
-1. [Lock .01 ETH to mint DAI](../fund.md/#get-other-tokens-on-goerli) ![lock dai](../../assets/ghost/lock_dai.png)
+1. [Lock .01 ETH to mint DAI](../use-linea/fund.md/#get-other-tokens-on-goerli) ![lock dai](../../assets/ghost/lock_dai.png)
 1. [Bridge DAI from Goerli to Linea](https://goerli.hop.exchange/#/send?token=DAI&sourceNetwork=ethereum&destNetwork=linea)
 
 ## Claim FREE JML gNFT
