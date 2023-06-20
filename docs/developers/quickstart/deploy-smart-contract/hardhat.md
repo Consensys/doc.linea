@@ -129,7 +129,7 @@ You can deploy with Hardhat by [adding Linea to your `hardhat.config.js`](#hardh
 
    ![confirm network](../../../assets/dashboard_network.png)
 
-1. Add the the the Dashboard network to your `hardhat.config.js`
+1. Add the Dashboard network to your `hardhat.config.js`
 
    ```javascript
    networks: {
@@ -146,7 +146,7 @@ You can deploy with Hardhat by [adding Linea to your `hardhat.config.js`](#hardh
    npx hardhat run scripts/deploy.js --network truffledashboard
    ```
 
-1. Navigate back to `localhost:24012`. You should see a prompt asking your to confirm the deployment. Click **Confirm**.
+1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
 
    ![confirm deployment](../../../assets/dashboard_deploy.png)
 
