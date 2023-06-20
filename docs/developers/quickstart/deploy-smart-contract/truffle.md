@@ -16,7 +16,7 @@ Here's a video walkthrough:
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
-1. [Funded your wallet with goerli ETH](../..//docs/use-linea/fund.md)
+1. [Funded your wallet with goerli ETH](../../..//use-linea/fund.md)
 1. [Bridged Goerli ETH to Linea](../../../use-linea/bridge-funds.md)
 1. [Installed Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
