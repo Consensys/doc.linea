@@ -10,7 +10,7 @@ ghostNFT is the first application of ERC721Envious Standard aimed at adding coll
 Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
-1. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli) (at least .06 ETH)
+1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli) (at least .06 ETH)
 
 ## Get DAI on Linea testnet
 

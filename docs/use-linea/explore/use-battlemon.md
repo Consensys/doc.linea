@@ -12,7 +12,7 @@ Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
 
-2. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli)
+2. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 
 ## Mint NFT: "Key-pass"
 

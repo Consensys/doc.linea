@@ -12,7 +12,7 @@ In this guide, we'll walk you through how to bridge Goerli ETH using Hop over to
 Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
-1. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli)
+1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 
 ## Bridge Goerli ETH to Linea
 

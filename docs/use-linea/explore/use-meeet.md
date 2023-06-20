@@ -12,7 +12,7 @@ MEEET aims to introduce a variety of game products to its ecosystem and encourag
 Before you begin, make sure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
-1. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli)
+1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 
 ## Claim Free MML NFT on Linea Testnet
 
