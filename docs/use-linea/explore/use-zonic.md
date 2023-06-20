@@ -13,7 +13,7 @@ In this guide, we will walk you through the fundamental functions of the Zonic N
 Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md).
-2. [Funded with Goerli ETH](../use-linea/fund.md#get-test-eth-on-goerli)
+2. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli)
 
 ## Listing your NFT for sale
 

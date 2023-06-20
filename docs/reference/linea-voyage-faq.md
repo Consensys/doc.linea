@@ -42,7 +42,7 @@ To claim, you will need to:
 
 ## How do I get tokens on Linea to test Linea?
 
-Please see how use our faucet [here](../use-linea/fund.md)
+Please see how use our faucet [here](/docs/use-linea/fund.md)
 
 ## What happens if a quest activity strains the testnet to the point of breaking?
 

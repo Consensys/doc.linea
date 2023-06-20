@@ -14,7 +14,7 @@ This guide will provide step-by-step instructions on how to mint a magical Tatar
 Before you begin, ensure your wallet is:
 
 1. [Configured to use Linea](../set-up-your-wallet.md)
-1. [Funded with Goerli ETH](../use-linea/fund.md#get-test-eth-on-goerli)
+1. [Funded with Goerli ETH](/docs/use-linea/fund.md#get-test-eth-on-goerli)
 
 ## Mint a Tatarot NFT card
 
