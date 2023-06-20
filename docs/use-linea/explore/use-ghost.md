@@ -14,10 +14,10 @@ Before you begin, ensure your wallet is:
 
 ## Get DAI on Linea testnet
 
-You can get DAI by navigating to the [Linea faucet](/docs/use-linea/fund.md). Then,
+You can get DAI by navigating to the [Linea faucet](../fund.md). Then,
 
 1. Connect your wallet to Goerli
-1. [Lock .01 ETH to mint DAI](/docs/use-linea/fund.md/#get-other-tokens-on-goerli) ![lock dai](../../assets/ghost/lock_dai.png)
+1. [Lock .01 ETH to mint DAI](../fund.md/#get-other-tokens-on-goerli) ![lock dai](../../assets/ghost/lock_dai.png)
 1. [Bridge DAI from Goerli to Linea](https://goerli.hop.exchange/#/send?token=DAI&sourceNetwork=ethereum&destNetwork=linea)
 
 ## Claim FREE JML gNFT

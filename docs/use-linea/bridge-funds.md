@@ -14,8 +14,8 @@ You can find examples of how to bridge other tokens such as BNB and MATIC by exp
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](./set-up-your-wallet.md)
-1. [Funded with test tokens](./fund.md#get-test-eth-on-goerli)
+1. [Configured to use Linea](set-up-your-wallet.md)
+1. [Funded with test tokens](fund.md#get-test-eth-on-goerli)
 
 ## Bridge from Goerli to Linea
 
@@ -28,8 +28,6 @@ Before you begin, ensure your wallet is:
 1.  In your MetaMask wallet, confirm the transfer.
 
 The sent amount is deducted from your Goerli account on MetaMask. Switch to Linea in your wallet to view the bridged funds.
-
-<!--markdown-link-check-enable -->
 
 :::note
 
@@ -57,5 +55,3 @@ The sent amount is deducted from your account on Linea. Switch to the Goerli net
 This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
 :::
-
-<!--markdown-link-check-enable -->
