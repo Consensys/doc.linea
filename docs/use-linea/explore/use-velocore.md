@@ -39,27 +39,27 @@ Make sure to turn on “show/hide test network” option on Metamask and connect
 ## Swap tokens
 1.  Fire up the [Velocore Linea testnet page here](https://linea.velocore.xyz/) and click “Connect Wallet” on the upper right corner.  
 
-For first time Fluvi Wallet or Wallet Connect Users:  
+    For first time Fluvi Wallet or Wallet Connect Users:  
 
-* After clicking on “Connect Wallet”, click the copy icon on the top right corner of the module. 
+    * After clicking on “Connect Wallet”, click the copy icon on the top right corner of the module. 
+    <p align="center">
+    <img src="../../assets/velocore/image2.png" alt="wallet connect" width="20%" />
+    <img src="../../assets/velocore/image9.png" alt="wallet connect" width="30%" />
+    </p>
+
+    * Access your Fluvi Wallet then click on the WalletConnect symbol ![](../../assets/velocore/image4.png)
+
+    * Enter the WalletConnect URL you copied, then press connect.
+
+  
 <p align="center">
-<img src="../../assets/velocore/image2.png" alt="wallet connect" width="20%" />
 </p>
 
-* Access your Fluvi Wallet then click on the WalletConnect symbol ![](../../assets/velocore/image4.png)
-
-* Enter the WalletConnect URL you copied, then press connect.
-
-  
-<p align="center">
-<img src="../../assets/velocore/image9.png" alt="wallet connect" width="30%" />
-</p>
-
   
   
   
 
-2.  Once connected, select any tokens would like to swap
+2.  Once connected, select any tokens you would like to swap
     
 3.  Enter the amount and click the “Swap” button. You may need to approve your token if you are using it for the first time.
     If you’re encountering approval problems with Wallet Connect, be sure to check your notifications tab for pending transaction signing.
