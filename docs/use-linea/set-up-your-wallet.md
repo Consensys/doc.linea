@@ -15,7 +15,7 @@ All you need to interact with Linea is to download MetaMask, which you can [inst
 Because Linea is currently only in public testnet, in MetaMask Extension, you'll need to click on `Show/hide test networks` to have it displayed, as indicated in the image below. Afterwards, select the Linea network, and you're good to go.
 
 <div class="text--center">
-<img src="/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
+<img src="./../../static/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
 </div>
 
 ## Using Linea on MetaMask Mobile
@@ -58,7 +58,7 @@ Maybe they'd be willing to send you some test ETH. Grab [your account's public a
 
 ### Bridge your own
 
-If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](bridge-funds.md).
+If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./bridge-funds/bridge-funds.md).
 
 ## Is it a MetaMask problem, or a network problem, or dapp problem?
 

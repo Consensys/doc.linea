@@ -24,8 +24,8 @@ Before you begin, ensure your wallet is:
 
 ![img](https://readonme.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F106036c3-06de-4588-9e00-924d190e2f21%2FLinea_Profile_Mint1.png?id=8dfbc876-e938-4d8a-a274-a7319c463c4e&table=block&spaceId=ac613065-8718-42ad-bc92-fc67dc8dadeb&width=1340&userId=&cache=v2)
 
-2.Connect your MetaMask wallet, enter a handle with at least 5 characters, and click "Mint".
+2. Connect your MetaMask wallet, enter a handle with at least 5 characters, and click "Mint".
 
 ![img](https://readonme.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F84d45788-1dd6-4837-96dd-db06a6c92035%2FLinea_Profile_Mint2.png?id=b53888f5-cec2-4485-b4dc-896b3d88ac36&table=block&spaceId=ac613065-8718-42ad-bc92-fc67dc8dadeb&width=1630&userId=&cache=v2)
 
-3.Congratulations! You have successfully completed the minting process for your ReadON Linea Profile. Afterward, you can click "Download" to explore more experiences on ReadON.
+3. Congratulations! You have successfully completed the minting process for your ReadON Linea Profile. Afterward, you can click "Download" to explore more experiences on ReadON.
