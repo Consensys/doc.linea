@@ -5,9 +5,9 @@ sidebar_position: 1
 
 # Task on Galxe
 
-AsMatch - Mint zkPioneer (zkSBT) , enter Proof Key in AsMatch profile, link Metamask
+AsMatch - Mint zkPioneer (zkSBT) , enter Proof Key in AsMatch profile, link MetaMask
 
-Mint zkPioneer (zkSBT) on Manta Network NPO website to get ZK Proof Key, enter Proof Key in AsMatch profile, link Metamask address on AsMatch official Website.
+Mint zkPioneer (zkSBT) on Manta Network NPO website to get ZK Proof Key, enter Proof Key in AsMatch profile, link MetaMask address on AsMatch official Website.
 
 MAKE SURE YOU READ THE DOCUMENT LINKED HERE
 

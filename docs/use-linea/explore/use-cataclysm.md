@@ -9,7 +9,7 @@ To complete the tasks of the game "Cataclysm: Zero Mission" for the Linea Voyage
 
 ![img1](../../assets/cataclysm/connect-wallet.png)
 
-Once on the game page, users will see two options: "Connect Metamask" and "Wallet Connect". They can click on either button to connect their wallet. **_Please note that this step is mandatory to play “Cataclysm: Zero Mission”._**
+Once on the game page, users will see two options: "Connect MetaMask" and "Wallet Connect". They can click on either button to connect their wallet. **_Please note that this step is mandatory to play “Cataclysm: Zero Mission”._**
 
 ![img2](../../assets/cataclysm/start-game.png)
 
@@ -27,7 +27,7 @@ In the arcade mode, the player embarks on an epic journey through the game's dyn
 
 ![img4](../../assets/cataclysm/endless-quest.png)
 
-As soon as the user clicks on this button, Metamask will open, where the users can confirm the operation and complete the token minting process.
+As soon as the user clicks on this button, MetaMask will open, where the users can confirm the operation and complete the token minting process.
 
 If the transaction fails, for example, due to network connection issues, the users can simply refresh the page. After the refresh, the victory confirmation pop-up will reappear with the button to redeem the token, allowing the users to repeat the aforementioned process.
 
