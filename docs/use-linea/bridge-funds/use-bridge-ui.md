@@ -1,21 +1,19 @@
 ---
-title: Bridge your funds
-description: Bridge funds between Goerli and Linea
-sidebar_position: 4
+title: Bridge your funds with Hop
+description: Bridge funds between Goerli and Linea using the Hop UI
+sidebar_position: 2
 ---
 
 # Bridge your funds
 
-In order to transact on Linea, you'll need to bridge Goerli ETH from Goerli to Linea. The following steps take you through bridging USDC and Goerli ETH using the Hop bridge.
-
-You can find examples of how to bridge other tokens such as BNB and MATIC by exploring some of our partner bridges under the [explore section](./explore/).
+The following steps take you through bridging USDC and Goerli ETH using the Hop bridge.
 
 ## Set up
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](set-up-your-wallet.md)
-1. [Funded with test tokens](fund.md#get-test-eth-on-goerli)
+1. [Configured to use Linea](../set-up-your-wallet.md)
+1. [Funded with test tokens](../fund.md#get-test-eth-on-goerli)
 
 ## Bridge from Goerli to Linea
 
@@ -29,13 +27,15 @@ Before you begin, ensure your wallet is:
 
 The sent amount is deducted from your Goerli account on MetaMask. Switch to Linea in your wallet to view the bridged funds.
 
+<!--markdown-link-check-enable -->
+
 :::note
 
 This process can take up to 15 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
 :::
 
-You can now use the funds on Linea to transfer funds between accounts or interact with smart contracts on the network. For example, you can use the [Uniswap v3 protocol](./explore/use-uniswap.md) that's deployed on the network.
+You can now use the funds on Linea to transfer funds between accounts or interact with smart contracts on the network. For example, you can use the [Uniswap v3 protocol](../explore/use-uniswap.md) that's deployed on the network.
 
 ## Bridge from Linea to Goerli
 
@@ -55,3 +55,5 @@ The sent amount is deducted from your account on Linea. Switch to the Goerli net
 This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
 :::
+
+<!--markdown-link-check-enable -->
