@@ -35,7 +35,7 @@ Click the `Connect wallet` button in the top right corner.
 
 ### 2. Find the proposal
 
-Go to the [Linea's space page](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1) on Snapshot. You can vote directly from this view or go to [the proposal](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1/proposal/7) to read more details before you vote.
+Go to the [Linea's space page](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1) on Snapshot. You can vote directly from this view or go to [the proposal](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1/proposal/8) to read more details before you vote.
 
 In the [proposal page](https://snapshotx.xyz/#/linea-testnet:0x96706138eef4bd871448cf9b842b01b005822aa1/proposal/7) you can see your Voting Power. If it shows `0` it means you cannot vote on the selected proposal. \
 
