@@ -1,6 +1,6 @@
 # Linea
 
-### Linea is a developer-ready Layer 2 network, scaling Ethereum by providing an Ethereum-equivalent environment in which to execute transactions, which are then submitted to Ethereum Mainnet through a **zero-knowledge rollup**. 
+### Linea is a developer-ready Layer 2 network, scaling Ethereum by providing an Ethereum-equivalent environment in which to execute transactions, which are then submitted to Ethereum Mainnet through a **zero-knowledge rollup**.
 
 # These docs
 
@@ -9,6 +9,7 @@ This documentation repo is built using [Docusaurus 2](https://docusaurus.io/).
 See [more](https://docs-template.consensys.net/) information about using Docusaurus quickly.
 
 ## Contributing to our docs
+
 See something missing? Error in our documentation? Create an issue [here](https://github.com/ConsenSys/doc.zk-evm/issues).
 
 Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.zk-evm/fork), create a pull request, and tag us for review! (for help on this, see below)
@@ -18,13 +19,15 @@ You can find our contribution guidelines [here](https://docs-template.consensys.
 Take a look at some [good first issues](https://github.com/ConsenSys/doc.zk-evm/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) to get started.
 
 ### How to submit a suggestion or change
+
 The best way to suggest a change to these docs is through a process known as a **pull request**. If you're not familiar with how that works, check out [GitHub's guide here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-If that process is too involved for you, you can always open a thread on the [Community forum](https://community.linea.build/), or a ticket on the [Support page](https://support.linea.build/hc/en-us). 
+If that process is too involved for you, you can always open a thread on the [Community forum](https://community.linea.build/), or a ticket on the [Support page](https://support.linea.build/hc/en-us).
 
-If you **are** familiar with making a Pull Request, we **highly recommend that you run a version of these docs locally, and preview your changes locally, before submitting them**. In fact, it's part of the PR process.
+If you **are** familiar with making a pull request, we **highly recommend that you run a version of these docs locally, and preview your changes locally, before submitting them**. In fact, it's part of the PR process.
 
 ## Running locally
+
 You will need to have **Node.js** installed to run the live previews of the docs locally.
 
 It is highly recommended that you use a tool like [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to manage Node.js versions on your machine.
@@ -69,6 +72,7 @@ This command generates static content into the `build` directory and can be serv
 This repository includes a _linter_, which you can think of as a spell-check that also checks code formatting and standards, and a lot more. It's possible that you will use a word in your content that is not known to the linter, and your build, or commit, will fail.
 
 If this happens, take a look at `project-words.txt` in the root directory of your project; if the word that the linter caught is correctly spelled, and you wish it to pass the linter's test, add it to `project-words.txt`, save, add and commit those changes, and see if it passes.
+
 ### Local development
 
     $ npm install
