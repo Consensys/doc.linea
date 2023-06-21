@@ -14,8 +14,6 @@ See something missing? Error in our documentation? Create an issue [here](https:
 
 Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.zk-evm/fork), create a pull request, and tag us for review! (for help on this, see below)
 
-You can find our contribution guidelines [here](https://docs-template.consensys.net/category/getting-started) and our style guide [here](https://docs-template.consensys.net/getting-started/style-guide).
-
 Take a look at some [good first issues](https://github.com/ConsenSys/doc.zk-evm/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) to get started.
 
 ### How to submit a suggestion or change
