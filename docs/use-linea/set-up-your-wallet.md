@@ -58,7 +58,7 @@ Maybe they'd be willing to send you some test ETH. Grab [your account's public a
 
 ### Bridge your own
 
-If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./bridge-funds/bridge-funds.md).
+If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./bridge-funds).
 
 ## Is it a MetaMask problem, or a network problem, or dapp problem?
 
