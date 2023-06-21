@@ -1,4 +1,4 @@
-# How to Swap?
+# How to Swap & Add Liquidity on Cashmere
 
 ### 1- Connect your wallet to [testnet.cashmere.exchange](how-to-swap.md#1-connect-your-wallet-to-testnet.cashmere.exchange)
 
@@ -32,8 +32,27 @@ After typing the amount, wait for the frontend to calculate the amount of assets
 
 After calculating the amount you will receive in the opposite chain, press the 'Swap' button. Confirm the signature used for the security of users. Then confirm the transaction on your wallet and your swap process will be started. Make sure you have enough assets and gas in your wallet. We recommend using **high and aggressive gas** due to network densities. If you have an unexpected error use [Form](https://forms.monday.com/forms/7d8708dec61b7a1bfda8a5b98b094427?r=euc1)to report and get support from [Discord](https://discord.gg/cashmerelabs).
 
-### 5- Follow-up swap process
+### 6- Follow-up swap process
 
 <figure><img src="../../assets/cashmere/followup.png" alt=""><figcaption></figcaption></figure>
 
 After your swap transaction starts, a follow-up pop-up will open and you will be able to access all transactions via scan.
+
+### 7- Go to [faucet.cashmere.exchange](https://faucet.cashmere.exchange)
+
+<figure><img src="../../assets/cashmere/faucet.png" alt=""><figcaption></figcaption></figure>
+
+Go to [faucet.cashmere.exchange](https://faucet.cashmere.exchange) write your wallet to the box and request Test\_USDC.
+
+### 8- Go to Cashmere Pools
+
+<figure><img src="../../assets/cashmere/pool.png" alt=""><figcaption></figcaption></figure>
+
+Go to [https://testnet.cashmere.exchange/pool](https://testnet.cashmere.exchange/pool)
+
+### 9- Select Linea Pool and deposit Test\_USDC
+
+<figure><img src="../../assets/cashmere/LineaPool.png" alt=""><figcaption></figcaption></figure>
+
+Select the Linea pool and deposit Test\_USDC
+
