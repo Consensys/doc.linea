@@ -50,7 +50,7 @@ MES Protocol is a cross-rollup orderbook DEX, you can learn more about it [here]
 ![mes6](../../assets/mesprotocol/mes6.png)
 2. Select order type - Market Order or Limit Order
 3. Select the source chain and token, and the destination chain and token (Linea would be the source and destination chains in this event)
-![mes7](../../assets/mesprotocol/mes7.png)
+![mes7](../../assets/mesprotocol/mes7.jpeg)
 4. Fill in the amount to send
 5. Click “Preview Conversion”
 6. The conversion rate is displayed, it is for reference only and the actual settlement rate is subject to the price movement. You can adjust the conversion rate here if you are placing a Limit Order. Click "Submit" if you confirm the details of your trade
