@@ -9,7 +9,7 @@ To complete the tasks of the game "Cataclysm: Zero Mission" for the Linea Voyage
 
 ![img1](../../assets/cataclysm/connect-wallet.png)
 
-Once on the game page, users will see two options: "Connect MetaMask" and "Wallet Connect". They can click on either button to connect their wallet. **_Please note that this step is mandatory to play “Cataclysm: Zero Mission”._**
+Once on the game page, users will see two options: "Connect Metamask" and "Wallet Connect". They can click on either button to connect their wallet. **_Please note that this step is mandatory to play “Cataclysm: Zero Mission”._**
 
 ![img2](../../assets/cataclysm/start-game.png)
 

@@ -7,7 +7,7 @@ sidebar_position: 1
 
 [Patch Wallet](https://linea.patchwallet.com/) is a "zero onboarding" wallet attached to every Twitter account, email, and telephone number. There's no app to download, no gas, or even sign-up. Every Twitter user has a wallet automatically and can start receiving tokens and NFTs!
 
-In this guide, we'll walk you through how to access your Patch wallet connected to your Twitter, mint an NFT, and send it to _any_ Twitter user- [Elon Musk](https://linea.patchwallet.com/twitter:elonmusk), [Cristiano Ronaldo](https://linea.patchwallet.com/twitter:cristiano), [Narendra Modi](https://linea.patchwallet.com/twitter:narendramodi) or anyone else!
+In this guide, we'll walk you through how to access your Patch wallet connected to your Twitter, mint an NFT, and send it to _any_ Twitter user...[Elon Musk](https://linea.patchwallet.com/twitter:elonmusk), [Cristiano Ronaldo](https://linea.patchwallet.com/twitter:cristiano), [Narendra Modi](https://linea.patchwallet.com/twitter:narendramodi) or anyone else!
 
 **You will not need to set up a MetaMask wallet to use Patch Wallet**
 
@@ -45,7 +45,7 @@ The Twitter user could be a family member, a friend, a celebrity, a politician, 
 
 7. Once the NFT has been sent, you'll see the Success screen! 🥳 Make sure to enter the wallet from your Galxe profile to get credit!
 
-**Important:** Make sure to enter the wallet from your Galxe profile! Otherwise, you might not receive points for completing the quest!
+**Important** Make sure to enter the wallet from your Galxe profile! Otherwise, you might not receive points for completing the quest!
 
 ![Patch shot](../../assets/patch/patch-7.png)
 
