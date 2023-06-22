@@ -18,8 +18,7 @@ Here's a video walkthrough:
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
-1. [Funded your wallet with goerli ETH](../../../use-linea/fund.md)
-1. [Bridged Goerli ETH to Linea](../../../use-linea/bridge-funds.md)
+1. [Funded your wallet with Linea ETH](../../../use-linea/fund.md#get-test-eth-on-linea)
 1. [Set up your environment using Hardhat's recommended instructions](https://hardhat.org/tutorial/setting-up-the-environment#2.-setting-up-the-environment).
 
 ## Create a Hardhat project
@@ -129,7 +128,7 @@ You can deploy with Hardhat by [adding Linea to your `hardhat.config.js`](#hardh
 
    ![confirm network](../../../assets/dashboard_network.png)
 
-1. Add the the the Dashboard network to your `hardhat.config.js`
+1. Add the Dashboard network to your `hardhat.config.js`
 
    ```javascript
    networks: {
@@ -146,7 +145,7 @@ You can deploy with Hardhat by [adding Linea to your `hardhat.config.js`](#hardh
    npx hardhat run scripts/deploy.js --network truffledashboard
    ```
 
-1. Navigate back to `localhost:24012`. You should see a prompt asking your to confirm the deployment. Click **Confirm**.
+1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
 
    ![confirm deployment](../../../assets/dashboard_deploy.png)
 

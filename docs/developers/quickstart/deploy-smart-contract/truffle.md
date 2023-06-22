@@ -16,8 +16,7 @@ Here's a video walkthrough:
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
-1. [Funded your wallet with goerli ETH](../../../use-linea/fund.md)
-1. [Bridged Goerli ETH to Linea](../../../use-linea/bridge-funds.md)
+1. [Funded your wallet with Linea ETH](../../../use-linea/fund.md#get-test-eth-on-linea)
 1. [Installed Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
 ## Create a Truffle project
@@ -101,7 +100,7 @@ Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard)
    ![confirm network](../../../assets/dashboard_network.png)
 
 1. Run `truffle migrate --network dashboard` in a separate terminal.
-1. Navigate back to `localhost:24012`. You should see a prompt asking your to confirm the deployment. Click **Confirm**.
+1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
 
    ![confirm deployment](../../../assets/dashboard_deploy.png)
 

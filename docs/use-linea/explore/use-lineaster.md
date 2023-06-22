@@ -110,3 +110,13 @@ _When trying to follow the @linea profile, I get the following error message:_
 1. Go to https://lineaster.goerli.linea.build/settings/allowance
 2. Revoke the **Fee Follow** allowance by clicking on the corresponding ‘Revoke’ yellow button and validating the transaction
 3. Then, retry following @linea, and this time increase the allowance above 10 USDC![Revoke the Fee Follow module](../../assets/lineaster/revoke.png)
+
+### I get an error when trying to post or follow
+
+_When trying to post something or follow a profile, I get a "Internal JSON-RPC error" message:_
+
+![Error when posting](../../assets/lineaster/nonce.png)
+
+1. Only keep one tab on Lineaster
+2. Refresh the page
+3. Clicking on ‘Post’ or ‘Follow’ should now work fine
