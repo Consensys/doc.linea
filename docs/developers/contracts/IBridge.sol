@@ -20,7 +20,7 @@ interface IBridge {
     bytes _calldata
   );
 
-  /// @notice Emitted on the destination chain when a message bas been received by the destination bridge
+  /// @notice Emitted on the destination chain when a message has been received by the destination bridge
   /// @param _from the msg.sender calling the origin bridge
   /// @param _to the destination contract on the destination chain
   /// @param _fee the bridge fee on the origin chain
@@ -39,7 +39,7 @@ interface IBridge {
 
   /// @notice Dispatches a message from the given chain. Must be called by a developer or another contract.
   /// @notice If this is the L2 bridge, then this methods dispatches a message from L2 to L1.
-  /// @dev This function should be called with a value > _fee. The reminder will be send on the destination chain.
+  /// @dev This function should be called with a value > _fee. The reminder will be sent on the destination chain.
   /// @param _to the destination contract on the destination chain
   /// @param _fee the bridge fee on the origin chain
   /// @param _deadline timestamp as second since unix epoch after which the transaction is invalid and can be dropped

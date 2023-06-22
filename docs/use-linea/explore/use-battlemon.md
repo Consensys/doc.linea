@@ -46,9 +46,13 @@ Go to https://battlemon.com/city/mint and mint your NFT: "Key-pass"
 
 ![minKeyPass](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/75807067-1f64-4068-949e-b48c1711be9c)
 
-<<<<<<< HEAD https://github.com/d-lol-b/doc.zk-evm/assets/78548938/add34943-da71-41a9-9bad-22c1e947a898 =======
+<<<<<<< HEAD <<<<<<< HEAD https://github.com/d-lol-b/doc.zk-evm/assets/78548938/add34943-da71-41a9-9bad-22c1e947a898 =======
 
 ![mint-key](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/079db208-72d5-475e-9acd-5ad8abb439cb)
+
+> > > > > > > main
+
+======= ![mint-key](https://github.com/d-lol-b/doc.zk-evm/assets/78548938/079db208-72d5-475e-9acd-5ad8abb439cb)
 
 > > > > > > > main
 
