@@ -26,7 +26,7 @@ MES Protocol is a cross-rollup orderbook DEX, you can learn more about it [here]
 ## Deposit
 
 1. Click on “Deposit/Withdraw Tokens” and you will be navigated to the Portfolio page
-![mes3](../../assets/mesprotocol/mes3.png)
+![mes3](../../assets/mesprotocol/mes3.jpeg)
 2. Click on the "Deposit" button at the row of token you want to deposit
 3. Input the amount of token you want to deposit and proceed to the next step
 4. Approve a spending limit if it is your first time interacting with our contract. Select a suitable spending limit that you are comfortable with. If you have no idea what spending limit to set, just simply use the default setting
@@ -35,7 +35,7 @@ MES Protocol is a cross-rollup orderbook DEX, you can learn more about it [here]
 ## Place an Order (Spot Trading)
 
 1. Tap and choose the cryptocurrency pairs you want to trade.
-![mes4](../../assets/mesprotocol/mes4.png)
+![mes4](../../assets/mesprotocol/mes4.jpeg)
 2. Choose to trade in “Single Chain Mode” or “Cross-rollup Mode”, this is what differentiates MES from other DEXs.
   - In Single Chain Mode - your order placed is matched and settled with other orders on Linea (your currently connected chain) only.
   - In Cross-Rollup Mode, your order could match and settle with orders on any chains supported by MES. You enjoy deeper liquidity in this mode, but you may need to bridge the assets when you withdraw.
