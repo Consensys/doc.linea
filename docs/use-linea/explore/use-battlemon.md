@@ -98,4 +98,6 @@ Craft NFT: "Gem third level (Yellow)"
 
 ## Social
 
-[Discord](https://discord.gg/battlemon) [Twitter](https://twitter.com/BATTLEM0N) [Medium](https://medium.com/@Battlemon)
+- [Discord](https://discord.gg/battlemon)
+- [Twitter](https://twitter.com/BATTLEM0N)
+- [Medium](https://medium.com/@Battlemon)

@@ -15,7 +15,7 @@ All you need to interact with Linea is to download MetaMask, which you can [inst
 Because Linea is currently only in public testnet, in MetaMask Extension, you'll need to click on `Show/hide test networks` to have it displayed, as indicated in the image below. Afterwards, select the Linea network, and you're good to go.
 
 <div class="text--center">
-<img src="/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
+<img src="./../../static/img/metamaskwallet.png" alt="metamask wallet" width="40%" height="20%"/>
 </div>
 
 ## Using Linea on MetaMask Mobile
@@ -48,17 +48,17 @@ Because Linea is still a testnet, there are a number of faucets that you can use
 >
 > So if you want to bridge ETH, you'll need to bridge **from Goerli to Linea**, not from Ethereum Mainnet.
 
-There are a number of faucets available, including [Infura's](https://www.infura.io/faucet/linea); for a fuller explanation, follow [our guide here](https://docs.linea.build/use-linea/fund).
+There are a number of faucets available, including [Infura's](https://www.infura.io/faucet/linea); for a fuller explanation, follow [our guide here](fund.md).
 
 ### Getting tokens from a fren
 
 Do you know someone who's a Linea 🐳?
 
-Maybe they'd be willing to send you some test ETH. Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](/use-linea/transfer-funds).
+Maybe they'd be willing to send you some test ETH. Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](transfer-funds.md).
 
 ### Bridge your own
 
-If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](/use-linea/bridge-funds).
+If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./bridge-funds).
 
 ## Is it a MetaMask problem, or a network problem, or dapp problem?
 
