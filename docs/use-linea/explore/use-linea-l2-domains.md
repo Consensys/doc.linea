@@ -12,7 +12,6 @@ In this guide, we'll walk you through how to buy a username!
 Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md).
 
 ## Buy a Username
-
 1. First, navigate to the [Linea L2 Domains](https://www.lineal2.domains/) website and connect your wallet.
 
 ![LineaL2 domains shot 1](../../assets/patch/domain-1.png)

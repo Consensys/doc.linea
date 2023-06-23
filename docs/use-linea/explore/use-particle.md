@@ -10,7 +10,6 @@ The product offerings include secure Authentication and Wallet-as-a-Service Midd
 Particle Network's solutions have demonstrated remarkable results for their clients, increasing new user conversion rate from 15% to 95%.
 
 In this guide, we’ll walk you through how to
-
 - Create a Particle Account Abstraction (AA) Wallet and
 - Claim tUSDC gaslessly
 - Swap the tUSDC to tUSDT gaslessly with your Galxe Address as the recipient
@@ -49,7 +48,8 @@ Press “Confirm”, and wait for a few second, the transaction will succeed. Yo
 
 In this step, you’ll be swapping your tUSDC to tUSDT gaslessly, that is to say, you don’t need to have any goerliETH to trigger off the transaction.
 
-Now, please put “Your Galxe Address” in the text field, PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
+Now, please put “Your Galxe Address” in the text field, 
+PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
 
 If you are not sure about how to get your Galxe Address, follow the steps below:
 
