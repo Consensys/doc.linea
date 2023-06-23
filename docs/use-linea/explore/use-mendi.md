@@ -47,7 +47,9 @@ Mendi Finance lending protocol is deployed on Linea testnet. Use the [Mendi app
 
 1. Select the **Lending** tab. Make sure your supplied assets can be used as **Collateral**!
 
-   ![Lending Tab](../../assets/mendi/lending.png) ![Collateral](../../assets/mendi/collateral.png)
+   ![Lending Tab](../../assets/mendi/lending.png)
+
+   ![Collateral](../../assets/mendi/collateral.png)
 
 1. Select USDC/USDT/WETH to borrow from the protocol and click on it.
 1. Enter the amount you want to borrow.

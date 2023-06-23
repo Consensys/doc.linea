@@ -43,7 +43,9 @@ At this point, the user can take three actions:
 
 ## How to complete the task in the Arcade mode
 
-**In the arcade mode, the objective of the task is to kill at least 10 enemies.** Once the 10 enemies are defeated and the game comes to an end, regardless of whether the users win or lose, a pop-up will appear confirming their victory. Afterward, they can proceed with the same steps described in the endless run mode to mint the token.
+**In the arcade mode, the objective of the task is to kill at least 10 enemies.**
+
+Once the 10 enemies are defeated and the game comes to an end, regardless of whether the users win or lose, a pop-up will appear confirming their victory. Afterward, they can proceed with the same steps described in the endless run mode to mint the token.
 
 ![img6](../../assets/cataclysm/aracade-quest.png)
 

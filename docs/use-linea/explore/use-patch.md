@@ -45,7 +45,9 @@ The Twitter user could be a family member, a friend, a celebrity, a politician, 
 
 7. Once the NFT has been sent, you'll see the Success screen! 🥳 Make sure to enter the wallet from your Galxe profile to get credit!
 
-**Important** Make sure to enter the wallet from your Galxe profile! Otherwise, you might not receive points for completing the quest!
+**Important**
+
+Make sure to enter the wallet from your Galxe profile! Otherwise, you might not receive points for completing the quest!
 
 ![Patch shot](../../assets/patch/patch-7.png)
 
