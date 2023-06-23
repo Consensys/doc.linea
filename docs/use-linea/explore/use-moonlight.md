@@ -17,7 +17,6 @@ Ultiverse Moonlight is a collection of AI-powered 3D avatar NFTs that possess di
 
 [Funded with Goerli ETH](https://docs.linea.build/use-linea/fund#get-test-eth-on-goerli/)
 
-
 ### Step 1 - Wallet Login
 
 Visit the official website of [Moonlight Linea](https://moonlight-linea-show.ultiverse.io/)
