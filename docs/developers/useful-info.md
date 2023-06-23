@@ -60,6 +60,13 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
       <th>L2 Address</th>
       <th>Bridge</th>
     </tr>
+        <tr>
+      <td>ETH</td>
+      <td>Goerli</td>
+      <td>0x70BaD09280FD342D02fe64119779BC1f0791BAC2</td>
+      <td>0xC499a572640B64eA1C8c194c43Bc3E19940719dC</td>
+      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
+    </tr>
     <tr>
       <td>USDC</td>
       <td>Goerli</td>

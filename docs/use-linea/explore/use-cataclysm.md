@@ -27,7 +27,7 @@ In the arcade mode, the player embarks on an epic journey through the game's dyn
 
 ![img4](../../assets/cataclysm/endless-quest.png)
 
-As soon as the user clicks on this button, Metamask will open, where the users can confirm the operation and complete the token minting process.
+As soon as the user clicks on this button, MetaMask will open, where the users can confirm the operation and complete the token minting process.
 
 If the transaction fails, for example, due to network connection issues, the users can simply refresh the page. After the refresh, the victory confirmation pop-up will reappear with the button to redeem the token, allowing the users to repeat the aforementioned process.
 
