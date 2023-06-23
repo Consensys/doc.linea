@@ -19,8 +19,7 @@
     "lint:spelling": "cspell \"**\" --no-progress",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:fix": "npm run lint:js -- --fix",
-    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\"",
-    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install"
+    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\""
   },
   "lint-staged": {
     "src/**/*.{ts,js,jsx,tsx}": "npm run lint:fix",
@@ -67,7 +66,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
     "semantic-release": "^21.0.0",
