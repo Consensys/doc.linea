@@ -24,8 +24,7 @@ Covalent maintains a full archival copy of every supported blockchain, meaning e
 
 ## Unified API
 
-<!--
-[![example-api-response-json](https://www.datocms-assets.com/86369/1684974574-example-api-response-json.png)](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=linea&utm_medium=partner-docs) -->
+[![example-api-response-json](https://www.datocms-assets.com/86369/1687368087-example-api-response-json-linea.png)
 
 The Covalent API is RESTful and offers the following for Linea:
 

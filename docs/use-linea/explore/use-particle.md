@@ -49,7 +49,9 @@ Press “Confirm”, and wait for a few second, the transaction will succeed. Yo
 
 In this step, you’ll be swapping your tUSDC to tUSDT gaslessly, that is to say, you don’t need to have any goerliETH to trigger off the transaction.
 
-Now, please put “Your Galxe Address” in the text field, PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
+Now, please put “Your Galxe Address” in the text field.
+
+PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
 
 If you are not sure about how to get your Galxe Address, follow the steps below:
 

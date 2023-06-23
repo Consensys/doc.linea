@@ -66,11 +66,17 @@ _How to get the Grape Gurus Role?_
 
 Connect with Discord if you haven't.
 
-Go to the “Verify” channel and interact with the “grape” emoji to get the “Grape Guru” role. ![Discord](../../assets/vitidiary/viti_discord.png)
+Go to the “Verify” channel and interact with the “grape” emoji to get the “Grape Guru” role.
 
-Tick the box to read and agree with the community rule and click “Submit” to enter. ![DiscordTick](../../assets/vitidiary/viti_discord_tick.png)
+![Discord](../../assets/vitidiary/viti_discord.png)
 
-Step3. Congratulations! Your badge is waiting for you! ![Congrats](../../assets/vitidiary/viti_congrats.png)
+Tick the box to read and agree with the community rule and click “Submit” to enter.
+
+![DiscordTick](../../assets/vitidiary/viti_discord_tick.png)
+
+Step3. Congratulations! Your badge is waiting for you!
+
+![Congrats](../../assets/vitidiary/viti_congrats.png)
 
 Click “Mint Voyage NFT”
 
