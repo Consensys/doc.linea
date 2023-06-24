@@ -181,7 +181,7 @@ So, how do I send a Soulbound Airdrop?
 
    ![airdrop 3](../../assets/nfts2me/airdrop_3.png)
 
-   It will pop up a new transaction confirmation on Metamask. Confirm, and wait the TX to be confirmed on the Blockchain.
+   It will pop up a new transaction confirmation on MetaMask. Confirm, and wait the TX to be confirmed on the Blockchain.
 
    ![confirm](../../assets/nfts2me/confirm.png)
 

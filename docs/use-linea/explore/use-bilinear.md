@@ -27,7 +27,7 @@ The user opens the marketplace and lands on the homepage where she/he can view t
 
 ![mint collection](../../assets/bilinear/mint_collection.png)
 
-To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between Metamask, Rainbow, Coinbase wallet e WalletConnect.
+To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between MetaMask, Rainbow, Coinbase wallet e WalletConnect.
 
 ![connect wallet](../../assets/bilinear/connect_wallet.png)
 
@@ -65,7 +65,7 @@ The user opens the marketplace and lands on the homepage where she/he can view t
 
 ![homepage](../../assets/bilinear/homepage.png)
 
-To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between Metamask, Rainbow, Coinbase wallet e WalletConnect.
+To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between MetaMask, Rainbow, Coinbase wallet e WalletConnect.
 
 ![connect wallet](../../assets/bilinear/connect_wallet_2.png)
 
@@ -101,7 +101,7 @@ Once the user mints the NFT, she/he sees the Collection detail page, where the u
 
 The user opens the marketplace and lands on the homepage where she/he can view the last three collections in the preview and two other collection sections, which show cards from the last 10 collections.
 
-To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between Metamask, Rainbow, Coinbase wallet e WalletConnect.
+To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between MetaMask, Rainbow, Coinbase wallet e WalletConnect.
 
 The user clicks on “send message” CTA to proceed with the wallet connection.
 
@@ -133,7 +133,7 @@ The user sees that the NFT is on sale in the marketplace from the “NFT detail�
 
 The user opens the marketplace and lands on the homepage where she/he can view the last three collections in the preview and two other collection sections, which show cards from the last 10 collections.
 
-To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between Metamask, Rainbow, Coinbase wallet, or WalletConnect.
+To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between MetaMask, Rainbow, Coinbase wallet, or WalletConnect.
 
 The user clicks on “send message” CTA to proceed with the wallet connection.
 
@@ -165,7 +165,7 @@ The user sees the NFT detail page with the “Sell” CTA, instead of the “Buy
 
 The user opens the marketplace and lands on the homepage where she/he can view the last three collections in the preview and two other collection sections, which show cards from the last 10 collections.
 
-To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between Metamask, Rainbow, Coinbase wallet e WalletConnect.
+To connect her or his wallet, the user clicks on the CTA “Connect wallet”, where she/he can choose between MetaMask, Rainbow, Coinbase wallet e WalletConnect.
 
 The user must choose one of the proposed options.
 
@@ -185,7 +185,7 @@ In the NFT detail page, the user clicks on the CTA “Delist”, in order to lis
 
 ![delist](../../assets/bilinear/delist.png)
 
-Once the user clicks on the CTA, she/he sees the Metamask transaction page and confirms the transaction.
+Once the user clicks on the CTA, she/he sees the MetaMask transaction page and confirms the transaction.
 
 Once the NFT is delisted, the user sees the NFT detail page with the CTA “Sell”.
 
@@ -203,7 +203,7 @@ _How does it work?_
 
 Upon landing on the marketplace homepage, the user will immediately see a preview section featuring the last three collections added to the platform. Below the preview section, there is a second section showcasing the last ten collections added to the platform.
 
-To connect their wallet, the user can click on the "Connect wallet" call-to-action (CTA). Upon clicking, they will be presented with a selection of wallet options, including Metamask, Rainbow, Coinbase wallet, and WalletConnect. The user must choose one of the proposed option.
+To connect their wallet, the user can click on the "Connect wallet" call-to-action (CTA). Upon clicking, they will be presented with a selection of wallet options, including MetaMask, Rainbow, Coinbase wallet, and WalletConnect. The user must choose one of the proposed option.
 
 The user clicks on “send message” CTA to proceed the wallet connection.
 
