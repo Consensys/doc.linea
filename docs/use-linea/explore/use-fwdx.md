@@ -4,7 +4,7 @@ description: Decentralized P2P Swap Protocol with Zero-Slippage
 sidebar_position: 1
 ---
 
-# FWDX.xyz
+# [FWDX](https://fwdx.xyz)
 
 FWDX.xyz is a Decentralized P2P Swap Protocol that provides an open interest orderbook where quotes are firm and fills are guaranteed. Swap orders have zero price-slippage, what you see is what you get, with no deviation from the quoted price.
 
@@ -61,20 +61,31 @@ My Trades:
 To fill a market in FWDX, please follow the steps outlined below:
 
 1. Find the specific market that you wish to fill within the FWDX platform.
+
 2. Once you have identified the market, enter the desired amount that you want to fill.
+
 <img width="1630" alt="fill_market_1" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/aa805b07-f6ea-40cd-abf1-83bb15de5228">
+
 3. Locate the "Approve" and "Fill Market" buttons.
+
 <img width="1630" alt="Approve" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/37833c59-6997-4569-b39d-c67cec27ce1b">
+
 4. Click both buttons simultaneously to initiate the transaction process.
+
 <img width="1630" alt="fill_market_2" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/58587b2e-93de-4687-8845-90ecdebc59f5">
+
 5. Ensure that you have sufficient funds in your wallet to cover the transaction amount.
+
 <img width="1630" alt="fill_market_3" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/dc182219-ab1d-43e6-a192-53e7fbb31b60">
+
 6. Wait for the transaction to be processed on the blockchain and confirmed.
+
 7. Once the transaction is successful, your share in the market will be allocated based on the amount you entered.
 
 The user will need to perform two transactions:
 
 - **Approve**: Grant permission to the FWDX Smart Contract to access your send token for fill the market. [Youtube Tutorial](https://www.youtube.com/watch?v=-jolAOazktM)
+
 - **Create Market**: Initiate the filling the actual market. [Youtube Tutorial](https://www.youtube.com/watch?v=Vb-y8SMkzRU)
 
 By following these steps and clicking the "Approve" and "Fill Market" buttons simultaneously, you will be able to fill the market in FWDX and receive your share based on the specified amount.
@@ -84,9 +95,13 @@ By following these steps and clicking the "Approve" and "Fill Market" buttons si
 Takers can claim their market share once the market is closed or expired. To claim your market share, follow the steps below:
 
 1. Go to the "My Trades" menu in the FWDX platform.
+
 <img width="1630" alt="claim_by_taker_1" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/1c807ec1-5de3-4422-b6cc-a5e420c6ac05">
+
 2. Select the market for which you wish to claim your share.
+
 <img width="1630" alt="claim_by_taker_2" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/63a65f71-4b3a-4e73-9599-0800aa3ab72c">
+
 3. Click on the "Claim Market by Taker" button. [Youtube Tutorial](https://www.youtube.com/watch?v=KoPUUNO7m-Y)
 
 By following these steps, you will be able to claim your market share as a Taker.
@@ -96,9 +111,13 @@ By following these steps, you will be able to claim your market share as a Taker
 Makers can claim their market share once the market is closed or expired. To claim your market share as a Maker, follow the steps below:
 
 1. Go to the "My Trades" menu in the FWDX platform.
+
 2. Select the market for which you wish to claim your share.
+
 <img width="1630" alt="claim_by_maker_1" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/cbb8ed7f-efe9-47f1-b79d-3fd909bad5bc">
+
 3. Click on the "Claim Market by Maker" button. [Youtube Tutorial](https://www.youtube.com/watch?v=KiHQK4dKGdQ)
+
 <img width="1630" alt="claim_by_maker_2" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/3170638f-b0f1-446c-9843-4557775a7342">
 
 By following these steps, you will be able to claim your market share as a Maker.
@@ -107,10 +126,14 @@ By following these steps, you will be able to claim your market share as a Maker
 If nobody has taken the other side of a market, the Maker has an option to cancel the market.
 
 1. Go to the "My Trades" menu in the FWDX platform.
+
 <img width="1630" alt="cancel_1" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/f68a457d-51ef-45a3-a454-1842d333095b">
+
 2. Select the market for which you wish to cancel.
+
 <img width="1630" alt="cancel_2" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/107c1961-59d1-4e67-99a8-9bc9b2ca2b21">
+
 3. Cick on "Cancel Market" market [Youtube Tutorial](https://www.youtube.com/watch?v=0LFJdo0QLrY)
 
-Get Support
+## Get Support
 If you run into issues using the FWDX, you can find their [Discord](https://discord.gg/aKA2PXJD33)
