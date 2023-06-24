@@ -1,10 +1,10 @@
 ---
-title: Use FWDX
+title: Use FWDX.xyz
 description: Decentralized P2P Swap Protocol with Zero-Slippage
 sidebar_position: 1
 ---
 
-# [FWDX](https://fwdx.xyz)
+# [FWDX.xyz](https://fwdx.xyz)
 
 FWDX.xyz is a Decentralized P2P Swap Protocol that provides an open interest orderbook where quotes are firm and fills are guaranteed. Swap orders have zero price-slippage, what you see is what you get, with no deviation from the quoted price.
 
