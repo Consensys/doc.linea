@@ -4,7 +4,8 @@ description: Perform swaps on Linea
 sidebar_position: 1
 ---
 
-Sushiswap has deployed its contracts to showcase how Linea can be used to swap tokens on L2, where users can benefit from cheaper gas fees. 
+Sushiswap has deployed its contracts to showcase how Linea can be used to swap tokens on L2, where users can benefit from cheaper gas fees.
+
 ConsenSys deployed a version of the Sushiswap website to let the user interact with the swap feature.
 
 ## How to make a swap on Linea Sushiswap
@@ -29,12 +30,14 @@ ConsenSys deployed a version of the Sushiswap website to let the user interact w
 9. Select the token you want to receive (for the quest select USDT)
 
 ![Make](../../assets/sushiswap/sushiswap-4.png)
+
 ![Make](../../assets/sushiswap/sushiswap-5.png)
 
-10. Click on the button “Approve” button as a first step to allow Sushiswap to make the swap  
+10. Click on the button “Approve” button as a first step to allow Sushiswap to make the swap
 11. A Metamask popup appears, click on “Use default”, then “Next”, then “Approve”
 
 ![Make](../../assets/sushiswap/sushiswap-6.png)
+
 ![Make](../../assets/sushiswap/sushiswap-7.png)
 
 12. On the top right, a message indicating “Approving …” is displayed, wait until the “Successfully approved” message appears.

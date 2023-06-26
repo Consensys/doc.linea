@@ -51,9 +51,11 @@ By following these steps, you will successfully create a market in FWDX.
 User can view the newly created markets under “My Trades” and also the Explore Markets
 
 Explore Markets:
+
 <img width="1630" alt="explore_markets" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/43931263-b12e-4602-983e-ab3a2650f5c3" />
 
 My Trades:
+
 <img width="1630" alt="my_trades" src="https://github.com/FWDX-xyz/doc.zk-evm/assets/137501620/56636187-bb0e-49f3-bd7d-6452eb665197" />
 
 ## Fill Market
@@ -123,6 +125,7 @@ Makers can claim their market share once the market is closed or expired. To cla
 By following these steps, you will be able to claim your market share as a Maker.
 
 ## Cancel Market by Maker
+
 If nobody has taken the other side of a market, the Maker has an option to cancel the market.
 
 1. Go to the "My Trades" menu in the FWDX platform.
@@ -136,4 +139,5 @@ If nobody has taken the other side of a market, the Maker has an option to cance
 3. Click on "Cancel Market" market [Youtube Tutorial](https://www.youtube.com/watch?v=0LFJdo0QLrY)
 
 ## Get Support
+
 If you run into issues using the FWDX, you can find their [Discord](https://discord.gg/aKA2PXJD33)
