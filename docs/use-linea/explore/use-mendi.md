@@ -9,7 +9,7 @@ Mendi Finance lending protocol is deployed on Linea testnet. Use the [Mendi app
 
 ## Supply collateral
 
-1. Navigate to the [Mendi app](https://testnet.mendi.finance/) and select the Linea network in your MetaMask wallet. (You might need to click on *show/hide test networks* to have testnets appear in the list)
+1. Navigate to the [Mendi app](https://testnet.mendi.finance/) and select the Linea network in your MetaMask wallet. (You might need to click on _show/hide test networks_ to have testnets appear in the list)
 
    ![Metamask Linea testnet](../../assets/mendi/metamask.png)
 
@@ -33,11 +33,11 @@ Mendi Finance lending protocol is deployed on Linea testnet. Use the [Mendi app
 
    ![Supply Approve](../../assets/mendi/supply_approve.png)
 
-3. Click  **Supply** to confirm and approve the transaction.
+1. Click **Supply** to confirm and approve the transaction.
 
 ## Borrow tokens
 
-1. Navigate to the [Mendi app](https://testnet.mendi.finance/) and select the Linea network in your MetaMask wallet. (You might need to click on *show/hide test networks* to have testnets appear in the list)
+1. Navigate to the [Mendi app](https://testnet.mendi.finance/) and select the Linea network in your MetaMask wallet. (You might need to click on _show/hide test networks_ to have testnets appear in the list)
 
    ![Metamask Linea testnet](../../assets/mendi/metamask.png)
 
@@ -48,11 +48,12 @@ Mendi Finance lending protocol is deployed on Linea testnet. Use the [Mendi app
 1. Select the **Lending** tab. Make sure your supplied assets can be used as **Collateral**!
 
    ![Lending Tab](../../assets/mendi/lending.png)
+
    ![Collateral](../../assets/mendi/collateral.png)
-  
+
 1. Select USDC/USDT/WETH to borrow from the protocol and click on it.
 1. Enter the amount you want to borrow.
 
    ![Borrow](../../assets/mendi/borrow2.png)
 
-1. Click  **Borrow** to confirm and approve the transaction.
+1. Click **Borrow** to confirm and approve the transaction.

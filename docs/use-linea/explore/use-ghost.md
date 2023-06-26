@@ -25,7 +25,7 @@ You can get DAI by navigating to the [Linea faucet](../fund.md). Then,
 JML gNFT is a dynamic NFT that becomes rarer as you add more collateral in GMV tokens. Follow easy steps below to claim your free JML gNFT.
 
 1. Visit [ghostAirdrop](https://airdrop.ghostchain.io/#/linea/0xD500EFDef75E89Bf6caF5C98F7633575d0049a72) on Linea Testnet. Make sure that the Linea network is selected in the drop down. ![ghost airdrop](../../assets/ghost/ghost_airdrop.png)
-1. Connect your Metamask wallet and click on the **Claim Free gNFT NOW**. ![claim airdrop](../../assets/ghost/claim_airdrop.png)
+1. Connect your MetaMask wallet and click on the **Claim Free gNFT NOW**. ![claim airdrop](../../assets/ghost/claim_airdrop.png)
 1. You will be automatically redirected to your personal ghostAirdrop dashboard. ![dashboard](../../assets/ghost/airdrop_dashboard.png)
 
    ![dashboard](../../assets/ghost/airdrop_dashboard_2.png)
@@ -55,7 +55,7 @@ Any NFT collection can be collateralized through ghostNFT.
 1. Paste the contract address of your NFT collection in the search bar. If such collection has not been registered yet, the modal window will pop-up: ![register collection](../../assets/ghost/register_collection.png)
 1. Connect your wallet and proceed to fill out the required fields. Use [ghostNFT docs](https://docs.nft.ghostchain.io/en/latest/envious-house-usage.html) for further guidance.
 
-**IMPORTANT**: Minimum amount to be dispersed to all tokenIds in the collection is 0.044 Linea-ETH. Make sure to have this amount in your Metamask.
+**IMPORTANT**: Minimum amount to be dispersed to all tokenIds in the collection is 0.044 Linea-ETH. Make sure to have this amount in your MetaMask.
 
 ![disperse min](../../assets/ghost/min_amt.png)
 

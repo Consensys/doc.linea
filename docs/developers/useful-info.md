@@ -60,6 +60,13 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
       <th>L2 Address</th>
       <th>Bridge</th>
     </tr>
+        <tr>
+      <td>ETH</td>
+      <td>Goerli</td>
+      <td>0x70BaD09280FD342D02fe64119779BC1f0791BAC2</td>
+      <td>0xC499a572640B64eA1C8c194c43Bc3E19940719dC</td>
+      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
+    </tr>
     <tr>
       <td>USDC</td>
       <td>Goerli</td>
@@ -142,8 +149,15 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
 
 ## Faucets
 
-If you want to drip Goerli ETH directly to Linea, find the [Infura Linea faucet here](https://infura.io/faucet/linea).
+If you want to drip Goerli ETH directly to Linea, you can use the following faucets:
+
+1. [Infura Linea faucet](https://infura.io/faucet/linea)
+1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
+1. [FAUCETME faucet](https://linea.faucetme.pro/)
+1. [Tatarot faucet](https://faucet.tatarot.ai/)
 
 If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
-You can find instructions on how to use the Linea faucet [here](../use-linea/fund.md).
+You can find instructions on how to use the multi-token Linea faucet [here](../use-linea/fund.md).
+
+Alternatively
