@@ -15,5 +15,5 @@ Linea released its public testnet 3/28 and is launching an upcoming NFT testnet 
 
 Check out our documentation on how to:
 
-1. [Set up your wallet](./use-linea/set-up-your-wallet.md)
+1. [Set up your wallet](./use-linea/set-up-your-wallet.mdx)
 2. [Deploy your first contract](./developers/quickstart/)

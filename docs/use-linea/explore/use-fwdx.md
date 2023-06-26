@@ -14,7 +14,7 @@ In this guide, we'll walk you through how to Create Market, Swap & Fill Markets 
 
 Before you start, make sure your wallet is configured as follows:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 2. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 3. [Funded with Linea Faucet ERC20 Tokens](https://faucet.goerli.linea.build/)
 

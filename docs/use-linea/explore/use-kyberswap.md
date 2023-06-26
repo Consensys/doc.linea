@@ -20,7 +20,7 @@ With KyberSwap you can:
 
 Before you embark on the future of trade, make sure that you have:
 
-- [Connected your wallet to the Linea network](../set-up-your-wallet.md)
+- [Connected your wallet to the Linea network](../set-up-your-wallet.mdx)
 - [Acquired Goerli ETH to pay for your Linea transactions](../fund.md)
 
 :::

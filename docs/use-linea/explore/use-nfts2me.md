@@ -15,7 +15,7 @@ In this guide, we'll walk you through the steps to create a new NFT collection, 
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 
 ## Create a new NFT Collection​ (using AI)
