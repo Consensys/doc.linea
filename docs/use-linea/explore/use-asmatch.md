@@ -4,9 +4,10 @@ sidebar_position: 1
 ---
 
 # Task on Galxe
-AsMatch - Mint zkPioneer (zkSBT) , enter Proof Key in AsMatch profile, link Metamask 
 
-Mint zkPioneer (zkSBT) on Manta Network NPO website to get ZK Proof Key, enter Proof Key in AsMatch profile, link Metamask address on AsMatch official Website.	
+AsMatch - Mint zkPioneer (zkSBT) , enter Proof Key in AsMatch profile, link Metamask
+
+Mint zkPioneer (zkSBT) on Manta Network NPO website to get ZK Proof Key, enter Proof Key in AsMatch profile, link Metamask address on AsMatch official Website.
 
 MAKE SURE YOU READ THE DOCUMENT LINKED HERE
 
@@ -25,4 +26,5 @@ MAKE SURE YOU READ THE DOCUMENT LINKED HERE
 **Note**: Make sure to connect your zkPioneer-minted wallet address when you login to the official [AsMatch website](https://asmatch.app) to be eligible to participate in this campaign.
 
 ## Call-to-Action:
+
 https://npo.manta.network/calamari/sbt/projects/zkLinea

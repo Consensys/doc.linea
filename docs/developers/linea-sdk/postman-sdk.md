@@ -1,5 +1,5 @@
 ---
-title: Linea SDK - Postman
+title: Postman
 sidebar_position: 2
 ---
 
@@ -115,24 +115,24 @@ All of the values that the SDK will need should be stored in a .env file. Make s
 ```javascript
 L1_RPC_URL=https://goerli.infura.io/v3/<INFURA_KEY>
 L1_CONTRACT_ADDRESS=0x70BaD09280FD342D02fe64119779BC1f0791BAC2 // L1 rollup smart-contract
-L1_SIGNER_PRIVATE_KEY= //Account private key that will be use to send claim transactions,
+L1_SIGNER_PRIVATE_KEY= // account private key that will be use to send claim transactions,
 
-L1_LISTENER_INTERVAL=4000 // - event listener polling interval
-L1_LISTENER_INITIAL_FROM_BLOCK=0 // User can choose to start listening for events from this specific block. Default value is the block of the latest message sent stored in the DB
+L1_LISTENER_INTERVAL=4000 // event listener polling interval
+L1_LISTENER_INITIAL_FROM_BLOCK=0 // user can choose to start listening for events from this specific block. Default value is the block of the latest message sent stored in the DB
 L1_LISTENER_BLOCK_CONFIRMATION=4 // number of block to wait for before listening to events. The range of blocks that we use to listen for events is (fromBlock -> 'latest' - blockConfirmation)
-L1_MAX_BLOCKS_TO_FETCH_LOGS=1000 //max range of blocks to fetch logs,
+L1_MAX_BLOCKS_TO_FETCH_LOGS=1000 // max range of blocks to fetch logs,
 L2_RPC_URL=https://linea-goerli.infura.io/v3/<INFURA_KEY>
 L2_CONTRACT_ADDRESS=0xC499a572640B64eA1C8c194c43Bc3E19940719dC // message service smart contract address to listen to
-L2_SIGNER_PRIVATE_KEY= //Account private key that will be use to send claim transactions,
+L2_SIGNER_PRIVATE_KEY= // account private key that will be use to send claim transactions
 L2_LISTENER_INTERVAL=4000 // same description as L1 config
 L2_LISTENER_INITIAL_FROM_BLOCK=0 // same description as L1 config
 L2_LISTENER_BLOCK_CONFIRMATION=0 // same description as L1 config
 L2_MAX_BLOCKS_TO_FETCH_LOGS=1000 // same description as L1 config
 MESSAGE_SUBMISSION_TIMEOUT=300000 // maximum transaction timeout before doing a retry
 MAX_FETCH_MESSAGES_FROM_DB=1000 // max messages that can be fetched from the DB per db query
-MAX_NONCE_DIFF=10000 // Optional-maximum difference between on chain account nonce and in memory account nonce
-MAX_FEE_PER_GAS=100000000000 // max fee per gas that the postman is willing to pay,
-GAS_ESTIMATION_PERCENTILE=50 // Used to estimate fees for claiming transactions using the eth_feeHistory infura rpc endpoint. It is the percentile value to sample from each block's effective priority fees per gas in ascending order, weighted by gas used.
+MAX_NONCE_DIFF=10000 // maximum difference between on chain account nonce and in memory account nonce
+MAX_FEE_PER_GAS=100000000000 // max fee per gas that the postman is willing to pay
+GAS_ESTIMATION_PERCENTILE=50 // used to estimate fees for claiming transactions using the eth_feeHistory Infura rpc endpoint. It is the percentile value to sample from each block's effective priority fees per gas in ascending order, weighted by gas used.
 (https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory)
 POSTGRES_HOST=
 POSTGRES_PORT=
