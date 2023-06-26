@@ -11,7 +11,7 @@ Otherwise, you can also fill out [**this form**](https://forms.gle/qR5SxqitPnQKF
 
 :::note
 
-Please only complete this form once you have [set up your wallet](../use-linea/set-up-your-wallet.md) and have tested the network.
+Please only complete this form once you have [set up your wallet](../use-linea/set-up-your-wallet.mdx) and have tested the network.
 
 :::
 

@@ -4,7 +4,7 @@ description: Get test tokens on Linea
 sidebar_position: 3
 ---
 
-Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.md)
+Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
 
 # Use a Linea faucet
 

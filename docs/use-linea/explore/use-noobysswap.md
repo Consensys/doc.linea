@@ -12,7 +12,7 @@ In this guide, we'll walk you through how to Swap & Add LP with NooBysSwap.io.
 
 Before you begin, make sure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 2. [Funded with Linea ETH](../fund.md#get-test-eth-on-linea)
 
 Claim USDT & NBS token on Faucet

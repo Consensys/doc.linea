@@ -15,7 +15,7 @@ If you get stuck, our friendly community support team on our [Discord](https://d
 
 Ensure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 2. [Funded with Goerli ETH (at least 0.1 ETH)](../fund.md#get-test-eth-on-goerli)
 
 ## Import the $LineaPEPE token to your wallet

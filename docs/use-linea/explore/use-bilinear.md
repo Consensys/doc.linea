@@ -18,7 +18,7 @@ Within the marketplace, a user will be able to perform the following actions:
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 1. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 
 ## Mint a collection

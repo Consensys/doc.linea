@@ -9,7 +9,7 @@ Linea DeFi Week Tutorial MES Protocol is a cross-rollup orderbook DEX, you can l
 
 Before you begin, make sure your wallet is:
 
-- [configured to use Linea](../set-up-your-wallet.md)
+- [configured to use Linea](../set-up-your-wallet.mdx)
 - [funded with the Linea ETH](../fund.md#get-test-eth-on-linea).
 
 ## Tasks

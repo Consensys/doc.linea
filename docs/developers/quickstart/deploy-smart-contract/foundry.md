@@ -15,7 +15,7 @@ Here's a video walkthrough:
 
 Before you begin, Ensure you've:
 
-1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
+1. [Set up your wallet](../../../use-linea/set-up-your-wallet.mdx)
 1. [Funded your wallet with Linea ETH](../../../use-linea/fund.md#get-test-eth-on-linea)
 
    ```bash
