@@ -16,7 +16,9 @@ In this guide, we’ll walk you through how to
 
 After which, you’ll have a glimpse of how smooth the onboarding and user experience for DeFi will be on Linea!
 
-# Beginning
+# Start the Quests
+Go to https://linea.particle.network
+
 ![Follow Particle](../../assets/particle/11.png)
 
 At the beginning, please follow our twitter to begin the journey, appreciate the support!
