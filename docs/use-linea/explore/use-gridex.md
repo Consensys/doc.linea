@@ -23,8 +23,6 @@ Now you will have to hit **connect wallet** and change the network to Linea Goer
 
 To complete the following tasks, you will have to trade on the **ETH/aUSD** pair. However, Gridex is a permissionless protocol, so at any point, users may create a new trading pair by just placing two maker orders in each trading direction.
 
-
-
 ## Task 1: Executing a Swap on ETH/aUSD
 
 In order to make a swap, you will have to switch from the Maker tab to the Swap tab, as shown in the following image:
