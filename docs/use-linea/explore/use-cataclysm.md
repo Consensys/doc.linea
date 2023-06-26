@@ -27,7 +27,7 @@ In the arcade mode, the player embarks on an epic journey through the game's dyn
 
 ![img4](../../assets/cataclysm/endless-quest.png)
 
-As soon as the user clicks on this button, Metamask will open, where the users can confirm the operation and complete the token minting process.
+As soon as the user clicks on this button, MetaMask will open, where the users can confirm the operation and complete the token minting process.
 
 If the transaction fails, for example, due to network connection issues, the users can simply refresh the page. After the refresh, the victory confirmation pop-up will reappear with the button to redeem the token, allowing the users to repeat the aforementioned process.
 
@@ -43,7 +43,9 @@ At this point, the user can take three actions:
 
 ## How to complete the task in the Arcade mode
 
-**In the arcade mode, the objective of the task is to kill at least 10 enemies.** Once the 10 enemies are defeated and the game comes to an end, regardless of whether the users win or lose, a pop-up will appear confirming their victory. Afterward, they can proceed with the same steps described in the endless run mode to mint the token.
+**In the arcade mode, the objective of the task is to kill at least 10 enemies.**
+
+Once the 10 enemies are defeated and the game comes to an end, regardless of whether the users win or lose, a pop-up will appear confirming their victory. Afterward, they can proceed with the same steps described in the endless run mode to mint the token.
 
 ![img6](../../assets/cataclysm/aracade-quest.png)
 

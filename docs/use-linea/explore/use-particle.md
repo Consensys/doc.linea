@@ -17,6 +17,14 @@ In this guide, we’ll walk you through how to
 
 After which, you’ll have a glimpse of how smooth the onboarding and user experience for DeFi will be on Linea!
 
+# Start the Quests
+
+Go to https://linea.particle.network
+
+![Follow Particle](../../assets/particle/11.png)
+
+At the beginning, please follow our twitter to begin the journey, appreciate the support!
+
 # Create a Particle Account Abstraction (AA) Wallet
 
 On this page you will see your first mission - Connect with Particle
@@ -49,7 +57,9 @@ Press “Confirm”, and wait for a few second, the transaction will succeed. Yo
 
 In this step, you’ll be swapping your tUSDC to tUSDT gaslessly, that is to say, you don’t need to have any goerliETH to trigger off the transaction.
 
-Now, please put “Your Galxe Address” in the text field, PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
+Now, please put “Your Galxe Address” in the text field.
+
+PAY ATTENTION! It must be the address you used for participating this campaign, **otherwise you may not be able to verify your completion!**
 
 If you are not sure about how to get your Galxe Address, follow the steps below:
 
@@ -65,8 +75,3 @@ Sign another message, wait for a while, and Voilà! You’ve successfully swappe
 
 ![Finish Swap](../../assets/particle/10.png)
 
-# End
-
-![Follow Us](../../assets/particle/11.png)
-
-In the end, please don’t forget to follow our twitter. And congratulations! You have completed the task!

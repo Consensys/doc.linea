@@ -1,19 +1,21 @@
 ---
-title: Use Fluvi wallet
+title: Use Fluvi Wallet
 sidebar_position: 1
 ---
 
 # [Fluvi Wallet](https://fluviwallet.xyz/) - Your web3 life made easy.
 
-As one of the first smart contract wallets that leverages account abstraction (AA) technology, Fluvi stands at the forefront, ready to redefine your Web3 experience.
-
+As one of the first smart contract wallets that leverages **Account Abstraction (AA)** technology, Fluvi stands at the forefront, ready to redefine your Web3 experience.  
 This non-custodial wallet ensures you retain complete control of your digital assets, striking a seamless balance between security, simplicity, and absolute ownership.
 
-Fluvi offers unique features such as non-custodial multi-device synchronization, On-Chain 2FA, Seedless Recovery, Batch Transactions, Gasless Transactions, and many more while complying with the EIP-4337 standard.
+Fluvi offers unique features such as **non-custodial multi-device synchronization**, On-Chain 2FA, Seedless Recovery, Batch Transactions, Gasless Transactions, and many more while complying with the EIP-4337 standard. [See Here for full docs and FAQ.](https://docs.fluviwallet.xyz/linea-voyage/linea-voyage-with-fluvi-wallet)
 
 In this simple guide, we'll help you install Fluvi Wallet and use it to complete the tasks based on the unique features of AA on Linea!
 
-Or, you can use the [Linea Voyage Guide page](http://linea-quest.fluvi.io) provided by Fluvi Wallet itself to claim the necessary tokens and progress through the quests!
+Or, you can use the [Linea Voyage Faucet & Guide](http://linea-quest.fluvi.io) provided by Fluvi Wallet itself to claim the necessary tokens and progress through the quests!
+
+> **Important! Fluvi Wallet must be mapped to your MetaMask address in order to complete the Quest.  
+> Please make sure to complete the mapping by referring to the [guide below](#link-fluvi-wallet-with-metamask).**
 
 ## Install Fluvi Wallet and Create Your Account
 
@@ -50,7 +52,7 @@ Below is a list of our partner dApps supporting gasless transactions, which is c
 - Velocore
 - PancakeSwap
 - Compound Finance
-- SushiSwap(will be live on Mainnet)
+- SushiSwap (will be live on Mainnet)
 
 ## Link Fluvi Wallet with MetaMask
 
@@ -60,9 +62,8 @@ The quests carried out via Fluvi Wallet can be verified using the wallet address
 
 We've made this process straightforward with a dedicated tool:
 
-1.  Open up the link to the [Linea Voyage Guide page  
-    ](http://linea-quest.fluvi.io)![](../../assets/fluvi_wallet/image9.png)  
-    `
+1.  Open up the link to the [Linea Voyage Faucet & Guide page  
+    ](http://linea-quest.fluvi.io)![](../../assets/fluvi_wallet/image9.png)
 2.  Navigate to the "For Linea Voyage on Galxe" tab in the middle of the page  
     ![](../../assets/fluvi_wallet/image10.png)
 3.  Connect your MetaMask and Fluvi Wallet and check if your wallet address is correctly displayed at the bottom
@@ -74,4 +75,5 @@ During the Linea Voyage campaign, we will have a cohort partnership with certain
 
 ## Get Support[​](https://docs.linea.build/use-linea/explore/use-celer#get-support)
 
-For any inquiries, ideas, or issues with Fluvi Wallet, feel free to reach out to us on our [Discord](https://discord.com/invite/TVdGd8R5rk)!
+For any inquiries, ideas, or issues with Fluvi Wallet, feel free to reach out to us on our [Discord](https://discord.com/invite/TVdGd8R5rk)!  
+For the latest news and events, follow us on [Twitter](https://twitter.com/fluviweb3).
