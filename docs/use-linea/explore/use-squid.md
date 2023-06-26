@@ -37,7 +37,7 @@ The STAKEME Faucet provides 0.05 Linea Goerli ETH. There are two ways to access 
 
 **Route 1:** On the [faucet page](https://linea.faucetme.pro), make sure the chain and token selected are Linea Goerli and ETH, then paste your address into the input box and click **Send Me**.
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/STAKEME.gif)
+![image](../../assets/squid/STAKEME.gif)
 
 **Route 2:** In the [STAKEME Discord server](https://discord.gg/stakeme), navigate to the #linea-faucet channel and type **/faucet** followed by your address.
 
@@ -47,7 +47,7 @@ The [Covalent Faucet](https://www.covalenthq.com/platform/faucet) provides 0.02 
 - Set up a Covalent account with your email address
 - While logged into Covalent, visit the [faucet page](https://www.covalenthq.com/platform/faucet), paste your address into the input box and click **Send Tokens to Wallet**.
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Covalent.gif)
+![image](../../assets/squid/Covalent.gif)
 
 #### Infura ####
 
@@ -56,7 +56,7 @@ The [Infura Faucet](https://www.infura.io/faucet/linea) provides 0.5 Linea Goerl
 - Make sure the wallet address you will be using has at least 0.001 ETH on Ethereum Mainnet
 - While logged into Infura, visit the [faucet page](https://www.infura.io/faucet/linea), paste your address into the input box and click **Receive ETH**. You will shortly receive 0.5 ETH to your wallet on Linea.
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Infura.gif)
+![image](../../assets/squid/Infura.gif)
 
 
 ## Step 2: Get some USDC on Linea Goerli
@@ -73,13 +73,13 @@ We will be using [Linea’s Faucet](https://faucet.goerli.linea.build) to get US
 In the **Unwrap USDC** box, type **0.02**, then click approve. You will be prompted to set a token spending cap via your wallet before receiving your USDC.
 
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/USDC%20Faucet%20P1.gif)
+![image](../../assets/squid/USDC%20Faucet%20P1.gif)
 
 - Click **Add to Metamask** to import the USDC token into your wallet so you can see it.
   
 You should now have $0.02 USDC and some leftover ETH to cover gas transactions for your Squid swaps.
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/USDC%20Faucet%20P2.gif)
+![image](../../assets/squid/USDC%20Faucet%20P2.gif)
 
 
 ## Step 3: Visit Squid's Cross-Chain App
@@ -94,7 +94,7 @@ With our Linea USDC in hand, we can use Squid to swap it over to AVAX on Avalanc
 
 **💡 We will be doing two swaps from USDC, so we suggest using 0.01 USDC per swap.**
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Swap%20AVAX%20P1.gif)
+![image](../../assets/squid/Swap%20AVAX%20P1.gif)
 
 5. Wait a few seconds for Squid to load the details. If this is your first swap from USDC, the submit button might say Give permission to use tokens. Click this and set the token spending cap to 0.02 via your wallet.
 
@@ -105,7 +105,7 @@ With our Linea USDC in hand, we can use Squid to swap it over to AVAX on Avalanc
 
 Swaps usually process in a few minutes, but it can sometimes take longer. 
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Swap%20AVAX%20P2.gif)
+![image](../../assets/squid/Swap%20AVAX%20P2.gif)
 
 ## Viewing your tokens on Avalanche
 If this is the first time you are using the Avalanche Testnet, you might not see the chain show up in your wallet’s list of networks. Here’s how to add it so you can see your new AVAX: 
@@ -113,7 +113,7 @@ If this is the first time you are using the Avalanche Testnet, you might not see
 2. A **switch network** button will appear - click this and your wallet should prompt you to add the chain to your wallet.
 You will now be connected to Avalanche’s Fuji C-Chain Testnet, and your AVAX should be visible in your wallet.
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Add%20Avalanche.gif)
+![image](../../assets/squid/Add%20Avalanche.gif)
 
 
 ## Step 5: Swap from Linea USDC to aUSDC + AVAX on Avalanche
@@ -131,7 +131,7 @@ Here’s how it’s done:
 
 Both aUSDC and a bit of AVAX for gas on Avalanche will now be on its way to your wallet!
 
-![image](https://github.com/0xsquid/Squid-Linea-Guide/blob/main/Get%20Gas.gif)
+![image](../../assets/squid/Get%20Gas.gif)
 
 ## Troubleshooting
 
