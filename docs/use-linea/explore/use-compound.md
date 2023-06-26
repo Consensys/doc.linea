@@ -4,8 +4,7 @@ description: Perform deposit collateral, borrow and supply USDC
 sidebar_position: 1
 ---
 
-Compound has been deployed to showcase how Linea can be used to supply collateral and borrow tokens on L2, where users can benefit from cheaper gas fees. 
-Compound has integrated those contracts in its website to let the user interact with the dapp on Linea.
+Compound has been deployed to showcase how Linea can be used to supply collateral and borrow tokens on L2, where users can benefit from cheaper gas fees. Compound has integrated those contracts in its website to let the user interact with the dapp on Linea.
 
 This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.com/webstore/detail/fluvi-wallet/mmmjbcfofconkannjonfmjjajpllddbg) or Metamask wallet to interact with Compound on Linea.
 
@@ -33,7 +32,7 @@ This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.
 
 ![Make](../../assets/compound/compound-4.png)
 
-11. In the poup click on “Confirm”
+11. In the popup click on “Confirm”
 
 ![Make](../../assets/compound/compound-5.png)
 
@@ -41,11 +40,11 @@ This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.
 
 ![Make](../../assets/compound/compound-6.png)
 
-13. Click on “Complete Transaction” 
+13. Click on “Complete Transaction”
 
 ![Make](../../assets/compound/compound-7.png)
 
-14. In the popup click on “Confirm” 
+14. In the popup click on “Confirm”
 15. Wait for the transaction to be confirmed
 16. You now have borrowed USDC from compound!
 
@@ -88,5 +87,3 @@ This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.
 17. In the popup click on “Confirm”
 18. Wait for the transaction to be completed
 19. You have supplied USDC in compound and are starting to earn interest!
-
-
