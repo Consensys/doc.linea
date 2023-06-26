@@ -10,12 +10,18 @@ The product offerings include secure Authentication and Wallet-as-a-Service Midd
 Particle Network's solutions have demonstrated remarkable results for their clients, increasing new user conversion rate from 15% to 95%.
 
 In this guide, we’ll walk you through how to
-
 - Create a Particle Account Abstraction (AA) Wallet and
 - Claim tUSDC gaslessly
 - Swap the tUSDC to tUSDT gaslessly with your Galxe Address as the recipient
 
 After which, you’ll have a glimpse of how smooth the onboarding and user experience for DeFi will be on Linea!
+
+# Start the Quests
+Go to https://linea.particle.network
+
+![Follow Particle](../../assets/particle/11.png)
+
+At the beginning, please follow our twitter to begin the journey, appreciate the support!
 
 # Create a Particle Account Abstraction (AA) Wallet
 
@@ -66,9 +72,3 @@ Now let’s make the Gasless Swap!
 Sign another message, wait for a while, and Voilà! You’ve successfully swapped it!
 
 ![Finish Swap](../../assets/particle/10.png)
-
-# End
-
-![Follow Us](../../assets/particle/11.png)
-
-In the end, please don’t forget to follow our twitter. And congratulations! You have completed the task!
