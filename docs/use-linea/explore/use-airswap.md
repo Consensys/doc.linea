@@ -15,7 +15,7 @@ To use AirSwap on Linea, ensure your wallet is connected and the "Linea-Goerli" 
 ![Chain](../../assets/airswap/airswap-chain.png)
 
 ## Do an OTC (over-the-counter) Swap
-An OTC swap is between you and another person, with price negotiated by chat, email, or phone. Either you or the counterparty makes an "order" and shares it with the other party to be taken. OTC is available for any ERC20 token on Linea. To perform an OTC swap you must have another person available to swap.
+An OTC swap is between you and another person, with price negotiated by chat, email, or phone. Either you or the counter-party makes an "order" and shares it with the other party to be taken. OTC is available for any ERC20 token on Linea. To perform an OTC swap you must have another person available to swap.
 
 ### Make an Order
 First, one party needs to make and sign an order.
@@ -26,10 +26,10 @@ First, one party needs to make and sign an order.
 2. Click "OTC" on the left toolbar to make a new order.
 3. Select tokens you'd like to swap and input amounts.
 4. Click "Review" and "Sign" to make the order. You may need to approve first.
-5. Click "Copy Link" and share it with your counterparty.
+5. Click "Copy Link" and share it with your counter-party.
 
 ### Take an Order
-You should have received a link from your counterparty.
+You should have received a link from your counter-party.
 
 ![Take](../../assets/airswap/airswap-take.png)
 
