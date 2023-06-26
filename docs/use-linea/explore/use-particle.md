@@ -16,6 +16,11 @@ In this guide, we’ll walk you through how to
 
 After which, you’ll have a glimpse of how smooth the onboarding and user experience for DeFi will be on Linea!
 
+# Beginning
+![Follow Particle](../../assets/particle/11.png)
+
+At the beginning, please follow our twitter to begin the journey, appreciate the support!
+
 # Create a Particle Account Abstraction (AA) Wallet
 
 On this page you will see your first mission - Connect with Particle
@@ -65,9 +70,3 @@ Now let’s make the Gasless Swap!
 Sign another message, wait for a while, and Voilà! You’ve successfully swapped it!
 
 ![Finish Swap](../../assets/particle/10.png)
-
-# End
-
-![Follow Us](../../assets/particle/11.png)
-
-In the end, please don’t forget to follow our twitter. And congratulations! You have completed the task!
