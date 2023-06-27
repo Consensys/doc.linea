@@ -9,7 +9,7 @@ sidebar_position: 1
 
 In this guide, we'll walk you through how to buy a username!
 
-Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md).
+Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.mdx).
 
 ## Buy a Username
 

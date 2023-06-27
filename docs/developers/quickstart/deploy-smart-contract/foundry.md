@@ -15,7 +15,7 @@ Here's a video walkthrough:
 
 Before you begin, Ensure you've:
 
-1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
+1. [Set up your wallet](../../../use-linea/set-up-your-wallet.mdx)
 1. [Funded your wallet with Linea ETH](../../../use-linea/fund.md#get-test-eth-on-linea)
 
    ```bash
@@ -44,7 +44,15 @@ Running `forge init` sets you up with a sample contract, test, and script for `C
 
 ## Deploy the smart contract
 
-To deploy a smart contract, run:
+To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience rate limiting. You can find out how to [get an API key here](https://support.linea.build/hc/en-us/articles/15752713253147). Then, you can run the following command.
+
+Using Infura:
+
+```bash
+forge create --rpc-url https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
+```
+
+Using the public endpoint:
 
 ```bash
 forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
@@ -59,9 +67,3 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
-
-:::note
-
-You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
-
-:::

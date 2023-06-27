@@ -10,7 +10,7 @@ A GameFi ecosystem built around interactive 3D NFTs with utilities and on-chain 
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md).
+1. [Configured to use Linea](../set-up-your-wallet.mdx).
 
 2. [Funded with Goerli ETH](../fund.md#get-test-eth-on-goerli)
 

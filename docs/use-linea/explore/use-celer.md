@@ -9,7 +9,7 @@ sidebar_position: 1
 
 In this guide, we'll walk you through how to bridge TBNB and tBUSD from Binance Smart Chain (BSC) over to Linea!
 
-Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.md).
+Before you begin, ensure your wallet is [configured to use Linea](../set-up-your-wallet.mdx).
 
 ## Add BSC testnet to your MetaMask wallet
 

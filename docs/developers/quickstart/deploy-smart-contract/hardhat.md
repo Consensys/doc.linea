@@ -17,7 +17,7 @@ Here's a video walkthrough:
 
 Before you begin, ensure you've:
 
-1. [Set up your wallet](../../../use-linea/set-up-your-wallet.md)
+1. [Set up your wallet](../../../use-linea/set-up-your-wallet.mdx)
 1. [Funded your wallet with Linea ETH](../../../use-linea/fund.md#get-test-eth-on-linea)
 1. [Set up your environment using Hardhat's recommended instructions](https://hardhat.org/tutorial/setting-up-the-environment#2.-setting-up-the-environment).
 
@@ -177,7 +177,27 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
    ```
    npm i -D dotenv
    ```
-1. Add Linea to your `hardhat.config.js` file:
+1. Add Linea to your `hardhat.config.js` file. We highly recommend using the Infura endpoint, as the public endpoint may experience rate limiting. You can find how to [get an API key here](https://support.linea.build/hc/en-us/articles/15752713253147).
+
+   Using Infura:
+
+   ```javascript
+   require("@nomicfoundation/hardhat-toolbox");
+   require("dotenv").config();
+   const { PRIVATE_KEY } = process.env;
+
+   module.exports = {
+     solidity: "0.8.17",
+     networks: {
+       linea: {
+         url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
+         accounts: [PRIVATE_KEY],
+       },
+     },
+   };
+   ```
+
+   Using the public endpoint:
 
    ```javascript
    require("@nomicfoundation/hardhat-toolbox");
@@ -203,11 +223,5 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
    ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/hardhat.md).
-
-:::note
-
-You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
-
-:::
 
 <!--markdown-link-check-enable -->

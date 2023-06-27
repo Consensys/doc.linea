@@ -12,7 +12,7 @@ The following steps take you through bridging USDC and Goerli ETH using the Hop 
 
 Before you begin, ensure your wallet is:
 
-1. [Configured to use Linea](../set-up-your-wallet.md)
+1. [Configured to use Linea](../set-up-your-wallet.mdx)
 1. [Funded with test tokens](../fund.md#get-test-eth-on-goerli)
 
 ## Bridge from Goerli to Linea
