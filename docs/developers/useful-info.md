@@ -42,8 +42,8 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 | Contract | Address |
 | --- | --- |
-| Linea rollup and L1Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
-| L2Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) |
+| Linea rollup and L1 Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
+| L2 Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) |
 
 ## Token contract addresses and bridges
 
