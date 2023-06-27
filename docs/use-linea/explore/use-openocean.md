@@ -1,3 +1,7 @@
+---
+title: Use OpenOcean
+sidebar_position: 1
+---
 **OpenOcean**
 
 OpenOcean is a leading DEX Aggregator, a cross-chain swap aggregator, and Web 3 middleware developer in the crypto space, offering a suite of tools across 25+ networks and 300+ deep liquidity sources. OpenOcean is building a one-stop trading platform, to bring users the best swap return for decentralized crypto trading.
