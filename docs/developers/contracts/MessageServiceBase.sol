@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: OWNED BY ConsenSys Software Inc.
+// SPDX-License-Identifier: OWNED BY Consensys Software Inc.
 pragma solidity ^0.8.19;
 
 import "./interfaces/IMessageService.sol";
 
 /**
  * @title Base contract to manage cross-chain messaging.
- * @author ConsenSys Software Inc.
+ * @author Consensys Software Inc.
  */
 abstract contract MessageServiceBase {
   IMessageService public messageService;
