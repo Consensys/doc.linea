@@ -4,6 +4,7 @@ description: Use NoobysSwap to trade NBS token
 sidebar_position: 1
 ---
 
+
 # Noobysswap
 
 NooBysSwap.io is a decentralized exchange (DEX) built on a Linea blockchain L2 that enables users to trade digital assets in a secure and transparent manner, without the need for a centralized intermediary. The exchange is designed to be user-friendly, with low transaction fees and a seamless interface that makes trading digital assets easy and intuitive for users of all levels of experience.
@@ -41,6 +42,7 @@ Swap tokens
 Add liquidity
 
 1. Navigate to the NooBys App, and select the Linea network in your MetaMask wallet ![add liquidity page](../../assets/noobysswap/Picture5.png)
+
 2. Connect your wallet to the app, by clicking Connect wallet and selecting MetaMask. Your wallet address will appear in the top-right corner.
 
    ![add liquidity page](../../assets/noobysswap/Picture6.png)
