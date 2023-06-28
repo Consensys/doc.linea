@@ -6,8 +6,8 @@ Use the following template to make sure your PR fits the ConsenSys documentation
 
 Make sure that:
 
-- [ ] You've read the [contribution guidelines](https://docs-template.consensys.net/getting-started/style-guide).
-- [ ] You've previewed your changes locally.
+- [ x] You've read the [contribution guidelines](https://docs-template.consensys.net/getting-started/style-guide).
+- [ x] You've previewed your changes locally.
 
 ## Describe the change
 
