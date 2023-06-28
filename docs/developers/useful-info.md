@@ -144,6 +144,13 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
       <td>0xcAA61BCAe7D37Fe9C33c0D8671448254eef44D63</td>
       <td><a href="https://testnet.bridge.connext.network/">Connext</a></td>
     </tr>
+        <tr>
+      <td>WETH</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0x2C1b868d6596a18e32E61B901E4060C872647b6C</td>
+      <td>-</td>
+    </tr>
   </tbody>
 </table>
 
