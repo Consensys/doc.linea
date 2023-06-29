@@ -27,9 +27,7 @@ If you’re looking for that service, check out the bridges that have [already b
 
 **This bridge can be used through writing a program that interacts with it–this is the method we recommend.**
 
-If you need to use this bridge and cannot write your own dapp to use it, you can bridge USDC from Goerli to Linea by using certain tools on Etherscan.
-
-Bridging back from Linea to Goerli currently is not supported through BlockScout’s UI, so you would need to **integrate the bridge contract into your own UI in order to do this**.
+If you need to use this bridge and cannot write your own dapp to use it, you can bridge USDC from Goerli to Linea, and from Linea to Goerli, by using certain tools on Etherscan.
 
 ### Can I use this bridge on another network?
 
@@ -97,22 +95,13 @@ Now click on that button with the little blue-green checkmark, labelled “Contr
 
 There are a number of views nested under “Contract”; for our purposes, we’re looking for the “Write as Proxy” tab: 
 
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
 ![alt_text](images/image3.png "image_tooltip")
 
 
 Click on that red ‘Connect to Web3’ button: 
 
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![alt_text](images/image4.png "image_tooltip")
   A disclaimer is offered, and if this worries you, there’s an alternate method to using this bridge, which we’ll discuss below.
-
-
-
-<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
 ![alt_text](images/image5.png "image_tooltip")
 
@@ -186,8 +175,54 @@ Congratulations; you just bridged tokens to a zero knowledge-enabled Layer 2 net
 
 ## Linea Goerli to Goerli
 
-Many will know the saying, “Replacement is the reverse of removal”, and they’ll know it’s rarely true.
+Many will know the saying, “Replacement is the reverse of removal” -- and in this case, it's essentially true, with a few minor UI differences on the Linea side of things. The steps are as follows:
 
-That is the case with this bridge. **If you’re looking to move liquidity from Linea back to Goerli, you’ll need to integrate the above functionality programmatically. **
+### Granting the L2 message bridge approval to spend your USDC
 
-If you need to move USDC from Linea to Goerli and don’t have the bandwidth to write your own code to do it, use one of the bridges mentioned at the top.
+- Again, head to the USDC contract, this time on Linea; [here's a link to the "write as proxy" function](https://goerli.lineascan.build/address/0xf56dc6695cf1f5c364edebc7dc7077ac9b586068#writeProxyContract).
+
+**The UI does look a little different here**, but it's the same functionality:
+
+![alt_text](/img/docs/usdc-bridge/usdc-contract.png)
+
+- Connect to MetaMask by clicking the 'Connect to Web3' button
+- Approve the contract in MetaMask
+- Fill out the values in the contract
+  - The Linea Goerli bridge contract, as indicated above, is `0xA59477f7742Ba7d51bb1E487a8540aB339d6801d`.
+
+**There is a difference here; you won't have to choose the exponents for your decimals.** Just type in the value you're transferring plus six zeroes.
+
+![On Linea, there are no powers](/img/docs/usdc-bridgeno-add.png)
+
+- Smash that `Write` button
+
+### 5. Generating the transaction
+
+This time, we're heading to the L2 end of the bridge: [https://goerli.lineascan.build/address/0xa59477f7742ba7d51bb1e487a8540ab339d6801d](https://goerli.lineascan.build/address/0xa59477f7742ba7d51bb1e487a8540ab339d6801d)
+
+- Once more, click on “**Contract**”, and then on “**Write as Proxy**”.
+- Connect your friendly, foxy wallet
+- Choose your delivery method; as a refresher:
+    * `deposit - `take your connected account’s USDC deposit, burn it, and mint the corresponding amount **to the same address on Goerli Linea.**
+    * `depositTo - `performs the same burn-and-mint proces, but gives you the opportunity to **specify a target address on Goerli Linea**.
+
+We’ll use the deposit function for this example.
+
+* Enter a **deposit amount** (remember; **it needs to be at least .01**, in order to cover the DoS prevention gas cost)
+* Enter the **amount of USDC** you wish to transfer, plus six zeroes. If this is confusing, see the section above regarding token decimals. In the example below, we’re sending 2 USDC.
+
+![alt_text](images/image11.png "image_tooltip")
+
+### 6. Execute the function and confirm your transaction
+
+* Hit the **“Write” **button, and approve the resulting transaction:
+
+![alt_text](images/image12.png "image_tooltip")
+
+[Here’s](https://goerli.etherscan.io/tx/0xec1835c764c6845c5acf672bd5b2e69f6c0a08c1891daa73974205c3f2c891bd) what the result of that transaction looks like on chain: 
+
+![alt_text](images/image13.png "image_tooltip")
+
+From here, the transaction will be relayed by the Message Bridge to Linea’s coordination and sequencing system, and it may not be immediate; under heavy traffic, at time of writing, it took ten minutes. [This was the resulting token mint transaction](https://explorer.goerli.linea.build/tx/0x6845bc5dab43fc5481d59edac39699a00d0b807bdaf00f0443c7a07edb8ffa11), delivered straight to the same address on Linea, just as expected: 
+
+![alt_text](images/image14.png "image_tooltip"
