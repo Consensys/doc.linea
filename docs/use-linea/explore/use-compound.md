@@ -8,6 +8,8 @@ Compound has been deployed to showcase how Linea can be used to supply collatera
 
 This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.com/webstore/detail/fluvi-wallet/mmmjbcfofconkannjonfmjjajpllddbg) or Metamask wallet to interact with Compound on Linea.
 
+If during this tutorial you encounter the transaction pending issue, please see : [Clear pending transactions](#clear-pending-transactions)
+
 ## How to borrow USDC on compound in one “Bulk transaction”
 
 1. First you need some ETH, navigate to the faucet to get some: [Linea Faucet](https://faucet.goerli.linea.build/)
@@ -21,7 +23,7 @@ This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.
 
 ![Make](../../assets/compound/compound-2.png)
 
-6. Make sure that you have not supplied any USDC to compound(You can not not supply and borrow USDC at the same time), if you have, click on "Withdraw" otherwise go skip step 7
+6. Make sure that you have not supplied any USDC to compound(You can not supply and borrow USDC at the same time), if you have, click on "Withdraw USDC" otherwise skip step 7
 
 ![Make](../../assets/compound/compound-14.png)
 
@@ -93,3 +95,13 @@ This tutorial will can be done with either [Fluvi Wallet](https://chrome.google.
 17. In the popup click on “Confirm”
 18. Wait for the transaction to be completed
 19. You have supplied USDC in compound and are starting to earn interest!
+
+### Clear pending transactions
+
+It can occur that sometimes, the pending transactions displayed on the website are never completed even though they have been completed on chain (Usually it is displayed directly on your wallet), if that happens you can clear the transactions displayed on the website as below:
+
+1. Click on "Pending" at the top right of the screen
+2. Then click on "Clear" in the popup
+
+![Make](../../assets/compound/compound-16.png)
+
