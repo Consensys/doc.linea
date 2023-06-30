@@ -23,7 +23,7 @@ USDC is minted natively on each network on which the currency is available. Ther
 
 **This bridge is not intended for everyday end users wishing to move USDC between networks.**
 
-If you’re looking for that service, check out the bridges that have [already been deployed](/use-linea/bridge-funds/) for that purpose. 
+If you’re looking for that service, check out the bridges that have [already been deployed](./../bridge-funds/) for that purpose. 
 
 **This bridge can be used through writing a program that interacts with it–this is the method we recommend.**
 
