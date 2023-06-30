@@ -82,35 +82,35 @@ _This assumes you have steps 1-3 above taken care of._
 Somehow, the message has to get from Goerli to Linea Goerli that you’ve burnt tokens on this end, and that corresponding tokens should be minted on the other end, right? This is the part where we enable that to happen.
 
 
-![alt_text](/img/docs/usdc-bridge/image1.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image1.png)
 
 
 Go to the Goerli USDC contract [on Etherscan](https://goerli.etherscan.io/address/0x07865c6e87b9f70255377e024ace6630c1eaa37f): [https://goerli.etherscan.io/address/0x07865c6e87b9f70255377e024ace6630c1eaa37f](https://goerli.etherscan.io/address/0x07865c6e87b9f70255377e024ace6630c1eaa37f)
 
 Now click on that button with the little blue-green checkmark, labelled “Contract”:
 
-![alt_text](/img/docs/usdc-bridge/image2.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image2.png)
 
 
 There are a number of views nested under “Contract”; for our purposes, we’re looking for the “Write as Proxy” tab: 
 
-![alt_text](/img/docs/usdc-bridge/image3.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image3.png)
 
 
 Click on that red `Connect to Web3` button. 
 
 A disclaimer is offered; if this worries you, you should consider building your own dapp to interface with this contract.
 
-![alt_text](/img/docs/usdc-bridge/image4.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image4.png)
 
 Etherscan offers a number of options to connect; we’ll be using MetaMask. Connecting takes a few clicks:
 
-![alt_text](/img/docs/usdc-bridge/image5.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image5.png)
 
 
 Now Etherscan knows the public address of the account we’ve connected. Next, click on that `approve` contract function:
 
-![alt_text](/img/docs/usdc-bridge/image6.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image6.png)
 
 
 There are two fields to fill in here. First, **the ‘spender’ field should be filled with the address of the Linea message bridge** on Goerli: `0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40`
@@ -121,19 +121,19 @@ There are two fields to fill in here. First, **the ‘spender’ field should be
 
 Second, the value. Press that `+` button and choose the first option, ten to the sixth power, and click add: 
 
-![alt_text](/img/docs/usdc-bridge/image7.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image7.png)
 
 **This is important, and you should only choose a different option if you know what you’re doing.** 
 
 This has to do with the “token decimals”--in other words, how many decimal points of precision one can use when calculating amounts of the token. Normally, you can find them on the contract page on Etherscan; at the time of writing, they weren’t posted on the Goerli USDC contract yet, but [here they are on mainnet Ethereum](https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48):
 
-![alt_text](/img/docs/usdc-bridge/image8.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image8.png)
 
 We’ll see this again in a moment, but it bears repeating: This means that **in order to represent the value of 1USDC, you would need to type 1 plus six zeroes: 1000000**. If you want to understand the technical underpinnings of this, there’s no better source than [EIP-20](https://eips.ethereum.org/EIPS/eip-20). 
 
 For now, click on the `Write` button and approve the transaction; if you’re using MetaMask, you’ll have an additional option to impose a spending cap:
 
-![alt_text](/img/docs/usdc-bridge/image9.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image9.png)
 
 
 Once you’ve confirmed that transaction, and it’s written to chain, you’re ready for the next step: **generating the transaction and actually sending your USDC to Linea.**
@@ -148,28 +148,28 @@ Head to the `L1USDCBridge` address on Goerli Etherscan: [https://goerli.ethersca
 * Connect your wallet as we did before.
 * You have two choices when it comes to functions:
     * `deposit - `take your connected account’s USDC deposit, burn it, and mint the corresponding amount **to the same address on Goerli Linea.**
-    * `depositTo - `performs the same burn-and-mint proces, but gives you the opportunity to **specify a target address on Goerli Linea**.
+    * `depositTo - `performs the same burn-and-mint process, but gives you the opportunity to **specify a target address on Goerli Linea**.
 
 We’ll use the deposit function for this example.
 
 * Enter a **deposit amount** (remember; **it needs to be at least .01**, in order to cover the DoS prevention gas cost)
 * Enter the **amount of USDC** you wish to transfer, plus six zeroes. If this is confusing, see the section above regarding token decimals. In the example below, we’re sending 2 USDC.
 
-![alt_text](/img/docs/usdc-bridge/image10.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image10.png)
 
 ### 6. Execute the function and confirm your transaction
 
 * Hit the `Write` button, and approve the resulting transaction:
 
-![alt_text](/img/docs/usdc-bridge/image11.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image11.png)
 
 [Here’s](https://goerli.etherscan.io/tx/0xec1835c764c6845c5acf672bd5b2e69f6c0a08c1891daa73974205c3f2c891bd) what the result of that transaction looks like on chain: 
 
-![alt_text](/img/docs/usdc-bridge/image12.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image12.png)
 
 From here, the transaction will be relayed by the Message Bridge to Linea’s coordination and sequencing system, and it may not be immediate; under heavy traffic, at time of writing, it took ten minutes. [This was the resulting token mint transaction](https://goerli.lineascan.build/tx/0x6845bc5dab43fc5481d59edac39699a00d0b807bdaf00f0443c7a07edb8ffa11), delivered straight to the same address on Linea, just as expected: 
 
-![alt_text](/img/docs/usdc-bridge/image13.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/image13.png)
 
 Congratulations; you just bridged tokens to a zero knowledge-enabled Layer 2 network using a universal dapp. 🤯😎🚀
 
@@ -183,7 +183,7 @@ Many will know the saying, “Replacement is the reverse of removal” -- and in
 
 **The UI does look a little different here**, but it's the same functionality:
 
-![alt_text](/img/docs/usdc-bridge/usdc-contract.png)
+![alt_text](./../../../static/img/docs/usdc-bridge/usdc-contract.png)
 
 - Connect to MetaMask by clicking the 'Connect to Web3' button
 - Approve the contract in MetaMask
@@ -192,7 +192,7 @@ Many will know the saying, “Replacement is the reverse of removal” -- and in
 
 **There is a difference here; you won't have to choose the exponents for your decimals.** Just type in the value you're transferring plus six zeroes.
 
-![On Linea, there are no powers](/img/docs/usdc-bridge/no-add.png)
+![On Linea, there are no powers](./../../../static/img/docs/usdc-bridge/no-add.png)
 
 - Smash that `Write` button
 
@@ -204,7 +204,7 @@ This time, we're heading to the L2 end of the bridge: [https://goerli.lineascan.
 - Connect your friendly, foxy wallet
 - Choose your delivery method; as a refresher:
     * `deposit - `take your connected account’s USDC deposit, burn it, and mint the corresponding amount **to the same address on Goerli.**
-    * `depositTo - `performs the same burn-and-mint proces, but gives you the opportunity to **specify a target address on Goerli**.
+    * `depositTo - `performs the same burn-and-mint process, but gives you the opportunity to **specify a target address on Goerli**.
 
 ### 6. Execute the function and confirm your transaction
 
