@@ -1,8 +1,11 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const isDev = process.env.NODE_ENV === "development";
-const baseUrl = isDev ? "/" : "/";
+// const isDev = process.env.NODE_ENV === "development";
+// const baseUrl = isDev ? "/" : "/";
+
+const organizationName = "Consensys";
+const projectName = "doc.zk-evm";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -10,7 +13,7 @@ const config = {
   tagline:
     "A type 2 zero knowledge Ethereum Virtual Machine that replicates an Ethereum environment by leveraging rollups.",
   url: "https://docs.linea.build",
-  baseUrl,
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
@@ -18,8 +21,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "ConsenSys", // Usually your GitHub org/user name.
-  projectName: "doc.zk-evm", // Usually your repo name.
+  organizationName, // Usually your GitHub org/user name.
+  projectName, // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
