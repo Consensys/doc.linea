@@ -4,8 +4,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 // const isDev = process.env.NODE_ENV === "development";
 // const baseUrl = isDev ? "/" : "/";
 
-const organizationName = "Consensys";
-const projectName = "doc.zk-evm";
+// const organizationName = "Consensys";
+// const projectName = "doc.zk-evm";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
