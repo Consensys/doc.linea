@@ -151,7 +151,7 @@ The sequencer does a number of things: - Determines the order–the _sequence_�
 
 ### How does it do it?
 
-Currently, Linea’s execution client is zkGeth, a version of geth that has been modified to work with zk-proving technology. However, Linea is building **zkBesu**: leveraging the full power of the ConsenSys stack by using a custom-built, modified version of the Besu client. Just as many other L2s have modified L1 Ethereum clients, zkBesu will help the Linea team ensure compatibility, stability, ease of maintenance in their client, and of course helps them get their network launched much faster than building from scratch.
+Currently, Linea’s execution client is zkGeth, a version of geth that has been modified to work with zk-proving technology. However, Linea is building **zkBesu**: leveraging the full power of the Consensys stack by using a custom-built, modified version of the Besu client. Just as many other L2s have modified L1 Ethereum clients, zkBesu will help the Linea team ensure compatibility, stability, ease of maintenance in their client, and of course helps them get their network launched much faster than building from scratch.
 
 Linea's sequencer takes transactions from the Linea memory pool, and builds them into blocks, just like Besu does on mainnet Ethereum. However, on Linea, it also does a bit of extra work, and communication, with the Coordinator, to ensure that blocks are made in such a way that they can be proven by the zero-knowledge prover, and that they are as compact as possible–doubly important in a situation where all data has to be written in tiny, costly pieces on Ethereum Mainnet. This is done specifically by subsystems within the Sequencer: the Traces Generator and Conflator.
 
@@ -283,7 +283,7 @@ The Coordinator now has all it needs to update Ethereum: the current state of th
 
 One of the main value propositions of a public blockchain network is that it be, well, _public_. This means that the information about what’s going on the network needs to be readily available. Networks like Ethereum have this more or less built in and available as part of the software: each node has an API that will return any information you ask for; if you have a lot of requests, well, you just need more nodes.
 
-To be clear, that’s how Linea works too–it’s just that Ethereum is decentralized and open; anyone can run a node. Linea is still a testnet, and its nodes are only being run by teams at ConsenSys. Therefore, in order to provide for the massive interest that the network has generated, a lot of nodes have to be run. This allows dapps to ask for information about the state of the network without impeding the actual execution of transactions by overloading the client.
+To be clear, that’s how Linea works too–it’s just that Ethereum is decentralized and open; anyone can run a node. Linea is still a testnet, and its nodes are only being run by teams at Consensys. Therefore, in order to provide for the massive interest that the network has generated, a lot of nodes have to be run. This allows dapps to ask for information about the state of the network without impeding the actual execution of transactions by overloading the client.
 
 ### What does it do?
 
@@ -291,7 +291,7 @@ Receives and responds to requests from users and dapps according to the Ethereum
 
 ### How does it do it?
 
-By leveraging the expertise and resources of Infura, ConsenSys, and the Ethereum ecosystem as a whole 😀 Infura is running a number of nodes to provide this service, in two main capacities:
+By leveraging the expertise and resources of Infura, Consensys, and the Ethereum ecosystem as a whole 😀 Infura is running a number of nodes to provide this service, in two main capacities:
 
 #### Client-facing RPC-API nodes
 

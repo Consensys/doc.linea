@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Linea ENS
 
-Linea ENS has been developed by ConsenSys to showcase how Linea can be used to manage ENS subdomain on L2, where users can benefit from cheaper gas fees. Technically, this is made possible thanks to ENSIP10 described [here](https://docs.ens.domains/ens-improvement-proposals/ensip-10-wildcard-resolution).
+Linea ENS has been developed by Consensys to showcase how Linea can be used to manage ENS subdomain on L2, where users can benefit from cheaper gas fees. Technically, this is made possible thanks to ENSIP10 described [here](https://docs.ens.domains/ens-improvement-proposals/ensip-10-wildcard-resolution).
 
 ## How to register a Linea ENS domain
 

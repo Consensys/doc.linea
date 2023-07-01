@@ -21,8 +21,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName, // Usually your GitHub org/user name.
-  projectName, // Usually your repo name.
+  organizationName: "Consensys", // Usually your GitHub org/user name.
+  projectName: "doc.zk-evm", // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -40,7 +40,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/ConsenSys/doc.zk-evm/tree/main/",
+          editUrl: "https://github.com/Consensys/doc.zk-evm/tree/main/",
           path: "docs",
           routeBasePath: "/",
           // @ts-ignore
@@ -204,20 +204,20 @@ const config = {
             items: [
               {
                 label: "Contribute to our documentation",
-                href: "https://github.com/ConsenSys/doc.zk-evm",
+                href: "https://github.com/Consensys/doc.zk-evm",
               },
               {
                 label: "Contribute to our gnark repo",
-                href: "https://github.com/ConsenSys/gnark",
+                href: "https://github.com/Consensys/gnark",
               },
               {
                 label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/ConsenSys/gnark-crypto",
+                href: "https://github.com/Consensys/gnark-crypto",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} ConsenSys, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Consensys, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

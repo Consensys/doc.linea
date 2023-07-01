@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Lint
-        uses: ConsenSys/docs-gha/lint@main
+        uses: Consensys/docs-gha/lint@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -29,6 +29,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: LinkCheck
-        uses: ConsenSys/docs-gha/linkcheck@main
+        uses: Consensys/docs-gha/linkcheck@main
         with:
           FILE_EXTENSION: ${{ matrix.file-extensions }}
