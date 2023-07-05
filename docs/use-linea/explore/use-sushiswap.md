@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Sushiswap has deployed its contracts to showcase how Linea can be used to swap tokens on L2, where users can benefit from cheaper gas fees.
 
-ConsenSys deployed a version of the Sushiswap website to let the user interact with the swap feature.
+Consensys deployed a version of the Sushiswap website to let the user interact with the swap feature.
 
 ## How to make a swap on Linea Sushiswap
 

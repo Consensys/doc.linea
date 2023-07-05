@@ -9,6 +9,6 @@ Ape Framework is an easy-to-use Web3 development tool. Users can compile, test, 
 
 Ape is built by [ApeWorX LTD](https://www.apeworx.io/).
 
-Linea team developed the [plugin to add Linea support to Ape](https://github.com/ConsenSys/ape-linea).
+Linea team developed the [plugin to add Linea support to Ape](https://github.com/Consensys/ape-linea).
 
 See [Ape docs](https://docs.apeworx.io/ape/stable/index.html) for more info

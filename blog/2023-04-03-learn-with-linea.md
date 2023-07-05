@@ -17,6 +17,6 @@ We're excited to share the great educational content the Linea community has bee
 
 ## Contribute
 
-If you're interested in adding your own material, please read our [contribution guidelines](https://github.com/ConsenSys/doc.zk-evm#linea), and create a pull request.
+If you're interested in adding your own material, please read our [contribution guidelines](https://github.com/Consensys/doc.zk-evm#linea), and create a pull request.
 
 [Join our Discord](https://discord.com/invite/consensys) and <!-- markdown-link-check-disable --> [tag us on Twitter](https://twitter.com/lineabuild) <!-- markdown-link-check-enable --> to celebrate our community contributions!

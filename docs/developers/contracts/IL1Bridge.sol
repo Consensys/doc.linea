@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: OWNED BY ConsenSys Software Inc.
+// SPDX-License-Identifier: OWNED BY Consensys Software Inc.
 pragma solidity ^0.8.15;
 
 import 'IBridge.sol';

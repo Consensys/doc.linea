@@ -9,10 +9,10 @@ site is published at [`docs.linea.build`](https://docs.linea.build/).
 
 ## Contribute to the docs
 
-See something missing? Error in our documentation? Create an issue [here](https://github.com/ConsenSys/doc.zk-evm/issues).
+See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.zk-evm/issues).
 
 Alternatively, help us improve our documentation!
-View the [ConsenSys doc contribution guidelines](https://docs-template.consensys.net/) for
+View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for
 information on how to:
 
 - [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution)
@@ -23,7 +23,7 @@ information on how to:
 
 ## Contribute to community tutorials
 
-If you've created more fleshed out guides and tutorials, we'd love to feature your content in our community tutorials section. [Fork our repo](https://github.com/ConsenSys/doc.zk-evm/fork), create a pull request, and tag us for review!
+If you've created more fleshed out guides and tutorials, we'd love to feature your content in our community tutorials section. [Fork our repo](https://github.com/Consensys/doc.zk-evm/fork), create a pull request, and tag us for review!
 
 You can learn how to add a post under the `/blog` directory by following the Docusaurus instructions for [adding posts](https://docusaurus.io/docs/blog#adding-posts).
 
@@ -31,4 +31,4 @@ You can learn how to add a post under the `/blog` directory by following the Doc
 
 Diving into zero-knowledge rollups and getting stumped by the technical jargon? We've started an open source Zero-Knowledge glossary to define some common terms you might encounter as you dive into the L2 landscape.
 
-[Fork our repo](https://github.com/ConsenSys/doc.zk-evm/fork), and add a term in alphabetical order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
+[Fork our repo](https://github.com/Consensys/doc.zk-evm/fork), and add a term in alphabetical order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
