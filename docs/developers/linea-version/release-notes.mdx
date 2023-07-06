@@ -17,7 +17,52 @@ Find out all you need to know about the latest Linea versions.
 >
 > | Network | Version | Deployment Date |
 > | --- | --- | --- |
-> | Linea Goerli | [Alpha v0.2.0](#linea-alpha-v020-june-13-2023) | June 13, 2020 |
+> | Linea Goerli | [Alpha v0.2.3](#linea-alpha-v023-june-22-23) | June 22, 2023 |
+
+## Linea Alpha v0.2.3 (June 22, 2023)
+
+### Summary
+
+This release focuses on optimizing the prover's hashing strategy to increase its computational efficiency.
+
+## Linea Alpha v0.2.2 (June 20, 2023)
+
+### Summary
+
+This release focuses on updating the Postman SDK configuration values and revising gas fee calculations.
+
+### Features
+
+- Updated the Postman SDK configuration files to handle messages that are contract calls with zero ETH value being transferred and revised gas fee calculations.
+
+## Linea Alpha v0.2.1 (June 15, 2023)
+
+### Summary
+
+This release reduces the gas cost of submitting a batch of transactions on L1 by optimizing optimizing L2 logs in the calldata that is sent to L1.
+
+### Features
+
+- Instead of sending the entire event MessageSent, we only send the \_messageHash field of the event.
+
+- **Old calldata for L2 originated event**:
+
+  ```bash
+  //		event MessageSent(
+  //			address indexed _from,
+  //			address indexed _to,
+  //			uint256 _fee,
+  //			uint256 _value,
+  //			uint256 _salt,
+  //			bytes _calldata,
+  //			bytes32 _messageHash
+  //	    );
+  ```
+
+- **New calldata for L2 originated event**:
+  ```bash
+    //			bytes32 _messageHash
+  ```
 
 ## Linea Alpha v0.2.0 (June 13, 2023)
 
