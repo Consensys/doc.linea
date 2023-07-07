@@ -42,7 +42,7 @@ To claim, you will need to:
 
 ## How do I get tokens on Linea to test Linea?
 
-Please see how use our faucet [here](../use-linea/fund.md)
+Please see how use our faucet [here](/use-mainnet/fund.md)
 
 ## What happens if a quest activity strains the testnet to the point of breaking?
 
@@ -72,4 +72,4 @@ We are working with our early testnet partners to blend some on-chain with a few
 
 ## If I need help getting started or with one of the on-chain activities, where can I get help?
 
-You can find guides on how to use our early testnet partners under [here](../use-linea/explore/). If you need more help, please search or post in our [community forum](https://community.linea.build/) or join our [Discord](https://discord.com/invite/consensys).
+You can find guides on how to use our early testnet partners under [here](/use-linea-testnet/explore/). If you need more help, please search or post in our [community forum](https://community.linea.build/) or join our [Discord](https://discord.com/invite/consensys).

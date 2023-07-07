@@ -90,7 +90,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <b>Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
+          '📣 <b>Please see the <a href="https://docs.linea.build/build-on-linea/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
@@ -171,7 +171,7 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/use-linea-goerli-goerli-goerli",
+                to: "/use-linea-testnet-goerli-goerli",
               },
               {
                 label: "Build on Linea",
@@ -263,15 +263,15 @@ const config = {
       {
         redirects: [
           {
-            to: "/developers/bridge-architecture/message-service",
-            from: "/developers/use-message-bridge",
+            to: "/build-on-linea/bridge-architecture/message-service",
+            from: "/build-on-linea/use-message-bridge",
           },
           {
-            to: "/developers/quickstart",
-            from: "/developers/deploy-smart-contracts",
+            to: "/build-on-linea/quickstart",
+            from: "/build-on-linea/deploy-smart-contracts",
           },
           {
-            to: "/use-linea-goerli",
+            to: "/use-linea-testnet",
             from: [
               "/get-started",
               "/get-started/bridge-funds",
@@ -282,8 +282,8 @@ const config = {
             ],
           },
           {
-            to: "/developers/tooling",
-            from: "/developers/partners",
+            to: "/build-on-linea/tooling",
+            from: "/build-on-linea/partners",
           },
         ],
       },

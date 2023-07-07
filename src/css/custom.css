@@ -561,3 +561,20 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .__variable_34d2cd {
   --font-atyp-text: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd"
 }
+
+/* This was originally in /docs/stylesheets/snippets.css */
+
+:root > * {
+  /*--md-code-hl-string-color: #FF0000;*/
+  /*--md-code-hl-number-color: #FF0000;*/
+  /*--md-code-hl-special-color: #FF0000;*/
+  /*--md-code-hl-function-color: #FF0000;*/
+  /*--md-code-hl-constant-color: #FF0000;*/
+  /*--md-code-hl-keyword-color: #FF0000;*/
+  /*--md-code-hl-name-color: #FF0000;*/
+  /*--md-code-hl-operator-color: #FF0000;*/
+  /*--md-code-hl-punctuation-color: #FF0000;*/
+  --md-code-hl-comment-color: #b3ccfb;
+  /*--md-code-hl-generic-color: #FF0000;*/
+  /*--md-code-hl-variable-color: #FF0000;*/
+}

@@ -113,7 +113,7 @@ However, the Service is not limited or restricted to use by Linea's core functio
 
 ### How does it do it?
 
-The Canonical Message Service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](https://docs.linea.build/developers/bridge-architecture/message-service#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+The Canonical Message Service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](https://docs.linea.build/build-on-linea/bridge-architecture/message-service#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
 
 A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the Postbots.
 

@@ -8,9 +8,9 @@ Linea is meant to be fully compatible with Ethereum, full stop. There are alread
 This section should walk you through everything you need to get started:
 
 1. [Set up your wallet](./set-up-your-wallet.mdx)
-2. [Bridge some funds](./bridge-funds/index.md)
-3. [Deploy your first contract](./../developers/quickstart/)
+2. [Bridge some funds](./bridges-of-linea/index.mdx)
+3. [Deploy your first contract](./../build-on-linea/quickstart/)
 4. [Get funds from a faucet](./fund.md)
-5. [Send a transaction](./transfer-funds.md)
+5. [Send a transaction](./transact.md)
 
 If you run into a problem, step on over to the [Linea Support page](https://support.linea.build/hc/en-us) and let us know.

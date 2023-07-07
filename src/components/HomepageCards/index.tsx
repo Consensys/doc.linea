@@ -33,7 +33,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Developer Quick Start",
-    link: "/developers/quickstart",
+    link: "/build-on-linea/quickstart",
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite
