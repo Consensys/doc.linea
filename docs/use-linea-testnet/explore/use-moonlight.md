@@ -23,49 +23,49 @@ Visit the official website of [Moonlight Linea](https://moonlight-linea-show.ult
 
 Click on "SIGN IN" to connect your wallet:
 
-![](../../assets/moonlight/moonlight-login.png)
+![](/img/quests/moonlight/moonlight-login.png)
 
 Choose the method to connect your wallet and proceed with wallet signature login (some wallets may require manually switching to the Linea chain):
 
-![](../../assets/moonlight/moonlight-login-wallet.png)
+![](/img/quests/moonlight/moonlight-login-wallet.png)
 
 Please select a wallet to play the game. Each Ultiverse account can bind multiple wallet addresses, and each wallet address can mint one Moonlight NFT.
 
-![](../../assets/moonlight/moonlight-login-select.png)
+![](/img/quests/moonlight/moonlight-login-select.png)
 
 ### Step 2 - Chat with Moonlight
 
 Click on the chat button in the top right corner:
 
-![](../../assets/moonlight/moonlight-chat-1.png)
+![](/img/quests/moonlight/moonlight-chat-1.png)
 
 Enter your message and press the "Enter" key to chat with Moonlight:
 
-![](../../assets/moonlight/moonlight-chat-2.png)
+![](/img/quests/moonlight/moonlight-chat-2.png)
 
 ### Step 3 - Customize Moonlight
 
 Click on the "Customize Moonlight" button in the top right corner:
 
-![](../../assets/moonlight/moonlight-custom-1.png)
+![](/img/quests/moonlight/moonlight-custom-1.png)
 
 Customize your Moonlight by selecting your preferred outfits in the customization panel:
 
 - Choose a hairstyle:
 
-![](../../assets/moonlight/moonlight-custom-hair.png)
+![](/img/quests/moonlight/moonlight-custom-hair.png)
 
 - Select hair color:
 
-![](../../assets/moonlight/moonlight-custom-hairColor.png)
+![](/img/quests/moonlight/moonlight-custom-hairColor.png)
 
 - Choose clothing:
 
-![](../../assets/moonlight/moonlight-custom-cloth.jpeg)
+![](/img/quests/moonlight/moonlight-custom-cloth.jpeg)
 
 - Select eye style:
 
-![](../../assets/moonlight/moonlight-custom-eye.png)
+![](/img/quests/moonlight/moonlight-custom-eye.png)
 
 Click "Save" or "Reset":
 
@@ -73,7 +73,7 @@ Click "Save" or "Reset":
 
 - Reset: Revert your unsaved modifications to the previous saved state.
 
-![](../../assets/moonlight/moonlight-custom-save.png)
+![](/img/quests/moonlight/moonlight-custom-save.png)
 
 Stay tuned for the official release of the "Customize Moonlight" full version for more exciting features.
 
@@ -81,7 +81,7 @@ Stay tuned for the official release of the "Customize Moonlight" full version fo
 
 Click the "Mint" button in the top right corner, and mint your Moonlight NFT on the Linea chain. Friendly reminder: each wallet address can only mint one Moonlight NFT.
 
-![](../../assets/moonlight/moonlight-mint.png)
+![](/img/quests/moonlight/moonlight-mint.png)
 
 ## Tips
 

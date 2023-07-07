@@ -18,11 +18,11 @@ The following steps will guide you on how to operate the demo:
 
 1. Click on the _"Tokens➝ Faucets"_ button on the top of the page.
 
-![test tokens faucet menu](../../assets/metalswap/tokens-faucet.png)
+![test tokens faucet menu](/img/quests/metalswap/tokens-faucet.png)
 
 2. If your wallet is set up on a different chain, a message will appear prompting you to switch networks. Click on _"SWITCH NETWORK"_. This will open your wallet with the Linea network already selected. Confirm and proceed with the request for the test tokens.
 
-![get test tokens from faucet](../../assets/metalswap/get-test-tokens.png)
+![get test tokens from faucet](/img/quests/metalswap/get-test-tokens.png)
 
 3. To add WBTC test and USDC test token info directly to Metamask, you can click on the respective buttons.
 
@@ -42,7 +42,7 @@ Once you have obtained the test WBTC and USDC, we can move on _"Swap➝ Swap"_ s
 
 2. Select the Swap section from the menu at the top of the page.
 
-![swaps menu](../../assets/metalswap/swap-menu.png)
+![swaps menu](/img/quests/metalswap/swap-menu.png)
 
 Now, **the Demo platform is ready to be used** exactly like the real one. To deep dive on how to set up a Hedging Swap, consult the DOCs Hedging Swap ETH V2 and Hedging Swap GOLD V2 sections.
 
@@ -54,7 +54,7 @@ Welcome to the operating interface of MetalSwap on Linea Testnet where financial
 
 The process of connecting your wallet and setting up the Dapp remains the same as in the real version. Remember to select the Linea Testnet on Metamask before connecting your wallet.
 
-![swaps dashboard allowance](../../assets/metalswap/swaps-allowance-dashboard.png)
+![swaps dashboard allowance](/img/quests/metalswap/swaps-allowance-dashboard.png)
 
 The operating console is also similar to the real one. You will be able to select the type of digital assets to trade with. In this demo, we'll be using the only asset of WBTCtest as "Current Coin".
 
@@ -66,21 +66,21 @@ _Don't forget_: the whole Cover eroded brings to immediate _liquidation_!
 
 So we're paying 9.29 USDC as a **Premium** to open the new Hedging Swap, plus 30 USDC as Cover as said, plus the common tx fees.
 
-![swap execute dashboard](../../assets/metalswap/swap-execute-dashboard.png)
+![swap execute dashboard](/img/quests/metalswap/swap-execute-dashboard.png)
 
 The "Current Active Swap" section at the bottom of the page will display all the active swaps. You can view all non-active swaps by clicking on "History" in the main menu.
 
-![active swaps table](../../assets/metalswap/active-swaps-table.png)
+![active swaps table](/img/quests/metalswap/active-swaps-table.png)
 
 To manage an active Swap, click on it to view data relating to its position. For instance, if you wish to increase the Cover, raise the desired percentage with the cursor and click on the "Refinance" button to confirm. To close the Swap early, click on the "Close Swap" button.
 
-![manage an active swap](../../assets/metalswap/active-swap-managing.png)
+![manage an active swap](/img/quests/metalswap/active-swap-managing.png)
 
 ## **NFT Liquidity Providing**
 
 To access the service, simply click on _Liquidity Pools_ in the top menu
 
-![swaps menu](../../assets/metalswap/swap-menu.png)
+![swaps menu](/img/quests/metalswap/swap-menu.png)
 
 ### How to use MetalSwap’s Liquidity Pools
 
@@ -88,11 +88,11 @@ With the _Create New Position_ button, we will provide liquidity ( WBTC test or 
 
 to those who wish to open a new Swap using MetalSwap's Hedging Dapp.
 
-![swaps liquidity pools chart](../../assets/metalswap/liquidity-pools.png)
+![swaps liquidity pools chart](/img/quests/metalswap/liquidity-pools.png)
 
 Select the token desired and the **amount of Liquidity to Provide**
 
-![provide liquidity allowance](../../assets/metalswap/provide-liquidity-allowance.png)
+![provide liquidity allowance](/img/quests/metalswap/provide-liquidity-allowance.png)
 
 Click on the _Allowance_ button to grant permission to the Smart Contract
 
@@ -105,17 +105,17 @@ MetaMask now requires you to set your spending cap, which is the number of token
 3. Click on "NEXT" to proceed.
 4. Pay the transaction fee associated with the confirmation.
 
-![set spending cap on metamask](../../assets/metalswap/metamask-spending-cap.png)
+![set spending cap on metamask](/img/quests/metalswap/metamask-spending-cap.png)
 
 _Please remember that there is a minimum liquidity requirement._
 
 Enter the amount of liquidity you wish to provide and click on _Create Position_.
 
-![create a liquidity providing position](../../assets/metalswap/provide-liquidity-create-position.png)
+![create a liquidity providing position](/img/quests/metalswap/provide-liquidity-create-position.png)
 
 Now is possible to see the _Liquidity Providing NFT_ appear in the **MY POSITIONS** section.
 
-![liquidity provided nft](../../assets/metalswap/liquidity-providing-nft.png)
+![liquidity provided nft](/img/quests/metalswap/liquidity-providing-nft.png)
 
 This NFTs is representing the _liquidity locked in MetalSwap’s platform_ and will collect **_rewards_** over time.
 
@@ -123,7 +123,7 @@ MetalSwap’s NFTs are unique digital assets that are minted using a combination
 
 By clicking on it, the following card will appear, with these commands available:
 
-![manage a liquidity providing position nft](../../assets/metalswap/liquidity-providing-nft-managing.png)
+![manage a liquidity providing position nft](/img/quests/metalswap/liquidity-providing-nft-managing.png)
 
 - **Redeem Reward** button. You are allow to get your rewards after a minimum 24H from the deposit.
 

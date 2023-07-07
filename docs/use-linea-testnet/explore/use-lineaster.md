@@ -21,37 +21,37 @@ To create a Lineaster handle, you must have a Linea ENS domain
 
 ### Mandatory action: create a Linea ENS domain
 
-1. Go to <https://ens.goerli.linea.build/> ![ENS domain](../../assets/lineaster/ens.png)
+1. Go to <https://ens.goerli.linea.build/> ![ENS domain](/img/quests/lineaster/ens.png)
 2. Register a domain
 3. Wait for it to be confirmed on L2 (not L1)
 
 ### Create a Lineaster profile
 
 1. You must have created a Linea ENS domain to create your Lineaster profile!
-2. Go to <https://lineaster.goerli.linea.build/> ![Lineaster homepage](../../assets/lineaster/step1_2.png)
+2. Go to <https://lineaster.goerli.linea.build/> ![Lineaster homepage](/img/quests/lineaster/step1_2.png)
 3. Click on ‘Login’ (top right)
-4. Connect via MetaMask 🦊 ![Connect via MetaMask](../../assets/lineaster/step1_4.png)
-5. Sign-in with Lens 🌿 → Sign the message ![Sign the message](../../assets/lineaster/step1_5.png)
-6. Create your handle (more than 5 characters, no special character) and then confirm the transaction ![Create your handle](../../assets/lineaster/step1_6.png)
-7. Wait for the transaction to be confirmed ![Wait for the transaction to be confirmed](../../assets/lineaster/step1_7.png)
-8. You can now log in to your profile! ![You can now log in to your profile!](../../assets/lineaster/step1_8.png) ![You can now log in to your profile!](../../assets/lineaster/step1_8bis.png)
+4. Connect via MetaMask 🦊 ![Connect via MetaMask](/img/quests/lineaster/step1_4.png)
+5. Sign-in with Lens 🌿 → Sign the message ![Sign the message](/img/quests/lineaster/step1_5.png)
+6. Create your handle (more than 5 characters, no special character) and then confirm the transaction ![Create your handle](/img/quests/lineaster/step1_6.png)
+7. Wait for the transaction to be confirmed ![Wait for the transaction to be confirmed](/img/quests/lineaster/step1_7.png)
+8. You can now log in to your profile! ![You can now log in to your profile!](/img/quests/lineaster/step1_8.png) ![You can now log in to your profile!](/img/quests/lineaster/step1_8bis.png)
 
 ## Step 2: Create a post
 
-1. From the [homepage](https://lineaster.goerli.linea.build/) or from your profile page, click on ‘What’s happening?’ ![Start creating a post](../../assets/lineaster/step2_1.png)
+1. From the [homepage](https://lineaster.goerli.linea.build/) or from your profile page, click on ‘What’s happening?’ ![Start creating a post](/img/quests/lineaster/step2_1.png)
 2. Write your post, you can add pictures, etc.
-3. Post it by signing the data and the transaction ![Sign the data](../../assets/lineaster/step2_3.png) ![Sign the transaction](../../assets/lineaster/step2_3bis.png)
+3. Post it by signing the data and the transaction ![Sign the data](/img/quests/lineaster/step2_3.png) ![Sign the transaction](/img/quests/lineaster/step2_3bis.png)
 4. Wait for it to be confirmed, then indexed by the Lens 🌿 API
 5. Your post can now be seen on your profile feed!
 
 ## Step 3: Super Follow @Linea
 
 1. Go to <https://lineaster.goerli.linea.build/u/linea>
-2. Click on ‘Super Follow’ ![Click on ‘Super Follow’](../../assets/lineaster/step3_2.png)
+2. Click on ‘Super Follow’ ![Click on ‘Super Follow’](/img/quests/lineaster/step3_2.png)
 3. Allow the Follow Module with 10 USDC or more  
    _Need some USDC? Get some via our faucet:_ [ _https://faucet.goerli.linea.build/_](https://faucet.goerli.linea.build/)
 
-   ![Allow the Follow Module](../../assets/lineaster/step3_3.png)
+   ![Allow the Follow Module](/img/quests/lineaster/step3_3.png)
 
 4. Wait for the transaction to be confirmed
 5. Super Follow @Linea
@@ -60,7 +60,7 @@ To create a Lineaster handle, you must have a Linea ENS domain
 ## Step 4: Collect a post from @Linea
 
 1. Go to <https://lineaster.goerli.linea.build/posts/0x26-0x03>
-2. Click on ‘Collect’, then sign the transaction ![Collect a post](../../assets/lineaster/step4_2.png)
+2. Click on ‘Collect’, then sign the transaction ![Collect a post](/img/quests/lineaster/step4_2.png)
 3. Wait for the transaction to be confirmed
 4. You are now a proud supporter of Linea, and you can see the post you collected on your profile (‘Collected’ tab)
 
@@ -109,13 +109,13 @@ _When trying to follow the @linea profile, I get the following error message:_
 
 1. Go to https://lineaster.goerli.linea.build/settings/allowance
 2. Revoke the **Fee Follow** allowance by clicking on the corresponding ‘Revoke’ yellow button and validating the transaction
-3. Then, retry following @linea, and this time increase the allowance above 10 USDC![Revoke the Fee Follow module](../../assets/lineaster/revoke.png)
+3. Then, retry following @linea, and this time increase the allowance above 10 USDC![Revoke the Fee Follow module](/img/quests/lineaster/revoke.png)
 
 ### I get an error when trying to post or follow
 
 _When trying to post something or follow a profile, I get a "Internal JSON-RPC error" message:_
 
-![Error when posting](../../assets/lineaster/nonce.png)
+![Error when posting](/img/quests/lineaster/nonce.png)
 
 1. Only keep one tab on Lineaster
 2. Refresh the page

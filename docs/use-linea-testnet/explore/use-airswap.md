@@ -12,7 +12,7 @@ AirSwap on Linea testnet is available at https://linea.airswap.eth.limo/.
 
 To use AirSwap on Linea, ensure your wallet is connected and the "Linea-Goerli" network is selected.
 
-![Chain](../../assets/airswap/airswap-chain.png)
+![Chain](/img/quests/airswap/airswap-chain.png)
 
 ## Do an OTC (over-the-counter) Swap
 
@@ -22,7 +22,7 @@ An OTC swap is between you and another person, with price negotiated by chat, em
 
 First, one party needs to make and sign an order.
 
-![Make](../../assets/airswap/airswap-make.png)
+![Make](/img/quests/airswap/airswap-make.png)
 
 1. Ensure your wallet is connected and the "Linea-Goerli" network is selected.
 2. Click "OTC" on the left toolbar to make a new order.
@@ -34,7 +34,7 @@ First, one party needs to make and sign an order.
 
 You should have received a link from your counter-party.
 
-![Take](../../assets/airswap/airswap-take.png)
+![Take](/img/quests/airswap/airswap-take.png)
 
 1. Ensure your wallet is connected and the "Linea-Goerli" network is selected.
 2. Review the terms and click "Take" to take the order.
@@ -45,7 +45,7 @@ You should have received a link from your counter-party.
 
 An RFQ swap is between you and a remote server, with price automatically provided by a maker that you may choose to take. RFQ is only available for USDT and USDC on Linea testnet. To perform an RFQ swap you must hold a balance in one of either USDT or USDC to proceed.
 
-![RFQ](../../assets/airswap/airswap-rfq.png)
+![RFQ](/img/quests/airswap/airswap-rfq.png)
 
 1. Ensure your wallet is connected and the "Linea-Goerli" network is selected.
 2. Select USDT and USDC (or vice-versa) tokens.

@@ -25,34 +25,34 @@ In this guide, we’ll walk you through how to perform the basic functions of pr
 
 1. Open a new tab and type in [pancakeswap.finance](https://pancakeswap.finance/) (or click this link), and select the Linea network in your MetaMask wallet.
 
-![](../../assets/pancakeswap/select_network.png)
+![](/img/quests/pancakeswap/select_network.png)
 
 2. Connect your wallet to PancakeSwap, by clicking Connect wallet and selecting MetaMask. Your wallet address will appear in the top-right corner.
 
-![](../../assets/pancakeswap/connect_wallet.png)
+![](/img/quests/pancakeswap/connect_wallet.png)
 
 3. Hover over "Trade" and select "Liquidity"
 
-![](../../assets/pancakeswap/visit_liquidity.png)
+![](/img/quests/pancakeswap/visit_liquidity.png)
 
 4. For the first task, you need to add ETH-USDC liquidity into PancakeSwap v3. As a liquidity provider, you will be able to earn trading fees anytime a trade involving ETH-USDC occurs on PancakeSwap. Click ""Add liquidity"
 
-![](../../assets/pancakeswap/add_liquidity.png)
+![](/img/quests/pancakeswap/add_liquidity.png)
 
 5. Enter the amount of USDC and ETH you want to use for each token. For the testnet quest, please add the liquidity you provide on v3’s 0.25% fee tier. Once you are happy with your settings, click "Add" to provide the liquidity. You will need to confirm your transaction on Metamask.
 
-![](../../assets/pancakeswap/add_liquidity_2.png)
+![](/img/quests/pancakeswap/add_liquidity_2.png)
 
 6. Let’s move on to Task 2. For Task 2, you need to perform a swap to swap from USDC to ETH, or from ETH to USDC.
 
 7. First, hover over “Trade” again and click "Swap"
 
-![](../../assets/pancakeswap/go_to_swap.png)
+![](/img/quests/pancakeswap/go_to_swap.png)
 
 8. Next, make a swap from ETH to USDC, or USDC to ETH. Type in the amount of tokens you want to swap, and hit "Swap". You will need to confirm your transaction on Metamask.
 
-![](../../assets/pancakeswap/swap.png)
+![](/img/quests/pancakeswap/swap.png)
 
 9. You’ve completed the second task! On to the last one. To remove your liquidity, head back to the "Liquidity" section in step 3. Select your v3 LP position and remove it.
 
-![](../../assets/pancakeswap/remove_liquidity.png)
+![](/img/quests/pancakeswap/remove_liquidity.png)

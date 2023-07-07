@@ -11,6 +11,6 @@ This section should walk you through everything you need to get started:
 2. [Bridge some funds](./bridge-funds/index.md)
 3. [Deploy your first contract](./../build-on-linea/quickstart/)
 4. [Get funds from a faucet](./fund.md)
-5. [Send a transaction](./transfer-funds.md)
+5. [Send a transaction](./transact.md)
 
 If you run into a problem, step on over to the [Linea Support page](https://support.linea.build/hc/en-us) and let us know.

@@ -18,7 +18,7 @@ First, we'll need to add the Polygon Mumbai testnet to your MetaMask wallet. You
 1. Navigating to the [Polygon Mumbai block explorer](https://mumbai.polygonscan.com/)
 1. Clicking "Add Mumbai Network" in the bottom right hand corner
 
-   ![mumbai block explorer](../../assets/polygon/blockexplorer.png)
+   ![mumbai block explorer](/img/quests/polygon/blockexplorer.png)
 
 ## Get MATIC
 

@@ -30,21 +30,21 @@ Let’s create an Edition Project.
 
 1. If you haven’t done it already, press on “Connect Wallet”.
 
-   ![connect wallet](../../assets/nfts2me/connect_wallet.png)
+   ![connect wallet](/img/quests/nfts2me/connect_wallet.png)
 
 1. Click on the wallet you’re using. For the example we’ll use “MetaMask”.
 
-   ![connect metamask](../../assets/nfts2me/metamask_wallet_connect.png)
+   ![connect metamask](/img/quests/nfts2me/metamask_wallet_connect.png)
 
 1. It will ask you to verify your account to verify that you are the owner of the account. This message is safe and free to sign, there is no TX sent to do that. Click on “Send message” and then verify the signature.
 
-   ![verify account](../../assets/nfts2me/verify_account.png)
+   ![verify account](/img/quests/nfts2me/verify_account.png)
 
-   ![sign in request](../../assets/nfts2me/sign_in_request.png)
+   ![sign in request](/img/quests/nfts2me/sign_in_request.png)
 
 1. After signing in, click on “Editions”
 
-   ![editions](../../assets/nfts2me/editions.png)
+   ![editions](/img/quests/nfts2me/editions.png)
 
 Now, let’s define the collection settings.
 
@@ -54,7 +54,7 @@ Now, let’s define the collection settings.
 1. Add a new **“token media”** (you can also press on “Generate Artwork using AI to create an image using AI from the project name and description).
 1. Click on **“Create Collection”**.
 
-   ![create collection](../../assets/nfts2me/create_collection.png)
+   ![create collection](/img/quests/nfts2me/create_collection.png)
 
 1. Specify a **“Minting Fee”**. It will be the price that the user has to pay to mint the NFT and you’ll receive for each mint, set 0 for “free minting”. By default it is set on native ETH. If you prefer to set the price using an ERC-20 like USDC, you can press on “ETH” and choose a different token.
 1. Set the **“Edition Size”**. This will be the maximum number of NFTs that can be minted for the collection.
@@ -62,9 +62,9 @@ Now, let’s define the collection settings.
 
 After clicking on “Deploy to Linea Testnet”, it will upload images to IPFS and then ask to confirm the TX
 
-![deploy to linea](../../assets/nfts2me/deploy_to_linea.png)
+![deploy to linea](/img/quests/nfts2me/deploy_to_linea.png)
 
-![deploy to linea 2](../../assets/nfts2me/deploy_to_linea_2.png)
+![deploy to linea 2](/img/quests/nfts2me/deploy_to_linea_2.png)
 
 Click on “Confirm” to create the contract for your new NFT Collection.
 
@@ -72,7 +72,7 @@ Congratulations! 🙌🏼 You've deployed a new NFT Project on Linea Testnet.
 
 After the transaction is confirmed, a modal will appear with information about what are the usual next steps with your NFT project.
 
-![elegant cats](../../assets/nfts2me/elegant_cats.png)
+![elegant cats](/img/quests/nfts2me/elegant_cats.png)
 
 A new generic minting Page with your own custom subdomain has been created for you. You can customize its address and aspect from the Dashboard in the Mint Settings tab.
 
@@ -84,7 +84,7 @@ A new generic minting Page with your own custom subdomain has been created for y
 
 Click on the “Dashboard” button or go to https://nfts2me.com/app/linea-testnet/. You’ll see all your Projects. Click on the last created project:
 
-![closed to public](../../assets/nfts2me/closed_to_public.png)
+![closed to public](/img/quests/nfts2me/closed_to_public.png)
 
 It will open the Project Dashboard. There, you can configure the Smart Contract, the minting page, withdraw earning, airdrop tokens, create whitelists, token gated content, affiliation or even enable Credit Card Payments for your collection (not available on Linea testnet for obvious reasons 🙂).
 
@@ -97,7 +97,7 @@ Being on the Dashboard, to change the phase to **“Public”** you must:
 1. Go to Mint Settings tab
 1. Change the phase to “Public”, and click “Update”.
 
-![mint settings](../../assets/nfts2me/mint_settings.png)
+![mint settings](/img/quests/nfts2me/mint_settings.png)
 
 This will send an on-chain transaction to change the contract state. It will allow users to mint NFTs from your newly created NFT collection using your new Minting Page.
 
@@ -120,11 +120,11 @@ On the Dashboard menu of your Project, below "Overview" you have the "Minting Pa
 
 Once you’ve saved your changes, click on “Visit Page” to open the Minting Page (step 3 on the image).
 
-![minting page](../../assets/nfts2me/minting_page.png)
+![minting page](/img/quests/nfts2me/minting_page.png)
 
 That’s your new Minting Page. You’ll get something like this:
 
-![cats minting page](../../assets/nfts2me/cats_minting_page.png)
+![cats minting page](/img/quests/nfts2me/cats_minting_page.png)
 
 You can choose to Mint to other wallet or even ENS name using the “Mint to other Wallet” option.
 
@@ -132,15 +132,15 @@ For this example, it’s enough to just click on “Mint”, that we’ll Mint a
 
 Confirm the transaction on MetaMask and wait until it’s done.
 
-![confirm done 2](../../assets/nfts2me/confirm_transaction_2.png)
+![confirm done 2](/img/quests/nfts2me/confirm_transaction_2.png)
 
 You can even click on “You own 1 NFT from this Collection” and see the NFT on the Linea Block Explorer:
 
-![block explorer](../../assets/nfts2me/blockexplorer.png)
+![block explorer](/img/quests/nfts2me/blockexplorer.png)
 
 As well as the metadata:
 
-![metadata](../../assets/nfts2me/metadata.png)
+![metadata](/img/quests/nfts2me/metadata.png)
 
 In a real case scenario you wouldn’t buy the NFT to yourself, but rather share the Minting Page link to your users for them to mint. However, you may want to get an NFT from your collection, but it doesn’t make much sense to pay for it, right? So, what do we do? Airdrops! 🪂
 
@@ -169,23 +169,23 @@ So, how do I send a Soulbound Airdrop?
 1. Click on the toggle to change “Transferable NFTs” to “Soulbound NFTs”.
 1. Click “Add account”.
 
-   ![airdrop](../../assets/nfts2me/airdrops.png)
+   ![airdrop](/img/quests/nfts2me/airdrops.png)
 
 1. Enter the receiver address. For the example, we’ll use an ENS domain: “nfts2me.eth”.
 1. Specify the amount of NFTs to Airdrop (1 in the example).
 1. Click “Add to Airdrop”.
 
-   ![airdrop 2](../../assets/nfts2me/airdrop_2.png)
+   ![airdrop 2](/img/quests/nfts2me/airdrop_2.png)
 
 1. Finally, check that everything is right and press “Send Airdrop”. In the example we have already 1 NFT minted from the previous step, 99 left, and after the Airdrop we’ll have 98 NFTs left.
 
-   ![airdrop 3](../../assets/nfts2me/airdrop_3.png)
+   ![airdrop 3](/img/quests/nfts2me/airdrop_3.png)
 
    It will pop up a new transaction confirmation on MetaMask. Confirm, and wait the TX to be confirmed on the Blockchain.
 
-   ![confirm](../../assets/nfts2me/confirm.png)
+   ![confirm](/img/quests/nfts2me/confirm.png)
 
-   ![airdrop success](../../assets/nfts2me/airdrop_success.png)
+   ![airdrop success](/img/quests/nfts2me/airdrop_success.png)
 
 That’s it!
 
@@ -204,7 +204,7 @@ You can create a general token gating landing page as well as individual items. 
 1. Go back to the Project Dashboard and click on the “Token Gating” tab.
 1. First, let’s create the Public Token Gating Landing Page for your Token Gated Content. This frontpage is open for everyone to see. Don’t share any private content here. Just a name and description of what the people can expect to see in the private content gated part.
 
-   ![content gated](../../assets/nfts2me/token_gating.png)
+   ![content gated](/img/quests/nfts2me/token_gating.png)
 
 1. **Write a name** for the landing page. In this case, it will be courses for cat lovers, so “Cat lovers courses”.
 1. **Write a description.** This is public content everybody will see before authenticating. In this case, it will be the course outline.
@@ -215,45 +215,45 @@ You’ve just created the landing for your gated content. After that, Let’s cr
 
 - Click on “Create New Private Item”.
 
-  ![private item](../../assets/nfts2me/create_new_private.png)
+  ![private item](/img/quests/nfts2me/create_new_private.png)
 
 Now, it’s time to create the private token gated item.
 
 Let’s start by setting a name and URL:
 
-![create token gated](../../assets/nfts2me/create_private_gated.png)
+![create token gated](/img/quests/nfts2me/create_private_gated.png)
 
 Then, set a Public Description. It’s shown even before unlocking the content. This is public content that can be seen by everyone. You can use Markdown to format it. In the example, it can be the outline of the course. Everybody can see it!
 
 Now it’s time for the private content! This is the content that will be unlocked by the holders of your NFTs. This content is private and can only be seen by the owners of your NFTs. In the example, this is the content of the course.
 
-![course content](../../assets/nfts2me/course_content.png)
+![course content](/img/quests/nfts2me/course_content.png)
 
 You can optionally upload an image for the item. This will also be used when shared on Social Networks.
 
-![logo](../../assets/nfts2me/logo_item.png)
+![logo](/img/quests/nfts2me/logo_item.png)
 
 Finally, you can choose to group the items under groups. In the course, we’ll group them by “Courses”, and we want it to be listed on the mainpage.
 
-![group name](../../assets/nfts2me/group_name.png)
+![group name](/img/quests/nfts2me/group_name.png)
 
 Press on **“Create Item”** to continue.
 
 You’ll see your new created token gated item:
 
-![gated item](../../assets/nfts2me/gating_item.png)
+![gated item](/img/quests/nfts2me/gating_item.png)
 
 You can now go to your new Gated Content page (e.g. https://elegantcats.testnet.nfts2.me/gated/) to see all the created information.
 
-![private cats](../../assets/nfts2me/private_cats.png)
+![private cats](/img/quests/nfts2me/private_cats.png)
 
 When clicking on any of the private items, you’ll only see the public information.
 
-![public cats](../../assets/nfts2me/public_cats.png)
+![public cats](/img/quests/nfts2me/public_cats.png)
 
 Connect your wallet to be able to see the private content!
 
-![what is cat](../../assets/nfts2me/what_is_cat.png)
+![what is cat](/img/quests/nfts2me/what_is_cat.png)
 
 That's it! You’ve created your token gated community!
 
@@ -267,7 +267,7 @@ You can choose to set a **general affiliation information** (commission and user
 
 It is disabled by default:
 
-![default disabled](../../assets/nfts2me/default_disabled.png)
+![default disabled](/img/quests/nfts2me/default_disabled.png)
 
 In the example, we’ll offer a 50% discount for the users coming from affiliate links, and an Affiliate Commission Percentage of the 10%. The mint price will be 0.0001 ETH instead of 0.0002 ETH.
 
@@ -275,27 +275,27 @@ In the example, we’ll offer a 50% discount for the users coming from affiliate
 
 ⚠️ IMPORTANT! Once fixed, you won't be able to lower the percentages, just raise them. This is to give confidence to the referrer.
 
-![affiliation](../../assets/nfts2me/affiliation_values.png)
+![affiliation](/img/quests/nfts2me/affiliation_values.png)
 
 Click on “Update” and confirm the transaction. Check it has successfully updated the affiliation information:
 
-![affiliation info](../../assets/nfts2me/affiliation_info.png)
+![affiliation info](/img/quests/nfts2me/affiliation_info.png)
 
 After that, let’s Generate the Affiliate Links. In the example we are generating an invite link for “vitalik.eth”, so every on sale done through that link “vitalik.eth” will receive 10% of the minting price.
 
-![affiliate link](../../assets/nfts2me/affiliate_links.png)
+![affiliate link](/img/quests/nfts2me/affiliate_links.png)
 
 Let’s click on the Affiliate Link, and now, we’ll see that the minting price is discounted:
 
-![discounted](../../assets/nfts2me/discounted.png)
+![discounted](/img/quests/nfts2me/discounted.png)
 
 **Connect your wallet**, and **click on “Mint”**. You’ll see that the actual price is the discounted one:
 
-![discounted wallet](../../assets/nfts2me/discounted_wallet.png)
+![discounted wallet](/img/quests/nfts2me/discounted_wallet.png)
 
 Congratulations! You’ve minted an NFT at a discount price using an affiliate link. The collection owner have received 90% of the minting price, while “vitalik.eth” have received 10%. Let’s take a look at the affiliate dashboard:
 
-![claim](../../assets/nfts2me/cats_claim.png)
+![claim](/img/quests/nfts2me/cats_claim.png)
 
 Yuhu!! “vitalik.eth” can now claim its revenue!
 

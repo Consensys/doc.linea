@@ -11,7 +11,7 @@ Note that this is included as part of the `hardhat-toolbox` plugin.
 
 :::
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/build-on-linea/quickstart/deploy-smart-contract/hardhat.md/#deploy-your-contract).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/build-on-linea/quickstart/deploy-smart-contract/hardhat.mdx/#deploy-your-contract).
 
 ## Download the plugin
 

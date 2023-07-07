@@ -26,7 +26,7 @@ If you don't have any tokens in your wallet yet, you have two options:
 
 Make sure to turn on “show/hide test network” option on Metamask and connect to the Linea Goerli Testnet
 
-![](../../assets/velocore/image8.png)
+![](/img/quests/velocore/image8.png)
 
 ## Swap tokens
 
@@ -36,20 +36,20 @@ Make sure to turn on “show/hide test network” option on Metamask and connect
 
     - After clicking on “Connect Wallet”, click the copy icon on the top right corner of the module.
 
-    ![](../../assets/velocore/image2.png)
+    ![](/img/quests/velocore/image2.png)
 
-    ![](../../assets/velocore/image9.png)
+    ![](/img/quests/velocore/image9.png)
 
     - Access your Fluvi Wallet then click on the WalletConnect symbol
 
-    ![](../../assets/velocore/image4.png)
+    ![](/img/quests/velocore/image4.png)
 
     - Enter the WalletConnect URL you copied, then press connect.
 
 2.  Once connected, select any tokens you would like to swap
 3.  Enter the amount and click the “Swap” button. You may need to approve your token if you are using it for the first time. If you’re encountering approval problems with Wallet Connect, be sure to check your notifications tab for pending transaction signing.
 
-![](../../assets/velocore/image6.png)
+![](/img/quests/velocore/image6.png)
 
 4.  Lastly, confirm the transaction on your wallet.
 
@@ -57,15 +57,15 @@ Make sure to turn on “show/hide test network” option on Metamask and connect
 
 1.  Click the “Pool” tab on the right beside the “Swap” option
 
-![](../../assets/velocore/image3.png)
+![](/img/quests/velocore/image3.png)
 
 2.  Select the LP you want to add from the pool list and click the arrow button to start managing
 
-![](../../assets/velocore/image7.png)
+![](/img/quests/velocore/image7.png)
 
 3.  Enter the amount, click “Deposit LP”, and confirm the transaction in your wallet. If it's your first time, a token approval transaction will be requested first, followed by a deposit transaction.
 
-![](../../assets/velocore/image1.png)
+![](/img/quests/velocore/image1.png)
 
 4.  “Magic” deposit and withdraw will allow you to easily add and remove tokens with a native zap, even if you don't own them on the Mainnet
 5.  Finally, you can manage both rewards for staked LPs and rewards for votes at once in the “Rewards” tab

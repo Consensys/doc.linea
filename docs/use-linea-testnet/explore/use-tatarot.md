@@ -20,27 +20,27 @@ Before you begin, ensure your wallet is:
 
 1. Navigate to [https://tatarot.ai/](https://tatarot.ai/)
 
-   ![Tatarot Landing Page](../../assets/tatarot/landing_page.png)
+   ![Tatarot Landing Page](/img/quests/tatarot/landing_page.png)
 
 1. Click “Connect Wallet” on the top right of the page to connect your wallet.
 1. Click "Unlock The Secrets".
 1. Type in your question to receive a customized tarot reading.
 
-   ![Enter question to ask](../../assets/tatarot/question.png)
+   ![Enter question to ask](/img/quests/tatarot/question.png)
 
 1. Click "Scry Now" to generate your unique Tatarot card with a personalized tarot art based on your question.
 1. Click "Read My Fortune" and approve the transaction to mint the displayed Tatarot card.
 
-   ![Click Read My Fortune](../../assets/tatarot/read_fortune.png)
+   ![Click Read My Fortune](/img/quests/tatarot/read_fortune.png)
 
 1. Once the transaction is approved and the NFT is successfully minted, you can explore your unique fortune readings.
 
-   ![Fortune readings are behind the card](../../assets/tatarot/readings.png)
+   ![Fortune readings are behind the card](/img/quests/tatarot/readings.png)
 
 1. To verify that the Tatarot card has been successfully minted into your wallet, simply click on "Cards" located at the top left corner of the page.
 1. This will allow you to access and view the collection of Tatarot cards that you have previously minted.
 
-   ![Cards collection](../../assets/tatarot/cards.png)
+   ![Cards collection](/img/quests/tatarot/cards.png)
 
 ## Get support
 

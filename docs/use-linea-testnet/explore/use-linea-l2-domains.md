@@ -15,21 +15,21 @@ Before you begin, ensure your wallet is [configured to use Linea](/use-mainnet/s
 
 1. First, navigate to the [Linea L2 Domains](https://www.lineal2.domains/) website and connect your wallet.
 
-![LineaL2 domains shot 1](../../assets/patch/domain-1.png)
+![LineaL2 domains shot 1](/img/quests/patch/domain-1.png)
 
 If needed, switch to the Linea testnet in your wallet.
 
-![LineaL2 domains shot 2](../../assets/patch/domain-2.png)
+![LineaL2 domains shot 2](/img/quests/patch/domain-2.png)
 
 2. Type a username into the textbox to check whether it's available. It must be 3+ characters, not taken, and you can register it for any number of years.
 
-![LineaL2 domains shot 3](../../assets/patch/domain-3.png)
+![LineaL2 domains shot 3](/img/quests/patch/domain-3.png)
 
 3. Click "Buy domain" and sign the transaction with your wallet.
 
 4. Wait for the transaction to mine and you're done! Share to Twitter for future rewards! 🥳👀
 
-![LineaL2 domains shot 4](../../assets/patch/domain-4.png)
+![LineaL2 domains shot 4](/img/quests/patch/domain-4.png)
 
 ## Get Support
 

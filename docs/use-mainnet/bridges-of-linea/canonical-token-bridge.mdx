@@ -3,13 +3,13 @@ title: Canonical Token Bridge
 sidebar_position: 1
 ---
 import CodeBlock from "@theme/CodeBlock";
-import TokenBridge from "!!raw-loader!../contracts/TokenBridge.sol";
-import TokenBridgeL1 from "!!raw-loader!../abis/canonical-token-bridge/TokenBridgeL1.abi";
-import TokenBridgeL2 from "!!raw-loader!../abis/canonical-token-bridge/TokenBridgeL2.abi";
+import TokenBridge from "!!raw-loader!/files/testnet/TokenBridge.sol";
+import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
+import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
 
 # Canonical Token Bridge
 
-The Canonical Token Bridge is the “lock & mint” contracts that allow bridging to any ERC20, which relies on the [Message Service](./message-service.mdx) for cross-chain interactions and does not come with any UI.
+The Canonical Token Bridge is the “lock & mint” contracts that allow bridging to any ERC20, which relies on the [Message Service](/architecture/bridges/message-service.mdx) for cross-chain interactions and does not come with any UI.
 
 ## Contracts
 
@@ -50,7 +50,7 @@ The Canonical Token Bridge is the “lock & mint” contracts that allow bridgin
 
 1. Triggering the delivery
 
-- See [Message Service step](./message-service.mdx#workflow)
+- See [Message Service step](/build-on-linea/bridge-architecture/message-service.mdx#workflow)
 
 ## Interface TokenBridge.sol
 

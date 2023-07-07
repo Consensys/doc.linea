@@ -19,7 +19,7 @@ We have already prepared a sample collection.
 
 1. Go to https://apetimism.com/launchpad/lineaape
 
-![mint page](../../assets/apetimism_launchpad/mint_page.jpg)
+![mint page](/img/quests/apetimism_launchpad/mint_page.jpg)
 
 2. Please ensure that Linea Testnet is selected as the current chain on your wallet.
 
@@ -29,7 +29,7 @@ We have already prepared a sample collection.
 
 5. Once you're finished, you can click on ["View my NFTs"](https://testnet.zonic.app/profile?filter={%22tab%22:0,%22chain%22:59140}) to verify the newly minted NFTs in your wallet.
 
-![My NFTs](../../assets/apetimism_launchpad/mynfts.jpg)
+![My NFTs](/img/quests/apetimism_launchpad/mynfts.jpg)
 
 ## Get support
 

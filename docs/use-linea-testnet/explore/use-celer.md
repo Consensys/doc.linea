@@ -27,12 +27,12 @@ Now that the network is added, we can head over to the Linea faucet, to get BNB.
 1. Connect your wallet and switch to the Linea Goerli test network
 1. Go to the [BNB faucet](https://testnet.bnbchain.org/faucet-smart) linked through the BNB card
 
-   ![Linea BNB faucet](../../assets/celer/bnb_linea_faucet.png)
+   ![Linea BNB faucet](/img/quests/celer/bnb_linea_faucet.png)
 
 1. Complete a captcha
 1. Input your wallet address and dispense 0.1 TBNB
 
-   ![bnb faucet](../../assets/celer/bnb_faucet.png)
+   ![bnb faucet](/img/quests/celer/bnb_faucet.png)
 
 After it's been dispensed, you should be able to see it in your MetaMask wallet.
 
@@ -46,12 +46,12 @@ To bridge over TBNB, you'll need to:
 1. Connect your wallet and change to the BSC test network
 1. Make sure the "From" chain is BSC testnet, the "To" chain is Linea, and the desired token is BNB
 
-   ![celer bridge](../../assets/celer/celer_bridge.png)
+   ![celer bridge](/img/quests/celer/celer_bridge.png)
 
 1. Put the desired amount in the "Send" field. Make sure you have enough TBNB to cover the gas fee. Note that you need to prefix decimal values with `0.` like `0.1` to indicate a real number.
 1. Click on and confirm transfer
 
-   ![celer transfer](../../assets/celer/celer_transfer.png)
+   ![celer transfer](/img/quests/celer/celer_transfer.png)
 
 1. Confirm the transaction in the MetaMask pop up
 
@@ -64,11 +64,11 @@ Before you get BUSD, make sure you've [added BSC testnet to your wallet](#add-bs
 1. Navigate to the [Celer bridge](https://dev-cbridge-v2.netlify.app/97/59140/BNB)
 1. Click on "Faucets" on the top left of the page
 
-   ![celer faucet](../../assets/celer/celer_faucet.png)
+   ![celer faucet](/img/quests/celer/celer_faucet.png)
 
 1. Click on "Test Tokens (BUSD)" in the modal that pops up (ensure you are on the BSC testnet network!)
 
-   ![busd modal](../../assets/celer/celer_busd_modal.png)
+   ![busd modal](/img/quests/celer/celer_busd_modal.png)
 
 1. Confirm the transaction on MetaMask
 
@@ -86,7 +86,7 @@ Now, to bridge BUSD, you'll need to:
 1. Connect your wallet and change to the BSC test network
 1. Make sure the "From" chain is BSC testnet, the "To" chain is Linea, and the desired token is BUSD
 
-   ![celer busd bridge](../../assets/celer/celer_busd_bridge.png)
+   ![celer busd bridge](/img/quests/celer/celer_busd_bridge.png)
 
 1. Put the desired amount in the "Send" field
 1. Approve BUSD to be sent by clicking on the button "Approve BUSD"

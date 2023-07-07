@@ -21,7 +21,7 @@ After which, you’ll have a glimpse of how smooth the onboarding and user exper
 
 Go to https://linea.particle.network
 
-![Follow Particle](../../assets/particle/11.png)
+![Follow Particle](/img/quests/particle/11.png)
 
 At the beginning, please follow our twitter to begin the journey, appreciate the support!
 
@@ -29,29 +29,29 @@ At the beginning, please follow our twitter to begin the journey, appreciate the
 
 On this page you will see your first mission - Connect with Particle
 
-![Connect with Particle](../../assets/particle/01.png)
+![Connect with Particle](/img/quests/particle/01.png)
 
 Simply click the Connect button and a login page will pop-up in front of you like this:
 
-![Login Page](../../assets/particle/02.png)
+![Login Page](/img/quests/particle/02.png)
 
 Here, you’ll see a bunch of login methods for you to login with Particle, you can choose your preferred social accounts for creating a Particle AA Wallet. For example, here we were using Email:
 
-![Login](../../assets/particle/03.png)
+![Login](/img/quests/particle/03.png)
 
 After which, you have successfully created an AA wallet, you can also check its on-chain status by checking the linea explorer as below:
 
-![Login Done](../../assets/particle/04.png)
+![Login Done](/img/quests/particle/04.png)
 
 # Claim tUSDC Gaslessly
 
 Now you are ready for the second step, claim a testing token tUSDC with the gasless feature of the AA wallet. Simply press the “Gasless Claim” button and sign off an signature
 
-![Sign Signature](../../assets/particle/05.png)
+![Sign Signature](/img/quests/particle/05.png)
 
 Press “Confirm”, and wait for a few second, the transaction will succeed. You are supposed to get 1.0 tUSDC, and you can also check for more detail for the transaction:
 
-![Confirm Claim](../../assets/particle/06.png)
+![Confirm Claim](/img/quests/particle/06.png)
 
 # Swap the tUSDC to tUSDT Gaslessly with Your Galxe Address as the Recipient
 
@@ -63,15 +63,15 @@ PAY ATTENTION! It must be the address you used for participating this campaign, 
 
 If you are not sure about how to get your Galxe Address, follow the steps below:
 
-![Open Galxe](../../assets/particle/07.png)
+![Open Galxe](/img/quests/particle/07.png)
 
-![Check Address](../../assets/particle/08.png)
+![Check Address](/img/quests/particle/08.png)
 
 Now let’s make the Gasless Swap!
 
-![Sign Swap](../../assets/particle/09.png)
+![Sign Swap](/img/quests/particle/09.png)
 
 Sign another message, wait for a while, and Voilà! You’ve successfully swapped it!
 
-![Finish Swap](../../assets/particle/10.png)
+![Finish Swap](/img/quests/particle/10.png)
 

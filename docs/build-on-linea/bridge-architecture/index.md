@@ -8,14 +8,14 @@ title: Bridge architecture
 
 ## Layers of the bridging ecosystem
 
-1. **[Message Service](./message-service.mdx):** responsible for cross-chain messages between Ethereum and Linea
+1. **[Message Service](/architecture/bridges/message-service.mdx):** responsible for cross-chain messages between Ethereum and Linea
    - A mechanism that allows a contract on the source chain to safely interact with a contract on the target chain (e.g. L1TokenBridge triggering mint on the L2TokenBridge)
    - Responsible for bridging ETH (native currency on L1 and L2)
    - Supports:
      - **push**: auto-execution on target layer if a fee is paid (not yet available)
      - **pull**: users / protocols responsible for triggering the transaction
 1. **[Canonical Token Bridge](./canonical-token-bridge.mdx):** the “lock & mint” contracts that allow bridging to any ERC20
-   - Relies on the [Message Service](./message-service.mdx) for cross-chain interactions.
+   - Relies on the [Message Service](/architecture/bridges/message-service.mdx) for cross-chain interactions.
    - Does not come with any UI
 1. **Third-party liquidity bridge:** the preferred solution for an end-user
    - Has UI
@@ -25,3 +25,4 @@ title: Bridge architecture
 1. **Metabridge:** the official UI for Linea
    - Aggregates third-party liquidity bridge services
    - Will only be available for mainnet
+

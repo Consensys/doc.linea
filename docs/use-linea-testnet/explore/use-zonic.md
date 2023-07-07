@@ -21,25 +21,25 @@ You can easily list an NFT for sale with just a couple of clicks.
 
 1. Go to [My NFTs](https://testnet.zonic.app/profile) and view any NFT you own on Linea Goerli.
 
-![NFT](../../assets/zonic/viewlineaape.jpg)
+![NFT](/img/quests/zonic/viewlineaape.jpg)
 
 2. Click **"Sell NFT"** button and put your preferred price.
 
-![Enter price](../../assets/zonic/enterprice.jpg)
+![Enter price](/img/quests/zonic/enterprice.jpg)
 
 3. Review the details and click **"List Item"** to start listing.
 
 4. Approve the transferring permission for this NFT collection. (First time only)
 
-![Enter price](../../assets/zonic/approve.jpg)
+![Enter price](/img/quests/zonic/approve.jpg)
 
 5. Sign a message to perform the gasless listing.
 
-![Enter price](../../assets/zonic/signaturerequestlist.jpg)
+![Enter price](/img/quests/zonic/signaturerequestlist.jpg)
 
 6. Done!
 
-![Enter price](../../assets/zonic/listed.jpg)
+![Enter price](/img/quests/zonic/listed.jpg)
 
 ## Buying an NFT
 
@@ -47,7 +47,7 @@ You can easily list an NFT for sale with just a couple of clicks.
 
 2. Click on an NFT you want to buy.
 
-![View NFT for Buy](../../assets/zonic/viewforbuy.jpg)
+![View NFT for Buy](/img/quests/zonic/viewforbuy.jpg)
 
 3. Click **Buy Now** and approve the transaction.
 
@@ -57,11 +57,11 @@ You can easily list an NFT for sale with just a couple of clicks.
 
 1. Go to [My NFTs](https://testnet.zonic.app/profile) and view any NFT you want to transfer on Linea Goerli.
 
-![NFT](../../assets/zonic/viewlineaape.jpg)
+![NFT](/img/quests/zonic/viewlineaape.jpg)
 
 2. Click **"Transfer NFT"** and put the recipient address.
 
-![NFT](../../assets/zonic/transferdialog.jpg)
+![NFT](/img/quests/zonic/transferdialog.jpg)
 
 3. Click **Transfer Item** and approve the transaction to initiate the transfer of the NFT.
 

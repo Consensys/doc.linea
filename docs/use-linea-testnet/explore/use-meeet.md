@@ -20,31 +20,31 @@ This NFT medal is designed to celebrate the joint activities of Linea and MEEET,
 
 1. Visit [MEEET on Linea Testnet](https://www.meeet.xyz/linea/testnet). Connect your wallet and Click “MINT”
 
-![nft_mint](../../assets/meeet/nft_mint.png)
+![nft_mint](/img/quests/meeet/nft_mint.png)
 
 2. Confirm in your wallet
 
-![nft_mint_confirm](../../assets/meeet/nft_mint_confirm.png)
+![nft_mint_confirm](/img/quests/meeet/nft_mint_confirm.png)
 
 3. Congratulations, you have minted an MML medal.
 
-![nft_approve](../../assets/meeet/nft_approve.png)
+![nft_approve](/img/quests/meeet/nft_approve.png)
 
 ## Stake MML NFT on Linea Testnet
 
 1. After connecting your wallet, you can view your current NFT holdings in the “My NFTs” section. You need to authorize your NFTs before staking them. Click “Approve” to grant authorization.
 
-![nft_approve1](../../assets/meeet/nft_approve1.png)
+![nft_approve1](/img/quests/meeet/nft_approve1.png)
 
-![nft_approve2](../../assets/meeet/nft_approve2.png)
+![nft_approve2](/img/quests/meeet/nft_approve2.png)
 
 2. Click “Stake” and confirm in your wallet.
 
-![nft_stake](../../assets/meeet/nft_stake.png)
+![nft_stake](/img/quests/meeet/nft_stake.png)
 
 3. Congratulations, you have successfully staked the medal. You can view your staked NFTs in the “Stake NFTs” section.
 
-![nft_redeem](../../assets/meeet/nft_redeem.png)
+![nft_redeem](/img/quests/meeet/nft_redeem.png)
 
 **Please Note: Ten stake scores will be generated when each NFT is staked for 24 hours. In the future, MEEET will send MMT(Governance Token) airdrops to holders based on the leaderboard of stake scores of users' MML NFT.**
 
@@ -52,6 +52,6 @@ This NFT medal is designed to celebrate the joint activities of Linea and MEEET,
 
 1. In the “Stake NFTs” section, you can redeem your staked NFTs. Click “Redeem” to proceed and confirm in your wallet.
 
-![nft_redeem](../../assets/meeet/nft_redeem.png)
+![nft_redeem](/img/quests/meeet/nft_redeem.png)
 
 2. You can check your NFTs In the “My NFTs” section.

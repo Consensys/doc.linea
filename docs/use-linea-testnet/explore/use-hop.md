@@ -23,16 +23,16 @@ To bridge Goerli ETH to Linea, you'll need to:
 1. Switch network to Goerli
 1. Ensure that Goerli is the From network and Linea is the To network
 
-   ![Hop UI](../../assets/hop/hop_ui.png)
+   ![Hop UI](/img/quests/hop/hop_ui.png)
 
 1. Add the amount of Goerli ETH you want to bridge
 1. Click Send
 
-   ![Click send on hop](../../assets/hop/hop_send.png)
+   ![Click send on hop](/img/quests/hop/hop_send.png)
 
 1. Confirm the transaction in the MetaMask popup
 
-   ![Confirm MetaMask transaction](../../assets/hop/hop_confirm.png)
+   ![Confirm MetaMask transaction](/img/quests/hop/hop_confirm.png)
 
 Your transaction should now be sent! You may have to wait a few minutes before the transaction and bridging have been finalized.
 

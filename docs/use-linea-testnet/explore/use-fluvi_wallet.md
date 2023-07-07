@@ -22,13 +22,13 @@ Or, you can use the [Linea Voyage Faucet & Guide](http://linea-quest.fluvi.io) p
 To install Fluvi Wallet, we recommend using Chrome as a desktop browser.
 
 1.  Install the [Fluvi Wallet Chrome extension](https://chrome.google.com/webstore/detail/fluvi-wallet/mmmjbcfofconkannjonfmjjajpllddbg) from Google Chrome Web Store and press Add to Chrome.  
-    ![](../../assets/fluvi_wallet/image1.png)
+    ![](/img/quests/fluvi_wallet/image1.png)
 2.  Once installed, open Fluvi Wallet and sign in with your Google account  
-    ![](../../assets/fluvi_wallet/image2.png)
+    ![](/img/quests/fluvi_wallet/image2.png)
 3.  Set an unlock password for security  
-    ![](../../assets/fluvi_wallet/image3.png)
+    ![](/img/quests/fluvi_wallet/image3.png)
 4.  Now, you're all ready to use Fluvi Wallet! Plain and easy right?  
-    ![](../../assets/fluvi_wallet/image4.png)
+    ![](/img/quests/fluvi_wallet/image4.png)
 
 ## Connect to dApps with Wallet Connect
 
@@ -36,14 +36,14 @@ To complete quests in Linea Voyage, you'll need to connect to the dApp via Walle
 
 1.  After pressing “Connect Wallet”, click on the “Wallet Connect” option.  
     Copy the Wallet Connect URI from the dApp by clicking on “Copy to clipboard” (below the QR code)  
-    ![](../../assets/fluvi_wallet/image5.png)
+    ![](/img/quests/fluvi_wallet/image5.png)
 2.  Click on the Wallet Connect button at the top of Fluvi Wallet  
-    ![](../../assets/fluvi_wallet/image6.png)
+    ![](/img/quests/fluvi_wallet/image6.png)
 3.  Paste the Wallet Connect URI and click on the Connect button  
-    ![](../../assets/fluvi_wallet/image7.png)
+    ![](/img/quests/fluvi_wallet/image7.png)
 4.  Now you're all set to use your selected dApps with Fluvi Wallet!
 
-![](../../assets/fluvi_wallet/image8.png) Unlike other connection methods of Fluvi Wallet, transaction requests are stacked in the Notification menu without any pop-ups.
+![](/img/quests/fluvi_wallet/image8.png) Unlike other connection methods of Fluvi Wallet, transaction requests are stacked in the Notification menu without any pop-ups.
 
 ## More Voyage Fun with Gas Sponsorship
 
@@ -63,9 +63,9 @@ The quests carried out via Fluvi Wallet can be verified using the wallet address
 We've made this process straightforward with a dedicated tool:
 
 1.  Open up the link to the [Linea Voyage Faucet & Guide page  
-    ](http://linea-quest.fluvi.io)![](../../assets/fluvi_wallet/image9.png)
+    ](http://linea-quest.fluvi.io)![](/img/quests/fluvi_wallet/image9.png)
 2.  Navigate to the "For Linea Voyage on Galxe" tab in the middle of the page  
-    ![](../../assets/fluvi_wallet/image10.png)
+    ![](/img/quests/fluvi_wallet/image10.png)
 3.  Connect your MetaMask and Fluvi Wallet and check if your wallet address is correctly displayed at the bottom
 4.  Submit your wallet addresses by clicking the 'Submit' button.
 

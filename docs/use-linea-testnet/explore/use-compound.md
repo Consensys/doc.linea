@@ -16,41 +16,41 @@ If during this tutorial you encounter the transaction pending issue, please see 
 2. Once you have some ETH, navigate to [Compound Finance](https://app.compound.finance/?market=usdc-lineagoerli&testnet=)
 3. Connect your wallet.
 
-![Make](../../assets/compound/compound-1.png)
+![Make](/img/quests/compound/compound-1.png)
 
 4. Make sure your wallet is connected to Linea Goerli and funded with ETH
 5. Make sure that “Linea Goerli” is selected in the networks list on the top right
 
-![Make](../../assets/compound/compound-2.png)
+![Make](/img/quests/compound/compound-2.png)
 
 6. Make sure that you have not supplied any USDC to compound(You can not supply and borrow USDC at the same time), if you have, click on "Withdraw USDC" otherwise skip step 7
 
-![Make](../../assets/compound/compound-14.png)
+![Make](/img/quests/compound/compound-14.png)
 
-7. Then click on "Max", click on "Add Action". Then on "Submit Transaction" and in the popup click on "Confirm", wait for the transaction to be completed. ![Make](../../assets/compound/compound-15.png)
+7. Then click on "Max", click on "Add Action". Then on "Submit Transaction" and in the popup click on "Confirm", wait for the transaction to be completed. ![Make](/img/quests/compound/compound-15.png)
 
 8. Click on the “+” sign next to the collateral “Ether”
 
-![Make](../../assets/compound/compound-3.png)
+![Make](/img/quests/compound/compound-3.png)
 
 9. Add the amount of ETH you want to deposit and then click on “Add Action”
 10. Click on the purple button “Borrow USDC”
 11. Add the amount of USDC you want to borrow and then click on “Add Action”
 12. Click on “Submit Transaction”
 
-![Make](../../assets/compound/compound-4.png)
+![Make](/img/quests/compound/compound-4.png)
 
 13. In the popup click on “Confirm”
 
-![Make](../../assets/compound/compound-5.png)
+![Make](/img/quests/compound/compound-5.png)
 
 14. Wait for the transaction to be confirmed
 
-![Make](../../assets/compound/compound-6.png)
+![Make](/img/quests/compound/compound-6.png)
 
 15. Click on “Complete Transaction”
 
-![Make](../../assets/compound/compound-7.png)
+![Make](/img/quests/compound/compound-7.png)
 
 16. In the popup click on “Confirm”
 17. Wait for the transaction to be confirmed
@@ -61,13 +61,13 @@ If during this tutorial you encounter the transaction pending issue, please see 
 1. You first need to repay the amount of USDC you borrowed
 2. Click on “Repay USDC”
 
-![Make](../../assets/compound/compound-8.png)
+![Make](/img/quests/compound/compound-8.png)
 
 3. Click on “Max” and “Approve & Add”
 4. Click on “Submit Transaction”
 5. In the popup click on “Use default”, “Next” and “Approve”
 
-![Make](../../assets/compound/compound-9.png)
+![Make](/img/quests/compound/compound-9.png)
 
 6. Wait for the transaction to be completed then click on “Submit Transaction” again
 7. In the popup click on confirm
@@ -76,21 +76,21 @@ If during this tutorial you encounter the transaction pending issue, please see 
 10. Get some USDC from the faucet
 11. Come back to the compound website, you should see a USDC balance and a “Supply USDC” button
 
-![Make](../../assets/compound/compound-10.png)
+![Make](/img/quests/compound/compound-10.png)
 
 12. Click on “Supply USDC”
 
-![Make](../../assets/compound/compound-11.png)
+![Make](/img/quests/compound/compound-11.png)
 
 13. Enter the amount of USDC you want to supply and click on “Approve & Add”
 
-![Make](../../assets/compound/compound-12.png)
+![Make](/img/quests/compound/compound-12.png)
 
 14. Click on “Use default” then “Next” and “Approve”
 15. Wait for the transaction to be completed
 16. Click on “Submit Transaction”
 
-![Make](../../assets/compound/compound-13.png)
+![Make](/img/quests/compound/compound-13.png)
 
 17. In the popup click on “Confirm”
 18. Wait for the transaction to be completed
@@ -103,5 +103,5 @@ It can occur that sometimes, the pending transactions displayed on the website a
 1. Click on "Pending" at the top right of the screen
 2. Then click on "Clear" in the popup
 
-![Make](../../assets/compound/compound-16.png)
+![Make](/img/quests/compound/compound-16.png)
 

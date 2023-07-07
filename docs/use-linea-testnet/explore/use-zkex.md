@@ -24,7 +24,7 @@ In your wallet click ‘Import Tokens’, and enter the following Token contract
 
 - 0x1f524C32Bb57107Eed4a9383287fb008a5B10e1c
 
-![Import PEPE token](../../assets/zkex/import-pepe-token.png)
+![Import PEPE token](/img/quests/zkex/import-pepe-token.png)
 
 ## Mint $LineaPEPE tokens
 
@@ -35,7 +35,7 @@ Now let’s mint some free $LineaPEPE tokens via the Linea Voyage faucet on the 
 - Under the Linea Voyage tab, click ‘Claim’.
 - Click the ‘Confirm’ button to receive the tokens in your wallet.
 
-![Mint PEPE token](../../assets/zkex/mint-pepe-token.png)
+![Mint PEPE token](/img/quests/zkex/mint-pepe-token.png)
 
 ## Deposit $LineaPEPE tokens to ZKEX
 
@@ -46,7 +46,7 @@ Now we’re going to add these tokens in your ZKEX account:
 - Click Approve and Confirm any prompts in your wallet.
 - It might take 20-30 minutes for it to arrive into your ZKEX account.
 
-![Deposit PEPE token](../../assets/zkex/deposit-pepe-token.png)
+![Deposit PEPE token](/img/quests/zkex/deposit-pepe-token.png)
 
     > OK, now you’re all ready to collect some sweet points!
 
@@ -59,7 +59,7 @@ First, execute a Sell market order for half your $LineaPEPE:
 - Select 50% and click the ‘Sell’ button.
 - You will receive $USDL.
 
-![Sell PEPE token](../../assets/zkex/sell-pepe-token.png)
+![Sell PEPE token](/img/quests/zkex/sell-pepe-token.png)
 
 After you’ve done this first step, you can claim this credential on Galxe after 48 hours, and get your points.
 
@@ -72,7 +72,7 @@ Second, withdraw some of your $LineaPEPE back to your wallet on the Linea Testne
 - Select the "Fast Withdrawal" option > Withdraw.
 - It might take 20-30 minutes for it to arrive in your wallet.
 
-![Withdraw PEPE token](../../assets/zkex/withdraw-pepe-token.png)
+![Withdraw PEPE token](/img/quests/zkex/withdraw-pepe-token.png)
 
 After this second step, you can claim this credential on Galxe after 48 hours, and get your points.
 

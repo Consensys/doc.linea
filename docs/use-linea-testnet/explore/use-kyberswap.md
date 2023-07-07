@@ -27,7 +27,7 @@ Before you embark on the future of trade, make sure that you have:
 
 You can also connect to the Linea Testnet via the KyberSwap UI:
 
-![Select chain from KyberSwap UI](../../assets/kyberswap/KyberSwap_SelectChain.png)
+![Select chain from KyberSwap UI](/img/quests/kyberswap/KyberSwap_SelectChain.png)
 
 ---
 
@@ -35,7 +35,7 @@ You can also connect to the Linea Testnet via the KyberSwap UI:
 
 ### Step 1: Select your preferred pool
 
-![Select Pool](../../assets/kyberswap/KyberSwap_AddLiquidity_SelectPool.png)
+![Select Pool](/img/quests/kyberswap/KyberSwap_AddLiquidity_SelectPool.png)
 
 Search for your favorite pools using the token selector tool on the [Elastic Pools page](https://kyberswap.com/pools/linea-goerli). Liquidity providers can filter the list of available pools by choosing from the list of whitelisted tokens, searching via the token symbol, or directly inputting the token contract address.
 
@@ -43,13 +43,13 @@ If you are unable to find a pool that suits your preferred configuration, you ca
 
 ### Step 2: Customize liquidity provision parameters
 
-![Configure Position](../../assets/kyberswap/KyberSwap_AddLiquidity_SelectRange.png)
+![Configure Position](/img/quests/kyberswap/KyberSwap_AddLiquidity_SelectRange.png)
 
 Upon clicking the “Add Liquidity” button for your preferred token pool, you will then be able to configure various liquidity provision parameters on the Add Liquidity helper. This includes selecting an appropriate fee tier, setting your position’s price range, as well as configuring token amounts.
 
 ### Step 3: Approve tokens on KyberSwap Elastic
 
-![Approve Token](../../assets/kyberswap/KyberSwap_AddLiquidity_ApproveToken.png)
+![Approve Token](/img/quests/kyberswap/KyberSwap_AddLiquidity_ApproveToken.png)
 
 If this is your first time providing liquidity to an Elastic pool, you will need to authorize the KyberSwap smart contract to transact using your tokens on this network. Click the “Approve [Token]” button to do so which will open the approval dialog window on your wallet. Once the approval is confirmed, the previously disabled “Preview” button will be clickable.
 
@@ -57,19 +57,19 @@ If this is your first time providing liquidity to an Elastic pool, you will need
 
 Click on the “Preview” button to bring up the liquidity addition preview screen.
 
-![Click preview button](../../assets/kyberswap/KyberSwap_AddLiquidity_PreviewButton.png)
+![Click preview button](/img/quests/kyberswap/KyberSwap_AddLiquidity_PreviewButton.png)
 
 ### Step 5: Confirm and view created position
 
 Once you have reviewed the information, you can click on the “Supply” button to proceed with confirming the transaction in your wallet.
 
-![Confirm liquidity addition](../../assets/kyberswap/KyberSwap_AddLiquidity_Preview.png)
+![Confirm liquidity addition](/img/quests/kyberswap/KyberSwap_AddLiquidity_Preview.png)
 
 KyberSwap will notify you once your submitted transaction has been confirmed by the Linea network. You can use the wallet helper to view the transaction status as well as track the changes in your token holdings.
 
 Your new position should now be visible on the My Pools page on KyberSwap.
 
-![My Elastic Pools](../../assets/kyberswap/KyberSwap_AddLiquidity_MyElasticPools.png)
+![My Elastic Pools](/img/quests/kyberswap/KyberSwap_AddLiquidity_MyElasticPools.png)
 
 ---
 
@@ -77,25 +77,25 @@ Your new position should now be visible on the My Pools page on KyberSwap.
 
 ### Step 1: Specify your swap pair
 
-![Select swap pair](../../assets/kyberswap/KyberSwap_Swap_SelectToken.png)
+![Select swap pair](/img/quests/kyberswap/KyberSwap_Swap_SelectToken.png)
 
 Traders can leverage the token selector tool to specify their preferred swap pair on the [KyberSwap Swap page](https://kyberswap.com/swap/linea-goerli). Traders can choose from a whitelist of the most popular tokens, search token symbol pairs via the search field, or directly input the token’s contract address.
 
 ### Step 2: Configure the swap amount
 
-![Configure swap parameters](../../assets/kyberswap/KyberSwap_Swap_ConfigureSwap.png)
+![Configure swap parameters](/img/quests/kyberswap/KyberSwap_Swap_ConfigureSwap.png)
 
 Specify the amount you would like to swap by either typing in an amount manually or by using the “Max” and “Half” buttons to swap pre-set proportions of your wallet balance. Upon selecting a token in amount, you will be able to see an estimated return amount.
 
 ### Step 3: Approve tokens on KyberSwap Aggregator
 
-![Approve token swap](../../assets/kyberswap/KyberSwap_Swap_ApproveToken.png)
+![Approve token swap](/img/quests/kyberswap/KyberSwap_Swap_ApproveToken.png)
 
 As a safety precaution, you will need to approve/permit KyberSwap to trade the tokens on your behalf. This ensures that the KyberSwap smart contract is only able to spend the specified amount from your wallet. You can refer to KyberSwap’s [Docs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/instantly-swap-at-the-best-rates#step-4-approve-or-permit-contract-to-swap-tokens) for further details on this approve/permit process.
 
 ### Step 4: Confirm the swap
 
-![Confirm swap](../../assets/kyberswap/KyberSwap_Swap_Preview.png)
+![Confirm swap](/img/quests/kyberswap/KyberSwap_Swap_Preview.png)
 
 You can review your swap by clicking on the “Swap” button to bring up the confirmation screen. Note that as market conditions are liable to change while your trade route is being confirmed, KyberSwap implements [a suite of safety mechanisms](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/instantly-swap-at-the-best-rates#step-5-confirm-the-swap) to protect against any unexpected outcomes.
 
@@ -110,4 +110,4 @@ Once the swap route has been finalized, the confirmation screen will display key
 
 Upon reviewing the trade parameters, you can click the “Confirm Swap” button to proceed. KyberSwap will notify you once your submitted transaction has been confirmed by the Linea network. You can use the wallet helper to view the transaction status as well as track the changes in your token holdings.
 
-![Wallet view](../../assets/kyberswap/KyberSwap_Swap_WalletView.png)
+![Wallet view](/img/quests/kyberswap/KyberSwap_Swap_WalletView.png)

@@ -13,32 +13,32 @@ Before we get started, ensure your wallet is [configured to use Linea](https://d
 
 1. Go to [testnet.stationx.network](https://testnet.stationx.network), connect your wallet then click on ‘Manage Stations’ & click on the ‘**Create new’** button
 
-   ![Select station](../../assets/stationx/manage_station.png)
+   ![Select station](/img/quests/stationx/manage_station.png)
 
-   ![Select station](../../assets/stationx/club_portfolio.png)
+   ![Select station](/img/quests/stationx/club_portfolio.png)
 
 1. Give a name & a token symbol for your Station. (For example, Degen club - DGC) and select the type of token you’d like to use for membership (ERC-20 / NFT)
 
-   ![Fill token info](../../assets/stationx/station_info.png)
+   ![Fill token info](/img/quests/stationx/station_info.png)
 
-   ![Select token type](../../assets/stationx/token_type_selector.png)
+   ![Select token type](/img/quests/stationx/token_type_selector.png)
 
 1. Click ‘**Next’** & set deposit rules
 1. If you had selected ERC20 token type, set min/max/total contribution per wallet, price per token & last date for contributors to deposit into your Station. _Tip: Keep min deposit amount low so that more people can easily join your Station since USDC per user is limited_
 
-   ![Select token type](../../assets/stationx/token_section.png)
+   ![Select token type](/img/quests/stationx/token_section.png)
 
 1. If you had selected NFT token type, set an art, price per NFT, max mint per wallet, total supply, etc. _Tip: Keep mint price low so that more people can easily join your Station since USDC per user is limited_
 
-   ![Set nft rules](../../assets/stationx/set_token_nft.png)
+   ![Set nft rules](/img/quests/stationx/set_token_nft.png)
 
 1. Click 'Next' to set Governance (Coming Soon), currently you can only create Stations with governance **disabled** on Linea.
 
-   ![Fill governance information](../../assets/stationx/governance.png)
+   ![Fill governance information](/img/quests/stationx/governance.png)
 
 1. Click **‘Finish’**, approve the transaction in your wallet & your **Station is live.**
 
-   ![Home page](../../assets/stationx/dashboard_home.png)
+   ![Home page](/img/quests/stationx/dashboard_home.png)
 
 1. You're done with Step 1, let's move to Step 2!
 
@@ -47,16 +47,16 @@ Before we get started, ensure your wallet is [configured to use Linea](https://d
 1. Go to <https://testnet.stationx.network/claims/0x5d993Ff7FBCc8d65412d32a79248dFAAB6739047>
 1. Connect your wallet & claim maximum amount i.e **100 USDC**
 
-   ![Fill governance information](../../assets/stationx/claim_screen.png)
+   ![Fill governance information](/img/quests/stationx/claim_screen.png)
 
 1. After you’ve claimed, add the token to your wallet
 1. Open your wallet, and go to import assets
 
-   ![Add token to metamask](../../assets/stationx/metamask.png)
+   ![Add token to metamask](/img/quests/stationx/metamask.png)
 
 1. Add token address - **0x45a27ea11D159A86AacE1eC24d3ba3d103642D9f**
 
-   ![Add token to metamask](../../assets/stationx/add_token_metamask.png)
+   ![Add token to metamask](/img/quests/stationx/add_token_metamask.png)
 
 1. You’ll be able to see the balance in your wallet
 
@@ -67,7 +67,7 @@ Before we get started, ensure your wallet is [configured to use Linea](https://d
 1. Go to <https://testnet.stationx.network/join/0xf06A087D97B3e9EadbdC7Cd3c2146bc4D019bB19>
 1. Connect your wallet & mint 1 NFT
 
-   ![Deposit page](../../assets/stationx/deposit_nft.png)
+   ![Deposit page](/img/quests/stationx/deposit_nft.png)
 
 Congratulations, you've successfully completed the quest!
 
