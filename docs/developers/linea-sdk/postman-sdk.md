@@ -95,11 +95,11 @@ dotenv.config();
     },
     databaseOptions: {
       type: "postgres",
-      host: process.env.POSTGRES_HOST ?? "127.0.0.1",
-      port: parseInt(process.env.POSTGRES_PORT ?? "5432"),
-      username: process.env.POSTGRES_USER ?? "postgres",
-      password: process.env.POSTGRES_PASSWORD ?? "postgres",
-      database: process.env.POSTGRES_DB ?? "postman_db",
+      host: process.env.POSTGRES_HOST ?? "",
+      port: parseInt(process.env.POSTGRES_PORT ?? ""),
+      username: process.env.POSTGRES_USER ?? "",
+      password: process.env.POSTGRES_PASSWORD ?? "",
+      database: process.env.POSTGRES_DB ?? "",
     },
   }
 ```
@@ -115,7 +115,7 @@ L1_SIGNER_PRIVATE_KEY= // account private key that will be use send/claim transa
 L1_LISTENER_INTERVAL=4000 // event listener polling interval
 L1_LISTENER_INITIAL_FROM_BLOCK=0 // user can choose to start listening for events from this specific block. Default value is the block of the latest message sent stored in the DB
 L1_LISTENER_BLOCK_CONFIRMATION=4 // number of block to wait for before listening to events. The range of blocks that we use to listen for events is (fromBlock -> 'latest' - blockConfirmation)
-L1_MAX_BLOCKS_TO_FETCH_LOGS=1000 // max range of blocks to fetch logs,
+L1_MAX_BLOCKS_TO_FETCH_LOGS=1000 // max range of blocks to fetch logs
 MAX_NUMBER_OF_RETRIES= 100 // how often we try to process underpriced transaction
 RETRY_DELAY_IN_SECONDS= 30 // how often we want to wait until we retry the transaction in seconds
 PROFIT_MARGIN=0 // filters out messages that are not up to the level of profit marging of the postman 
