@@ -171,7 +171,7 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/use-linea",
+                to: "/use-linea-goerli-goerli-goerli",
               },
               {
                 label: "Build on Linea",
@@ -271,7 +271,7 @@ const config = {
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/use-linea",
+            to: "/use-linea-goerli",
             from: [
               "/get-started",
               "/get-started/bridge-funds",
