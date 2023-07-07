@@ -111,9 +111,9 @@ All of the values that the SDK will need should be stored in a .env file. Make s
 ```javascript
 L1_RPC_URL=https://goerli.infura.io/v3/<INFURA_KEY>
 L1_CONTRACT_ADDRESS=0x70BaD09280FD342D02fe64119779BC1f0791BAC2 // L1 rollup smart-contract
-L1_SIGNER_PRIVATE_KEY= // account private key that will be use to send claim transactions,
+L1_SIGNER_PRIVATE_KEY= // account private key that will be use send/claim transactions
 L1_LISTENER_INTERVAL=4000 // event listener polling interval
-L1_LISTENER_INITIAL_FROM_BLOCK=0 // user can choose to start listening for events from this specific block. Default value is the block of the latest message sents toredin the DB
+L1_LISTENER_INITIAL_FROM_BLOCK=0 // user can choose to start listening for events from this specific block. Default value is the block of the latest message sent stored in the DB
 L1_LISTENER_BLOCK_CONFIRMATION=4 // number of block to wait for before listening to events. The range of blocks that we use to listen for events is (fromBlock -> 'latest' - blockConfirmation)
 L1_MAX_BLOCKS_TO_FETCH_LOGS=1000 // max range of blocks to fetch logs,
 MAX_NUMBER_OF_RETRIES= 100 // how often we try to process underpriced transaction
@@ -122,7 +122,7 @@ PROFIT_MARGIN=0 // filters out messages that are not up to the level of profit m
 ONLY_EOA_TARGET=false // if set to true, Postman will only claim messages when the target address is an EOA
 L2_RPC_URL=https://linea-goerli.infura.io/v3/<INFURA_KEY>
 L2_CONTRACT_ADDRESS=0xC499a572640B64eA1C8c194c43Bc3E19940719dC // message service smart contract address to listen to
-L2_SIGNER_PRIVATE_KEY= // account private key that will be use to send claim transactions
+L2_SIGNER_PRIVATE_KEY= // account private key that will be used to send/claim transactions
 L2_LISTENER_INTERVAL=4000 // same description as L1 config
 L2_LISTENER_INITIAL_FROM_BLOCK=0 // same description as L1 config
 L2_LISTENER_BLOCK_CONFIRMATION=0 // same description as L1 config
