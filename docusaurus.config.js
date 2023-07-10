@@ -266,7 +266,7 @@ const config = {
       {
         redirects: [
           {
-            to: "/build-on-linea/bridge-architecture/message-service",
+            to: "/architecture/bridge-architecture/message-service",
             from: "/build-on-linea/use-message-bridge",
           },
           {
@@ -274,7 +274,7 @@ const config = {
             from: "/build-on-linea/deploy-smart-contracts",
           },
           {
-            to: "/use-linea-testnet",
+            to: "/build-on-linea/use-linea-testnet",
             from: [
               "/get-started",
               "/get-started/bridge-funds",
