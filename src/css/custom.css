@@ -562,24 +562,13 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   --font-atyp-text: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd"
 }
 
-/* This was originally in /docs/stylesheets/snippets.css */
+ /* This was originally in /docs/stylesheets/snippets.css */ 
 
 :root > * {
-  /*--md-code-hl-string-color: #FF0000;*/
-  /*--md-code-hl-number-color: #FF0000;*/
-  /*--md-code-hl-special-color: #FF0000;*/
-  /*--md-code-hl-function-color: #FF0000;*/
-  /*--md-code-hl-constant-color: #FF0000;*/
-  /*--md-code-hl-keyword-color: #FF0000;*/
-  /*--md-code-hl-name-color: #FF0000;*/
-  /*--md-code-hl-operator-color: #FF0000;*/
-  /*--md-code-hl-punctuation-color: #FF0000;*/
   --md-code-hl-comment-color: #b3ccfb;
-  /*--md-code-hl-generic-color: #FF0000;*/
-  /*--md-code-hl-variable-color: #FF0000;*/
 }
 
-/* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */
+ /* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */ 
 
 #centered-copy {
   display: flex;
