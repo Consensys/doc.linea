@@ -140,7 +140,7 @@ const config = {
               },
               {
                 label: "ZK Glossary",
-                to: "/reference/glossary",
+                to: "/zero-knowledge-glossary",
               },
             ],
           },
@@ -174,11 +174,11 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/use-linea-testnet-goerli-goerli",
+                to: "/use-mainnet",
               },
               {
                 label: "Build on Linea",
-                to: "/developers",
+                to: "/build-on-linea",
               },
             ],
           },
