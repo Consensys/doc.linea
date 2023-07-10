@@ -7,7 +7,7 @@ sidebar_position: 5
 
 ## Network status
 
-You can find out how to navigate to Linea network status [here](/reference/status.md).
+You can find out how to navigate to Linea network status [here](docs/network-status/index.mdx).
 
 ## Network information
 
