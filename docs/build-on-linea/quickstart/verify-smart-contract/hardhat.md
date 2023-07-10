@@ -77,8 +77,8 @@ etherscan: {
       network: "linea",
       chainId: 59140,
       urls: {
-        apiURL: "https://explorer.goerli.linea.build/api",
-        browserURL: "https://explorer.goerli.linea.build/"
+        apiURL: "https://goerli.lineascan.build/api",
+        browserURL: "https://goerli.lineascan.build/"
       }
     }
   ]
@@ -113,7 +113,7 @@ Message: Unknown UID
 For more info run Hardhat with --show-stack-traces
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.linea.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
 
 ![verified contract](/img/quests/blockscout_verification.png)
 

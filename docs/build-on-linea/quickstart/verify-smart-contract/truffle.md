@@ -52,9 +52,9 @@ module.exports = {
         );
       },
       verify: {
-        apiUrl: "https://explorer.goerli.linea.build/api",
+        apiUrl: "https://goerli.lineascan.build/api",
         apiKey: ETHERSCAN_API_KEY,
-        explorerUrl: "https://explorer.goerli.linea.build/",
+        explorerUrl: "https://goerli.lineascan.build/",
       },
       network_id: "59140",
     },
@@ -82,12 +82,12 @@ Your output should be similar to the following:
 ```bash
 Verifying contracts on consensys
    Verifying Token
-   Pass - Verified: https://explorer.goerli.linea.build//0xD104FE0116aFdB588798133B13965FEC5d2eEd35#code
+   Pass - Verified: https://goerli.lineascan.build/address/0xD104FE0116aFdB588798133B13965FEC5d2eEd35#code
    Successfully verified 1 contract(s).
 Verifying contracts on sourcify
    Sourcify has no support for network linea with chain id 59140
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://explorer.goerli.linea.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
 
 ![verified contract](/img/quests/blockscout_verification.png)

@@ -9,7 +9,7 @@ In this example, we'll walk through verifying the `Counter` smart contract we de
 
 ## Access the Blockscout verification page
 
-In the [Linea block explorer](https://explorer.goerli.linea.build/), search for your deployed contract address. You can find it in the `Deployed to` address in the Foundry deployment output. In our example, the address is `0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83`.
+In the [Linea block explorer](https://goerli.lineascan.build/), search for your deployed contract address. You can find it in the `Deployed to` address in the Foundry deployment output. In our example, the address is `0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83`.
 
 ```bash
 Deployer: YOUR_ACCOUNT_NUMBER

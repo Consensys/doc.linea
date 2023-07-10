@@ -1,8 +1,11 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const isDev = process.env.NODE_ENV === "development";
-const baseUrl = isDev ? "/" : "/";
+// const isDev = process.env.NODE_ENV === "development";
+// const baseUrl = isDev ? "/" : "/";
+
+// const organizationName = "Consensys";
+// const projectName = "doc.zk-evm";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -10,7 +13,7 @@ const config = {
   tagline:
     "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
   url: "https://docs.linea.build",
-  baseUrl,
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
