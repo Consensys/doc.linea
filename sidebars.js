@@ -8,6 +8,11 @@ const sidebars = {
       dirName: ".", // '.' means the current docs folder
     },
     {
+      type: "doc",
+      id: "build-on-linea/run-a-node",
+      label: "Run a node",
+    },
+    {
       type: "category",
       label: "Contact Us",
       items: [
@@ -31,6 +36,7 @@ const sidebars = {
           label: "Join our Discord",
           href: "https://discord.com/invite/consensys",
         },
+
       ],
     },
   ],

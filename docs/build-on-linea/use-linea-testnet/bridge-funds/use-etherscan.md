@@ -61,7 +61,7 @@ Follow the steps above, but use the [Linea Message Service transparent proxy con
 
 ## Bridge ERC20 from Goerli to Linea
 
-1. Go to the [ERC20 contract of your choice](/build-on-linea/useful-info.md#token-contract-addresses-and-bridges) on Etherscan
+1. Go to the [ERC20 contract of your choice](/build-on-linea/use-linea-testnet/info-contracts.md#token-contract-addresses-and-bridges) on Etherscan docs
 1. Navigate to Contract > Write Contract tab
 1. Connect your wallet by clicking on the “Connect with web3” button
 1. Open the `approve` function form ![erc20 approve](/img/quests/etherscan-bridge/bridge-erc20.png)
@@ -150,7 +150,7 @@ This step is not mandatory unless you didn’t send enough fees when initiating 
 
    ![message sent](/img/quests/etherscan-bridge/logs.png)
 
-1. Go to the [Message Service contract](/build-on-linea/bridge-architecture/message-service.mdx#contracts) on the other Layer ([0xC499a572640B64eA1C8c194c43Bc3E19940719dC](https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC) on L2)
+1. Go to the [Message Service contract](/architecture/bridges/message-service.mdx#contracts) on the other Layer ([0xC499a572640B64eA1C8c194c43Bc3E19940719dC](https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC) on L2)
 1. Navigate to the `Write Proxy` tab, connect your wallet, and call the `claimMessage` function using the parameters found in the logs MessageSent checked earlier. Note: `bytes` argument need to start with `0x0`
 
    ![write claimMessage](/img/quests/etherscan-bridge/claimmessage.png)
