@@ -7,7 +7,7 @@ sidebar_position: 5
 
 ## Network status
 
-You can find out how to navigate to Linea network status [here](/network-status/).
+You can find out how to navigate to Linea network status [here](./../network-status/index.mdx).
 
 ## Network information
 
@@ -43,4 +43,3 @@ You can find out how to navigate to Linea network status [here](/network-status/
 | --- | --- |
 | Linea rollup and L1 Bridge | [0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40](https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40) |
 | L2 Bridge | [0xA59477f7742Ba7d51bb1E487a8540aB339d6801d](https://goerli.lineascan.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d) | -->
-
