@@ -1,7 +1,7 @@
 ---
-title: Send tokens between accounts
-description: Transfer tokens between accounts on the network
-sidebar_position: 5
+title: Transact
+description: Send tokens between accounts
+sidebar_position: 3
 ---
 
 # Transfer funds between accounts

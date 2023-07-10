@@ -1,5 +1,6 @@
 ---
-title: Explore tooling and infrastructure
+title: Tooling and infrastructure
+sidebar_position: 3
 ---
 
 # Explore developer tooling and infrastructure
