@@ -35,7 +35,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
 </table>
  
 
- > _Note: Linea is currently doing a soft launch with specfic partners. Public availbility will be announced soon._
+ > _Note: Linea is currently doing a soft launch with specific partners. Public availability will be announced soon._
 
 <!-- ## Deployed contracts
 
