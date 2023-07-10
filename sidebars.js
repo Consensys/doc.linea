@@ -36,7 +36,6 @@ const sidebars = {
           label: "Join our Discord",
           href: "https://discord.com/invite/consensys",
         },
-
       ],
     },
   ],
