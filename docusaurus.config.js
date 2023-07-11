@@ -297,9 +297,7 @@ const config = {
           },
           {
             to: "/build-on-linea/tooling",
-            from: [
-              "/developers/tooling","/developers/partners",
-            ],
+            from: ["/developers/tooling", "/developers/partners",],
           },
         ],
       },
