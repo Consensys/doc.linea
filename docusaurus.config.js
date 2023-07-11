@@ -267,11 +267,17 @@ const config = {
         redirects: [
           {
             to: "/architecture/bridges/message-service",
-            from: "/build-on-linea/use-message-bridge",
+            from: [
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
+            ],
           },
           {
             to: "/build-on-linea/quickstart",
-            from: "/build-on-linea/deploy-smart-contracts",
+            from: [
+              "/developers/quickstart",
+              "/developers/deploy-smart-contracts",
+            ],
           },
           {
             to: "/build-on-linea/use-linea-testnet",
@@ -282,11 +288,15 @@ const config = {
               "/get-started/configure-metamask",
               "/get-started/quickstart",
               "/use-zkevm",
+              "/use-linea",
             ],
           },
           {
             to: "/build-on-linea/tooling",
-            from: "/build-on-linea/partners",
+            from: [
+              "/developers/tooling",
+              "/developers/partners",
+            ],
           },
         ],
       },
