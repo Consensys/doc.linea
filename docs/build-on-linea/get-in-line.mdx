@@ -36,14 +36,14 @@ Download `genesis.json`
 
 ### Step 3
 
-Define a volume of at least `100GB`, more if you want to future-proof your and mount the Geth `datadir` to `geth-linea-data`
+Define a volume of at least `100GB`, more if you want to future-proof your node, and mount the Geth `datadir` to `geth-linea-data`
 
 ### Step 4
 
 Bootstrap the node using the following command
 
 ```bash
-geth --datadir ./geth-linea-data init ./l2-genesis-uat.json
+geth --datadir ./geth-linea-data init ./genesis.json
 ```
 
 ### Step 5
@@ -128,8 +128,6 @@ geth \
 --metrics --pprof --pprof.addr "0.0.0.0" --pprof.port 9545 \
 --verbosity 3
 ```
-
-
 
 ### 
 
