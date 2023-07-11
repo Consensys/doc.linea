@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Wallet Set Up",
-    link: "/use-linea",
+    link: "/use-mainnet",
     description: (
       <>
         Set up and fund your wallet to start bridging, swapping, and transacting
@@ -33,7 +33,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Developer Quick Start",
-    link: "/developers/quickstart",
+    link: "/build-on-linea/quickstart",
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite

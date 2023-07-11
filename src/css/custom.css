@@ -561,3 +561,17 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .__variable_34d2cd {
   --font-atyp-text: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd"
 }
+
+ /* This was originally in /docs/stylesheets/snippets.css */ 
+
+:root > * {
+  --md-code-hl-comment-color: #b3ccfb;
+}
+
+ /* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */ 
+
+#centered-copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

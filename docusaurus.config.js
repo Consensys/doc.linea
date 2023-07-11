@@ -11,7 +11,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Linea",
   tagline:
-    "A type 2 zero knowledge Ethereum Virtual Machine that replicates an Ethereum environment by leveraging rollups.",
+    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -93,7 +93,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <b>Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
+          '📣 <b>Please see the <a href="https://docs.linea.build/build-on-linea/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
@@ -140,7 +140,7 @@ const config = {
               },
               {
                 label: "ZK Glossary",
-                to: "/reference/glossary",
+                to: "/zero-knowledge-glossary",
               },
             ],
           },
@@ -174,11 +174,11 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/use-linea",
+                to: "/use-mainnet",
               },
               {
                 label: "Build on Linea",
-                to: "/developers",
+                to: "/build-on-linea",
               },
             ],
           },
@@ -217,7 +217,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Consensys, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Consensys, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -266,15 +266,25 @@ const config = {
       {
         redirects: [
           {
-            to: "/developers/bridge-architecture/message-service",
-            from: "/developers/use-message-bridge",
+            to: "/architecture/bridges/message-service",
+            from: [
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
+            ],
+            from: [
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
+            ],
           },
           {
-            to: "/developers/quickstart",
-            from: "/developers/deploy-smart-contracts",
+            to: "/build-on-linea/quickstart",
+            from: [
+              "/developers/quickstart",
+              "/developers/deploy-smart-contracts",
+            ],
           },
           {
-            to: "/use-linea",
+            to: "/build-on-linea/use-linea-testnet",
             from: [
               "/get-started",
               "/get-started/bridge-funds",
@@ -282,11 +292,12 @@ const config = {
               "/get-started/configure-metamask",
               "/get-started/quickstart",
               "/use-zkevm",
+              "/use-linea",
             ],
           },
           {
-            to: "/developers/tooling",
-            from: "/developers/partners",
+            to: "/build-on-linea/tooling",
+            from: ["/developers/tooling", "/developers/partners"],
           },
         ],
       },
