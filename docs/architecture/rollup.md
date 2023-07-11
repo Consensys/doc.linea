@@ -1,5 +1,5 @@
 ---
-title: Rolup to Mainnet
+title: Rollup to Mainnet
 sidebar_position: 6
 ---
 ## Submission to L1
