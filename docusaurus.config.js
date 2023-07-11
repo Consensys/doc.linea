@@ -93,7 +93,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <b>Please see the <a href="https://docs.linea.build/build-on-linea/linea-version/release-notes">release notes</a> for the latest on Linea.</b>',
+          '📣 Partners are currently onboarding to Linea Mainnet Alpha. 🚀 The network and bridge to Ethereum will be available soon for general use. See <a href="https://linea.mirror.xyz/7l9gKzYzKVOxEOnReavov467Ss_fsrkGzABvbRISPMY">here</a> for more details on what to expect. 😎',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
