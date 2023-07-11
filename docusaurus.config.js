@@ -292,7 +292,10 @@ const config = {
               "/get-started/configure-metamask",
               "/get-started/quickstart",
               "/use-zkevm",
-              "/use-linea",
+              "/use-linea/fund",
+              "/use-linea/bridge-funds",
+              "/use-linea/explore",
+              "/use-linea/index.md",
             ],
           },
           {
