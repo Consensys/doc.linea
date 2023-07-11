@@ -32,7 +32,7 @@ Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) a
 
 Download `genesis.json`
 
-[l2-genesis-uat.json](pathname:///files/genesis.json)
+[genesis.json](pathname:///files/genesis.json)
 
 ### Step 3
 
@@ -43,7 +43,7 @@ Define a volume of at least `100GB`, more if you want to future-proof your and m
 Bootstrap the node using the following command
 
 ```bash
-geth --datadir ./geth-linea-data init ./l2-genesis-uat.json
+geth --datadir ./geth-linea-data init ./genesis.json
 ```
 
 ### Step 5
