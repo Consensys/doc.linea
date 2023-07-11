@@ -53,7 +53,7 @@ Start the node with the following command
 ```bash
 geth \
 --datadir $HOME/geth-linea-data \
---networkid 59140 \
+--networkid 59144 \
 --miner.gasprice 1000000000 \
 --miner.gaslimit '0x3A2C940' \
 --rpc.allow-unprotected-txs \
@@ -64,11 +64,11 @@ geth \
 --rpc.txfeecap 100 \
 --gpo.maxprice 100000000000000 \
 --txpool.nolocals \
---http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
---ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
+--http --http.addr '127.0.0.1' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+--ws --ws.addr '127.0.0.1' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
 --bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.128.49.168:30303" \
 --syncmode full \
---metrics --pprof --pprof.addr "0.0.0.0" --pprof.port 9545 \
+--metrics --pprof --pprof.addr "127.0.0.1" --pprof.port 9545 \
 --verbosity 3
 ```
 
