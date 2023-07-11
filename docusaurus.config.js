@@ -271,6 +271,10 @@ const config = {
               "/developers/bridge-architecture/message-service",
               "/developers/use-message-bridge",
             ],
+            from: [
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
+            ],
           },
           {
             to: "/build-on-linea/quickstart",
