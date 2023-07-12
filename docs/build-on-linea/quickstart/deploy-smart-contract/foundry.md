@@ -67,3 +67,7 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
+
+## Deploy to Mainnet
+
+_Instructions coming soon!_

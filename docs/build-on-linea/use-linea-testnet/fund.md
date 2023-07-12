@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
 
-# Use a Linea faucet
+## Use a Linea faucet
 
 If you want to drip Goerli ETH directly to Linea, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
 
