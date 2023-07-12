@@ -512,7 +512,7 @@ const config = {
           {
             from: "/use-linea/explore/use-zonic",
             to: "/build-on-linea/use-linea-testnet/explore/use-zonic",
-          }
+          },
         ],
       },
     ],
