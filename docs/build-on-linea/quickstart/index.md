@@ -11,4 +11,4 @@ It's always best practice to work on a test network before deploying a contract 
 Before you begin, ensure you've:
 
 1. [Set up your wallet for Testnet](/build-on-linea/use-linea-testnet/set-up-your-wallet.mdx)
-1. [Funded your wallet with Testnet Linea ETH](/build-on-linea/use-linea-testnet/fund.md#get-test-eth-on-linea)
+2. [Funded your wallet with Testnet Linea ETH](/build-on-linea/use-linea-testnet/fund.md#get-test-eth-on-linea)
