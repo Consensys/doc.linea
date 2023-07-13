@@ -284,6 +284,10 @@ const config = {
             ],
           },
           {
+            to: "/zero-knowledge-glossary",
+            from: "/reference/glossary"
+          },
+          {
             to: "/build-on-linea/use-linea-testnet",
             from: [
               "/get-started",
