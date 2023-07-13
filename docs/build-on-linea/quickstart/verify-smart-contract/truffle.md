@@ -52,7 +52,7 @@ module.exports = {
         );
       },
       verify: {
-        apiUrl: "https://goerli.lineascan.build/api",
+        apiUrl: "https://goerli.lineascan.build/apis#contracts",
         apiKey: ETHERSCAN_API_KEY,
         explorerUrl: "https://goerli.lineascan.build/",
       },
