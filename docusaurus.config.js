@@ -299,7 +299,7 @@ const config = {
             ],
           },
           {
-            to: "/build-on-linea/use-linea-testnet-bridge-funds",
+            to: "/build-on-linea/use-linea-testnet/bridge-funds",
             from: "/use-linea/bridge-funds",
           },
           {
@@ -307,7 +307,7 @@ const config = {
             from: "/use-linea/fund",
           },
           {
-            to: "/build-on-linea/use-linea-testnetbridge-funds",
+            to: "/build-on-linea/use-linea-testnet/bridge-funds",
             from: "/use-linea/bridge-funds",
           },
           {
