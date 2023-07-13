@@ -287,15 +287,24 @@ const config = {
             to: "/build-on-linea/use-linea-testnet",
             from: [
               "/get-started",
-              "/get-started/bridge-funds",
               "/get-started/fund",
               "/get-started/configure-metamask",
               "/get-started/quickstart",
               "/use-zkevm",
-              "/use-linea/fund",
-              "/use-linea/bridge-funds",
               "/use-linea/index.md",
             ],
+          },
+          {
+            to: "/build-on-linea/use-linea-testnetbridge-funds",
+            from: "/use-linea/bridge-funds",
+          },
+          {
+            to: "/build-on-linea/use-linea-testnet/fund",
+            from: "/use-linea/fund",
+          },
+          {
+            to: "/build-on-linea/use-linea-testnetbridge-funds",
+            from: "/use-linea/bridge-funds",
           },
           {
             to: "/build-on-linea/tooling",
