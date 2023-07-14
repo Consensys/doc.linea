@@ -7,7 +7,7 @@ sidebar_position: 3
 
 ## Network status
 
-You can find out how to navigate to Linea network status [here](/network-status).
+You can find out how to navigate to Linea network status [here](../../network-status).
 
 ## Network information
 
@@ -165,7 +165,7 @@ If you want to drip Goerli ETH directly to Linea, you can use the following fauc
 
 If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
-You can find instructions on how to use the multi-token Linea faucet [here](/use-mainnet/fund).
+You can find instructions on how to use the multi-token Linea faucet [here](../../use-mainnet/fund.md).
 
 ## Important Contracts
 

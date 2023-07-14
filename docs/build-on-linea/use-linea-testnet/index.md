@@ -7,10 +7,10 @@ Linea is meant to be fully compatible with Ethereum, full stop. There are alread
 
 This section should walk you through everything you need to get started:
 
-1. [Set up your wallet](/build-on-linea/use-linea-testnet/set-up-your-wallet)
-2. [Bridge some funds](/build-on-linea/use-linea-testnet/bridge-funds)
-3. [Deploy your first contract](/build-on-linea/quickstart/)
-4. [Get funds from a faucet](/build-on-linea/use-linea-testnet/fund)
-5. [Send a transaction](/build-on-linea/use-linea-testnet/transact)
+1. [Set up your wallet](../use-linea-testnet/set-up-your-wallet.mdx)
+2. [Bridge some funds](../use-linea-testnet/bridge-funds/index.md)
+3. [Deploy your first contract](../quickstart/index.md)
+4. [Get funds from a faucet](../use-linea-testnet/fund.md)
+5. [Send a transaction](../use-linea-testnet/transact.md)
 
 If you run into a problem, step on over to the [Linea Support page](https://support.linea.build/hc/en-us) and let us know.

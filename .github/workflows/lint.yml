@@ -31,4 +31,4 @@ jobs:
       - name: LinkCheck
         uses: Consensys/docs-gha/linkcheck@main
         with:
-          FILE_EXTENSION: ${{ matrix.file-extensions }}
+          FILE_EXTENSION: '${{ matrix.file-extensions }}'
