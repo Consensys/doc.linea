@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 
 
-<Tabs>
+<Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
   <i>Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon.</i>
  

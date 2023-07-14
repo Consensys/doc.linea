@@ -14,7 +14,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
 ## Network information
 
 
-<Tabs groupId="Mainnet-Testnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem 
   value="Mainnet" label="Mainnet" default>
 <table>
@@ -76,7 +76,7 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 ## Deployed contracts
 
-<Tabs groupId="Mainnet-Testnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
     Mainnet contracts coming soon.
   </TabItem>
@@ -100,7 +100,7 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 ## Token contract addresses and bridges
 
-<Tabs groupId="Mainnet-Testnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
     Mainnet addresses coming soon.
   </TabItem>
@@ -217,7 +217,7 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
 
 ## Important Contracts
 
-<Tabs groupId="Mainnet-Testnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
     Mainnet contracts coming soon.
   </TabItem>
