@@ -102,7 +102,26 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
-    Mainnet addresses coming soon.
+    More Mainnet addresses coming soon.
+    
+<table>
+  <tbody>
+      <tr>
+      <th>Token</th>
+      <th>L1</th>
+      <th>L1 Address</th>
+      <th>L2 Address</th>
+      <th>Bridge</th>
+    </tr>
+        <tr>
+      <td>WETH</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
