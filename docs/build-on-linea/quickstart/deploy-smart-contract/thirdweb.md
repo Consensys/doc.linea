@@ -58,7 +58,7 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 
 1. Navigate to the thirdweb Explore page: [https://thirdweb.com/explore](https://thirdweb.com/explore)
 
-![thirdweb explore](/img/docs/build-on-linea/quickstart/verify-smart-contract/thirdweb-explore.png)
+![thirdweb explore](../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/thirdweb-explore.png)
 
 2. Choose the type of contract you want to deploy from the available options: NFTs, tokens, marketplace, and more.
 3. Follow the on-screen prompts to configure and deploy your contract.
@@ -92,3 +92,7 @@ Deploy allows you to deploy a smart contract to any EVM compatible network witho
 > For additional information on Deploy, please reference [thirdweb’s documentation](https://portal.thirdweb.com/deploy).
 
 If you have any further questions or encounter any issues during the process, please [reach out to thirdweb support](https://support.thirdweb.com).
+
+## Deploy to Mainnet
+
+_Instructions coming soon!_

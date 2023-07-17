@@ -15,8 +15,8 @@ Here's a video walkthrough:
 
 Before you begin, Ensure you've:
 
-1. [Set up your wallet](/use-mainnet/set-up-your-wallet.mdx)
-1. [Funded your wallet with Linea ETH](/use-mainnet/fund.md#get-test-eth-on-linea)
+1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
+1. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md#get-test-eth-on-linea)
 
    ```bash
    curl -L https://foundry.paradigm.xyz | bash
@@ -67,3 +67,7 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
+
+## Deploy to Mainnet
+
+_Instructions coming soon!_
