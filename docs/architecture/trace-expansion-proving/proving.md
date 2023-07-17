@@ -1,3 +1,7 @@
+---
+title: "Proving: Circuit execution and runtime"
+sidebar_position: 2
+---
 
 ### gnark zk-snarks
 
