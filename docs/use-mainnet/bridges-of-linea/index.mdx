@@ -3,7 +3,50 @@ title: Bridge your tokens
 sidebar_position: 4
 --- 
 
-_Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon. Meanwhile, feel free to check out our [testnet docs](../../build-on-linea/use-linea-testnet/bridge-funds)_
+_Note: Our token bridge currently only supports the bridging of Eth. We will have ERC20 token compatibility soon._
+
+This is a step by step guide on how to brdige Eth from L1 to L2 and L2 to L1.
+
+
+# Bridging Eth from Ethereum (L1) to Linea (L2)
+
+# Automatic Claiming:
+
+1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+
+2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
+
+3. Verify that the Bridge is set to Ethereum → Linea Mainnet and that automatic claiming is enabled.
+
+4. Enter the amount of Eth you want to bridge over to Linnea Mainnet, and select the “Start Bridging” button. ![bridging amount](/img/docs/use-mainnet/token-bridge-step-3.png)
+
+5. Metamask will pop up asking you to confirm the transaction. ![metamask confirmation](/img/docs/use-mainnet/bridges-of-linea/metamask-confirmation.png)
+
+6. After confirming the transaction, it should take around 20 minutes for the transaction to reach Linnea Mainnet. You can see your pending transaction under the "Recent Transaction" section at the bottom of the token bridge. ![pending transaction](/img/docs/use-mainnet/bridges-of-linea/pending-transaction-l1-to-l2.png)
+
+7. You’re done! Under Recent Transactions, it should say "Bridging complete" and your Eth should now be on Linea Mainnet. ![confirmed transaction](/img/docs/use-mainnet/bridges-of-linea/confirmed-transaction-l1-to-l2.png)
+
+8. You can see your L2 wallet token balance under in Metamask if you configured Metamask to have Linea added to your networks. You can also check it on [blockscout](https://explorer.linea.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d/coin-balances#address-tabs 
+) in the "Coin Balance History Section". ![blockscout eth balance](/img/docs/use-mainnet/bridges-of-linea/blockscout-eth-balance.png)
+
+
+# Manual Claiming
+
+1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+
+2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
+
+3. Verify that the Bridge is set to Ethereum → Linea Mainnet and that manual claiming is enabled.
+
+4. Enter the amount of Eth you want to bridge over to Linnea Mainnet, and select the “Start Bridging” button. ![bridging manually amount](/img/docs/use-mainnet/manual-claiming.png)
+
+5. Metamask will pop up asking you to confirm the transaction. ![metamask confirmation](/img/docs/use-mainnet/bridges-of-linea/metamask-confirmation.png)
+
+6. You will see a “Claim Funds” button appear under the Recent Transactions section. Select the Claim Funds and a Metamask will prompt you to switch networks and confirm the transaction. 
+
+![claim funds](/img/docs/use-mainnet/bridges-of-linea/claim-funds.png)
+
+
 
 
 <!--!
