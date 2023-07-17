@@ -574,6 +574,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #121212;
 }
 
 .my-tabs {
@@ -582,7 +583,8 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   align-items: center;
   border-radius: 4px;
   overflow: hidden;
-  background-color: #f0f8ff;
+  background-color: #b3ccfb;
+  color: #121212; 
 }
 
 .my-tabs .tab-item {
@@ -592,19 +594,26 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   font-weight: 500;
   text-align: center;
   cursor: pointer;
-  background-color: #f8f8f8;
+  background-color: #b3ccfb;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  color: #121212; 
 }
 
 .my-tabs .tab-item:hover {
-  background-color: #f0f0f0;
+  background-color: #b3ccfb;
 }
 
 .my-tabs .tab-item.active {
-  background-color: #fff;
+  background-color: #b3ccfb;
+  color: #121212;
   border-bottom-color: #007bff;
   color: #007bff;
+}
+
+.all-mode-tabs {
+  color: #121212;
+  background-color: #b3ccfb;
 }
 
 
