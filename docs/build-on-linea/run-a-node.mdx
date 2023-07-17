@@ -15,9 +15,6 @@ If you're unfamiliar with how public blockchain networks share the responsibilit
 
 If you're ready to jump in, the instructions for running a mainnet Linea node come first, and Testnet, further down.
 
-## Prerequisites
-
-Set up the required and recommended hardware and all the utilities. You can find the recommendations from Geth [here](https://geth.ethereum.org/docs/getting-started/hardware-requirements)
 
 <aside>
 💡 The Ethereum client being used in this walkthrough (Geth) will soon be updated, including breaking changes. Please get in touch to make sure we keep you posted if you decide to run a node.
@@ -25,7 +22,18 @@ Set up the required and recommended hardware and all the utilities. You can find
 </aside>
 <br/>
 
-# Run a Linea node
+
+# How to run a Linea node
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs attributes={{className:"styles.my-tabs"}}>
+  <TabItem value="apple" label="Mainnet">
+
+## Prerequisites
+
+Set up the required and recommended hardware and all the utilities. You can find the recommendations from Geth [here](https://geth.ethereum.org/docs/getting-started/hardware-requirements)
 
 ### Step 1
 
@@ -86,8 +94,8 @@ enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b
 **If you're having trouble with your node**, hop over to [the Support page](https://support.linea.build) and open a ticket with our agents.
 
 ###
-
-# Run a Linea Testnet node
+  </TabItem>
+  <TabItem value="orange" label="Testnet">
 
 ## Prerequisites
 
@@ -143,6 +151,8 @@ geth \
 ```
 
 ### 
+  </TabItem>
+</Tabs>
 
 <aside>
   {/* Is this a Discord channel? */}

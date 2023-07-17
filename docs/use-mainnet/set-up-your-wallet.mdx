@@ -3,11 +3,17 @@ title: Set up your wallet
 description: Set up your wallet to start using Linea
 sidebar_position: 1
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-_Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon. Meanwhile, feel free to check out our [testnet docs](../build-on-linea/use-linea-testnet/set-up-your-wallet.mdx)_
+
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+  <i>Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon. </i>
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
 
 
-<!--! {/* 
 Linea is designed to be completely compatible with Ethereum. Because of that, **it works with MetaMask right out of the box**. (If you're not familiar with the identity manager, wallet, and web3 passport that is MetaMask, [get started here](https://support.metamask.io/hc/en-us/articles/360015489531)).
 
 In fact, **the MetaMask extension wallet provides connections to the Linea testnet already built-in**. There's no special wallet setup necessary! The only thing you'll need to do is switch to Linea; if you need some pointers, follow [MetaMask's instructions here](https://support.metamask.io/hc/en-us/articles/16367251716251).
@@ -27,7 +33,7 @@ Linea is **included in the available networks in MetaMask Mobile by default**. ð
 
 ## Other wallets
 
-Linea is compatible with any EVM-compatible wallet. If you want to add the Linea network, you can find the relevant network information under [Network information and deployed contracts](/use-mainnet/info-contracts.md#network-information).
+Linea is compatible with any EVM-compatible wallet. If you want to add the Linea network, you can find the relevant network information under [Network information and deployed contracts](./info-contracts.md).
 
 ### OK, so I've got Linea in MetaMask. What now?
 
@@ -61,11 +67,13 @@ Maybe they'd be willing to send you some test ETH. Grab [your account's public a
 
 ### Bridge your own
 
-If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](./bridge-funds).
+If you've got some Goerli ETH, or want to [swap for some](https://support.metamask.io/hc/en-us/articles/4415426473499-Third-party-swaps-platforms), then you'll be able to bridge that Goerli ETH up to Linea using the [bridge process outlined here](../build-on-linea/use-linea-testnet/bridge-funds/index.md).
 
 ## Is it a MetaMask problem, or a network problem, or dapp problem?
 
 If you're having technical difficulties, it can sometimes be hard to figure out where the problem is. The good news is, there's a lot of good support available to you in our ecosystem.
 
 If you're interacting with a dapp on Linea, try that dapp's documentation and resources first. If you can't find your answer there, take a look at the [Linea Support Help Center](https://support.linea.build), and search on the [Linea Community Forums](https://community.linea.build) for related issues. If it seems like a MetaMask issue at that point, jump over to [MetaMask's Help Center](https://support.metamask.io), where you can explore their forums, and start a conversation with Support staff.
--->
+  
+  </TabItem>
+</Tabs>
