@@ -1,5 +1,5 @@
 ---
-title: Proving
+title: "Proving: Circuit building"
 sidebar_position: 1
 ---
 
