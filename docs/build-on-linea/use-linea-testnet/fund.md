@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
 
-# Use a Linea faucet
+## Use a Linea faucet
 
 If you want to drip Goerli ETH directly to Linea, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
 
@@ -24,7 +24,7 @@ If you want to drip other tokens, you can find the [multi-token Linea faucet her
 To get Goerli ETH, you'll need to:
 
 1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
-1. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks) ![goerli eth card](/img/docs/use-mainnet/goerlieth_faucet.png)
+1. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks) ![goerli eth card](../../../static/img/docs/use-mainnet/goerlieth_faucet.png)
 1. Navigate to the list of faucets linked through the Goerli card
 1. Select a faucet and drip Goerli ETH
 
