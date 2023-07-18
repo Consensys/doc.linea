@@ -1,0 +1,161 @@
+---
+title: "Run a Linea Node"
+id: "run-a-node"
+---
+
+>
+> The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**. 
+>
+> **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes below**; otherwise, you might not be connected to the Linea network.
+> 
+
+### Interested in running a Linea node yourself? Of course you are. 
+
+If you're unfamiliar with how public blockchain networks share the responsibility of keeping common resources secure, check out [this explainer from MetaMask](https://support.metamask.io/hc/en-us/articles/360015489611-Learn-the-basics-of-blockchains-and-Ethereum-miners-and-validators-gas-cryptocurrencies-and-NFTs-block-explorer-networks-etc-). 
+
+If you're ready to jump in, the instructions for running a mainnet Linea node come first, and Testnet, further down.
+
+
+<aside>
+💡 The Ethereum client being used in this walkthrough (Geth) will soon be updated, including breaking changes. Please get in touch to make sure we keep you posted if you decide to run a node.
+**Note: You can run a Dockerized version as long as you keep the same parameters.**
+</aside>
+<br/>
+
+
+# How to run a Linea node
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
+
+## Prerequisites
+
+Set up the required and recommended hardware and all the utilities. You can find the recommendations from Geth [here](https://geth.ethereum.org/docs/getting-started/hardware-requirements)
+
+### Step 1
+
+Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) and install using the instructions provided [here](https://geth.ethereum.org/docs/getting-started/installing-geth)
+
+### Step 2
+
+Download `genesis.json`
+
+[genesis.json](pathname:///files/genesis.json)
+
+### Step 3
+
+Define a volume of at least `100GB`, more if you want to future-proof your node, and mount the Geth `datadir` to `geth-linea-data`
+
+### Step 4
+
+Bootstrap the node using the following command
+
+```bash
+geth --datadir ./geth-linea-data init ./genesis.json
+```
+
+### Step 5
+
+Start the node with the following command
+
+```bash
+geth \
+--datadir $HOME/geth-linea-data \
+--networkid 59144 \
+--miner.gasprice 1000000000 \
+--miner.gaslimit '0x3A2C940' \
+--rpc.allow-unprotected-txs \
+--txpool.accountqueue 50000 \
+--txpool.globalqueue 50000 \
+--txpool.globalslots 50000 \
+--txpool.pricelimit 1000000000 \
+--rpc.txfeecap 100 \
+--gpo.maxprice 100000000000000 \
+--txpool.nolocals \
+--http --http.addr '127.0.0.1' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+--ws --ws.addr '127.0.0.1' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
+--bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.128.49.168:30303" \
+--syncmode full \
+--metrics --pprof --pprof.addr "127.0.0.1" --pprof.port 9545 \
+--verbosity 3
+```
+--- 
+
+#### Additional bootnodes:
+
+```
+enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.130.182.201:30303
+enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.136.114.192:30303
+```
+
+**If you're having trouble with your node**, hop over to [the Support page](https://support.linea.build) and open a ticket with our agents.
+
+###
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
+
+## Prerequisites
+
+Set up the required and recommended hardware and all the utilities. You can find the recommendations from Geth [here](https://geth.ethereum.org/docs/getting-started/hardware-requirements)
+
+### Step 1
+
+Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) and install using the instructions provided [here](https://geth.ethereum.org/docs/getting-started/installing-geth)
+
+### Step 2
+
+Download `l2-genesis-uat.json`
+
+[l2-genesis-uat.json](pathname:///files/l2-genesis-uat.json)
+
+
+### Step 3
+
+Define a volume of `400GB` and mount the Geth `datadir` to `geth-uat-data`
+
+### Step 4
+
+Bootstrap the node using the following command
+
+```bash
+geth --datadir ./geth-uat-data init ./l2-genesis-uat.json
+```
+
+### Step 5
+
+Start the node with the following command
+
+```bash
+geth \
+--datadir $HOME/geth-uat-data \
+--networkid 59140 \
+--miner.gasprice 1000000000 \
+--miner.gaslimit '0x3A2C940' \
+--rpc.allow-unprotected-txs \
+--txpool.accountqueue 50000 \
+--txpool.globalqueue 50000 \
+--txpool.globalslots 50000 \
+--txpool.pricelimit 1000000000 \
+--rpc.txfeecap 100 \
+--gpo.maxprice 100000000000000 \
+--txpool.nolocals \
+--http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+--ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
+--bootnodes "enode://db471f0bad1da4f5e48042d0411bc38d5a245cf30ff76191e454c9ff2e27e57d45009b9c6e50d582c44332b05f2d747a8e995aa20399e80c22b1abb069332dde@3.17.183.45:30303,enode://1b10ff18e0d5055111af8cffe083d8d123ebede1dd5d81b3f8ce069ead6f0e70ec3217a0fa163bebaf1cd87b78e8f630182d703e1aebde93996dd5f67fa89389@18.117.161.184:30303,enode://25a42af9d7573a6299b54bb3c2d6566e59079ab1b94b4d42aa44325252d85f45f0bfe8b40dd476a4ee30c7007b61ab34375875ffa668b73eccc9c32640b17e48@3.20.238.193:30303,enode://3dfed9020ade850dca85d2855d42bfb431d1dbfdaec529ad66773bff434e473c071849dddf9cd43f9c529777a384bf5293463baecd4aea7623e575877fd30024@3.18.97.19:30303,enode://68848179e1bfe737045d19734db8f83ce3f85739d551a1e4c4661486380f69677316445375323172e5fcdbd5e26ccbb94306b647b7ac0468de9e9e775a0fbed6@18.190.156.63:30303" \
+--syncmode full \
+--metrics --pprof --pprof.addr "0.0.0.0" --pprof.port 9545 \
+--verbosity 3
+```
+
+### 
+  </TabItem>
+</Tabs>
+
+<aside>
+  {/* Is this a Discord channel? */}
+  💡 Please feel free to contact us at the Linea Community Forum <a href="https://community.linea.build/c/developer-support/5">here</a> if you have any issues.
+</aside>
+<br/>

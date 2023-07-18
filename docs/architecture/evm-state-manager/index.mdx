@@ -1,0 +1,30 @@
+---
+title: EVM State Manager
+sidebar_position: 4
+---
+
+## EVM State Manager
+
+### What is it?
+
+The part of the execution client responsible for updating the state of the network globally, and the state of every account individually.
+
+### What does it do?
+
+Receives blocks that have been executed by the sequencer, and uses the trace data from their execution to update the state of the network. It then passes this updated network state information to the prover, for subsequent submission to Ethereum
+
+### How does it do it?
+
+Through the Promethean power of cryptography and the careful stewardship of Merkle trees 😝
+
+The state of every account in the zkEVM is represented by a hash: a unique, encrypted and brief identifier. Because of the way hashes work, any change in the state of an account will result in a changed, but still unique and encrypted, hash.
+
+The relationship between accounts–which accounts control which ones, for example–is represented by a tree structure. The way a small twig is derived from a larger branch, and that from a trunk: in this way, the entire bifurcating, iterative history of the network state is retained.
+
+zkBesu uses a particular version of this technology called a Sparse Merkle Tree: it uses default values to represent certain levels of branching in the tree–and if there has been no change to that default value, it means there has been no activity “further out the branch”, and therefore no need to store data regarding it. This allows the network to be much more efficient, at the level of data storage and other improvements based on that, than other implementations of Merkle trees.
+
+The state manager in zkBesu is relatively simple, and has two main functions: updating the state of the network, and proof generation.
+
+- The sequencer executes a block, and sends it not only to the trace generator for it to do its job, but also to the state manager. Upon receiving an executed block from the sequencer, the state manager updates the state, in the Merkle tree, of every account that was affected, as documented in the trace data.
+- The new values, represented by new hashes, are now the state of the network following that block.
+- This new network state is necessary to generate a proof for submission to Ethereum. Therefore, the state manager passes the information off to the prover.

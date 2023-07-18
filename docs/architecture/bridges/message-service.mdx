@@ -1,0 +1,90 @@
+---
+title: Message service
+sidebar_position: 1
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import IMessageService from "!!raw-loader!/files/testnet/IMessageService.sol";
+import MessageServiceBase from "!!raw-loader!/files/testnet/MessageServiceBase.sol";
+
+# Message service
+
+The Message Service is responsible for cross-chain messages between Ethereum and Linea, which:
+
+- Allows a contract on the source chain to safely interact with a contract on the target chain (e.g. L1TokenBridge triggering mint on the L2TokenBridge),
+- Is responsible for bridging ETH (native currency on L1 and L2)
+- Supports:
+  - **push**: auto-execution on target layer if a fee is paid (not yet available)
+  - **pull**: users / protocols responsible for triggering the transaction
+
+## Contracts
+
+<table>
+  <tbody>
+    <tr>
+      <th>Contract</th>
+      <th>L1 (Goerli) Address</th>
+      <th>L2 (Linea) Address</th>
+    </tr>
+    <tr>
+      <td>Transparent Proxy</td>
+      <td>
+        <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">
+          0x70BaD09280FD342D02fe64119779BC1f0791BAC2
+        </a>
+      </td>
+      <td>
+        <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">
+          0xC499a572640B64eA1C8c194c43Bc3E19940719dC
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Implementation</td>
+      <td>
+        <a href="https://goerli.etherscan.io/address/0x2652e1547Ac6b9a0311cF1B7F024a378f30ad8D8#code">
+          0x2652e1547Ac6b9a0311cF1B7F024a378f30ad8D8
+        </a>
+      </td>
+      <td>
+        <a href="https://goerli.lineascan.build/address/0xc0557e2149751e201749b87f86acd91DB22e2662/contracts#address-tabs">
+          0xc0557e2149751e201749b87f86acd91DB22e2662
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## How to use
+
+### Workflow
+
+1. dApp calls `sendMessage(...)` on the origin layer using [`MessageService.sol`](https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract)
+   - Args:
+     - `_to`: the destination address on the destination chain
+     - `_fee`: the message service fee on the origin chain
+       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (this is not yet available)
+     - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
+       - Example: the Canonical Token Bridge (link to Etherscan)
+1. dApp uses the Postman SDK (details to come) to pay for the execution of messages on the destination layer by:
+   - Triggering the delivery
+     - If messages don’t get delivered by the postman, the message can be manually claimed by calling `claimMessage` with the parameters detailed in the [interface below](#interface-imessageservicesol) or by using the SDK.
+   - Receiving the delivery in the dApp smart-contract
+     - This triggers `claimMessage(...)` on the destination layer that will call `_to` with `_calldata` and a value equal to.
+     - The dApp smart-contract can inherit from `MessageServiceBase.sol` to:
+       - Verify that the call comes from the MessageService `onlyMessagingService`
+       - Verify that the sender on the origin chain comes from a trusted contract (usually the dApp sibling contract) using `onlyAuthorizedRemoteSender()`
+
+## Interface IMessageService.sol
+
+<details>
+  <summary>IMessageService.sol</summary>
+  <CodeBlock language="solidity">{IMessageService}</CodeBlock>
+</details>
+
+## Abstract contract MessageServiceBase.sol
+
+<details>
+  <summary>MessageServiceBase.sol</summary>
+  <CodeBlock language="solidity">{MessageServiceBase}</CodeBlock>
+</details>
