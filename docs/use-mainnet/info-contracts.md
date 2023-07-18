@@ -83,11 +83,11 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
     <th>Address</th>
   </tr>
   <tr>
-    <td>Linea rollup and L1Bridge</td>
+    <td>L1 Message Service</td>
     <td><a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">0xd19d4B5d358258f05D7B411E21A1460D11B0876F</a></td>
   </tr>
   <tr>
-    <td>L2Bridge</td>
+    <td>L2 Message Service</td>
     <td><a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec</a></td>
   </tr>
 </table>
@@ -99,11 +99,11 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
     <th>Address</th>
   </tr>
   <tr>
-    <td>Linea rollup and L1Bridge</td>
+    <td>L1 Message Service</td>
     <td><a href="https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40">0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40</a></td>
   </tr>
   <tr>
-    <td>L2Bridge</td>
+    <td>L2 Message Service</td>
     <td><a href="https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d">0xA59477f7742Ba7d51bb1E487a8540aB339d6801d</a></td>
   </tr>
 </table>
