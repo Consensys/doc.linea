@@ -77,19 +77,12 @@ geth \
 --txpool.nolocals \
 --http --http.addr '127.0.0.1' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
 --ws --ws.addr '127.0.0.1' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
---bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.128.49.168:30303" \
+--bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.128.49.168:30303,enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.130.182.201:30303,enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.136.114.192:30303" \
 --syncmode full \
 --metrics --pprof --pprof.addr "127.0.0.1" --pprof.port 9545 \
 --verbosity 3
 ```
 --- 
-
-#### Additional bootnodes:
-
-```
-enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.130.182.201:30303
-enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.136.114.192:30303
-```
 
 **If you're having trouble with your node**, hop over to [the Support page](https://support.linea.build) and open a ticket with our agents.
 
