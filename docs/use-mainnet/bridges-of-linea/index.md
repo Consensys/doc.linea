@@ -27,7 +27,7 @@ This message is then picked up by programs serving as "postmen", and moved to th
 
 ### The Canonical Token Bridge
 
-If you want to move tokens between L1 and L2, we recommend you use the bridge made on top of the Canonical Message Bridge, specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.dev.linea.build](https://bridge.dev.linea.build): **instructions below!**
+If you want to move tokens between L1 and L2, we recommend you use the bridge made on top of the Canonical Message Bridge, specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build): **instructions below!**
 
 ### Official, Third-Party, Permissionless Bridges, and beyond
 
@@ -40,7 +40,7 @@ _Our token bridge currently only supports the bridging of ETH. We will have ERC2
 
 :::note
 
-This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L2) and Linea (L2) to Ethereum (L1). The screenshots provided are examples of bridging ETH for Linea  and Ethereum Mainnet. To bridge ETH over Testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.dev.linea.build/) and follow the same steps as below.
+This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L2) and Linea (L2) to Ethereum (L1). The screenshots provided are examples of bridging ETH for Linea  and Ethereum Mainnet. To bridge ETH over Testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.
 
 :::
 
@@ -49,7 +49,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 ## Automatic Claiming:
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
@@ -69,7 +69,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 ## Manual Claiming
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
@@ -94,7 +94,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 ## Bridging ETH from Linea Mainnet (L2) to Ethereum Mainnet (L1)
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
