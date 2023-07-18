@@ -108,7 +108,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 6. The pending transaction will show up in the “Recent Transactions” section of the bridge. _Reminder:  It takes at least 8 hours for the transaction to go through from L2 to L1._ ![pending transaction](/img/docs/use-mainnet/bridges-of-linea/pending-transaction-L2-L1.png).
 
-7. Claim the message and your balance should appear in your L1 wallet!.
+7. Claim the message and your balance should appear in your L1 wallet!. ![claim message](/img/docs/use-mainnet/bridges-of-linea/claim-message-l2-l1.png)
 
 8. You're done! You can check your Ethereum wallet balance on MetaMask or a block explorer such as [etherscan](https://etherscan.io/)!
 
