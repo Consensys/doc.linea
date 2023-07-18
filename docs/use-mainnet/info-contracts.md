@@ -39,7 +39,6 @@ You can find out how to navigate to Linea network status [here](./../network-sta
         <td align="left">https://explorer.linea.build/</td>
     </tr>
 </table>
- 
 
  > _Note: Linea is currently doing a soft launch with specific partners. Public availability will be announced soon._
 
@@ -78,7 +77,20 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
-    Mainnet contracts coming soon.
+      <table>
+  <tr>
+    <th>Contract</th>
+    <th>Address</th>
+  </tr>
+  <tr>
+    <td>Linea rollup and L1Bridge</td>
+    <td><a href="https://etherscan.io/address/0x4c8d4Ce72afAA417d1F7E833725FdB4E793cd6b3">0x4c8d4Ce72afAA417d1F7E833725FdB4E793cd6b3</a></td>
+  </tr>
+  <tr>
+    <td>L2Bridge</td>
+    <td><a href="https://lineascan.build/address/0x89e70e2aaad2021cea50b1eb235b7fe97625147d">0x89e70E2AAAD2021cEa50b1eb235B7Fe97625147d</a></td>
+  </tr>
+</table>
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
     <table>
