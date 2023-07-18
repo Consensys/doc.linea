@@ -63,8 +63,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 7. You’re done! Under Recent Transactions, it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._ ![confirmed transaction](/img/docs/use-mainnet/bridges-of-linea/confirmed-transaction-l1-to-l2.png) 
 
-8. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [blockscout](https://explorer.linea.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d/coin-balances#address-tabs 
-) in the "Coin Balance History Section". Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
+8. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
 
 
 ## Manual Claiming
@@ -88,8 +87,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 8. You’re done! Under Recent Transactions, it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._ ![confirmed transaction](/img/docs/use-mainnet/bridges-of-linea/Confirmation-manual-claim.png)
 
-9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [blockscout](https://explorer.linea.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d/coin-balances#address-tabs 
-) in the "Coin Balance History Section". Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
+9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
 
 
 ## Bridging ETH from Linea Mainnet (L2) to Ethereum Mainnet (L1)
