@@ -1,5 +1,5 @@
 ---
-title: Smart Wallets
+title: Smart Accounts
 sidebar_position: 2
 ---
 
