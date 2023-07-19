@@ -11,7 +11,7 @@ Any L2 is going to have a lot of connections to other networks. Some of these br
 > ### What's going on here?
 > Linea, like any other rollup network, is designed to offer its own experience, while 'reporting back' to another network (usually Ethereum Mainnet) on all the activity that happens on it (at least, at the level of transactions); this means that the 'Layer 1' network is tracking all the activity on the 'Layer 2'. In this way, L2s are said to 'inherit the security of the L1'.
 > 
-> One of the main reasons you would want a rollup network is for it to be totally interoperable with the L1, and one of the main things you need to make networks interoperable is enable people to move things back and forth between them. The class of tools used to this, broadly, are called **bridges**.
+> One of the main reasons you would want a rollup network is for it to be totally interoperable with the L1, and one of the main things you need to make networks interoperable is enable people to move things back and forth between them. The class of tools used to do this, broadly, are called **bridges**.
 >
 > Ok, now you're up to speed 🚀
 
@@ -19,7 +19,7 @@ Any L2 is going to have a lot of connections to other networks. Some of these br
 
 ### The Canonical Message Bridge
 
-The main "bridge", on a technical level, in Linea is the *Canonical Token Bridge*. This is the underlying set of smart contracts which keep track of receiving requests to move tokens to the other layer, and of sending the message that those tokens should be transferred. 
+The main "bridge", on a technical level, in Linea is the *Canonical Message Bridge*. This is the underlying set of smart contracts which keep track of receiving requests to move tokens to the other layer, and of sending the message that those tokens should be transferred.
 
 ### The Postfrens
 
