@@ -3,28 +3,30 @@ title: Smart Wallets
 sidebar_position: 2
 ---
 
-# thirdweb
+# Smart Contract-Enabled Accounts on Linea
 
-thirdweb released their Smart Wallet SDK implementing EIP-4337 and leveraging Pimlico infrastructure for Bundler and Paymaster.
+## thirdweb
 
-A smart contract wallet is a type of Web3 wallet powered by smart contracts.
+thirdweb released their Smart Wallet SDK, implementing EIP-4337 and leveraging Pimlico infrastructure for Bundler and Paymaster.
 
-This smart wallet is unlocked by a 'key' - a personal account. This key can be anything from a MetaMask wallet or even a Local Wallet and is used as a way to 'sign in' to the wallet.
+A smart contract-enabled account is a type of Web3 account that can be customized by smart contracts.
 
-### Benefits of Smart Wallets:
+This smart account is unlocked by a private key. This key can be held in MetaMask, on your local machine, or elsewhere, and is used as a way to 'sign in' to the account.
+
+### Benefits of Smart Contract-Enabled Accounts:
 
 1. Optimized transaction efficiency & batch transactions
 2. Combine multiple transactions into a single transaction to save on gas fees
 3. Improved Security Features
 4. Social & Multi-Sig Recovery
-5. Recover a wallet without seed phrases/passwords
-6. Nominate a trusted person to recover your wallet in the case of an emergency
+5. Recover an account without seed phrases/passwords
+6. Nominate a trusted person to recover your account in the case of an emergency
 
-### Use case for Smart Wallet SDK:
+### Use case for the thirdweb Smart Wallet SDK:
 
-As a dapp developer you may want to control the user experience from the onboarding phase and embed a smart wallet in your dapp by default. thirdweb Smart Wallet SDK will help you doing this with low code with Node.js and React templates.
+As a dapp developer, you may want to control the user experience from the onboarding phase and embed a smart wallet in your dapp by default. thirdweb's Smart Wallet SDK will help you to do this with low-code, with Node.js, and React templates.
 
-Here you can find the documentation on thirdweb Smart Wallet: Before you begin, ensure you've:
+Here you can find the documentation on thirdweb's Smart Wallet:
 
 1. [Smart Wallet Docs and Templates](https://portal.thirdweb.com/wallet/smart-wallet)
 1. [Factories and Contracts](https://thirdweb.com/explore/smart-wallet)
