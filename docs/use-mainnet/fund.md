@@ -3,15 +3,13 @@ title: Fund your accounts
 description: Get tokens in your accounts
 sidebar_position: 3
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
   <i>Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon.</i>
- 
+
 
 <!-- Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
 
@@ -27,7 +25,7 @@ Specific tokens require specific bridges. If you want to bridge from Goerli to L
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
-  Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
+Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
 
 ## Use a Linea faucet
 

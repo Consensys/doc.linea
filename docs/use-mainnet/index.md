@@ -3,7 +3,7 @@ title: Use Linea
 sidebar_position: 2
 ---
 
- _Note: Linea is currently doing a soft launch with specific partners. Certain availability is coming online; **the following sections will be updated as they do**._
+_Note: Linea is currently doing a soft launch with specific partners. Certain availability is coming online; **the following sections will be updated as they do**._
 
 Linea is meant to be fully compatible with Ethereum, full stop. There are already a lot of dapps that have deployed to the network—and if there's one that hasn't deployed (for example, yours 👀) we're here to help you get it there.
 
@@ -15,4 +15,4 @@ This section should walk you through everything you need to get started:
 4. [Get funds from a faucet](./fund.md)
 5. [Send a transaction](./transact.md)
 
-If you run into a problem, step on over to the [Linea Support page](https://support.linea.build/hc/en-us) and let us know. 
+If you run into a problem, step on over to the [Linea Support page](https://support.linea.build/hc/en-us) and let us know.

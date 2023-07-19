@@ -2,6 +2,7 @@
 title: Use OpenOcean
 sidebar_position: 1
 ---
+
 **OpenOcean**
 
 OpenOcean is a leading DEX Aggregator, a cross-chain swap aggregator, and Web 3 middleware developer in the crypto space, offering a suite of tools across 25+ networks and 300+ deep liquidity sources. OpenOcean is building a one-stop trading platform, to bring users the best swap return for decentralized crypto trading.
@@ -17,7 +18,7 @@ Before you start, please ensure your wallet is:
 
 ![](https://lh4.googleusercontent.com/RcoFoockoWiICCht0cfajol5PMjZs7BsV-J2t5J6cJCxAyO5oBk0Ygew-q53qWK93j8qWuJeCPAU7Yz2a6zhIek3tjHHkX-KIK4yLN17iaUeWyCnxr-PClqi_g-LrT970wJQR6OhZ9H_0TPxGhItqHo)
 
-1. Scroll down and choose Linea Testnet then connect the avail. wallets you prefer (Below we use MetaMask as an example). 
+1. Scroll down and choose Linea Testnet then connect the avail. wallets you prefer (Below we use MetaMask as an example).
 
 ![img](https://lh4.googleusercontent.com/UnBzj6BkK9IxILU_cwITZH2lymBido6icIJnkvVCt7m-iq3i6bao8B5vUXhLEd6gNU_Jm_wHqC5fWELQSxZ6l2NvPF2yVilqPhTrjLOG6IUCBqeR4xai5tYehvz5-b2tLiQUrWO6v0459ByNJMo7Jn4)
 

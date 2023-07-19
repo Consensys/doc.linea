@@ -3,27 +3,26 @@ title: "Run a Linea Node"
 id: "run-a-node"
 ---
 
->
-> The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**. 
+> The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**.
 >
 > **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes below**; otherwise, you might not be connected to the Linea network.
-> 
 
-### Interested in running a Linea node yourself? Of course you are. 
+### Interested in running a Linea node yourself? Of course you are.
 
-If you're unfamiliar with how public blockchain networks share the responsibility of keeping common resources secure, check out [this explainer from MetaMask](https://support.metamask.io/hc/en-us/articles/360015489611-Learn-the-basics-of-blockchains-and-Ethereum-miners-and-validators-gas-cryptocurrencies-and-NFTs-block-explorer-networks-etc-). 
+If you're unfamiliar with how public blockchain networks share the responsibility of keeping common resources secure, check out [this explainer from MetaMask](https://support.metamask.io/hc/en-us/articles/360015489611-Learn-the-basics-of-blockchains-and-Ethereum-miners-and-validators-gas-cryptocurrencies-and-NFTs-block-explorer-networks-etc-).
 
 <aside>
-💡 The Ethereum client being used in this walkthrough (Geth) will soon be updated, including breaking changes. Please get in touch to make sure we keep you posted if you decide to run a node.
-**Note: You can run a Dockerized version as long as you keep the same parameters.**
+  💡 The Ethereum client being used in this walkthrough (Geth) will soon be
+  updated, including breaking changes. Please get in touch to make sure we keep
+  you posted if you decide to run a node. **Note: You can run a Dockerized
+  version as long as you keep the same parameters.**
 </aside>
-<br/>
-
+<br />
 
 # How to run a Linea node
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet">
@@ -79,11 +78,13 @@ geth \
 --metrics --pprof --pprof.addr "127.0.0.1" --pprof.port 9545 \
 --verbosity 3
 ```
---- 
+
+---
 
 **If you're having trouble with your node**, hop over to [the Support page](https://support.linea.build) and open a ticket with our agents.
 
 ###
+
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
@@ -100,7 +101,6 @@ Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) a
 Download `l2-genesis-uat.json`
 
 [l2-genesis-uat.json](pathname:///files/l2-genesis-uat.json)
-
 
 ### Step 3
 
@@ -140,12 +140,15 @@ geth \
 --verbosity 3
 ```
 
-### 
+###
+
   </TabItem>
 </Tabs>
 
 <aside>
   {/* Is this a Discord channel? */}
-  💡 Please feel free to contact us at the Linea Community Forum <a href="https://community.linea.build/c/developer-support/5">here</a> if you have any issues.
+  💡 Please feel free to contact us at the Linea Community Forum <a href="https://community.linea.build/c/developer-support/5">
+    here
+  </a> if you have any issues.
 </aside>
-<br/>
+<br />

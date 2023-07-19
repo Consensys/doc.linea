@@ -2,8 +2,8 @@
 title: Network info and deployed contracts
 sidebar_position: 5
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Network information and deployed contracts
 
@@ -12,7 +12,6 @@ import TabItem from '@theme/TabItem';
 You can find out how to navigate to Linea network status [here](./../network-status/index.mdx).
 
 ## Network information
-
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem 
@@ -40,7 +39,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
 </table>
 
- > _Note: Linea is currently doing a soft launch with specific partners. Public availability will be announced soon._
+> _Note: Linea is currently doing a soft launch with specific partners. Public availability will be announced soon._
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
@@ -69,9 +68,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
 
 ## Connect with Infura
 
-If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147).
-  </TabItem>
-</Tabs>
+If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147). </TabItem> </Tabs>
 
 ## Deployed contracts
 
