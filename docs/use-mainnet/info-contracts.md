@@ -36,7 +36,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left">https://explorer.linea.build/</td>
+        <td align="left">https://lineascan.build/</td>
     </tr>
 </table>
 
