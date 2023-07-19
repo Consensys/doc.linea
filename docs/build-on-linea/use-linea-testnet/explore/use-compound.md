@@ -104,4 +104,3 @@ It can occur that sometimes, the pending transactions displayed on the website a
 2. Then click on "Clear" in the popup
 
 ![Make](/img/quests/compound/compound-16.png)
-

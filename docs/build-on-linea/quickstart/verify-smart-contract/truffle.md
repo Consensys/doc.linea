@@ -5,7 +5,7 @@ sidebar_position: 1
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/build-on-linea/quickstart/deploy-smart-contract/truffle.mdx/#truffle-configjs).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](./../deploy-smart-contract/truffle.mdx/#truffle-configjs).
 
 ## Download the plugin
 
@@ -27,7 +27,7 @@ module.exports = {
 
 ## Add your Etherscan API Key
 
-Then, you'll need to get an Etherscan key by creating an account at https://etherscan.io/. Grab your key, and add it to the `.env` file:
+Then, you'll need to get an Etherscan key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
 ```
 MNEMONIC=YOUR_MNEMONIC_HERE
@@ -90,4 +90,4 @@ Verifying contracts on sourcify
 
 You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
 
-![verified contract](/img/quests/blockscout_verification.png)
+![verified contract](./../../../../static/img/quests/blockscout_verification.png)
