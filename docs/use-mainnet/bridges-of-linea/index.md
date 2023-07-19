@@ -27,7 +27,7 @@ This message is then picked up by programs serving as "postmen", and moved to th
 
 ### The Canonical Token Bridge
 
-If you want to move tokens between L1 and L2, we recommend you use the bridge made on top of the Canonical Message Bridge, specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.dev.linea.build](https://bridge.dev.linea.build): **instructions below!**
+If you want to move tokens between L1 and L2, we recommend you use the bridge made on top of the Canonical Message Bridge, specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build): **instructions below!**
 
 ### Official, Third-Party, Permissionless Bridges, and beyond
 
@@ -40,16 +40,23 @@ _Our token bridge currently only supports the bridging of ETH. We will have ERC2
 
 :::note
 
-This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L2) and Linea (L2) to Ethereum (L1). The screenshots provided are examples of bridging ETH for Linea  and Ethereum Mainnet. To bridge ETH over Testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.dev.linea.build/) and follow the same steps as below.
+This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L2) and Linea (L2) to Ethereum (L1). The screenshots provided are examples of bridging ETH for Linea  and Ethereum Mainnet. To bridge ETH over Testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.
 
 :::
 
+## Manual vs Automatic Claiming
+Manual claiming requires two transactions to be approved. One on the source layer to initiate the bridging process and the other on the target layer by the recipient to receive the funds, which we call "claiming". This means that in order to receive the funds, the recipient has to pay a fee on the target layer.
 
-## Bridging ETH from Ethereum to Linea
+Automatic claiming only requires one transaction to be approved on the source layer. The recipient will automatically receive their funds because a "postman" will handle the claiming process for them.
+
+## Bridging Eth from Ethereum to Linea
+ 
+> **Please use the automatic claiming option the first time you bridge Eth from L1 to L2. Manual claiming requires you to have L2 Eth available to pay for the fees. If you don't have enough L2 Eth to cover the fees, your transaction will be stuck on the bridge until you can cover the fees!**
+
 
 ## Automatic Claiming:
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
@@ -63,13 +70,12 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 7. You’re done! Under Recent Transactions, it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._ ![confirmed transaction](/img/docs/use-mainnet/bridges-of-linea/confirmed-transaction-l1-to-l2.png) 
 
-8. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [blockscout](https://explorer.linea.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d/coin-balances#address-tabs 
-) in the "Coin Balance History Section". Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
+8. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
 
 
 ## Manual Claiming
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
@@ -88,13 +94,18 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 8. You’re done! Under Recent Transactions, it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._ ![confirmed transaction](/img/docs/use-mainnet/bridges-of-linea/Confirmation-manual-claim.png)
 
-9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [blockscout](https://explorer.linea.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d/coin-balances#address-tabs 
-) in the "Coin Balance History Section". Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
+9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
 
 
-## Bridging ETH from Linea Mainnet (L2) to Ethereum Mainnet (L1)
+## Bridging Eth from Linea Mainnet (L2) to Ethereum Mainnet (L1)
 
-1. Go to our token bridge [here](https://bridge.dev.linea.build/). 
+:::note
+
+Automatic claiming is only available for Eth L1 to L2 bridging. You will not be able to select this option for L2 to L1 bridging.
+
+:::
+
+1. Go to our token bridge [here](https://bridge.linea.build/). 
 
 2. Connect your wallet in top right corner of the page. ![connect to token bridge](/img/docs/use-mainnet/bridges-of-linea/linea-bridge-connect.png)
 
@@ -108,7 +119,11 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 6. The pending transaction will show up in the “Recent Transactions” section of the bridge. _Reminder:  It takes at least 8 hours for the transaction to go through from L2 to L1._ ![pending transaction](/img/docs/use-mainnet/bridges-of-linea/pending-transaction-L2-L1.png).
 
-7. Claim the message and your balance should appear in your L1 wallet!.
+7. You will see a “Claim Funds” button appear under the Recent Transactions section. Select the "Claim Funds" button to continue the bridging process. 
 
-8. You're done! You can check your Ethereum wallet balance on MetaMask or a block explorer such as [etherscan](https://etherscan.io/)!
+![claim message](/img/docs/use-mainnet/bridges-of-linea/claim-message-l2-l1.png)
+
+8. MetaMask will ask you to switch networks and to confirm the transaction from the previous step.
+
+9. You're done! You can check your Ethereum wallet balance on MetaMask or a block explorer such as [etherscan](https://etherscan.io/)!
 
