@@ -5,7 +5,7 @@ sidebar_position: 1
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/build-on-linea/quickstart/deploy-smart-contract/truffle.mdx/#truffle-configjs).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](./../deploy-smart-contract/truffle.mdx/#truffle-configjs).
 
 ## Download the plugin
 
@@ -90,4 +90,4 @@ Verifying contracts on sourcify
 
 You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
 
-![verified contract](/img/quests/blockscout_verification.png)
+![verified contract](./../../../../static/img/quests/blockscout_verification.png)
