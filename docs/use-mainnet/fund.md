@@ -8,20 +8,20 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
-  <i>Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon.</i>
 
+## Getting tokens on Linea 
+There are several ways to get tokens on Linea: **from a friend** (or a fren) or **by bridging it**, and hopefully soon, a more direct solution 👀. Here are some resources to get you started:
 
-<!-- Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
+### Getting tokens from a fren
 
-# Buy directly on Linea
+Do you know someone who's a Linea 🐳, and is willing to give you some ETH? Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](./transact.md).
 
-# Use a bridge
+**Remember: you can't just send tokens from one network to another. That's not how it works.**
 
-## Get other tokens on Linea
+### 🌉Bridge your own🌉
 
-:::
+If you've got some ETH on Mainnet, or want to [buy some](https://support.metamask.io/hc/en-us/articles/360058239311), then you'll be able to bridge that ETH up to Linea using the [bridge process outlined here](../use-mainnet/bridges-of-linea/index.mdx).
 
-Specific tokens require specific bridges. If you want to bridge from Goerli to Linea, you can find the tokens, contract addresses, and associated bridges [here](/use-mainnet/info-contracts.md#token-contract-addresses-and-bridges). -->
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
