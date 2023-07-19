@@ -47,7 +47,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 ## Manual vs Automatic Claiming
 Manual claiming requires two transactions to be approved. One on the source layer to initiate the bridging process and the other on the target layer by the recipient to receive the funds, which we call "claiming". This means that in order to receive the funds, the recipient has to pay a fee on the target layer.
 
-Automatic claiming only requires one transaction to be approved on  the source layer. The recipient will automatically receive their funds because a "postman" will handle the claiming process for them.
+Automatic claiming only requires one transaction to be approved on the source layer. The recipient will automatically receive their funds because a "postman" will handle the claiming process for them.
 
 ## Bridging Eth from Ethereum to Linea
  
