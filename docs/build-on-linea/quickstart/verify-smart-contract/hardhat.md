@@ -35,7 +35,7 @@ We'll be using a `.env` file to store our sensitive information:
 npm i -D dotenv
 ```
 
-Next, you'll need to get an Etherscan key by creating an account at https://etherscan.io/. Grab your key, and add it to the `.env` file:
+Next, you'll need to get an Etherscan key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey)/. Grab your key, and add it to the `.env` file:
 
 ```
 PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE

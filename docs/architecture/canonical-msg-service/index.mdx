@@ -25,8 +25,11 @@ A user initiates a network-to-network transfer by executing a call on one of the
 
 The Postbots are one part of Linea that are currently centralized while in beta testnet, but will be decentralized when the network goes to mainnet. In fact, anyone will be able to participate and serve as a Postbot. The Postbots are essentially actors that "listen" for calls being made to one of the contracts, either on Linea or Ethereum, and pass the information submitted to the other network.
 
-Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users currently have to then _pull_ the transferred assets out of the destination end of the bridge, although soon functionality will be available to allow the user to pay up-front and allow the assets to be _pushed_ directly to the destination address.
+Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users can either choose to manually _pull_ the transferred assets out of the destination end of the bridge, or pay up-front and allow the assets to be _pushed_ directly to the destination address.
 
 > ### OK, so we've transferred assets to Linea. What's going on up here? How do things work on Layer 2?
 
 Meet the Coordinator.
+
+<!--! Question from Mario Christopher: Is the current state coming in as a Merkle Tree ? or How ?
+If yes, then is the updated Merkle tree, the original Tree going back to L1 with updates ? -->

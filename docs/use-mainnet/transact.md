@@ -6,7 +6,7 @@ sidebar_position: 3
 
 _Note: Linea is currently doing a soft launch of Mainnet with specific partners. Public availability will be announced soon. Meanwhile, feel free to check out our [testnet docs](../build-on-linea/use-linea-testnet)_
 
-<!-- 
+<!--
 # Transfer funds between accounts
 
 You can use your MetaMask wallet to transfer funds between accounts in the Linea network.
