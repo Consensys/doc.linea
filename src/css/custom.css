@@ -23,31 +23,40 @@ hr {
   font-family: inherit;
   height: 0;
   color: inherit;
-  border-top-width: 1px
+  border-top-width: 1px;
 }
 
 abbr:where([title]) {
   text-decoration: underline dotted;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: inherit;
-  font-weight: inherit
+  font-weight: inherit;
 }
 
 a {
   font-family: inherit;
   color: #2eb9dc;
-  text-decoration: inherit
+  text-decoration: inherit;
 }
 
-#b,#strong {
+#b,
+#strong {
   font-family: inherit;
 }
 
-code,kbd,pre,samp {
+code,
+kbd,
+pre,
+samp {
   font-family: inherit;
-  font-size: 1em
+  font-size: 1em;
 }
 
 small {
@@ -55,37 +64,42 @@ small {
   font-size: 80%;
 }
 
-sub,sup {
+sub,
+sup {
   font-family: inherit;
   font-size: 75%;
   line-height: 0;
   position: relative;
-  vertical-align: baseline
+  vertical-align: baseline;
 }
 
 sub {
-  bottom: -.25em
+  bottom: -0.25em;
 }
 
 sup {
-  top: -.5em
+  top: -0.5em;
 }
 
 table {
   font-family: inherit;
   text-indent: 0;
   border-color: inherit;
-  border-collapse: collapse
+  border-collapse: collapse;
 }
 
-button,input,optgroup,select,textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: inherit;
   font-size: 100%;
   font-weight: inherit;
   line-height: inherit;
   color: inherit;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 :root {
@@ -101,14 +115,14 @@ button,input,optgroup,select,textarea {
 [data-theme="dark"] {
   --ifm-color-primary-lightest: #fff;
   --ifm-color-primary-lighter: #fff;
-  --ifm-color-primary-light: #BFE8FF;
+  --ifm-color-primary-light: #bfe8ff;
   --ifm-color-primary: #fff;
   --ifm-color-primary-dark: #dcf1fd;
-  --ifm-color-primary-darker: #61DFFF;
+  --ifm-color-primary-darker: #61dfff;
   --ifm-color-primary-darkest: #58cbe8;
-  --ifm-color-success: #61DFFF;
+  --ifm-color-success: #61dfff;
   --ifm-color-success-dark: #58cbe8;
-  --ifm-color-info: #C0C0C0;
+  --ifm-color-info: #c0c0c0;
   --ifm-color-info-dark: #989898;
   --ifm-link-color: #2eb9dc;
   --ifm-menu-color-active: #2eb9dc;
@@ -117,22 +131,22 @@ button,input,optgroup,select,textarea {
 }
 
 [data-theme="light"] {
-  --ifm-color-primary-lightest: #EAF0FF;
-  --ifm-color-primary-lighter: #A5E5FF;
-  --ifm-color-primary-light: #61DFFF ;
+  --ifm-color-primary-lightest: #eaf0ff;
+  --ifm-color-primary-lighter: #a5e5ff;
+  --ifm-color-primary-light: #61dfff;
   --ifm-color-primary: #000;
   --ifm-color-primary-dark: #313131;
   --ifm-color-primary-darker: #545454;
   --ifm-color-primary-darkest: #818181;
-  --ifm-color-success: #61DFFF;
+  --ifm-color-success: #61dfff;
   --ifm-color-success-dark: #58cbe8;
   --ifm-link-color: #2eb9dc;
   --ifm-link-hover-color: #2eb9dc;
   --ifm-menu-color-active: #2eb9dc;
-  --ifm-color-info: #C0C0C0;
+  --ifm-color-info: #c0c0c0;
   --ifm-color-info-dark: #989898;
   --ifm-footer-background-color: #000;
-  --ifm-footer-link-hover-color: #C0C0C0;
+  --ifm-footer-link-hover-color: #c0c0c0;
 }
 
 /* github */
@@ -381,7 +395,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/32057ef78076f171-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 300;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -389,7 +403,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/507e37d0da6e0458-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 300;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -397,7 +411,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/a9d3087643e88082-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -405,7 +419,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/ca04421ef285dfef-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -413,7 +427,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/777c300fd084f815-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 500;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -421,7 +435,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/7f1839f881dbbeff-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 500;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -429,7 +443,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/9e377721614461a4-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 600;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -437,7 +451,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/3c8a644e9b7c319f-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 600;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -445,7 +459,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/7e645729c45a19f7-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 700;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -453,20 +467,24 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/3cf36425de0165ec-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 700;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
   font-family: "__atypFont_Fallback_6511b3";
   src: local("Arial");
-  ascent-override:71.89%;descent-override:20.39%;line-gap-override:37.84%;size-adjust:108.36%}
+  ascent-override: 71.89%;
+  descent-override: 20.39%;
+  line-gap-override: 37.84%;
+  size-adjust: 108.36%;
+}
 
 .__className_6511b3 {
-  font-family: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif;
+  font-family: "__atypFont_6511b3", "__atypFont_Fallback_6511b3", serif;
 }
 
 .__variable_6511b3 {
-  --font-atyp: "__atypFont_6511b3","__atypFont_Fallback_6511b3", serif;
+  --font-atyp: "__atypFont_6511b3", "__atypFont_Fallback_6511b3", serif;
 }
 
 @font-face {
@@ -474,7 +492,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/3faf8ff31e4c5afe-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 300;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -482,7 +500,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/d168b7bd17e59ad8-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 300;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -490,7 +508,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/cec5d6dd42aaa433-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -498,7 +516,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/3be625d83915aa2a-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -506,7 +524,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/8db346cdb2d82fe7-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 500;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -514,7 +532,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/270d58506c584a49-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 500;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -522,7 +540,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/a790aba49d3d1f9b-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 600;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -530,7 +548,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/1884d75f1c99687f-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 600;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
@@ -538,7 +556,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/5e26eabd16cb5e58-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 700;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
@@ -546,23 +564,27 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   src: url("./../../static/atyp/e0e16a8115e3957f-s.p.woff2") format("woff2");
   font-display: swap;
   font-weight: 700;
-  font-style: italic
+  font-style: italic;
 }
 
 @font-face {
-  font-family:"__atypTextFont_Fallback_34d2cd";
+  font-family: "__atypTextFont_Fallback_34d2cd";
   src: local("Arial");
-  ascent-override:71.89%;descent-override:20.39%;line-gap-override:37.84%;size-adjust:108.36%}
+  ascent-override: 71.89%;
+  descent-override: 20.39%;
+  line-gap-override: 37.84%;
+  size-adjust: 108.36%;
+}
 
 .__className_34d2cd {
-  font-family: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd", serif;
+  font-family: "__atypTextFont_34d2cd", "__atypTextFont_Fallback_34d2cd", serif;
 }
 
 .__variable_34d2cd {
-  --font-atyp-text: "__atypTextFont_34d2cd","__atypTextFont_Fallback_34d2cd"
+  --font-atyp-text: "__atypTextFont_34d2cd", "__atypTextFont_Fallback_34d2cd";
 }
 
- /* This was originally in /docs/stylesheets/snippets.css */ 
+/* This was originally in /docs/stylesheets/snippets.css */
 
 :root > * {
   --md-code-hl-comment-color: #b3ccfb;
@@ -578,7 +600,7 @@ img {
   height: auto;
 }
 
- /* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */ 
+/* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */
 
 #centered-copy {
   display: flex;
@@ -594,7 +616,7 @@ img {
   border-radius: 4px;
   overflow: hidden;
   background-color: #b3ccfb;
-  color: #121212; 
+  color: #121212;
 }
 
 .my-tabs .tab-item {
@@ -607,7 +629,7 @@ img {
   background-color: #b3ccfb;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
-  color: #121212; 
+  color: #121212;
 }
 
 .my-tabs .tab-item:hover {
@@ -624,5 +646,3 @@ img {
   color: #121212;
   background-color: #b3ccfb;
 }
-
-
