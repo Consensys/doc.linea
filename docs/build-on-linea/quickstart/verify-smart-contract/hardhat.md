@@ -77,7 +77,7 @@ etherscan: {
       network: "linea",
       chainId: 59140,
       urls: {
-        apiURL: "https://goerli.lineascan.build/api",
+        apiURL: "https://goerli.lineascan.build/apis#contracts",
         browserURL: "https://goerli.lineascan.build/"
       }
     }
