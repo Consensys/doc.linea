@@ -9,6 +9,9 @@ sidebar_position: 4
 
 All EVM opcodes are managed identically to Ethereum unless presented in the following table.
 
+> ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
+>
+
 | Opcode name | Ethereum | Linea |
 | --- | --- | --- |
 | `DIFFICULTY` / `PREVRANDAO` | Returns the RANDAO value from the previous block | Returns a fixed number |
