@@ -1,6 +1,6 @@
 ---
 title: Network info and deployed contracts
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
