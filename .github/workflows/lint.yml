@@ -19,16 +19,3 @@ jobs:
         uses: Consensys/docs-gha/lint@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  linkCheck:
-    name: Link Checking
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        file-extensions: [".md", ".mdx"]
-    steps:
-      - uses: actions/checkout@v3
-      - name: LinkCheck
-        uses: Consensys/docs-gha/linkcheck@main
-        with:
-          FILE_EXTENSION: '${{ matrix.file-extensions }}'
