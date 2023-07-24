@@ -447,10 +447,6 @@ const config = {
             to: "/build-on-linea/use-linea-testnet/explore/use-nfts2me",
           },
           {
-            from: "/use-linea/explore/use-noobysswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-noobysswap",
-          },
-          {
             from: "/use-linea/explore/use-openocean",
             to: "/build-on-linea/use-linea-testnet/explore/use-openocean",
           },
