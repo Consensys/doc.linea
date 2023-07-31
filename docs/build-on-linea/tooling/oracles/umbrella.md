@@ -19,7 +19,7 @@ At Umbrella, we are committed to providing easy-to-use solutions for using off-c
 For projects needing their custom data feeds on-chain with defined parameters such as deviation triggers and heartbeat. This solution is perfect for vault tokens, volatility monitoring, TWAPs, and more. Real-time, customizable data at your fingertips.
 
 These are the price feeds available on Linea Mainnet and their configuration:
-- Eth-USD
+- ETH-USD
   - Deviation threshold: 0.5%
   - Heartbeat: 1 hour
 - USDT-USD
