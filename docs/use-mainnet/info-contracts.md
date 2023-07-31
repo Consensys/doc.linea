@@ -35,11 +35,9 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left">https://lineascan.build/</td>
+        <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
     </tr>
 </table>
-
-> _Note: Linea is currently doing a soft launch with specific partners. Public availability will be announced soon._
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
@@ -62,7 +60,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
     <tr>
         <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left">https://goerli.lineascan.build/</td>
+        <td align="left"> <a href="https://goerli.lineascan.build">Lineascan</a> </td>
     </tr>
 </table>
 

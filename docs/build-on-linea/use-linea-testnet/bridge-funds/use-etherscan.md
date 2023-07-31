@@ -4,6 +4,13 @@ description: Bridge funds between Goerli and Linea using Etherscan
 sidebar_position: 1
 ---
 
+:::note
+
+Bridging your funds via etherscan is not the recommended method. Please use the [token bridge](https://bridge.linea.build/) instead.
+
+:::
+
+
 ## Set up
 
 Before you begin, ensure your wallet is:

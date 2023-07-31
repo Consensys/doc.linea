@@ -4,7 +4,9 @@ description: Bridge funds between Goerli and Linea using the Hop UI
 sidebar_position: 2
 ---
 
-# Bridge your funds
+_Note: The Hop bridge is currently not active. We will give updates on this page once it is live again._
+
+<!-- # Bridge your funds
 
 The following steps take you through bridging USDC and Goerli ETH using the Hop bridge.
 
@@ -25,11 +27,11 @@ Before you begin, ensure your wallet is:
 1.  Select **Send**. First time users need to approve the Linea bridge to allow token transfers.
 1.  In your MetaMask wallet, confirm the transfer.
 
-The sent amount is deducted from your Goerli account on MetaMask. Switch to Linea in your wallet to view the bridged funds.
+The sent amount is deducted from your Goerli account on MetaMask. Switch to Linea in your wallet to view the bridged funds. -->
 
 <!--markdown-link-check-enable -->
 
-:::note
+<!-- :::note
 
 This process can take up to 15 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
@@ -54,6 +56,6 @@ The sent amount is deducted from your account on Linea. Switch to the Goerli net
 
 This process can take up to 5 minutes to complete. You can view the status of your funds on the [block explorer](https://goerli.lineascan.build/).
 
-:::
+::: -->
 
 <!--markdown-link-check-enable -->
