@@ -7,7 +7,7 @@ sidebar_position: 4
 
 ## EVM opcodes
 
-All EVM opcodes are managed identically to Ethereum unless presented in the following table.
+Linea uses the London version of the EVM. All EVM opcodes are managed identically to Ethereum London unless presented in the following table. Checkout [Ethereum's history](https://ethereum.org/en/history/) to see learn about major milestones, forkes, and updates to the blockchain.
 
 > ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
 >
