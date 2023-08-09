@@ -52,9 +52,9 @@ module.exports = {
         );
       },
       verify: {
-        apiUrl: "https://goerli.lineascan.build/apis#contracts",
+        apiUrl: "https://api-testnet.lineascan.build/api",        
         apiKey: ETHERSCAN_API_KEY,
-        explorerUrl: "https://goerli.lineascan.build/",
+        explorerUrl: "https://goerli.lineascan.build/address",      
       },
       network_id: "59140",
     },
