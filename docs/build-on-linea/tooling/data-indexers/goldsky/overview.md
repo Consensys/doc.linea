@@ -9,7 +9,7 @@ sidebar_position: 1
 
 ## Index (high-performance subgraphs)
 
-[Index](goldsky-index) is a high-performance hosted subgraph solution with native support for Linea (both testnet and mainnet). Subgraphs allow you to define a data schema and how blockchain data should be indexed for querying, and can be deployed to Goldsky directly from the command line. If you’ve built with subgraphs in the past, you can work with Goldsky’s hosted service with no change to your development flow, and take advantage of several key benefits:
+[Index](./goldsky-index.md) is a high-performance hosted subgraph solution with native support for Linea (both testnet and mainnet). Subgraphs allow you to define a data schema and how blockchain data should be indexed for querying, and can be deployed to Goldsky directly from the command line. If you’ve built with subgraphs in the past, you can work with Goldsky’s hosted service with no change to your development flow, and take advantage of several key benefits:
 
 - **Cross-chain**: Native cross-chain and multi-chain support to query data from multiple blockchains from a single endpoint, automatically managing event order, re-orgs, and other complexities.
 - **RPC proxy**: [Goldsky](https://goldsky.com) intelligently balances load and manages RPC provider failures across 20+ endpoints, maximizing indexing speed and querying reliability.
@@ -18,7 +18,7 @@ sidebar_position: 1
 
 ## Mirror (data replication pipelines)
 
-[Mirror](goldsky-mirror) is a real-time data replication system that allows you to keep blockchain data where your app is. Mirror pipelines instruct [Goldsky](https://goldsky.com) on where to take data from, how to (optionally) process it, and where to persist the results. Compared to subgraphs, Mirror pipelines differ in a few key ways:
+[Mirror](./goldsky-mirror.md) is a real-time data replication system that allows you to keep blockchain data where your app is. Mirror pipelines instruct [Goldsky](https://goldsky.com) on where to take data from, how to (optionally) process it, and where to persist the results. Compared to subgraphs, Mirror pipelines differ in a few key ways:
 
 - **Self-hosted**: Results are persisted in a database or as flat files rather than being served only via a remotely-hosted API. This allows for seamless colocation of indexed data alongside your app and (private) user data.
 - **Self-healing**: Mirror pipelines benefit from the wisdom of the crowd - quality checks, fixes, and improvements to the data are applied automatically through upserts and deletes directly in your database.
@@ -27,4 +27,4 @@ sidebar_position: 1
 
 ## Getting started
 
-To get started, visit the quickstart pages for [Index](goldsky-index) and [Mirror](goldsky-mirror) on Linea, or visit the complete Goldsky documentation [here](https://docs.goldsky.com).
+To get started, visit the quickstart pages for [Index](./goldsky-index.md) and [Mirror](./goldsky-mirror.md) on Linea, or visit the complete Goldsky documentation [here](https://docs.goldsky.com).
