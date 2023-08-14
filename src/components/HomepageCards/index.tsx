@@ -45,7 +45,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Linea Block Explorer",
-    link: "https://docs.linea.build/use-mainnet/explore",
+    link: "https://lineascan.build/",
     description: (
       <>
         View transactions and find deployed contracts and wallet addresses on block explorers!
