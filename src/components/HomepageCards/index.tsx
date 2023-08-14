@@ -49,6 +49,7 @@ const CardList: CardItem[] = [
     description: (
       <>
         View transactions and find deployed contracts and wallet addresses on block explorers!
+        
       </>
     ),
     buttonName: "Explore",
