@@ -48,8 +48,7 @@ const CardList: CardItem[] = [
     link: "https://lineascan.build/",
     description: (
       <>
-        View transactions and find deployed contracts and wallet addresses on
-        block explorers!
+        View transactions and find deployed contracts and wallet addresses on block explorers!
       </>
     ),
     buttonName: "Explore",

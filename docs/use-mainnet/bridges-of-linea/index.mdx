@@ -49,7 +49,7 @@ Manual claiming requires two transactions to be approved. One on the source laye
 
 Automatic claiming only requires one transaction to be approved on the source layer. The recipient will automatically receive their funds because a "postman" will handle the claiming process for them.
 
-## What are the execution fees?
+## What are the execution fees? 
 
 There are two types of execution fees that can be applied when you are bridging your tokens, the postman fee and the anti-DDOS fee.
 
@@ -58,6 +58,7 @@ The postman fee is only applied during the automatic claiming process and is cal
 `Postman Fee = target layer gas price * (gas estimated + gas limit surplus) * margin` where target layer gas price is `eth_gasPrice` on the target layer, `gas estimated = 100,000`, `gas limit surplus = 6000`, and `margin = 2`.
 
 The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.001 Eth`
+
 
 ## Bridging ETH from Ethereum to Linea
 

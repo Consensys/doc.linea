@@ -66,7 +66,9 @@ You can find out how to navigate to Linea network status [here](./../network-sta
 
 ## Connect with Infura
 
-If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147). </TabItem> </Tabs>
+If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147). 
+</TabItem> 
+</Tabs>
 
 ## Deployed contracts
 

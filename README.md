@@ -1,16 +1,22 @@
 # Linea documentation
 
-[Linea](https://linea.build/) is a developer-ready Layer 2 network, scaling Ethereum by providing an Ethereum-equivalent environment in which to execute transactions, which are then submitted to Ethereum Mainnet through a zero-knowledge rollup.
+[Linea](https://linea.build/) is a developer-ready Layer 2 network, scaling Ethereum by providing an Ethereum-equivalent
+environment in which to execute transactions, which are then submitted to Ethereum Mainnet through a
+zero-knowledge rollup.
 
-This documentation repository is built using [Docusaurus](https://docusaurus.io/), and the doc site is published at [`docs.linea.build`](https://docs.linea.build/).
+This documentation repository is built using [Docusaurus](https://docusaurus.io/), and the doc
+site is published at [`docs.linea.build`](https://docs.linea.build/).
 
 ## Contribute to the docs
 
 See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.zk-evm/issues).
 
-Alternatively, help us improve our documentation! View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for information on how to:
+Alternatively, help us improve our documentation!
+View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for
+information on how to:
 
-- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution) using forks and pull requests.
+- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution)
+  using forks and pull requests.
 - Use the [documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
 - [Format your Markdown](https://docs-template.consensys.net/contribute/format-markdown) correctly.
 - [Preview the docs](https://docs-template.consensys.net/contribute/preview) locally.
