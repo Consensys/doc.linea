@@ -24,8 +24,7 @@ If you want to drip other tokens, you can find the [multi-token Linea faucet her
 To get Goerli ETH, you'll need to:
 
 1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
-1. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks) 
-![goerli eth card](../../../static/img/docs/use-mainnet/goerlieth_faucet.png)
+1. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks) ![goerli eth card](../../../static/img/docs/use-mainnet/goerlieth_faucet.png)
 1. Navigate to the list of faucets linked through the Goerli card
 1. Select a faucet and drip Goerli ETH
 

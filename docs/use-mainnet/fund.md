@@ -9,7 +9,8 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
 
-## Getting tokens on Linea 
+## Getting tokens on Linea
+
 There are several ways to get tokens on Linea: **from a friend** (or a fren) or **by bridging it**, and hopefully soon, a more direct solution 👀. Here are some resources to get you started:
 
 ### Getting tokens from a fren

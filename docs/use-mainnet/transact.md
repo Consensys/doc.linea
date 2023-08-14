@@ -52,6 +52,6 @@ You can now view the transaction details in the **Activity** tab or [block explo
 
 Linea is a permissionless, EVM-compatible network. That means that if you want to use a different wallet with Linea, you might be able to, using the network information found under [Network info and deployed contracts](./info-contracts.md).
 
-</TabItem> 
+</TabItem>
 
 </Tabs>

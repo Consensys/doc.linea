@@ -10,7 +10,6 @@ Bridging your funds via etherscan is not the recommended method. Please use the 
 
 :::
 
-
 ## Set up
 
 Before you begin, ensure your wallet is:
