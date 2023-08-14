@@ -3,7 +3,6 @@ title: Use Linea
 sidebar_position: 2
 ---
 
-_Note: Linea is currently doing a soft launch with specific partners. Certain availability is coming online; **the following sections will be updated as they do**._
 
 Linea is meant to be fully compatible with Ethereum, full stop. There are already a lot of dapps that have deployed to the network—and if there's one that hasn't deployed (for example, yours 👀) we're here to help you get it there.
 
