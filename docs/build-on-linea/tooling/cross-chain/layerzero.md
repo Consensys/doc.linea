@@ -1,0 +1,47 @@
+---
+title: LayerZero Omnichain Messaging
+sidebar_position: 1
+---
+
+# LayerZero
+
+LayerZero is an omnichain interoperability protocol that enables cross-chain messaging. Applications built on Linea can use the LayerZero protocol to connect to 35+ supported blockchains seamlessly. 
+
+LayerZero's Endpoint has been deployed on Linea for builders to leverage omnichain messaging in their dApps. LayerZero’s Endpoint ULNv2 validation library relies on two parties, the Oracle and Relayer, to transfer messages between on-chain smart contracts known as endpoints. When LayerZero sends a message from Linea to chain X, the message is routed through the endpoint on Linea to the ULNv2 validation library. The ULNv2 library notifies the Oracle and Relayer of the message and its destination chain X. The Oracle forwards the packet hash to the endpoint on chain X, and the Relayer submits the packet to be verified on-chain against the hash and delivers the message.
+
+As a developer, you can utilize LayerZero's Endpoint contract utilizing our LzApp interface for your User Application (UA). The Endpoint allows UAs to configure the Messaging Library for sending and receiving verified messages and guarantees the message-delivering ordering across all messaging libraries.
+Send(): the message will be sent through the endpoint first and then redirected to the UA-configured Messaging Library.
+Receive(): the message will be verified at the Messaging Library first then forwarded to the endpoint and eventually delivered to the UA. 
+
+Learn how to integrate LayerZero into your contracts <a href="https://layerzero.gitbook.io/docs/">here</a>. 
+
+<table>
+  <tbody>
+    <tr>
+      <th>Contract</th>
+      <th>Chain Name</th>
+      <th>Chain Id</th>
+      <th>Endpoint</th>
+    </tr>
+    <tr>
+      <td>Testnet</td>
+      <td>Linea</td>
+      <td>10157</td>
+      <td>
+        <a href="https://goerli.lineascan.build/address/0x6aB5Ae6822647046626e83ee6dB8187151E1d5ab">
+          0x6aB5Ae6822647046626e83ee6dB8187151E1d5ab
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Mainnet</td>
+      <td>Linea</td>
+      <td>183</td>
+      <td>
+        <a href="https://lineascan.build/address/0xb6319cC6c8c27A8F5dAF0dD3DF91EA35C4720dd7">
+          0xb6319cC6c8c27A8F5dAF0dD3DF91EA35C4720dd7
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
