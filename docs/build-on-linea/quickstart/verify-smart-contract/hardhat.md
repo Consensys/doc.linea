@@ -65,7 +65,33 @@ module.exports = {
 
 ## Add the custom chain
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Because Linea is not supported by the network yet, we'll have to add a custom chain like so:
+
+<Tabs>
+  <TabItem value="Mainnet" label="Mainnet" default>
+
+```javascript
+etherscan: {
+  apiKey: {
+    linea: ETHERSCAN_API_KEY
+  },
+  customChains: [
+    {
+      network: "linea_mainnet",
+      chainId: 59144,
+      urls: {
+        apiURL: "https://api.lineascan.build/api",
+        browserURL: "https://lineascan.build/"
+      }
+    }
+  ]
+}
+```
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
 
 ```javascript
 etherscan: {
@@ -83,7 +109,9 @@ etherscan: {
     }
   ]
 }
-```
+```     
+  </TabItem>
+</Tabs>
 
 :::note
 
@@ -113,7 +141,7 @@ Message: Unknown UID
 For more info run Hardhat with --show-stack-traces
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
 ![verified contract](../../../../static/img/quests/blockscout_verification.png)
 
