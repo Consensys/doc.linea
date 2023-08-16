@@ -23,7 +23,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
     <tr>
         <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://linea-mainnet.infura.io/v3 or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+        <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
     </tr>
     <tr>
         <td align="left"><b>Chain ID</b></td>
