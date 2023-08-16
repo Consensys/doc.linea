@@ -112,6 +112,12 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
  
+
+ To get your own token included, please follow the instructions on this [repository](https://github.com/Consensys/linea-token-list).
+
+
+ To see what bridges are available, head to our [ecosystem portal](https://linea.build/apps) and filter for bridges.
+
  <table>
   <tr>
     <th>Token</th>
