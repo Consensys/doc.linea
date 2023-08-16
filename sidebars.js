@@ -15,7 +15,7 @@ const sidebars = {
     {
       type: "link",
       label: "Bug Bounty Program",
-      href: "https://immunefi.com/bounty/linea/"
+      href: "https://immunefi.com/bounty/linea/",
     },
     {
       type: "category",
