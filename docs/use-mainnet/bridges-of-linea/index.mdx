@@ -63,7 +63,7 @@ Checkout this video on how to use our bridge!
 <VideoPlayer src={require('@site/static/videos/Linea_bridging_guide_.mp4').default} />
 
 export const VideoPlayer = ({ src }) => (
-  <video width="560" height="315" controls>
+  <video width="100%" height="auto" controls>
     <source src={src} type="video/mp4" />
     Your browser does not support the video tag.
   </video>
@@ -232,3 +232,34 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
 8. MetaMask will ask you to switch networks and to confirm the transaction from the previous step.
 
 9. You're done! You can check your Ethereum wallet balance on MetaMask or a block explorer such as [etherscan](https://etherscan.io/)!
+
+## How do I bridge ERC20 tokens?
+
+1. Go to the token selection menu.
+
+<img
+  src={
+    require("@site/static/img/docs/use-mainnet/bridges-of-linea/token_selection_menu.png")
+      .default
+  }></img>
+
+
+2. Select one of the available tokens in the list. If the token is not in the list, paste the address of the token you want to add into the search bar.
+
+<img
+  src={
+    require("@site/static/img/docs/use-mainnet/bridges-of-linea/token_list.png")
+      .default    
+  }></img>
+
+
+4. Click on the token to select it.
+
+<img
+  src={
+    require("@site/static/img/docs/use-mainnet/bridges-of-linea/dogecoin.png")
+      .default
+  }></img>
+
+
+5. You now can bridge this token, it’s saved in your browser so that you will not have to add it manually next time.
