@@ -48,8 +48,8 @@ const CardList: CardItem[] = [
     link: "https://lineascan.build/",
     description: (
       <>
-        View Linea transactions and find deployed contracts and wallet addresses
-        on Etherscan!
+        View transactions and find deployed contracts and wallet addresses on
+        block explorers!
       </>
     ),
     buttonName: "Explore",

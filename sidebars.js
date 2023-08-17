@@ -13,6 +13,11 @@ const sidebars = {
       label: "Run a node",
     },
     {
+      type: "link",
+      label: "Bug Bounty Program",
+      href: "https://immunefi.com/bounty/linea/",
+    },
+    {
       type: "category",
       label: "Contact Us",
       items: [
