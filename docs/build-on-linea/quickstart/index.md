@@ -11,5 +11,5 @@ It's always best practice to work on a test network before deploying a contract 
 
 Before you begin, ensure you've:
 
-1. [Set up your wallet](/use-mainnet/set-up-your-wallet)
-2. [Funded your wallet with Linea ETH](/use-mainnet/fund) on either the testnet or mainnet
+1. [Set up your wallet](../../use-mainnet/set-up-your-wallet.mdx)
+2. [Funded your wallet with Linea ETH](../../use-mainnet/fund.md) on either the testnet or mainnet
