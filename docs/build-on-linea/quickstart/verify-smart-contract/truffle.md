@@ -1,6 +1,6 @@
 ---
 title: Truffle
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
@@ -25,26 +25,31 @@ module.exports = {
 };
 ```
 
-## Add your Etherscan API Key
+## Add your Lineascan API Key
 
-Then, you'll need to get an Etherscan key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
+Then, you'll need to get an Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
 ```
 MNEMONIC=YOUR_MNEMONIC_HERE
-ETHERSCAN_API_KEY=YOUR_API_KEY_HERE
+LINEASCAN_API_KEY=YOUR_API_KEY_HERE
 ```
 
 ## Add the custom chain
 
-Because Linea is not supported by the network yet, we'll have to get our Etherscan API key and add a custom chain:
+We'll need to add a custom chain:
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
 
 ```javascript
 require("dotenv").config();
-const { MNEMONIC, ETHERSCAN_API_KEY } = process.env;
+const { MNEMONIC, LINEASCAN_API_KEY } = process.env;
 // ... rest of truffle-config
 module.exports = {
   networks: {
-    linea: {
+    linea_mainnet: {
       provider: () => {
         return new HDWalletProvider(
           MNEMONIC,
@@ -52,9 +57,36 @@ module.exports = {
         );
       },
       verify: {
-        apiUrl: "https://api-testnet.lineascan.build/api",        
-        apiKey: ETHERSCAN_API_KEY,
-        explorerUrl: "https://goerli.lineascan.build/address",      
+        apiUrl: "https://api.lineascan.build/api",
+        apiKey: LINEASCAN_API_KEY,
+        explorerUrl: "https://lineascan.build/address",
+      },
+      network_id: "59144",
+    },
+  },
+  // ... rest of truffle-config
+};
+```
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet" default>
+
+```javascript
+require("dotenv").config();
+const { MNEMONIC, LINEASCAN_API_KEY } = process.env;
+// ... rest of truffle-config
+module.exports = {
+  networks: {
+    linea_testnet: {
+      provider: () => {
+        return new HDWalletProvider(
+          MNEMONIC,
+          `https://rpc.linea.build/`,
+        );
+      },
+      verify: {
+        apiUrl: "https://api-testnet.lineascan.build/api",
+        apiKey: LINEASCAN_API_KEY,
+        explorerUrl: "https://goerli.lineascan.build/address",
       },
       network_id: "59140",
     },
@@ -63,31 +95,64 @@ module.exports = {
 };
 ```
 
+  </TabItem>
+</Tabs>
+
 ## Verify the smart contract
 
 Run the following to verify the most recently deployed contract:
 
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+
 ```bash
-truffle run verify <DEPLOYED_CONTRACT_NAME> --network linea
+truffle run verify <DEPLOYED_CONTRACT_NAME> --network linea_mainnet
 ```
 
 Alternatively, verify a contract at a specific address:
 
 ```bash
-truffle run verify <DEPLOYED_CONTRACT_NAME>@<ADDRESS> --network linea
+truffle run verify <DEPLOYED_CONTRACT_NAME>@<ADDRESS> --network linea_mainnet
 ```
 
 Your output should be similar to the following:
 
 ```bash
-Verifying contracts on consensys
+Verifying contracts on lineascan
    Verifying Token
-   Pass - Verified: https://goerli.lineascan.build/address/0xD104FE0116aFdB588798133B13965FEC5d2eEd35#code
+   Pass - Verified: https://lineascan.build/address/<CONTRACT_ADDRESS>#code
    Successfully verified 1 contract(s).
 Verifying contracts on sourcify
-   Sourcify has no support for network linea with chain id 59140
+   Sourcify has no support for network linea_mainnet with chain id 59144
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet" default>
 
-![verified contract](./../../../../static/img/quests/blockscout_verification.png)
+```bash
+truffle run verify <DEPLOYED_CONTRACT_NAME> --network linea_testnet
+```
+
+Alternatively, verify a contract at a specific address:
+
+```bash
+truffle run verify <DEPLOYED_CONTRACT_NAME>@<ADDRESS> --network linea_testnet
+```
+
+Your output should be similar to the following:
+
+```bash
+Verifying contracts on lineascan
+   Verifying Token
+   Pass - Verified: https://goerli.lineascan.build/address/<CONTRACT_ADDRESS>#code
+   Successfully verified 1 contract(s).
+Verifying contracts on sourcify
+   Sourcify has no support for network linea_mainnet with chain id 59140
+```
+
+  </TabItem>
+</Tabs>
+
+You can check that it was verified correctly by navigating to the [block explorer](https://lineascan.build/) and pasting in the deployed contract address.
+
+![verified contract](./../../../../static/img/quests/lineascan_verification.png)

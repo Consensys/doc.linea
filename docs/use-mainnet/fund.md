@@ -1,7 +1,7 @@
 ---
 title: Fund your accounts
 description: Get tokens in your accounts
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
 
-## Getting tokens on Linea 
+## Getting tokens on Linea
 There are several ways to get tokens on Linea: **from a friend** (or a fren) or **by bridging it**, and hopefully soon, a more direct solution 👀. Here are some resources to get you started:
 
 ### Getting tokens from a fren
@@ -36,7 +36,7 @@ If you want to drip Goerli ETH directly to Linea, the following faucets are avai
 1. [FAUCETME faucet](https://linea.faucetme.pro/)
 1. [Tatarot faucet](https://faucet.tatarot.ai/)
 
-If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](../build-on-linea/use-linea-testnet/bridge-funds/index.md). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
+If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](../build-on-linea/bridge-funds/index.md). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
 
 If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
@@ -56,7 +56,7 @@ Transactions on Linea are much cheaper than Ethereum mainnet. Therefore, 0.2 ETH
 In order to interact with Linea, you can either:
 
 1. [Drip Goerli ETH directly to Linea through the various faucets](#use-a-linea-faucet)
-1. [Bridge Goerli ETH to Linea](../build-on-linea/use-linea-testnet/bridge-funds/index.md)
+1. [Bridge Goerli ETH to Linea](../build-on-linea/bridge-funds/index.md)
 
 ## Get other tokens on Goerli
 
