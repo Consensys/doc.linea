@@ -322,6 +322,14 @@ const config = {
             to: "/build-on-linea/bridge-funds",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
+          {
+            to: "/build-on-linea/bridge-funds/usdc-bridge",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
+          },
+          {
+            to: "/build-on-linea/bridge-funds/use-etherscan",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+          },
         ],
       },
     ],
