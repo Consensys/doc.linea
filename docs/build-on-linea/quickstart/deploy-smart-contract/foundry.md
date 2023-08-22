@@ -1,6 +1,6 @@
 ---
 title: Foundry
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Foundry
@@ -26,7 +26,7 @@ Before you begin, Ensure you've:
 
 ## Create a Foundry project
 
-To create an empty Foundry project, run:
+To create a Foundry project, run:
 
 ```bash
 forge init linea-tutorial
@@ -38,25 +38,54 @@ And change into the directory:
 cd linea-tutorial
 ```
 
-## Write the smart contract
+## Deploy a smart contract
 
 Running `forge init` sets you up with a sample contract, test, and script for `Counter.sol`. To build it, simply run `forge build`.
 
-## Deploy the smart contract
+To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience rate limiting.
 
-To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience rate limiting. You can find out how to [get an API key here](https://support.linea.build/hc/en-us/articles/15752713253147). Then, you can run the following command.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Using Infura:
+<Tabs className="my-tabs">
+  <TabItem value="Infura" label="Infura" default>
+
+To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network)
+
+On testnet:
 
 ```bash
 forge create --rpc-url https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
 ```
 
-Using the public endpoint:
+On mainnet:
+
+```bash
+forge create --rpc-url https://linea.infura.io/v3/YOUR-INFURA-API-KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
+```
+</TabItem>
+<TabItem value="Public Endpoint" label="Public Endpoint">
+
+:::caution
+
+The public endpoints are rate limited and not meant for production systems.
+
+On testnet:
 
 ```bash
 forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
 ```
+
+On mainnet:
+
+:::
+
+```bash
+forge create --rpc-url https://rpc.linea.build/ src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
+```
+
+  </TabItem>
+</Tabs>
 
 Your output should look a little something like this:
 
@@ -67,7 +96,3 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
-
-## Deploy to Mainnet
-
-_Instructions coming soon!_

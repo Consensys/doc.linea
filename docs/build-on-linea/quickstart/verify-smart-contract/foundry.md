@@ -1,83 +1,82 @@
 ---
 title: Foundry
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-To verify your contracts with Foundry, use Blockscout's verification page and Foundry's [`forge flatten`](https://book.getfoundry.sh/reference/forge/forge-flatten) utility.
+To verify your Foundry contracts, you can use Foundry's [verify-contract](https://book.getfoundry.sh/reference/forge/forge-verify-contract) to verify contracts on Lineascan.
 
-In this example, we'll walk through verifying the `Counter` smart contract we deployed in the [Foundry deployment quickstart](../deploy-smart-contract/foundry.md).
+You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey).
 
-## Access the Blockscout verification page
+## Verify your smart contract
 
-In the [Linea block explorer](https://goerli.lineascan.build/), search for your deployed contract address. You can find it in the `Deployed to` address in the Foundry deployment output. In our example, the address is `0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83`.
+### Verify a contract that has already been deployed
 
-```bash
-Deployer: YOUR_ACCOUNT_NUMBER
-Deployed to: 0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83
-Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647d7ee
-```
+If you want to verify a contract that has already been deployed, you can use the following commands:
 
-Enter the address in the Blockscout search bar, then select the **Code** tab on the page. An unverified contract should look something like this:
-
-![unverified contract](/img/quests/foundry/foundry_verification_1.png)
-
-To verify the contract, select **Verify & Publish**, which takes you to the Blockscout verification page pre-populated with your contract address. Select **Via flattened source code**, and select **Next**.
-
-![flattened source code option](/img/quests/foundry/foundry_verification_2.png)
-
-## Flatten the contract source code
-
-To verify the contract, use the `forge flatten` utility to flatten the smart contract and all its imports into one file. Run the `forge flatten` command as follows:
-
-<!--tabs-->
-
-# Syntax
+<Tabs>
+  <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
-forge flatten <CONTRACT_FILE_PATH> --output <OUTPUT_FILE_PATH>
+forge verify-contract --etherscan-api-key <ETHERSCAN_API_KEY> --verifier-url https://api.lineascan.build/api <CONTRACT_ADDRESS> path_to_contract:contract_name --watch
 ```
 
-# Example
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
 
 ```bash
-forge flatten src/Counter.sol --output ./flat.sol
+forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https://api-testnet.lineascan.build/api <CONTRACT_ADDRESS> path_to_contract:contract_name --watch
 ```
 
-<!--/tabs-->
+  </TabItem>
+</Tabs>
 
-In the example, open `flat.sol` and copy paste the code inside:
+You should see something a little like this:
 
-```javascript
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+```bash
+Start verifying contract `0x8de6e9b6c774c8b7aba587ed84e5ad0a45837b16` deployed on mainnet
 
-contract Counter {
-    uint256 public number;
-
-    function setNumber(uint256 newNumber) public {
-        number = newNumber;
-    }
-
-    function increment() public {
-        number++;
-    }
-}
+Submitting verification for [src/Counter.sol:Counter] "0x8dE6e9b6c774c8B7AbA587ED84E5AD0A45837b16".
+Submitted contract for verification:
+        Response: `OK`
+        GUID: `ynnfyvwcqev9i5xr1urdqt9kdwx4zkurvpu7rgh2ywmyp22dpy`
+        URL:
+        https://etherscan.io/address/0x8de6e9b6c774c8b7aba587ed84e5ad0a45837b16
+Contract verification status:
+Response: `NOTOK`
+Details: `Pending in queue`
+Contract verification status:
+Response: `OK`
+Details: `Pass - Verified`
+Contract successfully verified
 ```
 
-In our case, the flattened code matches the `Counter.sol` code, but oftentimes your smart contracts may import libraries and other smart contracts, and the file will look different.
+### Verify a contract upon creation
 
-## Get your compiler version
+If you want to verify a contract that has already been deployed, you can use the following commands:
 
-Foundry compiles your code using the compiler version found in `~/.svm`. To get the compiler version, run `ls ~/.svm`. In this example, the compiler version is `0.8.17`.
+<Tabs>
+  <TabItem value="Mainnet" label="Mainnet" default>
 
-![get compiler version](/img/quests/foundry/foundry_verification_3.png)
+```bash
+forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url
+l https://apilineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
+```
 
-## Fill out the Blockscout verification page
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
 
-Now, you have all the information to fill out the verification page. It should look something like this:
+```bash
+forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url
+l https://api-testnet.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
+```
 
-![fill out page](/img/quests/foundry/foundry_verification_4.png)
+  </TabItem>
+</Tabs>
 
-Click **Verify & Publish** and you'll be directed to the verified contract page:
+You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
-![verified contract](/img/quests/foundry/foundry_verification_5.png)
+:::info
+
+[Learn more about different configurations for verifying your smart contracts](https://book.getfoundry.sh/reference/forge/forge-verify-contract).
+
+:::
