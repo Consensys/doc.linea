@@ -3,6 +3,9 @@ title: Foundry
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Foundry
 
 In this tutorial, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
@@ -44,8 +47,11 @@ Running `forge init` sets you up with a sample contract, test, and script for `C
 
 To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience rate limiting.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+:::caution
+
+These instructions use API keys and private keys inline. We highly recommend hiding them in `.env` files [by following the instructions below](#using-env-to-store-private-keys).
+
+:::
 
 <Tabs className="my-tabs">
   <TabItem value="Infura" label="Infura" default>
@@ -55,13 +61,13 @@ To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-u
 On testnet:
 
 ```bash
-forge create --rpc-url https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
+forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
 ```
 
 On mainnet:
 
 ```bash
-forge create --rpc-url https://linea.infura.io/v3/YOUR-INFURA-API-KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
+forge create --rpc-url https://linea.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
 ```
 </TabItem>
 <TabItem value="Public Endpoint" label="Public Endpoint">
@@ -70,6 +76,8 @@ forge create --rpc-url https://linea.infura.io/v3/YOUR-INFURA-API-KEY src/Counte
 
 The public endpoints are rate limited and not meant for production systems.
 
+:::
+
 On testnet:
 
 ```bash
@@ -77,8 +85,6 @@ forge create --rpc-url https://rpc.goerli.linea.build/ src/Counter.sol:Counter -
 ```
 
 On mainnet:
-
-:::
 
 ```bash
 forge create --rpc-url https://rpc.linea.build/ src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY
@@ -94,5 +100,47 @@ Deployer: YOUR_ACCOUNT_NUMBER
 Deployed to: 0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83
 Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647d7ee
 ```
+
+### Using `.env` to store private keys
+
+It is dangerous to directly paste your private key into the command line. One workaround is to use `.env` files to store private information such as your wallet's private keys or API keys. In order to do so, create a `.env` file and add it to your `.gitignore` file. Then, fill it with the following information:
+
+```bash
+PRIVATE_KEY=YOUR_PRIVATE_KEY
+INFURA_API_KEY=YOUR_INFURA_API_KEY
+```
+
+Then, run:
+
+```bash
+source .env
+```
+
+Finally, we can modify the `foundry.toml` file to conveniently store the various rpc endpoints we might be working with. Add this section:
+
+```bash
+[rpc_endpoints]
+linea-testnet = "https://linea-goerli.infura.io/v3/${INFURA_API_KEY}"
+linea-mainnet = "https://linea.infura.io/v3/${INFURA_API_KEY}"
+```
+
+Now, in order to deploy, you can simply run:
+
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+
+```bash
+forge create --rpc-url linea-mainnet src/Counter.sol:Counter --private-key $PRIVATE_KEY
+```
+
+</TabItem>
+<TabItem value="Testnet" label="Testnet">
+
+```bash
+forge create --rpc-url linea-testnet src/Counter.sol:Counter --private-key $PRIVATE_KEY
+```
+
+  </TabItem>
+</Tabs>
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/foundry.md).
