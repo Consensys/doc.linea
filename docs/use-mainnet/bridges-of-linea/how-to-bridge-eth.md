@@ -113,7 +113,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
       .default
   }></img>
 
-7. MetaMask will prompt you to switch networks and to also confirm the transaction from the previous step.
+7. MetaMask will prompt you to switch networks and confirm the transaction from the previous step.
 
 <img
   src={
