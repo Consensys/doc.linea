@@ -185,4 +185,4 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
 
 8. MetaMask will ask you to switch networks and to confirm the transaction from the previous step.
 
-9. You're done! You can check your Ethereum wallet balance on MetaMask or a block explorer such as [etherscan](https://etherscan.io/)!
+9. You're done! You can check your Ethereum account balance in MetaMask, or on a block explorer such as [Etherscan](https://etherscan.io/)!
