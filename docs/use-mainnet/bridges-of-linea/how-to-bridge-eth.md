@@ -175,7 +175,7 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
       .default
   }></img>
 
-7. You will see a “Claim Funds” button appear under the Recent Transactions section. Select the "Claim Funds" button to continue the bridging process.
+7. You will see a “Claim Funds” button appear under the "Recent transactions" section. Select the "Claim Funds" button to continue the bridging process.
 
 <img
   src={
