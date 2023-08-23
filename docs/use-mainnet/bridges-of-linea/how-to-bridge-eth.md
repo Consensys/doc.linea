@@ -105,7 +105,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
       .default
   }></img>
 
-6. You will see a “Claim Funds” button appear under the Recent Transactions section. Select the "Claim Funds" button to continue the bridging process.
+6. You will see a “Claim Funds” button appear under the "Recent transactions" section. Select the "Claim Funds" button to continue the bridging process.
 
 <img
   src={
