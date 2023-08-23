@@ -141,7 +141,7 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
 
 1. Go to our token bridge [here](https://bridge.linea.build/).
 
-2. Connect your wallet in top right corner of the page.
+2. Connect your wallet in the top-right corner of the page.
 
 <img
   src={
