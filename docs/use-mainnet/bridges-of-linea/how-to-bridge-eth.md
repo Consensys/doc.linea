@@ -79,7 +79,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 1. Go to our token bridge [here](https://bridge.linea.build/).
 
-2. Connect your wallet in top right corner of the page.
+2. Connect your wallet in the top-right corner of the page.
 
    <img
      src={
