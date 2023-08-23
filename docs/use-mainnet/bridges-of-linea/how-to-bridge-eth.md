@@ -129,7 +129,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
       .default
   }></img>
 
-9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the wallet address in the URL with your wallet address and it should reflect your wallet's balance!
+9. You can see your Linea wallet balance in MetaMask once you switch to the Linea network. You can also check it on [linea-scan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the account address in the URL with your account address and it should reflect your account's balance!
 
 ## Bridging ETH from Linea Mainnet (L2) to Ethereum Mainnet (L1)
 
