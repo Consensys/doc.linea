@@ -57,7 +57,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
       .default
   }></img>
 
-6. After confirming the transaction, it should take around 20 minutes for the transaction to reach Linea Mainnet. You can see your pending transaction under the "Recent Transaction" section at the bottom of the token bridge.
+6. After confirming the transaction, it should take around 20 minutes for the transaction to reach Linea Mainnet. You can see your pending transaction under the "Recent transactions" section at the bottom of the token bridge.
 
 <img
   src={
