@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player'
 
 ## Video Tutorial 
 
-Checkout this video on how to use our bridge!
+Check out this video on how to use our bridge!
 
 <iframe
   width="100%"
