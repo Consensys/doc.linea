@@ -167,7 +167,7 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
       .default
   }></img>
 
-6. The pending transaction will show up in the “Recent Transactions” section of the bridge. _Reminder: It takes at least 8 hours for the transaction to go through from L2 to L1._
+6. The pending transaction will show up in the “Recent transactions” section of the bridge. _Reminder: It takes at least 8 hours for the transaction to go through from L2 to L1._
 
 <img
   src={
