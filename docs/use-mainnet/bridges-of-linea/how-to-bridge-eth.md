@@ -135,7 +135,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 :::note
 
-Automatic claiming is only available for ETH L1 to L2 bridging. You will not be able to select this option for L2 to L1 bridging.
+Automatic claiming is only available for bridging ETH from L1 to L2. You will not be able to select this option for L2 to L1 bridging.
 
 :::
 
