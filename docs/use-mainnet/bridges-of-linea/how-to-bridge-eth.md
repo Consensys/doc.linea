@@ -149,7 +149,7 @@ Automatic claiming is only available for ETH L1 to L2 bridging. You will not be 
       .default
   }></img>
 
-3. Verify that the Bridge is set to Linea Mainnet --> Ethereum. Manual claiming is the only available option for L2 to L1 bridging.
+3. Verify that the bridge is set to Linea Mainnet --> Ethereum. Manual claiming is the only available option for L2 to L1 bridging.
 
 4. Enter the amount of ETH you want to bridge over to Ethereum Mainnet, and select the “Start Bridging” button.
 
