@@ -1,6 +1,6 @@
 ---
 title: Truffle
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
