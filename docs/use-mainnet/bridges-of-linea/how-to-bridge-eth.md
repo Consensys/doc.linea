@@ -87,7 +87,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
          .default
      }></img>
 
-3. Verify that the Bridge is set to `Ethereum → Linea Mainnet`, and that **manual claiming** is enabled.
+3. Verify that the bridge is set to `Ethereum → Linea Mainnet`, and that **manual claiming** is enabled.
 
 4. Enter the amount of ETH you want to bridge over to Linea Mainnet, and select the **Start Bridging** button.
 
