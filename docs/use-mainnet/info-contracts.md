@@ -117,108 +117,78 @@ If your dapp is using the public endpoints, it may encounter rate limiting. We r
  <table>
   <tr>
     <th>Token</th>
-    <th>L1</th>
-    <th>L1 Address</th>
-    <th>L2 Address</th>
-    <th>Bridge</th>
+    <th>Ethereum Address</th>
+    <th>Linea Address</th>
   </tr>
   <tr>
     <td>APE</td>
-    <td>Eth</td>
     <td><a href="https://etherscan.io/address/0x4d224452801aced8b2f0aebe155379bb5d594381">0x4d224452801aced8b2f0aebe155379bb5d594381</a></td>
     <td><a href="https://lineascan.build/address/0x6bAA318CF7C51C76e17ae1EbE9Bbff96AE017aCB">0x6bAA318CF7C51C76e17ae1EbE9Bbff96AE017aCB</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>DAI</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f">0x6b175474e89094c44da98b954eedeac495271d0f</a></td>
     <td><a href="https://lineascan.build/address/0x4AF15ec2A0BD43Db75dd04E62FAA3B8EF36b00d5">0x4AF15ec2A0BD43Db75dd04E62FAA3B8EF36b00d5</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>DVF</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0xdddddd4301a082e62e84e43f474f044423921918">0xdddddd4301a082e62e84e43f474f044423921918</a></td>
     <td><a href="https://lineascan.build/address/0x1f031f8c523b339c7a831355879e3568fa3eb263">0x1f031f8c523b339c7a831355879e3568fa3eb263</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>HAPI</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0xd9c2d319cd7e6177336b0a9c93c21cb48d84fb54">0xd9c2d319cd7e6177336b0a9c93c21cb48d84fb54</a></td>
     <td><a href="https://lineascan.build/address/0x0e5F2ee8C29e7eBc14e45dA7FF90566d8c407dB7">0x0e5F2ee8C29e7eBc14e45dA7FF90566d8c407dB7</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>KNC</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0xdd974d5c2e2928dea5f71b9825b8b646686bd200">0xdd974d5c2e2928dea5f71b9825b8b646686bd200</a></td>
     <td><a href="https://lineascan.build/address/0x3b2F62d42DB19B30588648bf1c184865D4C3B1D6">0x3b2F62d42DB19B30588648bf1c184865D4C3B1D6</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>LDO</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0x5a98fcbea516cf06857215779fd812ca3bef1b32">0x5a98fcbea516cf06857215779fd812ca3bef1b32</a></td>
     <td><a href="https://lineascan.build/address/0x0e076AAFd86a71dCEAC65508DAF975425c9D0cB6">0x0e076AAFd86a71dCEAC65508DAF975425c9D0cB6</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>LINK</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca">0x514910771af9ca656af840dff83e8264ecf986ca</a></td>
     <td><a href="https://lineascan.build/address/0x5B16228B94b68C7cE33AF2ACc5663eBdE4dCFA2d">0x5B16228B94b68C7cE33AF2ACc5663eBdE4dCFA2d</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>PEPE</td>
-    <td>Eth</td>
 <td><a href="https://etherscan.io/token/0x6982508145454ce325ddbe47a25d4ec3d2311933">0x6982508145454ce325ddbe47a25d4ec3d2311933</a></td>
     <td><a href="https://lineascan.build/address/0x7da14988E4f390C2E34ed41DF1814467D3aDe0c3">0x7da14988E4f390C2E34ed41DF1814467D3aDe0c3</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>SHIB</td>
-    <td>Eth</td>
 <td><a href="https://etherscan.io/token/0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce">0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce</a></td>
     <td><a href="https://lineascan.build/address/0x99AD925C1Dc14Ac7cc6ca1244eeF8043C74E99d5">0x99AD925C1Dc14Ac7cc6ca1244eeF8043C74E99d5</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>UNI</td>
-    <td>Eth</td>
 <td><a href="https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984">0x1f9840a85d5af5bf1d1762f925bdaddc4201f984</a></td>
     <td><a href="https://lineascan.build/address/0x636B22bC471c955A8DB60f28D4795066a8201fa3">0x636B22bC471c955A8DB60f28D4795066a8201fa3</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>USDT</td>
-    <td>Eth</td>
   <td><a href="https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7">0xdac17f958d2ee523a2206206994597c13d831ec7</a></td>
     <td><a href="https://lineascan.build/address/0xA219439258ca9da29E9Cc4cE5596924745e12B93">0xA219439258ca9da29E9Cc4cE5596924745e12B93</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>USDC</td>
-    <td>Eth</td>
 <td><a href="https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48">0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48</a></td>
     <td><a href="https://lineascan.build/address/0x176211869cA2b568f2A7D4EE941E073a821EE1ff">0x176211869cA2b568f2A7D4EE941E073a821EE1ff</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>WBTC</td>
-    <td></td>
 <td><a href="https://etherscan.io/token/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599">0x2260fac5e5542a773aa44fbcfedf7c193bc2c599</a></td>
     <td><a href="https://lineascan.build/address/0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4">0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4</a></td>
-    <td></td>
   </tr>
   <tr>
     <td>WETH</td>
-    <td>Eth</td>
 <td><a href="https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2">0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</a></td>
     <td><a href="https://lineascan.build/address/0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f">0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f</a></td>
-    <td></td>
   </tr>
 </table>
   </TabItem>
