@@ -1,6 +1,5 @@
 ---
 title: Foundry
-sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';

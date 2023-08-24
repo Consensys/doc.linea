@@ -1,9 +1,6 @@
 ---
 title: thirdweb
-sidebar_position: 4
 ---
-
-# thirdweb
 
 thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks
 
