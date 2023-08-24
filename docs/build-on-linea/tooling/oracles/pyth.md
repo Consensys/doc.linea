@@ -1,6 +1,5 @@
 ---
 title: Pyth Network
-sidebar_position: 4
 ---
 
 # Pyth Network

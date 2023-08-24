@@ -62,9 +62,11 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 </TabItem> 
 </Tabs>
 
-## Connect with Infura
+## Connect with node providers
 
-If your dapp is using the public endpoints, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147).
+If your dapp is using the public endpoints, it may encounter rate limiting. You can find Linea node providers [here](../build-on-linea/tooling/node-providers.md).
+
+We recommend connecting to Linea via [private RPCs](../build-on-linea/tooling/node-providers.md#private-rpc).
 
 ## Deployed contracts
 

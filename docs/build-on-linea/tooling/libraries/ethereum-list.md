@@ -1,6 +1,5 @@
 ---
 title: ethereum-lists/chains
-sidebar_position: 4
 ---
 
 # Chainlist.org

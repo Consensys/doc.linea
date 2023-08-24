@@ -1,6 +1,5 @@
 ---
 title: Sentio
-sidebar_position: 3
 ---
 
 # Sentio

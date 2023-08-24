@@ -1,6 +1,5 @@
 ---
 title: Hal Stream
-sidebar_position: 1
 ---
 
 # Hal Stream
