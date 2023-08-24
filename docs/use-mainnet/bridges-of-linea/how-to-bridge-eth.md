@@ -121,7 +121,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
       .default
   }></img>
 
-8. You’re done! Under Recent Transactions, it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._
+8. You’re done! Under "Recent transactions", it should say "Bridging complete" and your ETH should be on Linea Mainnet. _Reminder: It takes around 20 minutes for the bridging process to complete._
 
 <img
   src={
