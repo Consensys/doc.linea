@@ -1,6 +1,5 @@
 ---
-title: Smart Accounts
-sidebar_position: 2
+title: thirdweb
 ---
 
 # Smart Contract-Enabled Accounts on Linea

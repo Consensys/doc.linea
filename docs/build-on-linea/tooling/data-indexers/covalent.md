@@ -1,6 +1,5 @@
 ---
 title: Covalent
-sidebar_position: 1
 ---
 
 # Covalent Indexing and Querying API

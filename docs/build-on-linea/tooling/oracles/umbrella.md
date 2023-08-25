@@ -1,6 +1,5 @@
 ---
 title: Umbrella Network
-sidebar_position: 2
 ---
 
 # Umbrella Network

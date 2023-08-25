@@ -1,6 +1,5 @@
 ---
 title: LayerZero Omnichain Messaging
-sidebar_position: 1
 ---
 
 # LayerZero
