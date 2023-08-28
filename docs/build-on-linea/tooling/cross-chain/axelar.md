@@ -8,20 +8,20 @@ The [Axelar Network](https://docs.axelar.dev/), is a blockchain of blockchains t
 
 ## Available Functionality
 
-Two powerful features are available for builders on Linea.
+Axelar enables powerful interchain features for builders on Linea.
 
 1. The ability to [send tokens](https://docs.axelar.dev/dev/send-tokens/overview) across blockchains
 1. The ability to send [general messages](https://docs.axelar.dev/dev/general-message-passing/overview) across blockchains
 
 ## Linea Integration
 
-When integrating with Axelar there are two key contracts that need to be utilized. These are
+When integrating with Axelar there are two key contracts that need to be utilized. These are:
 
 1. The [Axelar Gateway](https://docs.axelar.dev/learn#gateway-smart-contracts)
-   - On the source chain this contract exposes the functions which you will use to initiate a transaction from the source chain.
-   - On the destination chain this contract is used to automatically execute a transaction.
+   - On the source chain, this contract exposes the functions which you will use to initiate an interchain transaction.
+   - On the destination chain, this contract enables messages to be executed automatically to complete the interchain transaction.
 2. The [Axelar Gas Service](https://docs.axelar.dev/dev/general-message-passing/gas-services/intro)
-   - This contract is the entrypoint into Axelar's gas service, which handles gas payment for your transaction on both the Axelar network and the destination chain. You as the caller only now need the gas of the source chain.
+   - This contract is the entrypoint into Axelar's gas service, which handles gas payment for your transaction on both the Axelar network and the destination chain. You as the caller now only need the gas of the source chain.
 
 #### Contract Addresses:
 
@@ -50,7 +50,7 @@ For inspiration here of what sort of interchain applications can be built on top
 
 - A chain-agnostic prime brokerage that can accept any asset as collateral: cross-chain, meet cross-margin. The ability to build interchain applications that connect from any blockchain to any blockchain rather than just a series of blockchains to ethereum allows for a variety of new defi usecases including cross-chain margining. Prime allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain.
 
-3.  Interchain Gaming ([Junkyard](https://junkyard.wtf/)
+3.  Interchain Gaming ([Junkyard](https://junkyard.wtf/))
 
 - Web3 gaming is heavily reliant on the use of NFTs. For NFT based games to maximize their usecase, allowing them to be passed between blockchains is a critical next step. Junkyard leverages Axelar to allow for interchain NFTs in its game. In Junkyard, players are able to deposit their NFTs to the Junkyard contract, the NFT can come from any chain connected in the Axelar ecosystem, including Linea.
 
