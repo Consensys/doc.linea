@@ -20,7 +20,7 @@ When integrating with Axelar there are two key contracts that need to be utilize
 1. The [Axelar Gateway](https://docs.axelar.dev/learn#gateway-smart-contracts)
    - On the source chain, this contract exposes the functions which you will use to initiate an interchain transaction.
    - On the destination chain, this contract enables messages to be executed automatically to complete the interchain transaction.
-2. The [Axelar Gas Service](https://docs.axelar.dev/dev/general-message-passing/gas-services/intro)
+1. The [Axelar Gas Service](https://docs.axelar.dev/dev/general-message-passing/gas-services/intro)
    - This contract is the entrypoint into Axelar's gas service, which handles gas payment for your transaction on both the Axelar network and the destination chain. You as the caller now only need the gas of the source chain.
 
 #### Contract Addresses:
@@ -42,19 +42,19 @@ For a full end-to-end example of a Linea-Axelar integration here is a [video wal
 
 For inspiration here of what sort of interchain applications can be built on top of Axelar here are some live usecases.
 
-1. Interchain Token Swaps ([Squid](https://app.squidrouter.com/))
+1. Interchain Token Swaps (Eg. [Squid](https://app.squidrouter.com/))
 
-- Squid is an exciting new protocol built on top of Axelar that allows users to swap tokens with a uniswap like experience but leverages Axelar for swaps between tokens across different blockchains. Squid takes DeFi to the next level restricting the need to revert to centralized exchanges or multiple different exchanges to swap tokens across chains.
+   - Squid is an exciting new protocol built on top of Axelar that allows users to swap tokens with a uniswap like experience but leverages Axelar for swaps between tokens across different blockchains. Squid takes DeFi to the next level restricting the need to revert to centralized exchanges or multiple different exchanges to swap tokens across chains.
 
-2. Interchain Lending ([Prime Protocol](https://www.primeprotocol.xyz/))
+1. Interchain Lending (Eg. [Prime Protocol](https://www.primeprotocol.xyz/))
 
-- A chain-agnostic prime brokerage that can accept any asset as collateral: cross-chain, meet cross-margin. The ability to build interchain applications that connect from any blockchain to any blockchain rather than just a series of blockchains to ethereum allows for a variety of new defi usecases including cross-chain margining. Prime allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain.
+   - A chain-agnostic prime brokerage that can accept any asset as collateral: cross-chain, meet cross-margin. The ability to build interchain applications that connect from any blockchain to any blockchain rather than just a series of blockchains to ethereum allows for a variety of new defi usecases including cross-chain margining. Prime allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain.
 
-3.  Interchain Gaming ([Junkyard](https://junkyard.wtf/))
+1. Interchain Gaming (Eg. [Junkyard](https://junkyard.wtf/))
 
-- Web3 gaming is heavily reliant on the use of NFTs. For NFT based games to maximize their usecase, allowing them to be passed between blockchains is a critical next step. Junkyard leverages Axelar to allow for interchain NFTs in its game. In Junkyard, players are able to deposit their NFTs to the Junkyard contract, the NFT can come from any chain connected in the Axelar ecosystem, including Linea.
+   - Web3 gaming is heavily reliant on the use of NFTs. For NFT based games to maximize their usecase, allowing them to be passed between blockchains is a critical next step. Junkyard leverages Axelar to allow for interchain NFTs in its game. In Junkyard, players are able to deposit their NFTs to the Junkyard contract, the NFT can come from any chain connected in the Axelar ecosystem, including Linea.
 
 ## Get Involved With Axelar
 
 1. Meet the community on [Discord](http://discord.gg/axelar)
-2. Dive into the data on the [Axelarscan block explorer](http://axelarscan.io)
+1. Dive into the data on the [Axelarscan block explorer](http://axelarscan.io)
