@@ -48,7 +48,7 @@ For inspiration here of what sort of interchain applications can be built on top
 
 1. Interchain Lending (Eg. [Prime Protocol](https://www.primeprotocol.xyz/))
 
-   - A chain-agnostic prime brokerage that can accept any asset as collateral: cross-chain, meet cross-margin. The ability to build interchain applications that connect from any blockchain to any blockchain rather than just a series of blockchains to ethereum allows for a variety of new defi usecases including cross-chain margining. Prime allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain.
+   - A chain-agnostic prime brokerage that allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain. Prime offers the ability to build interchain applications that connect from any blockchain to any blockchain, rather than just connecting a series of blockchains to ethereum. Prime's interchain design allows for a variety of new defi usecases including cross-chain margining.
 
 1. Interchain Gaming (Eg. [Junkyard](https://junkyard.wtf/))
 
