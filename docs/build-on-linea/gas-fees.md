@@ -72,4 +72,4 @@ curl https://mainnet.infura.io/v3/YOUR-API-KEY \
 Since we are including 200 blocks, calculating the weighted average will be quite tedious.
 :::
 
-After meticulously going through all this math, you should arrive at your gas price. This should be close to the gas price the eth_gasPrice method from above. 
+After meticulously going through all this math, you should arrive at your gas price. This should be close to the gas price the eth_gasPrice method returns from above. 
