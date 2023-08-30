@@ -3,7 +3,7 @@ title: Gas fees on Linea
 sidebar_position: 6
 ---
 
- If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refersher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). Linea's gas fees are dependent on Ethereum, but the underlying calculations are somewhat complex. This article will explain how the L2 fees are calculated, but the **TLDR is that Linea's gas fees should be around 1/15th of Ethereum's, and we hope to reduce them even further in the future.**
+ If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). Linea's gas fees are dependent on Ethereum, but the underlying calculations are somewhat complex. This article will explain how the L2 fees are calculated, but the **TLDR is that Linea's gas fees should be around 1/15th of Ethereum's, and we hope to reduce them even further in the future.**
 
 ## How do I check the gas price on Linea?
 
@@ -50,11 +50,11 @@ $$
 L2 \text{ miner tip} = \text{base\_fee\_coefficient} \times \text{last-L1-base-fee} + \text{priority\_fee\_coefficient} \times \text{WA}(GasUsedRatio \text{(L1-eth\_feeHistory(latest, batchSubmissionPercentile, numBlocks))})
 $$
 
-In this equation, the following variables are constants that may be subject to change in the future as we refine our gas fee calculation: ```base_fee_coefficient = 0.066```, ```prority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
+In this equation, the following variables are constants that may be subject to change in the future as we refine our gas fee calculation: ```base_fee_coefficient = 0.066```, ```priority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
 
 The first portion of the equation is simply the base_fee_coefficient multiplied by the last L1 base fee.
 
-The second part of the equation multiplies the priority_fee_coefficient by the Weighted Average (WA) of the gas used ratio that the eth_feeHistory method returns.
+The second part of the equation multiplies the priority_fee_coefficient by the [Weighted Average (WA)](https://learn.robinhood.com/articles/N7yD1p14AbaYIdlXmnSlf/what-is-the-weighted-average/) of the gas used ratio that the eth_feeHistory method returns.
 
 
 We use the [eth_feeHistory JSON-RPC method](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory) with the constant parameters given above to figure out what the 'GasUsedRatio' is on Ethereum and then find the weighted average of the values.
@@ -69,6 +69,7 @@ curl https://mainnet.infura.io/v3/YOUR-API-KEY \
 
 ```
 :::note
-Since we are including 200 blocks, calculating the weighted average would be quite tedious.
-
+Since we are including 200 blocks, calculating the weighted average will be quite tedious.
 :::
+
+After meticulously going through all this math, you should arrive at your gas price. This should be close to the gas price the eth_gasPrice method from above. 
