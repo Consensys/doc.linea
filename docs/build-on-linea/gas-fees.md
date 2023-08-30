@@ -3,7 +3,7 @@ title: Gas fees on Linea
 sidebar_position: 6
 ---
 
- If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). Linea's gas fees are dependent on Ethereum, but the underlying calculations are somewhat complex. This article will explain how the L2 fees are calculated, but the **TLDR is that Linea's gas fees should be around 1/15th of Ethereum's, and we hope to reduce them even further in the future.**
+ If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). Linea's gas fees depend on Ethereum's fee, and we will explain how the L2 fees are calculated, but the **TLDR is that Linea's gas fees should be around 1/15th of Ethereum's, and we hope to reduce them even further in the future.**
 
 ## How do I check the gas price on Linea?
 
