@@ -39,25 +39,20 @@ $$
 \text{total\_L2\_fee} = \text{L2\_base\_fee} + \text{L2\_miner\_tip}
 $$
 
-The L2 fee equation is comprised of two parts, the base fee and the miner tip. The base fee is essentially 0 and can be ignored for the portion of the calculation. 
-
-However, the miner tip equation will be explained in more detail below.
+The L2 fee equation is comprised of two parts, the base fee and the miner tip. The base fee is 7 wei, which is the minimum base fee a standard protocol allows. The miner tip equation is a bit complex and will be explained in more detail below.
 
 
 **L2 Miner Tip Equation**
 
 $$
-L2 \text{ miner tip} = \text{base\_fee\_coefficient} \times \text{last-L1-base-fee} + \text{priority\_fee\_coefficient} \times \text{WA}(GasUsedRatio \text{(L1-eth\_feeHistory(latest, batchSubmissionPercentile, numBlocks))})
+l2\_miner\_tip = \left( \sum_{i} (baseFee[i] \times 0.066 + reward[i] \times 0.066) \times ratio[i] \right) \div \left( \sum_{i} ratio[i] \right)
 $$
+
+Looking at this equation might seem overwhelming, but we are just calculating the weighted average to get the L2 miner tip.
 
 In this equation, the following variables are constants that may be subject to change in the future as we refine our gas fee calculation: ```base_fee_coefficient = 0.066```, ```priority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
 
-The first portion of the equation is simply the base_fee_coefficient multiplied by the last L1 base fee.
-
-The second part of the equation multiplies the priority_fee_coefficient by the [Weighted Average (WA)](https://learn.robinhood.com/articles/N7yD1p14AbaYIdlXmnSlf/what-is-the-weighted-average/) of the gas used ratio that the eth_feeHistory method returns.
-
-
-We use the [eth_feeHistory JSON-RPC method](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory) with the constant parameters given above to figure out what the 'GasUsedRatio' is on Ethereum and then find the weighted average of the values.
+We use the [eth_feeHistory JSON-RPC method](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory) with the constant parameters given above to figure out what the 'baseFeePerGas', 'gasUsedRatio', and 'reward'is on Ethereum and then find the weighted average by plugging them into the equation.
 
 The request would look like the code below.
 
@@ -68,8 +63,29 @@ curl https://mainnet.infura.io/v3/YOUR-API-KEY \
   -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": ["200", "latest", [15]] }'
 
 ```
-:::note
-Since we are including 200 blocks, calculating the weighted average will be quite tedious.
-:::
 
-After meticulously going through all this math, you should arrive at your gas price. This should be close to the gas price the eth_gasPrice method returns from above. 
+## Example Calculation
+
+For practical purposes let's assume we ran the `eth_feeHistory` and used `numBlocks=3`, and got the following respone:
+
+```
+{"jsonrpc":"2.0","id":1,"result":{"baseFeePerGas":["1001","1002","1003","1004"],"gasUsedRatio":[0.4,0.5,0.6],"oldestBlock":"0x113159b","reward":[["901"],["902"],["903"]]}}
+
+```
+
+This maps to the following inputs for the equation:
+
+```
+baseFee = ["1001","1002","1003"]
+reward= ["901", "902", "903"]
+ratio = [0.4, 0.5, 0.6]
+
+```
+
+Using the formula we would then iterate through all the values in the list, where i goes from 1 to 3 to get:
+
+$$
+l2\_miner\_tip = \frac{{(1001 \times 0.66 + 901 \times 0.66) \times 0.4 + (1002 \times 0.66 + 902 \times 0.66) \times 0.5 + (1003 \times 0.66 + 903 \times 0.66) \times 0.6}}{{0.4 + 0.5 + 0.6}}
+$$
+
+After meticulously going through all this math, you should arrive at your gas price (if you do this for 200 blocks instead of 3). This should be close to the gas price the `eth_gasPrice` method returns from above. 

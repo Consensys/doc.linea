@@ -1,6 +1,9 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 // const isDev = process.env.NODE_ENV === "development";
 // const baseUrl = isDev ? "/" : "/";
 
@@ -46,6 +49,8 @@ const config = {
           // @ts-ignore
           // eslint-disable-next-line global-require
           remarkPlugins: [require("remark-docusaurus-tabs")],
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
@@ -333,6 +338,15 @@ const config = {
         ],
       },
     ],
+  ],
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
   ],
   themes: [],
 };
