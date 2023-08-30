@@ -50,7 +50,7 @@ $$
 
 Looking at this equation might seem overwhelming, but we are just calculating the weighted average to get the L2 miner tip.
 
-In this equation, the following variables are constants that may be subject to change in the future as we refine our gas fee calculation: ```base_fee_coefficient = 0.066```, ```priority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
+In this equation, the following variables are constants that could change in the future as we fine-tune our gas fee calculation: ```base_fee_coefficient = 0.066```, ```priority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
 
 We use the [eth_feeHistory JSON-RPC method](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory) with the constant parameters given above to figure out what the 'baseFeePerGas', 'gasUsedRatio', and 'reward'is on Ethereum and then find the weighted average by plugging them into the equation.
 
@@ -66,7 +66,7 @@ curl https://mainnet.infura.io/v3/YOUR-API-KEY \
 
 ## Example Calculation
 
-For practical purposes let's assume we ran the `eth_feeHistory` and used `numBlocks=3`, and got the following respone:
+For practical purposes let's assume we ran the `eth_feeHistory` and used `numBlocks=3`, and got the following response:
 
 ```
 {"jsonrpc":"2.0","id":1,"result":{"baseFeePerGas":["1001","1002","1003","1004"],"gasUsedRatio":[0.4,0.5,0.6],"oldestBlock":"0x113159b","reward":[["901"],["902"],["903"]]}}
@@ -82,7 +82,7 @@ ratio = [0.4, 0.5, 0.6]
 
 ```
 
-Using the formula we would then iterate through all the values in the list, where i goes from 1 to 3 to get:
+Using the formula, we would iterate through all the values in the list, where i ranges from 1 to 3, to obtain:
 
 $$
 l2\_miner\_tip = \frac{{(1001 \times 0.66 + 901 \times 0.66) \times 0.4 + (1002 \times 0.66 + 902 \times 0.66) \times 0.5 + (1003 \times 0.66 + 903 \times 0.66) \times 0.6}}{{0.4 + 0.5 + 0.6}}
