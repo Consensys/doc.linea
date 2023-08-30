@@ -34,7 +34,6 @@ If you want to drip Goerli ETH directly to Linea, the following faucets are avai
 1. [Infura Linea faucet](https://infura.io/faucet/linea)
 1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
 1. [FAUCETME faucet](https://linea.faucetme.pro/)
-1. [Tatarot faucet](https://faucet.tatarot.ai/)
 
 If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](../build-on-linea/bridge-funds/index.md). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
 
