@@ -38,9 +38,9 @@ Once you have submitted your transaction you can now view it on the [Axelarscan 
 
 For a full end-to-end example of a Linea-Axelar integration here is a [video walkthrough](https://www.youtube.com/watch?v=-KgJZmq8Umc&t=1s) of the process, the complementary code can be found [here](https://github.com/Olanetsoft/linea-interchain-workshop-with-axelar).
 
-## Axelar Usecases
+## Axelar Use Cases
 
-For inspiration here of what sort of interchain applications can be built on top of Axelar here are some live usecases.
+For inspiration here of what sort of interchain applications can be built on top of Axelar here are some live use cases.
 
 1. Interchain Token Swaps (Eg. [Squid](https://app.squidrouter.com/))
 
@@ -48,11 +48,11 @@ For inspiration here of what sort of interchain applications can be built on top
 
 1. Interchain Lending (Eg. [Prime Protocol](https://www.primeprotocol.xyz/))
 
-   - A chain-agnostic prime brokerage that allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain. Prime offers the ability to build interchain applications that connect from any blockchain to any blockchain, rather than just connecting a series of blockchains to ethereum. Prime's interchain design allows for a variety of new defi usecases including cross-chain margining.
+   - A chain-agnostic prime brokerage that allows users to deposit assets from any connected chain and use their aggregate value in collateral for loans, on any other connected chain. Prime offers the ability to build interchain applications that connect from any blockchain to any blockchain, rather than just connecting a series of blockchains to ethereum. Prime's interchain design allows for a variety of new defi use cases including cross-chain margining.
 
 1. Interchain Gaming (Eg. [Junkyard](https://junkyard.wtf/))
 
-   - Web3 gaming is heavily reliant on the use of NFTs. For NFT based games to maximize their usecase, allowing them to be passed between blockchains is a critical next step. Junkyard leverages Axelar to allow for interchain NFTs in its game. In Junkyard, players are able to deposit their NFTs to the Junkyard contract, the NFT can come from any chain connected in the Axelar ecosystem, including Linea.
+   - Web3 gaming is heavily reliant on the use of NFTs. For NFT based games to maximize their use case, allowing them to be passed between blockchains is a critical next step. Junkyard leverages Axelar to allow for interchain NFTs in its game. In Junkyard, players are able to deposit their NFTs to the Junkyard contract, the NFT can come from any chain connected in the Axelar ecosystem, including Linea.
 
 ## Get Involved With Axelar
 
