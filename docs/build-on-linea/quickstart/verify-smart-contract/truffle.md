@@ -6,6 +6,12 @@ To verify your contracts, you can use Truffle's verification plugin [truffle-plu
 
 These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](./../deploy-smart-contract/truffle.mdx/#truffle-configjs).
 
+:::note
+
+These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+
+:::
+
 ## Download the plugin
 
 In your Truffle project, install the plugin:

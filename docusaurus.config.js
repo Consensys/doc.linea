@@ -131,11 +131,11 @@ const config = {
           },
           {
             type: "dropdown",
-            label: "Learn",
+            label: "Tutorials",
             position: "left",
             items: [
               {
-                label: "Community tutorials",
+                label: "Community Guides",
                 to: "blog",
               },
               {
