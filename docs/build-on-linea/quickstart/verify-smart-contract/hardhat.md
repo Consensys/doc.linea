@@ -34,6 +34,12 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 
 ## Add the custom chain
 
+:::note
+
+These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+
+:::
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
