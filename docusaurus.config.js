@@ -155,7 +155,7 @@ const config = {
             label: "Linea home",
           },
           {
-            href: "https://discord.com/invite/consensys",
+            href: "https://discord.gg/linea",
             className: "header-discord-link",
             position: "right",
           },
@@ -187,7 +187,7 @@ const config = {
             items: [
               {
                 label: "Join our Discord",
-                href: "https://discord.com/invite/consensys",
+                href: "https://discord.gg/linea",
               },
               {
                 label: "Get Help",

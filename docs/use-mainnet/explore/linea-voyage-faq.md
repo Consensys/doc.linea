@@ -72,4 +72,4 @@ We are working with our early testnet partners to blend some on-chain with a few
 
 ## If I need help getting started or with one of the on-chain activities, where can I get help?
 
-You can find guides on how to use our early testnet partners under [here](/use-mainnet/explore). If you need more help, please search or post in our [community forum](https://community.linea.build/) or join our [Discord](https://discord.com/invite/consensys).
+You can find guides on how to use our early testnet partners under [here](/use-mainnet/explore). If you need more help, please search or post in our [community forum](https://community.linea.build/) or join our [Discord](https://discord.gg/linea).
