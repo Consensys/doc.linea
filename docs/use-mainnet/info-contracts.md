@@ -95,11 +95,11 @@ We recommend connecting to Linea via [private RPCs](../build-on-linea/tooling/no
   </tr>
   <tr>
     <td>L1 Message Service</td>
-    <td><a href="https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40">0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40</a></td>
+    <td><a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2">0x70BaD09280FD342D02fe64119779BC1f0791BAC2</a></td>
   </tr>
   <tr>
     <td>L2 Message Service</td>
-    <td><a href="https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d">0xA59477f7742Ba7d51bb1E487a8540aB339d6801d</a></td>
+    <td><a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC">0xC499a572640B64eA1C8c194c43Bc3E19940719dC</a></td>
   </tr>
 </table>
   </TabItem>
