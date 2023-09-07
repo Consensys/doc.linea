@@ -3,9 +3,11 @@ title: How to bridge ETH between Ethereum and Linea
 sidebar_position: 1
 ---
 
-import ReactPlayer from 'react-player'
+This is a step by step guide on how to bridge ETH between Ethereum Mainnet (L1) to Linea (L2).
 
-## Video Tutorial 
+**To bridge ETH over testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.**
+
+If you would like to bridge between other networks, check out [third-party bridges](/use-mainnet/bridges-of-linea#third-party-permissionless-bridges).
 
 Check out this video on how to use our bridge!
 
@@ -16,18 +18,15 @@ Check out this video on how to use our bridge!
   frameborder="0"
 ></iframe>
 
-
 ## Bridging ETH from Ethereum (L1) to Linea (L2)
 
-:::note
+:::caution
 
-This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L2) and Linea (L2) to Ethereum (L1). The screenshots provided are examples of bridging ETH for Linea and Ethereum Mainnet. To bridge ETH over Testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.
+Please use the [automatic claiming option](/use-mainnet/bridges-of-linea#manual-vs-automatic-claiming) the first time you bridge ETH from L1 to L2. [Manual claiming](/use-mainnet/bridges-of-linea#manual-vs-automatic-claiming) requires you to have L2 ETH available to pay for the fees. **If you don't have enough L2 ETH to cover the fees, your transaction will be stuck on the bridge until you can cover the fees!**
 
 :::
 
-> **Please use the automatic claiming option the first time you bridge ETH from L1 to L2. Manual claiming requires you to have L2 ETH available to pay for the fees. If you don't have enough L2 ETH to cover the fees, your transaction will be stuck on the bridge until you can cover the fees!**
-
-## Automatic Claiming:
+### Automatic Claiming
 
 1. Go to our token bridge [here](https://bridge.linea.build/).
 
@@ -75,7 +74,7 @@ This is a step by step guide on how to bridge ETH from Ethereum (L1) to Linea (L
 
 8. You can see your Linea account balance in MetaMask once you switch to the Linea network. You can also check it on [LineaScan](https://lineascan.build/address/0x331FB12C080F5b34F0E8812D44114D17398A016d). Just replace the account address in the URL with your account address and it should reflect your account's balance!
 
-## Manual Claiming
+### Manual Claiming
 
 1. Go to our token bridge [here](https://bridge.linea.build/).
 

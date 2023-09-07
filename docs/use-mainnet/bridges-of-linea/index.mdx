@@ -1,11 +1,21 @@
 ---
 title: Bridge your tokens
-sidebar_position: 4
+sidebar_position: 3
 ---
 
-import ReactPlayer from 'react-player'
+## Quickstart
 
-# Linea, the land of many bridges
+Before you begin, make sure you've [set up your wallet](/use-mainnet/set-up-your-wallet)
+
+**Bridge ETH**
+- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-eth) (for bridging between Linea and Ethereum)
+- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
+
+**Bridge ERC20 tokens**
+- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens) (recommended for tech operators that are providing liquidity)
+- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
+
+## The Linea bridge ecosystem
 
 Any L2 is going to have a lot of connections to other networks. Some of these bridges will be made by Consensys and Linea, some by projects collaborating with us; eventually, some may be made without our knowledge—that’s what 'permissionless' means.
 
@@ -17,8 +27,6 @@ Any L2 is going to have a lot of connections to other networks. Some of these br
 >
 > Ok, now you're up to speed 🚀
 
-# The Linea bridge ecosystem
-
 ### The Canonical Message Bridge
 
 The main "bridge", on a technical level, in Linea is the _Canonical Message Bridge_. This is the underlying set of smart contracts which keep track of receiving requests to move tokens to the other layer, and of sending the message that those tokens should be transferred.
@@ -27,13 +35,19 @@ The main "bridge", on a technical level, in Linea is the _Canonical Message Brid
 
 This message is then picked up by programs serving as "postmen", and moved to the other network, where the receiving smart contract executes according to the message received.
 
-### The Canonical Token Bridge
+### [The Canonical Token Bridge](/architecture/bridges/canonical-token-bridge)
 
 If you want to move tokens between L1 and L2, we recommend you use the bridge built on top of the Canonical Message Bridge specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build).
 
-### Official, Third-Party, Permissionless Bridges, and beyond
+### Third-Party, Permissionless Bridges
 
-As the network grows, we'll be updating this space with a user's guide to the bridges of Linea. To see what bridges are available, head to our [ecosystem portal](https://linea.build/apps) and filter for bridges.
+You can find third-party bridges by heading over to our [ecosystem portal](https://linea.build/apps) and filtering for bridges.
+
+:::caution
+
+Note that these are permissionless bridges. As always, you should do your own research before interacting with dapps in order to keep your funds safe.
+
+:::
 
 ## Manual vs Automatic Claiming
 
@@ -58,5 +72,4 @@ If the "decimals" cannot be determined by reading the origin ERC20 token contrac
 
 It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC20 standards.
 
-Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information.  Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again. 
-
+Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information.  Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again.
