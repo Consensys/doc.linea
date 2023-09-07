@@ -4,38 +4,23 @@ description: Get tokens in your accounts
 sidebar_position: 2
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
-
-<Tabs className="my-tabs">
-  <TabItem value="Mainnet" label="Mainnet" default>
-
 ## Getting tokens on Linea
-There are several ways to get tokens on Linea: **from a friend** (or a fren) or **by bridging it**, and hopefully soon, a more direct solution 👀. Here are some resources to get you started:
 
-### Getting tokens from a fren
+There are several ways to get tokens on Linea:
 
-Do you know someone who's a Linea 🐳, and is willing to give you some ETH? Grab [your account's public address](https://support.metamask.io/hc/en-us/articles/360015289512), and have [them send you some](./transact.md).
-
-**Remember: you can't just send tokens from one network to another. That's not how it works.**
-
-### 🌉Bridge your own🌉
-
-If you've got some ETH on Mainnet, or want to [buy some](https://support.metamask.io/hc/en-us/articles/360058239311), then you'll be able to bridge that ETH up to Linea using the [bridge process outlined here](../use-mainnet/bridges-of-linea/index.mdx).
-
-  </TabItem>
-  <TabItem value="Testnet" label="Testnet">
-
-Before you begin, ensure your wallet is [configured to use Linea](./set-up-your-wallet.mdx)
+- [Transferring from another account](https://support.metamask.io/hc/en-us/articles/360015488931-How-to-send-tokens-from-your-MetaMask-wallet) (on Linea mainnet or testnet)
+- [Bridging between networks](./bridges-of-linea/index.mdx)
+- [Faucets](#use-a-linea-faucet) (for testnet tokens on Linea Goerli)
 
 ## Use a Linea faucet
 
-If you want to drip Goerli ETH directly to Linea, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
+If you want to drip Goerli ETH directly to Linea testnet, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
 
 1. [Infura Linea faucet](https://infura.io/faucet/linea)
 1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
 1. [FAUCETME faucet](https://linea.faucetme.pro/)
 
-If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](../build-on-linea/bridge-funds/index.md). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
+If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](/use-mainnet/bridges-of-linea/how-to-bridge-eth). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
 
 If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
 
@@ -50,12 +35,12 @@ To get Goerli ETH, you'll need to:
 
 Transactions on Linea are much cheaper than Ethereum mainnet. Therefore, 0.2 ETH is enough to execute a basic workflow, but feel free to get as much as you need!
 
-## Get test ETH on Linea
+## Get test ETH on Linea testnet
 
 In order to interact with Linea, you can either:
 
 1. [Drip Goerli ETH directly to Linea through the various faucets](#use-a-linea-faucet)
-1. [Bridge Goerli ETH to Linea](../build-on-linea/bridge-funds/index.md)
+1. [Bridge Goerli ETH to Linea](/use-mainnet/bridges-of-linea/how-to-bridge-eth)
 
 ## Get other tokens on Goerli
 
@@ -87,6 +72,3 @@ Not all available tokens will drip directly onto Linea. If they are, you will se
 :::
 
 Specific tokens require specific bridges. If you want to bridge from Goerli to Linea, you can find the tokens, contract addresses, and associated bridges [here](./info-contracts.md#token-contract-addresses-and-bridges).
-
-  </TabItem>
-</Tabs>

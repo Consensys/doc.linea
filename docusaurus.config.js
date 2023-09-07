@@ -316,10 +316,6 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/use-mainnet/transact",
-            from: "/build-on-linea/use-linea-testnet/transact",
-          },
-          {
             to: "/use-mainnet/explore/linea-voyage-faq",
             from: "/use-linea-testnet/linea-voyage-faq",
           },
@@ -328,11 +324,11 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/build-on-linea/bridge-funds/usdc-bridge",
+            to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            to: "/build-on-linea/bridge-funds/use-etherscan",
+            to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
         ],
