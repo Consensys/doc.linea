@@ -15,7 +15,7 @@ sidebar_position: 4
 | Opcode name | Ethereum | Linea |
 | --- | --- | --- |
 | `DIFFICULTY` / `PREVRANDAO` | Returns the RANDAO value from the previous block | Returns a fixed number |
-| `PUSH0` | Pushes the constant value 0 onto the stack | Linea supports Solidity compiler versions up to 0.8.19, matching Ethereum's London release. To resolve this issue, please recompile your contract using Solidity version 0.8.19 or lower. |
+| `PUSH0` | Pushes the constant value 0 onto the stack | PUSH0 opcode compatibility was introduced in Solidity compiler version 0.8.20. Linea supports Solidity compiler versions up to 0.8.19, matching Ethereum's London release. To resolve this issue, please recompile your contract using Solidity version 0.8.19 or lower. |
 
 _In Ethereum, this opcode was previously known as_ `DIFFICULTY`. _However, through the implementation of_ [EIP-4399](https://eips.ethereum.org/EIPS/eip-4399), _it was renamed to_ `PREVRANDAO`, _and its functionality changed due to the switch from PoW to PoS. Notably, it is a full 256-bit value that represents the randomness beacon output of the previous block. For more, see the 'Security Considerations' section of the above EIP._
 
