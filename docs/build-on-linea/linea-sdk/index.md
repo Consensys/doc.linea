@@ -33,6 +33,8 @@ The code example below demonstrates how to initialize the SDK with the relevant 
 ```typescript
 import * as dotenv from "dotenv";
 import { LineaSDK } from "@consensys/linea-sdk";
+import { BigNumber } from 'ethers';
+
 
 dotenv.config();
 
@@ -41,25 +43,34 @@ const sdk = new LineaSDK({
     l2RpcUrl: process.env.L2_RPC_URL ?? "", // L2 rpc url
     l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "", // L1 account private key (optional if you use mode = read-only)
     l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "", // L2 account private key (optional if you use mode = read-only)
-    network: "linea-goerli", // network you want to interact with (either linea-mainnet or linea-goerli)
+    network: "linea-mainnet", // network you want to interact with (either linea-mainnet or linea-goerli)
     mode: "read-write", // contract wrapper class mode (read-only or read-write), read-only: only read contracts state, read-write: read contracts state and claim messages 
 });
 
 const l1Contract = sdk.getL1Contract(); // get the L1 contract wrapper instance
 const l2Contract = sdk.getL2Contract(); // get the L2 contract wrapper instance
 
-console.log(await l2Contract.getMessageStatus("0x3e1bdceea0a4d5693af825a29d44fc41b7db7c4947121362a130326b82b84e65")); //  status by message hash
-console.log(await l1Contract.getMessageStatus("0x28e9e11b53d624500f7610377c97877bb1ecb3127a88f7eba84dd7a146891946")); // status by message hash
+console.log( await l2Contract.getMessageStatus("0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d")); //  returns on-chain message status by message hash
+console.log( await l1Contract.getMessageStatus("0x28e9e11b53d624500f7610377c97877bb1ecb3127a88f7eba84dd7a146891946")); // returns on-chain message status by message hash
 
-const message = await l2Contract.getMessageByMessageHash(
-    "0xe36bb6d4122a2874692c7fa5bf189cfa6f80c77da0414d26b3a728b97aa18ee5",
-);
-const messageByTx = await l1Contract.getMessagesByTransactionHash(
-    "0xeaeaa2f8bab82aa7d2d53770545399fe9783434bd8a53e5aa93abfadaa19df51",
-);
+console.log( await l2Contract.getMessageByMessageHash("0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d")); // returns message by message hash
+console.log( await l1Contract.getMessageByMessageHash("")); // returns message by message hash
 
-const receipt = await l1Contract.getTransactionReceiptByMessageHash(
-    "0x28e9e11b53d624500f7610377c97877bb1ecb3127a88f7eba84dd7a146891946",
-);
+
+console.log( await l2Contract.getMessagesByTransactionHash("0x4b72c6abacd3e2372a32e2797c41cab08df8d5e6fb2eb453e896e52fe7b70a27")); // returns message by transaction hash
+console.log( await l1Contract.getMessagesByTransactionHash("")); // returns message by transaction hash
+
+console.log( await l2Contract.getTransactionReceiptByMessageHash("0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d")); // returns transaction receipt by message hash
+console.log( await l1Contract.getTransactionReceiptByMessageHash("0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d")); // returns transaction receipt by message hash
+
+ claimMessage = await l2Contract.claim({ // claims message by message 
+    messageSender: "", // address of message sender
+    messageHash: "", // message hash
+    fee: BigNumber.from(1), // fee
+    destination: "", // destination address of message
+    value: BigNumber.from(2), // value of message
+    calldata: "0x", // call data
+    messageNonce: BigNumber.from(1), // message nonce
+    feeRecipient: "0x", // optional parameter 
+  });        
 ```
-
