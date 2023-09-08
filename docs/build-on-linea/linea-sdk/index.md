@@ -25,7 +25,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
  4. Getting a message status by message hash
 
- 5. Claiming messages
+ 5. Claiming messages (use one of the get message methods to grab all the parameters values)
 
 
 The code example below demonstrates how to initialize the SDK with the relevant configuration options, and how to call the featured methods.
