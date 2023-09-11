@@ -71,6 +71,6 @@ console.log( await l1Contract.getTransactionReceiptByMessageHash("0x13dd0f5e3611
     value: BigNumber.from(2), // value of message
     calldata: "0x", // call data
     messageNonce: BigNumber.from(1), // message nonce
-    feeRecipient: "0x", // optional parameter 
+    feeRecipient: "0x", // address that will receive fees. by default it is the message sender
   });        
 ```
