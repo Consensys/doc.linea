@@ -17,7 +17,7 @@ This tutorial will take you through a step by step guide to indexing a Greeter s
 
 ## Background
 
-### [Greeter contract](https://github.com/Float-Capital/hardhat-template)
+### [Greeter contract](https://lineascan.build/address/0xdEe21B97AB77a16B4b236F952e586cf8408CF32A#code)
 
 The Greeter contract is a very simple smart contract that allows a user to write a greeting message on the blockchain.
 
@@ -94,16 +94,16 @@ Then choose a language of your choice for the event handlers.
 
 > Dev note: 📢 make sure you have docker open
 
-The following commands will start the docker and create databases for indexed data, make sure to re-run `dev` if you make changes to the files
+The following commands will start the docker and create databases for indexing data, make sure to re-run `dev` if you make changes to the files
 
 Run
 ```bash
 envio dev
 ```
 
-The indexer will then start indexing the contract/s specified in the `config.yaml` file from the `start_block` specified.
+The indexer will then start indexing the contract's specified in the `config.yaml` file from the `start_block` specified.
 
-### Write to contract on Lineascan
+### Write to the contract on Lineascan
 
 Once the indexer is running, you can call functions on the Greeter contract that is deployed on Linea.
 
@@ -112,7 +112,7 @@ Navigate to the contract on [Lineascan](https://lineascan.build/address/0xdEe21B
 
 ### View the indexed results
 
-You can view the indexed results on a local Hasura server.
+You can view the indexed results on your local Hasura server.
 
 ```bash
 open http://localhost:8080
