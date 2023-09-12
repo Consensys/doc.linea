@@ -11,7 +11,7 @@ date: 2023-09-12
 
 Blockchains excel at decentralizing data and continue to revolutionize traditional systems of trust and record-keeping, but data retrieval is often inefficient and majorly time-consuming for developers hampering the overall development experience.
 
-Indexer like Envio allow developers to sift through blockchain data, tidy it up, and store it in a useful intermediary format that is easily accessible. Applications can then use this format for potent queries on indexed data, ensuring scalability and production readiness.
+Indexers like Envio allow developers to sift through blockchain data, tidy it up, and store it in a useful intermediary format that is easily accessible. Applications can then use this format for potent queries on indexed data, ensuring scalability and production readiness.
 
 This tutorial will take you through a step by step guide to indexing a Greeter smart contract deployed on Linea using Envio.  
 
