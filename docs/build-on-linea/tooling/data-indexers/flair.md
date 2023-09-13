@@ -54,7 +54,8 @@ Learn more about the [structure of manifest.yml](https://docs.flair.build/refere
 
 2️⃣ Configure Linea RPC nodes
 
-Set a unique namespace, Linea chainId and RPC endpoint in your `config`. Remember that you can add up to 10 RPC endpoints for resiliency.
+Set a unique namespace, Linea chainId and RPC endpoint in your `config`. 
+Remember that you can add up to 10 RPC endpoints for resiliency.
 
 ```yaml
 {
@@ -78,9 +79,21 @@ Set a unique namespace, Linea chainId and RPC endpoint in your `config`. Remembe
 }
 ```
 
-3️⃣ [Query](https://docs.flair.build/#getting-started) your custom indexed data.
+3️⃣  Sync some historical data using [backfill command](https://docs.flair.build/reference/backfilling). Remember that `enabled: true` flag in your `config` enabled your indexer to capture data in real-time already.
 
-4️⃣ Stream the data to your [own database](https://docs.flair.build/reference/database#your-own-database).
+```bash
+# backfill certain contracts or block ranges
+pnpm flair backfill --chain 59140 --address 0x0872ec4426103482a50f26ffc32acefcec61b3c9 -d backward --max-blocks 10000
+# backfill for a specific block number, if you have certain events you wanna test with
+pnpm flair backfill --chain 59140 -b 409652
+# backfill for the recent data in the last X minute
+pnpm flair backfill --chain 59140 --min-timestamp="30 mins ago" -d backward
+```
+
+
+4️⃣ [Query](https://docs.flair.build/#getting-started) your custom indexed data.
+
+5️⃣ Stream the data to your [own database](https://docs.flair.build/reference/database#your-own-database).
 
 ## Examples
 
