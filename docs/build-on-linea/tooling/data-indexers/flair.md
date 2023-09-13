@@ -49,7 +49,7 @@ git clone https://github.com/flair-sdk/starter-boilerplate.git
 ::: info
 Boilerplate instructions will create a **new cluster**, generate **an API Key**, and set up a manifest.yml to index your **first contract** with **sample custom processor** scripts.
 
-Learn more about the [structure of manifest.yml](reference/manifest.yml.md).
+Learn more about the [structure of manifest.yml](https://docs.flair.build/reference/manifest.yml).
 :::
 
 2️⃣ Configure Linea RPC nodes
