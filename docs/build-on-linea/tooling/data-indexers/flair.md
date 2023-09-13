@@ -9,7 +9,6 @@ Real-time and historical custom data indexing for any evm chain.
 
 ![flair architecture](https://i.imgur.com/eiAvIPP.png)
 
-
 ## Why Flair?
 
 Compared to other alternatives the main reasons are:
