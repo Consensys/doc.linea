@@ -36,7 +36,7 @@ Compared to other alternatives the main reasons are:
   * Make external API or Webhook calls to third-party or your backend.
   * Get current or historical USD value of any ERC20 token amount of any contract address on any chain.
   * Use any external NPM library.
-* ✅ **Stream** any stored data to your destination database (Postgres, MognoDB, MySQL, Kafka, Elasticsearch, Timescale, etc).
+* ✅ **Stream** any stored data to your destination database (Postgres, MongoDB, MySQL, Kafka, Elasticsearch, Timescale, etc).
 
 ## Getting Started
 
