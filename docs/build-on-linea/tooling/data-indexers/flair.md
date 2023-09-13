@@ -47,9 +47,11 @@ git clone https://github.com/flair-sdk/starter-boilerplate.git
 # ... follow instructions in README.md
 ```
 ::: info
+
 Boilerplate instructions will create a **new cluster**, generate **an API Key**, and set up a manifest.yml to index your **first contract** with **sample custom processor** scripts.
 
 Learn more about the [structure of manifest.yml](https://docs.flair.build/reference/manifest.yml).
+
 :::
 
 2️⃣ Configure Linea RPC nodes
@@ -88,10 +90,10 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ### DeFi
 
-* [Aggregate protocol fees in USD across multiple chains](./aggregate-protocol-fees-in-usd/README.md)
-* [Calculate "Health Factor" of positions with contract factory tracking](./health-factor-with-factory-tracking/README.md)
-* [Index Uniswap v2 swaps with USD price for all addresses](./uniswap-v2-events-from-all-contracts-with-usd-price/README.md)
+* [Aggregate protocol fees in USD across multiple chains](https://github.com/flair-sdk/examples/tree/main/aggregate-protocol-fees-in-usd)
+* [Calculate "Health Factor" of positions with contract factory tracking](https://github.com/flair-sdk/examples/tree/main/health-factor-with-factory-tracking)
+* [Index Uniswap v2 swaps with USD price for all addresses](https://github.com/flair-sdk/examples/tree/main/uniswap-v2-events-from-all-contracts-with-usd-price)
 
 ### NFT
 
-* [Index ERC721 and ERC1155 NFTs on any EVM chain with an RPC URL](./erc721-and-erc1155-nft-indexing/README.md)
+* [Index ERC721 and ERC1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
