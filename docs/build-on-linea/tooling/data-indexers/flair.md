@@ -3,11 +3,9 @@ title: Flair
 ---
 
 # 🔮 Flair
-
-👋 <b>Welcome to [Flair](https://flair.dev)</b><br />
 Real-time and historical custom data indexing for any evm chain.
 
-Flair offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
+[Flair](https://flair.dev) offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
 
 <img
 src={
@@ -46,7 +44,7 @@ Compared to other alternatives the main reasons are:
 git clone https://github.com/flair-sdk/starter-boilerplate.git
 # ... follow instructions in README.md
 ```
-::: info
+:::info
 
 Boilerplate instructions will create a **new cluster**, generate **an API Key**, and set up a manifest.yml to index your **first contract** with **sample custom processor** scripts.
 
