@@ -47,14 +47,12 @@ git clone https://github.com/flair-sdk/starter-boilerplate.git
 # ... follow instructions in README.md
 ```
 ::: info
-
 Boilerplate instructions will create a **new cluster**, generate **an API Key**, and set up a manifest.yml to index your **first contract** with **sample custom processor** scripts.
 
 Learn more about the [structure of manifest.yml](reference/manifest.yml.md).
-
 :::
 
-2️⃣ Configure linea RPC nodes
+2️⃣ Configure Linea RPC nodes
 
 Set a unique namespace, Linea chainId and RPC endpoint in your `config`. Remember that you can add up to 10 RPC endpoints for resiliency.
 
