@@ -100,4 +100,4 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ## Need help?
 
-[Our engineers](https://docs.flair.build/talk-to-an-engineer) are available to help you at any stage
+[Our engineers](https://docs.flair.build/talk-to-an-engineer) are available to help you at any stage.
