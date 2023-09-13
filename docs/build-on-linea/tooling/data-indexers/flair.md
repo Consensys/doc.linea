@@ -61,7 +61,7 @@ Set a unique namespace, Linea chainId and RPC endpoint in your `config`. Remembe
 ```yaml
 {
   "cluster": "dev",
-  "namespace": "linea-indexing-dev",
+  "namespace": "my-awesome-linea-indexing-dev",
   "indexers": [
     {
       "chainId": 59140,
