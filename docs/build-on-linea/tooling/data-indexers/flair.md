@@ -82,7 +82,7 @@ Set a unique namespace, Linea chainId and RPC endpoint in your `config`. Remembe
 
 3️⃣ [Query](reference/database.md) your custom indexed data.
 
-4️⃣ Stream the data to your [own database](reference/database.md).
+4️⃣ Stream the data to your [own database](https://docs.flair.build/reference/database).
 
 ## Examples
 
