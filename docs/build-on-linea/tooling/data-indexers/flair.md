@@ -24,8 +24,7 @@ Compared to other alternatives the main reasons are:
 * 🧩  Focused on **primitives**, which means on the left you plug-in an RPC and on the right you output the data to any destination database.
 * 🚄  Native **real-time stream processing** for certain data workload (such as aggregations, rollups) for things like total volume per pool, or total portfolio per user wallet.
 * ☁️  **Managed** cloud services avoid DevOps and irrelevant engineering costs for dApp developers.
-* 🧑‍💻  Avoid decentralization **overhead** (consensus, network hops, etc) since we believe to enable best UX for dApps reading data must be as close to the developers as possible. Writing to blockchain is the main aspect to keep decentralized, not reading.
-
+* 🧑‍💻  Avoid decentralization **overhead** (consensus, network hops, etc) since we believe to enable best UX for dApps reading data must be as close to the developers as possible.
 ### Features
 
 * ✅ Listen to **any EVM chain** with just an RPC URL.
