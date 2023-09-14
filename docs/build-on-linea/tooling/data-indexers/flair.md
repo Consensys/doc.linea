@@ -34,7 +34,7 @@ Compared to other alternatives the main reasons are:
 
 ## Getting Started
 
-1️⃣ Clone the [starter boilerplate](https://github.com/flair-sdk/starter-boilerplate) template and follow the instructions:
+1️⃣ Clone the [starter boilerplate](https://github.com/flair-sdk/starter-boilerplate) template and follow the instructions
 
 ```bash
 git clone https://github.com/flair-sdk/starter-boilerplate.git
