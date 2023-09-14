@@ -7,7 +7,7 @@ Real-time and historical custom data indexing for any evm chain.
 
 [Flair](https://flair.dev) offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
 
-[![flair architecture](https://imgur.com/0q5bHZK.png)](https://docs.flair.build/)
+[![flair architecture](https://imgur.com/0q5bHZK.png)](https://docs.flair.dev/)
 
 
 ## Why Flair?
@@ -44,7 +44,7 @@ git clone https://github.com/flair-sdk/starter-boilerplate.git
 
 Boilerplate instructions will create a **new cluster**, generate **an API Key**, and set up a manifest.yml to index your **first contract** with **sample custom processor** scripts.
 
-Learn more about the [structure of manifest.yml](https://docs.flair.build/reference/manifest.yml).
+Learn more about the [structure of manifest.yml](https://docs.flair.dev/reference/manifest.yml).
 
 :::
 
@@ -75,7 +75,7 @@ Remember that you can add up to 10 RPC endpoints for resiliency.
 }
 ```
 
-3️⃣  Sync some historical data using [backfill command](https://docs.flair.build/reference/backfilling). Remember that `enabled: true` flag in your `config` enabled your indexer to capture data in real-time already.
+3️⃣  Sync some historical data using [backfill command](https://docs.flair.dev/reference/backfilling). Remember that `enabled: true` flag in your `config` enabled your indexer to capture data in real-time already.
 
 ```bash
 # backfill certain contracts or block ranges
@@ -87,9 +87,9 @@ pnpm flair backfill --chain 59140 --min-timestamp="30 mins ago" -d backward
 ```
 
 
-4️⃣ [Query](https://docs.flair.build/#getting-started) your custom indexed data.
+4️⃣ [Query](https://docs.flair.dev/#getting-started) your custom indexed data.
 
-5️⃣ Stream the data to your [own database](https://docs.flair.build/reference/database#your-own-database).
+5️⃣ Stream the data to your [own database](https://docs.flair.dev/reference/database#your-own-database).
 
 ## Examples
 
@@ -107,4 +107,4 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ## Need help?
 
-[Our engineers](https://docs.flair.build/talk-to-an-engineer) are available to help you at any stage.
+[Our engineers](https://docs.flair.dev/talk-to-an-engineer) are available to help you at any stage.
