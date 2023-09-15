@@ -127,8 +127,8 @@ geth \
 --txpool.pricelimit 1000000 \
 --txpool.pricebump 1 \
 --txpool.nolocals \
---http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
---ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+--http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3.eth.txpool.net' --http.vhosts='*' \
+--ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3.eth.txpool.net' \
 --bootnodes "enode://db471f0bad1da4f5e48042d0411bc38d5a245cf30ff76191e454c9ff2e27e57d45009b9c6e50d582c44332b05f2d747a8e995aa20399e80c22b1abb069332dde@3.17.183.45:30303,enode://1b10ff18e0d5055111af8cffe083d8d123ebede1dd5d81b3f8ce069ead6f0e70ec3217a0fa163bebaf1cd87b78e8f630182d703e1aebde93996dd5f67fa89389@18.117.161.184:30303,enode://25a42af9d7573a6299b54bb3c2d6566e59079ab1b94b4d42aa44325252d85f45f0bfe8b40dd476a4ee30c7007b61ab34375875ffa668b73eccc9c32640b17e48@3.20.238.193:30303,enode://3dfed9020ade850dca85d2855d42bfb431d1dbfdaec529ad66773bff434e473c071849dddf9cd43f9c529777a384bf5293463baecd4aea7623e575877fd30024@3.18.97.19:30303,enode://68848179e1bfe737045d19734db8f83ce3f85739d551a1e4c4661486380f69677316445375323172e5fcdbd5e26ccbb94306b647b7ac0468de9e9e775a0fbed6@18.190.156.63:30303" \
 --syncmode full \
 --metrics \
