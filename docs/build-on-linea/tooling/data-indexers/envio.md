@@ -82,5 +82,5 @@ You can schedule an [intro call](https://calendly.com/sven-float-shipping/envio)
 Join our growing community of elite builders, and find peace of mind with Envio. 
 
 * [Discord](https://discord.gg/mZHNWgNCAc)
-* Email: [hello@envio.dev](hello@envio.dev)
+* Email: [hello@envio.dev](mailto:hello@envio.dev)
 
