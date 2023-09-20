@@ -6,7 +6,9 @@ sidebar_position: 2
 
 ## Getting tokens on Linea
 
-There are several ways to get tokens on Linea:
+For hackathon developers, the easiest way to get test token is by sending a message via https://xmtp.chat to an ENS name provided in the relevant hackathon prizes page.
+
+Otherwise, there are several ways to get tokens on Linea:
 
 - [Transferring from another account](https://support.metamask.io/hc/en-us/articles/360015488931-How-to-send-tokens-from-your-MetaMask-wallet) (on Linea mainnet or testnet)
 - [Bridging between networks](./bridges-of-linea/index.mdx)
