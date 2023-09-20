@@ -1,8 +1,8 @@
 ---
-title: DIA Oracles
+title: DIA
 ---
 
-# Introduction to DIA Oracles
+# Introduction to DIA
 
 ## Requesting a custom oracle
 
