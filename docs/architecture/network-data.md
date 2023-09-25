@@ -22,7 +22,7 @@ By leveraging the expertise and resources of Infura, Consensys, and the Ethereum
 #### Client-facing RPC-API nodes
 
 - These nodes do the “traditional” work of EVM nodes: on the one hand, they are receiving updated network state information from the sequencer and state manager, and providing information about that state to users and dapps when they request it. On the other, they are receiving incoming transactions.
-- All that traffic means that Infura is running them behind a load balancer, and bringing their expertise in scaling blockchain networks across the operation. Those transactions submitted by users are therefore balanced across the nodes, and are thereby routed into the memory pool, for subsequent ingestion and processing by the Coordinator and sequencer in zkBesu.
+- All that traffic means that Infura is running them behind a load balancer, and bringing their expertise in scaling blockchain networks across the operation. Those transactions submitted by users are therefore balanced across the nodes, and are thereby routed into the memory pool, for subsequent ingestion and processing by the Coordinator and sequencer in linea-besu.
 
 #### Archive Nodes
 
