@@ -344,7 +344,7 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
 | Explorer name | URL | API URL |
 | ----------- | ----------- | ----------- |
 | Lineascan | https://lineascan.build | https://api.lineascan.build/api |
-| L2Scan | https://linea.l2scan.co |
+| L2Scan | https://linea.l2scan.co | https://linea.l2scan.co/api/contract |
 | Blockscout | https://explorer.linea.build | https://explorer.linea.build/api |
 
   </TabItem>
