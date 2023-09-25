@@ -16,7 +16,7 @@ Otherwise, there are several ways to get tokens on Linea:
 
 ## Use a Linea faucet
 
-If you want to drip Goerli ETH directly to Linea testnet, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
+If you want to drip Goerli ETH directly to Linea Testnet, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
 
 1. [Infura Linea faucet](https://infura.io/faucet/linea)
 1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
