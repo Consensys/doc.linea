@@ -13,6 +13,11 @@ const sidebars = {
       label: "Run a node",
     },
     {
+      type: "link",
+      label: "Bug Bounty Program",
+      href: "https://immunefi.com/bounty/linea/",
+    },
+    {
       type: "category",
       label: "Contact Us",
       items: [
@@ -34,7 +39,7 @@ const sidebars = {
         {
           type: "link",
           label: "Join our Discord",
-          href: "https://discord.com/invite/consensys",
+          href: "https://discord.gg/linea",
         },
       ],
     },

@@ -1,9 +1,8 @@
 ---
 title: Hardhat
-sidebar_position: 2
 ---
 
-To verify your Hardhat contracts, you can use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on BlockScout.
+To verify your Hardhat contracts, you can use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on Lineascan.
 
 :::note
 
@@ -11,79 +10,93 @@ Note that this is included as part of the `hardhat-toolbox` plugin.
 
 :::
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](../deploy-smart-contract/hardhat.mdx/#deploy-your-contract).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
 
 ## Download the plugin
 
-If you aren't already using `@nomicfoundation/hardhat-toolbox`, download the etherscan plugin:
+If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use `@nomicfoundation/hardhat-verify` instead. Find the instructions on how to add it to your project [here](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#installation).
 
-```bash
-npm install --save-dev @nomiclabs/hardhat-etherscan
-```
+## Add your Lineascan API Key
 
-And add the plugin to the top of your `hardhat.config.js` file:
+We'll be using a `.env` file to store our sensitive information. You can find instructions on how to do so [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
 
-```javascript
-require("@nomiclabs/hardhat-etherscan");
-```
-
-## Add your Etherscan API Key
-
-We'll be using a `.env` file to store our sensitive information:
-
-```bash
-npm i -D dotenv
-```
-
-Next, you'll need to get an Etherscan key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey)/. Grab your key, and add it to the `.env` file:
+Next, you'll need to get a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
 ```
-PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
-ETHERSCAN_API_KEY=YOUR_API_KEY_HERE
+LINEASCAN_API_KEY=YOUR_API_KEY_HERE
 ```
 
 Then, add the key to your `hardhat.config.js` as follows:
 
 ```javascript
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
-const { PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
-
-module.exports = {
-  solidity: "0.8.17",
-  networks: {
-    linea: {
-      url: `https://rpc.goerli.linea.build/`,
-      accounts: [PRIVATE_KEY],
-    },
-  },
-  etherscan: {
-    apiKey: linea,
-  },
-};
+const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 ```
 
 ## Add the custom chain
 
-Because Linea is not supported by the network yet, we'll have to add a custom chain like so:
+:::note
+
+These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+
+:::
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+First, we'll need to add a custom chain like so:
+
+<Tabs>
+  <TabItem value="Mainnet" label="Mainnet" default>
 
 ```javascript
+networks: {
+  linea_mainnet: {
+    ...
+  }
+},
 etherscan: {
   apiKey: {
-    linea: ETHERSCAN_API_KEY
+    linea_mainnet: LINEASCAN_API_KEY
   },
   customChains: [
     {
-      network: "linea",
-      chainId: 59140,
+      network: "linea_mainnet",
+      chainId: 59144,
       urls: {
-        apiURL: "https://goerli.lineascan.build/apis#contracts",
-        browserURL: "https://goerli.lineascan.build/"
+        apiURL: "https://api.lineascan.build/api",
+        browserURL: "https://lineascan.build/"
       }
     }
   ]
 }
 ```
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
+
+```javascript
+networks: {
+  linea_testnet: {
+    ...
+  }
+},
+etherscan: {
+  apiKey: {
+    linea_testnet: LINEASCAN_API_KEY
+  },
+  customChains: [
+    {
+      network: "linea_testnet",
+      chainId: 59140,
+      urls: {
+        apiURL: "https://api-testnet.lineascan.build/api",
+        browserURL: "https://goerli.lineascan.build/address"
+      }
+    }
+  ]
+}
+```
+  </TabItem>
+</Tabs>
 
 :::note
 
@@ -95,30 +108,44 @@ The Etherscan apiKey and network name for your custom chain must match the netwo
 
 To verify your contract, run the following command:
 
+<Tabs>
+  <TabItem value="Mainnet" label="Mainnet" default>
+
 ```bash
-npx hardhat verify --network linea <DEPLOYED_CONTRACT_ADDRESS>
+npx hardhat verify --network linea_mainnet <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT_ARGUMENTS>
 ```
 
-Don't worry if your result looks like this:
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
+
+```bash
+npx hardhat verify --network linea_testnet <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT_ARGUMENTS>
+```
+
+  </TabItem>
+</Tabs>
+
+You should see something that looks a little like this:
 
 ```bash
 Successfully submitted source code for contract
-contracts/Token.sol:Token at 0xF0d4039a96b01F3767010dEf837EfB3CCfe54675
+contracts/Lock.sol:Lock at 0xC44De7f82f93799a8E405DF3221AfB115B4E7e45
 for verification on the block explorer. Waiting for verification result...
 
-Error in plugin @nomiclabs/hardhat-etherscan: The API responded with an unexpected message.
-Contract verification may have succeeded and should be checked manually.
-Message: Unknown UID
-
-For more info run Hardhat with --show-stack-traces
+Successfully verified contract Lock on the block explorer.
+https://goerli.lineascan.build/address/address/0xC44De7f82f93799a8E405DF3221AfB115B4E7e45#code
 ```
 
-You can check that it was verified correctly by navigating to the [block explorer](https://goerli.lineascan.build/) and pasting in the deployed contract address.
+:::note
 
-![verified contract](../../../../static/img/quests/blockscout_verification.png)
+If you get an error saying that the address does not have bytecode, it probably means that Etherscan has not indexed your contract yet. In that case, wait for a while and then try again.
+
+:::
+
+You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
 :::info
 
-[Learn more about different configurations for verifying your smart contracts](https://docs.blockscout.com/for-users/verifying-a-smart-contract/hardhat-verification-plugin).
+[Learn more about different configurations for verifying your smart contracts](https://hardhat.org/hardhat-runner/docs/guides/verifying).
 
 :::

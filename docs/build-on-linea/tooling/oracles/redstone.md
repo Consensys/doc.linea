@@ -1,6 +1,5 @@
 ---
 title: RedStone Oracles
-sidebar_position: 3
 ---
 
 # RedStone Oracles

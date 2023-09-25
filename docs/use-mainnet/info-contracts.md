@@ -1,17 +1,13 @@
 ---
-title: Network info and deployed contracts
-sidebar_position: 6
+title: Network info, deployed contracts, and block explorers
+sidebar_position: 5
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-# Network information and deployed contracts
-
-## Network status
-
-You can find out how to navigate to Linea network status [here](./../network-status/index.mdx).
-
 ## Network information
+
+**Status**: [https://linea.statuspage.io/](https://linea.statuspage.io/)
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem 
@@ -23,7 +19,7 @@ You can find out how to navigate to Linea network status [here](./../network-sta
     </tr>
     <tr>
         <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://linea-mainnet.infura.io/v3 or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+        <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
     </tr>
     <tr>
         <td align="left"><b>Chain ID</b></td>
@@ -63,12 +59,14 @@ You can find out how to navigate to Linea network status [here](./../network-sta
         <td align="left"> <a href="https://goerli.lineascan.build">Lineascan</a> </td>
     </tr>
 </table>
-
-## Connect with Infura
-
-If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it may encounter rate limiting. We recommend connecting to Linea via Infura using [these instructions](https://support.linea.build/hc/en-us/articles/15752713253147). 
 </TabItem> 
 </Tabs>
+
+## Connect with node providers
+
+If your dapp is using the public endpoints, it may encounter rate limiting. You can find Linea node providers [here](../build-on-linea/tooling/node-providers.md).
+
+We recommend connecting to Linea via [private RPCs](../build-on-linea/tooling/node-providers.md#private-rpc).
 
 ## Deployed contracts
 
@@ -97,11 +95,11 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
   </tr>
   <tr>
     <td>L1 Message Service</td>
-    <td><a href="https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40">0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40</a></td>
+    <td><a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2">0x70BaD09280FD342D02fe64119779BC1f0791BAC2</a></td>
   </tr>
   <tr>
     <td>L2 Message Service</td>
-    <td><a href="https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d">0xA59477f7742Ba7d51bb1E487a8540aB339d6801d</a></td>
+    <td><a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC">0xC499a572640B64eA1C8c194c43Bc3E19940719dC</a></td>
   </tr>
 </table>
   </TabItem>
@@ -111,25 +109,89 @@ If your dapp is using the public endpoint `https://rpc.goerli.linea.build`, it m
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
-    More Mainnet addresses coming soon.
-    
-<table>
-  <tbody>
-      <tr>
-      <th>Token</th>
-      <th>L1</th>
-      <th>L1 Address</th>
-      <th>L2 Address</th>
-      <th>Bridge</th>
-    </tr>
-        <tr>
-      <td>WETH</td>
-      <td>-</td>
-      <td>-</td>
-      <td>0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f</td>
-      <td>-</td>
-    </tr>
-  </tbody>
+ 
+
+ To get your own token included, please follow the instructions on this [repository](https://github.com/Consensys/linea-token-list).
+
+
+ To see what bridges are available, head to our [ecosystem portal](https://linea.build/apps) and filter for bridges.
+
+ <table>
+  <tr>
+    <th>Token</th>
+    <th>Ethereum Address</th>
+    <th>Linea Address</th>
+  </tr>
+  <tr>
+    <td>APE</td>
+    <td><a href="https://etherscan.io/address/0x4d224452801aced8b2f0aebe155379bb5d594381">0x4d224452801aced8b2f0aebe155379bb5d594381</a></td>
+    <td><a href="https://lineascan.build/address/0x6bAA318CF7C51C76e17ae1EbE9Bbff96AE017aCB">0x6bAA318CF7C51C76e17ae1EbE9Bbff96AE017aCB</a></td>
+  </tr>
+  <tr>
+    <td>DAI</td>
+<td><a href="https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f">0x6b175474e89094c44da98b954eedeac495271d0f</a></td>
+    <td><a href="https://lineascan.build/address/0x4AF15ec2A0BD43Db75dd04E62FAA3B8EF36b00d5">0x4AF15ec2A0BD43Db75dd04E62FAA3B8EF36b00d5</a></td>
+  </tr>
+  <tr>
+    <td>DVF</td>
+<td><a href="https://etherscan.io/token/0xdddddd4301a082e62e84e43f474f044423921918">0xdddddd4301a082e62e84e43f474f044423921918</a></td>
+    <td><a href="https://lineascan.build/address/0x1f031f8c523b339c7a831355879e3568fa3eb263">0x1f031f8c523b339c7a831355879e3568fa3eb263</a></td>
+  </tr>
+  <tr>
+    <td>HAPI</td>
+<td><a href="https://etherscan.io/token/0xd9c2d319cd7e6177336b0a9c93c21cb48d84fb54">0xd9c2d319cd7e6177336b0a9c93c21cb48d84fb54</a></td>
+    <td><a href="https://lineascan.build/address/0x0e5F2ee8C29e7eBc14e45dA7FF90566d8c407dB7">0x0e5F2ee8C29e7eBc14e45dA7FF90566d8c407dB7</a></td>
+  </tr>
+  <tr>
+    <td>KNC</td>
+<td><a href="https://etherscan.io/token/0xdd974d5c2e2928dea5f71b9825b8b646686bd200">0xdd974d5c2e2928dea5f71b9825b8b646686bd200</a></td>
+    <td><a href="https://lineascan.build/address/0x3b2F62d42DB19B30588648bf1c184865D4C3B1D6">0x3b2F62d42DB19B30588648bf1c184865D4C3B1D6</a></td>
+  </tr>
+  <tr>
+    <td>LDO</td>
+<td><a href="https://etherscan.io/token/0x5a98fcbea516cf06857215779fd812ca3bef1b32">0x5a98fcbea516cf06857215779fd812ca3bef1b32</a></td>
+    <td><a href="https://lineascan.build/address/0x0e076AAFd86a71dCEAC65508DAF975425c9D0cB6">0x0e076AAFd86a71dCEAC65508DAF975425c9D0cB6</a></td>
+  </tr>
+  <tr>
+    <td>LINK</td>
+<td><a href="https://etherscan.io/token/0x514910771af9ca656af840dff83e8264ecf986ca">0x514910771af9ca656af840dff83e8264ecf986ca</a></td>
+    <td><a href="https://lineascan.build/address/0x5B16228B94b68C7cE33AF2ACc5663eBdE4dCFA2d">0x5B16228B94b68C7cE33AF2ACc5663eBdE4dCFA2d</a></td>
+  </tr>
+  <tr>
+    <td>PEPE</td>
+<td><a href="https://etherscan.io/token/0x6982508145454ce325ddbe47a25d4ec3d2311933">0x6982508145454ce325ddbe47a25d4ec3d2311933</a></td>
+    <td><a href="https://lineascan.build/address/0x7da14988E4f390C2E34ed41DF1814467D3aDe0c3">0x7da14988E4f390C2E34ed41DF1814467D3aDe0c3</a></td>
+  </tr>
+  <tr>
+    <td>SHIB</td>
+<td><a href="https://etherscan.io/token/0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce">0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce</a></td>
+    <td><a href="https://lineascan.build/address/0x99AD925C1Dc14Ac7cc6ca1244eeF8043C74E99d5">0x99AD925C1Dc14Ac7cc6ca1244eeF8043C74E99d5</a></td>
+  </tr>
+  <tr>
+    <td>UNI</td>
+<td><a href="https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984">0x1f9840a85d5af5bf1d1762f925bdaddc4201f984</a></td>
+    <td><a href="https://lineascan.build/address/0x636B22bC471c955A8DB60f28D4795066a8201fa3">0x636B22bC471c955A8DB60f28D4795066a8201fa3</a></td>
+  </tr>
+  <tr>
+    <td>USDT</td>
+  <td><a href="https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7">0xdac17f958d2ee523a2206206994597c13d831ec7</a></td>
+    <td><a href="https://lineascan.build/address/0xA219439258ca9da29E9Cc4cE5596924745e12B93">0xA219439258ca9da29E9Cc4cE5596924745e12B93</a></td>
+  </tr>
+  <tr>
+    <td>USDC</td>
+<td><a href="https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48">0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48</a></td>
+    <td><a href="https://lineascan.build/address/0x176211869cA2b568f2A7D4EE941E073a821EE1ff">0x176211869cA2b568f2A7D4EE941E073a821EE1ff</a></td>
+  </tr>
+  <tr>
+    <td>WBTC</td>
+<td><a href="https://etherscan.io/token/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599">0x2260fac5e5542a773aa44fbcfedf7c193bc2c599</a></td>
+    <td><a href="https://lineascan.build/address/0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4">0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4</a></td>
+  </tr>
+  <tr>
+    <td>WETH</td>
+<td><a href="https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2">0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2</a></td>
+    <td><a href="https://lineascan.build/address/0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f">0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f</a></td>
+  </tr>
 </table>
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
@@ -243,7 +305,7 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
   </TabItem>
 </Tabs>
 
-## Important Contracts
+## Important contracts
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
@@ -274,14 +336,38 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
   </TabItem>
 </Tabs>
 
-<!-- ## Faucets
+## Block explorers
 
-If you want to drip Goerli ETH directly to Linea, you can use the following faucets:
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
 
-1. [Infura Linea faucet](https://infura.io/faucet/linea)
-1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
-1. [FAUCETME faucet](https://linea.faucetme.pro/)
-1. [Tatarot faucet](https://faucet.tatarot.ai/)
+| Explorer name | URL | API URL |
+| ----------- | ----------- | ----------- |
+| Lineascan | https://lineascan.build | https://api.lineascan.build/api |
+| L2Scan | https://linea.l2scan.co |
+| Blockscout | https://explorer.linea.build | https://explorer.linea.build/api |
 
-If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
- -->
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet" default>
+
+| Explorer name | URL | API URL |
+| ----------- | ----------- | ----------- |
+| Lineascan | https://goerli.lineascan.build | https://api-testnet.lineascan.build/api |
+| Blockscout | https://explorer.goerli.linea.build | https://explorer.goerli.linea.build/api |
+
+  </TabItem>
+</Tabs>
+
+:::note
+
+Learn how to verify your contracts in our [quickstart](../build-on-linea/quickstart/).
+
+:::
+
+If you're new to public blockchain networks, you might not be familiar with _block explorers_. It's helpful to remember that the network is keeping track of a _ledger_ of accounts, with tokens attributed to them, sent between them, created by them, etc.
+
+So, as users take actions on the network, there are changes to those accounts and tokens. A block explorer is an interface through which you can look at that information in all its raw, gritty detail.
+
+>
+> If you want to learn more about explorers and how to use them, check out MetaMask's article on the topic: [How to check my wallet activity on the blockchain explorer](https://support.metamask.io/hc/en-us/articles/360057536611-How-to-check-my-wallet-activity-on-the-blockchain-explorer)
+>

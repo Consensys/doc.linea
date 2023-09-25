@@ -1,6 +1,9 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+const math = require("remark-math");
+const katex = require("rehype-katex");
+
 // const isDev = process.env.NODE_ENV === "development";
 // const baseUrl = isDev ? "/" : "/";
 
@@ -46,6 +49,8 @@ const config = {
           // @ts-ignore
           // eslint-disable-next-line global-require
           remarkPlugins: [require("remark-docusaurus-tabs")],
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
@@ -131,11 +136,11 @@ const config = {
           },
           {
             type: "dropdown",
-            label: "Learn",
+            label: "Tutorials",
             position: "left",
             items: [
               {
-                label: "Community tutorials",
+                label: "Community Guides",
                 to: "blog",
               },
               {
@@ -155,7 +160,7 @@ const config = {
             label: "Linea home",
           },
           {
-            href: "https://discord.com/invite/consensys",
+            href: "https://discord.gg/linea",
             className: "header-discord-link",
             position: "right",
           },
@@ -187,7 +192,7 @@ const config = {
             items: [
               {
                 label: "Join our Discord",
-                href: "https://discord.com/invite/consensys",
+                href: "https://discord.gg/linea",
               },
               {
                 label: "Get Help",
@@ -288,7 +293,7 @@ const config = {
             from: "/reference/glossary",
           },
           {
-            to: "/build-on-linea/use-linea-testnet",
+            to: "/build-on-linea",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -299,228 +304,45 @@ const config = {
             ],
           },
           {
-            to: "/build-on-linea/use-linea-testnet/bridge-funds",
-            from: "/use-linea/bridge-funds",
+            to: "/use-mainnet/set-up-your-wallet",
+            from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
           },
           {
-            to: "/build-on-linea/use-linea-testnet/fund",
-            from: "/use-linea/fund",
+            to: "/use-mainnet/fund",
+            from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
-            to: "/build-on-linea/tooling",
-            from: ["/developers/tooling", "/developers/partners"],
+            to: "/use-mainnet/info-contracts",
+            from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            from: "/use-linea/explore",
-            to: "/build-on-linea/use-linea-testnet/explore",
+            to: "/use-mainnet/explore/linea-voyage-faq",
+            from: "/use-linea-testnet/linea-voyage-faq",
           },
           {
-            from: "/use-linea/explore/use-airswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-airswap",
+            to: "/build-on-linea/bridge-funds",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            from: "/use-linea/explore/use-apetimism-launchpad",
-            to: "/build-on-linea/use-linea-testnet/explore/use-apetimism-launchpad",
+            to: "/use-mainnet/bridges-of-linea",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            from: "/use-linea/explore/use-asmatch",
-            to: "/build-on-linea/use-linea-testnet/explore/use-asmatch",
-          },
-          {
-            from: "/use-linea/explore/use-atticc",
-            to: "/build-on-linea/use-linea-testnet/explore/use-atticc",
-          },
-          {
-            from: "/use-linea/explore/use-battlemon",
-            to: "/build-on-linea/use-linea-testnet/explore/use-battlemon",
-          },
-          {
-            from: "/use-linea/explore/use-bilinear",
-            to: "/build-on-linea/use-linea-testnet/explore/use-bilinear",
-          },
-          {
-            from: "/use-linea/explore/use-cashmere",
-            to: "/build-on-linea/use-linea-testnet/explore/use-cashmere",
-          },
-          {
-            from: "/use-linea/explore/use-cataclysm",
-            to: "/build-on-linea/use-linea-testnet/explore/use-cataclysm",
-          },
-          {
-            from: "/use-linea/explore/use-celer",
-            to: "/build-on-linea/use-linea-testnet/explore/use-celer",
-          },
-          {
-            from: "/use-linea/explore/use-compound",
-            to: "/build-on-linea/use-linea-testnet/explore/use-compound",
-          },
-          {
-            from: "/use-linea/explore/use-connext",
-            to: "/build-on-linea/use-linea-testnet/explore/use-connext",
-          },
-          {
-            from: "/use-linea/explore/use-degenreborn",
-            to: "/build-on-linea/use-linea-testnet/explore/use-degenreborn",
-          },
-          {
-            from: "/use-linea/explore/use-fluvi_wallet",
-            to: "/build-on-linea/use-linea-testnet/explore/use-fluvi_wallet",
-          },
-          {
-            from: "/use-linea/explore/use-fwdx",
-            to: "/build-on-linea/use-linea-testnet/explore/use-fwdx",
-          },
-          {
-            from: "/use-linea/explore/use-ghost",
-            to: "/build-on-linea/use-linea-testnet/explore/use-ghost",
-          },
-          {
-            from: "/use-linea/explore/use-goplus-security-api",
-            to: "/build-on-linea/use-linea-testnet/explore/use-goplus-security-api",
-          },
-          {
-            from: "/use-linea/explore/use-gridex",
-            to: "/build-on-linea/use-linea-testnet/explore/use-gridex",
-          },
-          {
-            from: "/use-linea/explore/use-hapi",
-            to: "/build-on-linea/use-linea-testnet/explore/use-hapi",
-          },
-          {
-            from: "/use-linea/explore/use-hop",
-            to: "/build-on-linea/use-linea-testnet/explore/use-hop",
-          },
-          {
-            from: "/use-linea/explore/use-idriss",
-            to: "/build-on-linea/use-linea-testnet/explore/use-idriss",
-          },
-          {
-            from: "/use-linea/explore/use-izumi",
-            to: "/build-on-linea/use-linea-testnet/explore/use-izumi",
-          },
-          {
-            from: "/use-linea/explore/use-kyberswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-kyberswap",
-          },
-          {
-            from: "/use-linea/explore/use-linea-ens",
-            to: "/build-on-linea/use-linea-testnet/explore/use-linea-ens",
-          },
-          {
-            from: "/use-linea/explore/use-linea-l2-domains",
-            to: "/build-on-linea/use-linea-testnet/explore/use-linea-l2-domains",
-          },
-          {
-            from: "/use-linea/explore/use-lineaster",
-            to: "/build-on-linea/use-linea-testnet/explore/use-lineaster",
-          },
-          {
-            from: "/use-linea/explore/use-match3-game",
-            to: "/build-on-linea/use-linea-testnet/explore/use-match3-game",
-          },
-          {
-            from: "/use-linea/explore/use-meeet",
-            to: "/build-on-linea/use-linea-testnet/explore/use-meeet",
-          },
-          {
-            from: "/use-linea/explore/use-mendi",
-            to: "/build-on-linea/use-linea-testnet/explore/use-mendi",
-          },
-          {
-            from: "/use-linea/explore/use-mesprotocol",
-            to: "/build-on-linea/use-linea-testnet/explore/use-mesprotocol",
-          },
-          {
-            from: "/use-linea/explore/use-metalswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-metalswap",
-          },
-          {
-            from: "/use-linea/explore/use-moonlight",
-            to: "/build-on-linea/use-linea-testnet/explore/use-moonlight",
-          },
-          {
-            from: "/use-linea/explore/use-multichain",
-            to: "/build-on-linea/use-linea-testnet/explore/use-multichain",
-          },
-          {
-            from: "/use-linea/explore/use-nfts2me",
-            to: "/build-on-linea/use-linea-testnet/explore/use-nfts2me",
-          },
-          {
-            from: "/use-linea/explore/use-openocean",
-            to: "/build-on-linea/use-linea-testnet/explore/use-openocean",
-          },
-          {
-            from: "/use-linea/explore/use-pancakeswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-pancakeswap",
-          },
-          {
-            from: "/use-linea/explore/use-particle",
-            to: "/build-on-linea/use-linea-testnet/explore/use-particle",
-          },
-          {
-            from: "/use-linea/explore/use-patch",
-            to: "/build-on-linea/use-linea-testnet/explore/use-patch",
-          },
-          {
-            from: "/use-linea/explore/use-readon",
-            to: "/build-on-linea/use-linea-testnet/explore/use-readon",
-          },
-          {
-            from: "/use-linea/explore/use-snapshotx",
-            to: "/build-on-linea/use-linea-testnet/explore/use-snapshotx",
-          },
-          {
-            from: "/use-linea/explore/use-squid",
-            to: "/build-on-linea/use-linea-testnet/explore/use-squid",
-          },
-          {
-            from: "/use-linea/explore/use-stationx",
-            to: "/build-on-linea/use-linea-testnet/explore/use-stationx",
-          },
-          {
-            from: "/use-linea/explore/use-sushiswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-sushiswap",
-          },
-          {
-            from: "/use-linea/explore/use-tatarot",
-            to: "/build-on-linea/use-linea-testnet/explore/use-tatarot",
-          },
-          {
-            from: "/use-linea/explore/use-thirdweb",
-            to: "/build-on-linea/use-linea-testnet/explore/use-thirdweb",
-          },
-          {
-            from: "/use-linea/explore/use-uniswap",
-            to: "/build-on-linea/use-linea-testnet/explore/use-uniswap",
-          },
-          {
-            from: "/use-linea/explore/use-velocore",
-            to: "/build-on-linea/use-linea-testnet/explore/use-velocore",
-          },
-          {
-            from: "/use-linea/explore/use-vitidiary",
-            to: "/build-on-linea/use-linea-testnet/explore/use-vitidiary",
-          },
-          {
-            from: "/use-linea/explore/use-zkex",
-            to: "/build-on-linea/use-linea-testnet/explore/use-zkex",
-          },
-          {
-            from: "/use-linea/explore/use-zkholdem",
-            to: "/build-on-linea/use-linea-testnet/explore/use-zkholdem",
-          },
-          {
-            from: "/use-linea/explore/use-zkusd",
-            to: "/build-on-linea/use-linea-testnet/explore/use-zkusd",
-          },
-          {
-            from: "/use-linea/explore/use-zonic",
-            to: "/build-on-linea/use-linea-testnet/explore/use-zonic",
+            to: "/use-mainnet/bridges-of-linea",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
         ],
       },
     ],
+  ],
+  stylesheets: [
+    {
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
+      integrity:
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
+    },
   ],
   themes: [],
 };

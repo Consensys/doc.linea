@@ -1,9 +1,9 @@
 ---
 title: Truffle
-sidebar_position: 1
 ---
 
-# Truffle
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic Truffle project and deploying a token contract.
 
@@ -22,8 +22,8 @@ Here's a video walkthrough:
 
 Before you begin, ensure you've:
 
-1. [Set up your wallet](../../use-linea-testnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../use-linea-testnet/fund.md#get-test-eth-on-linea)
+1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
 3. [Installed Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/).
 
 ## Create a Truffle project
@@ -71,12 +71,6 @@ contract Token {
 }
 ```
 
-:::warning Do not use this contract code in production
-
-The above contract is for testing purposes and has not been audited.
-
-:::
-
 You can check if it compiles by running `truffle compile` from the root folder.
 
 ## Write the migration script
@@ -96,10 +90,6 @@ module.exports = function (deployer) {
 ## Deploy your contract
 
 Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard) using your MetaMask wallet!
-
-## Deploy to Mainnet
-
-_Instructions coming soon!_
 
 ### Truffle Dashboard
 
@@ -129,7 +119,7 @@ _Instructions coming soon!_
 
 You can deploy with Truffle using the command line, by specifying the Linea in `truffle-config.js`. To do so, you need to:
 
-1. Create a `.env` file in the root folder with your wallet's mnemonic.
+1. Create a `.env` file in the root folder with your wallet's mnemonic. This is your [secret recovery phrase](https://support.metamask.io/hc/en-us/articles/360015290032-How-to-reveal-your-Secret-Recovery-Phrase).
 
    ```
    MNEMONIC=<MNEMONIC>
@@ -137,7 +127,7 @@ You can deploy with Truffle using the command line, by specifying the Linea in `
 
    :::warning
 
-   Please do not check your keys into source control. We recommend adding `.env` to your `.gitignore`
+   Please do not check your keys into source control. Please add `.env` to your `.gitignore`
 
    :::
 
@@ -148,29 +138,91 @@ You can deploy with Truffle using the command line, by specifying the Linea in `
    ```
 1. Add the Linea testnet to your `truffle-config.js` file:
 
-   ```javascript
-   require("dotenv").config();
-   const { MNEMONIC } = process.env;
+  <Tabs className="my-tabs">
+    <TabItem value="Infura" label="Infura" default>
 
-   const HDWalletProvider = require("@truffle/hdwallet-provider");
+    To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Add it to the `.env` file as follows:
 
-   module.exports = {
-     networks: {
-       linea: {
-         provider: () => {
-           return new HDWalletProvider(
-             MNEMONIC,
-             `https://rpc.goerli.linea.build/`,
-           );
-         },
-         network_id: "59140",
-       },
-     },
-     // ... rest of truffle-config.js
-   };
-   ```
+    ```
+    MNEMONIC=MNEMONIC
+    INFURA_API_KEY=INFURA_API_KEY
+    ```
 
-1. Call `truffle migrate --network linea` from the CLI. Your output should look similar to the following:
+    Then, modify `truffle-config.js` like so:
+
+    ```javascript
+    require("dotenv").config();
+    const { MNEMONIC, INFURA_API_KEY } = process.env;
+
+    const HDWalletProvider = require("@truffle/hdwallet-provider");
+
+    module.exports = {
+      networks: {
+        linea_testnet: {
+          provider: () => {
+            return new HDWalletProvider(
+              MNEMONIC,
+              `https://linea-goerli.infura.io/v3/${INFURA_API_KEY}`,
+            );
+          },
+          network_id: "59140",
+        },
+        linea_mainnet: {
+          provider: () => {
+            return new HDWalletProvider(
+              MNEMONIC,
+              `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
+            );
+          },
+          network_id: "59140",
+        },
+      },
+      // ... rest of truffle-config.js
+    };
+    ```
+
+    </TabItem>
+    <TabItem value="Public Endpoint" label="Public Endpoint">
+
+    The public endpoints are rate limited and not meant for production systems. However, you can use the public endpoints by modifying `truffle-config.js` as follows:
+
+    ```javascript
+    require("dotenv").config();
+    const { MNEMONIC } = process.env;
+
+    const HDWalletProvider = require("@truffle/hdwallet-provider");
+
+    module.exports = {
+      networks: {
+        linea_testnet: {
+          provider: () => {
+            return new HDWalletProvider(
+              MNEMONIC,
+              `https://rpc.goerli.linea.build/`,
+            );
+          },
+          network_id: "59140",
+        },
+        linea_mainnet: {
+          provider: () => {
+            return new HDWalletProvider(
+              MNEMONIC,
+              `https://rpc.linea.build/`,
+            );
+          },
+          network_id: "59140",
+        },
+      },
+      // ... rest of truffle-config.js
+    };
+    ```
+
+  </TabItem>
+  </Tabs>
+
+1. Call `truffle migrate --network linea_testnet` or `truffle migrate --network linea_mainnet` from the CLI.
+
+  Your output should look similar to the following:
 
    ````bash
    Compiling your contracts...
@@ -212,9 +264,3 @@ You can deploy with Truffle using the command line, by specifying the Linea in `
    ````
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/truffle.md).
-
-:::note
-
-You may encounter rate limiting if you are connecting via the public endpoint. If your dapp needs full Infura node access, open a support ticket [here](https://support.infura.io/hc/en-us/articles/15116941373979).
-
-:::

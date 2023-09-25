@@ -1,11 +1,13 @@
 ---
 title: Hardhat
-sidebar_position: 2
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Hardhat
 
-In this tutorial, we'll walk through creating a basic Hardhat project and deploying a token contract.
+In this tutorial, we'll walk through creating a basic Hardhat project and deploying their sample contract.
 
 Here's a video walkthrough:
 
@@ -22,8 +24,8 @@ Here's a video walkthrough:
 
 Before you begin, ensure you've:
 
-1. [Set up your wallet](../../use-linea-testnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../use-linea-testnet/fund.md#get-test-eth-on-linea)
+1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
 3. [Set up your environment using Hardhat's recommended instructions](https://hardhat.org/tutorial/setting-up-the-environment#2.-setting-up-the-environment).
 
 ## Create a Hardhat project
@@ -32,159 +34,92 @@ To create an empty Hardhat project, run the following commands:
 
 ```bash
 mkdir linea-tutorial
-```
-
-```bash
 cd linea-tutorial
-```
-
-```bash
 npm init
-```
-
-```bash
 npm install --save-dev hardhat
-```
-
-```bash
 npx hardhat
 ```
 
 In the menu that appears, select `Create an empty hardhat.config.js` and press **Enter**.
 
-Hardhat recommends using their plugin, `@nomicfoundation/hardhat-toolbox`, which can be downloaded by entering `Y` during the project creation process or by running:
+Hardhat recommends using their plugin, `@nomicfoundation/hardhat-toolbox`, which can be downloaded by entering `Y` during the project creation process.
 
-```bash
-npm install --save-dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
-```
+You should now have a sample project from Hardhat the deploys and test a `Lock` contract that locks funds for a set amount of time.
 
-And adding the line `require("@nomicfoundation/hardhat-toolbox");` to the top of `hardhat.config.js` file.
+:::note
 
-## Write the smart contract
+The default script in `scripts/deploy.js` locks 0.001 ETH in the contract upon deployment. If you don't want to do this, modify `const lockedAmount = hre.ethers.parseEther("0.001");` to `const lockedAmount = 0;`
 
-To write a smart contract, replace the file `Lock.sol` with `Token.sol`. Add the following code:
+:::
 
-```sol
-pragma solidity 0.8.18;
+## Deploy the contract
 
-// SPDX-License-Identifier: MIT
+The sample project already includes the deployment script. To deploy on Linea, you'll just need to make a few modifications.
 
-contract Token {
-  string public name = "My Token";
-  string public symbol = "MTK";
-  uint8 public decimals = 18;
-  uint256 public totalSupply = 100000000;
+You can use [Truffle Dashboard](#truffle-dashboard) to deploy directly with your MetaMask wallet or deploy with the Hardhat CLI by [adding Linea to your `hardhat.config.js`](#hardhatconfigjs).
 
-  mapping (address => uint256) public balances;
-  address public owner;
+### Use Truffle Dashboard
 
-  constructor() {
-    owner = msg.sender;
-    balances[owner] = totalSupply;
-  }
-
-  function transfer(address recipient, uint256 amount) public {
-    require(balances[msg.sender] >= amount, "Insufficient balance.");
-    balances[msg.sender] -= amount;
-    balances[recipient] += amount;
-  }
-}
-```
-
-Then, to compile your contract, run `npx hardhat compile`.
-
-## Create a deployment script
-
-To deploy your contract, we'll need to write a deployment script for `Token.sol`. Replace the code in `scripts/deploy.js` with:
-
-```javascript
-async function main() {
-  const [deployer] = await ethers.getSigners();
-
-  console.log("Deploying contracts with the account:", deployer.address);
-
-  console.log("Account balance:", (await deployer.getBalance()).toString());
-
-  const Token = await ethers.getContractFactory("Token");
-  const token = await Token.deploy();
-
-  console.log("Token address:", token.address);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
-```
-
-## Deploy your contract
-
-You can deploy with Hardhat by [adding Linea to your `hardhat.config.js`](#hardhatconfigjs), but you can also use [Truffle Dashboard](#truffle-dashboard) to deploy directly with your MetaMask wallet.
-
-### Truffle Dashboard
-
-[Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. To deploy with Truffle Dashboard:
+[Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. To deploy with Truffle Dashboard using the [Hardhat plugin](https://github.com/trufflesuite/truffle/tree/develop/packages/dashboard-hardhat-plugin#truffledashboard-hardhat-plugin):
 
 1. [Install Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/)
-1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
-1. Navigate to `localhost:24012` in your browser. Please ensure that Dashboard is connected to the Linea testnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
+1. Run
 
+    ```
+    npm install --save-dev @truffle/dashboard-hardhat-plugin
+    ```
+1. Import the plugin into `hardhat.config.js`
+
+    ```javascript
+    import "@truffle/dashboard-hardhat-plugin";
+    ```
+    or
+    ```javascript
+    require("@truffle/dashboard-hardhat-plugin");
+    ```
+1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
+1. Navigate to `localhost:24012` in your browser. Please ensure that Dashboard is connected to the Linea testnet or mainnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
 <img
   src={
     require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_network.png")
       .default
   }></img>
 <br></br>
-
-1. Add the Dashboard network to your `hardhat.config.js`
-
-   ```javascript
-   networks: {
-     // other networks
-     truffledashboard: {
-       url: "http://localhost:24012/rpc"
-     }
-   },
-   ```
-
 1. In a separate terminal, in your Hardhat project, run
 
    ```bash
-   npx hardhat run scripts/deploy.js --network truffledashboard
+   npx hardhat run scripts/deploy.js --network truffleDashboard
    ```
 
 1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
-
 <img
   src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_deploy.png")
+    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_deploy_hardhat.png")
       .default
   }></img>
 <br></br>
-
 1. You should see something similar to:
 
-   ```bash
-   Deploying contracts with the account: YOUR_ACCOUNT_NUMBER
-   Account balance: 71790921294697313
-   Token address: 0xD8b30F2B76361AD82d086414a1c47b0062DCBaf3
-   ```
+    ```bash
+    Preparing Truffle compilation
+    Sending Truffle compilation to dashboard
+    Compilation successfully sent!
+    Lock with 0.0ETH and unlock timestamp 1692377128 deployed to 0x6230404e79E2082A6454d5b1efF58DacA0C330C7
+    ```
 
-### `hardhat.config.js`
+### Use `hardhat.config.js`
 
 To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To do this:
 
 1. Create a `.env` file in the root folder with your wallet's private key.
 
    ```
-   PRIVATE_KEY=YOUR_PRIVATE_KEY_HERE
+   PRIVATE_KEY=YOUR_PRIVATE_KEY
    ```
 
    :::warning
 
-   Please do not check your keys into source control. We recommend adding `.env` to your `.gitignore`
+   Please do not check your keys into source control. Please add `.env` to your `.gitignore`
 
    :::
 
@@ -192,53 +127,73 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
    ```
    npm i -D dotenv
    ```
-1. Add Linea to your `hardhat.config.js` file. We highly recommend using the Infura endpoint, as the public endpoint may experience rate limiting. You can find how to [get an API key here](https://support.linea.build/hc/en-us/articles/15752713253147).
+1. Add Linea to your `hardhat.config.js` file.
 
-   Using Infura:
+  <Tabs className="my-tabs">
+    <TabItem value="Infura" label="Infura" default>
 
-   ```javascript
-   require("@nomicfoundation/hardhat-toolbox");
-   require("dotenv").config();
-   const { PRIVATE_KEY } = process.env;
+    To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Add it to the `.env` file as follows:
 
-   module.exports = {
-     solidity: "0.8.17",
-     networks: {
-       linea: {
-         url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
-         accounts: [PRIVATE_KEY],
-       },
-     },
-   };
-   ```
+    ```
+    PRIVATE_KEY=YOUR_PRIVATE_KEY
+    INFURA_API_KEY=INFURA_API_KEY
+    ```
 
-   Using the public endpoint:
+    Then, modify the hardhat.config.js like so:
 
-   ```javascript
-   require("@nomicfoundation/hardhat-toolbox");
-   require("dotenv").config();
-   const { PRIVATE_KEY } = process.env;
+    ```javascript
+    require("@nomicfoundation/hardhat-toolbox");
+    require("dotenv").config();
+    const { PRIVATE_KEY, INFURA_API_KEY } = process.env;
 
-   module.exports = {
-     solidity: "0.8.17",
-     networks: {
-       linea: {
-         url: `https://rpc.goerli.linea.build/`,
-         accounts: [PRIVATE_KEY],
-       },
-     },
-   };
-   ```
+    module.exports = {
+      solidity: "0.8.19",
+      networks: {
+        linea_testnet: {
+          url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY}`,
+          accounts: [PRIVATE_KEY],
+        },
+        linea_mainnet: {
+          url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
+          accounts: [PRIVATE_KEY],
+        },
+      },
+    };
+    ```
+    </TabItem>
+    <TabItem value="Public Endpoint" label="Public Endpoint">
 
-1. Call `npx hardhat run scripts/deploy.js --network linea` from the CLI. Your output should look something like this:
-   ```bash
-   Deploying contracts with the account: YOUR_ACCOUNT_NUMBER
-   Account balance: 71790921294697313
-   Token address: 0xD8b30F2B76361AD82d086414a1c47b0062DCBaf3
-   ```
+    The public endpoints are rate limited and not meant for production systems.
+
+    ```javascript
+    require("@nomicfoundation/hardhat-toolbox");
+    require("dotenv").config();
+    const { PRIVATE_KEY } = process.env;
+
+    module.exports = {
+      solidity: "0.8.17",
+      networks: {
+        linea_testnet: {
+          url: `https://rpc.goerli.linea.build/`,
+          accounts: [PRIVATE_KEY],
+        },
+        linea_mainnet: {
+          url: `https://rpc.linea.build/`,
+          accounts: [PRIVATE_KEY],
+        },
+      },
+    };
+    ```
+
+    </TabItem>
+  </Tabs>
+
+1. Call `npx hardhat run scripts/deploy.js --network linea_testnet` or `npx hardhat run scripts/deploy.js --network linea_mainnet` from the CLI.
+
+  Your output should look something like this:
+
+  ```bash
+  Lock with 0.0ETH and unlock timestamp 1692381910 deployed to 0xaD6C134BD9EA1E174CC8EA77755BF79C86148d38
+  ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/hardhat.md).
-
-## Deploy to Mainnet
-
-_Instructions coming soon!_

@@ -1,6 +1,5 @@
 ---
 title: thirdweb
-sidebar_position: 1
 ---
 
 # thirdweb
