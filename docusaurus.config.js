@@ -316,10 +316,6 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/use-mainnet/explore/linea-voyage-faq",
-            from: "/use-linea-testnet/linea-voyage-faq",
-          },
-          {
             to: "/build-on-linea/bridge-funds",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
