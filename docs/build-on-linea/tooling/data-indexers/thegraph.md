@@ -2,28 +2,15 @@
 title: TheGraph Network
 ---
 
-As a dapp developer, retrieving onchain data for your dapp can be difficult as you will most probably:
+As a dApp developer, retrieving on-chain data for your dApp can be challenging because you will most likely:
 
-1. Consume your RPC provider quota with calls
-1. Need to implement the error handling on multiple levels
-1. Define creative strategies to be able to avoid UX impacts when you want to manage an high volume of Data
+1. Consume your RPC provider quota with calls.
+2. Need to implement error handling on multiple levels.
+3. Define creative strategies to avoid UX impacts when managing a high volume of data.
 
-TheGraph is a decentralized data indexer provider that index Linea blockchain for you and expose and provide onchain data as https API.
+The Graph is a decentralized data indexer provider that indexes the Linea blockchain for you and exposes on-chain data through an HTTPS API.
 
-We run TheGraph indexers on Linea to let you leverage the power of this technology.
-
-## Deployed subgraphs on Linea indexers
-
-This is the list of subgraph deployed by partners' dapps on the Linea indexers:
-
-| Project | Type | URL |
-| --- | --- | --- |
-| Bilinear | ERC721 | [knobs/erc721](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/knobs/erc721) |
-| Bilinear | ERC1155 | [knobs/erc1155](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/knobs/erc1155) |
-| SushiSwap | Blocks | [sushiswap/blocks](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/sushiswap/blocks-consensys-zkevm-goerli) |
-| HOP Protocol | Bridging Data | [hop-protocol/hop](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/hop-protocol/hop) |
-| Connext | Bridging Data | [connext/amarok-runtime](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/connext/amarok-runtime-v0-consensys-test/graphql) |
-| zkVote | DAO Governance | [samzkback/zkvotev3](https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/samzkback/zkvotev3) |
+We run The Graph indexers on Linea to allow you to leverage the power of this technology.
 
 ## Custom subgraph and deployments
 
