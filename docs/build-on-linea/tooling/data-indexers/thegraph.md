@@ -18,7 +18,7 @@ If there are no public subgraph that matches your needs, in order to use TheGrap
 
 ### Access Request (Whitelisting)
 
-Access to the Deployer and IPFS endpoints in both networks need to be requested before deploying a subgraph. You will need the IP/s you will access the endpoints from (i.e. public source IP/s of the machine that will run the deploy). Please fill [this form](https://forms.gle/JcxhCwAToNgMSbrk9) to be whitelisted.
+Access to the Deployer and IPFS endpoints in both networks need to be requested before deploying a subgraph. You will need the IP/s you will access the endpoints from (i.e. public source IP/s of the machine that will run the deploy). Please fill out [this form](https://forms.gle/JcxhCwAToNgMSbrk9) to be whitelisted.
 
 The network name must be set to either linea-mainnet for Mainnet or linea-goerli for Goerli.
 
@@ -31,7 +31,6 @@ graph remove --node <deploy_endpoint> <team_repo>/<subgraph_name>
 graph deploy --node <deploy_endpoint> --ipfs <ipfs_endpoint> --version-label <subgraph_version_label> <team_repo>/<subgraph_name>
 ```
 
-1. Deployed subgraphs will be available for your dapp on the following url: https://thegraph.goerli.zkevm.consensys.net/subgraphs/name/@githubUser/@subgraphName
 1. [Here](https://thegraph.com/docs/en/developing/creating-a-subgraph/) you can find more info on how to build a subgraph in less than 5min with some tutorials and examples.
 
 Check out the full docs on [TheGraph website](https://thegraph.com/docs/en/)
