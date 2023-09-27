@@ -9,3 +9,5 @@ The Linea Safe is a multi-signature smart contract wallet, which means it requir
 On top of that, Linea Safe gives complete self custody over funds and the smart contract that is deployed is completely trustless and in control.
 
 To create your Linea Safe wallet click [here](https://safe.linea.build).
+<!-- 
+to check the status of the linea safe and entry points https://status.safe.linea.build/ not sure if we want to include this. right now it is password protected -->
