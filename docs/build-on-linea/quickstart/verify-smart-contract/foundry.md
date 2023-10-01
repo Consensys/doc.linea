@@ -11,6 +11,12 @@ You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating
 
 ## Verify your smart contract
 
+:::note
+
+These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+
+:::
+
 ### Verify a contract that has already been deployed
 
 If you want to verify a contract that has already been deployed, you can use the following commands:

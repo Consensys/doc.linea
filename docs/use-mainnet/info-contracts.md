@@ -95,11 +95,11 @@ We recommend connecting to Linea via [private RPCs](../build-on-linea/tooling/no
   </tr>
   <tr>
     <td>L1 Message Service</td>
-    <td><a href="https://goerli.etherscan.io/address/0xe87d317eb8dcc9afe24d9f63d6c760e52bc18a40">0xE87d317eB8dcc9afE24d9f63D6C760e52Bc18A40</a></td>
+    <td><a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2">0x70BaD09280FD342D02fe64119779BC1f0791BAC2</a></td>
   </tr>
   <tr>
     <td>L2 Message Service</td>
-    <td><a href="https://explorer.goerli.linea.build/address/0xA59477f7742Ba7d51bb1E487a8540aB339d6801d">0xA59477f7742Ba7d51bb1E487a8540aB339d6801d</a></td>
+    <td><a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC">0xC499a572640B64eA1C8c194c43Bc3E19940719dC</a></td>
   </tr>
 </table>
   </TabItem>
@@ -341,46 +341,33 @@ If you want to drip Goerli ETH directly to Linea, you can use the [Infura Linea 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
 
-| Explorer name     | URL |
-| ----------- | ----------- |
-| Lineascan      | [https://lineascan.build](https://lineascan.build)      |
-| L2Scan   | [https://linea.l2scan.co](https://linea.l2scan.co)       |
+| Explorer name | URL | API URL |
+| ----------- | ----------- | ----------- |
+| Lineascan | https://lineascan.build | https://api.lineascan.build/api |
+| L2Scan | https://linea.l2scan.co | https://linea.l2scan.co/api/contract |
+| Blockscout | https://explorer.linea.build | https://explorer.linea.build/api |
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet" default>
 
-| Explorer name     | URL |
-| ----------- | ----------- |
-| Lineascan      | [https://goerli.lineascan.build](https://goerli.lineascan.build)      |
+| Explorer name | URL | API URL |
+| ----------- | ----------- | ----------- |
+| Lineascan | https://goerli.lineascan.build | https://api-testnet.lineascan.build/api |
+| Blockscout | https://explorer.goerli.linea.build | https://explorer.goerli.linea.build/api |
 
   </TabItem>
 </Tabs>
 
+:::note
+
+Learn how to verify your contracts in our [quickstart](../build-on-linea/quickstart/).
+
+:::
+
 If you're new to public blockchain networks, you might not be familiar with _block explorers_. It's helpful to remember that the network is keeping track of a _ledger_ of accounts, with tokens attributed to them, sent between them, created by them, etc.
 
-So as users take actions on the network, there are changes to those accounts and tokens. A block explorer is an interface through which you can look at that information in all its raw, gritty detail.
+So, as users take actions on the network, there are changes to those accounts and tokens. A block explorer is an interface through which you can look at that information in all its raw, gritty detail.
 
 >
 > If you want to learn more about explorers and how to use them, check out MetaMask's article on the topic: [How to check my wallet activity on the blockchain explorer](https://support.metamask.io/hc/en-us/articles/360057536611-How-to-check-my-wallet-activity-on-the-blockchain-explorer)
 >
-
-## Smart contract verification
-
-You can find more details on how to verify your contracts [in our quickstart](../build-on-linea/quickstart/).
-
-<Tabs groupId="Mainnet-Testnet" className="my-tabs">
-  <TabItem value="Mainnet" label="Mainnet" default>
-
-| apiURL     | browserURL |
-| ----------- | ----------- |
-| `https://api.lineascan.build/api` | `https://lineascan.build/address` |
-
-  </TabItem>
-  <TabItem value="Testnet" label="Testnet" default>
-
-| apiURL     | browserURL |
-| ----------- | ----------- |
-| `https://api-testnet.lineascan.build/api` | `https://goerli.lineascan.build/address` |
-
-  </TabItem>
-</Tabs>

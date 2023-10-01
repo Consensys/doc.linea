@@ -39,7 +39,7 @@ const sidebars = {
         {
           type: "link",
           label: "Join our Discord",
-          href: "https://discord.com/invite/consensys",
+          href: "https://discord.gg/linea",
         },
       ],
     },
