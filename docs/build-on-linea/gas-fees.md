@@ -3,7 +3,74 @@ title: Gas fees on Linea
 sidebar_position: 6
 ---
 
- If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). Linea's gas fees depend on Ethereum's fee, and we will explain how the L2 fees are calculated, but the **TLDR is that Linea's gas fees should be around 1/15th of Ethereum's, and we hope to reduce them even further in the future.**
+ If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). **Linea's gas fees on average should be 15x cheaper than Ethereum's, and we hope to reduce them even further in the future.**
+
+ Linea is compatible with EIP-1559; however there are some minor differences.
+
+ 1. The base fee on Linea is fixed at 7 wei to ensure that blocks aren't over 50% full, so that we don't burn any ETH on Linea.
+
+ 2. We don't mine a transaction if `gasPrice` or `maxPriorityFeePerGas` is lower than a given value that fluctuates over time.
+
+ 
+To ensure that your transaction gets included by the validators we recommend using EIP-1559 with the following settings:
+
+- maxBaseFee = 1.35 * previous block MaxBaseFee
+
+- `maxPriorityFeePerGas` = reward value from eth_feeHistory( 5 blocks, latest, 20th percentile)
+
+You can use the `eth_feeHistory` RPC method with the params below to get the recommended values:
+
+```bash
+curl https://mainnet.infura.io/v3/f60327f3d95e49a998afc04ac52cefb7 \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": [5, "latest", [20]] }'
+```
+
+
+## Example Code
+
+```typescript
+
+  public async get1559Fees(percentile = this.gasEstimationPercentile): Promise<Fees> {
+    const currentBlockNumber = await this.provider.getBlockNumber();
+    if (this.cacheIsValidForBlockNumber.lt(currentBlockNumber)) {
+      const { reward, baseFeePerGas }: FeeHistory = await this.provider.send("eth_feeHistory", [
+        "0x4",
+        "latest",
+        [percentile],
+      ]);
+
+      const maxPriorityFeePerGas = reward
+        .reduce((acc: BigNumber, currentValue: string[]) => acc.add(currentValue[0]), BigNumber.from(0))
+        .div(reward.length);
+
+      if (maxPriorityFeePerGas && maxPriorityFeePerGas.gt(this.maxFeePerGasFromConfig)) {
+        throw new FeeEstimationError(
+          `Estimated miner tip of ${maxPriorityFeePerGas} exceeds configured max fee per gas of ${this.maxFeePerGasFromConfig}!`,
+        );
+      }
+
+      this.cacheIsValidForBlockNumber = BigNumber.from(currentBlockNumber);
+
+      const maxFeePerGas = BigNumber.from(baseFeePerGas[baseFeePerGas.length - 1])
+        .mul(2)
+        .add(maxPriorityFeePerGas);
+
+      if (maxFeePerGas.gt(0) && maxPriorityFeePerGas.gt(0)) {
+        this.feesCache = {
+          maxPriorityFeePerGas,
+          maxFeePerGas: maxFeePerGas.gt(this.maxFeePerGasFromConfig) ? this.maxFeePerGasFromConfig : maxFeePerGas,
+        };
+      } else {
+        this.feesCache = {
+          maxFeePerGas: this.maxFeePerGasFromConfig,
+        };
+      }
+    }
+    return this.feesCache;
+  }
+```
 
 ## How do I check the gas price on Linea?
 
@@ -30,62 +97,3 @@ curl https://mainnet.infura.io/v3/your-infura-api-key \
   -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'
 ```
-
-## The Formula
-
-**Total L2 Fee Equation**
-
-$$
-\text{total\_L2\_fee} = \text{L2\_base\_fee} + \text{L2\_miner\_tip}
-$$
-
-The L2 fee equation is comprised of two parts, the base fee and the miner tip. The base fee is 7 wei, which is the minimum base fee a standard protocol allows. The miner tip equation is a bit complex and will be explained in more detail below.
-
-
-**L2 Miner Tip Equation**
-
-$$
-l2\_miner\_tip = \left( \sum_{i} (baseFee[i] \times 0.066 + reward[i] \times 0.066) \times ratio[i] \right) \div \left( \sum_{i} ratio[i] \right)
-$$
-
-Looking at this equation might seem overwhelming, but we are just calculating the weighted average to get the L2 miner tip.
-
-In this equation, the following variables are constants that could change in the future as we fine-tune our gas fee calculation: ```base_fee_coefficient = 0.066```, ```priority_fee_coefficient = 0.066```, ```batchSubmissionPercentile = 15```, and ```numBlocks = 200```.
-
-We use the [eth_feeHistory JSON-RPC method](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_feehistory) with the constant parameters given above to figure out what the 'baseFeePerGas', 'gasUsedRatio', and 'reward'is on Ethereum and then find the weighted average by plugging them into the equation.
-
-The request would look like the code below.
-
-```bash 
-curl https://mainnet.infura.io/v3/YOUR-API-KEY \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": ["200", "latest", [15]] }'
-
-```
-
-## Example Calculation
-
-For practical purposes let's assume we ran the `eth_feeHistory` and used `numBlocks=3`, and got the following response:
-
-```
-{"jsonrpc":"2.0","id":1,"result":{"baseFeePerGas":["1001","1002","1003","1004"],"gasUsedRatio":[0.4,0.5,0.6],"oldestBlock":"0x113159b","reward":[["901"],["902"],["903"]]}}
-
-```
-
-This maps to the following inputs for the equation:
-
-```
-baseFee = ["1001","1002","1003"]
-reward= ["901", "902", "903"]
-ratio = [0.4, 0.5, 0.6]
-
-```
-
-Using the formula, we would iterate through all the values in the list, where i ranges from 1 to 3, to obtain:
-
-$$
-l2\_miner\_tip = \frac{{(1001 \times 0.66 + 901 \times 0.66) \times 0.4 + (1002 \times 0.66 + 902 \times 0.66) \times 0.5 + (1003 \times 0.66 + 903 \times 0.66) \times 0.6}}{{0.4 + 0.5 + 0.6}}
-$$
-
-After meticulously going through all this math, you should arrive at your gas price (if you do this for 200 blocks instead of 3). This should be close to the gas price the `eth_gasPrice` method returns from above. 
