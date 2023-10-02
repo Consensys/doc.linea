@@ -7,7 +7,7 @@ sidebar_position: 6
 
 ## How do I make sure my transactions go through as a developer?
 
- Linea is compatible with EIP-1559; however, there are some minor differences.
+ Linea is compatible with EIP-1559; however, there are minor differences.
 
  1. The base fee on Linea is fixed at 7 wei to ensure that blocks aren't over 50% full, so that we don't burn any ETH on Linea.
 
@@ -16,7 +16,7 @@ sidebar_position: 6
  
 To ensure that your transaction gets included by the validators, we recommend using EIP-1559 with the following settings:
 
-- maxBaseFee = 1.35 * previous block MaxBaseFee
+- maxBaseFee = 1.35 * previousBlockMaxBaseFee
 
 - `maxPriorityFeePerGas` = reward value from eth_feeHistory( 5 blocks, latest, 20th percentile)
 
@@ -26,7 +26,7 @@ You can use the `eth_feeHistory` RPC method with the params below to get the rec
 curl https://mainnet.infura.io/v3/f60327f3d95e49a998afc04ac52cefb7 \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": [5, "latest", [20]] }'
+  -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": [4, "latest", [20]] }'
 ```
 
 
