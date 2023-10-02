@@ -160,4 +160,4 @@ Verifying contracts on sourcify
 
 You can check that it was verified correctly by navigating to the [block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
-![verified contract](./../../../../static/img/quests/lineascan_verification.png)
+![verified contract](./../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/lineascan_verification.png)
