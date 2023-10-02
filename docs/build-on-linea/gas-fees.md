@@ -5,14 +5,16 @@ sidebar_position: 6
 
  If you're familiar with gas fees on Ethereum, then you know that they heavily fluctuate depending on how busy the network is (for a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.)). **Linea's gas fees on average should be 15x cheaper than Ethereum's, and we hope to reduce them even further in the future.**
 
- Linea is compatible with EIP-1559; however there are some minor differences.
+## How do I make sure my transactions go through as a developer?
+
+ Linea is compatible with EIP-1559; however, there are some minor differences.
 
  1. The base fee on Linea is fixed at 7 wei to ensure that blocks aren't over 50% full, so that we don't burn any ETH on Linea.
 
  2. We don't mine a transaction if `gasPrice` or `maxPriorityFeePerGas` is lower than a given value that fluctuates over time.
 
  
-To ensure that your transaction gets included by the validators we recommend using EIP-1559 with the following settings:
+To ensure that your transaction gets included by the validators, we recommend using EIP-1559 with the following settings:
 
 - maxBaseFee = 1.35 * previous block MaxBaseFee
 
