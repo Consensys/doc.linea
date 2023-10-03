@@ -5,6 +5,7 @@ sidebar_position: 1
 
 import MessageService from '/static/img/docs/arch-linea/Linea_message_service_2_V2.svg';
 import TxnMessageServiceFlow from '/static/img/docs/arch-linea/Linea_bridge_and_messaging_layer.svg';
+import MessageVerification from '/static/img/docs/arch-linea/Linea_message_service_1.svg';
 
 ## Linea Canonical Message Service
 
@@ -30,13 +31,19 @@ The Canonical Message Service consists of three main elements: two smart contrac
 
 A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the Postbots.
 
-The Postbots are one part of Linea that are currently centralized while in beta testnet, but will be decentralized when the network goes to mainnet. In fact, anyone will be able to participate and serve as a Postbot. The Postbots are essentially actors that "listen" for calls being made to one of the contracts, either on Linea or Ethereum, and pass the information submitted to the other network.
+The Postbots (sometimes referred to as postmen) are one part of Linea that are currently centralized, but will be decentralized. The Postbots are essentially actors that "listen" for calls being made to one of the contracts, either on Linea or Ethereum, and pass the information submitted to the other network.
 
 Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users can either choose to manually _pull_ the transferred assets out of the destination end of the bridge, or pay up-front and allow the assets to be _pushed_ directly to the destination address.
 
+There's an additional layer of logic, though, which serves to ensure that the message delivered to the L2 is valid. Essentially, a message is sent from Ethereum, relayed through the Message Service, and is delivered to the Linea smart contract. That smart contract checks the message received against the list of messages sent on the Ethereum side, verifies that it exists on the L1, and only then accepts it as a valid message:
+
+<MessageVerification />
+
+**For more technical details, including how to integrate with the Message Service, see our [Technical Reference](./message-service.mdx)**.
+
 > ### OK, so we've transferred assets to Linea. What's going on up here? How do things work on Layer 2?
 
-Meet the Coordinator.
+Meet the [Coordinator](./../coordinator/index.mdx).
 
 <!--! Question from Mario Christopher: Is the current state coming in as a Merkle Tree ? or How ?
 If yes, then is the updated Merkle tree, the original Tree going back to L1 with updates ? -->
