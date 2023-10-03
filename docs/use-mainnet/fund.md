@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Getting tokens on Linea
 
-For hackathon developers, the easiest way to get test token is by sending a message via https://xmtp.chat to an ENS name provided in the relevant hackathon prizes page.
+For hackathon developers, the easiest way to get test tokens is by sending a message via https://xmtp.chat to an ENS name provided in the relevant hackathon prizes page.
 
 Otherwise, there are several ways to get tokens on Linea:
 
@@ -35,7 +35,7 @@ To get Goerli ETH, you'll need to:
 1. Navigate to the list of faucets linked through the Goerli card
 1. Select a faucet and drip Goerli ETH
 
-Transactions on Linea are much cheaper than Ethereum mainnet. Therefore, 0.2 ETH is enough to execute a basic workflow, but feel free to get as much as you need!
+Transactions on Linea are much cheaper than Ethereum mainnet. 0.2 ETH is enough to execute a basic workflow, but feel free to get as much as you need!
 
 ## Get test ETH on Linea testnet
 

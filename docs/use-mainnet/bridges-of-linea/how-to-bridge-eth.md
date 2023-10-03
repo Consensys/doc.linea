@@ -3,7 +3,7 @@ title: How to bridge ETH between Ethereum and Linea
 sidebar_position: 1
 ---
 
-This is a step by step guide on how to bridge ETH between Ethereum Mainnet (L1) to Linea (L2).
+This is a step by step guide to bridging ETH between Ethereum Mainnet (L1) to Linea (L2).
 
 **To bridge ETH over testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.**
 
@@ -149,7 +149,7 @@ Automatic claiming is only available for bridging ETH from L1 to L2. You will no
       .default
   }></img>
 
-3. Verify that the bridge is set to Linea Mainnet --> Ethereum. Manual claiming is the only available option for L2 to L1 bridging.
+3. Verify that the bridge is set to Linea Mainnet -> Ethereum. Manual claiming is the only available option for L2 to L1 bridging.
 
 4. Enter the amount of ETH you want to bridge over to Ethereum Mainnet, and select the “Start Bridging” button.
 
