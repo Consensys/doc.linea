@@ -3,7 +3,12 @@ title: "Canonical Message Service: Overview"
 sidebar_position: 1
 ---
 
+import MessageService from '/static/img/docs/arch-linea/Linea_message_service_2_V2.svg';
+import TxnMessageServiceFlow from '/static/img/docs/arch-linea/Linea_bridge_and_messaging_layer.svg';
+
 ## Linea Canonical Message Service
+
+<MessageService />
 
 ### What is it?
 
@@ -16,6 +21,8 @@ If you've ever used a bridge between two blockchains, you may be used to what fe
 One of the most important things that the Message Service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the Canonical Message Service transmits the rollup data.
 
 However, the Service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
+
+<TxnMessageServiceFlow />
 
 ### How does it do it?
 
