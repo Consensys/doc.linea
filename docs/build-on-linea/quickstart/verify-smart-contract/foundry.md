@@ -5,7 +5,7 @@ title: Foundry
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To verify your Foundry contracts, you can use Foundry's [verify-contract](https://book.getfoundry.sh/reference/forge/forge-verify-contract) to verify contracts on Lineascan.
+To verify your Foundry contracts, you can use Foundry's [`verify-contract`](https://book.getfoundry.sh/reference/forge/forge-verify-contract) to verify contracts on Lineascan.
 
 You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey).
 
@@ -13,7 +13,7 @@ You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating
 
 :::note
 
-These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
 
 :::
 
@@ -60,7 +60,7 @@ Contract successfully verified
 
 ### Verify a contract upon creation
 
-If you want to verify a contract that has already been deployed, you can use the following commands:
+If you want to verify a contract as it is being deployed for the first time, you can use the following commands:
 
 <Tabs>
   <TabItem value="Mainnet" label="Mainnet" default>
@@ -84,7 +84,7 @@ You can check that it was verified correctly by navigating to the [testnet block
 
 ## Using `.env` and `foundry.toml` to store etherscan information
 
-If you don't want to paste your keys inline and have multiple etherscan API keys to manage, you can use `.env` and `foundry.toml` to set up custom configurations.
+If you don't want to paste your keys inline and have multiple Etherscan API keys to manage, you can use `.env` and `foundry.toml` to set up custom configurations.
 
 Assuming you followed the instructions to create a `.env` file [here](../deploy-smart-contract/foundry.md#using-env-to-store-private-keys), add your Lineascan API key to the file:
 
@@ -98,7 +98,7 @@ Then, run:
 source .env
 ```
 
-Finally, modify `foundry.toml` to include the etherscan configurations:
+Finally, modify `foundry.toml` to include the Etherscan configurations:
 
 ```bash
 [etherscan]
