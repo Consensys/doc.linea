@@ -8,7 +8,7 @@ These steps assume you stored your secret keys in a `.env` file, which you can r
 
 :::note
 
-These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
 
 :::
 
@@ -158,6 +158,6 @@ Verifying contracts on sourcify
   </TabItem>
 </Tabs>
 
-You can check that it was verified correctly by navigating to the [block explorer](https://lineascan.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the block explorer ([mainnet](https://lineascan.build/) or [testnet](https://goerli.lineascan.build/)) and pasting in the deployed contract address.
 
 ![verified contract](./../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/lineascan_verification.png)
