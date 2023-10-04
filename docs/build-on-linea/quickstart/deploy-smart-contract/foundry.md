@@ -13,7 +13,7 @@ Here's a video walkthrough:
 
 ## Prerequisites
 
-Before you begin, Ensure you've:
+Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
 1. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md#get-test-eth-on-linea)
@@ -53,7 +53,7 @@ These instructions use API keys and private keys inline. We highly recommend hid
 <Tabs className="my-tabs">
   <TabItem value="Infura" label="Infura" default>
 
-To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network)
+To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network).
 
 On testnet:
 
@@ -113,7 +113,7 @@ Then, run:
 source .env
 ```
 
-Finally, we can modify the `foundry.toml` file to conveniently store the various rpc endpoints we might be working with. Add this section:
+Finally, we can modify the `foundry.toml` file to conveniently store the various RPC endpoints we might be working with. Add this section:
 
 ```bash
 [rpc_endpoints]
