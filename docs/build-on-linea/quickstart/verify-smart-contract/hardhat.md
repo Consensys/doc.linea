@@ -18,7 +18,7 @@ If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use `@no
 
 ## Add your Lineascan API Key
 
-We'll be using a `.env` file to store our sensitive information. You can find instructions on how to do so [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
+We'll be using a `.env` file to store our sensitive information. You can find instructions on how to set up the file [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
 
 Next, you'll need to get a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
@@ -36,7 +36,7 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 
 :::note
 
-These instructions verify using Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
 
 :::
 
@@ -100,7 +100,7 @@ etherscan: {
 
 :::note
 
-The Etherscan apiKey and network name for your custom chain must match the network name under `networks` in your `hardhat.config.js`.
+The Etherscan `apiKey` and network name for your custom chain must match the network name under `networks` in your `hardhat.config.js`.
 
 :::
 

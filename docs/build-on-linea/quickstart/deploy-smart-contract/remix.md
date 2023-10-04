@@ -28,7 +28,7 @@ The default project includes a code sample with a configured smart contract.
 
 ## Compile a Remix contract
 
-To compile this sample contract, navigate to the "Solidity compiler" icon, and click on "Compile contract"!
+To compile this sample contract, navigate to the "Solidity compiler" icon, and click on "Compile contract".
 
 <img
   src={
@@ -47,7 +47,7 @@ If you deploy using the injected provider, Remix can auto-detect the network you
 
 :::caution
 
-The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Then, you can [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the mainnet information found [here](../../../use-mainnet/info-contracts.md#network-information)
+The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). You can then [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the mainnet information found [here](../../../use-mainnet/info-contracts.md#network-information).
 
 :::
 
@@ -64,7 +64,7 @@ Switch to the Linea Mainnet network in your MetaMask wallet, and select "Injecte
 
 :::caution
 
-The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Then, you can [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the testnet information found [here](../../../use-mainnet/info-contracts.md#network-information)
+The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). You can then [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the testnet information found [here](../../../use-mainnet/info-contracts.md#network-information).
 
 :::
 
