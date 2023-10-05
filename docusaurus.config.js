@@ -271,7 +271,7 @@ const config = {
       {
         redirects: [
           {
-            to: "/architecture/bridges/message-service",
+            to: "/architecture/canonical-msg-service/message-service",
             from: [
               "/developers/bridge-architecture/message-service",
               "/developers/use-message-bridge",
