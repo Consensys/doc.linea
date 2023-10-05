@@ -16,7 +16,7 @@ sidebar_position: 6
 
 To ensure that your transaction gets included by the sequencer, we recommend that non-MetaMask users use EIP-1559 with the following settings:
 
-- maxBaseFee = 1.35 * previousBlockMaxBaseFee (equivalent to medium setting on MetaMask)
+- maxBaseFee = 1.35 * previousBlockMaxBaseFee (equivalent to the medium ("Market") setting on MetaMask)
 
 - `maxPriorityFeePerGas` = reward value from eth_feeHistory( 5 blocks, latest, 20th percentile)
 
