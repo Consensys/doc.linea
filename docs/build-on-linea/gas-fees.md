@@ -14,7 +14,7 @@ sidebar_position: 6
 
  2. We don't mine a transaction if `gasPrice` or `maxPriorityFeePerGas` is lower than a given value that fluctuates over time.
 
-To ensure that your transaction gets included by the sequencer, we recommend using EIP-1559 with the following settings for non-MetaMask users:
+To ensure that your transaction gets included by the sequencer, we recommend that non-MetaMask users use EIP-1559 with the following settings:
 
 - maxBaseFee = 1.35 * previousBlockMaxBaseFee (equivalent to medium setting on MetaMask)
 
