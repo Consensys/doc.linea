@@ -14,9 +14,9 @@ sidebar_position: 6
 
  2. We don't mine a transaction if `gasPrice` or `maxPriorityFeePerGas` is lower than a given value that fluctuates over time.
 
-To ensure that your transaction gets included by the sequencer, we recommend using EIP-1559 with the following settings:
+To ensure that your transaction gets included by the sequencer, we recommend that non-MetaMask users use EIP-1559 with the following settings:
 
-- maxBaseFee = 1.35 * previousBlockMaxBaseFee
+- maxBaseFee = 1.35 * previousBlockMaxBaseFee (equivalent to the medium ("Market") setting on MetaMask)
 
 - `maxPriorityFeePerGas` = reward value from eth_feeHistory( 5 blocks, latest, 20th percentile)
 
@@ -28,6 +28,7 @@ curl https://linea-mainnet.infura.io/v3/your-api-key \
   -H "Content-Type: application/json" \
   -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": [4, "latest", [20]] }'
 ```
+If you're using MetaMask, it should automatically calculate the necessary fees to ensure your transaction goes through.
 
 ## Example Code
 
