@@ -4,12 +4,11 @@ description: An overview of how Linea works
 sidebar_position: 4
 ---
 
-import bluecircle from "../../static/img/bluecircle.png";
-import redcircle from "../../static/img/redcircle.png";
+import bluecircle from '/static/img/bluecircle.png';
+import redcircle from '/static/img/redcircle.png';
+import Architecture from '/static/img/docs/Linea_architecture_map_V3.png';
 
 # The Shape of a Line: Linea's Architecture
-
-<img src={bluecircle} style={{ width: 200 }}></img>
 
 ## Linea's ideal state
 
@@ -23,10 +22,9 @@ Linea has the goal of being a fully decentralized, permissionless network. To th
 
 ## Current state
 
-Linea is in its mainnet alpha release, but there's still lots of development to be done. Currently, the first two sections above are kind of rolled into one:
+Linea is in mainnet status, and the team is fervently working towards full decentralization. Currently, this is a good representation of the main components of Linea, and how they interact:
 
-- Centralized Sequencer & Prover
-- Bridge Relayer
+<img src={Architecture} style={{ width: '100vw' }}></img>
 
 ## First of all: what _is_ Linea, anyway? What's a zkEVM L2?
 
@@ -49,6 +47,8 @@ This is the action known as "rolling up": we would say that Linea "rolls up its 
 The trick is in how that _rollup_ happens. Linea is special: it uses cutting-edge developments in a branch of mathematics and computer science often referred to as **zero-knowledge**, or _zero-knowledge cryptography_, to **prove to the Ethereum network that everything that is happening on the Linea network is, in fact, happening, without having to submit a complete record of every last transaction and check each one.** That's the 'zk' part.
 
 So, now that we've walked through some concepts, we can roll it all up: **Linea is a zkEVM L2 network**.
+
+<img src={bluecircle} style={{ width: 200 }}></img>
 
 ### OK... But what's a _sequencer_ and a _prover_? How does all this actually work?
 
@@ -82,6 +82,8 @@ At a high level, if you were to follow a flow from Ethereum, through Linea, and 
 
 _...in other words, there's a lot involved. _
 
+<img src={redcircle} style={{ width: 200 }}></img>
+
 ### Simplifying things
 
 In order to make this explanation as clear and navigable as possible, we'll break each component down, and explain it in three steps:
@@ -94,4 +96,4 @@ In order to make this explanation as clear and navigable as possible, we'll brea
 
 Let's start with the thing that a lot of users encounter when trying to access an L2 for the first time: **a bridge**.
 
-But not just any bridge; there are a lot of data to pass back and forth between Linea and other networks, and therefore, Linea has more than one bridge; and that number is likely to continue to grow. But there's one in particular that matters: the **Linea Canonical Message Service**.
+But not just any bridge; there are a lot of data to pass back and forth between Linea and other networks, and therefore, Linea has more than one bridge; and that number is likely to continue to grow. But there's one in particular that matters: the [**Linea Canonical Message Service**](./canonical-msg-service/index.mdx).
