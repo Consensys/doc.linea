@@ -14,3 +14,6 @@ You will need a Metamask wallet and Linea eth (testnet or mainnet) to deploy to 
 That’s it!
 
 Now that you’ve got your feet wet, you can write tests for your contract (foundry is built in), ask the ai to help you write your contracts, write deploy scripts, and more.
+
+Want to build something bigger? Check out [this tutorial](https://www.youtube.com/embed/mnyYizj3l_8?si=eVXHsWWZxlg9EU4D), which shows off how to build a DEX from scratch on Linea.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mnyYizj3l_8?si=eVXHsWWZxlg9EU4D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
