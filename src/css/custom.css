@@ -646,3 +646,21 @@ img {
   color: #121212;
   background-color: #b3ccfb;
 }
+
+/* Styling for callouts */
+
+.callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.callout-info {
+  border-left-color: #2980b9;
+}
+
+.callout-warning {
+  border-left-color: #f39c12;  
+}
