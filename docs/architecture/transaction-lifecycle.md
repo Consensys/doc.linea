@@ -31,6 +31,7 @@ At this point, the transaction's lifecycle is more or less complete — at least
 
 ## Step 3: Transaction data sent to the state manager
 
+
 Data about the transaction and the state of the network at its time of execution are recorded in **traces**, an output of part of the sequencer called the [traces generator](/docs/architecture/sequencer/traces-generator.md).  
 
 Traces are passed to the state manager block-by-block and then used to update the network state. Once state is up to date, you'll see the transaction reflected in your wallet.
