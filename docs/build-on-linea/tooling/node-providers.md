@@ -9,6 +9,8 @@ title: Node Providers
 - [Unifra](https://unifra.io/)
 - [DRPC](https://drpc.org/)
 - [Blockpi](https://blockpi.io/)
+- [GetBlock](https://getblock.io/)
+
 
 If you want your own private personal RPC, you can [run your own Linea node](../run-a-node.mdx).
 
@@ -27,3 +29,4 @@ Public endpoints are rate limited and not meant for production systems.
 | https://linea.rpc.thirdweb.com | https://linea-testnet.rpc.thirdweb.com |
 | https://linea.blockpi.network/v1/rpc/public | |
 | https://linea-mainnet-public.unifra.io | |
+| https://linea.getblock.io/<api_key>/ |
