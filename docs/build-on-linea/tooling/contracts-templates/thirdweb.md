@@ -18,7 +18,7 @@ Check it out on the [thirdweb Linea website](https://thirdweb.com/linea-testnet)
 
 Learn more and start building with thirdweb!
 
-- [Documentation](https://youtube.com/thirdweb)
+- [Documentation](https://portal.thirdweb.com)
 - [Tutorial videos](https://youtube.com/thirdweb)
 - [Tutorial guides](https://blog.thirdweb.com/guides)
 - [Contract deployment quickstart](../../quickstart/deploy-smart-contract/thirdweb.md)
