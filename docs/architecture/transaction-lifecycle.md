@@ -49,7 +49,7 @@ Amongst Ethereum's L2 networks, Linea is the only network that uses batch confla
 
 ## Step 5: Generating a ZK proof using transaction data
 
-With the block that contains the transaction's trace data conflated into a batch with one or more others, the only remaining task on the checklist to achieve **_hard_ finality** is to use the transaction's data—as contained in its trace—and use it to generate a proof.
+With the block that contains the transaction's trace data conflated into a batch with one or more others, the only remaining task on the checklist to achieve **_hard_ finality** is to use the transaction's data—as contained in its trace—to generate a proof.
 
 When prompted by the [Coordinator](./coordinator), Linea's [prover](./trace-expansion-proving) will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs a two-stage method for developing the proofs that eventually get passed to L1, first developing an **inner proof** and then an **outer proof**.
 
