@@ -19,8 +19,9 @@ Otherwise, there are several ways to get tokens on Linea:
 If you want to drip Goerli ETH directly to Linea testnet, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
 
 1. [Infura Linea faucet](https://infura.io/faucet/linea)
-1. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
-1. [FAUCETME faucet](https://linea.faucetme.pro/)
+2. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
+3. [FAUCETME faucet](https://linea.faucetme.pro/)
+4. [LearnWeb3 Faucet](https://learnweb3.io/faucets/linea_goerli) 
 
 If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](/use-mainnet/bridges-of-linea/how-to-bridge-eth). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
 
