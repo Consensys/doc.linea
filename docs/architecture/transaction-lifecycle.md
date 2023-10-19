@@ -57,12 +57,19 @@ The inner proof uses a combination of tools, including Arcane and Vortex, to rec
 
 Next, the outer proof is generated using the Consensys-maintained library [`gnark`](https://docs.gnark.consensys.net/), compressing the proof size even further. The resulting proof is what's known as a zk-SNARK: the proofs that are eventually submitted to Ethereum.
 
-Since the trace data of _every_ transaction in _every_ block feeds into producing the final proof, the single transaction we started with remains vital to Linea's function, well beyond the point at which it achieves soft finality in step 3.
+Since the trace data of _every_ transaction in _every_ block feeds into producing the final proof, the single transaction we started with remains vital to Linea's function, well beyond the point at which it achieves soft finality in [step 3](#step-3-transaction-data-sent-to-the-state-manager).
 
 ## Step 6: Batch finalization
 
-The final step in the process is to submit proof of the batch's computational integrity to L1. Since the batch of conflated blocks is comprised of transactions, our transaction is involved in this process as well.
+The final step in the process is to finalize the batch by submitting it to Ethereum mainnet, proving its computational integrity. Since the batch of conflated blocks is comprised of transactions, our transaction is involved in this process as well.
 
-`calldata`, the object in which L2 transaction data is stored, is also published to L1 at this stage. The public availability of `calldata` means that anyone can use it reconstruct Linea's state and compare the reconstruction to the contents of the proof to verify the latter. This is the process that the Ethereum verifier contract uses to determine whether or not to accept the batch.
+Let's break down the two elements submitted to L1:
 
-Once the proof is verified by Ethereum validators and two epochs have passed, the transaction becomes immutable history, and reaches **hard finality**. Its lifecycle is complete.
+- The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
+- `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
+
+You can view `calldata` in completed batches on L1 by heading to the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) and finding a transaction whose method is labelled as "Finalize Blocks". Once there, scroll and expand the "More details" section, and then decode the input data.
+
+You can also view finalized batches on Lineascan, [here](https://lineascan.build/batches).
+
+Once the proof is verified and two epochs have passed, the transaction becomes immutable history, and reaches **hard finality**. Its lifecycle is complete.
