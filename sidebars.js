@@ -9,7 +9,7 @@ const sidebars = {
     },
     {
       type: "doc",
-      id: "build-on-linea/run-a-node",
+      id: "build-on-linea/run-a-node/index.mdx",
       label: "Run a node",
     },
     {

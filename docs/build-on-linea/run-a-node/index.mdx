@@ -3,6 +3,16 @@ title: "Run a Linea Node"
 id: "run-a-node"
 ---
 
+:::caution
+
+If you're currently running a Linea node, you **must** download the latest version of the genesis file as soon as possible, then re-initialize and restart your node. 
+
+We're carrying out some network upgrades to increase performance, and this includes changing the block time in the genesis file to 1 second. 
+
+For further details and specific instructions about the actions you need to take, see [here](./docs/run-a-node/update-genesis-file.md).
+
+:::
+
 > The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**.
 >
 > **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes below**; otherwise, you might not be connected to the Linea network.
