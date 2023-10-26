@@ -30,3 +30,4 @@ Public endpoints are rate limited and not meant for production systems.
 | https://linea.blockpi.network/v1/rpc/public | |
 | https://linea-mainnet-public.unifra.io | |
 | https://linea.getblock.io/<api_key>/ |
+| https://linea-mainnet.abeonabase.com | 
