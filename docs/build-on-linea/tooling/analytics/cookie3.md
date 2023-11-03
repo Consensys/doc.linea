@@ -8,7 +8,7 @@ title: Cookie3
 
 [Cookie3](https://www.cookie3.co/) (aka Google Analytics for Web3) allows you to analyze every visitor and wallet on your website, fuse web2 and web3 with powerful campaigns and full customer journey.
 
-##Benefits of using Cookie3
+## Benefits of using Cookie3
 
 ### 1. Understand Web3 user attribution
 - Gain comprehensive insights into **the complete Web3 user journey**, from their initial interaction to the final purchase.
