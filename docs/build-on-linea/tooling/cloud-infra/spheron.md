@@ -6,21 +6,21 @@ title: Spheron Network
 
 ## What is Spheron?
 
-[Spheron](https://spheron.network/) is a PaaS designed for dApps looking to launch their applications on decentralized infra with best performance. It provides compute, decentralized storage, CDN & web hosting out of the box. With its comprehensive set of tools and services rooted in Web3 Infra, Spheron empowers developers to meet the dynamic demands of the digital landscape. Going beyond traditional Web2 infrastructures, Spheron offers a wide range of services including web hosting, storage, and compute capabilities, serving as a vital component in the Web3 ecosystem. Its exceptional performance not only rivals Web2 counterparts but also showcases the potential of Web3 technology for the next generation of applications.
+[Spheron](https://spheron.network/) is a platform-as-a-service (PaaS) designed for dapps looking to launch their applications on decentralized infrastructure with optimal performance, and provides compute capabilities, decentralized storage, CDN and web hosting out of the box. With its comprehensive set of tools and services rooted in web3 infrastructure provision, Spheron empowers developers to meet the dynamic demands of the digital landscape. Its exceptional performance not only rivals web2 counterparts but also showcases the potential of web3 technology for the next generation of applications.
 
 > Learn more about Spheron through [our documentation](https://docs.spheron.network/).
 
-## How to deploy static site on Spheron?
+## How to deploy a static site on Spheron
 
-Deploying static apps on Spheron is a straightforward process. Follow these steps to deploy your static apps on Spheron:
+Deploying static apps on Spheron is straightforward. Follow these steps:
 
-1. **Connect your Git Provider:**<br/> Connecting your Git provider allows Spheron to sync your repositories and trigger deployments whenever new updates are made. Spheron supports the following [Git providers](https://docs.spheron.network/static/deployment/logs/): Github, Gitlab, and Bitbucket.
+1. **Connect your Git provider:**<br/> Connecting your Git provider allows Spheron to sync your repositories and trigger deployments whenever new updates are made. Spheron supports the following [Git providers](https://docs.spheron.network/static/deployment/logs/): Github, Gitlab, and Bitbucket.
 
-2. **Set up your Project:**<br/> Create a new project on Spheron and choose your desired app repository for deployment.
+2. **Set up your project:**<br/> Create a new project on Spheron and choose your desired app repository for deployment.
 
-3. **Select deployment protocol:**<br/> Select your desired protocol for hosting your static app. Spheron supports the following protocols: **Arweave**, **Filecoin**, and **IPFS**.
+3. **Select deployment protocol:**<br/> Select the desired protocol for hosting your static app. Spheron supports **Arweave**, **Filecoin**, and **IPFS**.
 
-4. **Configure deployment settings:**<br/> Spheron will automatically detect and configure most of these settings for you. You have to [add environment variables](https://docs.spheron.network/static/projects/variables/) in the dedicated section. If needed, modify the remaining parameters according to your requirements. That includes selecting the framework, branch, root directory, build and output settings, and the node engine.
+4. **Configure deployment settings:**<br/> Spheron will automatically detect and configure most of these settings for you, though you have to [add environment variables](https://docs.spheron.network/static/projects/variables/) in the dedicated section. If needed, modify the remaining parameters according to your requirements. That includes selecting the framework, branch, root directory, build and output settings, and the node engine.
 
 5. **Trigger deployment:**<br/> After configuring all the required settings, initiate the deployment process. Spheron will fetch your code, build the static files, and deploy them to your specified protocol.
 
@@ -28,52 +28,52 @@ Deploying static apps on Spheron is a straightforward process. Follow these step
 
 > Checkout our [Framework Guide](https://docs.spheron.network/framework-guide/) for more info.
 
-## How to deploy dynamic-apps/servers on Spheron?
+## How to deploy dynamic apps/servers on Spheron
 
-Deploying compute instances on Spheron is simple and effortless, whether you're using a Docker image from Docker Hub or deploying a marketplace app. Follow these steps to deploy your compute instance on Spheron:
+Whether you're using a Docker image from Docker Hub or deploying a marketplace app, deploying compute instances on Spheron is simple and effortless. Follow these steps to deploy your compute instance on Spheron:
 
-1. **Set up your Cluster:**<br/> Create a new cluster on Spheron by selecting **Import from Docker Hub** or **Start from Marketplace App**.
+1. **Set up your cluster:**<br/> Create a new cluster on Spheron by selecting **Import from Docker Hub** or **Start from Marketplace App**.
 
 2. **For Docker Hub:**<br/>
 
-   1. Click "New Cluster" on the top right corner.
+   1. Click "New Cluster" in the top-right corner.
    2. Select **Import from Docker Hub**.
    3. Enter the names for your cluster and docker image.
-   4. Then, Add the tag and Click "Next."
-   5. Choose your Compute Type option under **Compute Type**.
-   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to know more.
-   7. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, Create new Port Policy Mapping and just Click "Deploy" to initiate deployment.
+   4. Then, add the tag and click "Next."
+   5. Choose your compute type option under **Compute Type**.
+   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   7. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, click "Deploy" to initiate deployment.
    8. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
-   9. Configure Storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
-   10. Create new Port Policy Mapping. Add the container port, and Select the exposed port you want to map it to. Click here to know more.
+   9. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
+   10. Create new **Port Policy Mapping**. Add the container port and select the exposed port you want to map it to. Refer to our docs for more information.
    11. Add **Environment Variable**, if any.
-   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/#environment-variables) to know more.
-   13. You can add advance configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration) to know more.
-   14. You can add health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/#health-checkup) to know more.
+   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/#environment-variables) to learn more.
+   13. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration) to read more.
+   14. You can add a health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/#health-checkup) to learn more.
    15. Click "Deploy" to initiate deployment.
 
     <br />
 
    > Checkout our [Server Guide](https://docs.spheron.network/server-guide/) for more info.
 
-3. **For Marketplace App:**<br/>
+3. **For a Marketplace App:**<br/>
 
-   1. Click "New Cluster" on the top right corner.
+   1. Click "New Cluster" in the top right corner.
    2. Select **Start from Marketplace App**.
    3. Pick your desired template from the marketplace.
-   4. Choose your desired Compute Type option under **Compute Type**.
-   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to know more.
-   6. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just Click "Deploy" to initiate deployment.
+   4. Choose your desired compute type option under **Compute Type**.
+   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   6. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just click "Deploy" to initiate deployment.
    7. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
-   8. Configure Storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
-   9. You can add advance configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration-1) to know more.
+   8. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
+   9. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration-1) to know more.
    10. Click "Deploy" to initiate deployment.
 
    <br />
 
    > Checkout our [Marketplace Guide](https://docs.spheron.network/marketplace-guide/) for more info.
 
-## How to upload to IPFS using Spheron SDK?
+## How to upload to IPFS using Spheron SDK
 
 ### 1. Spheron Storage SDK (for Nodejs environments)
 
@@ -120,7 +120,7 @@ npm i @spheron/browser-upload
 
 ### Usage
 
-### Server
+**Server**
 
 You have to set up a web server with an endpoint that will be used by the frontend to fetch the token for upload.
 
@@ -152,7 +152,7 @@ app.get("/initiate-upload", async (req, res, next) => {
 });
 ```
 
-### Client
+**Client**
 
 You have to send a request to your server to create the uploadToken that will be used to upload files from the browser.
 
@@ -182,11 +182,11 @@ const { uploadId, bucketId, protocolLink, dynamicLinks } = await upload(files, {
 
 > Checkout all other [SDKs](https://docs.spheron.network/sdk/) for more in-depth information.
 
-## How to create and deploy apps using Spheron CLI?
+## How to create and deploy apps using Spheron CLI
 
 ## Installation
 
-#### For Mac and Linux
+### For Mac and Linux
 
 To install the Spheron CLI, run the following command in your terminal:
 
@@ -194,9 +194,9 @@ To install the Spheron CLI, run the following command in your terminal:
 sudo npm install -g @spheron/cli
 ```
 
-#### For Windows
+### For Windows
 
-To install the Spheron CLI, open your terminal as administrator mode and run the following command:
+To install the Spheron CLI, open your terminal in administrator mode and run the following command:
 
 ```
 npm install -g @spheron/cli
@@ -204,11 +204,11 @@ npm install -g @spheron/cli
 
 ## Usage
 
-### spheron init
+### `spheron init`
 
 The `spheron init` command allows you to initialize a new Spheron project. A `spheron.json` file is created in your current path that describes your project. It will be utilized by the `spheron publish` command.
 
-#### Usage
+### Usage
 
 ```sh
 spheron init
@@ -224,7 +224,7 @@ Upon running this command, a prompter will appear that will allow you to select 
 ❯ IPFS
 ```
 
-### spheron publish
+### `spheron publish`
 
 The `spheron publish` command allows you to upload your project using the configuration that is described in the `spheron.json` file of your project.
 
@@ -258,39 +258,39 @@ Dynamic Links: https://testapp-edab50.spheron.app
 
 > Checkout our [CLI Documentation](https://docs.spheron.network/cli/) for more info.
 
-## How to view and retrieve content from IPFS using Spheron?
+## How to view and retrieve content from IPFS using Spheron
 
 ### Dedicated IPFS Gateways
 
-[Dedicated Gateways](https://docs.spheron.network/gateways/dedicated/) are IPFS gateways specifically designed to enhance access to pinned content across the network by offering faster speeds and increased rate limits.
+[Dedicated gateways](https://docs.spheron.network/gateways/dedicated/) are IPFS gateways specifically designed to enhance access to pinned content across the network by offering faster speeds and increased rate limits.
 
-Using Dedicated Gateways offers several benefits:
+Using dedicated gateways offers several benefits:
 
-- Improved Speed
-- Increased Rate Limits
-- White-labeling Gateway
-- Serve Content from Any IPFS Node
+- Improved speed
+- Increased rate limits
+- White-labeling gateway
+- Serve content from any IPFS node
 
 ### Create a Dedicated Gateway
 
-Follow these steps to create a Dedicated Gateway:
+Follow these steps to create a dedicated gateway:
 
 1. Log in to Spheron and navigate to the **Gateways** section in the navbar.
 2. Click **Generate** to create a new gateway.
-3. Enter a name for your gateway and Click **Create**.
+3. Enter a name for your gateway and click **Create**.
 
-### How to Use Your Gateway?
+### How to Use Your Gateway
 
-To access content through your Dedicated Gateway, simply follow these steps:
+To access content through your dedicated gateway, simply follow these steps:
 
-1. Obtain the CID (Content Identifier) of the file you wish to view.
+1. Obtain the CID (content identifier) of the file you wish to view.
 2. Append the CID to your gateway URL in the following format:
 
 ```
 https://{gateway-name}.spheron.link/ipfs/{cid}
 ```
 
-> Checkout our [Gateway Documentation](https://docs.spheron.network/gateways/dedicated/) for more info.
+> Checkout our [gateway documentation](https://docs.spheron.network/gateways/dedicated/) for more information.
 
 ## Further Resources
 
