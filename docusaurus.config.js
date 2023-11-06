@@ -1,16 +1,22 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const isDev = process.env.NODE_ENV === "development";
-const baseUrl = isDev ? "/" : "/";
+const math = require("remark-math");
+const katex = require("rehype-katex");
+
+// const isDev = process.env.NODE_ENV === "development";
+// const baseUrl = isDev ? "/" : "/";
+
+// const organizationName = "Consensys";
+// const projectName = "doc.zk-evm";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
   tagline:
-    "A type 2 zero knowledge Ethereum Virtual Machine that replicates an Ethereum environment by leveraging rollups.",
+    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
   url: "https://docs.linea.build",
-  baseUrl,
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
@@ -18,7 +24,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "ConsenSys", // Usually your GitHub org/user name.
+  organizationName: "Consensys", // Usually your GitHub org/user name.
   projectName: "doc.zk-evm", // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
@@ -37,12 +43,14 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/ConsenSys/doc.zk-evm/tree/main/",
+          editUrl: "https://github.com/Consensys/doc.zk-evm/tree/main/",
           path: "docs",
           routeBasePath: "/",
           // @ts-ignore
           // eslint-disable-next-line global-require
           remarkPlugins: [require("remark-docusaurus-tabs")],
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
@@ -90,7 +98,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <b>Linea will undergo an upgrade on June 6, 2023. Please see the <a href="https://docs.linea.build/developers/linea-version/release-notes#linea-alpha-v020-june-6-2023">release notes</a> for more details.</b>',
+          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
@@ -128,16 +136,16 @@ const config = {
           },
           {
             type: "dropdown",
-            label: "Learn",
+            label: "Tutorials",
             position: "left",
             items: [
               {
-                label: "Community tutorials",
+                label: "Community Guides",
                 to: "blog",
               },
               {
                 label: "ZK Glossary",
-                to: "/reference/glossary",
+                to: "/zero-knowledge-glossary",
               },
             ],
           },
@@ -152,7 +160,7 @@ const config = {
             label: "Linea home",
           },
           {
-            href: "https://discord.com/invite/consensys",
+            href: "https://discord.gg/linea",
             className: "header-discord-link",
             position: "right",
           },
@@ -171,11 +179,11 @@ const config = {
             items: [
               {
                 label: "Use Linea",
-                to: "/category/use-linea",
+                to: "/use-mainnet",
               },
               {
                 label: "Build on Linea",
-                to: "/category/developers",
+                to: "/build-on-linea",
               },
             ],
           },
@@ -184,7 +192,7 @@ const config = {
             items: [
               {
                 label: "Join our Discord",
-                href: "https://discord.com/invite/consensys",
+                href: "https://discord.gg/linea",
               },
               {
                 label: "Get Help",
@@ -201,20 +209,20 @@ const config = {
             items: [
               {
                 label: "Contribute to our documentation",
-                href: "https://github.com/ConsenSys/doc.zk-evm",
+                href: "https://github.com/Consensys/doc.zk-evm",
               },
               {
                 label: "Contribute to our gnark repo",
-                href: "https://github.com/ConsenSys/gnark",
+                href: "https://github.com/Consensys/gnark",
               },
               {
                 label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/ConsenSys/gnark-crypto",
+                href: "https://github.com/Consensys/gnark-crypto",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} ConsenSys, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Consensys, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -267,27 +275,74 @@ const config = {
             from: "/developers/use-message-bridge",
           },
           {
-            to: "/developers/quickstart",
-            from: "/developers/deploy-smart-contracts",
-          },
-          {
-            to: "/category/use-linea",
+            to: "/architecture/canonical-msg-service/message-service",
             from: [
-              "/category/get-started",
-              "/get-started/bridge-funds",
-              "/get-started/fund",
-              "/get-started/configure-metamask",
-              "/get-started/quickstart",
-              "/category/use-zkevm",
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
+            ],
+            from: [
+              "/developers/bridge-architecture/message-service",
+              "/developers/use-message-bridge",
             ],
           },
           {
-            to: "/developers/tooling",
-            from: "/developers/partners",
+            to: "/build-on-linea/quickstart",
+            from: [
+              "/developers/quickstart",
+              "/developers/deploy-smart-contracts",
+            ],
+          },
+          {
+            to: "/zero-knowledge-glossary",
+            from: "/reference/glossary",
+          },
+          {
+            to: "/build-on-linea",
+            from: [
+              "/get-started",
+              "/get-started/fund",
+              "/get-started/configure-metamask",
+              "/get-started/quickstart",
+              "/use-zkevm",
+              "/use-linea/index.md",
+            ],
+          },
+          {
+            to: "/use-mainnet/set-up-your-wallet",
+            from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+          },
+          {
+            to: "/use-mainnet/fund",
+            from: "/build-on-linea/use-linea-testnet/fund",
+          },
+          {
+            to: "/use-mainnet/info-contracts",
+            from: "/build-on-linea/use-linea-testnet/info-contracts",
+          },
+          {
+            to: "/build-on-linea/bridge-funds",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds",
+          },
+          {
+            to: "/use-mainnet/bridges-of-linea",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
+          },
+          {
+            to: "/use-mainnet/bridges-of-linea",
+            from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
         ],
       },
     ],
+  ],
+  stylesheets: [
+    {
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
+      integrity:
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
+    },
   ],
   themes: [],
 };

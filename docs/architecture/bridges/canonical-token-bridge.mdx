@@ -1,0 +1,72 @@
+---
+title: Canonical Token Bridge
+sidebar_position: 1
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import TokenBridge from "!!raw-loader!/files/testnet/TokenBridge.sol";
+import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
+import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
+import Lineabridge3 from '/static/img/docs/arch-linea/Linea_bridge_3.svg';
+
+# Canonical Token Bridge
+
+<Lineabridge3 />
+
+The Canonical Token Bridge is the pair of “lock & mint” contracts that allow bridging of any ERC-20 token. The Bridge relies on the [Message Service](/docs/architecture/canonical-msg-service/message-service.mdx) for cross-chain interactions.
+
+The Linea team operates a UI for this bridge, available at [https://bridge.linea.build/](https://bridge.linea.build/). 
+
+The Canonical Token Bridge is optimized for technical partners who are deploying on Linea. We recommend that everyday users of Linea seeking to bridge their personal tokens between networks leverage one of the many bridges deployed to the network. 
+
+Linea seeks to foster a permissionless, resilient, decentralized environment--not to have our bridge be a centralized arbiter and point of failure.
+
+To find out which bridges are currently operating on Linea, [jump here](https://linea.build/apps), to the Ecosystem Portal on [linea.build](https://linea.build), and click on the "Bridge" button to show all that are available. 
+
+## Contracts
+
+- **L1 (Goerli)**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Transparent Proxy](https://goerli.etherscan.io/address/0xaA012D038E6440535Ec66eDf2DA592F4F8398133)
+    - [Implementation](https://goerli.etherscan.io/address/0x03c73b65d5c2e135df0e42331f41fbe1590f6486#code)
+
+- **L2 (Linea)**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Transparent Proxy](https://goerli.lineascan.build/address/0xB191E3d98074f92584E5205B99c3F17fB2068927)
+    - [Implementation](https://goerli.lineascan.build/address/0xe24199fba294c90e4DACF3cAA1C5F8eeB726E85a)
+
+## How to use
+
+### Workflow
+
+1. Triggering the transfer
+
+- **Without Permit**
+  - User should first allow the bridge to transfer tokens on his behalf
+  - This is done by calling `allowance()` on the TokenBridge.
+  - Then, the user should call the `bridgeToken()` method.
+- **With Permit**
+  - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction
+
+1. Triggering the delivery
+
+- See [Message Service step](/docs/architecture/canonical-msg-service/message-service.mdx#workflow)
+
+## Interface TokenBridge.sol
+
+<details>
+  <summary>TokenBridge.sol</summary>
+  <CodeBlock language="solidity">{TokenBridge}</CodeBlock>
+</details>

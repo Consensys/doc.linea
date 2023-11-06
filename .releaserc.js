@@ -26,7 +26,7 @@ const mainConfig = {
       },
     ],
   ],
-  repositoryUrl: "https://github.com/ConsenSys/docs-template",
+  repositoryUrl: "https://github.com/Consensys/docs-template",
 };
 
 module.exports = mainConfig;
