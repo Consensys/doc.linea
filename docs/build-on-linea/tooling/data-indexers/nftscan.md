@@ -17,7 +17,7 @@ This article provides information on how you can utilize the NFTScan API to moni
 
 # Understanding NFTScan
 
-NFTScan provides Web3 developers with the most professional, comprehensive and authoritative NFT data services and solutions. Through establishing the full NFT data information of multiple blockchain networks with standardized indexing methods, the NFTScan APIs help developers build new experiences retrieving NFTs. We provide a set of endpoints that enable you to fetch ERC721 and ERC1155 NFT assets as well as transactions, collections, marketplace statistics and more.
+NFTScan provides Web3 developers with the most professional, comprehensive and authoritative NFT data services and solutions. Through establishing the full NFT data information of multiple blockchain networks with standardized indexing methods, the NFTScan APIs help developers build new experiences retrieving NFTs. We provide a set of endpoints that enable you to fetch ERC-721 and ERC-1155 NFT assets as well as transactions, collections, marketplace statistics and more.
 
 # **What can NFTScan API provide**
 

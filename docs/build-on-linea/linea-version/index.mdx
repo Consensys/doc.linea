@@ -82,7 +82,7 @@ This release focuses on testing a substantial architecture upgrade in preparatio
       - Outer proof system moved from Groth16 to Plonk + custom gates to support efficient Fiat Shamir, c.f.: https://eprint.iacr.org/2022/1072.pdf section 6.2
     - Messaging Service
       - Changed the message service model by splitting the delivery into anchoring and claiming of messages to allow more flexible workflows, remove the mandatory fee for L1→L2, reduce the mandatory fee for L2→L1
-  - Canonical Token Bridge: Upgrade from 1-1 ERC20 basic token bridge to N-N ERC20 canonical token bridge with reservation and token registry
+  - Canonical Token Bridge: Upgrade from 1-1 ERC-20 basic token bridge to N-N ERC-20 canonical token bridge with reservation and token registry
 - Add Postman Service for message execution
   - The Postman Service is Linea’s off-chain message delivery service. It’s decentralized, permissionless, and used to claim messages once the protocol has anchored the message hashes. The first release will only contain the following scenarios:
     - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas

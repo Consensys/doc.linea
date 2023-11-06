@@ -27,7 +27,7 @@ interface TokenBridge {
     Linea can pause the bridge for security reason. In this case new bridge transaction would revert.
 
   @notice This function is the single entry point to bridge tokens to the other chain, both for native and already bridged tokens.
-    You can use it to bridge any ERC20. If the token is bridged for the first time an ERC20 (BridgedToken.sol) will be automatically deployed on the target chain.
+    You can use it to bridge any ERC-20. If the token is bridged for the first time an ERC-20 (BridgedToken.sol) will be automatically deployed on the target chain.
 
     @param token The address of the token to be bridged.
     @param amount The amount of the token to be bridged.

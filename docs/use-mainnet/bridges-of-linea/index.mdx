@@ -28,7 +28,7 @@ We recommend you use the official Linea token bridge:(/use-mainnet/bridges-of-li
 
 **Bridge ERC-20 tokens**
 
-Again, we recommend the official bridge; ERC-20-specific instructions are [here](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens).
+Again, we recommend the official bridge; ERC-20-specific instructions are [here](/use-mainnet/bridges-of-linea/how-to-bridge-ERC-20-tokens).
 
 ### Using ecosystem bridges
 
@@ -90,9 +90,9 @@ The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.0
 
 ## What is token bridge decimal mismatch?
 
-When a user bridges an ERC20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC20 token. 
-If the "decimals" cannot be determined by reading the origin ERC20 token contract (e.g. a token contract does not adhere to the ERC20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals. 
+When a user bridges an ERC-20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC-20 token. 
+If the "decimals" cannot be determined by reading the origin ERC-20 token contract (e.g. a token contract does not adhere to the ERC-20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals. 
 
-It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC20 standards.
+It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC-20 standards.
 
 Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information.  Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again.
