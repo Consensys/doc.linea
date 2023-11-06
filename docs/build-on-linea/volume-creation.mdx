@@ -1,12 +1,14 @@
+---
+title: 'Creating a Custom Volume'
+---
+
 :::note 
 As indicated in the linked resources in Step 1, blockchain clients like Geth can take up a lot of disk space. By defining the amount of disk space you're willing to dedicate to your client (and the block data that it will be syncing), you can ensure that you still have enough room on your disk for whatever else you need. 
 
 If you run out of space, or need to actively maintain how much space is being used, consider [pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
+:::
 
-<div>
-<details>
-
-<summary>How to create a custom volume</summary>
+## How to create a custom volume
 
 <details>
 
@@ -41,7 +43,7 @@ If you run out of space, or need to actively maintain how much space is being us
 
 <details>
 
-<summary>Without WSL</summary>
+<summary>Without Windows Subsystem Linux</summary>
 
 - Open Command Prompt as Administrator
 - Use the `dir` command to check available disk space on the volume you want to create the disk image  
@@ -68,7 +70,7 @@ To mount an existing disk image:
 
 <details>
 
-<summary>With WSL</summary>
+<summary>With Windows Subsystem Linux</summary>
 
 - Open WSL
 - Use the `df -h` command to check the available disk space 
@@ -81,8 +83,3 @@ To mount an existing disk image:
 </details>
 
 </details>
-
-</details>
-
-</div>
-:::
