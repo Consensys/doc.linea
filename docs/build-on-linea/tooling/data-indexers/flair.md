@@ -28,7 +28,7 @@ Compared to other alternatives the main reasons are:
   * Auto-track new contracts deployed from factory contracts.
 * ✅ **Custom processor scripts** with Javascript runtime (with **Typescript** support)
   * Make external API or Webhook calls to third-party or your backend.
-  * Get current or historical USD value of any ERC20 token amount of any contract address on any chain.
+  * Get current or historical USD value of any ERC-20 token amount of any contract address on any chain.
   * Use any external NPM library.
 * ✅ **Stream** any stored data to your destination database (Postgres, MongoDB, MySQL, Kafka, Elasticsearch, Timescale, etc).
 
@@ -103,7 +103,7 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ### NFT
 
-* [Index ERC721 and ERC1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
+* [Index ERC-721 and ERC-1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
 
 ## Need help?
 
