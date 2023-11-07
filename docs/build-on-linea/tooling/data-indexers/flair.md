@@ -103,7 +103,7 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ### NFT
 
-* [Index ERC721 and ERC-1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
+* [Index ERC-721 and ERC-1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
 
 ## Need help?
 
