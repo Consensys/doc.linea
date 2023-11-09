@@ -29,4 +29,4 @@ Public endpoints are rate limited and not meant for production systems.
 | https://linea.rpc.thirdweb.com | https://linea-testnet.rpc.thirdweb.com |
 | https://linea.blockpi.network/v1/rpc/public | |
 | https://linea-mainnet-public.unifra.io | |
-| https://linea.getblock.io/<api_key>/ |
+| https://linea.getblock.io/your_api_key |
