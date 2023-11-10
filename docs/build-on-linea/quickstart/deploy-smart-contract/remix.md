@@ -20,21 +20,27 @@ In order to start using Remix, navigate to their [website](https://remix.ethereu
 
 The default project includes a code sample with a configured smart contract.
 
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_contract.png")
-      .default
-  }></img>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Remix/Linea_deploy_smart_contract_Remix_1.png"
+      alt="Remix configured smart contract code"
+    />
+  </div>
+</div>
 
 ## Compile a Remix contract
 
 To compile this sample contract, navigate to the "Solidity compiler" icon, and click on "Compile contract".
 
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_compile.png")
-      .default
-  }></img>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Remix/Linea_deploy_smart_contract_Remix_2.png"
+      alt="Remix compile contract"
+    />
+  </div>
+</div>
 
 ## Deploy the contract
 
@@ -53,11 +59,14 @@ The public endpoints are rate limited and not meant for production systems. To u
 
 Switch to the Linea Mainnet network in your MetaMask wallet, and select "Injected provider - MetaMask" in your Remix configuration.
 
-  <img
-    src={
-      require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_deploy_metamask_mainnet.png")
-        .default
-  }></img>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Remix/Linea_deploy_smart_contract_Remix_3.png"
+      alt="Remix deploy contract"
+    />
+  </div>
+</div>
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
