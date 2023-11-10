@@ -1,13 +1,15 @@
 ---
-title: Linea XP 
+title: Linea Voyage XP 
 sidebar_position: 5
 ---
 
-## What is Linea XP?
+## What is Linea Voyage XP?
 
 Similar to video games, where your character can gain experience points (XP) as you go through the game, Voyage XP represents your journey and experience in the Linea ecosystem. The Voyage XP tokens will be a custom version of ERC-20 and will be visible by default in your MetaMask wallet **Voyage XP are non-transferrable soulbound tokens that are distributed to recognize the community’s extraordinary contribution toward the growth of the Linea ecosystem and do not have any monetary value!**
 
 Apart from being a measure of contribution to building Linea into a robust and secure L2 network, Voyage XP will also make owners eligible for benefits such as receiving official community roles, exclusive Linea swag, and more!
+
+To learn more about the Linea Voyage XP Progam click [here](https://linea.mirror.xyz/sl3dN6bP3h0Uxhh5yA_jqy9UFayjqCeChRvOSi1U3B8) 
 
 :::note
 Voyage XP are non-transferable and not bridgeable to other networks. You cannot buy, sell, or swap them, nor can you accumulate them by transferring from another wallet.
