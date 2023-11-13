@@ -4,7 +4,7 @@ title: Truffle
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/docs/build-on-linea/quickstart/deploy-smart-contract/truffle.mdx/#truffle-configjs).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/docs/build-on-linea/quickstart/deploy-smart-contract/truffle.mdx/#truffle-config).
 
 :::note
 
