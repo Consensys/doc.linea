@@ -15,16 +15,16 @@ To learn more about the Linea Voyage XP Progam click [here](https://linea.mirror
 Voyage XP are non-transferable and not bridgeable to other networks. You cannot buy, sell, or swap them, nor can you accumulate them by transferring from another wallet.
 :::
 
-## Contract Information
-
-
-| Soulbound ERC20 Contract Address | 
-| --- | 
-| 0x00 |
-
 ## Wallet Binding
 
-Wallet binding allows you to aggregate your Voyage XP tokens by a single primary wallet. If you're navigating the Linea ecosystem with multiple wallets, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned.This ensures that every adventure is accurately recorded across your interconnected wallets, providing a seamless and comprehensive representation of your Linea experience.
+Wallet binding allows you to aggregate your Voyage XP tokens by a single primary wallet. If you're navigating the Linea ecosystem with multiple wallets, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected wallets, providing a seamless and comprehensive representation of your Linea experience. 
+
+**Wallet binding is not retroactive. If you bind your wallet after voyage XP are received, then those won't be linked to the primary wallet!**
+
+:::caution
+
+**Wallet binding is permanent and irreversible, so make sure you are choosing the correct wallet when going through the process!**
+:::
 
 To start to complete the wallet binding process follow the steps below:
 
