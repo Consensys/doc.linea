@@ -12,7 +12,7 @@ title: Node Providers
 - [GetBlock](https://getblock.io/)
 
 
-If you want your own private personal RPC, you can [run your own Linea node](../run-a-node.mdx).
+If you want your own private personal RPC, you can [run your own Linea node](./../run-a-node).
 
 ## Public RPC
 
