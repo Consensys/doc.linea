@@ -7,11 +7,13 @@ import CodeBlock from "@theme/CodeBlock";
 import TokenBridge from "!!raw-loader!/files/testnet/TokenBridge.sol";
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
-import Lineabridge3 from '/static/img/docs/arch-linea/Linea_bridge_3.svg';
+import LineaBridgeGraphic from '/img/article_images/Architecture_of_Linea/Bridges/Canonical_token_bridge/Linea_canonical_token_bridge.svg';
 
 # Canonical Token Bridge
 
-<Lineabridge3 />
+<div className="img-large">
+    <LineaBridgeGraphic />
+</div>
 
 The Canonical Token Bridge is the pair of “lock & mint” contracts that allow bridging of any ERC-20 token. The Bridge relies on the [Message Service](/docs/architecture/canonical-msg-service/message-service.mdx) for cross-chain interactions.
 

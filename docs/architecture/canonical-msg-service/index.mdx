@@ -3,13 +3,16 @@ title: "Canonical Message Service: Overview"
 sidebar_position: 1
 ---
 
-import MessageService from '/static/img/docs/arch-linea/Linea_message_service_2_V2.svg';
-import TxnMessageServiceFlow from '/static/img/docs/arch-linea/Linea_bridge_and_messaging_layer.svg';
-import MessageVerification from '/static/img/docs/arch-linea/Linea_message_service_1.svg';
-
 ## Linea Canonical Message Service
 
-<MessageService />
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Architecture_of_Linea/Canonical_Message_Service_overview/Linea_message_service_2.png"
+      alt="Linea message service architecture"
+    />
+  </div>
+</div>
 
 ### What is it?
 
@@ -23,7 +26,14 @@ One of the most important things that the Message Service transfers is informati
 
 However, the Service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
 
-<TxnMessageServiceFlow />
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Architecture_of_Linea/Canonical_Message_Service_overview/Linea_bridge_architecture.png"
+      alt="Linea bridge architecture"
+    />
+  </div>
+</div>
 
 ### How does it do it?
 
@@ -37,7 +47,14 @@ Once the information is delivered to the destination smart contract, the code co
 
 There's an additional layer of logic, though, which serves to ensure that the message delivered to the L2 is valid. Essentially, a message is sent from Ethereum, relayed through the Message Service, and is delivered to the Linea smart contract. That smart contract checks the message received against the list of messages sent on the Ethereum side, verifies that it exists on the L1, and only then accepts it as a valid message:
 
-<MessageVerification />
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Architecture_of_Linea/Canonical_Message_Service_overview/Linea_message_service_1.png"
+      alt="Linea message service verification"
+    />
+  </div>
+</div>
 
 **For more technical details, including how to integrate with the Message Service, see our [Technical Reference](./message-service.mdx)**.
 

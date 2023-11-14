@@ -160,4 +160,11 @@ Verifying contracts on sourcify
 
 You can check that it was verified correctly by navigating to the block explorer ([mainnet](https://lineascan.build/) or [testnet](https://goerli.lineascan.build/)) and pasting in the deployed contract address.
 
-![verified contract](./../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/lineascan_verification.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Verify_a_smart_contract/Truffle/Linea_verify_smart_contract_Truffle.png"
+      alt="Contract source code"
+    />
+  </div>
+</div>

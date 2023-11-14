@@ -2,11 +2,13 @@
 title: Conflation
 sidebar_position: 2
 ---
-import ConflationGraphic from '/static/img/docs/arch-linea/Linea_block_conflation.svg';
+import ConflationGraphic from '/img/article_images/Architecture_of_Linea/Sequencer/Conflation/Linea_block_conflation.svg';
 
 ## Conflation
 
-<ConflationGraphic />
+<div className="img-large">
+    <ConflationGraphic />
+</div>
 
 ### What is it?
 
