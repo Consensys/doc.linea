@@ -7,8 +7,16 @@ Real-time and historical custom data indexing for any evm chain.
 
 [Flair](https://flair.dev) offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
 
-[![flair architecture](https://imgur.com/0q5bHZK.png)](https://docs.flair.dev/)
-
+<div class="center-container">
+  <div class="img-large">
+    <a href="https://docs.flair.dev/">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Flair/Linea_Flair_1.png"
+        alt="Flair architecture"
+      />
+    </a>
+  </div>
+</div>
 
 ## Why Flair?
 

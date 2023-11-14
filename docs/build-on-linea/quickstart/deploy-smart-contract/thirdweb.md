@@ -55,7 +55,14 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 
 1. Navigate to the thirdweb Explore page: [https://thirdweb.com/explore](https://thirdweb.com/explore)
 
-![thirdweb explore](../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/thirdweb-explore.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/thirdweb/Linea_thirdweb_explore_page.png"
+      alt="thirdweb explore page"
+    />
+  </div>
+</div>
 
 2. Choose the type of contract you want to deploy from the available options: NFTs, tokens, marketplace, and more.
 3. Follow the on-screen prompts to configure and deploy your contract.
