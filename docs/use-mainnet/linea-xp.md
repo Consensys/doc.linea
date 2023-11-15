@@ -25,7 +25,7 @@ Voyage XP are non-transferable and not bridgeable to other networks. You cannot 
 
 ## Wallet Binding
 
-Wallet binding allows you to aggregate your Voyage XP tokens by a single primary wallet. If you're navigating the Linea ecosystem with multiple wallets, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected wallets, providing a seamless and comprehensive representation of your Linea experience. 
+Wallet binding allows you to aggregate your Voyage XP tokens to a single primary wallet. If you're navigating the Linea ecosystem with multiple wallets, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected wallets, providing a seamless and comprehensive representation of your Linea experience. 
 
 **Wallet binding is not retroactive. If you bind your wallet after voyage XP are received, then those won't be linked to the primary wallet!**
 
