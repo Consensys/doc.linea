@@ -34,7 +34,7 @@ Wallet binding allows you to aggregate your Voyage XP tokens to a single primary
 **Wallet binding is permanent and irreversible, so make sure you are choosing the correct wallet when going through the process!**
 :::
 
-To start to complete the wallet binding process follow the steps below:
+To start the wallet binding process, follow the steps below:
 
 1. Go [here](https://linea.build/)
 2. Connect your wallet in the top right corner of the page
