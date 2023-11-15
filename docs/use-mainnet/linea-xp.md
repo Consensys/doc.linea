@@ -38,7 +38,7 @@ To start the wallet binding process, follow the steps below:
 
 1. Go [here](https://linea.build/)
 2. Connect your wallet in the top right corner of the page
-3. Select the drop down from your connected wallet and select "Manage Wallet(s)"
+3. Click on the address of your currently selected account to open a dropdown menu. Here, click "Manage Wallet(s)"
 
 <img
   src={
