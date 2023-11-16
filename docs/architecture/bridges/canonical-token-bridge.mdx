@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 
 import CodeBlock from "@theme/CodeBlock";
-import TokenBridge from "!!raw-loader!/files/testnet/TokenBridge.sol";
+import TokenBridge from "!!raw-loader!/files/testnet/ITokenBridge.sol";
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
 import LineaBridgeGraphic from '/img/article_images/Architecture_of_Linea/Bridges/Canonical_token_bridge/Linea_canonical_token_bridge.svg';
@@ -35,8 +35,8 @@ To find out which bridges are currently operating on Linea, [jump here](https://
   </details>
 
   - Contracts:
-    - [Transparent Proxy](https://goerli.etherscan.io/address/0xaA012D038E6440535Ec66eDf2DA592F4F8398133)
-    - [Implementation](https://goerli.etherscan.io/address/0x03c73b65d5c2e135df0e42331f41fbe1590f6486#code)
+    - [Transparent Proxy](https://goerli.etherscan.io/address/0x5506A3805fB8A58Fa58248CC52d2b06D92cA94e6)
+    - [Implementation](https://goerli.etherscan.io/address/0x292a9478a52f0b8b12429c58f79367448abe0214#code)
 
 - **L2 (Linea)**
 
@@ -46,8 +46,8 @@ To find out which bridges are currently operating on Linea, [jump here](https://
   </details>
 
   - Contracts:
-    - [Transparent Proxy](https://goerli.lineascan.build/address/0xB191E3d98074f92584E5205B99c3F17fB2068927)
-    - [Implementation](https://goerli.lineascan.build/address/0xe24199fba294c90e4DACF3cAA1C5F8eeB726E85a)
+    - [Transparent Proxy](https://goerli.lineascan.build/address/0x3ccd0F623B7a25Eab5dFc6a3fD723dCE5520489B)
+    - [Implementation](https://goerli.lineascan.build/address/0x283938e7ae5bf4e9d6a393cdea77c3c369b072e2#code)
 
 ## How to use
 
@@ -69,6 +69,6 @@ To find out which bridges are currently operating on Linea, [jump here](https://
 ## Interface TokenBridge.sol
 
 <details>
-  <summary>TokenBridge.sol</summary>
+  <summary>ITokenBridge.sol</summary>
   <CodeBlock language="solidity">{TokenBridge}</CodeBlock>
 </details>
