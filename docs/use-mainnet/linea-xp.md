@@ -36,40 +36,61 @@ Wallet binding allows you to aggregate your Voyage XP tokens to a single primary
 
 To start the wallet binding process, follow the steps below:
 
-1. Go [here](https://www.intract.io/linea/)
+1. Go [here](https://linea.build/activations)
 2. Connect your wallet in the top-right corner of the page
 3. Click on the address of your currently selected account to open a dropdown menu. Here, click "Manage Wallet(s)"
 
-<img
-  src={
-    require("@site/static/img/docs/use-mainnet/linea-xp/manage-wallets.png")
-      .default
-  }></img>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_voyage_xp_manage_wallets.png"
+      alt="Linea Voyage XP manage wallets"
+    />
+  </div>
+</div>
 
 4. Sign the signature request
 
-<img
-  src={
-    require("@site/static/img/docs/use-mainnet/linea-xp/signature-request.png")
-      .default
-  }></img>
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_signature_request.png"
+      alt="MetaMask Linea signature request"
+    />
+  </div>
+</div>
 
 5. Select "Set as Primary Wallet"
 
-<img
-  src={
-    require("@site/static/img/docs/use-mainnet/linea-xp/set-primary-wallet.png")
-      .default
-  }></img>
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_set_primary_wallet.png"
+      alt="Linea voyage set primary wallet"
+    />
+  </div>
+</div>
 
-6. Select "Add secondary wallet" 
+6. Select "Add secondary wallet"
+
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_add_secondary_wallet.png"
+      alt="Linea voyage set secondary wallet"
+    />
+  </div>
+</div>
+
 7. Follow the prompts to connect your wallet you want to bind and sign the signature request.
 8. Read through the disclaimer, check the box, and hit confirm to finish the binding process
 
-<img
-  src={
-    require("@site/static/img/docs/use-mainnet/linea-xp/confirm-secondary-wallet.png")
-      .default
-  }></img>
-
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_confirm_secondary_wallet.png"
+      alt="Linea voyage confirm secondary wallet"
+    />
+  </div>
+</div>
 
