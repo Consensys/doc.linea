@@ -119,7 +119,7 @@ Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard)
   </div>
 </div>
 
-### truffle-config.js
+### truffle-config
 
 You can deploy with Truffle using the command line, by specifying Linea testnet in `truffle-config.js`. To do so, you need to:
 
@@ -267,4 +267,5 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
    ``` -->
    ````
 
-Next, you can optionally [verify your contract on the network](../verify-smart-contract/truffle.md).
+Next, you can optionally [verify your contract on the network](docs/build-on-linea/quickstart/verify-smart-contract/truffle.md).
+
