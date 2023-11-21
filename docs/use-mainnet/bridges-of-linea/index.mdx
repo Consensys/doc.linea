@@ -7,17 +7,40 @@ sidebar_position: 3
 
 Before you begin, make sure you've [set up your wallet](/use-mainnet/set-up-your-wallet)
 
+
+
+### For all normal bridge traffic: 
+
+#### **We recommend you use the Bridge feature of MetaMask Portfolio: [https://portfolio.metamask.io/bridge](https://portfolio.metamask.io/bridge)**
+>
+>The Linea ecosystem has a **growing and diverse number of bridges** operating on it. 
+>
+>MetaMask Portfolio's Bridge feature leverages existing aggregators and individual bridges to show the options available to you so that you can **choose the provider and rate that you prefer**. Then, you can perform the bridging operation right from the dapp.
+
+**[Go to the Portfolio Bridge](https://portfolio.metamask.io/bridge)**
+
+
+### For dapp teams, liquidity providers, and technology operators moving large amounts of liquidity:
+
 **Bridge ETH**
-- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-eth) (for bridging between Linea and Ethereum)
-- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
 
-**Bridge ERC20 tokens**
-- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens) (recommended for tech operators that are providing liquidity)
-- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
+We recommend you use the [official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-eth) for bridging between Linea and Ethereum.
 
-## The Linea bridge ecosystem
+**Bridge ERC-20 tokens**
 
-Any L2 is going to have a lot of connections to other networks. Some of these bridges will be made by Consensys and Linea, some by projects collaborating with us; eventually, some may be made without our knowledge—that’s what 'permissionless' means.
+Again, we recommend the official bridge; ERC-20-specific instructions are [here](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens).
+
+### Using ecosystem bridges
+
+As mentioned, MetaMask Portfolio's Bridge feature surveys bridges across Linea to source its routes and rates.
+
+For more information on those bridges and **how to move between Ethereum, Linea, and other networks**, please see [here](#third-party-permissionless-bridges).
+
+There are already a large number of ERC-20 tokens available for everyday use, as well as multi-chain transfers and functionality.
+
+## The Bridges of Linea
+
+Any L2 is going to have a lot of connections to other networks. Some of these bridges will be made by Consensys and Linea, some by projects collaborating with us; some may be made without our knowledge—that’s what 'permissionless' means.
 
 > ### What's going on here?
 >
@@ -67,9 +90,9 @@ The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.0
 
 ## What is token bridge decimal mismatch?
 
-When a user bridges an ERC20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC20 token. 
-If the "decimals" cannot be determined by reading the origin ERC20 token contract (e.g. a token contract does not adhere to the ERC20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals. 
+When a user bridges an ERC-20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC-20 token. 
+If the "decimals" cannot be determined by reading the origin ERC-20 token contract (e.g. a token contract does not adhere to the ERC-20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals. 
 
-It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC20 standards.
+It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC-20 standards.
 
 Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information.  Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again.

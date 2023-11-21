@@ -26,7 +26,7 @@ HyperSync is an indexed layer of the Linea blockchain, providing accelerated API
 
 - Detailed logging and error messaging are provided for effective troubleshooting and debugging.
 
-- Quickstart templates with pre-defined indexing logic for popular OpenZeppelin contracts (ERC20, ERC721, ERC1155, etc.)
+- Quickstart templates with pre-defined indexing logic for popular OpenZeppelin contracts (ERC-20, ERC-721, ERC-1155, etc.)
 
 ## Getting Started
 
@@ -55,7 +55,7 @@ Then choose a template out of the possible options
 ? Which template would you like to use?
 > "Blank"
   "Greeter"
-  "Erc20"
+  "ERC-20"
 [↑↓ to move, enter to select, type to filter]
 ```
 

@@ -17,7 +17,7 @@ This article provides information on how you can utilize the NFTScan API to moni
 
 # Understanding NFTScan
 
-NFTScan provides Web3 developers with the most professional, comprehensive and authoritative NFT data services and solutions. Through establishing the full NFT data information of multiple blockchain networks with standardized indexing methods, the NFTScan APIs help developers build new experiences retrieving NFTs. We provide a set of endpoints that enable you to fetch ERC721 and ERC1155 NFT assets as well as transactions, collections, marketplace statistics and more.
+NFTScan provides Web3 developers with the most professional, comprehensive and authoritative NFT data services and solutions. Through establishing the full NFT data information of multiple blockchain networks with standardized indexing methods, the NFTScan APIs help developers build new experiences retrieving NFTs. We provide a set of endpoints that enable you to fetch ERC-721 and ERC-1155 NFT assets as well as transactions, collections, marketplace statistics and more.
 
 # **What can NFTScan API provide**
 
@@ -39,15 +39,36 @@ Before using the NFTScan API, you need to visit the developer website and create
 > *NFTScan Developer Platform: [https://developer.nftscan.com/user/signup](https://developer.nftscan.com/user/signup)*
 > 
 
-![https://miro.medium.com/v2/resize:fit:1400/1*j4JMcAUNilYyuIzUGU5ZHA.png](https://miro.medium.com/v2/resize:fit:1400/1*j4JMcAUNilYyuIzUGU5ZHA.png)
+<div class="center-container">
+  <div class="img-medium">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_create_account.png"
+        alt="NFTScan sign up page"
+      />
+  </div>
+</div>
 
 After logging in, find your unique API KEY on the Dashboard and copy it. Visit the API documentation and input your API KEY as guided. You can then start using the API service. In the API documentation, developers can find various interface modes to choose from based on their needs.
 
-<img src={require("@site/static/img/docs/build-on-linea/tooling/data-indexers/NFTScan-of-Linea-01.png").default}></img>
+<div class="center-container">
+  <div class="img-medium">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_add_API_key.png"
+        alt="NFTScan API key"
+      />
+  </div>
+</div>
 
 In the Dashboard, developers can also view statistics on their API usage, helping to track historical usage data. Moreover, NFTScan provides each registered developer with 1M CU (Call Units) of API calls, allowing access to all NFT API interfaces, and CU never expires.
 
-<img src={require("@site/static/img/docs/build-on-linea/tooling/data-indexers/NFTScan-of-Linea-02.png").default}></img>
+<div class="center-container">
+  <div class="img-medium">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_dashboard.png"
+        alt="NFTScan dashboard"
+      />
+  </div>
+</div>
 
 ### **2. View the NFTScan API Documentation**
 
@@ -60,19 +81,40 @@ NFTScan API services aim to enhance developers’ experience in obtaining NFT da
 
 The covered NFT data is diverse, providing a complete set of interfaces for accessing ERC721 and ERC1155 assets, transactions, projects, market statistics, and more. It supports over 50 public interfaces for EVM-compatible chains and a set of similar interfaces for Solana, Aptos, and Bitcoin, satisfying developers’ needs to index various types of NFT data.
 
-![https://miro.medium.com/v2/resize:fit:1400/1*dB4ZXDCFqeT3yXQw80efnA.png](https://miro.medium.com/v2/resize:fit:1400/1*dB4ZXDCFqeT3yXQw80efnA.png)
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_API_documentation.png"
+        alt="NFTScan API documentation"
+      />
+  </div>
+</div>
 
 ### **3. Set the Chain to Linea**
 
 In the API documentation, you'll notice a section for selecting the blockchain. Make sure to set it to Linea to ensure you're retrieving NFT data specifically from the Linea blockchain.
 
-<img src={require("@site/static/img/docs/build-on-linea/tooling/data-indexers/NFTScan-of-Linea-03.png").default}></img>
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_set_chain_to_Linea.png"
+        alt="NFTScan set chain to Linea"
+      />
+  </div>
+</div>
 
 ### **4. Querying Relevant API Requests**
 
 Now that you've configured the blockchain to Linea, you can start using the API endpoints tailored to your specific needs. NFTScan offers a wide range of API endpoints, each designed for various purposes.
 
-<img src={require("@site/static/img/docs/build-on-linea/tooling/data-indexers/NFTScan-of-Linea-04.png").default}></img>
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/NFTScan/Linea_NFTScan_querying_API_requests.png"
+        alt="NFTScan querying API requests"
+      />
+  </div>
+</div>
 
 - **[Retrieve Assets](https://docs.nftscan.com/reference/evm/get-nfts-by-account):** A core API for retrieving NFT asset data. The core data model in NFTScan API is Assets, representing unique digital items. It includes contract addresses, contract names, token IDs, ERC protocol standards, metadata JSON, image URIs, holders, rarity rankings, and comprehensive data about NFT projects, asset lists, and details.
 - **[Retrieve Transactions](https://docs.nftscan.com/reference/evm/get-transactions-by-account):** This API retrieves NFT transaction records, comprehensively recording NFT trade markets and transaction contract information on various blockchain networks. It offers in-depth analysis based on contract source codes and transaction logs, contributing to data parsing logic.
@@ -80,8 +122,6 @@ Now that you've configured the blockchain to Linea, you can start using the API 
 - **[Collection Statistics](https://docs.nftscan.com/reference/evm/collection-statistics):** This API provides comprehensive statistics for NFT Collections, offering key statistical indicators such as holder distribution, circulation rate, trading volume, and price trends. These statistics play a vital role in product design, market research, and asset evaluation.
 - **[Account Statistics](https://docs.nftscan.com/reference/evm/account-overview-statistics):** This API offers comprehensive statistics for NFT user accounts, providing core statistical indicators such as the number of NFTs held, total value held, and historical transaction data. This data is essential for product design, user research, customer profiling, and more.
 - **[Analytic Statistics](https://docs.nftscan.com/reference/evm/trade-ranking):** This API offers in-depth analysis of NFT data, providing insights such as NFT ranking, trend forecasts, and more. These analytical data help data-driven decision-making and strategic planning.
-
-<img src={require("@site/static/img/docs/build-on-linea/tooling/data-indexers/NFTScan-of-Linea-05.png").default}></img>
 
 ### **5. Building Relevant NFT Requests**
 
