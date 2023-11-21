@@ -9,7 +9,17 @@ In this tutorial, we'll walk through creating a basic [Foundry](https://book.get
 
 Here's a video walkthrough:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TO9XhLCoqgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="center-container">
+  <div class="video-container">
+    <iframe
+      class="video-iframe"
+      src="https://www.youtube.com/embed/TO9XhLCoqgg"
+      title="YouTube Video Player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen>
+    </iframe>
+  </div>
+</div>
 
 ## Prerequisites
 

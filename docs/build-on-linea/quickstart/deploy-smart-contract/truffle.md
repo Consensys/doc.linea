@@ -9,14 +9,17 @@ In this tutorial, we'll walk through creating a basic Truffle project and deploy
 
 Here's a video walkthrough:
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/p0nFsVVvNvQ"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen></iframe>
+<div class="center-container">
+  <div class="video-container">
+    <iframe
+      class="video-iframe"
+      src="https://www.youtube.com/embed/p0nFsVVvNvQ"
+      title="YouTube Video Player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen>
+    </iframe>
+  </div>
+</div>
 
 ## Prerequisites
 

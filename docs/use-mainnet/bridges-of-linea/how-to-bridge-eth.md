@@ -23,12 +23,18 @@ If you would like to bridge between other networks, check out [third-party bridg
 
 **Check out this video on how to use our bridge!**
 
-<iframe
-  width="100%"
-  height="450"
-  src="https://www.youtube.com/embed/V4DflPkxqE8"
-  frameborder="0"
-></iframe>
+<div class="center-container">
+  <div class="video-container">
+    <iframe
+      class="video-iframe"
+      src="https://www.youtube.com/embed/V4DflPkxqE8"
+      title="YouTube Video Player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen>
+    </iframe>
+  </div>
+</div>
+
 
 ## Bridging ETH from Ethereum (L1) to Linea (L2)
 
