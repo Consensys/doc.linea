@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: Lint Code Base, Spelling, Link Check
+    name: Lint Code Base, Spelling
     runs-on: ubuntu-latest
     permissions:
       contents: read
