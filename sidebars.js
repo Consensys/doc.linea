@@ -167,9 +167,15 @@ const sidebars = {
             'build-on-linea/tooling/data-indexers/covalent',
             'build-on-linea/tooling/data-indexers/envio',
             'build-on-linea/tooling/data-indexers/flair',
-            'build-on-linea/tooling/data-indexers/goldsky/goldsky-index',
-            'build-on-linea/tooling/data-indexers/goldsky/goldsky-mirror',
-            'build-on-linea/tooling/data-indexers/goldsky/overview',
+            {
+              type: 'category',
+              label: 'Goldsky',
+              items: [
+                'build-on-linea/tooling/data-indexers/goldsky/overview',
+                'build-on-linea/tooling/data-indexers/goldsky/goldsky-index',
+                'build-on-linea/tooling/data-indexers/goldsky/goldsky-mirror',
+              ],
+            },
             'build-on-linea/tooling/data-indexers/nftscan',
             'build-on-linea/tooling/data-indexers/reservoir',
             'build-on-linea/tooling/data-indexers/sentio',

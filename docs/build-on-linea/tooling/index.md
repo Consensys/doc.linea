@@ -16,3 +16,4 @@ Building a dapp can be a complex task, but luckily we have great tools and devel
 Building on top of existing protocols, tooling, and infrastructure will ensure a faster go-to-market, as the existing library, dapp, or service has gone already through intense testing and adoption.
 
 Please read our [Terms of Service](https://linea.build/terms-of-service) and [Privacy Policy](https://consensys.io/privacy-policy/) if you have any additional questions about the disclaimer.
+
