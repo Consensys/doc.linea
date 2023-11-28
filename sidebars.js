@@ -14,6 +14,7 @@ const sidebars = {
         'use-mainnet/bridges-of-linea/bridging-non-dev',
         'use-mainnet/linea-xp',
         'use-mainnet/gas-import',
+        'use-mainnet/import-info-contracts',
       ],
     },
     {
@@ -28,7 +29,7 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Lineascan Goerli Block Explorer",
+      label: "Linea Goerli Block Explorer",
       href: "https://goerli.lineascan.build",
     },
     'risk-disclosures/index',
@@ -90,6 +91,15 @@ const sidebars = {
               'build-on-linea/quickstart/verify-smart-contract/truffle',
             ],
           },
+          {
+            type: 'category',
+            label: 'Bridge your funds',
+            items: [
+              'use-mainnet/bridges-of-linea/index',
+              'use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens',
+              'use-mainnet/bridges-of-linea/how-to-bridge-eth',
+            ],
+          },
           'build-on-linea/linea-sdk/index',
           'build-on-linea/run-a-node',
           'json-rpc-api/index',
@@ -99,15 +109,6 @@ const sidebars = {
       'use-mainnet/info-contracts',
       'build-on-linea/ethereum-differences',
       'build-on-linea/gas-fees',
-      {
-        type: 'category',
-        label: 'Bridges of Linea',
-        items: [
-          'use-mainnet/bridges-of-linea/index',
-          'use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens',
-          'use-mainnet/bridges-of-linea/how-to-bridge-eth',
-        ],
-      },
     {
       type: 'category',
       label: 'Tooling and Infrastructure',
@@ -182,8 +183,18 @@ const sidebars = {
             'build-on-linea/tooling/data-indexers/thegraph',
           ],
         },
-        'build-on-linea/tooling/linea-safe',
-        'build-on-linea/tooling/node-providers',
+        {
+          type: 'category',
+          label: 'Libraries',
+          items: [
+            'build-on-linea/tooling/libraries/ape',
+            'build-on-linea/tooling/libraries/ethereum-list',
+            'build-on-linea/tooling/libraries/ethers-js',
+            'build-on-linea/tooling/libraries/multicall',
+            'build-on-linea/tooling/libraries/wagmi',
+            'build-on-linea/tooling/libraries/wallet-connect',
+          ],
+        },
         {
           type: 'category',
           label: 'Oracles',
@@ -206,13 +217,9 @@ const sidebars = {
         },
       ],
     },
-    {
-      type: 'category',
-      label: 'Linea Version',
-      items: [
-        'build-on-linea/linea-version/index',
-      ],
-    },
+      'build-on-linea/tooling/linea-safe',
+      'build-on-linea/tooling/node-providers',
+      'build-on-linea/linea-version/index',
     {
       type: "link",
       label: "Bug Bounty Program",

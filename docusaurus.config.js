@@ -168,7 +168,7 @@ const config = {
           {
             to: "https://linea.build/",
             position: "left",
-            label: "Linea home",
+            label: "Linea Home",
           },
           {
             href: "https://discord.gg/linea",
