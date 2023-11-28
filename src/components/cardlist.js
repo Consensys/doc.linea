@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Card({ title, items }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -6,25 +6,25 @@ function Card({ title, items }) {
   return (
     <div 
       style={{ 
-        border: '2px solid #ddd', 
-        borderRadius: '10px', 
-        margin: '1em', 
-        padding: '1em', 
-        transition: '0.3s', 
-        boxShadow: isHovered ? '0 8px 16px 0 rgba(0,0,0,0.2)' : '0 4px 8px 0 rgba(0,0,0,0.2)', 
-        height: '200px', 
-        width: '200px', 
-        overflow: 'scroll', 
+        border: "2px solid #ddd", 
+        borderRadius: "10px", 
+        margin: "1em", 
+        padding: "1em", 
+        transition: "0.3s", 
+        boxShadow: isHovered ? "0 8px 16px 0 rgba(0,0,0,0.2)" : "0 4px 8px 0 rgba(0,0,0,0.2)", 
+        height: "200px", 
+        width: "200px", 
+        overflow: "scroll", 
       }}
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h3 style={{ fontWeight: isHovered ? 'bold' : 'normal' }}>{title}</h3>
+      <h3 style={{ fontWeight: isHovered ? "bold" : "normal" }}>{title}</h3>
       {isHovered && (
         <ul>
           {items.map((item, index) => (
             <li key={index}>
-              <a href={item.link} style={{ fontWeight: 'normal' }}>
+              <a href={item.link} style={{ fontWeight: "normal" }}>
                 {item.label}
               </a>
             </li>
@@ -37,7 +37,7 @@ function Card({ title, items }) {
 
 function CardList({ items }) {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
       {items.map((item, index) => (
         <Card key={index} {...item} />
       ))}
