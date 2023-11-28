@@ -16,7 +16,7 @@ Pyth is a protocol that allows market participants to publish pricing informatio
 
 ## Pyth On-Demand Model
 
-Pyth Network uses an pull price update model that is slightly different from other oracles you may be more familiar with. Most oracles today use a push model, where the oracle runs an off-chain process that continuously sends transactions to update an on-chain price. In contrast, Pyth Network does not operate an off-chain process that pushes prices on-chain. Instead, it delegates this work to Pyth Network users. 
+Pyth Network uses a pull price update model that is slightly different from other oracles you may be more familiar with. Most oracles today use a push model, where the oracle runs an off-chain process that continuously sends transactions to update an on-chain price. In contrast, Pyth Network does not operate an off-chain process that pushes prices on-chain. Instead, it delegates this work to Pyth Network users. 
 
 Pyth price updates are created on [Pythnet](https://docs.pyth.network/documentation/how-pyth-works/pythnet) and streamed off-chain via the Wormhole Network, a cross-chain messaging protocol. These updates are signed such that the Pyth on-chain program can verify their authenticity. Updating the on-chain price is a permissionless operation: anyone can submit a valid Wormhole message to the Pyth contract to update the price. Typically, users of Pyth Network prices will submit a single transaction that simultaneously updates the price and uses it in a downstream application.
 
