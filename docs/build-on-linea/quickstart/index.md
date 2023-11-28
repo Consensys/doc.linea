@@ -1,9 +1,9 @@
 ---
-title: Quickstart
+title: Building on Linea
 sidebar_position: 1
 ---
 
-# Quickstart
+# Building on Linea
 
 Linea is EVM equivalent, so you can use your favorite development tools out of the box. In this quickstart, we'll walk through deploying and verifying your smart contracts on Linea using Truffle, Hardhat, and Foundry.
 

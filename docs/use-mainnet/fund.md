@@ -94,4 +94,4 @@ Not all available tokens will drip directly onto Linea. If they are, you will se
 
 :::
 
-Specific tokens require specific bridges. If you want to bridge from Goerli to Linea, you can find the tokens, contract addresses, and associated bridges [here](./info-contracts.md#token-contract-addresses-and-bridges).
+Specific tokens require specific bridges. If you want to bridge from Goerli to Linea, you can find the tokens, contract addresses, and associated bridges [here](./info-contracts.mdx#token-contract-addresses-and-bridges).
