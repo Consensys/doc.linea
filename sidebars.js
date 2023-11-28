@@ -105,7 +105,6 @@ const sidebars = {
           "json-rpc-api/index",
         ],
       },
-     // "build-on-linea/bridge-funds",
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",

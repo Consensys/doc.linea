@@ -11,7 +11,8 @@ function Card({ title, items }) {
         margin: "1em",
         padding: "1em",
         transition: "0.3s",
-        boxShadow: isHovered ? "0 8px 16px 0 rgba(0,0,0,0.2)" : "0 4px 8px 0 rgba(0,0,0,0.2)",
+        boxShadow: isHovered ? 
+        "0 8px 16px 0 rgba(0,0,0,0.2)" : "0 4px 8px 0 rgba(0,0,0,0.2)",
         height: "200px",
         width: "200px",
         overflow: "scroll",
@@ -20,11 +21,11 @@ function Card({ title, items }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <h3 style={{ fontWeight: isHovered ? "bold" : "normal" }}>{title}</h3>
-      {isHovered && (
-      <ul>
+        {isHovered && (
+        <ul>
         {items.map((item, index) => (
             <li key={index}>
-              <a href={item.link} style={{ fontWeight: "normal" }}>
+               <a href={item.link} style={{ fontWeight: "normal" }}>
               {item.label}
               </a>
             </li>
