@@ -1,0 +1,118 @@
+---
+title: Gas fees on Linea
+sidebar_position: 6
+---
+
+If you have interacted with the Ethereum ecosystem, then you've likely encountered the unpredictability of gas fees, which can swing widely based on network activity. For a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.). As a Layer 2 blockchain, Linea provides a more stable and cost-effective solution for transaction fees. **On average, gas fees on Linea are 15x cheaper than those on Ethereum. Furthermore, we're continuously working towards reducing these costs even more to enhance affordability for our users.**
+
+Linea is compatible with EIP-1559; however, there are minor differences.
+
+ 1. On Linea, the base fee is set at 7 wei, the minimum fee allowed by the Ethereum protocol after EIP-1459. With all blocks created by Linea using up to 30M gas (less than 50% of the maximum block size of 61M gas), the fee decreases by 12.5% per block, effectively keeping it at a stable 7 wei.
+ 2. Transactions won't be mined if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold, which adjusts over time.
+
+# How do I make sure my transactions go through?
+
+### MetaMask Users
+
+**If you're using MetaMask, it should automatically calculate the necessary fees to ensure your transaction goes through.**
+
+### Non-MetaMask Users
+
+:::info
+Developers can access the Gas API used by MetaMask through Infura for transactions submitted from the backend! Go [here](https://www.infura.io/platform/gas-api) for more details.
+:::
+
+ 
+To ensure that your transaction gets included by the sequencer, we recommend that non-MetaMask users use EIP-1559 with the following settings:
+
+- maxBaseFee = 1.35 * previousBlockMaxBaseFee (equivalent to the medium ("Market") setting on MetaMask)
+
+- `maxPriorityFeePerGas` = reward value from eth_feeHistory( 5 blocks, latest, 20th percentile)
+
+You can use the `eth_feeHistory` RPC method with the params below to get the recommended values:
+
+```bash
+curl https://linea-mainnet.infura.io/v3/your-api-key \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"id": 1, "jsonrpc": "2.0", "method": "eth_feeHistory", "params": [5, "latest", [20]] }'
+```
+
+# Example Code
+
+:::note
+ Remember to replace `maxFeePerGasFromConfig` with a value that fits your needs. A reasonable value for this is 10 Gwei.
+
+:::
+
+```typescript
+import { ethers } from "ethers";
+
+export type Fees = {
+  maxFeePerGas: bigint;
+  maxPriorityFeePerGas?: bigint;
+};
+
+export type FeeHistory = {
+  oldestBlock: number;
+  reward: string[][];
+  baseFeePerGas: string[];
+  gasUsedRatio: number[];
+};
+
+export async function get1559Fees(
+  provider: ethers.JsonRpcProvider,
+  maxFeePerGasFromConfig: bigint,
+  percentile: number,
+): Promise<Fees> {
+  const { reward, baseFeePerGas }: FeeHistory = await provider.send("eth_feeHistory", ["0x5", "latest", [percentile]]);
+
+  const maxPriorityFeePerGas =
+    reward.reduce((acc: bigint, currentValue: string[]) => acc + BigInt(currentValue[0]), 0n) / BigInt(reward.length);
+
+  if (maxPriorityFeePerGas && maxPriorityFeePerGas > maxFeePerGasFromConfig) {
+    throw new Error(
+      `Estimated miner tip of ${maxPriorityFeePerGas} exceeds configured max fee per gas of ${maxFeePerGasFromConfig}.`,
+    );
+  }
+
+  const maxFeePerGas = BigInt(baseFeePerGas[baseFeePerGas.length - 1]) * 2n + maxPriorityFeePerGas;
+
+  if (maxFeePerGas > 0n && maxPriorityFeePerGas > 0n) {
+    return {
+      maxPriorityFeePerGas,
+      maxFeePerGas: maxFeePerGas > maxFeePerGasFromConfig ? maxFeePerGasFromConfig : maxFeePerGas,
+    };
+  }
+
+  return {
+    maxFeePerGas: maxFeePerGasFromConfig,
+  };
+}
+```
+
+# How do I check the gas price on Linea?
+
+ If you want to check the gas price on Linea, run the code below.
+
+``` bash
+curl https://linea-mainnet.infura.io/v3/your-infura-api-key \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'
+```
+:::note
+The output of the request returns a hexadecimal equivalent of an integer representing the current gas price in wei. Convert the hexadecimal value into decimals to get the wei value. You can use any hexadecimal to decimal converter such as [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
+
+:::
+
+For more information on this method, take a look at [eth_gasPrice JSON_RPC](https://docs.infura.io/networks/ethereum/json-rpc-methods/eth_gasprice).
+
+You can also use the eth_gasprice method on Ethereum and then compare the two values to see if L2 gas price = ~L1/15 gas price.
+
+``` bash
+curl https://mainnet.infura.io/v3/your-infura-api-key \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'
+```

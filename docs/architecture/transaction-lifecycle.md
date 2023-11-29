@@ -25,7 +25,7 @@ A transaction is rejected if it:
 
 :::
 
-The sequencer orders transactions according the priority fee paid for each, a method known as a priority gas auction. So, having passed the above checks, valid transactions are placed into blocks in the correct sequence and executed.
+The sequencer orders transactions according to the priority fee paid for each, a method known as a priority gas auction. So, having passed the above checks, valid transactions are placed into blocks in the correct sequence and executed.
 
 At this point, the transaction's lifecycle is more or less complete — at least from a user perspective. The block containing the transaction has been added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is returned to the user's wallet as confirmation.
 
@@ -66,7 +66,7 @@ The final step in the process is to finalize the batch by submitting it to Ether
 Let's break down the two elements submitted to L1:
 
 - The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
-- `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
+- `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
 
 You can view `calldata` in completed batches on L1 by heading to the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) and finding a transaction whose method is labelled as "Finalize Blocks". Once there, scroll and expand the "More details" section, and then decode the input data.
 

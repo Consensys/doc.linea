@@ -2,21 +2,18 @@
 title: Hardhat
 ---
 
+
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Hardhat
-
-In this tutorial, we'll walk through creating a basic Hardhat project and deploying their sample contract.
-
-Here's a video walkthrough:
 
 <iframe
   width="560"
   height="315"
   src="https://www.youtube.com/embed/cZ4F2uDBl_A"
   title="YouTube video player"
-  frameborder="0"
+  frameBorder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen></iframe>
 
@@ -79,26 +76,34 @@ You can use [Truffle Dashboard](#truffle-dashboard) to deploy directly with your
     ```
 1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
 1. Navigate to `localhost:24012` in your browser. Please ensure that your Truffle Dashboard is connected to the Linea testnet or mainnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_network.png")
-      .default
-  }></img>
-<br></br>
-1. In a separate terminal, in your Hardhat project, run
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Hardhat/Linea_deploy_smart_contract_Hardhat_1.png"
+      alt="Truffle dashboard confirm network"
+    />
+  </div>
+</div>
+
+6. In a separate terminal, in your Hardhat project, run
 
    ```bash
    npx hardhat run scripts/deploy.js --network truffleDashboard
    ```
 
 1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_deploy_hardhat.png")
-      .default
-  }></img>
-<br></br>
-1. You should see something similar to:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Hardhat/Linea_deploy_smart_contract_Hardhat_2.png"
+      alt="Truffle dashboard signature requests"
+    />
+  </div>
+</div>
+
+8. You should see something similar to:
 
     ```bash
     Preparing Truffle compilation
