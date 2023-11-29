@@ -122,6 +122,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/etherspot",
             "build-on-linea/tooling/account-abstraction/smartwallets",
             "build-on-linea/tooling/account-abstraction/station",
+            "build-on-linea/tooling/account-abstraction/particle-network",
           ],
         },
         {
