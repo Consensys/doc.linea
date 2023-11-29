@@ -178,7 +178,7 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
               `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
             );
           },
-          network_id: "59140",
+          network_id: "59144",
         },
       },
       // ... rest of truffle-config.js
@@ -214,7 +214,7 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
               `https://rpc.linea.build/`,
             );
           },
-          network_id: "59140",
+          network_id: "59144",
         },
       },
       // ... rest of truffle-config.js
