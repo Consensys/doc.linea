@@ -128,27 +128,38 @@ const config = {
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "docSidebar",
+            type: "doc",
             docId: "index",
             position: "left",
-            label: "Docs",
+            label: "Linea Basics",
           },
           {
-            type: "dropdown",
-            label: "Tutorials",
+            type: "doc",
+            docId: "build-on-linea/quickstart/index",
             position: "left",
-            items: [
-              {
-                label: "Community Guides",
-                to: "blog",
-              },
-              {
-                label: "ZK Glossary",
-                to: "/zero-knowledge-glossary",
-              },
-            ],
+            label: "Developers",
           },
+          {
+            type: "doc",
+            docId: "architecture/index",
+            position: "left",
+            label: "Linea Architecture",
+          },
+          // { can add this section back if we want it
+          //   type: "dropdown",
+          //   label: "Tutorials",
+          //   position: "left",
+          //   items: [
+          //     {
+          //       label: "Community Guides",
+          //       to: "blog",
+          //     },
+          //     {
+          //       label: "ZK Glossary",
+          //       to: "/zero-knowledge-glossary",
+          //     },
+          //   ],
+          // },
           {
             to: "https://support.linea.build/hc/",
             position: "left",
@@ -157,7 +168,7 @@ const config = {
           {
             to: "https://linea.build/",
             position: "left",
-            label: "Linea home",
+            label: "Linea Home",
           },
           {
             href: "https://discord.gg/linea",

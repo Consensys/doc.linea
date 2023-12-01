@@ -4,11 +4,11 @@ title: Truffle
 
 To verify your contracts, you can use Truffle's verification plugin [truffle-plugin-verify](https://github.com/rkalis/truffle-plugin-verify).
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](./../deploy-smart-contract/truffle.mdx/#truffle-configjs).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](/docs/build-on-linea/quickstart/deploy-smart-contract/truffle.md).
 
 :::note
 
-These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.mdx#block-explorers).
 
 :::
 
@@ -160,4 +160,11 @@ Verifying contracts on sourcify
 
 You can check that it was verified correctly by navigating to the block explorer ([mainnet](https://lineascan.build/) or [testnet](https://goerli.lineascan.build/)) and pasting in the deployed contract address.
 
-![verified contract](./../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/lineascan_verification.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Verify_a_smart_contract/Truffle/Linea_verify_smart_contract_Truffle.png"
+      alt="Contract source code"
+    />
+  </div>
+</div>

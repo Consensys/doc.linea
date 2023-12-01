@@ -98,24 +98,28 @@ Truffle allows you to deploy through the [Truffle Dashboard](#truffle-dashboard)
 1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
 1. Navigate to `localhost:24012` in your browser. Please ensure that Dashboard is connected to the Linea testnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
 
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_network.png")
-      .default
-  }></img>
-<br></br>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Truffle/Linea_deploy_smart_contract_Truffle_1.png"
+      alt="Truffle dashboard confirm network"
+    />
+  </div>
+</div>
 
-1. Run `truffle migrate --network dashboard` in a separate terminal.
+3. Run `truffle migrate --network dashboard` in a separate terminal.
 1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
 
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_deploy.png")
-      .default
-  }></img>
-<br></br>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Truffle/Linea_deploy_smart_contract_Truffle_2.png"
+      alt="Truffle dashboard signature requests"
+    />
+  </div>
+</div>
 
-### truffle-config.js
+### truffle-config
 
 You can deploy with Truffle using the command line, by specifying Linea testnet in `truffle-config.js`. To do so, you need to:
 
@@ -174,7 +178,7 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
               `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
             );
           },
-          network_id: "59140",
+          network_id: "59144",
         },
       },
       // ... rest of truffle-config.js
@@ -210,7 +214,7 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
               `https://rpc.linea.build/`,
             );
           },
-          network_id: "59140",
+          network_id: "59144",
         },
       },
       // ... rest of truffle-config.js
@@ -263,4 +267,5 @@ You can deploy with Truffle using the command line, by specifying Linea testnet 
    ``` -->
    ````
 
-Next, you can optionally [verify your contract on the network](../verify-smart-contract/truffle.md).
+Next, you can optionally [verify your contract on the network](docs/build-on-linea/quickstart/verify-smart-contract/truffle.md).
+

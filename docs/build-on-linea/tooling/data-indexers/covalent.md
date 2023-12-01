@@ -23,7 +23,14 @@ Covalent maintains a full archival copy of every supported blockchain, meaning e
 
 ## Unified API
 
-[![example-api-response-json](https://www.datocms-assets.com/86369/1687368087-example-api-response-json-linea.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Covalent/Linea_Covalent_1.png"
+      alt="Covalent example API response"
+    />
+  </div>
+</div>
 
 The Covalent API is RESTful and offers the following for Linea:
 
@@ -45,7 +52,16 @@ The Covalent API is RESTful and offers the following for Linea:
 
 ## Increment
 
-[![example-increment-chart](https://www.datocms-assets.com/86369/1684974544-increment-example-partner-docs.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs)
+<div class="center-container">
+  <div class="img-large">
+    <a href="https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Covalent/Linea_Covalent_2.png"
+        alt="Covalent example increment chart"
+      />
+    </a>
+  </div>
+</div>
 
 Increment is a novel no-code charting and reporting tool powered by Covalent, revolutionizing how the Web3 space approaches analytics. Many analytics tools let you write SQL to create charts, but _Increment is the only one to encode business logic - Reach, Retention, and Revenue - into an SQL compiler that can write valid SQL for you._
 
