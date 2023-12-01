@@ -3,10 +3,14 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
-    "index",
     {
       type: "category",
+      collapsed: false,
       label: "Getting Started",
+      link: {
+        type: 'doc',
+        id: "index",
+      },
       items: [
         "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
@@ -62,11 +66,11 @@ const sidebars = {
       ],
     },
   ],
-  developersSidebar: {
-    Developers: [
+  developersSidebar: [
       "build-on-linea/quickstart/index",
       {
         type: "category",
+        collapsed: false,
         label: "Quickstart",
         items: [
           {
@@ -94,8 +98,11 @@ const sidebars = {
           {
             type: "category",
             label: "Bridge your funds",
+            link: {
+              type: 'doc',
+              id: 'use-mainnet/bridges-of-linea/index'
+            },
             items: [
-              "use-mainnet/bridges-of-linea/index",
               "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
               "use-mainnet/bridges-of-linea/how-to-bridge-eth",
             ],
@@ -108,11 +115,14 @@ const sidebars = {
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",
-    {
+     {
       type: "category",
       label: "Tooling and Infrastructure",
+      link: {
+        type: "doc",
+        id: "build-on-linea/tooling/index",
+      },
       items: [
-        "build-on-linea/tooling/index",
         {
           type: "category",
           label: "Account Abstraction",
@@ -215,19 +225,17 @@ const sidebars = {
           ],
         },
       ],
-    },
+     },
       "build-on-linea/tooling/linea-safe",
       "build-on-linea/tooling/node-providers",
       "build-on-linea/linea-version/index",
-    {
+     {
       type: "link",
       label: "Bug Bounty Program",
       href: "https://immunefi.com/bounty/linea/",
-    },
-    ],
-  },
-  architectureSidebar: {
-    Architecture: [
+     },
+  ],
+  architectureSidebar: [
       "architecture/index",
       "architecture/network-data",
       "architecture/transaction-lifecycle",
@@ -279,8 +287,7 @@ const sidebars = {
           "architecture/trace-expansion-proving/trace-expansion",
         ],
       },
-    ],
-  },
+     ]
 };
 
 module.exports = sidebars;
