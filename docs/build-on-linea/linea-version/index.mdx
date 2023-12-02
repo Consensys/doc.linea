@@ -86,7 +86,7 @@ This release focuses on testing a substantial architecture upgrade in preparatio
 - Add Postman Service for message execution
   - The Postman Service is Linea’s off-chain message delivery service. It’s decentralized, permissionless, and used to claim messages once the protocol has anchored the message hashes. The first release will only contain the following scenarios:
     - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas
-      - The protocol can filter messages based on origin or destination smart-contracts
+      - The protocol can filter messages based on origin or destination smart contracts
     - Linea operating the SDK for dApps/Protocols that aren’t yet integrated
   - If messages don’t get delivered by the postman, the message can be manually claimed by calling `claimMessage` with the `MessageSent` event parameters or by using the SDK.
 - Update prover to integrate with the new architecture and support Batch Conflation
