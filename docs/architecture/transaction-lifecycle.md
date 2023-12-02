@@ -45,7 +45,7 @@ The transaction's block will then be subject to [conflation](./sequencer/conflat
 
 Occasionally, a batch may only consist of one block, with no conflation having taken place. This occurs when chain activity levels are particularly high, and the block size is larger than normal.
 
-Amongst Ethereum's L2 networks, Linea is the only network that uses batch conflation.
+Among Ethereum's L2 networks, Linea is the only network that uses batch conflation.
 
 ## Step 5: Generating a ZK proof using transaction data
 
@@ -68,7 +68,7 @@ Let's break down the two elements submitted to L1:
 - The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
 - `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
 
-You can view `calldata` in completed batches on L1 by heading to the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) and finding a transaction whose method is labelled as "Finalize Blocks". Once there, scroll and expand the "More details" section, and then decode the input data.
+You can view `calldata` in completed batches on L1 by heading to the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) and finding a transaction whose method is labeled as "Finalize Blocks". Once there, scroll and expand the "More details" section, and then decode the input data.
 
 You can also view finalized batches on Lineascan, [here](https://lineascan.build/batches).
 
