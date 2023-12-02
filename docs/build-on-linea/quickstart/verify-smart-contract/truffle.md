@@ -32,7 +32,7 @@ module.exports = {
 
 ## Add your Lineascan API Key
 
-Then, you'll need to get an Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
+Then, you'll need to get a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
 ```
 MNEMONIC=YOUR_MNEMONIC_HERE
