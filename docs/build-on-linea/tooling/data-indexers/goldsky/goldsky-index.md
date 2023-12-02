@@ -34,7 +34,7 @@ To get started with Goldsky Index:
     goldsky subgraph deploy <subgraphName>/<subgraphVersion> --from-abi <path-to-config-file>
     ```
     
-    Config files for instant subgraphs are written in JSON and outline key information such as the chain, contract address, and path to ABI file. Example of a basic configuration file below.
+    Config files for instant subgraphs are written in JSON and outline key information such as the chain, contract address, and path to ABI file. An example of a basic configuration file is below.
     
     ```bash
     {
