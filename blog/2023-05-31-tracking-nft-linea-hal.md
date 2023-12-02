@@ -33,7 +33,7 @@ Hal Stream is a powerful tool that allows developers to monitor blockchain data 
 
 ## 3. How to Use Hal Stream on Linea to Track NFT Minting
 
-Because Linea is a zkEVM, it behaves the same way as any other EVM chains as far as setting up Hal Stream is concerned, enabling you to setup your monitoring with no friction while benefit from Linea’s fast and scalable throughput.
+Because Linea is a zkEVM, it behaves the same way as any other EVM chains as far as setting up Hal Stream is concerned, enabling you to setup your monitoring with no friction while benefiting from Linea’s fast and scalable throughput.
 
 To use Hal Stream to monitor NFT minting on Linea, follow these steps: First, create a Blueprint by logging into your Hal account. Select "Contract Events ».
 
