@@ -219,6 +219,7 @@ const sidebars = {
                         "build-on-linea/tooling/security/goplus-security-api",
                         "build-on-linea/tooling/security/scamfari",
                         "build-on-linea/tooling/security/Mamoru.ai",
+                        "build-on-linea/tooling/security/Zokyo",
                     ],
                 },
             ],
