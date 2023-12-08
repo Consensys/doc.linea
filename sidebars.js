@@ -82,7 +82,6 @@ const sidebars = {
               "build-on-linea/quickstart/deploy-smart-contract/hardhat",
               "build-on-linea/quickstart/deploy-smart-contract/remix",
               "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
-              "build-on-linea/quickstart/deploy-smart-contract/truffle",
             ],
           },
           {
@@ -92,7 +91,6 @@ const sidebars = {
               "build-on-linea/quickstart/verify-smart-contract/atlas",
               "build-on-linea/quickstart/verify-smart-contract/foundry",
               "build-on-linea/quickstart/verify-smart-contract/hardhat",
-              "build-on-linea/quickstart/verify-smart-contract/truffle",
             ],
           },
           {
@@ -109,7 +107,6 @@ const sidebars = {
           },
           "build-on-linea/linea-sdk/index",
           "build-on-linea/run-a-node",
-          "json-rpc-api/index",
         ],
       },
       "use-mainnet/info-contracts",
