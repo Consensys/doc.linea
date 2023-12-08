@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Building on Linea
 
-Linea is EVM equivalent, so you can use your favorite development tools out of the box. In this quickstart, we'll walk through deploying and verifying your smart contracts on Linea using Truffle, Hardhat, and Foundry.
+Linea is EVM equivalent, so you can use your favorite development tools out of the box. In this quickstart, we'll walk through deploying and verifying your smart contracts on Linea using Hardhat and Foundry.
 
 It's always best practice to work on a test network before deploying a contract to a live public blockchain network; that way you can make sure everything's working the way you mean it to, without spending "real" tokens.
 
