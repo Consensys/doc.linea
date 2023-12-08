@@ -53,7 +53,7 @@ With the block that contains the transaction's trace data conflated into a batch
 
 When prompted by the [Coordinator](./coordinator), Linea's [prover](./trace-expansion-proving) will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs a two-stage method for developing the proofs that eventually get passed to L1, first developing an **inner proof** and then an **outer proof**.
 
-The inner proof uses a combination of tools, including Arcane and Vortex, to recursively reduce the proof size. For a more in-depth look at Linea's inner proof system, see [this article](https://mirror.xyz/lineaecosystem.eth/J8TohEE6CM3p3hkSkkL1vyngqipqc-tygXzgXO8ducw).
+The inner proof uses a combination of tools, including Arcane and Vortex, to recursively reduce the proof size. For a more in-depth look at Linea's inner proof system, see [this article](https://linea.mirror.xyz/B3b1lUK8--UKZ_Qehk7SfOyvdcGbcuoyvNsSukHgOY8).
 
 Next, the outer proof is generated using the Consensys-maintained library [`gnark`](https://docs.gnark.consensys.net/), compressing the proof size even further. The resulting proof is what's known as a zk-SNARK: the proofs that are eventually submitted to Ethereum.
 
