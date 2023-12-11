@@ -25,6 +25,7 @@ const CardList: CardItem[] = [
     description: (
       <>
        Learn how to bridge your funds to start transacting on Linea!
+
       </>
     ),
     buttonName: "Bridge",
