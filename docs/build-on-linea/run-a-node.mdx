@@ -3,19 +3,18 @@ title: "Run a Linea Node"
 id: "run-a-node"
 ---
 
-import VolumeCreation from './volume-creation.mdx';
-
-> The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**.
->
-> **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes below**; otherwise, you might not be connected to the Linea network.
-
 ### Interested in running a Linea node yourself? Of course you are.
+
+**Running your own Linea node does not have any financial incentives, but does offer the following benefits:**
+
+- you can submit transactions to the mempool without relying on a RPC provider
+- you receive a local copy of the Linea database. This view of the state is "trusted" until the block/ transaction has been finalized on L1
 
 If you're unfamiliar with how public blockchain networks share the responsibility of keeping common resources secure, check out [this explainer from MetaMask](https://support.metamask.io/hc/en-us/articles/360015489611-Learn-the-basics-of-blockchains-and-Ethereum-miners-and-validators-gas-cryptocurrencies-and-NFTs-block-explorer-networks-etc-).
 
 :::note
  
- Running a sequencer node is currently not possible. The Ethereum client being used in this walkthrough (Geth) will soon be
+ **Running a sequencer node is currently not possible and there is no option to vote on blocks as part of the consensus/fork-choice like on Ethereum.** The Ethereum client being used in this walkthrough (Geth) will soon be
   updated, including breaking changes. Please get in touch to make sure we keep
   you posted if you decide to run a node. ** You can run a Dockerized
   version as long as you keep the same parameters.**
@@ -83,8 +82,6 @@ geth \
 
 ---
 
-**If you're having trouble with your node**, hop over to [the Support page](https://support.linea.build) and open a ticket with our agents.
-
 ###
 
   </TabItem>
@@ -140,11 +137,16 @@ geth \
 --metrics \
 --verbosity 3
 ```
-
 ###
 
   </TabItem>
 </Tabs>
+
+import VolumeCreation from './volume-creation.mdx';
+
+> The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that does not mean that the node is not syncing**.
+>
+> **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes below**; otherwise, you might not be connected to the Linea network.
 
 <aside>
   {/* Is this a Discord channel? */}
