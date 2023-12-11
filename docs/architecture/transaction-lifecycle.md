@@ -19,7 +19,7 @@ A transaction is rejected if it:
 
 - Originates from a non-existent account, or an account that is not funded
 - Has a gas price below the minimum
-- Has a gas limit above the maximum
+- Has a gas limit above the 10 million maximum
 - Has the same nonce as another transaction from the same account (in this case, the transaction with the higher gas fee is chosen, and the other rejected)
 - Has a total `calldata` size greater than 25kb.
 
