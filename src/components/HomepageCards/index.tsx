@@ -24,8 +24,7 @@ const CardList: CardItem[] = [
     link: "/use-mainnet/bridges-of-linea/bridging-non-dev",
     description: (
       <>
-        Learn how to bridge your funds to start transacting
-        on Linea!
+       Learn how to bridge your funds to start transacting on Linea!
       </>
     ),
     buttonName: "Bridge",
