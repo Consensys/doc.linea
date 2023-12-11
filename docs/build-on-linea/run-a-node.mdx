@@ -29,6 +29,22 @@ import TabItem from "@theme/TabItem";
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet">
 
+# Run a Linea node with Docker
+
+## Prerequisites
+
+**Docker:** You'll need to have Docker installed, up-to-date, and working on your machine.
+
+**Storage:** The blockchain state will grow over time, and can take up a significant amount of storage space on your machine. If you need to specify which hard drive or storage volume to use for your node:
+- Make sure you use the correct YAML file below, and modify *just the path to your storage volume or drive*.
+- Make sure you have set the correct permissions level to your drive, so that Docker can use it. If your node starts, but endlessly searches for peers without syncing, permissions on your storage volume might be the issue.
+
+### Step 1
+
+
+
+# Run a Linea node from scratch
+
 ## Prerequisites
 
 Set up the required and recommended hardware and all the utilities. You can find the recommendations from Geth [here](https://geth.ethereum.org/docs/getting-started/hardware-requirements)
