@@ -351,7 +351,15 @@ const config = {
       crossorigin: "anonymous",
     },
   ],
-  themes: [],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        docsRouteBasePath: "/",
+        hashed: true,
+      },
+    ],
+  ],
   headTags: [
     {
       tagName: "script",
