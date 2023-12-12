@@ -71,11 +71,11 @@ Set your smart contract arguments within the Cookbook UI (if applicable).
 
 Select Linea or tLinea (Linea Testnet) under **Pick Chain**.
 
-Select **Deploy** and pay the network fee. 
+<!-- Select **Deploy** and pay the network fee.  // here's the issue
 ![]()
 
 Manage your deployed smart contract under **My Dashboard** in Cookbook.  
-![]()
+![]() -->
 
 ## Deploy your Smart Contract to Linea with Remix
 
