@@ -13,3 +13,7 @@ Before you begin, ensure you've:
 
 1. [Set up your wallet](../../use-mainnet/set-up-your-wallet.mdx)
 2. [Funded your wallet with Linea ETH](../../use-mainnet/fund.md) on either the testnet or mainnet
+
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
