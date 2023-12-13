@@ -8,35 +8,43 @@ This glossary is open source and consistently being updated. If you'd like a ter
 
 ## A
 
-### Arithmetization
+### arithmetization
 
 Arithmetization is the process of turning computational problems into equations. It can be summarized as turning computer programs into "math," so that they can be analyzed using cryptographic algebraic techniques.
 
+### appchain
+
+A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus. 
+
+Deploying appchains on top of L2 networks like Linea offers significant cost and customization capabilities. 
+
+See also: "blockchain trilemma", "modular blockchain", "Layer 2", "Layer 3".
+
 ## B
 
-### Blockchain trilemma
+### blockchain trilemma
 
 The blockchain trilemma is a “pick 2” situation between decentralization, security, and scalability. Between the 3, the Ethereum community has chosen decentralization and security. Sacrificing scalability means increasing gas prices, which jeopardizes the adoption of Ethereum by pricing out users.
 
 ## C
 
-### Circuit
+### circuit
 
 A circuit represents a computation using a collection of logic gates. Circuits depict the flow of data and the sequence of operations performed on that data. In a zero-knowledge proof, a circuit is constructed by taking in the statements to be proved and encoding the inputs, outputs, and steps of a transaction. Then, the prover generates a proof, typically by simulating the execution of this circuit, but only reveals whether or not the execution was valid or not. Finally, the verifier uses the circuit representation to verify that the computations performed by the prover are consistent and that the outputs are correct.
 
-### Constraint
+### constraint
 
 A constraint refers to a condition imposed on mathematical operations or computation to ensure the correctness, efficiency, or security of a cryptographic algorithm.
 
 ## D
 
-### Data availability
+### data availability
 
 Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. This is what powers trustlessness: rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid. Data availability is one of the ways in which a [L2](#layer-2) differs from a [sidechain](#sidechain).
 
 ## E
 
-### Elliptic curve cryptography
+### elliptic curve cryptography
 
 [Elliptic curve cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) is a type of public key cryptography, which allows two parties to communicate securely without sharing a secret key. At a high level, an [_elliptic curve_](https://en.wikipedia.org/wiki/Elliptic_curve) is a math equation that has a lot of cool properties that make it useful for constructing zero-knowledge proofs.
 
@@ -44,7 +52,7 @@ Data availability is the guarantee that the block proposers are required to publ
 
 A stack-based virtual machine that executes bytecode. In Ethereum, the execution model specifies how the system state is altered given a series of bytecode instructions and a small tuple of environmental data. This is specified through a formal model of a virtual state machine.
 
-### Execution trace
+### execution trace
 
 This is a record of what happened during the execution of a transaction. This is usually represented as a list, in which each item is the state of the machine at a specific clock time, which includes information such as:
 
