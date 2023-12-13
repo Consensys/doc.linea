@@ -2,6 +2,9 @@
 title: Cookbook
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 [Cookbook.dev](https://www.cookbook.dev/) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
 
 In this tutorial, we'll walk through searching for a protocol on Cookbook and deploying it to Linea using Cookbook's no-code deploy and using Cookbook with Remix, Hardhat and Foundry. 
@@ -72,10 +75,8 @@ Set your smart contract arguments within the Cookbook UI (if applicable).
 Select Linea or tLinea (Linea Testnet) under **Pick Chain**.
 
 Select **Deploy** and pay the network fee. 
-![]()
 
 Manage your deployed smart contract under **My Dashboard** in Cookbook.  
-![]()
 
 ## Deploy your Smart Contract to Linea with Remix
 
