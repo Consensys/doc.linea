@@ -162,7 +162,7 @@ Compile and deploy the smart contract as described in **Method 1** above.
 
 ## Deploy your Smart Contract to Linea with Hardhat
 
-After finding the smart contract or protocol you want to work with in [Cookbook](cookbook.dev), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
 
 To install the required packages and dependencies, run
 ```

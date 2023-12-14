@@ -158,7 +158,7 @@ const sidebars = {
           label: "Contracts Templates",
           items: [
             "build-on-linea/tooling/contracts-templates/thirdweb",
-            "build-on-linea/tooling/contracts-templates/cookbook", // Edit Url for Contracts Templates
+            "build-on-linea/tooling/contracts-templates/cookbook",
           ],
         },
         {
