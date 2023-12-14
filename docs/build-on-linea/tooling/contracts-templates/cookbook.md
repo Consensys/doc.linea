@@ -1,5 +1,5 @@
 ---
-title: Cookbook
+title: Cookbook.dev
 ---
 
 [Cookbook.dev](https://www.cookbook.dev/) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.

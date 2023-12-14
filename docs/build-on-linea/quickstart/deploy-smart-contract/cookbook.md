@@ -1,5 +1,5 @@
 ---
-title: Cookbook
+title: Cookbook.dev
 ---
 
 import Tabs from '@theme/Tabs';
