@@ -50,7 +50,7 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
   <div class="img-large">
     <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_3.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Import Contract"
     />
   </div>
 </div>
@@ -63,7 +63,7 @@ Choose **No-Code Deploy** on select (usually simpler) smart contracts on [Cookbo
   <div class="img-large">
     <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_4.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook No Code Deploy"
     />
   </div>
 </div>
@@ -88,7 +88,7 @@ On a smart contract or protocol page in Cookbook, select the **Open in Remix** o
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_5.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Open in Remix"
     />
   </div>
 </div>
@@ -99,7 +99,7 @@ On a smart contract or protocol page in Cookbook, select the **Open in Remix** o
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_6.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Remix Compile"
     />
   </div>
 </div>
@@ -112,7 +112,7 @@ Connect your Metamask wallet with Linea Goerli or Linea mainnet by selecting inj
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_7.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Remix Deploy"
     />
   </div>
 </div>
@@ -126,10 +126,10 @@ Go to [Remix.Ethereum.org](https://remix.ethereum.org)
 Add The Cookbook Plugin to Remix by clicking the Chef Hat Logo under **Featured Plugins** on the Remix Homepage.
 
 <div class="center-container">
-  <div class="img-small">
+  <div class="img-medium">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_8.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Remix Featured Plugin"
     />
   </div>
 </div>
@@ -140,7 +140,7 @@ Alternatively, search Cookbook and select **Activate** in the Remix Plugin Manag
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_9.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Remix Add Plugin"
     />
   </div>
 </div>
@@ -153,7 +153,7 @@ Cookbook's AI solidity co-pilot, ChefGPT, is available within the Remix plugin t
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_10.png"
-      alt="Cookbook Analyze Code Snippet"
+      alt="Cookbook Remix Search"
     />
   </div>
 </div>
