@@ -1,5 +1,5 @@
 ---
-title: Cookbook
+title: Cookbook.dev
 ---
 
 import Tabs from '@theme/Tabs';
@@ -85,15 +85,21 @@ Manage your deployed smart contract under **My Dashboard** in Cookbook.
 On a smart contract or protocol page in Cookbook, select the **Open in Remix** option. Your smart contract will automatically be opened in a new Remix workspace.
 
 <div class="center-container">
+  <a href="https://remix.ethereum.org/#activate=cookbookdev&#deactivate=cookbook.dev&version=soljson-v0.8.12.js&call=cookbookdev//openContract//simple-token&lang=en&optimize=false&runs=200&evmVersion=null" target="_blank">
   <div class="img-small">
       <img
       src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_5.png"
       alt="Cookbook Open in Remix"
     />
   </div>
+  </a>
 </div>
 
-**Compile** your smart contract within remix. Most contracts opened with Cookbook will automatically compile within Remix. 
+:::tip 
+Click the "Open in Remix" button above to actually open the smart contract code in the Remix IDE!
+:::
+
+**Compile** your smart contract within Remix. Most contracts opened with Cookbook will automatically compile within Remix. 
 
 <div class="center-container">
   <div class="img-small">
@@ -162,7 +168,7 @@ Compile and deploy the smart contract as described in **Method 1** above.
 
 ## Deploy your Smart Contract to Linea with Hardhat
 
-After finding the smart contract or protocol you want to work with in [Cookbook](cookbook.dev), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
 
 To install the required packages and dependencies, run
 ```
