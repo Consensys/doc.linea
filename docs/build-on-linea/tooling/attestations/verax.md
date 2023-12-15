@@ -12,7 +12,7 @@ Think of Verax as a distribution channel where issuers of attestations keep the 
 
 To learn more about why we need Verax read this [blog post](https://linea.mirror.xyz/LlLx7IytwRYWQbLlxHr6zoUZjqNQdQ5P95zo3Dcilb0).
 
-## Uses Cases
+## Use Cases
 
 Verax can enable a wide range of use cases, including:
 
@@ -36,7 +36,7 @@ Proof-of-Humanity systems ensure that participants in web3 are real humans and n
 
 ## Resources
 
-[Official Verax Documentation](https://docs.ver.ax/verax-documentation/).
+[Official Verax Documentation](https://docs.ver.ax/verax-documentation/)
 
 
 
