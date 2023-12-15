@@ -138,8 +138,13 @@ const sidebars = {
         {
           type: "category",
           label: "Attestations",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/attestations/attestations",
+          },
           items: [
             "build-on-linea/tooling/attestations/pado",
+            "build-on-linea/tooling/attestations/verax",
           ],
         },
         {
