@@ -2,12 +2,12 @@
 title: Cookbook
 ---
 
-[Cookbook.dev](https://www.cookbook.dev/) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
+[Cookbook.dev](https://www.cookbook.dev/utm=lineadocs) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
 
 
 ## Search Cookbook's Smart Contract Registry
 
-Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
+Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea/) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
 
 <div class="center-container">
   <div class="img-large">
@@ -86,7 +86,7 @@ Cookbook's AI solidity co-pilot, ChefGPT, is available within the Remix plugin t
 
 For more information on using Cookbook to find, learn about or build with smart contracts, check out the following resources:
 
-- [Documentation](https://docs.cookbook.dev/)
+- [Documentation](https://docs.cookbook.dev)
 - [Blog](https://medium.com/@cookbookdev)
 - [Twitter](https://twitter.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)
