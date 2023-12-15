@@ -110,6 +110,7 @@ const sidebars = {
           },
           "build-on-linea/linea-sdk/index",
           "build-on-linea/run-a-node",
+          "build-on-linea/quickstart/rpc",
         ],
       },
       "use-mainnet/info-contracts",
