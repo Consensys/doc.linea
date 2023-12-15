@@ -2,7 +2,7 @@
 title: Attestations
 ---
 
-An attestation is evidence or proof of something. Some real world examples would be:
+An attestation is evidence or proof of something. Real world examples of attestations are:
 
 - Passport: Proof of citizenship
 - College Degree: Proof of education
