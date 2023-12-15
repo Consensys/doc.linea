@@ -18,7 +18,7 @@ Verax can enable a wide range of use cases, including:
 
 - Inclusive sybil resistance: dapps can have a high degree of confidence that their users are not bots without prescribing a narrow method of proving their humanity, which can impose a prerequisite on new users and introduce friction into the user experience. Imagine having a bot resistant Lens profile creation system without whitelists, based on sophisticated reputation protocols.
 
-- Supporting a market for undercollateralized peer-to-peer lending based on robust, transparent and continually evolving reputation scores.
+- Supporting a market for under-collateralized peer-to-peer lending based on robust, transparent and continually evolving reputation scores.
 
 - Permissionless fraud detection and scam prevention: smart contracts and dapps can prove they are audited and can have a reputation based on usage and reviews etc.
 
@@ -32,7 +32,7 @@ Verax can enable a wide range of use cases, including:
 
 ## Proof of Humanity (POH)
 
-Proof-of-Humanity systems ensure that participants in web3 are real humans and not sybils. For example in the [Linea DeFi Voyage](https://linea.mirror.xyz/Y7Co9H1-oV0O51nKYW0eFPZSs2xn--YJ2wRJzEecN6o) these systems are run by our partners such as Gitcoin, Clique, and Aspecta, leveraging the Verax registry. End-users won’t directly interact with Verax at any point.
+Proof-of-Humanity systems ensure that participants in web3 are real humans and not bots. For example in the [Linea DeFi Voyage](https://linea.mirror.xyz/Y7Co9H1-oV0O51nKYW0eFPZSs2xn--YJ2wRJzEecN6o) these systems are run by our partners such as Gitcoin, Clique, and Aspecta, leveraging the Verax registry. End-users won’t directly interact with Verax at any point.
 
 ## Resources
 
