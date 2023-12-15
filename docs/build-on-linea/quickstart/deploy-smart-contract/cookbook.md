@@ -96,7 +96,7 @@ On a smart contract or protocol page in Cookbook, select the **Open in Remix** o
 </div>
 
 :::tip 
-Click the "Open in Remix" button in these docs to actually open the smart contract code in the Remix IDE!
+Click the "Open in Remix" button above to actually open the smart contract code in the Remix IDE!
 :::
 
 **Compile** your smart contract within Remix. Most contracts opened with Cookbook will automatically compile within Remix. 
