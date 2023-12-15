@@ -45,7 +45,7 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
 </div>
 
 ## Find Smart Contracts within the Remix IDE with the Cookbook Plug-in
-Go to [Remix.Ethereum.org](https://remix.ethereum.org)
+Go to [Remix.Ethereum.org](https://remix.ethereum.org/#activate=cookbookdev)
 
 Add The Cookbook Plugin to Remix by clicking the Chef Hat Logo under **Featured Plugins** on the Remix Homepage.
 
