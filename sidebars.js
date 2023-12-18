@@ -110,6 +110,7 @@ const sidebars = {
           },
           "build-on-linea/linea-sdk/index",
           "build-on-linea/run-a-node",
+          "build-on-linea/quickstart/rpc",
         ],
       },
       "use-mainnet/info-contracts",
@@ -137,8 +138,13 @@ const sidebars = {
         {
           type: "category",
           label: "Attestations",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/attestations/attestations",
+          },
           items: [
             "build-on-linea/tooling/attestations/pado",
+            "build-on-linea/tooling/attestations/verax",
           ],
         },
         {
