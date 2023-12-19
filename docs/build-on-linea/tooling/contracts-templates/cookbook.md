@@ -7,7 +7,7 @@ title: Cookbook.dev
 
 ## Search Cookbook's Smart Contract Registry
 
-Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea/) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
+Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
 
 <div class="center-container">
   <div class="img-large">

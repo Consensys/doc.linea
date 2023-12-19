@@ -18,7 +18,7 @@ Before you begin, ensure you've:
 
 ## Search Cookbook's Smart Contract Registry
 
-Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
+Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
 
 <div class="center-container">
   <div class="img-large">
@@ -57,7 +57,7 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
 
 ## No-code Deploy your Smart Contract to Linea with Cookbook 
 
-Choose **No-Code Deploy** on select (usually simpler) smart contracts on [Cookbook](https://www.cookbook.dev/contracts/simple-token).
+Choose **No-Code Deploy** on select (usually simpler) smart contracts on [Cookbook](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
 <div class="center-container">
   <div class="img-large">
@@ -168,7 +168,7 @@ Compile and deploy the smart contract as described in **Method 1** above.
 
 ## Deploy your Smart Contract to Linea with Hardhat
 
-After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/?utm=lineadocs), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
 To install the required packages and dependencies, run
 ```
@@ -247,7 +247,7 @@ Hardhat will return the deployed smart contract address in your terminal. View a
 
 ## Deploy your Smart Contract to Linea with Foundry
 
-After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/chains/Linea), select the **Download Source** option and select **Foundry** to download the contract boilerplate.For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token).
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/chains/Linea?utm=lineadocs), select the **Download Source** option and select **Foundry** to download the contract boilerplate.For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
 Before you can use Foundry, you need to install Rust, a programming language required to run Foundry. Follow the installation instructions provided [here](https://doc.rust-lang.org/book/ch01-01-installation.html).
 
