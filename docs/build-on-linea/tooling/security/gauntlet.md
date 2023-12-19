@@ -1,10 +1,7 @@
 
-title: Gauntlet
----
-
 ## Gauntlet
 
-[Gauntlet](https://www.gauntlet.xyz/) Gauntlet solves DeFi's most complex economic problems by providing economic research, market risk management, governance, and quantitative optimization solutions to DeFi protocols, DAOs, and ecosystems. 
+[Gauntlet](https://www.gauntlet.xyz/) solves DeFi's most complex economic problems by providing economic research, market risk management, governance, and quantitative optimization solutions to DeFi protocols, DAOs, and ecosystems. 
 
 Gauntlet's flagship product, Gauntlet Risk, provides ongoing monitoring and risk parameter recommendations to DeFi protocols for maximizing capital efficiency while mitigating risks and managing the lifecycle of supporting new assets and markets.
 
