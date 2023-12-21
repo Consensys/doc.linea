@@ -219,6 +219,7 @@ const sidebars = {
             "build-on-linea/tooling/oracles/dia",
             "build-on-linea/tooling/oracles/pyth",
             "build-on-linea/tooling/oracles/redstone",
+            "build-on-linea/tooling/oracles/supra",
             "build-on-linea/tooling/oracles/umbrella",
           ],
         },
