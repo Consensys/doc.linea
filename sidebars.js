@@ -85,6 +85,7 @@ const sidebars = {
               "build-on-linea/quickstart/deploy-smart-contract/hardhat",
               "build-on-linea/quickstart/deploy-smart-contract/remix",
               "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
+              "build-on-linea/quickstart/deploy-smart-contract/cookbook",
             ],
           },
           {
@@ -166,6 +167,7 @@ const sidebars = {
           label: "Contracts Templates",
           items: [
             "build-on-linea/tooling/contracts-templates/thirdweb",
+            "build-on-linea/tooling/contracts-templates/cookbook",
           ],
         },
         {
