@@ -67,11 +67,14 @@ const sidebars = {
     },
   ],
   developersSidebar: [
-      "build-on-linea/quickstart/index",
       {
         type: "category",
         collapsed: false,
         label: "Quickstart",
+        link: {
+          type: 'doc',
+          id: "build-on-linea/quickstart/index",
+        },
         items: [
           {
             type: "category",
@@ -108,6 +111,7 @@ const sidebars = {
           },
           "build-on-linea/linea-sdk/index",
           "build-on-linea/run-a-node",
+          "build-on-linea/quickstart/rpc",
         ],
       },
       "use-mainnet/info-contracts",
@@ -135,8 +139,13 @@ const sidebars = {
         {
           type: "category",
           label: "Attestations",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/attestations/attestations",
+          },
           items: [
             "build-on-linea/tooling/attestations/pado",
+            "build-on-linea/tooling/attestations/verax",
           ],
         },
         {
@@ -241,38 +250,35 @@ const sidebars = {
       {
         type: "category",
         label: "Bridges",
+        link: {
+          type: "doc",
+          id: "architecture/bridges/index",
+        },
         items: [
-          "architecture/bridges/index",
           "architecture/bridges/canonical-token-bridge",
         ],
       },
       {
         type: "category",
         label: "Canonical Message Service",
+        link: {
+          type: "doc",
+          id: "architecture/canonical-msg-service/index",
+        },
         items: [
-          "architecture/canonical-msg-service/index",
           "architecture/canonical-msg-service/message-service",
         ],
       },
-      {
-        type: "category",
-        label: "Coordinator",
-        items: [
-          "architecture/coordinator/index",
-        ],
-      },
-      {
-        type: "category",
-        label: "EVM State Manager",
-        items: [
-          "architecture/evm-state-manager/index",
-        ],
-      },
+      "architecture/coordinator/index",
+      "architecture/evm-state-manager/index",
       {
         type: "category",
         label: "Sequencer",
+        link: {
+          type: "doc",
+          id: "architecture/evm-state-manager/index",
+        },
         items: [
-          "architecture/sequencer/index",
           "architecture/sequencer/conflation",
           "architecture/sequencer/traces-generator",
         ],
@@ -280,8 +286,11 @@ const sidebars = {
       {
         type: "category",
         label: "Trace Expansion Proving",
+        link: {
+          type: "doc",
+          id: "architecture/trace-expansion-proving/index",
+        },
         items: [
-          "architecture/trace-expansion-proving/index",
           "architecture/trace-expansion-proving/proving",
           "architecture/trace-expansion-proving/trace-expansion",
         ],
