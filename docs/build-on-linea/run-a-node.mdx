@@ -20,11 +20,56 @@ If you're unfamiliar with how public blockchain networks share the responsibilit
   version as long as you keep the same parameters.**
 
 :::
- 
-# How to run a Linea node
+
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+
+# How to run a Linea node with Docker
+
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
+
+ ## Step 1
+
+ Download and install [Docker](https://www.docker.com/products/docker-desktop/)
+
+ ## Step 2
+
+ Download [docker-compose.yml](pathname:///files/docker-compose.yml) and [genesis.json](pathname:///files/genesis.json)
+
+ ## Step 3
+
+ Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory) and run `docker compose up`
+
+ The node should now be running and looking for peers to sync.
+  </TabItem>
+
+  <TabItem value="Testnet" label="Testnet">
+
+ ## Step 1
+
+ Download and install [Docker](https://www.docker.com/products/docker-desktop/)
+
+ ## Step 2
+
+ Download [docker-compose.yml](pathname:///files//testnet/docker-compose.yml) and [genesis.json](pathname:///files/testnet/genesis.json)
+
+ ## Step 3
+
+ Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory) and run `docker compose up`
+
+ The node should now be running and looking for peers to sync.
+ 
+  </TabItem>
+</Tabs>
+
+:::note
+ The `docker-compose.yml` has besu configurations that won't be running and shouldn't affect your node. If you see anything related to besu in your logs, it can be ignored.
+ 
+ :::
+
+# How to run a Linea node
 
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet">
@@ -99,7 +144,7 @@ Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) a
 
 Download `l2-genesis-linea-goerli.json`
 
-[l2-genesis-linea-goerli.json](pathname:///files/l2-genesis-linea-goerli.json)
+[genesis.json](pathname:///files/testnet/genesis.json)
 
 ### Step 3
 
