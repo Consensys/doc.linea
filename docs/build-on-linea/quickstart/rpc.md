@@ -8,8 +8,7 @@ sidebar_position: 6
 
 Linea uses the [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API). This is because the zkEVM is EVM-equivalent, meaning that the developer experience is identical to building on Ethereum itself.
 
-Check out Truffle's documentation of the Ethereum API below (also available at [ganache.dev](https://ganache.dev)); it's got categorized methods, it's got **interactive code sandboxes**, and nice colors.
-
+Check out Infura's documentation of the Ethereum API [here](https://docs.infura.io/networks/ethereum/json-rpc-methods);
 > ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
 >
 
@@ -18,7 +17,7 @@ Check out Truffle's documentation of the Ethereum API below (also available at [
   <iframe
     width="100%"
     height="900"
-    src="https://ganache.dev/"
+    src="https://docs.infura.io/networks/ethereum/json-rpc-methods"
     frameBorder="0"
     allowFullScreen
   />

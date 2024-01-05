@@ -23,18 +23,26 @@ Voyage XP are non-transferable and not bridgeable to other networks. You cannot 
 | -------------------------- |
 | [0xd83af4fbD77f3AB65C3B1Dc4B38D7e67AEcf599A](https://lineascan.build/address/0xd83af4fbD77f3AB65C3B1Dc4B38D7e67AEcf599A) |
 
-## Wallet Binding
+## Account Binding
 
-Wallet binding allows you to aggregate your Voyage XP tokens to a single primary wallet. If you're navigating the Linea ecosystem with multiple wallets, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected wallets, providing a seamless and comprehensive representation of your Linea experience. 
+Account binding allows you to aggregate your Voyage XP tokens to a single primary wallet. If you're navigating the Linea ecosystem with multiple accounts, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected accounts, providing a seamless and comprehensive representation of your Linea experience. 
 
-**Wallet binding is not retroactive. If you bind your wallet address after Voyage XP are received, then those won't be linked to the primary wallet!**
+**Account binding is not retroactive. If you bind your wallet address after Voyage XP are received, then those won't be linked to the primary wallet!**
 
-:::caution
+:::caution 
 
-**Wallet binding is permanent and irreversible, so make sure you are choosing the correct wallet address when going through the process!**
+**Account binding is permanent and irreversible, so make sure you are choosing the correct wallet address when going through the process!**
+
+- Using account binding is only necessary for those who want to bind two or more accounts.
+
+- To receive LXP, the Primary account set must pass Proof of Humanity to receive LXP. Accounts set as secondary do not need to pass PoH.
+
+- All LXP will be sent to your Primary account when using Account Binding
+
+- You will receive LXP once per task. The exception to this is the Linea Voyage Testnet NFT, holders will receive LXP for each NFT owned.
 :::
 
-To start the wallet binding process, follow the steps below:
+To start the Account binding process, follow the steps below:
 
 1. Go [here](https://linea.build/activations)
 2. Connect your wallet in the top-right corner of the page
@@ -82,7 +90,7 @@ To start the wallet binding process, follow the steps below:
   </div>
 </div>
 
-7. Follow the prompts to connect your wallet you want to bind and sign the signature request.
+7. Follow the prompts to connect the account you want to bind and sign the signature request.
 8. Read through the disclaimer, check the box, and hit confirm to finish the binding process
 
 <div class="center-container">

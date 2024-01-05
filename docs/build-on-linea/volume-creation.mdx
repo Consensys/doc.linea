@@ -1,0 +1,85 @@
+---
+title: 'Creating a Custom Volume'
+---
+
+:::note 
+As indicated in the linked resources in Step 1, blockchain clients like Geth can take up a lot of disk space. By defining the amount of disk space you're willing to dedicate to your client (and the block data that it will be syncing), you can ensure that you still have enough room on your disk for whatever else you need. 
+
+If you run out of space, or need to actively maintain how much space is being used, consider [pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
+:::
+
+## How to create a custom volume
+
+<details>
+
+<summary>Ubuntu</summary>
+
+- Open Terminal
+- Use the `df -h` command to check the available disk space
+- Decide on the maximum size you want for the volume, for example 100GB  
+- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`
+- Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
+- Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
+- The contents will now be available in `/mnt/myvolume`, up to a maximum of 100GB
+
+</details>
+
+<details>
+  
+<summary>MacOS</summary>
+
+- Open Terminal  
+- Use the `df -h` command to check the available disk space    
+- Decide on the maximum size you want for the volume, for example 100GB
+- Use `hdiutil` to create a sparse image of the desired size, e.g. `hdiutil create -size 100g -type SPARSE -fs HFS+X myfile.dmg`
+- Mount the image using `hdiutil`, e.g. `hdiutil attach myfile.dmg`
+- The contents will now be available mounted under `/Volumes`, up to a maximum of 100GB
+
+</details>
+
+<details>
+
+<summary>Windows</summary>
+
+<details>
+
+<summary>Without Windows Subsystem Linux</summary>
+
+- Open Command Prompt as Administrator
+- Use the `dir` command to check available disk space on the volume you want to create the disk image  
+- Decide on the maximum size for the volume, for example 100GB
+- Use the `fsutil` command to create a sparse file of the desired size, e.g. `fsutil file createnew myfile.img 107374182400` (for a 100GB file)
+- Initialize the disk image using `diskpart`:
+  - `diskpart`
+  - `select vdisk file="myfile.img"`
+  - `create vdisk maximum=100000`
+  - `attach vdisk`
+  - `exit`
+- Format the volume using `format`, e.g. `format F: /FS:NTFS /A:64K /Q` 
+- The new volume will now be available as drive letter F:, up to the maximum 100GB size
+
+To mount an existing disk image:
+
+- Open Command Prompt as Administrator
+- Use `diskpart`
+  - `select vdisk file="myfile.img"`
+  - `attach vdisk`
+- The disk image will be mounted and accessible under the assigned drive letter
+
+</details>
+
+<details>
+
+<summary>With Windows Subsystem Linux</summary>
+
+- Open WSL
+- Use the `df -h` command to check the available disk space 
+- Decide on the maximum size you want for the volume, for example 100GB   
+- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`  
+- Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
+- Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
+- The contents will now be available in `/mnt/myvolume`, up to a maximum of 100GB
+
+</details>
+
+</details>
