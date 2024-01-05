@@ -16,7 +16,7 @@ Here's a video walkthrough:
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-1. [Funded your wallet with Linea ETH](../../../use-mainnet./fund.mdx#get-test-eth-on-linea)
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 
    ```bash
    curl -L https://foundry.paradigm.xyz | bash
