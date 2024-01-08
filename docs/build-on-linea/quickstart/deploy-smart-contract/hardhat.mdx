@@ -53,65 +53,6 @@ The default script in `scripts/deploy.js` locks 0.001 ETH in the contract upon d
 
 The sample project already includes the deployment script. To deploy on Linea, you'll just need to make a few modifications.
 
-You can use [Truffle Dashboard](#truffle-dashboard) to deploy directly with your MetaMask wallet or deploy with the Hardhat CLI by [adding Linea to your `hardhat.config.js`](#use-hardhatconfigjs).
-
-### Use Truffle Dashboard
-
-[Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. To deploy with Truffle Dashboard using the [Hardhat plugin](https://github.com/trufflesuite/truffle/tree/develop/packages/dashboard-hardhat-plugin#truffledashboard-hardhat-plugin):
-
-1. [Install Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/)
-1. Run:
-
-    ```
-    npm install --save-dev @truffle/dashboard-hardhat-plugin
-    ```
-1. Import the plugin into `hardhat.config.js`, with:
-
-    ```javascript
-    import "@truffle/dashboard-hardhat-plugin";
-    ```
-    or:
-    ```javascript
-    require("@truffle/dashboard-hardhat-plugin");
-    ```
-1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
-1. Navigate to `localhost:24012` in your browser. Please ensure that your Truffle Dashboard is connected to the Linea testnet or mainnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
-
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Hardhat/Linea_deploy_smart_contract_Hardhat_1.png"
-      alt="Truffle dashboard confirm network"
-    />
-  </div>
-</div>
-
-6. In a separate terminal, in your Hardhat project, run
-
-   ```bash
-   npx hardhat run scripts/deploy.js --network truffleDashboard
-   ```
-
-1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
-
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Hardhat/Linea_deploy_smart_contract_Hardhat_2.png"
-      alt="Truffle dashboard signature requests"
-    />
-  </div>
-</div>
-
-8. You should see something similar to:
-
-    ```bash
-    Preparing Truffle compilation
-    Sending Truffle compilation to dashboard
-    Compilation successfully sent!
-    Lock with 0.0ETH and unlock timestamp 1692377128 deployed to 0x6230404e79E2082A6454d5b1efF58DacA0C330C7
-    ```
-
 ### Use `hardhat.config.js`
 
 To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To do this:
