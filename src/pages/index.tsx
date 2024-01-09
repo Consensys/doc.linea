@@ -15,7 +15,7 @@ function HomepageHeader() {
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
         <h1 className={clsx("hero__title", styles.forceColor, styles.title)}>
-        <LineaLogo className={styles.logo} />
+          <LineaLogo className={styles.logo} />
           Docs
         </h1>
         <p
@@ -28,7 +28,8 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link
-            className={clsx("button button--secondary button--lg", styles.bannerButton)}
+            className={clsx(
+              "button button--secondary button--lg", styles.bannerButton)}
             to="../build-on-linea/quickstart">
             Start Building - 5 min
             <StopwatchIcon className={styles.icon} />
