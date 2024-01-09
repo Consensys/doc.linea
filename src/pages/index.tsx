@@ -29,7 +29,9 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className={clsx(
-              "button button--secondary button--lg", styles.bannerButton)}
+              "button button--secondary button--lg",
+              styles.bannerButton
+            )}
             to="../build-on-linea/quickstart">
             Start Building - 5 min
             <StopwatchIcon className={styles.icon} />
