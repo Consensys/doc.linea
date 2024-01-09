@@ -30,7 +30,7 @@ function HomepageHeader() {
           <Link
             className={clsx(
               "button button--secondary button--lg",
-              styles.bannerButton
+              styles.bannerButton,
             )}
             to="../build-on-linea/quickstart">
             Start Building - 5 min
