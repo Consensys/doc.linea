@@ -112,10 +112,17 @@ html[data-theme="dark"] .forceColor {
   height: 52vh;
 }
 
+@media (max-width: 1300px) {
+  .introductionBlock {
+    height: 60vh;
+  }
+}
+
 @media (max-width: 768px) {
   .introductionBlock {
     padding: 2rem;
     background-position: 70vw -5vh;
     background-size: 120% auto;
+    height: 50vh;
   }
 }
