@@ -30,28 +30,29 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
  
 :::info[New Features]
 
- The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a merkle tree.
+ The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires a Merkle proof for claiming.
  
- There are two important things to note:
-  - The previous L1 claiming and all function associated are still supported.
+ There are three important things to note:
+  - The previous L1 claiming and all functions associated are still supported.
   - The L2 claiming remains unaltered, and all SDK features to interact with L2 will remain unchanged.
+  - The Previous L1 claiming function and code samples provided here caters for the transition period where pre-transition messages   are claimed without the Merkle proof and post-transition with proof. If this SDK is being consumed after the transition, using the logic that switches between Merkle and non-Merkle proof claiming is sub-optimal.
 
  The updated SDK introduces several new features for L1 interactions:
 
  A new L1ClaimingService class that includes the following functions:
-  - getMessageProof: This function retrieves the message merkle tree proof required for new message claims on L1.
+  - getMessageProof: This function retrieves the message Merkle tree proof required for new message claims on L1.
   - isClaimingNeedingProof: This function determines whether a proof is needed to claim a message.
   - getMessageStatus: This function retrieves a message's status, returning the status of both old and new messages.
   - estimateClaimMessageGas: This function provides an estimate of the gas cost for both old and new claim transactions.
-  - claimMessage: This function enables a message to be claimed using either the old or new method.
+  - claimMessage: This function enables a message to be claimed using either the old or new function.
 
  Two new functions in the L1 contract:
-  - estimateClaimWithProofGas to estimates the gas cost for new claim transactions.
-  - claimWithProof to claim a message using the new claimMessageWithProof function
+  - estimateClaimWithProofGas: This functions estimates the gas cost for new claim transactions.
+  - claimWithProof: This functions claims a message using the new claimMessageWithProof function.
 
 :::
 
-The code examples below demonstrates how to initialize the SDK with the relevant configuration options, and how to call the featured methods.
+The code examples below demonstrates how to initialize the SDK with the relevant configuration options, and how to call the featured functions.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -60,8 +61,8 @@ import TabItem from '@theme/TabItem';
   className="my-tabs"
   defaultValue="new"
   values={[
-    {label: 'Merkle Tree Update', value: 'new'},
-    {label: 'Pre-Merkle Tree Update', value: 'old'},
+    {label: 'v0.2.0-rc.1', value: 'new'},
+    {label: 'v0.1.6', value: 'old'},
   ]
 }>
 <TabItem value="old">
