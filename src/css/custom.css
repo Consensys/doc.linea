@@ -343,6 +343,12 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   }
 }
 
+@media (max-width: 996px) {
+  .navbar__title {
+    display: flex;
+  }
+}  
+
 @media (max-width: 768px) {
   .navbar__logo {
     height: 25px;
@@ -381,7 +387,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__item {
     font-size: 16px;
   }
-  
+
   .navbar__item:nth-child(n+3)::before {
     display: none;
   }
