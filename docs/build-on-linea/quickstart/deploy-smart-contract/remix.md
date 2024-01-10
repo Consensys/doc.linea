@@ -12,7 +12,7 @@ In this tutorial, we'll walk through creating a basic Remix project and deployin
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 
 ## Explore the Remix workspace
 
