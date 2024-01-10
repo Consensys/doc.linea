@@ -52,7 +52,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 :::
 
-The code examples below demonstrates how to initialize the SDK with the relevant configuration options, and how to call the featured functions.
+## Code Examples
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
