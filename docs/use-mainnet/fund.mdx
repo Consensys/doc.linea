@@ -1,0 +1,162 @@
+---
+title: Fund your accounts
+description: Get tokens in your accounts
+sidebar_position: 2
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="mainnet"
+  values={[
+    {label: 'Mainnet', value: 'mainnet'},
+    {label: 'Testnet', value: 'testnet'},
+  ]}>
+  
+  <TabItem value="testnet">
+    
+## Getting tokens on Linea
+
+For hackathon developers, the easiest way to get test tokens is by sending a message via https://xmtp.chat to an ENS name provided in the relevant hackathon prizes page.
+
+Otherwise, there are several ways to get tokens on Linea:
+
+- [Transferring from another account](https://support.metamask.io/hc/en-us/articles/360015488931-How-to-send-tokens-from-your-MetaMask-wallet) (on Linea mainnet or testnet)
+- [Bridging between networks](./bridges-of-linea/index.mdx)
+- [Faucets](#use-a-linea-faucet) (for testnet tokens on Linea Goerli)
+
+## Use a Linea faucet
+
+If you want to drip Goerli ETH directly to Linea testnet, the following faucets are available. Note that you will need to enter your actual address — ENS names will not work.
+
+1. [Infura Linea faucet](https://infura.io/faucet/linea)
+2. [Covalent Linea faucet](https://www.covalenthq.com/faucet/)
+3. [FAUCETME faucet](https://linea.faucetme.pro/)
+4. [LearnWeb3 Faucet](https://learnweb3.io/faucets/linea_goerli) 
+
+If you want more ETH than the daily allotted amount or run into trouble with the above faucets, you can also [bridge ETH to Linea](/use-mainnet/bridges-of-linea/how-to-bridge-eth). Note that you'll need to [get test ETH on Goerli](#get-test-eth-on-goerli) in order to do so.
+
+If you want to drip other tokens, you can find the [multi-token Linea faucet here](https://faucet.goerli.linea.build/), which lists the different tokens you can add to your wallet on the Goerli and Linea Goerli testnet.
+
+## Get test ETH on Goerli
+
+To get Goerli ETH, you'll need to:
+
+1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Use_Linea/Fund_your_accounts/Linea_faucet_landing_page.png"
+      alt="Linea faucet homepage"
+    />
+  </div>
+</div>
+
+2. Connect your wallet and switch to the Goerli test network (make sure you are showing test networks)
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Use_Linea/Fund_your_accounts/Linea_faucet_available_tokens_testnet.png"
+      alt="Linea faucet networks"
+    />
+  </div>
+</div>
+
+3. Navigate to the list of faucets linked through the Goerli card
+1. Select a faucet and drip Goerli ETH
+
+Transactions on Linea are much cheaper than Ethereum mainnet. 0.2 ETH is enough to execute a basic workflow, but feel free to get as much as you need!
+
+## Get test ETH on Linea testnet
+
+In order to interact with Linea, you can either:
+
+1. [Drip Goerli ETH directly to Linea through the various faucets](#use-a-linea-faucet)
+1. [Bridge Goerli ETH to Linea](/use-mainnet/bridges-of-linea/how-to-bridge-eth)
+
+## Get other tokens on Goerli
+
+1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
+1. Connect your MetaMask wallet
+1. Select the Goerli network in your MetaMask wallet
+1. Select the desired token from the list of available tokens
+
+If you want to get tokens that are not ETH or USDC, you'll need to lock ETH as a countermeasure for draining liquidity pools.
+
+For example, if you wanted to get 1 USDT on Goerli, you would:
+
+1. Navigate to the [Linea faucet](https://faucet.goerli.linea.build/)
+1. Connect your MetaMask wallet
+1. Select the Goerli network in your MetaMask wallet
+1. Add the USDT token to MetaMask by selecting `Add to MetaMask` on the USDT card
+1. Lock 0.0005 ETH by typing in 0.0005 on the USDT card, clicking claim, and confirming and paying the gas for the MetaMask transaction.
+
+To get your ETH back, you would unwrap your USDT in the USDT card to receive ETH in a 2000:1 ratio. For example, to get back 0.0005 ETH, you would need to unwrap 1 USDT by typing in 1 on the USDT card, clicking unwrap, and confirming and paying the gas for the MetaMask transaction.
+
+## Get other tokens on Linea
+
+Selecting the Linea network on the [Linea faucet page](https://faucet.goerli.linea.build/) will show you the available tokens on Linea.
+
+:::info
+
+Not all available tokens will drip directly onto Linea. If they are, you will see a `CLAIM` button. Otherwise, you will need to navigate to that token's faucet to get it on Goerli and then bridge.
+
+:::
+
+Specific tokens require specific bridges. If you want to bridge from Goerli to Linea, you can find the tokens, contract addresses, and associated bridges [here](./info-contracts.mdx#token-contract-addresses-and-bridges).
+  </TabItem>
+  
+  <TabItem value="mainnet">
+  Buying tokens directly on Linea is a straightforward process, using MetaMask Portfolio's Buy feature. 
+  
+  :::info
+    What is MetaMask Portfolio?
+
+   [Portfolio](https://portfolio.metamask.io/) is a dapp built by our friends at MetaMask that allows you to buy, sell, swap, stake, and manage your cryptoassets, among other features. The Buy feature is one of these functions, and is the same service available [through MetaMask](https://support.metamask.io/hc/articles/360058239311).
+  :::
+  :::tip
+    If you already have tokens on another network, you can [follow the instructions here](./bridges-of-linea/bridging-non-dev.mdx) to bridge them to Linea.
+  :::
+**Linea purchases in MetaMask Portfolio's Buy feature are available worldwide.**
+
+<div class="center-container">
+    <div class="video-container">
+      <iframe
+        class="video-iframe"
+        src="//www.youtube.com/embed/BOPDw348-zg"
+        title="TITLE"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+    </div>
+</div>
+
+## Steps to buy tokens on Linea
+
+1. Navigate to [portfolio.metamask.io](https://portfolio.metamask.io), and connect the account to which you want your purchased tokens to be delivered.
+   
+2. If you're on a mobile device, select 'Buy' from the hamburger icon menu located in the top left of the screen; on desktop, select the 'Buy' tab on the left.
+   
+3. Now you'll see the Buy interface. If you've never used it before, you'll first need to **select your region**. 
+
+   This information is required because availability of payment methods and providers vary based on your bank's location.
+
+4. **Set the payment method**. Again, if you've used Buy before on your current device, your previous choice should be loaded by default.
+
+5. **Select a token**. The token selection menu also allows you to switch networks; it's here where you need to locate and select Linea from the networks list.
+
+6. Now you'll see the tokens available to buy on Linea. Pick the one you want to buy, then input the amount on the main screen once the tokens menu is gone.
+
+7. You'll instantly see one or more quotes on the right, if you're on a desktop browser. On mobile devices, hit 'Get Quotes' to see them. 
+   
+8. Pick a quote by clicking on it. 
+
+Selecting a quote redirects you to the provider's site to complete the transaction. You may need to complete KYC ("Know Your Customer"; essentially, identifying yourself) with the provider.
+
+
+After you've completed the steps with the provider, you'll be routed back to MetaMask Portfolio. Timescales for receiving your funds will vary based on the provider and token route.
+
+  </TabItem>
+  
+</Tabs>

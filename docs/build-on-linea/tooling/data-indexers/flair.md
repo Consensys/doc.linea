@@ -7,8 +7,16 @@ Real-time and historical custom data indexing for any evm chain.
 
 [Flair](https://flair.dev) offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
 
-[![flair architecture](https://imgur.com/0q5bHZK.png)](https://docs.flair.dev/)
-
+<div class="center-container">
+  <div class="img-large">
+    <a href="https://docs.flair.dev/">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Flair/Linea_Flair_1.png"
+        alt="Flair architecture"
+      />
+    </a>
+  </div>
+</div>
 
 ## Why Flair?
 
@@ -28,7 +36,7 @@ Compared to other alternatives the main reasons are:
   * Auto-track new contracts deployed from factory contracts.
 * ✅ **Custom processor scripts** with Javascript runtime (with **Typescript** support)
   * Make external API or Webhook calls to third-party or your backend.
-  * Get current or historical USD value of any ERC20 token amount of any contract address on any chain.
+  * Get current or historical USD value of any ERC-20 token amount of any contract address on any chain.
   * Use any external NPM library.
 * ✅ **Stream** any stored data to your destination database (Postgres, MongoDB, MySQL, Kafka, Elasticsearch, Timescale, etc).
 
@@ -103,7 +111,7 @@ Explore real-world usage of Flair indexing primitives for various use-cases.
 
 ### NFT
 
-* [Index ERC721 and ERC1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
+* [Index ERC-721 and ERC-1155 NFTs on any EVM chain with an RPC URL](https://github.com/flair-sdk/examples/tree/main/erc721-and-erc1155-nft-indexing)
 
 ## Need help?
 

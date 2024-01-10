@@ -19,13 +19,13 @@ A transaction is rejected if it:
 
 - Originates from a non-existent account, or an account that is not funded
 - Has a gas price below the minimum
-- Has a gas limit above the maximum
+- Has a gas limit above the 10 million maximum
 - Has the same nonce as another transaction from the same account (in this case, the transaction with the higher gas fee is chosen, and the other rejected)
 - Has a total `calldata` size greater than 25kb.
 
 :::
 
-The sequencer orders transactions according the priority fee paid for each, a method known as a priority gas auction. So, having passed the above checks, valid transactions are placed into blocks in the correct sequence and executed.
+The sequencer orders transactions according to the priority fee paid for each, a method known as a priority gas auction. So, having passed the above checks, valid transactions are placed into blocks in the correct sequence and executed.
 
 At this point, the transaction's lifecycle is more or less complete — at least from a user perspective. The block containing the transaction has been added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is returned to the user's wallet as confirmation.
 
@@ -53,7 +53,7 @@ With the block that contains the transaction's trace data conflated into a batch
 
 When prompted by the [Coordinator](./coordinator), Linea's [prover](./trace-expansion-proving) will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs a two-stage method for developing the proofs that eventually get passed to L1, first developing an **inner proof** and then an **outer proof**.
 
-The inner proof uses a combination of tools, including Arcane and Vortex, to recursively reduce the proof size. For a more in-depth look at Linea's inner proof system, see [this article](https://mirror.xyz/lineaecosystem.eth/J8TohEE6CM3p3hkSkkL1vyngqipqc-tygXzgXO8ducw).
+The inner proof uses a combination of tools, including Arcane and Vortex, to recursively reduce the proof size. For a more in-depth look at Linea's inner proof system, see [this article](https://linea.mirror.xyz/B3b1lUK8--UKZ_Qehk7SfOyvdcGbcuoyvNsSukHgOY8).
 
 Next, the outer proof is generated using the Consensys-maintained library [`gnark`](https://docs.gnark.consensys.net/), compressing the proof size even further. The resulting proof is what's known as a zk-SNARK: the proofs that are eventually submitted to Ethereum.
 
@@ -66,7 +66,7 @@ The final step in the process is to finalize the batch by submitting it to Ether
 Let's break down the two elements submitted to L1:
 
 - The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
-- `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
+- `calldata`, the object in which L2 transaction data is stored. The public availability of `calldata` means that anyone can use it to reconstruct Linea's state. You can then compare this reconstruction to the contents of the proof, and verify the latter. This is what happens when the Linea rollup contract on L1 calls the Ethereum verifier contract using `calldata`, determining whether or not to accept the batch as valid.
 
 You can view `calldata` in completed batches on L1 by heading to the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f) and finding a transaction whose method is labelled as "Finalize Blocks". Once there, scroll and expand the "More details" section, and then decode the input data.
 

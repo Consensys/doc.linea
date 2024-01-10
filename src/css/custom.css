@@ -6,6 +6,85 @@
 
 /* You can override the default Infima variables here. */
 
+/* Custom stlying made by CSCT */
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin: 0 auto 20px;
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    width: 100%;
+  }
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.img-xsmall {
+  width: 200px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-small {
+  width: 350px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-medium {
+  max-width: 60%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-large {
+  max-width: 90%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+
+@media (max-width: 768px) {
+  .img-xsmall {
+    width: 50%;
+    flex-shrink: 0;
+  }
+
+  .img-small {
+    width: 80%;
+    flex-shrink: 0;
+  }
+
+  .img-medium {
+    width: 90%;
+    flex-shrink: 0;
+  }
+
+  .img-large {
+    width: 100%;
+    flex-shrink: 0;
+  }
+}
+
 html {
   line-height: 1.5;
   tab-size: 4;
@@ -128,6 +207,9 @@ textarea {
   --ifm-menu-color-active: #2eb9dc;
   --ifm-footer-background-color: #000;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
+  --search-local-hit-active-color: #000;
+  --homepage-card-background: #1d1d1d;
+  --homepage-card-text: #fff;
 }
 
 [data-theme="light"] {
@@ -147,6 +229,8 @@ textarea {
   --ifm-color-info-dark: #989898;
   --ifm-footer-background-color: #000;
   --ifm-footer-link-hover-color: #c0c0c0;
+  --homepage-card-background: #1d1d1d;
+  --homepage-card-text: #fff;
 }
 
 /* github */
@@ -253,6 +337,69 @@ html[data-theme="dark"] .header-dockerhub-link::before {
     margin-left: 20px;
     content: "DockerHub ";
   }
+}
+
+/* Navbar formatting */
+.navbar {
+  --ifm-navbar-height: 8vh;
+}
+
+.navbar__logo {
+  height: 35px;
+  width: auto;
+  padding: 0 10px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -6px;
+}
+
+.navbar__title {
+  font-size: 22px;
+  font-weight: 400;
+  padding-right: 35px;
+}
+
+@media (max-width: 768px) {
+  .navbar__logo {
+    height: 25px;
+  }
+
+  .navbar__title {
+    font-size: 18px;
+  }
+}
+
+.navbar__item {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.navbar__item:nth-child(n+3)::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 10px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+  margin-left: 12px;
+}
+
+.navbar__item:nth-child(n+3):hover::before {
+  background-color: #61dfff;
+  border: 1px solid #61dfff;
+}
+
+html[data-theme="light"] .navbar {
+  background-color: #fff;
+}
+
+html[data-theme="dark"] .navbar {
+  background-color: #121212;
 }
 
 /* Make navbar look friendly on small devices. */
@@ -378,7 +525,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   --docsearch-searchbox-focus-background: var(--ifm-color-black);
   /* Hit */
   --docsearch-hit-color: var(--ifm-font-color-base);
-  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-active-color: var(--ifm-color-black);
   --docsearch-hit-background: var(--ifm-color-emphasis-100);
   /* Footer */
   --docsearch-footer-background: var(--ifm-background-surface-color);
@@ -590,16 +737,6 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   --md-code-hl-comment-color: #b3ccfb;
 }
 
-/* Custom stlying made by CSCT */
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-  height: auto;
-}
-
 /* This centers copy wherever you need it to be centered; put 'id="centered-copy"'' in the div tag */
 
 #centered-copy {
@@ -645,4 +782,22 @@ img {
 .all-mode-tabs {
   color: #121212;
   background-color: #b3ccfb;
+}
+
+/* Styling for callouts */
+
+.callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.callout-info {
+  border-left-color: #2980b9;
+}
+
+.callout-warning {
+  border-left-color: #f39c12;  
 }

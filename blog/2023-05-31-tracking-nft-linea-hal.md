@@ -43,7 +43,7 @@ Next, enter the contract address of the NFT you want to monitor. Make sure this 
 
 ![Contract address](assets/hal-stream/hal-stream-2.png)
 
-After adding the contract address, click "Continue". You will have the option to filter event data. To track NFT minting, you want to monitor the 'transfer' event, and more specifically, with the 0X0000… address in the ‘from’ field (as per the ERC721 standard). To do this, select the event from the event list and click "Add filter" to specify the ‘from’ address.
+After adding the contract address, click "Continue". You will have the option to filter event data. To track NFT minting, you want to monitor the 'transfer' event, and more specifically, with the 0X0000… address in the ‘from’ field (as per the ERC-721 standard). To do this, select the event from the event list and click "Add filter" to specify the ‘from’ address.
 
 ![Filtering](assets/hal-stream/hal-stream-3.png)
 

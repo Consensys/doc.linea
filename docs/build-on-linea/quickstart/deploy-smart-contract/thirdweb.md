@@ -18,12 +18,12 @@ To create a new smart contract using thirdweb [CLI](https://portal.thirdweb.com/
    1. Give your project a name
    2. Choose your preferred framework: Hardhat or Foundry
    3. Name your smart contract
-   4. Choose the type of base contract: Empty, [ERC20](https://portal.thirdweb.com/solidity/base-contracts/erc20base), [ERC721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
+   4. Choose the type of base contract: Empty, [ERC-20](https://portal.thirdweb.com/solidity/base-contracts/ERC-20base), [ERC-721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC-1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
    5. Add any desired [extensions](https://portal.thirdweb.com/solidity/extensions)
 3. Once created, navigate to your project’s directory and open in your preferred code editor.
 4. If you open the `contracts` folder, you will find your smart contract; this is your smart contract written in Solidity.
 
-   The following is code for an `ERC721Base` contract without specified extensions. It implements all of the logic inside the [ERC721Base.sol](https://github.com/thirdweb-dev/contracts/blob/main/contracts/base/ERC721Base.sol) contract; which implements the [ERC721A](https://github.com/thirdweb-dev/contracts/blob/main/contracts/eip/ERC721A.sol) standard.
+   The following is code for an `ERC721Base` contract without specified extensions. It implements all of the logic inside the [ERC721Base.sol](https://github.com/thirdweb-dev/contracts/blob/main/contracts/base/ERC721Base.sol) contract; which implements the [ERC-721A](https://github.com/thirdweb-dev/contracts/blob/main/contracts/eip/ERC721A.sol) standard.
 
    ```bash
    // SPDX-License-Identifier: MIT
@@ -55,7 +55,14 @@ Alternatively, you can deploy a prebuilt contract for NFTs, tokens, or marketpla
 
 1. Navigate to the thirdweb Explore page: [https://thirdweb.com/explore](https://thirdweb.com/explore)
 
-![thirdweb explore](../../../../static/img/docs/build-on-linea/quickstart/verify-smart-contract/thirdweb-explore.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/thirdweb/Linea_thirdweb_explore_page.png"
+      alt="thirdweb explore page"
+    />
+  </div>
+</div>
 
 2. Choose the type of contract you want to deploy from the available options: NFTs, tokens, marketplace, and more.
 3. Follow the on-screen prompts to configure and deploy your contract.
