@@ -46,7 +46,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
   - estimateClaimMessageGas: This function provides an estimate of the gas cost for both old and new claim transactions.
   - claimMessage: This function enables a message to be claimed using either the old or new function.
 
- Two new functions in the L1 contract:
+Two new functions in the L1 contract:
   - estimateClaimWithProofGas: This functions estimates the gas cost for new claim transactions.
   - claimWithProof: This functions claims a message using the new claimMessageWithProof function.
 
