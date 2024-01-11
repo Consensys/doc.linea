@@ -37,7 +37,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
   - The L2 claiming remains unaltered, and all SDK features to interact with L2 will remain unchanged.
   - The previous L1 claiming function and code samples provided here cater to the transition period where pre-transition messages are claimed without the Merkle proof and post-transition with proof. If this SDK is being used after the transition, using the logic that switches between Merkle and non-Merkle proof claiming is sub-optimal.
 
- The updated SDK introduces several new features for L1 interactions:
+The updated SDK introduces several new features for L1 interactions:
 
 A new L1ClaimingService class that includes the following functions:
   - getMessageProof: This function retrieves the message Merkle tree proof required for new message claims on L1.
