@@ -39,7 +39,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
  The updated SDK introduces several new features for L1 interactions:
 
- A new L1ClaimingService class that includes the following functions:
+A new L1ClaimingService class that includes the following functions:
   - getMessageProof: This function retrieves the message Merkle tree proof required for new message claims on L1.
   - isClaimingNeedingProof: This function determines whether a proof is needed to claim a message.
   - getMessageStatus: This function retrieves a message's status, returning the status of both old and new messages.
