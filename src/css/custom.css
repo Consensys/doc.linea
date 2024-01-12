@@ -361,6 +361,18 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   padding-right: 35px;
 }
 
+@media (max-width: 1320px) {
+  .navbar__title {
+    display: none;
+  }
+}
+
+@media (max-width: 996px) {
+  .navbar__title {
+    display: flex;
+  }
+}  
+
 @media (max-width: 768px) {
   .navbar__logo {
     height: 25px;
@@ -374,6 +386,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__item {
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
 }
 
 .navbar__item:nth-child(n+3)::before {
@@ -392,6 +405,22 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__item:nth-child(n+3):hover::before {
   background-color: #61dfff;
   border: 1px solid #61dfff;
+}
+
+@media (max-width: 1500px) {
+  .navbar__item {
+    font-size: 16px;
+  }
+
+  .navbar__item:nth-child(n+3)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 1320px) {
+  .navbar__item {
+    font-size: 14px;
+  }
 }
 
 html[data-theme="light"] .navbar {
