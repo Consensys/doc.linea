@@ -81,7 +81,7 @@ const config = {
         isCloseable: false,
       },
       colorMode: {
-        defaultMode: "light",
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
@@ -96,12 +96,11 @@ const config = {
         },
       },
       navbar: {
+        title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/logo.svg",
-          srcDark: "img/logo_dark.svg",
-          width: 55,
-          height: 55,
+          src: "img/Linea_logo_black.svg",
+          srcDark: "img/Linea_logo_white.svg",
         },
         items: [
           {

@@ -6,6 +6,8 @@ sidebar_position: 2
 import CodeBlock from "@theme/CodeBlock";
 import IMessageService from "!!raw-loader!/files/testnet/IMessageService.sol";
 import MessageServiceBase from "!!raw-loader!/files/testnet/MessageServiceBase.sol";
+import Tabs from '@theme/Tabs'; 
+import TabItem from '@theme/TabItem';
 
 # Message service
 
@@ -17,43 +19,43 @@ The Message Service is responsible for cross-chain messages between Ethereum and
   - **push**: auto-execution on target layer if a fee is paid 
   - **pull**: users / protocols responsible for triggering the transaction
 
-## Contracts
+## Message Service Contracts
 
-<table>
-  <tbody>
-    <tr>
-      <th>Contract</th>
-      <th>L1 (Goerli) Address</th>
-      <th>L2 (Linea) Address</th>
-    </tr>
-    <tr>
-      <td>Transparent Proxy</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">
-          0x70BaD09280FD342D02fe64119779BC1f0791BAC2
-        </a>
-      </td>
-      <td>
-        <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">
-          0xC499a572640B64eA1C8c194c43Bc3E19940719dC
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Implementation</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0x2652e1547Ac6b9a0311cF1B7F024a378f30ad8D8#code">
-          0x2652e1547Ac6b9a0311cF1B7F024a378f30ad8D8
-        </a>
-      </td>
-      <td>
-        <a href="https://goerli.lineascan.build/address/0xc0557e2149751e201749b87f86acd91DB22e2662/contracts#address-tabs">
-          0xc0557e2149751e201749b87f86acd91DB22e2662
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem 
+  value="Mainnet" label="Mainnet" default>
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Ethereum) Address</th>
+          <th>L2 (Linea) Address</th>
+        </tr>
+        <tr>
+          <td><a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">0xd19d4B5d358258f05D7B411E21A1460D11B0876F</a></td>
+          <td><a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="Testnet" label="Testnet">
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Goerli) Address</th>
+          <th>L2 (Linea Goerli) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">0x70BaD09280FD342D02fe64119779BC1f0791BAC2</a>
+          </td>
+          <td>
+            <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">0xC499a572640B64eA1C8c194c43Bc3E19940719dC</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem> 
+</Tabs>
 
 ## How to use
 
