@@ -25,13 +25,13 @@ Voyage XP are non-transferable and not bridgeable to other networks. You cannot 
 
 ## Account Binding
 
-Account binding allows you to aggregate your Voyage XP tokens to a single primary wallet. If you're navigating the Linea ecosystem with multiple accounts, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected accounts, providing a seamless and comprehensive representation of your Linea experience. 
+Account binding allows you to aggregate your Voyage XP tokens to a single primary account. If you're navigating the Linea ecosystem with multiple accounts, choose one as your main hub to effortlessly accumulate all the Voyage XP you've earned. This ensures that every adventure is accurately recorded across your interconnected accounts, providing a seamless and comprehensive representation of your Linea experience. 
 
-**Account binding is not retroactive. If you bind your wallet address after Voyage XP are received, then those won't be linked to the primary wallet!**
+**Account binding is not retroactive. If you bind your account address after Voyage XP are received, then those won't be linked to the primary account!**
 
 :::caution 
 
-**Account binding is permanent and irreversible, so make sure you are choosing the correct wallet address when going through the process!**
+**Account binding is permanent and irreversible, so make sure you are choosing the correct account address when going through the process!**
 
 - Using account binding is only necessary for those who want to bind two or more accounts.
 
@@ -46,12 +46,22 @@ To start the Account binding process, follow the steps below:
 
 1. Go [here](https://linea.build/activations)
 2. Connect your wallet in the top-right corner of the page
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_connect_wallet.png"
+      alt="Linea Voyage XP connect wallet"
+    />
+  </div>
+</div>
+
 3. Click on the address of your currently selected account to open a dropdown menu. Here, click "Manage Wallet(s)"
 
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_voyage_xp_manage_wallets.png"
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_manage_wallets.png"
       alt="Linea Voyage XP manage wallets"
     />
   </div>
@@ -62,30 +72,30 @@ To start the Account binding process, follow the steps below:
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_signature_request.png"
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_signature_request.png"
       alt="MetaMask Linea signature request"
     />
   </div>
 </div>
 
-5. Select "Set as Primary Wallet"
+5. Select "Set as Primary Account"
 
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_set_primary_wallet.png"
-      alt="Linea voyage set primary wallet"
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_set_primary_account.png"
+      alt="Linea voyage set as primary account"
     />
   </div>
 </div>
 
-6. Select "Add secondary wallet"
+6. Select "Add secondary Account"
 
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_add_secondary_wallet.png"
-      alt="Linea voyage set secondary wallet"
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_set_secondary_account.png"
+      alt="Linea voyage add secondary account"
     />
   </div>
 </div>
@@ -96,8 +106,8 @@ To start the Account binding process, follow the steps below:
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/article_images/Use_Linea/Linea_voyage_xp/MetaMask_Linea_xp_confirm_secondary_wallet.png"
-      alt="Linea voyage confirm secondary wallet"
+      src="/img/article_images/Use_Linea/Linea_voyage_xp/Linea_Voyage_confirm_accounts.png"
+      alt="Linea voyage confirm secondary account"
     />
   </div>
 </div>
