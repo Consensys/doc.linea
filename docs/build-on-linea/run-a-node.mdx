@@ -142,7 +142,7 @@ Download v1.11.6 [Geth](https://geth.ethereum.org/downloads) (latest untested) a
 
 ### Step 2
 
-Download `l2-genesis-linea-goerli.json`
+Download `genesis.json`
 
 [genesis.json](pathname:///files/testnet/genesis.json)
 
@@ -157,7 +157,7 @@ Define a volume of at least `100GB`, more if you want to future-proof your node,
 Bootstrap the node using the following command
 
 ```bash
-geth --datadir ./geth-uat-data init ./l2-genesis-linea-goerli.json
+geth --datadir ./geth-uat-data init ./genesis.json
 ```
 
 ### Step 5
