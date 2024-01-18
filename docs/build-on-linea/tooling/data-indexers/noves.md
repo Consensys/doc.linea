@@ -12,9 +12,9 @@ Translate covers more than 50 transaction types in its interpretation schema, in
 
 # Cross-DEX pricing data
 
-Noves Pricing API supports a variety of DEX protocols on Linea, allowing developers to price a variety of tokens and LP tokens on the chain.
+Noves Pricing API supports many DEX protocols on Linea, allowing developers to price a variety of tokens and LP tokens on the chain.
 
-The API also offers historical pricing with block-level granularity. The price of any token / LP token can be requested as of a specific block. This is particularly useful for financial applications / reporting where establishing a very precise cost-basis becomes necessary. 
+The API also offers historical pricing with block-level granularity. The price of any token / LP token can be requested as of a specific block. This is particularly useful for financial applications / reporting where establishing a precise cost-basis is necessary. 
 
 # Learn more
 
