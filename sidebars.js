@@ -135,6 +135,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/smartwallets",
             "build-on-linea/tooling/account-abstraction/station",
             "build-on-linea/tooling/account-abstraction/particle-network",
+            "build-on-linea/tooling/account-abstraction/noves",
           ],
         },
         {
@@ -199,6 +200,7 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/reservoir",
             "build-on-linea/tooling/data-indexers/sentio",
             "build-on-linea/tooling/data-indexers/thegraph",
+            "build-on-linea/tooling/data-indexers/noves",
           ],
         },
         {
