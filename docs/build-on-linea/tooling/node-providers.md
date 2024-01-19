@@ -10,6 +10,7 @@ title: Node Providers
 - [DRPC](https://drpc.org/)
 - [Blockpi](https://blockpi.io/)
 - [GetBlock](https://getblock.io/)
+- [ANKR](https://www.ankr.com/rpc/)
 
 
 If you want your own private personal RPC, you can [run your own Linea node](/docs/build-on-linea/run-a-node.mdx).
