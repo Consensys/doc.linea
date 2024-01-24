@@ -2,6 +2,7 @@
 title: Conflation
 sidebar_position: 2
 ---
+
 import ConflationGraphic from '/img/article_images/Architecture_of_Linea/Sequencer/Conflation/Linea_block_conflation.svg';
 
 ## Conflation

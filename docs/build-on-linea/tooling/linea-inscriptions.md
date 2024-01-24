@@ -15,11 +15,9 @@ Traditionally, calldata is the most straightforward method for implementing insc
 
 To avoid this increase in costs, Linea recommends following [ESIP-3](https://docs.ethscriptions.com/esips/accepted-esips/esip-3-smart-contract-ethscription-creations), for creating inscriptions. This is because events and subcalls do not involve any finalization costs on L1, making them a more cost-effective option for users.
 
-:::info[Attention]
-***We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support.*** Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.
+:::info[Attention] **_We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support._** Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.
 
-Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation.
-:::
+Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation. :::
 
 This is implemented by emitting an event:
 
@@ -29,9 +27,11 @@ event ethscriptions_protocol_CreateEthscription(
     string contentURI
 );
 ```
+
 :::tip
-- `initialOwner`is usually the msg.sender. 
-- `contentURI` should be crafted by minimizing the amount of calldata. 
+
+- `initialOwner`is usually the msg.sender.
+- `contentURI` should be crafted by minimizing the amount of calldata.
 
 Linea recommends loading it (at least partially) from the contract code to reduce the amount of calldata that has to be passed to the contract.
 
@@ -40,6 +40,7 @@ Linea recommends loading it (at least partially) from the contract code to reduc
 ## Code Examples
 
 ### Ethscription.sol
+
 ```solidity
 
 // SPDX-License-Identifier: MIT
@@ -54,7 +55,7 @@ import "./IEthscription.sol";
   * @author Insert your name here.
   * @notice The inscription points to an external CONTENT_URI for the data.
   * @dev See the full ESIP-3 specification for URI format, all events and functions.
-  */ 
+  */
 contract Ethscription is IEthscription {
     string constant CONTENT_URI = '0x646174613a2c7b2270223a226572632d3230222c226f70223a226d696e74222c227469636b223a2266616972222c22616d74223a2231303030227d';
 
@@ -69,8 +70,8 @@ contract Ethscription is IEthscription {
 }
 ```
 
-
 ### IEthscription.sol
+
 ```solidity
 
 // SPDX-License-Identifier: MIT
@@ -82,7 +83,7 @@ pragma solidity 0.8.19;
   * @author Insert your name here.
   * @notice The inscription points to an external CONTENT_URI for the data.
   * @dev See the full ESIP-3 specification for URI format, all events and functions.
-  */ 
+  */
   interface IEthscription {
     event ethscriptions_protocol_CreateEthscription(
         address indexed initialOwner,
