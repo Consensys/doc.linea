@@ -31,7 +31,7 @@ In this mode, Scopescan users can find profiles of the top addresses, tokens, an
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_1.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_1.png"
       />
   </div>
 </div>
@@ -39,7 +39,7 @@ In this mode, Scopescan users can find profiles of the top addresses, tokens, an
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_2.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_2.png"
       />
   </div>
 </div>
@@ -53,7 +53,7 @@ In addition, you can create your own dashboard that can track specific addresses
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_3.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_3.png"
       />
   </div>
 </div>
@@ -61,7 +61,7 @@ In addition, you can create your own dashboard that can track specific addresses
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_4.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_4.png"
       />
   </div>
 </div>
@@ -73,7 +73,7 @@ Under Investigation Mode, there are several tools focused on transactions and to
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_5.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_5.png"
       />
   </div>
 </div>
@@ -81,7 +81,7 @@ Under Investigation Mode, there are several tools focused on transactions and to
 <div class="center-container">
   <div class="img-medium">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopecan/Scopescan_for_linea_6.png"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_6.png"
       />
   </div>
 </div>
