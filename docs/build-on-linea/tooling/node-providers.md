@@ -2,10 +2,10 @@
 title: Node Providers
 ---
 
-## Private RPC
+## Private RPC endpoints
 
-- [BLAST API](https://blastapi.io/)
 - [Infura](https://www.infura.io/)
+- [BLAST API](https://blastapi.io/)
 - [Unifra](https://unifra.io/)
 - [DRPC](https://drpc.org/)
 - [Blockpi](https://blockpi.io/)
@@ -13,13 +13,13 @@ title: Node Providers
 - [ANKR](https://www.ankr.com/rpc/)
 
 
-If you want your own private personal RPC, you can [run your own Linea node](/docs/build-on-linea/run-a-node.mdx).
+If you want your own private personal RPC endpoint, you can [run your own Linea node](/docs/build-on-linea/run-a-node.mdx).
 
-## Public RPC
+## Public RPC endpoints
 
 :::caution
 
-Public endpoints are rate limited and not meant for production systems.
+Public endpoints are rate limited, and not meant for production systems.
 
 :::
 
