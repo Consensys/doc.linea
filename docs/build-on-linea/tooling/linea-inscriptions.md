@@ -15,9 +15,15 @@ Traditionally, calldata is the most straightforward method for implementing insc
 
 To avoid this increase in costs, Linea recommends following [ESIP-3](https://docs.ethscriptions.com/esips/accepted-esips/esip-3-smart-contract-ethscription-creations), for creating inscriptions. This is because events and subcalls do not involve any finalization costs on L1, making them a more cost-effective option for users.
 
-:::info[Attention] **_We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support._** Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.
+:::warning 
 
-Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation. :::
+**_We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support._** 
+
+Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.
+
+Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation. 
+
+:::
 
 This is implemented by emitting an event:
 
@@ -39,9 +45,18 @@ Linea recommends loading it (at least partially) from the contract code to reduc
 
 ## Code Examples
 
+<!-- We need some more here.
+- What are the addresses? List them here, and link them on important contracts page.
+- Explain what these are
+- Explain at a high level what you do with them
+- Sample code for interacting with them, getting information from them
+  - List the methods available? Is `mint` the only one? 
+  - We could point to Lineascan's built-in contract interaction capabilities, etc.-->
+
 ### Ethscription.sol
 
-```solidity
+```
+solidity
 
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
@@ -72,7 +87,8 @@ contract Ethscription is IEthscription {
 
 ### IEthscription.sol
 
-```solidity
+```
+solidity
 
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
@@ -97,7 +113,4 @@ pragma solidity 0.8.19;
         bytes32 indexed id
     );
 }
-
-
-
 ```

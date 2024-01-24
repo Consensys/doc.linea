@@ -215,7 +215,10 @@ To deploy your smart contract to the Linea testnet, run
 npx hardhat run --network (lineaGoerli) scripts/deploy.js
 ```
 
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Goerli Block Explorer](https://goerli.lineascan.build/). </TabItem> <TabItem value="Deploy To Linea (Mainnet)" label="Mainnet">
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Goerli Block Explorer](https://goerli.lineascan.build/). 
+</TabItem> 
+
+<TabItem value="Deploy To Linea (Mainnet)" label="Mainnet">
 
 In your `.env.example` file, add your Infura Linea API key and add your wallet private key. Afterward change the name of the file to .env and create a gitignore to ignore your .env file.
 
@@ -253,7 +256,10 @@ To deploy your smart contract to the Linea testnet, run
 npx hardhat run --network (linea) scripts/deploy.js
 ```
 
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Block Explorer](https://lineascan.build/). </TabItem> </Tabs>
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Block Explorer](https://lineascan.build/). 
+</TabItem> 
+
+</Tabs>
 
 ## Deploy your Smart Contract to Linea with Foundry
 
