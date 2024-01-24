@@ -201,6 +201,7 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/sentio",
             "build-on-linea/tooling/data-indexers/thegraph",
             "build-on-linea/tooling/data-indexers/noves",
+            "build-on-linea/tooling/data-indexers/scopescan",
           ],
         },
         {
