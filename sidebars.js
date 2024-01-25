@@ -240,6 +240,7 @@ const sidebars = {
       ],
      },
       "build-on-linea/tooling/linea-safe",
+      "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
       "build-on-linea/linea-version/index",
      {
