@@ -136,6 +136,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/station",
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
+            "build-on-linea/tooling/account-abstraction/oklink",
           ],
         },
         {
@@ -234,6 +235,7 @@ const sidebars = {
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
+            "build-on-linea/tooling/security/spherex",
           ],
         },
       ],
