@@ -235,6 +235,7 @@ const sidebars = {
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
+            "build-on-linea/tooling/security/spherex",
           ],
         },
       ],
