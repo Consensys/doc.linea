@@ -7,7 +7,7 @@ title: SphereX
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Security/SphereX/SphereX.png"
+      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Security/SphereX/spherex.png"
       alt="SphereX Architecture"
     />
   </div>
