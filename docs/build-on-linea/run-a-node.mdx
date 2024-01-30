@@ -125,9 +125,85 @@ geth \
 --verbosity 3
 ```
 
+###
+
+### Step 6
+
+Setup Linea as a Serivce
+
+Create a new service file:
+```bash
+sudo tee <<EOF >/dev/null /etc/systemd/system/linea.service
+[Unit]
+Description=Linea Node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=$USER # the user you want to run the node with
+Type=simple
+Restart=on-failure
+RestartSec=3
+
+ExecStart=/usr/bin/geth \ # mkare sure the path to the geth binary is correct
+--datadir /home/$USER/geth-linea-data \ # the path to the data dir of your node
+--networkid 59144 \
+--miner.gasprice 1000000000 \
+--miner.gaslimit '0x3A2C940' \
+--rpc.allow-unprotected-txs \
+--txpool.accountqueue 50000 \
+--txpool.globalqueue 50000 \
+--txpool.globalslots 50000 \
+--txpool.pricelimit 1000000000 \
+--rpc.txfeecap 100 \
+--gpo.maxprice 100000000000000 \
+--txpool.nolocals \
+--http \
+--http.addr '0.0.0.0' \
+--http.port 8545 \
+--http.corsdomain '*' \
+--http.api 'web3,eth,txpool,net' \
+--http.vhosts='*' \
+--ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'eth,net,web3,txpool' \
+--bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.128.49.168:30303" \
+--syncmode full \
+--metrics --pprof --pprof.addr "127.0.0.1" --pprof.port 9545 \
+--verbosity 3
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+```
+
+Update the systemd daemon
+```bash
+sudo systemctl daemon-reload
+```
+
+Enable the service to run automatically at startup (optional)
+```bash
+sudo systemctl enable linea.service
+```
+
+Start the node (this will run in the background)
+```bash
+sudo systemctl start linea.service
+```
+
+View logs
+```bash
+journalctl -f -u linea.service -o cat
+```
+
+Stop the node if needed
+```bash
+sudo systemctl stop linea.service
+```
+###
+
 ---
 
-###
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
@@ -181,6 +257,73 @@ geth \
 --syncmode full \
 --metrics \
 --verbosity 3
+```
+###
+
+### Step 6
+
+Setup Linea as a Serivce
+
+Create a new service file:
+```bash
+sudo tee <<EOF >/dev/null /etc/systemd/system/linea-testnet.service
+[Unit]
+Description=Linea Testnet Node
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=$USER # the user you want to run the node with
+Type=simple
+Restart=on-failure
+RestartSec=3
+
+ExecStart=/usr/bin/geth \ # mkare sure the path to the geth binary is correct
+--datadir /home/$USER/geth-linea-data \ # the path to the data dir of your node
+--networkid 59140 \
+--rpc.allow-unprotected-txs \
+--txpool.accountqueue 50000 \
+--txpool.globalqueue 50000 \
+--txpool.globalslots 50000 \
+--txpool.pricelimit 1000000 \
+--txpool.pricebump 1 \
+--txpool.nolocals \
+--http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+--ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+--bootnodes "enode://c7d29d1bbb768e73c6bd320608276dc2341670822ed1292456a7b8375de35b5348e3b6bac63783a53d697378b25c5658681683f7621e31b37c605993c5ee13bd@18.189.141.200:30303,enode://14ba040dd8c5b1ea607fabf98c3c7c398658f897c502d0ca5202dce8907e83be953995ce5c3f72def2af710c072fe38de4e9347a299370fc82d6d17819967c93@3.144.118.88:30303" \
+--syncmode full \
+--metrics \
+--verbosity 3
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+```
+
+Update the systemd daemon
+```bash
+sudo systemctl daemon-reload
+```
+
+Enable the service to run automatically at startup (optional)
+```bash
+sudo systemctl enable linea-testnet.service
+```
+
+Start the node (this will run in the background)
+```bash
+sudo systemctl start linea-testnet.service
+```
+
+View logs
+```bash
+journalctl -f -u linea-testnet.service -o cat
+```
+
+Stop the node if needed
+```bash
+sudo systemctl stop linea-testnet.service
 ```
 ###
 
