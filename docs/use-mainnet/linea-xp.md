@@ -13,7 +13,8 @@ Apart from being a measure of contribution to building Linea into a robust and s
 
 To learn more about the Linea Voyage XP Program click [here](https://linea.mirror.xyz/sl3dN6bP3h0Uxhh5yA_jqy9UFayjqCeChRvOSi1U3B8)
 
-:::note Voyage XP are non-transferable and not bridgeable to other networks. You cannot buy, sell, or swap them, nor can you accumulate them by transferring from another wallet. :::
+:::note
+ Voyage XP are non-transferable and not bridgeable to other networks. You cannot buy, sell, or swap them, nor can you accumulate them by transferring from another wallet. :::
 
 ## Contract Address
 

@@ -12,6 +12,7 @@ You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating
 
 :::note
 
+
 These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.mdx#block-explorers).
 
 :::

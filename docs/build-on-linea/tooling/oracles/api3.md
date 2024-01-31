@@ -163,7 +163,8 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
 
 ### Subscribing to Self-funded dAPIs
 
-:::note Info
+:::note
+ Info
 
 While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
 
@@ -261,7 +262,8 @@ Managed dAPIs gives you an option to configure the dAPI's [deviation threshold](
 | 0.5%      | 24 hours  |
 | 1%        | 24 hours  |
 
-:::note Info
+:::note
+ Info
 
 Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org) for more info.
 
