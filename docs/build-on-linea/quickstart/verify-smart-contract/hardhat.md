@@ -147,6 +147,7 @@ You can check that it was verified correctly by navigating to the [testnet block
 
 :::info
 
+
 [Learn more about different configurations for verifying your smart contracts](https://hardhat.org/hardhat-runner/docs/guides/verifying).
 
 :::

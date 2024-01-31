@@ -126,6 +126,7 @@ forge verify-contract --chain linea-testnet path_to_contract:contract_name --wat
 
 :::info
 
+
 Learn more about different configurations for verifying your smart contracts [here](https://book.getfoundry.sh/reference/forge/forge-verify-contract) and [here](https://book.getfoundry.sh/forge/deploying).
 
 :::

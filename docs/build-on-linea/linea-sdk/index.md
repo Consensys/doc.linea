@@ -26,7 +26,8 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 5.  Claiming messages (use one of the get message methods to grab all the parameters values)
 
-:::info[New Features]
+:::info
+[New Features]
 
 The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires a Merkle proof for claiming.
 
