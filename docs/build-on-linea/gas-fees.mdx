@@ -3,12 +3,18 @@ title: Gas fees on Linea
 sidebar_position: 6
 ---
 
-If you have interacted with the Ethereum ecosystem, then you've likely encountered the unpredictability of gas fees, which can swing widely based on network activity. For a refresher on gas click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.). As a Layer 2 blockchain, Linea provides a more stable and cost-effective solution for transaction fees. **On average, gas fees on Linea are 15x cheaper than those on Ethereum. Furthermore, we're continuously working towards reducing these costs even more to enhance affordability for our users.**
+If you have interacted with the Ethereum ecosystem, then you've likely encountered the unpredictability of gas fees, which can swing widely based on network activity. 
 
-Linea is compatible with EIP-1559; however, there are minor differences.
+For a refresher on gas, click [here](https://support.metamask.io/hc/en-us/articles/4404600179227-User-Guide-Gas#:~:text=A%20normal%20transaction%20sending%20ETH,transactions%20also%20cost%2021%2C000%20gas.). 
 
-1.  On Linea, the base fee is set at 7 wei, the minimum fee allowed by the Ethereum protocol after EIP-1459. With all blocks created by Linea using up to 30M gas (less than 50% of the maximum block size of 61M gas), the fee decreases by 12.5% per block, effectively keeping it at a stable 7 wei.
-2.  Transactions won't be mined if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold, which adjusts over time.
+As a Layer 2 blockchain, Linea provides a more stable and cost-effective solution for transaction fees. 
+
+**On average, gas fees on Linea are 15x cheaper than those on Ethereum.** Furthermore, we're continuously working towards reducing these costs even more to enhance affordability for our users.
+
+Linea is compatible with [EIP-1559](https://consensys.io/blog/what-is-eip-1559-how-will-it-change-ethereum); however, there are minor differences.
+
+1.  On Linea, the base fee is set at 7 wei, the minimum fee allowed by the Ethereum protocol after EIP-1559. With all blocks created by Linea using up to 30M gas (less than 50% of the maximum block size of 61M gas), the fee decreases by 12.5% per block, effectively keeping it at a stable 7 wei.
+2.  Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold, which adjusts over time.
 
 # How do I make sure my transactions go through?
 
