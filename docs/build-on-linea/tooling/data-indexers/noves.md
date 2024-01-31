@@ -4,7 +4,7 @@ title: Noves
 
 # Human-readable transaction data
 
-Noves is the leading provider of interpreted, human-readable data in the EVM space. Its flagship product, [Translate API](https://docs.noves.fi/reference/introduction), allows developers to retrieve transactions in fully-enriched, human-readable form. 
+Noves is the leading provider of interpreted, human-readable data in the EVM space. Its flagship product, [Translate API](https://docs.noves.fi/reference/introduction), allows developers to retrieve transactions in fully-enriched, human-readable form.
 
 For a sample of what this data looks like, you can check out [Linea for Humans](https://linea.forhumans.app), a human-readable block explorer built by Noves for Linea.
 
@@ -14,7 +14,7 @@ Translate covers more than 50 transaction types in its interpretation schema, in
 
 Noves Pricing API supports many DEX protocols on Linea, allowing developers to price a variety of tokens and LP tokens on the chain.
 
-The API also offers historical pricing with block-level granularity. The price of any token / LP token can be requested as of a specific block. This is particularly useful for financial applications / reporting where establishing a precise cost-basis is necessary. 
+The API also offers historical pricing with block-level granularity. The price of any token / LP token can be requested as of a specific block. This is particularly useful for financial applications / reporting where establishing a precise cost-basis is necessary.
 
 # Learn more
 

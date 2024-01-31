@@ -5,7 +5,7 @@ sidebar_position: 1
 
 :::note
 
-We recommend that only tech operators that are providing liquidity use the official Linea bridge to transfer ETH. 
+We recommend that only tech operators that are providing liquidity use the official Linea bridge to transfer ETH.
 
 ### For everyday bridge transfers, we recommend you use [MetaMask Portfolio's Bridge feature](https://portfolio.metamask.io/bridge), which aggregates bridging options across Linea and shows you the best rates.
 
@@ -254,4 +254,3 @@ Automatic claiming is only available for bridging ETH from L1 to L2. You will no
 </div>
 
 9. You're done! You can check your Ethereum account balance in MetaMask, or on a block explorer such as [Etherscan](https://etherscan.io/)!
-

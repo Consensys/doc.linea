@@ -10,7 +10,7 @@ Noves provides advanced data capabilities for ERC-4337, both at the pre-sign lev
 
 For pre-sign, Noves offers a `userOp` [preview tool](https://docs.noves.fi/reference/post_evm-chain-preview4337) as part of its Foresight product line. It is akin to a simulator, but includes interpretation of the real-world meaning of the unsigned transaction (for example, "This transaction will claim 50 USDC in rewards"). This output can be shown to the user prior to the userOp being signed and submitted to the bundler for execution.
 
-## Human-readable transaction history 
+## Human-readable transaction history
 
 For transactions that have already been executed, Noves offers the [Translate API](https://docs.noves.fi/reference/introduction), which allows developers to retrieve transactions in fully-enriched, human-readable form. For a sample of what this data looks like, you can check out [Linea for Humans](https://linea.forhumans.app), a human-readable block explorer built by Noves for Linea.
 

@@ -40,8 +40,7 @@ These instructions verify using the Linea instance of Etherscan, which currently
 
 :::
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 First, we'll need to add a custom chain like so:
 
@@ -70,6 +69,7 @@ etherscan: {
   ]
 }
 ```
+
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
@@ -95,6 +95,7 @@ etherscan: {
   ]
 }
 ```
+
   </TabItem>
 </Tabs>
 
