@@ -28,6 +28,67 @@ import TabItem from "@theme/TabItem";
 
 # How to run a Linea node with Docker
 
+## Besu node instructions
+<Tabs className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
+
+## Step 1
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/)
+
+## Step 2
+
+Download the [besu-mainnet zip file](/files/besu/besu-mainnet.zip), which contains the genesis file, docker compose file, and the config-snap-mainnet file.
+
+## Step 3
+
+In the `config-snap-mainnet.toml` file, change the `p2p-host="Your IP Address"` to your own public IP address and change the `data-path=”besu-mainnet”` to your specific folder name where you’re running the node from.
+
+## Step 4
+
+In the `docker-compose.yaml` edit the volumes section by changing the `/path/to/your/mainnet/directory` to your specific data path of the folder where you are hosting the files.
+
+## Step 5
+
+Open a terminal in the folder location and run `docker-compose up`. 
+
+:::note 
+It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node. For more information please look at the official [besu documentation](https://besu.hyperledger.org/public-networks/get-started/install/run-docker-image).
+:::
+
+  </TabItem>
+
+  <TabItem value="Testnet" label="Testnet">
+
+## Step 1
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/)
+
+## Step 2
+
+Download the [besu-goerli zip file](/files/besu/besu-goerli.zip), which contains the genesis file, docker compose file, and the config-snap-goerli file.
+
+## Step 3
+
+In the `config-snap-goerli.toml` file, change the `p2p-host="Your IP Address"` to your own public IP address and change the `data-path=”besu-mainnet”` to your specific folder name where you’re running the node from.
+
+## Step 4
+
+In the `docker-compose.yaml` edit the volumes section by changing the `/path/to/your/goerli/directory` to your specific data path of the folder where you are hosting the files.
+
+## Step 5
+
+Open a terminal in the folder location and run `docker-compose up`. 
+
+:::note 
+It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node. For more information please look at the official [besu documentation](https://besu.hyperledger.org/public-networks/get-started/install/run-docker-image).
+:::
+
+  </TabItem>
+</Tabs>
+
+
+## Geth node instructions
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet">
 
