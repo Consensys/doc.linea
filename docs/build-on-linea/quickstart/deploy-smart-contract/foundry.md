@@ -2,8 +2,7 @@
 title: Foundry
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
 
@@ -64,8 +63,9 @@ forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Coun
 On mainnet:
 
 ```bash
-forge create --rpc-url https://linea.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
+forge create --rpc-url https://linea-mainnet.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
 ```
+
 </TabItem>
 <TabItem value="Public Endpoint" label="Public Endpoint">
 
@@ -118,7 +118,7 @@ Finally, we can modify the `foundry.toml` file to conveniently store the various
 ```bash
 [rpc_endpoints]
 linea-testnet = "https://linea-goerli.infura.io/v3/${INFURA_API_KEY}"
-linea-mainnet = "https://linea.infura.io/v3/${INFURA_API_KEY}"
+linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```
 
 Now, in order to deploy, you can simply run:

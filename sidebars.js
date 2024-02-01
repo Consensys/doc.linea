@@ -135,6 +135,8 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/smartwallets",
             "build-on-linea/tooling/account-abstraction/station",
             "build-on-linea/tooling/account-abstraction/particle-network",
+            "build-on-linea/tooling/account-abstraction/noves",
+            "build-on-linea/tooling/account-abstraction/oklink",
           ],
         },
         {
@@ -199,6 +201,8 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/reservoir",
             "build-on-linea/tooling/data-indexers/sentio",
             "build-on-linea/tooling/data-indexers/thegraph",
+            "build-on-linea/tooling/data-indexers/noves",
+            "build-on-linea/tooling/data-indexers/scopescan",
           ],
         },
         {
@@ -232,11 +236,13 @@ const sidebars = {
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
+            "build-on-linea/tooling/security/spherex",
           ],
         },
       ],
      },
       "build-on-linea/tooling/linea-safe",
+      "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
       "build-on-linea/linea-version/index",
      {

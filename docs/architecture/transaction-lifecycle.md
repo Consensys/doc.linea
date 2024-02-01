@@ -33,7 +33,7 @@ However, the transaction and its associated data will continue to be processed i
 
 ## Step 3: Transaction data sent to the state manager
 
-Data about the transaction and the state of the network at its time of execution are recorded in **traces**, an output of part of the sequencer called the [traces generator](./sequencer/traces-generator.md).  
+Data about the transaction and the state of the network at its time of execution are recorded in **traces**, an output of part of the sequencer called the [traces generator](./sequencer/traces-generator.md).
 
 Traces are passed to the state manager block-by-block and then used to update the network state. Once state is up to date, you'll see the transaction reflected and confirmed in your wallet.
 

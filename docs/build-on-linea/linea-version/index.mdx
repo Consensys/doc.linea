@@ -13,31 +13,112 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 
 Find out all you need to know about the latest Linea versions.
 
-> ### **Current network versions**
->
-> | Network | Version | Deployment Date |
-> | --- | --- | --- |
-> | Linea Goerli | [Alpha v0.2.3](#linea-alpha-v023-june-22-23) | June 22, 2023 |
+## Alpha v2 Release Notes
+
+<table>
+  <tbody>
+    <tr>
+      <th>Network</th>
+      <th>Target Release Date</th>
+    </tr>
+    <tr>
+      <td>Mainnet</td>
+      <td>February 8th, 2024</td>
+    </tr>
+    <tr>
+      <td>Testnet</td>
+      <td>January 24, 2024</td>
+    </tr>
+  </tbody>
+</table>
+
+### Summary
+
+This release focuses on reducing L1 costs, enabling lower prices for end users.
+
+Primarily, the L1 costs are driven by the following:
+
+- Proof verification, which is essentially a fixed cost for every batch submission.
+
+- Hashing the batch submission data to produce the public input of the Plonk verifier.
+
+- Calldata costs, driven by the size of the batch submission data. This includes all the transaction data from L2, as well as messaging data (one hash per L2 to L1 message).
+
+### Features
+
+To decrease L1 costs, we implemented the following features:
+
+- Proof aggregation:
+  - This allows us to create a set of proofs for conflated batches and generates an aggregated proof that verifies that all the proofs are correct. Since it takes the same amount of gas to verify an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a proof aggregating N proofs is N times cheaper.
+- Data compression:
+  - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
+- Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
+  - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there is a 32x calldata size reduction for message hashes
+
+### Breaking changes
+
+**Message claiming**
+
+- Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof generation requests and their submission when claiming a message. This applies to messages sent post upgrading. Pre-existing messages must be claimed with the current approach.
+
+:::info[Note] If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk).
+
+:::
+
+**Finalization events**
+
+- After migration to the new finalization mechanism, the rollup contract will no longer emit finalization events per block, but will instead emit events for data submission as well as an event indicating the current point of finalization.
+  - The calldata will contain only the final block state root hash and final block number.
+
+:::info[Note] This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event. :::
+
+<table>
+  <tbody>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>
+        <code>DataFinalized</code>
+      </td>
+      <td>
+        Emitted at the end of finalization - used to indicate range of
+        finalization
+      </td>
+      <td>New</td>
+    </tr>
+    <tr>
+      <td>
+        <code>BlockFinalized</code>
+      </td>
+      <td>
+        Deprecated finalization event - indicator that each block has been
+        finalized.
+      </td>
+      <td>Old</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Summary Release Notes (June - October)
 
 ### Performance Improvements
 
-- Changes to the Genesis File:
-We made changes to the genesis file to enable block times to be reduced. This enhancement improves the overall performance and throughput of Linea. 
+- Changes to the Genesis File: We made changes to the genesis file to enable block times to be reduced. This enhancement improves the overall performance and throughput of Linea.
 
-- Improved Gas Limit Estimation for Finalization on L1:
-We improved the gas limit estimation for finalization on L1. 
+- Improved Gas Limit Estimation for Finalization on L1: We improved the gas limit estimation for finalization on L1.
 
 ### Cost Efficiency
 
-- We updated the L1 message service contract to work with the merkle tree, reducing gas costs and further enhancing the cost-effectiveness of Linea.
+- We updated the L1 message service contract to work with the Merkle tree, reducing gas costs and further enhancing the cost-effectiveness of Linea.
 
-- We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This change ensures the long-term financial viability of Linea. 
+- We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This change ensures the long-term financial viability of Linea.
 
 ### User Experience
 
-- We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price estimation more accurate and reliable. 
+- We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price estimation more accurate and reliable.
 
 ## Linea Alpha v0.2.3 (June 22, 2023)
 

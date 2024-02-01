@@ -2,8 +2,7 @@
 title: Remix
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic Remix project and deploying a sample contract.
 
@@ -79,11 +78,7 @@ The public endpoints are rate limited and not meant for production systems. To u
 
 Switch to the Linea Goerli network in your MetaMask wallet, and select "Injected provider - MetaMask" in your Remix configuration.
 
-  <img
-    src={
-      require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_deploy_metamask_testnet.png")
-        .default
-  }></img>
+<img src={ require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_deploy_metamask_testnet.png") .default }></img>
 
   </TabItem>
 </Tabs>
