@@ -234,10 +234,7 @@ The `spheron publish` command allows you to upload your project using the config
 spheron publish
 ```
 
-:::note
-  Make sure that you create a production build before running the `spheron
-  publish` command.
-:::
+:::note Make sure that you create a production build before running the `spheron   publish` command. :::
 
 Here is an example of how the result will look:
 

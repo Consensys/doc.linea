@@ -7,23 +7,23 @@ import CodeBlock from "@theme/CodeBlock";
 import TokenBridge from "!!raw-loader!/files/testnet/ITokenBridge.sol";
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
-import LineaBridgeGraphic from '/img/article_images/Architecture_of_Linea/Bridges/Canonical_token_bridge/Linea_canonical_token_bridge.svg';
+import LineaBridgeGraphic from "/img/article_images/Architecture_of_Linea/Bridges/Canonical_token_bridge/Linea_canonical_token_bridge.svg";
 
 # Canonical Token Bridge
 
 <div className="img-large">
-    <LineaBridgeGraphic />
+  <LineaBridgeGraphic />
 </div>
 
 The Canonical Token Bridge is the pair of “lock & mint” contracts that allow bridging of any ERC-20 token. The Bridge relies on the [Message Service](/docs/architecture/canonical-msg-service/message-service.mdx) for cross-chain interactions.
 
-The Linea team operates a UI for this bridge, available at [https://bridge.linea.build/](https://bridge.linea.build/). 
+The Linea team operates a UI for this bridge, available at [https://bridge.linea.build/](https://bridge.linea.build/).
 
-The Canonical Token Bridge is optimized for technical partners who are deploying on Linea. We recommend that everyday users of Linea seeking to bridge their personal tokens between networks leverage one of the many bridges deployed to the network. 
+The Canonical Token Bridge is optimized for technical partners who are deploying on Linea. We recommend that everyday users of Linea seeking to bridge their personal tokens between networks leverage one of the many bridges deployed to the network.
 
 Linea seeks to foster a permissionless, resilient, decentralized environment--not to have our bridge be a centralized arbiter and point of failure.
 
-To find out which bridges are currently operating on Linea, [jump here](https://linea.build/apps), to the Ecosystem Portal on [linea.build](https://linea.build), and click on the "Bridge" button to show all that are available. 
+To find out which bridges are currently operating on Linea, [jump here](https://linea.build/apps), to the Ecosystem Portal on [linea.build](https://linea.build), and click on the "Bridge" button to show all that are available.
 
 ## Contracts
 

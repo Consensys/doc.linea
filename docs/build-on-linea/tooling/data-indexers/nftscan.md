@@ -4,7 +4,7 @@ title: NFTScan
 
 # Tracking Full NFT data on Linea Using NFTScan API
 
-The increasing demand for NFTs has brought attention to the importance of having efficient tools to keep track of their creation, movement, and trading activities. For companies and developers involved in NFTs, it is crucial to have the capability to monitor the minting events, especially with the growth of NFT-based applications that will be facilitated by Linea's scalability. 
+The increasing demand for NFTs has brought attention to the importance of having efficient tools to keep track of their creation, movement, and trading activities. For companies and developers involved in NFTs, it is crucial to have the capability to monitor the minting events, especially with the growth of NFT-based applications that will be facilitated by Linea's scalability.
 
 This article provides information on how you can utilize the NFTScan API to monitor the full NFT data on Linea.
 
@@ -21,7 +21,7 @@ NFTScan provides Web3 developers with the most professional, comprehensive and a
 
 # **What can NFTScan API provide**
 
-NFTScan API indexes all core aspects of NFTs on multiple blockchains and provides quick access to this through a suite of data-focused API endpoints. No matter what you are building, NFTScan API will support the data you will need. 
+NFTScan API indexes all core aspects of NFTs on multiple blockchains and provides quick access to this through a suite of data-focused API endpoints. No matter what you are building, NFTScan API will support the data you will need.
 
 - **Retrieving NFTs**
 - **Retrieving owners of NFTs**
@@ -36,8 +36,7 @@ NFTScan API indexes all core aspects of NFTs on multiple blockchains and provide
 
 Before using the NFTScan API, you need to visit the developer website and create an account. Go to the NFTScan official website and click the “Sign Up” button for NFTScan API registration.
 
-> *NFTScan Developer Platform: [https://developer.nftscan.com/user/signup](https://developer.nftscan.com/user/signup)*
-> 
+> _NFTScan Developer Platform: [https://developer.nftscan.com/user/signup](https://developer.nftscan.com/user/signup)_
 
 <div class="center-container">
   <div class="img-medium">
@@ -74,8 +73,7 @@ In the Dashboard, developers can also view statistics on their API usage, helpin
 
 After successfully registering as a developer and obtaining your API Key, you need to review the NFTScan API documentation. The API documentation includes all available API endpoints and parameters, along with detailed instructions on how to build requests and handle responses. Carefully read the API documentation and ensure you understand how to use the API to retrieve the data you need.
 
-> *NFTScan API Documentation: [https://docs.nftscan.com](https://docs.nftscan.com)*
-> 
+> _NFTScan API Documentation: [https://docs.nftscan.com](https://docs.nftscan.com)_
 
 NFTScan API services aim to enhance developers’ experience in obtaining NFT data analysis. NFTScan currently boasts the largest and most comprehensive NFT Collection library, supporting full NFT data for Ethereum, Solana, BNBChain, Bitcoin, Polygon, zkSync, Aptos, Linea, Avalanche, Arbitrum, Optimism, Fantom, Moonbeam, PlatON, Cronos, and Gnosis on 16 blockchains.
 
@@ -131,10 +129,10 @@ Constructing NFT-related requests with NFTScan is straightforward. Developers on
 
 NFTScan provides a customized NFT data retrieval experience that is different from traditional blockchain data platforms. This not only enriches the functionality settings of applications, but also greatly reduces the cost of developers obtaining and processing NFT data. Developers can flexibly access the rich NFT data resources provided by NFTScan based on their application requirements. Developers can freely combine these APIs according to their business scenarios, building NFT applications or solutions that meet their specific needs.
 
-**Reference Link:** 
+**Reference Link:**
 
 NFTScan: [https://nftscan.com](https://nftscan.com/)
 
 NFTScan Developer Platform: [https://developer.nftscan.com](https://developer.nftscan.com/)
 
-NFTScan API Doc: *[https://docs.nftscan.com](https://docs.nftscan.com)*
+NFTScan API Doc: _[https://docs.nftscan.com](https://docs.nftscan.com)_

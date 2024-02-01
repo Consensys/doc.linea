@@ -2,8 +2,7 @@
 title: Foundry
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 To verify your Foundry contracts, you can use Foundry's [`verify-contract`](https://book.getfoundry.sh/reference/forge/forge-verify-contract) to verify contracts on Lineascan.
 
@@ -121,6 +120,7 @@ forge verify-contract --chain linea-mainnet path_to_contract:contract_name --wat
 ```bash
 forge verify-contract --chain linea-testnet path_to_contract:contract_name --watch
 ```
+
   </TabItem>
 </Tabs>
 

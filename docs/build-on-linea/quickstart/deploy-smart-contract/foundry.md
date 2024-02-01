@@ -2,8 +2,7 @@
 title: Foundry
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
 
@@ -66,6 +65,7 @@ On mainnet:
 ```bash
 forge create --rpc-url https://linea-mainnet.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
 ```
+
 </TabItem>
 <TabItem value="Public Endpoint" label="Public Endpoint">
 

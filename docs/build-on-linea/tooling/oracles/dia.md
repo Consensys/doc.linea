@@ -23,6 +23,7 @@ Here is an example of how to access a price value on DIA oracles:
 1. Access your custom oracle smart contract on Linea.
 2. Call `getValue(pair_name)` with `pair_name` being the full pair name such as `BTC/USD`. You can use the "Read" section on the explorer to execute this call.
 3. The response of the call contains two values:
+
 - The current asset price in USD with a fix-comma notation of 8 decimals.
 - The UNIX timestamp of the last oracle update.
 
@@ -38,9 +39,9 @@ DIA has deployed the following demo oracles for the Linea community. It provides
 
 ### Demo Oracle Smart Contracts
 
-| Network        | Contract address      
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Linea Mainnet  | [`0xbb5a4708302ee9d959abc417ca1280abb106ba6a`](https://lineascan.build/address/0xbb5a4708302ee9d959abc417ca1280abb106ba6a)        |
+| Network | Contract address |
+| --- | --- |
+| Linea Mainnet | [`0xbb5a4708302ee9d959abc417ca1280abb106ba6a`](https://lineascan.build/address/0xbb5a4708302ee9d959abc417ca1280abb106ba6a) |
 
 ### Included Price Feeds
 
@@ -58,7 +59,6 @@ DIA NFT floor price feeds provide smart contracts with real-time price informati
 
 DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed below or [visit the DIA Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints) to see all API endpoints.
 
-
 # Learn more about DIA
 
 - [Twitter](https://twitter.com/DIAdata_org)
@@ -66,4 +66,3 @@ DIA also supports API endpoints to return cryptocurrency price data. Developers 
 - [Website](https://diadata.org/)
 - [Docs](https://docs.diadata.org/)
 - [Explore data](https://www.diadata.org/app/)
-  
