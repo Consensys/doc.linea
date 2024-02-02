@@ -303,7 +303,8 @@ forge script script/contract.s.sol:ContractScript --rpc-url $GOERLI_RPC_URL --br
 
 Your contract will be verified on the Linea Goerli explorer automatically upon deployment. You can manage and interact with your newly deployed smart contract in the [Linea Goerli block explorer](https://goerli.lineascan.build/).
 
-:::note The given tests in the contract.t.sol file are only examples, please generate your own :::
+:::note
+ The given tests in the contract.t.sol file are only examples, please generate your own :::
 
 **Further guidance**
 

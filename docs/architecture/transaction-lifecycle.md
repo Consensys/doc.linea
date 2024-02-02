@@ -15,6 +15,7 @@ The Linea [sequencer](./sequencer) is responsible for ordering, building, and ex
 
 :::info
 
+
 A transaction is rejected if it:
 
 - Originates from a non-existent account, or an account that is not funded

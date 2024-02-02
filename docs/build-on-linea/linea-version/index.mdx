@@ -61,7 +61,8 @@ To decrease L1 costs, we implemented the following features:
 
 - Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof generation requests and their submission when claiming a message. This applies to messages sent post upgrading. Pre-existing messages must be claimed with the current approach.
 
-:::info[Note] If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk).
+:::info
+[Note] If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk).
 
 :::
 
@@ -70,7 +71,8 @@ To decrease L1 costs, we implemented the following features:
 - After migration to the new finalization mechanism, the rollup contract will no longer emit finalization events per block, but will instead emit events for data submission as well as an event indicating the current point of finalization.
   - The calldata will contain only the final block state root hash and final block number.
 
-:::info[Note] This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event. :::
+:::info
+[Note] This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event. :::
 
 <table>
   <tbody>
@@ -274,6 +276,7 @@ This release focuses on testing a substantial architecture upgrade in preparatio
 - The anchoring and execution (claim) process has been separated into 2 steps. The deadline concept has been completely removed.
 
 :::note
+
 
 Contracts audit is in progress. This does not reflect final versions.
 

@@ -5,6 +5,7 @@ sidebar_position: 1
 
 :::note
 
+
 We recommend that only tech operators that are providing liquidity use the official Linea bridge to transfer ETH.
 
 ### For everyday bridge transfers, we recommend you use [MetaMask Portfolio's Bridge feature](https://portfolio.metamask.io/bridge), which aggregates bridging options across Linea and shows you the best rates.
@@ -178,6 +179,7 @@ Please use the [automatic claiming option](/use-mainnet/bridges-of-linea#manual-
 ## Bridging ETH from Linea Mainnet (L2) to Ethereum Mainnet (L1)
 
 :::note
+
 
 Automatic claiming is only available for bridging ETH from L1 to L2. You will not be able to select this option for L2 to L1 bridging.
 
