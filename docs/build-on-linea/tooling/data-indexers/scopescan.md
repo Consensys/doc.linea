@@ -87,19 +87,22 @@ Under Investigation Mode, there are several tools focused on transactions and to
 </div>
 
 There are more tools that you can discover, aside from the ones featured above. For more information about the complete suite of Scopescan’s Web3 analytical tools, go to https://docs.scopescan.ai/
+
 #### Conclusion
+
 Scopescan allows the Linea community to do the following:
-- Discover new insights by exploring more than +10,000,000 data labels and tags
-- Query complex on-chain data points,
+
+- Discover new insights by exploring more than 10,000,000 data labels and tags
+- Query complex on-chain data points
 - Explore real-world entities using our intuitive dashboards
 - Analyze entity behavior across multiple chains, including Linea
 - Get access to all kinds of on-chain data including entities, behavior, Web2 social connections, and more
-- Recognize real-time signals 
+- Recognize real-time signals
 - Leverage address tracking and monitoring for investigative and product enhancement purposes
 - Get new insights into the companies behind Web3 products
 
 #### Reference Links:
 
-Scopescan: https://www.scopescan.ai/home?network=linea 
-Scopescan Docs: https://docs.scopescan.ai/
-Scopescan on 0xScope: https://www.0xscope.com/scopeScan 
+- [Scopescan](https://www.scopescan.ai/home?network=linea)
+- [Scopescan docs](https://docs.scopescan.ai)
+- [Scopescan on 0xScope](https://www.0xscope.com/scopeScan)
