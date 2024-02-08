@@ -18,4 +18,13 @@ Now that you’ve got your feet wet, you can write tests for your contract (foun
 
 Want to build something bigger? Check out [this tutorial](https://www.youtube.com/embed/mnyYizj3l_8?si=eVXHsWWZxlg9EU4D), which shows off how to build a DEX from scratch on Linea. You can also [open and run the tutorial](https://app.atlaszk.com/projects?template=https://github.com/sameesiddiqui/LilDex&open=LilDex.sol) in 1 click.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mnyYizj3l_8?si=eVXHsWWZxlg9EU4D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="center-container">
+    <div class="video-container">
+      <iframe
+        class="video-iframe"
+        src="https://www.youtube.com/embed/mnyYizj3l_8?si=eVXHsWWZxlg9EU4D"
+        title="How to build a DEX (like uniswap) in 1 smart contract"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+    </div>
+</div>
