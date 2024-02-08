@@ -17,7 +17,7 @@ const sidebars = {
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
         "use-mainnet/linea-xp",
-        "use-mainnet/gas-import",
+//        "use-mainnet/gas-import",
         "use-mainnet/import-info-contracts",
       ],
     },

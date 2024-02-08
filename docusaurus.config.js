@@ -314,6 +314,10 @@ const config = {
             to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
+          {
+            to: "/build-on-linea/gas-fees",
+            from: "/use-mainnet/gas-import",
+          },
         ],
       },
     ],
