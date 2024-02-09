@@ -91,7 +91,7 @@ The `linea_estimateGas` API calculates gas fees as follows:
     With the following assumptions:
 
     - `L2_compressed_tx_size_in_bytes`: This is the size of the transaction data after it has been compressed using the
-        `gnarkCompression` function (the zk-SNARK library used by Linea). It's calculated by taking the size of the
+        `gnarkCompression` function (the ZK compression library used by Linea). It's calculated by taking the size of the
         RLP-encoded transaction data, subtracting the sizes of certain components (32 bytes for the signature, 32 bytes
         for the transaction type, 1 byte for the chain ID, and adding 20 bytes for the sender's address).
 
