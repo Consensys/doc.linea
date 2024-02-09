@@ -16,7 +16,7 @@ There are minor differences in the way Linea handles gas calculations to Ethereu
     (less than 50% of the maximum block size of 61 million gas), the fee decreases by 12.5% per block, effectively
     keeping it at a stable 7 wei.
 - Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold, which adjusts
-    over time, transactions are added to the pending queue until the gas price on the network drops sufficiently for the
+    over time. Instead, transactions are added to the pending queue until the gas price on the network drops sufficiently for the
     transactions to be included.
 
 The gas cost to submit your transaction and include it on Ethereum involves the following fee components:
@@ -26,15 +26,13 @@ The gas cost to submit your transaction and include it on Ethereum involves the 
 - Layer 1 fee - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can vary based on the size
     of the transaction calldata.
 
-You can [use the `linea_estimateGas`](#calculate-transaction-fees) gas API to estimate your gas costs; the result of the
-call provides an estimation that includes the layer 1 and layer 2 fees.
+You can [use the `linea_estimateGas`](../reference/api/linea-estimategas.mdx) gas API to estimate your gas costs; the result of the
+call provides an estimate that includes the layer 1 and layer 2 fees.
 
 ## Calculate transaction fees
 
-Use the `linea_estimateGas` API to estimate the gas cost for sending a transaction. The API uses the same inputs as the
-standard [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas), but returns the
-recommended gas limit, the base fee per gas, and the priority fee per gas, providing a more comprehensive estimate for
-executing transactions on the Linea network.
+Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API to estimate the gas cost for sending a
+transaction. The API will return the recommended gas limit, the base fee per gas, and the priority fee per gas.
 
 :::info important
 
