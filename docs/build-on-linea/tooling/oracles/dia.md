@@ -35,7 +35,9 @@ You can find DIA's oracle integration samples in Solidity and Vyper languages by
 
 DIA has deployed the following demo oracles for the Linea community. It provides a limited selection of cryptocurrency price feeds with predefined configuration settings.
 
-> ⚠️ NOTE: DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. Start the request process: [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle)
+:::note
+DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. Start the request process: [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle)
+:::
 
 ### Demo Oracle Smart Contracts
 

@@ -29,7 +29,7 @@ Scopescan is equipped with a variety of tools that help the Linea community bett
 In this mode, Scopescan users can find profiles of the top addresses, tokens, and projects on the Linea network. These profile pages serve as comprehensive dashboards containing relevant information about any entity on the Linea network. Below, you can see a sample dashboard for Linea’s projects and addresses.
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_1.png"
       />
@@ -37,7 +37,7 @@ In this mode, Scopescan users can find profiles of the top addresses, tokens, an
 </div>
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_2.png"
       />
@@ -51,7 +51,7 @@ This segment of Scopechat contains dashboards focused on identifying potential a
 In addition, you can create your own dashboard that can track specific addresses on your radar, giving you a key advantage in tracking changes in user behaviors and acting upon them.
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_3.png"
       />
@@ -59,7 +59,7 @@ In addition, you can create your own dashboard that can track specific addresses
 </div>
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_4.png"
       />
@@ -71,7 +71,7 @@ In addition, you can create your own dashboard that can track specific addresses
 Under Investigation Mode, there are several tools focused on transactions and token analytics. For instance, the Address Clustering tool (first picture below) allows you to generate an address graph that visualizes likely connected addresses, based on a search for a single address. Meanwhile, the Money Flow tool (second picture below) allows users to investigate, track and share relevant information on blockchain transactions.
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_5.png"
       />
@@ -79,7 +79,7 @@ Under Investigation Mode, there are several tools focused on transactions and to
 </div>
 
 <div class="center-container">
-  <div class="img-medium">
+  <div class="img-large">
       <img
         src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Scopescan/Scopescan_for_linea_6.png"
       />
@@ -87,19 +87,22 @@ Under Investigation Mode, there are several tools focused on transactions and to
 </div>
 
 There are more tools that you can discover, aside from the ones featured above. For more information about the complete suite of Scopescan’s Web3 analytical tools, go to https://docs.scopescan.ai/
+
 #### Conclusion
+
 Scopescan allows the Linea community to do the following:
-- Discover new insights by exploring more than +10,000,000 data labels and tags
-- Query complex on-chain data points,
+
+- Discover new insights by exploring more than 10,000,000 data labels and tags
+- Query complex on-chain data points
 - Explore real-world entities using our intuitive dashboards
 - Analyze entity behavior across multiple chains, including Linea
 - Get access to all kinds of on-chain data including entities, behavior, Web2 social connections, and more
-- Recognize real-time signals 
+- Recognize real-time signals
 - Leverage address tracking and monitoring for investigative and product enhancement purposes
 - Get new insights into the companies behind Web3 products
 
 #### Reference Links:
 
-Scopescan: https://www.scopescan.ai/home?network=linea 
-Scopescan Docs: https://docs.scopescan.ai/
-Scopescan on 0xScope: https://www.0xscope.com/scopeScan 
+- [Scopescan](https://www.scopescan.ai/home?network=linea)
+- [Scopescan docs](https://docs.scopescan.ai)
+- [Scopescan on 0xScope](https://www.0xscope.com/scopeScan)
