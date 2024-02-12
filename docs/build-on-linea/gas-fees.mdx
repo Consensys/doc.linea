@@ -15,9 +15,9 @@ There are minor differences in the way Linea handles gas calculations to Ethereu
 - The base fee uses a set price of 7 wei. Blocks created by Linea use up to 30 million gas
     (less than 50% of the maximum block size of 61 million gas), the fee decreases by 12.5% per block, effectively
     keeping it at a stable 7 wei.
-- Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold, which adjusts
-    over time. Instead, transactions are added to the pending queue until the gas price on the network drops sufficiently for the
-    transactions to be included.
+- Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold. This threshold
+    is not static; it adjusts over time and varies depending on the specifics of each transaction. Instead, transactions
+    are added to the pending queue until the gas price on the network drops sufficiently for the transactions to be included.
 
 The gas cost to submit your transaction and include it on Ethereum involves the following fee components:
 
@@ -36,12 +36,14 @@ transaction. The API will return the recommended gas limit, the base fee per gas
 
 :::info important
 
-`linea_estimateGas` uses the same parameters as [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
-however we recommend using `linea_estimateGas` for more accurate results.
+Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
+[`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
+[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but they usually return
+a higher (and less accurate) estimate than `linea_estimateGas`.
 
 :::
 
-The following example executes the `linea_estimateGas` API on the Goerli testnet.
+The following example executes the `linea_estimateGas` API on the Linea Goerli testnet.
 
 <Tabs className="my-tabs">
   <TabItem value="curl" label="curl" default>
@@ -53,7 +55,7 @@ curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [
 </TabItem>
 <TabItem value="result" label="Result">
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
   "id": 53,
@@ -68,6 +70,15 @@ curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [
   </TabItem>
 </Tabs>
 
+The `linea_estimateGas` API calculates gas fees as follows:
+
+- `baseFeePerGas` - Uses the Linea base fee which is static at 7 wei.
+- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
+- `priorityFeePerGas` - Calculates the fee required to prioritize a transaction by considering factors such as the
+    compressed transaction size, layer 1 verification costs and capacity, gas price ratio between layer 1 and
+    layer 2, the transaction's gas usage, the minimum minable gas price on Layer 2, and a minimum
+    margin (for error) for gas price estimation.
+
 :::note
 
 The result of the request returns hexadecimal equivalent integers of gas prices in wei. Convert the hexadecimal value into
@@ -75,34 +86,3 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 :::
-
-### Formula
-
-The `linea_estimateGas` API calculates gas fees as follows:
-
-- `baseFeePerGas` - Uses the Linea base fee which is static at 7 wei.
-- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
-- `priorityFeePerGas` - Uses the following formula:
-
-    ```bash
-    priorityFeePerGas = L2_compressed_tx_size_in_bytes * L1_VERIFICATION_COST * L2_minimum_minable_gas_price * L1_L2_GAS_PRICE_RATIO * MINIMUM_MARGIN_ESTIMATE_GAS / (L2_tx_gas_used * L1_VERIFICATION_CAPACITY)
-    ```
-
-    With the following assumptions:
-
-    - `L2_compressed_tx_size_in_bytes`: This is the size of the transaction data after it has been compressed using the
-        `gnarkCompression` function (the ZK compression library used by Linea). It's calculated by taking the size of the
-        RLP-encoded transaction data, subtracting the sizes of certain components (32 bytes for the signature, 32 bytes
-        for the transaction type, 1 byte for the chain ID, and adding 20 bytes for the sender's address).
-
-    - `L1_VERIFICATION_COST`: The cost of verifying the transaction on the Ethereum network. It's currently set at
-        1.2 million gas.
-
-    - `L1_VERIFICATION_CAPACITY`: The maximum amount of data that can be verified in a single block on the Ethereum network.
-        It's currently set at 90 kilobytes (kB).
-
-    - `L1_L2_GAS_PRICE_RATIO`: The ratio of the gas price on the Ethereum network to the gas price on the Linea network.
-        It's currently set at 15 for the testnet and 12 for the mainnet.
-
-    - `MINIMUM_MARGIN_ESTIMATE_GAS`: The factor used to ensure that the estimated gas price includes a margin of error.
-        It's currently set at 1.0.
