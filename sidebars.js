@@ -130,6 +130,7 @@ const sidebars = {
           label: "Account Abstraction",
           items: [
             "build-on-linea/tooling/account-abstraction/4337",
+            "build-on-linea/tooling/account-abstraction/arcana",
             "build-on-linea/tooling/account-abstraction/biconomy",
             "build-on-linea/tooling/account-abstraction/etherspot",
             "build-on-linea/tooling/account-abstraction/smartwallets",
@@ -237,6 +238,13 @@ const sidebars = {
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
             "build-on-linea/tooling/security/spherex",
+          ],
+        },
+        {
+          type: "category",
+          label: "Social Login",
+          items: [
+            "build-on-linea/tooling/social-login/arcana"
           ],
         },
       ],
