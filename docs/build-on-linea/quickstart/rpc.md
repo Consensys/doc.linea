@@ -9,7 +9,7 @@ sidebar_position: 6
 Linea uses the [Ethereum JSON-RPC API](https://eth.wiki/json-rpc/API). This is because the zkEVM is EVM-equivalent, meaning
 that the developer experience is almost identical to building on Ethereum itself.
 
-For documentation for Linea-specific APIs, view the [Linea JSON-RPC API](../../reference/api/index.md) documentation.
+For documentation for Linea-specific APIs, view the [Linea JSON-RPC API](../../reference/api/index.md) reference.
 
 Check out Infura's documentation of the Ethereum API [here](https://docs.infura.io/networks/ethereum/json-rpc-methods);
 

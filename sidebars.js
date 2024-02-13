@@ -249,7 +249,7 @@ const sidebars = {
         items: [
           {
             type: "category",
-            label: "Linea JSON-RPC API methods",
+            label: "Linea JSON-RPC API",
             link: {
               type: "doc",
               id: "reference/api/index",

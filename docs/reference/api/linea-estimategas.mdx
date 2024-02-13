@@ -13,18 +13,18 @@ The transaction will not be added to the blockchain.
 For more information about estimating gas, and how this API formulates the transaction costs, see the
 [Estimate transaction costs](../../build-on-linea/gas-fees.mdx) topic.
 
-:::note We recommend using linea_estimateGas for more accurate results
+:::note
 
-The API uses the same inputs as the standard [eth_estimateGas](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
-but returns the recommended gas limit, the base fee per gas, and the priority fee per gas.
+`linea_estimateGas` uses the same inputs as the standard [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
+but returns the recommended gas limit, the base fee per gas, and the priority fee per gas. We recommend using `linea_estimateGas` for more accurate results.
 
 :::
 
 ## Parameters
 
 - `TRANSACTION CALL OBJECT` _\[required]_
-  - `from`: _\[optional]_ 20 Bytes - The address the transaction is sent from.
-  - `to`: _\[optional]_ 20 Bytes - The address the transaction is directed to.
+  - `from`: _\[optional]_ 20 bytes - The address the transaction is sent from.
+  - `to`: _\[optional]_ 20 bytes - The address the transaction is directed to.
   - `gas`: _\[optional]_ Hexadecimal value of the gas provided for the transaction execution. `linea_estimateGas` consumes
       zero gas, but this parameter may be needed by some executions.
   - `gasPrice`: _\[optional]_ Hexadecimal value of the gas price used for each paid gas.
