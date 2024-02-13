@@ -2,7 +2,7 @@
 title: Etherspot
 ---
 
-# Robust ERC4337 infrastructure for seamless web3 development
+## Robust ERC4337 infrastructure for seamless web3 development
 
 Build an unmatched web3 user experience by removing usability pain points with Etherspot’s Account Abstraction (AA) infrastructure.
 

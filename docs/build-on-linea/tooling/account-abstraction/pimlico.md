@@ -2,7 +2,7 @@
 title: Pimlico
 ---
 
-## Pimlico: powerful infrastructure for Smart Accounts
+## Powerful infrastructure for Smart Accounts
 
 Pimlico provides smart account tools for ERC-4337 that streamline your path from vision to reality.
 
