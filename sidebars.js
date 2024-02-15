@@ -266,6 +266,7 @@ const sidebars = {
         ],
       },
       "build-on-linea/linea-version/index",
+      "build-on-linea/hackathons",
      {
       type: "link",
       label: "Bug Bounty Program",
