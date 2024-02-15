@@ -17,7 +17,6 @@ const sidebars = {
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
         "use-mainnet/linea-xp",
-        "use-mainnet/gas-import",
         "use-mainnet/import-info-contracts",
       ],
     },
@@ -244,7 +243,25 @@ const sidebars = {
       "build-on-linea/tooling/linea-safe",
       "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
+      {
+        type: "category",
+        label: "Reference",
+        items: [
+          {
+            type: "category",
+            label: "Linea JSON-RPC API",
+            link: {
+              type: "doc",
+              id: "reference/api/index",
+            },
+            items: [
+              "reference/api/linea-estimategas",
+            ],
+          },
+        ],
+      },
       "build-on-linea/linea-version/index",
+      "build-on-linea/hackathons",
      {
       type: "link",
       label: "Bug Bounty Program",

@@ -16,7 +16,8 @@ Chainlink is the industry standard for building, accessing, and selling oracle s
 6. [Data Feeds](https://docs.chain.link/data-feeds): Connects smart contracts with real-world data like asset prices, NFT floor prices, and more, enhancing decentralized applications' functionality and reliability.
 
 :::info
- Linea live on Chainlink Data Feeds Check out the data feeds [here](https://data.chain.link/) and filter by Linea Mainnet! :::
+Linea live on Chainlink Data Feeds Check out the data feeds [here](https://data.chain.link/) and filter by Linea Mainnet!
+:::
 
 ## Use Cases
 

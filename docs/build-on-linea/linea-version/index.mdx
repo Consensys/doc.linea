@@ -23,7 +23,7 @@ Find out all you need to know about the latest Linea versions.
     </tr>
     <tr>
       <td>Mainnet</td>
-      <td>February 8th, 2024</td>
+      <td>February 13th, 2024</td>
     </tr>
     <tr>
       <td>Testnet</td>
@@ -49,11 +49,43 @@ Primarily, the L1 costs are driven by the following:
 To decrease L1 costs, we implemented the following features:
 
 - Proof aggregation:
-  - This allows us to create a set of proofs for conflated batches and generates an aggregated proof that verifies that all the proofs are correct. Since it takes the same amount of gas to verify an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a proof aggregating N proofs is N times cheaper.
+  - This allows us to create a set of execution proofs for conflated batches and generates an aggregated proof that verifies that all the batches are correct. Since it takes the same amount of gas to verify an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a proof aggregating N proofs is N times cheaper.
 - Data compression:
   - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
 - Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
   - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there is a 32x calldata size reduction for message hashes
+
+### Smart contract changes
+
+To support these new features, we implemented changes to our smart contracts. 
+
+We introduce a `VERIFIER_SETTER_ROLE`, that will be attributed to the Timelock.sol so that all core contract upgrades (Rollup and Message and Token bridge) and verifiers are executed through a TimeLock mechanism.
+Note that we are also using this upgrade to update the way the type 2 state was calculated; as such we'll need to call `finalizeWithoutProof` to perform a state transition from type2 state v1 to type2 state v2.
+
+The Security Council will first execute the following transactions on L1:
+- Assign Operator Role via the Safe to the account for blob submission
+- Assign Verifier Setter role via the Safe to the Timelock
+- Schedule Set new Verifier at index 0
+- Execute Set new Verifier at index 0
+- Schedule LineaRollup upgrade (at L1 block N)
+- Execute LineaRollup upgrade (at L1 block N)
+- Update Zodiac delegate roles from pauseByType(bytes32) -> pauseByType(uint8)
+
+The Security Council will then execute the following transactions on L2:
+- Schedule L2MessageService upgrade
+- Execute L2MessageService upgrade
+
+Post upgrade, Execute the following Security Council transactions on L1:
+- Call FinalizeWithoutProof
+- Clear verifier mapping at index 6 and 7
+
+The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
+
+Two independent audits have been performed for this update. Reports can be found here: 
+
+- Diligence: https://consensys.io/diligence/audits/2024/01/linea-contracts-update/
+
+- Open Zeppelin: https://blog.openzeppelin.com/linea-v2-audit
 
 ### Breaking changes
 
