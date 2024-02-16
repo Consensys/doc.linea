@@ -16,21 +16,3 @@ We run The Graph indexers on Linea to allow you to leverage the power of this te
 TheGraph is now live with Linea Mainnet! For more information, take a look at their official [documentation](https://thegraph.com/docs/en/)
 
 :::
-
-## Custom subgraph and deployments
-
-If there are no public subgraph that matches your needs, in order to use TheGraph you will need to define your own subgraph and get it deployed on an indexer.
-
-## Endpoints
-
-**Mainnet**
-
-- Graph query endpoint - https://graph-query.linea.build
-- Graph deployer endpoint - https://graph-deploy.linea.build
-- IPFS endpoint - https://graph-ipfs.linea.build
-
-**Testnet**
-
-- Graph query endpoint - https://graph-query.goerli.linea.build
-- Graph deployer endpoint - https://graph-deploy.goerli.linea.build
-- IPFS endpoint - https://graph-ipfs.goerli.linea.build
