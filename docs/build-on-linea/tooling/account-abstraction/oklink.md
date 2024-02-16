@@ -6,9 +6,9 @@ title: OKLink
 
 OKLink provides on-chain information, prioritizing accessibility by simplifying insights for easy understanding. Users can search through transactions, blocks, wallet addresses, smart contracts, and other on-chain data covering 40+ chains.
 
-### Account Abstraction services available through OKLink:
+## Account abstraction services available through OKLink:
 
-1. [View UserOps details](https://www.oklink.com/linea/tx/uop/0x6c8f68613afffeb70ea31f145dc416d18540a32a0e00e04df4c94018d666fde2): including the AA address initiating the transaction, Paymaster information, and details about using ERC-20 tokens for transaction fees.
+1. [View UserOps details](https://www.oklink.com/linea/tx/uop/0x6c8f68613afffeb70ea31f145dc416d18540a32a0e00e04df4c94018d666fde2): including the AA address initiating the transaction, paymaster information, and details about using ERC-20 tokens for transaction fees.
 
 2. [View the transaction list for ERC-4337](https://www.oklink.com/linea/address/0x7fb5aa2a66bd08c61956bd29df4da48cc63d66d9/aa): can view all ERC-4337 transactions related to the address.
 
