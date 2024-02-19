@@ -78,7 +78,7 @@ const sidebars = {
         items: [
           {
             type: "category",
-            label: "Deploy Smart Contract",
+            label: "Deploy a Smart Contract",
             items: [
               "build-on-linea/quickstart/deploy-smart-contract/atlas",
               "build-on-linea/quickstart/deploy-smart-contract/foundry",
@@ -90,7 +90,7 @@ const sidebars = {
           },
           {
             type: "category",
-            label: "Verify Smart Contract",
+            label: "Verify a Smart Contract",
             items: [
               "build-on-linea/quickstart/verify-smart-contract/atlas",
               "build-on-linea/quickstart/verify-smart-contract/foundry",
@@ -128,8 +128,13 @@ const sidebars = {
         {
           type: "category",
           label: "Account Abstraction",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/account-abstraction/account-abstraction"
+
+          },
           items: [
-            "build-on-linea/tooling/account-abstraction/4337",
+            "build-on-linea/tooling/account-abstraction/pimlico",
             "build-on-linea/tooling/account-abstraction/biconomy",
             "build-on-linea/tooling/account-abstraction/etherspot",
             "build-on-linea/tooling/account-abstraction/smartwallets",
