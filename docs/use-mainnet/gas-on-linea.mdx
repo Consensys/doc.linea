@@ -12,7 +12,7 @@ The main costs of interacting with L1 are:
 - Producing the hash of the batch submission data, which is required as an input to the Plonk verifier
 - Sending `calldata` to L1.
 
-Since the process of generating zk proofs and submitting them to L1 is an indispensible and vital feature of Linea, we can consider gas to represent the cost of maintaining the network's security and integrity.
+Since the process of generating zk proofs and submitting them to L1 is an indispensable and vital feature of Linea, we can consider gas to represent the cost of maintaining the network's security and integrity.
 
 ## Alpha v2 and minimizing gas fees
 
@@ -42,6 +42,6 @@ Generating a zkSNARK proof on L1 is an essential step for finalizing transaction
 
 Previously, Linea generated one proof per batch of transactions. With Alpha v2, many proofs can be recursively aggregated into one.
 
-The verification process on L1 costs ~400,000 gas — a cost that previously had to be covered for every batch. This gas cost is the same, however, for verifying a single batch of conflated batches (as Linea did in Alpha v1) as it is for verifying an aggregated proof represting multiple batches (as in Alpha v2). A proof that aggregates N proofs is N times cheaper, as the cost remains consistent.
+The verification process on L1 costs ~400,000 gas — a cost that previously had to be covered for every batch. This gas cost is the same, however, for verifying a single batch of conflated batches (as Linea did in Alpha v1) as it is for verifying an aggregated proof representing multiple batches (as in Alpha v2). A proof that aggregates N proofs is N times cheaper, as the cost remains consistent.
 
 With Alpha v2 upgrades, Linea now averages ~30 batches per final proof, making the process 1/30th as costly as it was in Alpha v1.
