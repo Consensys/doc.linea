@@ -10,20 +10,20 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas). However, as a
 layer 2 blockchain, Linea provides a more stable and cost-effective solution for transaction fees.
 
-There are minor differences in the way Linea handles gas calculations to Ethereum:
+There are minor differences in the way Linea handles gas calculations when compared with Ethereum:
 
-- The base fee uses a set price of 7 wei. Blocks created by Linea use up to 30 million gas
+- **The base fee uses a set price of 7 wei.** Blocks created by Linea use up to 30 million gas
     (less than 50% of the maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, effectively
     keeping it at a stable 7 wei.
-- Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold. This threshold
+- **Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a certain threshold.** This threshold
     is not static; it adjusts over time and varies depending on the specifics of each transaction. Instead, transactions
     are added to the pending queue until the gas price on the network drops sufficiently for the transactions to be included.
 
 The gas cost to submit your transaction and include it on Ethereum involves the following fee components:
 
-- Layer 2 fee - The L2 fee (execution fee) is the cost to include your transaction on the Linea sequencer and is calculated
+- **Layer 2 fee** - The L2 fee (execution fee) is the cost to include your transaction on the Linea sequencer and is calculated
     using a similar formula to Ethereum. 
-- Layer 1 fee - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can vary based on the size
+- **Layer 1 fee** - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can vary based on the size
     of the transaction calldata.
 
 You can [use the `linea_estimateGas`](../reference/api/linea-estimategas.mdx) gas API to estimate your gas costs; the result of the
@@ -82,7 +82,7 @@ The `linea_estimateGas` API calculates gas fees as follows:
 :::note
 
 The result of the request returns hexadecimal equivalent integers of gas prices in wei. Convert the hexadecimal value into
-decimals to get the wei value. You can use any hexadecimal to decimal converter such as
+decimals to get the wei value. You can use any hexadecimal to decimal converter, such as
 [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 :::
