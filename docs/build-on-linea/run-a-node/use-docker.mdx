@@ -1,0 +1,117 @@
+---
+description: Use Docker to run a Besu or Geth client as a Linea node.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Use Docker
+
+You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
+a Linea node on the mainnet or testnet. 
+
+## Prerequisites
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/)
+
+## Run a Besu node
+
+:::info
+
+The Besu Docker image does not run on Windows.
+
+:::
+
+### Step 1. Download configurations files
+
+Download the configuration files for the relevant network (in Zip format). The configuration files include the network genesis file,
+Docker Compose file and client configuration file.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Download the [besu-mainnet zip file](/files/besu/besu-mainnet.zip).
+  
+  </TabItem>
+  <TabItem value="testnet" label="Testnet">
+  
+  Download the [besu-goerli zip file](/files/besu/besu-goerli.zip).
+  
+  </TabItem>
+</Tabs>
+
+### Step 2. Update the client configuration file
+
+Update the client configuration file with the your IP address and data path directory.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  In the `config-snap-mainnet.toml` file, change the `p2p-host="Your IP Address"` to your own public IP address and change
+  the `data-path=”besu-mainnet”` to your specific folder name where you’re running the node from.
+  
+  </TabItem>
+  <TabItem value="testnet" label="Testnet">
+  
+  In the `config-snap-goerli.toml` file, change the `p2p-host="Your IP Address"` to your own public IP address and
+  change `data-path=”besu-mainnet”` to your specific folder name where you’re running the node from.
+  
+  </TabItem>
+</Tabs>
+
+:::tip
+
+You can use [this page](https://www.whatismyip.com/) to find your IP address.
+
+:::
+
+### Step 3. Update the `docker-compose` file
+
+In the `docker-compose.yaml` file, edit the volumes section by changing the `/path/to/your/[NETWORK]/directory` to the
+data path of the folder where you are hosting the files.
+
+### Step 4. Start the Besu node
+
+Open a terminal in the directory location and run `docker-compose up`. 
+
+:::note
+
+It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node. For
+more information please look at the official [Besu documentation](https://besu.hyperledger.org/public-networks/get-started/install/run-docker-image).
+
+:::
+
+## Run a Geth node
+
+### Step 1. Download configurations files
+
+Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Download the mainnet [`docker-compose.yml`](pathname:///files/docker-compose.yml) and [`genesis.json`](pathname:///files/genesis.json)
+  files.
+  
+  </TabItem>
+  <TabItem value="testnet" label="Testnet">
+  
+  Download the testnet [`docker-compose.yml`](pathname:///files//testnet/docker-compose.yml) and [`genesis.json`](pathname:///files/testnet/genesis.json)
+  files.
+  
+  </TabItem>
+</Tabs>
+
+### Step 2. Start the Geth node
+
+Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
+and run `docker compose up`
+
+The node should now be running and looking for peers to sync.
+
+:::note
+
+You can ignore log messages related to Besu. The `docker-compose.yml` has Besu configurations that won't be running and
+shouldn't affect your node.
+
+:::

@@ -109,7 +109,18 @@ const sidebars = {
             ],
           },
           "build-on-linea/linea-sdk/index",
-          "build-on-linea/run-a-node",
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
           "build-on-linea/quickstart/rpc",
         ],
       },
