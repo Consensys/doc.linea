@@ -5,14 +5,13 @@ description: Understanding gas on Linea
 
 ## What does gas pay for?
 
-Gas must be paid to cover any kind of on-chain computation. For a zk rollup like Linea, gas mainly goes toward the cost of generating proofs for batches of transactions and submitting this data to L1.
+Gas must be paid to cover any kind of on-chain computation. For a zk rollup like Linea, this mainly involves executation and storage on L2, and publishing `calldata` on L1.
 
 The main costs of interacting with L1 are:
-- Proof verification
-- Producing the hash of the batch submission data, which is required as an input to the Plonk verifier
-- Sending `calldata` to L1.
+- Verifying 'proofs', the cryptographic functions that confirm the validity of the state changes being recorded on L1, and; 
+- Publishing compressed transactions to L1 as `calldata`.
 
-Since the process of generating zk proofs and submitting them to L1 is an indispensable and vital feature of Linea, we can consider gas to represent the cost of maintaining the network's security and integrity.
+Since the process of publishing data and verifying zk proofs on Ethereum mainnet is an indispensable and vital feature of Linea, we can consider the Linea gas price to cover two dimensions: the L2 execution and storage resources on Linea, and the L1 cost of guaranteeing the computational integrity of each Linea batch.
 
 ## Alpha v2 and minimizing gas fees
 
