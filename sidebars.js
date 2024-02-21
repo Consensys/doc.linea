@@ -160,11 +160,11 @@ const sidebars = {
           label: "Attestations",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/attestations/attestations",
+            id: "build-on-linea/tooling/attestations/index",
           },
           items: [
-            "build-on-linea/tooling/attestations/pado",
             "build-on-linea/tooling/attestations/verax",
+            "build-on-linea/tooling/attestations/pado",
           ],
         },
         {
