@@ -198,14 +198,6 @@ const config = {
                 label: "Contribute to our documentation",
                 href: "https://github.com/Consensys/doc.zk-evm",
               },
-              {
-                label: "Contribute to our gnark repo",
-                href: "https://github.com/Consensys/gnark",
-              },
-              {
-                label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/Consensys/gnark-crypto",
-              },
             ],
           },
         ],
