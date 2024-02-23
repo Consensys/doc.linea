@@ -12,7 +12,7 @@ const sidebars = {
         id: "index",
       },
       items: [
-        "use-mainnet/index",
+       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
