@@ -12,7 +12,10 @@ title: Node Providers
 - [GetBlock](https://getblock.io/)
 - [ANKR](https://www.ankr.com/rpc/)
 
-If you want your own private personal RPC endpoint, you can [run your own Linea node](/docs/build-on-linea/run-a-node.mdx).
+## Run your own node
+
+- [Set it up yourself](/docs/build-on-linea/run-a-node.mdx)
+- [One-click deploy with EasyNode](https://app.easy-node.xyz/)
 
 ## Public RPC endpoints
 
