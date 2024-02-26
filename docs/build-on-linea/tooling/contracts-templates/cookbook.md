@@ -4,7 +4,7 @@ title: Cookbook.dev
 
 [Cookbook.dev](https://www.cookbook.dev/?utm=lineadocs) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
 
-## Search cookbook's smart contract registry
+## Search Cookbook's smart contract registry
 
 Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar.
 
