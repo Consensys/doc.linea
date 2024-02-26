@@ -22,11 +22,11 @@ This is suited for all protocols that just need their token on L2 for DeFi and o
 
 **Bridge ETH**
 
-We recommend you use the [official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-eth) for bridging between Linea and Ethereum.
+We recommend you use the [official Linea token bridge](./how-to-bridge-eth.md) for bridging between Linea and Ethereum.
 
 **Bridge ERC-20 tokens**
 
-Again, we recommend the official bridge; ERC-20-specific instructions are [here](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens).
+Again, we recommend the official bridge; ERC-20-specific instructions are [here](./how-to-bridge-erc20-tokens.mdx).
 
 ### 2. Use the canonical token bridge with a custom `BridgedToken` implementation
 
@@ -88,7 +88,7 @@ The canonical message bridge is the main "bridge", on a technical level. This is
 
 This message is then picked up by programs serving as "postmen", and moved to the other network, where the receiving smart contract executes according to the message received.
 
-### [The canonical token bridge](/architecture/bridges/canonical-token-bridge)
+### [The canonical token bridge](../../architecture/bridges/canonical-token-bridge.mdx)
 
 If you want to move tokens between L1 and L2, we recommend you use the bridge built on top of the canonical message bridge specifically
 for this purpose: the canonical token bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build).

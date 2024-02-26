@@ -77,6 +77,7 @@ Post upgrade, Execute the following Security Council transactions on L1:
 - Call FinalizeWithoutProof
 - Clear verifier mapping at index 6 and 7
 
+<!-- markdown-link-check-disable-next-line -->
 The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
 
 Two independent audits have been performed for this update. Reports can be found here: 
@@ -92,7 +93,7 @@ Two independent audits have been performed for this update. Reports can be found
 - Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof generation requests and their submission when claiming a message. This applies to messages sent post upgrading. Pre-existing messages must be claimed with the current approach.
 
 :::info
-[Note] If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk).
+[Note] If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../../build-on-linea/linea-sdk/index.md).
 
 :::
 
