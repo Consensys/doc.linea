@@ -37,15 +37,15 @@ Whether you're using a Docker image from Docker Hub or deploying a marketplace a
    3. Enter the names for your cluster and docker image.
    4. Then, add the tag and click "Next."
    5. Choose your compute type option under **Compute Type**.
-   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/compute#region) to learn more.
    7. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, click "Deploy" to initiate deployment.
    8. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
    9. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
    10. Create new **Port Policy Mapping**. Add the container port and select the exposed port you want to map it to. Refer to our docs for more information.
    11. Add **Environment Variable**, if any.
-   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/#environment-variables) to learn more.
-   13. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration) to read more.
-   14. You can add a health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/#health-checkup) to learn more.
+   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/compute#secret-environment-variables) to learn more.
+   13. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/compute#advance-configuration-1) to read more.
+   14. You can add a health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/compute#health-checkup) to learn more.
    15. Click "Deploy" to initiate deployment.
 
     <br />
@@ -58,11 +58,11 @@ Whether you're using a Docker image from Docker Hub or deploying a marketplace a
    2. Select **Start from Marketplace App**.
    3. Pick your desired template from the marketplace.
    4. Choose your desired compute type option under **Compute Type**.
-   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](hhttps://docs.spheron.network/compute/cluster/compute#region) to learn more.
    6. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just click "Deploy" to initiate deployment.
    7. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
    8. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
-   9. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration-1) to know more.
+   9. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/compute#advance-configuration-1) to know more.
    10. Click "Deploy" to initiate deployment.
 
    <br />

@@ -8,9 +8,9 @@ sidebar_position: 1
 
 We recommend that only tech operators that are providing liquidity use the official Linea bridge to transfer ETH.
 
-For everyday bridge transfers, we recommend you use [MetaMask Portfolio's Bridge feature](https://portfolio.metamask.io/bridge), which aggregates bridging options across Linea and shows you the best rates.
+### For everyday bridge transfers, we recommend you use [MetaMask Portfolio's Bridge feature](https://portfolio.metamask.io/bridge), which aggregates bridging options across Linea and shows you the best rates.
 
-For a closer look at the bridges that MetaMask Portfolio sources from, check out our information about [third-party bridges](/use-mainnet/bridges-of-linea#third-party-permissionless-bridges).
+For a closer look at the bridges that MetaMask Portfolio sources from, check out our information about [third-party bridges](./bridging-non-dev.mdx#third-party-permissionless-bridges).
 
 :::
 
@@ -35,7 +35,7 @@ If you would like to bridge between other networks, check out [third-party bridg
 
 :::caution
 
-Please use the [automatic claiming option](/use-mainnet/bridges-of-linea#manual-vs-automatic-claiming) the first time you bridge ETH from L1 to L2. [Manual claiming](/use-mainnet/bridges-of-linea#manual-vs-automatic-claiming) requires you to have L2 ETH available to pay for the fees. **If you don't have enough L2 ETH to cover the fees, your transaction will be stuck on the bridge until you can cover the fees!**
+Please use the [automatic claiming option](./index.mdx#manual-vs-automatic-claiming) the first time you bridge ETH from L1 to L2. [Manual claiming](/use-mainnet/bridges-of-linea#manual-vs-automatic-claiming) requires you to have L2 ETH available to pay for the fees. **If you don't have enough L2 ETH to cover the fees, your transaction will be stuck on the bridge until you can cover the fees!**
 
 :::
 
