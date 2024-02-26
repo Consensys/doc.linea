@@ -290,5 +290,6 @@ https://{gateway-name}.spheron.link/ipfs/{cid}
 
 - Visit [our platform](https://spheron.network/) to learn more.
 - Access our comprehensive [documentation](https://docs.spheron.network/) for detailed information.
+<!-- markdown-link-check-disable-next-line -->
 - Follow us on [Twitter](https://twitter.com/SpheronFDN) for the latest updates and news.
 - Join our [Community](https://community.spheron.network/) for dedicated support and assistance.
