@@ -18,6 +18,7 @@ const sidebars = {
         "use-mainnet/bridges-of-linea/bridging-non-dev",
         "use-mainnet/linea-xp",
         "use-mainnet/import-info-contracts",
+        "use-mainnet/gas-on-linea",
       ],
     },
     {
@@ -96,6 +97,7 @@ const sidebars = {
               "build-on-linea/quickstart/verify-smart-contract/hardhat",
             ],
           },
+          "use-mainnet/fund",
           {
             type: "category",
             label: "Bridge your funds",
