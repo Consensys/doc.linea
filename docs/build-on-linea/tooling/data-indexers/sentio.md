@@ -17,7 +17,7 @@ Users can use Sentio’s SDK to **collect** and **transform** [Metrics](https://
   </div>
 </div>
 
-## Get Started
+## Get started
 
 We've put together some helpful guides for you to get set up with our product quickly and easily. Sentio supports [multi-chain](https://docs.sentio.xyz/best-practices/multi-chain-support). Simply use the network option below inside Sentio processor for Linea Network.
 
@@ -29,7 +29,7 @@ EthChainId.LINEA
 
 [**Samples**](https://docs.sentio.xyz/samples)
 
-## Getting Help
+## Getting help
 
 If there are issues or problem can't be resolved in the doc, please contact us
 

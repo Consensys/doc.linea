@@ -1,8 +1,4 @@
----
-title: Spheron Network
----
-
-# Spheron Network
+# Spheron network
 
 ## What is Spheron?
 
@@ -56,7 +52,7 @@ Whether you're using a Docker image from Docker Hub or deploying a marketplace a
 
    > Checkout our [Server Guide](https://docs.spheron.network/server-guide/) for more info.
 
-3. **For a Marketplace App:**<br/>
+3. **For a Marketplace app:**<br/>
 
    1. Click "New Cluster" in the top right corner.
    2. Select **Start from Marketplace App**.
@@ -258,7 +254,7 @@ Dynamic Links: https://testapp-edab50.spheron.app
 
 ## How to view and retrieve content from IPFS using Spheron
 
-### Dedicated IPFS Gateways
+### Dedicated IPFS gateways
 
 [Dedicated gateways](https://docs.spheron.network/gateways/dedicated/) are IPFS gateways specifically designed to enhance access to pinned content across the network by offering faster speeds and increased rate limits.
 
@@ -269,7 +265,7 @@ Using dedicated gateways offers several benefits:
 - White-labeling gateway
 - Serve content from any IPFS node
 
-### Create a Dedicated Gateway
+### Create a dedicated gateway
 
 Follow these steps to create a dedicated gateway:
 
@@ -277,7 +273,7 @@ Follow these steps to create a dedicated gateway:
 2. Click **Generate** to create a new gateway.
 3. Enter a name for your gateway and click **Create**.
 
-### How to Use Your Gateway
+### How to use your gateway
 
 To access content through your dedicated gateway, simply follow these steps:
 
@@ -290,7 +286,7 @@ https://{gateway-name}.spheron.link/ipfs/{cid}
 
 > Checkout our [gateway documentation](https://docs.spheron.network/gateways/dedicated/) for more information.
 
-## Further Resources
+## Further resources
 
 - Visit [our platform](https://spheron.network/) to learn more.
 - Access our comprehensive [documentation](https://docs.spheron.network/) for detailed information.

@@ -75,7 +75,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
+          '📣Linea Mainnet Alpha is here! 🚀 Follow our <a href="https://docs.linea.build/use-mainnet">user guides</a> to get started 😎',
         backgroundColor: "#fafbfc",
         textColor: "#091E42",
         isCloseable: false,
@@ -107,7 +107,7 @@ const config = {
             type: "doc",
             docId: "index",
             position: "left",
-            label: "Linea Basics",
+            label: "Linea basics",
           },
           {
             type: "doc",
@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea Architecture",
+            label: "Linea architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -144,7 +144,7 @@ const config = {
           {
             to: "https://linea.build/",
             position: "left",
-            label: "Linea Home",
+            label: "Linea home",
           },
           {
             href: "https://discord.gg/linea",
@@ -182,11 +182,11 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get Help",
+                label: "Get help",
                 to: "https://support.linea.build/",
               },
               {
-                label: "Give Feedback",
+                label: "Give feedback",
                 to: "https://community.linea.build/c/feedback",
               },
             ],
