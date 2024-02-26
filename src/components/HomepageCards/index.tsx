@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import CardIcon1 from '../../../static/img/icon_bridge.svg';
 import CardIcon2 from '../../../static/img/icon_developer.svg';
 import CardIcon3 from '../../../static/img/icon_blockexplorer.svg';
+import CardIcon4 from '../../../static/img/icon_group.svg';
 
 type CardItem = {
   title: string;
@@ -61,11 +62,23 @@ const CardList: CardItem[] = [
     buttonType: "info",
     icon: CardIcon3,
   },
+  {
+    title: "Linea Builders Club",
+    link: "https://linea.deform.cc/linea-builders-club",
+    description: (
+      <>
+        Join our Builders Club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+      </>
+    ),
+    buttonName: "Join",
+    buttonType: "info",
+    icon: CardIcon4,
+  },
 ];
 
 function Card({ title, link, description, buttonName, buttonType, icon: Icon }: CardItem) {
   return (
-    <div className={clsx("col", "col--4", "margin-top--md")}>
+    <div className={clsx("col", "col--3", "margin-top--md")}>
       <div className={clsx("card-demo", styles.cardDemo)}>
         <div className={clsx("card", styles.card_glow)}>
           <div className={styles.circle}></div>

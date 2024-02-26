@@ -97,6 +97,7 @@ const sidebars = {
               "build-on-linea/quickstart/verify-smart-contract/hardhat",
             ],
           },
+          "use-mainnet/fund",
           {
             type: "category",
             label: "Bridge your funds",
