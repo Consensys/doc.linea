@@ -10,19 +10,19 @@ import TabItem from "@theme/TabItem";
 You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
 a Linea node on the mainnet or testnet. 
 
-## Prerequisites
-
-Download and install [Docker](https://www.docker.com/products/docker-desktop/)
-
-## Run a Besu node
-
-:::info
+:::warning Important
 
 The Besu Docker image does not run on Windows.
 
 :::
 
-### Step 1. Download configurations files
+## Prerequisites
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/).
+
+## Run a Besu node
+
+### Step 1. Download configuration files
 
 Download the configuration files for the relevant network (in ZIP format). The configuration files include the network genesis file,
 Docker Compose file and Besu configuration file.
@@ -43,7 +43,7 @@ Docker Compose file and Besu configuration file.
 ### Step 2. Update the Docker Compose file
 
 In the `docker-compose.yaml` file, edit the volumes section by changing `/path/to/your/directory` to the
-data path of the folder where you are hosting the files. For example:
+directory where you are storing the configuration files. For example:
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -64,7 +64,7 @@ data path of the folder where you are hosting the files. For example:
   </TabItem>
 </Tabs>
 
-The folder where you are hosting the files will be mounted to the `/config` folder inside the Docker container.
+The folder where you are storing the files will be mounted to the `/config` folder inside the Docker container.
 
 ### Step 3. Update the client configuration file
 
@@ -95,7 +95,7 @@ for help if you experience peering issues.
 
 ## Run a Geth node
 
-### Step 1. Download configurations files
+### Step 1. Download configuration files
 
 Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
 
@@ -121,21 +121,17 @@ and run `docker compose up`
 
 The node should now be running and looking for peers to sync.
 
-:::note
-
-You can ignore log messages related to Besu. The `docker-compose.yml` has Besu configurations that won't be running and
-shouldn't affect your node.
-
-:::
-
 ## Confirm the node is running
 
 You can call the JSON-RPC API methods to confirm the node is running. For example, call `eth_syncing` to return the
-starting, current, and highest block.
+synchronization status. For example the starting, current, and highest block, or `false` if not synchronizing.
 
 ```bash
 
-curl -X POST --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}' localhost:8545
+curl localhost:8545 \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
 
 ```
 
@@ -147,8 +143,8 @@ You should get a result, similar to:
   "id": 1,
   "result": {
     "startingBlock": "0x0",
-    "currentBlock": "0x2d0",
-    "highestBlock": "0x66c0"
+    "currentBlock": "0x5d228",
+    "highestBlock": "0x3cedec"
   }
 }
 ```
