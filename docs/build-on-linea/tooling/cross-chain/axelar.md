@@ -1,8 +1,8 @@
 ---
-title: Axelar network
+title: Axelar
 ---
 
-The [Axelar Network](https://docs.axelar.dev/), is a blockchain of blockchains that allows for universal web3 interoperability. By integrating with Axelar, your Linea-based application now has access to the [45+ chains](https://axelarscan.io/) that are also connected via Axelar. As Axelar is a blockchain of blockchains it overcomes many of the challenges of more centralized interoperability solutions; transactions that go through the Axelar network cannot be censored by any oracle, relayer, or sequencer.
+[Axelar](https://docs.axelar.dev/) is a blockchain of blockchains that allows for universal web3 interoperability. By integrating with Axelar, your Linea-based application now has access to the [45+ chains](https://axelarscan.io/) that are also connected via Axelar. As Axelar is a blockchain of blockchains it overcomes many of the challenges of more centralized interoperability solutions; transactions that go through the Axelar network cannot be censored by any oracle, relayer, or sequencer.
 
 ## Available functionality
 
