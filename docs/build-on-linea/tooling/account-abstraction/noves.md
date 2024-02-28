@@ -2,7 +2,7 @@
 title: Noves
 ---
 
-# Advanced data tooling for Account Abstraction
+## Advanced data tooling for account abstraction
 
 Noves provides advanced data capabilities for ERC-4337, both at the pre-sign level and for retrieval and interpretation of historical transactions.
 
