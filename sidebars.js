@@ -6,7 +6,7 @@ const sidebars = {
     {
       type: "category",
       collapsed: false,
-      label: "Getting Started",
+      label: "Getting started",
       link: {
         type: 'doc',
         id: "index",
@@ -23,17 +23,17 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Network Status",
+      label: "Network status",
       href: "https://linea.statuspage.io/",
     },
     {
       type: "link",
-      label: "Linea Mainnet Block Explorer",
+      label: "Linea Mainnet block explorer",
       href: "https://lineascan.build",
     },
     {
       type: "link",
-      label: "Linea Goerli Block Explorer",
+      label: "Linea Goerli block explorer",
       href: "https://goerli.lineascan.build",
     },
     "risk-disclosures/index",
@@ -41,7 +41,7 @@ const sidebars = {
     "zero-knowledge-glossary/index",
     {
       type: "category",
-      label: "Contact Us",
+      label: "Contact us",
       items: [
         {
           type: "link",
@@ -120,7 +120,7 @@ const sidebars = {
       "build-on-linea/gas-fees",
      {
       type: "category",
-      label: "Tooling and Infrastructure",
+      label: "Tooling and infrastructure",
       link: {
         type: "doc",
         id: "build-on-linea/tooling/index",
@@ -128,7 +128,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Account Abstraction",
+          label: "Account abstraction",
           link: {
             type: "doc",
             id: "build-on-linea/tooling/account-abstraction/account-abstraction"
@@ -178,14 +178,14 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Cloud Infra",
+          label: "Cloud infrastructure",
           items: [
             "build-on-linea/tooling/cloud-infra/spheron",
           ],
         },
         {
           type: "category",
-          label: "Contracts Templates",
+          label: "Contracts templates",
           items: [
             "build-on-linea/tooling/contracts-templates/thirdweb",
             "build-on-linea/tooling/contracts-templates/cookbook",
@@ -193,7 +193,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Cross-Chain",
+          label: "Cross-chain",
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
@@ -201,7 +201,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Data Indexers",
+          label: "Data indexers",
           items: [
             "build-on-linea/tooling/data-indexers/covalent",
             "build-on-linea/tooling/data-indexers/envio",
@@ -283,7 +283,7 @@ const sidebars = {
       "build-on-linea/hackathons",
      {
       type: "link",
-      label: "Bug Bounty Program",
+      label: "Bug bounty program",
       href: "https://immunefi.com/bounty/linea/",
      },
   ],
@@ -304,7 +304,7 @@ const sidebars = {
       },
       {
         type: "category",
-        label: "Canonical Message Service",
+        label: "Canonical message service",
         link: {
           type: "doc",
           id: "architecture/canonical-msg-service/index",
@@ -329,7 +329,7 @@ const sidebars = {
       },
       {
         type: "category",
-        label: "Trace Expansion Proving",
+        label: "Trace expansion proving",
         link: {
           type: "doc",
           id: "architecture/trace-expansion-proving/index",
