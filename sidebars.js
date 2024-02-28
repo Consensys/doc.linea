@@ -147,14 +147,26 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Analytics",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/analytics/index"
+
+          },
+          items: [
+            "build-on-linea/tooling/analytics/cookie3",
+          ],
+        },
+        {
+          type: "category",
           label: "Attestations",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/attestations/attestations",
+            id: "build-on-linea/tooling/attestations/index",
           },
           items: [
-            "build-on-linea/tooling/attestations/pado",
             "build-on-linea/tooling/attestations/verax",
+            "build-on-linea/tooling/attestations/pado",
           ],
         },
         {
