@@ -78,7 +78,7 @@ const sidebars = {
         items: [
           {
             type: "category",
-            label: "Deploy a Smart Contract",
+            label: "Deploy a smart contract",
             items: [
               "build-on-linea/quickstart/deploy-smart-contract/atlas",
               "build-on-linea/quickstart/deploy-smart-contract/foundry",
@@ -90,7 +90,7 @@ const sidebars = {
           },
           {
             type: "category",
-            label: "Verify a Smart Contract",
+            label: "Verify a smart contract",
             items: [
               "build-on-linea/quickstart/verify-smart-contract/atlas",
               "build-on-linea/quickstart/verify-smart-contract/foundry",
@@ -147,14 +147,26 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Analytics",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/analytics/index"
+
+          },
+          items: [
+            "build-on-linea/tooling/analytics/cookie3",
+          ],
+        },
+        {
+          type: "category",
           label: "Attestations",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/attestations/attestations",
+            id: "build-on-linea/tooling/attestations/index",
           },
           items: [
-            "build-on-linea/tooling/attestations/pado",
             "build-on-linea/tooling/attestations/verax",
+            "build-on-linea/tooling/attestations/pado",
           ],
         },
         {
@@ -181,7 +193,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Cross Chain",
+          label: "Cross-Chain",
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
