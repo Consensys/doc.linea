@@ -7,7 +7,7 @@ data-storage-format="BONSAI"
 Xsnapsync-synchronizer-flat-db-healing-enabled=true
 
 # genesis file 
-genesis-file="/path/to/genesis-mainnet.json"
+genesis-file="/path/to/genesis-goerli.json"
 
 # Boot nodes
 bootnodes=["enode://14ba040dd8c5b1ea607fabf98c3c7c398658f897c502d0ca5202dce8907e83be953995ce5c3f72def2af710c072fe38de4e9347a299370fc82d6d17819967c93@3.144.118.88:30303,enode://c7d29d1bbb768e73c6bd320608276dc2341670822ed1292456a7b8375de35b5348e3b6bac63783a53d697378b25c5658681683f7621e31b37c605993c5ee13bd@18.189.141.200:30303"]
@@ -38,7 +38,6 @@ graphql-http-port=8547
 graphql-http-cors-origins=["all"]
 
 # p2p
-p2p-host="Your Ip Address"
 p2p-port=30303
 fast-sync-min-peers=1
 Xeth-capability-max=67

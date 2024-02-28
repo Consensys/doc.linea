@@ -123,8 +123,9 @@ The node should now be running and looking for peers to sync.
 
 ## Confirm the node is running
 
-You can call the JSON-RPC API methods to confirm the node is running. For example, call `eth_syncing` to return the
-synchronization status. For example the starting, current, and highest block, or `false` if not synchronizing.
+You can call the JSON-RPC API methods to confirm the node is running. For example, call
+[`eth_syncing`](https://besu.hyperledger.org/public-networks/reference/api#eth_syncing) to return the synchronization status.
+For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
 
 ```bash
 
