@@ -1,11 +1,9 @@
 ---
-title: "Linea Inscriptions"
+title: "Linea inscriptions"
 id: "linea-inscription"
 ---
 
-# Inscriptions, the Linea way
-
-## What are Inscriptions?
+## What are inscriptions?
 
 Bitcoin inscriptions are a method of adding metadata to the smallest unit of Bitcoin, a satoshi (sat). Various types of data, including images, videos, messages, etc., can be "inscribed" onto the Bitcoin blockchain to create NFTs. This concept has been adapted for the Ethereum blockchain, where it's known as ["Ethscriptions"](https://docs.ethscriptions.com/overview/introducing-ethscriptions).
 
@@ -44,7 +42,7 @@ Linea recommends loading it (at least partially) from the contract code to reduc
 
 :::
 
-## Code Examples
+## Code examples
 
 <!-- We need some more here.
 - What are the addresses? List them here, and link them on important contracts page.

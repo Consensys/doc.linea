@@ -1,5 +1,5 @@
 ---
-title: Release Notes
+title: Release notes
 sidebar_position: 4
 ---
 
@@ -9,11 +9,9 @@ import L2MessageService from "!!raw-loader!/files/testnet/2023-06-13-release/L2M
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 
-# Release Notes
-
 Find out all you need to know about the latest Linea versions.
 
-## Alpha v2 Release Notes
+## Alpha v2 release notes
 
 <table>
   <tbody>
@@ -79,6 +77,7 @@ Post upgrade, Execute the following Security Council transactions on L1:
 - Call FinalizeWithoutProof
 - Clear verifier mapping at index 6 and 7
 
+<!-- markdown-link-check-disable-next-line -->
 The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
 
 Two independent audits have been performed for this update. Reports can be found here: 
@@ -190,19 +189,19 @@ This is a breaking change for consumers listening to the existing events. The `B
 
 ## Summary Release Notes (June - October)
 
-### Performance Improvements
+### Performance improvements
 
 - Changes to the Genesis File: We made changes to the genesis file to enable block times to be reduced. This enhancement improves the overall performance and throughput of Linea.
 
 - Improved Gas Limit Estimation for Finalization on L1: We improved the gas limit estimation for finalization on L1.
 
-### Cost Efficiency
+### Cost efficiency
 
 - We updated the L1 message service contract to work with the Merkle tree, reducing gas costs and further enhancing the cost-effectiveness of Linea.
 
 - We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This change ensures the long-term financial viability of Linea.
 
-### User Experience
+### User experience
 
 - We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price estimation more accurate and reliable.
 
