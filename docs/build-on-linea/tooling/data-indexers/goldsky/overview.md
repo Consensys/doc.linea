@@ -3,8 +3,6 @@ title: Overview
 sidebar_position: 1
 ---
 
-# Goldsky Overview
-
 [Goldsky](https://goldsky.com) is a high-performance data indexing provider for Linea that makes it easy to extract, transform, and load on-chain data to power both application and analytics use cases. Goldsky offers two primary approaches to indexing and accessing blockchain data: Index (high-performance subgraphs) and Mirror (real-time data replication pipelines).
 
 ## Index (high-performance subgraphs)

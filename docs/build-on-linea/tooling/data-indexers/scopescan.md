@@ -2,25 +2,18 @@
 title: Scopescan
 ---
 
-# Tracking Real Web3 Users (Entities) and Their Connections Using Scopescan
-
 As Web3 platforms, protocols, and dapps become more mainstream, there is an increasing demand for these companies to know their users’ behaviors and connections. Thus, having a partner that can help companies and developers understand their users better is important for Linea and its mission to provide better scalability. 
 
 This article provides information on using Scopescan and its analytical tools to determine authentic users and their relations on LInea.
 
-#### Table of Contents:
-- Scopescan and its Unique Value Proposition
-- Scopescan’s Analytical Tools 
-- Conclusion
-
-#### Scopescan and its Unique Value Proposition
+## Scopescan and its unique value proposition
 Understanding Web3 users’ patterns can be difficult, especially given that any particular user can have multiple addresses and that Web3 prioritizes privacy. Unlike their Web2 counterparts, Web3 companies understandably have additional hurdles to clear to fine-tune their products to users’ evolving needs. This is where Scopescan brings unique value to the Linea platform and its projects.
 
 Scopescan is an on-chain data analytics platform that allows the creation of real-time profiles, called entities, with meaningful connections. It features an extensive list of analytical tools that are built on user-based data and powered by the 0xScope Web3 AI Data Layer, for high-quality data extraction and processing that meets the high data standards of AI solutions.
 
 When Scopescan processed Linea as the latest addition to its lineup of supported blockchains, it looked into all the addresses of this chain and the relationships between these addresses. This way, Scopescan users will be able to see the behavior of any user on the Linea chain, and then discover connections between these users. When Linea ecosystem projects leverage this entity-related information, they can understand their users better and fine-tune their strategies to grow their user base.
 
-#### Scopescan’s Analytical Tools
+## Scopescan’s analytical tools
 
 Scopescan is equipped with a variety of tools that help the Linea community better understand users, projects, and their interconnections. Here are the three categories through which Scopescan’s lineup of tools are categorized:
 
@@ -88,7 +81,7 @@ Under Investigation Mode, there are several tools focused on transactions and to
 
 There are more tools that you can discover, aside from the ones featured above. For more information about the complete suite of Scopescan’s Web3 analytical tools, go to https://docs.scopescan.ai/
 
-#### Conclusion
+## Conclusion
 
 Scopescan allows the Linea community to do the following:
 
@@ -101,7 +94,7 @@ Scopescan allows the Linea community to do the following:
 - Leverage address tracking and monitoring for investigative and product enhancement purposes
 - Get new insights into the companies behind Web3 products
 
-#### Reference Links:
+## Reference links:
 
 - [Scopescan](https://www.scopescan.ai/home?network=linea)
 - [Scopescan docs](https://docs.scopescan.ai)
