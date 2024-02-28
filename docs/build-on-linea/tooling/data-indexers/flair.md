@@ -2,8 +2,6 @@
 title: Flair
 ---
 
-# 🔮 Flair
-
 Real-time and historical custom data indexing for any evm chain.
 
 [Flair](https://flair.dev) offers reusable **indexing primitives** (such as fault-tolerant RPC ingestors, custom processors, re-org aware database integrations) to make it easy to receive, transform, store and access your on-chain data.
@@ -42,7 +40,7 @@ Compared to other alternatives the main reasons are:
   - Use any external NPM library.
 - ✅ **Stream** any stored data to your destination database (Postgres, MongoDB, MySQL, Kafka, Elasticsearch, Timescale, etc).
 
-## Getting Started
+## Getting started
 
 1️⃣ Clone the [starter boilerplate](https://github.com/flair-sdk/starter-boilerplate) template and follow the instructions
 

@@ -25,7 +25,7 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Bridge Your Funds",
+    title: "Bridge your funds",
     link: "/use-mainnet/bridges-of-linea/bridging-non-dev",
     description: (
       <>
@@ -37,7 +37,7 @@ const CardList: CardItem[] = [
     icon: CardIcon1,
   },
   {
-    title: "Developer Quick Start",
+    title: "Developer quickstart",
     link: "/build-on-linea/quickstart",
     description: (
       <>
@@ -50,7 +50,7 @@ const CardList: CardItem[] = [
     icon: CardIcon2,
   },
   {
-    title: "Linea Block Explorer",
+    title: "Linea block explorer",
     link: "https://lineascan.build/",
     description: (
       <>
@@ -63,11 +63,11 @@ const CardList: CardItem[] = [
     icon: CardIcon3,
   },
   {
-    title: "Linea Builders Club",
+    title: "Linea builders club",
     link: "https://linea.deform.cc/linea-builders-club",
     description: (
       <>
-        Join our Builders Club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+        Join our builders club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
       </>
     ),
     buttonName: "Join",
@@ -137,7 +137,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={clsx("container", styles.cardContainer)}>
         <br />
-        <h1 className={styles.heading}>Quick Links</h1>
+        <h1 className={styles.heading}>Quick links</h1>
         <br />
         <div className="row" style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (
