@@ -213,6 +213,7 @@ const config = {
           "json",
           "typescript",
           "javascript",
+          "python",
         ],
       },
       languageTabs: [
