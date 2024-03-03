@@ -18,7 +18,7 @@ If there are no public subgraph that matches your needs, in order to use TheGrap
 
 ### Access request (whitelisting)
 
-Access to the Deployer and IPFS endpoints in both networks need to be requested before deploying a subgraph. You will need the IP/s you will access the endpoints from (i.e. public source IP/s of the machine that will run the deploy). Please fill out [this form](https://forms.gle/JcxhCwAToNgMSbrk9) to be whitelisted.
+Access to the Deployer and IPFS endpoints in both networks need to be requested before deploying a subgraph. You will need the IP/s you will access the endpoints from (i.e. public source IP/s of the machine that will run the deployment). Please fill out [this form](https://forms.gle/JcxhCwAToNgMSbrk9) to be whitelisted.
 
 The network name must be set to either linea-mainnet for Mainnet or linea-goerli for Goerli.
 

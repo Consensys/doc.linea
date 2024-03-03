@@ -23,7 +23,7 @@ Conflation is not normally seen in mainnet Ethereum environments, where transact
 
 Conflation occurs within the execution client, but through a process of communication with the Coordinator:
 
-- The conflator waits for a traces file to appear
+- The conflator waits for a trace file to appear
 - Marks that blocks' worth of traces as "merged"
 - Waits a certain amount of time in case more block data comes in
   - If it does, it checks to see if the number of lines in the block and the length of the data would exceed the limit
