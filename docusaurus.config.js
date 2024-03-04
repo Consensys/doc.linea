@@ -206,7 +206,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["solidity", "toml"],
+        additionalLanguages: [
+          "solidity",
+          "toml",
+          "bash",
+          "json",
+          "typescript",
+          "javascript",
+          "python",
+        ],
       },
       languageTabs: [
         {
