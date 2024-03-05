@@ -256,6 +256,7 @@ const sidebars = {
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
             "build-on-linea/tooling/security/spherex",
+            "build-on-linea/tooling/security/hexagate",
           ],
         },
         {
