@@ -2,11 +2,11 @@
 title: Station
 ---
 
-# Toolkit for NFT Accounts on Linea
+## Your toolkit for NFT Accounts on Linea
 
 GroupOS by [Station](https://station.express) is a web3 toolkit designed to create and coordinate values-aligned networks in new ways. Accounts, the core module of GroupOS, is the easiest way for organizations to create programmatic NFT wallets, incentivize users, and measure growth.
 
-Powered by ERC-6551 and ERC-4337. Gasless. Signatureless.
+Powered by [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) and [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337).
 
 ## Use Cases
 

@@ -2,8 +2,6 @@
 title: API3
 ---
 
-## API3
-
 [API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
 
 :::info
@@ -128,7 +126,7 @@ Note Sponsors should not fund a `sponsorWallet` with more then they can trust th
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
-## Using dAPIs - API3 Datafeeds
+## Using dAPIs - API3 datafeeds
 
 [dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
@@ -163,7 +161,7 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
 
 [Click here to read more about Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html).
 
-### Subscribing to Self-funded dAPIs
+### Subscribing to self-funded dAPIs
 
 :::note
  Info
@@ -252,7 +250,7 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
   </div>
 </div>
 
-### Subscribing to Managed dAPIs
+### Subscribing to managed dAPIs
 
 If you are trying to access Managed dAPIs, once you have selected your dAPI, you will then be presented with an option to choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
 
@@ -414,7 +412,7 @@ You can try QRNG on Linea for free. Check out the all the QRNG Providers for Lin
 
 [Click here to read more about API3 QRNG](https://docs.api3.org/explore/qrng/)
 
-## Additional Resources
+## Additional resources
 
 Here are some additional developer resources
 

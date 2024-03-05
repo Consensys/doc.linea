@@ -72,14 +72,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "announcement_bar",
-        content:
-          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
-        isCloseable: false,
-      },
+      // announcementBar: {
+      //   id: "announcement_bar",
+      //   content:
+      //     '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
+      //   backgroundColor: "#fafbfc",
+      //   textColor: "#091E42",
+      //   isCloseable: false,
+      // },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -107,7 +107,7 @@ const config = {
             type: "doc",
             docId: "index",
             position: "left",
-            label: "Linea Basics",
+            label: "Linea basics",
           },
           {
             type: "doc",
@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea Architecture",
+            label: "Linea architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -144,7 +144,7 @@ const config = {
           {
             to: "https://linea.build/",
             position: "left",
-            label: "Linea Home",
+            label: "Linea home",
           },
           {
             href: "https://discord.gg/linea",
@@ -182,11 +182,11 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get Help",
+                label: "Get help",
                 to: "https://support.linea.build/",
               },
               {
-                label: "Give Feedback",
+                label: "Give feedback",
                 to: "https://community.linea.build/c/feedback",
               },
             ],
@@ -198,14 +198,6 @@ const config = {
                 label: "Contribute to our documentation",
                 href: "https://github.com/Consensys/doc.zk-evm",
               },
-              {
-                label: "Contribute to our gnark repo",
-                href: "https://github.com/Consensys/gnark",
-              },
-              {
-                label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/Consensys/gnark-crypto",
-              },
             ],
           },
         ],
@@ -214,7 +206,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["solidity", "toml"],
+        additionalLanguages: [
+          "solidity",
+          "toml",
+          "bash",
+          "json",
+          "typescript",
+          "javascript",
+          "python",
+        ],
       },
       languageTabs: [
         {
@@ -313,6 +313,10 @@ const config = {
           {
             to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+          },
+          {
+            to: "/build-on-linea/gas-fees",
+            from: "/use-mainnet/gas-import",
           },
         ],
       },
