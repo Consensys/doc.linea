@@ -1,8 +1,8 @@
 ---
-title: TheGraph Network
+title: TheGraph network
 ---
 
-As a dApp developer, retrieving on-chain data for your dApp can be challenging because you will most likely:
+As a dapp developer, retrieving on-chain data for your dApp can be challenging because you will most likely:
 
 1. Consume your RPC provider quota with calls.
 2. Need to implement error handling on multiple levels.
@@ -16,7 +16,7 @@ We run The Graph indexers on Linea to allow you to leverage the power of this te
 
 If there are no public subgraph that matches your needs, in order to use TheGraph you will need to define your own subgraph and get it deployed on an indexer.
 
-### Access Request (Whitelisting)
+### Access request (whitelisting)
 
 Access to the Deployer and IPFS endpoints in both networks need to be requested before deploying a subgraph. You will need the IP/s you will access the endpoints from (i.e. public source IP/s of the machine that will run the deploy). Please fill out [this form](https://forms.gle/JcxhCwAToNgMSbrk9) to be whitelisted.
 

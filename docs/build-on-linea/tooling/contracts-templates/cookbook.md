@@ -4,7 +4,7 @@ title: Cookbook.dev
 
 [Cookbook.dev](https://www.cookbook.dev/?utm=lineadocs) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
 
-## Search Cookbook's Smart Contract Registry
+## Search Cookbook's smart contract registry
 
 Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar.
 
@@ -30,7 +30,7 @@ Highlight selections of the code and press **Analyze Snippet** to get more infor
   </div>
 </div>
 
-## Import any Smart Contract Code into Cookbook
+## Import any smart contract code into Cookbook
 
 Import verified smart contract code into Cookbook to fork, learn about, or build with by inputting any smart contract address into the Cookbook search bar.
 
@@ -43,7 +43,7 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
   </div>
 </div>
 
-## Find Smart Contracts within the Remix IDE with the Cookbook Plug-in
+## Find smart contracts within the Remix IDE with the Cookbook plugin
 
 Go to [Remix.Ethereum.org](https://remix.ethereum.org/#activate=cookbookdev)
 
@@ -88,5 +88,6 @@ For more information on using Cookbook to find, learn about or build with smart 
 
 - [Documentation](https://docs.cookbook.dev)
 - [Blog](https://medium.com/@cookbookdev)
+<!-- markdown-link-check-disable-next-line -->
 - [Twitter](https://twitter.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)

@@ -6,7 +6,7 @@ title: RedStone Oracles
 
 RedStone offers flexible Data Feeds with &lt;10s update time perfect for Lending, Perpetuals, Options, Derivatives, Stablecoins and other DeFi applications. The infrastructure is well battle-tested and **secures hundreds of millions of USD on mainnets**. Trusted by some of the best protocols in DeFi and supported by well-renowned Builders such as Stani Kulechov (Aave), Coinflipcanada (GMX), Jacob Blish (Lido) and many more.
 
-### Why a new approach to Oracles is needed
+### Why a new approach to oracles is needed
 
 - Pushing data on-chain regardless of whether it is used or not is a huge waste of resources
 - Obsolete and monolithic architecture limits scalability (it's hard to list new assets or reduce latency)
@@ -57,10 +57,12 @@ Depending on the smart contract architecture and business demands, Builders can 
 ---
 
 ## 🌐 Links
-
+<!-- markdown-link-check-disable-next-line -->
 - [Twitter](https://twitter.com/redstone_defi)
 - [Discord](https://redstone.finance/discord)
 - [Website](https://redstone.finance/)
 - [Docs](https://docs.redstone.finance/)
+<!-- markdown-link-check-disable-next-line -->
 - [Angel Round Announcement](https://twitter.com/redstone_defi/status/1661024722690379778)
+<!-- markdown-link-check-disable-next-line -->
 - [Seed Round Announcement](https://twitter.com/redstone_defi/status/1564553885695373312)
