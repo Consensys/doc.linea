@@ -14,7 +14,9 @@ All winners have the opportunity to bring their project to fruition through a va
 And be featured on [X](https://twitter.com/lineabuild), [Linea Farcaster](https://warpcast.com/linea), and livestreams!
 
 :::info
-[**Join our Telegram channel**](https://t.me/+rI-iPLacQXQ5MDVh) to ask questions and meet other developers at the hackathon!
+[**Join the Consensys Developer Chat**](https://t.me/+rI-iPLacQXQ5MDVh) to ask questions and meet other developers at the hackathon!
+
+[**Join the Linea Builders Club**](https://linea.deform.cc/linea-builders-club) to get exclusive access to tech talks, events, and tiny grants and bounties!
 :::
 
 ## Helpful links

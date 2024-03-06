@@ -263,8 +263,8 @@ code,
 kbd,
 pre,
 samp {
-  font-family: inherit;
-  font-size: 1em;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: var(--ifm-code-font-size);
 }
 
 small {

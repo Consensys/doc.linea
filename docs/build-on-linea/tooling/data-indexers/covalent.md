@@ -2,8 +2,6 @@
 title: Covalent
 ---
 
-# Covalent Indexing and Querying API
-
 [Covalent](https://www.covalenthq.com/?utm_source=linea&utm_medium=partner-docs) is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://www.covalenthq.com/docs/networks/?utm_source=linea&utm_medium=partner-docs), including [Linea Goerli testnet](https://www.covalenthq.com/docs/networks/linea-goerli-testnet/?utm_source=linea&utm_medium=partner-docs).
 
 Covalent maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
