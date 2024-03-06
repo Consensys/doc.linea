@@ -24,8 +24,8 @@ Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
 ### Step 1. Download configuration files
 
-Download the configuration files for the relevant network (in ZIP format). The configuration files include the network genesis file,
-Docker Compose file and Besu configuration file.
+Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration
+files include the network genesis file, Docker Compose file and Besu configuration file.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -42,37 +42,11 @@ Docker Compose file and Besu configuration file.
 
 ### Step 2. Update the Docker Compose file
 
-In the `docker-compose.yaml` file, edit the volumes section by changing `/path/to/your/directory` to the
-directory where you are storing the configuration files. For example:
+In the `docker-compose.yaml` file, update the `--p2p-host` command to include your public IP address. For example:
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
-  
-  ```yaml
-  volumes:
-    - /Users/myuser/besu-mainnet:/config
-  ```
-  
-  </TabItem>
-  <TabItem value="testnet" label="Testnet">
-  
-  ```yaml
-  volumes:
-    - /Users/myuser/besu-goerli:/config
-  ```
-  
-  </TabItem>
-</Tabs>
-
-The folder where you are storing the files will be mounted to the `/config` folder inside the Docker container.
-
-### Step 3. Update the client configuration file
-
-Update the Besu configuration file (`config-snap-[NETWORK].toml`) with your IP public address. To do this, set
-the `p2p-host="Your IP Address"` option.
-
-Refer to the [Besu documentation](https://besu.hyperledger.org/public-networks/reference/cli/options#p2p-host) for more
-information about the `p2p-host` option.
+```yaml
+--p2p-host=103.10.10.10
+```
 
 :::tip
 
@@ -80,9 +54,9 @@ You can use [this page](https://www.whatismyip.com/) to find your public IP addr
 
 :::
 
-### Step 4. Start the Besu node
+### Step 3. Start the Besu node
 
-Open a terminal in the directory location containing the configuration files and run `docker-compose up`. 
+Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`. 
 
 It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node.
 
