@@ -51,7 +51,7 @@ Two new functions in the L1 contract:
 
 :::
 
-## Code Examples
+## Code examples
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
