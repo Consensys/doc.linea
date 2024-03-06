@@ -216,6 +216,11 @@ const config = {
           "python",
         ],
       },
+      metadata: [
+        {name: 'twitter:card', content: 'summary_large_image'},
+        {name: 'twitter:image', content: '/img/Linea_social_card_docs.png'},
+        {property: 'og:image', content: '/img/Linea_social_card_docs.png'},
+      ],
       languageTabs: [
         {
           highlight: "bash",
