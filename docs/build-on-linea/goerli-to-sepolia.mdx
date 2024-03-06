@@ -1,0 +1,25 @@
+---
+title: Goerli to Sepolia testnet transition
+description: Advice on Linea's testnet transition for node runners and developers
+---
+
+In line with Ethereum mainnet, Linea's principal testnet is now Sepolia. Although still functional, Goerli testnet is being phased out and you should make adjustments now to keep your testnet nodes and/or dapps operational.
+
+We expect to fully deprecate the Goerli testnet by the end of May 2024.
+
+## Running a Sepolia node
+
+If you run a Linea Goerli testnet node, we recommend you transition to running a Sepolia node as soon as possible.
+
+You will need to spin up a new node. The method is the same as before, and as detailed in our [guide](/build-on-linea/run-a-node). The new genesis files are linked in the guide.
+
+## Updating your dapps
+
+For your dapp to remain functional, you must:
+
+- Deploy any smart contracts anew on Sepolia
+- Ensure your dapps reference the new smart contract deployments.
+
+Please refer to our [network information](/use-mainnet/info-contracts) for Sepolia's network details (chain ID, RPC URL, etc.). Infura support will be available for Sepolia as it has been for Goerli.
+
+Updated information on funding your account(s) with Sepolia ETH is available [here](/use-mainnet/fund).
