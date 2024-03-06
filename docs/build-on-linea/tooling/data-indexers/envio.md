@@ -16,7 +16,7 @@ Envio offers support for [HyperSync](https://docs.envio.dev/docs/hypersync) on L
 
 HyperSync is an indexed layer of the Linea blockchain, providing accelerated APIs (JSON-RPC bypass) for the hyper-speed syncing of historic data. Developers do not need to worry about RPC URLs, rate-limited APIs, or managing infrastructure, and can easily sync large datasets in a few minutes, something that would usually take 20x longer via JSON-RPC.
 
-## Other Features
+## Other features
 
 - Fully customizable to meet your unique data needs.
 
@@ -26,7 +26,7 @@ HyperSync is an indexed layer of the Linea blockchain, providing accelerated API
 
 - Quickstart templates with pre-defined indexing logic for popular OpenZeppelin contracts (ERC-20, ERC-721, ERC-1155, etc.)
 
-## Getting Started
+## Getting started
 
 The following files are required from the user to run the Envio indexer:
 
@@ -36,7 +36,7 @@ The following files are required from the user to run the Envio indexer:
 
 These files are auto-generated according to the template and language chosen by running the `envio init` command.
 
-[**Quickstart Guide**](https://docs.envio.dev/docs/quickstart)
+[**Quickstart guide**](https://docs.envio.dev/docs/quickstart)
 
 ```bash
 ? Would you like to start from a template or migrate from a subgraph?
@@ -68,7 +68,7 @@ Then choose a language from **Javascript**, **Typescript**, or **Rescript** to w
 
 This will create the config, schema and event handlers files according to the template and language chosen.
 
-## Getting Help
+## Getting help
 
 Indexing can be a rollercoaster, especially for more complex use cases. Our engineers are available to help you with your data availability needs.
 

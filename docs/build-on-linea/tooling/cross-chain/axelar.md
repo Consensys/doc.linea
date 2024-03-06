@@ -1,19 +1,17 @@
 ---
-title: Axelar Network
+title: Axelar
 ---
 
-# Axelar Network
+[Axelar](https://docs.axelar.dev/) is a blockchain of blockchains that allows for universal web3 interoperability. By integrating with Axelar, your Linea-based application now has access to the [45+ chains](https://axelarscan.io/) that are also connected via Axelar. As Axelar is a blockchain of blockchains it overcomes many of the challenges of more centralized interoperability solutions; transactions that go through the Axelar network cannot be censored by any oracle, relayer, or sequencer.
 
-The [Axelar Network](https://docs.axelar.dev/), is a blockchain of blockchains that allows for universal web3 interoperability. By integrating with Axelar, your Linea-based application now has access to the [45+ chains](https://axelarscan.io/) that are also connected via Axelar. As Axelar is a blockchain of blockchains it overcomes many of the challenges of more centralized interoperability solutions; transactions that go through the Axelar network cannot be censored by any oracle, relayer, or sequencer.
-
-## Available Functionality
+## Available functionality
 
 Axelar enables powerful interchain features for builders on Linea.
 
 1. The ability to [send tokens](https://docs.axelar.dev/dev/send-tokens/overview) across blockchains
 1. The ability to send [general messages](https://docs.axelar.dev/dev/general-message-passing/overview) across blockchains
 
-## Linea Integration
+## Linea integration
 
 When integrating with Axelar there are two key contracts that need to be utilized. These are:
 
@@ -23,7 +21,7 @@ When integrating with Axelar there are two key contracts that need to be utilize
 1. The [Axelar Gas Service](https://docs.axelar.dev/dev/general-message-passing/gas-services/intro)
    - This contract is the entrypoint into Axelar's gas service, which handles gas payment for your transaction on both the Axelar network and the destination chain. You as the caller now only need the gas of the source chain.
 
-### Contract Addresses:
+### Contract addresses:
 
 | Contract | Network | Address | networkId |
 | --- | --- | --- | --- |
@@ -34,11 +32,11 @@ When integrating with Axelar there are two key contracts that need to be utilize
 
 Once you have submitted your transaction, you can view it on the [Axelarscan block explorer](https://axelarscan.io/). The Axelarscan explorer is specifically tailored to show your interchain transaction step by step as it passed from the source chain, via the Axelar network, to the destination chain.
 
-## Linea-Axelar Example
+## Linea-Axelar example
 
 For a full end-to-end example of a Linea-Axelar integration, check out our [video walkthrough](https://www.youtube.com/watch?v=-KgJZmq8Umc&t=1s) of the process. The complementary code can be found [here](https://github.com/Olanetsoft/linea-interchain-workshop-with-axelar).
 
-## Axelar Use Cases
+## Axelar use cases
 
 For inspiration, here are some live use cases demonstrating the kind of interchain applications that can be built on top of Axelar:
 
@@ -54,7 +52,7 @@ For inspiration, here are some live use cases demonstrating the kind of intercha
 
    - Web3 gaming is heavily reliant on NFTs, and enabling NFTs to be passed between blockchains is a critical next step for NFT-based games. Junkyard leverages Axelar to allow interchain NFTs in its game. In Junkyard, players can deposit their NFTs to the Junkyard contract. The NFT can come from any chain connected to the Axelar ecosystem, including Linea.
 
-## Get Involved With Axelar
+## Get involved with Axelar
 
 1. Meet the community on [Discord](http://discord.gg/axelar)
 1. Dive into the data on the [Axelarscan block explorer](http://axelarscan.io)
