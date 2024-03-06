@@ -363,3 +363,28 @@ const sidebars = {
 };
 
 module.exports = sidebars;
+
+        {
+          type: "category",
+          label: "Cloud Infrastructure",
+          link: {
+            type: "doc",
+            id: "docs/build-on-linea/tooling/cloud-infra/index"
+          },
+          items: [
+            
+          ],
+        },
+      
+        {
+          type: "category",
+          label: "Contract templates",
+          link: {
+            type: "doc",
+            id: "docs/build-on-linea/tooling/contracts-templates/index"
+          },
+          items: [
+            
+          ],
+        },
+      
