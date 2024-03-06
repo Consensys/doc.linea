@@ -340,7 +340,7 @@ const sidebars = {
         label: "Sequencer",
         link: {
           type: "doc",
-          id: "architecture/evm-state-manager/index",
+          id: "architecture/sequencer/index",
         },
         items: [
           "architecture/sequencer/conflation",
