@@ -104,7 +104,7 @@ If you are using the Linea Bridge UI, then this is already done for you. If you 
 - After migration to the new finalization mechanism, the rollup contract will no longer emit finalization events per block, but will instead emit events for data submission as well as an event indicating the current point of finalization.
   - The calldata will contain only the final block state root hash and final block number.
 
-:::info:[Note]
+:::info[Note]
 
 This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event.
 

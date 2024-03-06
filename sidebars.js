@@ -70,6 +70,27 @@ const sidebars = {
       {
         type: "category",
         collapsed: false,
+        label: "Build on Linea",
+        link: {
+          type: 'doc',
+          id: "build-on-linea/index",
+        },
+        items: [
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
+        {
+        type: "category",
+        collapsed: false,
         label: "Quickstart",
         link: {
           type: 'doc',
@@ -79,6 +100,10 @@ const sidebars = {
           {
             type: "category",
             label: "Deploy a smart contract",
+            link: {
+              type: "doc",
+              id: "build-on-linea/quickstart/deploy-smart-contract/index",
+            },
             items: [
               "build-on-linea/quickstart/deploy-smart-contract/atlas",
               "build-on-linea/quickstart/deploy-smart-contract/foundry",
@@ -108,19 +133,6 @@ const sidebars = {
             items: [
               "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
               "use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            ],
-          },
-          "build-on-linea/linea-sdk/index",
-          {
-            type: "category",
-            label: "Run a Linea node",
-            link: {
-              type: 'doc',
-              id: "build-on-linea/run-a-node/index"
-            },
-            items: [
-              "build-on-linea/run-a-node/use-docker",
-              "build-on-linea/run-a-node/use-binary",
             ],
           },
           "build-on-linea/quickstart/rpc",
@@ -306,6 +318,8 @@ const sidebars = {
       label: "Bug bounty program",
       href: "https://immunefi.com/bounty/linea/",
      },
+    ],
+    },
   ],
   architectureSidebar: [
       "architecture/index",
@@ -364,27 +378,5 @@ const sidebars = {
 
 module.exports = sidebars;
 
-        {
-          type: "category",
-          label: "Cloud Infrastructure",
-          link: {
-            type: "doc",
-            id: "docs/build-on-linea/tooling/cloud-infra/index"
-          },
-          items: [
-            
-          ],
-        },
-      
-        {
-          type: "category",
-          label: "Contract templates",
-          link: {
-            type: "doc",
-            id: "docs/build-on-linea/tooling/contracts-templates/index"
-          },
-          items: [
-            
-          ],
-        },
+
       
