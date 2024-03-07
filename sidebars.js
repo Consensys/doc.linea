@@ -12,7 +12,7 @@ const sidebars = {
         id: "index",
       },
       items: [
-        "use-mainnet/index",
+       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
@@ -111,7 +111,18 @@ const sidebars = {
             ],
           },
           "build-on-linea/linea-sdk/index",
-          "build-on-linea/run-a-node",
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
           "build-on-linea/quickstart/rpc",
         ],
       },
@@ -256,6 +267,7 @@ const sidebars = {
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
             "build-on-linea/tooling/security/spherex",
+            "build-on-linea/tooling/security/hexagate",
           ],
         },
         {
@@ -328,7 +340,7 @@ const sidebars = {
         label: "Sequencer",
         link: {
           type: "doc",
-          id: "architecture/evm-state-manager/index",
+          id: "architecture/sequencer/index",
         },
         items: [
           "architecture/sequencer/conflation",

@@ -1,0 +1,50 @@
+# data
+data-path="/path/to/your/directory"
+
+# Sync mode and data layer implementation
+sync-mode="X_SNAP"
+data-storage-format="BONSAI"
+Xsnapsync-synchronizer-flat-db-healing-enabled=true
+
+# genesis file 
+genesis-file="/path/to/genesis-goerli.json"
+
+# Boot nodes
+bootnodes=["enode://700f0d5a5f2beadc307b7b8f1a251f8b75033c8222ca65bfb1aecc4c4a0a86d6d6ef8420e780f6ace7cc3d1b837606b116109cc53b00931d3debc1346b9ccbb8@13.51.255.207:31001,enode://cbbaacaf47a005cb389b40f6676d63800cc65295aad0983e5ce9f2e5bf805274cded5ef313993a2564591d6caab6322c2a39a0b3a21143034378179c7d5ecd44@3.16.167.169:31001"]
+
+# Min gas price
+min-gas-price=1000
+
+# Host white list
+host-whitelist=["*"]
+
+# rpc
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-api=["ADMIN","NET","ETH","WEB3","TXPOOL"]
+rpc-http-cors-origins=["all"]
+
+# ws
+rpc-ws-enabled=true
+rpc-ws-api=["NET","ETH","WEB3"]
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+
+# graphql
+graphql-http-enabled=true
+graphql-http-host="0.0.0.0"
+graphql-http-port=8547
+graphql-http-cors-origins=["all"]
+
+# p2p
+p2p-port=30303
+fast-sync-min-peers=1
+Xeth-capability-max=67
+Xdns-enabled=true
+Xp2p-peer-lower-bound=5
+
+# metrics
+metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9545
