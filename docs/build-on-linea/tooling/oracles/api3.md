@@ -120,8 +120,10 @@ The callback to the Requester contains two parameters:
 - [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
 - **`data`**: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
 
-:::info
-Note Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+:::note
+
+Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+
 :::
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
@@ -163,8 +165,7 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
 
 ### Subscribing to self-funded dAPIs
 
-:::note
- Info
+:::info
 
 While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
 
@@ -233,8 +234,10 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
-:::info
-Note: If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+:::note
+
+If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+
 :::
 
 If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
@@ -263,8 +266,7 @@ Managed dAPIs gives you an option to configure the dAPI's [deviation threshold](
 | 0.5%      | 24 hours  |
 | 1%        | 24 hours  |
 
-:::note
- Info
+:::info
 
 Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org) for more info.
 
@@ -326,8 +328,10 @@ To request randomness on-chain, the requester submits a request for a random num
 
 Click here to check out the [`AirnodeRrpV0` Address](https://docs.api3.org/reference/qrng/chains.html) and [QRNG Providers' Addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
 
-:::info
-Note Currently, only Quintessence Labs' QRNG Airnode is available on Linea.
+:::note
+
+Currently, only Quintessence Labs' QRNG Airnode is available on Linea.
+
 :::
 
 Here is an example of a basic `QrngRequester` that requests a random number:
