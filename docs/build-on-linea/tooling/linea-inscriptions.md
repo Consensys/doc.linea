@@ -13,16 +13,16 @@ Traditionally, calldata is the most straightforward method for implementing insc
 
 To avoid this increase in costs, Linea recommends following [ESIP-3](https://docs.ethscriptions.com/esips/accepted-esips/esip-3-smart-contract-ethscription-creations), for creating inscriptions. This is because events and subcalls do not involve any finalization costs on L1, making them a more cost-effective option for users.
 
-:::info
-[Attention]
-
-**_We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support._** 
-
-Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.
-
-Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation. 
-
-:::
+<div class="admonition admonition-warning alert alert--warning" role="alert" style={{ marginBottom: '20px' }}>
+  <div class="admonition-heading">
+    <h5>⚠ Attention</h5>
+  </div>
+  <div class="admonition-content">
+    <p><strong>We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support.</strong></p>
+    <p>Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3.</p>
+    <p>Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation.</p>
+  </div>
+</div>
 
 This is implemented by emitting an event:
 
