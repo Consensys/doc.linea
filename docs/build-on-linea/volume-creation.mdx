@@ -17,10 +17,10 @@ If you run out of space, or need to actively maintain how much space is being us
 - Open Terminal
 - Use the `df -h` command to check the available disk space
 - Decide on the maximum size you want for the volume, for example 100GB  
-- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`
+- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 200G myfile.img`
 - Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
 - Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
-- The contents will now be available in `/mnt/myvolume`, up to a maximum of 100GB
+- The contents will now be available in `/mnt/myvolume`, up to a maximum of 200GB
 
 </details>
 
@@ -31,9 +31,9 @@ If you run out of space, or need to actively maintain how much space is being us
 - Open Terminal  
 - Use the `df -h` command to check the available disk space    
 - Decide on the maximum size you want for the volume, for example 100GB
-- Use `hdiutil` to create a sparse image of the desired size, e.g. `hdiutil create -size 100g -type SPARSE -fs HFS+X myfile.dmg`
+- Use `hdiutil` to create a sparse image of the desired size, e.g. `hdiutil create -size 200g -type SPARSE -fs HFS+X myfile.dmg`
 - Mount the image using `hdiutil`, e.g. `hdiutil attach myfile.dmg`
-- The contents will now be available mounted under `/Volumes`, up to a maximum of 100GB
+- The contents will now be available mounted under `/Volumes`, up to a maximum of 200GB
 
 </details>
 
@@ -47,16 +47,16 @@ If you run out of space, or need to actively maintain how much space is being us
 
 - Open Command Prompt as Administrator
 - Use the `dir` command to check available disk space on the volume you want to create the disk image  
-- Decide on the maximum size for the volume, for example 100GB
-- Use the `fsutil` command to create a sparse file of the desired size, e.g. `fsutil file createnew myfile.img 107374182400` (for a 100GB file)
+- Decide on the maximum size for the volume, for example 200GB
+- Use the `fsutil` command to create a sparse file of the desired size, e.g. `fsutil file createnew myfile.img 107374182400` (for a 200GB file)
 - Initialize the disk image using `diskpart`:
   - `diskpart`
   - `select vdisk file="myfile.img"`
-  - `create vdisk maximum=100000`
+  - `create vdisk maximum=200000`
   - `attach vdisk`
   - `exit`
 - Format the volume using `format`, e.g. `format F: /FS:NTFS /A:64K /Q` 
-- The new volume will now be available as drive letter F:, up to the maximum 100GB size
+- The new volume will now be available as drive letter F:, up to the maximum 200GB size
 
 To mount an existing disk image:
 
@@ -74,11 +74,11 @@ To mount an existing disk image:
 
 - Open WSL
 - Use the `df -h` command to check the available disk space 
-- Decide on the maximum size you want for the volume, for example 100GB   
-- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`  
+- Decide on the maximum size you want for the volume, for example 200GB   
+- Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 200G myfile.img`  
 - Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
 - Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
-- The contents will now be available in `/mnt/myvolume`, up to a maximum of 100GB
+- The contents will now be available in `/mnt/myvolume`, up to a maximum of 200GB
 
 </details>
 
