@@ -16,7 +16,7 @@ If you run out of space, or need to actively maintain how much space is being us
 
 - Open Terminal
 - Use the `df -h` command to check the available disk space
-- Decide on the maximum size you want for the volume, for example 100GB  
+- Decide on the maximum size you want for the volume, for example 200GB  
 - Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 200G myfile.img`
 - Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
 - Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
@@ -30,7 +30,7 @@ If you run out of space, or need to actively maintain how much space is being us
 
 - Open Terminal  
 - Use the `df -h` command to check the available disk space    
-- Decide on the maximum size you want for the volume, for example 100GB
+- Decide on the maximum size you want for the volume, for example 200GB
 - Use `hdiutil` to create a sparse image of the desired size, e.g. `hdiutil create -size 200g -type SPARSE -fs HFS+X myfile.dmg`
 - Mount the image using `hdiutil`, e.g. `hdiutil attach myfile.dmg`
 - The contents will now be available mounted under `/Volumes`, up to a maximum of 200GB
