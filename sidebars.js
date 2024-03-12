@@ -12,7 +12,7 @@ const sidebars = {
         id: "index",
       },
       items: [
-        "use-mainnet/index",
+       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
@@ -341,7 +341,7 @@ const sidebars = {
         label: "Sequencer",
         link: {
           type: "doc",
-          id: "architecture/evm-state-manager/index",
+          id: "architecture/sequencer/index",
         },
         items: [
           "architecture/sequencer/conflation",
