@@ -3,15 +3,15 @@ title: Goerli to Sepolia testnet transition
 description: Advice on Linea's testnet transition for node runners and developers
 ---
 
-In line with Ethereum mainnet, Linea's principal testnet will soon be Sepolia. Although still functional, Goerli testnet is being phased out and you should make adjustments now to keep your testnet nodes and/or dapps operational.
+In line with Ethereum mainnet, Linea's principal testnet will soon be Linea Sepolia. Although still functional, Linea Goerli is being phased out and you should make adjustments now to keep your testnet nodes and/or dapps operational.
 
-We expect to fully deprecate the Goerli testnet by the end of May 2024.
+We expect to fully deprecate Linea Goerli by the end of May 2024.
 
 ## Running a Sepolia node
 
-If you run a Linea Goerli testnet node, we recommend you transition to running a Sepolia node as soon as possible.
+If you run a Linea Goerli testnet node, we recommend you transition to running a Linea Sepolia node as soon as possible.
 
-You will need to spin up a new node. The method is the same as before, and as detailed in our [guide](/build-on-linea/run-a-node). However, you must use new genesis files specific to Sepolia:
+You will need to spin up a new node. The method is the same as before, and as detailed in our [guide](/build-on-linea/run-a-node). However, you must use new genesis files specific to Linea Sepolia:
 
 - [Geth](pathname:///files/sepolia/genesis-sepolia-geth.json)
 - [Besu](pathname:///files/sepolia/genesis-sepolia-besu.json)
@@ -20,10 +20,10 @@ You will need to spin up a new node. The method is the same as before, and as de
 
 For your dapp to remain functional, you must:
 
-- Deploy any smart contracts anew on Sepolia
+- Deploy any smart contracts anew on Linea Sepolia
 - Ensure your dapps reference the new smart contract deployments.
 
-## Sepolia network details
+## Linea Sepolia network details
 
 - Chain ID: 59141
 - RPC URL: https://rpc.sepolia.linea.build
