@@ -231,7 +231,10 @@ spheron publish
 ```
 
 :::note
- Make sure that you create a production build before running the `spheron   publish` command. :::
+
+ Make sure that you create a production build before running the `spheron   publish` command.
+
+:::
 
 Here is an example of how the result will look:
 
