@@ -93,7 +93,7 @@ _Judging criteria_
 
 We’re looking for the novel ideas expanding the adoption of web3 and want to connect with hackers, giving them exclusive invites to our Linea Builders Club, where you can find tech talks by our ZK cryptographers, private mini hack opportunities, educational programs, and more!
 
-We're judging based on technicality, utility, UX, and market readiness - bonus points if you add a frog-theme or use any partner tooling (https://docs.linea.build/build-on-linea/tooling)
+We're judging based on technicality, utility, UX, and market readiness - bonus points if you add a frog theme or use any [partner tooling](https://docs.linea.build/build-on-linea/tooling)
 
 *Requirements*
 
@@ -105,7 +105,7 @@ We're judging based on technicality, utility, UX, and market readiness - bonus p
 
 - Technicality
 - Utility
-- Market Readiness
+- Market readiness
 - UX
 - WOW factor
 
@@ -117,7 +117,7 @@ Sign up for the EthTaipei hackathon [here](https://taikai.network/ethtaipei/hack
 
 All you have to do to qualify is deploy a smart contract on Linea!
 
-We're judging based on technicality, utility, and market readiness - bonus points if you add a frog-theme or use any partner tooling (https://docs.linea.build/build-on-linea/tooling)
+We're judging based on technicality, utility, and market readiness - bonus points if you add a frog theme or use any [partner tooling](https://docs.linea.build/build-on-linea/tooling)
 
 Bounty submissions will have the opportunity to continue working with Consensys teams to accelerate and grow their dapps!
 
@@ -131,6 +131,6 @@ Bounty submissions will have the opportunity to continue working with Consensys 
 
 - Technicality
 - Utility
-- Market Readiness
+- Market readiness
 - UX
 - WOW factor
