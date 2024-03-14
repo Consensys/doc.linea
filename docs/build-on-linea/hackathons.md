@@ -22,7 +22,7 @@ And be featured on [X](https://twitter.com/lineabuild), [Linea Farcaster](https:
 ## Helpful links
 
 - **Get test ETH**
-  - Use our [faucet or bridge to get mainnet or testnet eth](/use-mainnet/fund). Otherwise, [ping us in our Telegram channel](https://t.me/+rI-iPLacQXQ5MDVh) or find us IRL at the hackathon to request test ETH directly!
+  - Use our [faucet or bridge to get mainnet or testnet ETH](/use-mainnet/fund). Otherwise, [ping us in our Telegram channel](https://t.me/+rI-iPLacQXQ5MDVh) or find us IRL at the hackathon to request test ETH directly!
 - **Deploy a smart contract**
   - Follow our [step-by-step quickstart on how to deploy and verify a smart contract](/build-on-linea/quickstart) with a variety of tools like Hardhat, Foundry, and more!
 - **Get access to Verax private beta**
