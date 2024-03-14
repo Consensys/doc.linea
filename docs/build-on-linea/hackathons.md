@@ -45,7 +45,7 @@ This month, we're distributing a $1000 pool prize amongst Linea Builders Club me
 
 **Due: March 31st, 2024**
 
-**Public track: Create frog-themed developer content on Linea**
+### Public track: Create frog-themed developer content on Linea
 
 Guides, walkthroughs, tutorials, videos - developer content is the backbone of what brings builders on chain! This month's mini-hack centers on _learning in public_, focused on practical educational content to teach early developers how to build use-case oriented sample dapps on Linea.
 
