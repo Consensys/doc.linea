@@ -2,30 +2,26 @@
 title: Hardhat
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-# Hardhat
-
-In this tutorial, we'll walk through creating a basic Hardhat project and deploying their sample contract.
-
-Here's a video walkthrough:
-
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/cZ4F2uDBl_A"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen></iframe>
+<div class="center-container">
+    <div class="video-container">
+      <iframe
+        class="video-iframe"
+        src="https://www.youtube.com/embed/cZ4F2uDBl_A"
+        title="How to deploy a smart contract on Linea with Hardhat"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+    </div>
+</div>
 
 ## Prerequisites
 
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 3. [Set up your environment using Hardhat's recommended instructions](https://hardhat.org/tutorial/setting-up-the-environment#2.-setting-up-the-environment).
 
 ## Create a Hardhat project
@@ -37,7 +33,7 @@ mkdir linea-tutorial
 cd linea-tutorial
 npm init
 npm install --save-dev hardhat
-npx hardhat
+npx hardhat init
 ```
 
 In the menu that appears, select `Create an empty hardhat.config.js` and press **Enter**.
@@ -48,6 +44,7 @@ You should now have a sample project from Hardhat, the deploys, and test a `Lock
 
 :::note
 
+
 The default script in `scripts/deploy.js` locks 0.001 ETH in the contract upon deployment. If you don't want to do this, modify `const lockedAmount = hre.ethers.parseEther("0.001");` to `const lockedAmount = 0;`
 
 :::
@@ -55,57 +52,6 @@ The default script in `scripts/deploy.js` locks 0.001 ETH in the contract upon d
 ## Deploy the contract
 
 The sample project already includes the deployment script. To deploy on Linea, you'll just need to make a few modifications.
-
-You can use [Truffle Dashboard](#truffle-dashboard) to deploy directly with your MetaMask wallet or deploy with the Hardhat CLI by [adding Linea to your `hardhat.config.js`](#use-hardhatconfigjs).
-
-### Use Truffle Dashboard
-
-[Truffle Dashboard](https://trufflesuite.com/docs/truffle/how-to/use-the-truffle-dashboard/) allows you to forgo saving your private keys locally, instead connecting to your MetaMask wallet for deployments. To deploy with Truffle Dashboard using the [Hardhat plugin](https://github.com/trufflesuite/truffle/tree/develop/packages/dashboard-hardhat-plugin#truffledashboard-hardhat-plugin):
-
-1. [Install Truffle using the recommended installation procedure](https://trufflesuite.com/docs/truffle/how-to/install/)
-1. Run:
-
-    ```
-    npm install --save-dev @truffle/dashboard-hardhat-plugin
-    ```
-1. Import the plugin into `hardhat.config.js`, with:
-
-    ```javascript
-    import "@truffle/dashboard-hardhat-plugin";
-    ```
-    or:
-    ```javascript
-    require("@truffle/dashboard-hardhat-plugin");
-    ```
-1. Run `truffle dashboard` in your terminal, which will open a window on port `24012`.
-1. Navigate to `localhost:24012` in your browser. Please ensure that your Truffle Dashboard is connected to the Linea testnet or mainnet by connecting your MetaMask wallet to Linea. For reference, the Linea testnet network ID is `59140`.
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_network.png")
-      .default
-  }></img>
-<br></br>
-1. In a separate terminal, in your Hardhat project, run
-
-   ```bash
-   npx hardhat run scripts/deploy.js --network truffleDashboard
-   ```
-
-1. Navigate back to `localhost:24012`. You should see a prompt asking you to confirm the deployment. Click **Confirm**.
-<img
-  src={
-    require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/dashboard_deploy_hardhat.png")
-      .default
-  }></img>
-<br></br>
-1. You should see something similar to:
-
-    ```bash
-    Preparing Truffle compilation
-    Sending Truffle compilation to dashboard
-    Compilation successfully sent!
-    Lock with 0.0ETH and unlock timestamp 1692377128 deployed to 0x6230404e79E2082A6454d5b1efF58DacA0C330C7
-    ```
 
 ### Use `hardhat.config.js`
 
@@ -186,14 +132,15 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
     ```
 
     </TabItem>
+
   </Tabs>
 
 1. Call `npx hardhat run scripts/deploy.js --network linea_testnet` or `npx hardhat run scripts/deploy.js --network linea_mainnet` from the CLI.
 
-  Your output should look something like this:
+Your output should look something like this:
 
-  ```bash
-  Lock with 0.0ETH and unlock timestamp 1692381910 deployed to 0xaD6C134BD9EA1E174CC8EA77755BF79C86148d38
-  ```
+```bash
+Lock with 0.0ETH and unlock timestamp 1692381910 deployed to 0xaD6C134BD9EA1E174CC8EA77755BF79C86148d38
+```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/hardhat.md).

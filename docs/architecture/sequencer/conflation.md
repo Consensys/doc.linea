@@ -2,15 +2,18 @@
 title: Conflation
 sidebar_position: 2
 ---
-import ConflationGraphic from '/static/img/docs/arch-linea/Linea_block_conflation.svg';
+
+import ConflationGraphic from '/img/article_images/Architecture_of_Linea/Sequencer/Conflation/Linea_block_conflation.svg';
 
 ## Conflation
 
-<ConflationGraphic />
+<div className="img-large">
+    <ConflationGraphic />
+</div>
 
 ### What is it?
 
-Conflation is the process of taking two or more blocks’ worth of transactions and combining them into one data set, which can then be used to produce a ‘before and after’ map of the network state (a Merkle tree, in technical terms) as well as a zero-knowledge proof, which is published to Ethereum.
+Conflation is the process of combining two or more blocks’ worth of transactions into one data set. It can then be used to produce a ‘before and after’ map of the network state (a Merkle tree, in technical terms) as well as a zero-knowledge proof, which is published to Ethereum.
 
 ### What does it do?
 
@@ -26,4 +29,4 @@ Conflation occurs within the execution client, but through a process of communic
   - If it does, it checks to see if the number of lines in the block and the length of the data would exceed the limit
     - If it's within the limit, the conflator marks it as merged as well
 
-The conflator continues this cycle, until the time limit is reached, at which point it passes the conflated trace data back to the Coordinator, for subsequent Merkle tree and proof generation.
+The conflator continues this cycle until the time limit is reached, at which point it passes the conflated trace data back to the Coordinator, for subsequent Merkle tree and proof generation.

@@ -6,6 +6,7 @@ To verify your Hardhat contracts, you can use [Hardhat's Etherscan plugin](https
 
 :::note
 
+
 Note that this is included as part of the `hardhat-toolbox` plugin.
 
 :::
@@ -36,12 +37,12 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 
 :::note
 
-These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.md#block-explorers).
+
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.mdx#block-explorers).
 
 :::
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 First, we'll need to add a custom chain like so:
 
@@ -70,6 +71,7 @@ etherscan: {
   ]
 }
 ```
+
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
@@ -95,10 +97,12 @@ etherscan: {
   ]
 }
 ```
+
   </TabItem>
 </Tabs>
 
 :::note
+
 
 The Etherscan `apiKey` and network name for your custom chain must match the network name under `networks` in your `hardhat.config.js`.
 
@@ -138,6 +142,7 @@ https://goerli.lineascan.build/address/address/0xC44De7f82f93799a8E405DF3221AfB1
 
 :::note
 
+
 If you get an error saying that the address does not have bytecode, it probably means that Etherscan has not indexed your contract yet. In that case, wait for a while and then try again.
 
 :::
@@ -145,6 +150,7 @@ If you get an error saying that the address does not have bytecode, it probably 
 You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
 :::info
+
 
 [Learn more about different configurations for verifying your smart contracts](https://hardhat.org/hardhat-runner/docs/guides/verifying).
 

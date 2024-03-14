@@ -3,23 +3,10 @@ title: Bridge your tokens
 sidebar_position: 3
 ---
 
-## Quickstart
+Any L2 is going to have a lot of connections to other networks. Some of these bridges will be made by Consensys and
+Linea, some by projects collaborating with us; some may be made without our knowledge—that's what 'permissionless' means.
 
-Before you begin, make sure you've [set up your wallet](/use-mainnet/set-up-your-wallet)
-
-**Bridge ETH**
-- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-eth) (for bridging between Linea and Ethereum)
-- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
-
-**Bridge ERC20 tokens**
-- [Use the official Linea token bridge](/use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens) (recommended for tech operators that are providing liquidity)
-- [Use third party bridges](#third-party-permissionless-bridges) (for bridging between Ethereum, Linea, and other networks)
-
-## The Linea bridge ecosystem
-
-Any L2 is going to have a lot of connections to other networks. Some of these bridges will be made by Consensys and Linea, some by projects collaborating with us; eventually, some may be made without our knowledge—that’s what 'permissionless' means.
-
-> ### What's going on here?
+> **What's going on here?**
 >
 > Linea, like any other rollup network, is designed to offer its own experience, while 'reporting back' to another network (usually Ethereum Mainnet) on all the activity that happens on it (at least, at the level of transactions); this means that the 'Layer 1' network is tracking all the activity on the 'Layer 2'. In this way, L2s are said to 'inherit the security of the L1'.
 >
@@ -27,35 +14,55 @@ Any L2 is going to have a lot of connections to other networks. Some of these br
 >
 > Ok, now you're up to speed 🚀
 
-### The Canonical Message Bridge
+## Options for moving large liquidity
 
-The main "bridge", on a technical level, in Linea is the _Canonical Message Bridge_. This is the underlying set of smart contracts which keep track of receiving requests to move tokens to the other layer, and of sending the message that those tokens should be transferred.
+### 1. Use the canonical token bridge with the default `BridgedToken` implementation
 
-### The Postfrens
+This is suited for all protocols that just need their token on L2 for DeFi and other uses without any special requirement for custom features (Vanilla ERC20).
 
-This message is then picked up by programs serving as "postmen", and moved to the other network, where the receiving smart contract executes according to the message received.
+**Bridge ETH**
 
-### [The Canonical Token Bridge](/architecture/bridges/canonical-token-bridge)
+We recommend you use the [official Linea token bridge](./how-to-bridge-eth.md) for bridging between Linea and Ethereum.
 
-If you want to move tokens between L1 and L2, we recommend you use the bridge built on top of the Canonical Message Bridge specifically for this purpose: the Canonical Token Bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build).
+**Bridge ERC-20 tokens**
 
-### Third-Party, Permissionless Bridges
+Again, we recommend the official bridge; ERC-20-specific instructions are [here](./how-to-bridge-erc20-tokens.mdx).
 
-You can find third-party bridges by heading over to our [ecosystem portal](https://linea.build/apps) and filtering for bridges.
+### 2. Use the canonical token bridge with a custom `BridgedToken` implementation
 
-:::caution
+This is suited for protocols that want to implement special features for the bridged ERC20 on L2. **This is only possible if the token has not yet been bridged from L1 to L2 in order to avoid unexpected changes for end-users.**
 
-Note that these are permissionless bridges. As always, you should do your own research before interacting with dapps in order to keep your funds safe.
+Protocols that want to use a custom BridgedToken will be able to incorporate arbitrary logic on the L2 ERC20, while still relying on the Token Bridge lock and mint logic and cross-chain communication. **For this to work, protocols need to keep compatibility with the Token Bridge by enabling it to call the ERC20 mint and burn functions.**
+
+If you are interested in this option, please contact the Linea team to get started. The process is as follows:
+
+- The token issuer deploys a custom BridgedToken which should enable the Token Bridge to call mint and burn functions.
+- Linea team will configure the bridge so that it will use your custom contract to mint and burn tokens on L2.
+
+:::note
+
+If you are not yet ready with your own implementation, you can deploy the standard BridgedToken implementation behind a dedicated upgradable proxy that you will be able to upgrade later
 
 :::
 
-## Manual vs Automatic Claiming
+### 3. Build a dedicated token bridge
+
+This is intended for partners who need full control over the bridge and want to implement complex cross-chain logic.
+
+The partner will be in charge of building, auditing and operating their own token bridge.
+
+If you are interested by this option, please get in touch with us so that we can:
+
+- Block your L1 token from being bridged on L1 in order to avoid having several copies on Linea
+- Provide guidance if you want to rely on our cross-chain messaging system
+
+## Manual vs automatic claiming
 
 Manual claiming requires two transactions to be approved. One on the source layer to initiate the bridging process and the other on the target layer by the recipient to receive the funds, which we call "claiming". This means that in order to receive the funds, the recipient has to pay a fee on the target layer.
 
 Automatic claiming only requires one transaction to be approved on the source layer. The recipient will automatically receive their funds because a "postman" will handle the claiming process for them.
 
-## What are the execution fees? 
+## What are the execution fees?
 
 There are two types of execution fees that can be applied when you are bridging your tokens, the postman fee and the anti-DDOS fee.
 
@@ -67,9 +74,21 @@ The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.0
 
 ## What is token bridge decimal mismatch?
 
-When a user bridges an ERC20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC20 token. 
-If the "decimals" cannot be determined by reading the origin ERC20 token contract (e.g. a token contract does not adhere to the ERC20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals. 
+When a user bridges an ERC-20 token from one chain to the other (e.g. Mainnet to Linea) and the token has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of the ERC-20 token. If the "decimals" cannot be determined by reading the origin ERC-20 token contract (e.g. a token contract does not adhere to the ERC-20 standard https://ethereum.org/en/developers/docs/standards/tokens/erc-20/ ), it will default to 18 decimals.
 
-It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC20 standards.
+It's important to note that encountering this situation is uncommon, as most tokens with specified decimals usually adhere to the ERC-20 standards.
 
-Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information.  Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again.
+Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to missing information. Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the 0.01 to L1, it'll become 1 token again.
+
+### The canonical message bridge
+
+The canonical message bridge is the main "bridge", on a technical level. This is the underlying set of smart contracts which keep track of receiving requests to move tokens to the other layer, and of sending the message that those tokens should be transferred.
+
+### The Postfrens
+
+This message is then picked up by programs serving as "postmen", and moved to the other network, where the receiving smart contract executes according to the message received.
+
+### [The canonical token bridge](../../architecture/bridges/canonical-token-bridge.mdx)
+
+If you want to move tokens between L1 and L2, we recommend you use the bridge built on top of the canonical message bridge specifically
+for this purpose: the canonical token bridge, currently located at [https://bridge.linea.build](https://bridge.linea.build).

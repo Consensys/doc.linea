@@ -1,52 +1,68 @@
 ---
-title: Zero-Knowledge Glossary
-description: An open source glossary to aid you zero knowledge journey!
+title: Glossary
+description: An open source glossary to aid your zero knowledge journey!
 sidebar_position: 7
 ---
 
 This glossary is open source and consistently being updated. If you'd like a term to be added, please [create an issue](https://github.com/Consensys/doc.zk-evm/issues) or create a pull request and define one yourself!
 
-## \#
-
 ## A
 
-### Arithmetization
+### arithmetization
 
 Arithmetization is the process of turning computational problems into equations. It can be summarized as turning computer programs into "math," so that they can be analyzed using cryptographic algebraic techniques.
 
+### appchain
+
+A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus.
+
+Deploying appchains on top of L2 networks like Linea offers significant cost and customization capabilities.
+
+See also: "blockchain trilemma", "modular blockchain", "Layer 2", "Layer 3".
+
 ## B
 
-### Blockchain trilemma
+### blockchain trilemma
 
-The blockchain trilemma is a “pick 2” situation between decentralization, security, and scalability. Between the 3, the Ethereum community has chosen decentralization and security. Sacrificing scalability means increasing gas prices, which jeopardizes the adoption of Ethereum by pricing out users.
+Blockchain network builders face a tradeoff between three factors: decentralization, security, and scalability (or speed). Often, designing a system that optimizes for one compromises another.
+
+### Brakedown
+
+The first built system that provides linear-time SNARKs for NP, meaning the prover incurs O(N) finite field operations to prove the satisfiability of an N-sized R1CS instance. Brakedown’s prover is faster, both concretely and asymptotically, than prior SNARK implementations.
+
+Brakedown does not require a trusted setup and is plausibly post-quantum secure.
 
 ## C
 
-### Circuit
+### circuit
 
-A circuit represents a computation using a collection of logic gates. Circuits depict the flow of data and the sequence of operations performed on that data. In a zero-knowledge proof, a circuit is constructed by taking in the statements to be proved and encoding the inputs, outputs, and steps of a transaction. Then, the prover generates a proof, typically by simulating the execution of this circuit, but only reveals whether or not the execution was valid or not. Finally, the verifier uses the circuit representation to verify that the computations performed by the prover are consistent and that the outputs are correct.
+A circuit uses logic gates to depict the flow of data and the sequence of operations performed on that data in a given computational task. Circuits are used at many levels to create processing capability, including virtual machines like the Ethereum Virtual Machine, and Linea's implementation of a zk-EVM.
 
-### Constraint
+### constraint
 
-A constraint refers to a condition imposed on mathematical operations or computation to ensure the correctness, efficiency, or security of a cryptographic algorithm.
+A constraint refers to a condition imposed on mathematical operations or computation to ensure the correctness, efficiency, or security of an algorithm.
 
 ## D
 
-### Data availability
+### data availability
 
-Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. This is what powers trustlessness: rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid. Data availability is one of the ways in which a [L2](#layer-2) differs from a [sidechain](#sidechain).
+Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid.
+
+Data availability is one of the ways in which a [L2](#layer-2) differs from a [sidechain](#sidechain).
 
 ## E
 
-### Elliptic curve cryptography
+### elliptic curve cryptography
 
-[Elliptic curve cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) is a type of public key cryptography, which allows two parties to communicate securely without sharing a secret key. At a high level, an [_elliptic curve_](https://en.wikipedia.org/wiki/Elliptic_curve) is a math equation that has a lot of cool properties that make it useful for constructing zero-knowledge proofs.
+A method of encrypting information used in many applications, including in public blockchain networks. It is commonly used to create "public-private key pairs": a pair of cryptographic elements. The public key can be used to encrypt things which can then only be decrypted by the private key.
+
+ECC uses mathematical theories surrounding elliptic curves to render the encryption extremely difficult to decipher without the correct private key.
 
 ### Ethereum Virtual Machine (EVM)
 
 A stack-based virtual machine that executes bytecode. In Ethereum, the execution model specifies how the system state is altered given a series of bytecode instructions and a small tuple of environmental data. This is specified through a formal model of a virtual state machine.
 
-### Execution trace
+### execution trace
 
 This is a record of what happened during the execution of a transaction. This is usually represented as a list, in which each item is the state of the machine at a specific clock time, which includes information such as:
 
@@ -62,13 +78,35 @@ This is relevant to zk-rollups because execution traces are used to construct th
 
 ## G
 
+### gnark
+
+gnark is a software library that offers users the ability to design and run computational circuits in zk-SNARKs through a high-level API.
+
+The library is open source and developed under the Apache 2.0 license.
+
+### Groth16
+
+Groth16 is a circuit-specific preprocessing general-purpose zk-SNARK construction. It has become a de-facto standard used in several blockchain projects due to the constant size of its proof, and its appealing verifier time.
+
+On the downside, Groth16 needs a circuit-specific trusted setup for its preprocessing phase.
+
 ## H
+
+### hash function
+
+A mathematical function that converts a data input of any chosen length and size into an output that is encrypted and has a fixed length and size. Once converted, the hash cannot be reverse-engineered to reveal the original input of data. This makes the data input more secure against decryption.
 
 ## I
 
 ## J
 
 ## K
+
+### keccak
+
+Keccak (pronounced “ketchak”) is a versatile cryptographic function best known for its uses in hashing. It provides increased levels of security when compared to older hash algorithms.
+
+See also: SHA, hash function.
 
 ## L
 
@@ -102,7 +140,7 @@ A polynomial commitment scheme is a cryptographic primitive that allows a party 
 
 ### Polynomial IOP (Interactive Oracle Proof)
 
-An Interactive Oracle Proof (IOP) is a protocols in which the verifier is not required to fully read the prover's messages (the [traces](#execution-trace) and [constraints](#constraint) generated from [arithmetization](#arithmetization)). Instead, the verifier has [oracle](#oracle) access to the prover’s messages. This oracle is repeatedly queried to create the concrete proof system, or [polynomial commitment](#polynomial-commitment) for the [validity proof](#validity-proof).
+An Interactive Oracle Proof (IOP) is a protocol in which the verifier is not required to fully read the prover's messages (the [traces](#execution-trace) and [constraints](#constraint) generated from [arithmetization](#arithmetization)). Instead, the verifier has [oracle](#oracle) access to the prover’s messages. This oracle is repeatedly queried to create the concrete proof system, or [polynomial commitment](#polynomial-commitment) for the [validity proof](#validity-proof).
 
 ## Q
 
@@ -112,7 +150,7 @@ An Interactive Oracle Proof (IOP) is a protocols in which the verifier is not re
 
 A type of [L2](#layer-2) scaling solution that batches multiple transactions and submits them to the Ethereum main chain in a single transaction. This allows for reductions in gas costs and increases in transaction throughput. There are optimistic and zero-knowledge rollups, which use different security methods to offer these scalability gains.
 
-Rollup architecture is made up the following components:
+Rollup architecture is made up of the following components:
 
 - **Rollup contract**: contract on the L1 stores rollup blocks, monitors state updates on the rollup, and tracks user deposits
 - **Off-chain VM**: computation and state storage on another virtual machine separate from the Ethereum Virtual Machine

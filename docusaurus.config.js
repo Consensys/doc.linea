@@ -72,39 +72,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        // The application ID provided by Algolia
-        appId: "NSRFPEJ4NC",
-
-        // Public API key: it is safe to commit it
-        apiKey: "cea41b975ad6c9a01408dfda6e0061d3",
-
-        indexName: "linea",
-
-        // Optional: see doc section below
-        contextualSearch: true,
-
-        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        externalUrlRegex: "external\\.com|domain\\.com",
-
-        // Optional: Algolia search parameters
-        searchParameters: {},
-
-        // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: "search",
-
-        // ... other Algolia params
-      },
-      announcementBar: {
-        id: "announcement_bar",
-        content:
-          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
-        isCloseable: false,
-      },
+      // announcementBar: {
+      //   id: "announcement_bar",
+      //   content:
+      //     '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
+      //   backgroundColor: "#fafbfc",
+      //   textColor: "#091E42",
+      //   isCloseable: false,
+      // },
       colorMode: {
-        defaultMode: "light",
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
@@ -119,36 +96,46 @@ const config = {
         },
       },
       navbar: {
+        title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/logo.svg",
-          srcDark: "img/logo_dark.svg",
-          width: 55,
-          height: 55,
+          src: "img/Linea_logo_black.svg",
+          srcDark: "img/Linea_logo_white.svg",
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "docSidebar",
+            type: "doc",
             docId: "index",
             position: "left",
-            label: "Docs",
+            label: "Linea basics",
           },
           {
-            type: "dropdown",
-            label: "Tutorials",
+            type: "doc",
+            docId: "build-on-linea/quickstart/index",
             position: "left",
-            items: [
-              {
-                label: "Community Guides",
-                to: "blog",
-              },
-              {
-                label: "ZK Glossary",
-                to: "/zero-knowledge-glossary",
-              },
-            ],
+            label: "Developers",
           },
+          {
+            type: "doc",
+            docId: "architecture/index",
+            position: "left",
+            label: "Linea architecture",
+          },
+          // { can add this section back if we want it
+          //   type: "dropdown",
+          //   label: "Tutorials",
+          //   position: "left",
+          //   items: [
+          //     {
+          //       label: "Community Guides",
+          //       to: "blog",
+          //     },
+          //     {
+          //       label: "ZK Glossary",
+          //       to: "/zero-knowledge-glossary",
+          //     },
+          //   ],
+          // },
           {
             to: "https://support.linea.build/hc/",
             position: "left",
@@ -195,11 +182,11 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get Help",
+                label: "Get help",
                 to: "https://support.linea.build/",
               },
               {
-                label: "Give Feedback",
+                label: "Give feedback",
                 to: "https://community.linea.build/c/feedback",
               },
             ],
@@ -211,14 +198,6 @@ const config = {
                 label: "Contribute to our documentation",
                 href: "https://github.com/Consensys/doc.zk-evm",
               },
-              {
-                label: "Contribute to our gnark repo",
-                href: "https://github.com/Consensys/gnark",
-              },
-              {
-                label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/Consensys/gnark-crypto",
-              },
             ],
           },
         ],
@@ -227,8 +206,21 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["solidity", "toml"],
+        additionalLanguages: [
+          "solidity",
+          "toml",
+          "bash",
+          "json",
+          "typescript",
+          "javascript",
+          "python",
+        ],
       },
+      metadata: [
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
+        { property: "og:image", content: "/img/Linea_social_card_docs.png" },
+      ],
       languageTabs: [
         {
           highlight: "bash",
@@ -327,6 +319,10 @@ const config = {
             to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
+          {
+            to: "/build-on-linea/gas-fees",
+            from: "/use-mainnet/gas-import",
+          },
         ],
       },
     ],
@@ -340,7 +336,22 @@ const config = {
       crossorigin: "anonymous",
     },
   ],
-  themes: [],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        docsRouteBasePath: "/",
+        hashed: true,
+      },
+    ],
+  ],
+  headTags: [
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `window.lightningjs||function(n){function e(e,t){var i,r,a,o,d,l;return t&&(t+=(/\\?/.test(t)?"&":"?")+"lv=1"),n[e]||(i=window,r=document,a=e,o=r.location.protocol,d="load",l=0,function(){n[a]=function(){var t=arguments,r=this,o=++l,d=r&&r!=i&&r.id||0;function s(){return s.id=o,n[a].apply(s,arguments)}return(e.s=e.s||[]).push([o,d,t]),s.then=function(n,t,i){var r=e.fh[o]=e.fh[o]||[],a=e.eh[o]=e.eh[o]||[],d=e.ph[o]=e.ph[o]||[];return n&&r.push(n),t&&a.push(t),i&&d.push(i),s},s};var e=n[a]._={};function s(){e.P(d),e.w=1,n[a]("_load")}e.fh={},e.eh={},e.ph={},e.l=t?t.replace(/^\\\/\\\//,("https:"==o?o:"http:")+"//"):t,e.p={0:+new Date},e.P=function(n){e.p[n]=new Date-e.p[0]},e.w&&s(),i.addEventListener?i.addEventListener(d,s,!1):i.attachEvent("onload",s);var c=function(){function n(){return["<!DOCTYPE ",o,"><",o,"><head></head><",t,"><",i,' src="',e.l,'"></',i,"></",t,"></",o,">"].join("")}var t="body",i="script",o="html",d=r[t];if(!d)return setTimeout(c,100);e.P(1);var l,s=r.createElement("div"),h=s.appendChild(r.createElement("div")),u=r.createElement("iframe");s.style.display="none",d.insertBefore(s,d.firstChild).id="lightningjs-"+a,u.frameBorder="0",u.id="lightningjs-frame-"+a,/MSIE[ ]+6/.test(navigator.userAgent)&&(u.src="javascript:false"),u.allowTransparency="true",h.appendChild(u);try{u.contentWindow.document.open()}catch(n){e.domain=r.domain,l="javascript:var d=document.open();d.domain='"+r.domain+"';",u.src=l+"void(0);"}try{var p=u.contentWindow.document;p.write(n()),p.close()}catch(e){u.src=l+'d.write("'+n().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}e.P(2)};e.l&&c()}()),n[e].lv="1",n[e]}var t=window.lightningjs=e("lightningjs");t.require=e,t.modules=n}({}),window.usabilla_live=lightningjs.require("usabilla_live","//w.usabilla.com/28fb46af8693.js");`,
+    },
+  ],
 };
 
 module.exports = config;

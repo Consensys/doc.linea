@@ -2,21 +2,29 @@
 title: Foundry
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
 
 Here's a video walkthrough:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TO9XhLCoqgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="center-container">
+    <div class="video-container">
+      <iframe
+        class="video-iframe"
+        src="https://www.youtube.com/embed/TO9XhLCoqgg"
+        title="How to deploy a smart contract on Linea with Foundry"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+    </div>
+</div>
 
 ## Prerequisites
 
 Before you begin, ensure you've:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-1. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md#get-test-eth-on-linea)
+2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 
    ```bash
    curl -L https://foundry.paradigm.xyz | bash
@@ -64,8 +72,9 @@ forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Coun
 On mainnet:
 
 ```bash
-forge create --rpc-url https://linea.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
+forge create --rpc-url https://linea-mainnet.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key PRIVATE_KEY
 ```
+
 </TabItem>
 <TabItem value="Public Endpoint" label="Public Endpoint">
 
@@ -118,7 +127,7 @@ Finally, we can modify the `foundry.toml` file to conveniently store the various
 ```bash
 [rpc_endpoints]
 linea-testnet = "https://linea-goerli.infura.io/v3/${INFURA_API_KEY}"
-linea-mainnet = "https://linea.infura.io/v3/${INFURA_API_KEY}"
+linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```
 
 Now, in order to deploy, you can simply run:

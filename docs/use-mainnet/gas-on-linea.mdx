@@ -1,0 +1,46 @@
+---
+title: Gas on Linea
+description: Understanding gas on Linea
+---
+
+## What does gas pay for?
+
+Gas must be paid to cover any kind of on-chain computation. For a zk rollup like Linea, this mainly involves execution and storage on L2, and publishing `calldata` on L1.
+
+The main costs of interacting with L1 are:
+- Verifying 'proofs', the cryptographic functions that confirm the validity of the state changes being recorded on L1, and; 
+- Publishing compressed transactions to L1 as `calldata`.
+
+Since the process of publishing data and verifying zk proofs on Ethereum mainnet is an indispensable and vital feature of Linea, we can consider the Linea gas price to cover two dimensions: the L2 execution and storage resources on Linea, and the L1 cost of guaranteeing the computational integrity of each Linea batch.
+
+## Alpha v2 and minimizing gas fees
+
+The Alpha v2 upgrade came to Linea mainnet on February 13, and made several improvements that have reduced gas fees by approximately 66%.
+
+### Data compression
+
+Data compression significantly reduces the cost of posting `calldata`—L2 transaction data and messaging data—to L1.
+
+This optimization takes advantage of the Linea prover's existing ability to operate with a compressed input, decompressing `calldata` to validate L2 state transitions. The `calldata` passed to the L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions in each block.
+
+The data compression algorithm is completely lossless, and can achieve compression ratios of up to 15:1 (where the `calldata` is 15 times smaller than its uncompressed state). This affords Linea the ability to submit data about far more transactions in each batch: before Alpha v2 and `calldata` compression, Linea averaged ~150 transactions per batch; now it averages ~1,500.
+
+As a result, significantly more transactions can be processed for the same computational cost on L1.
+
+:::note[Dencun and EIP-4844]
+
+Ethereum's Dencun upgrade is due on March 13, and will significantly affect the process of submitting data to L1. Through a process known as "proto-danksharding", the data currently submitted to L1 in `calldata` will instead by submitted in "blobs", with the net effect of reducing required computation, and, accordingly, gas costs. You can read more about EIP-4844 in this [Consensys blog post](https://consensys.io/blog/ethereum-evolved-dencun-upgrade-part-5-eip-4844).
+
+Alpha v2 includes groundwork to prepare Linea for EIP-4844, and allow the Linea community to benefit from even lower gas prices.
+
+:::
+
+### Proof aggregation
+
+Generating a zkSNARK proof on L1 is an essential step for finalizing transactions, as a verified proof demonstrates the integrity and validity of the submitted transactions. 
+
+Previously, Linea generated one proof per batch of transactions. With Alpha v2, many proofs can be recursively aggregated into one.
+
+The verification process on L1 costs ~400,000 gas — a cost that previously had to be covered for every batch. This gas cost is the same, however, for verifying a single batch of conflated batches (as Linea did in Alpha v1) as it is for verifying an aggregated proof representing multiple batches (as in Alpha v2). A proof that aggregates N proofs is N times cheaper, as the cost remains consistent.
+
+With Alpha v2 upgrades, Linea now averages ~30 batches per final proof, making the process 1/30th as costly as it was in Alpha v1.

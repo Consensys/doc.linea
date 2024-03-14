@@ -76,7 +76,7 @@ Choose `Greeter` when prompted to choose template.
 ? Which template would you like to use?
   "Blank"
 > "Greeter"
-  "Erc20"
+  "ERC-20"
 [↑↓ to move, enter to select, type to filter]
 ```
 

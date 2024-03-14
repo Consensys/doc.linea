@@ -1,25 +1,53 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+.icon {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
 
-@media screen and (max-width: 996px) {
-  .introductionBlock {
-    padding: 2rem;
+.bannerButton {
+  background-color: #61dfff;
+  color: white;
+  border: none;
+  padding: 20px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #121212;
+}
+
+@media (max-width: 768px) {
+  .bannerButton {
+    padding: 15px 65px;
   }
+}
+
+@media (max-width: 320px) {
+  .bannerButton {
+    font-size: 16px;
+    padding: 15px 25px;
+  }
+}
+
+.bannerButton:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #61dfff;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.introductionBlock {
-  background: #000;
-  padding: 6rem;
-  text-align: center;
-  width: 100%;
 }
 
 .forceColor {
@@ -30,10 +58,119 @@ html[data-theme="dark"] .forceColor {
   color: var(--ifm-font-color-secondary);
 }
 
+.logo {
+  padding-right: 10px;
+  padding-left: 10px;
+  height: 70px;
+  width: auto;
+  filter: drop-shadow(2px 2px 3px #121212);
+}
+
+@media (max-width: 768px) {
+  .logo {
+  height: 40px;
+  width: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo {
+    margin-top: 35px;
+    height: 35px;
+    width: auto;
+  }
+}
+
 .title {
-  font-size: clamp(1.5rem, 5vw, 6rem);
+  font-size: 45px;
+  padding-bottom: 20px;
+  text-shadow: 2px 2px 3px #121212;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 20px;
+  }
 }
 
 .subtitle {
-  font-size: clamp(0.8rem, 1vw, 2rem);
+  font-size: 21px;
+  padding: 0 14rem 20px;
+  text-shadow: 2px 2px 3px #121212;
+}
+
+@media (max-width: 1000px) {
+  .subtitle {
+    font-size: 18px;
+    padding: 0 0 20px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .subtitle {
+    font-size: 15px;
+    padding: 0 0 20px;
+    padding: 0;
+  }
+}
+
+@media (max-height: 850px) {
+  .subtitle {
+    font-size: 16px;
+  }
+}
+
+.heroBanner {
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: 25% 50%;
+  height: 70vh;
+}
+
+/* Banner background image */
+.introductionBlock {
+  background-image: url('/img/hero-home.webp');
+  background-color: #121212;
+  background-position: 125% 50%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  padding: 6rem;
+  text-align: center;
+  width: 100%;
+  height: 52vh;
+}
+
+@media (max-width: 1300px) {
+  .introductionBlock {
+    height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .introductionBlock {
+    padding: 2rem;
+    background-position: 70vw -5vh;
+    background-size: 120% auto;
+    height: 50vh;
+  }
+}
+
+@media (max-height: 850px) {
+  .introductionBlock {
+    height: 27.7rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .introductionBlock {
+    padding: 0;
+    height: 55vh;
+  }
 }
