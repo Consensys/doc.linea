@@ -31,7 +31,7 @@ And be featured on [X](https://twitter.com/lineabuild), [Linea Farcaster](https:
 - **Get help**
   - Join our [developer chat](https://t.me/+rI-iPLacQXQ5MDVh) where you can connect with teams across MetaMask, Linea, Phosphor, Verax, Infura, and more!
 
-## Monthly Mini-Hack
+## Monthly mini-hack
 
 Every month, Linea hosts a mini-hack to celebrate continuous building! No need to start from scratch - the only requirement is that you're building with Linea, you've had at least one Github commit in the current month, and you've made some noise about it in public!
 
