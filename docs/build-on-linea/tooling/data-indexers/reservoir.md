@@ -4,7 +4,7 @@
 
 The platform is built on **The Reservoir Standard**, an open framework for understanding the NFT market across marketplaces and chains. Together, these pieces function as an interface that makes NFT markets composable, easy to participate in, and aligned with the ethos of web3. Check out our tools:
 
-# [NFT Trading & Data APIs](https://docs.reservoir.tools/reference/overview)
+# [NFT trading and data APIs](https://docs.reservoir.tools/reference/overview)
 
 Reservoir APIs provide all-in-one endpoints for building NFT applications. The NFT trading APIs allow you to trade NFTs across major NFT marketplaces and create your own orders with advanced order types and custom fees. The NFT data APIs provide granular token price data, real-time collection floor price and top bid events, token and collection metadata, and more. The API is wrapped in an easy-to-use [TS/JS SDK](ref:reservoir-sdk-jstsnode) with performant methods.
 
@@ -16,7 +16,7 @@ ReservoirKit is a React library that makes it easy to add marketplace functional
 
 Learn more about ReservoirKit [here](https://docs.reservoir.tools/reference/reservoirkit).
 
-# [Open-source Marketplace](https://docs.reservoir.tools/reference/open-source-marketplace)
+# [Open-source marketplace](https://docs.reservoir.tools/reference/open-source-marketplace)
 
 Reservoir's open-source marketplace is a NextJS app that you can fork and use freely as a stand alone marketplace or a base for building something more custom and unique. You can checkout our fully-functional reference deployment [here](https://marketplace.reservoir.tools/).
 

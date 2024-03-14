@@ -2,8 +2,6 @@
 title: Linea SDK
 ---
 
-The Linea SDK package is comprised of two integral components: the SDK, which facilitates smart contract interaction, and the Postman, responsible for seamless message delivery. Together, these components enable smooth communication and empower you to effortlessly retrieve message status and information across the Ethereum and Linea networks.
-
 ## Installation
 
 To install the package you need to run:
@@ -12,7 +10,7 @@ To install the package you need to run:
 npm install @consensys/linea-sdk
 ```
 
-## SDK
+## Features
 
 The SDK focuses on interacting with smart contracts on both Ethereum and Linea networks and provides custom functions to obtain message information. Notable features of the Linea SDK include:
 
@@ -26,8 +24,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 5.  Claiming messages (use one of the get message methods to grab all the parameters values)
 
-:::info
-[New Features]
+:::info[New Features]
 
 The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires a Merkle proof for claiming.
 
@@ -54,7 +51,7 @@ Two new functions in the L1 contract:
 
 :::
 
-## Code Examples
+## Code examples
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 

@@ -6,7 +6,7 @@ volumes:
 
 services:
   init:
-    image: ethereum/client-go:v1.11.6
+    image: ethereum/client-go:v1.13.4
     command:
     - init
     - /genesis.json
@@ -15,7 +15,7 @@ services:
       - linea-goerli:/root/.ethereum
 
   node:
-    image: ethereum/client-go:v1.11.6
+    image: ethereum/client-go:v1.13.4
     pull_policy: always
     restart: unless-stopped
     stop_grace_period: 30s
@@ -31,7 +31,7 @@ services:
       --http.corsdomain='*'
       --http.api='admin,web3,eth,txpool,net'
       --http.vhosts='*'
-      --bootnodes "enode://c7d29d1bbb768e73c6bd320608276dc2341670822ed1292456a7b8375de35b5348e3b6bac63783a53d697378b25c5658681683f7621e31b37c605993c5ee13bd@18.189.141.200:30303,enode://14ba040dd8c5b1ea607fabf98c3c7c398658f897c502d0ca5202dce8907e83be953995ce5c3f72def2af710c072fe38de4e9347a299370fc82d6d17819967c93@3.144.118.88:30303"
+      --bootnodes "enode://700f0d5a5f2beadc307b7b8f1a251f8b75033c8222ca65bfb1aecc4c4a0a86d6d6ef8420e780f6ace7cc3d1b837606b116109cc53b00931d3debc1346b9ccbb8@13.51.255.207:31001,enode://cbbaacaf47a005cb389b40f6676d63800cc65295aad0983e5ce9f2e5bf805274cded5ef313993a2564591d6caab6322c2a39a0b3a21143034378179c7d5ecd44@3.16.167.169:31001"
       --verbosity=3
     ports:
       - 30303:30303
@@ -41,40 +41,3 @@ services:
     volumes:
       - ./genesis.json:/genesis.json:ro
       - linea-goerli:/root/.ethereum
-
-  #Besu node currently not peering with bootnodes
-  besu-node:
-    hostname: besu-node
-    container_name: besu-node
-    image: consensys/linea-besu:${SEQUENCER_TAG:-linea-delivery-8}
-    platform: linux/amd64
-    depends_on:
-      linea-besu-sequencer-plugin-downloader:
-        condition: service_completed_successfully
-    healthcheck:
-      test: [ "CMD-SHELL", "bash -c \"[ -f /tmp/pid ]\"" ]
-      interval: 1s
-      timeout: 1s
-      retries: 120
-    restart: "no"
-    environment:
-      LOG4J_CONFIGURATION_FILE: /var/lib/besu/log4j.xml
-    entrypoint:
-      - /bin/bash
-      - -c
-      - |
-        /opt/besu/bin/besu \
-        --config-file=/var/lib/besu/sequencer.config.toml \
-        --bootnodes="enode://c7d29d1bbb768e73c6bd320608276dc2341670822ed1292456a7b8375de35b5348e3b6bac63783a53d697378b25c5658681683f7621e31b37c605993c5ee13bd@18.189.141.200:30303,enode://14ba040dd8c5b1ea607fabf98c3c7c398658f897c502d0ca5202dce8907e83be953995ce5c3f72def2af710c072fe38de4e9347a299370fc82d6d17819967c93@3.144.118.88:30303"
-    volumes:
-      - ../config/linea-besu-sequencer/sequencer.config.toml:/var/lib/besu/sequencer.config.toml:ro
-      - ./genesis.json:/var/lib/besu/genesis.json:ro
-      - ../config/linea-besu-sequencer/log4j.xml:/var/lib/besu/log4j.xml:ro
-      - ../../tmp/linea-besu-sequencer/plugins:/opt/besu/plugins/
-
-  linea-besu-sequencer-plugin-downloader:
-    image: busybox:1.28
-    command: [ "sh", "/file-downloader.sh", "https://github.com/Consensys/besu-sequencer-plugins/releases/download/v0.1.4-test2/besu-sequencer-plugins-v0.1.4-test2.jar",  "/linea-besu-sequencer" ]
-    volumes:
-      - ../scripts/file-downloader.sh:/file-downloader.sh:ro
-      - ../../tmp/linea-besu-sequencer/plugins:/linea-besu-sequencer/
