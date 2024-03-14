@@ -85,7 +85,7 @@ _Judging criteria_
 - Technicality
 - Market readiness
 
-## IRL Hackathons
+## IRL hackathons
 
 ### EthVietnam
 
