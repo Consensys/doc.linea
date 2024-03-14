@@ -64,7 +64,7 @@ _Bonus points_
 _Judging criteria_
 - How easy is the tutorial to follow
 
-**Private Linea Builders Club track: Build a killer UI**
+### Private Linea Builders Club track: Build a killer UI
 
 All you need to do is build cool sh*t on Linea and make it easy to use.
 
