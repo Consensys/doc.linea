@@ -37,7 +37,14 @@ Download the genesis file and Besu configuration file.
   [`config-mainnet.toml`](pathname:///files/besu/config-mainnet.toml) file.
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Sepolia" label="Sepolia">
+  
+  Testnet [`genesis-sepolia.json`](pathname:///files/besu/genesis-sepolia.json) file and Besu
+  [`config-sepolia.toml`](pathname:///files/besu/config-sepolia.toml) file.
+  
+  </TabItem>
+
+  <TabItem value="Goerli" label="Goerli">
   
   Testnet [`genesis-goerli.json`](pathname:///files/besu/genesis-goerli.json) file and Besu
   [`config-goerli.toml`](pathname:///files/besu/config-goerli.toml) file.
@@ -54,7 +61,8 @@ custom volume when you [start the node].
 
 ### Step 4. Configure the Besu configuration file.
 
-In your Besu configuration file (`config-mainnet.toml` or `config-goerli.toml`), configure the following options:
+In your Besu configuration file (`config-mainnet.toml`, `config-goerli.toml`, or `config-sepolia.toml`), configure
+the following options:
 
 - Set `data-path` to the location you want to store your data. 
 - Set `genesis-file` to the path of your downloaded genesis file.
@@ -71,7 +79,14 @@ Run the Besu client with the location of your configuration file. For example:
   ```
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Sepolia" label="Sepolia">
+  
+  ```bash
+  besu --config-file=/Users/myuser/sepolia/config-sepolia.toml
+  ```
+  
+  </TabItem>
+  <TabItem value="Goerli" label="Goerli">
   
   ```bash
   besu --config-file=/Users/myuser/goerli/config-goerli.toml
@@ -96,12 +111,17 @@ Download the genesis file for the relevant network.
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Mainnet [`genesis.json`](pathname:///files/genesis.json) file.
+  Mainnet [`genesis.json`](pathname:///files/geth/mainnet/genesis.json) file.
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Sepolia" label="Sepolia">
   
-  Testnet [`genesis.json`](pathname:///files/testnet/genesis.json) file.
+  Sepolia [`genesis.json`](pathname:///files/geth/sepolia/genesis.json) file.
+  
+  </TabItem>
+  <TabItem value="Goerli" label="Goerli">
+  
+  Goerli [`genesis.json`](pathname:///files/geth/goerli/genesis.json) file.
   
   </TabItem>
 </Tabs>
@@ -128,10 +148,19 @@ Bootstrap the node using the following command:
     ```
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  
+  <TabItem value="Sepolia" label="Sepolia">
   
   ```bash
-  geth --datadir ./geth-uat-data init ./genesis.json
+  geth --datadir ./geth-sepolia-data init ./genesis.json
+  ```
+  
+  </TabItem>
+  
+  <TabItem value="Goerli" label="Goerli">
+  
+  ```bash
+  geth --datadir ./geth-goerli-data init ./genesis.json
   ```
   
   </TabItem>
@@ -164,11 +193,32 @@ Start the node using the following command:
     ```
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Sepolia" label="Sepolia">
   
     ```bash
     geth \
-    --datadir $HOME/geth-uat-data \
+    --datadir $HOME/geth-sepolia-data \
+    --networkid 59140 \
+    --rpc.allow-unprotected-txs \
+    --txpool.accountqueue 50000 \
+    --txpool.globalqueue 50000 \
+    --txpool.globalslots 50000 \
+    --txpool.pricelimit 1000000 \
+    --txpool.pricebump 1 \
+    --txpool.nolocals \
+    --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+    --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+    --bootnodes "enode://6f20afbe4397e51b717a7c1ad3095e79aee48c835eebd9237a3e8a16951ade1fe0e66e981e30ea269849fcb6ba03d838da37f524fabd2a557474194a2e2604fa@18.221.100.27:31002,enode://ce1e0d8e0500cb5c0ac56bdcdafb2d6320c3a2c5125b5ccf12f5dfc9b47ee74acbcafc32559017613136c9c36a0ce74ba4f83b7fb8244f099f3b15708d9d3129@3.23.75.47:31000,enode://1b026a5eb0ae74300f58987d235ef0e3a550df963345cb3574be3b0b54378bd11f14dfd515a8976f2c2d2826090e9507b8ccc24f896a9ffffffcabcfd996a733@3.129.120.128:31001" \
+    --syncmode full \
+    --metrics \
+    --verbosity 3
+    ```
+  </TabItem>
+  <TabItem value="Goerli" label="Goerli">
+  
+    ```bash
+    geth \
+    --datadir $HOME/geth-goerli-data \
     --networkid 59140 \
     --rpc.allow-unprotected-txs \
     --txpool.accountqueue 50000 \
