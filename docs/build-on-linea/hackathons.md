@@ -91,7 +91,7 @@ _Judging criteria_
 
 **Build a defi, deso, gaming, or frog-themed dapp on Linea ($5k pool prize)**
 
-We’re looking for the novel ideas expanding the adoption of Web3 and want to connect with hackers, giving them exclusive invites to our Linea Builders Club, where you can find tech talks by our ZK cryptographers, private mini hack opportunities, educational programs, and more!
+We’re looking for the novel ideas expanding the adoption of web3 and want to connect with hackers, giving them exclusive invites to our Linea Builders Club, where you can find tech talks by our ZK cryptographers, private mini hack opportunities, educational programs, and more!
 
 We're judging based on technicality, utility, UX, and market readiness - bonus points if you add a frog-theme or use any partner tooling (https://docs.linea.build/build-on-linea/tooling)
 
