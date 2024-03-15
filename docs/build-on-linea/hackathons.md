@@ -26,7 +26,7 @@ And be featured on [X](https://twitter.com/lineabuild), [Linea Farcaster](https:
 - **Deploy a smart contract**
   - Follow our [step-by-step quickstart on how to deploy and verify a smart contract](/build-on-linea/quickstart) with a variety of tools like Hardhat, Foundry, and more!
 - **Get access to Verax private beta**
-  - Send your wallet address in our [Telegram chat](https://t.me/+rI-iPLacQXQ5MDVh) to get access to Verax private beta! Here's a [quick tutorial](https://docs.ver.ax/verax-documentation/developer-guides/tutorials/from-a-schema-to-an-attestation) on how to leverage Verax.
+  - Send your account address in our [Telegram chat](https://t.me/+rI-iPLacQXQ5MDVh) to get access to Verax private beta! Here's a [quick tutorial](https://docs.ver.ax/verax-documentation/developer-guides/tutorials/from-a-schema-to-an-attestation) on how to leverage Verax.
 - [**Walkthroughs and use cases**](https://youtube.com/playlist?list=PLJ06SwdM0bLrA-3EGRji4W0QI8fyA8PyW&si=vQsXrtFVUsXhygJ0)
 - **Get help**
   - Join our [developer chat](https://t.me/+rI-iPLacQXQ5MDVh) where you can connect with teams across MetaMask, Linea, Phosphor, Verax, Infura, and more!
