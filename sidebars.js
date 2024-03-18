@@ -129,6 +129,7 @@ const sidebars = {
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",
+      "build-on-linea/goerli-to-sepolia",
      {
       type: "category",
       label: "Tooling and infrastructure",
