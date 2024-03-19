@@ -1,6 +1,7 @@
 ---
-title: "Linea inscriptions"
-id: "linea-inscription"
+title: Linea inscriptions
+id: linea-inscription
+image: /img/socialCards/linea-inscriptions.jpg
 ---
 
 ## What are inscriptions?

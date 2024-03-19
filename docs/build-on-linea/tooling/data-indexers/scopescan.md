@@ -1,5 +1,6 @@
 ---
 title: Scopescan
+image: /img/socialCards/scopescan.jpg
 ---
 
 As Web3 platforms, protocols, and dapps become more mainstream, there is an increasing demand for these companies to know their users’ behaviors and connections. Thus, having a partner that can help companies and developers understand their users better is important for Linea and its mission to provide better scalability. 

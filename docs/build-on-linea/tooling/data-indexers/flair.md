@@ -1,5 +1,6 @@
 ---
 title: Flair
+image: /img/socialCards/flair.jpg
 ---
 
 Real-time and historical custom data indexing for any evm chain.

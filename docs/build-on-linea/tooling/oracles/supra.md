@@ -1,5 +1,6 @@
 ---
 title: Supra
+image: /img/socialCards/supra.jpg
 ---
 
 ## Supra

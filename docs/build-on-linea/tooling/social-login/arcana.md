@@ -1,5 +1,6 @@
 ---
 title: Arcana
+image: /img/socialCards/arcana.jpg
 ---
 
 [Arcana Network](https://arcana.network) SDKs enable Web3 developers to use [social login](https://docs.arcana.network/concepts/social-login) and onboard app users easily. 
