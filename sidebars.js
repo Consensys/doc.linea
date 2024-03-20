@@ -320,6 +320,10 @@ const sidebars = {
         {
           type: "category",
           label: "Social Login",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/social-login/index",
+          },
           items: [
             "build-on-linea/tooling/social-login/arcana"
           ],
