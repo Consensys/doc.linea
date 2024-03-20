@@ -10,7 +10,7 @@ const sidebars = {
         id: "index",
       },
       items: [
-        "use-mainnet/index",
+       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
@@ -143,6 +143,7 @@ const sidebars = {
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",
+      "build-on-linea/goerli-to-sepolia",
      {
       type: "category",
       label: "Tooling and infrastructure",

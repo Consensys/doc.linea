@@ -11,6 +11,32 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 
 Find out all you need to know about the latest Linea versions.
 
+## February 2024
+
+### February 19
+
+**Testnet:**
+- Released a higher priced version of `linea_estimateGas` (this will change once the endpoint is fully functional)
+
+**Mainnet:**
+- Released a higher priced version of `linea_estimateGas` (this will change once the endpoint is fully functional)
+
+### February 12
+
+**Testnet:**
+- Updated Bridge UI to v0,5.4 to support the new claiming method via Linea SDK v0.2.1 
+
+**Mainnet:**
+- Updated Bridge UI to v0,5.4 to support the new claiming method via Linea SDK v0.2.1 
+
+### February 5
+
+**Testnet:**
+- Deployed Linea Gas API to estimate how much gas is necessary to be included and published on Ethereum.
+:::note
+Learn how to use the Linea Gas API [here](https://docs.linea.build/reference/api/linea-estimategas).
+:::
+
 ## Alpha v2 release notes
 
 <table>
@@ -77,7 +103,6 @@ Post upgrade, Execute the following Security Council transactions on L1:
 - Call FinalizeWithoutProof
 - Clear verifier mapping at index 6 and 7
 
-{/* <!-- markdown-link-check-disable-next-line --> */}
 The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
 
 Two independent audits have been performed for this update. Reports can be found here: 
@@ -94,8 +119,8 @@ Two independent audits have been performed for this update. Reports can be found
 
 :::info[Note] 
 
-{/* <!-- markdown-link-check-disable-next-line --> */}
-If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk/index.md).
+If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages
+their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../linea-sdk/index.md).
 
 :::
 
@@ -187,6 +212,13 @@ This is a breaking change for consumers listening to the existing events. The `B
 - Deployed the Linea Voyage XP (LXP) [token contract](https://lineascan.build/address/0xd83af4fbD77f3AB65C3B1Dc4B38D7e67AEcf599A)
 - Lowered block time to 8 seconds
 - Updated default `gasPrice` to 3 Gwei
+
+## October 2023
+
+### October 23
+
+**Testnet:**
+- Increased block size limit from 70KB to 109KB
 
 ## Summary release notes (June - October)
 

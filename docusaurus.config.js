@@ -14,7 +14,7 @@ const katex = require("rehype-katex");
 const config = {
   title: "Linea",
   tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
+    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -216,6 +216,11 @@ const config = {
           "python",
         ],
       },
+      metadata: [
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
+        { property: "og:image", content: "/img/Linea_social_card_docs.png" },
+      ],
       languageTabs: [
         {
           highlight: "bash",
