@@ -156,6 +156,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
             "build-on-linea/tooling/account-abstraction/oklink",
+            "build-on-linea/tooling/account-abstraction/openfort"
           ],
         },
         {
@@ -275,7 +276,8 @@ const sidebars = {
           type: "category",
           label: "Social Login",
           items: [
-            "build-on-linea/tooling/social-login/arcana"
+            "build-on-linea/tooling/social-login/arcana",
+            "build-on-linea/tooling/social-login/openfort"
           ],
         },
       ],
