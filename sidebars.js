@@ -307,7 +307,7 @@ const sidebars = {
           label: "Security",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/oracles/index",
+            id: "build-on-linea/tooling/security/index",
           },
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
