@@ -7,8 +7,10 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
-Generates and returns an estimate of how much gas is necessary to allow the transaction to complete and be published on Ethereum.
-The transaction will not be added to the blockchain.
+Generates and returns an estimate of how much gas is necessary to allow the transaction to complete and be published
+on Ethereum. The transaction will not be added to the blockchain.
+
+:::info
 
 :::tip[Rollout in progress]
 
@@ -22,10 +24,17 @@ We will update this page when this is no longer the case.
 For more information about estimating gas, and how this API formulates the transaction costs, see the
 [Estimate transaction costs](../../build-on-linea/gas-fees.mdx) topic.
 
+:::
+
+The `priorityFeePerGas` returned by this method includes the cost of submitting the transaction to Ethereum, which
+can vary based on the size of the calldata.
+
 :::note
 
-`linea_estimateGas` uses the same inputs as the standard [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
-but returns the recommended gas limit, the base fee per gas, and the priority fee per gas. We recommend using `linea_estimateGas` for more accurate results.
+`linea_estimateGas` uses the same inputs as the standard
+[`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas), but returns the
+recommended gas limit, the base fee per gas, and the priority fee per gas. We recommend using
+`linea_estimateGas` for more accurate results.
 
 :::
 
