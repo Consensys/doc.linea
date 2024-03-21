@@ -38,6 +38,13 @@ call provides an estimate that includes the layer 1 and layer 2 fees.
 
 ## Calculate transaction fees
 
+:::note
+
+`linea_estimateGas` is currently being rolled out, and will temporarily provide results similar 
+to `eth_gasPrice`.
+
+:::
+
 Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API method to estimate the gas cost for sending a
 transaction. The method returns the recommended gas limit, the base fee per gas, and the priority fee per gas.
 
