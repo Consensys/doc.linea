@@ -14,54 +14,77 @@ import TabItem from "@theme/TabItem";
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem 
   value="Mainnet" label="Mainnet" default>
-<table>
-    <tr>
-        <td align="left"><b>Network Name</b></td>
-        <td align="left">Linea</td>
-    </tr>
-    <tr>
-        <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Chain ID</b></td>
-        <td align="left">59144</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Currency Symbol</b></td>
-        <td align="left">ETH</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
-    </tr>
-</table>
-
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59144</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
+      </tr>
+  </table>
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
-<table>
-    <tr>
-        <td align="left"><b>Network Name</b></td>
-        <td align="left">Linea</td>
-    </tr>
-    <tr>
-        <td align="left"><b>RPC URL</b></td>
-        <td align="left">https://rpc.goerli.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Chain ID</b></td>
-        <td align="left">59140</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Currency Symbol</b></td>
-        <td align="left">ETH</td>
-    </tr>
-    <tr>
-        <td align="left"><b>Block Explorer URL</b></td>
-        <td align="left"> <a href="https://goerli.lineascan.build">Lineascan</a> </td>
-    </tr>
-</table>
-</TabItem> 
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.sepolia.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59141</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://sepolia.lineascan.build">Lineascan</a> </td>
+      </tr>
+  </table>
+  </TabItem> 
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.goerli.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59140</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://goerli.lineascan.build">Lineascan</a> </td>
+      </tr>
+  </table>
+  </TabItem> 
 </Tabs>
 
 ## Connect with node providers
@@ -97,7 +120,31 @@ We recommend connecting to Linea via [private RPCs](../build-on-linea/tooling/no
       </tr>
     </table>
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    <table>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>L1 Message Service</td>
+        <td>
+          <a href="https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5">
+          0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>L2 Message Service</td>
+        <td>
+          <a href="https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51ec16e73acac83a7">
+          0x971e727e956690b9957be6d51Ec16E73AcAC83A7
+          </a>
+        </td>
+      </tr>
+    </table>
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
     <table>
       <tr>
         <th>Contract</th>
@@ -143,114 +190,16 @@ To see **which third-party bridges are available**, consult our [Ecosystem Porta
 If you're **looking to bridge tokens to or from Linea**, you can do so easily in **MetaMask Portfolio's Bridge feature**: [https://portfolio.metamask.io/bridge](https://portfolio.metamask.io/bridge)
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+Sepolia token contract addresses will be added to the [official token lists repository](https://github.com/Consensys/linea-token-list/tree/main/json) as soon as possible.
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+For a curated list of Linea Goerli token addresses, please see the official token list [here](https://github.com/Consensys/linea-token-list/blob/main/json/linea-goerli-token-shortlist.json).
 
-On Linea Testnet, you can find faucets for these tokens by going to the [Linea faucet](https://faucet.goerli.linea.build/), connecting your MetaMask wallet, and switching to the Linea testnet.
+On Linea Testnet, you can find faucets for various tokens by going to the [Linea faucet](https://faucet.goerli.linea.build/), connecting your MetaMask wallet, and switching to the Linea testnet.
 
 If you want to drip Goerli ETH directly to Linea testnet, you can use the [Infura Linea faucet](https://infura.io/faucet/linea)
 
-<table>
-  <tbody>
-    <tr>
-      <th>Token</th>
-      <th>L1</th>
-      <th>L1 Address</th>
-      <th>L2 Address</th>
-      <th>Bridge</th>
-    </tr>
-        <tr>
-      <td>ETH</td>
-      <td>Goerli</td>
-      <td>0x70BaD09280FD342D02fe64119779BC1f0791BAC2</td>
-      <td>0xC499a572640B64eA1C8c194c43Bc3E19940719dC</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>USDC</td>
-      <td>Goerli</td>
-      <td>0x07865c6e87b9f70255377e024ace6630c1eaa37f</td>
-      <td>0xB4257F31750961C8e536f5cfCBb3079437700416</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>DAI</td>
-      <td>Goerli</td>
-      <td>0xb93cba7013f4557cDFB590fD152d24Ef4063485f</td>
-      <td>0x8741Ba6225A6BF91f9D73531A98A89807857a2B3</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>USDT</td>
-      <td>Goerli</td>
-      <td>0xfad6367E97217cC51b4cd838Cc086831f81d38C2</td>
-      <td>0x1990BC6dfe2ef605Bfc08f5A23564dB75642Ad73</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>UNI</td>
-      <td>Goerli</td>
-      <td>0x41E5E6045f91B61AACC99edca0967D518fB44CFB</td>
-      <td>0x7823E8DCC8bfc23EA3AC899EB86921f90e80F499</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>HOP</td>
-      <td>Goerli</td>
-      <td>0x38aF6928BF1Fd6B3c768752e716C49eb8206e20c</td>
-      <td>0x6F03052743CD99ce1b29265E377e320CD24Eb632</td>
-      <td><a href="https://goerli.hop.exchange/#/send?token=ETH&sourceNetwork=ethereum&destNetwork=linea">Hop</a></td>
-    </tr>
-    <tr>
-      <td>BNB</td>
-      <td>BSC</td>
-      <td>Native token</td>
-      <td>0x5471ea8f739dd37E9B81Be9c5c77754D8AA953E4</td>
-      <td><a href="https://dev-cbridge-v2.netlify.app/97/59140/BNB">Celer</a></td>
-    </tr>
-    <tr>
-      <td>BUSD</td>
-      <td>BSC</td>
-      <td>0xeb3eb991d39dac92616da64b7c6d5af5ccff1627</td>
-      <td>0x7d43AABC515C356145049227CeE54B608342c0ad</td>
-      <td><a href="https://dev-cbridge-v2.netlify.app/97/59140/BNB">Celer</a></td>
-    </tr>
-    <tr>
-      <td>AVAX</td>
-      <td>Fuji</td>
-      <td>Native token</td>
-      <td>Multi-chain</td>
-      <td><a href="https://test.multichain.org/#/router">Multichain</a></td>
-    </tr>
-    <tr>
-      <td>TUSD</td>
-      <td>Fuji</td>
-      <td>0xd00B9BBC6EDC3953Ec502d73E7FA7C59f628d947</td>
-      <td>0x922D641a426DcFFaeF11680e5358F34d97d112E1</td>
-      <td><a href="https://test.multichain.org/#/router">Multichain</a></td>
-    </tr>
-    <tr>
-      <td>EUROe</td>
-      <td>Fuji</td>
-      <td>0xA089a21902914C3f3325dBE2334E9B466071E5f1</td>
-      <td>0xeFAeeE334F0Fd1712f9a8cc375f427D9Cdd40d73</td>
-      <td><a href="https://test.multichain.org/#/router">Multichain</a></td>
-    </tr>
-    <tr>
-      <td>MATIC</td>
-      <td>Mumbai</td>
-      <td>Native token</td>
-      <td>0xcAA61BCAe7D37Fe9C33c0D8671448254eef44D63</td>
-      <td><a href="https://testnet.bridge.connext.network/">Connext</a></td>
-    </tr>
-        <tr>
-      <td>WETH</td>
-      <td>-</td>
-      <td>-</td>
-      <td>0x2C1b868d6596a18e32E61B901E4060C872647b6C</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
   </TabItem>
 </Tabs>
 
@@ -309,18 +258,24 @@ So, as users take actions on the network, there are changes to those accounts an
 
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet" default>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia" default>
+
+| Explorer name | URL | API URL |
+| --- | --- | --- |
+| Lineascan | https://sepolia.lineascan.build | https://api-testnet.lineascan.build/api |
+| Blockscout | https://explorer.sepolia.linea.build/ | https://explorer.sepolia.linea.build/api |
+
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli" default>
 
 | Explorer name | URL | API URL |
 | --- | --- | --- |
 | Lineascan | https://goerli.lineascan.build | https://api-testnet.lineascan.build/api |
-| Blockscout | https://explorer.goerli.linea.build | https://explorer.goerli.linea.build/api |
 
   </TabItem>
 </Tabs>
 
 :::note
-
 
 Learn how to verify your contracts in our [quickstart](../build-on-linea/quickstart/).
 
