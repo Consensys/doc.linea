@@ -1,5 +1,6 @@
 ---
 title: Hal Stream
+image: /img/socialCards/hal-stream.jpg
 ---
 
 # Hal Stream

@@ -1,5 +1,6 @@
 ---
 title: Noves
+image: /img/socialCards/noves.jpg
 ---
 
 ## Advanced data tooling for account abstraction

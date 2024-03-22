@@ -1,5 +1,6 @@
 ---
 title: Node providers
+image: /img/socialCards/node-providers.jpg
 ---
 
 ## Private RPC endpoints

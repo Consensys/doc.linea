@@ -1,5 +1,6 @@
 ---
 title: Umbrella Network
+image: /img/socialCards/umbrella-network.jpg
 ---
 
 # Umbrella Network

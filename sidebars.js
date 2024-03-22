@@ -33,8 +33,8 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Linea Goerli block explorer",
-      href: "https://goerli.lineascan.build",
+      label: "Linea Sepolia block explorer",
+      href: "https://sepolia.lineascan.build",
     },
     "risk-disclosures/index",
     "decentralization-roadmap/index",

@@ -1,5 +1,6 @@
 ---
 title: Hackathons
+image: /img/socialCards/hackathons.jpg
 ---
 
 Looking to hack on Linea and win some bounties? Here's the page where you can find all the information you need to know to get started!

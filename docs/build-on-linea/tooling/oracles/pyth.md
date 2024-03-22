@@ -1,5 +1,6 @@
 ---
 title: Pyth Network
+image: /img/socialCards/pyth-network.jpg
 ---
 
 # Pyth Network

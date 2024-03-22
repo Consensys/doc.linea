@@ -1,5 +1,6 @@
 ---
 title: Arcana
+image: /img/socialCards/arcana.jpg
 ---
 
 # Gasless Transactions
