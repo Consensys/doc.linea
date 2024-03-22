@@ -47,8 +47,15 @@ Download the genesis file and Besu configuration file.
 
 ### Step 3. Define disk space volume (optional)
 
-Define a volume of at least `100GB`, more if you want to future-proof your node, and mount the Besu `data-path` to the
-custom volume when you [start the node].
+Define a volume size appropriate to your expected usage. As of March 20, Besu nodes use:
+
+- Full nodes: 120GB, growing ~1.5GB per day (depending on whether you use pruning, and the storage
+method)
+- Archive nodes: 740GB, growing ~9.5GB per day.
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the Besu `data-path` to the custom volume when you start the node.
 
 <VolumeCreation />
 
