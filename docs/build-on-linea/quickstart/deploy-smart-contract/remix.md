@@ -1,5 +1,6 @@
 ---
 title: Remix
+image: /img/socialCards/remix.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';

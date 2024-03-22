@@ -1,5 +1,6 @@
 ---
 title: DIA
+image: /img/socialCards/dia.jpg
 ---
 
 ## Requesting a custom oracle

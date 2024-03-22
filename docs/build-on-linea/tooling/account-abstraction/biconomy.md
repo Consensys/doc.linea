@@ -1,5 +1,6 @@
 ---
 title: Biconomy
+image: /img/socialCards/biconomy.jpg
 ---
 
 ## Superpowers for your Web3 stack

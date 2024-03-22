@@ -1,5 +1,6 @@
 ---
 title: Atlas
+image: /img/socialCards/atlas.jpg
 ---
 
 Atlas is a 0-setup tool for writing, testing, and deploying smart contracts.

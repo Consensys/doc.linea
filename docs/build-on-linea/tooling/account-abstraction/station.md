@@ -1,5 +1,6 @@
 ---
 title: Station
+image: /img/socialCards/station.jpg
 ---
 
 ## Your toolkit for NFT Accounts on Linea

@@ -1,6 +1,7 @@
 ---
 title: Use Linea
 sidebar_position: 2
+image: /img/socialCards/use-linea.jpg
 ---
 
 Linea is meant to be fully compatible with Ethereum, full stop. There are already a lot of dapps that have deployed to the network—and if there's one that hasn't deployed (for example, yours 👀) we're here to help you get it there.

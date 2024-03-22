@@ -1,5 +1,6 @@
 ---
 title: Hardhat
+image: /img/socialCards/hardhat.jpg
 ---
 
 To verify your Hardhat contracts, you can use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on Lineascan.

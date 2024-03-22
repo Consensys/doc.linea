@@ -1,5 +1,6 @@
 ---
 title: Sentio
+image: /img/socialCards/sentio.jpg
 ---
 
 # Sentio
