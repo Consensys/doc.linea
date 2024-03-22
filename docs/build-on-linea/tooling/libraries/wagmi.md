@@ -1,5 +1,6 @@
 ---
 title: Wagmi
+image: /img/socialCards/wagmi.jpg
 ---
 
 Wagmi is a collection of React Hooks containing everything you need to start working with Linea. 

@@ -1,6 +1,7 @@
 ---
 description: Ethereum and Linea differences
 sidebar_position: 4
+image: /img/socialCards/ethereum-and-linea-differences.jpg
 ---
 
 # Differences between Ethereum and Linea

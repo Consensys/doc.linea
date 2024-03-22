@@ -1,5 +1,6 @@
 ---
 title: RedStone Oracles
+image: /img/socialCards/redstone-oracles.jpg
 ---
 
 # RedStone Oracles
