@@ -1,6 +1,7 @@
 ---
 title: Network data
 sidebar_position: 7
+image: /img/socialCards/network-data.jpg
 ---
 
 ## Other Functions: Network Data
