@@ -12,6 +12,51 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 
 Find out all you need to know about the latest Linea versions.
 
+## Alpha v3 release notes
+
+### Summary
+
+The main objective of Alpha v3 is to implement EIP-4844 on Linea, following its introduction to 
+Ethereum mainnet with the Dencun upgrade on March 13.
+
+### Features
+
+**March 26: EIP-4844**
+
+Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
+costs. Blobs represent a transient data storage mechanism and an alternative to `calldata`, and
+can be significantly cheaper in L1 ETH costs depending on market demand.
+
+L1 and L2 smart contracts have been updated and deployed for Alpha v3. The contract addresses are:
+
+- New verifier contract
+  - Linea Sepolia: [0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79](https://sepolia.lineascan.build/address/0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79)
+  - Linea Mainnet: TBC
+- New L1 message service
+  - Linea Sepolia: [0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5](https://sepolia.lineascan.build/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+  - Linea Mainnet: TBC
+- New L2 rollup contract
+  - Linea Sepolia: [0x971e727e956690b9957be6d51Ec16E73AcAC83A7](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+  - Linea Mainnet: TBC
+
+Smart contract updates will be executed by the Linea Security Council using the Safe multi-sig 
+procedure. 
+
+Additionally, all contracts have been audited by OpenZeppelin. A link to their reports will be 
+shared here once available.
+
+**March 27**
+
+- Block time reduced to 3 seconds. This change increases the throughput of the network to avoid
+any potential L2 execution bottlenecks from increased Linea activity.
+- Gas fee reductions. After EIP-4844 is implemented on March 26, we will gather data for 24 hours
+to develop a fuller understanding of the implications for gas fees. Reduced gas fees will then be 
+available to users on March 27. 
+
+### Breaking changes
+
+None.
+
 ## February 2024
 
 ### February 19
