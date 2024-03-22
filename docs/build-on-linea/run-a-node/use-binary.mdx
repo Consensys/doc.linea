@@ -115,8 +115,14 @@ Download the genesis file for the relevant network.
 
 ### Step 3. Define disk space volume (optional)
 
-Define a volume of at least `100GB`, more if you want to future-proof your node, and mount the Geth `datadir` to the
-custom volume.
+Define a volume size appropriate to your expected usage. As of March 20, Besu nodes use:
+
+- Full nodes: 170GB, growing ~2.6GB per day.
+- Archive nodes: 760GB, growing ~10GB per day.
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the Geth `datadir` to the custom volume.
 
 If you run out of space, or need to actively maintain how much space is being used, consider
 [pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
