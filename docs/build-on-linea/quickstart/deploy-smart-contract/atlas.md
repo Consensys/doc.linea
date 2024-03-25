@@ -1,6 +1,7 @@
 ---
 title: Atlas
 description: Deploy a smart contract using Atlas.
+image: /img/socialCards/atlas.jpg
 ---
 
 Atlas is a no-setup tool for writing, testing, and deploying smart contracts.

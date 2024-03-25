@@ -1,6 +1,7 @@
 ---
 title: thirdweb
 description: Deploy a smart contract using thirdweb.
+image: /img/socialCards/thirdweb.jpg
 ---
 
 thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks.

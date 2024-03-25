@@ -1,6 +1,7 @@
 ---
 title: Conflation
 sidebar_position: 2
+image: /img/socialCards/conflation.jpg
 ---
 
 import ConflationGraphic from '/img/article_images/Architecture_of_Linea/Sequencer/Conflation/Linea_block_conflation.svg';

@@ -1,6 +1,7 @@
 ---
 title: Traces generation
 sidebar_position: 1
+image: /img/socialCards/traces-generation.jpg
 ---
 
 ### Traces Generator

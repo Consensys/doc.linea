@@ -2,6 +2,7 @@
 title: JSON-RPC API
 description: Linea uses the Ethereum JSON-RPC API
 sidebar_position: 6
+image: /img/socialCards/json-rpc-api.jpg
 ---
 
 # JSON-RPC API

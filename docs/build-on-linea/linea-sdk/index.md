@@ -1,5 +1,6 @@
 ---
 title: Linea SDK
+image: /img/socialCards/linea-sdk.jpg
 ---
 
 ## Installation

@@ -1,6 +1,7 @@
 ---
 title: Cookbook.dev
 description: Deploy a smart contract using Cookbook.dev.
+image: /img/socialCards/cookbookdev.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';

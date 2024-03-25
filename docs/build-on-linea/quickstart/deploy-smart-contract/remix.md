@@ -1,6 +1,7 @@
 ---
 title: Remix
 description: Deploy a smart contract using Remix.
+image: /img/socialCards/remix.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
