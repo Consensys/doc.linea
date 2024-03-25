@@ -48,16 +48,15 @@ Download the genesis file and Besu configuration file.
 
 ### Step 3. Define disk space volume (optional) {#disk-space-besu}
 
-Define a volume size appropriate to your expected usage. As of March 20, Besu nodes use:
+Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
 
 - Full nodes: 120GB, growing ~1.5GB per day.
 - Archive nodes: 740GB, growing ~9.5GB per day.
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
-To limit disk space required, we recommend you configure Besu to use the [Bonsai](https://besu.hyperledger.org/23.4.0/public-networks/concepts/data-storage-formats#bonsai-tries)
-data storage format, which prunes orphaned nodes and old branches. You can read more about Bonsai
-and saving disk space [here](https://wiki.hyperledger.org/display/BESU/Limit+Trie+Logs+for+Bonsai).
+To limit disk space required, we recommend you configure Besu to use the [Bonsai](https://besu.hyperledger.org/public-networks/concepts/data-storage-formats#bonsai-tries)
+data storage format, which prunes orphaned nodes and old branches.
 
 Ensure you mount the Besu `data-path` to the custom volume when you start the node.
 
@@ -119,8 +118,8 @@ Download the genesis file for the relevant network.
 
 ### Step 3. Define disk space volume (optional) {#disk-space-geth}
 
-Define a volume size appropriate to your expected usage. As of March 20, Besu nodes use:
-
+Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
+Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
 - Full nodes: 170GB, growing ~2.6GB per day.
 - Archive nodes: 760GB, growing ~10GB per day.
 
