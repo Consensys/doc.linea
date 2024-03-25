@@ -1,15 +1,16 @@
 ---
 title: Atlas
+description: Deploy a smart contract using Atlas.
 ---
 
 Atlas is a no-setup tool for writing, testing, and deploying smart contracts.
 
 ## Prerequisites
 
-Before you begin, ensure you've:
+Before you begin, ensure you:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx).
-1. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet.
+1. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet.
 
 ## Deploy a contract
 

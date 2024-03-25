@@ -1,12 +1,11 @@
 ---
 title: Foundry
+description: Deploy a smart contract using Foundry.
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-In this quickstart, we'll walk through creating a basic [Foundry](https://book.getfoundry.sh/) project.
-
-Here's a video walkthrough:
+In this quickstart, we'll create a basic [Foundry](https://book.getfoundry.sh/) project. Here's a video walkthrough:
 
 <div class="center-container">
     <div class="video-container">
@@ -24,7 +23,7 @@ Here's a video walkthrough:
 Before you begin, ensure you:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-1. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
+1. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet, or mainnet
 1. Download and install Foundry:
 
     ```bash
@@ -84,7 +83,7 @@ Deployed to: 0xED0Ff7E8B655dFFfCA471ea3B6B649ce7C2C1b83
 Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647d7ee
 ```
 
-### Deploy using a `.env` file
+## Deploy a smart contract using a `.env` file
 
 Directly pasting your private key into the command line poses security risks. To avoid exposing sensitive
 information such as wallet private keys or API keys, use files with the `.env` extension to store private
@@ -111,7 +110,7 @@ linea-sepolia = "https://linea-sepolia.infura.io/v3/${INFURA_API_KEY}"
 linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```
 
-Now, in order to deploy, you can simply run:
+To deploy the smart contract, run:
 
 <Tabs className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>

@@ -1,5 +1,6 @@
 ---
 title: thirdweb
+description: Deploy a smart contract using thirdweb.
 ---
 
 thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks.
@@ -96,7 +97,3 @@ Deploy allows you to deploy a smart contract to any EVM-compatible network witho
 > For additional information on `deploy`, please reference [thirdweb’s documentation](https://portal.thirdweb.com/deploy).
 
 If you have any further questions or encounter any issues during the process, please [reach out to thirdweb support](https://support.thirdweb.com).
-
-## Deploy to Mainnet
-
-_Instructions coming soon!_
