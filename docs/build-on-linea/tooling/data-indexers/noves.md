@@ -1,5 +1,6 @@
 ---
 title: Noves
+image: /img/socialCards/noves.jpg
 ---
 
 Noves is the leading provider of interpreted, human-readable data in the EVM space. Its flagship product, [Translate API](https://docs.noves.fi/reference/introduction), allows developers to retrieve transactions in fully-enriched, human-readable form.

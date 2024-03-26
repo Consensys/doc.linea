@@ -1,5 +1,6 @@
 ---
 title: Covalent
+image: /img/socialCards/covalent.jpg
 ---
 
 [Covalent](https://www.covalenthq.com/?utm_source=linea&utm_medium=partner-docs) is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://www.covalenthq.com/docs/networks/?utm_source=linea&utm_medium=partner-docs), including [Linea Goerli testnet](https://www.covalenthq.com/docs/networks/linea-goerli-testnet/?utm_source=linea&utm_medium=partner-docs).

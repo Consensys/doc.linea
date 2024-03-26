@@ -51,5 +51,9 @@
     "static/files/besu/config-goerli.toml",
     "static/files/besu/config-mainnet.toml"
   ],
-  "ignoreRegExpList": ["Email", "Urls", "#[\\w-]*"]
+  "ignoreRegExpList": [
+    "Email", "Urls", "#[\\w-]*",
+    "^image:\\s*([>-]\\s*)?.*$",
+    "/img/.*"
+  ]
 }

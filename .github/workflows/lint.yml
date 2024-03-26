@@ -32,3 +32,4 @@ jobs:
         uses: Consensys/docs-gha/linkcheck@main
         with:
           FILE_EXTENSION: '${{ matrix.file-extensions }}'
+          CONFIG_FILE: 'mlc_config.json'

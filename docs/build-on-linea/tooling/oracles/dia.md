@@ -1,5 +1,6 @@
 ---
 title: DIA
+image: /img/socialCards/dia.jpg
 ---
 
 ## Requesting a custom oracle
@@ -60,7 +61,6 @@ DIA NFT floor price feeds provide smart contracts with real-time price informati
 DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed below or [visit the DIA Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints) to see all API endpoints.
 
 # Learn more about DIA
-<!-- markdown-link-check-disable-next-line -->
 - [Twitter](https://twitter.com/DIAdata_org)
 - [Discord](https://go.diadata.org/discord-menu)
 - [Website](https://diadata.org/)

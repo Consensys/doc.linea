@@ -1,5 +1,6 @@
 ---
 description: Run a Linea node.
+image: /img/socialCards/run-a-linea-node.jpg
 ---
 
 import DocCardList from "@theme/DocCardList";
