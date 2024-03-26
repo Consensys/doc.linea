@@ -12,7 +12,7 @@ const sidebars = {
         id: "index",
       },
       items: [
-        "use-mainnet/index",
+       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
@@ -33,8 +33,8 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Linea Goerli block explorer",
-      href: "https://goerli.lineascan.build",
+      label: "Linea Sepolia block explorer",
+      href: "https://sepolia.lineascan.build",
     },
     "risk-disclosures/index",
     "decentralization-roadmap/index",
@@ -111,13 +111,25 @@ const sidebars = {
             ],
           },
           "build-on-linea/linea-sdk/index",
-          "build-on-linea/run-a-node",
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
           "build-on-linea/quickstart/rpc",
         ],
       },
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",
+      "build-on-linea/goerli-to-sepolia",
      {
       type: "category",
       label: "Tooling and infrastructure",
@@ -135,6 +147,7 @@ const sidebars = {
 
           },
           items: [
+            "build-on-linea/tooling/account-abstraction/arcana",
             "build-on-linea/tooling/account-abstraction/pimlico",
             "build-on-linea/tooling/account-abstraction/biconomy",
             "build-on-linea/tooling/account-abstraction/etherspot",
@@ -143,6 +156,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
             "build-on-linea/tooling/account-abstraction/oklink",
+            "build-on-linea/tooling/account-abstraction/openfort"
           ],
         },
         {
@@ -255,6 +269,15 @@ const sidebars = {
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
             "build-on-linea/tooling/security/spherex",
+            "build-on-linea/tooling/security/hexagate",
+          ],
+        },
+        {
+          type: "category",
+          label: "Social Login",
+          items: [
+            "build-on-linea/tooling/social-login/arcana",
+            "build-on-linea/tooling/social-login/openfort"
           ],
         },
       ],
@@ -320,7 +343,7 @@ const sidebars = {
         label: "Sequencer",
         link: {
           type: "doc",
-          id: "architecture/evm-state-manager/index",
+          id: "architecture/sequencer/index",
         },
         items: [
           "architecture/sequencer/conflation",

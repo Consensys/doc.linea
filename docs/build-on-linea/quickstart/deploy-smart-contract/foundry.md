@@ -1,5 +1,6 @@
 ---
 title: Foundry
+image: /img/socialCards/foundry.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';

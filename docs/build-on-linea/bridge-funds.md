@@ -1,6 +1,7 @@
 ---
 title: Bridge funds
 sidebar_position: 2
+image: /img/socialCards/bridge-funds.jpg
 ---
 
 In order to start bridging on Linea, you can:

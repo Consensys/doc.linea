@@ -1,5 +1,6 @@
 ---
 title: Pyth Network
+image: /img/socialCards/pyth-network.jpg
 ---
 
 # Pyth Network
@@ -61,7 +62,6 @@ The price feed IDs for EVM chains differs depending on whether they are a mainne
 ---
 
 ## Links
-<!-- markdown-link-check-disable-next-line -->
 - [Twitter](https://twitter.com/PythNetwork)
 - [Discord](https://discord.com/invite/PythNetwork)
 - [Website](https://pyth.network/)
