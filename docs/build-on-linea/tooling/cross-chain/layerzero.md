@@ -1,5 +1,6 @@
 ---
 title: LayerZero Omnichain Messaging
+image: /img/socialCards/layerzero-omnichain-messaging.jpg
 ---
 
 # LayerZero

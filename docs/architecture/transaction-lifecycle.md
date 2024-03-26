@@ -1,6 +1,7 @@
 ---
 title: Transaction lifecycle
 sidebar_position: 8
+image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
 Transactions on Linea mainnet and testnet proceed through the following steps:

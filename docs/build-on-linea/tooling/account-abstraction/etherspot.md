@@ -1,5 +1,6 @@
 ---
 title: Etherspot
+image: /img/socialCards/etherspot.jpg
 ---
 
 ## Robust ERC4337 infrastructure for seamless web3 development

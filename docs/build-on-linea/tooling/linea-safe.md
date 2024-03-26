@@ -1,6 +1,7 @@
 ---
 title: Create a multi-signature smart contract wallet
 description: Use Linea Safe to create a multi-signature smart contract wallet
+image: /img/socialCards/create-a-multi-signature-smart-contract-wallet.jpg
 ---
 
 ## What is Linea Safe?

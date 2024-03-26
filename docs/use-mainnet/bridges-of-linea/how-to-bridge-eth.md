@@ -1,6 +1,7 @@
 ---
 title: How to bridge ETH between Ethereum and Linea
 sidebar_position: 1
+image: /img/socialCards/how-to-bridge-eth-between-ethereum-and-linea.jpg
 ---
 
 :::note
