@@ -34,7 +34,7 @@ Other resources are available here:
 [Tutorial for Accessing NFT Data Using Datalayer](https://medium.com/@DeCommas/tutorial-for-accessing-nft-data-using-datalayer-77fc04062426?source=user_profile---------11----------------------------)
 
 ## DeCommas API
-DeCommas API is a speedy, scalable and cost-effective web3 API. It puts indexed blockchain available data in arms reach, making development of web3 applications such as Portfolio Trackers, Wallets, Web3 searchbars and Activity feeds a breeze. DeCommas API contains:
+DeCommas API is a speedy, scalable and cost-effective web3 API. It puts indexed blockchain available data in arms reach, making development of web3 applications such as Portfolio Trackers, Wallets, Web3 search bars and Activity feeds a breeze. DeCommas API contains:
 - Datalayer & Datalayer API: Scalable, speedy and cost-efficient indexed Blockchain-, NFT- and Protocol- data accessible through a developer friendly API.
 - Price Service API: provides a comprehensive overview of ERC-20 price calculations using on-chain data from multiple decentralized exchange pools. 
 
@@ -71,7 +71,7 @@ Along with DeCommas API, we have the Price Service that provides a comprehensive
 - Polygon
 - Linea (will be rolled out in the future)
 ### Price Service Endpoints:
-- [Get Price](https://docs.decommas.io/get-price)
+- [Get Price](https://docs.decommas.io/501f5a3b49d444f1964f265697d8068b)
 
 ## Getting access to DeCommas API
 Gaining access to DeCommas API is simple:
@@ -86,7 +86,9 @@ Make sure you’ve got your API keys ready. Copy and paste them to a spot where 
 You can set up the DeCommas API in your environment using either of these two methods: one is via a raw HTTPS request, and the other is using a special toolkit if you’re into JavaScript.
 
 If you choose the first option, the call will appear as follows:
-[https://datalayer.decommas.net/datalayer/api/v1/tokens/{address}?api-key={YOUR-API-KEY}](https://datalayer.decommas.net/datalayer/api/v1/tokens/{address}?api-key={YOUR-API-KEY})
+```
+https://datalayer.decommas.net/datalayer/api/v1/tokens/{address}?api-key={YOUR-API-KEY}
+```
 
 
 But if you’re more of a JavaScript whiz, we’ve got a kit for you called the DeCommas SDK. You can grab it from here: [https://github.com/DeCommas/decommas-sdk](https://github.com/DeCommas/decommas-sdk).
