@@ -58,13 +58,18 @@ per gas, and the priority fee per gas.
 The `priorityFeePerGas` returned by `linea_estimateGas` includes the cost of submitting the 
 transaction to Ethereum, which can vary based on the size of the calldata.
 
-The following example executes `linea_estimateGas` on the Linea Goerli testnet.
+The following example executes `linea_estimateGas` on the Linea mainnet using the public RPC URL.
+
+:::tip
+
+You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
+:::
 
 <Tabs className="my-tabs">
   <TabItem value="curl" label="curl" default>
 
 ```bash
-curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","value": "0x1","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.goerli.linea.build
+curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.linea.build
 ```
 
 </TabItem>
