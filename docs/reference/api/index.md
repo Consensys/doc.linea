@@ -1,5 +1,6 @@
 ---
 description: Linea API methods
+image: /img/socialCards/linea-api-methods.jpg
 ---
 import DocCardList from "@theme/DocCardList";
 

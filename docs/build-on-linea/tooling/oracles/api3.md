@@ -1,5 +1,6 @@
 ---
 title: API3
+image: /img/socialCards/api3.jpg
 ---
 
 [API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).

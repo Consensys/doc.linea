@@ -1,5 +1,6 @@
 ---
 title: Cookbook.dev
+image: /img/socialCards/cookbookdev.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
