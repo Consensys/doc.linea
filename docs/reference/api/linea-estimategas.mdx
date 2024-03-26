@@ -62,14 +62,19 @@ Hexidecimal values representing the recommended gas limit, the base fee per gas,
 
 ## Example
 
+:::tip
+
+You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
+:::
+
 <Tabs>
   <TabItem value="cURL request">
 
   ```bash
-  curl https://rpc.goerli.linea.build \
+  curl https://rpc.linea.build \
           -X POST \
           -H "Content-Type: application/json" \
-          -d '{"jsonrpc":"2.0","method":"linea_estimateGas","params":[{"from":"0x42c27251C710864Cf76f1b9918Ace3E585e6E21b","value":"0x1","gasPrice":"0x100000000","gas":"0x21000"}],"id":53}'
+          -d '{"jsonrpc":"2.0","method":"linea_estimateGas","params":[{"from":"0x42c27251C710864Cf76f1b9918Ace3E585e6E21b","gasPrice":"0x100000000","gas":"0x21000"}],"id":53}'
   ```
 
   </TabItem>
