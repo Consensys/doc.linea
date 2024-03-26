@@ -1,6 +1,7 @@
 ---
 title: Quickstart - Index
 sidebar_position: 2
+image: /img/socialCards/quickstart-index.jpg
 ---
 
 To get started with Goldsky Index:

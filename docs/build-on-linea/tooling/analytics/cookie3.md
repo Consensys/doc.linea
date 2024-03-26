@@ -1,5 +1,6 @@
 ---
 title: Cookie3
+image: /img/socialCards/cookie3.jpg
 ---
 
 ## Attribution and user analytics for web3 marketers
