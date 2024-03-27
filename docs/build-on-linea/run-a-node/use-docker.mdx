@@ -9,11 +9,12 @@ import TabItem from "@theme/TabItem";
 # Use Docker
 
 You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
-a Linea node on the mainnet or testnet. 
+a Linea node on the mainnet or testnets.
 
-:::warning Important
+:::caution deprecation notice
 
-The Besu Docker image does not run on Windows.
+Linea Goerli is being deprecated. We discourage new development with this testnet and recommend using
+Linea Sepolia instead.
 
 :::
 
@@ -22,6 +23,12 @@ The Besu Docker image does not run on Windows.
 Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
 ## Run a Besu node
+
+:::warning Important
+
+The Besu Docker image does not run on Windows.
+
+:::
 
 ### Step 1. Download configuration files
 
@@ -34,7 +41,12 @@ files include the network genesis file, Docker Compose file and Besu configurati
   Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Download the testnet [`besu-sepolia` ZIP file](pathname:///files/besu/besu-sepolia.zip).
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
   
   Download the testnet [`besu-goerli` ZIP file](pathname:///files/besu/besu-goerli.zip).
   
@@ -77,13 +89,19 @@ Download the configuration files for the relevant network. Ensure that you downl
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Download the mainnet [`docker-compose.yml`](pathname:///files/docker-compose.yml) and [`genesis.json`](pathname:///files/genesis.json)
+  Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
   files.
   
   </TabItem>
-  <TabItem value="testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Download the testnet [`docker-compose.yml`](pathname:///files//testnet/docker-compose.yml) and [`genesis.json`](pathname:///files/testnet/genesis.json)
+  Download the Sepolia testnet [`docker-compose.yml`](pathname:///files/geth/sepolia/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/sepolia/genesis.json)
+  files.
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  Download the Goerli testnet [`docker-compose.yml`](pathname:///files/geth/goerli/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/goerli/genesis.json)
   files.
   
   </TabItem>
