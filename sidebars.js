@@ -7,7 +7,7 @@ const sidebars = {
       label: "Getting started",
       link: {
         type: 'doc',
-        id: "index",
+        id: "use-mainnet/index",
       },
       items: [
        // "use-mainnet/index",
