@@ -1,5 +1,6 @@
 ---
 title: Openfort
+image: /img/socialCards/openfort.jpg
 ---
 
 ## Account Abstraction Infrastructure Built for Web3 Games
