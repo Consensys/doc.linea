@@ -14,7 +14,7 @@ title: Node providers
 
 ## Run your own node
 
-- [Set it up yourself](../run-a-node/index.md)
+- [Set it up yourself](../run-a-node/index.mdx)
 - [One-click deploy with EasyNode](https://app.easy-node.xyz/)
 - [One-click deploy with RapidNode](https://rapidnode.xyz/dashboard)
 

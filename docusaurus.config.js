@@ -142,6 +142,11 @@ const config = {
             label: "Support",
           },
           {
+            to: "/build-on-linea/run-a-node/",
+            position: "left",
+            label: "Run a node",
+          },
+          {
             to: "https://linea.build/",
             position: "left",
             label: "Linea home",
