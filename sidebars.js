@@ -303,6 +303,18 @@ const sidebars = {
           },
         ],
       },
+      {
+        type: "category",
+        label: "Linea Voyage: The Surge",
+        link: {
+          type: "doc",
+          id: "use-mainnet/linea-surge",
+        },
+        items: [
+          "use-mainnet/linea-surge-overview",
+          "use-mainnet/linea-surge-model",
+        ],
+      },
       "build-on-linea/linea-version/index",
       "build-on-linea/hackathons",
      {
