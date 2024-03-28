@@ -156,6 +156,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
             "build-on-linea/tooling/account-abstraction/oklink",
+            "build-on-linea/tooling/account-abstraction/openfort"
           ],
         },
         {
@@ -275,7 +276,8 @@ const sidebars = {
           type: "category",
           label: "Social Login",
           items: [
-            "build-on-linea/tooling/social-login/arcana"
+            "build-on-linea/tooling/social-login/arcana",
+            "build-on-linea/tooling/social-login/openfort"
           ],
         },
       ],
@@ -298,6 +300,18 @@ const sidebars = {
               "reference/api/linea-estimategas",
             ],
           },
+        ],
+      },
+      {
+        type: "category",
+        label: "Linea Voyage: The Surge",
+        link: {
+          type: "doc",
+          id: "use-mainnet/linea-surge",
+        },
+        items: [
+          "use-mainnet/linea-surge-overview",
+          "use-mainnet/linea-surge-model",
         ],
       },
       "build-on-linea/linea-version/index",
