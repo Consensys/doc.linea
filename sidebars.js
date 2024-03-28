@@ -318,7 +318,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Social Login",
+          label: "Social login",
           link: {
             type: "doc",
             id: "build-on-linea/tooling/social-login/index",
