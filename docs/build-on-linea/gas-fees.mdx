@@ -1,6 +1,7 @@
 ---
 description: How to estimate Linea gas costs
 sidebar_position: 6
+image: /img/socialCards/how-to-estimate-linea-gas-costs.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
@@ -9,7 +10,8 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 :::info[Alpha v2: Reduced gas fees]
 
-Linea Alpha v2 launched in February 2024, reducing gas fees by ~66%. See [here](../use-mainnet/gas-on-linea#alpha-v2-and-minimizing-gas-fees) for details.
+Linea Alpha v2 launched in February 2024, reducing gas fees by ~66%. See
+[Alpha v2 and minimizing gas fees](../use-mainnet/gas-on-linea.mdx#alpha-v2-and-minimizing-gas-fees) for details.
 
 :::
 
@@ -37,25 +39,31 @@ call provides an estimate that includes the layer 1 and layer 2 fees.
 
 ## Calculate transaction fees
 
-Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API method to estimate the gas cost for sending a
-transaction. The method returns the recommended gas limit, the base fee per gas, and the priority fee per gas.
+:::note
 
-:::info important
-
-Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
-[`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
-[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but they usually return
-a higher (and less accurate) estimate than `linea_estimateGas`.
+`linea_estimateGas` is currently being rolled out, and will temporarily provide results similar 
+to `eth_gasPrice`.
 
 :::
 
-The following example executes `linea_estimateGas` on the Linea Goerli testnet.
+Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API method to estimate the gas cost for sending a
+transaction. The method returns the recommended gas limit, the base fee per gas, and the priority fee per gas.
+
+The `priorityFeePerGas` returned by `linea_estimateGas` includes the cost of submitting the transaction to
+Ethereum, which can vary based on the size of the calldata.
+
+The following example executes `linea_estimateGas` on the Linea mainnet using the public RPC URL.
+
+:::tip
+
+You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
+:::
 
 <Tabs className="my-tabs">
   <TabItem value="curl" label="curl" default>
 
 ```bash
-curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","value": "0x1","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.goerli.linea.build
+curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.linea.build
 ```
 
 </TabItem>

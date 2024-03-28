@@ -1,5 +1,6 @@
 ---
 title: NFTScan
+image: /img/socialCards/nftscan.jpg
 ---
 
 The increasing demand for NFTs has brought attention to the importance of having efficient tools to keep track of their creation, movement, and trading activities. For companies and developers involved in NFTs, it is crucial to have the capability to monitor the minting events, especially with the growth of NFT-based applications that will be facilitated by Linea's scalability.

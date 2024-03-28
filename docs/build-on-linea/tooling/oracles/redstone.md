@@ -1,5 +1,6 @@
 ---
 title: RedStone Oracles
+image: /img/socialCards/redstone-oracles.jpg
 ---
 
 # RedStone Oracles
@@ -57,12 +58,9 @@ Depending on the smart contract architecture and business demands, Builders can 
 ---
 
 ## 🌐 Links
-<!-- markdown-link-check-disable-next-line -->
 - [Twitter](https://twitter.com/redstone_defi)
 - [Discord](https://redstone.finance/discord)
 - [Website](https://redstone.finance/)
 - [Docs](https://docs.redstone.finance/)
-<!-- markdown-link-check-disable-next-line -->
 - [Angel Round Announcement](https://twitter.com/redstone_defi/status/1661024722690379778)
-<!-- markdown-link-check-disable-next-line -->
 - [Seed Round Announcement](https://twitter.com/redstone_defi/status/1564553885695373312)

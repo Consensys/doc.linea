@@ -1,66 +1,82 @@
 ---
 title: Hardhat
+description: Deploy a smart contract using Hardhat.
+image: /img/socialCards/hardhat.jpg
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-<div class="center-container">
-    <div class="video-container">
-      <iframe
-        class="video-iframe"
-        src="https://www.youtube.com/embed/cZ4F2uDBl_A"
-        title="How to deploy a smart contract on Linea with Hardhat"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen></iframe>
-    </div>
-</div>
+In this quickstart, we'll create a basic [Hardhat](https://hardhat.org/) project.
 
 ## Prerequisites
 
-Before you begin, ensure you've:
+Before you begin, ensure you:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
+2. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either testnet, or mainnet
 3. [Set up your environment using Hardhat's recommended instructions](https://hardhat.org/tutorial/setting-up-the-environment#2.-setting-up-the-environment).
 
 ## Create a Hardhat project
 
-To create an empty Hardhat project, run the following commands:
+To create an empty Hardhat project:
 
-```bash
-mkdir linea-tutorial
-cd linea-tutorial
-npm init
-npm install --save-dev hardhat
-npx hardhat init
-```
+1. Create your project directory:
 
-In the menu that appears, select `Create an empty hardhat.config.js` and press **Enter**.
+    ```bash
+    mkdir linea-tutorial; cd linea-tutorial
+    ```
+1.  Initialize your Node.js project:
 
-Hardhat recommends using their plugin, `@nomicfoundation/hardhat-toolbox`, which can be downloaded by entering `Y` during the project creation process.
+     ```bash
+    npm init
+    ```
 
-You should now have a sample project from Hardhat, the deploys, and test a `Lock` contract that locks funds for a set amount of time.
+1. Install Hardhat:
+
+     ```bash
+    npm install --save-dev hardhat
+    ```
+
+1. Initialize the Hardhat project:
+
+     ```bash
+    npx hardhat init
+    ```
+
+    In the menu that appears, select **Create a JavaScript project** and press **Enter**. Accept all
+    the default values in the questionnaire.
+
+You should now have a sample contract that deploys and tests a `Lock` contract that locks funds for a set time.
 
 :::note
 
 
-The default script in `scripts/deploy.js` locks 0.001 ETH in the contract upon deployment. If you don't want to do this, modify `const lockedAmount = hre.ethers.parseEther("0.001");` to `const lockedAmount = 0;`
+The default script in `ignition/modules/Lock.js` locks 1 GWEI in the contract upon deployment, you can modify this
+value in the script.
 
 :::
 
 ## Deploy the contract
 
-The sample project already includes the deployment script. To deploy on Linea, you'll just need to make a few modifications.
+You can use the public endpoints or node provider (such as Infura) to deploy your contract to the Linea mainnet or
+or testnets. 
 
-### Use `hardhat.config.js`
+:::important
 
-To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To do this:
+The public endpoints are rate limited and not meant for production systems. We recommend using a
+node provider such as Infura. You can [sign up for a free Infura account to get an API key](https://docs.infura.io/api/getting-started).
 
-1. Create a `.env` file in the root folder with your wallet's private key.
+:::
+
+The sample project already includes the deployment script. To deploy on Linea, you'll just need to make
+a few modifications to the `hardhat.config.js` file:
+
+1. Create a `.env` file in the root folder with your wallet's private key and Infura API (if using Infura).
 
    ```
    PRIVATE_KEY=YOUR_PRIVATE_KEY
+   INFURA_API_KEY=INFURA_API_KEY
    ```
 
    :::warning
@@ -69,78 +85,86 @@ To deploy to Linea, we'll need to add the network to our `hardhat.config.js`. To
 
    :::
 
-1. Download `dotenv`
+1. Download and install `dotenv`
+
    ```
    npm i -D dotenv
    ```
-1. Add Linea to your `hardhat.config.js` file.
 
-  <Tabs className="my-tabs">
-    <TabItem value="Infura" label="Infura" default>
+1. Add Linea to your `hardhat.config.js` file. The following example shows how to add an Infura endpoint and
+    public endpoint to the configuration file.
 
-    To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Add it to the `.env` file as follows:
+    <Tabs className="my-tabs">
+      <TabItem value="Infura" label="Infura" default>
 
-    ```
-    PRIVATE_KEY=YOUR_PRIVATE_KEY
-    INFURA_API_KEY=INFURA_API_KEY
-    ```
+      ```javascript
+      require("@nomicfoundation/hardhat-toolbox");
+      require("dotenv").config();
+      const { PRIVATE_KEY, INFURA_API_KEY } = process.env;
 
-    Then, modify the hardhat.config.js like so:
-
-    ```javascript
-    require("@nomicfoundation/hardhat-toolbox");
-    require("dotenv").config();
-    const { PRIVATE_KEY, INFURA_API_KEY } = process.env;
-
-    module.exports = {
-      solidity: "0.8.19",
-      networks: {
-        linea_testnet: {
-          url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY}`,
-          accounts: [PRIVATE_KEY],
+      module.exports = {
+        solidity: "0.8.19",
+        networks: {
+          linea_goerli: {
+            url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY}`,
+            accounts: [PRIVATE_KEY],
+          },
+          linea_sepolia: {
+            url: `https://linea-sepolia.infura.io/v3/${INFURA_API_KEY}`,
+            accounts: [PRIVATE_KEY],
+          },
+          linea_mainnet: {
+            url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
+            accounts: [PRIVATE_KEY],
+          },
         },
-        linea_mainnet: {
-          url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}`,
-          accounts: [PRIVATE_KEY],
+      };
+      ```
+      </TabItem>
+      <TabItem value="Public endpoint" label="Public endpoint">
+
+      
+      ```javascript
+      require("@nomicfoundation/hardhat-toolbox");
+      require("dotenv").config();
+      const { PRIVATE_KEY } = process.env;
+
+      module.exports = {
+        solidity: "0.8.24",
+        networks: {
+          linea_goerli: {
+            url: `https://rpc.goerli.linea.build/`,
+            accounts: [PRIVATE_KEY],
+          },
+          linea_sepolia: {
+            url: `https://rpc.sepolia.linea.build/`,
+            accounts: [PRIVATE_KEY],
+          },
+          linea_mainnet: {
+            url: `https://rpc.linea.build/`,
+            accounts: [PRIVATE_KEY],
+          },
         },
-      },
-    };
+      };
+      ```
+
+      </TabItem>
+
+    </Tabs>
+
+1. Deploy your contract. Replace `NETWORK` with a relevant network defined in the `hardhat.config.js` file. For
+    example `linea_mainnet`.
+
+    ```bash
+    npx hardhat ignition deploy ./ignition/modules/Lock.js --network NETWORK
     ```
-    </TabItem>
-    <TabItem value="Public Endpoint" label="Public Endpoint">
-
-    The public endpoints are rate limited and not meant for production systems.
-
-    ```javascript
-    require("@nomicfoundation/hardhat-toolbox");
-    require("dotenv").config();
-    const { PRIVATE_KEY } = process.env;
-
-    module.exports = {
-      solidity: "0.8.17",
-      networks: {
-        linea_testnet: {
-          url: `https://rpc.goerli.linea.build/`,
-          accounts: [PRIVATE_KEY],
-        },
-        linea_mainnet: {
-          url: `https://rpc.linea.build/`,
-          accounts: [PRIVATE_KEY],
-        },
-      },
-    };
-    ```
-
-    </TabItem>
-
-  </Tabs>
-
-1. Call `npx hardhat run scripts/deploy.js --network linea_testnet` or `npx hardhat run scripts/deploy.js --network linea_mainnet` from the CLI.
 
 Your output should look something like this:
 
 ```bash
-Lock with 0.0ETH and unlock timestamp 1692381910 deployed to 0xaD6C134BD9EA1E174CC8EA77755BF79C86148d38
+Deployed Addresses
+
+LockModule#Lock - 0x2c73d6f093A2032D3371bFB9a29f7cE666080c4A
 ```
 
 Next, you can optionally [verify your contract on the network](../verify-smart-contract/hardhat.md).

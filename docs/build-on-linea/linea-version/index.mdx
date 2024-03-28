@@ -1,6 +1,7 @@
 ---
 title: Release notes
 sidebar_position: 4
+image: /img/socialCards/release-notes.jpg
 ---
 
 import CodeBlock from "@theme/CodeBlock";
@@ -10,6 +11,49 @@ import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 
 Find out all you need to know about the latest Linea versions.
+
+## Alpha v3 release notes
+
+### Summary
+
+The main objective of Alpha v3 is to implement EIP-4844 on Linea, following its introduction to 
+Ethereum mainnet with the Dencun upgrade on March 13.
+
+### Features
+
+**March 26: EIP-4844**
+
+Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
+costs. Blobs represent a transient data storage mechanism and an alternative to `calldata`, and
+can be significantly cheaper in L1 ETH costs depending on market demand.
+
+L1 and L2 smart contracts have been updated and deployed for Alpha v3. The contract addresses are:
+
+- New verifier contract
+  - Sepolia (L1): [0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79](https://sepolia.etherscan.io/address/0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79)
+  - Ethereum Mainnet: [0x8AB455030E1Ea718e445f423Bb8D993dcAd24Cc4](https://etherscan.io/address/0x8AB455030E1Ea718e445f423Bb8D993dcAd24Cc4)
+- New L1 message service contract
+  - Sepolia (L1): [0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5](https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+  - Ethereum Mainnet: [0xd19d4B5d358258f05D7B411E21A1460D11B0876F](https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F)
+- New L2 message service contract
+  - Linea Sepolia: [0x971e727e956690b9957be6d51Ec16E73AcAC83A7](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+  - Linea Mainnet: [0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec](https://lineascan.build/address/0x508ca82df566dcd1b0de8296e70a96332cd644ec)
+
+Smart contract updates will be executed by the Linea Security Council using the Safe multi-sig 
+procedure. 
+
+Additionally, all contracts have been audited by OpenZeppelin. You can find the report [here](https://blog.openzeppelin.com/linea-blob-submission-audit).
+
+**March 27**
+
+- Block time reduced to 3 seconds. This change increases the throughput of the network to avoid
+any potential L2 execution bottlenecks from increased Linea activity.
+- Gas fee reductions. After EIP-4844 was implemented on March 26, we monitored data for 24 hours
+before reducing gas fees for all users on March 27. 
+
+### Breaking changes
+
+None.
 
 ## February 2024
 
@@ -103,7 +147,6 @@ Post upgrade, Execute the following Security Council transactions on L1:
 - Call FinalizeWithoutProof
 - Clear verifier mapping at index 6 and 7
 
-<!-- markdown-link-check-disable-next-line -->
 The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
 
 Two independent audits have been performed for this update. Reports can be found here: 
@@ -120,8 +163,8 @@ Two independent audits have been performed for this update. Reports can be found
 
 :::info[Note] 
 
-<!-- markdown-link-check-disable-next-line -->
-If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/build-on-linea/linea-sdk/index.md).
+If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages
+their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../linea-sdk/index.md).
 
 :::
 

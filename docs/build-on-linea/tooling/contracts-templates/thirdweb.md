@@ -1,5 +1,6 @@
 ---
 title: thirdweb
+image: /img/socialCards/thirdweb.jpg
 ---
 
 # thirdweb

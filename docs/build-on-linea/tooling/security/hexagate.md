@@ -1,5 +1,6 @@
 ---
 title: Hexagate
+image: /img/socialCards/hexagate.jpg
 ---
 
 [Hexagate](https://hexagate.com) is a proactive Web3 security & risk analytics solution.
