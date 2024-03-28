@@ -20,7 +20,7 @@ To create a new smart contract using thirdweb [CLI](https://portal.thirdweb.com/
    1. Give your project a name
    2. Choose your preferred framework: Hardhat or Foundry
    3. Name your smart contract
-   4. Choose the type of base contract: Empty, [ERC-20](https://portal.thirdweb.com/solidity/base-contracts/ERC-20base), [ERC-721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC-1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
+   4. Choose the type of base contract: Empty, [ERC-20](https://portal.thirdweb.com/contracts/build/base-contracts/erc-20/base), [ERC-721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC-1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
    5. Add any desired [extensions](https://portal.thirdweb.com/solidity/extensions)
 3. Once created, navigate to your project’s directory and open in your preferred code editor.
 4. If you open the `contracts` folder, you will find your smart contract; this is your smart contract written in Solidity.

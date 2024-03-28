@@ -20,7 +20,7 @@ Before you begin, ensure you:
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
 2. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 
-## Search cookbook's smart contract registry
+## Search Cookbook's smart contract registry
 
 Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar.
 
@@ -167,7 +167,7 @@ do not need any arguments, leave the array empty.
 ### Deploy the smart contract
 
 <Tabs>
-  <TabItem value="Goerli" label="Goerli" default>
+  <TabItem value="Linea Goerli" label="Linea Goerli" default>
 
 1. In the `.env` file, add your Infura Linea Goerli API key and add your wallet private key.
 
@@ -198,7 +198,7 @@ Hardhat will return the deployed smart contract address in your terminal. View a
 on the [Linea Goerli block explorer](https://goerli.lineascan.build/). 
 </TabItem> 
 
-<TabItem value="Sepolia" label="Sepolia">
+<TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 1. In your `.env` file, add your Infura Linea API key and add your wallet private key.
 
@@ -307,7 +307,7 @@ example, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.c
     FixedToken _contract = new FixedToken("ARG1", "ARG2", 2000);
     ```
 
-1. Update the `.env` file with your [Linea RPC URL](https://www.infura.io/networks/ethereum/linea), followed
+1. Update the `.env` file with your [Linea RPC URL](https://docs.infura.io/api/networks/linea/choose-a-network), followed
     by your [MetaMask wallet private key](https://metamask.io/) and your
     [Etherscan API key token values](https://etherscan.io/apis).
 
