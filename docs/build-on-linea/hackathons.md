@@ -94,13 +94,13 @@ Ultimately, a "high-quality" submission is quite subjective, but you can imagine
 
 **How to submit**
 
-Please register for the [current month's hackathon](https://linea.deform.cc/just-ship-april-2024)!
+Please register for the [current month's hackathon](https://linea.deform.cc/cook-off-april-2024)!
 
 ### April 2024 (1 ETH pool prize + $1000 USD [efrog](https://twitter.com/efrogs_on_linea) pool prize) :frog:
 
 This month, you can win both the 1 ETH pool prize in addition to extra prize money from the [efrog community](https://twitter.com/efrogs_on_linea).
 
-**Register here: https://linea.deform.cc/just-ship-april-2024**
+**Register here: https://linea.deform.cc/cook-off-april-2024**
 
 **Submissions due 11:59PM EST, April 30, 2024**
 
