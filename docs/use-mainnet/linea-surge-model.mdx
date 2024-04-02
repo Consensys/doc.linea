@@ -83,14 +83,12 @@ This multiplier will be a constant over the time period of a single Volt (1 mont
 
 The way it works is by looking at historical activity of each address that is eligible to get $P_{E}$ in the current timeframe:
 
-
-
 * _EA_ Multiplier > 1 if:
     * The address had at least one active liquidity event, across any smart contract on Linea (also the one not included in the program) AND
-    * At least one active liquidity event was $\geq$ 2,000 USD (any asset, in dollar value at the time of the liquidity event)
+    * At least one active liquidity event was $\geq$ 0.1 ETH (any asset, in dollar value at the time of the liquidity event)
 * _EA_ Multiplier = 1 if:
     * The active liquidity event happened later than the start of the program
-    * The active liquidity event was &lt; 2,000 USD
+    * The active liquidity event was &lt; 0.1 ETH
     * All other cases
 
 The _EA_ Multiplier will start at 1.5 at the beginning of the program and will be reduced at every end of each Volt till ti will reach the value of 1 for the rest of the program:
