@@ -8,11 +8,11 @@ const sidebars = {
       collapsed: false,
       label: "Getting started",
       link: {
-        type: 'doc',
+        type: "doc",
         id: "index",
       },
       items: [
-       // "use-mainnet/index",
+        // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
@@ -67,70 +67,70 @@ const sidebars = {
     },
   ],
   developersSidebar: [
-      {
-        type: "category",
-        collapsed: false,
-        label: "Quickstart",
-        link: {
-          type: 'doc',
-          id: "build-on-linea/quickstart/index",
-        },
-        items: [
-          {
-            type: "category",
-            label: "Deploy a smart contract",
-            items: [
-              "build-on-linea/quickstart/deploy-smart-contract/atlas",
-              "build-on-linea/quickstart/deploy-smart-contract/foundry",
-              "build-on-linea/quickstart/deploy-smart-contract/hardhat",
-              "build-on-linea/quickstart/deploy-smart-contract/remix",
-              "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
-              "build-on-linea/quickstart/deploy-smart-contract/cookbook",
-            ],
-          },
-          {
-            type: "category",
-            label: "Verify a smart contract",
-            items: [
-              "build-on-linea/quickstart/verify-smart-contract/atlas",
-              "build-on-linea/quickstart/verify-smart-contract/foundry",
-              "build-on-linea/quickstart/verify-smart-contract/hardhat",
-            ],
-          },
-          "use-mainnet/fund",
-          {
-            type: "category",
-            label: "Bridge your funds",
-            link: {
-              type: 'doc',
-              id: 'use-mainnet/bridges-of-linea/index'
-            },
-            items: [
-              "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
-              "use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            ],
-          },
-          "build-on-linea/linea-sdk/index",
-          {
-            type: "category",
-            label: "Run a Linea node",
-            link: {
-              type: 'doc',
-              id: "build-on-linea/run-a-node/index"
-            },
-            items: [
-              "build-on-linea/run-a-node/use-docker",
-              "build-on-linea/run-a-node/use-binary",
-            ],
-          },
-          "build-on-linea/quickstart/rpc",
-        ],
+    {
+      type: "category",
+      collapsed: false,
+      label: "Quickstart",
+      link: {
+        type: "doc",
+        id: "build-on-linea/quickstart/index",
       },
-      "use-mainnet/info-contracts",
-      "build-on-linea/ethereum-differences",
-      "build-on-linea/gas-fees",
-      "build-on-linea/goerli-to-sepolia",
-     {
+      items: [
+        {
+          type: "category",
+          label: "Deploy a smart contract",
+          items: [
+            "build-on-linea/quickstart/deploy-smart-contract/atlas",
+            "build-on-linea/quickstart/deploy-smart-contract/foundry",
+            "build-on-linea/quickstart/deploy-smart-contract/hardhat",
+            "build-on-linea/quickstart/deploy-smart-contract/remix",
+            "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
+            "build-on-linea/quickstart/deploy-smart-contract/cookbook",
+          ],
+        },
+        {
+          type: "category",
+          label: "Verify a smart contract",
+          items: [
+            "build-on-linea/quickstart/verify-smart-contract/atlas",
+            "build-on-linea/quickstart/verify-smart-contract/foundry",
+            "build-on-linea/quickstart/verify-smart-contract/hardhat",
+          ],
+        },
+        "use-mainnet/fund",
+        {
+          type: "category",
+          label: "Bridge your funds",
+          link: {
+            type: "doc",
+            id: "use-mainnet/bridges-of-linea/index",
+          },
+          items: [
+            "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
+            "use-mainnet/bridges-of-linea/how-to-bridge-eth",
+          ],
+        },
+        "build-on-linea/linea-sdk/index",
+        {
+          type: "category",
+          label: "Run a Linea node",
+          link: {
+            type: "doc",
+            id: "build-on-linea/run-a-node/index",
+          },
+          items: [
+            "build-on-linea/run-a-node/use-docker",
+            "build-on-linea/run-a-node/use-binary",
+          ],
+        },
+        "build-on-linea/quickstart/rpc",
+      ],
+    },
+    "use-mainnet/info-contracts",
+    "build-on-linea/ethereum-differences",
+    "build-on-linea/gas-fees",
+    "build-on-linea/goerli-to-sepolia",
+    {
       type: "category",
       label: "Tooling and infrastructure",
       link: {
@@ -143,8 +143,7 @@ const sidebars = {
           label: "Account abstraction",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/account-abstraction/account-abstraction"
-
+            id: "build-on-linea/tooling/account-abstraction/account-abstraction",
           },
           items: [
             "build-on-linea/tooling/account-abstraction/arcana",
@@ -156,7 +155,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
             "build-on-linea/tooling/account-abstraction/oklink",
-            "build-on-linea/tooling/account-abstraction/openfort"
+            "build-on-linea/tooling/account-abstraction/openfort",
           ],
         },
         {
@@ -164,10 +163,10 @@ const sidebars = {
           label: "Analytics",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/analytics/index"
-
+            id: "build-on-linea/tooling/analytics/index",
           },
           items: [
+            "build-on-linea/tooling/analytics/mobula",
             "build-on-linea/tooling/analytics/cookie3",
           ],
         },
@@ -186,16 +185,12 @@ const sidebars = {
         {
           type: "category",
           label: "Automation",
-          items: [
-            "build-on-linea/tooling/automation/hal-stream",
-          ],
+          items: ["build-on-linea/tooling/automation/hal-stream"],
         },
         {
           type: "category",
           label: "Cloud infrastructure",
-          items: [
-            "build-on-linea/tooling/cloud-infra/spheron",
-          ],
+          items: ["build-on-linea/tooling/cloud-infra/spheron"],
         },
         {
           type: "category",
@@ -217,8 +212,8 @@ const sidebars = {
           type: "category",
           label: "Data indexers",
           items: [
+            "build-on-linea/tooling/data-indexers/mobula",
             "build-on-linea/tooling/data-indexers/covalent",
-            "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
             {
@@ -278,104 +273,98 @@ const sidebars = {
           label: "Social Login",
           items: [
             "build-on-linea/tooling/social-login/arcana",
-            "build-on-linea/tooling/social-login/openfort"
+            "build-on-linea/tooling/social-login/openfort",
           ],
         },
       ],
-     },
-      "build-on-linea/tooling/linea-safe",
-      "build-on-linea/tooling/linea-inscription",
-      "build-on-linea/tooling/node-providers",
-      {
-        type: "category",
-        label: "Reference",
-        items: [
-          {
-            type: "category",
-            label: "Linea JSON-RPC API",
-            link: {
-              type: "doc",
-              id: "reference/api/index",
-            },
-            items: [
-              "reference/api/linea-estimategas",
-            ],
+    },
+    "build-on-linea/tooling/linea-safe",
+    "build-on-linea/tooling/linea-inscription",
+    "build-on-linea/tooling/node-providers",
+    {
+      type: "category",
+      label: "Reference",
+      items: [
+        {
+          type: "category",
+          label: "Linea JSON-RPC API",
+          link: {
+            type: "doc",
+            id: "reference/api/index",
           },
-        ],
-      },
-      {
-        type: "category",
-        label: "Linea Voyage: The Surge",
-        link: {
-          type: "doc",
-          id: "use-mainnet/linea-surge",
+          items: ["reference/api/linea-estimategas"],
         },
-        items: [
-          "use-mainnet/linea-surge-overview",
-          "use-mainnet/linea-surge-model",
-        ],
+      ],
+    },
+    {
+      type: "category",
+      label: "Linea Voyage: The Surge",
+      link: {
+        type: "doc",
+        id: "use-mainnet/linea-surge",
       },
-      "build-on-linea/linea-version/index",
-      "build-on-linea/hackathons",
-     {
+      items: [
+        "use-mainnet/linea-surge-overview",
+        "use-mainnet/linea-surge-model",
+      ],
+    },
+    "build-on-linea/linea-version/index",
+    "build-on-linea/hackathons",
+    {
       type: "link",
       label: "Bug bounty program",
       href: "https://immunefi.com/bounty/linea/",
-     },
+    },
   ],
   architectureSidebar: [
-      "architecture/index",
-      "architecture/network-data",
-      "architecture/transaction-lifecycle",
-      {
-        type: "category",
-        label: "Bridges",
-        link: {
-          type: "doc",
-          id: "architecture/bridges/index",
-        },
-        items: [
-          "architecture/bridges/canonical-token-bridge",
-        ],
+    "architecture/index",
+    "architecture/network-data",
+    "architecture/transaction-lifecycle",
+    {
+      type: "category",
+      label: "Bridges",
+      link: {
+        type: "doc",
+        id: "architecture/bridges/index",
       },
-      {
-        type: "category",
-        label: "Canonical message service",
-        link: {
-          type: "doc",
-          id: "architecture/canonical-msg-service/index",
-        },
-        items: [
-          "architecture/canonical-msg-service/message-service",
-        ],
+      items: ["architecture/bridges/canonical-token-bridge"],
+    },
+    {
+      type: "category",
+      label: "Canonical message service",
+      link: {
+        type: "doc",
+        id: "architecture/canonical-msg-service/index",
       },
-      "architecture/coordinator/index",
-      "architecture/evm-state-manager/index",
-      {
-        type: "category",
-        label: "Sequencer",
-        link: {
-          type: "doc",
-          id: "architecture/sequencer/index",
-        },
-        items: [
-          "architecture/sequencer/conflation",
-          "architecture/sequencer/traces-generator",
-        ],
+      items: ["architecture/canonical-msg-service/message-service"],
+    },
+    "architecture/coordinator/index",
+    "architecture/evm-state-manager/index",
+    {
+      type: "category",
+      label: "Sequencer",
+      link: {
+        type: "doc",
+        id: "architecture/sequencer/index",
       },
-      {
-        type: "category",
-        label: "Trace expansion proving",
-        link: {
-          type: "doc",
-          id: "architecture/trace-expansion-proving/index",
-        },
-        items: [
-          "architecture/trace-expansion-proving/proving",
-          "architecture/trace-expansion-proving/trace-expansion",
-        ],
+      items: [
+        "architecture/sequencer/conflation",
+        "architecture/sequencer/traces-generator",
+      ],
+    },
+    {
+      type: "category",
+      label: "Trace expansion proving",
+      link: {
+        type: "doc",
+        id: "architecture/trace-expansion-proving/index",
       },
-     ]
+      items: [
+        "architecture/trace-expansion-proving/proving",
+        "architecture/trace-expansion-proving/trace-expansion",
+      ],
+    },
+  ],
 };
 
 module.exports = sidebars;
