@@ -218,6 +218,7 @@ const sidebars = {
           label: "Data indexers",
           items: [
             "build-on-linea/tooling/data-indexers/covalent",
+            "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
             {
