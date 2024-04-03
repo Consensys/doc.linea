@@ -8,11 +8,11 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Estimate transaction costs
 
-:::info[Reducing gas fees]
+:::info [Reducing gas fees]
 
 Building on gas optimizations introduced with Alpha v2 in February 2024, Linea implemented 
 EIP-4844 with Alpha v3 on March 26 2024. Gas fees are anticipated to be a fraction of what they 
-were. See [here](../use-mainnet/gas-on-linea) for details.
+were. See [here](../use-mainnet/gas-on-linea.mdx) for details.
 
 :::
 
@@ -37,72 +37,3 @@ components:
     sequencer and is calculated using a similar formula to Ethereum. 
 - **Layer 1 fee** - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can 
     vary based on the blob fee market.
-
-You can [use the `linea_estimateGas`](../reference/api/linea-estimategas.mdx) gas API to 
-estimate your gas costs; the result of the call provides an estimate that includes the layer 1 
-and layer 2 fees.
-
-## Calculate transaction fees
-
-:::note
-
-`linea_estimateGas` is currently being rolled out, and will temporarily provide results similar 
-to `eth_gasPrice`.
-
-:::
-
-Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API method to estimate the 
-gas cost for sending a transaction. The method returns the recommended gas limit, the base fee 
-per gas, and the priority fee per gas.
-
-The `priorityFeePerGas` returned by `linea_estimateGas` includes the cost of submitting the 
-transaction to Ethereum, which can vary based on the size of the calldata.
-
-The following example executes `linea_estimateGas` on the Linea mainnet using the public RPC URL.
-
-:::tip
-
-You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
-:::
-
-<Tabs className="my-tabs">
-  <TabItem value="curl" label="curl" default>
-
-```bash
-curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.linea.build
-```
-
-</TabItem>
-<TabItem value="result" label="Result">
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 53,
-  "result": {
-    "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
-  }
-}
-```
-
-  </TabItem>
-</Tabs>
-
-The `linea_estimateGas` API calculates gas fees as follows:
-
-- `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
-- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
-- `priorityFeePerGas` - Calculates the fee required to prioritize a transaction by considering 
-    factors such as the compressed transaction size, layer 1 verification costs and capacity, 
-    gas price ratio between layer 1 and layer 2, the transaction's gas usage, the minimum gas 
-    price on layer 2, and a minimum margin (for error) for gas price estimation.
-
-:::note
-
-The result of the request returns hexadecimal equivalent integers of gas prices in wei. 
-Convert the hexadecimal value into decimals to get the wei value. You can use any hexadecimal to 
-decimal converter, such as [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
-
-:::
