@@ -22,6 +22,18 @@ const sidebars = {
       ],
     },
     {
+      type: "category",
+      label: "Linea Voyage: The Surge",
+      link: {
+        type: "doc",
+        id: "use-mainnet/linea-surge/index",
+      },
+      items: [
+        "use-mainnet/linea-surge/linea-surge-overview",
+        "use-mainnet/linea-surge/linea-surge-model",
+      ],
+    },
+    {
       type: "link",
       label: "Network status",
       href: "https://linea.statuspage.io/",
@@ -301,18 +313,6 @@ const sidebars = {
               "reference/api/linea-estimategas",
             ],
           },
-        ],
-      },
-      {
-        type: "category",
-        label: "Linea Voyage: The Surge",
-        link: {
-          type: "doc",
-          id: "use-mainnet/linea-surge",
-        },
-        items: [
-          "use-mainnet/linea-surge-overview",
-          "use-mainnet/linea-surge-model",
         ],
       },
       "build-on-linea/linea-version/index",
