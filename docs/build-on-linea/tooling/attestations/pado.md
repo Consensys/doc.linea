@@ -1,5 +1,6 @@
 ---
 title: PADO
+image: /img/socialCards/pado.jpg
 ---
 
 ## PADO

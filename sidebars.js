@@ -19,6 +19,18 @@ const sidebars = {
       ],
     },
     {
+      type: "category",
+      label: "Linea Voyage: The Surge",
+      link: {
+        type: "doc",
+        id: "use-mainnet/linea-surge/index",
+      },
+      items: [
+        "use-mainnet/linea-surge/linea-surge-overview",
+        "use-mainnet/linea-surge/linea-surge-model",
+      ],
+    },
+    {
       type: "link",
       label: "Network status",
       href: "https://linea.statuspage.io/",
@@ -30,8 +42,8 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Linea Goerli block explorer",
-      href: "https://goerli.lineascan.build",
+      label: "Linea Sepolia block explorer",
+      href: "https://sepolia.lineascan.build",
     },
     "risk-disclosures/index",
     "decentralization-roadmap/index",
@@ -169,6 +181,7 @@ const sidebars = {
             "build-on-linea/tooling/account-abstraction/particle-network",
             "build-on-linea/tooling/account-abstraction/noves",
             "build-on-linea/tooling/account-abstraction/oklink",
+            "build-on-linea/tooling/account-abstraction/openfort"
           ],
         },
         {
@@ -250,6 +263,7 @@ const sidebars = {
           },
           items: [
             "build-on-linea/tooling/data-indexers/covalent",
+            "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
             {
@@ -324,7 +338,8 @@ const sidebars = {
             id: "build-on-linea/tooling/social-login/index",
           },
           items: [
-            "build-on-linea/tooling/social-login/arcana"
+            "build-on-linea/tooling/social-login/arcana",
+            "build-on-linea/tooling/social-login/openfort"
           ],
         },
       ],

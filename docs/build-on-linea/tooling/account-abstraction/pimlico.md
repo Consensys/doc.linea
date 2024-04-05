@@ -1,5 +1,6 @@
 ---
 title: Pimlico
+image: /img/socialCards/pimlico.jpg
 ---
 
 ## Powerful infrastructure for Smart Accounts

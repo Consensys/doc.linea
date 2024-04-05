@@ -1,5 +1,6 @@
 ---
-title: The Graph Network
+title: TheGraph network
+image: /img/socialCards/thegraph-network.jpg
 ---
 
 As a dapp developer, retrieving on-chain data for your dapp can be challenging because you will most likely:

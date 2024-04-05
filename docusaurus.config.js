@@ -72,14 +72,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // announcementBar: {
-      //   id: "announcement_bar",
-      //   content:
-      //     '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
-      //   backgroundColor: "#fafbfc",
-      //   textColor: "#091E42",
-      //   isCloseable: false,
-      // },
+      announcementBar: {
+        id: "announcement_bar",
+        content:
+          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build//build-on-linea/goerli-to-sepolia">View the transition page</a> for more information.',
+        backgroundColor: "#61dfff",
+        textColor: "#121212",
+        isCloseable: false,
+      },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,

@@ -1,5 +1,6 @@
 ---
 title: Particle Network
+image: /img/socialCards/particle-network.jpg
 ---
 
 ## Smart Wallet-as-a-Service on Linea

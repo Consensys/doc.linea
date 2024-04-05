@@ -1,5 +1,7 @@
 ---
 title: thirdweb
+description: Deploy a smart contract using thirdweb.
+image: /img/socialCards/thirdweb.jpg
 ---
 
 thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks.
@@ -18,7 +20,7 @@ To create a new smart contract using thirdweb [CLI](https://portal.thirdweb.com/
    1. Give your project a name
    2. Choose your preferred framework: Hardhat or Foundry
    3. Name your smart contract
-   4. Choose the type of base contract: Empty, [ERC-20](https://portal.thirdweb.com/solidity/base-contracts/ERC-20base), [ERC-721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC-1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
+   4. Choose the type of base contract: Empty, [ERC-20](https://portal.thirdweb.com/contracts/build/base-contracts/erc-20/base), [ERC-721](https://portal.thirdweb.com/solidity/base-contracts/erc721base), or [ERC-1155](https://portal.thirdweb.com/solidity/base-contracts/erc1155base)
    5. Add any desired [extensions](https://portal.thirdweb.com/solidity/extensions)
 3. Once created, navigate to your project’s directory and open in your preferred code editor.
 4. If you open the `contracts` folder, you will find your smart contract; this is your smart contract written in Solidity.
@@ -96,7 +98,3 @@ Deploy allows you to deploy a smart contract to any EVM-compatible network witho
 > For additional information on `deploy`, please reference [thirdweb’s documentation](https://portal.thirdweb.com/deploy).
 
 If you have any further questions or encounter any issues during the process, please [reach out to thirdweb support](https://support.thirdweb.com).
-
-## Deploy to Mainnet
-
-_Instructions coming soon!_

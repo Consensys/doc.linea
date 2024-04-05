@@ -1,6 +1,7 @@
 ---
 title: Building on Linea
 sidebar_position: 1
+image: /img/socialCards/building-on-linea.jpg
 ---
 
 # Building on Linea

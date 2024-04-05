@@ -1,5 +1,6 @@
 ---
-title: "Creating a Custom Volume"
+title: Creating a Custom Volume
+image: /img/socialCards/creating-a-custom-volume.jpg
 ---
 
 :::note
@@ -18,7 +19,9 @@ Select the relevant operating system for the steps on how to create a custom vol
 
 - Open Terminal
 - Use the `df -h` command to check the available disk space
-- Decide on the maximum size you want for the volume, for example 100GB
+- Choose a maximum size for the volume. We'll use 100GB for this example, but refer to the 
+[Geth](./use-binary.mdx#disk-space-geth) or [Besu](./use-binary.mdx#disk-space-besu) explanation 
+to help determine the value.
 - Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`
 - Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
 - Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`
@@ -32,7 +35,9 @@ Select the relevant operating system for the steps on how to create a custom vol
 
 - Open Terminal
 - Use the `df -h` command to check the available disk space
-- Decide on the maximum size you want for the volume, for example 100GB
+- Choose a maximum size for the volume. We'll use 100GB for this example, but refer to the 
+[Geth](./use-binary.mdx#disk-space-geth) or [Besu](./use-binary.mdx#disk-space-besu) explanation 
+to help determine the value.
 - Use `hdiutil` to create a sparse image of the desired size, e.g. `hdiutil create -size 100g -type SPARSE -fs HFS+X myfile.dmg`
 - Mount the image using `hdiutil`, e.g. `hdiutil attach myfile.dmg`
 - The contents will now be available mounted under `/Volumes`, up to a maximum of 100GB
@@ -49,7 +54,9 @@ Select the relevant operating system for the steps on how to create a custom vol
 
 - Open Command Prompt as Administrator
 - Use the `dir` command to check available disk space on the volume you want to create the disk image
-- Decide on the maximum size for the volume, for example 100GB
+- Choose a maximum size for the volume. We'll use 100GB for this example, but refer to the 
+[Geth](./use-binary.mdx#disk-space-geth) or [Besu](./use-binary.mdx#disk-space-besu) explanation 
+to help determine the value.
 - Use the `fsutil` command to create a sparse file of the desired size, e.g. `fsutil file createnew myfile.img 107374182400` (for a 100GB file)
 - Initialize the disk image using `diskpart`:
   - `diskpart`
@@ -76,7 +83,9 @@ To mount an existing disk image:
 
 - Open WSL
 - Use the `df -h` command to check the available disk space
-- Decide on the maximum size you want for the volume, for example 100GB
+- Choose a maximum size for the volume. We'll use 100GB for this example, but refer to the 
+[Geth](./use-binary.mdx#disk-space-geth) or [Besu](./use-binary.mdx#disk-space-besu) explanation
+to help determine the value.
 - Use `fallocate` to create a file of the desired size, e.g. `fallocate -l 100G myfile.img`
 - Use `mkfs.ext4` to format the file as an ext4 filesystem. e.g. `mkfs.ext4 myfile.img`
 - Mount the file using `mount`, e.g. `mount -o loop myfile.img /mnt/myvolume`

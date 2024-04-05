@@ -1,5 +1,6 @@
 ---
 title: Envio
+image: /img/socialCards/envio.jpg
 ---
 
 [Envio](https://envio.dev/) is a customizable, real-time indexing solution that provides developers with a seamless and efficient way to index and aggregate blockchain data. The indexed data is easily accessible through GraphQL queries, providing developers with the flexibility and power to retrieve specific information.

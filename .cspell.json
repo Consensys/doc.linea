@@ -49,7 +49,12 @@
     "docs/configure-and-manage/configure/use-configuration-file.md",
     "static/img/",
     "static/files/besu/config-goerli.toml",
+    "static/files/besu/config-sepolia.toml",
     "static/files/besu/config-mainnet.toml"
   ],
-  "ignoreRegExpList": ["Email", "Urls", "#[\\w-]*"]
+  "ignoreRegExpList": [
+    "Email", "Urls", "#[\\w-]*",
+    "^image:\\s*([>-]\\s*)?.*$",
+    "/img/.*"
+  ]
 }
