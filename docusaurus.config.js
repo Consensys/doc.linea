@@ -111,7 +111,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "build-on-linea/quickstart/index",
+            docId: "build-on-linea/index",
             position: "left",
             label: "Developers",
           },
@@ -140,6 +140,11 @@ const config = {
             to: "https://support.linea.build/hc/",
             position: "left",
             label: "Support",
+          },
+          {
+            to: "/build-on-linea/run-a-node/",
+            position: "left",
+            label: "Run a node",
           },
           {
             to: "https://linea.build/",
