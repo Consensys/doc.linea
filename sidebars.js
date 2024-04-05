@@ -78,7 +78,7 @@ const sidebars = {
   developersSidebar: [
       {
         type: "category",
-        collapsed: false,
+        collapsible: false,
         label: "Build on Linea",
         link: {
           type: 'doc',
@@ -99,7 +99,7 @@ const sidebars = {
           },
         {
         type: "category",
-        collapsed: false,
+        collapsed: true,
         label: "Quickstart",
         link: {
           type: 'doc',
