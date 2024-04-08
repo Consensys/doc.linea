@@ -328,6 +328,14 @@ const config = {
             to: "/build-on-linea/gas-fees",
             from: "/use-mainnet/gas-import",
           },
+          {
+            to: "/use-mainnet/linea-surge/linea-surge-overview",
+            from: "/use-mainnet/linea-surge-overview",
+          },
+          {
+            to: "/use-mainnet/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
+          },
         ],
       },
     ],
