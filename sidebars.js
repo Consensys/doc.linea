@@ -347,23 +347,6 @@ const sidebars = {
       "build-on-linea/tooling/linea-safe",
       "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
-      {
-        type: "category",
-        label: "Reference",
-        items: [
-          {
-            type: "category",
-            label: "Linea JSON-RPC API",
-            link: {
-              type: "doc",
-              id: "reference/api/index",
-            },
-            items: [
-              "reference/api/linea-estimategas",
-            ],
-          },
-        ],
-      },
       "build-on-linea/linea-version/index",
       "build-on-linea/hackathons",
      {
