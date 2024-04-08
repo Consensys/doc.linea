@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
@@ -12,13 +10,24 @@ const sidebars = {
         id: "index",
       },
       items: [
-       // "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
         "use-mainnet/linea-xp",
         "use-mainnet/import-info-contracts",
         "use-mainnet/gas-on-linea",
+      ],
+    },
+    {
+      type: "category",
+      label: "Linea Voyage: The Surge",
+      link: {
+        type: "doc",
+        id: "use-mainnet/linea-surge/index",
+      },
+      items: [
+        "use-mainnet/linea-surge/linea-surge-overview",
+        "use-mainnet/linea-surge/linea-surge-model",
       ],
     },
     {
@@ -69,7 +78,28 @@ const sidebars = {
   developersSidebar: [
       {
         type: "category",
-        collapsed: false,
+        collapsible: false,
+        label: "Build on Linea",
+        link: {
+          type: 'doc',
+          id: "build-on-linea/index",
+        },
+        items: [
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
+        {
+        type: "category",
+        collapsed: true,
         label: "Quickstart",
         link: {
           type: 'doc',
@@ -79,6 +109,10 @@ const sidebars = {
           {
             type: "category",
             label: "Deploy a smart contract",
+            link: {
+              type: "doc",
+              id: "build-on-linea/quickstart/deploy-smart-contract/index",
+            },
             items: [
               "build-on-linea/quickstart/deploy-smart-contract/atlas",
               "build-on-linea/quickstart/deploy-smart-contract/foundry",
@@ -91,6 +125,10 @@ const sidebars = {
           {
             type: "category",
             label: "Verify a smart contract",
+            link: {
+              type: "doc",
+              id: "build-on-linea/quickstart/verify-smart-contract/index",
+            },
             items: [
               "build-on-linea/quickstart/verify-smart-contract/atlas",
               "build-on-linea/quickstart/verify-smart-contract/foundry",
@@ -108,19 +146,6 @@ const sidebars = {
             items: [
               "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
               "use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            ],
-          },
-          "build-on-linea/linea-sdk/index",
-          {
-            type: "category",
-            label: "Run a Linea node",
-            link: {
-              type: 'doc',
-              id: "build-on-linea/run-a-node/index"
-            },
-            items: [
-              "build-on-linea/run-a-node/use-docker",
-              "build-on-linea/run-a-node/use-binary",
             ],
           },
           "build-on-linea/quickstart/rpc",
@@ -186,6 +211,10 @@ const sidebars = {
         {
           type: "category",
           label: "Automation",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/automation/index",
+          },
           items: [
             "build-on-linea/tooling/automation/hal-stream",
           ],
@@ -193,6 +222,10 @@ const sidebars = {
         {
           type: "category",
           label: "Cloud infrastructure",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/cloud-infra/index",
+          },
           items: [
             "build-on-linea/tooling/cloud-infra/spheron",
           ],
@@ -200,6 +233,10 @@ const sidebars = {
         {
           type: "category",
           label: "Contracts templates",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/contracts-templates/index",
+          },
           items: [
             "build-on-linea/tooling/contracts-templates/thirdweb",
             "build-on-linea/tooling/contracts-templates/cookbook",
@@ -208,6 +245,10 @@ const sidebars = {
         {
           type: "category",
           label: "Cross-chain",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/cross-chain/index",
+          },
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
@@ -216,8 +257,13 @@ const sidebars = {
         {
           type: "category",
           label: "Data indexers",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/data-indexers/index",
+          },
           items: [
             "build-on-linea/tooling/data-indexers/covalent",
+            "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
             {
@@ -240,6 +286,10 @@ const sidebars = {
         {
           type: "category",
           label: "Libraries",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/libraries/index",
+          },
           items: [
             "build-on-linea/tooling/libraries/ape",
             "build-on-linea/tooling/libraries/ethereum-list",
@@ -252,6 +302,10 @@ const sidebars = {
         {
           type: "category",
           label: "Oracles",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/oracles/index",
+          },
           items: [
             "build-on-linea/tooling/oracles/api3",
             "build-on-linea/tooling/oracles/chainlink",
@@ -265,6 +319,10 @@ const sidebars = {
         {
           type: "category",
           label: "Security",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/security/index",
+          },
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
@@ -274,7 +332,11 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Social Login",
+          label: "Social login",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/social-login/index",
+          },
           items: [
             "build-on-linea/tooling/social-login/arcana",
             "build-on-linea/tooling/social-login/openfort"
@@ -302,18 +364,6 @@ const sidebars = {
           },
         ],
       },
-      {
-        type: "category",
-        label: "Linea Voyage: The Surge",
-        link: {
-          type: "doc",
-          id: "use-mainnet/linea-surge",
-        },
-        items: [
-          "use-mainnet/linea-surge-overview",
-          "use-mainnet/linea-surge-model",
-        ],
-      },
       "build-on-linea/linea-version/index",
       "build-on-linea/hackathons",
      {
@@ -321,6 +371,8 @@ const sidebars = {
       label: "Bug bounty program",
       href: "https://immunefi.com/bounty/linea/",
      },
+    ],
+    },
   ],
   architectureSidebar: [
       "architecture/index",
@@ -378,3 +430,6 @@ const sidebars = {
 };
 
 module.exports = sidebars;
+
+
+      
