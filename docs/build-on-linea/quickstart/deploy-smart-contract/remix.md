@@ -1,24 +1,24 @@
 ---
 title: Remix
+description: Deploy a smart contract using Remix.
+image: /img/socialCards/remix.jpg
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 In this tutorial, we'll walk through creating a basic Remix project and deploying a sample contract.
 
 ## Prerequisites
 
-Before you begin, ensure you've:
+Before you begin, ensure you:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
+2. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet, or mainnet
 
 ## Explore the Remix workspace
 
-In order to start using Remix, navigate to their [website](https://remix.ethereum.org/). Their UI includes a brief "Get Started" section if you want to familiarize yourself with the UI and learn how to create a new workspace.
-
-The default project includes a code sample with a configured smart contract.
+To start using Remix, navigate to their [website](https://remix.ethereum.org/). The default project includes a
+code sample with a configured smart contract.
 
 <div class="center-container">
   <div class="img-large">
@@ -31,7 +31,7 @@ The default project includes a code sample with a configured smart contract.
 
 ## Compile a Remix contract
 
-To compile this sample contract, navigate to the "Solidity compiler" icon, and click on "Compile contract".
+Navigate to the **Solidity compiler** tab on the left navigation and click **Compile contract**.
 
 <div class="center-container">
   <div class="img-large">
@@ -44,20 +44,18 @@ To compile this sample contract, navigate to the "Solidity compiler" icon, and c
 
 ## Deploy the contract
 
-In order to deploy your contract with Remix, you need to configure the environment.
-
-If you deploy using the injected provider, Remix can auto-detect the network you're on and your account information. First, navigate to the "Deploy & run transactions tab."
-
-<Tabs>
-  <TabItem value="Mainnet" label="Mainnet" default>
+You can deploy a smart contract using the injected provider, meaning Remix can auto-detect the network you're
+on and your account information. To do this, navigate to the **Deploy & run transactions** tab.
 
 :::caution
 
-The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). You can then [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the mainnet information found [here](../../../use-mainnet/info-contracts.md#network-information).
+The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Then, [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the information found
+[here](../../../use-mainnet/info-contracts.mdx#network-information).
 
 :::
 
-Switch to the Linea Mainnet network in your MetaMask wallet, and select "Injected provider - MetaMask" in your Remix configuration.
+Switch to the Linea network (mainnet or testnets) in your MetaMask wallet, and from the **ENVIRONMENT** drop down, select
+**Injected provider - MetaMask**.
 
 <div class="center-container">
   <div class="img-large">
@@ -68,24 +66,4 @@ Switch to the Linea Mainnet network in your MetaMask wallet, and select "Injecte
   </div>
 </div>
 
-  </TabItem>
-  <TabItem value="Testnet" label="Testnet">
-
-:::caution
-
-The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). You can then [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the testnet information found [here](../../../use-mainnet/info-contracts.md#network-information).
-
-:::
-
-Switch to the Linea Goerli network in your MetaMask wallet, and select "Injected provider - MetaMask" in your Remix configuration.
-
-  <img
-    src={
-      require("@site/static/img/docs/build-on-linea/quickstart/deploy-smart-contract/remix_deploy_metamask_testnet.png")
-        .default
-  }></img>
-
-  </TabItem>
-</Tabs>
-
-Then, click "Deploy" and confirm the transaction.
+Then, select **Deploy** and confirm the transaction. This deploys the contract to the network selected in MetaMask.

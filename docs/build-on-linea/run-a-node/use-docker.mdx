@@ -1,0 +1,144 @@
+---
+description: Use Docker to run a Besu or Geth client as a Linea node.
+image: /img/socialCards/use-docker-to-run-a-besu-or-geth-client-as-a-linea-node.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Use Docker
+
+You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
+a Linea node on the mainnet or testnets.
+
+:::caution deprecation notice
+
+Linea Goerli is being deprecated. We discourage new development with this testnet and recommend using
+Linea Sepolia instead.
+
+:::
+
+## Prerequisites
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/).
+
+## Run a Besu node
+
+:::warning Important
+
+The Besu Docker image does not run on Windows.
+
+:::
+
+### Step 1. Download configuration files
+
+Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration
+files include the network genesis file, Docker Compose file and Besu configuration file.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Download the testnet [`besu-sepolia` ZIP file](pathname:///files/besu/besu-sepolia.zip).
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  Download the testnet [`besu-goerli` ZIP file](pathname:///files/besu/besu-goerli.zip).
+  
+  </TabItem>
+</Tabs>
+
+### Step 2. Update the Docker Compose file
+
+In the `docker-compose.yaml` file, update the `--p2p-host` command to include your public IP address. For example:
+
+```yaml
+--p2p-host=103.10.10.10
+```
+
+:::tip
+
+You can use [this page](https://www.whatismyip.com/) to find your public IP address.
+
+:::
+
+### Step 3. Start the Besu node
+
+Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`. 
+
+It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node.
+
+:::tip Troubleshoot peering issues
+
+Refer to the [Besu troubleshooting information](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/peering)
+for help if you experience peering issues.   
+
+:::
+
+## Run a Geth node
+
+### Step 1. Download configuration files
+
+Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
+  files.
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Download the Sepolia testnet [`docker-compose.yml`](pathname:///files/geth/sepolia/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/sepolia/genesis.json)
+  files.
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  Download the Goerli testnet [`docker-compose.yml`](pathname:///files/geth/goerli/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/goerli/genesis.json)
+  files.
+  
+  </TabItem>
+</Tabs>
+
+### Step 2. Start the Geth node
+
+Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
+and run `docker compose up`
+
+The node should now be running and looking for peers to sync.
+
+## Confirm the node is running
+
+You can call the JSON-RPC API methods to confirm the node is running. For example, call
+[`eth_syncing`](https://besu.hyperledger.org/public-networks/reference/api#eth_syncing) to return the synchronization status.
+For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+
+```bash
+
+curl localhost:8545 \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
+
+```
+
+You should get a result, similar to:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "startingBlock": "0x0",
+    "currentBlock": "0x5d228",
+    "highestBlock": "0x3cedec"
+  }
+}
+```
