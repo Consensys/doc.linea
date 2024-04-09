@@ -43,7 +43,7 @@ $P_{u}$ represents the LXP-L user _u_ earns. There are three ways users can earn
 
 ### Decay function (DF)
 
-To gradually adapt the number of points and reward early participation in the program, 
+To gradually adapt the number of points and incentivize early participation in the program, 
 we're employing a decay function that decreases at every Volt (1 month). At the start of the 
 program, this function will be 1, and will be reduced by a factor of 10% after every Epoch, 
 so the overall number of points will be 10% lower every month.
@@ -88,13 +88,13 @@ bridging experience to users.
 
 ### Early adopter modifier
 
-_EA_ is the Early Adopter modifier that rewards early activity, defined as activity occurring
+_EA_ is the Early Adopter modifier that incentivizes early activity, defined as activity occurring
 before the start of the program.
 
 This multiplier will be constant within the time period of a single Volt (1 month) and will 
-reduce over successive Volts. This is used to reward users that have provided liquidity on Linea 
-since mainnet went live and users bridging active liquidity to Linea after the announcement 
-but before The Surge program starts.
+reduce over successive Volts. This is used to recognize the contributions of users that have 
+provided liquidity on Linea since mainnet went live and users bridging active liquidity to 
+Linea after the announcement but before The Surge program starts.
 
 The way it works is by looking at historical activity of each address that is eligible to get 
 $P_{E}$ in the current timeframe:
@@ -122,8 +122,8 @@ the end of each Volt, before reaching the value of 1 for the rest of the program
 
 ### DEX objective functions
 
-For Linea's DEXs, we've implemented a points incentive program tailored to recognize and reward 
-active liquidity providers for their crucial role. In this program, user points are calculated 
+For Linea's DEXs, we've implemented a points incentive program tailored to recognize active 
+liquidity providers for their crucial role. In this program, user points are calculated 
 from the market depth of their liquidity positions and factoring in the respective pools' 
 realized volatility. This methodology ensures that points are accrued per block at a rate 
 proportional to the effectiveness of the liquidity provided. In essence, the deeper the market 
@@ -143,7 +143,7 @@ concentrated liquidity market maker for example, the methodology requires tighte
 for stablecoin pools to reflect their lower volatility, while allowing for broader allocations 
 in more volatile pools. Our aim is to optimize liquidity throughout the ecosystem, thereby 
 minimizing price impact for all DEX users. By participating, liquidity providers not only 
-enhance their rewards through a more strategic allocation of their assets but also contribute 
+boost the tokens they receive by allocating assets more strategically, but also contribute 
 to the overall health and efficiency of the market.
 
 ## Lending objective functions
