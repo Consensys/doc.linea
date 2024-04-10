@@ -40,7 +40,7 @@ Create a room with Mobula core team [Here](https://t.me/MobulaPartnerBot?start=L
 
 **More:**
 
-- **[Dive into our Documentation](https://docs.mobula.io)** - Delve into the extensive resources of [Mobula’s](https://docs.mobula.io) documentation. From detailed API guidelines to all-encompassing tutorials, our documentation is designed to empower users across all levels. Whether you're looking to integrate [Mobula's](https://docs.mobula.io) features into your application or eager to explore the full scope of functionalities we offer, you'll find everything required to unlock the full potential of your data-driven initiatives.
+- **[Dive into our documentation](https://docs.mobula.io)** - Delve into the extensive resources of [Mobula’s](https://docs.mobula.io) documentation. From detailed API guidelines to all-encompassing tutorials, our documentation is designed to empower users across all levels. 
 
 - **[Explore Mobula App](https://mobula.io)** - Access the heart of cryptocurrency analytics with the [Mobula](https://mobula.io) app. Designed for ease of integration and enriched with powerful data insights, our app provides the tools you need to navigate the crypto market confidently. Get started today and harness the potential of advanced analytics tailored for your success.
 
