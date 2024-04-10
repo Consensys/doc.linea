@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Lint
         uses: Consensys/docs-gha/lint@main
@@ -27,8 +27,9 @@ jobs:
       matrix:
         file-extensions: [".md", ".mdx"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: LinkCheck
         uses: Consensys/docs-gha/linkcheck@main
         with:
           FILE_EXTENSION: '${{ matrix.file-extensions }}'
+          CONFIG_FILE: 'mlc_config.json'

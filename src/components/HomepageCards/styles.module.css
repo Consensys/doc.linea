@@ -1,0 +1,81 @@
+.cardContainer {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 92%;
+}
+
+.cardHeader h3,
+.cardBody p {
+  color: #fff;
+}
+
+.heading {
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 400;
+    color: #fff;
+  }
+
+.card_glow {
+  position: relative;
+  background-color: var(--homepage-card-background);
+  color: var(--ifm-color-primary);
+  border-radius: 3px;
+  border: 1px solid #505050;
+  box-shadow: 0 0 10px rgb(97 223 255 / 20%);
+  overflow: visible;
+  transform: scale(1);
+  transition:
+    transform 0.15s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+
+.card_glow:hover {
+  transform: translateY(-10px);
+  border-color: #61dfff;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    background-color: #505050;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+.card_glow:hover .circle {
+  background-color: white;
+}
+
+.card {
+  color: var(--homepage-card-text);
+}
+
+.button {
+  background-color: #1d1d1d;
+  transition:
+    transform 0.2s ease-in-out,
+    background-color 0.25s ease-in-out,
+    border 0.15s ease-in-out;
+  height: 45px;
+  border-radius: 500px;
+  border: 1px solid #61dfff;
+  overflow: visible;
+  text-align: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 32px;
+  color: #fff;
+}
+
+.button:hover {
+  background-color: #fff;
+  overflow: visible;
+  box-shadow: 0 0 10px rgb(97 223 255 / 50%);
+  border: none;
+  transform: scale(1.02);
+  color: #1d1d1d
+}

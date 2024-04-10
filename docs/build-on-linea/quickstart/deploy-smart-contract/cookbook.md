@@ -1,24 +1,28 @@
 ---
 title: Cookbook.dev
+description: Deploy a smart contract using Cookbook.dev.
+image: /img/socialCards/cookbookdev.jpg
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-[Cookbook.dev](https://www.cookbook.dev/?utm=lineadocs) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
+[Cookbook.dev](https://www.cookbook.dev/?utm=lineadocs) is an open-source smart contract registry where
+developers can find solidity primitives, libraries, and smart contracts for protocols. It provides an easy and
+fast way to develop smart contracts by integrating with a variety of blockchain-native developer tools.
 
-In this tutorial, we'll walk through searching for a protocol on Cookbook and deploying it to Linea using Cookbook's no-code deploy and using Cookbook with Remix, Hardhat and Foundry. 
+Here, we'll walk through searching for a protocol on Cookbook and deploying it to Linea using
+Cookbook's no-code deploy and using Cookbook with Remix, Hardhat and Foundry.
 
 ## Prerequisites
 
-Before you begin, ensure you've:
+Before you begin, ensure you:
 
 1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Funded your wallet with Linea ETH](../../../use-mainnet/fund.md) on either the testnet or mainnet
+2. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet or mainnet
 
-## Search Cookbook's Smart Contract Registry
+## Search Cookbook's smart contract registry
 
-Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
+Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar.
 
 <div class="center-container">
   <div class="img-large">
@@ -29,9 +33,11 @@ Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?ut
   </div>
 </div>
 
-To learn about a smart contract on Cookbook, select the protocol, and select `Expand`. This opens the code alongside ChefGPT, Cookbook's AI Solidity assistant. 
+To learn about a smart contract on Cookbook, select the protocol, and select **Expand**. This opens the code
+alongside ChefGPT, Cookbook's AI Solidity assistant.
 
-Highlight selections of the code and press **Analyze Snippet** to get more information about the smart contract code you're looking at, or ask ChefGPT questions about Linea, solidity, or your smart contract.
+Highlight selections of the code and press **Analyze Snippet** to get more information about the smart contract
+code you're looking at, or ask ChefGPT questions about Linea, solidity, or your smart contract.
 
 <div class="center-container">
   <div class="img-large">
@@ -42,9 +48,10 @@ Highlight selections of the code and press **Analyze Snippet** to get more infor
   </div>
 </div>
 
-## Import any Smart Contract Code into Cookbook
+## Import smart contract code into Cookbook
 
-Import verified smart contract code into Cookbook to fork, learn about, or build with by inputting any smart contract address into the Cookbook search bar.  
+Import verified smart contract code into Cookbook by entering any smart contract address into the Cookbook
+search bar to fork, learn about, or build with.
 
 <div class="center-container">
   <div class="img-large">
@@ -55,7 +62,7 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
   </div>
 </div>
 
-## No-code Deploy your Smart Contract to Linea with Cookbook 
+## Deploy a smart contract without coding
 
 Choose **No-Code Deploy** on select (usually simpler) smart contracts on [Cookbook](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
@@ -68,232 +75,277 @@ Choose **No-Code Deploy** on select (usually simpler) smart contracts on [Cookbo
   </div>
 </div>
 
-Connect your Metamask Wallet to Cookbook.dev. 
+1. Connect your MetaMask Wallet to Cookbook.dev.
 
-Set your smart contract arguments within the Cookbook UI (if applicable). 
+1. Set your smart contract arguments in the Cookbook UI (if applicable).
 
-Select Linea or tLinea (Linea Testnet) under **Pick Chain**.
+1. Select **Linea** or **tLinea** (Linea Testnet) under **Pick Chain**.
 
-Select **Deploy** and pay the network fee. 
+1. Select **Deploy** and pay the network fee.
 
-Manage your deployed smart contract under **My Dashboard** in Cookbook.  
+Manage your deployed smart contract under **My Dashboard** in Cookbook.
 
-## Deploy your Smart Contract to Linea with Remix
+## Deploy your smart contract using Remix
 
-### Method #1 - Using the Cookbook.dev Website and Opening in Remix
- 
-On a smart contract or protocol page in Cookbook, select the **Open in Remix** option. Your smart contract will automatically be opened in a new Remix workspace.
+### Method 1 - Use the Cookbook.dev website and open in Remix
 
-<div class="center-container">
-  <a href="https://remix.ethereum.org/#activate=cookbookdev&#deactivate=cookbook.dev&version=soljson-v0.8.12.js&call=cookbookdev//openContract//simple-token&lang=en&optimize=false&runs=200&evmVersion=null" target="_blank">
-  <div class="img-small">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_5.png"
-      alt="Cookbook Open in Remix"
-    />
-  </div>
-  </a>
-</div>
+On a smart contract or protocol page in Cookbook, select the **Open in Remix** option. Your smart contract will
+automatically be opened in a new Remix workspace.
 
-:::tip 
-Click the "Open in Remix" button above to actually open the smart contract code in the Remix IDE!
-:::
+Select **Compile** to compile your smart contract in Remix. Most contracts opened with Cookbook will automatically
+compile within Remix.
 
-**Compile** your smart contract within Remix. Most contracts opened with Cookbook will automatically compile within Remix. 
+Refer to the [Remix instructions](./remix.md) for more information on how to compile and deploy smart
+contracts in the Remix IDE.
 
-<div class="center-container">
-  <div class="img-small">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_6.png"
-      alt="Cookbook Remix Compile"
-    />
-  </div>
-</div>
+### Method 2 - Use the Cookbook Remix plug-in within the Remix IDE
 
-Once compiled, **deploy** the smart contract in Remix. 
+1. Go to [Remix.Ethereum.org](https://remix.ethereum.org) website.
 
-Connect your Metamask wallet with Linea Goerli or Linea mainnet by selecting injected provider - Metamask Wallet in the **environments** tab within the **deploy** screen. 
+1. Add the Cookbook Plugin to Remix by clicking the Cookbook Logo under **Featured Plugins** on the Remix Homepage.
 
-<div class="center-container">
-  <div class="img-small">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_7.png"
-      alt="Cookbook Remix Deploy"
-    />
-  </div>
-</div>
+    <div class="center-container">
+      <div class="img-medium">
+          <img
+          src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_8.png"
+          alt="Cookbook Remix Featured Plugin"
+        />
+      </div>
+    </div>
 
-Once deployed, we can interact with our smart contract within Remix.
+    Alternatively, search Cookbook and select **Activate** in the Remix Plugin Manager.
 
-### Method #2 - Using the Cookbook Remix Plug-in within the Remix IDE
+    <div class="center-container">
+      <div class="img-small">
+          <img
+          src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_9.png"
+          alt="Cookbook Remix Add Plugin"
+        />
+      </div>
+    </div>
 
-Go to [Remix.Ethereum.org](https://remix.ethereum.org)
+1. Search for any protocol or smart contract and click the search result to import the smart contract code into Remix.
 
-Add The Cookbook Plugin to Remix by clicking the Chef Hat Logo under **Featured Plugins** on the Remix Homepage.
+    Cookbook's AI solidity co-pilot, ChefGPT, is available within the Remix plugin to answer questions about
+    Linea, Solidity, or the smart contract you're working with.
 
-<div class="center-container">
-  <div class="img-medium">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_8.png"
-      alt="Cookbook Remix Featured Plugin"
-    />
-  </div>
-</div>
+    <div class="center-container">
+      <div class="img-small">
+          <img
+          src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_10.png"
+          alt="Cookbook Remix Search"
+        />
+      </div>
+    </div>
 
-Alternatively, search Cookbook and select **Activate** in the Remix Plugin Manager. 
+1. Compile and deploy the smart contract as described in [the Remix instructions](./remix.md).
 
-<div class="center-container">
-  <div class="img-small">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_9.png"
-      alt="Cookbook Remix Add Plugin"
-    />
-  </div>
-</div>
+## Deploy your smart contract with Hardhat
 
-Search for any protocol or smart contract and click the search result to import the smart contract code into Remix.
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/?utm=lineadocs),
+select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For
+this example, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
-Cookbook's AI solidity co-pilot, ChefGPT, is available within the Remix plugin to answer questions about Linea, Solidity, or the smart contract you're working with.
 
-<div class="center-container">
-  <div class="img-small">
-      <img
-      src="/img/article_images/Build_on_Linea/Quickstart/Deploy_a_smart_contract/Cookbook/Linea_deploy_smart_contract_Cookbook_10.png"
-      alt="Cookbook Remix Search"
-    />
-  </div>
-</div>
+### Compile the smart contract
 
-Compile and deploy the smart contract as described in **Method 1** above. 
+In the project folder, install the required packages and dependencies:
 
-## Deploy your Smart Contract to Linea with Hardhat
-
-After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/?utm=lineadocs), select the **Download Source** option and select **Hardhat** to download the contract boilerplate. For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
-
-To install the required packages and dependencies, run
 ```
 npm install
 ```
-To compile your smart contract, run 
+
+Then, compile the smart contract:
+
 ```
 npx hardhat compile
-``` 
-Add arguments to the `constructorArgs` array in the `deploy.js` file in the `scripts` folder and save.  If you do not need any arguments please leave the array empty.
+```
 
-### Deploy To Linea
+Add arguments to the `constructorArgs` array in the `deploy.js` file in the `scripts` folder and save. If you
+do not need any arguments, leave the array empty.
+
+### Deploy the smart contract
 
 <Tabs>
-  <TabItem value="Deploy To Linea Goerli (Testnet)" label="Testnet" default>
+  <TabItem value="Linea Goerli" label="Linea Goerli" default>
 
-  In your `.env.example` file, add your Infura Linea Goerli API key and add your wallet private key. Afterward change the name of the file to .env and create a gitignore to ignore your .env file.
+1. In the `.env` file, add your Infura Linea Goerli API key and add your wallet private key.
+
+1. In the `hardhat.config.js` file, uncomment the following code:
+
+    ```js
+    const INFURA_API_KEY_LINEA_GOERLI = process.env.INFURA_API_KEY_LINEA_GOERLI;
+    ```
   
-    In the `hardhat.config.js` file, uncomment out the example code
-```
-const INFURA_API_KEY_LINEA_GOERLI = process.env.INFURA_API_KEY_LINEA_GOERLI;
-```
-and uncomment out
+    ```js
+    const PRIVATE_KEY = process.env.PRIVATE_KEY;
+    ```
+
+    ```js
+    lineaGoerli: {
+    url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY_LINEA_GOERLI}`,
+    accounts: [PRIVATE_KEY],
+    },
+    ```
+
+1. Deploy the smart contract to the Linea Goerli testnet:
+
+    ```
+    npx hardhat run --network (lineaGoerli) scripts/deploy.js
+    ```
+
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
+on the [Linea Goerli block explorer](https://goerli.lineascan.build/). 
+</TabItem> 
+
+<TabItem value="Linea Sepolia" label="Linea Sepolia">
+
+1. In your `.env` file, add your Infura Linea API key and add your wallet private key.
+
+    ```
+    INFURA_API_KEY_LINEA_SEPOLIA = "<YOUR API KEY HERE>"
+    WALLET_PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
+    ```
+
+1. In the `hardhat.config.js` file, add the following lines:
+
+    ```js
+    const INFURA_API_KEY_LINEA_SEPOLIA = process.env.INFURA_API_KEY_LINEA;
+    ```
+
+    ```js
+    lineaSepolia: {
+    url: `https://linea-sepolia.io/v3/${INFURA_API_KEY_LINEA}`,
+    accounts: [PRIVATE_KEY],
+    },
+   ```
+
+1. In the `hardhat.config.js` file, uncomment the following line:
+
+    ```js
+    const PRIVATE_KEY = process.env.PRIVATE_KEY;
+    ```
+
+1. Deploy the smart contract to the Linea Sepolia testnet
 
 ```
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+npx hardhat run --network (lineaSepolia) scripts/deploy.js
 ```
 
-and then uncomment out 
-```
-lineaGoerli: {
-url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY_LINEA_GOERLI}`,
-accounts: [PRIVATE_KEY],
-},
-```
-To deploy your smart contract to the Linea testnet, run 
-```
-npx hardhat run --network (lineaGoerli) scripts/deploy.js
-```
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Goerli Block Explorer](https://goerli.lineascan.build/).
-  </TabItem>
-  <TabItem value="Deploy To Linea (Mainnet)" label="Mainnet">
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
+on the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
+</TabItem> 
 
-  In your `.env.example` file, add your Infura Linea API key and add your wallet private key. Afterward change the name of the file to .env and create a gitignore to ignore your .env file.
+<TabItem value="Mainnet" label="Mainnet">
 
-  Add
-  ```
+1. In your `.env` file, add your Infura Linea API key and add your wallet private key.
+
+    ```
     INFURA_API_KEY_LINEA = "<YOUR API KEY HERE>"
+    WALLET_PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
+    ```
 
-  ```
-    
-    In the `hardhat.config.js` file, add
-```
-const INFURA_API_KEY_LINEA = process.env.INFURA_API_KEY_LINEA;
-```
-and uncomment out
+1. In the `hardhat.config.js` file, add the following lines:
 
-```
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-```
+    ```js
+    const INFURA_API_KEY_LINEA = process.env.INFURA_API_KEY_LINEA;
+    ```
 
-and then add  
-```
-linea: {
-url: `https://linea.infura.io/v3/${INFURA_API_KEY_LINEA}`,
-accounts: [PRIVATE_KEY],
-},
-```
-To deploy your smart contract to the Linea testnet, run 
+    ```js
+    linea: {
+    url: `https://linea-mainnet.io/v3/${INFURA_API_KEY_LINEA}`,
+    accounts: [PRIVATE_KEY],
+    },
+    ```
+
+1. In the `hardhat.config.js` file, uncomment the following line:
+
+    ```js
+    const PRIVATE_KEY = process.env.PRIVATE_KEY;
+    ```
+
+1. Deploy the smart contract to the Linea Mainnet:
+
 ```
 npx hardhat run --network (linea) scripts/deploy.js
 ```
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract on the [Linea Block Explorer](https://lineascan.build/).
-  </TabItem>
+
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
+on the [Linea Mainnet block explorer](https://lineascan.build/). 
+</TabItem> 
+
 </Tabs>
 
-## Deploy your Smart Contract to Linea with Foundry
+## Deploy your smart contract with Foundry
 
-After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/chains/Linea?utm=lineadocs), select the **Download Source** option and select **Foundry** to download the contract boilerplate.For this guide, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
+After finding the smart contract or protocol you want to work with in [Cookbook](https://www.cookbook.dev/chains/Linea?utm=lineadocs),
+select the **Download Source** option and select **Foundry** to download the contract boilerplate. For this
+example, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.cookbook.dev/contracts/simple-token?utm=lineadocs).
 
-Before you can use Foundry, you need to install Rust, a programming language required to run Foundry. Follow the installation instructions provided [here](https://doc.rust-lang.org/book/ch01-01-installation.html).
+**Prerequisites**:
 
-Once Rust is installed, you can install Foundry. Follow the installation instructions provided [here](https://book.getfoundry.sh/getting-started/installation#using-foundryup).
+- [Install Rust](https://doc.rust-lang.org/book/ch01-01-installation.html).
+- [Install Foundry](https://book.getfoundry.sh/getting-started/installation#using-foundryup).
 
-To build your contracts, Run
-```sh
-forge build
-```
+1. In the project directory, build the contracts:
 
-If you encounter a "stack too deep" error, try running the following command instead
+    ```sh
+    forge build
+    ```
 
-```sh
-forge build --via
-```
+    If you encounter a "stack too deep" error, try running the following command instead
 
-In the scripts folder, uncomment all the code in the `contract.s.sol` file. Replace `"ARG1"`, `"ARG2"`, `2000` with your `Token Name`, `Token Symbol` and desired `Token Quantity` where you see the code below
-```
-FixedToken _contract = new FixedToken("ARG1", "ARG2", 2000);
-```
+    ```sh
+    forge build --via
+    ```
 
-Before deploying your contracts, populate the `.env` file with your [Linea Goerli RPC URL](https://www.infura.io/networks/ethereum/linea), followed by your [Metamask wallet private key](https://metamask.io/) and your [Etherscan API key token values](https://etherscan.io/apis). Then, run the following command to define your environment variables globally
+1. In the `scripts` directory, uncomment all the code in the `contract.s.sol` file.
+    Replace `"ARG1"`, `"ARG2"`, `2000` with your `Token Name`, `Token Symbol` and desired
+    `Token Quantity` where you see the code below:
 
-```sh
-source .env
-```
+    ```solidity
+    FixedToken _contract = new FixedToken("ARG1", "ARG2", 2000);
+    ```
 
-:::tip 
-add "0x" before your private key string in the `.env` file
-:::
+1. Update the `.env` file with your [Linea RPC URL](https://docs.infura.io/api/networks/linea/choose-a-network), followed
+    by your [MetaMask wallet private key](https://metamask.io/) and your
+    [Etherscan API key token values](https://etherscan.io/apis).
 
-Deploy your contracts with the following command
+    :::note
 
-```sh
-forge script script/contract.s.sol:ContractScript --rpc-url $GOERLI_RPC_URL --broadcast --verify -vvvv
-```
+    The example uses Goerli, but you can update it to use Mainnet or Sepolia instead.
 
-Your contract will be verified on the Linea Goerli explorer automatically upon deployment. You can manage and interact with your newly deployed smart contract in the [Linea Goerli block explorer](https://goerli.lineascan.build/).
+    :::
+
+1. Run the command to define your environment variables globally:
+
+    ```sh
+    source .env
+    ```
+
+1. Deploy your contracts:
+
+    ```sh
+    forge script script/contract.s.sol:ContractScript --rpc-url $GOERLI_RPC_URL --broadcast --verify -vvvv
+    ```
+
+    :::note
+    If using Mainnet or Sepolia, then update the `--rpc-url` accordingly with the variable in the `.env` file. 
+    :::
+
+Your contract will be verified on the Linea Goerli explorer automatically upon deployment. You can manage and
+interact with your newly deployed smart contract in the [Linea Goerli block explorer](https://goerli.lineascan.build/).
 
 :::note
-The given tests in the contract.t.sol file are only examples, please generate your own
+
+The tests in the `contract.t.sol` file are only examples, please generate your own.
+
 :::
 
-**Further guidance**
+## Resources
 
-For more information on using Cookbook to find, learn about or build with smart contracts, check out the following resources:
+For more information on using Cookbook to find, learn about or build with smart contracts, see
+the following resources:
 
 - [Documentation](https://docs.cookbook.dev/)
 - [Blog](https://medium.com/@cookbookdev)
