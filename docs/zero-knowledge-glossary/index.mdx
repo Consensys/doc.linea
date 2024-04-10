@@ -77,6 +77,10 @@ This is relevant to zk-rollups because execution traces are used to construct th
 
 ## F
 
+### Fraud proof
+
+In optimistic rollups, fraud proofs (fault proofs) are the evidence a verifier provides to question the validity of a batch of transactions. Depending on how they are executed, these proofs scrutinize a section of transactions and endeavor to confirm their validity.
+
 ## G
 
 ### gnark
@@ -131,7 +135,7 @@ This is a computational entity or service that provides information or answers t
 
 ### Optimistic rollup
 
-A rollup of transactions that use fraud proofs to offer increased [L2](#layer-2) transaction throughput while using the security provided by Mainnet ([L1](#layer-1)). Unlike Plasma, a similar [L2](#layer-2) solution, optimistic rollups can handle more complex transaction types – anything possible in the EVM. However, in order to release assets back on the L1, users must wait for a 7 day challenge period. Liquidity providers can help alleviate distributing L1 ETH immediately, but this relies on trust in the security of the provider, and does not provide a mechanism for transferring NFTs.
+A rollup of transactions that use [fraud proofs](#fraud-proof) to offer increased [L2](#layer-2) transaction throughput while using the security provided by Mainnet ([L1](#layer-1)). Unlike Plasma, a similar [L2](#layer-2) solution, optimistic rollups can handle more complex transaction types – anything possible in the EVM. However, in order to release assets back on the L1, users must wait for a 7 day challenge period. Liquidity providers can help alleviate distributing L1 ETH immediately, but this relies on trust in the security of the provider, and does not provide a mechanism for transferring NFTs.
 
 ## P
 
@@ -156,7 +160,7 @@ Rollup architecture is made up of the following components:
 - **Rollup contract**: contract on the L1 stores rollup blocks, monitors state updates on the rollup, and tracks user deposits
 - **Off-chain VM**: computation and state storage on another virtual machine separate from the Ethereum Virtual Machine
 - **Aggregators/sequencers/operators/validators**: nodes that aggregate transactions, compress the underlying data, and publish the block on Ethereum
-- **Verifier contract**: contract on the L1 that verifies the validity proof
+- **Verifier contract**: contract on the L1 that verifies the [validity proof](#validity-proof)
 
 ## S
 
@@ -180,7 +184,7 @@ A fee you need to pay whenever you use the Ethereum network. Examples include: s
 
 ### Validity proof
 
-A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use fraud proofs.
+A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use [fraud proofs](#fraud-proof).
 
 ### Verifiable computation
 
@@ -196,7 +200,7 @@ Verifiable computation allows a “weak computer” (Ethereum L1) to offload com
 
 ### Zero-knowledge proof
 
-A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is commonly associated with privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers. This is the validity proof that the “powerful computer” must provide for [verifiable computation](#v).
+A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is commonly associated with privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers. This is the [validity proof](#validity-proof) that the “powerful computer” must provide for [verifiable computation](#verifiable-computation).
 
 ### Zero-knowledge rollup
 
