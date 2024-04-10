@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import CardIcon1 from '../../../static/img/icon_bridge.svg';
 import CardIcon2 from '../../../static/img/icon_developer.svg';
 import CardIcon3 from '../../../static/img/icon_blockexplorer.svg';
+import CardIcon4 from '../../../static/img/icon_group.svg';
 
 type CardItem = {
   title: string;
@@ -24,7 +25,7 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Bridge Your Funds",
+    title: "Bridge your funds",
     link: "/use-mainnet/bridges-of-linea/bridging-non-dev",
     description: (
       <>
@@ -36,7 +37,7 @@ const CardList: CardItem[] = [
     icon: CardIcon1,
   },
   {
-    title: "Developer Quick Start",
+    title: "Developer quickstart",
     link: "/build-on-linea/quickstart",
     description: (
       <>
@@ -49,7 +50,7 @@ const CardList: CardItem[] = [
     icon: CardIcon2,
   },
   {
-    title: "Linea Block Explorer",
+    title: "Linea block explorer",
     link: "https://lineascan.build/",
     description: (
       <>
@@ -61,11 +62,23 @@ const CardList: CardItem[] = [
     buttonType: "info",
     icon: CardIcon3,
   },
+  {
+    title: "Linea builders club",
+    link: "https://linea.deform.cc/linea-builders-club",
+    description: (
+      <>
+        Join our builders club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+      </>
+    ),
+    buttonName: "Join",
+    buttonType: "info",
+    icon: CardIcon4,
+  },
 ];
 
 function Card({ title, link, description, buttonName, buttonType, icon: Icon }: CardItem) {
   return (
-    <div className={clsx("col", "col--4", "margin-top--md")}>
+    <div className={clsx("col", "col--3", "margin-top--md")}>
       <div className={clsx("card-demo", styles.cardDemo)}>
         <div className={clsx("card", styles.card_glow)}>
           <div className={styles.circle}></div>
@@ -124,7 +137,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={clsx("container", styles.cardContainer)}>
         <br />
-        <h1 className={styles.heading}>Quick Links</h1>
+        <h1 className={styles.heading}>Quick links</h1>
         <br />
         <div className="row" style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (

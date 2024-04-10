@@ -1,5 +1,6 @@
 ---
 title: ethereum-lists/chains
+image: /img/socialCards/ethereum-listschains.jpg
 ---
 
 # Chainlist.org

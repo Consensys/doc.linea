@@ -1,6 +1,7 @@
 ---
-title: "Proving: Circuit building"
+title: 'Proving: Circuit building'
 sidebar_position: 1
+image: /img/socialCards/proving-circuit-building.jpg
 ---
 
 ### Corset

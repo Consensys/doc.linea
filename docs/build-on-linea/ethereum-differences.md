@@ -1,13 +1,16 @@
 ---
 description: Ethereum and Linea differences
 sidebar_position: 4
+image: /img/socialCards/ethereum-and-linea-differences.jpg
 ---
 
 # Differences between Ethereum and Linea
 
 ## EVM opcodes
 
-**Linea uses the London version of the EVM. All EVM opcodes are managed identically to Ethereum London unless presented in the following table. Checkout [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, forks, and updates to the blockchain.**
+**Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed identically to Ethereum London unless presented in the following table.**
+
+Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, forks, and updates to the blockchain.
 
 > ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
 

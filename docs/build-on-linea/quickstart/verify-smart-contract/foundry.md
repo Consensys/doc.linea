@@ -1,5 +1,6 @@
 ---
 title: Foundry
+image: /img/socialCards/foundry.jpg
 ---
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
@@ -11,6 +12,7 @@ You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating
 ## Verify your smart contract
 
 :::note
+
 
 These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](../../../use-mainnet/info-contracts.mdx#block-explorers).
 
@@ -125,6 +127,7 @@ forge verify-contract --chain linea-testnet path_to_contract:contract_name --wat
 </Tabs>
 
 :::info
+
 
 Learn more about different configurations for verifying your smart contracts [here](https://book.getfoundry.sh/reference/forge/forge-verify-contract) and [here](https://book.getfoundry.sh/forge/deploying).
 

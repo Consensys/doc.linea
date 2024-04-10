@@ -1,12 +1,13 @@
 ---
 title: API3
+image: /img/socialCards/api3.jpg
 ---
-
-## API3
 
 [API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
 
-:::info The API3 DAO Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/) :::
+:::info
+The API3 DAO Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
+:::
 
 ## Airnode
 
@@ -120,11 +121,15 @@ The callback to the Requester contains two parameters:
 - [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
 - **`data`**: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
 
-:::info Note Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor. :::
+:::note
+
+Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+
+:::
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
-## Using dAPIs - API3 Datafeeds
+## Using dAPIs - API3 datafeeds
 
 [dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
@@ -159,9 +164,9 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
 
 [Click here to read more about Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html).
 
-### Subscribing to Self-funded dAPIs
+### Subscribing to self-funded dAPIs
 
-:::note Info
+:::info
 
 While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
 
@@ -230,7 +235,11 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
-:::info Note: If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market. :::
+:::note
+
+If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+
+:::
 
 If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
 
@@ -245,7 +254,7 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
   </div>
 </div>
 
-### Subscribing to Managed dAPIs
+### Subscribing to managed dAPIs
 
 If you are trying to access Managed dAPIs, once you have selected your dAPI, you will then be presented with an option to choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
 
@@ -258,7 +267,7 @@ Managed dAPIs gives you an option to configure the dAPI's [deviation threshold](
 | 0.5%      | 24 hours  |
 | 1%        | 24 hours  |
 
-:::note Info
+:::info
 
 Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org) for more info.
 
@@ -320,7 +329,11 @@ To request randomness on-chain, the requester submits a request for a random num
 
 Click here to check out the [`AirnodeRrpV0` Address](https://docs.api3.org/reference/qrng/chains.html) and [QRNG Providers' Addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
 
-:::info Note Currently, only Quintessence Labs' QRNG Airnode is available on Linea. :::
+:::note
+
+Currently, only Quintessence Labs' QRNG Airnode is available on Linea.
+
+:::
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
@@ -404,7 +417,7 @@ You can try QRNG on Linea for free. Check out the all the QRNG Providers for Lin
 
 [Click here to read more about API3 QRNG](https://docs.api3.org/explore/qrng/)
 
-## Additional Resources
+## Additional resources
 
 Here are some additional developer resources
 

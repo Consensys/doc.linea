@@ -1,8 +1,4 @@
----
-title: Spheron Network
----
-
-# Spheron Network
+# Spheron network
 
 ## What is Spheron?
 
@@ -41,32 +37,32 @@ Whether you're using a Docker image from Docker Hub or deploying a marketplace a
    3. Enter the names for your cluster and docker image.
    4. Then, add the tag and click "Next."
    5. Choose your compute type option under **Compute Type**.
-   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   6. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/compute#region) to learn more.
    7. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, click "Deploy" to initiate deployment.
    8. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
    9. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
    10. Create new **Port Policy Mapping**. Add the container port and select the exposed port you want to map it to. Refer to our docs for more information.
    11. Add **Environment Variable**, if any.
-   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/#environment-variables) to learn more.
-   13. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration) to read more.
-   14. You can add a health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/#health-checkup) to learn more.
+   12. Add **Secret Environment Variable** if the value is a secret key. It will not be saved in the database. [Click here](https://docs.spheron.network/compute/cluster/compute#secret-environment-variables) to learn more.
+   13. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/compute#advance-configuration-1) to read more.
+   14. You can add a health checkup if required. [Click here](https://docs.spheron.network/compute/cluster/compute#health-checkup) to learn more.
    15. Click "Deploy" to initiate deployment.
 
     <br />
 
    > Checkout our [Server Guide](https://docs.spheron.network/server-guide/) for more info.
 
-3. **For a Marketplace App:**<br/>
+3. **For a Marketplace app:**<br/>
 
    1. Click "New Cluster" in the top right corner.
    2. Select **Start from Marketplace App**.
    3. Pick your desired template from the marketplace.
    4. Choose your desired compute type option under **Compute Type**.
-   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/#region) to learn more.
+   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](hhttps://docs.spheron.network/compute/cluster/compute#region) to learn more.
    6. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just click "Deploy" to initiate deployment.
    7. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
    8. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.
-   9. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/#advance-configuration-1) to know more.
+   9. You can add advanced configuration if required. [Click here](https://docs.spheron.network/compute/cluster/compute#advance-configuration-1) to know more.
    10. Click "Deploy" to initiate deployment.
 
    <br />
@@ -234,7 +230,11 @@ The `spheron publish` command allows you to upload your project using the config
 spheron publish
 ```
 
-:::note Make sure that you create a production build before running the `spheron   publish` command. :::
+:::note
+
+ Make sure that you create a production build before running the `spheron   publish` command.
+
+:::
 
 Here is an example of how the result will look:
 
@@ -257,7 +257,7 @@ Dynamic Links: https://testapp-edab50.spheron.app
 
 ## How to view and retrieve content from IPFS using Spheron
 
-### Dedicated IPFS Gateways
+### Dedicated IPFS gateways
 
 [Dedicated gateways](https://docs.spheron.network/gateways/dedicated/) are IPFS gateways specifically designed to enhance access to pinned content across the network by offering faster speeds and increased rate limits.
 
@@ -268,7 +268,7 @@ Using dedicated gateways offers several benefits:
 - White-labeling gateway
 - Serve content from any IPFS node
 
-### Create a Dedicated Gateway
+### Create a dedicated gateway
 
 Follow these steps to create a dedicated gateway:
 
@@ -276,7 +276,7 @@ Follow these steps to create a dedicated gateway:
 2. Click **Generate** to create a new gateway.
 3. Enter a name for your gateway and click **Create**.
 
-### How to Use Your Gateway
+### How to use your gateway
 
 To access content through your dedicated gateway, simply follow these steps:
 
@@ -289,7 +289,7 @@ https://{gateway-name}.spheron.link/ipfs/{cid}
 
 > Checkout our [gateway documentation](https://docs.spheron.network/gateways/dedicated/) for more information.
 
-## Further Resources
+## Further resources
 
 - Visit [our platform](https://spheron.network/) to learn more.
 - Access our comprehensive [documentation](https://docs.spheron.network/) for detailed information.

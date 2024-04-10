@@ -1,6 +1,7 @@
 ---
 title: Quickstart - Mirror
 sidebar_position: 3
+image: /img/socialCards/quickstart-mirror.jpg
 ---
 
 To get started with Goldsky Mirror:

@@ -1,8 +1,7 @@
 ---
 title: Verax
+image: /img/socialCards/verax.jpg
 ---
-
-# What is Verax?
 
 Verax is a shared on-chain attestation registry. The teams that are actively involved in designing and building the project include Consensys (the team behind Linea), Clique, Karma3 Labs, Aspecta, PADO Labs, and Reclaim Protocol. A number of other teams including GitCoin are building integrations with the system.
 

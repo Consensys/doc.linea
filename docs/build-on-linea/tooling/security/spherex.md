@@ -1,13 +1,14 @@
 ---
 title: SphereX
+image: /img/socialCards/spherex.jpg
 ---
 
 [SphereX](https://www.spherex.xyz/) eliminates unexpected manipulations and malicious attacks, setting the new standard with _embedded security_ for neutralizing attack surfaces. Stay leaps ahead - remove the element of surprise and ensure the unwavering control in every conceivable situation.
 
 <div class="center-container">
-  <div class="img-large">
+  <div class="img-medium">
     <img
-      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Security/SphereX/spherex.png"
+      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Security/SphereX/SphereX-infographic.png"
       alt="SphereX Architecture"
     />
   </div>
