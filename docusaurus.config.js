@@ -336,6 +336,10 @@ const config = {
             to: "/use-mainnet/linea-surge/linea-surge-model",
             from: "/use-mainnet/linea-surge-model",
           },
+          {
+            to: "/build-on-linea/gas-fees",
+            from: "/reference/api/linea-estimategas",
+          },
         ],
       },
     ],
