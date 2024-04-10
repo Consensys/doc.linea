@@ -3,7 +3,7 @@ title: Mobula
 image: /img/socialCards/mobula.jpg
 ---
 
-[Mobula](https://docs.mobula.io) serves as a specialized data layer, offering advanced Analytics capabilities. It is designed to streamline and enhance data analysis processes, ensuring users have access to precise, actionable insights. It's aimed at enhancing data-driven decision-making for users seeking to optimize their strategies.
+[Mobula](https://docs.mobula.io) serves as a specialized data layer, offering advanced analytics capabilities. It is designed to streamline and enhance data analysis processes, ensuring users have access to precise, actionable insights. It's aimed at enhancing data-driven decision-making for users seeking to optimize their strategies.
 
 ### Why Mobula?
 
