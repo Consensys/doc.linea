@@ -1,14 +1,15 @@
 ---
 title: Etherspot
+image: /img/socialCards/etherspot.jpg
 ---
 
-# Robust ERC4337 infrastructure for seamless web3 development
+## Robust ERC4337 infrastructure for seamless web3 development
 
-Build an unmatched web3 user experience by removing usability pain points with Etherspot’s Account Abstraction (AA) infrastructure.
+Build an unmatched web3 user experience by removing usability pain points with Etherspot’s Account abstraction (AA) infrastructure.
 
 [**Etherspot**](https://etherspot.io) offers the following AA services:
 
-- [**Account Abstraction Prime SDK**](https://github.com/etherspot/etherspot-prime-sdk) — From social logins to transaction batching, using an Etherspot smart wallet can give your dapp a web2-like interface to ensure the user has a seamless experience.
+- [**Account abstraction Prime SDK**](https://github.com/etherspot/etherspot-prime-sdk) — From social logins to transaction batching, using an Etherspot smart wallet can give your dapp a web2-like interface to ensure the user has a seamless experience.
 
 - [**Skandha Bundler**](https://github.com/etherspot/skandha) - Bundle userOperations together to ensure multiple transactions are included on chain at a lower cost.
 

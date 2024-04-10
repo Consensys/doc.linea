@@ -1,10 +1,11 @@
 ---
 title: ethereum-lists/chains
+image: /img/socialCards/ethereum-listschains.jpg
 ---
 
 # Chainlist.org
 
-Linea Goerli Testnet is listed on the official ethereum-lists/chains repository that is pulled by many cross-chain projects like chainlist.org and thirdweb.
+Linea Goerli Testnet is listed on the official ethereum-lists/chains repository that is pulled by many cross-chain projects like chainlist.org, thirdweb, and Cookbook.dev.
 
 You can get access to different key parameters for the Linea Testnet chains like:
 

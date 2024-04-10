@@ -47,7 +47,14 @@
     "docs/configure-and-manage/manage/multi-tenancy/migration.md",
     "docs/configure-and-manage/manage/json-rpc-api-security.md",
     "docs/configure-and-manage/configure/use-configuration-file.md",
-    "static/img/"
+    "static/img/",
+    "static/files/besu/config-goerli.toml",
+    "static/files/besu/config-sepolia.toml",
+    "static/files/besu/config-mainnet.toml"
   ],
-  "ignoreRegExpList": ["Email", "Urls", "#[\\w-]*"]
+  "ignoreRegExpList": [
+    "Email", "Urls", "#[\\w-]*",
+    "^image:\\s*([>-]\\s*)?.*$",
+    "/img/.*"
+  ]
 }

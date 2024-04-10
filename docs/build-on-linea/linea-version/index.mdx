@@ -1,6 +1,7 @@
 ---
 title: Release notes
 sidebar_position: 4
+image: /img/socialCards/release-notes.jpg
 ---
 
 import CodeBlock from "@theme/CodeBlock";
@@ -9,15 +10,277 @@ import L2MessageService from "!!raw-loader!/files/testnet/2023-06-13-release/L2M
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 
-# Release notes
-
 Find out all you need to know about the latest Linea versions.
 
-> ### **Current network versions**
->
-> | Network | Version | Deployment Date |
-> | --- | --- | --- |
-> | Linea Goerli | [Alpha v0.2.3](#linea-alpha-v023-june-22-23) | June 22, 2023 |
+## Alpha v3 release notes
+
+### Summary
+
+The main objective of Alpha v3 is to implement EIP-4844 on Linea, following its introduction to 
+Ethereum mainnet with the Dencun upgrade on March 13.
+
+### Features
+
+**March 26: EIP-4844**
+
+Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
+costs. Blobs represent a transient data storage mechanism and an alternative to `calldata`, and
+can be significantly cheaper in L1 ETH costs depending on market demand.
+
+L1 and L2 smart contracts have been updated and deployed for Alpha v3. The contract addresses are:
+
+- New verifier contract
+  - Sepolia (L1): [0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79](https://sepolia.etherscan.io/address/0x5ca5dBf7Cb8F3f3c92E04B16FF5fCA1cdf147f79)
+  - Ethereum Mainnet: [0x8AB455030E1Ea718e445f423Bb8D993dcAd24Cc4](https://etherscan.io/address/0x8AB455030E1Ea718e445f423Bb8D993dcAd24Cc4)
+- New L1 message service contract
+  - Sepolia (L1): [0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5](https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+  - Ethereum Mainnet: [0xd19d4B5d358258f05D7B411E21A1460D11B0876F](https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F)
+- New L2 message service contract
+  - Linea Sepolia: [0x971e727e956690b9957be6d51Ec16E73AcAC83A7](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+  - Linea Mainnet: [0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec](https://lineascan.build/address/0x508ca82df566dcd1b0de8296e70a96332cd644ec)
+
+Smart contract updates will be executed by the Linea Security Council using the Safe multi-sig 
+procedure. 
+
+Additionally, all contracts have been audited by OpenZeppelin. You can find the report [here](https://blog.openzeppelin.com/linea-blob-submission-audit).
+
+**March 27**
+
+- Block time reduced to 3 seconds. This change increases the throughput of the network to avoid
+any potential L2 execution bottlenecks from increased Linea activity.
+- Gas fee reductions. After EIP-4844 was implemented on March 26, we monitored data for 24 hours
+before reducing gas fees for all users on March 27. 
+
+### Breaking changes
+
+None.
+
+## February 2024
+
+### February 19
+
+**Testnet:**
+- Released a higher priced version of `linea_estimateGas` (this will change once the endpoint is fully functional)
+
+**Mainnet:**
+- Released a higher priced version of `linea_estimateGas` (this will change once the endpoint is fully functional)
+
+### February 12
+
+**Testnet:**
+- Updated Bridge UI to v0,5.4 to support the new claiming method via Linea SDK v0.2.1 
+
+**Mainnet:**
+- Updated Bridge UI to v0,5.4 to support the new claiming method via Linea SDK v0.2.1 
+
+### February 5
+
+**Testnet:**
+- Deployed Linea Gas API to estimate how much gas is necessary to be included and published on Ethereum.
+:::note
+Learn how to use the Linea Gas API [here](https://docs.linea.build/reference/api/linea-estimategas).
+:::
+
+## Alpha v2 release notes
+
+<table>
+  <tbody>
+    <tr>
+      <th>Network</th>
+      <th>Target Release Date</th>
+    </tr>
+    <tr>
+      <td>Mainnet</td>
+      <td>February 13th, 2024</td>
+    </tr>
+    <tr>
+      <td>Testnet</td>
+      <td>January 24, 2024</td>
+    </tr>
+  </tbody>
+</table>
+
+### Summary
+
+This release focuses on reducing L1 costs, enabling lower prices for end users.
+
+Primarily, the L1 costs are driven by the following:
+
+- Proof verification, which is essentially a fixed cost for every batch submission.
+
+- Hashing the batch submission data to produce the public input of the Plonk verifier.
+
+- Calldata costs, driven by the size of the batch submission data. This includes all the transaction data from L2, as well as messaging data (one hash per L2 to L1 message).
+
+### Features
+
+To decrease L1 costs, we implemented the following features:
+
+- Proof aggregation:
+  - This allows us to create a set of execution proofs for conflated batches and generates an aggregated proof that verifies that all the batches are correct. Since it takes the same amount of gas to verify an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a proof aggregating N proofs is N times cheaper.
+- Data compression:
+  - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
+- Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
+  - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there is a 32x calldata size reduction for message hashes
+
+### Smart contract changes
+
+To support these new features, we implemented changes to our smart contracts. 
+
+We introduce a `VERIFIER_SETTER_ROLE`, that will be attributed to the Timelock.sol so that all core contract upgrades (Rollup and Message and Token bridge) and verifiers are executed through a TimeLock mechanism.
+Note that we are also using this upgrade to update the way the type 2 state was calculated; as such we'll need to call `finalizeWithoutProof` to perform a state transition from type2 state v1 to type2 state v2.
+
+The Security Council will first execute the following transactions on L1:
+- Assign Operator Role via the Safe to the account for blob submission
+- Assign Verifier Setter role via the Safe to the Timelock
+- Schedule Set new Verifier at index 0
+- Execute Set new Verifier at index 0
+- Schedule LineaRollup upgrade (at L1 block N)
+- Execute LineaRollup upgrade (at L1 block N)
+- Update Zodiac delegate roles from pauseByType(bytes32) -> pauseByType(uint8)
+
+The Security Council will then execute the following transactions on L2:
+- Schedule L2MessageService upgrade
+- Execute L2MessageService upgrade
+
+Post upgrade, Execute the following Security Council transactions on L1:
+- Call FinalizeWithoutProof
+- Clear verifier mapping at index 6 and 7
+
+The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
+
+Two independent audits have been performed for this update. Reports can be found here: 
+
+- Diligence: https://consensys.io/diligence/audits/2024/01/linea-contracts-update/
+
+- Open Zeppelin: https://blog.openzeppelin.com/linea-v2-audit
+
+### Breaking changes
+
+**Message claiming**
+
+- Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof generation requests and their submission when claiming a message. This applies to messages sent post upgrading. Pre-existing messages must be claimed with the current approach.
+
+:::info[Note] 
+
+If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages
+their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../linea-sdk/index.md).
+
+:::
+
+**Finalization events**
+
+- After migration to the new finalization mechanism, the rollup contract will no longer emit finalization events per block, but will instead emit events for data submission as well as an event indicating the current point of finalization.
+  - The calldata will contain only the final block state root hash and final block number.
+
+:::info[Note]
+
+This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event.
+
+:::
+
+<table>
+  <tbody>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>
+        <code>DataFinalized</code>
+      </td>
+      <td>
+        Emitted at the end of finalization - used to indicate range of
+        finalization
+      </td>
+      <td>New</td>
+    </tr>
+    <tr>
+      <td>
+        <code>BlockFinalized</code>
+      </td>
+      <td>
+        Deprecated finalization event - indicator that each block has been
+        finalized.
+      </td>
+      <td>Old</td>
+    </tr>
+  </tbody>
+</table>
+
+## December 2023
+
+### December 11
+
+**Testnet:**
+- Transitioned the sequencer to Besu from Geth
+
+**Mainnet:**
+- Fixes to the Linea bridge UI:
+  - Users are now redirected to MetaMask Mobile when attempting to access the bridge on a mobile browser
+  - Default token list now refreshes on every load rather than being stored locally; only the user's custom tokens are stored
+
+### December 4
+
+**Testnet:**
+- Fixes to the Linea bridge UI:
+  - Users are now redirected to MetaMask Mobile when attempting to access the bridge on a mobile browser
+  - Default token list now refreshes on every load rather than being stored locally; only the user's custom tokens are stored
+
+**Mainnet:**
+- Lowered block time to 6 seconds
+
+## November 2023
+
+### November 27
+
+**Testnet:** 
+- Upgrades to the official Linea bridge:
+  - UI updated to display tokens from the official token list
+  - Improved page to redirect most users to MetaMask Portfolio to bridge
+
+**Mainnet:**
+- Upgrades to the official Linea bridge:
+  - UI updated to display tokens from the official token list
+  - Improved page to redirect most users to MetaMask Portfolio to bridge
+
+### November 13
+
+**Testnet:**
+- Lowered block time to 6 seconds
+- Updated default `gasPrice` to 3 Gwei
+
+**Mainnet:**
+- Increased block size from 60KB to 109KB
+- Deployed the Linea Voyage XP (LXP) [token contract](https://lineascan.build/address/0xd83af4fbD77f3AB65C3B1Dc4B38D7e67AEcf599A)
+- Lowered block time to 8 seconds
+- Updated default `gasPrice` to 3 Gwei
+
+## October 2023
+
+### October 23
+
+**Testnet:**
+- Increased block size limit from 70KB to 109KB
+
+## Summary release notes (June - October)
+
+### Performance improvements
+
+- Changes to the Genesis File: We made changes to the genesis file to enable block times to be reduced. This enhancement improves the overall performance and throughput of Linea.
+
+- Improved Gas Limit Estimation for Finalization on L1: We improved the gas limit estimation for finalization on L1.
+
+### Cost efficiency
+
+- We updated the L1 message service contract to work with the Merkle tree, reducing gas costs and further enhancing the cost-effectiveness of Linea.
+
+- We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This change ensures the long-term financial viability of Linea.
+
+### User experience
+
+- We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price estimation more accurate and reliable.
 
 ## Linea Alpha v0.2.3 (June 22, 2023)
 
@@ -39,7 +302,7 @@ This release focuses on updating the Postman SDK configuration values and revisi
 
 ### Summary
 
-This release reduces the gas cost of submitting a batch of transactions on L1 by optimizing optimizing L2 logs in the calldata that is sent to L1.
+This release reduces the gas cost of submitting a batch of transactions on L1 by optimizing L2 logs in the calldata that is sent to L1.
 
 ### Features
 
@@ -173,6 +436,7 @@ This release focuses on testing a substantial architecture upgrade in preparatio
 - The anchoring and execution (claim) process has been separated into 2 steps. The deadline concept has been completely removed.
 
 :::note
+
 
 Contracts audit is in progress. This does not reflect final versions.
 

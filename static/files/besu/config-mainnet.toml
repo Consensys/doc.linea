@@ -1,0 +1,56 @@
+# data
+data-path="/path/to/your/directory"
+
+
+# Sync mode and data layer implementation
+sync-mode="X_SNAP"
+data-storage-format="BONSAI"
+Xsnapsync-synchronizer-flat-db-healing-enabled=true
+
+
+# genesis file 
+genesis-file="/path/to/genesis-mainnet.json"
+
+
+# Boot nodes
+bootnodes=["enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.23.106.165:30303","enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.133.179.213:30303","enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.145.12.13:30303"]
+
+# Min gas price
+min-gas-price=1000
+
+# Host white list
+host-whitelist=["*"]
+
+
+# rpc
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-api=["ADMIN","NET","ETH","WEB3","TXPOOL"]
+rpc-http-cors-origins=["all"]
+rpc-http-max-active-connections=20000
+
+
+# ws
+rpc-ws-enabled=true
+rpc-ws-api=["NET","ETH","WEB3"]
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+
+# graphql
+graphql-http-enabled=true
+graphql-http-host="0.0.0.0"
+graphql-http-port=8547
+graphql-http-cors-origins=["all"]
+
+
+# p2p
+p2p-port=30303
+fast-sync-min-peers=1
+Xeth-capability-max=67
+
+
+# metrics
+metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9545
