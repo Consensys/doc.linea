@@ -193,6 +193,7 @@ const sidebars = {
 
           },
           items: [
+            "build-on-linea/tooling/analytics/arkham",
             "build-on-linea/tooling/analytics/cookie3",
           ],
         },
@@ -262,6 +263,7 @@ const sidebars = {
             id: "build-on-linea/tooling/data-indexers/index",
           },
           items: [
+            "build-on-linea/tooling/data-indexers/arkham",
             "build-on-linea/tooling/data-indexers/covalent",
             "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
