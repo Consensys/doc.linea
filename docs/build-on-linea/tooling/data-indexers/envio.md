@@ -1,5 +1,6 @@
 ---
 title: Envio
+image: /img/socialCards/envio.jpg
 ---
 
 [Envio](https://envio.dev/) is a customizable, real-time indexing solution that provides developers with a seamless and efficient way to index and aggregate blockchain data. The indexed data is easily accessible through GraphQL queries, providing developers with the flexibility and power to retrieve specific information.
@@ -10,25 +11,23 @@ Designed to optimize the user experience, Envio offers automatic code generation
 
 Indexers on Envio can be written in JavaScript, TypeScript, or ReScript.
 
+## Envio HyperSync
 
-## Envio HyperSync 
+Envio offers support for [HyperSync](https://docs.envio.dev/docs/hypersync) on Linea mainnet.
 
-Envio offers support for [HyperSync](https://docs.envio.dev/docs/hypersync) on Linea mainnet. 
+HyperSync is an indexed layer of the Linea blockchain, providing accelerated APIs (JSON-RPC bypass) for the hyper-speed syncing of historic data. Developers do not need to worry about RPC URLs, rate-limited APIs, or managing infrastructure, and can easily sync large datasets in a few minutes, something that would usually take 20x longer via JSON-RPC.
 
-HyperSync is an indexed layer of the Linea blockchain, providing accelerated APIs (JSON-RPC bypass) for the hyper-speed syncing of historic data. Developers do not need to worry about RPC URLs, rate-limited APIs, or managing infrastructure, and can easily sync large datasets in a few minutes, something that would usually take 20x longer via JSON-RPC.  
+## Other features
 
+- Fully customizable to meet your unique data needs.
 
-## Other Features 
-
-- Fully customizable to meet your unique data needs. 
-
-- Aggregate data from multi-chain / cross-chain deployments into a unified GraphQL API (or REST API). 
+- Aggregate data from multi-chain / cross-chain deployments into a unified GraphQL API (or REST API).
 
 - Detailed logging and error messaging are provided for effective troubleshooting and debugging.
 
 - Quickstart templates with pre-defined indexing logic for popular OpenZeppelin contracts (ERC-20, ERC-721, ERC-1155, etc.)
 
-## Getting Started
+## Getting started
 
 The following files are required from the user to run the Envio indexer:
 
@@ -38,8 +37,7 @@ The following files are required from the user to run the Envio indexer:
 
 These files are auto-generated according to the template and language chosen by running the `envio init` command.
 
-[**Quickstart Guide**](https://docs.envio.dev/docs/quickstart)
-
+[**Quickstart guide**](https://docs.envio.dev/docs/quickstart)
 
 ```bash
 ? Would you like to start from a template or migrate from a subgraph?
@@ -71,16 +69,13 @@ Then choose a language from **Javascript**, **Typescript**, or **Rescript** to w
 
 This will create the config, schema and event handlers files according to the template and language chosen.
 
-
-
-## Getting Help
+## Getting help
 
 Indexing can be a rollercoaster, especially for more complex use cases. Our engineers are available to help you with your data availability needs.
 
 You can schedule an [intro call](https://calendly.com/sven-float-shipping/envio) to talk about your use case and where Envio can provide value.
 
-Join our growing community of elite builders, and find peace of mind with Envio. 
+Join our growing community of elite builders, and find peace of mind with Envio.
 
-* [Discord](https://discord.gg/mZHNWgNCAc)
-* Email: [hello@envio.dev](mailto:hello@envio.dev)
-
+- [Discord](https://discord.gg/mZHNWgNCAc)
+- Email: [hello@envio.dev](mailto:hello@envio.dev)

@@ -14,7 +14,7 @@ const katex = require("rehype-katex");
 const config = {
   title: "Linea",
   tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
+    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -75,9 +75,9 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
+          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build//build-on-linea/goerli-to-sepolia">View the transition page</a> for more information.',
+        backgroundColor: "#61dfff",
+        textColor: "#121212",
         isCloseable: false,
       },
       colorMode: {
@@ -107,11 +107,11 @@ const config = {
             type: "doc",
             docId: "index",
             position: "left",
-            label: "Linea Basics",
+            label: "Linea basics",
           },
           {
             type: "doc",
-            docId: "build-on-linea/quickstart/index",
+            docId: "build-on-linea/index",
             position: "left",
             label: "Developers",
           },
@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea Architecture",
+            label: "Linea architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -142,9 +142,14 @@ const config = {
             label: "Support",
           },
           {
+            to: "/build-on-linea/run-a-node/",
+            position: "left",
+            label: "Run a node",
+          },
+          {
             to: "https://linea.build/",
             position: "left",
-            label: "Linea Home",
+            label: "Linea home",
           },
           {
             href: "https://discord.gg/linea",
@@ -182,11 +187,11 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get Help",
+                label: "Get help",
                 to: "https://support.linea.build/",
               },
               {
-                label: "Give Feedback",
+                label: "Give feedback",
                 to: "https://community.linea.build/c/feedback",
               },
             ],
@@ -198,14 +203,6 @@ const config = {
                 label: "Contribute to our documentation",
                 href: "https://github.com/Consensys/doc.zk-evm",
               },
-              {
-                label: "Contribute to our gnark repo",
-                href: "https://github.com/Consensys/gnark",
-              },
-              {
-                label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/Consensys/gnark-crypto",
-              },
             ],
           },
         ],
@@ -214,8 +211,21 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["solidity", "toml"],
+        additionalLanguages: [
+          "solidity",
+          "toml",
+          "bash",
+          "json",
+          "typescript",
+          "javascript",
+          "python",
+        ],
       },
+      metadata: [
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
+        { property: "og:image", content: "/img/Linea_social_card_docs.png" },
+      ],
       languageTabs: [
         {
           highlight: "bash",
@@ -313,6 +323,18 @@ const config = {
           {
             to: "/use-mainnet/bridges-of-linea",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+          },
+          {
+            to: "/build-on-linea/gas-fees",
+            from: "/use-mainnet/gas-import",
+          },
+          {
+            to: "/use-mainnet/linea-surge/linea-surge-overview",
+            from: "/use-mainnet/linea-surge-overview",
+          },
+          {
+            to: "/use-mainnet/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
           },
         ],
       },

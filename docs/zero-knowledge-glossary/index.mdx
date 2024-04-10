@@ -1,7 +1,8 @@
 ---
-title: Zero-Knowledge Glossary
+title: Glossary
 description: An open source glossary to aid your zero knowledge journey!
 sidebar_position: 7
+image: /img/socialCards/glossary.jpg
 ---
 
 This glossary is open source and consistently being updated. If you'd like a term to be added, please [create an issue](https://github.com/Consensys/doc.zk-evm/issues) or create a pull request and define one yourself!
@@ -14,9 +15,9 @@ Arithmetization is the process of turning computational problems into equations.
 
 ### appchain
 
-A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus. 
+A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus.
 
-Deploying appchains on top of L2 networks like Linea offers significant cost and customization capabilities. 
+Deploying appchains on top of L2 networks like Linea offers significant cost and customization capabilities.
 
 See also: "blockchain trilemma", "modular blockchain", "Layer 2", "Layer 3".
 
@@ -28,7 +29,7 @@ Blockchain network builders face a tradeoff between three factors: decentralizat
 
 ### Brakedown
 
-The first built system that provides linear-time SNARKs for NP, meaning the prover incurs O(N) finite field operations to prove the satisfiability of an N-sized R1CS instance. Brakedown’s prover is faster, both concretely and asymptotically, than prior SNARK implementations. 
+The first built system that provides linear-time SNARKs for NP, meaning the prover incurs O(N) finite field operations to prove the satisfiability of an N-sized R1CS instance. Brakedown’s prover is faster, both concretely and asymptotically, than prior SNARK implementations.
 
 Brakedown does not require a trusted setup and is plausibly post-quantum secure.
 
@@ -46,7 +47,7 @@ A constraint refers to a condition imposed on mathematical operations or computa
 
 ### data availability
 
-Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid. 
+Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid.
 
 Data availability is one of the ways in which a [L2](#layer-2) differs from a [sidechain](#sidechain).
 
@@ -54,7 +55,7 @@ Data availability is one of the ways in which a [L2](#layer-2) differs from a [s
 
 ### elliptic curve cryptography
 
-A method of encrypting information used in many applications, including in public blockchain networks. It is commonly used to create "public-private key pairs": a pair of cryptographic elements. The public key can be used to encrypt things which can then only be decrypted by the private key. 
+A method of encrypting information used in many applications, including in public blockchain networks. It is commonly used to create "public-private key pairs": a pair of cryptographic elements. The public key can be used to encrypt things which can then only be decrypted by the private key.
 
 ECC uses mathematical theories surrounding elliptic curves to render the encryption extremely difficult to decipher without the correct private key.
 
@@ -76,17 +77,21 @@ This is relevant to zk-rollups because execution traces are used to construct th
 
 ## F
 
+### Fraud proof
+
+In optimistic rollups, fraud proofs (fault proofs) are the evidence a verifier provides to question the validity of a batch of transactions. Depending on how they are executed, these proofs scrutinize a section of transactions and endeavor to confirm their validity.
+
 ## G
 
-### gnark 
+### gnark
 
-gnark is a software library that offers users the ability to design and run computational circuits in zk-SNARKs through a high-level API. 
+gnark is a software library that offers users the ability to design and run computational circuits in zk-SNARKs through a high-level API.
 
 The library is open source and developed under the Apache 2.0 license.
 
 ### Groth16
 
-Groth16 is a circuit-specific preprocessing general-purpose zk-SNARK construction. It has become a de-facto standard used in several blockchain projects due to the constant size of its proof, and its appealing verifier time. 
+Groth16 is a circuit-specific preprocessing general-purpose zk-SNARK construction. It has become a de-facto standard used in several blockchain projects due to the constant size of its proof, and its appealing verifier time.
 
 On the downside, Groth16 needs a circuit-specific trusted setup for its preprocessing phase.
 
@@ -104,7 +109,7 @@ A mathematical function that converts a data input of any chosen length and size
 
 ### keccak
 
-Keccak (pronounced “ketchak”) is a versatile cryptographic function best known for its uses in hashing. It provides increased levels of security when compared to older hash algorithms. 
+Keccak (pronounced “ketchak”) is a versatile cryptographic function best known for its uses in hashing. It provides increased levels of security when compared to older hash algorithms.
 
 See also: SHA, hash function.
 
@@ -130,7 +135,7 @@ This is a computational entity or service that provides information or answers t
 
 ### Optimistic rollup
 
-A rollup of transactions that use fraud proofs to offer increased [L2](#layer-2) transaction throughput while using the security provided by Mainnet ([L1](#layer-1)). Unlike Plasma, a similar [L2](#layer-2) solution, optimistic rollups can handle more complex transaction types – anything possible in the EVM. However, in order to release assets back on the L1, users must wait for a 7 day challenge period. Liquidity providers can help alleviate distributing L1 ETH immediately, but this relies on trust in the security of the provider, and does not provide a mechanism for transferring NFTs.
+A rollup of transactions that use [fraud proofs](#fraud-proof) to offer increased [L2](#layer-2) transaction throughput while using the security provided by Mainnet ([L1](#layer-1)). Unlike Plasma, a similar [L2](#layer-2) solution, optimistic rollups can handle more complex transaction types – anything possible in the EVM. However, in order to release assets back on the L1, users must wait for a 7 day challenge period. Liquidity providers can help alleviate distributing L1 ETH immediately, but this relies on trust in the security of the provider, and does not provide a mechanism for transferring NFTs.
 
 ## P
 
@@ -155,7 +160,7 @@ Rollup architecture is made up of the following components:
 - **Rollup contract**: contract on the L1 stores rollup blocks, monitors state updates on the rollup, and tracks user deposits
 - **Off-chain VM**: computation and state storage on another virtual machine separate from the Ethereum Virtual Machine
 - **Aggregators/sequencers/operators/validators**: nodes that aggregate transactions, compress the underlying data, and publish the block on Ethereum
-- **Verifier contract**: contract on the L1 that verifies the validity proof
+- **Verifier contract**: contract on the L1 that verifies the [validity proof](#validity-proof)
 
 ## S
 
@@ -179,7 +184,7 @@ A fee you need to pay whenever you use the Ethereum network. Examples include: s
 
 ### Validity proof
 
-A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use fraud proofs.
+A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use [fraud proofs](#fraud-proof).
 
 ### Verifiable computation
 
@@ -195,7 +200,7 @@ Verifiable computation allows a “weak computer” (Ethereum L1) to offload com
 
 ### Zero-knowledge proof
 
-A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is commonly associated with privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers. This is the validity proof that the “powerful computer” must provide for [verifiable computation](#v).
+A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is commonly associated with privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers. This is the [validity proof](#validity-proof) that the “powerful computer” must provide for [verifiable computation](#verifiable-computation).
 
 ### Zero-knowledge rollup
 

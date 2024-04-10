@@ -62,7 +62,6 @@
   flex-shrink: 0;
 }
 
-
 @media (max-width: 768px) {
   .img-xsmall {
     width: 50%;
@@ -85,17 +84,149 @@
   }
 }
 
+/* Atyp font */
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-Regular.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-Medium.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-Semibold.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-Bold.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-Light.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-BoldItalic.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-MediumItalic.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypDisplay;
+  src: url("/fonts/AtypDisplay-SemiboldItalic.woff2") format("woff2"),
+    url("/fonts/AtypDisplay-SemiboldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypText;
+  src: url("/fonts/AtypText-Regular.woff2") format("woff2"),
+    url("/fonts/AtypText-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypText;
+  src: url("/fonts/AtypText-Semibold.woff2") format("woff2"),
+    url("/fonts/AtypText-Semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypText;
+  src: url("/fonts/AtypText-Medium.woff2") format("woff2"),
+    url("/fonts/AtypText-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: AtypText;
+  src: url("/fonts/AtypText-Bold.woff2") format("woff2"),
+    url("/fonts/AtypText-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: fallback;
+}
+
+body {
+  font-family: AtypText, sans-serif;
+}
+
+h1 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 500;
+}
+
+h2 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 600;
+}
+
+h4 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
 html {
   line-height: 1.5;
   tab-size: 4;
   font-family: inherit;
   font-feature-settings: normal;
-}
-
-body {
-  font-family: inherit;
-  margin: 0;
-  line-height: inherit;
 }
 
 hr {
@@ -107,16 +238,6 @@ hr {
 
 abbr:where([title]) {
   text-decoration: underline dotted;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: inherit;
-  font-weight: inherit;
 }
 
 a {
@@ -134,8 +255,8 @@ code,
 kbd,
 pre,
 samp {
-  font-family: inherit;
-  font-size: 1em;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: var(--ifm-code-font-size);
 }
 
 small {
@@ -182,7 +303,7 @@ textarea {
 }
 
 :root {
-  font-family: "__atypFont_6511b3", serif;
+  font-family: AtypDisplay, serif;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 }
 
@@ -355,28 +476,57 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   top: -6px;
 }
 
+@media (max-width: 1320px) {
+  .navbar__logo {
+    height: 25px;
+    top: -5px;
+  }
+}
+
+@media (max-width: 996px) {
+  .navbar__logo {
+    height: 35px;
+    top: -6px;
+  }
+}
+
 .navbar__title {
   font-size: 22px;
   font-weight: 400;
   padding-right: 35px;
 }
 
+@media (max-width: 1320px) {
+  .navbar__title {
+    display: flex;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 996px) {
+  .navbar__title {
+    display: flex;
+    font-size: 22px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar__logo {
-    height: 25px;
+    height: 35px;
   }
 
   .navbar__title {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
 
 .navbar__item {
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
 }
 
-.navbar__item:nth-child(n+3)::before {
+.navbar__item:nth-child(n + 3)::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -389,9 +539,36 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   margin-left: 12px;
 }
 
-.navbar__item:nth-child(n+3):hover::before {
+.navbar__item:nth-child(n + 3):hover::before {
   background-color: #61dfff;
   border: 1px solid #61dfff;
+}
+
+@media (max-width: 1500px) {
+  .navbar__item {
+    font-size: 16px;
+  }
+
+  .navbar__item:nth-child(n + 3)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 1320px) {
+  .navbar__item {
+    font-size: 14px;
+  }
+}
+
+.navbar__search input {
+  width: 100%;
+  transition: width 0.25s ease;
+}
+
+@media (max-width: 1320px) {
+  .navbar__search input {
+    width: 150px;
+  }
 }
 
 html[data-theme="light"] .navbar {
@@ -536,201 +713,6 @@ html[data-theme="dark"] .navbar {
   );
 }
 
-/* Atyp css dump hereinafter */
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/32057ef78076f171-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/507e37d0da6e0458-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/a9d3087643e88082-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/ca04421ef285dfef-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/777c300fd084f815-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/7f1839f881dbbeff-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/9e377721614461a4-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/3c8a644e9b7c319f-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/7e645729c45a19f7-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypFont_6511b3";
-  src: url("./../../static/atyp/3cf36425de0165ec-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypFont_Fallback_6511b3";
-  src: local("Arial");
-  ascent-override: 71.89%;
-  descent-override: 20.39%;
-  line-gap-override: 37.84%;
-  size-adjust: 108.36%;
-}
-
-.__className_6511b3 {
-  font-family: "__atypFont_6511b3", "__atypFont_Fallback_6511b3", serif;
-}
-
-.__variable_6511b3 {
-  --font-atyp: "__atypFont_6511b3", "__atypFont_Fallback_6511b3", serif;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/3faf8ff31e4c5afe-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/d168b7bd17e59ad8-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/cec5d6dd42aaa433-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/3be625d83915aa2a-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/8db346cdb2d82fe7-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/270d58506c584a49-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/a790aba49d3d1f9b-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/1884d75f1c99687f-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/5e26eabd16cb5e58-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "__atypTextFont_34d2cd";
-  src: url("./../../static/atyp/e0e16a8115e3957f-s.p.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "__atypTextFont_Fallback_34d2cd";
-  src: local("Arial");
-  ascent-override: 71.89%;
-  descent-override: 20.39%;
-  line-gap-override: 37.84%;
-  size-adjust: 108.36%;
-}
-
-.__className_34d2cd {
-  font-family: "__atypTextFont_34d2cd", "__atypTextFont_Fallback_34d2cd", serif;
-}
-
-.__variable_34d2cd {
-  --font-atyp-text: "__atypTextFont_34d2cd", "__atypTextFont_Fallback_34d2cd";
-}
-
 /* This was originally in /docs/stylesheets/snippets.css */
 
 :root > * {
@@ -799,5 +781,5 @@ html[data-theme="dark"] .navbar {
 }
 
 .callout-warning {
-  border-left-color: #f39c12;  
+  border-left-color: #f39c12;
 }
