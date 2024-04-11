@@ -36,4 +36,5 @@ Public endpoints are rate limited, and not meant for production systems.
 | `https://linea-mainnet-public.unifra.io`      | `N/A`                                                |
 | `https://linea.getblock.io/your_api_key`      | `https://linea.getblock.io/your_api_key`             |
 
-If you're an RPC endpoint provider and would like to be added to the list, reach out to our team, or make a PR to the docs.
+If you're an RPC endpoint provider and would like to be added to the list, reach out to our team, 
+or make a PR to the docs.
