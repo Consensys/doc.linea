@@ -193,6 +193,8 @@ const sidebars = {
 
           },
           items: [
+            "build-on-linea/tooling/analytics/mobula",
+            "build-on-linea/tooling/analytics/arkham",
             "build-on-linea/tooling/analytics/cookie3",
           ],
         },
@@ -262,6 +264,8 @@ const sidebars = {
             id: "build-on-linea/tooling/data-indexers/index",
           },
           items: [
+            "build-on-linea/tooling/data-indexers/mobula",
+            "build-on-linea/tooling/data-indexers/arkham",
             "build-on-linea/tooling/data-indexers/covalent",
             "build-on-linea/tooling/data-indexers/decommas",
             "build-on-linea/tooling/data-indexers/envio",
@@ -347,23 +351,6 @@ const sidebars = {
       "build-on-linea/tooling/linea-safe",
       "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
-      {
-        type: "category",
-        label: "Reference",
-        items: [
-          {
-            type: "category",
-            label: "Linea JSON-RPC API",
-            link: {
-              type: "doc",
-              id: "reference/api/index",
-            },
-            items: [
-              "reference/api/linea-estimategas",
-            ],
-          },
-        ],
-      },
       "build-on-linea/linea-version/index",
       "build-on-linea/hackathons",
      {
