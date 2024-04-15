@@ -1,0 +1,114 @@
+---
+title: Onthis Shortcuts
+description: Execute two or more DeFi actions in one transaction with Shortcuts
+---
+
+A Shortcut allows users to execute onchain actions by sending funds to a contract address.
+
+Each Shortcut is a unique smart contract designed to carry out the desired function. Shortcuts are
+represented by ENS domains, making addresses human-readable.
+
+:::note
+
+Shortcuts currently works with Ethereum Mainnet only, unless explicitly specified by the Shortcut 
+description. Shortcut addresses are not chain-agnostic, but are different from network to network. 
+Sending ETH (or other tokens) to the wrong network may result in a loss of funds.
+
+:::
+
+## How it works (user flow)
+
+A simple use case for a Shortcut could involve a user who wants to streamline the process of 
+bridging ETH to Linea:
+
+1. A user sends ETH to a Shortcut address 
+2. The ETH is automatically bridged to Linea via [Across](https://across.to/)
+3. The ETH is returned as native Linea ETH to the sender on the destination chain (Linea).
+
+More complex Shortcuts can do additional things: bridge and swap, bridge and deposit to a liquidity 
+pool, bridge and stake/restake. The developer's imagination is the only limit.
+
+## How it works (technical)
+
+Shortcuts trigger actions using a fallback function in the smart contract called `receive()`. This 
+allows users to initiate a transaction without approvals. The contract engages with Across 
+intent-based listeners and paths that will execute the action on the destination chain. 
+
+The output token(s) from the automation are returned to `msg.sender` (the account that called the 
+function; in this case, the person using the Shortcut).
+
+## Risks
+
+Shortcuts do not store value, so the smart contract risk is lower than a traditional dapps. Since 
+they are built on Across, they share its risk profile.
+
+There are several other risks inherent in Shortcuts: 
+
+### Chain-dependent addressing
+
+Every Shortcut has a different contract address. Even the same Shortcut deployed on two different 
+networks (Ethereum Mainnet and Arbitrum, for example) will have a different address. Moreover, 
+Shortcuts only work with ETH. Sending tokens (ERC-20, ERC-721, or others) to a Shortcut may result 
+in a loss of funds, as will sending ETH to a Shortcut deployed on a different network.
+
+Linea addresses this risk by clearly identifying the Shortcut's network in its name. If a network 
+is specified, it means that the Shortcut can only accept ETH on that specific network. The naming 
+convention for Shortcut ENS names curated by Linea is the following:
+
+`[network].[usecase/partner].onlinea.eth`
+
+In practice, this could look something like:
+
+`arbitrum.bridge.onlinea.eth`
+
+The omission of the `[network]` prefix indicates that the Shortcut relates to Ethereum mainnet; 
+`bridge.onlinea.eth`, for example, only works on Ethereum Mainnet.
+
+### Naming system
+
+The easy UX of sending ETH to an ENS name can present a risk for the user. An attacker can obtain 
+access to the owner key of the ENS name and change the address record, pointing it to their own 
+wallet and collecting the funds sent there. 
+
+Linea addresses this risk by controlling the ENS name with a multisig wallet and assigning the 
+manager role to the Linea Security Council (the maximum grade of security). We also have monitors
+in place that listen for role changes for the ENS name.
+
+### Upgradability of contracts 
+
+Shortcuts can be upgraded by the creator. An attacker can upgrade the contract and change its 
+behavior. Linea addresses this risk by requiring trusted creators (like the [onthis.xyz](https://www.onthis.xyz/) team) 
+to hold the owner keys in a secure multisig or asking the creators to hand over the ownership of 
+the contracts to the Linea multisig.
+
+### Contract security 
+
+Even though Shortcuts contracts do not store value, security audits are still important. Shortcuts 
+created via the Creator Tool https://creator.onthis.xyz have a deterministic output that is 
+included in the audit scope of the Creator Tool itself. Custom built shortcuts require an 
+independent audit. 
+
+Linea addresses this risk by including a third-party audit of the Shortcuts listed under 
+onlinea.eth as part of the curation process. 
+
+## Fees
+
+Shortcuts are provided by [onthis.xyz](https://www.onthis.xyz/) and are built on top of [Across](https://across.to/). 
+Both services charge users a fee on the origin network. This fee covers the bridging costs and 
+automation costs and is shared between the two providers. The fee is calculated as a percentage 
+of the amount transferred, and is on top of the network gas fee paid to execute the action on the 
+origin chain.
+
+Here is an example on the fee schema applied for Shortcuts:
+
+| Amount ($)    | Swap + bridge fees |
+| ------------- | ------------------ |
+|      100      |     5.4% ($5.40)   |
+|      500      |     0.5% ($0.50)   |
+|    1,000      |     0.5% ($5.00)   |
+|   10,000      |     0.5% ($50.00)  |
+|  100,000      |     0.5% ($500.00) |
+
+## Further information
+
+Refer to the official [onthis.xyz documentation](https://docs.onthis.xyz) for more information.
