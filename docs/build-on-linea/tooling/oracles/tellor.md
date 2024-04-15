@@ -19,7 +19,7 @@ for others to use freely. To create a properly incentivized system, Tellor mints
 To use Tellor data, you can use the [UsingTellor](https://github.com/tellor-io/usingtellor) helper contract. After connecting it to the oracle you can read a value using your queryid.  Follow the guides in our [documentation](https://docs.tellor.io) for further instruction.
 
 
-> **Looking for help getting started?** We welcome you to ask us anything in the developer's channel of our [discord server.](https://discord.gg/tellor)  
+> **Looking for help getting started?** We welcome you to ask us anything in the developers' channel of our [Discord server.](https://discord.gg/tellor)  
 
 ## Requesting Data Feeds
 Tellor's network of data reporters already actively supports a large variety of price/data feeds and adding new ones upon request can happen with a quick turnaround.  You can even do it permissionlessly.  For both price feed requests and non-price/custom feeds, anyone can submit a data specification and get their query supported by Tellor.  
