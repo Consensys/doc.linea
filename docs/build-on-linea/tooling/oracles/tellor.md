@@ -1,3 +1,7 @@
+---
+title: Tellor
+description: A versatile oracle protocol that can provide data of any type permissionlessly with crypto-economic liveness and security.
+---
 
 # Tellor
 
@@ -32,12 +36,12 @@ Tellor's network of data reporters already actively supports a large variety of 
 
 ## Tellor Contracts On Linea
 
-**Linea Goerli Testnet**
+**Linea Sepolia Testnet**
 
-* Token: [0x896419Ed2E0dC848a1f7d2814F4e5Df4b9B9bFcc](https://goerli.lineascan.build/address/0x896419Ed2E0dC848a1f7d2814F4e5Df4b9B9bFcc#code)
-* Oracle: [0x6684E5DdbEe1b97E10847468cB5f4e38f3aB83FE](https://goerli.lineascan.build/address/0x6684E5DdbEe1b97E10847468cB5f4e38f3aB83FE)
-* Governance: [0x9EA18BFDB50E9bb4A18F9d3Df7804E398F8fE0dc](https://goerli.lineascan.build/address/0x9EA18BFDB50E9bb4A18F9d3Df7804E398F8fE0dc)
-* Autopay: [0xe331Afe3a8D7836bEdF1F09bC91549f4bc8c60C9](https://goerli.lineascan.build/address/0xe331Afe3a8D7836bEdF1F09bC91549f4bc8c60C9)
+* Token: [0x34Fae97547E990ef0E05e05286c51E4645bf1A85](https://sepolia.lineascan.build/address/0x34Fae97547E990ef0E05e05286c51E4645bf1A85)
+* Oracle: [0xC866DB9021fe81856fF6c5B3E3514BF9D1593D81](https://sepolia.lineascan.build/address/0xc866db9021fe81856ff6c5b3e3514bf9d1593d81#code)
+* Governance: [0x16d623f2f3AB1d58426f0402c313f1d3fdA14249](https://sepolia.lineascan.build/address/0x16d623f2f3AB1d58426f0402c313f1d3fdA14249)
+* Autopay: [0x6CCB007bCdbCa8234e0D1A39a84453bFF79f95E2](https://sepolia.lineascan.build/address/0x6CCB007bCdbCa8234e0D1A39a84453bFF79f95E2)
 
 **Linea Mainnet**
 
