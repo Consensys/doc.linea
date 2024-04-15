@@ -24,7 +24,7 @@ To use Tellor data, you can use the [UsingTellor](https://github.com/tellor-io/u
 ## Requesting data feeds
 Tellor's network of data reporters already actively supports a large variety of price/data feeds and adding new ones upon request can happen with a quick turnaround.  You can even do it permissionlessly.  For both price feed requests and non-price/custom feeds, anyone can submit a data specification and get their query supported by Tellor.  
 
--[Current Price Feeds](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds)
+-[Current price feeds](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds)
 
 -[New Data Request Form](https://github.com/tellor-io/dataSpecs/issues/new?assignees=&labels=&template=new_query_type.yaml&title=%5BNew+Query+Type%5D%3A+)
 
