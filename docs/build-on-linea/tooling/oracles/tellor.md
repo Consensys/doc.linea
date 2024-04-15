@@ -5,7 +5,7 @@ Tellor pushes the horizon of the oracle far past arbitrary price data. The Tello
 answering verifiable on-chain queries of any format.  The Tellor protocol incentivizes an open, permissionless network of data reporting and data validation, ensuring that data can be provided by anyone and checked by everyone.
 Built for any data type, our network of reporters supports your basic spot prices, more sophisticated pricing specs (TWAP/VWAP), RNG, or any custom data needs you have. If your data can be verified, Tellor can bring it on-chain.
 
-## How It Works
+## How it works
 
 The oracle mechanism works by using simple crypto-economic incentives to secure data through staking
 and dispute mechanisms, while the protocol is bound by a token which utilizes
