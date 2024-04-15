@@ -26,7 +26,7 @@ Tellor's network of data reporters already actively supports a large variety of 
 
 -[Current price feeds](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds)
 
--[New Data Request Form](https://github.com/tellor-io/dataSpecs/issues/new?assignees=&labels=&template=new_query_type.yaml&title=%5BNew+Query+Type%5D%3A+)
+-[New data request form](https://github.com/tellor-io/dataSpecs/issues/new?assignees=&labels=&template=new_query_type.yaml&title=%5BNew+Query+Type%5D%3A+)
 
 -[Custom Data Type Examples](https://github.com/tellor-io/dataSpecs/tree/main/types)
 
