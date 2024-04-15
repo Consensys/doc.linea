@@ -15,7 +15,7 @@ At a high level, Tellor is an oracle system where a bonded set of “reporters�
 for others to use freely. To create a properly incentivized system, Tellor mints a native token, “Tributes”
 (TRB). Rewards in TRB incentivize reporters to submit data using peer-to-peer payments. Using TRB, parties can “tip” a specific question or “query” they want updated, then reporters can choose whether the reward for fetching the data is worth the cost of placing the value on-chain. The security of Tellor comes through a deposit of TRB that acts as a bond or stake requirement in order for reporters to participate in providing data. The reporters risk losing this stake if they submit data that is successfully disputed.
 
-## Getting Started
+## Getting started
 To use Tellor data, you can use the [UsingTellor](https://github.com/tellor-io/usingtellor) helper contract. After connecting it to the oracle you can read a value using your queryid.  Follow the guides in our [documentation](https://docs.tellor.io) for further instruction.
 
 
