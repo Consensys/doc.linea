@@ -28,7 +28,7 @@ Tellor's network of data reporters already actively supports a large variety of 
 
 -[New data request form](https://github.com/tellor-io/dataSpecs/issues/new?assignees=&labels=&template=new_query_type.yaml&title=%5BNew+Query+Type%5D%3A+)
 
--[Custom Data Type Examples](https://github.com/tellor-io/dataSpecs/tree/main/types)
+-[Custom data type examples](https://github.com/tellor-io/dataSpecs/tree/main/types)
 
 ## Tellor Contracts On Linea
 
