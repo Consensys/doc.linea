@@ -1,6 +1,5 @@
 ---
 title: Subsquid
-image: 
 ---
 
 [Subsquid](https://subsquid.io/) is a decentralized indexing toolkit optimized for batch extraction of large volumes of data.
