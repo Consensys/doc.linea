@@ -13,6 +13,7 @@ image: /img/socialCards/node-providers.jpg
 - [GetBlock](https://getblock.io/)
 - [ANKR](https://www.ankr.com/rpc/)
 - [NOWNodes](https://nownodes.io/nodes)
+- [Decubate](https://www.decubate.com/)
 
 ## Run your own node
 
@@ -31,8 +32,8 @@ Public endpoints are rate limited, and not meant for production systems.
 | Mainnet                                       | Testnet                                              |
 |-----------------------------------------------|------------------------------------------------------|
 | `https://linea-mainnet.public.blastapi.io`    | `https://linea-goerli.public.blastapi.io`            |
-| `https://rpc.linea.build`                     | `https://rpc.goerli.linea.build`                     |
-| `https://linea.rpc.thirdweb.com`              | `https://linea-testnet.rpc.thirdweb.com`             |
+| `https://rpc.linea.build`                     | `https://rpc.sepolia.linea.build`                    |
+| `https://linea.rpc.thirdweb.com`              | `https://linea-sepolia.rpc.thirdweb.com`             |
 | `https://linea.blockpi.network/v1/rpc/public` | `https://linea-goerli.blockpi.network/v1/rpc/public` |
 | `https://linea-mainnet-public.unifra.io`      | `N/A`                                                |
 | `https://linea.getblock.io/your_api_key`      | `https://linea.getblock.io/your_api_key`             |
