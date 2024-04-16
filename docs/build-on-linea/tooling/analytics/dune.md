@@ -25,7 +25,7 @@ Here are some resources to help you learn more about Dune Analytics:
 
 - [Documentation](https://docs.dune.com/): The official documentation provides detailed guides and tutorials on using Dune Analytics.
 
-- [API Docs] (https://docs.dune.com/api): The API documentation provides detailed information on how to access blockchain data programmatically using Dune's API.
+- [API Docs](https://docs.dune.com/api): The API documentation provides detailed information on how to access blockchain data programmatically using Dune's API.
 
 - [YouTube](https://www.youtube.com/@dunecom) : The Dune YouTube channel features video tutorials and demos of the platform.
 
