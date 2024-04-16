@@ -15,7 +15,7 @@ image: /img/socialCards/dune.jpg
 
 - **Collaboration**: Share your queries, dashboards, and insights with others. Dune Analytics supports collaboration features, allowing you to work together with your team or the wider community.
 
-- **API Access**: Access blockchain data programmatically using Dune's API. You can integrate blockchain data into your applications, tools, and services.
+- **API access**: Access blockchain data programmatically using Dune's API. You can integrate blockchain data into your applications, tools, and services.
 
 - **Snowflake datashare**: Dune's Snowflake datashare allows you to access and analyze blockchain data directly in your Snowflake account. You can query and join blockchain data with your existing datasets in Snowflake.
 
