@@ -12,6 +12,7 @@ image: /img/socialCards/node-providers.jpg
 - [Blockpi](https://blockpi.io/)
 - [GetBlock](https://getblock.io/)
 - [ANKR](https://www.ankr.com/rpc/)
+- [NOWNodes](https://nownodes.io/nodes)
 
 ## Run your own node
 
