@@ -9,7 +9,7 @@ image: /img/socialCards/dune.jpg
 
 ### Features
 
-- **Data Exploration**: Dune Analytics allows you to explore and analyze blockchain data using SQL queries. You can easily filter, aggregate, and visualize data to gain insights into blockchain activity.
+- **Data exploration**: Dune Analytics allows you to explore and analyze blockchain data using SQL queries. You can easily filter, aggregate, and visualize data to gain insights into blockchain activity.
 
 - **Dashboards**: Create interactive dashboards to monitor key metrics and visualize data trends. Dune Analytics provides a drag-and-drop interface for designing custom dashboards.
 
