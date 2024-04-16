@@ -17,4 +17,4 @@ We run The Graph indexers on Linea to allow you to leverage the power of this te
 
 TheGraph is now live with Linea Mainnet! For more information, take a look at their official [documentation](https://thegraph.com/docs/en/)
 
-:::
+
