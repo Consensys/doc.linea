@@ -63,14 +63,14 @@ const CardList: CardItem[] = [
     icon: CardIcon3,
   },
   {
-    title: "Linea builders club",
-    link: "https://linea.deform.cc/linea-builders-club",
+    title: "Builder Launchpad",
+    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
-        Join our builders club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+        Start your dev journey with exclusive builder NFTs, tech talks, mini-hacks, events, and more!
       </>
     ),
-    buttonName: "Join",
+    buttonName: "Launch",
     buttonType: "info",
     icon: CardIcon4,
   },
