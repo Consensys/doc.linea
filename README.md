@@ -10,11 +10,11 @@ See [more](https://docs-template.consensys.net/) information about how Consensys
 
 ## Contribute to the docs
 
-See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.zk-evm/issues).
+See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.linea/issues).
 
-Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.zk-evm/fork), create a pull request, and tag us for review! (for help on this, see below)
+Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.linea/fork), create a pull request, and tag us for review! (for help on this, see below)
 
-Take a look at some [good first issues](https://github.com/ConsenSys/doc.zk-evm/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) to get started.
+Take a look at some [good first issues](https://github.com/ConsenSys/doc.linea/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) to get started.
 
 ### How to submit a suggestion or change
 
@@ -89,7 +89,7 @@ This command generates static content into the `build` directory.
 
 ## Contribute to community tutorials
 
-If you've created more fleshed out guides and tutorials, we'd love to feature your content in our community tutorials section. [Fork our repo](https://github.com/Consensys/doc.zk-evm/fork), create a pull request, and tag us for review!
+If you've created more fleshed out guides and tutorials, we'd love to feature your content in our community tutorials section. [Fork our repo](https://github.com/Consensys/doc.linea/fork), create a pull request, and tag us for review!
 
 You can learn how to add a post under the `/blog` directory by following the Docusaurus instructions for [adding posts](https://docusaurus.io/docs/blog#adding-posts).
 
@@ -97,7 +97,7 @@ You can learn how to add a post under the `/blog` directory by following the Doc
 
 Diving into zero-knowledge rollups and getting stumped by the technical jargon? We've started an open source Zero-Knowledge glossary to define some common terms you might encounter as you dive into the L2 landscape.
 
-[Fork our repo](https://github.com/Consensys/doc.zk-evm/fork), and add a term in alphabetical order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
+[Fork our repo](https://github.com/Consensys/doc.linea/fork), and add a term in alphabetical order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
 
 ## Additional Resources
 
