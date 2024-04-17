@@ -255,6 +255,7 @@ const sidebars = {
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
+            "build-on-linea/tooling/cross-chain/shortcuts",
           ],
         },
         {
