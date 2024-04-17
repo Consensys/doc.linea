@@ -46,6 +46,24 @@ intent-based listeners and paths that will execute the action on the destination
 The output token(s) from the automation are returned to `msg.sender` (the account that called the 
 function; in this case, the person using the Shortcut).
 
+## Fees
+
+Shortcuts are provided by [onthis.xyz](https://www.onthis.xyz/) and are built on top of [Across](https://across.to/). 
+Both services charge users a fee on the origin network. This fee covers the bridging costs and 
+automation costs and is shared between the two providers. The fee is calculated as a percentage 
+of the amount transferred, and is on top of the network gas fee paid to execute the action on the 
+origin chain.
+
+Here is an example on the fee schema applied for Shortcuts:
+
+| Amount ($)    | Swap + bridge fees |
+| ------------- | ------------------ |
+|      100      |     5.4% ($5.40)   |
+|      500      |     0.5% ($0.50)   |
+|    1,000      |     0.5% ($5.00)   |
+|   10,000      |     0.5% ($50.00)  |
+|  100,000      |     0.5% ($500.00) |
+
 ## Risks
 
 Shortcuts do not store value, so the smart contract risk is lower than a traditional dapps. Since 
@@ -99,24 +117,6 @@ independent audit.
 
 Linea addresses this risk by including a third-party audit of the Shortcuts listed under 
 onlinea.eth as part of the curation process. 
-
-## Fees
-
-Shortcuts are provided by [onthis.xyz](https://www.onthis.xyz/) and are built on top of [Across](https://across.to/). 
-Both services charge users a fee on the origin network. This fee covers the bridging costs and 
-automation costs and is shared between the two providers. The fee is calculated as a percentage 
-of the amount transferred, and is on top of the network gas fee paid to execute the action on the 
-origin chain.
-
-Here is an example on the fee schema applied for Shortcuts:
-
-| Amount ($)    | Swap + bridge fees |
-| ------------- | ------------------ |
-|      100      |     5.4% ($5.40)   |
-|      500      |     0.5% ($0.50)   |
-|    1,000      |     0.5% ($5.00)   |
-|   10,000      |     0.5% ($50.00)  |
-|  100,000      |     0.5% ($500.00) |
 
 ## Further information
 
