@@ -8,7 +8,7 @@ const katex = require("rehype-katex");
 // const baseUrl = isDev ? "/" : "/";
 
 // const organizationName = "Consensys";
-// const projectName = "doc.zk-evm";
+// const projectName = "doc.linea";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
