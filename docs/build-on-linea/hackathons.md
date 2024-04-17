@@ -15,7 +15,9 @@ All winners have the opportunity to bring their project to fruition through a va
 And be featured on [X](https://twitter.com/lineabuild), [Linea Farcaster](https://warpcast.com/linea), and livestreams!
 
 :::info
-[**Join the Linea Builders Club**](https://linea.deform.cc/linea-builders-club) to get exclusive access to tech talks, events, the Linea team, and more!
+[**Get started through the Linea Builder Launchpad**](https://aspecta.id/builder-matrix/Linea-builder-launchpad) to find the one-stop shop for claiming builder NFTs, applying for the Linea Builders Club, getting access to developer workshops, and other Linea developer activations.
+
+[**Apply for the Linea Builders Club**](https://linea.deform.cc/linea-builders-club) to get exclusive access to tech talks, events, the Linea team, and more!
 
 [**Join the Consensys Developer Chat**](https://t.me/+rI-iPLacQXQ5MDVh) for IRL hackathons and get connected with the MetaMask, Phosphor, and Verax teams!
 :::
@@ -90,11 +92,16 @@ If you're submitting a tutorial...
 - Bonus points for publishing an accompanying video explainer
 - Posted and tagged on Twitter ([@lineabuild](http://x.com/lineabuild)) or Farcaster ([@linea](http://warpcast/linea))
 
+If you're submitting a Dune analytics dashboard...
+- Dune dashboard link
+- Non-trivial progress made on your project during that month
+- Posted and tagged on Twitter ([@lineabuild](http://x.com/lineabuild)) or Farcaster ([@linea](http://warpcast/linea))
+
 Ultimately, a "high-quality" submission is quite subjective, but you can imagine invalid submissions as something like unusable demos, projects that are simply slightly modified clones of other projects, and otherwise scrapped together hacks that took little to no effort to put together.
 
 **How to submit**
 
-Please register for the [current month's hackathon](https://linea.deform.cc/cook-off-april-2024)!
+Please register for the [current month's hackathon](https://linea.deform.cc/cook-off-april-2024)! We will push out submission details after you've registered.
 
 ### April 2024 (1 ETH pool prize + $1000 USD [efrog](https://twitter.com/efrogs_on_linea) pool prize) :frog:
 
@@ -123,6 +130,8 @@ You can find the efrogs marketplace [here](https://element.market/collections/et
 ## IRL hackathons
 
 Look forward to finding us at:
+- EthPrague
+- EthBelgrade
 - EthGlobal Brussels
 - EthGlobal Singapore
 - EthGlobal Bangkok
