@@ -54,7 +54,7 @@ automation costs and is shared between the two providers. The fee is calculated 
 of the amount transferred, and is on top of the network gas fee paid to execute the action on the 
 origin chain.
 
-Here is an example on the fee schema applied for Shortcuts:
+Here is an example of the Shortcuts fee model:
 
 | Amount ($)    | Swap + bridge fees |
 | ------------- | ------------------ |
@@ -80,7 +80,7 @@ in a loss of funds, as will sending ETH to a Shortcut deployed on a different ne
 
 Linea addresses this risk by clearly identifying the Shortcut's network in its name. If a network 
 is specified, it means that the Shortcut can only accept ETH on that specific network. The naming 
-convention for Shortcut ENS names curated by Linea is the following:
+convention for Shortcut ENS names curated by Linea is as follows:
 
 `[network].[usecase/partner].onlinea.eth`
 
@@ -88,7 +88,7 @@ In practice, this could look something like:
 
 `arbitrum.bridge.onlinea.eth`
 
-The omission of the `[network]` prefix indicates that the Shortcut relates to Ethereum mainnet; 
+The omission of the `[network]` prefix indicates that the Shortcut relates to Ethereum Mainnet; 
 `bridge.onlinea.eth`, for example, only works on Ethereum Mainnet.
 
 ### Naming system
