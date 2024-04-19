@@ -1,12 +1,11 @@
 ---
 title: Verax
+image: /img/socialCards/verax.jpg
 ---
-
-# What is Verax?
 
 Verax is a shared on-chain attestation registry. The teams that are actively involved in designing and building the project include Consensys (the team behind Linea), Clique, Karma3 Labs, Aspecta, PADO Labs, and Reclaim Protocol. A number of other teams including GitCoin are building integrations with the system.
 
-***It is not an EIP, a protocol, or a product, but a simple primitive that can be used by any dapps and protocols as a shared “data lake” of public data. In essence, it can be thought of as a backend or a database.***
+**_It is not an EIP, a protocol, or a product, but a simple primitive that can be used by any dapps and protocols as a shared “data lake” of public data. In essence, it can be thought of as a backend or a database._**
 
 Think of Verax as a distribution channel where issuers of attestations keep the attestations. Any protocol, dapp, or user that wants to use those attestations can easily use and compose attestations from the different sources that are available in that distribution channel. Examples of some of the integrations currently being built include Clique, GitCoin, PADO Labs and Reclaim Protocol.
 
@@ -26,9 +25,9 @@ Verax can enable a wide range of use cases, including:
 
 ## Contract Address
 
-| Network        | Contract address      
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Linea Mainnet  | [0x0A564cdD56E4916AA1C63e11652f27B50d970ba0](https://lineascan.build/address/0x0A564cdD56E4916AA1C63e11652f27B50d970ba0)    
+| Network | Contract address |
+| --- | --- |
+| Linea Mainnet | [0x0A564cdD56E4916AA1C63e11652f27B50d970ba0](https://lineascan.build/address/0x0A564cdD56E4916AA1C63e11652f27B50d970ba0) |
 
 ## Proof of Humanity (POH)
 
@@ -37,6 +36,3 @@ Proof-of-Humanity systems ensure that participants in web3 are real humans and n
 ## Resources
 
 [Official Verax Documentation](https://docs.ver.ax/verax-documentation/)
-
-
-

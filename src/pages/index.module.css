@@ -30,6 +30,13 @@
   }
 }
 
+@media (max-width: 320px) {
+  .bannerButton {
+    font-size: 16px;
+    padding: 15px 25px;
+  }
+}
+
 .bannerButton:hover {
   background-color: white;
   color: black;
@@ -66,6 +73,14 @@ html[data-theme="dark"] .forceColor {
   }
 }
 
+@media (max-width: 320px) {
+  .logo {
+    margin-top: 35px;
+    height: 35px;
+    width: auto;
+  }
+}
+
 .title {
   font-size: 45px;
   padding-bottom: 20px;
@@ -75,6 +90,12 @@ html[data-theme="dark"] .forceColor {
 @media (max-width: 768px) {
   .title {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 20px;
   }
 }
 
@@ -89,6 +110,20 @@ html[data-theme="dark"] .forceColor {
     font-size: 18px;
     padding: 0 0 20px;
     padding: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .subtitle {
+    font-size: 15px;
+    padding: 0 0 20px;
+    padding: 0;
+  }
+}
+
+@media (max-height: 850px) {
+  .subtitle {
+    font-size: 16px;
   }
 }
 
@@ -112,10 +147,30 @@ html[data-theme="dark"] .forceColor {
   height: 52vh;
 }
 
+@media (max-width: 1300px) {
+  .introductionBlock {
+    height: 60vh;
+  }
+}
+
 @media (max-width: 768px) {
   .introductionBlock {
     padding: 2rem;
     background-position: 70vw -5vh;
     background-size: 120% auto;
+    height: 50vh;
+  }
+}
+
+@media (max-height: 850px) {
+  .introductionBlock {
+    height: 27.7rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .introductionBlock {
+    padding: 0;
+    height: 55vh;
   }
 }

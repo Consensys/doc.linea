@@ -1,13 +1,12 @@
 ---
 title: API3
+image: /img/socialCards/api3.jpg
 ---
-
-## API3
 
 [API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
 
-:::info The API3 DAO
-Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
+:::info
+The API3 DAO Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
 :::
 
 ## Airnode
@@ -26,6 +25,7 @@ An on-chain smart contract makes a request in the [RRP (Request Response Protoco
 </div>
 
 ## Requesting off-chain data by calling an Airnode
+
 Requesting off-chain data essentially involves triggering an Airnode and getting its response through your smart contract. The smart contract in this case would be the requester contract which will make a request to the desired off-chain Airnode and then capture its response.
 
 The requester calling an Airnode primarily focuses on two tasks:
@@ -72,7 +72,7 @@ contract Requester is RrpRequesterV0 {
         address sponsor,
         address sponsorWallet,
         bytes calldata parameters
-        
+
     ) external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
             airnode,
@@ -101,10 +101,9 @@ contract Requester is RrpRequesterV0 {
 
 The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can also try [deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
-|         Contract         |                     Addresses                    |
-|:------------------------:|:------------------------------------------------:|
-| AirnodeRrpV0 |   `0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd`    |
-
+|   Contract   |                  Addresses                   |
+| :----------: | :------------------------------------------: |
+| AirnodeRrpV0 | `0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd` |
 
 ### Request parameters
 
@@ -122,13 +121,15 @@ The callback to the Requester contains two parameters:
 - [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
 - **`data`**: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
 
-:::info Note
+:::note
+
 Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+
 :::
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
-## Using dAPIs - API3 Datafeeds
+## Using dAPIs - API3 datafeeds
 
 [dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
@@ -147,29 +148,25 @@ The [API3 Market](https://market.api3.org/dapis) enables users to connect to a d
   </div>
 </div>
 
-> [*To know more about how dAPIs work, click here*](https://docs.api3.org/explore/dapis/what-are-dapis.html)
+> [_To know more about how dAPIs work, click here_](https://docs.api3.org/explore/dapis/what-are-dapis.html)
 
 ## Types of dAPIs
 
 ### Self-funded dAPIs
-[Self-funded dAPIs](https://docs.api3.org/reference/dapis/understand/self-funded.html) are single-source data feeds that can be funded by the users with
-their own funds. The amount of gas supplied determines how long the dAPI will be
-available to use. If it runs out of gas, the dAPI will no longer be updated
-unless it is funded again.
+
+[Self-funded dAPIs](https://docs.api3.org/reference/dapis/understand/self-funded.html) are single-source data feeds that can be funded by the users with their own funds. The amount of gas supplied determines how long the dAPI will be available to use. If it runs out of gas, the dAPI will no longer be updated unless it is funded again.
 
 [Click here to read more about Self-funded dAPIs](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/).
 
 ### Managed dAPIs
-[Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html) are sourced directly from multiple [first-party](https://docs.api3.org/explore/airnode/why-first-party-oracles.html) data providers
-running an Airnode and aggregated using Airnode's signed data using
-a median function. The gas costs
-and availability of Managed dAPIs is managed by the [API3 DAO](https://docs.api3.org/explore/dao-members/).
+
+[Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html) are sourced directly from multiple [first-party](https://docs.api3.org/explore/airnode/why-first-party-oracles.html) data providers running an Airnode and aggregated using Airnode's signed data using a median function. The gas costs and availability of Managed dAPIs is managed by the [API3 DAO](https://docs.api3.org/explore/dao-members/).
 
 [Click here to read more about Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html).
 
-### Subscribing to Self-funded dAPIs
+### Subscribing to self-funded dAPIs
 
-:::note Info
+:::info
 
 While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
 
@@ -238,8 +235,10 @@ Once the transaction is broadcasted & confirmed on the blockchain a transaction 
 
 Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
 
-:::info Note:
+:::note
+
 If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
+
 :::
 
 If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
@@ -255,16 +254,11 @@ Once the transaction is broadcasted & confirmed on the blockchain, the proxy con
   </div>
 </div>
 
-### Subscribing to Managed dAPIs
+### Subscribing to managed dAPIs
 
-If you are trying to access Managed dAPIs, 
-once you have selected your dAPI, you will then be presented with an option to
-choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
+If you are trying to access Managed dAPIs, once you have selected your dAPI, you will then be presented with an option to choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
 
-Managed dAPIs gives you an option to configure the dAPI's
-[deviation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html) and
-[heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat). For Managed
-dAPIs, you will have the following options to choose from:
+Managed dAPIs gives you an option to configure the dAPI's [deviation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html) and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat). For Managed dAPIs, you will have the following options to choose from:
 
 | Deviation | Heartbeat |
 | --------- | --------- |
@@ -273,10 +267,9 @@ dAPIs, you will have the following options to choose from:
 | 0.5%      | 24 hours  |
 | 1%        | 24 hours  |
 
-:::note Info 
+:::info
 
-Not all dAPIs support all the configurations. It depends on the asset and chain.
-Check the [API3 Market](https://market.api3.org) for more info.
+Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org) for more info.
 
 :::
 
@@ -284,10 +277,7 @@ After selecting the required deviation threshold and heartbeat, check the final 
 
 Make sure you check the order details and the final price on the payments page. Once you are ready, connect your wallet and pay for the order.
 
-After placing the order, you will have to wait for the dAPI to get updated. It
-usually takes 5 business days for the dAPI team to update the dAPI for the
-requested configuration. Once the dAPI is updated, you can start using it in
-your dApp.
+After placing the order, you will have to wait for the dAPI to get updated. It usually takes 5 business days for the dAPI team to update the dAPI for the requested configuration. Once the dAPI is updated, you can start using it in your dApp.
 
 ### Reading from a dAPI
 
@@ -327,10 +317,9 @@ contract DataFeedReaderExample is Ownable {
 
 - `readDataFeed()` is a view function that returns the latest price of the set dAPI.
 
-You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-managed-dapis/). 
+You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-managed-dapis/).
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DataFeedReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js)
-
 
 ## API3 QRNG
 
@@ -340,8 +329,10 @@ To request randomness on-chain, the requester submits a request for a random num
 
 Click here to check out the [`AirnodeRrpV0` Address](https://docs.api3.org/reference/qrng/chains.html) and [QRNG Providers' Addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
 
-:::info Note
-Currently, only Quintessence Labs' QRNG Airnode is available on Linea. 
+:::note
+
+Currently, only Quintessence Labs' QRNG Airnode is available on Linea.
+
 :::
 
 Here is an example of a basic `QrngRequester` that requests a random number:
@@ -361,7 +352,7 @@ contract RemixQrngExample is RrpRequesterV0 {
     mapping(bytes32 => bool) public waitingFulfillment;
 
     // These are for Remix demonstration purposes, their use is not practical.
-    struct LatestRequest { 
+    struct LatestRequest {
       bytes32 requestId;
       uint256 randomNumber;
     }
@@ -426,7 +417,7 @@ You can try QRNG on Linea for free. Check out the all the QRNG Providers for Lin
 
 [Click here to read more about API3 QRNG](https://docs.api3.org/explore/qrng/)
 
-## Additional Resources
+## Additional resources
 
 Here are some additional developer resources
 

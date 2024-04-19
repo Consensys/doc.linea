@@ -1,47 +1,56 @@
-// @ts-check
-
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
     {
       type: "category",
       collapsed: false,
-      label: "Getting Started",
+      label: "Getting started",
       link: {
         type: 'doc',
         id: "index",
       },
       items: [
-        "use-mainnet/index",
         "use-mainnet/set-up-your-wallet",
         "use-mainnet/fund",
         "use-mainnet/bridges-of-linea/bridging-non-dev",
         "use-mainnet/linea-xp",
-        "use-mainnet/gas-import",
         "use-mainnet/import-info-contracts",
+        "use-mainnet/gas-on-linea",
+      ],
+    },
+    {
+      type: "category",
+      label: "Linea Voyage: The Surge",
+      link: {
+        type: "doc",
+        id: "use-mainnet/linea-surge/index",
+      },
+      items: [
+        "use-mainnet/linea-surge/linea-surge-overview",
+        "use-mainnet/linea-surge/linea-surge-model",
       ],
     },
     {
       type: "link",
-      label: "Network Status",
+      label: "Network status",
       href: "https://linea.statuspage.io/",
     },
     {
       type: "link",
-      label: "Linea Mainnet Block Explorer",
+      label: "Linea Mainnet block explorer",
       href: "https://lineascan.build",
     },
     {
       type: "link",
-      label: "Linea Goerli Block Explorer",
-      href: "https://goerli.lineascan.build",
+      label: "Linea Sepolia block explorer",
+      href: "https://sepolia.lineascan.build",
     },
     "risk-disclosures/index",
     "decentralization-roadmap/index",
     "zero-knowledge-glossary/index",
     {
       type: "category",
-      label: "Contact Us",
+      label: "Contact us",
       items: [
         {
           type: "link",
@@ -69,7 +78,28 @@ const sidebars = {
   developersSidebar: [
       {
         type: "category",
-        collapsed: false,
+        collapsible: false,
+        label: "Build on Linea",
+        link: {
+          type: 'doc',
+          id: "build-on-linea/index",
+        },
+        items: [
+          {
+            type: "category",
+            label: "Run a Linea node",
+            link: {
+              type: 'doc',
+              id: "build-on-linea/run-a-node/index"
+            },
+            items: [
+              "build-on-linea/run-a-node/use-docker",
+              "build-on-linea/run-a-node/use-binary",
+            ],
+          },
+        {
+        type: "category",
+        collapsed: true,
         label: "Quickstart",
         link: {
           type: 'doc',
@@ -78,7 +108,11 @@ const sidebars = {
         items: [
           {
             type: "category",
-            label: "Deploy Smart Contract",
+            label: "Deploy a smart contract",
+            link: {
+              type: "doc",
+              id: "build-on-linea/quickstart/deploy-smart-contract/index",
+            },
             items: [
               "build-on-linea/quickstart/deploy-smart-contract/atlas",
               "build-on-linea/quickstart/deploy-smart-contract/foundry",
@@ -90,13 +124,18 @@ const sidebars = {
           },
           {
             type: "category",
-            label: "Verify Smart Contract",
+            label: "Verify a smart contract",
+            link: {
+              type: "doc",
+              id: "build-on-linea/quickstart/verify-smart-contract/index",
+            },
             items: [
               "build-on-linea/quickstart/verify-smart-contract/atlas",
               "build-on-linea/quickstart/verify-smart-contract/foundry",
               "build-on-linea/quickstart/verify-smart-contract/hardhat",
             ],
           },
+          "use-mainnet/fund",
           {
             type: "category",
             label: "Bridge your funds",
@@ -109,17 +148,16 @@ const sidebars = {
               "use-mainnet/bridges-of-linea/how-to-bridge-eth",
             ],
           },
-          "build-on-linea/linea-sdk/index",
-          "build-on-linea/run-a-node",
           "build-on-linea/quickstart/rpc",
         ],
       },
       "use-mainnet/info-contracts",
       "build-on-linea/ethereum-differences",
       "build-on-linea/gas-fees",
+      "build-on-linea/goerli-to-sepolia",
      {
       type: "category",
-      label: "Tooling and Infrastructure",
+      label: "Tooling and infrastructure",
       link: {
         type: "doc",
         id: "build-on-linea/tooling/index",
@@ -127,14 +165,38 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Account Abstraction",
+          label: "Account abstraction",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/account-abstraction/account-abstraction"
+
+          },
           items: [
-            "build-on-linea/tooling/account-abstraction/4337",
+            "build-on-linea/tooling/account-abstraction/arcana",
+            "build-on-linea/tooling/account-abstraction/pimlico",
             "build-on-linea/tooling/account-abstraction/biconomy",
             "build-on-linea/tooling/account-abstraction/etherspot",
             "build-on-linea/tooling/account-abstraction/smartwallets",
             "build-on-linea/tooling/account-abstraction/station",
             "build-on-linea/tooling/account-abstraction/particle-network",
+            "build-on-linea/tooling/account-abstraction/noves",
+            "build-on-linea/tooling/account-abstraction/oklink",
+            "build-on-linea/tooling/account-abstraction/openfort"
+          ],
+        },
+        {
+          type: "category",
+          label: "Analytics",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/analytics/index"
+
+          },
+          items: [
+            "build-on-linea/tooling/analytics/arkham",
+            "build-on-linea/tooling/analytics/cookie3",
+            "build-on-linea/tooling/analytics/dune",
+            "build-on-linea/tooling/analytics/mobula",
           ],
         },
         {
@@ -142,30 +204,42 @@ const sidebars = {
           label: "Attestations",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/attestations/attestations",
+            id: "build-on-linea/tooling/attestations/index",
           },
           items: [
-            "build-on-linea/tooling/attestations/pado",
             "build-on-linea/tooling/attestations/verax",
+            "build-on-linea/tooling/attestations/pado",
           ],
         },
         {
           type: "category",
           label: "Automation",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/automation/index",
+          },
           items: [
             "build-on-linea/tooling/automation/hal-stream",
           ],
         },
         {
           type: "category",
-          label: "Cloud Infra",
+          label: "Cloud infrastructure",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/cloud-infra/index",
+          },
           items: [
             "build-on-linea/tooling/cloud-infra/spheron",
           ],
         },
         {
           type: "category",
-          label: "Contracts Templates",
+          label: "Contracts templates",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/contracts-templates/index",
+          },
           items: [
             "build-on-linea/tooling/contracts-templates/thirdweb",
             "build-on-linea/tooling/contracts-templates/cookbook",
@@ -173,19 +247,32 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Cross Chain",
+          label: "Cross-chain",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/cross-chain/index",
+          },
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
+            "build-on-linea/tooling/cross-chain/shortcuts",
           ],
         },
         {
           type: "category",
-          label: "Data Indexers",
+          label: "Data indexers",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/data-indexers/index",
+          },
           items: [
+            "build-on-linea/tooling/data-indexers/arkham",
             "build-on-linea/tooling/data-indexers/covalent",
+            "build-on-linea/tooling/data-indexers/decommas",
+            "build-on-linea/tooling/data-indexers/dune",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
+            "build-on-linea/tooling/data-indexers/mobula",
             {
               type: "category",
               label: "Goldsky",
@@ -199,11 +286,17 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/reservoir",
             "build-on-linea/tooling/data-indexers/sentio",
             "build-on-linea/tooling/data-indexers/thegraph",
+            "build-on-linea/tooling/data-indexers/noves",
+            "build-on-linea/tooling/data-indexers/scopescan",
           ],
         },
         {
           type: "category",
           label: "Libraries",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/libraries/index",
+          },
           items: [
             "build-on-linea/tooling/libraries/ape",
             "build-on-linea/tooling/libraries/ethereum-list",
@@ -216,6 +309,10 @@ const sidebars = {
         {
           type: "category",
           label: "Oracles",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/oracles/index",
+          },
           items: [
             "build-on-linea/tooling/oracles/api3",
             "build-on-linea/tooling/oracles/chainlink",
@@ -229,21 +326,43 @@ const sidebars = {
         {
           type: "category",
           label: "Security",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/security/index",
+          },
           items: [
             "build-on-linea/tooling/security/goplus-security-api",
             "build-on-linea/tooling/security/scamfari",
+            "build-on-linea/tooling/security/spherex",
+            "build-on-linea/tooling/security/hexagate",
+          ],
+        },
+        {
+          type: "category",
+          label: "Social login",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/social-login/index",
+          },
+          items: [
+            "build-on-linea/tooling/social-login/arcana",
+            "build-on-linea/tooling/social-login/openfort"
           ],
         },
       ],
      },
       "build-on-linea/tooling/linea-safe",
+      "build-on-linea/tooling/linea-inscription",
       "build-on-linea/tooling/node-providers",
       "build-on-linea/linea-version/index",
+      "build-on-linea/hackathons",
      {
       type: "link",
-      label: "Bug Bounty Program",
+      label: "Bug bounty program",
       href: "https://immunefi.com/bounty/linea/",
      },
+    ],
+    },
   ],
   architectureSidebar: [
       "architecture/index",
@@ -262,7 +381,7 @@ const sidebars = {
       },
       {
         type: "category",
-        label: "Canonical Message Service",
+        label: "Canonical message service",
         link: {
           type: "doc",
           id: "architecture/canonical-msg-service/index",
@@ -278,7 +397,7 @@ const sidebars = {
         label: "Sequencer",
         link: {
           type: "doc",
-          id: "architecture/evm-state-manager/index",
+          id: "architecture/sequencer/index",
         },
         items: [
           "architecture/sequencer/conflation",
@@ -287,7 +406,7 @@ const sidebars = {
       },
       {
         type: "category",
-        label: "Trace Expansion Proving",
+        label: "Trace expansion proving",
         link: {
           type: "doc",
           id: "architecture/trace-expansion-proving/index",
@@ -301,3 +420,6 @@ const sidebars = {
 };
 
 module.exports = sidebars;
+
+
+      

@@ -65,7 +65,7 @@ interface IMessageService {
    * @param _feeRecipient Address that will receive the fees.
    * @param _calldata The calldata used by the destination message service to call/forward to the destination contract.
    * @param _nonce Unique message number.
-   */x
+   */
   function claimMessage(
     address _from,
     address _to,

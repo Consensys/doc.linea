@@ -1,13 +1,13 @@
 ---
 title: Cookbook.dev
+image: /img/socialCards/cookbookdev.jpg
 ---
 
 [Cookbook.dev](https://www.cookbook.dev/?utm=lineadocs) is an open-source smart contract registry where developers can find solidity primitives, libraries, and smart contracts for protocols.
 
+## Search Cookbook's smart contract registry
 
-## Search Cookbook's Smart Contract Registry
-
-Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar. 
+Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?utm=lineadocs) and explore **Protocols** on Linea, or search for specific smart contracts in the search bar.
 
 <div class="center-container">
   <div class="img-large">
@@ -18,7 +18,7 @@ Navigate to [cookbook.dev/chains/Linea](https://www.cookbook.dev/chains/Linea?ut
   </div>
 </div>
 
-To learn about a smart contract on Cookbook, select the protocol, and select `Expand`. This opens the code alongside ChefGPT, Cookbook's AI Solidity assistant. 
+To learn about a smart contract on Cookbook, select the protocol, and select `Expand`. This opens the code alongside ChefGPT, Cookbook's AI Solidity assistant.
 
 Highlight selections of the code and press **Analyze Snippet** to get more information about the smart contract code you're looking at, or ask ChefGPT questions about Linea, solidity, or your smart contract.
 
@@ -31,9 +31,9 @@ Highlight selections of the code and press **Analyze Snippet** to get more infor
   </div>
 </div>
 
-## Import any Smart Contract Code into Cookbook
+## Import any smart contract code into Cookbook
 
-Import verified smart contract code into Cookbook to fork, learn about, or build with by inputting any smart contract address into the Cookbook search bar.  
+Import verified smart contract code into Cookbook to fork, learn about, or build with by inputting any smart contract address into the Cookbook search bar.
 
 <div class="center-container">
   <div class="img-large">
@@ -44,7 +44,8 @@ Import verified smart contract code into Cookbook to fork, learn about, or build
   </div>
 </div>
 
-## Find Smart Contracts within the Remix IDE with the Cookbook Plug-in
+## Find smart contracts within the Remix IDE with the Cookbook plugin
+
 Go to [Remix.Ethereum.org](https://remix.ethereum.org/#activate=cookbookdev)
 
 Add The Cookbook Plugin to Remix by clicking the Chef Hat Logo under **Featured Plugins** on the Remix Homepage.
@@ -58,7 +59,7 @@ Add The Cookbook Plugin to Remix by clicking the Chef Hat Logo under **Featured 
   </div>
 </div>
 
-Alternatively, search Cookbook and select **Activate** in the Remix Plugin Manager. 
+Alternatively, search Cookbook and select **Activate** in the Remix Plugin Manager.
 
 <div class="center-container">
   <div class="img-small">
@@ -90,4 +91,3 @@ For more information on using Cookbook to find, learn about or build with smart 
 - [Blog](https://medium.com/@cookbookdev)
 - [Twitter](https://twitter.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)
-

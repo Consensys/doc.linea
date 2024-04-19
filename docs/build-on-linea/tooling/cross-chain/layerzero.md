@@ -1,5 +1,6 @@
 ---
 title: LayerZero Omnichain Messaging
+image: /img/socialCards/layerzero-omnichain-messaging.jpg
 ---
 
 # LayerZero
@@ -10,8 +11,7 @@ LayerZero Endpoint has been deployed on Linea for builders to leverage omnichain
 
 As a developer, you can leverage LayerZero's Endpoint contract by using our LzApp interface for your User Application (UA). The Endpoint allows UAs to configure the Messaging Library for sending and receiving verified messages and guarantees the message-delivering ordering across all messaging libraries:
 
-`Send()`: the message will be sent through the endpoint first, and then redirected to the UA-configured Messaging Library.
-`Receive()`: the message will be verified at the Messaging Library first, then forwarded to the endpoint and eventually delivered to the UA.
+`Send()`: the message will be sent through the endpoint first, and then redirected to the UA-configured Messaging Library. `Receive()`: the message will be verified at the Messaging Library first, then forwarded to the endpoint and eventually delivered to the UA.
 
 Learn how to integrate LayerZero into your contracts [here](https://layerzero.gitbook.io/docs/).
 

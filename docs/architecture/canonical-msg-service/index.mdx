@@ -1,9 +1,10 @@
 ---
-title: "Canonical Message Service: Overview"
+title: 'Canonical message service: overview'
 sidebar_position: 1
+image: /img/socialCards/canonical-message-service-overview.jpg
 ---
 
-## Linea Canonical Message Service
+## Linea canonical message service
 
 <div class="center-container">
   <div class="img-large">
@@ -16,13 +17,13 @@ sidebar_position: 1
 
 ### What is it?
 
-The Canonical Message Service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between Linea and other networks.
+The canonical message service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between Linea and other networks.
 
 ### What does it do?
 
-If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The Canonical Message Service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The Service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
+If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The canonical message service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The Service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
 
-One of the most important things that the Message Service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the Canonical Message Service transmits the rollup data.
+One of the most important things that the Message Service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the canonical message service transmits the rollup data.
 
 However, the Service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
 
@@ -37,7 +38,7 @@ However, the Service is not limited or restricted to use by Linea's core functio
 
 ### How does it do it?
 
-The Canonical Message Service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](./message-service.mdx#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+The canonical message service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](./message-service.mdx#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
 
 A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the Postbots.
 

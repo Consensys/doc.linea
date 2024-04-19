@@ -1,29 +1,29 @@
 ---
-title: "Message Service: Technical Reference"
+title: 'Message service: technical reference'
 sidebar_position: 2
+image: /img/socialCards/message-service-technical-reference.jpg
 ---
 
 import CodeBlock from "@theme/CodeBlock";
 import IMessageService from "!!raw-loader!/files/testnet/IMessageService.sol";
 import MessageServiceBase from "!!raw-loader!/files/testnet/MessageServiceBase.sol";
-import Tabs from '@theme/Tabs'; 
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Message service
 
-The Message Service is responsible for cross-chain messages between Ethereum and Linea, which:
+The message service is responsible for cross-chain messages between Ethereum and Linea, which:
 
 - Allows a contract on the source chain to safely interact with a contract on the target chain (e.g. L1TokenBridge triggering mint on the L2TokenBridge),
 - Is responsible for bridging ETH (native currency on L1 and L2)
 - Supports:
-  - **push**: auto-execution on target layer if a fee is paid 
+  - **push**: auto-execution on target layer if a fee is paid
   - **pull**: users / protocols responsible for triggering the transaction
 
-## Message Service Contracts
+## Message service contracts
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">
-  <TabItem 
-  value="Mainnet" label="Mainnet" default>
+  <TabItem value="Mainnet" label="Mainnet" default>
     <table>
       <tbody>
         <tr>
@@ -31,13 +31,43 @@ The Message Service is responsible for cross-chain messages between Ethereum and
           <th>L2 (Linea) Address</th>
         </tr>
         <tr>
-          <td><a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">0xd19d4B5d358258f05D7B411E21A1460D11B0876F</a></td>
-          <td><a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec</a></td>
+          <td>
+            <a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">
+              0xd19d4B5d358258f05D7B411E21A1460D11B0876F
+            </a>
+          </td>
+          <td>
+            <a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">
+              0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Sepolia) Address</th>
+          <th>L2 (Linea Sepolia) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5">
+            0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5
+            </a>
+          </td>
+          <td>
+            <a href="https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51ec16e73acac83a7">
+            0x971e727e956690b9957be6d51Ec16E73AcAC83A7
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
     <table>
       <tbody>
         <tr>
@@ -46,15 +76,19 @@ The Message Service is responsible for cross-chain messages between Ethereum and
         </tr>
         <tr>
           <td>
-            <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">0x70BaD09280FD342D02fe64119779BC1f0791BAC2</a>
+            <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">
+              0x70BaD09280FD342D02fe64119779BC1f0791BAC2
+            </a>
           </td>
           <td>
-            <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">0xC499a572640B64eA1C8c194c43Bc3E19940719dC</a>
+            <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">
+              0xC499a572640B64eA1C8c194c43Bc3E19940719dC
+            </a>
           </td>
         </tr>
       </tbody>
     </table>
-  </TabItem> 
+  </TabItem>
 </Tabs>
 
 ## How to use
