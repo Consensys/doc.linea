@@ -4,11 +4,13 @@ description: Advice on Linea's testnet transition for node runners and developer
 image: /img/socialCards/goerli-to-sepolia-testnet-transition.jpg
 ---
 
-Linea's principal testnet is now Linea Sepolia. Linea Goerli still exists, but is being phased out 
-and you may encounter performance issues. We advise you use Linea Sepolia for any testnet purposes
-you require.
+Linea's principal testnet is now Linea Sepolia. We advise you use Linea Sepolia for any testnet 
+purposes.
 
-We expect to fully deprecate Linea Goerli by the end of May 2024.
+L1 Goerli is in a deprecated state. Finalization and bridging between Linea Goerli (L2) and Goerli 
+(L1) will therefore not be available. Linea Goerli will otherwise continue to operate as normal.
+
+We will officially decommission Linea Goerli on May 31 2024.
 
 ## Running a Sepolia node
 
@@ -70,6 +72,9 @@ Linea Sepolia has been added as a default testnet in MetaMask in the following r
 - MetaMask Extension: 11.13.1 — rolled out from March 29 2024.
 - MetaMask Mobile: 7.19.0 — rolled out from April 1 2024.
 
+Linea Goerli will be removed from MetaMask Extension v11.17.0 and MetaMask Mobile v7.23, which we 
+expect to rollout from May 27 2024.
+
 ### Safe
 
 Linea Sepolia is supported at [safe.linea.build](https://safe.linea.build/welcome). 
@@ -81,16 +86,10 @@ The following libraries support Linea Sepolia:
 - Chainlist
 - Viem
 - Ethereum-lists
-
-The following libraries do not yet support Linea Sepolia:
-
+- ApeWorx
 - Ethers.js
 - WalletConnect
-- Wagmi
 - WETH9
-- ApeWorx
-
-We'll update this list when further updates are available.
 
 ### Bridge
 
