@@ -8,7 +8,7 @@ const katex = require("rehype-katex");
 // const baseUrl = isDev ? "/" : "/";
 
 // const organizationName = "Consensys";
-// const projectName = "doc.zk-evm";
+// const projectName = "doc.linea";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -25,7 +25,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "Consensys", // Usually your GitHub org/user name.
-  projectName: "doc.zk-evm", // Usually your repo name.
+  projectName: "doc.linea", // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -43,7 +43,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/Consensys/doc.zk-evm/tree/main/",
+          editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
           // @ts-ignore
@@ -201,7 +201,7 @@ const config = {
             items: [
               {
                 label: "Contribute to our documentation",
-                href: "https://github.com/Consensys/doc.zk-evm",
+                href: "https://github.com/Consensys/doc.linea",
               },
             ],
           },
