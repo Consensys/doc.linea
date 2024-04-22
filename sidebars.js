@@ -193,9 +193,10 @@ const sidebars = {
 
           },
           items: [
-            "build-on-linea/tooling/analytics/mobula",
             "build-on-linea/tooling/analytics/arkham",
             "build-on-linea/tooling/analytics/cookie3",
+            "build-on-linea/tooling/analytics/dune",
+            "build-on-linea/tooling/analytics/mobula",
           ],
         },
         {
@@ -254,6 +255,7 @@ const sidebars = {
           items: [
             "build-on-linea/tooling/cross-chain/axelar",
             "build-on-linea/tooling/cross-chain/layerzero",
+            "build-on-linea/tooling/cross-chain/shortcuts",
           ],
         },
         {
@@ -264,12 +266,13 @@ const sidebars = {
             id: "build-on-linea/tooling/data-indexers/index",
           },
           items: [
-            "build-on-linea/tooling/data-indexers/mobula",
             "build-on-linea/tooling/data-indexers/arkham",
             "build-on-linea/tooling/data-indexers/covalent",
             "build-on-linea/tooling/data-indexers/decommas",
+            "build-on-linea/tooling/data-indexers/dune",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
+            "build-on-linea/tooling/data-indexers/mobula",
             {
               type: "category",
               label: "Goldsky",
