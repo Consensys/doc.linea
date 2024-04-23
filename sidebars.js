@@ -4,32 +4,42 @@ const sidebars = {
     {
       type: "category",
       collapsed: false,
-      label: "Getting started",
+      label: "Move funds to Linea",
       link: {
         type: 'doc',
         id: "index",
       },
       items: [
-        "use-mainnet/set-up-your-wallet",
-        "use-mainnet/fund",
-        "use-mainnet/bridges-of-linea/bridging-non-dev",
-        "use-mainnet/linea-xp",
-        "use-mainnet/import-info-contracts",
+        "use-mainnet/move-funds/set-up-your-wallet",
+        "use-mainnet/move-funds/fund",
+        "use-mainnet/move-funds/bridge/index",
         "use-mainnet/gas-on-linea",
       ],
     },
     {
       type: "category",
-      label: "Linea Voyage: The Surge",
+      label: "Linea Voyage",
       link: {
         type: "doc",
-        id: "use-mainnet/linea-surge/index",
+        id: "use-mainnet/linea-voyage/index",
       },
       items: [
-        "use-mainnet/linea-surge/linea-surge-overview",
-        "use-mainnet/linea-surge/linea-surge-model",
+        "use-mainnet/linea-voyage/lxp/index",
+        {
+          type: "category",
+          label: "The Surge",
+          link: {
+            type: "doc",
+            id: "use-mainnet/linea-voyage/linea-surge/index",
+          }
+          items: [
+            "use-mainnet/linea-voyage/linea-surge/linea-surge-model",
+            "use-mainnet/linea-voyage/linea-surge/linea-surge-overview",
+          ]
+        }
       ],
     },
+    "use-mainnet/zero-knowledge-glossary/index",
     {
       type: "link",
       label: "Network status",
@@ -47,7 +57,6 @@ const sidebars = {
     },
     "risk-disclosures/index",
     "decentralization-roadmap/index",
-    "zero-knowledge-glossary/index",
     {
       type: "category",
       label: "Contact us",
@@ -86,75 +95,76 @@ const sidebars = {
         },
         items: [
           {
+          type: "category",
+          collapsed: true,
+          label: "Getting started",
+          link: {
+            type: 'doc',
+            id: "build-on-linea/quickstart/index",
+          },
+          items: [
+            {
+              type: "category",
+              label: "Deploy a smart contract",
+              link: {
+                type: "doc",
+                id: "build-on-linea/quickstart/deploy-smart-contract/index",
+              },
+              items: [
+                "build-on-linea/quickstart/deploy-smart-contract/atlas",
+                "build-on-linea/quickstart/deploy-smart-contract/foundry",
+                "build-on-linea/quickstart/deploy-smart-contract/hardhat",
+                "build-on-linea/quickstart/deploy-smart-contract/remix",
+                "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
+                "build-on-linea/quickstart/deploy-smart-contract/cookbook",
+              ],
+            },
+            {
+              type: "category",
+              label: "Verify a smart contract",
+              link: {
+                type: "doc",
+                id: "build-on-linea/quickstart/verify-smart-contract/index",
+              },
+              items: [
+                "build-on-linea/quickstart/verify-smart-contract/atlas",
+                "build-on-linea/quickstart/verify-smart-contract/foundry",
+                "build-on-linea/quickstart/verify-smart-contract/hardhat",
+              ],
+            },
+            "build-on-linea/quickstart/ethereum-differences",
+            "build-on-linea/quickstart/info-contracts",
+            "build-on-linea/quickstart/goerli-to-sepolia"
+          ],
+        },
+      {
+        type: "category",
+        label: "Guides",
+        link: {
+          type: "doc",
+          id: "build-on-linea/guides/index"
+        },
+        items: [
+          "build-on-linea/guides/gas-fees",
+          "build-on-linea/guides/bridge/index",
+          "build-on-linea/guides/linea-api/index",
+          "build-on-linea/guides/linea-sdk/index",
+          {
             type: "category",
             label: "Run a Linea node",
             link: {
               type: 'doc',
-              id: "build-on-linea/run-a-node/index"
+              id: "build-on-linea/guides/run-a-node/index"
             },
             items: [
-              "build-on-linea/run-a-node/use-docker",
-              "build-on-linea/run-a-node/use-binary",
+              "build-on-linea/guides/run-a-node/use-docker",
+              "build-on-linea/guides/run-a-node/use-binary",
             ],
           },
-        {
-        type: "category",
-        collapsed: true,
-        label: "Quickstart",
-        link: {
-          type: 'doc',
-          id: "build-on-linea/quickstart/index",
-        },
-        items: [
-          {
-            type: "category",
-            label: "Deploy a smart contract",
-            link: {
-              type: "doc",
-              id: "build-on-linea/quickstart/deploy-smart-contract/index",
-            },
-            items: [
-              "build-on-linea/quickstart/deploy-smart-contract/atlas",
-              "build-on-linea/quickstart/deploy-smart-contract/foundry",
-              "build-on-linea/quickstart/deploy-smart-contract/hardhat",
-              "build-on-linea/quickstart/deploy-smart-contract/remix",
-              "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
-              "build-on-linea/quickstart/deploy-smart-contract/cookbook",
-            ],
-          },
-          {
-            type: "category",
-            label: "Verify a smart contract",
-            link: {
-              type: "doc",
-              id: "build-on-linea/quickstart/verify-smart-contract/index",
-            },
-            items: [
-              "build-on-linea/quickstart/verify-smart-contract/atlas",
-              "build-on-linea/quickstart/verify-smart-contract/foundry",
-              "build-on-linea/quickstart/verify-smart-contract/hardhat",
-            ],
-          },
-          "use-mainnet/fund",
-          {
-            type: "category",
-            label: "Bridge your funds",
-            link: {
-              type: 'doc',
-              id: 'use-mainnet/bridges-of-linea/index'
-            },
-            items: [
-              "use-mainnet/bridges-of-linea/how-to-bridge-erc20-tokens",
-              "use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            ],
-          },
-          "build-on-linea/quickstart/rpc",
-        ],
+          "build-on-linea/guides/linea-safe",
+          "build-on-linea/guides/linea-inscriptions",
+        ]
       },
-      "use-mainnet/info-contracts",
-      "build-on-linea/ethereum-differences",
-      "build-on-linea/gas-fees",
-      "build-on-linea/goerli-to-sepolia",
      {
       type: "category",
       label: "Tooling and infrastructure",
@@ -347,20 +357,27 @@ const sidebars = {
           },
           items: [
             "build-on-linea/tooling/social-login/arcana",
-            "build-on-linea/tooling/social-login/openfort"
+            "build-on-linea/tooling/social-login/openfort",
           ],
         },
+        "build-on-linea/tooling/node-providers",
       ],
      },
-      "build-on-linea/tooling/linea-safe",
-      "build-on-linea/tooling/linea-inscription",
-      "build-on-linea/tooling/node-providers",
-      "build-on-linea/linea-version/index",
-      "build-on-linea/hackathons",
      {
-      type: "link",
-      label: "Bug bounty program",
-      href: "https://immunefi.com/bounty/linea/",
+      type: "category",
+      label: "Community",
+      link: {
+        type: "doc",
+        id: "build-on-linea/community/hackathons",
+      },
+      items: [
+        "build-on-linea/community/hackathons",
+        {
+          type: "link",
+          label: "Bug bounty program",
+          href: "https://immunefi.com/bounty/linea/",
+         },
+      ]
      },
     ],
     },

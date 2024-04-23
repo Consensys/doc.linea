@@ -1,6 +1,5 @@
 ---
-title: Linea inscriptions
-id: linea-inscription
+title: Create an inscription
 image: /img/socialCards/linea-inscriptions.jpg
 ---
 

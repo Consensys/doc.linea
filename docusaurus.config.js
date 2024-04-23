@@ -286,11 +286,14 @@ const config = {
             ],
           },
           {
-            to: "/zero-knowledge-glossary",
-            from: "/reference/glossary",
+            to: "use-mainnet/zero-knowledge-glossary",
+            from: [
+              "/reference/glossary",
+              "/zero-knowledge-glossary"
+            ]
           },
           {
-            to: "/build-on-linea",
+            to: "/use-mainnet",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -301,27 +304,27 @@ const config = {
             ],
           },
           {
-            to: "/use-mainnet/set-up-your-wallet",
+            to: "/use-mainnet/move-funds/set-up-your-wallet",
             from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
           },
           {
-            to: "/use-mainnet/fund",
+            to: "/use-mainnet/move-funds/fund",
             from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
-            to: "/use-mainnet/info-contracts",
+            to: "/build-on-linea/quickstart/info-contracts",
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/build-on-linea/bridge-funds",
+            to: "/build-on-linea/guides/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/use-mainnet/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/use-mainnet/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
           {
@@ -329,16 +332,68 @@ const config = {
             from: "/use-mainnet/gas-import",
           },
           {
-            to: "/use-mainnet/linea-surge/linea-surge-overview",
+            to: "/use-mainnet/linea-voyage/linea-surge/linea-surge-overview",
             from: "/use-mainnet/linea-surge-overview",
           },
           {
-            to: "/use-mainnet/linea-surge/linea-surge-model",
+            to: "/use-mainnet/linea-voyage/linea-surge/linea-surge-model",
             from: "/use-mainnet/linea-surge-model",
           },
           {
             to: "/build-on-linea/gas-fees",
             from: "/reference/api/linea-estimategas",
+          },
+          {
+            to: "/use-mainnet/linea-voyage/lxp",
+            from: "/use-mainnet/linea-xp",
+          },
+          {
+            to: "/use-mainnet/move-funds/fund",
+            from: "/use-mainnet/fund",
+          },
+          {
+            to: "/use-mainnet/move-funds/set-up-your-wallet",
+            from: "/use-mainnet/set-up-your-wallet",
+          },
+          {
+            to: "/build-on-linea/quickstart/info-contracts",
+            from: "/use-mainnet/info-contracts",
+          },
+          {
+            to: "/build-on-linea/guides/linea-api",
+            from: "/build-on-linea/quickstart/rpc",
+          },
+          {
+            to: "/build-on-linea/quickstart/goerli-to-sepolia",
+            from: "/build-on-linea/goerli-to-sepolia",
+          },
+          {
+            to: "/build-on-linea/quickstart/ethereum-differences",
+            from: "/build-on-linea/ethereum-differences",
+          },
+          {
+            to: "/build-on-linea/guides/gas-fees",
+            from: "/build-on-linea/gas-fees",
+          },
+          {
+            to: "/build-on-linea/guides/run-a-node",
+            from: [
+              "/build-on-linea/run-a-node",
+              "/build-on-linea/run-a-node/use-binary",
+              "/build-on-linea/run-a-node/use-docker",
+            ],
+          },
+          {
+            to: "/build-on-linea/community/hackathons",
+            from: "/build-on-linea/hackathons",
+          },
+          {
+            to: "/build-on-linea/guides/linea-inscriptions",
+            from: "/build-on-linea/tooling/linea-inscriptions",
+          },
+          {
+            to: "/build-on-linea/guides/linea-safe",
+            from: "/build-on-linea/tooling/linea-safe",
           },
         ],
       },
