@@ -107,7 +107,7 @@ const config = {
             type: "doc",
             docId: "index",
             position: "left",
-            label: "Linea basics",
+            label: "Users",
           },
           {
             type: "doc",
@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea architecture",
+            label: "Architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -137,19 +137,14 @@ const config = {
           //   ],
           // },
           {
-            to: "https://support.linea.build/hc/",
-            position: "left",
-            label: "Support",
-          },
-          {
-            to: "/build-on-linea/run-a-node/",
+            to: "/build-on-linea/guides/run-a-node",
             position: "left",
             label: "Run a node",
           },
           {
-            to: "https://linea.build/",
-            position: "left",
-            label: "Linea home",
+            to: "/build-on-linea/linea-version",
+            position: "right",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
@@ -167,15 +162,23 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Learn",
+            title: "Links",
             items: [
               {
-                label: "Use Linea",
-                to: "/use-mainnet",
+                label: "Linea homepage",
+                href: "https://linea.build/",
               },
               {
-                label: "Build on Linea",
-                to: "/build-on-linea",
+                label: "Network status",
+                href: "https://linea.statuspage.io/",
+              },
+              {
+                label: "Mainnet block explorer",
+                href: "https://lineascan.build",
+              },
+              {
+                label: "Linea Sepolia block explorer",
+                href: "https://sepolia.lineascan.build",
               },
             ],
           },
@@ -187,7 +190,7 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get help",
+                label: "Get support",
                 to: "https://support.linea.build/",
               },
               {
@@ -395,6 +398,10 @@ const config = {
             to: "/build-on-linea/guides/linea-safe",
             from: "/build-on-linea/tooling/linea-safe",
           },
+          {
+            to: "/architecture/decentralization-roadmap",
+            from: "/use-mainnet/decentralization-roadmap",
+          }
         ],
       },
     ],

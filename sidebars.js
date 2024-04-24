@@ -40,23 +40,7 @@ const sidebars = {
       ],
     },
     "use-mainnet/zero-knowledge-glossary/index",
-    {
-      type: "link",
-      label: "Network status",
-      href: "https://linea.statuspage.io/",
-    },
-    {
-      type: "link",
-      label: "Linea Mainnet block explorer",
-      href: "https://lineascan.build",
-    },
-    {
-      type: "link",
-      label: "Linea Sepolia block explorer",
-      href: "https://sepolia.lineascan.build",
-    },
     "risk-disclosures/index",
-    "decentralization-roadmap/index",
     {
       type: "category",
       label: "Contact us",
@@ -422,6 +406,7 @@ const sidebars = {
           "architecture/trace-expansion-proving/trace-expansion",
         ],
       },
+      "architecture/decentralization-roadmap/index",
      ]
 };
 
