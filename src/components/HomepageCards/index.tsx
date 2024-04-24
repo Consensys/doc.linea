@@ -51,7 +51,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Run a node",
-    link: "/build-on-linea/guides/run-a-node/index",
+    link: "/build-on-linea/guides/run-a-node",
     description: (
       <>
         Learn how to run a Linea node with Besu or Geth, and interact with the blockchain locally
