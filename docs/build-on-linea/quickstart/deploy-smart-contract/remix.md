@@ -12,8 +12,8 @@ In this tutorial, we'll walk through creating a basic Remix project and deployin
 
 Before you begin, ensure you:
 
-1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-2. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet, or mainnet
+1. [Set up your wallet](/use-mainnet/move-funds/set-up-your-wallet)
+2. [Fund your wallet with Linea ETH](/use-mainnet/move-funds/fund) on either the testnet, or mainnet
 
 ## Explore the Remix workspace
 
@@ -50,7 +50,7 @@ on and your account information. To do this, navigate to the **Deploy & run tran
 :::caution
 
 The public endpoints are rate limited and not meant for production systems. To use Infura, you'll need to [get an API key](https://support.infura.io/hc/en-us/articles/15116941373979-Connecting-to-the-Linea-network). Then, [manually add a network to your MetaMask wallet](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC#h_01G63GGJ83DGDRCS2ZWXM37CV5) with the information found
-[here](../../../use-mainnet/info-contracts.mdx#network-information).
+[here](/build-on-linea/quickstart/info-contracts#network-information).
 
 :::
 

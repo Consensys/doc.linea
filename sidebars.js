@@ -31,12 +31,12 @@ const sidebars = {
           link: {
             type: "doc",
             id: "use-mainnet/linea-voyage/linea-surge/index",
-          }
+          },
           items: [
             "use-mainnet/linea-voyage/linea-surge/linea-surge-model",
             "use-mainnet/linea-voyage/linea-surge/linea-surge-overview",
-          ]
-        }
+          ],
+        },
       ],
     },
     "use-mainnet/zero-knowledge-glossary/index",

@@ -23,8 +23,8 @@ In this quickstart, we'll create a basic [Foundry](https://book.getfoundry.sh/) 
 
 Before you begin, ensure you:
 
-1. [Set up your wallet](../../../use-mainnet/set-up-your-wallet.mdx)
-1. [Fund your wallet with Linea ETH](../../../use-mainnet/fund.mdx) on either the testnet, or mainnet
+1. [Set up your wallet](/use-mainnet/move-funds/set-up-your-wallet)
+1. [Fund your wallet with Linea ETH](/use-mainnet/move-funds/fund) on either the testnet, or mainnet
 1. Download and install Foundry:
 
     ```bash
@@ -73,7 +73,7 @@ forge create --rpc-url YOUR_LINEA_ENDPOINT src/Counter.sol:Counter --private-key
 In the command:
 
 - Replace `YOUR_LINEA_ENDPOINT` with the URL of a [supported Infura Linea network](https://docs.infura.io/api/networks/linea/choose-a-network)
-    or [public endpoint URL](../../../use-mainnet/info-contracts.mdx#network-information).
+    or [public endpoint URL](/build-on-linea/quickstart/info-contracts#network-information).
 - Replace `YOUR_PRIVATE_KEY` with your wallet's private key.
 
 Your output should look similar to:

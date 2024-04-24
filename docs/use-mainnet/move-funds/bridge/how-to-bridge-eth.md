@@ -11,7 +11,7 @@ We recommend that only tech operators that are providing liquidity use the offic
 
 ### For everyday bridge transfers, we recommend you use [MetaMask Portfolio's Bridge feature](https://portfolio.metamask.io/bridge), which aggregates bridging options across Linea and shows you the best rates.
 
-For a closer look at the bridges that MetaMask Portfolio sources from, check out our information about [third-party bridges](./bridging-non-dev.mdx#third-party-permissionless-bridges).
+For a closer look at the bridges that MetaMask Portfolio sources from, check out our information about [third-party bridges](index#third-party-permissionless-bridges).
 
 :::
 
@@ -21,7 +21,7 @@ This is a step by step guide to bridging ETH between Ethereum Mainnet (L1) to Li
 
 **To bridge ETH over testnet, simply click the testnet button at the bottom left of the [token bridge page](https://bridge.linea.build/) and follow the same steps as below.**
 
-If you would like to bridge between other networks, check out [third-party bridges](./bridging-non-dev.mdx#third-party-permissionless-bridges).
+If you would like to bridge between other networks, check out [third-party bridges](index#third-party-permissionless-bridges).
 
 **Check out this video on how to use our bridge!**
 
