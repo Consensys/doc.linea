@@ -33,7 +33,7 @@ forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https
   <TabItem value="Testnet" label="Testnet">
 
 ```bash
-forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https://api-testnet.lineascan.build/api CONTRACT_ADDRESS path_to_contract:contract_name --watch
+forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https://api-sepolia.lineascan.build/api CONTRACT_ADDRESS path_to_contract:contract_name --watch
 ```
 
   </TabItem>
@@ -67,21 +67,20 @@ If you want to verify a contract as it is being deployed for the first time, you
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
-forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url https://api.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
+forge create --rpc-url https://linea.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url https://api.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
 ```
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
 ```bash
-forge create --rpc-url https://linea-goerli.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url
-l https://api-testnet.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
+forge create --rpc-url https://linea-sepolia.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url https://api-sepolia.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
 ```
 
   </TabItem>
 </Tabs>
 
-You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [testnet block explorer](https://sepolia.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
 ## Using `.env` and `foundry.toml` to store etherscan information
 
@@ -103,7 +102,7 @@ Finally, modify `foundry.toml` to include the Etherscan configurations:
 
 ```bash
 [etherscan]
-linea-testnet = { key = "${LINEASCAN_API_KEY}", url = "https://api-testnet.lineascan.build/api" }
+linea-testnet = { key = "${LINEASCAN_API_KEY}", url = "https://api-sepolia.lineascan.build/api" }
 linea-mainnet = { key = "${LINEASCAN_API_KEY}", url = "https://api.lineascan.build/api" }
 ```
 
