@@ -26,10 +26,10 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Bridge your funds",
-    link: "/use-mainnet/bridges-of-linea/bridging-non-dev",
+    link: "/use-mainnet/move-funds/bridge",
     description: (
       <>
-       Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges!
+       Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges
       </>
     ),
     buttonName: "Bridge",
@@ -42,7 +42,7 @@ const CardList: CardItem[] = [
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite
-        developer tools!
+        developer tools
       </>
     ),
     buttonName: "Build",
@@ -50,15 +50,14 @@ const CardList: CardItem[] = [
     icon: CardIcon2,
   },
   {
-    title: "Linea block explorer",
-    link: "https://lineascan.build/",
+    title: "Run a node",
+    link: "/build-on-linea/guides/run-a-node/index",
     description: (
       <>
-        View transactions and find deployed contracts and wallet addresses on
-        block explorers!
+        Learn how to run a Linea node with Besu or Geth, and interact with the blockchain locally
       </>
     ),
-    buttonName: "Explore",
+    buttonName: "Learn",
     buttonType: "info",
     icon: CardIcon3,
   },
@@ -67,7 +66,7 @@ const CardList: CardItem[] = [
     link: "https://linea.deform.cc/linea-builders-club",
     description: (
       <>
-        Join our builders club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+        Join our builders club for exclusive access to tech talks, Linea core team, grants, events, and more
       </>
     ),
     buttonName: "Join",
