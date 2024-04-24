@@ -285,6 +285,7 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/nftscan",
             "build-on-linea/tooling/data-indexers/reservoir",
             "build-on-linea/tooling/data-indexers/sentio",
+            "build-on-linea/tooling/data-indexers/subsquid",
             "build-on-linea/tooling/data-indexers/thegraph",
             "build-on-linea/tooling/data-indexers/subquery",
             "build-on-linea/tooling/data-indexers/noves",
