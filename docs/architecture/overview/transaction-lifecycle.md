@@ -46,7 +46,7 @@ generate ZK proofs. Let's press on.
 ## Step 3: Transaction data sent to the state manager
 
 Data about the transaction and the state of the network at its time of execution are recorded
-in **traces**, an output of part of the sequencer called the [trace generator](./sequencer/traces-generator.md).
+in **traces**, an output of part of the sequencer called the [trace generator](./stack/sequencer/traces-generator).
 
 Traces are passed to the state manager block-by-block and then used to update the network state.
 Once state is up to date, you'll see the transaction reflected and confirmed in your wallet.
@@ -58,7 +58,7 @@ before true finality is reached.
 
 ## Step 4: Conflation
 
-The transaction's block will then be subject to [conflation](./sequencer/conflation.md), which
+The transaction's block will then be subject to [conflation](./stack/sequencer/conflation), which
 combines two or more blocks' transaction data into a single data set (batch) that forms part of
 the package of data passed on to Ethereum. Combining the transaction data of multiple blocks
 means that a single proof can be used to verify a large volume of transactions, minimizing the

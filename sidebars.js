@@ -356,58 +356,78 @@ const sidebars = {
   ],
   architectureSidebar: [
       "architecture/index",
-      "architecture/network-data",
-      "architecture/transaction-lifecycle",
       {
         type: "category",
-        label: "Bridges",
+        label: "Overview",
         link: {
           type: "doc",
-          id: "architecture/bridges/index",
+          id: "architecture/overview/index",
         },
         items: [
-          "architecture/bridges/canonical-token-bridge",
+          "architecture/overview/decentralization-roadmap/index",
+          "architecture/overview/transaction-lifecycle",
+          "architecture/overview/network-data",
         ],
       },
       {
         type: "category",
-        label: "Canonical message service",
+        label: "The Linea stack",
         link: {
           type: "doc",
-          id: "architecture/canonical-msg-service/index",
+          id: "architecture/stack/index",
         },
         items: [
-          "architecture/canonical-msg-service/message-service",
+          {
+            type: "category",
+            label: "Bridge",
+            link: {
+              type: "doc",
+              id: "architecture/stack/bridges/index",
+            },
+            items: [
+              "architecture/stack/bridges/canonical-token-bridge",
+            ],
+          },
+          {
+            type: "category",
+            label: "Canonical message service",
+            link: {
+              type: "doc",
+              id: "architecture/stack/canonical-msg-service/index",
+            },
+            items: [
+              "architecture/stack/canonical-msg-service/message-service",
+            ],
+          },
+          "architecture/stack/coordinator/index",
+          {
+            type: "category",
+            label: "Sequencer",
+            link: {
+              type: "doc",
+              id: "architecture/stack/sequencer/index",
+            },
+            items: [
+              "architecture/stack/sequencer/conflation",
+              "architecture/stack/sequencer/traces-generator",
+            ],
+          },
+          "architecture/stack/evm-state-manager/index",
+          {
+            type: "category",
+            label: "Prover",
+            link: {
+              type: "doc",
+              id: "architecture/stack/trace-expansion-proving/index",
+            },
+            items: [
+              "architecture/stack/trace-expansion-proving/proving",
+              "architecture/stack/trace-expansion-proving/trace-expansion",
+            ],
+          },
         ],
       },
-      "architecture/coordinator/index",
-      "architecture/evm-state-manager/index",
-      {
-        type: "category",
-        label: "Sequencer",
-        link: {
-          type: "doc",
-          id: "architecture/sequencer/index",
-        },
-        items: [
-          "architecture/sequencer/conflation",
-          "architecture/sequencer/traces-generator",
-        ],
-      },
-      {
-        type: "category",
-        label: "Trace expansion proving",
-        link: {
-          type: "doc",
-          id: "architecture/trace-expansion-proving/index",
-        },
-        items: [
-          "architecture/trace-expansion-proving/proving",
-          "architecture/trace-expansion-proving/trace-expansion",
-        ],
-      },
-      "architecture/decentralization-roadmap/index",
-     ]
+     ],
 };
 
 module.exports = sidebars;

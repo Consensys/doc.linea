@@ -271,11 +271,7 @@ const config = {
       {
         redirects: [
           {
-            to: "/architecture/canonical-msg-service/message-service",
-            from: [
-              "/developers/bridge-architecture/message-service",
-              "/developers/use-message-bridge",
-            ],
+            to: "/architecture/stack/canonical-msg-service/message-service",
             from: [
               "/developers/bridge-architecture/message-service",
               "/developers/use-message-bridge",
@@ -399,9 +395,41 @@ const config = {
             from: "/build-on-linea/tooling/linea-safe",
           },
           {
-            to: "/architecture/decentralization-roadmap",
+            to: "/architecture/overview/decentralization-roadmap",
             from: "/use-mainnet/decentralization-roadmap",
-          }
+          },
+          {
+            to: "/architecture/overview/transaction-lifecycle",
+            from: "/architecture/transaction-lifecycle",
+          },
+          {
+            to: "/architecture/overview/network-data",
+            from: "/architecture/network-data",
+          },
+          {
+            to: "/architecture/stack/bridges",
+            from: "/architecture/bridges",
+          },
+          {
+            to: "/architecture/stack/canonical-msg-service",
+            from: "/architecture/canonical-msg-service",
+          },
+          {
+            to: "/architecture/stack/coordinator",
+            from: "/architecture/coordinator",
+          },
+          {
+            to: "/architecture/stack/evm-state-manager",
+            from: "/architecture/evm-state-manager",
+          },
+          {
+            to: "/architecture/stack/sequencer",
+            from: "/architecture/sequencer",
+          },
+          {
+            to: "/architecture/stack/trace-expansion-proving",
+            from: "/architecture/trace-expansion-proving",
+          },
         ],
       },
     ],
