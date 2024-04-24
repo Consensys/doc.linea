@@ -85,87 +85,77 @@ const sidebars = {
     },
   ],
   developersSidebar: [
-      {
-        type: "category",
-        collapsible: false,
-        label: "Build on Linea",
-        link: {
-          type: 'doc',
-          id: "build-on-linea/index",
-        },
-        items: [
-          {
+    {
+      type: "category",
+      label: "Getting started",
+      link: {
+        type: 'doc',
+        id: "build-on-linea/quickstart/index",
+      },
+      items: [
+        {
           type: "category",
-          collapsed: true,
-          label: "Getting started",
+          label: "Deploy a smart contract",
           link: {
-            type: 'doc',
-            id: "build-on-linea/quickstart/index",
+            type: "doc",
+            id: "build-on-linea/quickstart/deploy-smart-contract/index",
           },
           items: [
-            {
-              type: "category",
-              label: "Deploy a smart contract",
-              link: {
-                type: "doc",
-                id: "build-on-linea/quickstart/deploy-smart-contract/index",
-              },
-              items: [
-                "build-on-linea/quickstart/deploy-smart-contract/atlas",
-                "build-on-linea/quickstart/deploy-smart-contract/foundry",
-                "build-on-linea/quickstart/deploy-smart-contract/hardhat",
-                "build-on-linea/quickstart/deploy-smart-contract/remix",
-                "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
-                "build-on-linea/quickstart/deploy-smart-contract/cookbook",
-              ],
-            },
-            {
-              type: "category",
-              label: "Verify a smart contract",
-              link: {
-                type: "doc",
-                id: "build-on-linea/quickstart/verify-smart-contract/index",
-              },
-              items: [
-                "build-on-linea/quickstart/verify-smart-contract/atlas",
-                "build-on-linea/quickstart/verify-smart-contract/foundry",
-                "build-on-linea/quickstart/verify-smart-contract/hardhat",
-              ],
-            },
-            "build-on-linea/quickstart/ethereum-differences",
-            "build-on-linea/quickstart/info-contracts",
-            "build-on-linea/quickstart/goerli-to-sepolia"
+            "build-on-linea/quickstart/deploy-smart-contract/atlas",
+            "build-on-linea/quickstart/deploy-smart-contract/foundry",
+            "build-on-linea/quickstart/deploy-smart-contract/hardhat",
+            "build-on-linea/quickstart/deploy-smart-contract/remix",
+            "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
+            "build-on-linea/quickstart/deploy-smart-contract/cookbook",
           ],
         },
-      {
-        type: "category",
-        label: "Guides",
-        link: {
-          type: "doc",
-          id: "build-on-linea/guides/index"
-        },
-        items: [
-          "build-on-linea/guides/gas-fees",
-          "build-on-linea/guides/bridge/index",
-          "build-on-linea/guides/linea-api/index",
-          "build-on-linea/guides/linea-sdk/index",
-          {
-            type: "category",
-            label: "Run a Linea node",
-            link: {
-              type: 'doc',
-              id: "build-on-linea/guides/run-a-node/index"
-            },
-            items: [
-              "build-on-linea/guides/run-a-node/use-docker",
-              "build-on-linea/guides/run-a-node/use-binary",
-            ],
+        {
+          type: "category",
+          label: "Verify a smart contract",
+          link: {
+            type: "doc",
+            id: "build-on-linea/quickstart/verify-smart-contract/index",
           },
-          "build-on-linea/guides/linea-safe",
-          "build-on-linea/guides/linea-inscriptions",
-        ]
+          items: [
+            "build-on-linea/quickstart/verify-smart-contract/atlas",
+            "build-on-linea/quickstart/verify-smart-contract/foundry",
+            "build-on-linea/quickstart/verify-smart-contract/hardhat",
+          ],
+        },
+        "build-on-linea/quickstart/ethereum-differences",
+        "build-on-linea/quickstart/info-contracts",
+        "build-on-linea/quickstart/goerli-to-sepolia"
+      ],
+    },
+    {
+      type: "category",
+      label: "Guides",
+      link: {
+        type: "doc",
+        id: "build-on-linea/guides/index"
       },
-     {
+      items: [
+        "build-on-linea/guides/gas-fees",
+        "build-on-linea/guides/bridge/index",
+        "build-on-linea/guides/linea-api/index",
+        "build-on-linea/guides/linea-sdk/index",
+        {
+          type: "category",
+          label: "Run a Linea node",
+          link: {
+            type: 'doc',
+            id: "build-on-linea/guides/run-a-node/index"
+          },
+          items: [
+            "build-on-linea/guides/run-a-node/use-docker",
+            "build-on-linea/guides/run-a-node/use-binary",
+          ],
+        },
+        "build-on-linea/guides/linea-safe",
+        "build-on-linea/guides/linea-inscriptions",
+      ]
+    },
+    {
       type: "category",
       label: "Tooling and infrastructure",
       link: {
@@ -362,8 +352,8 @@ const sidebars = {
         },
         "build-on-linea/tooling/node-providers",
       ],
-     },
-     {
+    },
+    {
       type: "category",
       label: "Community",
       link: {
@@ -376,10 +366,8 @@ const sidebars = {
           type: "link",
           label: "Bug bounty program",
           href: "https://immunefi.com/bounty/linea/",
-         },
+          },
       ]
-     },
-    ],
     },
   ],
   architectureSidebar: [

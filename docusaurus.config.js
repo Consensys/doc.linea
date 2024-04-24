@@ -111,7 +111,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "build-on-linea/index",
+            docId: "build-on-linea/quickstart/index",
             position: "left",
             label: "Developers",
           },
