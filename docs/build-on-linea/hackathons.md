@@ -126,7 +126,7 @@ We'll be distributing 1 ETH amongst the top qualified projects. This can take th
 
 For our this inaugural Linea Dev Cook-Off, efrogs is joining us to sponsor an additional $1000 in prizes to any project that incorporates efrogs in some form. Judging will favor projects that actually incorporate the efrog smart contract, but using the image assets is sufficient to qualify as well!
 
-You can find frog ideas and connect with the community and founders in their [Discord](https://discord.com/invite/ZBMDuSea).
+You can find frog ideas and connect with the community and founders in their [Discord](https://discord.gg/ehbeaFhhZT).
 
 The efrog NFT contract address is [`0x194395587d7b169E63eaf251E86B1892fA8f1960`](https://lineascan.build/address/0x194395587d7b169E63eaf251E86B1892fA8f1960).
 
