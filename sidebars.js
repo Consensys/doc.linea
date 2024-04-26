@@ -7,7 +7,7 @@ const sidebars = {
       label: "Move funds to Linea",
       link: {
         type: 'doc',
-        id: "index",
+        id: "use-mainnet/move-funds/index",
       },
       items: [
         "use-mainnet/move-funds/set-up-your-wallet",
