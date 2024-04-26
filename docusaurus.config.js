@@ -288,8 +288,8 @@ const config = {
             to: "use-mainnet/zero-knowledge-glossary",
             from: [
               "/reference/glossary",
-              "/zero-knowledge-glossary"
-            ]
+              "/zero-knowledge-glossary",
+            ],
           },
           {
             to: "/use-mainnet",
