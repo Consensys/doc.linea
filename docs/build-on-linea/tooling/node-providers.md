@@ -16,7 +16,7 @@ image: /img/socialCards/node-providers.jpg
 
 ## Run your own node
 
-- [Set it up yourself](../run-a-node/index.mdx)
+- [Set it up yourself](../guides/run-a-node)
 - [One-click deploy with Mintair](https://mintair.xyz/)
 - [One-click deploy with EasyNode](https://app.easy-node.xyz/)
 - [One-click deploy with RapidNode](https://rapidnode.xyz/dashboard)
