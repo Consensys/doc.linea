@@ -78,21 +78,21 @@ etherscan: {
 
 ```javascript
 networks: {
-  linea_testnet: {
+  linea_sepolia: {
     ...
   }
 },
 etherscan: {
   apiKey: {
-    linea_testnet: LINEASCAN_API_KEY
+    linea_sepolia: LINEASCAN_API_KEY
   },
   customChains: [
     {
-      network: "linea_testnet",
-      chainId: 59140,
+      network: "linea_sepolia",
+      chainId: 59141,
       urls: {
-        apiURL: "https://api-testnet.lineascan.build/api",
-        browserURL: "https://goerli.lineascan.build/address"
+        apiURL: "https://api-sepolia.lineascan.build/api",
+        browserURL: "https://sepolia.lineascan.build/address"
       }
     }
   ]
@@ -124,21 +124,32 @@ npx hardhat verify --network linea_mainnet <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT
   <TabItem value="Testnet" label="Testnet">
 
 ```bash
-npx hardhat verify --network linea_testnet <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT_ARGUMENTS>
+npx hardhat verify --network linea_sepolia <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT_ARGUMENTS>
 ```
 
   </TabItem>
 </Tabs>
 
-You should see something that looks a little like this:
+You should see something that looks a little like this if verifying on Linea Sepolia:
 
 ```bash
+npx hardhat verify --network linea_sepolia 0x3Af089fee468eb7fcf750e929321b0D7f7845f5C "1893456000"
+
+[INFO] Sourcify Verification Skipped: Sourcify verification is currently disabled. To enable it, add the following entry to your Hardhat configuration:
+
+sourcify: {
+  enabled: true
+}
+
+Or set 'enabled' to false to hide this message.
+
+For more information, visit https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#verifying-on-sourcify
 Successfully submitted source code for contract
-contracts/Lock.sol:Lock at 0xC44De7f82f93799a8E405DF3221AfB115B4E7e45
+contracts/Lock.sol:Lock at 0x3Af089fee468eb7fcf750e929321b0D7f7845f5C
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract Lock on the block explorer.
-https://goerli.lineascan.build/address/address/0xC44De7f82f93799a8E405DF3221AfB115B4E7e45#code
+https://sepolia.lineascan.build/address/address/0x3Af089fee468eb7fcf750e929321b0D7f7845f5C#code
 ```
 
 :::note
@@ -148,7 +159,7 @@ If you get an error saying that the address does not have bytecode, it probably 
 
 :::
 
-You can check that it was verified correctly by navigating to the [testnet block explorer](https://goerli.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the [testnet block explorer](https://sepolia.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
 
 :::info
 
