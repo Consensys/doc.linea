@@ -13,7 +13,6 @@ const sidebars = {
         "use-mainnet/move-funds/set-up-your-wallet",
         "use-mainnet/move-funds/fund",
         "use-mainnet/move-funds/bridge/index",
-        "use-mainnet/gas-on-linea",
       ],
     },
     {
@@ -119,7 +118,18 @@ const sidebars = {
         id: "build-on-linea/guides/index"
       },
       items: [
-        "build-on-linea/guides/gas-fees",
+        {
+          type: "category",
+          label: "Gas",
+          link: {
+            type: "doc",
+            id: "build-on-linea/guides/gas/gas-fees",
+          },
+          items: [
+            "build-on-linea/guides/gas/gas-fees",
+            "build-on-linea/guides/gas/gas-on-linea",
+          ]
+        },
         "build-on-linea/guides/bridge/index",
         "build-on-linea/guides/linea-api/index",
         "build-on-linea/guides/linea-sdk/index",

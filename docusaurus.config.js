@@ -327,7 +327,7 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
           {
-            to: "/build-on-linea/gas-fees",
+            to: "/build-on-linea/guides/gas/gas-fees",
             from: "/use-mainnet/gas-import",
           },
           {
@@ -339,7 +339,7 @@ const config = {
             from: "/use-mainnet/linea-surge-model",
           },
           {
-            to: "/build-on-linea/gas-fees",
+            to: "/build-on-linea/guides/gas/gas-fees",
             from: "/reference/api/linea-estimategas",
           },
           {
@@ -371,7 +371,7 @@ const config = {
             from: "/build-on-linea/ethereum-differences",
           },
           {
-            to: "/build-on-linea/guides/gas-fees",
+            to: "/build-on-linea/guides/gas/gas-fees",
             from: "/build-on-linea/gas-fees",
           },
           {
@@ -429,6 +429,10 @@ const config = {
           {
             to: "/architecture/stack/trace-expansion-proving",
             from: "/architecture/trace-expansion-proving",
+          },
+          {
+            to: "/build-on-linea/guides/gas/gas-on-linea",
+            from: "/use-mainnet/gas-on-linea",
           },
         ],
       },
