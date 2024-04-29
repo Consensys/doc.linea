@@ -55,7 +55,7 @@ Literally, win cool prizes for just shipping.
   </div>
 </div>
 
-### Things to note
+#### Things to note
 - You can submit on behalf of a formal organization (profit-seeking company or DAO), but priority will be given to independent hackers
 - You can make multiple submissions
 - You can use old code!
@@ -68,6 +68,8 @@ Literally, win cool prizes for just shipping.
 - A translated guide on how to build on Linea
 - A published video explainer on how to build with Linea or Linea concepts
 - Improving the UI of a hackathon project you built before
+- A Dune dashboard demonstrating something cool about Linea activity
+- An [onthis.xyz](https://onthis.xyz) shortcut to improve onchain UX
 
 #### Judging criteria
 - Functionality and technicality - How complete and complex is the project?
@@ -82,7 +84,7 @@ If you're submitting a dapp or Farcaster frame...
 - Non-trivial progress made on your project during that month (as measured by your Github commit history)
 - Verified smart contract deployed on Linea Sepolia or Linea Mainnet
 - Working product demo link
-- Short video explainer (less than 5 minutes) of what your project is and what changes you made that month if it is not a new project
+- Short video explainer and demo (less than 5 minutes) of your project and, if it's not a new project, what changes you made that month
 - Posted and tagged on Twitter ([@lineabuild](http://x.com/lineabuild)) or Farcaster ([@linea](http://warpcast/linea))
 
 If you're submitting a tutorial...
@@ -101,36 +103,48 @@ Ultimately, a "high-quality" submission is quite subjective, but you can imagine
 
 #### How to submit
 
-Submitting to the hackathon takes just two steps:
+Submissions details to come!
 
-1. [Register for the current month's hackathon](https://linea.deform.cc/cook-off-april-2024)
-1. [Submit your project here](https://linea.deform.cc/cook-off-april-2024-submit).
+### May 2024 (1 ETH + $500 USD [Dune API](https://docs.dune.com/api-reference/overview/introduction) pool prize + onthis.xyz track) :frog:
 
-### April 2024 (1 ETH pool prize + $1000 USD [efrog](https://twitter.com/efrogs_on_linea) pool prize) :frog:
+This month, you can win both the 1 ETH pool prize in addition to extra prize money for using the [Dune API](https://docs.dune.com/api-reference/overview/introduction). We'll be prioritizing submissions that are building a shortcut via [onthis.xyz](https://onthis.xyz) or with the Dune API.
 
-This month, you can win both the 1 ETH pool prize in addition to extra prize money from the [efrog community](https://twitter.com/efrogs_on_linea).
+**Register and submit [here](https://linea.deform.cc/cook-off-may-2024)**
 
-**Register here: https://linea.deform.cc/cook-off-april-2024**
+**Due 11:59PM EST, May 31st, 2024**
 
-**Submit here: https://linea.deform.cc/cook-off-april-2024-submit/**
+#### 1 ETH pool prize
 
-**Due 11:59PM EST, April 30, 2024**
+We'll be distributing 1 ETH amongst the top qualified projects. This can take the form of two outstanding projects receiving 0.5 ETH each, 10 projects receiving 0.1 ETH each, or, in the case that no submissions meet our quality bar, no ETH being distributed for that month.
 
-**1 ETH pool prize**
+#### Workshops
 
-We'll be distributing 1 ETH amongst the top qualified projects. This can take the form of 2 outstanding projects receiving 0.5 ETH each, 10 projects receiving 0.1 ETH each, or, in the case that no submissions meet our quality bar, no ETH being distributed for that month.
+Check out these workshops for the May Dev Cook-Off:
 
-**$1000 USD [efrog](https://twitter.com/efrogs_on_linea) pool prize**
+- [Dune API workshop](https://www.youtube.com/live/NB8iCif5Q48?si=UZDtkLk6Ew7t4yGt)
+- [Onthis workshop](https://www.youtube.com/live/FIOq1yy85nY?si=RBKlTmhbYDIihrQh)
 
-[efrog](https://linktr.ee/efrogs) is the OG PFP collection on Linea. Launched on world frog day on March 20, 2024, the community has grown tremendously, forming [partnerships](https://x.com/LynexFi/status/1773011704332394594?s=20) amongst other dapps in the Linea ecosystem, finding new opportunities to expanding positive vibes in the Linea pond, and getting an exclusive channel right in the Linea Discord!
+#### $500 USD [Dune API](https://docs.dune.com/api-reference/overview/introduction) pool prize
 
-For our this inaugural Linea Dev Cook-Off, efrogs is joining us to sponsor an additional $1000 in prizes to any project that incorporates efrogs in some form. Judging will favor projects that actually incorporate the efrog smart contract, but using the image assets is sufficient to qualify as well!
+[Dune](https://dune.com) is crypto's data platform. Teams and individuals alike use Dune to explore, query, access, and export blockchain data. Dune's community of data engineers, devs, researchers, and analysts use the platform to gain deeper insights into blockchain activity. Dune provides organized, decoded and human-readable blockchain data, across 30+ chains and 1.5M+ datasets.
 
-You can find frog ideas and connect with the community and founders in their [Discord](https://discord.gg/ehbeaFhhZT).
+Dune is looking for the most creative use cases of the Dune API. If you don't know where to start, building a Farcaster frame with the Dune API is a great place to start!
 
-The efrog NFT contract address is [`0x194395587d7b169E63eaf251E86B1892fA8f1960`](https://lineascan.build/address/0x194395587d7b169E63eaf251E86B1892fA8f1960).
+**Resources:**
 
-You can find the efrogs marketplace [here](https://element.market/collections/ethereum-frogs).
+- How to build in Linea with Dune API ([repo](https://github.com/agaperste/dune-linea-frame) and [tutorial](https://www.youtube.com/watch?v=a6Jpgr-YIGA))
+- [Documentation](https://docs.dune.com/home): The official documentation provides detailed guides and tutorials on using Dune Analytics.
+- [API Docs](https://docs.dune.com/home): The API documentation provides detailed information on how to access blockchain data programmatically using Dune's API.
+- [YouTube](https://www.youtube.com/@dunecom): The Dune YouTube channel features video tutorials and demos of the platform.
+- [Blog](https://dune.com/blog): The Dune blog features articles, case studies, and updates about the platform.
+- [Twitter](https://twitter.com/duneanalytics): Follow Dune on Twitter for the latest news and announcements.
+- [Dune API workshop](https://www.youtube.com/live/NB8iCif5Q48?si=UZDtkLk6Ew7t4yGt)
+
+#### onthis.xyz shortcut track
+
+This month we want to see you guys build with [onthis.xyz](https://create.onthis.xyz/)! This is a no-code solution for any user or developer to build shortcuts! You can read more in our docs [here](https://docs.linea.build/build-on-linea/tooling/cross-chain/shortcuts).
+
+Check out the [Onthis workshop](https://www.youtube.com/live/FIOq1yy85nY?si=RBKlTmhbYDIihrQh)
 
 ## IRL hackathons
 
