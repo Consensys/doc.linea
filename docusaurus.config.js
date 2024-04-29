@@ -105,7 +105,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "index",
+            docId: "use-mainnet/move-funds/index",
             position: "left",
             label: "Users",
           },
