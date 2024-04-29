@@ -47,7 +47,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Welcome`}
-      description="An open-source, client-agnostic, Ethereum transaction signer that separates private key management from transaction validation by signing transactions using a private key that can be secured in a variety of cloud providers, or encrypted on a local disk.">
+      description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
       <HomepageHeader />
       <main style={{ backgroundColor: "#121212" }}>
         <HomepageCards />
