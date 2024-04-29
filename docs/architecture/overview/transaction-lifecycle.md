@@ -14,7 +14,7 @@ Ethereum, where they become pending transactions.
 
 ## Step 2: Block building
 
-The Linea [sequencer](./sequencer) is responsible for ordering, building, and executing blocks. 
+The Linea [sequencer](architecture/stack/sequencer) is responsible for ordering, building, and executing blocks. 
 For each transaction added to the mempool, the sequencer checks its validity, rejecting 
 transactions as necessary. Transaction validity conditions are specific to Linea, and differ 
 slightly from those on other networks, including Ethereum.
@@ -46,7 +46,7 @@ generate ZK proofs. Let's press on.
 ## Step 3: Transaction data sent to the state manager
 
 Data about the transaction and the state of the network at its time of execution are recorded
-in **traces**, an output of part of the sequencer called the [trace generator](./stack/sequencer/traces-generator).
+in **traces**, an output of part of the sequencer called the [trace generator](architecture/stack/sequencer/traces-generator).
 
 Traces are passed to the state manager block-by-block and then used to update the network state.
 Once state is up to date, you'll see the transaction reflected and confirmed in your wallet.
@@ -58,7 +58,7 @@ before true finality is reached.
 
 ## Step 4: Conflation
 
-The transaction's block will then be subject to [conflation](./stack/sequencer/conflation), which
+The transaction's block will then be subject to [conflation](architecture/stack/sequencer/conflation), which
 combines two or more blocks' transaction data into a single data set (batch) that forms part of
 the package of data passed on to Ethereum. Combining the transaction data of multiple blocks
 means that a single proof can be used to verify a large volume of transactions, minimizing the
@@ -76,7 +76,7 @@ With the block that contains the transaction's trace data conflated into a batch
 more others, the only remaining task on the checklist to achieve **_hard_ finality** is to use
 the transaction's data—as contained in its trace—to generate a proof.
 
-When prompted by the [Coordinator](./coordinator), Linea's [prover](./trace-expansion-proving)
+When prompted by the [Coordinator](architecture/stack/coordinator), Linea's [prover](architecture/stack/trace-expansion-proving)
 will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs
 a two-stage method for developing the proofs that eventually get passed to L1, first developing
 an **inner proof** and then an **outer proof**.
