@@ -1,6 +1,6 @@
 ---
 title: Create an inscription
-image: /img/socialCards/linea-inscriptions.jpg
+image: /img/socialCards/create-an-inscription.jpg
 ---
 
 ## What are inscriptions?
