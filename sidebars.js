@@ -1,13 +1,14 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
+    "use-mainnet/index",
     {
       type: "category",
       collapsed: true,
       label: "Move funds to Linea",
       link: {
         type: 'doc',
-        id: "use-mainnet/index",
+        id: "use-mainnet/move-funds/index",
       },
       items: [
         "use-mainnet/move-funds/set-up-your-wallet",
