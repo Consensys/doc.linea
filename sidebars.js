@@ -3,11 +3,11 @@ const sidebars = {
   docSidebar: [
     {
       type: "category",
-      collapsed: false,
+      collapsed: true,
       label: "Move funds to Linea",
       link: {
         type: 'doc',
-        id: "use-mainnet/move-funds/index",
+        id: "use-mainnet/index",
       },
       items: [
         "use-mainnet/move-funds/set-up-your-wallet",
