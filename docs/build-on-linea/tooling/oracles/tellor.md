@@ -39,9 +39,9 @@ Tellor's network of data reporters already actively supports a large variety of 
 **Linea Sepolia Testnet**
 
 * Token: [0x34Fae97547E990ef0E05e05286c51E4645bf1A85](https://sepolia.lineascan.build/address/0x34Fae97547E990ef0E05e05286c51E4645bf1A85)
-* Oracle: [0xC866DB9021fe81856fF6c5B3E3514BF9D1593D81](https://sepolia.lineascan.build/address/0xc866db9021fe81856ff6c5b3e3514bf9d1593d81#code)
-* Governance: [0x16d623f2f3AB1d58426f0402c313f1d3fdA14249](https://sepolia.lineascan.build/address/0x16d623f2f3AB1d58426f0402c313f1d3fdA14249)
-* Autopay: [0x6CCB007bCdbCa8234e0D1A39a84453bFF79f95E2](https://sepolia.lineascan.build/address/0x6CCB007bCdbCa8234e0D1A39a84453bFF79f95E2)
+* Oracle: [0xC7199e0686DF9844B511fAf2796C518F6D7292EB](https://sepolia.lineascan.build/address/0xC7199e0686DF9844B511fAf2796C518F6D7292EB)]
+* Governance: [0xB3bB03eA894C609C8560Af3d8726556f52140a39](https://sepolia.lineascan.build/address/0xB3bB03eA894C609C8560Af3d8726556f52140a39)
+* Autopay: [0x02FB285409Cec68EE12183cc3035a090A456f66C](https://sepolia.lineascan.build/address/0x02FB285409Cec68EE12183cc3035a090A456f66C)
 
 **Linea Mainnet**
 
