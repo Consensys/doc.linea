@@ -544,6 +544,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   border: 1px solid #61dfff;
 }
 
+.navbar__item.navbar__link--active::before {
+  background-color: #61dfff; 
+  border: 1px solid #61dfff;
+}
+
 @media (max-width: 1500px) {
   .navbar__item {
     font-size: 16px;
