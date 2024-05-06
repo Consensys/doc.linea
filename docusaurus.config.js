@@ -105,7 +105,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "use-mainnet/index",
+            docId: "users/index",
             position: "left",
             label: "Users",
           },
@@ -285,11 +285,11 @@ const config = {
             ],
           },
           {
-            to: "use-mainnet/zero-knowledge-glossary",
+            to: "/users/zero-knowledge-glossary",
             from: ["/reference/glossary", "/zero-knowledge-glossary"],
           },
           {
-            to: "/use-mainnet",
+            to: "/users",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -300,11 +300,11 @@ const config = {
             ],
           },
           {
-            to: "/use-mainnet/move-funds/set-up-your-wallet",
+            to: "/users/move-funds/set-up-your-wallet",
             from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
           },
           {
-            to: "/use-mainnet/move-funds/fund",
+            to: "/users/move-funds/fund",
             from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
@@ -316,11 +316,11 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/use-mainnet/move-funds/bridge",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            to: "/use-mainnet/move-funds/bridge",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
           {
@@ -328,11 +328,11 @@ const config = {
             from: "/use-mainnet/gas-import",
           },
           {
-            to: "/use-mainnet/linea-voyage/linea-surge/linea-surge-overview",
+            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
             from: "/use-mainnet/linea-surge-overview",
           },
           {
-            to: "/use-mainnet/linea-voyage/linea-surge/linea-surge-model",
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
             from: "/use-mainnet/linea-surge-model",
           },
           {
@@ -340,15 +340,15 @@ const config = {
             from: "/reference/api/linea-estimategas",
           },
           {
-            to: "/use-mainnet/linea-voyage/lxp",
+            to: "/users/linea-voyage/lxp",
             from: "/use-mainnet/linea-xp",
           },
           {
-            to: "/use-mainnet/move-funds/fund",
+            to: "/users/move-funds/fund",
             from: "/use-mainnet/fund",
           },
           {
-            to: "/use-mainnet/move-funds/set-up-your-wallet",
+            to: "/users/move-funds/set-up-your-wallet",
             from: "/use-mainnet/set-up-your-wallet",
           },
           {

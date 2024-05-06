@@ -1,19 +1,19 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
-    "use-mainnet/index",
+    "users/index",
     {
       type: "category",
       collapsed: true,
       label: "Move funds to Linea",
       link: {
         type: 'doc',
-        id: "use-mainnet/move-funds/index",
+        id: "users/move-funds/index",
       },
       items: [
-        "use-mainnet/move-funds/set-up-your-wallet",
-        "use-mainnet/move-funds/fund",
-        "use-mainnet/move-funds/bridge/index",
+        "users/move-funds/set-up-your-wallet",
+        "users/move-funds/fund",
+        "users/move-funds/bridge/index",
       ],
     },
     {
@@ -21,25 +21,25 @@ const sidebars = {
       label: "Linea Voyage",
       link: {
         type: "doc",
-        id: "use-mainnet/linea-voyage/index",
+        id: "users/linea-voyage/index",
       },
       items: [
-        "use-mainnet/linea-voyage/lxp/index",
+        "users/linea-voyage/lxp/index",
         {
           type: "category",
           label: "The Surge",
           link: {
             type: "doc",
-            id: "use-mainnet/linea-voyage/linea-surge/index",
+            id: "users/linea-voyage/linea-surge/index",
           },
           items: [
-            "use-mainnet/linea-voyage/linea-surge/linea-surge-model",
-            "use-mainnet/linea-voyage/linea-surge/linea-surge-overview",
+            "users/linea-voyage/linea-surge/linea-surge-model",
+            "users/linea-voyage/linea-surge/linea-surge-overview",
           ],
         },
       ],
     },
-    "use-mainnet/zero-knowledge-glossary/index",
+    "users/zero-knowledge-glossary/index",
     "risk-disclosures/index",
     {
       type: "category",
