@@ -325,6 +325,17 @@ const sidebars = {
             "build-on-linea/tooling/oracles/umbrella",
           ],
         },
+          {
+          type: "category",
+          label: "Privacy",
+          link: {
+            type: "doc",
+            id: "build-on-linea/tooling/privacy/index",
+          },
+          items: [
+            "build-on-linea/tooling/privacy/secret",
+          ],
+        },
         {
           type: "category",
           label: "Security",
