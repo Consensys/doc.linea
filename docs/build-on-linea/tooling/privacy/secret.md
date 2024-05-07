@@ -20,4 +20,4 @@ To start, check out Secret Network’s [Confidential Computing Layer](https://sc
 
 ## Get Support
 
-To get CCL development help, you can join the Secret Network [Discord](https://scrt.network/discord) or [Telegram](https://scrt.network/SCRTCommunity). If you want to get in touch with the Secret Network devrel team directly, you can use [this form](https://forms.monday.com/forms/43125a4be6281ed487b0ef2a7c76a251).
+To get CCL development help, you can join the Secret Network [Discord](https://scrt.network/discord) or [Telegram](https://scrt.network/SCRTCommunity). If you want to get in touch with the Secret Network developer relations team directly, you can use [this form](https://forms.monday.com/forms/43125a4be6281ed487b0ef2a7c76a251).
