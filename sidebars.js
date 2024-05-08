@@ -269,6 +269,7 @@ const sidebars = {
             "build-on-linea/tooling/data-indexers/arkham",
             "build-on-linea/tooling/data-indexers/covalent",
             "build-on-linea/tooling/data-indexers/decommas",
+            "build-on-linea/tooling/data-indexers/dipdup",
             "build-on-linea/tooling/data-indexers/dune",
             "build-on-linea/tooling/data-indexers/envio",
             "build-on-linea/tooling/data-indexers/flair",
