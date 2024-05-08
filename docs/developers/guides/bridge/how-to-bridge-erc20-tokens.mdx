@@ -1,0 +1,96 @@
+---
+title: Bridge ERC-20 tokens between Ethereum and Linea
+sidebar_position: 2
+description: Transfer ERC-20 tokens using the native bridge.
+image: /img/socialCards/bridge-erc-20-tokens-between-ethereum-and-linea.jpg
+---
+
+:::note
+
+We recommend that only tech operators that are providing liquidity use Linea's native bridge to transfer
+ERC-20 tokens.
+
+For everyday bridge transfers, we recommend you use the
+[MetaMask Portfolio bridge](https://portfolio.metamask.io/bridge), which aggregates bridging options
+across Linea and shows you the best rates. Alternatively, use one of the
+[third-party bridges](https://bridge.linea.build/) available to users.
+:::
+
+ERC-20 tokens can only be bridged using manual claiming, which
+requires you to cover the ETH fee on the destination layer. Ensure your wallet is properly funded
+before beginning this process.
+
+:::note
+If you're bridging a token to Linea that hasn't been deployed before and you see a difference in the
+transferred token amount, this could be a
+["token bridge decimal mismatch"](#token-bridge-decimal-mismatch), which affects how
+the value is displayed. The chance of encountering this is quite low, but still good to know about.
+:::
+
+The guide on [how to bridge ETH](./how-to-bridge-eth.md) shows how to use our bridge
+and appropriately fund your wallet.
+
+1. Go to the Linea [token bridge](https://bridge.linea.build/).
+
+2. Connect your wallet in the top-right corner of the page.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/article_images/Use_Linea/Bridge_your_tokens/How_to_bridge_ERC20_tokens_between_Ethereum_and_Linea/Linea_Bridge_connect_wallet_button.png"
+      alt="Linea bridge connect wallet button"
+    />
+  </div>
+</div>
+
+3. On the [token bridge](https://bridge.linea.build/), go to the token selection menu by clicking on the current token symbol (ETH in this case).
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/article_images/Use_Linea/Bridge_your_tokens/How_to_bridge_ERC20_tokens_between_Ethereum_and_Linea/Linea_Bridge_select_token.png"
+      alt="Linea bridge select token"
+    />
+  </div>
+</div>
+
+4. Select one of the available tokens in the list. If the token is not in the list, paste the address of the token you want to add into the search bar.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/article_images/Use_Linea/Bridge_your_tokens/How_to_bridge_ERC20_tokens_between_Ethereum_and_Linea/Linea_Bridge_select_token_list.png"
+      alt="Linea bridge select token list"
+    />
+  </div>
+</div>
+
+5. Click on the token to select it.
+
+6. You now can bridge this token, and it will be saved in your token list for future bridging.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/article_images/Use_Linea/Bridge_your_tokens/How_to_bridge_ERC20_tokens_between_Ethereum_and_Linea/Linea_Bridge_selected_token.png"
+      alt="Linea bridge selected token"
+    />
+  </div>
+</div>
+
+## Token bridge decimal mismatch
+
+When a user bridges an ERC-20 token from one chain to the other (e.g. Mainnet to Linea) and the token
+has not been deployed on the destination chain, the Token Bridge Smart Contract will attempt to
+determine the “decimals” of the ERC-20 token. If the "decimals" cannot be determined by reading the
+origin ERC-20 token contract (e.g. a token contract does not adhere to the
+[ERC-20 standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)), it will default
+to 18 decimals.
+
+It's important to note that encountering this situation is uncommon, as most tokens with specified
+decimals usually adhere to the ERC-20 standards.
+
+Here's a simple example to help you understand what this means: if a token has 16 decimals on L1 but
+doesn't specify the decimals in token contract, then it defaults to 18 decimals on Linea due to
+missing information. Bridging 1 token from L1 will show up as 0.01 on L2. When you bridge back the
+0.01 to L1, it'll become 1 token again.

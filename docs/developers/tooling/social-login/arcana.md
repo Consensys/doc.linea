@@ -20,7 +20,7 @@ Linea chain is available out of the box as part of the pre-configured blockchain
 <div class="center-container">
   <div class="img-medium">
       <img 
-            src="/img/docs/build-on-linea/tooling/social-login/arcana/arcana-wallet-linea.gif"
+            src="/img/docs/developers/tooling/social-login/arcana/arcana-wallet-linea.gif"
             alt="Arcana wallet Linea default" width="65%"
       />
   </div>

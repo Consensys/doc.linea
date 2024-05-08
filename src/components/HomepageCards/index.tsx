@@ -26,7 +26,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Bridge your funds",
-    link: "/use-mainnet/move-funds/bridge",
+    link: "/users/move-funds/bridge",
     description: (
       <>
        Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges
@@ -38,7 +38,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Developer quickstart",
-    link: "/build-on-linea/quickstart",
+    link: "/developers/quickstart",
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite
@@ -51,7 +51,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Run a node",
-    link: "/build-on-linea/guides/run-a-node",
+    link: "/developers/guides/run-a-node",
     description: (
       <>
         Learn how to run a Linea node with Besu or Geth, and interact with the blockchain locally

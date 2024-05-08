@@ -32,7 +32,7 @@ function HomepageHeader() {
               "button button--secondary button--lg",
               styles.bannerButton,
             )}
-            to="build-on-linea/quickstart">
+            to="developers/quickstart">
             Start building
             <StopwatchIcon className={styles.icon} />
           </Link>

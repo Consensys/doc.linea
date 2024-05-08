@@ -10,8 +10,8 @@ Atlas is a no-setup tool for writing, testing, and deploying smart contracts.
 
 Before you begin, ensure you:
 
-1. [Set up your wallet](/use-mainnet/move-funds/set-up-your-wallet).
-1. [Fund your wallet with Linea ETH](/use-mainnet/move-funds/fund) on either the testnet or mainnet.
+1. [Set up your wallet](/users/move-funds/set-up-your-wallet).
+1. [Fund your wallet with Linea ETH](/users/move-funds/fund) on either the testnet or mainnet.
 
 ## Deploy a contract
 

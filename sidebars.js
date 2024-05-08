@@ -13,7 +13,7 @@ const sidebars = {
       items: [
         "users/move-funds/set-up-your-wallet",
         "users/move-funds/fund",
-        "users/move-funds/bridge/index",
+        "users/move-funds/bridge",
       ],
     },
     {
@@ -74,7 +74,7 @@ const sidebars = {
       label: "Getting started",
       link: {
         type: 'doc',
-        id: "build-on-linea/quickstart/index",
+        id: "developers/quickstart/index",
       },
       items: [
         {
@@ -82,15 +82,15 @@ const sidebars = {
           label: "Deploy a smart contract",
           link: {
             type: "doc",
-            id: "build-on-linea/quickstart/deploy-smart-contract/index",
+            id: "developers/quickstart/deploy-smart-contract/index",
           },
           items: [
-            "build-on-linea/quickstart/deploy-smart-contract/atlas",
-            "build-on-linea/quickstart/deploy-smart-contract/foundry",
-            "build-on-linea/quickstart/deploy-smart-contract/hardhat",
-            "build-on-linea/quickstart/deploy-smart-contract/remix",
-            "build-on-linea/quickstart/deploy-smart-contract/thirdweb",
-            "build-on-linea/quickstart/deploy-smart-contract/cookbook",
+            "developers/quickstart/deploy-smart-contract/atlas",
+            "developers/quickstart/deploy-smart-contract/foundry",
+            "developers/quickstart/deploy-smart-contract/hardhat",
+            "developers/quickstart/deploy-smart-contract/remix",
+            "developers/quickstart/deploy-smart-contract/thirdweb",
+            "developers/quickstart/deploy-smart-contract/cookbook",
           ],
         },
         {
@@ -98,17 +98,17 @@ const sidebars = {
           label: "Verify a smart contract",
           link: {
             type: "doc",
-            id: "build-on-linea/quickstart/verify-smart-contract/index",
+            id: "developers/quickstart/verify-smart-contract/index",
           },
           items: [
-            "build-on-linea/quickstart/verify-smart-contract/atlas",
-            "build-on-linea/quickstart/verify-smart-contract/foundry",
-            "build-on-linea/quickstart/verify-smart-contract/hardhat",
+            "developers/quickstart/verify-smart-contract/atlas",
+            "developers/quickstart/verify-smart-contract/foundry",
+            "developers/quickstart/verify-smart-contract/hardhat",
           ],
         },
-        "build-on-linea/quickstart/ethereum-differences",
-        "build-on-linea/quickstart/info-contracts",
-        "build-on-linea/quickstart/goerli-to-sepolia"
+        "developers/quickstart/ethereum-differences",
+        "developers/quickstart/info-contracts",
+        "developers/quickstart/goerli-to-sepolia"
       ],
     },
     {
@@ -116,7 +116,7 @@ const sidebars = {
       label: "Guides",
       link: {
         type: "doc",
-        id: "build-on-linea/guides/index"
+        id: "developers/guides/index"
       },
       items: [
         {
@@ -124,30 +124,41 @@ const sidebars = {
           label: "Gas",
           link: {
             type: "doc",
-            id: "build-on-linea/guides/gas/gas-fees",
+            id: "developers/guides/gas/gas-fees",
           },
           items: [
-            "build-on-linea/guides/gas/gas-fees",
-            "build-on-linea/guides/gas/gas-on-linea",
+            "developers/guides/gas/gas-fees",
+            "developers/guides/gas/gas-on-linea",
           ]
         },
-        "build-on-linea/guides/bridge/index",
-        "build-on-linea/guides/linea-api/index",
-        "build-on-linea/guides/linea-sdk/index",
+        {
+          type: "category",
+          label: "Bridge your tokens",
+          link: {
+            type: "doc",
+            id: "developers/guides/bridge/index",
+          },
+          items: [
+            "developers/guides/bridge/how-to-bridge-eth",
+            "developers/guides/bridge/how-to-bridge-erc20-tokens",
+          ]
+        },   
+        "developers/guides/linea-api/index",
+        "developers/guides/linea-sdk/index",
         {
           type: "category",
           label: "Run a Linea node",
           link: {
             type: 'doc',
-            id: "build-on-linea/guides/run-a-node/index"
+            id: "developers/guides/run-a-node/index"
           },
           items: [
-            "build-on-linea/guides/run-a-node/use-docker",
-            "build-on-linea/guides/run-a-node/use-binary",
+            "developers/guides/run-a-node/use-docker",
+            "developers/guides/run-a-node/use-binary",
           ],
         },
-        "build-on-linea/guides/linea-safe",
-        "build-on-linea/guides/linea-inscriptions",
+        "developers/guides/linea-safe",
+        "developers/guides/linea-inscriptions",
       ]
     },
     {
@@ -155,7 +166,7 @@ const sidebars = {
       label: "Tooling and infrastructure",
       link: {
         type: "doc",
-        id: "build-on-linea/tooling/index",
+        id: "developers/tooling/index",
       },
       items: [
         {
@@ -163,20 +174,20 @@ const sidebars = {
           label: "Account abstraction",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/account-abstraction/account-abstraction"
+            id: "developers/tooling/account-abstraction/account-abstraction"
 
           },
           items: [
-            "build-on-linea/tooling/account-abstraction/arcana",
-            "build-on-linea/tooling/account-abstraction/pimlico",
-            "build-on-linea/tooling/account-abstraction/biconomy",
-            "build-on-linea/tooling/account-abstraction/etherspot",
-            "build-on-linea/tooling/account-abstraction/smartwallets",
-            "build-on-linea/tooling/account-abstraction/station",
-            "build-on-linea/tooling/account-abstraction/particle-network",
-            "build-on-linea/tooling/account-abstraction/noves",
-            "build-on-linea/tooling/account-abstraction/oklink",
-            "build-on-linea/tooling/account-abstraction/openfort"
+            "developers/tooling/account-abstraction/arcana",
+            "developers/tooling/account-abstraction/pimlico",
+            "developers/tooling/account-abstraction/biconomy",
+            "developers/tooling/account-abstraction/etherspot",
+            "developers/tooling/account-abstraction/smartwallets",
+            "developers/tooling/account-abstraction/station",
+            "developers/tooling/account-abstraction/particle-network",
+            "developers/tooling/account-abstraction/noves",
+            "developers/tooling/account-abstraction/oklink",
+            "developers/tooling/account-abstraction/openfort"
           ],
         },
         {
@@ -184,14 +195,14 @@ const sidebars = {
           label: "Analytics",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/analytics/index"
+            id: "developers/tooling/analytics/index"
 
           },
           items: [
-            "build-on-linea/tooling/analytics/arkham",
-            "build-on-linea/tooling/analytics/cookie3",
-            "build-on-linea/tooling/analytics/dune",
-            "build-on-linea/tooling/analytics/mobula",
+            "developers/tooling/analytics/arkham",
+            "developers/tooling/analytics/cookie3",
+            "developers/tooling/analytics/dune",
+            "developers/tooling/analytics/mobula",
           ],
         },
         {
@@ -199,11 +210,11 @@ const sidebars = {
           label: "Attestations",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/attestations/index",
+            id: "developers/tooling/attestations/index",
           },
           items: [
-            "build-on-linea/tooling/attestations/verax",
-            "build-on-linea/tooling/attestations/pado",
+            "developers/tooling/attestations/verax",
+            "developers/tooling/attestations/pado",
           ],
         },
         {
@@ -211,10 +222,10 @@ const sidebars = {
           label: "Automation",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/automation/index",
+            id: "developers/tooling/automation/index",
           },
           items: [
-            "build-on-linea/tooling/automation/hal-stream",
+            "developers/tooling/automation/hal-stream",
           ],
         },
         {
@@ -222,10 +233,10 @@ const sidebars = {
           label: "Cloud infrastructure",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/cloud-infra/index",
+            id: "developers/tooling/cloud-infra/index",
           },
           items: [
-            "build-on-linea/tooling/cloud-infra/spheron",
+            "developers/tooling/cloud-infra/spheron",
           ],
         },
         {
@@ -233,11 +244,11 @@ const sidebars = {
           label: "Contracts templates",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/contracts-templates/index",
+            id: "developers/tooling/contracts-templates/index",
           },
           items: [
-            "build-on-linea/tooling/contracts-templates/thirdweb",
-            "build-on-linea/tooling/contracts-templates/cookbook",
+            "developers/tooling/contracts-templates/thirdweb",
+            "developers/tooling/contracts-templates/cookbook",
           ],
         },
         {
@@ -245,12 +256,12 @@ const sidebars = {
           label: "Cross-chain",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/cross-chain/index",
+            id: "developers/tooling/cross-chain/index",
           },
           items: [
-            "build-on-linea/tooling/cross-chain/axelar",
-            "build-on-linea/tooling/cross-chain/layerzero",
-            "build-on-linea/tooling/cross-chain/shortcuts",
+            "developers/tooling/cross-chain/axelar",
+            "developers/tooling/cross-chain/layerzero",
+            "developers/tooling/cross-chain/shortcuts",
           ],
         },
         {
@@ -258,33 +269,33 @@ const sidebars = {
           label: "Data indexers",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/data-indexers/index",
+            id: "developers/tooling/data-indexers/index",
           },
           items: [
-            "build-on-linea/tooling/data-indexers/arkham",
-            "build-on-linea/tooling/data-indexers/covalent",
-            "build-on-linea/tooling/data-indexers/decommas",
-            "build-on-linea/tooling/data-indexers/dune",
-            "build-on-linea/tooling/data-indexers/envio",
-            "build-on-linea/tooling/data-indexers/flair",
-            "build-on-linea/tooling/data-indexers/mobula",
+            "developers/tooling/data-indexers/arkham",
+            "developers/tooling/data-indexers/covalent",
+            "developers/tooling/data-indexers/decommas",
+            "developers/tooling/data-indexers/dune",
+            "developers/tooling/data-indexers/envio",
+            "developers/tooling/data-indexers/flair",
+            "developers/tooling/data-indexers/mobula",
             {
               type: "category",
               label: "Goldsky",
               items: [
-                "build-on-linea/tooling/data-indexers/goldsky/overview",
-                "build-on-linea/tooling/data-indexers/goldsky/goldsky-index",
-                "build-on-linea/tooling/data-indexers/goldsky/goldsky-mirror",
+                "developers/tooling/data-indexers/goldsky/overview",
+                "developers/tooling/data-indexers/goldsky/goldsky-index",
+                "developers/tooling/data-indexers/goldsky/goldsky-mirror",
               ],
             },
-            "build-on-linea/tooling/data-indexers/nftscan",
-            "build-on-linea/tooling/data-indexers/reservoir",
-            "build-on-linea/tooling/data-indexers/sentio",
-            "build-on-linea/tooling/data-indexers/subsquid",
-            "build-on-linea/tooling/data-indexers/thegraph",
-            "build-on-linea/tooling/data-indexers/subquery",
-            "build-on-linea/tooling/data-indexers/noves",
-            "build-on-linea/tooling/data-indexers/scopescan",
+            "developers/tooling/data-indexers/nftscan",
+            "developers/tooling/data-indexers/reservoir",
+            "developers/tooling/data-indexers/sentio",
+            "developers/tooling/data-indexers/subsquid",
+            "developers/tooling/data-indexers/thegraph",
+            "developers/tooling/data-indexers/subquery",
+            "developers/tooling/data-indexers/noves",
+            "developers/tooling/data-indexers/scopescan",
           ],
         },
         {
@@ -292,15 +303,15 @@ const sidebars = {
           label: "Libraries",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/libraries/index",
+            id: "developers/tooling/libraries/index",
           },
           items: [
-            "build-on-linea/tooling/libraries/ape",
-            "build-on-linea/tooling/libraries/ethereum-list",
-            "build-on-linea/tooling/libraries/ethers-js",
-            "build-on-linea/tooling/libraries/multicall",
-            "build-on-linea/tooling/libraries/wagmi",
-            "build-on-linea/tooling/libraries/wallet-connect",
+            "developers/tooling/libraries/ape",
+            "developers/tooling/libraries/ethereum-list",
+            "developers/tooling/libraries/ethers-js",
+            "developers/tooling/libraries/multicall",
+            "developers/tooling/libraries/wagmi",
+            "developers/tooling/libraries/wallet-connect",
           ],
         },
         {
@@ -308,16 +319,16 @@ const sidebars = {
           label: "Oracles",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/oracles/index",
+            id: "developers/tooling/oracles/index",
           },
           items: [
-            "build-on-linea/tooling/oracles/api3",
-            "build-on-linea/tooling/oracles/chainlink",
-            "build-on-linea/tooling/oracles/dia",
-            "build-on-linea/tooling/oracles/pyth",
-            "build-on-linea/tooling/oracles/redstone",
-            "build-on-linea/tooling/oracles/supra",
-            "build-on-linea/tooling/oracles/umbrella",
+            "developers/tooling/oracles/api3",
+            "developers/tooling/oracles/chainlink",
+            "developers/tooling/oracles/dia",
+            "developers/tooling/oracles/pyth",
+            "developers/tooling/oracles/redstone",
+            "developers/tooling/oracles/supra",
+            "developers/tooling/oracles/umbrella",
           ],
         },
         {
@@ -325,13 +336,13 @@ const sidebars = {
           label: "Security",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/security/index",
+            id: "developers/tooling/security/index",
           },
           items: [
-            "build-on-linea/tooling/security/goplus-security-api",
-            "build-on-linea/tooling/security/scamfari",
-            "build-on-linea/tooling/security/spherex",
-            "build-on-linea/tooling/security/hexagate",
+            "developers/tooling/security/goplus-security-api",
+            "developers/tooling/security/scamfari",
+            "developers/tooling/security/spherex",
+            "developers/tooling/security/hexagate",
           ],
         },
         {
@@ -339,14 +350,14 @@ const sidebars = {
           label: "Social login",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/social-login/index",
+            id: "developers/tooling/social-login/index",
           },
           items: [
-            "build-on-linea/tooling/social-login/arcana",
-            "build-on-linea/tooling/social-login/openfort",
+            "developers/tooling/social-login/arcana",
+            "developers/tooling/social-login/openfort",
           ],
         },
-        "build-on-linea/tooling/node-providers",
+        "developers/tooling/node-providers",
       ],
     },
     {
@@ -354,10 +365,10 @@ const sidebars = {
       label: "Community",
       link: {
         type: "doc",
-        id: "build-on-linea/community/hackathons",
+        id: "developers/community/hackathons",
       },
       items: [
-        "build-on-linea/community/hackathons",
+        "developers/community/hackathons",
         {
           type: "link",
           label: "Bug bounty program",

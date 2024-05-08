@@ -75,7 +75,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/build-on-linea/goerli-to-sepolia">View the transition page</a> for more information.',
+          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/goerli-to-sepolia">View the transition page</a> for more information.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -111,7 +111,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "build-on-linea/quickstart/index",
+            docId: "developers/quickstart/index",
             position: "left",
             label: "Developers",
           },
@@ -137,12 +137,12 @@ const config = {
           //   ],
           // },
           {
-            to: "/build-on-linea/guides/run-a-node",
+            to: "/developers/guides/run-a-node",
             position: "left",
             label: "Run a node",
           },
           {
-            to: "/build-on-linea/linea-version",
+            to: "/developers/linea-version",
             position: "right",
             label: "Release notes",
           },
@@ -278,11 +278,8 @@ const config = {
             ],
           },
           {
-            to: "/build-on-linea/quickstart",
-            from: [
-              "/developers/quickstart",
-              "/developers/deploy-smart-contracts",
-            ],
+            to: "/developers/quickstart",
+            from: "/developers/deploy-smart-contracts",           
           },
           {
             to: "/users/zero-knowledge-glossary",
@@ -308,11 +305,11 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
-            to: "/build-on-linea/quickstart/info-contracts",
+            to: "/developers/quickstart/info-contracts",
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/build-on-linea/guides/bridge",
+            to: "/developers/guides/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
@@ -324,7 +321,7 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
           {
-            to: "/build-on-linea/guides/gas/gas-fees",
+            to: "/developers/guides/gas/gas-fees",
             from: "/use-mainnet/gas-import",
           },
           {
@@ -336,12 +333,16 @@ const config = {
             from: "/use-mainnet/linea-surge-model",
           },
           {
-            to: "/build-on-linea/guides/gas/gas-fees",
+            to: "/developers/guides/gas/gas-fees",
             from: "/reference/api/linea-estimategas",
           },
           {
             to: "/users/linea-voyage/lxp",
             from: "/use-mainnet/linea-xp",
+          },
+          {
+            to: "/developers/guides/bridge",
+            from: "/use-mainnet/bridges-of-linea",
           },
           {
             to: "/users/move-funds/fund",
@@ -352,27 +353,27 @@ const config = {
             from: "/use-mainnet/set-up-your-wallet",
           },
           {
-            to: "/build-on-linea/quickstart/info-contracts",
+            to: "/developers/quickstart/info-contracts",
             from: "/use-mainnet/info-contracts",
           },
           {
-            to: "/build-on-linea/guides/linea-api",
+            to: "/developers/guides/linea-api",
             from: "/build-on-linea/quickstart/rpc",
           },
           {
-            to: "/build-on-linea/quickstart/goerli-to-sepolia",
+            to: "/developers/quickstart/goerli-to-sepolia",
             from: "/build-on-linea/goerli-to-sepolia",
           },
           {
-            to: "/build-on-linea/quickstart/ethereum-differences",
+            to: "/developers/quickstart/ethereum-differences",
             from: "/build-on-linea/ethereum-differences",
           },
           {
-            to: "/build-on-linea/guides/gas/gas-fees",
+            to: "/developers/guides/gas/gas-fees",
             from: "/build-on-linea/gas-fees",
           },
           {
-            to: "/build-on-linea/guides/run-a-node",
+            to: "/developers/guides/run-a-node",
             from: [
               "/build-on-linea/run-a-node",
               "/build-on-linea/run-a-node/use-binary",
@@ -380,15 +381,15 @@ const config = {
             ],
           },
           {
-            to: "/build-on-linea/community/hackathons",
+            to: "/developers/community/hackathons",
             from: "/build-on-linea/hackathons",
           },
           {
-            to: "/build-on-linea/guides/linea-inscriptions",
+            to: "/developers/guides/linea-inscriptions",
             from: "/build-on-linea/tooling/linea-inscriptions",
           },
           {
-            to: "/build-on-linea/guides/linea-safe",
+            to: "/developers/guides/linea-safe",
             from: "/build-on-linea/tooling/linea-safe",
           },
           {
@@ -428,7 +429,7 @@ const config = {
             from: "/architecture/trace-expansion-proving",
           },
           {
-            to: "/build-on-linea/guides/gas/gas-on-linea",
+            to: "/developers/guides/gas/gas-on-linea",
             from: "/use-mainnet/gas-on-linea",
           },
         ],
