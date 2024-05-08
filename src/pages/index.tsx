@@ -6,6 +6,7 @@ import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo_white.svg";
+import Head from "@docusaurus/Head";
 
 import styles from "./index.module.css";
 
@@ -48,6 +49,17 @@ export default function Home(): JSX.Element {
     <Layout
       title={`Welcome`}
       description="An open-source, client-agnostic, Ethereum transaction signer that separates private key management from transaction validation by signing transactions using a private key that can be secured in a variety of cloud providers, or encrypted on a local disk.">
+      <Head>
+        <meta
+          property="og:image"
+          content="https://docs.linea.build/img/Linea_social_card_docs.png"
+        />
+        <meta
+          property="twitter:image"
+          content="https://docs.linea.build/img/Linea_social_card_docs.png"
+        />
+        <meta property="twitter:card" content="summary_large_image" />
+      </Head>
       <HomepageHeader />
       <main style={{ backgroundColor: "#121212" }}>
         <HomepageCards />
