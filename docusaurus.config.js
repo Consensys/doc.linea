@@ -279,7 +279,7 @@ const config = {
           },
           {
             to: "/developers/quickstart",
-            from: "/developers/deploy-smart-contracts",           
+            from: "/developers/deploy-smart-contracts",
           },
           {
             to: "/users/zero-knowledge-glossary",
