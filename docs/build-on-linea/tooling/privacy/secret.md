@@ -1,4 +1,3 @@
-
 ---
 title: Secret Network
 image: /img/socialCards/secret.jpg
