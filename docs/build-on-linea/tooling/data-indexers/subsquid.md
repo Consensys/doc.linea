@@ -1,5 +1,6 @@
 ---
 title: Subsquid
+image: /img/socialCards/subsquid.jpg
 ---
 
 [Subsquid](https://subsquid.io/) is a decentralized indexing toolkit optimized for batch extraction of large volumes of data.

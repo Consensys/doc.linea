@@ -1,6 +1,7 @@
 ---
 title: SubQuery
-description: Fast, flexible, universal, open source and decentralised APIs
+description: 'Fast, flexible, universal, open source and decentralised APIs'
+image: /img/socialCards/subquery.jpg
 ---
 
 SubQuery is a leading blockchain data indexer that provides developers with fast, flexible, universal, open source and decentralised APIs for web3 projects. SubQuery SDK allows developers to get rich indexed data and build intuitive and immersive decentralised applications in a faster and more efficient way. SubQuery supports 100+ ecosystems including Linea, Ethereum, Polygon, Polkadot, Algorand, NEAR, and Avalanche.
