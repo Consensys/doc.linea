@@ -111,25 +111,16 @@ async function processMdxFile(filePath) {
 
   // Determine card text: Use 'title' if available; otherwise, fallback to 'description'
   const cardText = data.title || data.description;
-
-  // Skip file if neither found
-  if (!cardText) {
-    console.log(
-      `Skipping ${filePath} as it lacks both 'title' and 'description'.`,
-    );
-    return;
-  }
-
   const sanitizedSlug = sanitizeSlug(cardText);
+  const imagePath = `/img/socialCards/${sanitizedSlug}.jpg`;
   const outputPath = path.join(imgPath, `${sanitizedSlug}.jpg`);
 
-  // Generate social card using the selected text.
   await generateSocialCard(cardText, outputPath);
 
-  // Update the file's front matter to include the generated image path
   const updatedFrontMatter = {
     ...data,
-    image: `/img/socialCards/${sanitizedSlug}.jpg`,
+    image: imagePath,
+    twitter_image: imagePath,
   };
   const updatedContent = matter.stringify(content, updatedFrontMatter);
 
