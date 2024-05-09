@@ -330,7 +330,7 @@ const sidebars = {
           label: "Privacy",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/privacy/secret",
+            id: "build-on-linea/tooling/privacy/index",
           },
           items: [
             "build-on-linea/tooling/privacy/secret",
