@@ -8,9 +8,16 @@ image: /img/socialCards/ethereum-and-linea-differences.jpg
 
 ## EVM opcodes
 
-**Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed identically to Ethereum London unless presented in the following table.**
+:::info important
+Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed
+identically to Ethereum London unless presented in the following table.
 
-Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, forks, and updates to the blockchain.
+Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london`
+command to ensure compatibility with Linea.
+:::
+
+Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, forks, and
+updates to the blockchain.
 
 > ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
 
