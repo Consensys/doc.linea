@@ -1,6 +1,6 @@
 ---
 title: Secret Network
-image: /img/socialCards/secret.jpg
+image: /img/socialCards/secret-network.jpg
 ---
 
 ## Decentralized Confidential Computing​
