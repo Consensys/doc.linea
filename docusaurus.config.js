@@ -75,7 +75,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/goerli-to-sepolia">View the transition page</a> for more information.',
+          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/quickstart/goerli-to-sepolia">View the transition page</a> for more information.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
