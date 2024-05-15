@@ -75,7 +75,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build//build-on-linea/goerli-to-sepolia">View the transition page</a> for more information.',
+          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/goerli-to-sepolia">View the transition page</a> for more information.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -105,13 +105,13 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "index",
+            docId: "users/index",
             position: "left",
-            label: "Linea basics",
+            label: "Users",
           },
           {
             type: "doc",
-            docId: "build-on-linea/index",
+            docId: "developers/quickstart/index",
             position: "left",
             label: "Developers",
           },
@@ -119,7 +119,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea architecture",
+            label: "Architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -137,19 +137,14 @@ const config = {
           //   ],
           // },
           {
-            to: "https://support.linea.build/hc/",
-            position: "left",
-            label: "Support",
-          },
-          {
-            to: "/build-on-linea/run-a-node/",
+            to: "/developers/guides/run-a-node",
             position: "left",
             label: "Run a node",
           },
           {
-            to: "https://linea.build/",
-            position: "left",
-            label: "Linea home",
+            to: "/developers/linea-version",
+            position: "right",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
@@ -167,15 +162,23 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Learn",
+            title: "Links",
             items: [
               {
-                label: "Use Linea",
-                to: "/use-mainnet",
+                label: "Linea homepage",
+                href: "https://linea.build/",
               },
               {
-                label: "Build on Linea",
-                to: "/build-on-linea",
+                label: "Network status",
+                href: "https://linea.statuspage.io/",
+              },
+              {
+                label: "Mainnet block explorer",
+                href: "https://lineascan.build",
+              },
+              {
+                label: "Linea Sepolia block explorer",
+                href: "https://sepolia.lineascan.build",
               },
             ],
           },
@@ -187,7 +190,7 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get help",
+                label: "Get support",
                 to: "https://support.linea.build/",
               },
               {
@@ -268,29 +271,22 @@ const config = {
       {
         redirects: [
           {
-            to: "/architecture/canonical-msg-service/message-service",
+            to: "/architecture/stack/canonical-msg-service/message-service",
             from: [
               "/developers/bridge-architecture/message-service",
               "/developers/use-message-bridge",
             ],
-            from: [
-              "/developers/bridge-architecture/message-service",
-              "/developers/use-message-bridge",
-            ],
           },
           {
-            to: "/build-on-linea/quickstart",
-            from: [
-              "/developers/quickstart",
-              "/developers/deploy-smart-contracts",
-            ],
+            to: "/developers/quickstart",
+            from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/zero-knowledge-glossary",
-            from: "/reference/glossary",
+            to: "/users/zero-knowledge-glossary",
+            from: ["/reference/glossary", "/zero-knowledge-glossary"],
           },
           {
-            to: "/build-on-linea",
+            to: "/users",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -301,44 +297,140 @@ const config = {
             ],
           },
           {
-            to: "/use-mainnet/set-up-your-wallet",
+            to: "/users/move-funds/set-up-your-wallet",
             from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
           },
           {
-            to: "/use-mainnet/fund",
+            to: "/users/move-funds/fund",
             from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
-            to: "/use-mainnet/info-contracts",
+            to: "/developers/quickstart/info-contracts",
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/build-on-linea/bridge-funds",
+            to: "/developers/guides/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
           },
           {
-            to: "/build-on-linea/gas-fees",
+            to: "/developers/guides/gas/gas-fees",
             from: "/use-mainnet/gas-import",
           },
           {
-            to: "/use-mainnet/linea-surge/linea-surge-overview",
+            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
             from: "/use-mainnet/linea-surge-overview",
           },
           {
-            to: "/use-mainnet/linea-surge/linea-surge-model",
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
             from: "/use-mainnet/linea-surge-model",
           },
           {
-            to: "/build-on-linea/gas-fees",
+            to: "/developers/guides/gas/gas-fees",
             from: "/reference/api/linea-estimategas",
+          },
+          {
+            to: "/users/linea-voyage/lxp",
+            from: "/use-mainnet/linea-xp",
+          },
+          {
+            to: "/developers/guides/bridge",
+            from: "/use-mainnet/bridges-of-linea",
+          },
+          {
+            to: "/users/move-funds/fund",
+            from: "/use-mainnet/fund",
+          },
+          {
+            to: "/users/move-funds/set-up-your-wallet",
+            from: "/use-mainnet/set-up-your-wallet",
+          },
+          {
+            to: "/developers/quickstart/info-contracts",
+            from: "/use-mainnet/info-contracts",
+          },
+          {
+            to: "/developers/guides/linea-api",
+            from: "/build-on-linea/quickstart/rpc",
+          },
+          {
+            to: "/developers/quickstart/goerli-to-sepolia",
+            from: "/build-on-linea/goerli-to-sepolia",
+          },
+          {
+            to: "/developers/quickstart/ethereum-differences",
+            from: "/build-on-linea/ethereum-differences",
+          },
+          {
+            to: "/developers/guides/gas/gas-fees",
+            from: "/build-on-linea/gas-fees",
+          },
+          {
+            to: "/developers/guides/run-a-node",
+            from: [
+              "/build-on-linea/run-a-node",
+              "/build-on-linea/run-a-node/use-binary",
+              "/build-on-linea/run-a-node/use-docker",
+            ],
+          },
+          {
+            to: "/developers/community/hackathons",
+            from: "/build-on-linea/hackathons",
+          },
+          {
+            to: "/developers/guides/linea-inscriptions",
+            from: "/build-on-linea/tooling/linea-inscriptions",
+          },
+          {
+            to: "/developers/guides/linea-safe",
+            from: "/build-on-linea/tooling/linea-safe",
+          },
+          {
+            to: "/architecture/overview/decentralization-roadmap",
+            from: "/use-mainnet/decentralization-roadmap",
+          },
+          {
+            to: "/architecture/overview/transaction-lifecycle",
+            from: "/architecture/transaction-lifecycle",
+          },
+          {
+            to: "/architecture/overview/network-data",
+            from: "/architecture/network-data",
+          },
+          {
+            to: "/architecture/stack/bridges",
+            from: "/architecture/bridges",
+          },
+          {
+            to: "/architecture/stack/canonical-msg-service",
+            from: "/architecture/canonical-msg-service",
+          },
+          {
+            to: "/architecture/stack/coordinator",
+            from: "/architecture/coordinator",
+          },
+          {
+            to: "/architecture/stack/evm-state-manager",
+            from: "/architecture/evm-state-manager",
+          },
+          {
+            to: "/architecture/stack/sequencer",
+            from: "/architecture/sequencer",
+          },
+          {
+            to: "/architecture/stack/trace-expansion-proving",
+            from: "/architecture/trace-expansion-proving",
+          },
+          {
+            to: "/developers/guides/gas/gas-on-linea",
+            from: "/use-mainnet/gas-on-linea",
           },
         ],
       },
