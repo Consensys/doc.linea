@@ -436,6 +436,10 @@ const config = {
             to: "/developers/guides/gas/gas-on-linea",
             from: "/use-mainnet/gas-on-linea",
           },
+          {
+            to: "/developers/tooling/cross-chain/shortcuts",
+            from: "/build-on-linea/tooling/cross-chain/shortcuts",
+          },
         ],
       },
     ],
