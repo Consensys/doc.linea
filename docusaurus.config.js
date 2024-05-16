@@ -152,7 +152,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://twitter.com/consensys",
+            href: "https://twitter.com/lineabuild",
             className: "header-twitter-link",
             position: "right",
           },
