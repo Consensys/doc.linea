@@ -29,9 +29,11 @@ You can:
 - Build an onchain identity protocol with user metadata on Irys
 - Build a cross-chain bridge and use Irys to store messages
 
+You can use [ETH on Linea](https://docs.irys.xyz/overview/supported-tokens) to pay for permanent storage on Irys.
+
 ## Paying for uploads
 
-Irys has a pay-once-store-forever payment model based on the number of bytes you upload. For exact cost to upload, use their [payment calculator](https://docs.irys.xyz/overview/cost-to-upload).
+Irys has a pay-once-store-forever payment model based on the number of bytes you upload. For the exact cost to upload, use their [payment calculator](https://docs.irys.xyz/overview/cost-to-upload).
 
 ## Free uploads
 
