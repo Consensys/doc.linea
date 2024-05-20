@@ -1,5 +1,5 @@
 ---
-title: Build an NFT
+title: Build a NFT
 image: /img/socialCards/api3.jpg
 description: Build permanent NFTs using Irys and Linea.
 ---
