@@ -1,0 +1,59 @@
+---
+description: How to estimate Linea gas costs
+sidebar_position: 6
+image: /img/socialCards/how-to-estimate-linea-gas-costs.jpg
+---
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+
+# Estimate transaction costs
+
+:::info[Reducing gas fees]
+
+Building on gas optimizations introduced with Alpha v2 in February 2024, Linea implemented 
+EIP-4844 with Alpha v3 on March 26 2024. Gas fees are anticipated to be a fraction of what they 
+were. See [here](./gas-on-linea) for details.
+
+:::
+
+## How gas works on Linea
+
+Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas). 
+However, as a layer 2 blockchain, Linea provides a more stable and cost-effective solution 
+for transaction fees.
+
+There are minor differences in the way Linea handles gas calculations when compared with Ethereum:
+
+- **The base fee uses a set price of 7 wei.** Blocks created by Linea use up to 30 million gas
+    (less than 50% of the maximum Linea block size of 61 million gas), and the fee decreases by 
+    12.5% per block, effectively keeping it at a stable 7 wei.
+- **Transactions won't be sequenced if the `gasPrice` or `maxPriorityFeePerGas` falls below a 
+    certain threshold.** This threshold is not static; it adjusts over time and varies depending 
+    on the specifics of each transaction. Instead, transactions are added to the pending queue 
+    until the gas price on the network drops sufficiently for the transactions to be included.
+
+The gas cost to submit your transaction and include it on Ethereum involves the following fee 
+components:
+
+- **Layer 2 fee** - The L2 fee (execution fee) is the cost to include your transaction on the Linea
+    sequencer and is calculated using a similar formula to Ethereum. 
+- **Layer 1 fee** - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can 
+    vary based on the blob fee market.
+
+## Estimating transaction costs
+
+:::warning Method deactivated
+
+The `linea_estimateGas` method used to estimate transaction fees has been temporarily deactivated
+on Linea Mainnet and testnets.
+
+:::
+
+As Linea supports all but a few [Ethereum JSON-RPC API methods](developers/guides/linea-api), there are several 
+options for estimating gas. Click through for Infura's guides on their usage:
+- [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas) — 
+Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+- [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice) — Returns 
+the current gas price in wei.
+- [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory) — 
+Returns historical gas information.
