@@ -142,6 +142,21 @@ const sidebars = {
             "developers/guides/bridge/how-to-bridge-eth",
             "developers/guides/bridge/how-to-bridge-erc20-tokens",
           ]
+        },
+        {
+          type: "category",
+          label: "Community tutorials",
+          link: {
+            type: 'doc',
+            id: "developers/guides/community/index"
+          },
+          items: [
+            {
+              type: "link",
+              label: "Linea Learning Track",
+              href: "https://www.hackquest.io/en/learning-track/9be129e7-575b-49bd-a64e-1bbe32427ace",
+            },
+          ],
         },   
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
@@ -384,7 +399,7 @@ const sidebars = {
           type: "link",
           label: "Bug bounty program",
           href: "https://immunefi.com/bounty/linea/",
-          },
+        },
       ]
     },
   ],
