@@ -351,10 +351,10 @@ const sidebars = {
           label: "Privacy",
           link: {
             type: "doc",
-            id: "build-on-linea/tooling/privacy/index",
+            id: "developers/tooling/privacy/index",
           },
           items: [
-            "build-on-linea/tooling/privacy/secret",
+            "developers/tooling/privacy/secret",
           ],
         },
         {
