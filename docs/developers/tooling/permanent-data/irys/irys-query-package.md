@@ -1,6 +1,6 @@
 ---
 title: Query package
-image: /img/socialCards/api3.jpg
+image: /img/socialCards/query-package.jpg
 description: Querying data on Irys.
 ---
 

@@ -345,7 +345,6 @@ const sidebars = {
         {
           type: "category",
           label: "Permanent data",
-
           items: [
             {
               type: "category",

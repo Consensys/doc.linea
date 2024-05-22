@@ -1,6 +1,6 @@
 ---
 title: Quickstart
-image: /img/socialCards/api3.jpg
+image: /img/socialCards/quickstart.jpg
 description: Creating permanent data using Irys SDK.
 ---
 

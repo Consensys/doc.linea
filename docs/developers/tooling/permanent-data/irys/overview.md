@@ -1,6 +1,6 @@
 ---
 title: Overview
-image: /img/socialCards/api3.jpg
+image: /img/socialCards/overview.jpg
 description: Using Irys' permanent data with Linea.
 ---
 
@@ -24,7 +24,7 @@ Irys is **chain agnostic**, smart contracts on Linea can link to data on Irys.
 
 You can:
 
-- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/irys-nfts)
+- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/community/irys-nfts)
 - Build games with state on Linea and visual assets on Irys
 - Build an onchain identity protocol with user metadata on Irys
 - Build a cross-chain bridge and use Irys to store messages
@@ -62,7 +62,7 @@ Receipts are a JSON object with the following format:
 | timestamp | Timestamp (UNIX milliseconds) of when the transaction was created |
 | version | The version of this JSON file, currently 1.0.0 |
 | public | Public key of the bundler node used |
-| signature | A signed [deep hash](/terminology#deep-hash) of the JSON receipt |
+| signature | A signed deep hash of the JSON receipt |
 | deadlineHeight | The block number by which the transaction must be finalized on Arweave |
 
 ## Paying for users' uploads
