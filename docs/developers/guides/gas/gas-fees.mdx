@@ -42,15 +42,16 @@ components:
 
 ## Estimating transaction costs
 
-Use the [`linea_estimateGas`](../reference/api/linea-estimategas.mdx) API method to estimate the gas cost for sending a
-transaction. The method returns the recommended gas limit, the base fee per gas, and the priority fee per gas.
+Use the [`linea_estimateGas`](developers/reference/api/linea_estimategas) API method to estimate the 
+gas cost for sending a transaction. The method returns the recommended gas limit, the base fee per 
+gas, and the priority fee per gas.
 
 :::info important
 
 Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
 [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
-[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but they usually return
-a higher (and less accurate) estimate than `linea_estimateGas`.
+[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but 
+they usually return a higher (and less accurate) estimate than `linea_estimateGas`.
 
 :::
 
