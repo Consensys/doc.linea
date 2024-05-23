@@ -388,6 +388,23 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      items: [
+        {
+          type: "category",
+          label: "Linea JSON-RPC API",
+          link: {
+            type: "doc",
+            id: "developers/reference/api/index",
+          },
+          items: [
+            "developers/reference/api/linea-estimategas",
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Community",
       link: {
         type: "doc",
