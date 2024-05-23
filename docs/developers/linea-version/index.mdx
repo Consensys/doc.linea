@@ -12,6 +12,18 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 
 Find out all you need to know about the latest Linea versions.
 
+## Alpha v3.2
+
+### Mainnet and testnet
+
+- Adds the ability to detect whether transactions will exceed the prover's computational limit. 
+Transactions that previously would have been rejected by the sequencer but accepted by nodes will 
+now fail when appropriate, rather than staying in limbo. 
+- Reactivates `linea_estimateGas`.
+- Linea Bridge: adds the ability to bridge to a different address, enabling the recipient to claim.
+- Implemented smart contract gas optimization, reducing the total gas units required per blob
+submission. 
+
 ## Alpha v3.1
 
 ### Mainnet and testnet
