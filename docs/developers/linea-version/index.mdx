@@ -14,15 +14,34 @@ Find out all you need to know about the latest Linea versions.
 
 ## Alpha v3.2
 
-### Mainnet and testnet
+**Testnet: May 28**
 
-- Adds the ability to detect whether transactions will exceed the prover's computational limit. 
-Transactions that previously would have been rejected by the sequencer but accepted by nodes will 
-now fail when appropriate, rather than staying in limbo. 
-- Reactivates `linea_estimateGas`.
-- Linea Bridge: adds the ability to bridge to a different address, enabling the recipient to claim.
-- Implemented smart contract gas optimization, reducing the total gas units required per blob
-submission. 
+**Mainnet: ~June 4**
+
+### Smart contract gas optimization
+
+Upgraded smart contracts to achieve gas optimizations in several areas:
+- Major gas optimizations in blob submission, primarily in [`LineaRollup.sol`](https://github.com/Consensys/linea-contracts/blob/main/contracts/LineaRollup.sol)
+- Finalization
+- The token bridge. 
+
+The upgrade commit is available [here](https://github.com/Consensys/linea-contracts/releases/tag/contract-audit-2024-05-24). 
+
+Code in the upgrade has been audited by:
+- OpenZeppelin, whose report is available [here](https://blog.openzeppelin.com/linea-gas-optimizations-audit), and;
+- Cyfrin, whose report is [here](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf).
+
+### Bridge to a different recipient
+
+:::note
+
+This feature will be deployed on mainnet and testnet simultaneously, on May 28.
+
+:::
+
+The [Linea bridge](https://bridge.linea.build/) has been upgraded: when an address is specified as
+the recipient that is different from the address of the sender, the recipient address is now able
+to send the claim message on the destination chain. 
 
 ## Alpha v3.1
 
