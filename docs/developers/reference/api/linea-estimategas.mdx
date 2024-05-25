@@ -8,6 +8,15 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
+:::info
+
+`linea_estimateGas` is being reactivated, but under the following conditions:
+- Available only on testnet initially, from May 29, 2024.
+- Compatible only when interacting with the blockchain via an endpoint using the Besu client. 
+`linea_estimateGas` will not work with endpoints using Geth.
+
+:::
+
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete 
 and be published on Ethereum. The transaction will not be added to the blockchain.
 
