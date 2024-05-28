@@ -5,14 +5,15 @@ image: /img/socialCards/node-providers.jpg
 
 ## Private RPC endpoints
 
-- [Infura](https://www.infura.io/)
-- [BLAST API](https://blastapi.io/)
-- [Unifra](https://unifra.io/)
-- [DRPC](https://drpc.org/)
-- [Blockpi](https://blockpi.io/)
-- [GetBlock](https://getblock.io/)
 - [ANKR](https://www.ankr.com/rpc/)
+- [BLAST API](https://blastapi.io/)
+- [Blockpi](https://blockpi.io/)
+- [DRPC](https://drpc.org/)
+- [GetBlock](https://getblock.io/)
+- [Infura](https://www.infura.io/)
+- [Moralis](https://moralis.io/nodes/)
 - [NOWNodes](https://nownodes.io/nodes)
+- [Unifra](https://unifra.io/)
 
 ## Run your own node
 
@@ -34,9 +35,10 @@ Public endpoints are rate limited, and not meant for production systems.
 | `https://linea-mainnet.public.blastapi.io`    | `https://linea-goerli.public.blastapi.io`            |
 | `https://rpc.linea.build`                     | `https://rpc.sepolia.linea.build`                    |
 | `https://linea.rpc.thirdweb.com`              | `https://linea-sepolia.rpc.thirdweb.com`             |
-| `https://linea.blockpi.network/v1/rpc/public` | `https://linea-goerli.blockpi.network/v1/rpc/public` |
+| `https://linea.blockpi.network/v1/rpc/public` | `https://linea-sepolia.blockpi.network/v1/rpc/public`|
 | `https://linea-mainnet-public.unifra.io`      | `N/A`                                                |
 | `https://linea.getblock.io/your_api_key`      | `https://linea.getblock.io/your_api_key`             |
+| `https://site1.moralis-nodes.com/linea/`      | `https://site1.moralis-nodes.com/linea-sepolia/`     |
 
 If you're an RPC endpoint provider and would like to be added to the list, reach out to our team, 
 or make a PR to the docs.
