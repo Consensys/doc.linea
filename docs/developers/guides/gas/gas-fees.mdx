@@ -51,7 +51,10 @@ gas, and the priority fee per gas.
 Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
 [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
 [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but 
-they usually return a higher (and less accurate) estimate than `linea_estimateGas`.
+they usually return a higher (and less accurate) estimate than `linea_estimateGas`. 
+
+We recommend you use `linea_estimateGas` where possible to maximize the accuracy of the gas 
+estimate.
 
 :::
 
