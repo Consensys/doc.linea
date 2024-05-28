@@ -34,7 +34,7 @@ Moralis indexed data APIs can be used to build:
 
 ## Real-time Data APIs
 Moralis' Linea real-time data integration supports:
-- **[Streams API](https://moralis.io/streams/?utm_source=linea-docs&utm_medium=partner-docs)**: Stream blockchain data directly to your webhook via webhooks in real-time. Setup and configure advanced filters, or use any of our out-of-the-box configurations.
+- **[Streams API](https://moralis.io/streams/?utm_source=linea-docs&utm_medium=partner-docs)**: Stream blockchain data directly to your server via webhooks in real-time. Setup and configure advanced filters, or use any of our out-of-the-box configurations.
 
 ### Example Features
 Moralis real-time data APIs can be used for:
