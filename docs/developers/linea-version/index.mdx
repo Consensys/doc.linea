@@ -27,7 +27,7 @@ making Linea faster and more responsive.
 
 **Testnet: May 28**
 
-**Mainnet: ~June 4**
+**Mainnet: June 4**
 
 ### Smart contract gas optimization
 
@@ -48,16 +48,19 @@ Code in the upgrade has been audited by:
 
 This feature will be deployed on mainnet and testnet simultaneously, on May 28.
 
-:::
+::: 
 
 The [Linea bridge](https://bridge.linea.build/) has been upgraded to enable recipient addresses to
 always be able to claim bridged funds. Bridge transfers to alternative recipients (i.e. an address
 that isn't the sender's address) now appear on the recipient's "Recent transactions" list, 
 enabling them to claim.
 
+These changes have been audited by [OpenZeppelin](https://blog.openzeppelin.com/linea-gas-optimizations-audit)
+and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf). 
+
 ## Alpha v3.1
 
-### Mainnet and testnet
+**Mainnet: May 14**
 
 Introduces dynamic L1 gwei thresholds for submitting data to L1 for finalization.
 
