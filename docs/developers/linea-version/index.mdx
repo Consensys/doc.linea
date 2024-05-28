@@ -12,9 +12,57 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 
 Find out all you need to know about the latest Linea versions.
 
+## Alpha v3.3
+
+**Testnet: June 3**
+
+**Mainnet: June 11, 10:00 UTC**
+
+Reducing block time to 2 seconds, with a target block size of 24M gas.
+
+The change will increase transaction throughput by approximately 20%, improving user experience by 
+making Linea faster and more responsive.
+
+There will be no impacts for node runners.
+
+## Alpha v3.2
+
+**Testnet: May 28**
+
+**Mainnet: June 4**
+
+### Smart contract gas optimization
+
+Upgraded smart contracts to achieve gas optimizations in several areas:
+- Major gas optimizations in blob submission, primarily in [`LineaRollup.sol`](https://github.com/Consensys/linea-contracts/blob/main/contracts/LineaRollup.sol)
+- Finalization
+- The token bridge. 
+
+The upgrade commit is available [here](https://github.com/Consensys/linea-contracts/releases/tag/contract-audit-2024-05-24). 
+
+Code in the upgrade has been audited by:
+- OpenZeppelin, whose report is available [here](https://blog.openzeppelin.com/linea-gas-optimizations-audit), and;
+- Cyfrin, whose report is [here](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf).
+
+### Bridge to a different recipient
+
+:::note
+
+This feature will be deployed on mainnet and testnet simultaneously, on May 28.
+
+::: 
+
+The [Linea bridge](https://bridge.linea.build/) has been upgraded to enable recipient addresses to
+always be able to claim bridged funds. Bridge transfers to alternative recipients (i.e. an address
+that isn't the sender's address) now appear on the recipient's "Recent transactions" list, 
+enabling them to claim.
+
+These changes have been audited by [OpenZeppelin](https://blog.openzeppelin.com/linea-gas-optimizations-audit)
+and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf). 
+
 ## Alpha v3.1
 
-### Mainnet and testnet
+**Mainnet: May 14**
 
 Introduces dynamic L1 gwei thresholds for submitting data to L1 for finalization.
 
