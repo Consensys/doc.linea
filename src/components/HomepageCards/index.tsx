@@ -1,11 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import Link from '@docusaurus/Link';
+import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
-import CardIcon1 from '../../../static/img/icon_bridge.svg';
-import CardIcon2 from '../../../static/img/icon_developer.svg';
-import CardIcon3 from '../../../static/img/icon_blockexplorer.svg';
-import CardIcon4 from '../../../static/img/icon_group.svg';
+import CardIcon1 from "../../../static/img/icon_bridge.svg";
+import CardIcon2 from "../../../static/img/icon_developer.svg";
+import CardIcon3 from "../../../static/img/icon_blockexplorer.svg";
+import CardIcon4 from "../../../static/img/icon_group.svg";
 
 type CardItem = {
   title: string;
@@ -20,7 +20,7 @@ type CardItem = {
     | "warning"
     | "danger"
     | "link";
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 const CardList: CardItem[] = [
@@ -29,7 +29,8 @@ const CardList: CardItem[] = [
     link: "/users/move-funds/bridge",
     description: (
       <>
-       Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges
+        Learn how to safely bridge your tokens over to Linea via MetaMask and
+        ecosystem bridges
       </>
     ),
     buttonName: "Bridge",
@@ -54,7 +55,8 @@ const CardList: CardItem[] = [
     link: "/developers/guides/run-a-node",
     description: (
       <>
-        Learn how to run a Linea node with Besu or Geth, and interact with the blockchain locally
+        Learn how to run a Linea node with Besu or Geth, and interact with the
+        blockchain locally
       </>
     ),
     buttonName: "Learn",
@@ -66,7 +68,8 @@ const CardList: CardItem[] = [
     link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
-        Start your dev journey with exclusive builder NFTs, tech talks, mini-hacks, events, and more!
+        Start your dev journey with exclusive builder NFTs, tech talks,
+        mini-hacks, events, and more!
       </>
     ),
     buttonName: "Launch",
@@ -75,7 +78,14 @@ const CardList: CardItem[] = [
   },
 ];
 
-function Card({ title, link, description, buttonName, buttonType, icon: Icon }: CardItem) {
+function Card({
+  title,
+  link,
+  description,
+  buttonName,
+  buttonType,
+  icon: Icon,
+}: CardItem) {
   return (
     <div className={clsx("col", "col--3", "margin-top--md")}>
       <div className={clsx("card-demo", styles.cardDemo)}>
@@ -87,11 +97,18 @@ function Card({ title, link, description, buttonName, buttonType, icon: Icon }: 
               textAlign: "left",
               paddingLeft: "40px",
             }}>
-            <div style={{ position: 'absolute', right: 18 }}>
-              <Icon style={{ width: '50px', height: '50px' }} />
+            <div style={{ position: "absolute", right: 18 }}>
+              <Icon style={{ width: "50px", height: "50px" }} />
             </div>
             <div style={{ paddingTop: "50px" }}>
-              <h3 style={{ fontSize: "30px", fontWeight: "300", marginBottom: "0" }}>{title}</h3>
+              <h3
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "300",
+                  marginBottom: "0",
+                }}>
+                {title}
+              </h3>
             </div>
           </div>
           <div
@@ -100,7 +117,9 @@ function Card({ title, link, description, buttonName, buttonType, icon: Icon }: 
               textAlign: "left",
               paddingLeft: "40px",
             }}>
-            <p style={{ fontSize: "18px", fontWeight: "300", marginTop: "0" }}>{description}</p>
+            <p style={{ fontSize: "18px", fontWeight: "300", marginTop: "0" }}>
+              {description}
+            </p>
           </div>
           <div
             className="card__footer"
@@ -116,7 +135,7 @@ function Card({ title, link, description, buttonName, buttonType, icon: Icon }: 
                 "button",
                 "button--" + buttonType,
                 "button--block",
-                styles.button
+                styles.button,
               )}
               to={link}
               style={{
