@@ -289,7 +289,6 @@ const sidebars = {
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
             "developers/tooling/data-indexers/flair",
-            "developers/tooling/data-indexers/mobula",
             {
               type: "category",
               label: "Goldsky",
@@ -299,14 +298,16 @@ const sidebars = {
                 "developers/tooling/data-indexers/goldsky/goldsky-mirror",
               ],
             },
+            "developers/tooling/data-indexers/mobula",
+            "developers/tooling/data-indexers/moralis",
             "developers/tooling/data-indexers/nftscan",
+            "developers/tooling/data-indexers/noves",
             "developers/tooling/data-indexers/reservoir",
             "developers/tooling/data-indexers/sentio",
             "developers/tooling/data-indexers/subsquid",
-            "developers/tooling/data-indexers/thegraph",
             "developers/tooling/data-indexers/subquery",
-            "developers/tooling/data-indexers/noves",
             "developers/tooling/data-indexers/scopescan",
+            "developers/tooling/data-indexers/thegraph",
           ],
         },
         {
@@ -393,6 +394,23 @@ const sidebars = {
           ],
         },
         "developers/tooling/node-providers",
+      ],
+    },
+    {
+      type: "category",
+      label: "Reference",
+      items: [
+        {
+          type: "category",
+          label: "Linea JSON-RPC API",
+          link: {
+            type: "doc",
+            id: "developers/reference/api/index",
+          },
+          items: [
+            "developers/reference/api/linea-estimategas",
+          ],
+        },
       ],
     },
     {
