@@ -1,0 +1,310 @@
+---
+description: Install the Besu or Geth client to run a Linea node.
+image: /img/socialCards/install-the-besu-or-geth-client-to-run-a-linea-node.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import VolumeCreation from "./volume-creation.mdx";
+
+# Use a binary distribution
+
+You can install the Hyperledger Besu or Geth client to run a Linea node from a binary distribution.
+
+:::caution deprecation notice
+
+Linea Goerli is being deprecated. We discourage new development with this testnet and recommend using
+Linea Sepolia instead.
+
+:::
+
+## Prerequisites
+
+Set up the required and recommended hardware and all the utilities. You can find the recommendations for the clients from the
+official documentation:
+
+- [Hyperledger Besu](https://besu.hyperledger.org/public-networks/get-started/system-requirements)
+- [Geth](https://geth.ethereum.org/docs/getting-started/hardware-requirements).
+
+## Run the Besu client
+
+### Step 1. Install Besu
+
+[Download and install Besu](https://besu.hyperledger.org/public-networks/get-started/install/binary-distribution) using
+the instructions in the official documentation. 
+
+### Step 2. Download the genesis file and Besu configuration file 
+
+Download the genesis file and Besu configuration file.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Mainnet [`genesis-mainnet.json`](pathname:///files/besu/genesis-mainnet.json) file and Besu
+  [`config-mainnet.toml`](pathname:///files/besu/config-mainnet.toml) file.
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Testnet [`genesis-sepolia.json`](pathname:///files/besu/genesis-sepolia.json) file and Besu
+  [`config-sepolia.toml`](pathname:///files/besu/config-sepolia.toml) file.
+  
+  </TabItem>
+
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  Testnet [`genesis-goerli.json`](pathname:///files/besu/genesis-goerli.json) file and Besu
+  [`config-goerli.toml`](pathname:///files/besu/config-goerli.toml) file.
+  
+  </TabItem>
+</Tabs>
+
+### Step 3. Define disk space volume (optional) {#disk-space-besu}
+
+Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
+
+- Full nodes: 120GB, growing ~1.5GB per day.
+- Archive nodes: 740GB, growing ~9.5GB per day.
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+To limit disk space required, we recommend you configure Besu to use the [Bonsai](https://besu.hyperledger.org/public-networks/concepts/data-storage-formats#bonsai-tries)
+data storage format, which prunes orphaned nodes and old branches.
+
+Ensure you mount the Besu `data-path` to the custom volume when you start the node.
+
+<VolumeCreation />
+
+### Step 4. Configure the Besu configuration file.
+
+In your Besu configuration file (`config-mainnet.toml`, `config-goerli.toml`, or `config-sepolia.toml`), configure
+the following options:
+
+- Set `data-path` to the location you want to store your data. 
+- Set `genesis-file` to the path of your downloaded genesis file.
+
+### Step 5. Start the Besu client
+
+Run the Besu client with the location of your configuration file. For example:
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  ```bash
+  besu --config-file=/Users/myuser/mainnet/config-mainnet.toml
+  ```
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  ```bash
+  besu --config-file=/Users/myuser/sepolia/config-sepolia.toml
+  ```
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  ```bash
+  besu --config-file=/Users/myuser/goerli/config-goerli.toml
+  ```
+  
+  </TabItem>
+</Tabs>
+
+The Besu node will attempt to find peers to begin synchronizing and to download the world state. 
+
+## Run the Geth client
+
+### Step 1. Install Geth
+
+Download [Geth](https://geth.ethereum.org/downloads) and install using the instructions provided
+[here](https://geth.ethereum.org/docs/getting-started/installing-geth). 
+
+:::warning
+
+Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent versions are not 
+supported. 
+
+:::
+
+### Step 2. Download the genesis file
+
+Download the genesis file for the relevant network.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Mainnet [`genesis.json`](pathname:///files/geth/mainnet/genesis.json) file.
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Sepolia [`genesis.json`](pathname:///files/geth/sepolia/genesis.json) file.
+  
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  Goerli [`genesis.json`](pathname:///files/geth/goerli/genesis.json) file.
+  
+  </TabItem>
+</Tabs>
+
+### Step 3. Define disk space volume (optional) {#disk-space-geth}
+
+Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
+- Full nodes: 170GB, growing ~2.6GB per day.
+- Archive nodes: 760GB, growing ~10GB per day.
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the Geth `datadir` to the custom volume.
+
+If you run out of space, or need to actively maintain how much space is being used, consider
+[pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
+
+<VolumeCreation />
+
+### Step 4. Bootstrap your node
+
+Bootstrap the node using the following command:
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+    ```bash
+    geth --datadir ./geth-linea-data init ./genesis.json
+    ```
+  
+  </TabItem>
+  
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  ```bash
+  geth --datadir ./geth-sepolia-data init ./genesis.json
+  ```
+  
+  </TabItem>
+  
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+  ```bash
+  geth --datadir ./geth-goerli-data init ./genesis.json
+  ```
+  
+  </TabItem>
+</Tabs>
+
+### Step 5. Start the Geth client
+
+Start the node using the following command:
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+    ```bash
+    geth \
+    --datadir $HOME/geth-linea-data \
+    --networkid 59144 \
+    --rpc.allow-unprotected-txs \
+    --txpool.accountqueue 50000 \
+    --txpool.globalqueue 50000 \
+    --txpool.globalslots 50000 \
+    --txpool.pricelimit 1000000 \
+    --txpool.pricebump 1 \
+    --txpool.nolocals \
+    --http --http.addr '127.0.0.1' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+    --ws --ws.addr '127.0.0.1' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+    --bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.23.106.165:30303,enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.133.179.213:30303,enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.145.12.13:30303" \
+    --syncmode full \
+    --metrics \
+    --verbosity 3
+    ```
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+    ```bash
+    geth \
+    --datadir $HOME/geth-sepolia-data \
+    --networkid 59141 \
+    --rpc.allow-unprotected-txs \
+    --txpool.accountqueue 50000 \
+    --txpool.globalqueue 50000 \
+    --txpool.globalslots 50000 \
+    --txpool.pricelimit 1000000 \
+    --txpool.pricebump 1 \
+    --txpool.nolocals \
+    --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+    --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+    --bootnodes "enode://6f20afbe4397e51b717a7c1ad3095e79aee48c835eebd9237a3e8a16951ade1fe0e66e981e30ea269849fcb6ba03d838da37f524fabd2a557474194a2e2604fa@18.221.100.27:31002,enode://ce1e0d8e0500cb5c0ac56bdcdafb2d6320c3a2c5125b5ccf12f5dfc9b47ee74acbcafc32559017613136c9c36a0ce74ba4f83b7fb8244f099f3b15708d9d3129@3.23.75.47:31000,enode://1b026a5eb0ae74300f58987d235ef0e3a550df963345cb3574be3b0b54378bd11f14dfd515a8976f2c2d2826090e9507b8ccc24f896a9ffffffcabcfd996a733@3.129.120.128:31001" \
+    --syncmode full \
+    --metrics \
+    --verbosity 3
+    ```
+  </TabItem>
+  <TabItem value="Linea Goerli" label="Linea Goerli">
+  
+    ```bash
+    geth \
+    --datadir $HOME/geth-goerli-data \
+    --networkid 59140 \
+    --rpc.allow-unprotected-txs \
+    --txpool.accountqueue 50000 \
+    --txpool.globalqueue 50000 \
+    --txpool.globalslots 50000 \
+    --txpool.pricelimit 1000000 \
+    --txpool.pricebump 1 \
+    --txpool.nolocals \
+    --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
+    --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
+    --bootnodes "enode://700f0d5a5f2beadc307b7b8f1a251f8b75033c8222ca65bfb1aecc4c4a0a86d6d6ef8420e780f6ace7cc3d1b837606b116109cc53b00931d3debc1346b9ccbb8@13.51.255.207:31001,enode://cbbaacaf47a005cb389b40f6676d63800cc65295aad0983e5ce9f2e5bf805274cded5ef313993a2564591d6caab6322c2a39a0b3a21143034378179c7d5ecd44@3.16.167.169:31001" \
+    --syncmode full \
+    --metrics \
+    --verbosity 3
+    ```
+  </TabItem>
+</Tabs>
+
+The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks
+to your node, **that does not mean that the node is not syncing**.
+
+**If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes**;
+otherwise, you might not be connected to the Linea network.
+
+<aside>
+  {/* Is this a Discord channel? */}
+  💡 Please feel free to contact us at the Linea Community Forum <a href="https://community.linea.build/c/developer-support/5">
+    here
+  </a> if you have any issues.
+</aside>
+<br />
+
+## Confirm the node is running
+
+You can call the JSON-RPC API methods to confirm the node is running. For example, call
+[`eth_syncing`](https://besu.hyperledger.org/public-networks/reference/api#eth_syncing) to return the synchronization status.
+For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+
+```bash
+
+curl localhost:8545 \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
+
+```
+
+You should get a result, similar to:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "startingBlock": "0x0",
+    "currentBlock": "0x5d228",
+    "highestBlock": "0x3cedec"
+  }
+}
+```

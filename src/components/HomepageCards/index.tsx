@@ -26,10 +26,10 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Bridge your funds",
-    link: "/use-mainnet/bridges-of-linea/bridging-non-dev",
+    link: "/users/move-funds/bridge",
     description: (
       <>
-       Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges!
+       Learn how to safely bridge your tokens over to Linea via MetaMask and ecosystem bridges
       </>
     ),
     buttonName: "Bridge",
@@ -38,11 +38,11 @@ const CardList: CardItem[] = [
   },
   {
     title: "Developer quickstart",
-    link: "/build-on-linea/quickstart",
+    link: "/developers/quickstart",
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite
-        developer tools!
+        developer tools
       </>
     ),
     buttonName: "Build",
@@ -50,27 +50,26 @@ const CardList: CardItem[] = [
     icon: CardIcon2,
   },
   {
-    title: "Linea block explorer",
-    link: "https://lineascan.build/",
+    title: "Run a node",
+    link: "/developers/guides/run-a-node",
     description: (
       <>
-        View transactions and find deployed contracts and wallet addresses on
-        block explorers!
+        Learn how to run a Linea node with Besu or Geth, and interact with the blockchain locally
       </>
     ),
-    buttonName: "Explore",
+    buttonName: "Learn",
     buttonType: "info",
     icon: CardIcon3,
   },
   {
-    title: "Linea builders club",
-    link: "https://linea.deform.cc/linea-builders-club",
+    title: "Builder Launchpad",
+    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
-        Join our builders club for exclusive access to tech talks, Linea core team, tiny grants, events, and more!
+        Start your dev journey with exclusive builder NFTs, tech talks, mini-hacks, events, and more!
       </>
     ),
-    buttonName: "Join",
+    buttonName: "Launch",
     buttonType: "info",
     icon: CardIcon4,
   },
