@@ -326,11 +326,11 @@ const config = {
           },
           {
             to: "/users/linea-voyage/linea-surge/linea-surge-overview",
-            from: "/use-mainnet/linea-surge-overview",
+            from: "/use-mainnet/linea-surge/linea-surge-overview",
           },
           {
             to: "/users/linea-voyage/linea-surge/linea-surge-model",
-            from: "/use-mainnet/linea-surge-model",
+            from: "/use-mainnet/linea-surge/linea-surge-model",
           },
           {
             to: "/users/linea-voyage/linea-surge",
