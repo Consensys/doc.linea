@@ -53,8 +53,13 @@
     "static/files/besu/config-mainnet.toml"
   ],
   "ignoreRegExpList": [
-    "Email", "Urls", "#[\\w-]*",
+    "Email",
+    "Urls",
+    "#[\\w-]*",
     "^image:\\s*([>-]\\s*)?.*$",
-    "/img/.*"
+    "/img/.*",
+    "/https:\\/\\/gateway\\.irys\\.xyz\\/[a-zA-Z0-9\\-]+/",
+    "/https:\\/\\/gateway\\.irys\\.xyz\\/mutable\\/[a-zA-Z0-9\\-]+/",
+    "/[a-zA-Z0-9\\-]{20,}/" // Generic pattern for alphanumeric strings of 20 or more characters
   ]
 }
