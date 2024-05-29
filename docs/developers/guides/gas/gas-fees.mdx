@@ -46,6 +46,9 @@ Use the [`linea_estimateGas`](/developers/reference/api/linea-estimategas) API m
 gas cost for sending a transaction. The method returns the recommended gas limit, the base fee per 
 gas, and the priority fee per gas.
 
+Please note the `linea_estimateGas` endpoint is currently only available on the Linea Sepolia 
+testnet. For more information, see our [reference page](/developers/reference/api/linea-estimategas).
+
 :::info important
 
 Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
@@ -58,7 +61,7 @@ estimate.
 
 :::
 
-The following example executes `linea_estimateGas` on the Linea mainnet using the public RPC URL.
+The following example executes `linea_estimateGas` on the Linea testnet using the public RPC URL.
 
 :::tip
 
@@ -69,7 +72,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   <TabItem value="curl" label="curl" default>
 
 ```bash
-curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.linea.build
+curl -X POST --data '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}' https://rpc.sepolia.linea.build
 ```
 
 </TabItem>

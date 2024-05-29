@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-`linea_estimateGas` is being reactivated on testnet from May 28. Mainnet activation is scheduled
+`linea_estimateGas` is currently only available on the Linea Sepolia testnet. Mainnet activation is scheduled
 for July 24, 2024. 
 
 It will only be fully compatible with endpoints using the Besu client — if it is unavailable, try 
@@ -74,7 +74,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   <TabItem value="cURL request">
 
    ```bash
-  curl https://rpc.linea.build \
+  curl https://rpc.sepolia.linea.build \
           -X POST \
           -H "Content-Type: application/json" \
           -d '{"jsonrpc":"2.0","method":"linea_estimateGas","params":[{"from":"0x42c27251C710864Cf76f1b9918Ace3E585e6E21b","gasPrice":"0x100000000","gas":"0x21000"}],"id":53}'
