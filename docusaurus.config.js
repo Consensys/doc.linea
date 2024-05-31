@@ -333,6 +333,10 @@ const config = {
             from: "/use-mainnet/linea-surge/linea-surge-model",
           },
           {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
+          },
+          {
             to: "/users/linea-voyage/linea-surge",
             from: "/use-mainnet/linea-surge",
           },
