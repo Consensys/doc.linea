@@ -308,7 +308,7 @@ textarea {
 }
 
 .footer--dark {
-  --ifm-footer-background-color: #000;
+  --ifm-footer-background-color: var(--footer-background);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -341,6 +341,7 @@ textarea {
   --homepage-card-border-color-hover: #61dfff;
   --homepage-card-dot-hover: #fff;
   --homepage-card-icon: #fff;
+  --footer-background: #121212;
 }
 
 [data-theme="light"] {
@@ -372,6 +373,7 @@ textarea {
   --homepage-card-border-color-hover: #505050;
   --homepage-card-dot-hover: #61dfff;
   --homepage-card-icon: #c0c0c0;
+  --footer-background: #e5e5e5;
 }
 
 /* github */
@@ -841,4 +843,16 @@ html[data-theme="dark"] .navbar {
 
 .callout-warning {
   border-left-color: #f39c12;
+}
+
+.footer__title {
+  color: var(--banner-text);
+}
+
+.footer__link-item {
+  color: var(--banner-text);
+}
+
+.footer__copyright {
+  color: var(--banner-text);
 }
