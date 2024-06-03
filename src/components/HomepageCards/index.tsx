@@ -98,7 +98,7 @@ function Card({
               paddingLeft: "40px",
             }}>
             <div style={{ position: "absolute", right: 18 }}>
-              <Icon style={{ width: "50px", height: "50px" }} />
+            <Icon className={styles.icon} style={{ width: "50px", height: "50px" }} />
             </div>
             <div style={{ paddingTop: "50px" }}>
               <h3

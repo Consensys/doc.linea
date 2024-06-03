@@ -337,6 +337,10 @@ textarea {
   --banner-button-text-hover: #121212;
   --homepage-card-background: #1d1d1d;
   --homepage-card-text: #fff;
+  --homepage-card-border-color: #505050;
+  --homepage-card-border-color-hover: #61dfff;
+  --homepage-card-dot-hover: #fff;
+  --homepage-card-icon: #fff;
 }
 
 [data-theme="light"] {
@@ -362,8 +366,12 @@ textarea {
   --banner-text-shadow: #fff;
   --banner-button-hover: #121212;
   --banner-button-text-hover: #fff;
-  --homepage-card-background: #1d1d1d;
+  --homepage-card-background: #fff;
   --homepage-card-text: #fff;
+  --homepage-card-border-color: #c0c0c0;
+  --homepage-card-border-color-hover: #505050;
+  --homepage-card-dot-hover: #61dfff;
+  --homepage-card-icon: #c0c0c0;
 }
 
 /* github */

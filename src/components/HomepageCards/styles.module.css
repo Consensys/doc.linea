@@ -10,7 +10,7 @@
 
 .cardHeader h3,
 .cardBody p {
-  color: #fff;
+  color: var(--banner-text);
 }
 
 .heading {
@@ -25,7 +25,7 @@
   background-color: var(--homepage-card-background);
   color: var(--ifm-color-primary);
   border-radius: 3px;
-  border: 1px solid #505050;
+  border: 1px solid var(--homepage-card-border-color);
   box-shadow: 0 0 10px rgb(97 223 255 / 20%);
   overflow: visible;
   transform: scale(1);
@@ -34,13 +34,13 @@
 
 .card_glow:hover {
   transform: translateY(-10px);
-  border-color: #61dfff;
+  border-color: var(--homepage-card-border-color-hover);
 }
 
 .circle {
   width: 12px;
   height: 12px;
-  background-color: #505050;
+  background-color: var(--homepage-card-border-color);
   border-radius: 50%;
   position: absolute;
   top: -6px;
@@ -49,7 +49,7 @@
 }
 
 .card_glow:hover .circle {
-  background-color: white;
+  background-color: var(--homepage-card-dot-hover);
 }
 
 .card {
@@ -75,7 +75,11 @@
   background-color: #fff;
   overflow: visible;
   box-shadow: 0 0 10px rgb(97 223 255 / 50%);
-  border: none;
+  border: 1px solid var(--homepage-card-icon);
   transform: scale(1.02);
   color: #1d1d1d;
+}
+
+.icon {
+  color: var(--homepage-card-icon);
 }
