@@ -18,14 +18,14 @@ unique error responses.
 
 Submits a pre-signed and serialized transaction and returns the transaction hash if successful.
 
-On Linea, this endpoint can be particularly useful for preventing transactions from failing as a 
-result of exceeding the sequencer's line limit per block. An error message is returned if the line
-count check fails, indicating that the transaction will fail.
+On Linea, this endpoint proves useful in preventing transaction failures due to exceeding the 
+sequencer's per-block line limit. If the line count check fails, it returns an error message 
+indicating the impending transaction failure.
 
-The line limit is a threshold for how much transaction data can effectively be added to a single
-proof; too many lines of data, and the prover is unable to add the transaction to the proof within
-the time limit. A line count check is therefore imposed on every transaction to ensure 
-transactions are successful, and able to be added to a proof.
+The line limit is a threshold for the amount of transaction data that can be added to a single
+proof. Exceeding this limit means the prover cannot include the transaction in the proof within
+the time limit. Therefore, every transaction undergoes a line count check to ensure its
+success and inclusion in a proof.
 
 ## Parameters
 
