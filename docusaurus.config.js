@@ -444,6 +444,10 @@ const config = {
             to: "/developers/tooling/cross-chain/shortcuts",
             from: "/build-on-linea/tooling/cross-chain/shortcuts",
           },
+          {
+            to: "/developers/tooling/node-providers",
+            from: "/build-on-linea/tooling/node-providers",
+          },
         ],
       },
     ],
