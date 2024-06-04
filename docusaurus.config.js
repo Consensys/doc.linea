@@ -333,6 +333,10 @@ const config = {
             from: "/use-mainnet/linea-surge/linea-surge-model",
           },
           {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
+          },
+          {
             to: "/users/linea-voyage/linea-surge",
             from: "/use-mainnet/linea-surge",
           },
@@ -439,6 +443,10 @@ const config = {
           {
             to: "/developers/tooling/cross-chain/shortcuts",
             from: "/build-on-linea/tooling/cross-chain/shortcuts",
+          },
+          {
+            to: "/developers/tooling/node-providers",
+            from: "/build-on-linea/tooling/node-providers",
           },
         ],
       },

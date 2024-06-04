@@ -340,6 +340,7 @@ const sidebars = {
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",
+            "developers/tooling/oracles/tellor",
             "developers/tooling/oracles/umbrella",
           ],
         },

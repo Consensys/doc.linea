@@ -3,79 +3,139 @@ title: Covalent
 image: /img/socialCards/covalent.jpg
 ---
 
-[Covalent](https://www.covalenthq.com/?utm_source=linea&utm_medium=partner-docs) is a hosted blockchain data solution providing access to historical and current on-chain data for [100+ supported blockchains](https://www.covalenthq.com/docs/networks/?utm_source=linea&utm_medium=partner-docs), including [Linea Goerli testnet](https://www.covalenthq.com/docs/networks/linea-goerli-testnet/?utm_source=linea&utm_medium=partner-docs).
+# Covalent
 
-Covalent maintains a full archival copy of every supported blockchain, meaning every balance, transaction, log event, and NFT asset data is available from the genesis block. This data is available via:
+[Covalent](https://www.covalenthq.com/?utm_source=linea&utm_medium=partner-docs) is a structured 
+data infrastructure provider with access to historical and current onchain data for [200+ supported 
+blockchains](https://www.covalenthq.com/docs/networks/?utm_source=linea&utm_medium=partner-docs), 
+including Linea mainnet and Sepolia testnet.
 
-1. [Unified API](#unified-api) - Incorporate blockchain data into your app with a familiar REST API
-2. [Increment](#increment) - Create and embed custom charts with no-code analytics
+Covalent maintains a full replica of every supported blockchain, meaning you have access to:
+
+- Every wallet's token balances
+- Full transaction histories
+- Every contract log event
+- All NFTs including assets and metadata
 
 **Use Covalent if you need:**
 
-- Structured and enhanced on-chain data well beyond what you get from RPC providers
-- Broad and deep multi-chain data at scale
+- Wallet, Transactions, NFT, DEX, Staking or core blockchain data (log events, blocks)
+- Normalized, aggregated and enhanced multichain data, well beyond what you get from RPC providers
 - Enterprise-grade performance
 
-> **[Sign up to start building on Lina](https://www.covalenthq.com/platform/?utm_source=linea&utm_medium=partner-docs)**
+> [Sign up to start building on Linea](https://www.covalenthq.com/platform/?utm_source=linea&utm_medium=partner-docs)
 
-&nbsp;
+## APIs
 
-## Unified API
+The Covalent APIs enable developers to quickly and easily access structured onchain data. This 
+means consistent response schemas regardless of the blockchain. Available APIs and corresponding 
+use cases include:
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Covalent/Linea_Covalent_1.png"
-      alt="Covalent example API response"
-    />
-  </div>
-</div>
+### Wallet API
 
-The Covalent API is RESTful and offers the following for Linea:
+- **Features:** All token balances (ERC20, 721, 1155, native), token transfers and prices (spot and 
+historical) for a wallet.
+- **Use cases:** [Wallets, portfolio trackers](https://goldrush-wallet-portfolio-ui.vercel.app/?utm_source=linea&utm_medium=partner-docs), token gating, airdrop snapshots.
 
-| **Features** |  |
-| --- | --- |
-| Response Formats | JSON, CSV |
-| Real-Time Data Latency | 2 blocks |
-| Batch Data Latency | 30 minutes |
-| Supported Network (`chainName`, `chainId`) | Testnet: `linea-testnet`, `59140` |
-| API Tiers | [Free tier](https://www.covalenthq.com/docs/unified-api/pricing/?utm_source=linea&utm_medium=partner-docs#free-tier) <br/> [Premium tier](https://www.covalenthq.com/docs/unified-api/pricing/?utm_source=linea&utm_medium=partner-docs#premium-tier) |
-| API Categories | [Balances](https://www.covalenthq.com/docs/api/balances/get-token-balances-for-address/?utm_source=linea&utm_medium=partner-docs) <br/> [NFTs](https://www.covalenthq.com/docs/api/nft/get-nfts-for-address/?utm_source=linea&utm_medium=partner-docs) <br/> [Transactions](https://www.covalenthq.com/docs/api/transactions/get-transactions-for-address/?utm_source=linea&utm_medium=partner-docs) <br/> [Security](https://www.covalenthq.com/docs/api/security/get-token-approvals-for-address/?utm_source=linea&utm_medium=partner-docs) <br/> [Log Events & Others](https://www.covalenthq.com/docs/api/base/get-log-events-by-contract-address/?utm_source=linea&utm_medium=partner-docs) |
+### NFT API
+
+- **Features:** Media assets, metadata, sales, owners, trait & attribute filters, thumbnails, and 
+previews.
+- **Use cases:** [NFT galleries and marketplaces](https://goldrush-nft-gallery-ui.vercel.app/?utm_source=linea&utm_medium=partner-docs), real world asset (RWA) tracking, token gating.
+
+### DEX API
+
+- **Features:** Positions, rewards, pool and token details for major DEX protocols.
+- **Use cases:** [Analytics dashboards](https://goldrush-uniswap-dex-dashboard.vercel.app/?utm_source=linea&utm_medium=partner-docs), leaderboards, reward calculators.
+
+### Cross-Chain Activity API
+
+- **Features:** Single API call to fetch a list of active chains and the latest transaction date 
+on each for an address.
+- **Use cases:** [App onboarding](https://goldrush-wallet-portfolio-ui.vercel.app/activity/0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de/?utm_source=linea&utm_medium=partner-docs).
+
+### Transactions API
+
+- **Features:** All historical transactions with human-readable log events. Includes gas usage/spend
+summaries.
+- **Use cases:** [Accounting and tax tools](https://bit.ly/crypto-tax-tool), branded in-app [transaction receipts](https://goldrush-dfk-tx-receipt-ui.vercel.app/tx/defi-kingdoms-mainnet/0x4e5c0af28b2cea27d06677fae1f573572e0ff863c43ae42d2959ca67b90c4390/?utm_source=linea&utm_medium=partner-docs).
+
+### Security API
+
+- **Features:** NFT and ERC20 token allowances, including value-at-risk.
+- **Use cases:** Revoke features in wallets, security applications.
+
+### Blockchain API
+
+- **Features:** Block details, log events by contract address or topic hash, gas prices.
+- **Use cases:** Custom block explorers.
+
+### Developer tools
+
+There are 3 primary developer tools for using the APIs:
+
+1. [Unified API](https://www.covalenthq.com/docs/api/?utm_source=linea&utm_medium=partner-docs) - 
+enterprise-grade endpoints to use with any programming language. Switch blockchains with one path 
+parameter.
+
+    ```bash
+    curl -X GET https://api.covalenthq.com/v1/linea-mainnet/address/0xc882b111a75c0c657fc507c04fbfcd2cc984f071/balances_v2/ \
+        -H 'Content-Type: application/json' \
+        -u YOUR_API_KEY:
+    ```
+
+2. [Client SDKs](https://www.covalenthq.com/docs/unified-api/sdk/?utm_source=linea&utm_medium=partner-docs) - official client libraries including TypeScript, Go and Python.
+    ```jsx
+    npm install @covalenthq/client-sdk
+    ```
+
+
+    ```jsx
+    import { CovalentClient } from "@covalenthq/client-sdk";
+
+    (async () => {
+    try {
+        const client = new CovalentClient("YOUR_API_KEY");
+        const transactions = client.TransactionService.getAllTransactionsForAddress("linea-mainnet", "0xc882b111a75c0c657fc507c04fbfcd2cc984f071");
+
+        for await (const tx of transactions) {
+        console.log("tx", tx);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+    })();
+    ```
+
+3. [GoldRush Kit](https://github.com/covalenthq/goldrush-kit/?utm_source=linea&utm_medium=partner-docs) - beautifully designed React components for your dApp frontend
+
+    [![GoldRush Component Example](https://www.datocms-assets.com/86369/1711147954-goldrush_wallet_ui_example.png)](https://goldrush-wallet-portfolio-ui.vercel.app/dashboard/balance/0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de/transfers/eth-mainnet/0xf8c3527cc04340b208c854e985240c02f7b7793f)
 
 ### Get started
 
-- [API Key](https://www.covalenthq.com/platform/?utm_source=linea&utm_medium=partner-docs) - sign up for free
-- [Quickstart](https://www.covalenthq.com/docs/unified-api/quickstart/?utm_source=linea&utm_medium=partner-docs) - summary of key resources to get you building immediately on Linea
-- [API Reference](https://www.covalenthq.com/docs/api/?utm_source=linea&utm_medium=partner-docs) - try all the endpoints directly from your browser
-- [Guides](https://www.covalenthq.com/docs/unified-api/guides/?utm_source=linea&utm_medium=partner-docs) - learn how to build dapps, fetch data and extend your Web3 knowledge
+- [API Key](https://www.covalenthq.com/platform/auth/register/?utm_source=linea&utm_medium=partner-docs) - sign up for free
+- [Docs](https://www.covalenthq.com/docs/unified-api/?utm_source=linea&utm_medium=partner-docs) - comprehensive knowledge base for all things Covalent
+- [Guides](https://www.covalenthq.com/docs/unified-api/guides/?utm_source=linea&utm_medium=partner-docs) - learn how to build for various use cases and expand your onchain knowledge
 
 ## Increment
 
-<div class="center-container">
-  <div class="img-large">
-    <a href="https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Data_indexers/Covalent/Linea_Covalent_2.png"
-        alt="Covalent example increment chart"
-      />
-    </a>
-  </div>
-</div>
+[![example-increment-chart](https://www.datocms-assets.com/86369/1684974544-increment-example-partner-docs.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs)
 
-Increment is a novel no-code charting and reporting tool powered by Covalent, revolutionizing how the Web3 space approaches analytics. Many analytics tools let you write SQL to create charts, but _Increment is the only one to encode business logic - Reach, Retention, and Revenue - into an SQL compiler that can write valid SQL for you._
+Increment is a novel no-code charting and reporting tool powered by Covalent. 
+*Simply type SQL, get charts.*
 
 ### Use cases
 
 Increment can be used for:
 
-- [Analyzing Blockchain Networks](https://www.covalenthq.com/docs/increment/data-models/chain-gdp/?utm_source=linea&utm_medium=partner-docs)
+- [Analyzing blockchain networks](https://www.covalenthq.com/docs/increment/data-models/chain-gdp/?utm_source=linea&utm_medium=partner-docs)
 - [Analyzing DEXs](https://www.covalenthq.com/docs/increment/data-models/swap-land/?utm_source=linea&utm_medium=partner-docs)
-- [Analyzing NFT Marketplaces](https://www.covalenthq.com/docs/increment/data-models/jpeg-analysis/?utm_source=linea&utm_medium=partner-docs)
+- [Analyzing NFT marketplaces](https://www.covalenthq.com/docs/increment/data-models/jpeg-analysis/?utm_source=linea&utm_medium=partner-docs)
+
 
 ### Get started
 
 - [Increment](https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs) - login via the Covalent Platform
-- [Docs](https://www.covalenthq.com/docs/increment/?utm_source=linea&utm_medium=partner-docs) - learn how to use Increment to build dynamic, custom charts
-- [Data Models Demo](https://www.covalenthq.com/docs/increment/data-models/model-intro/?utm_source=linea&utm_medium=partner-docs) - build analytics in 3 clicks
-- [Explore Models. Seek Alpha.](https://www.covalenthq.com/platform/increment/#/pages/covalent/chain-gdp/?utm_source=linea&utm_medium=partner-docs) - browse all data models
-- [Use Models. Become Alpha.](https://www.covalenthq.com/platform/increment/#/sql/query_b6c88fd8604f49d5920ca86fa7/?utm_source=linea&utm_medium=partner-docs) - use a data model
+- [Docs](https://www.covalenthq.com/docs/increment/?utm_source=linea&utm_medium=partner-docs) - 
+learn how to use Increment to build dynamic, custom charts
+- [Data models demo](https://www.covalenthq.com/docs/increment/data-models/model-intro/?utm_source=linea&utm_medium=partner-docs) - build analytics in three clicks

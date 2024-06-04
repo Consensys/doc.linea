@@ -56,10 +56,12 @@
     "Email",
     "Urls",
     "#[\\w-]*",
-    "^image:\\s*([>-]\\s*)?.*$",
-    "/img/.*",
-    "/https:\\/\\/gateway\\.irys\\.xyz\\/[a-zA-Z0-9\\-]+/",
-    "/https:\\/\\/gateway\\.irys\\.xyz\\/mutable\\/[a-zA-Z0-9\\-]+/",
-    "/[a-zA-Z0-9\\-]{20,}/" // Generic pattern for alphanumeric strings of 20 or more characters
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm",
+    "/^\\s*`[\\s\\S]*?^\\s*`/gm",
+    "`[^`]*`",
+    "\\|[^\\n]+\\|",
+    "\\|[^\n]+",
+    "[^\n]+\\|",
+    "\\|[^\n]+\\|[^\n]+\\|"
   ]
 }
