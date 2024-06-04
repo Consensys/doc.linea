@@ -45,27 +45,26 @@ The requester calling an Airnode primarily focuses on two tasks:
 **Here is an example of a basic requester contract to request data from an Airnode:**
 
 ```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
 import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
 
-// A Requester that will return the requested data by calling the specified airnode.
-// Make sure you specify the right _rrpAddress for your chain.
-
-contract Requester is RrpRequesterV0 {
+// A Requester that will return the requested data by calling the specified Airnode.
+contract Requester is RrpRequesterV0, Ownable {
     mapping(bytes32 => bool) public incomingFulfillments;
     mapping(bytes32 => int256) public fulfilledData;
 
+    // Make sure you specify the right _rrpAddress for your chain while deploying the contract.
     constructor(address _rrpAddress) RrpRequesterV0(_rrpAddress) {}
 
-    /**
-     * The main makeRequest function that will trigger the Airnode request
-     * airnode: Airnode address
-     * endpointId: The endpoint ID for the specific endpoint
-     * sponsor: The requester contract itself (in this case)
-     * sponsorWallet: The wallet that will make the actual request (needs to be funded)
-     * parameters: encoded API parameters
-     */
+    // To receive funds from the sponsor wallet and send them to the owner.
+    receive() external payable {
+        payable(owner()).transfer(address(this).balance);
+    }
+
+    // The main makeRequest function that will trigger the Airnode request.
     function makeRequest(
         address airnode,
         bytes32 endpointId,
@@ -75,18 +74,17 @@ contract Requester is RrpRequesterV0 {
 
     ) external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
-            airnode,
-            endpointId,
-            sponsor,
-            sponsorWallet,
-            address(this),
-            this.fulfill.selector,
-            parameters
+            airnode,                        // airnode address
+            endpointId,                     // endpointId
+            sponsor,                        // sponsor's address
+            sponsorWallet,                  // sponsorWallet
+            address(this),                  // fulfillAddress
+            this.fulfill.selector,          // fulfillFunctionId
+            parameters                      // encoded API parameters
         );
         incomingFulfillments[requestId] = true;
     }
-
-    // The callback function with the requested data
+    
     function fulfill(bytes32 requestId, bytes calldata data)
         external
         onlyAirnodeRrp
@@ -96,10 +94,18 @@ contract Requester is RrpRequesterV0 {
         int256 decodedData = abi.decode(data, (int256));
         fulfilledData[requestId] = decodedData;
     }
+
+    // To withdraw funds from the sponsor wallet to the contract.
+    function withdraw(address airnode, address sponsorWallet) external onlyOwner {
+        airnodeRrp.requestWithdrawal(
+        airnode,
+        sponsorWallet
+        );
+    }
 }
 ```
 
-The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can also try [deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can also try [deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
 |   Contract   |                  Addresses                   |
 | :----------: | :------------------------------------------: |
@@ -127,157 +133,92 @@ Sponsors should not fund a `sponsorWallet` with more then they can trust the Air
 
 :::
 
-[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/Requester.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
 ## Using dAPIs - API3 datafeeds
 
-[dAPIs](https://docs.api3.org/explore/dapis/what-are-dapis.html) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+[dAPIs](https://docs.api3.org/reference/dapis/understand/) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
-The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in realtime.
+The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in real-time.
 
 Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency and scalability in a turn-key package.
 
-The [API3 Market](https://market.api3.org/dapis) enables users to connect to a dAPI and access the associated data feed services.
+Apart from relying on deviation threshold and heartbeat configuration updates, unlike traditional data feeds, [OEV Network](https://docs.api3.org/explore/introduction/oracle-extractable-value.html) enables dApps using dAPIs to auction off the right to update the data feeds to searcher bots. Searcher bots can bid for price updates through the OEV Network to update the data feeds. All the OEV proceeds go back to the dApp.
 
-<div class="center-container">
-  <div class="img-medium">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3_datafeeds.png"
-        alt="API3 data feed"
-      />
-  </div>
-</div>
-
-> [_To know more about how dAPIs work, click here_](https://docs.api3.org/explore/dapis/what-are-dapis.html)
-
-## Types of dAPIs
-
-### Self-funded dAPIs
-
-[Self-funded dAPIs](https://docs.api3.org/reference/dapis/understand/self-funded.html) are single-source data feeds that can be funded by the users with their own funds. The amount of gas supplied determines how long the dAPI will be available to use. If it runs out of gas, the dAPI will no longer be updated unless it is funded again.
-
-[Click here to read more about Self-funded dAPIs](https://docs.api3.org/guides/dapis/subscribing-self-funded-dapis/).
-
-### Managed dAPIs
-
-[Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html) are sourced directly from multiple [first-party](https://docs.api3.org/explore/airnode/why-first-party-oracles.html) data providers running an Airnode and aggregated using Airnode's signed data using a median function. The gas costs and availability of Managed dAPIs is managed by the [API3 DAO](https://docs.api3.org/explore/dao-members/).
-
-[Click here to read more about Managed dAPIs](https://docs.api3.org/reference/dapis/understand/managed.html).
-
-### Subscribing to self-funded dAPIs
-
-:::info
-
-While Managed dAPIs are just available on mainnets, Self-funded dAPIs are available on both mainnets and testnets. The process to read from a dAPI proxy remains same for both Self-funded and Managed dAPIs.
-
-:::
-
-The API3 Market lets users access both Self-funded and Managed dAPIs.
-
-With Self-funded dAPIs, you can fund the dAPI with your own funds. The amount of gas you supply will determine how long your dAPI will be available for use. If you run out of gas, you can fund the dAPI again to keep it available for use.
-
-### Exploring and selecting your dAPI
-
-The [API3 Market](https://market.api3.org/dapis) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by chains and data providers. You can also search for a specific dAPI by name. Once selected you will land on the details page where you can find more information about the dAPI.
-
-You can then decide if you want to use Self-funded or Managed dAPIs.
+The [API3 Market](https://market.api3.org/linea) enables users to connect to a dAPI and access the associated data feed services.
 
 <div class="center-container">
   <div class="img-large">
       <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3Market.png"
-        alt="API3 market"
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/dapi-main.png"
+        alt="dapi-main"
       />
   </div>
 </div>
 
-## Funding a sponsor wallet
+[*To learn more about how dAPIs work, click here*](https://docs.api3.org/explore/dapis/what-are-dapis.html)
 
-If you are trying to access Self-funded dAPIs, you need to make sure that the sponsor wallet for the dAPI is funded. You can activate it by using the [API3 Market](https://market.api3.org/) and send Matic to the `sponsorWallet`. Make sure your:
+### Subscribing to dAPIs
 
-- Wallet is connected to the Market and is the same network as the dAPI you are funding.
-- Balance of the wallet should be greater than the amount you are sending to the `sponsorWallet`.
+The [API3 Market](https://market.api3.org/linea) lets users access dAPIs on both [Linea Mainnet](https://market.api3.org/linea) and [Testnet](https://market.api3.org/linea-sepolia-testnet).
 
-<div class="center-container">
-  <div class="img-medium">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3_self-funded_feed.png"
-        alt="accessing a self funded feed"
-      />
-  </div>
-</div>
+#### Exploring, selecting and configuring your dAPI
 
-To fund the dAPI, you need to click on the **Fund Gas** button. Depending upon if a proxy contract is already deployed, you will see a different UI.
+The [API3 Market](https://market.api3.org/linea) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by mainnet or testnet chains. After selecting the chain, you can now search for a specific dAPI by name. Once selected, you will land on the details page (eg ETH/USD on Linea Testnet) where you can find more information about the dAPI. 
 
-<div class="center-container">
-  <div class="img-small">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3_fund_gas.png"
-        alt="API3 fund gas UI"
-      />
-  </div>
-</div>
-
-Use the gas estimator to select how much gas is needed by the dAPI. Click on **Send ETH** to send the entered amount to the sponsor wallet of the respective dAPI.
-
-<div class="center-container">
-  <div class="img-medium">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3_fund_gas_2.png"
-        alt="API3 fund gas UI"
-      />
-  </div>
-</div>
-
-Once the transaction is broadcasted & confirmed on the blockchain a transaction confirmation screen will appear.
-
-### Deploying a proxy contract to access the dAPI
-
-Smart contracts can interact and read values from contracts that are already deployed on the blockchain. By deploying a proxy contract via the API3 Market, a dApp can interact and read values from a dAPI like ETH/USD.
-
-:::note
-
-If a proxy is already deployed for a self-funded dAPI, the dApp can read the dAPI without having to deploy a proxy contract. They do this by using the address of the already deployed proxy contract which will be visible on the API3 Market.
-
-:::
-
-If you are deploying a proxy contract during the funding process, clicking on the **Get proxy** button will initiate a transaction to your MetaMask that will deploy a proxy contract.
-
-Once the transaction is broadcasted & confirmed on the blockchain, the proxy contract address will be shown on the UI.
-
-<div class="center-container">
-  <div class="img-small">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/API3_get_proxy.png"
-        alt="API3 get proxy"
-      />
-  </div>
-</div>
-
-### Subscribing to managed dAPIs
-
-If you are trying to access Managed dAPIs, once you have selected your dAPI, you will then be presented with an option to choose from either **Managed** or **Self-funded**. Select Managed dAPIs.
-
-Managed dAPIs gives you an option to configure the dAPI's [deviation threshold](https://docs.api3.org/reference/dapis/understand/deviations.html) and [heartbeat](https://docs.api3.org/reference/dapis/understand/deviations.html#heartbeat). For Managed dAPIs, you will have the following options to choose from:
+The current supported configurations for dAPIs are:
 
 | Deviation | Heartbeat |
 | --------- | --------- |
-| 0.25%     | 2 minutes |
 | 0.25%     | 24 hours  |
 | 0.5%      | 24 hours  |
 | 1%        | 24 hours  |
+| 5%        | 24 hours  |
 
-:::info
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/dapi-1.png"
+        alt="dapi-1"
+      />
+  </div>
+</div>
 
-Not all dAPIs support all the configurations. It depends on the asset and chain. Check the [API3 Market](https://market.api3.org) for more info.
+#### Activating your dAPI
 
+:::note
+Note
+
+If a dAPI is already activated, make sure to check the expiration date and update parameters. You can update the parameters and extend the subscription by purchasing a new configuration.
 :::
 
-After selecting the required deviation threshold and heartbeat, check the final price, and select **Add to Cart**. You can add more dAPIs on the same network to your cart. Once you are done, click on **Checkout**.
+After selecting the dAPI and the configuration, you will be presented with an option to purchase the dAPI and activate it. Make sure to check the time and amount of the subscription. If everything looks good, click on Purchase.
 
-Make sure you check the order details and the final price on the payments page. Once you are ready, connect your wallet and pay for the order.
+<div class="center-container">
+  <div class="img-small">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/dapi-2.png"
+        alt="dapi-2"
+      />
+  </div>
+</div>
 
-After placing the order, you will have to wait for the dAPI to get updated. It usually takes 5 business days for the dAPI team to update the dAPI for the requested configuration. Once the dAPI is updated, you can start using it in your dApp.
+You can then connect your wallet and confirm the transaction. Once it's confirmed, you will be able to see the updated configuration for the dAPI.
+
+#### Getting the proxy address
+
+Once you are done configuring and activating the dAPI, you can now integrate it. To do so, click on the **Integrate** button on the dAPI details page.
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Oracles/API3/dapi-5.png"
+        alt="dapi-5"
+      />
+  </div>
+</div>
+
+You can now see the deployed proxy contract address. You can now use this to read from the configured dAPI.
 
 ### Reading from a dAPI
 
@@ -287,17 +228,17 @@ Here's an example of a basic contract that reads from a dAPI.
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@api3/contracts/v0.8/interfaces/IProxy.sol";
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
+import "@api3/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
 
 contract DataFeedReaderExample is Ownable {
-    // This contract reads from a single proxy. Your contract can read from multiple proxies.
-    address public proxy;
+    // The proxy contract address obtained from the API3 Market UI.
+    address public proxyAddress;
 
-    // Updating the proxy address is a security-critical action. In this example, only
-    // the owner is allowed to do so.
-    function setProxy(address _proxy) public onlyOwner {
-        proxy = _proxy;
+    // Updating the proxy contract address is a security-critical
+    // action. In this example, only the owner is allowed to do so.
+    function setProxyAddress(address _proxyAddress) public onlyOwner {
+        proxyAddress = _proxyAddress;
     }
 
     function readDataFeed()
@@ -305,21 +246,23 @@ contract DataFeedReaderExample is Ownable {
         view
         returns (int224 value, uint256 timestamp)
     {
-        (value, timestamp) = IProxy(proxy).read();
-        // If you have any assumptions about `value` and `timestamp`, make sure
-        // to validate them right after reading from the proxy.
+        // Use the IProxy interface to read a dAPI via its
+        // proxy contract .
+        (value, timestamp) = IProxy(proxyAddress).read();
+        // If you have any assumptions about `value` and `timestamp`,
+        // make sure to validate them after reading from the proxy.
     }
 }
 
 ```
 
-- `setProxy()` is used to set the address of the dAPI Proxy Contract.
+- `setProxyAddress()` is used to set the address of the dAPI Proxy Contract.
 
 - `readDataFeed()` is a view function that returns the latest price of the set dAPI.
 
-You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-managed-dapis/).
+You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-to-dapis/).
 
-[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DataFeedReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js)
+### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DapiReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js)
 
 ## API3 QRNG
 
