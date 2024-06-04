@@ -53,8 +53,15 @@
     "static/files/besu/config-mainnet.toml"
   ],
   "ignoreRegExpList": [
-    "Email", "Urls", "#[\\w-]*",
-    "^image:\\s*([>-]\\s*)?.*$",
-    "/img/.*"
+    "Email",
+    "Urls",
+    "#[\\w-]*",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm",
+    "/^\\s*`[\\s\\S]*?^\\s*`/gm",
+    "`[^`]*`",
+    "\\|[^\\n]+\\|",
+    "\\|[^\n]+",
+    "[^\n]+\\|",
+    "\\|[^\n]+\\|[^\n]+\\|"
   ]
 }
