@@ -9,4 +9,4 @@ image: /img/socialCards/openfort.jpg
 
 Authenticated users can instantly access the embedded, non-custodial [smart account](https://www.openfort.xyz/docs/guides/accounts/smart) from within the app context and sign blockchain transactions.
 
-Use [Auth Quick Start Guide](https://www.openfort.xyz/docs/guides/auth/overview) to allow social login for onboarding users and enable Arcana Wallet in the app context. 
+Use [Auth Quick Start Guide](https://www.openfort.xyz/docs/guides/auth/overview) to allow social login for onboarding users.
