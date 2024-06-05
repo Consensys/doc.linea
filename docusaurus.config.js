@@ -402,7 +402,10 @@ const config = {
           },
           {
             to: "/architecture/overview/decentralization-roadmap",
-            from: "/use-mainnet/decentralization-roadmap",
+            from: [
+              "/use-mainnet/decentralization-roadmap",
+              "/decentralization-roadmap",
+            ],
           },
           {
             to: "/architecture/overview/transaction-lifecycle",
@@ -443,6 +446,10 @@ const config = {
           {
             to: "/developers/tooling/cross-chain/shortcuts",
             from: "/build-on-linea/tooling/cross-chain/shortcuts",
+          },
+          {
+            to: "/developers/tooling/node-providers",
+            from: "/build-on-linea/tooling/node-providers",
           },
         ],
       },
