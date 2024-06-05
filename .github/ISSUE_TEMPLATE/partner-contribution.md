@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-_Please note this form is for existing Linea partner organisations
+_Please note this form is for existing Linea partner organisations only._
 
 **Organisation:**
 
