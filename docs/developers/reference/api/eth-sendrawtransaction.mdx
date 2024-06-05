@@ -16,16 +16,16 @@ unique error responses.
 
 :::
 
-Submits a pre-signed and serialized transaction and returns the transaction hash if successful.
+Submits a pre-signed and serialized transaction and returns the transaction hash if successful. 
+This endpoint can help prevent transactions being rejected due to exceeding the sequencer's 
+per-block line limit. If the line count check fails, it returns an error message indicating the 
+transaction is likely to be rejected.
 
-On Linea, this endpoint proves useful in preventing transaction failures due to exceeding the 
-sequencer's per-block line limit. If the line count check fails, it returns an error message 
-indicating the impending transaction failure.
-
-The line limit is a threshold for the amount of transaction data that can be added to a single
-proof. Exceeding this limit means the prover cannot include the transaction in the proof within
-the time limit. Therefore, every transaction undergoes a line count check to ensure its
-success and inclusion in a proof.
+On Linea, each transaction is represented by a sequence of lines representing the operations 
+happening at the EVM level. These lines are grouped by modules and are used as inputs to the prover. 
+In order to limit the resources required to generate proofs, limits are enforced on the maximum 
+number of lines each module can have. Hence, when a transaction is considered for inclusion in a 
+block, a line count check is perform to ensure it conforms to the requirements.
 
 ## Parameters
 
@@ -71,6 +71,6 @@ finalizing the transaction on L1.
 This error will display in the format:
 `Transaction line count for module [A] is above the limit [B]`
 
-Where the module, `[A]`, is the data contained in your raw transaction, and the limit `[B]` is 
-the line count limit.
+Where `[A]`  is the module for which the number of lines is above the maximum allowed value `[B]`,
+with '[B]' a parameter of the system.
  
