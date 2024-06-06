@@ -1,39 +1,38 @@
 ---
-title: Quickstart
+title: Irys quickstart
 image: /img/socialCards/quickstart.jpg
 description: Creating permanent data using Irys SDK.
 ---
 
-# Irys Quickstart
-
-All uploads to Irys' mainnet are stored permanently onchain. They are guaranteed to be retrievable now and hundreds of years into the future.
+All uploads to Irys' mainnet are stored permanently onchain. They are guaranteed to be retrievable now and
+hundreds of years into the future.
 
 - To upload data, use the Irys [SDK](#sdk) or [CLI](#cli).
 - To [download data](#downloading-data), use the Irys gateway.
 
 ## Irys SDK
 
-### Installing
+### Install the SDK
 
 Install using npm:
 
-```console
+```bash
 npm install @irys/sdk
 ```
 
 or yarn:
 
-```console
+```bash
 yarn add @irys/sdk
 ```
 
-### Importing
+### Import from the SDK
 
 ```ts
 import Irys from "@irys/sdk";
 ```
 
-### Connecting to Irys
+### Connect to Irys
 
 Irys has two networks:
 
@@ -99,13 +98,15 @@ const getWebIrys = async () => {
 };
 ```
 
-### Funding
+### Fund your account
 
-When you use Irys to upload data, you pay once and the data is guaranteed to be retrievable forever. The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/overview/cost-to-upload).
+When you use Irys to upload data, you pay once and the data is guaranteed to be retrievable forever.
+The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/overview/cost-to-upload).
 
-When calling `irys.fund()` pass a value in atomic units. Use the utility functions `irys.utils.toAtomic()` and `irys.utils.fromAtomic()` to convert between atomic and standard units.
+When calling `irys.fund()` pass a value in atomic units. Use the utility functions `irys.utils.toAtomic()`
+and `irys.utils.fromAtomic()` to convert between atomic and standard units.
 
-You can up-front fund, where you send over enough tokens to cover all of a project’s uploads.
+You can fund up-front, allowing you send over enough tokens to cover all of a project’s uploads.
 
 ```js
 try {
@@ -140,7 +141,7 @@ try {
 }
 ```
 
-### Uploading data
+### Upload data
 
 ```js
 const uploadData = async () => {
@@ -157,7 +158,7 @@ const uploadData = async () => {
 };
 ```
 
-### Uploading a file
+### Upload a file
 
 ```js
 const uploadFile = async () => {
@@ -175,7 +176,7 @@ const uploadFile = async () => {
 };
 ```
 
-### Uploading a folder
+### Upload a folder
 
 You can upload a group of files as a single transaction from both the server and the browser.
 
@@ -220,7 +221,7 @@ const response = await webIrys.uploadFolder(taggedFiles);
 
 ## Irys CLI
 
-### Installing
+### Install the CLI
 
 Install the CLI globally using the `-g` flag. Depending on your setup, you may or may not need to use sudo.
 
@@ -229,7 +230,7 @@ npm i -g @irys/sdk
 sudo npm i -g @irys/sdk
 ```
 
-### Using private keys
+### Use private keys
 
 When executing CLI commands involving funding nodes or signing transactions, you must provide a private key.
 
@@ -257,7 +258,7 @@ When connecting to Devnet, you must supply the additional --provider-url paramet
 irys -n devnet --provider-url https://rpc.sepolia.linea.build
 ```
 
-### Funding
+### Fund a node
 
 Use the `fund` command to fund a node.
 
@@ -265,7 +266,7 @@ Use the `fund` command to fund a node.
 irys fund 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
 ```
 
-### Withdrawing funds
+### Withdraw funds
 
 Use the `withdraw` command to withdraw funds from a node.
 
@@ -273,7 +274,7 @@ Use the `withdraw` command to withdraw funds from a node.
 irys withdraw 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
 ```
 
-### Uploading a file
+### Upload a file
 
 Use the `upload` command to upload a file.
 
@@ -281,7 +282,7 @@ Use the `upload` command to upload a file.
 irys upload myImage.png -n mainnet -t linea-eth -w bf20......c9885307
 ```
 
-### Uploading a folder
+### Upload a folder
 
 Use the `upload-dir` command to upload a folder.
 
@@ -289,7 +290,7 @@ Use the `upload-dir` command to upload a folder.
 irys upload-dir ./myImages -n mainnet -t linea-eth -w bf20......c9885307
 ```
 
-### Using tags
+### Use tags
 
 Use the `-t` option, followed by a series of name / value pairs to append metadata tags to your upload.
 
@@ -307,7 +308,7 @@ Use the `price` command, followed by a number of bytes to get the cost to upload
 irys price 1000000 -t linea-eth -n mainnet
 ```
 
-## Downloading data
+## Download data
 
 When you upload data to Irys, you're given a [receipt](./overview#receipts) containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
 

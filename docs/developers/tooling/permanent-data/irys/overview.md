@@ -4,21 +4,23 @@ image: /img/socialCards/overview.jpg
 description: Using Irys' permanent data with Linea.
 ---
 
-# Irys
-
 [Irys](https://docs.irys.xyz/) is a provenance layer. Data on Irys is permanent, precise, and unconstrained.
 
-- **Permanent:** Data stored on Irys is censorship-resistant and immutable, forever. There's no counterparty risk of data being removed.
+- **Permanent:** Data stored on Irys is censorship-resistant and immutable. There's
+    no counterparty risk of data being removed.
 
-- **Precise:** Each piece of data is timestamped with a high-precision timestamp, providing a reliable sequence of events.
+- **Precise:** Data is timestamped with a high-precision timestamp, providing
+    a reliable sequence of events.
 
-- **Unconstrained:** There are no limits on file upload sizes. Users can always read, write, and discover data at scale.
+- **Unconstrained:** There are no limits on file upload sizes. Users can always read, write, and
+    discover data at scale.
 
 ![](/img/docs/build-on-linea/tooling/permanent-data/irys/irys-provenance-layer.gif)
 
-You can imagine Irys as an assembly line. Data enters on one side, it's stamped with a timestamp, attribution, and authorship details before being stored permanently as data with strong provenance.
+You can imagine Irys as an assembly line. Data enters on one side, it's stamped with a
+timestamp, attribution, and authorship details before being stored permanently as data with strong provenance.
 
-## Using Irys with Linea
+## Use Irys with Linea
 
 Irys is **chain agnostic**, smart contracts on Linea can link to data on Irys.
 
@@ -33,7 +35,8 @@ You can use [ETH on Linea](https://docs.irys.xyz/overview/supported-tokens) to p
 
 ## Paying for uploads
 
-Irys has a pay-once-store-forever payment model based on the number of bytes you upload. For the exact cost to upload, use their [payment calculator](https://docs.irys.xyz/overview/cost-to-upload).
+Irys has a pay-once-store-forever payment model based on the number of bytes you upload. For the exact
+cost to upload, use their [payment calculator](https://docs.irys.xyz/overview/cost-to-upload).
 
 ## Free uploads
 
@@ -41,7 +44,8 @@ Uploads of less then 100Kib are free on Irys' mainnet and devnet.
 
 ## Receipts
 
-Each upload to Irys is given a cryptographically signed receipt that can be used by anyone to trustlessly verify the data's provenance.
+Each upload to Irys is given a cryptographically signed receipt that can be used by anyone to trustlessly
+verify the data's provenance.
 
 Receipts are a JSON object with the following format:
 
@@ -56,18 +60,19 @@ Receipts are a JSON object with the following format:
 }
 ```
 
-| Field | Description |
-| --- | --- |
-| id | Transaction id (used to download the data) |
-| timestamp | Timestamp (UNIX milliseconds) of when the transaction was created |
-| version | The version of this JSON file, currently 1.0.0 |
-| public | Public key of the bundler node used |
-| signature | A signed deep hash of the JSON receipt |
+| Field          | Description                                                            |
+|----------------|------------------------------------------------------------------------|
+| id             | Transaction id (used to download the data)                             |
+| timestamp      | Timestamp (UNIX milliseconds) of when the transaction was created      |
+| version        | The version of this JSON file, currently 1.0.0                         |
+| public         | Public key of the bundler node used                                    |
+| signature      | A signed deep hash of the JSON receipt                                 |
 | deadlineHeight | The block number by which the transaction must be finalized on Arweave |
 
 ## Paying for users' uploads
 
-Use [balance approvals](https://docs.irys.xyz/developer-docs/irys-sdk/balance-approvals) to pay for your users' uploads and build a Web2-style UX that saves users from having to covert fiat or own tokens.
+Use [balance approvals](https://docs.irys.xyz/developer-docs/irys-sdk/balance-approvals) to pay for
+your users' uploads and build a Web2-style UX that saves users from having to covert fiat or own tokens.
 
 With balance approvals:
 
@@ -94,7 +99,7 @@ const receipt = await irys.upload("GM World", {
 
 ## Tagging
 
-Irys supports attaching up to 20 metadata tags to each transaction. Tags are indexed and are queryable.
+Irys supports attaching up to 20 metadata tags to each transaction. Tags are indexed and can be queried.
 
 ```js
 // Your file
@@ -112,4 +117,4 @@ try {
 
 ## Querying
 
-Transaction metadata is [queryable using the Irys query package](./irys-query-package).
+Transaction metadata can be [queried using the Irys query package](./irys-query-package).
