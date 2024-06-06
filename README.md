@@ -24,7 +24,7 @@ The best way to suggest a change to these docs is through a process known as a *
 If you're not familiar with how that works, check out [GitHub's guide here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 If you do intend to submit a pull request, please open an issue first, and link to it in your pull 
-request. **This is particularly important if you are a Linea partner organisation** — submitting your
+request. **This is particularly important if you are a Linea partner organization** — submitting your
 details in an issue first will make it much easier for our docs team to process your contributions.
 
 If that process is too involved for you, you can always open a thread on the [Community forum](https://community.linea.build/), 
