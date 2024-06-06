@@ -326,7 +326,11 @@ const config = {
           },
           {
             to: "/users/linea-voyage/linea-surge/linea-surge-overview",
-            from: "/use-mainnet/linea-surge-overview",
+            from: "/use-mainnet/linea-surge/linea-surge-overview",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge/linea-surge-model",
           },
           {
             to: "/users/linea-voyage/linea-surge/linea-surge-model",
@@ -398,7 +402,10 @@ const config = {
           },
           {
             to: "/architecture/overview/decentralization-roadmap",
-            from: "/use-mainnet/decentralization-roadmap",
+            from: [
+              "/use-mainnet/decentralization-roadmap",
+              "/decentralization-roadmap",
+            ],
           },
           {
             to: "/architecture/overview/transaction-lifecycle",
@@ -439,6 +446,10 @@ const config = {
           {
             to: "/developers/tooling/cross-chain/shortcuts",
             from: "/build-on-linea/tooling/cross-chain/shortcuts",
+          },
+          {
+            to: "/developers/tooling/node-providers",
+            from: "/build-on-linea/tooling/node-providers",
           },
         ],
       },
