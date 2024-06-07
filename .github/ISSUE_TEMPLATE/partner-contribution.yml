@@ -1,19 +1,19 @@
 name: I'm a Partner
-description: If you're a partner protocol, dapp, or organisation, submit your issue here
+description: If you're a partner protocol, dapp, or organization, submit your issue here
 labels: ['partner']
 body:
   - type: markdown
     attributes:
       value: |
-        _Please note this form is for existing Linea partner organisations only._
+        _Please note this form is for existing Linea partner organizations only._
   - type: textarea
-      id: organisation
-      attributes:
-        label: Organisation
-        description: Name of the organisation.
-        placeholder: Enter your organisation's name
-      validations:
-        required: true
+    id: organization
+    attributes:
+      label: Organization
+      description: Name of the organization.
+      placeholder: Enter your organization's name
+    validations:
+      required: true
   - type: textarea
     id: contributor-name
     attributes:
