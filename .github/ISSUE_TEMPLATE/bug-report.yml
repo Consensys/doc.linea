@@ -70,15 +70,15 @@ body:
       label: Specify Other Browser
       description: If you selected "Other" for the browser, please specify.
       placeholder: Specify other browser here...
-      validations:
-        required: false
+    validations:
+      required: false
   - type: input
     id: browser-version-desktop
     attributes:
       label: Browser Version
       description: Specify the version of the browser.
       placeholder: Specify browser version here...
-      validations:
+    validations:
         required: false
   - type: markdown
     attributes:
@@ -90,32 +90,32 @@ body:
       label: Device
       description: Specify the device you are using.
       placeholder: e.g. iPhone 13
-      validations:
-        required: false
+    validations:
+      required: false
   - type: input
     id: smartphone-os
     attributes:
       label: OS
       description: Specify the operating system you are using.
       placeholder: e.g. iOS 17
-      validations:
-        required: false
+    validations:
+      required: false
   - type: input
     id: smartphone-browser
     attributes:
       label: Browser
       description: Specify the browser you are using.
       placeholder: e.g. Safari
-      validations:
-        required: false
+    validations:
+      required: false
   - type: input
     id: browser-version-mobile
     attributes:
       label: Browser Version
       description: Specify the version of the browser.
       placeholder: Specify browser version here.
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     id: additional-context
     attributes:
