@@ -308,7 +308,7 @@ textarea {
 }
 
 .footer--dark {
-  --ifm-footer-background-color: #000;
+  --ifm-footer-background-color: var(--footer-background);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -327,10 +327,21 @@ textarea {
   --ifm-link-color: #2eb9dc;
   --ifm-menu-color-active: #2eb9dc;
   --ifm-footer-background-color: #000;
+  --ifm-background-color: #121212;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
   --search-local-hit-active-color: #000;
+  --banner-background: #121212;
+  --banner-text: #fff;
+  --banner-text-shadow: #121212;
+  --banner-button-hover: #fff;
+  --banner-button-text-hover: #121212;
   --homepage-card-background: #1d1d1d;
   --homepage-card-text: #fff;
+  --homepage-card-border-color: #505050;
+  --homepage-card-border-color-hover: #61dfff;
+  --homepage-card-dot-hover: #fff;
+  --homepage-card-icon: #fff;
+  --footer-background: #121212;
 }
 
 [data-theme="light"] {
@@ -350,8 +361,19 @@ textarea {
   --ifm-color-info-dark: #989898;
   --ifm-footer-background-color: #000;
   --ifm-footer-link-hover-color: #c0c0c0;
-  --homepage-card-background: #1d1d1d;
+  --ifm-background-color: #fff;
+  --banner-background: #fff;
+  --banner-text: #121212;
+  --banner-text-shadow: #fff;
+  --banner-button-hover: #121212;
+  --banner-button-text-hover: #fff;
+  --homepage-card-background: #fff;
   --homepage-card-text: #fff;
+  --homepage-card-border-color: #c0c0c0;
+  --homepage-card-border-color-hover: #505050;
+  --homepage-card-dot-hover: #61dfff;
+  --homepage-card-icon: #c0c0c0;
+  --footer-background: #e5e5e5;
 }
 
 /* github */
@@ -484,6 +506,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 .navbar__logo {
+  color: var(--banner-text);
   height: 35px;
   width: auto;
   padding: 0 10px 0 20px;
@@ -820,4 +843,16 @@ html[data-theme="dark"] .navbar {
 
 .callout-warning {
   border-left-color: #f39c12;
+}
+
+.footer__title {
+  color: var(--banner-text);
+}
+
+.footer__link-item {
+  color: var(--banner-text);
+}
+
+.footer__copyright {
+  color: var(--banner-text);
 }
