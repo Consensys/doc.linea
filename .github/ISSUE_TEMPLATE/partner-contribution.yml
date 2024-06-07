@@ -1,0 +1,60 @@
+name: I'm a Partner
+description: If you're a partner protocol, dapp, or organisation, submit your issue here
+labels: ['partner']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        _Please note this form is for existing Linea partner organisations only._
+  - type: input
+      id: organisation
+      attributes:
+        label: Organisation
+        description: Name of the organisation.
+        placeholder: Enter your organisation's name
+      validations:
+        required: true
+  - type: input
+    id: contributor-name
+    attributes:
+      label: Contributor Name/Alias
+      description: Provide the name or alias of the contributor.
+      placeholder: Enter the name or alias
+    validations:
+      required: false
+  - type: input
+    id: contributor-affiliation
+    attributes:
+      label: Affiliation to Organisation
+      description: Provide the contributor's affiliation to the organisation.
+      placeholder: Enter the affiliation
+    validations:
+      required: false
+  - type: input
+    id: contributor-role
+    attributes:
+      label: Contributor Role
+      description: Provide the role of the contributor (if applicable).
+      placeholder: Enter the role
+    validations:
+      required: false
+  - type: checkboxes
+    id: nature-of-issue
+    attributes:
+      label: Nature of issue
+      description: Select the type(s) of issue you are reporting.
+      options:
+        - label: Add documentation about our product
+          required: false
+        - label: Improve or update existing documentation
+          required: false
+        - label: Correct errors
+          required: false
+        - label: Other (please specify below:)
+          required: false
+  - type: textarea
+    id: specify-other
+    attributes:
+      label: Specify Other
+      description: If you selected "Other", please specify.
+      placeholder: Specify other issue here.
