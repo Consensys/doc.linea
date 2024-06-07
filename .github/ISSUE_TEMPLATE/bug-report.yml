@@ -32,7 +32,7 @@ body:
       label: Screenshots
       description: If applicable, add screenshots to help explain your problem.
       placeholder: Add screenshots here.
-  - type: section
+  - type: markdown
     id: desktop-info
     attributes:
       label: Desktop (Please complete the following information)
@@ -81,7 +81,7 @@ body:
           placeholder: Specify browser version here...
         validations:
           required: false
-  - type: section
+  - type: markdown
     id: smartphone-info
     attributes:
       label: Smartphone (Please complete the following information)
