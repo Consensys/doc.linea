@@ -21,6 +21,13 @@ This endpoint can help prevent transactions being rejected due to exceeding the 
 per-block line limit. If the line count check fails, it returns an error message indicating the 
 transaction is likely to be rejected.
 
+:::info
+
+Please note the error relating to the line limit is only available on Besu nodes using version 
+`delivery-25` or later, together with `linea-sequencer` v0.1.4-test28 or later.
+
+:::
+
 On Linea, each transaction is represented by a sequence of lines representing the operations 
 happening at the EVM level. These lines are grouped by modules and are used as inputs to the prover. 
 In order to limit the resources required to generate proofs, limits are enforced on the maximum 
