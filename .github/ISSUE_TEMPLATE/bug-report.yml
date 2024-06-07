@@ -32,34 +32,45 @@ body:
       label: Screenshots
       description: If applicable, add screenshots to help explain your problem.
       placeholder: Add screenshots here.
-  - type: checkboxes
+  - type: section
     id: desktop-info
     attributes:
-      label: Desktop (please complete the following information)
-      description: Select the relevant options.
-      options:
-        - label: OS: Windows
-          required: false
-        - label: OS: macOS
-          required: false
-        - label: OS: Linux
-          required: false
-        - label: Browser: Chrome
-          required: false
-        - label: Browser: Firefox
-          required: false
-        - label: Browser: Safari
-          required: false
-        - label: Browser: Edge
-          required: false
-        - label: Browser: Other
-          required: false
+      label: Desktop (Please complete the following information)
+    fields:
+      - type: checkboxes
+        id: desktop-os
+        attributes:
+          label: OS
+          description: Select the relevant operating system.
+          options:
+            - label: Windows
+              required: false
+            - label: macOS
+              required: false
+            - label: Linux
+              required: false
+      - type: checkboxes
+        id: desktop-browser
+        attributes:
+          label: Browser
+          description: Select the relevant browser.
+          options:
+            - label: Chrome
+              required: false
+            - label: Firefox
+              required: false
+            - label: Safari
+              required: false
+            - label: Edge
+              required: false
+            - label: Other
+              required: false
       - type: input
         id: other-browser-desktop
         attributes:
           label: Specify Other Browser
           description: If you selected "Other" for the browser, please specify.
-          placeholder: Specify other browser here.
+          placeholder: Specify other browser here...
         validations:
           required: false
       - type: input
@@ -67,13 +78,13 @@ body:
         attributes:
           label: Browser Version
           description: Specify the version of the browser.
-          placeholder: Specify browser version here.
+          placeholder: Specify browser version here...
         validations:
           required: false
   - type: section
     id: smartphone-info
     attributes:
-      label: Smartphone (please complete the following information)
+      label: Smartphone (Please complete the following information)
     fields:
       - type: input
         id: smartphone-device
