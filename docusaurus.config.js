@@ -402,7 +402,10 @@ const config = {
           },
           {
             to: "/architecture/overview/decentralization-roadmap",
-            from: "/use-mainnet/decentralization-roadmap",
+            from: [
+              "/use-mainnet/decentralization-roadmap",
+              "/decentralization-roadmap",
+            ],
           },
           {
             to: "/architecture/overview/transaction-lifecycle",

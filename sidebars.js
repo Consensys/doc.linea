@@ -401,6 +401,7 @@ const sidebars = {
           },
           items: [
             "developers/reference/api/linea-estimategas",
+            "developers/reference/api/eth-sendrawtransaction",
           ],
         },
       ],
