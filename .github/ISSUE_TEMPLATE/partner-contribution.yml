@@ -17,7 +17,7 @@ body:
   - type: textarea
     id: contributor-name
     attributes:
-      label: Contributor Name/Alias
+      label: Contributor name/alias
       description: Provide the name or alias of the contributor.
       placeholder: Enter the name or alias
     validations:
@@ -25,7 +25,7 @@ body:
   - type: textarea
     id: contributor-affiliation
     attributes:
-      label: Affiliation to Organisation
+      label: Affiliation to organization
       description: Provide the contributor's affiliation to the organisation.
       placeholder: Enter the affiliation
     validations:
@@ -33,7 +33,7 @@ body:
   - type: textarea
     id: contributor-role
     attributes:
-      label: Contributor Role
+      label: Contributor role
       description: Provide the role of the contributor (if applicable).
       placeholder: Enter the role
     validations:
