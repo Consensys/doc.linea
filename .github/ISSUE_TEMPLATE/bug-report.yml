@@ -64,14 +64,14 @@ body:
           required: false
         - label: Other
           required: false
-  - type: input
-    id: other-browser-desktop
-    attributes:
-      label: Specify Other Browser
-      description: If you selected "Other" for the browser, please specify.
-      placeholder: Specify other browser here...
-    validations:
-      required: false
+              - type: input
+                id: other-browser-desktop
+                attributes:
+                  label: Specify Other Browser
+                  description: If you selected "Other" for the browser, please specify.
+                  placeholder: Specify other browser here...
+                validations:
+                  required: false
   - type: input
     id: browser-version-desktop
     attributes:
