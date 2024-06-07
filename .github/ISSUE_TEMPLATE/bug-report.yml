@@ -36,7 +36,6 @@ body:
     id: desktop-info
     attributes:
       label: Desktop (Please complete the following information)
-    fields:
       - type: checkboxes
         id: desktop-os
         attributes:
@@ -85,7 +84,6 @@ body:
     id: smartphone-info
     attributes:
       label: Smartphone (Please complete the following information)
-    fields:
       - type: input
         id: smartphone-device
         attributes:
