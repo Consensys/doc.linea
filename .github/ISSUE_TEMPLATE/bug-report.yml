@@ -33,89 +33,89 @@ body:
       description: If applicable, add screenshots to help explain your problem.
       placeholder: Add screenshots here.
   - type: markdown
-    id: desktop-info
     attributes:
-      label: Desktop (Please complete the following information)
-      - type: checkboxes
-        id: desktop-os
-        attributes:
-          label: OS
-          description: Select the relevant operating system.
-          options:
-            - label: Windows
-              required: false
-            - label: macOS
-              required: false
-            - label: Linux
-              required: false
-      - type: checkboxes
-        id: desktop-browser
-        attributes:
-          label: Browser
-          description: Select the relevant browser.
-          options:
-            - label: Chrome
-              required: false
-            - label: Firefox
-              required: false
-            - label: Safari
-              required: false
-            - label: Edge
-              required: false
-            - label: Other
-              required: false
-      - type: input
-        id: other-browser-desktop
-        attributes:
-          label: Specify Other Browser
-          description: If you selected "Other" for the browser, please specify.
-          placeholder: Specify other browser here...
-        validations:
+     value: |
+       Desktop (Please complete the following information)
+  - type: checkboxes
+    id: desktop-os
+    attributes:
+      label: OS
+      description: Select the relevant operating system.
+      options:
+        - label: Windows
           required: false
-      - type: input
-        id: browser-version-desktop
-        attributes:
-          label: Browser Version
-          description: Specify the version of the browser.
-          placeholder: Specify browser version here...
-        validations:
+        - label: macOS
           required: false
+        - label: Linux
+          required: false
+  - type: checkboxes
+    id: desktop-browser
+    attributes:
+      label: Browser
+      description: Select the relevant browser.
+      options:
+        - label: Chrome
+          required: false
+        - label: Firefox
+          required: false
+        - label: Safari
+          required: false
+        - label: Edge
+          required: false
+        - label: Other
+          required: false
+  - type: input
+    id: other-browser-desktop
+    attributes:
+      label: Specify Other Browser
+      description: If you selected "Other" for the browser, please specify.
+      placeholder: Specify other browser here...
+      validations:
+        required: false
+  - type: input
+    id: browser-version-desktop
+    attributes:
+      label: Browser Version
+      description: Specify the version of the browser.
+      placeholder: Specify browser version here...
+      validations:
+        required: false
   - type: markdown
-    id: smartphone-info
     attributes:
-      label: Smartphone (Please complete the following information)
-      - type: input
-        id: smartphone-device
-        attributes:
-          label: Device
-          description: Specify the device you are using.
-          placeholder: e.g. iPhone 13
-        validations:
-          required: false
-      - type: input
-        id: smartphone-os
-        attributes:
-          label: OS
-          description: Specify the operating system you are using.
-          placeholder: e.g. iOS 17
-        validations:
-          required: false
-      - type: input
-        id: smartphone-browser
-        attributes:
-          label: Browser
-          description: Specify the browser you are using.
-          placeholder: e.g. Safari
-        validations:
-          required: false
-      - type: input
-        id: browser-version-mobile
-        attributes:
-          label: Browser Version
-          description: Specify the version of the browser.
-          placeholder: Specify browser version here.
-        validations:
-          required: false
+      value: |
+        Smartphone (Please complete the following information)
+  - type: input
+    id: smartphone-device
+    attributes:
+      label: Device
+      description: Specify the device you are using.
+      placeholder: e.g. iPhone 13
+      validations:
+        required: false
+  - type: input
+    id: smartphone-os
+    attributes:
+      label: OS
+      description: Specify the operating system you are using.
+      placeholder: e.g. iOS 17
+      validations:
+        required: false
+  - type: input
+    id: smartphone-browser
+    attributes:
+      label: Browser
+      description: Specify the browser you are using.
+      placeholder: e.g. Safari
+      validations:
+        required: false
+  - type: input
+    id: browser-version-mobile
+    attributes:
+      label: Browser Version
+      description: Specify the version of the browser.
+      placeholder: Specify browser version here.
+      validations:
+        required: false
   - type: textarea
     id: additional-context
     attributes:
