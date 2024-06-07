@@ -13,7 +13,7 @@ body:
   - type: textarea
     id: issue-reproduction
     attributes:
-      label: To reproduce
+      label: Steps to reproduce
       description: Describe steps to reproduce the behavior.
       placeholder: Steps to reproduce the bug here.
     validations:
@@ -51,7 +51,7 @@ body:
   - type: dropdown
     id: desktop-browser
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: What browser(s) are you seeing the problem on?
       description: Select the relevant browser(s).
       multiple: true
       options:
@@ -64,7 +64,7 @@ body:
   - type: input
     id: other-browser-desktop
     attributes:
-      label: Specify Other Browser
+      label: Specify other browser
       description: If you selected "Other" for the browser, please specify.
       placeholder: Specify other browser here...
     validations:
@@ -72,7 +72,7 @@ body:
   - type: input
     id: browser-version-desktop
     attributes:
-      label: Browser Version
+      label: Browser version
       description: Specify the version of the browser.
       placeholder: Specify browser version here...
     validations:
@@ -108,7 +108,7 @@ body:
   - type: input
     id: browser-version-mobile
     attributes:
-      label: Browser Version
+      label: Browser version
       description: Specify the version of the browser.
       placeholder: Specify browser version here.
     validations:
