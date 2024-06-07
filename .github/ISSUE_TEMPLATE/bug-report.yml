@@ -35,7 +35,7 @@ body:
   - type: markdown
     attributes:
      value: |
-       Desktop (Please complete the following information)
+       **Desktop (Please complete the following information)**
   - type: checkboxes
     id: desktop-os
     attributes:
@@ -48,30 +48,27 @@ body:
           required: false
         - label: Linux
           required: false
-  - type: checkboxes
+  - type: dropdown
     id: desktop-browser
     attributes:
       label: Browser
       description: Select the relevant browser.
+      multiple: true
       options:
         - label: Chrome
-          required: false
         - label: Firefox
-          required: false
         - label: Safari
-          required: false
         - label: Edge
-          required: false
+        - label: Brave
         - label: Other
-          required: false
-              - type: input
-                id: other-browser-desktop
-                attributes:
-                  label: Specify Other Browser
-                  description: If you selected "Other" for the browser, please specify.
-                  placeholder: Specify other browser here...
-                validations:
-                  required: false
+  - type: input
+    id: other-browser-desktop
+    attributes:
+      label: Specify Other Browser
+      description: If you selected "Other" for the browser, please specify.
+      placeholder: Specify other browser here...
+    validations:
+      required: false
   - type: input
     id: browser-version-desktop
     attributes:
@@ -83,7 +80,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Smartphone (Please complete the following information)
+        **Mobile (Please complete the following information)**
   - type: input
     id: smartphone-device
     attributes:
