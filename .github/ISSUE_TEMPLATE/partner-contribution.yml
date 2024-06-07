@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         _Please note this form is for existing Linea partner organisations only._
-  - type: input
+  - type: textarea
       id: organisation
       attributes:
         label: Organisation
@@ -14,7 +14,7 @@ body:
         placeholder: Enter your organisation's name
       validations:
         required: true
-  - type: input
+  - type: textarea
     id: contributor-name
     attributes:
       label: Contributor Name/Alias
@@ -22,7 +22,7 @@ body:
       placeholder: Enter the name or alias
     validations:
       required: false
-  - type: input
+  - type: textarea
     id: contributor-affiliation
     attributes:
       label: Affiliation to Organisation
@@ -30,7 +30,7 @@ body:
       placeholder: Enter the affiliation
     validations:
       required: false
-  - type: input
+  - type: textarea
     id: contributor-role
     attributes:
       label: Contributor Role
