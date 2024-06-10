@@ -40,7 +40,7 @@ If you've created fleshed-out guides and tutorials, or intend to, we'd love to f
 in our [community tutorials section](developers/guides/community).
 
 First, create an issue describing the content you want to see added or intend to add. If you're
-representing an organisation (such as a dapp), please use the ecosystem contribution issue form.
+representing an organization (such as a dapp), please use the ecosystem contribution issue form.
 
 When you're ready to start work, [fork our repo](https://github.com/Consensys/doc.linea/fork),
 create a pull request, and tag us for review!
