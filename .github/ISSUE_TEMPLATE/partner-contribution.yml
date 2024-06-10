@@ -1,11 +1,7 @@
-name: I'm a Partner
-description: If you're a partner protocol, dapp, or organization, submit your issue here
-labels: ['partner']
+name: I'm an ecosystem contributor
+description: If you're a protocol, dapp, or other ecosystem organization, submit your issue here
+labels: ['ecosystem']
 body:
-  - type: markdown
-    attributes:
-      value: |
-        _Please note this form is for existing Linea partner organizations only._
   - type: textarea
     id: organization
     attributes:
