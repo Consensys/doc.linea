@@ -6,7 +6,9 @@ image: /img/socialCards/api3.jpg
 [API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
 
 :::info
+
 The API3 DAO Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
+
 :::
 
 ## Airnode
@@ -84,7 +86,7 @@ contract Requester is RrpRequesterV0, Ownable {
         );
         incomingFulfillments[requestId] = true;
     }
-    
+
     function fulfill(bytes32 requestId, bytes calldata data)
         external
         onlyAirnodeRrp
@@ -156,7 +158,7 @@ The [API3 Market](https://market.api3.org/linea) enables users to connect to a d
   </div>
 </div>
 
-[*To learn more about how dAPIs work, click here*](https://docs.api3.org/explore/dapis/what-are-dapis.html)
+[_To learn more about how dAPIs work, click here_](https://docs.api3.org/explore/dapis/what-are-dapis.html)
 
 ### Subscribing to dAPIs
 
@@ -164,7 +166,7 @@ The [API3 Market](https://market.api3.org/linea) lets users access dAPIs on both
 
 #### Exploring, selecting and configuring your dAPI
 
-The [API3 Market](https://market.api3.org/linea) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by mainnet or testnet chains. After selecting the chain, you can now search for a specific dAPI by name. Once selected, you will land on the details page (eg ETH/USD on Linea Testnet) where you can find more information about the dAPI. 
+The [API3 Market](https://market.api3.org/linea) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by mainnet or testnet chains. After selecting the chain, you can now search for a specific dAPI by name. Once selected, you will land on the details page (eg ETH/USD on Linea Testnet) where you can find more information about the dAPI.
 
 The current supported configurations for dAPIs are:
 
@@ -187,9 +189,9 @@ The current supported configurations for dAPIs are:
 #### Activating your dAPI
 
 :::note
-Note
 
 If a dAPI is already activated, make sure to check the expiration date and update parameters. You can update the parameters and extend the subscription by purchasing a new configuration.
+
 :::
 
 After selecting the dAPI and the configuration, you will be presented with an option to purchase the dAPI and activate it. Make sure to check the time and amount of the subscription. If everything looks good, click on Purchase.
@@ -266,55 +268,62 @@ You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscrib
 
 ## API3 QRNG
 
-[API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility we provide with the courtesy of Australian National University (ANU) and Quintessence Labs. It is powered by an Airnode deployed by both of these QRNG Providers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
+[API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility provided with the courtesy of Australian National University (ANU), Quintessence Labs and Quantum Blockchains. It is powered by an Airnode deployed by the QRNG Providers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
 
-To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The ANU/Quintessence QRNG Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
+To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The QRNG Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
 
-Click here to check out the [`AirnodeRrpV0` Address](https://docs.api3.org/reference/qrng/chains.html) and [QRNG Providers' Addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
-
-:::note
-
-Currently, only Quintessence Labs' QRNG Airnode is available on Linea.
-
-:::
+Click here to check out the [`AirnodeRrpV0`](https://docs.api3.org/reference/qrng/chains.html) and available [QRNG Providers' addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
 ```solidity
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
-import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
 
-contract RemixQrngExample is RrpRequesterV0 {
+import "@api3/airnode-protocol/contracts/rrp/requesters/RrpRequesterV0.sol";
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
+
+/// @title Example contract that uses Airnode RRP to access QRNG services
+contract QrngExample is RrpRequesterV0, Ownable {
     event RequestedUint256(bytes32 indexed requestId);
     event ReceivedUint256(bytes32 indexed requestId, uint256 response);
+    event RequestedUint256Array(bytes32 indexed requestId, uint256 size);
+    event ReceivedUint256Array(bytes32 indexed requestId, uint256[] response);
+    event WithdrawalRequested(address indexed airnode, address indexed sponsorWallet);
 
-    address public airnode;
-    bytes32 public endpointIdUint256;
-    address public sponsorWallet;
-    mapping(bytes32 => bool) public waitingFulfillment;
+    address public airnode;                 /// The address of the QRNG Airnode
+    bytes32 public endpointIdUint256;       /// The endpoint ID for requesting a single random number
+    bytes32 public endpointIdUint256Array;  /// The endpoint ID for requesting an array of random numbers
+    address public sponsorWallet;           /// The wallet that will cover the gas costs of the request
+    uint256 public _qrngUint256;            /// The random number returned by the QRNG Airnode
+    uint256[] public _qrngUint256Array;     /// The array of random numbers returned by the QRNG Airnode
 
-    // These are for Remix demonstration purposes, their use is not practical.
-    struct LatestRequest {
-      bytes32 requestId;
-      uint256 randomNumber;
-    }
-    LatestRequest public latestRequest;
+    mapping(bytes32 => bool) public expectingRequestWithIdToBeFulfilled;
 
     constructor(address _airnodeRrp) RrpRequesterV0(_airnodeRrp) {}
 
-    // Normally, this function should be protected, as in:
-    // require(msg.sender == owner, "Sender not owner");
+    /// @notice Sets the parameters for making requests
     function setRequestParameters(
         address _airnode,
         bytes32 _endpointIdUint256,
+        bytes32 _endpointIdUint256Array,
         address _sponsorWallet
     ) external {
         airnode = _airnode;
         endpointIdUint256 = _endpointIdUint256;
+        endpointIdUint256Array = _endpointIdUint256Array;
         sponsorWallet = _sponsorWallet;
     }
 
+    /// @notice To receive funds from the sponsor wallet and send them to the owner.
+    receive() external payable {
+        payable(owner()).transfer(msg.value);
+        emit WithdrawalRequested(airnode, sponsorWallet);
+    }
+
+    /// @notice Requests a `uint256`
+    /// @dev This request will be fulfilled by the contract's sponsor wallet,
+    /// which means spamming it may drain the sponsor wallet.
     function makeRequestUint256() external {
         bytes32 requestId = airnodeRrp.makeFullRequest(
             airnode,
@@ -325,30 +334,81 @@ contract RemixQrngExample is RrpRequesterV0 {
             this.fulfillUint256.selector,
             ""
         );
-        waitingFulfillment[requestId] = true;
-        latestRequest.requestId = requestId;
-        latestRequest.randomNumber = 0;
+        expectingRequestWithIdToBeFulfilled[requestId] = true;
         emit RequestedUint256(requestId);
     }
 
+    /// @notice Called by the Airnode through the AirnodeRrp contract to
+    /// fulfill the request
     function fulfillUint256(bytes32 requestId, bytes calldata data)
         external
         onlyAirnodeRrp
     {
         require(
-            waitingFulfillment[requestId],
+            expectingRequestWithIdToBeFulfilled[requestId],
             "Request ID not known"
         );
-        waitingFulfillment[requestId] = false;
+        expectingRequestWithIdToBeFulfilled[requestId] = false;
         uint256 qrngUint256 = abi.decode(data, (uint256));
+        _qrngUint256 = qrngUint256;
         // Do what you want with `qrngUint256` here...
-        latestRequest.randomNumber = qrngUint256;
         emit ReceivedUint256(requestId, qrngUint256);
+    }
+
+    /// @notice Requests a `uint256[]`
+    /// @param size Size of the requested array
+    function makeRequestUint256Array(uint256 size) external {
+        bytes32 requestId = airnodeRrp.makeFullRequest(
+            airnode,
+            endpointIdUint256Array,
+            address(this),
+            sponsorWallet,
+            address(this),
+            this.fulfillUint256Array.selector,
+            // Using Airnode ABI to encode the parameters
+            abi.encode(bytes32("1u"), bytes32("size"), size)
+        );
+        expectingRequestWithIdToBeFulfilled[requestId] = true;
+        emit RequestedUint256Array(requestId, size);
+    }
+
+    /// @notice Called by the Airnode through the AirnodeRrp contract to
+    /// fulfill the request
+    function fulfillUint256Array(bytes32 requestId, bytes calldata data)
+        external
+        onlyAirnodeRrp
+    {
+        require(
+            expectingRequestWithIdToBeFulfilled[requestId],
+            "Request ID not known"
+        );
+        expectingRequestWithIdToBeFulfilled[requestId] = false;
+        uint256[] memory qrngUint256Array = abi.decode(data, (uint256[]));
+        // Do what you want with `qrngUint256Array` here...
+        _qrngUint256Array = qrngUint256Array;
+        emit ReceivedUint256Array(requestId, qrngUint256Array);
+    }
+
+    /// @notice Getter functions to check the returned value.
+    function getRandomNumber() public view returns (uint256) {
+        return _qrngUint256;
+    }
+
+    function getRandomNumberArray() public view returns(uint256[] memory) {
+        return _qrngUint256Array;
+    }
+
+    /// @notice To withdraw funds from the sponsor wallet to the contract.
+    function withdraw() external onlyOwner {
+        airnodeRrp.requestWithdrawal(
+        airnode,
+        sponsorWallet
+        );
     }
 }
 ```
 
-- The `setRequestParameters()` takes in `airnode` (The ANU/Quintessence/Nodary Airnode address) , `endpointIdUint256`, `sponsorWallet` and sets these parameters. You can get Airnode address and the endpoint ID [here](https://docs.api3.org/reference/qrng/providers.html).
+- The `setRequestParameters()` takes in `airnode` (The Quantum Blockchains/Quintessence Airnode address) , `endpointIdUint256`, `sponsorWallet` and sets these parameters. You can get Airnode address and the endpoint ID [here](https://docs.api3.org/reference/qrng/providers.html).
 
 - The `makeRequestUint256()` function calls the `airnodeRrp.makeFullRequest()` function of the `AirnodeRrpV0.sol` protocol contract which adds the request to its storage and returns a `requestId`.
 
@@ -365,8 +425,9 @@ You can try QRNG on Linea for free. Check out the all the QRNG Providers for Lin
 Here are some additional developer resources
 
 - [API3 Docs](https://docs.api3.org/)
-- [dAPI Docs](https://docs.api3.org/explore/dapis/what-are-dapis.html)
-- [QRNG Docs](https://docs.api3.org/explore/qrng/)
+- [API3 Market](https://market.api3.org/linea)
+- [dAPI Docs](https://docs.api3.org/guides/dapis/)
+- [QRNG Docs](https://docs.api3.org/guides/qrng/)
 - [Github](https://github.com/api3dao/)
 - [Medium](https://medium.com/api3)
 - [YouTube](https://www.youtube.com/API3DAO)
