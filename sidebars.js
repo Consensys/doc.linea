@@ -344,6 +344,7 @@ const sidebars = {
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",
+            "developers/tooling/oracles/tellor",
             "developers/tooling/oracles/umbrella",
           ],
         },
@@ -400,6 +401,7 @@ const sidebars = {
           },
           items: [
             "developers/reference/api/linea-estimategas",
+            "developers/reference/api/eth-sendrawtransaction",
           ],
         },
       ],
