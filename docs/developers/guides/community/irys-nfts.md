@@ -1,6 +1,6 @@
 ---
 title: Create an NFT
-image: /img/socialCards/build-a-nft.jpg
+image: /img/socialCards/create-an-nft.jpg
 description: Build permanent NFTs using Irys and Linea.
 ---
 
