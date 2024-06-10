@@ -1,0 +1,56 @@
+name: I'm an ecosystem contributor
+description: If you're a protocol, dapp, or other ecosystem organization, submit your issue here
+labels: ['ecosystem']
+body:
+  - type: textarea
+    id: organization
+    attributes:
+      label: Organization
+      description: Name of the organization.
+      placeholder: Enter your organization's name
+    validations:
+      required: true
+  - type: textarea
+    id: contributor-name
+    attributes:
+      label: Contributor name/alias
+      description: Provide the name or alias of the contributor.
+      placeholder: Enter the name or alias
+    validations:
+      required: false
+  - type: textarea
+    id: contributor-affiliation
+    attributes:
+      label: Affiliation to organization
+      description: Provide the contributor's affiliation to the organization.
+      placeholder: Enter the affiliation
+    validations:
+      required: false
+  - type: textarea
+    id: contributor-role
+    attributes:
+      label: Contributor role
+      description: Provide the role of the contributor (if applicable).
+      placeholder: Enter the role
+    validations:
+      required: false
+  - type: checkboxes
+    id: nature-of-issue
+    attributes:
+      label: Nature of issue
+      description: Select the type(s) of issue you are reporting.
+      options:
+        - label: Add documentation about our product
+          required: false
+        - label: Improve or update existing documentation
+          required: false
+        - label: Correct errors
+          required: false
+        - label: Other (please specify below:)
+          required: false
+  - type: textarea
+    id: specify-other
+    attributes:
+      label: Specify Other
+      description: If you selected "Other", please specify.
+      placeholder: Specify other issue here.
