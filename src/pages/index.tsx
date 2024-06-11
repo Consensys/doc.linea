@@ -5,7 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
-import LineaLogo from "../../static/img/Linea_logo_white.svg";
+import LineaLogo from "../../static/img/Linea_logo.svg";
 
 import styles from "./index.module.css";
 
@@ -49,7 +49,7 @@ export default function Home(): JSX.Element {
       title={`Welcome`}
       description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
       <HomepageHeader />
-      <main style={{ backgroundColor: "#121212" }}>
+      <main style={{ backgroundColor: "var(--banner-background)" }}>
         <HomepageCards />
       </main>
     </Layout>

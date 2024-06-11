@@ -1,10 +1,12 @@
 .icon {
+  color: #121212;
   height: 30px;
   width: 30px;
   margin-left: 10px;
   vertical-align: middle;
   position: relative;
   top: -2px;
+  transition: color 0.3s ease;
 }
 
 .bannerButton {
@@ -21,7 +23,7 @@
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px #121212;
+  box-shadow: 0 0 10px var(--banner-text-shadow);
 }
 
 @media (max-width: 768px) {
@@ -38,10 +40,14 @@
 }
 
 .bannerButton:hover {
-  background-color: white;
-  color: black;
+  background-color: var(--banner-button-hover);
+  color: var(--banner-button-text-hover);
   transform: scale(1.05);
   box-shadow: 0 0 10px #61dfff;
+}
+
+.bannerButton:hover .icon {
+  color: var(--banner-button-text-hover);
 }
 
 .buttons {
@@ -59,11 +65,12 @@ html[data-theme="dark"] .forceColor {
 }
 
 .logo {
+  color: var(--banner-text);
   padding-right: 10px;
   padding-left: 10px;
   height: 70px;
   width: auto;
-  filter: drop-shadow(2px 2px 3px #121212);
+  filter: drop-shadow(2px 2px 3px var(--banner-text-shadow));
 }
 
 @media (max-width: 768px) {
@@ -82,9 +89,10 @@ html[data-theme="dark"] .forceColor {
 }
 
 .title {
+  color: var(--banner-text);
   font-size: 45px;
   padding-bottom: 20px;
-  text-shadow: 2px 2px 3px #121212;
+  text-shadow: 2px 2px 3px var(--banner-text-shadow);
 }
 
 @media (max-width: 768px) {
@@ -100,9 +108,10 @@ html[data-theme="dark"] .forceColor {
 }
 
 .subtitle {
+  color: var(--banner-text);
   font-size: 21px;
   padding: 0 14rem 20px;
-  text-shadow: 2px 2px 3px #121212;
+  text-shadow: 2px 2px 3px var(--banner-text-shadow);
 }
 
 @media (max-width: 1000px) {
@@ -137,7 +146,7 @@ html[data-theme="dark"] .forceColor {
 /* Banner background image */
 .introductionBlock {
   background-image: url('/img/hero-home.webp');
-  background-color: #121212;
+  background-color: var(--banner-background);
   background-position: 125% 50%;
   background-repeat: no-repeat;
   background-size: 45% auto;

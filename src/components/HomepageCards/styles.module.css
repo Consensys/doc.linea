@@ -1,3 +1,7 @@
+.mainBackground {
+  background-color: var(--homepage-card-background) !important;
+}
+
 .cardContainer {
   padding-left: 0;
   padding-right: 0;
@@ -6,48 +10,46 @@
 
 .cardHeader h3,
 .cardBody p {
-  color: #fff;
+  color: var(--banner-text);
 }
 
 .heading {
-    text-align: center;
-    padding-top: 10px;
-    font-weight: 400;
-    color: #fff;
-  }
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 400;
+  color: var(--banner-text);
+}
 
 .card_glow {
   position: relative;
   background-color: var(--homepage-card-background);
   color: var(--ifm-color-primary);
   border-radius: 3px;
-  border: 1px solid #505050;
+  border: 1px solid var(--homepage-card-border-color);
   box-shadow: 0 0 10px rgb(97 223 255 / 20%);
   overflow: visible;
   transform: scale(1);
-  transition:
-    transform 0.15s ease-in-out,
-    border-color 0.3s ease-in-out;
+  transition: transform 0.15s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 .card_glow:hover {
   transform: translateY(-10px);
-  border-color: #61dfff;
+  border-color: var(--homepage-card-border-color-hover);
 }
 
 .circle {
-    width: 12px;
-    height: 12px;
-    background-color: #505050;
-    border-radius: 50%;
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    transition: background-color 0.3s ease-in-out;
-  }
+  width: 12px;
+  height: 12px;
+  background-color: var(--homepage-card-border-color);
+  border-radius: 50%;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  transition: background-color 0.3s ease-in-out;
+}
 
 .card_glow:hover .circle {
-  background-color: white;
+  background-color: var(--homepage-card-dot-hover);
 }
 
 .card {
@@ -56,9 +58,7 @@
 
 .button {
   background-color: #1d1d1d;
-  transition:
-    transform 0.2s ease-in-out,
-    background-color 0.25s ease-in-out,
+  transition: transform 0.2s ease-in-out, background-color 0.25s ease-in-out,
     border 0.15s ease-in-out;
   height: 45px;
   border-radius: 500px;
@@ -75,7 +75,11 @@
   background-color: #fff;
   overflow: visible;
   box-shadow: 0 0 10px rgb(97 223 255 / 50%);
-  border: none;
+  border: 1px solid var(--homepage-card-icon);
   transform: scale(1.02);
-  color: #1d1d1d
+  color: #1d1d1d;
+}
+
+.icon {
+  color: var(--homepage-card-icon);
 }
