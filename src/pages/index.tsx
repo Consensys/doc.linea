@@ -5,7 +5,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
-import LineaLogo from "../../static/img/Linea_logo_white.svg";
+import LineaLogo from "../../static/img/Linea_logo.svg";
 
 import styles from "./index.module.css";
 
@@ -32,7 +32,7 @@ function HomepageHeader() {
               "button button--secondary button--lg",
               styles.bannerButton,
             )}
-            to="../build-on-linea">
+            to="developers/quickstart">
             Start building
             <StopwatchIcon className={styles.icon} />
           </Link>
@@ -47,9 +47,9 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Welcome`}
-      description="An open-source, client-agnostic, Ethereum transaction signer that separates private key management from transaction validation by signing transactions using a private key that can be secured in a variety of cloud providers, or encrypted on a local disk.">
+      description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
       <HomepageHeader />
-      <main style={{ backgroundColor: "#121212" }}>
+      <main style={{ backgroundColor: "var(--banner-background)" }}>
         <HomepageCards />
       </main>
     </Layout>
