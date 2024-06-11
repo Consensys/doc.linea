@@ -7,7 +7,7 @@ const sidebars = {
       collapsed: true,
       label: "Move funds to Linea",
       link: {
-        type: 'doc',
+        type: "doc",
         id: "users/move-funds/index",
       },
       items: [
@@ -73,7 +73,7 @@ const sidebars = {
       type: "category",
       label: "Getting started",
       link: {
-        type: 'doc',
+        type: "doc",
         id: "developers/quickstart/index",
       },
       items: [
@@ -108,7 +108,7 @@ const sidebars = {
         },
         "developers/quickstart/ethereum-differences",
         "developers/quickstart/info-contracts",
-        "developers/quickstart/goerli-to-sepolia"
+        "developers/quickstart/goerli-to-sepolia",
       ],
     },
     {
@@ -116,7 +116,7 @@ const sidebars = {
       label: "Guides",
       link: {
         type: "doc",
-        id: "developers/guides/index"
+        id: "developers/guides/index",
       },
       items: [
         {
@@ -129,7 +129,7 @@ const sidebars = {
           items: [
             "developers/guides/gas/gas-fees",
             "developers/guides/gas/gas-on-linea",
-          ]
+          ],
         },
         {
           type: "category",
@@ -141,14 +141,14 @@ const sidebars = {
           items: [
             "developers/guides/bridge/how-to-bridge-eth",
             "developers/guides/bridge/how-to-bridge-erc20-tokens",
-          ]
+          ],
         },
         {
           type: "category",
           label: "Community tutorials",
           link: {
-            type: 'doc',
-            id: "developers/guides/community/index"
+            type: "doc",
+            id: "developers/guides/community/index",
           },
           items: [
             {
@@ -156,16 +156,18 @@ const sidebars = {
               label: "Linea Learning Track",
               href: "https://www.hackquest.io/en/learning-track/9be129e7-575b-49bd-a64e-1bbe32427ace",
             },
+            "developers/guides/community/irys-nfts",
+            "developers/guides/community/irys-dynamic-nfts",
           ],
-        },   
+        },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
         {
           type: "category",
           label: "Run a Linea node",
           link: {
-            type: 'doc',
-            id: "developers/guides/run-a-node/index"
+            type: "doc",
+            id: "developers/guides/run-a-node/index",
           },
           items: [
             "developers/guides/run-a-node/use-docker",
@@ -174,7 +176,7 @@ const sidebars = {
         },
         "developers/guides/linea-safe",
         "developers/guides/linea-inscriptions",
-      ]
+      ],
     },
     {
       type: "category",
@@ -189,8 +191,7 @@ const sidebars = {
           label: "Account abstraction",
           link: {
             type: "doc",
-            id: "developers/tooling/account-abstraction/account-abstraction"
-
+            id: "developers/tooling/account-abstraction/account-abstraction",
           },
           items: [
             "developers/tooling/account-abstraction/arcana",
@@ -202,7 +203,7 @@ const sidebars = {
             "developers/tooling/account-abstraction/particle-network",
             "developers/tooling/account-abstraction/noves",
             "developers/tooling/account-abstraction/oklink",
-            "developers/tooling/account-abstraction/openfort"
+            "developers/tooling/account-abstraction/openfort",
           ],
         },
         {
@@ -210,8 +211,7 @@ const sidebars = {
           label: "Analytics",
           link: {
             type: "doc",
-            id: "developers/tooling/analytics/index"
-
+            id: "developers/tooling/analytics/index",
           },
           items: [
             "developers/tooling/analytics/arkham",
@@ -239,9 +239,7 @@ const sidebars = {
             type: "doc",
             id: "developers/tooling/automation/index",
           },
-          items: [
-            "developers/tooling/automation/hal-stream",
-          ],
+          items: ["developers/tooling/automation/hal-stream"],
         },
         {
           type: "category",
@@ -250,9 +248,7 @@ const sidebars = {
             type: "doc",
             id: "developers/tooling/cloud-infra/index",
           },
-          items: [
-            "developers/tooling/cloud-infra/spheron",
-          ],
+          items: ["developers/tooling/cloud-infra/spheron"],
         },
         {
           type: "category",
@@ -349,16 +345,29 @@ const sidebars = {
             "developers/tooling/oracles/umbrella",
           ],
         },
-          {
+        {
+          type: "category",
+          label: "Permanent data",
+          items: [
+            {
+              type: "category",
+              label: "Irys",
+              items: [
+                "developers/tooling/permanent-data/irys/overview",
+                "developers/tooling/permanent-data/irys/irys-quickstart",
+                "developers/tooling/permanent-data/irys/irys-query-package",
+              ],
+            },
+          ],
+        },
+        {
           type: "category",
           label: "Privacy",
           link: {
             type: "doc",
             id: "developers/tooling/privacy/index",
           },
-          items: [
-            "developers/tooling/privacy/secret",
-          ],
+          items: ["developers/tooling/privacy/secret"],
         },
         {
           type: "category",
@@ -421,83 +430,79 @@ const sidebars = {
           label: "Bug bounty program",
           href: "https://immunefi.com/bounty/linea/",
         },
-      ]
+      ],
     },
   ],
   architectureSidebar: [
-      "architecture/index",
-      {
-        type: "category",
-        label: "Overview",
-        link: {
-          type: "doc",
-          id: "architecture/overview/index",
-        },
-        items: [
-          "architecture/overview/decentralization-roadmap/index",
-          "architecture/overview/transaction-lifecycle",
-          "architecture/overview/network-data",
-        ],
+    "architecture/index",
+    {
+      type: "category",
+      label: "Overview",
+      link: {
+        type: "doc",
+        id: "architecture/overview/index",
       },
-      {
-        type: "category",
-        label: "The Linea stack",
-        link: {
-          type: "doc",
-          id: "architecture/stack/index",
-        },
-        items: [
-          {
-            type: "category",
-            label: "Bridge",
-            link: {
-              type: "doc",
-              id: "architecture/stack/bridges/index",
-            },
-            items: [
-              "architecture/stack/bridges/canonical-token-bridge",
-            ],
-          },
-          {
-            type: "category",
-            label: "Canonical message service",
-            link: {
-              type: "doc",
-              id: "architecture/stack/canonical-msg-service/index",
-            },
-            items: [
-              "architecture/stack/canonical-msg-service/message-service",
-            ],
-          },
-          "architecture/stack/coordinator/index",
-          {
-            type: "category",
-            label: "Sequencer",
-            link: {
-              type: "doc",
-              id: "architecture/stack/sequencer/index",
-            },
-            items: [
-              "architecture/stack/sequencer/conflation",
-              "architecture/stack/sequencer/traces-generator",
-            ],
-          },
-          "architecture/stack/evm-state-manager/index",
-          {
-            type: "category",
-            label: "Prover",
-            link: {
-              type: "doc",
-              id: "architecture/stack/trace-expansion-proving/index",
-            },
-            items: [
-              "architecture/stack/trace-expansion-proving/proving",
-              "architecture/stack/trace-expansion-proving/trace-expansion",
-            ],
-          },
-        ],
+      items: [
+        "architecture/overview/decentralization-roadmap/index",
+        "architecture/overview/transaction-lifecycle",
+        "architecture/overview/network-data",
+      ],
+    },
+    {
+      type: "category",
+      label: "The Linea stack",
+      link: {
+        type: "doc",
+        id: "architecture/stack/index",
       },
-     ],
+      items: [
+        {
+          type: "category",
+          label: "Bridge",
+          link: {
+            type: "doc",
+            id: "architecture/stack/bridges/index",
+          },
+          items: ["architecture/stack/bridges/canonical-token-bridge"],
+        },
+        {
+          type: "category",
+          label: "Canonical message service",
+          link: {
+            type: "doc",
+            id: "architecture/stack/canonical-msg-service/index",
+          },
+          items: ["architecture/stack/canonical-msg-service/message-service"],
+        },
+        "architecture/stack/coordinator/index",
+        {
+          type: "category",
+          label: "Sequencer",
+          link: {
+            type: "doc",
+            id: "architecture/stack/sequencer/index",
+          },
+          items: [
+            "architecture/stack/sequencer/conflation",
+            "architecture/stack/sequencer/traces-generator",
+          ],
+        },
+        "architecture/stack/evm-state-manager/index",
+        {
+          type: "category",
+          label: "Prover",
+          link: {
+            type: "doc",
+            id: "architecture/stack/trace-expansion-proving/index",
+          },
+          items: [
+            "architecture/stack/trace-expansion-proving/proving",
+            "architecture/stack/trace-expansion-proving/trace-expansion",
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 module.exports = sidebars;

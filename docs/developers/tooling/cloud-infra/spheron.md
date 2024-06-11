@@ -58,7 +58,7 @@ Whether you're using a Docker image from Docker Hub or deploying a marketplace a
    2. Select **Start from Marketplace App**.
    3. Pick your desired template from the marketplace.
    4. Choose your desired compute type option under **Compute Type**.
-   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](hhttps://docs.spheron.network/compute/cluster/compute#region) to learn more.
+   5. Select your preferred **Region**, if any. If you do not add a region, the container will be deployed in **any** region for **Spot**, or in the **eu-east** region for **On Demand**. [Click here](https://docs.spheron.network/compute/cluster/compute#region) to learn more.
    6. Spheron will automatically select the recommended plan for the specific template. If you intend to move forward with the recommended plan, just click "Deploy" to initiate deployment.
    7. Select the instance plan that suits your needs. Use the "Create Custom Plan" toggle to create custom plans for your instance.
    8. Configure the storage (SSD) plan for your instance. Use the "Add Persistent Storage" toggle to add persistent storage for your instance.

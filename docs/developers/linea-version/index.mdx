@@ -18,12 +18,30 @@ Find out all you need to know about the latest Linea versions.
 
 **Mainnet: June 11, 10:00 UTC**
 
+### Breaking change: block time and block size reduction
+
 Reducing block time to 2 seconds, with a target block size of 24M gas.
 
 The change will increase transaction throughput by approximately 20%, improving user experience by 
 making Linea faster and more responsive.
 
-There will be no impacts for node runners.
+:::warning[Actions recommended for node runners]
+
+We recommend you adjust your node configurations to ensure any submitted transactions are handled 
+in line with the sequencer.
+
+**Besu:**
+
+In the `besu-sequencer` plugin, adjust:
+- `plugin-linea-max-tx-gas-limit` to `24000000`
+- `plugin-linea-max-block-gas` to `24000000`
+
+**Geth:**
+
+- In the config `.toml` file, set `[Eth]RPCGasCap` to `24000000`
+  - Or use `—rpc.gascap` in the command line, again specifying `24000000`
+
+:::
 
 ## Alpha v3.2
 
