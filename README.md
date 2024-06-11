@@ -1,3 +1,4 @@
+
 # Linea documentation
 
 [Linea](https://linea.build/) is a developer-ready layer 2 network, scaling Ethereum by providing
