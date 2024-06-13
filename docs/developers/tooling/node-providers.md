@@ -19,8 +19,8 @@ image: /img/socialCards/node-providers.jpg
 
 - [Set it up yourself](../guides/run-a-node)
 - [One-click deploy with EasyNode](https://app.easy-node.xyz/)
-- [One-click deploy with RapidNode](https://rapidnode.xyz/dashboard)
 - [One-click deploy with Mintair](https://mintair.xyz/)
+- [One-click deploy with RapidNode](https://rapidnode.xyz/dashboard)
 
 ## Public RPC endpoints
 
