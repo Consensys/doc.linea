@@ -7,7 +7,7 @@ image: /img/socialCards/api3.jpg
 
 :::info
 
-The API3 DAO Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
+Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
 
 :::
 
