@@ -1,6 +1,9 @@
 ---
 title: Tellor
-description: A versatile oracle protocol that can provide data of any type permissionlessly with crypto-economic liveness and security.
+description: >-
+  A versatile oracle protocol that can provide data of any type permissionlessly
+  with crypto-economic liveness and security.
+image: /img/socialCards/tellor.jpg
 ---
 
 # Tellor
