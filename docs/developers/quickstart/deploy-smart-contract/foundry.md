@@ -60,7 +60,7 @@ provides access the Linea endpoints. Assign the Linea endpoints you want to acce
 :::caution
 
 These instructions use API keys and private keys inline. We highly recommend hiding them
-[in `.env` files](#deploy-using-a-.env-file)
+[in `.env` files](#deploy-a-smart-contract-using-a-env-file)
 
 :::
 
