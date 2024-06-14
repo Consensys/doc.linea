@@ -7,8 +7,8 @@ description: Creating permanent data using Irys SDK.
 All uploads to Irys' mainnet are stored permanently onchain. They are guaranteed to be retrievable now and
 hundreds of years into the future.
 
-- To upload data, use the Irys [SDK](#sdk) or [CLI](#cli).
-- To [download data](#downloading-data), use the Irys gateway.
+- To upload data, use the Irys [SDK](#irys-sdk) or [CLI](#irys-cli).
+- To [download data](#download-data), use the Irys gateway.
 
 ## Irys SDK
 

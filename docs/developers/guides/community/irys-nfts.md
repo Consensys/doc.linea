@@ -75,9 +75,9 @@ contract IrysLineaNFT is ERC721, ERC721URIStorage, Ownable {
 Uploads to Irys are fully unconstrained; you can upload files of any size and use Irys to make
 images, videos, music, or interactive NFTs.
 
-This guide covers using the [Irys CLI](/developers/tooling/permanent-data/irys/irys-quickstart#cli) to
+This guide covers using the [Irys CLI](/developers/tooling/permanent-data/irys/irys-quickstart#irys-cli) to
 upload your assets to Irys. You can also do the same using the
-[Irys SDK](/developers/tooling/permanent-data/irys/irys-quickstart#sdk).
+[Irys SDK](/developers/tooling/permanent-data/irys/irys-quickstart#irys-sdk).
 
 ### Store your visual assets
 

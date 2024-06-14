@@ -86,7 +86,7 @@ You can check that it was verified correctly by navigating to the [testnet block
 
 If you don't want to paste your keys inline and have multiple Etherscan API keys to manage, you can use `.env` and `foundry.toml` to set up custom configurations.
 
-Assuming you followed the instructions to create a `.env` file [here](../deploy-smart-contract/foundry.md#using-env-to-store-private-keys), add your Lineascan API key to the file:
+Assuming you followed the instructions to create a `.env` file [here](../deploy-smart-contract/foundry.md#using-.env-to-store-private-keys), add your Lineascan API key to the file:
 
 ```bash
 LINEASCAN_API_KEY=YOUR_LINEASCAN_API_KEY
