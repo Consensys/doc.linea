@@ -83,3 +83,21 @@
 .icon {
   color: var(--homepage-card-icon);
 }
+
+@media screen and (min-width: 997px) {
+  .card_glow {
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  .card_glow {
+    height: 450px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card_glow {
+    height: 356px;
+  }
+}
