@@ -51,11 +51,11 @@ const CardList: CardItem[] = [
     icon: CardIcon2,
   },
   {
-    title: "Run a node",
-    link: "/developers/guides/run-a-node",
+    title: "Run Linea",
+    link: "/developers/guides/run-linea",
     description: (
       <>
-        Learn how to run a Linea node with Besu or Geth, and interact with the
+        Learn how to run a Linea node or the Linea stack, and interact with the
         blockchain locally
       </>
     ),

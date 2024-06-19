@@ -137,9 +137,9 @@ const config = {
           //   ],
           // },
           {
-            to: "/developers/guides/run-a-node",
+            to: "/developers/guides/run-linea",
             position: "left",
-            label: "Run a node",
+            label: "Run Linea",
           },
           {
             to: "/developers/linea-version",
@@ -381,11 +381,12 @@ const config = {
             from: "/build-on-linea/gas-fees",
           },
           {
-            to: "/developers/guides/run-a-node",
+            to: "/developers/guides/run-linea",
             from: [
               "/build-on-linea/run-a-node",
               "/build-on-linea/run-a-node/use-binary",
               "/build-on-linea/run-a-node/use-docker",
+              "/developers/guides/run-a-node"
             ],
           },
           {

@@ -162,18 +162,41 @@ const sidebars = {
         },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
+  
         {
           type: "category",
-          label: "Run a Linea node",
+          label: "Run Linea",
           link: {
             type: "doc",
-            id: "developers/guides/run-a-node/index",
+            id: "developers/guides/run-linea/index",
           },
           items: [
-            "developers/guides/run-a-node/use-docker",
-            "developers/guides/run-a-node/use-binary",
+            {
+              type: "category",
+              label: "Run the Linea stack",
+              link: {
+                type: "doc",
+                id: "developers/guides/run-linea/run-the-stack/index",
+              },
+              items: [
+                "developers/guides/run-linea/run-the-stack/local",
+              ],
+            },
+            {
+              type: "category",
+              label: "Run a Linea node",
+              link: {
+                type: "doc",
+                id: "developers/guides/run-linea/run-a-node/index",
+              },
+              items: [
+                "developers/guides/run-linea/run-a-node/use-docker",
+                "developers/guides/run-linea/run-a-node/use-binary",
+              ],
+            },
           ],
         },
+
         "developers/guides/linea-safe",
         "developers/guides/linea-inscriptions",
       ],

@@ -1,0 +1,32 @@
+---
+description: How to run a Linea network.
+image: /img/socialCards/how-to-run-a-linea-network.jpg
+---
+
+import DocCardList from "@theme/DocCardList";
+
+# Run Linea
+
+You can run the entire Linea stack or a Linea node. Choosing between running the entire Linea stack
+and a Linea node depends on your specific needs and the environment you're working in.
+
+## When to run the Linea stack
+
+:::info
+Currently, the Linea stack is available for local deployments only.
+:::
+
+The Linea stack incorporates the base layer (L1) and the Linea stack itself. This setup is suited for
+developers who are in the process of developing or testing applications on the Linea L2 network.
+By running the entire Linea stack locally, developers benefit from a controlled environment that provides
+direct access to the blockchain's capabilities without connecting to Sepolia or the Ethereum Mainnet.
+
+## When to run a Linea node
+
+Running a Linea node enables users to call Linea JSON RPC API methods and submit transactions to the
+mempool independently, without depending on external RPC providers. This setup ensures a "trusted" local
+view of the Linea blockchain state, up until transactions or their containing blocks are finalized on Layer 1 (L1).
+
+Select the appropriate card for more information on running Linea using your preferred setup:
+
+<DocCardList />
