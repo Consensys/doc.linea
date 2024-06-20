@@ -10,12 +10,6 @@ import TabItem from "@theme/TabItem";
 
 ## Prerequisites
 
-### Hardware requirements
-
-TODO
-
-### Software requirements
-
 The following installed:
 
 - [Node.js v18](https://nodejs.org/en/download/package-manager)
@@ -23,6 +17,11 @@ The following installed:
 - [Docker Compose v2.19 or later](https://docs.docker.com/compose/install/)
 - [Make v3.81 or later](https://www.npmjs.com/package/make)
 - [Pnpm >=v9.0.6](https://pnpm.io/installation)
+
+:::important
+These instructions runs the Linea stack using Docker containers. Ensure you set your Docker resources to
+use at a minimum 10 CPU cores, 8GB of memory and 1GB swap space.
+:::
 
 ## Run the Linea stack
 
@@ -91,7 +90,7 @@ to access the test tokens.
         - HTTPS: `http:\\localhost:8445`
         - WebSockets: `ws:\\localhost:8446`
     - Chain ID: `31648428`
-    - [Message service address](../../../../architecture/stack/canonical-msg-service/message-service.mdx): 
+    - Linea rollup contract address: `0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9`
     - Deployment account private key: `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
     </TabItem>
 </Tabs>

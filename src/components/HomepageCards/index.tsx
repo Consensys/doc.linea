@@ -57,6 +57,7 @@ const CardList: CardItem[] = [
       <>
         Learn how to run a Linea node or the Linea stack, and interact with the
         blockchain locally
+
       </>
     ),
     buttonName: "Learn",
