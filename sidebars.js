@@ -324,6 +324,7 @@ const sidebars = {
             "developers/tooling/libraries/ethers-js",
             "developers/tooling/libraries/multicall",
             "developers/tooling/libraries/wagmi",
+            "developers/tooling/libraries/viem",
             "developers/tooling/libraries/wallet-connect",
           ],
         },
