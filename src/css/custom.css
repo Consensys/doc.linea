@@ -571,7 +571,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/users"]::before,
 .navbar__link[href="/developers/quickstart"]::before,
 .navbar__link[href="/architecture"]::before,
-.navbar__link[href="/developers/guides/run-a-node"]::before {
+.navbar__link[href="/developers/guides/run-linea"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -588,7 +588,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/users"]:hover::before,
 .navbar__link[href="/developers/quickstart"]:hover::before,
 .navbar__link[href="/architecture"]:hover::before,
-.navbar__link[href="/developers/guides/run-a-node"]:hover::before {
+.navbar__link[href="/developers/guides/run-linea"]:hover::before {
   background-color: #61dfff;
   border: 1px solid #61dfff;
 }
@@ -610,7 +610,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__link[href="/users"]::before,
   .navbar__link[href="/developers/quickstart"]::before,
   .navbar__link[href="/architecture"]::before,
-  .navbar__link[href="/developers/guides/run-a-node"]::before {
+  .navbar__link[href="/developers/guides/run-linea"]::before {
     display: none;
   }
 }

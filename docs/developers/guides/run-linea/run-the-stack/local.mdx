@@ -10,17 +10,17 @@ import TabItem from "@theme/TabItem";
 
 ## Prerequisites
 
-The following installed:
+Install the following:
 
-- [Node.js v18](https://nodejs.org/en/download/package-manager)
-- [Docker v24](https://docs.docker.com/get-docker/)
+- [Node.js v18 or later](https://nodejs.org/en/download/package-manager)
+- [Docker v24 or later](https://docs.docker.com/get-docker/)
 - [Docker Compose v2.19 or later](https://docs.docker.com/compose/install/)
 - [Make v3.81 or later](https://www.npmjs.com/package/make)
-- [Pnpm >=v9.0.6](https://pnpm.io/installation)
+- [Pnpm v9.0.6 or later](https://pnpm.io/installation)
 
 :::important
-These instructions runs the Linea stack using Docker containers. Ensure you set your Docker resources to
-use at a minimum 10 CPU cores, 8GB of memory and 1GB swap space.
+These instructions run the Linea stack using Docker containers. Set your Docker resources to
+use at least 10 CPU cores, 8 GB of memory, and 1 GB swap space.
 :::
 
 ## Run the Linea stack
@@ -42,19 +42,19 @@ cd linea-monorepo
 ```
 
 ```bash
-pnpm i
+pnpm install
 ```
 
 ### 3. Start the Linea stack
 
-Start the network stack, this will also compile and deploy the required rollup contracts:
+Start the network stack. This will also compile and deploy the required rollup contracts:
 
 ```bash
 make fresh-start-all
 ```
 
-You now have a local developer instance of the entire Linea network which includes components such as
-the sequencer, prover, coordinator, and a local L1 settlement layer. You can view the components in
+You now have a local developer instance of the entire Linea network, which includes components such as
+the sequencer, prover, coordinator, and a local L1 settlement layer. You can view these components in
 Docker Desktop.
 
 <div class="center-container">
@@ -70,30 +70,30 @@ Docker Desktop.
 
 Access the RPC endpoints from the following local URLs:
 
-:::info
-You can [connect your MetaMask wallet](https://support.metamask.io/networks-and-sidechains/managing-networks/how-to-add-a-custom-network-rpc/#adding-a-network-manually)
-to the required chain and [import the deployment account](https://support.metamask.io/managing-my-wallet/accounts-and-addresses/how-to-import-an-account/#importing-using-a-private-key)
-to access the test tokens.
-:::
-
 <Tabs className="my-tabs">
   <TabItem value="Linea" label="Linea (L2)" default>
   - Endpoints:
-      - HTTPS: `http:\\localhost:8545`
-      - WebSockets: `ws:\\localhost:8546`
+      - HTTPS: `http://localhost:8545`
+      - WebSockets: `ws://localhost:8546`
   - Chain ID: `1337`
   - [Message service address](../../../../architecture/stack/canonical-msg-service/message-service.mdx): `0xe537D669CA013d86EBeF1D64e40fC74CADC91987`
   - Deployment account private key: `0x1dd171cec7e2995408b5513004e8207fe88d6820aeff0d82463b3e41df251aae`
   </TabItem>
     <TabItem value="Base layer" label="Base layer (L1)">
     - Endpoints:
-        - HTTPS: `http:\\localhost:8445`
-        - WebSockets: `ws:\\localhost:8446`
+        - HTTPS: `http://localhost:8445`
+        - WebSockets: `ws://localhost:8446`
     - Chain ID: `31648428`
     - Linea rollup contract address: `0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9`
     - Deployment account private key: `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
     </TabItem>
 </Tabs>
+
+:::info
+You can [connect your MetaMask wallet](https://support.metamask.io/networks-and-sidechains/managing-networks/how-to-add-a-custom-network-rpc/#adding-a-network-manually)
+to the required chain and [import the deployment account](https://support.metamask.io/managing-my-wallet/accounts-and-addresses/how-to-import-an-account/#importing-using-a-private-key)
+to access the test tokens.
+:::
 
 ## Stop the Linea stack
 
@@ -103,7 +103,7 @@ starting can lead to network or state issues.
 Once stopped, you can clean your environment using the following commands:
 
 :::note
-This will permanently remove all docker images, containers and docker volumes and any data saved it them.
+This will permanently remove all Docker images, containers, volumes, and any data saved in them.
 :::
 
 ```bash
