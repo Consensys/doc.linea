@@ -1,18 +1,13 @@
 module.exports = {
-  extends: ["stylelint-config-standard", "stylelint-config-prettier"],
-  rules: {
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        // :global is a CSS modules feature to escape from class name hashing
-        ignorePseudoClasses: ["global"],
-      },
-    ],
+  "extends": "stylelint-config-standard",
+  "rules": {
     "selector-class-pattern": null,
-    "custom-property-empty-line-before": null,
+    "comment-empty-line-before" : null,
     "selector-id-pattern": null,
     "declaration-empty-line-before": null,
-    "comment-empty-line-before": null,
-    "value-keyword-case": ["lower", { camelCaseSvgKeywords: true }],
-  },
-};
+    "comment-empty-line-before": null,    
+    "media-feature-range-notation": null,
+    "selector-anb-no-unmatchable": null,
+    "declaration-block-no-duplicate-properties": null
+  }
+}
