@@ -62,6 +62,7 @@ const config = {
           showLastUpdateTime: true,
           includeCurrentVersion: true,
         },
+        blog: false, // Disable blog feature
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
