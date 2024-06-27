@@ -452,6 +452,10 @@ const config = {
             to: "/developers/tooling/node-providers",
             from: "/build-on-linea/tooling/node-providers",
           },
+          {
+            to: "/developers/linea-version",
+            from: "/build-on-linea/linea-version"
+          },
         ],
       },
     ],
