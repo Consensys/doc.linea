@@ -12,7 +12,7 @@ Note that this is included as part of the `hardhat-toolbox` plugin.
 
 :::
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
+These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](../deploy-smart-contract/hardhat).
 
 ## Download the plugin
 
@@ -20,7 +20,7 @@ If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use `@no
 
 ## Add your Lineascan API Key
 
-We'll be using a `.env` file to store our sensitive information. You can find instructions on how to set up the file [here](../deploy-smart-contract/hardhat.mdx#use-hardhatconfigjs).
+We'll be using a `.env` file to store our sensitive information. You can find instructions on how to set up the file [here](../deploy-smart-contract/hardhat).
 
 Next, you'll need to get a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
