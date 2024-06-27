@@ -454,7 +454,7 @@ const config = {
           },
           {
             to: "/developers/linea-version",
-            from: "/build-on-linea/linea-version"
+            from: "/build-on-linea/linea-version",
           },
         ],
       },
