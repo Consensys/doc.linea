@@ -97,16 +97,17 @@ provided liquidity on Linea since mainnet went live and users bridging active li
 Linea after the announcement but before The Surge program starts.
 
 The way it works is by looking at historical activity of each address that is eligible to get 
-$P_{E}$ in the current timeframe:
+$P_{E}$.
 
-- _EA_ Multiplier > 1 if:
-  - The address had at least one active liquidity event across any smart contract on 
-  Linea (also the one not included in the program), AND;
-  - At least one active liquidity event was $\geq$ 0.1 ETH or WETH.
-- _EA_ Multiplier = 1 if:
-  - The active liquidity event happened after the start of the program
-  - The active liquidity event was \< 0.1 ETH or WETH
-  - All other cases
+The _EA_ multiplier will be applied to your account if:
+
+- The address had at least one active liquidity event across any smart contract on Linea (also 
+ones not included in the program), AND; 
+- At least one active liquidity event was $\geq$ 0.1 ETH or WETH.
+
+Since the Surge has started, it is no longer possible to obtain early adopter status. This was only
+possible if your address had active liquidity events before the Surge was announced or before it 
+started.
 
 The _EA_ multiplier will start at 1.5 at the beginning of the program and will be reduced at 
 the end of each Volt, before reaching the value of 1 for the rest of the program:
