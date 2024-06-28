@@ -33,7 +33,8 @@ To bridge testnet ETH, select the **Try Testnet** button at the bottom left of t
 [token bridge page](https://bridge.linea.build/) and follow the same steps as below.
 :::
 
-If you would like to bridge between other networks, use one of the [third-party bridges](index#third-party-permissionless-bridges).
+If you would like to bridge between Linea and other networks, we recommend you use on of the
+third-party bridges available via [MetaMask Portfolio](https://portfolio.metamask.io/bridge).
 
 **Check out this video on how to use our bridge!**
 

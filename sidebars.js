@@ -286,6 +286,7 @@ const sidebars = {
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
+            "developers/tooling/data-indexers/dipdup",
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
             "developers/tooling/data-indexers/flair",
