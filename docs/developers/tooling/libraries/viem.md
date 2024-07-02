@@ -3,7 +3,7 @@ title: Viem
 image: /img/socialCards/use-linea.jpg
 ---
 
-Viem is TypeScript Interface for Ethereum, Build reliable apps & libraries with lightweight, composable, and type-safe modules that interface with Ethereum.
+Viem is TypeScript Interface for Ethereum, enabling you to build reliable apps and libraries with lightweight, composable, and type-safe modules that interface with Ethereum.
 
 As the authors of wagmi, a popular React Hooks library for Ethereum, we struggled to work with the existing low-level TypeScript Ethereum libraries. We wanted to provide the users of wagmi with the best possible developer experience.
 
