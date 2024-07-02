@@ -13,4 +13,4 @@ To point to your dapp on Linea, you need to use ```import { linea, lineaSepolia 
 
 For more specifics, see here: [https://viem.sh/docs/chains/introduction](https://viem.sh/docs/chains/introduction). 
 
-See [Viem docs](https://viem.sh/docs/getting-started) for more info
+See the [Viem docs](https://viem.sh/docs/getting-started) for more information.
