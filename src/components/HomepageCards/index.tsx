@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import styles from "./styles.module.css";
@@ -90,36 +90,16 @@ function Card({
     <div className={clsx("col", "col--3", "margin-top--md")}>
       <div className={clsx("card-demo", styles.cardDemo)}>
         <div className={clsx("card", styles.card_glow)}>
-          <div className={styles.circle}></div>
-          <div
-            className={clsx("card__header", styles.cardHeader)}
-            style={{
-              textAlign: "left",
-              paddingLeft: "40px",
-            }}>
-            <div style={{ position: "absolute", right: 18 }}>
-            <Icon className={styles.icon} style={{ width: "50px", height: "50px" }} />
+          <div className={clsx("card__header", styles.cardHeader)}>
+            <div className={styles.cardIcon}>
+              <Icon />
             </div>
-            <div style={{ paddingTop: "50px" }}>
-              <h3
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "300",
-                  marginBottom: "0",
-                }}>
-                {title}
-              </h3>
+            <div className={styles.cardTitle}>
+              <h3>{title}</h3>
             </div>
           </div>
-          <div
-            className={clsx("card__body", styles.cardBody)}
-            style={{
-              textAlign: "left",
-              paddingLeft: "40px",
-            }}>
-            <p style={{ fontSize: "18px", fontWeight: "300", marginTop: "0" }}>
-              {description}
-            </p>
+          <div className={clsx("card__body", styles.cardBody)}>
+            <p className={styles.description}>{description}</p>
           </div>
           <div
             className="card__footer"
@@ -138,9 +118,7 @@ function Card({
                 styles.button,
               )}
               to={link}
-              style={{
-                width: "90%",
-              }}>
+              style={{ width: "90%" }}>
               {buttonName}
             </Link>
           </div>
@@ -151,13 +129,43 @@ function Card({
 }
 
 export default function HomepageCards(): JSX.Element {
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const setEqualHeight = () => {
+      const row = rowRef.current;
+      if (!row) return;
+
+      const cards = Array.from(
+        row.getElementsByClassName("card") as HTMLCollectionOf<HTMLElement>,
+      );
+      cards.forEach((card) => {
+        card.style.height = "auto";
+      });
+
+      const cardHeights = cards.map((card) => card.offsetHeight);
+      const maxHeight = Math.max(...cardHeights);
+
+      cards.forEach((card) => {
+        card.style.height = `${maxHeight}px`;
+      });
+    };
+
+    setEqualHeight();
+    window.addEventListener("resize", setEqualHeight);
+
+    return () => {
+      window.removeEventListener("resize", setEqualHeight);
+    };
+  }, []);
+
   return (
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
-      <div className={clsx("container", styles.cardContainer)}>
+      <div className={styles.cardContainer}>
         <br />
         <h1 className={styles.heading}>Quick links</h1>
         <br />
-        <div className="row" style={{ paddingBottom: "3rem" }}>
+        <div className="row" ref={rowRef} style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (
             <Card key={idx} {...props} />
           ))}
