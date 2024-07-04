@@ -1,6 +1,6 @@
 ---
 title: Transaction lifecycle
-sidebar_position: 8
+description: An overview of what happens to transactions from the point of submission to finalization
 image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
@@ -18,18 +18,6 @@ The Linea [sequencer](/architecture/stack/sequencer) is responsible for ordering
 For each transaction added to the mempool, the sequencer checks its validity, rejecting 
 transactions as necessary. Transaction validity conditions are specific to Linea, and differ 
 slightly from those on other networks, including Ethereum.
-
-:::info
-
-A transaction is rejected if it:
-
-- Originates from a non-existent account, or an account that is not funded
-- Has a gas price below the minimum
-- Has a gas limit above the 10 million maximum
-- Has the same nonce as another transaction from the same account (in this case, the transaction with the higher gas fee is chosen, and the other rejected)
-- Has a total `calldata` size greater than 25kb.
-
-:::
 
 The sequencer orders transactions according to the priority fee paid for each, a method known as
 a priority gas auction. So, having passed the above checks, valid transactions are placed into
