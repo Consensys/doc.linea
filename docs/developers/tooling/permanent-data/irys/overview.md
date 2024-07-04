@@ -26,7 +26,7 @@ Irys is **chain agnostic**, smart contracts on Linea can link to data on Irys.
 
 You can:
 
-- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/community/irys-nfts)
+- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/community/irys/irys-nfts)
 - Build games with state on Linea and visual assets on Irys
 - Build an onchain identity protocol with user metadata on Irys
 - Build a cross-chain bridge and use Irys to store messages
