@@ -1,5 +1,6 @@
 ---
 title: DipDup
+image: /img/socialCards/dipdup.jpg
 ---
 
 [DipDup](https://dipdup.io/) is a Python framework for building smart contract indexers.
