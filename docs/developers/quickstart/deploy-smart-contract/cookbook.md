@@ -50,8 +50,7 @@ code you're looking at, or ask ChefGPT questions about Linea, solidity, or your 
 
 ## Import smart contract code into Cookbook
 
-Import verified smart contract code into Cookbook by entering any smart contract address into the Cookbook
-search bar to fork, learn about, or build with.
+Import verified smart contract code into Cookbook to fork, learn about, or build with by inputting any smart contract address that's verified on an EVM-based block explorer into the Cookbook.dev search bar.
 
 <div class="center-container">
   <div class="img-large">
