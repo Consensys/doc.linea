@@ -7,10 +7,10 @@ description: Use a CCIP Read gateway to query data on Linea from L1
 is a protocol developed by Chainlink to enable applications to access cross-chain (i.e. on an L2) 
 or offchain data through a gateway server. 
 
-Ethereum Name Service (ENS) implements CCIP Read resolve domains on Ethereum even if the relevant 
-data and records are stored on an L2 chain — an offchain resolver framework. The process is 
-trustless, as the gateway returns a storage proof that can be verified on L1, and which is immune 
-from any intervention or tampering.
+Ethereum Name Service (ENS) implements CCIP Read so that it can resolve domains on Ethereum even if 
+the relevant data and records are stored on an L2 chain — an offchain resolver framework. The 
+process is trust-minimal, as the gateway returns a storage proof that can be verified on L1, and 
+which is immune from any intervention or tampering.
 
 Linea adapted the functionality of the relevant ENS contract, [`evm-gateway`](https://github.com/ensdomains/evmgateway),
 so that it would function correctly with Linea's Sparse Merkle Tree design. The Linea ENS repository
