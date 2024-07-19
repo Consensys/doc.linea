@@ -3,33 +3,31 @@ title: Covalent
 image: /img/socialCards/covalent.jpg
 ---
 
-# Covalent
+# GoldRush - powered by Covalent
 
-[Covalent](https://www.covalenthq.com/?utm_source=linea&utm_medium=partner-docs) is a structured 
-data infrastructure provider with access to historical and current onchain data for [200+ supported 
-blockchains](https://www.covalenthq.com/docs/networks/?utm_source=linea&utm_medium=partner-docs), 
-including Linea mainnet and Sepolia testnet.
+[GoldRush](https://goldrush.dev/?utm_source=linea&utm_medium=partner-docs) is a set of data tools that enable easy web3 development across [200+ supported blockchains](https://goldrush.dev/docs/networks/?utm_source=linea&utm_medium=partner-docs), 
+including Linea mainnet and Sepolia testnet. The mission of GoldRush is to improve the lives of developers by providing structured onchain data for dapps.
 
-Covalent maintains a full replica of every supported blockchain, meaning you have access to:
+Developers can utilize GoldRush via SDKs, APIs, UI Kits, human-readable transactions and pre-built templates for a number of web3 use cases. The GoldRush suite is powered by Covalent, which is decentralized and cryptographically secure. Whether you are fetching NFTs, DeFi transactions, or other onchain data, GoldRush helps scale hundreds of projects from crypto native teams to Fortune 500 companies.
+
+With GoldRush, you have access to:
 
 - Every wallet's token balances
 - Full transaction histories
 - Every contract log event
 - All NFTs including assets and metadata
 
-**Use Covalent if you need:**
+**Use GoldRush if you need:**
 
-- Wallet, Transactions, NFT, DEX, Staking or core blockchain data (log events, blocks)
+- Wallet, Transactions, NFT, DEX, Staking or core blockchain data (i.e. log events, blocks, gas)
 - Normalized, aggregated and enhanced multichain data, well beyond what you get from RPC providers
 - Enterprise-grade performance
 
-> [Sign up to start building on Linea](https://www.covalenthq.com/platform/?utm_source=linea&utm_medium=partner-docs)
+> [Sign up to start building on Linea](https://goldrush.dev/platform/?utm_source=linea&utm_medium=partner-docs)
 
 ## APIs
 
-The Covalent APIs enable developers to quickly and easily access structured onchain data. This 
-means consistent response schemas regardless of the blockchain. Available APIs and corresponding 
-use cases include:
+The GoldRush APIs enables developers to quickly and easily access structured onchain data. This means consistent response schemas that are blockchain agnostic. Available APIs and corresponding use cases include:
 
 ### Wallet API
 
@@ -37,16 +35,17 @@ use cases include:
 historical) for a wallet.
 - **Use cases:** [Wallets, portfolio trackers](https://goldrush-wallet-portfolio-ui.vercel.app/?utm_source=linea&utm_medium=partner-docs), token gating, airdrop snapshots.
 
+### Transactions API
+
+- **Features:** All historical transactions with human-readable log events. Includes gas usage/spend
+summaries.
+- **Use cases:** [Accounting and tax tools](https://bit.ly/crypto-tax-tool), branded in-app [transaction receipts](https://goldrush-dfk-tx-receipt-ui.vercel.app/tx/defi-kingdoms-mainnet/0x4e5c0af28b2cea27d06677fae1f573572e0ff863c43ae42d2959ca67b90c4390/?utm_source=linea&utm_medium=partner-docs).
+
 ### NFT API
 
 - **Features:** Media assets, metadata, sales, owners, trait & attribute filters, thumbnails, and 
 previews.
 - **Use cases:** [NFT galleries and marketplaces](https://goldrush-nft-gallery-ui.vercel.app/?utm_source=linea&utm_medium=partner-docs), real world asset (RWA) tracking, token gating.
-
-### DEX API
-
-- **Features:** Positions, rewards, pool and token details for major DEX protocols.
-- **Use cases:** [Analytics dashboards](https://goldrush-uniswap-dex-dashboard.vercel.app/?utm_source=linea&utm_medium=partner-docs), leaderboards, reward calculators.
 
 ### Cross-Chain Activity API
 
@@ -54,29 +53,21 @@ previews.
 on each for an address.
 - **Use cases:** [App onboarding](https://goldrush-wallet-portfolio-ui.vercel.app/activity/0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de/?utm_source=linea&utm_medium=partner-docs).
 
-### Transactions API
-
-- **Features:** All historical transactions with human-readable log events. Includes gas usage/spend
-summaries.
-- **Use cases:** [Accounting and tax tools](https://bit.ly/crypto-tax-tool), branded in-app [transaction receipts](https://goldrush-dfk-tx-receipt-ui.vercel.app/tx/defi-kingdoms-mainnet/0x4e5c0af28b2cea27d06677fae1f573572e0ff863c43ae42d2959ca67b90c4390/?utm_source=linea&utm_medium=partner-docs).
-
 ### Security API
 
 - **Features:** NFT and ERC20 token allowances, including value-at-risk.
-- **Use cases:** Revoke features in wallets, security applications.
+- **Use cases:** [Revoke features](https://goldrush-revokehub.vercel.app/?utm_source=linea&utm_medium=partner-docs) in wallets, security applications.
 
 ### Blockchain API
 
-- **Features:** Block details, log events by contract address or topic hash, gas prices.
-- **Use cases:** Custom block explorers.
+- **Features:** Block details, log events by contract address or topic hash, gas prices, token prices and holders.
+- **Use cases:** [Custom block explorers](https://goldrush-block-explorer.vercel.app/?utm_source=linea>&utm_medium=partner-docs).
 
-### Developer tools
+## Developer Tools
 
-There are 3 primary developer tools for using the APIs:
+There are 4 primary developer tools for using the APIs:
 
-1. [Unified API](https://www.covalenthq.com/docs/api/?utm_source=linea&utm_medium=partner-docs) - 
-enterprise-grade endpoints to use with any programming language. Switch blockchains with one path 
-parameter.
+1. [GoldRush API](https://goldrush.dev/docs/api/?utm_source=linea&utm_medium=partner-docs) - REST API with enterprise-grade endpoints to use with any programming language. Switch blockchains with one path parameter.
 
     ```bash
     curl -X GET https://api.covalenthq.com/v1/linea-mainnet/address/0xc882b111a75c0c657fc507c04fbfcd2cc984f071/balances_v2/ \
@@ -84,7 +75,7 @@ parameter.
         -u YOUR_API_KEY:
     ```
 
-2. [Client SDKs](https://www.covalenthq.com/docs/unified-api/sdk/?utm_source=linea&utm_medium=partner-docs) - official client libraries including TypeScript, Go and Python.
+2. [GoldRush SDKs](https://goldrush.dev/docs/unified-api/sdk/?utm_source=linea&utm_medium=partner-docs) - official client libraries including TypeScript, Python, Go and Viem.
     ```jsx
     npm install @covalenthq/client-sdk
     ```
@@ -107,35 +98,203 @@ parameter.
     })();
     ```
 
-3. [GoldRush Kit](https://github.com/covalenthq/goldrush-kit/?utm_source=linea&utm_medium=partner-docs) - beautifully designed React components for your dApp frontend
+3. [GoldRush UI Kit](https://github.com/covalenthq/goldrush-kit/?utm_source=linea&utm_medium=partner-docs) - beautifully designed React components for your dApp frontend.
 
     [![GoldRush Component Example](https://www.datocms-assets.com/86369/1711147954-goldrush_wallet_ui_example.png)](https://goldrush-wallet-portfolio-ui.vercel.app/dashboard/balance/0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de/transfers/eth-mainnet/0xf8c3527cc04340b208c854e985240c02f7b7793f)
 
-### Get started
+4. [GoldRush Decoder](https://github.com/covalenthq/goldrush-decoder/?utm_source=linea&utm_medium=partner-docs) - decode any raw event logs into human-readable structured data.
 
-- [API Key](https://www.covalenthq.com/platform/auth/register/?utm_source=linea&utm_medium=partner-docs) - sign up for free
-- [Docs](https://www.covalenthq.com/docs/unified-api/?utm_source=linea&utm_medium=partner-docs) - comprehensive knowledge base for all things Covalent
-- [Guides](https://www.covalenthq.com/docs/unified-api/guides/?utm_source=linea&utm_medium=partner-docs) - learn how to build for various use cases and expand your onchain knowledge
+    **Request:**
+    ```bash
+    curl -X POST http://localhost:8080/api/v1/tx/decode \
+        -H 'Content-Type: application/json' \
+        -d '{
+              "chain_name": "linea-mainnet",
+              "tx_hash": "0xfb6277bb32b5c5fb9c84925a42406ff47e65efd3b0eeea526f8d270429c9e453"
+        }'
+    ```
 
-## Increment
+    **Custom decoded response:**
+    ```json
+    {
+        "success": true,
+        "events": [
+            {
+                "action": "Transferred",
+                "category": "Token",
+                "name": "Transfer",
+                "protocol": {
+                    "logo": "https://logos.covalenthq.com/tokens/59144/0xc1061a8315095945d83650a1ba28cd026d64cdb0.png",
+                    "name": "SLToken1"
+                },
+                "details": [
+                    {
+                        "heading": "From",
+                        "value": "0xb5c6a0625E6F01CAbF9DDBdf64AaAbd1B178e1E2",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "To",
+                        "value": "0xf081470f5C6FBCCF48cC4e5B82Dd926409DcdD67",
+                        "type": "address"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "decimals": 18,
+                        "heading": "Token Amount",
+                        "pretty_quote": "$0.00",
+                        "ticker_logo": "https://logos.covalenthq.com/tokens/59144/0xc1061a8315095945d83650a1ba28cd026d64cdb0.png",
+                        "ticker_symbol": "SLTT1",
+                        "value": "1000"
+                    }
+                ]
+            },
+            {
+                "action": "Transferred",
+                "category": "Token",
+                "name": "Transfer",
+                "protocol": {
+                    "logo": "https://logos.covalenthq.com/tokens/59144/0xc1061a8315095945d83650a1ba28cd026d64cdb0.png",
+                    "name": "SLToken1"
+                },
+                "details": [
+                    {
+                        "heading": "From",
+                        "value": "0xf081470f5C6FBCCF48cC4e5B82Dd926409DcdD67",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "To",
+                        "value": "0x7160570BB153Edd0Ea1775EC2b2Ac9b65F1aB61B",
+                        "type": "address"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "decimals": 18,
+                        "heading": "Token Amount",
+                        "pretty_quote": "$0.00",
+                        "ticker_logo": "https://logos.covalenthq.com/tokens/59144/0xc1061a8315095945d83650a1ba28cd026d64cdb0.png",
+                        "ticker_symbol": "SLTT1",
+                        "value": "1000"
+                    }
+                ]
+            },
+            {
+                "action": "Transferred",
+                "category": "Token",
+                "name": "Transfer",
+                "protocol": {
+                    "logo": "https://logos.covalenthq.com/tokens/59144/0xfe3b40b2d513b8e7ab3c7b6c758df3f00a2772dd.png",
+                    "name": "SLToken5"
+                },
+                "details": [
+                    {
+                        "heading": "From",
+                        "value": "0x7160570BB153Edd0Ea1775EC2b2Ac9b65F1aB61B",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "To",
+                        "value": "0xf081470f5C6FBCCF48cC4e5B82Dd926409DcdD67",
+                        "type": "address"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "decimals": 18,
+                        "heading": "Token Amount",
+                        "pretty_quote": "$0.00",
+                        "ticker_logo": "https://logos.covalenthq.com/tokens/59144/0xfe3b40b2d513b8e7ab3c7b6c758df3f00a2772dd.png",
+                        "ticker_symbol": "SLTT5",
+                        "value": "989"
+                    }
+                ]
+            },
+            {
+                "action": "Transferred",
+                "category": "Token",
+                "name": "Transfer",
+                "protocol": {
+                    "logo": "https://logos.covalenthq.com/tokens/59144/0xfe3b40b2d513b8e7ab3c7b6c758df3f00a2772dd.png",
+                    "name": "SLToken5"
+                },
+                "details": [
+                    {
+                        "heading": "From",
+                        "value": "0xf081470f5C6FBCCF48cC4e5B82Dd926409DcdD67",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "To",
+                        "value": "0xb5c6a0625E6F01CAbF9DDBdf64AaAbd1B178e1E2",
+                        "type": "address"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "decimals": 18,
+                        "heading": "Token Amount",
+                        "pretty_quote": "$0.00",
+                        "ticker_logo": "https://logos.covalenthq.com/tokens/59144/0xfe3b40b2d513b8e7ab3c7b6c758df3f00a2772dd.png",
+                        "ticker_symbol": "SLTT5",
+                        "value": "988"
+                    }
+                ]
+            },
+            {
+                "action": "Account Abstraction Transaction",
+                "category": "Others",
+                "name": "User Operation Event",
+                "protocol": {
+                    "logo": "https://logos.covalenthq.com/tokens/59144/0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789.png",
+                    "name": "4337 Entry Point"
+                },
+                "details": [
+                    {
+                        "heading": "Gas Cost",
+                        "value": "25590122985514",
+                        "type": "text"
+                    },
+                    {
+                        "heading": "Gas Used",
+                        "value": "426502",
+                        "type": "text"
+                    },
+                    {
+                        "heading": "Paymaster",
+                        "value": "0x0000000000000000000000000000000000000000",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "Sender",
+                        "value": "0xb5c6a0625E6F01CAbF9DDBdf64AaAbd1B178e1E2",
+                        "type": "address"
+                    },
+                    {
+                        "heading": "User Operation Hash",
+                        "value": "0xfce86b467cae9f1375483acc23edaf5ead45f1fcff1939f06e00b28b2f776f94",
+                        "type": "address"
+                    }
+                ]
+            }
+        ],
+        "tx_metadata": {
+            ...
+            },
+            "explorers": [
+                {
+                    "label": null,
+                    "url": "https://lineascan.build/tx/0xfb6277bb32b5c5fb9c84925a42406ff47e65efd3b0eeea526f8d270429c9e453"
+                }
+            ]
+        }
+    }
+    ```
 
-[![example-increment-chart](https://www.datocms-assets.com/86369/1684974544-increment-example-partner-docs.png)](https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs)
+## Get started
 
-Increment is a novel no-code charting and reporting tool powered by Covalent. 
-*Simply type SQL, get charts.*
-
-### Use cases
-
-Increment can be used for:
-
-- [Analyzing blockchain networks](https://www.covalenthq.com/docs/increment/data-models/chain-gdp/?utm_source=linea&utm_medium=partner-docs)
-- [Analyzing DEXs](https://www.covalenthq.com/docs/increment/data-models/swap-land/?utm_source=linea&utm_medium=partner-docs)
-- [Analyzing NFT marketplaces](https://www.covalenthq.com/docs/increment/data-models/jpeg-analysis/?utm_source=linea&utm_medium=partner-docs)
-
-
-### Get started
-
-- [Increment](https://www.covalenthq.com/platform/increment/#/?utm_source=linea&utm_medium=partner-docs) - login via the Covalent Platform
-- [Docs](https://www.covalenthq.com/docs/increment/?utm_source=linea&utm_medium=partner-docs) - 
-learn how to use Increment to build dynamic, custom charts
-- [Data models demo](https://www.covalenthq.com/docs/increment/data-models/model-intro/?utm_source=linea&utm_medium=partner-docs) - build analytics in three clicks
+- [API Key](https://goldrush.dev/platform/auth/register/?utm_source=linea&utm_medium=partner-docs) - sign up for free
+- [Docs](https://goldrush.dev/docs/unified-api/?utm_source=linea&utm_medium=partner-docs) - comprehensive knowledge base for all things GoldRush
+- [Guides](https://goldrush.dev/docs/unified-api/guides/?utm_source=linea&utm_medium=partner-docs) - learn how to build for various use cases and expand your onchain knowledge

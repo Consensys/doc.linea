@@ -156,8 +156,18 @@ const sidebars = {
               label: "Linea Learning Track",
               href: "https://www.hackquest.io/en/learning-track/9be129e7-575b-49bd-a64e-1bbe32427ace",
             },
-            "developers/guides/community/irys-nfts",
-            "developers/guides/community/irys-dynamic-nfts",
+            {
+              type: "category",
+              label: "Irys",
+              link: {
+                type: "doc",
+                id: "developers/guides/community/irys/index",
+              },
+              items: [
+                "developers/guides/community/irys/irys-dynamic-nfts",
+                "developers/guides/community/irys/irys-nfts",
+              ]
+            }
           ],
         },
         "developers/guides/linea-api/index",
@@ -286,6 +296,7 @@ const sidebars = {
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
+            "developers/tooling/data-indexers/dipdup",
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
             "developers/tooling/data-indexers/flair",
@@ -322,6 +333,7 @@ const sidebars = {
             "developers/tooling/libraries/ethereum-list",
             "developers/tooling/libraries/ethers-js",
             "developers/tooling/libraries/multicall",
+            "developers/tooling/libraries/viem",
             "developers/tooling/libraries/wagmi",
             "developers/tooling/libraries/wallet-connect",
           ],

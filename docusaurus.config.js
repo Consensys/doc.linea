@@ -62,6 +62,7 @@ const config = {
           showLastUpdateTime: true,
           includeCurrentVersion: true,
         },
+        blog: false, // Disable blog feature
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -450,6 +451,10 @@ const config = {
           {
             to: "/developers/tooling/node-providers",
             from: "/build-on-linea/tooling/node-providers",
+          },
+          {
+            to: "/developers/linea-version",
+            from: "/build-on-linea/linea-version",
           },
         ],
       },
