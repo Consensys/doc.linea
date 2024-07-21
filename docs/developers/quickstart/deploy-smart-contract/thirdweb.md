@@ -4,7 +4,7 @@ description: Deploy a smart contract using thirdweb.
 image: /img/socialCards/thirdweb.jpg
 ---
 
-thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks.
+Thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks. Marketplace contract allows users to list NFTs for direct sale or auction, thus enhancing the buying and selling of NFTs, just like it's done on OpenSea.
 
 ## Create a smart contract
 
