@@ -1,7 +1,10 @@
 ---
 title: CCIP Read
 description: Use a CCIP Read gateway to query data on Linea from L1
+image: /img/socialCards/ccip-read.jpg
 ---
+
+import LineaCCIPGraphic from "/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Cross-chain/CCIP-Read/Linea_ENS_CCIP_read.svg"
 
 [CCIP Read](https://eips.ethereum.org/EIPS/eip-3668), also referred to by its full name [Cross-chain Interoperability Protocol](https://chain.link/cross-chain), 
 is a protocol developed by Chainlink to enable applications to access cross-chain (i.e. on an L2) 
@@ -52,16 +55,8 @@ sense that they can be applied to any use case.
 
 The basic outline for using these contracts in a read capacity is as follows:
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src={
-        require("/static/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Cross-chain/CCIP-Read/Linea ENSCCIP Read.png")
-          .default
-      }
-      alt="Diagram of using CCIP Read to query L2 data on Linea"
-    />
-  </div>
+<div className="img-large" style={{ padding: '25px 0' }}>
+  <LineaCCIPGraphic alt="Diagram of using CCIP Read to query L2 data on Linea" />
 </div>
 
 1. Your L1 contract, which we'll refer to as the client contract, requires data from L2. To do this, 
