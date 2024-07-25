@@ -1,6 +1,6 @@
 ---
 title: Viem
-image: /img/socialCards/use-linea.jpg
+image: /img/socialCards/viem.jpg
 ---
 
 Based on our experience, we developed Viem with a TypeScript interface for Ethereum that provides low-level stateless features for interactions focused on reliability, performance, and a great developer experience.
