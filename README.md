@@ -54,16 +54,6 @@ into the L2 landscape.
 [Fork our repo](https://github.com/Consensys/doc.linea/fork), and add a term in alphabetical
 order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
 
-### Additional Resources
-
-View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for
-information on how to:
-
-- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution) using forks and pull requests.
-- Consult the [documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
-- [Format your Markdown](https://docs-template.consensys.net/contribute/format-markdown) correctly.
-- [Preview the docs](https://docs-template.consensys.net/contribute/preview) locally.
-
 ## Running locally
 
 You will need to have **Node.js** installed to run the live previews of the docs locally.
