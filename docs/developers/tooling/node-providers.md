@@ -5,6 +5,7 @@ image: /img/socialCards/node-providers.jpg
 
 ## Private RPC endpoints
 
+- [Alchemy](https://www.alchemy.com/)
 - [ANKR](https://www.ankr.com/rpc/)
 - [BLAST API](https://blastapi.io/)
 - [Blockpi](https://blockpi.io/)
