@@ -39,6 +39,15 @@ files include the network genesis file, Docker Compose file and Besu configurati
   <TabItem value="mainnet" label="Mainnet">
   
   Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
+
+  :::note[enodes]
+  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Besu `.zip` includes a
+  config file named `config-snap-mainnet.toml` where enodes are specified. The file uses US-based 
+  enodes by default, but you may experience better performance if you choose enodes based in a 
+  closer region (Europe or Asia-Pacific). 
+
+  See our [enodes page](./enodes) for a full list of available enodes.
+  :::
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -91,6 +100,14 @@ Download the configuration files for the relevant network. Ensure that you downl
   
   Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
   files.
+
+  :::note[enodes]
+  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Geth `docker-compose.yml`
+  file uses US-based enodes by default, but you may experience better performance if you choose 
+  enodes based in a closer region (Europe or Asia-Pacific). 
+
+  See our [enodes page](./enodes) for a full list of available enodes.
+  :::
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
