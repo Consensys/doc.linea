@@ -94,3 +94,27 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 ```
   </TabItem>
 </Tabs>
+
+## Usage
+
+Here is an example of how to call `linea_estimateGas` using the ethers.js library:
+
+```javascript
+type LineaEstimateGasResponse = {
+  baseFeePerGas: string;
+  priorityFeePerGas: string;
+  gasLimit: string;
+};
+
+const provider = new ethers.JsonRpcProvider("<RPC_URL>");
+
+const params = {
+  from: "0x...", // Signer address
+  to: "0x...", // Recipient address
+  value: ethers.parseEther("1").toString(), // Value in wei
+  data: "0x...", // Encoded call in case of smart contract interaction
+};
+
+const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
+console.log(fees);
+``` 
