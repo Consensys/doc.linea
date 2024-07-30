@@ -5,4 +5,43 @@ image: /img/socialCards/the-linea-stack.jpg
 
 import DocCardList from "@theme/DocCardList";
 
+The Linea stack is open source, meaning you can inspect the code yourself. 
+
+Each repository is listed below, together with a description of its purpose. Scroll further down for 
+links to explainers of each element of Linea's architecture.
+
+## Linea repositories
+
+### [`linea-monorepo`](https://github.com/Consensys/linea-monorepo)
+
+The principal Linea repository — 'mono' meaning it is a single location in which multiple elements
+or projects are stored. This includes smart contracts covering Linea's core functions, and key 
+pieces of the network architecture such as the prover and the coordinator. 
+
+### [`linea-specifications`](https://github.com/Consensys/linea-specifications)
+
+A repository containing specifications for how the Linea zkEVM functions.
+
+### [`linea-arithmetization`](https://github.com/Consensys/linea-arithmetization)
+
+Arithmetization refers to the process of converting computer programs—logic problems—into 
+mathematical problems. The repository contains the elements of the Linea stack responsible for this 
+process. 
+
+### [`linea-constraints`](https://github.com/Consensys/linea-constraints)
+
+Constraints are the mathematical conditions which transaction data, converted into traces, must 
+satisfy in order for a transaction or set of transactions to be proven.
+
+### [`linea-besu`](https://github.com/Consensys/linea-besu)
+
+The Linea implementation of Hyperledger Besu, an Ethereum client. 
+
+### [`linea-sequencer`](https://github.com/Consensys/linea-sequencer)
+
+The implementation of the sequencer, the component of the Linea stack responsible for ordering and
+building blocks, as well as executing them. 
+
+## Architecture documentation
+
 <DocCardList />
