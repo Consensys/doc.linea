@@ -281,6 +281,7 @@ const sidebars = {
           },
           items: [
             "developers/tooling/cross-chain/axelar",
+            "developers/tooling/cross-chain/ccip-read-gateway",
             "developers/tooling/cross-chain/layerzero",
             "developers/tooling/cross-chain/shortcuts",
           ],
