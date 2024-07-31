@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-The `linea_estimateGas` is only fully compatible with endpoints using the Besu client — if it is 
+`linea_estimateGas` is only fully compatible with endpoints using the Besu client — if it is 
 unavailable, try updating Besu. If you prefer to use Geth, `linea_estimateGas` is only available if 
 you redirect your request through an Infura endpoint.
 
@@ -72,7 +72,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   <TabItem value="cURL request">
 
    ```bash
-    curl https://rpc.sepolia.linea.build \
+    curl https://rpc.linea.build \
           -X POST \
           -H "Content-Type: application/json" \
           -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
@@ -93,12 +93,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 }
 ```
   </TabItem>
-</Tabs>
-
-## Usage
-
-Here is an example of how to call `linea_estimateGas` using the ethers.js library:
-
+  <TabItem value="ethers.js">
 ```javascript
 type LineaEstimateGasResponse = {
   baseFeePerGas: string;
@@ -118,3 +113,5 @@ const params = {
 const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
 console.log(fees);
 ``` 
+  </TabItem>
+</Tabs>
