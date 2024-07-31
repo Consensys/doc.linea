@@ -76,7 +76,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/quickstart/goerli-to-sepolia">View the transition page</a> for more information.',
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -370,10 +370,6 @@ const config = {
             from: "/build-on-linea/quickstart/rpc",
           },
           {
-            to: "/developers/quickstart/goerli-to-sepolia",
-            from: "/build-on-linea/goerli-to-sepolia",
-          },
-          {
             to: "/developers/quickstart/ethereum-differences",
             from: "/build-on-linea/ethereum-differences",
           },
@@ -455,6 +451,10 @@ const config = {
           {
             to: "/developers/linea-version",
             from: "/build-on-linea/linea-version",
+          },
+          {
+            to: "/developers/quickstart",
+            from: "/developers/quickstart/goerli-to-sepolia",
           },
         ],
       },
