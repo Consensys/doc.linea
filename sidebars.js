@@ -108,7 +108,6 @@ const sidebars = {
         },
         "developers/quickstart/ethereum-differences",
         "developers/quickstart/info-contracts",
-        "developers/quickstart/goerli-to-sepolia",
       ],
     },
     {
