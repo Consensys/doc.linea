@@ -456,6 +456,10 @@ const config = {
             to: "/developers/linea-version",
             from: "/build-on-linea/linea-version",
           },
+          {
+            to: "/developers/quickstart",
+            from: "/developers/quickstart/goerli-to-sepolia"
+          }
         ],
       },
     ],
