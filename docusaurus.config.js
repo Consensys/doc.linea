@@ -74,12 +74,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       announcementBar: {
-      id: "announcement_bar",
-      content:
-      '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
-      backgroundColor: "#61dfff",
-      textColor: "#121212",
-      isCloseable: false,
+        id: "announcement_bar",
+        content:
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+        backgroundColor: "#61dfff",
+        textColor: "#121212",
+        isCloseable: false,
       },
       colorMode: {
         defaultMode: "dark",
