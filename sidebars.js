@@ -461,7 +461,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "The Linea stack",
+      label: "Linea software",
       link: {
         type: "doc",
         id: "architecture/stack/index",

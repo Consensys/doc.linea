@@ -1,37 +1,49 @@
 ---
-title: The Linea stack
+title: Linea software
 image: /img/socialCards/the-linea-stack.jpg
 ---
 
 import DocCardList from "@theme/DocCardList";
 
-The Linea stack is open source, meaning you can inspect the code yourself. 
+Linea is open source, meaning you can inspect the code yourself. 
 
-Each repository is listed below, together with a description of its purpose. Scroll further down for 
-links to explainers of each element of Linea's architecture.
+Each repository is listed below, together with a description of its purpose. Links to explainers 
+of each element of Linea's architecture are available [below](#architecture-documentation).
 
 ## Linea repositories
 
 ### [`linea-monorepo`](https://github.com/Consensys/linea-monorepo)
 
-The principal Linea repository — 'mono' meaning it is a single location in which multiple elements
-or projects are stored. This includes smart contracts covering Linea's core functions, and key 
-pieces of the network architecture such as the prover and the coordinator. 
+The principal Linea repository. This mainly includes the smart contracts covering Linea's core 
+functions, the prover in charge of generating ZK proofs, the coordinator responsible for multiple 
+orchestrations, and the postman for executing bridge messages. 
 
-### [`linea-specifications`](https://github.com/Consensys/linea-specifications)
+### [`linea-specification`](https://github.com/Consensys/linea-specification)
 
-A repository containing specifications for how the Linea zkEVM functions.
+Specification of the constraint system underlying Linea's zk-EVM.
 
-### [`linea-arithmetization`](https://github.com/Consensys/linea-arithmetization)
+Constraints are mathematical equations and a constraint system is a collection of such equations. 
+Linea's constraint system aims to capture the logic of valid EVM executions.
 
-Arithmetization refers to the process of converting computer programs—logic problems—into 
-mathematical problems. The repository contains the elements of the Linea stack responsible for this 
-process. 
+The constraints specified here are implemented in the `linea-constraints` repo.
 
 ### [`linea-constraints`](https://github.com/Consensys/linea-constraints)
 
-Constraints are the mathematical conditions which transaction data, converted into traces, must 
-satisfy in order for a transaction or set of transactions to be proven.
+Implementation of the constraint system specified in the `linea-specification` repo.
+
+Linea's constraint system applies to so-called "traces", which are large matrices of fixed width 
+(i.e. fixed number of columns or "registries") and variable depth (correlating with the complexity 
+of the EVM execution). The production of such traces is the job of the `linea-tracer` repo.
+
+Constraints and traces are two of the inputs to the prover.
+
+### [`linea-tracer`](https://github.com/Consensys/linea-tracer)
+
+Tracing refers to the process of extracting data from the execution of an EVM client in order to 
+construct large matrices known as execution traces. Execution traces are subject to the constraint 
+system specified in the `linea-specification` repo and implemented in the `linea-constraints` repo.
+
+The repository contains the elements of Linea responsible for this process.
 
 ### [`linea-besu`](https://github.com/Consensys/linea-besu)
 
@@ -39,8 +51,8 @@ The Linea implementation of Hyperledger Besu, an Ethereum client.
 
 ### [`linea-sequencer`](https://github.com/Consensys/linea-sequencer)
 
-The implementation of the sequencer, the component of the Linea stack responsible for ordering and
-building blocks, as well as executing them. 
+The implementation of the sequencer, the component of Linea responsible for ordering and building 
+blocks, as well as executing them. 
 
 ## Architecture documentation
 
