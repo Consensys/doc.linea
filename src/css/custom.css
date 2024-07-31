@@ -503,6 +503,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 /* Navbar formatting */
 .navbar {
   --ifm-navbar-height: 8vh;
+  height: clamp(60px, var(--ifm-navbar-height), 100px);
 }
 
 .navbar__logo {
