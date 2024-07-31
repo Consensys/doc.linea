@@ -370,10 +370,6 @@ const config = {
             from: "/build-on-linea/quickstart/rpc",
           },
           {
-            to: "/developers/quickstart/goerli-to-sepolia",
-            from: "/build-on-linea/goerli-to-sepolia",
-          },
-          {
             to: "/developers/quickstart/ethereum-differences",
             from: "/build-on-linea/ethereum-differences",
           },
