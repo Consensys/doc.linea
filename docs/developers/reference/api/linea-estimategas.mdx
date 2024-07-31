@@ -11,9 +11,9 @@ import TabItem from '@theme/TabItem';
 
 :::info
 
-`linea_estimateGas` is only fully compatible with endpoints using the Besu client — if it is 
-unavailable, try updating Besu. If you prefer to use Geth, `linea_estimateGas` is only available if 
-you redirect your request through an Infura endpoint.
+`linea_estimateGas` is only fully compatible with endpoints using the Besu client with the 
+`linea-sequencer` plugin enabled. If it is unavailable, try updating Besu. If you prefer to use 
+Geth, `linea_estimateGas` is only available if you redirect your request through an Infura endpoint.
 
 We recommend using `linea_estimateGas` rather than alternatives, such as `eth_gasPrice`. 
 `linea_estimateGas` returns estimates with greater accuracy, minimizing the risk of transactions
