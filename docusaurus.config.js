@@ -458,8 +458,8 @@ const config = {
           },
           {
             to: "/developers/quickstart",
-            from: "/developers/quickstart/goerli-to-sepolia"
-          }
+            from: "/developers/quickstart/goerli-to-sepolia",
+          },
         ],
       },
     ],
