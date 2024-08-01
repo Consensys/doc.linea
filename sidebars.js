@@ -185,6 +185,7 @@ const sidebars = {
         },
         "developers/guides/linea-safe",
         "developers/guides/linea-inscriptions",
+        "developers/guides/erpc-proxy-caching",
       ],
     },
     {
