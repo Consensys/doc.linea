@@ -23,6 +23,9 @@ image: /img/socialCards/node-providers.jpg
 - [One-click deploy with Mintair](https://mintair.xyz/)
 - [One-click deploy with RapidNode](https://rapidnode.xyz)
 
+## Use RPC proxy and caching
+- [eRPC](../guides/erpc-proxy-caching)
+
 ## Public RPC endpoints
 
 :::caution
