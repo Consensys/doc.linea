@@ -1,3 +1,8 @@
+---
+title: Linea RPC Proxy and Caching
+image: /img/socialCards/guides.jpg
+---
+
 # Linea RPC Proxy and Caching
 
 [eRPC](https://erpc.cloud/) is a fault-tolerant EVM RPC proxy and re-org aware permanent caching solution. It is built with read-heavy use-cases in mind such as data indexing and high-load frontend usage.
