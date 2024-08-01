@@ -26,7 +26,7 @@ image: /img/socialCards/guides.jpg
 
 # Quick start
 
-1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file based on the [`erpc.yaml.dist`](https://github.com/erpc/erpc/erpc.yaml.dist) file:
+1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file based on the [`erpc.yaml.dist`](https://github.com/erpc/erpc/blob/main/erpc.yaml.dist) file:
 
 ```bash
 cp erpc.yaml.dist erpc.yaml
