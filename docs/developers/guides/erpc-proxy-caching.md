@@ -7,9 +7,9 @@ image: /img/socialCards/guides.jpg
 
 [eRPC](https://erpc.cloud/) is a fault-tolerant EVM RPC proxy and re-org aware permanent caching solution. It is built with read-heavy use-cases in mind such as data indexing and high-load frontend usage.
 
-* [github](https://github.com/erpc/erpc)<br/>
-* [docs](https://docs.erpc.cloud/)<br/>
-* [telegram](https://t.me/erpc_cloud)<br/>
+- [github](https://github.com/erpc/erpc)<br/>
+- [docs](https://docs.erpc.cloud/)<br/>
+- [telegram](https://t.me/erpc_cloud)<br/>
 
 ![Architecture](https://github.com/erpc/erpc/raw/main/assets/hla-diagram.svg)
 
@@ -17,12 +17,7 @@ image: /img/socialCards/guides.jpg
 
 # Features
 
-✅ **Fault-tolerant Proxy**: Retries, circuit-breakers, failovers and hedged requests make sure fastest most-reliable upstream is used. <br/><br/>
-✅ **Flexible Rate-limiters**: Define hourly, daily rate limits for each upstream provider, to control usage, costs and high-scale usage.<br/><br/>
-✅ **Permanent Caching**: Avoid redundant upstream costs by locally caching RPC responses, with reorg-aware caching layer.<br/><br/>
-✅ **Request Auto-routing**: You don't need to think about which upstream supports which eth\_\* method; eRPC automatically does that.<br/><br/>
-✅ **Normalized Errors**: Receive consistent error codes with details across 5+ third-party providers. With useful reporting of occured errors.<br/><br/>
-✅ **RPC Metrics & Observability**: Single dashboard to observe rps throughput, errors, and avg. latency of all your RPC providers.<br/><br/>
+✅ **Fault-tolerant Proxy**: Retries, circuit-breakers, failovers and hedged requests make sure fastest most-reliable upstream is used. <br/><br/> ✅ **Flexible Rate-limiters**: Define hourly, daily rate limits for each upstream provider, to control usage, costs and high-scale usage.<br/><br/> ✅ **Permanent Caching**: Avoid redundant upstream costs by locally caching RPC responses, with reorg-aware caching layer.<br/><br/> ✅ **Request Auto-routing**: You don't need to think about which upstream supports which eth\_\* method; eRPC automatically does that.<br/><br/> ✅ **Normalized Errors**: Receive consistent error codes with details across 5+ third-party providers. With useful reporting of occurred errors.<br/><br/> ✅ **RPC Metrics & Observability**: Single dashboard to observe rps throughput, errors, and avg. latency of all your RPC providers.<br/><br/>
 
 # Quick start
 
