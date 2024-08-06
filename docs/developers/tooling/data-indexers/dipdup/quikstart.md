@@ -28,17 +28,27 @@ The project root directory contains a YAML file named `dipdup.yaml`. It's the ma
 
 ```bash
 spec_version: 2.0
-package: kakarot
+package: linea
 
 datasources:
+  subsquid:
+    kind: evm.subsquid	
+    url: https://v2.archive.subsquid.io/network/linea-mainnet
+    node: evm_node
+
+  etherscan:
+    kind: abi.etherscan	
+    url: https://api.lineascan.build/api    
+
   mainnet_node:
-    kind: evm.node
-    url: https://sepolia-rpc.kakarot.org
+    kind: evm.node	
+    url: https://linea-mainnet.infura.io/v3
+    ws_url: wss://linea-mainnet.infura.io/ws/v3
 
 contracts:
   some_contract:
     kind: evm
-    address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+    address: 0xa219439258ca9da29e9cc4ce5596924745e12b93
     typename: not_typed
 
 indexes:
@@ -53,7 +63,7 @@ indexes:
 
 database:
   kind: sqlite
-  path: data/kakarot.sqlite
+  path: data/linea.sqlite
 ```
 
 Now it's time to generate directories and files required for the project: callbacks stubs, types and other entities we defined in configuration, don't worry in this guide we will only need a small portion of those:
@@ -91,7 +101,7 @@ from dipdup.context import HandlerContext
 from dipdup.models.evm_node import EvmNodeTransactionData
 from dipdup.models.evm_subsquid import SubsquidTransactionData
 
-from kakarot import models as models
+from linea import models as models
 
 
 async def on_output_transaction(
@@ -118,5 +128,5 @@ DipDup will fetch all the historical data and switch to realtime mode. You can c
 Query database to see the results:
 
 ```bash
-sqlite3 /tmp/kakarot.sqlite 'SELECT * FROM transaction LIMIT 10'
+sqlite3 /tmp/linea.sqlite 'SELECT * FROM transaction LIMIT 10'
 ```
