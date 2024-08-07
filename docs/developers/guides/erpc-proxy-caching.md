@@ -15,17 +15,19 @@ image: /img/socialCards/guides.jpg
 
 <br />
 
-# Features
+# Quickstart
 
-✅ **Fault-tolerant Proxy**: Retries, circuit-breakers, failovers and hedged requests make sure fastest most-reliable upstream is used. <br/><br/> ✅ **Flexible Rate-limiters**: Define hourly, daily rate limits for each upstream provider, to control usage, costs and high-scale usage.<br/><br/> ✅ **Permanent Caching**: Avoid redundant upstream costs by locally caching RPC responses, with reorg-aware caching layer.<br/><br/> ✅ **Request Auto-routing**: You don't need to think about which upstream supports which eth\_\* method; eRPC automatically does that.<br/><br/> ✅ **Normalized Errors**: Receive consistent error codes with details across 5+ third-party providers. With useful reporting of occurred errors.<br/><br/> ✅ **RPC Metrics & Observability**: Single dashboard to observe rps throughput, errors, and avg. latency of all your RPC providers.<br/><br/>
+1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file:
 
-# Quick start
-
-1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file based on the [`erpc.yaml.dist`](https://github.com/erpc/erpc/blob/main/erpc.yaml.dist) file:
-
-```bash
-cp erpc.yaml.dist erpc.yaml
-code erpc.yaml
+```yaml filename="erpc.yaml"
+logLevel: debug
+projects:
+  - id: main
+    upstreams:
+      # You don't need to define architecture (e.g. evm) or chain id (e.g. 59144)
+      # as they will be detected automatically by eRPC.
+      - endpoint: https://linea-mainnet.blastapi.io/xxxx
+      - endpoint: evm+alchemy://xxxx-my-alchemy-api-key-xxxx
 ```
 
 See [a complete config example](https://docs.erpc.cloud/config/example) for inspiration.
