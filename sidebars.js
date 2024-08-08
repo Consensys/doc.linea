@@ -301,7 +301,7 @@ const sidebars = {
               label: "DipDup",
               items: [
                 "developers/tooling/data-indexers/dipdup/overview",
-                "developers/tooling/data-indexers/dipdup/quikstart",   
+                "developers/tooling/data-indexers/dipdup/quickstart",   
               ],
             },            
             "developers/tooling/data-indexers/dune",
