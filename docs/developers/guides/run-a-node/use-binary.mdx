@@ -12,13 +12,6 @@ import VolumeCreation from "./volume-creation.mdx";
 
 You can install the Hyperledger Besu or Geth client to run a Linea node from a binary distribution.
 
-:::caution deprecation notice
-
-Linea Goerli is being deprecated. We discourage new development with this testnet and recommend using
-Linea Sepolia instead.
-
-:::
-
 ## Prerequisites
 
 Set up the required and recommended hardware and all the utilities. You can find the recommendations for the clients from the
@@ -61,12 +54,6 @@ Download the genesis file and Besu configuration file.
   
   </TabItem>
 
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  Testnet [`genesis-goerli.json`](pathname:///files/besu/genesis-goerli.json) file and Besu
-  [`config-goerli.toml`](pathname:///files/besu/config-goerli.toml) file.
-  
-  </TabItem>
 </Tabs>
 
 ### Step 3. Define disk space volume (optional) {#disk-space-besu}
@@ -112,13 +99,6 @@ Run the Besu client with the location of your configuration file. For example:
   ```
   
   </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  ```bash
-  besu --config-file=/Users/myuser/goerli/config-goerli.toml
-  ```
-  
-  </TabItem>
 </Tabs>
 
 The Besu node will attempt to find peers to begin synchronizing and to download the world state. 
@@ -150,11 +130,6 @@ Download the genesis file for the relevant network.
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
   Sepolia [`genesis.json`](pathname:///files/geth/sepolia/genesis.json) file.
-  
-  </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  Goerli [`genesis.json`](pathname:///files/geth/goerli/genesis.json) file.
   
   </TabItem>
 </Tabs>
@@ -191,14 +166,6 @@ Bootstrap the node using the following command:
   
   ```bash
   geth --datadir ./geth-sepolia-data init ./genesis.json
-  ```
-  
-  </TabItem>
-  
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  ```bash
-  geth --datadir ./geth-goerli-data init ./genesis.json
   ```
   
   </TabItem>
@@ -260,27 +227,6 @@ Start the node using the following command:
     --verbosity 3
     ```
   </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-    ```bash
-    geth \
-    --datadir $HOME/geth-goerli-data \
-    --networkid 59140 \
-    --rpc.allow-unprotected-txs \
-    --txpool.accountqueue 50000 \
-    --txpool.globalqueue 50000 \
-    --txpool.globalslots 50000 \
-    --txpool.pricelimit 1000000 \
-    --txpool.pricebump 1 \
-    --txpool.nolocals \
-    --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
-    --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
-    --bootnodes "enode://700f0d5a5f2beadc307b7b8f1a251f8b75033c8222ca65bfb1aecc4c4a0a86d6d6ef8420e780f6ace7cc3d1b837606b116109cc53b00931d3debc1346b9ccbb8@13.51.255.207:31001,enode://cbbaacaf47a005cb389b40f6676d63800cc65295aad0983e5ce9f2e5bf805274cded5ef313993a2564591d6caab6322c2a39a0b3a21143034378179c7d5ecd44@3.16.167.169:31001" \
-    --syncmode full \
-    --metrics \
-    --verbosity 3
-    ```
-  </TabItem>
 </Tabs>
 
 The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks
@@ -312,7 +258,7 @@ curl localhost:8545 \
 
 ```
 
-You should get a result, similar to:
+You should get a result similar to:
 
 ```bash
 {
