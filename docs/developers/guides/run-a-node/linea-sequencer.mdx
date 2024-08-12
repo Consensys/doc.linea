@@ -1,0 +1,29 @@
+---
+title: Install the linea-sequencer plugin for BESU
+description: How to install and configure the linea-sequencer plugin for Besu
+---
+
+# Install `linea-sequencer`
+
+If you want to run a Linea node and use it to interact with the blockchain, rather than running a 
+'follower' node that simply keeps a local copy of the chain, then you will need to install the 
+`linea-sequencer` plugin to ensure full functionality.
+
+Specifically, the Linea-specific API methods documented in our [reference section](/developers/reference)
+will not work properly unless you install and configure `linea-sequencer`.
+
+## Instructions
+
+1. Go to the [`linea-sequencer` repo releases page](https://github.com/Consensys/linea-sequencer/releases)
+and download the `.jar` file for the latest release. 
+
+2. In the local Besu runtime directory (where you will run Besu from), create a directory called 
+`plugins` and place the `.jar` file there.
+
+3. In the `config-mainnet.toml` file, add `LINEA` to the list of RPC methods:
+
+    ```
+    rpc-http-api=["ADMIN","NET","ETH","WEB3","TXPOOL","LINEA"]
+    ```
+
+When you run Besu, you will see the `linea-sequencer` plugin registered during startup.
