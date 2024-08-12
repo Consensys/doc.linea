@@ -60,6 +60,19 @@ Download the genesis file and Besu configuration file.
   </TabItem>
 </Tabs>
 
+:::warning[Important: enable linea-sequencer]
+
+You must install and run the `linea-sequencer` Besu plugin if you are offering RPC services or 
+hosting nodes for usage. Enabling the plugin is a requirement for using certain endpoints, such as 
+[`linea_estimateGas`](/developers/reference/api/linea-estimategas).
+
+Please see our instructions here for guidance on installing the plugin.
+
+If you are simply running a node to follow the chain and its activity, rather than using it to 
+submit transactions, you do not need to install `linea-sequencer`.
+
+:::
+
 ### Step 3. Define disk space volume (optional) {#disk-space-besu}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
