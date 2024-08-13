@@ -72,7 +72,7 @@ Receipts are a JSON object with the following format:
 ## Paying for users' uploads
 
 Use [balance approvals](https://docs.irys.xyz/developer-docs/irys-sdk/balance-approvals) to pay for
-your users' uploads and build a Web2-style UX that saves users from having to covert fiat or own tokens.
+your users' uploads and build a Web2-style UX that saves users from having to convert fiat or own tokens.
 
 With balance approvals:
 
