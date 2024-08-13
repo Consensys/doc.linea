@@ -69,8 +69,10 @@ fee per gas.
 You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
 :::
 
+### Request
+
 <Tabs>
-  <TabItem value="cURL request">
+  <TabItem value="cURL">
 
    ```bash
     curl https://rpc.linea.build \
@@ -80,39 +82,43 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   ```
 
   </TabItem>
-  <TabItem value="Response">
-
-```JSON
-{
-  "jsonrpc": "2.0",
-  "id": 53,
-  "result": {
-    "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
-  }
-}
-```
-  </TabItem>
   <TabItem value="ethers.js">
-```javascript
-type LineaEstimateGasResponse = {
-  baseFeePerGas: string;
-  priorityFeePerGas: string;
-  gasLimit: string;
-};
+    ```javascript
+    type LineaEstimateGasResponse = {
+      baseFeePerGas: string;
+      priorityFeePerGas: string;
+      gasLimit: string;
+    };
 
-const provider = new ethers.JsonRpcProvider("<RPC_URL>");
+    const provider = new ethers.JsonRpcProvider("<RPC_URL>");
 
-const params = {
-  from: "0x...", // Signer address
-  to: "0x...", // Recipient address
-  value: ethers.parseEther("1").toString(), // Value in wei
-  data: "0x...", // Encoded call in case of smart contract interaction
-};
+    const params = {
+      from: "0x...", // Signer address
+      to: "0x...", // Recipient address
+      value: ethers.parseEther("1").toString(), // Value in wei
+      data: "0x...", // Encoded call in case of smart contract interaction
+    };
 
-const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
-console.log(fees);
-``` 
+    const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
+    console.log(fees);
+    ``` 
+  </TabItem>
+</Tabs>
+
+### Response
+
+  <Tabs>
+  <TabItem value="JSON">
+  ```JSON
+  {
+    "jsonrpc": "2.0",
+    "id": 53,
+    "result": {
+      "baseFeePerGas": "0x7",
+      "gasLimit": "0xcf08",
+      "priorityFeePerGas": "0x43a82a4"
+    }
+  }
+  ```
   </TabItem>
 </Tabs>

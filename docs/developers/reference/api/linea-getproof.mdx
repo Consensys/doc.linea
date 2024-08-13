@@ -1,0 +1,122 @@
+---
+title: linea_getProof
+description: Reference content for the linea_getProof method.
+image: /img/socialCards/lineagetproof.jpg
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# `linea_getProof`
+
+Returns the account and storage values, including the Merkle proof, of the specified account.
+The supplied block parameter must be an L2 block that has been finalized on L1.
+
+:::info important
+
+Linea currently does not support the block parameter `finalized`, meaning that to get the current
+finalised block on the L1, users must retrieve the value from the `currentL2BlockNumber` variable in
+the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract).
+:::
+
+## Parameters
+
+- `address`: A string representing the address (20 bytes) to check for balance.
+- `storageKeys`: An array of 32-byte storage keys to be proofed and included.
+- `blockParameter`: A hexadecimal block number.
+
+## Returns
+
+- `accountProof`: Provides proof data for the account:
+  - `key`: The address of the account for which the proof is generated.
+  - `leafIndex`: The index of the leaf node in the Merkle Patricia Trie that corresponds to the account.
+  - `proof`: Object containing the proof data for the account:
+    - `proofRelatedNodes`: Array of nodes in the Merkle Patricia Trie used to construct the proof.
+    - `value`: The value stored at the account's leaf node in the Merkle Patricia Trie.
+- `storageProof`: An array of storage-entries as requested. Each entry is an object with these properties:
+  - `key`: The requested storage key.
+  - `leftLeafIndex`: The index of the left leaf node in the Merkle Patricia Trie that corresponds to the storage slot.
+  - `leftProof`: Contains the proof data for the left leaf node, which inlcudes the array of nodes used
+      to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
+  - `rightLeafIndex`: The index of the right leaf node in the Merkle Patricia Trie that corresponds to the storage slot.
+  - `rightProof`: Contains the proof data for the right leaf node, which inlcudes the array of nodes used
+      to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
+
+## Example
+
+### Request
+
+<Tabs>
+  <TabItem value="cURL">
+
+    ```bash
+    curl https://rpc.linea.build \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "jsonrpc": "2.0",
+        "method": "linea_getProof",
+        "params": [
+            "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
+                ["0x01"], "0x7AA88B"
+        ],
+        "id": 1
+    }'
+    ```
+  </TabItem>
+</Tabs>
+
+### Response
+
+<Tabs>
+  <TabItem value="JSON">
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "accountProof": {
+      "key": "0x87f21c771eac9c547eb22312997153d3a1fc40f6",
+      "leafIndex": 2410424,
+      "proof": {
+        "proofRelatedNodes": [
+          "0x000000000000000000000000000000000000000000000000000000000075965e0a85198ef8a5f75a15db565de5bff89b409ff5e507a7be546149c32b99044df3",
+          "0x008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809",
+          "0x060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b",
+          ...
+        ],
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000001f2f46337996eabca16927c459f3fbdb8fb82672c464aa332b613a3c08db27c03dcbfed33825518e0122265146c2948b3bcb9b173348556e13c462f7a6b1a86f7d11acadc51eaeba164e92ebb5ecbe6c64ebc7d0190f93bf0edebeadf610ad80000000000000000000000000000000000000000000000000000000000001c85"
+      }
+    },
+    "storageProofs": [
+      {
+        "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "leftLeafIndex": 0,
+        "leftProof": {
+          "proofRelatedNodes": [
+            "0x00000000000000000000000000000000000000000000000000000000000000030961e5d86a7bbdaac1547b2abfdb09dcaa0548b3d277a154b8c89081a22195a4",
+            "0x008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809",
+            "0x060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b",
+            "0x0a06dc31ae8e893bca0a076decb8c0caa9036b5f394abf79d7956411eef322550a06dc31ae8e893bca0a076decb8c0caa9036b5f394abf79d7956411eef32255",
+           ...
+          ],
+          "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "rightLeafIndex": 2,
+        "rightProof": {
+          "proofRelatedNodes": [
+            "0x00000000000000000000000000000000000000000000000000000000000000030961e5d86a7bbdaac1547b2abfdb09dcaa0548b3d277a154b8c89081a22195a4",
+            "0x008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809",
+            "0x060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b",
+            "0x0a06dc31ae8e893bca0a076decb8c0caa9036b5f394abf79d7956411eef322550a06dc31ae8e893bca0a076decb8c0caa9036b5f394abf79d7956411eef32255",
+            ...
+          ],
+          "value": "0x0000000000000000000000000000000000000000000000000000000000000064"
+        }
+      }
+    ]
+  }
+}
+```
+  </TabItem>
+</Tabs>

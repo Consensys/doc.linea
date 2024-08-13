@@ -421,8 +421,9 @@ const sidebars = {
             id: "developers/reference/api/index",
           },
           items: [
-            "developers/reference/api/linea-estimategas",
             "developers/reference/api/eth-sendrawtransaction",
+            "developers/reference/api/linea-estimategas",
+            "developers/reference/api/linea-getproof",
           ],
         },
       ],
