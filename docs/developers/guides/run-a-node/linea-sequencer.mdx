@@ -1,5 +1,5 @@
 ---
-title: Install the linea-sequencer plugin for BESU
+title: Install the linea-sequencer plugin for Besu
 description: How to install and configure the linea-sequencer plugin for Besu
 image: /img/socialCards/install-the-linea-sequencer-plugin-for-besu.jpg
 ---
@@ -8,23 +8,30 @@ image: /img/socialCards/install-the-linea-sequencer-plugin-for-besu.jpg
 
 If you want to run a Linea node and use it to interact with the blockchain, rather than running a 
 'follower' node that simply keeps a local copy of the chain, then you will need to install the 
-`linea-sequencer` plugin to ensure full functionality.
+`linea-sequencer` plugin to ensure full functionality. This plugin only works with Besu.
 
 Specifically, the Linea-specific API methods documented in our [reference section](/developers/reference/api)
-will not work properly unless you install and configure `linea-sequencer`.
+will not work unless you install and configure `linea-sequencer`.
 
-## Instructions
+## Steps
 
-1. Go to the [`linea-sequencer` repo releases page](https://github.com/Consensys/linea-sequencer/releases)
-and download the `.jar` file for the latest release. 
+1. From the [`linea-sequencer` releases page](https://github.com/Consensys/linea-sequencer/releases),
+download the `.jar` file for the latest release. 
 
 2. In the local Besu runtime directory (where you will run Besu from), create a directory called 
 `plugins` and place the `.jar` file there.
 
-3. In the `config-mainnet.toml` file, add `LINEA` to the list of RPC methods:
+3. In the Besu configuration file (called `config-mainnet.toml` if you downloaded the [file from 
+our instructions](pathname:///files/besu/config-mainnet.toml)) file, add `LINEA` to the list of RPC 
+methods:
 
     ```
     rpc-http-api=["ADMIN","NET","ETH","WEB3","TXPOOL","LINEA"]
+    ```
+    
+    Alternatively, you can add `LINEA` to this list in the command line by running:
+    ```
+    --rpc-http-api=ADMIN,NET,ETH,WEB3,TXPOOL,LINEA
     ```
 
 When you run Besu, you will see the `linea-sequencer` plugin registered during startup.
