@@ -11,7 +11,7 @@ There are no financial incentives for running a Linea node, but it does allow yo
 
 - Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an 
 RPC provider. Note that using [Linea-specific API methods](/developers/reference/api) such as 
-`linea_estimateGas` [requires the `linea-sequencer` plugin](/developers/guides/run-a-node/linea-sequencer). 
+`linea_estimateGas` requires Besu and [the `linea-sequencer` plugin](/developers/guides/run-a-node/linea-sequencer). 
 - Have a local copy of the Linea blockchain. This view of the state is "trusted" until the 
 transaction, or the block that transaction is in, has been finalized on L1. You don't need to 
 install additional plugins to follow chain activity.
