@@ -1,0 +1,99 @@
+---
+title: Retrieve finalized L2 blocks
+---
+
+A finalized L2 block is a block on a L2 blockchain (Linea) that has been confirmed and validated
+by the L1 blockchain (Ethereum), ensuring its immutability and security.
+
+Linea doesn't currently support the Ethereum-standard `finalized` block parameter tag, meaning you
+cannot use the tag in JSON-RPC API calls to retrieve blocks that have been confirmed by the L1
+network. For example, in methods where you can specify a block parameter, such as
+[`linea_estimateGas`](../reference/api/linea-estimategas.mdx).
+
+:::note
+Support for the `finalized` block parameter is planned in a future Linea release.
+:::
+
+This limitation requires you to query the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract)
+to retrieve the value of the current finalized L2 block number stored in the `currentL2BlockNumber`
+variable.
+
+## Prerequisites
+
+- [Download and install Node.js](https://nodejs.org/en)
+
+## Create the script
+
+1. In your project folder, initialize the project and install the `web3` package:
+
+    ```bash
+    npm init -y
+    ```
+
+    ```bash
+    npm install web3
+    ```
+
+1. Create a JavaScript file (for example `index.js`) and copy the following code:
+
+    :::info
+    Update the Infura endpoint with your API key, or add a different RPC provider.
+    :::
+
+    ```JavaScript title="index.js"
+    const { Web3 } = require("web3")
+
+    // Connect to an Ethereum node (e.g., Infura)
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider(
+        `https://mainnet.infura.io/v3/<YOUR-API-KEY>`
+      )
+    )
+    // Define the minimal ABI to obtain the current finalized block number
+    const lineaRollupAbi = [
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "currentL2BlockNumber",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ];
+
+    // Define the contract address
+    const lineaRollupAddress = '0xd19d4b5d358258f05d7b411e21a1460d11b0876f';
+
+    // Create a contract instance
+    const lineaRollupContract = new web3.eth.Contract(lineaRollupAbi, lineaRollupAddress);
+
+    // Function to get the finalized L2 block number
+    async function getFinalizedL2BlockNumber() {
+      try {
+        const currentL2BlockNumber = await lineaRollupContract.methods.currentL2BlockNumber().call();
+        const blockNumberHex = '0x' + BigInt(currentL2BlockNumber).toString(16); // Convert BigInt to hex string
+
+        console.log('Finalized L2 Block Number:', currentL2BlockNumber.toString()); // Print BigInt as string
+        console.log('Finalized L2 Block Number (Hex):', blockNumberHex);
+
+        return { blockNumber: currentL2BlockNumber, blockNumberHex };
+      } catch (error) {
+        console.error('Error fetching L2 block number:', error);
+      }
+    }
+
+    // Call the function
+    getFinalizedL2BlockNumber();
+    ```
+
+1. In the project directory, run the script:
+
+    ```bash
+    node index.js
+    ```

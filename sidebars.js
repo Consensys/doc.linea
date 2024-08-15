@@ -171,6 +171,7 @@ const sidebars = {
         },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
+        "developers/guides/finalized-block",
         {
           type: "category",
           label: "Run a Linea node",
