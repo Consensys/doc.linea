@@ -165,8 +165,8 @@ const sidebars = {
               items: [
                 "developers/guides/community/irys/irys-dynamic-nfts",
                 "developers/guides/community/irys/irys-nfts",
-              ]
-            }
+              ],
+            },
           ],
         },
         "developers/guides/linea-api/index",
@@ -293,6 +293,7 @@ const sidebars = {
             id: "developers/tooling/data-indexers/index",
           },
           items: [
+            "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
