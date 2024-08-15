@@ -2,12 +2,12 @@
 title: Retrieve finalized L2 blocks
 ---
 
-A finalized L2 block is a block on a L2 blockchain (Linea) that has been confirmed and validated
+A finalized L2 block is a block on an L2 blockchain (Linea) that has been confirmed and validated
 by the L1 blockchain (Ethereum), ensuring its immutability and security.
 
 Linea doesn't currently support the Ethereum-standard `finalized` block parameter tag, meaning you
 cannot use the tag in JSON-RPC API calls to retrieve blocks that have been confirmed by the L1
-network. For example, in methods where you can specify a block parameter, such as
+network. This includes, for example, methods where you can specify a block parameter, such as
 [`linea_estimateGas`](../reference/api/linea-estimategas.mdx).
 
 :::note
