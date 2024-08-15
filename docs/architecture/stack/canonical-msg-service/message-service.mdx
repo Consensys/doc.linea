@@ -99,7 +99,7 @@ The message service is responsible for cross-chain messages between Ethereum and
    - Args:
      - `_to`: the destination address on the destination chain
      - `_fee`: the message service fee on the origin chain
-       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (this is not yet available)
+       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (not available when bridging from L2 to L1)
      - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
 1. dApp uses the Postman SDK (details to come) to pay for the execution of messages on the destination layer by:
    - Triggering the delivery
