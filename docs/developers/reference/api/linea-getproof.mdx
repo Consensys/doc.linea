@@ -38,11 +38,11 @@ the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7
   - `key`: The requested storage key.
   - `leftLeafIndex`: The index of the left leaf node in the Merkle Patricia Trie that corresponds to the
       storage slot.
-  - `leftProof`: Contains the proof data for the left leaf node, which inlcudes the array of nodes used
+  - `leftProof`: Contains the proof data for the left leaf node, which includes the array of nodes used
       to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
   - `rightLeafIndex`: The index of the right leaf node in the Merkle Patricia Trie that corresponds to
       the storage slot.
-  - `rightProof`: Contains the proof data for the right leaf node, which inlcudes the array of nodes used
+  - `rightProof`: Contains the proof data for the right leaf node, which includes the array of nodes used
       to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
 
 ## Example
@@ -61,7 +61,7 @@ the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7
         "method": "linea_getProof",
         "params": [
             "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
-                ["0x01"], "0x7AA88B"
+                ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"], "0x7AA88B"
         ],
         "id": 1
     }'
