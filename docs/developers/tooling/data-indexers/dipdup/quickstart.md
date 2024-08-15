@@ -3,6 +3,17 @@ title: Quickstart
 sidebar_position: 2
 image: /img/socialCards/dipdup.jpg
 ---
+This page will guide you through the steps to get your first DipDup indexer up and running in a few minutes without getting too deep into the details.
+
+Let's create an indexer for output transactions from a specific address. We will need to set up the indexing environment, configure the indexer, and store the results in a database.
+
+## Prerequisites
+Here are a few things you need to get started with DipDup:
+
+- **Skills**: Basic Python 3 knowledge to implement data handlers.
+- **Operating System**: You can use any Linux/macOS distribution on amd64/arm64 platforms with Python installed.
+- **Python Version**: Python 3.11 is required for DipDup. You can check your Python version by running `python3 --version` in your terminal.
+
 ## Step 1 — Install DipDup
 The easiest way to install DipDup as a CLI application is [pipx](https://pipx.pypa.io/stable/) with pipx install dipdup command. If you don't want to deal with tooling, we have a convenient installer script. Run the following command in your terminal:
 
@@ -24,7 +35,7 @@ For educational purposes, we'll create a project from scratch, so choose `[none]
 Follow the instructions; the project will be created in the new directory.
 
 ## Step 3 — Configuration file
-The project root directory contains a YAML file named `dipdup.yaml`. It's the main configuration file of your indexer. Available options are described in detail on [this page](https://dipdup.io/docs/getting-started/config). For now, just replace its content with the following:
+The project root directory contains a bash file named `dipdup.bash`. It's the main configuration file of your indexer. Available options are described in detail on [this page](https://dipdup.io/docs/getting-started/config). For now, just replace its content with the following:
 
 ```bash
 spec_version: 2.0

@@ -6,17 +6,6 @@ image: /img/socialCards/dipdup.jpg
 
 [DipDup](https://dipdup.io/) is a Python framework for building smart contract indexers. It helps developers focus on business logic instead of writing a boilerplate to store and serve data. DipDup-based indexers are selective, which means only required data is requested. This approach allows to achieve faster indexing times and decreased load on underlying APIs.
 
-This page will guide you through the steps to get your first DipDup indexer up and running in a few minutes without getting too deep into the details.
-
-Let's create an indexer for output transactions from a specific address. We will need to set up the indexing environment, configure the indexer, and store the results in a database.
-
-## Prerequisites
-Here are a few things you need to get started with DipDup:
-
-- **Skills**: Basic Python 3 knowledge to implement data handlers.
-- **Operating System**: You can use any Linux/macOS distribution on amd64/arm64 platforms with Python installed.
-- **Python Version**: Python 3.11 is required for DipDup. You can check your Python version by running `python3 --version` in your terminal.
-
 ## Understanding DipDup
 DipDup is a software framework that helps web3 developers create selective indexers for decentralized applications. It uses blockchain data provided by various off-chain data sources. Some of the key features of DipDup include:
 
