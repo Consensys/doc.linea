@@ -106,7 +106,6 @@ Finally, modify the `foundry.toml` file to store the various RPC endpoints we mi
 
 ```bash
 [rpc_endpoints]
-linea-goerli = "https://linea-goerli.infura.io/v3/${INFURA_API_KEY}"
 linea-sepolia = "https://linea-sepolia.infura.io/v3/${INFURA_API_KEY}"
 linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```
@@ -121,13 +120,6 @@ forge create --rpc-url linea-mainnet src/Counter.sol:Counter --private-key $PRIV
 ```
 
 </TabItem>
-<TabItem value="Goerli" label="Goerli">
-
-```bash
-forge create --rpc-url linea-goerli src/Counter.sol:Counter --private-key $PRIVATE_KEY
-```
-
-  </TabItem>
 
 <TabItem value="Sepolia" label="Sepolia">
 
