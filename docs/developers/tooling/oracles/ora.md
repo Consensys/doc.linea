@@ -11,7 +11,7 @@ ORA breaks down the limitations of smart contracts by offering verifiable AI inf
 
 ## OAO Quickstart
 
-This quickstart is designed to help you to build a smart-contract on Linea able to interact with OAO. You can find more details in [our docs Quickstart](https://docs.ora.io/doc/oao-onchain-ai-oracle/develop-guide).
+This quickstart is designed to help you to build a smart contract on Linea able to interact with OAO. You can find more details in [our docs Quickstart](https://docs.ora.io/doc/oao-onchain-ai-oracle/develop-guide).
 
 ### Workflow
 
