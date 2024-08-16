@@ -54,11 +54,11 @@ aiOracle.requestCallback(modelId, input, address(this), gas_limit, callbackData)
 
 ## Reference
 
-**2 models** are available on Linea: Stable Diffusion (ID: 50) and Llama3 8B Instruct (ID: 11).
+**Two models** are available on Linea: Stable Diffusion (ID: 50) and Llama3 8B Instruct (ID: 11).
 
 [Prompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) and [SimplePrompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) are both example smart contracts interacted with OAO.
 
-For simpler application scenarios (eg. Prompt Engineering based AI like GPTs), you can directly use Prompt or SimplePrompt.
+For simpler application scenarios (eg. Prompt Engineering-based AI like GPTs), you can directly use Prompt or SimplePrompt.
 
 SimplePrompt saves gas by only emitting the event without storing historical data.
 
