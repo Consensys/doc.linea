@@ -456,6 +456,10 @@ const config = {
             to: "/developers/quickstart",
             from: "/developers/quickstart/goerli-to-sepolia",
           },
+          {
+            to: "/developers/tooling/data-indexers/dipdup/overview",
+            from: "/developers/tooling/data-indexers/dipdup",
+          },
         ],
       },
     ],
