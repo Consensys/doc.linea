@@ -41,8 +41,8 @@ Learn how to integrate LayerZero into your contracts [here](https://layerzero.gi
       <td>Linea</td>
       <td>10157</td>
       <td>
-        <a href="https://goerli.lineascan.build/address/0x6aB5Ae6822647046626e83ee6dB8187151E1d5ab">
-          0x6aB5Ae6822647046626e83ee6dB8187151E1d5ab
+        <a href="https://sepolia.lineascan.build/address/0x6EDCE65403992e310A62460808c4b910D972f10f">
+          0x6EDCE65403992e310A62460808c4b910D972f10f
         </a>
       </td>
     </tr>
