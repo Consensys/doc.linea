@@ -357,6 +357,7 @@ const sidebars = {
             "developers/tooling/oracles/api3",
             "developers/tooling/oracles/chainlink",
             "developers/tooling/oracles/dia",
+            "developers/tooling/oracles/ora",
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",
