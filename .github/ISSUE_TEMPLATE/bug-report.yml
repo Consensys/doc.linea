@@ -1,0 +1,34 @@
+name: Bug Report
+description: Create a report to help us improve
+labels: ['bug']
+body:
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the bug here.
+    validations:
+      required: true
+  - type: textarea
+    id: issue-reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Describe steps to reproduce the behavior.
+      placeholder: Steps to reproduce the bug here.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Expected behavior here.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Add screenshots here.

@@ -13,9 +13,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build
-        uses: Consensys/docs-gha-2023/build@main
+        uses: Consensys/docs-gha/build@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

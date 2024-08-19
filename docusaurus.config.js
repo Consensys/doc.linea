@@ -8,13 +8,13 @@ const katex = require("rehype-katex");
 // const baseUrl = isDev ? "/" : "/";
 
 // const organizationName = "Consensys";
-// const projectName = "doc.zk-evm";
+// const projectName = "doc.linea";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
   tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on quantum-resistant, lattice-based cryptography, powered by Consensys.",
+    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -25,7 +25,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "Consensys", // Usually your GitHub org/user name.
-  projectName: "doc.zk-evm", // Usually your repo name.
+  projectName: "doc.linea", // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -43,7 +43,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/Consensys/doc.zk-evm/tree/main/",
+          editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
           // @ts-ignore
@@ -62,6 +62,7 @@ const config = {
           showLastUpdateTime: true,
           includeCurrentVersion: true,
         },
+        blog: false, // Disable blog feature
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -72,39 +73,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        // The application ID provided by Algolia
-        appId: "NSRFPEJ4NC",
-
-        // Public API key: it is safe to commit it
-        apiKey: "cea41b975ad6c9a01408dfda6e0061d3",
-
-        indexName: "linea",
-
-        // Optional: see doc section below
-        contextualSearch: true,
-
-        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        externalUrlRegex: "external\\.com|domain\\.com",
-
-        // Optional: Algolia search parameters
-        searchParameters: {},
-
-        // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: "search",
-
-        // ... other Algolia params
-      },
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣Linea Mainnet Alpha is here! 🚀 Follow our User Guides <a href="https://docs.linea.build/use-mainnet">here</a> to get started 😎',
-        backgroundColor: "#fafbfc",
-        textColor: "#091E42",
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+        backgroundColor: "#61dfff",
+        textColor: "#121212",
         isCloseable: false,
       },
       colorMode: {
-        defaultMode: "light",
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
@@ -119,23 +97,22 @@ const config = {
         },
       },
       navbar: {
+        title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/logo.svg",
-          srcDark: "img/logo_dark.svg",
-          width: 55,
-          height: 55,
+          src: "img/Linea_logo_black.svg",
+          srcDark: "img/Linea_logo_white.svg",
         },
         items: [
           {
             type: "doc",
-            docId: "index",
+            docId: "users/index",
             position: "left",
-            label: "Linea Basics",
+            label: "Users",
           },
           {
             type: "doc",
-            docId: "build-on-linea/quickstart/index",
+            docId: "developers/quickstart/index",
             position: "left",
             label: "Developers",
           },
@@ -143,7 +120,7 @@ const config = {
             type: "doc",
             docId: "architecture/index",
             position: "left",
-            label: "Linea Architecture",
+            label: "Architecture",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -161,14 +138,14 @@ const config = {
           //   ],
           // },
           {
-            to: "https://support.linea.build/hc/",
+            to: "/developers/guides/run-a-node",
             position: "left",
-            label: "Support",
+            label: "Run a node",
           },
           {
-            to: "https://linea.build/",
-            position: "left",
-            label: "Linea Home",
+            to: "/developers/linea-version",
+            position: "right",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
@@ -176,7 +153,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://twitter.com/consensys",
+            href: "https://twitter.com/lineabuild",
             className: "header-twitter-link",
             position: "right",
           },
@@ -186,15 +163,23 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Learn",
+            title: "Links",
             items: [
               {
-                label: "Use Linea",
-                to: "/use-mainnet",
+                label: "Linea homepage",
+                href: "https://linea.build/",
               },
               {
-                label: "Build on Linea",
-                to: "/build-on-linea",
+                label: "Network status",
+                href: "https://linea.statuspage.io/",
+              },
+              {
+                label: "Mainnet block explorer",
+                href: "https://lineascan.build",
+              },
+              {
+                label: "Linea Sepolia block explorer",
+                href: "https://sepolia.lineascan.build",
               },
             ],
           },
@@ -206,11 +191,11 @@ const config = {
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get Help",
+                label: "Get support",
                 to: "https://support.linea.build/",
               },
               {
-                label: "Give Feedback",
+                label: "Give feedback",
                 to: "https://community.linea.build/c/feedback",
               },
             ],
@@ -220,15 +205,7 @@ const config = {
             items: [
               {
                 label: "Contribute to our documentation",
-                href: "https://github.com/Consensys/doc.zk-evm",
-              },
-              {
-                label: "Contribute to our gnark repo",
-                href: "https://github.com/Consensys/gnark",
-              },
-              {
-                label: "Contribute to our gnark-crypto repo",
-                href: "https://github.com/Consensys/gnark-crypto",
+                href: "https://github.com/Consensys/doc.linea",
               },
             ],
           },
@@ -238,8 +215,21 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["solidity", "toml"],
+        additionalLanguages: [
+          "solidity",
+          "toml",
+          "bash",
+          "json",
+          "typescript",
+          "javascript",
+          "python",
+        ],
       },
+      metadata: [
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
+        { property: "og:image", content: "/img/Linea_social_card_docs.png" },
+      ],
       languageTabs: [
         {
           highlight: "bash",
@@ -282,29 +272,22 @@ const config = {
       {
         redirects: [
           {
-            to: "/architecture/canonical-msg-service/message-service",
+            to: "/architecture/stack/canonical-msg-service/message-service",
             from: [
               "/developers/bridge-architecture/message-service",
               "/developers/use-message-bridge",
             ],
-            from: [
-              "/developers/bridge-architecture/message-service",
-              "/developers/use-message-bridge",
-            ],
           },
           {
-            to: "/build-on-linea/quickstart",
-            from: [
-              "/developers/quickstart",
-              "/developers/deploy-smart-contracts",
-            ],
+            to: "/developers/quickstart",
+            from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/zero-knowledge-glossary",
-            from: "/reference/glossary",
+            to: "/users/zero-knowledge-glossary",
+            from: ["/reference/glossary", "/zero-knowledge-glossary"],
           },
           {
-            to: "/build-on-linea",
+            to: "/users",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -315,28 +298,167 @@ const config = {
             ],
           },
           {
-            to: "/use-mainnet/set-up-your-wallet",
+            to: "/users/move-funds/set-up-your-wallet",
             from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
           },
           {
-            to: "/use-mainnet/fund",
+            to: "/users/move-funds/fund",
             from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
-            to: "/use-mainnet/info-contracts",
+            to: "/developers/quickstart/info-contracts",
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
           {
-            to: "/build-on-linea/bridge-funds",
+            to: "/developers/guides/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
           },
           {
-            to: "/use-mainnet/bridges-of-linea",
+            to: "/users/move-funds/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+          },
+          {
+            to: "/developers/guides/gas/gas-fees",
+            from: "/use-mainnet/gas-import",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
+            from: "/use-mainnet/linea-surge/linea-surge-overview",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge/linea-surge-model",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge",
+            from: "/use-mainnet/linea-surge",
+          },
+          {
+            to: "/developers/guides/gas/gas-fees",
+            from: "/reference/api/linea-estimategas",
+          },
+          {
+            to: "/users/linea-voyage/lxp",
+            from: "/use-mainnet/linea-xp",
+          },
+          {
+            to: "/developers/guides/bridge",
+            from: "/use-mainnet/bridges-of-linea",
+          },
+          {
+            to: "/users/move-funds/fund",
+            from: "/use-mainnet/fund",
+          },
+          {
+            to: "/users/move-funds/set-up-your-wallet",
+            from: "/use-mainnet/set-up-your-wallet",
+          },
+          {
+            to: "/developers/quickstart/info-contracts",
+            from: "/use-mainnet/info-contracts",
+          },
+          {
+            to: "/developers/guides/linea-api",
+            from: "/build-on-linea/quickstart/rpc",
+          },
+          {
+            to: "/developers/quickstart/ethereum-differences",
+            from: "/build-on-linea/ethereum-differences",
+          },
+          {
+            to: "/developers/guides/gas/gas-fees",
+            from: "/build-on-linea/gas-fees",
+          },
+          {
+            to: "/developers/guides/run-a-node",
+            from: [
+              "/build-on-linea/run-a-node",
+              "/build-on-linea/run-a-node/use-binary",
+              "/build-on-linea/run-a-node/use-docker",
+            ],
+          },
+          {
+            to: "/developers/community/hackathons",
+            from: "/build-on-linea/hackathons",
+          },
+          {
+            to: "/developers/guides/linea-inscriptions",
+            from: "/build-on-linea/tooling/linea-inscriptions",
+          },
+          {
+            to: "/developers/guides/linea-safe",
+            from: "/build-on-linea/tooling/linea-safe",
+          },
+          {
+            to: "/architecture/overview/decentralization-roadmap",
+            from: [
+              "/use-mainnet/decentralization-roadmap",
+              "/decentralization-roadmap",
+            ],
+          },
+          {
+            to: "/architecture/overview/transaction-lifecycle",
+            from: "/architecture/transaction-lifecycle",
+          },
+          {
+            to: "/architecture/overview/network-data",
+            from: "/architecture/network-data",
+          },
+          {
+            to: "/architecture/stack/bridges",
+            from: "/architecture/bridges",
+          },
+          {
+            to: "/architecture/stack/canonical-msg-service",
+            from: "/architecture/canonical-msg-service",
+          },
+          {
+            to: "/architecture/stack/coordinator",
+            from: "/architecture/coordinator",
+          },
+          {
+            to: "/architecture/stack/evm-state-manager",
+            from: "/architecture/evm-state-manager",
+          },
+          {
+            to: "/architecture/stack/sequencer",
+            from: "/architecture/sequencer",
+          },
+          {
+            to: "/architecture/stack/trace-expansion-proving",
+            from: "/architecture/trace-expansion-proving",
+          },
+          {
+            to: "/developers/guides/gas/gas-on-linea",
+            from: "/use-mainnet/gas-on-linea",
+          },
+          {
+            to: "/developers/tooling/cross-chain/shortcuts",
+            from: "/build-on-linea/tooling/cross-chain/shortcuts",
+          },
+          {
+            to: "/developers/tooling/node-providers",
+            from: "/build-on-linea/tooling/node-providers",
+          },
+          {
+            to: "/developers/linea-version",
+            from: "/build-on-linea/linea-version",
+          },
+          {
+            to: "/developers/quickstart",
+            from: "/developers/quickstart/goerli-to-sepolia",
+          },
+          {
+            to: "/developers/tooling/data-indexers/dipdup/overview",
+            from: "/developers/tooling/data-indexers/dipdup",
           },
         ],
       },
@@ -351,7 +473,15 @@ const config = {
       crossorigin: "anonymous",
     },
   ],
-  themes: [],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        docsRouteBasePath: "/",
+        hashed: true,
+      },
+    ],
+  ],
   headTags: [
     {
       tagName: "script",

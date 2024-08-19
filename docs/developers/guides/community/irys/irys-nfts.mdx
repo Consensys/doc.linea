@@ -1,0 +1,181 @@
+---
+title: Create an NFT
+image: /img/socialCards/create-an-nft.jpg
+description: Build permanent NFTs using Irys and Linea.
+---
+
+You can use [Irys](developers/tooling/permanent-data/irys/overview.md) to  create an NFT on Linea. To do this:
+
+1. Deploy your smart contract on Linea
+2. Permanently store your NFT assets on Irys
+3. Mint your NFTs using metadata stored on Irys
+
+When you upload NFTs to Irys, you make a one-time payment for permanent access. Creators and
+collectors benefit from the assurance that their NFTs are preserved indefinitely. NFT metadata and
+images stored are Irys are permanent and immutable.
+
+:::note
+You can also use Irys to create [dynamic NFTs](./irys-dynamic-nfts) that evolve based on onchain or
+offchain actions.
+:::
+
+## Deploy your smart contract
+
+If you're new to NFTs and smart contract development, consider deploying
+one of [the audited ThirdWeb contracts](/developers/quickstart/deploy-smart-contract/thirdweb) to learn more.
+
+You can also [deploy this minimal contract using Remix](/developers/quickstart/deploy-smart-contract/remix).
+
+```solidity
+// SPDX-License-Identifier: MIT
+// Compatible with OpenZeppelin Contracts ^5.0.0
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract IrysLineaNFT is ERC721, ERC721URIStorage, Ownable {
+    uint256 private _nextTokenId;
+
+    constructor(address initialOwner)
+        ERC721("IrysLineaNFT", "ILNFT")
+        Ownable(initialOwner)
+    {}
+
+    function safeMint(address to, string memory uri) public onlyOwner {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, uri);
+    }
+
+    // The following functions are overrides required by Solidity.
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
+        return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+}
+```
+
+## Store your assets on Irys
+
+Uploads to Irys are fully unconstrained; you can upload files of any size and use Irys to make
+images, videos, music, or interactive NFTs.
+
+This guide covers using the [Irys CLI](/developers/tooling/permanent-data/irys/irys-quickstart#irys-cli) to
+upload your assets to Irys. You can also do the same using the
+[Irys SDK](/developers/tooling/permanent-data/irys/irys-quickstart#irys-sdk).
+
+### Store your visual assets
+
+#### Install the Irys CLI
+
+Install the CLI globally using the `-g` flag. Depending on your setup, you may or may not need to use `sudo`.
+
+```bash
+npm i -g @irys/sdk
+sudo npm i -g @irys/sdk
+```
+
+#### Upload single assets
+
+To upload a single file, use the command `irys upload`.
+
+```bash
+irys upload myNFT.png \
+  -n mainnet \
+  -t linea-eth \
+  -w bf20......c9885307
+```
+
+The CLI will output the link to download the file from the Irys gateway.
+
+Example:
+
+```bash
+Uploaded to https://gateway.irys.xyz/LRtYnBeecdJinCnvdf4obH9ikUGhftO8e1ZDxKtNtHY
+```
+
+#### Upload multiple assets
+
+To upload a folder of files, use the command `irys upload-dir`.
+
+```bash
+irys upload-dir myNFTs \
+  -n mainnet \
+  -t linea-eth \
+  -w bf20......c9885307
+```
+
+The CLI outputs a link to the manifest for the upload:
+
+```bash
+https://gateway.irys.xyz/pA__LOI0BjYl5jSKAPshdbz4XZTO7c5ckhtKtiknAL4
+```
+
+The CLI also produces a `.json` file containing the transaction IDs of each upload:
+
+```json
+{
+  "manifest": "arweave/paths",
+  "version": "0.1.0",
+  "paths": {
+    "nft1.png": { "id": "gi9aMxCy2H3zWtxk2Ro9UIAUZItSFrOjEq1YahEx3_g" },
+    "nft2.png": { "id": "-mxFojZDPEOYvL6aavxlx4LBXb57v0KBVlBbaGt5sDA" },
+    "nft3.png": { "id": "ro8UsTSa75mtDvXrkCVIjKFYWLfgpzer0kwpDd0yJ4c" },
+    "nft4.png": { "id": "z7QsiuU-amzbwDYJ0zISxrYBt-s2G-mx-FS9KpCpRho" },
+    "nft5.png": { "id": "642QCUF0UCo77JwgJ5Wg4LPh_JGxaug5lxAccSzQhnI" }
+  }
+}
+```
+
+You can download files by using the transaction ID directly, or by creating a URL using the manifest
+ID combined with the original file name. For example, `nft1.png` can be downloaded with either of these URLs:
+
+- `https://gateway.irys.xyz/gi9aMxCy2H3zWtxk2Ro9UIAUZItSFrOjEq1YahEx3_g`
+- `https://gateway.irys.xyz/pA__LOI0BjYl5jSKAPshdbz4XZTO7c5ckhtKtiknAL4/nft1.png`
+
+### Store your metadata
+
+#### Create metadata
+
+Create unique metadata files, one for each NFT.
+
+```json
+{
+  "name": "Irys & Linea Forever",
+  "description": "Irys & Linea NFTs #42",
+  "image": "https://gateway.irys.xyz/737m0bA1kW4BlIJOg_kOGUpHAAI-3Ec9bdo8S_xTFKI",
+  "animation_url": "https://gateway.irys.xyz/peRdpP3pjyFQ6m4Hca5fZY5zgz7RSlE86j-_5BEwnW0",
+  "background_color": "FEF4EE"
+}
+```
+
+#### Upload metadata
+
+Upload the metadata to Irys
+
+```console
+irys upload metadata.json \
+  -n mainnet \
+  -t linea-eth \
+  -w bf20......c9885307
+```
+
+## Mint the NFTs
+
+Now use your metadata URLs (in the format `https://gateway.irys.xyz/:txId`) to mint the NFTs
+using [the contract you deployed on Linea](/developers/quickstart/deploy-smart-contract).
