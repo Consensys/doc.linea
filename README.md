@@ -74,7 +74,7 @@ to manage Node.js versions on your machine.
 ### Installing recommended Node.js version with `nvm`
 
 1. Follow the above instructions to install `nvm` on your machine, or go [here](https://github.com/nvm-sh/nvm#installing-and-updating).
-2. Go to root folder of this project in your terminal.
+2. Go to the root folder of this project in your terminal.
 3. Run `nvm install` followed by `nvm use`. This will install the version specified by this project in the `.nvmrc` file.
 
 ### Running this project

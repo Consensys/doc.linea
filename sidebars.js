@@ -165,12 +165,13 @@ const sidebars = {
               items: [
                 "developers/guides/community/irys/irys-dynamic-nfts",
                 "developers/guides/community/irys/irys-nfts",
-              ]
-            }
+              ],
+            },
           ],
         },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
+        "developers/guides/finalized-block",
         {
           type: "category",
           label: "Run a Linea node",
@@ -293,13 +294,21 @@ const sidebars = {
             id: "developers/tooling/data-indexers/index",
           },
           items: [
+            "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
-            "developers/tooling/data-indexers/dipdup",
+            {
+              type: "category",
+              label: "DipDup",
+              items: [
+                "developers/tooling/data-indexers/dipdup/overview",
+                "developers/tooling/data-indexers/dipdup/quickstart",   
+              ],
+            },            
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
-            "developers/tooling/data-indexers/flair",
+            "developers/tooling/data-indexers/flair",            
             {
               type: "category",
               label: "Goldsky",
@@ -349,6 +358,7 @@ const sidebars = {
             "developers/tooling/oracles/api3",
             "developers/tooling/oracles/chainlink",
             "developers/tooling/oracles/dia",
+            "developers/tooling/oracles/ora",
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",

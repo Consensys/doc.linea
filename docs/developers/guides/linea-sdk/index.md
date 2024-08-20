@@ -70,7 +70,7 @@ const sdk = new LineaSDK({
   l2RpcUrl: process.env.L2_RPC_URL ?? "", // L2 rpc url
   l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "", // L1 account private key (optional if you use mode = read-only)
   l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "", // L2 account private key (optional if you use mode = read-only)
-  network: "linea-mainnet", // network you want to interact with (either linea-mainnet or linea-goerli)
+  network: "linea-mainnet", // network you want to interact with (either linea-mainnet or linea-sepolia)
   mode: "read-write", // contract wrapper class mode (read-only or read-write), read-only: only read contracts state, read-write: read contracts state and claim messages
 });
 
