@@ -21,10 +21,11 @@ the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7
 
 ## Parameters
 
-- `address`: A string representing the address (20 bytes) to check for balance.
+- `address`: A string representing the address (20 bytes) for which the proof is requested.
 - `storageKeys`: An array of 32-byte storage keys to be proofed and included.
 - `blockParameter`: A hexadecimal block number, or one of the string tags `latest`, `earliest`, or
       `pending`. See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
+      You can [query the L1 rollup contract](../../guides/finalized-block.mdx) to retrieve the current finalized block.
 
 ## Returns
 
@@ -39,11 +40,11 @@ the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7
   - `leftLeafIndex`: The index of the left leaf node in the Merkle Patricia Trie that corresponds to the
       storage slot.
   - `leftProof`: Contains the proof data for the left leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
+      to construct the proof and the value stored at the left leaf node in the Merkle Patricia Trie.
   - `rightLeafIndex`: The index of the right leaf node in the Merkle Patricia Trie that corresponds to
       the storage slot.
   - `rightProof`: Contains the proof data for the right leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the account's leaf node in the Merkle Patricia Trie.
+      to construct the proof and the value stored at the right leaf node in the Merkle Patricia Trie.
 
 ## Example
 
