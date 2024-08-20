@@ -166,36 +166,6 @@ do not need any arguments, leave the array empty.
 ### Deploy the smart contract
 
 <Tabs>
-  <TabItem value="Linea Goerli" label="Linea Goerli" default>
-
-1. In the `.env` file, add your Infura Linea Goerli API key and add your wallet private key.
-
-1. In the `hardhat.config.js` file, uncomment the following code:
-
-    ```js
-    const INFURA_API_KEY_LINEA_GOERLI = process.env.INFURA_API_KEY_LINEA_GOERLI;
-    ```
-  
-    ```js
-    const PRIVATE_KEY = process.env.PRIVATE_KEY;
-    ```
-
-    ```js
-    lineaGoerli: {
-    url: `https://linea-goerli.infura.io/v3/${INFURA_API_KEY_LINEA_GOERLI}`,
-    accounts: [PRIVATE_KEY],
-    },
-    ```
-
-1. Deploy the smart contract to the Linea Goerli testnet:
-
-    ```
-    npx hardhat run --network (lineaGoerli) scripts/deploy.js
-    ```
-
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
-on the [Linea Goerli block explorer](https://goerli.lineascan.build/). 
-</TabItem> 
 
 <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
@@ -312,7 +282,7 @@ example, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.c
 
     :::note
 
-    The example uses Goerli, but you can update it to use Mainnet or Sepolia instead.
+    The example uses Sepolia, but you can update it to use Mainnet instead.
 
     :::
 
@@ -325,15 +295,15 @@ example, we'll use [Cookbook's Simple ERC-20 Token Smart Contract](https://www.c
 1. Deploy your contracts:
 
     ```sh
-    forge script script/contract.s.sol:ContractScript --rpc-url $GOERLI_RPC_URL --broadcast --verify -vvvv
+    forge script script/contract.s.sol:ContractScript --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
     ```
 
     :::note
-    If using Mainnet or Sepolia, then update the `--rpc-url` accordingly with the variable in the `.env` file. 
+    If using Mainnet, then update the `--rpc-url` accordingly with the variable in the `.env` file. 
     :::
 
-Your contract will be verified on the Linea Goerli explorer automatically upon deployment. You can manage and
-interact with your newly deployed smart contract in the [Linea Goerli block explorer](https://goerli.lineascan.build/).
+Your contract will be verified on the Linea Sepolia explorer automatically upon deployment. You can manage and
+interact with your newly deployed smart contract in the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
 
 :::note
 
@@ -348,5 +318,5 @@ the following resources:
 
 - [Documentation](https://docs.cookbook.dev/)
 - [Blog](https://medium.com/@cookbookdev)
-- [Twitter](https://twitter.com/cookbook_dev)
+- [X (Twitter)](https://twitter.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)
