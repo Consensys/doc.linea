@@ -402,6 +402,7 @@ const sidebars = {
             "developers/tooling/security/scamfari",
             "developers/tooling/security/spherex",
             "developers/tooling/security/hexagate",
+            "developers/tooling/security/hypernative"
           ],
         },
         {
