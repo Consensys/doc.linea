@@ -4,13 +4,17 @@ description: Reference content for the linea_getProof method.
 image: /img/socialCards/lineagetproof.jpg
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # `linea_getProof`
 
 Returns the account and storage values, including the Merkle proof, of the specified account.
 The supplied block parameter must be an L2 block that has been finalized on L1.
+
+- When an account or storage slot exists, the response includes the `leafIndex` and
+    a proof of existence.
+- When an account or storage slot does not exist, the response will include the proof of the
+    elements before and after it in the tree.
+
+In the [example response](#response) the account exists but the slot does not.
 
 :::info important
 
@@ -32,49 +36,42 @@ variable in the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5
 
 - `accountProof`: Provides proof data for the account:
   - `key`: The address of the account for which the proof is generated.
-  - `leafIndex`: The index of the leaf node in the Merkle Patricia Trie that corresponds to the account.
+  - `leafIndex`: The index of the leaf node in the sparse Merkle tree that corresponds to the account.
   - `proof`: Object containing the proof data for the account:
-    - `proofRelatedNodes`: Array of nodes in the Merkle Patricia Trie used to construct the proof.
-    - `value`: The value stored at the account's leaf node in the Merkle Patricia Trie.
+    - `proofRelatedNodes`: Array of nodes in the sparse Merkle tree used to construct the proof.
+    - `value`: The value stored at the account's leaf node in the sparse Merkle tree.
 - `storageProof`: An array of storage-entries as requested. Each entry is an object with these properties:
   - `key`: The requested storage key.
-  - `leftLeafIndex`: The index of the left leaf node in the Merkle Patricia Trie that corresponds to the
+  - `leftLeafIndex`: The index of the left leaf node in the sparse Merkle tree that corresponds to the
       storage slot.
   - `leftProof`: Contains the proof data for the left leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the left leaf node in the Merkle Patricia Trie.
-  - `rightLeafIndex`: The index of the right leaf node in the Merkle Patricia Trie that corresponds to
+      to construct the proof and the value stored at the left leaf node in the sparse Merkle tree.
+  - `rightLeafIndex`: The index of the right leaf node in the sparse Merkle tree that corresponds to
       the storage slot.
   - `rightProof`: Contains the proof data for the right leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the right leaf node in the Merkle Patricia Trie.
+      to construct the proof and the value stored at the right leaf node in the sparse Merkle tree.
 
 ## Example
 
 ### Request
 
-<Tabs>
-  <TabItem value="cURL">
-
-    ```bash
-    curl https://rpc.linea.build \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-        "jsonrpc": "2.0",
-        "method": "linea_getProof",
-        "params": [
-            "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
-                ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"], "0x7AA88B"
-        ],
-        "id": 1
-    }'
-    ```
-  </TabItem>
-</Tabs>
+```bash
+curl https://rpc.linea.build \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+    "jsonrpc": "2.0",
+    "method": "linea_getProof",
+    "params": [
+        "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
+            ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"], "0x7AA88B"
+    ],
+    "id": 1
+}'
+```
 
 ### Response
 
-<Tabs>
-  <TabItem value="JSON">
 ```json
 {
   "jsonrpc": "2.0",
@@ -123,5 +120,3 @@ variable in the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5
   }
 }
 ```
-  </TabItem>
-</Tabs>
