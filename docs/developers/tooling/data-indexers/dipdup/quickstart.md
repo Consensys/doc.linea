@@ -1,7 +1,7 @@
 ---
 title: Quickstart
 sidebar_position: 2
-image: /img/socialCards/dipdup.jpg
+image: /img/socialCards/quickstart.jpg
 ---
 This page will guide you through the steps to get your first DipDup indexer up and running in a few minutes without getting too deep into the details.
 
