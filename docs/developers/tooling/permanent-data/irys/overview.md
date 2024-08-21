@@ -26,7 +26,7 @@ Irys is **chain agnostic**, smart contracts on Linea can link to data on Irys.
 
 You can:
 
-- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/community/irys-nfts)
+- Deploy NFT contracts on Linea and [have images and metadata on Irys](/developers/guides/community/irys/irys-nfts)
 - Build games with state on Linea and visual assets on Irys
 - Build an onchain identity protocol with user metadata on Irys
 - Build a cross-chain bridge and use Irys to store messages
@@ -72,7 +72,7 @@ Receipts are a JSON object with the following format:
 ## Paying for users' uploads
 
 Use [balance approvals](https://docs.irys.xyz/developer-docs/irys-sdk/balance-approvals) to pay for
-your users' uploads and build a Web2-style UX that saves users from having to covert fiat or own tokens.
+your users' uploads and build a Web2-style UX that saves users from having to convert fiat or own tokens.
 
 With balance approvals:
 

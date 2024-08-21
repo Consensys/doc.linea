@@ -4,7 +4,7 @@ description: Deploy a smart contract using Atlas.
 image: /img/socialCards/atlas.jpg
 ---
 
-Atlas is a no-setup tool for writing, testing, and deploying smart contracts.
+Atlas is a browser-based IDE with an integrated AI assistant that allows you to write, test and deploy smart contracts directly from your browser.
 
 ## Prerequisites
 

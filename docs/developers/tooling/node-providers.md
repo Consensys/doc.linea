@@ -5,6 +5,7 @@ image: /img/socialCards/node-providers.jpg
 
 ## Private RPC endpoints
 
+- [Alchemy](https://www.alchemy.com/)
 - [ANKR](https://www.ankr.com/rpc/)
 - [BLAST API](https://blastapi.io/)
 - [Blockpi](https://blockpi.io/)
@@ -18,8 +19,8 @@ image: /img/socialCards/node-providers.jpg
 ## Run your own node
 
 - [Set it up yourself](../guides/run-a-node)
-- [One-click deploy with Mintair](https://mintair.xyz/)
 - [One-click deploy with EasyNode](https://app.easy-node.xyz/)
+- [One-click deploy with Mintair](https://mintair.xyz/)
 - [One-click deploy with RapidNode](https://rapidnode.xyz/dashboard)
 
 ## Public RPC endpoints

@@ -4,6 +4,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const math = require("remark-math");
 const katex = require("rehype-katex");
 
+/** It's a public API key, so it's safe to expose it here. */
+const COOKBOOK_PUBLIC_API_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
+
 // const isDev = process.env.NODE_ENV === "development";
 // const baseUrl = isDev ? "/" : "/";
 
@@ -62,6 +66,7 @@ const config = {
           showLastUpdateTime: true,
           includeCurrentVersion: true,
         },
+        blog: false, // Disable blog feature
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -75,7 +80,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 The Linea Goerli testnet is being deprecated! We recommend using Linea Sepolia for testing purposes. <a href="https://docs.linea.build/developers/quickstart/goerli-to-sepolia">View the transition page</a> for more information.',
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -369,10 +374,6 @@ const config = {
             from: "/build-on-linea/quickstart/rpc",
           },
           {
-            to: "/developers/quickstart/goerli-to-sepolia",
-            from: "/build-on-linea/goerli-to-sepolia",
-          },
-          {
             to: "/developers/quickstart/ethereum-differences",
             from: "/build-on-linea/ethereum-differences",
           },
@@ -451,6 +452,18 @@ const config = {
             to: "/developers/tooling/node-providers",
             from: "/build-on-linea/tooling/node-providers",
           },
+          {
+            to: "/developers/linea-version",
+            from: "/build-on-linea/linea-version",
+          },
+          {
+            to: "/developers/quickstart",
+            from: "/developers/quickstart/goerli-to-sepolia",
+          },
+          {
+            to: "/developers/tooling/data-indexers/dipdup/overview",
+            from: "/developers/tooling/data-indexers/dipdup",
+          },
         ],
       },
     ],
@@ -478,6 +491,33 @@ const config = {
       tagName: "script",
       attributes: {},
       innerHTML: `window.lightningjs||function(n){function e(e,t){var i,r,a,o,d,l;return t&&(t+=(/\\?/.test(t)?"&":"?")+"lv=1"),n[e]||(i=window,r=document,a=e,o=r.location.protocol,d="load",l=0,function(){n[a]=function(){var t=arguments,r=this,o=++l,d=r&&r!=i&&r.id||0;function s(){return s.id=o,n[a].apply(s,arguments)}return(e.s=e.s||[]).push([o,d,t]),s.then=function(n,t,i){var r=e.fh[o]=e.fh[o]||[],a=e.eh[o]=e.eh[o]||[],d=e.ph[o]=e.ph[o]||[];return n&&r.push(n),t&&a.push(t),i&&d.push(i),s},s};var e=n[a]._={};function s(){e.P(d),e.w=1,n[a]("_load")}e.fh={},e.eh={},e.ph={},e.l=t?t.replace(/^\\\/\\\//,("https:"==o?o:"http:")+"//"):t,e.p={0:+new Date},e.P=function(n){e.p[n]=new Date-e.p[0]},e.w&&s(),i.addEventListener?i.addEventListener(d,s,!1):i.attachEvent("onload",s);var c=function(){function n(){return["<!DOCTYPE ",o,"><",o,"><head></head><",t,"><",i,' src="',e.l,'"></',i,"></",t,"></",o,">"].join("")}var t="body",i="script",o="html",d=r[t];if(!d)return setTimeout(c,100);e.P(1);var l,s=r.createElement("div"),h=s.appendChild(r.createElement("div")),u=r.createElement("iframe");s.style.display="none",d.insertBefore(s,d.firstChild).id="lightningjs-"+a,u.frameBorder="0",u.id="lightningjs-frame-"+a,/MSIE[ ]+6/.test(navigator.userAgent)&&(u.src="javascript:false"),u.allowTransparency="true",h.appendChild(u);try{u.contentWindow.document.open()}catch(n){e.domain=r.domain,l="javascript:var d=document.open();d.domain='"+r.domain+"';",u.src=l+"void(0);"}try{var p=u.contentWindow.document;p.write(n()),p.close()}catch(e){u.src=l+'d.write("'+n().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}e.P(2)};e.l&&c()}()),n[e].lv="1",n[e]}var t=window.lightningjs=e("lightningjs");t.require=e,t.modules=n}({}),window.usabilla_live=lightningjs.require("usabilla_live","//w.usabilla.com/28fb46af8693.js");`,
+    },
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `
+        document.addEventListener('DOMContentLoaded', function() {
+          var element = document.getElementById('__cookbook');
+          if (!element) {
+            element = document.createElement('div');
+            element.id = '__cookbook';
+            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
+            document.body.appendChild(element);
+          }
+
+          var script = document.getElementById('__cookbook-script');
+          if (!script) {
+            script = document.createElement('script');
+            script.crossOrigin = 'anonymous';
+            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
+            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+
+            script.id = '__cookbook-script';
+            script.async = true;
+            document.body.appendChild(script);
+          }
+        });
+      `,
     },
   ],
 };

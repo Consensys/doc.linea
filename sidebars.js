@@ -108,7 +108,6 @@ const sidebars = {
         },
         "developers/quickstart/ethereum-differences",
         "developers/quickstart/info-contracts",
-        "developers/quickstart/goerli-to-sepolia",
       ],
     },
     {
@@ -156,12 +155,23 @@ const sidebars = {
               label: "Linea Learning Track",
               href: "https://www.hackquest.io/en/learning-track/9be129e7-575b-49bd-a64e-1bbe32427ace",
             },
-            "developers/guides/community/irys-nfts",
-            "developers/guides/community/irys-dynamic-nfts",
+            {
+              type: "category",
+              label: "Irys",
+              link: {
+                type: "doc",
+                id: "developers/guides/community/irys/index",
+              },
+              items: [
+                "developers/guides/community/irys/irys-dynamic-nfts",
+                "developers/guides/community/irys/irys-nfts",
+              ],
+            },
           ],
         },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
+        "developers/guides/finalized-block",
         {
           type: "category",
           label: "Run a Linea node",
@@ -271,6 +281,7 @@ const sidebars = {
           },
           items: [
             "developers/tooling/cross-chain/axelar",
+            "developers/tooling/cross-chain/ccip-read-gateway",
             "developers/tooling/cross-chain/layerzero",
             "developers/tooling/cross-chain/shortcuts",
           ],
@@ -283,12 +294,21 @@ const sidebars = {
             id: "developers/tooling/data-indexers/index",
           },
           items: [
+            "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
+            {
+              type: "category",
+              label: "DipDup",
+              items: [
+                "developers/tooling/data-indexers/dipdup/overview",
+                "developers/tooling/data-indexers/dipdup/quickstart",   
+              ],
+            },            
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
-            "developers/tooling/data-indexers/flair",
+            "developers/tooling/data-indexers/flair",            
             {
               type: "category",
               label: "Goldsky",
@@ -322,6 +342,7 @@ const sidebars = {
             "developers/tooling/libraries/ethereum-list",
             "developers/tooling/libraries/ethers-js",
             "developers/tooling/libraries/multicall",
+            "developers/tooling/libraries/viem",
             "developers/tooling/libraries/wagmi",
             "developers/tooling/libraries/wallet-connect",
           ],
@@ -337,6 +358,7 @@ const sidebars = {
             "developers/tooling/oracles/api3",
             "developers/tooling/oracles/chainlink",
             "developers/tooling/oracles/dia",
+            "developers/tooling/oracles/ora",
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",
@@ -449,7 +471,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "The Linea stack",
+      label: "Linea software",
       link: {
         type: "doc",
         id: "architecture/stack/index",

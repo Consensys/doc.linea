@@ -61,34 +61,6 @@ and click on the **Bridge** button to show all that are available.
     - [Canonical token bridge](https://lineascan.build/address/0x353012dc4a9a6cf55c941badc267f82004a8ceb9)
 
 </TabItem>
-<TabItem value="Linea Goerli" label="Linea Goerli">
-:::warning
-
-Linea Goerli is being deprecated, and we recommend you use [Linea Sepolia](../../../developers/quickstart/goerli-to-sepolia.mdx) instead.
-
-:::
-
-- **Ethereum Goerli**
-
-  <details>
-    <summary>TokenBridge.abi</summary>
-    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
-  </details>
-
-  - Contracts:
-    - [Canonical token bridge](https://goerli.etherscan.io/address/0x5506A3805fB8A58Fa58248CC52d2b06D92cA94e6)
-
-- **Linea Goerli**
-
-  <details>
-    <summary>TokenBridge.abi</summary>
-    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
-  </details>
-
-  - Contracts:
-    - [Canonical token bridge](https://goerli.lineascan.build/address/0x3ccd0F623B7a25Eab5dFc6a3fD723dCE5520489B)
-
-</TabItem>
 <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 - **Ethereum Sepolia**
@@ -127,7 +99,7 @@ Linea Goerli is being deprecated, and we recommend you use [Linea Sepolia](../..
 - **With Permit**
   - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction
 
-1. Triggering the delivery
+2. Triggering the delivery
 
 - See the [message service workflow](../canonical-msg-service/message-service.mdx#workflow).
 
