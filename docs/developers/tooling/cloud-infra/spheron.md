@@ -1,5 +1,6 @@
 ---
 title: Spheron network
+image: /img/socialCards/spheron-network.jpg
 ---
 
 ## What is Spheron?

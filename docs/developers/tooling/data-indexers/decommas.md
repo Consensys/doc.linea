@@ -1,5 +1,6 @@
 ---
 title: DeCommas
+image: /img/socialCards/decommas.jpg
 ---
 
 ## Useful links and docs:
