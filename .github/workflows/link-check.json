@@ -27,7 +27,7 @@
       "pattern": "{{[a-zA-Z_\\-\\.\\[\\]\\']+}}"
     },
     {
-       "comment": "Exclude Infura endpoints that require API key",
+       "comment": "Exclude Infura endpoints that require an API key",
        "pattern": "^https?:\\/\\/[a-zA-Z0-9.-]*\\.infura\\.io\\/v3\\/.*$"
     },
     {
