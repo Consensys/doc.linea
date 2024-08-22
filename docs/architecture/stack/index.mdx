@@ -46,12 +46,23 @@ The repository contains the elements of Linea responsible for this process.
 
 ### [`linea-besu`](https://github.com/Consensys/linea-besu)
 
-The Linea implementation of Hyperledger Besu, an Ethereum client. 
+The Linea implementation of Hyperledger Besu, an Ethereum client, extended with plugins.
+
+As Linea is EVM-equivalent, it is compatible with standard Ethereum clients without plugins; for 
+example, you can also [run a Linea node using Geth](/developers/guides/run-a-node/use-binary#run-the-geth-client). 
 
 ### [`linea-sequencer`](https://github.com/Consensys/linea-sequencer)
 
 The implementation of the sequencer, the component of Linea responsible for ordering and building 
 blocks, as well as executing them. 
+
+### [`gnark`](https://github.com/Consensys/gnark)
+
+Linea's zk-SNARK with a high-level API to design circuits and efficient cryptographic primitives,
+
+### [`shomei`](https://github.com/Consensys/shomei)
+
+A plugin that extends Besu functionality by maintaining and updating Linea's state. 
 
 ## Architecture documentation
 
