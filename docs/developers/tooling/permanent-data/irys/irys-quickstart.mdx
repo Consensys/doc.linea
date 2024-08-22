@@ -68,7 +68,7 @@ Irys supports:
 - Ethers v6
 - Viem v2
 
-Additionally, these can be [used with extra setup code](https://docs.irys.xyz/developer-docs/irys-sdk/irys-in-the-browser):
+Additionally, these can be [used with extra setup code](https://arweave-tools.irys.xyz/irys-sdk/irys-in-the-browser):
 
 - Privy
 - Othent
@@ -101,7 +101,7 @@ const getWebIrys = async () => {
 ### Fund your account
 
 When you use Irys to upload data, you pay once and the data is guaranteed to be retrievable forever.
-The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/overview/cost-to-upload).
+The [fee is based on the number of bytes uploaded](https://arweave-tools.irys.xyz/overview/cost-to-upload).
 
 When calling `irys.fund()` pass a value in atomic units. Use the utility functions `irys.utils.toAtomic()`
 and `irys.utils.fromAtomic()` to convert between atomic and standard units.
@@ -294,7 +294,7 @@ irys upload-dir ./myImages -n mainnet -t linea-eth -w bf20......c9885307
 
 Use the `-t` option, followed by a series of name / value pairs to append metadata tags to your upload.
 
-Irys supports adding any optional [metadata tags](./overview#tagging) to each upload. When uploading files with a filename extension, the related [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
+Irys supports adding any optional [metadata tags](/developers/tooling/permanent-data/irys/overview#tagging) to each upload. When uploading files with a filename extension, the related [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
 
 ```console
 irys upload myImage.png -t tagName1 tagValue1 tagName2 tagValue2 -n mainnet -t linea-eth -w bf20......c9885307
@@ -310,6 +310,6 @@ irys price 1000000 -t linea-eth -n mainnet
 
 ## Download data
 
-When you upload data to Irys, you're given a [receipt](./overview#receipts) containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
+When you upload data to Irys, you're given a [receipt](/developers/tooling/permanent-data/irys/overview#receipts) containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
 
 `https://gateway.irys.xyz/:txId`
