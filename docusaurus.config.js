@@ -313,6 +313,10 @@ const config = {
             to: "/developers/quickstart/info-contracts",
             from: "/build-on-linea/use-linea-testnet/info-contracts",
           },
+                    {
+            to: "/developers/guides/bridge/how-to-bridge-eth",
+            from: "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
+          },
           {
             to: "/developers/guides/bridge",
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
