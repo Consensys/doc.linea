@@ -49,7 +49,7 @@ To create a new smart contract using thirdweb [CLI](https://portal.thirdweb.com/
    - Inheriting the contract by declaring that our contract is an `ERC721Base` contract
    - Implementing any required methods, such as the constructor.
 
-5. After modifying your contract with your desired custom logic, you may deploy it to the [Linea testnet](https://thirdweb.com/linea-testnet) using [`deploy`](https://portal.thirdweb.com/deploy).
+5. After modifying your contract with your desired custom logic, you may deploy it to the [Linea testnet](https://thirdweb.com/linea-sepolia) using [`deploy`](https://portal.thirdweb.com/deploy).
 
 ---
 
@@ -92,7 +92,7 @@ Deploy allows you to deploy a smart contract to any EVM-compatible network witho
    - `_symbol`: symbol or "ticker"
    - `_royaltyRecipient`: wallet address to receive royalties from secondary sales
    - `_royaltyBps`: basis points (bps) that will be given to the royalty recipient for each secondary sale, e.g. 500 = 5%
-3. Select [Linea testnet](https://thirdweb.com/linea-testnet) as the network
+3. Select [Linea testnet](https://thirdweb.com/linea-sepolia) as the network
 4. Manage additional settings on your contract’s dashboard as needed, such as uploading NFTs, configuring permissions, and more.
 
 > For additional information on `deploy`, please reference [thirdweb’s documentation](https://portal.thirdweb.com/deploy).

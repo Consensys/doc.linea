@@ -1,4 +1,6 @@
-# Spheron network
+---
+title: Spheron network
+---
 
 ## What is Spheron?
 

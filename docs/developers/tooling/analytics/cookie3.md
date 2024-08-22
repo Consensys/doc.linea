@@ -29,6 +29,6 @@ image: /img/socialCards/cookie3.jpg
 
 ## Additional resources:
 
-1. [1 minute YouTube explainer](https://www.youtube.com/@Cookie3_co)
+1. [1 minute YouTube explainer](https://www.youtube.com/@Cookie3_com)
 2. [Case study](https://www.cookie3.co/blog/notum-case-study)
 3. [Documentation](https://docs.cookie3.co/)
