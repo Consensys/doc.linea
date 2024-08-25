@@ -186,7 +186,6 @@ const sidebars = {
         },
         "developers/guides/linea-safe",
         "developers/guides/linea-inscriptions",
-        "developers/guides/erpc-proxy-caching",
       ],
     },
     {
@@ -350,6 +349,17 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Node Providers",
+          link: {
+            type: "doc",
+            id: "developers/tooling/node-providers/index",
+          },
+          items: [
+            "developers/tooling/node-providers/erpc",
+          ],
+        },
+        {
+          type: "category",
           label: "Oracles",
           link: {
             type: "doc",
@@ -418,7 +428,6 @@ const sidebars = {
             "developers/tooling/social-login/openfort",
           ],
         },
-        "developers/tooling/node-providers",
       ],
     },
     {

@@ -1,6 +1,6 @@
 ---
 title: Linea RPC Proxy and Caching
-image: /img/socialCards/guides.jpg
+image: /img/socialCards/linea-rpc-proxy-and-caching.jpg
 ---
 
 # Linea RPC Proxy and Caching
