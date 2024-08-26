@@ -6,17 +6,13 @@
       - cron: "0 0 * * *"
     workflow_dispatch: {}
   
-  concurrency:
-    group: nightly-${{ github.ref }}
-    cancel-in-progress: true
-  
   jobs:
     linkCheck:
       name: Run link check
       runs-on: ubuntu-latest
       strategy:
         matrix:
-          file-extensions: [".mdx"]
+          file-extensions: [".md", ".mdx"]
           check-modified-files-only: [no]
       permissions:
         contents: read
