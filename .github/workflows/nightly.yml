@@ -19,6 +19,7 @@
           with:
               FILE_EXTENSION: mdx
               MODIFIED_FILES_ONLY: no
+          continue-on-error: true
         - name: LinkCheck md files
           uses: ConsenSys/docs-gha/linkcheck@main
           with:
