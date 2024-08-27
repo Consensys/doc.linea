@@ -8,7 +8,7 @@
   
   jobs:
     linkCheckMdx:
-      name: Run link check on MDX
+      name: Run link check on mdx files
       runs-on: ubuntu-latest
       permissions:
         contents: read
@@ -21,7 +21,7 @@
               MODIFIED_FILES_ONLY: no
     linkCheckMd:
       needs: linkCheckMdx
-      name: Run link check on MD
+      name: Run link check on md files
       if: always()
       runs-on: ubuntu-latest
       permissions:
@@ -33,3 +33,17 @@
           with:
               FILE_EXTENSION: md
               MODIFIED_FILES_ONLY: no
+    slackNotification:
+      needs: [linkCheckMdx, linkCheckMd]
+      if: ${{ failure() }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Slack Notification
+          uses: rtCamp/action-slack-notify@v2
+          env:
+            SLACK_CHANNEL: doc-ci-alerts
+            SLACK_COLOR: danger
+            SLACK_USERNAME: ci
+            SLACK_TITLE: Infura docs nightly build - Failure
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            MSG_MINIMAL: true
