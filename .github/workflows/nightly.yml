@@ -13,7 +13,6 @@
       strategy:
         matrix:
           file-extensions: [".md", ".mdx"]
-          check-modified-files-only: [no]
       permissions:
         contents: read
       steps:
@@ -22,4 +21,4 @@
           uses: ConsenSys/docs-gha/linkcheck@main
           with:
               FILE_EXTENSION: ${{ matrix.file-extensions }}
-              MODIFIED_FILES_ONLY: ${{ matrix.check-modified-files-only }}
+              MODIFIED_FILES_ONLY: no
