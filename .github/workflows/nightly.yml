@@ -7,8 +7,8 @@
     workflow_dispatch: {}
   
   jobs:
-    linkCheck:
-      name: Run link check
+    linkCheckMdx:
+      name: Run link check on MDX
       runs-on: ubuntu-latest
       permissions:
         contents: read
@@ -19,7 +19,15 @@
           with:
               FILE_EXTENSION: mdx
               MODIFIED_FILES_ONLY: no
-          continue-on-error: true
+    linkCheckMd:
+      needs: linkCheckMdx
+      name: Run link check on MD
+      if: always()
+      runs-on: ubuntu-latest
+      permissions:
+        contents: read
+      steps:
+        - uses: actions/checkout@v4
         - name: LinkCheck md files
           uses: ConsenSys/docs-gha/linkcheck@main
           with:
