@@ -262,7 +262,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Contracts templates",
+          label: "Contract templates",
           link: {
             type: "doc",
             id: "developers/tooling/contracts-templates/index",
@@ -349,7 +349,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Node Providers",
+          label: "Node providers",
           link: {
             type: "doc",
             id: "developers/tooling/node-providers/index",
