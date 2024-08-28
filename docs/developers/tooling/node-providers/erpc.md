@@ -1,6 +1,6 @@
 ---
 title: eRPC
-image: /img/socialCards/linea-rpc-proxy-and-caching.jpg
+image: /img/socialCards/erpc.jpg
 ---
 
 # Linea RPC Proxy and Caching
