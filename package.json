@@ -1,6 +1,6 @@
 {
   "name": "doc.linea",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -16,7 +16,7 @@
     "typecheck": "tsc",
     "typecheck-staged": "tsc-files --noEmit",
     "lint": "npm run lint:spelling && npm run lint:js && npm run lint:style",
-    "lint:js": "eslint . --ext js,jsx,ts,tsx --max-warnings=0",
+    "lint:js": "eslint",
     "lint:spelling": "cspell \"**\" --no-progress",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:fix": "npm run lint:js -- --fix",
@@ -48,38 +48,41 @@
     "rehype-katex": "^7.0.0",
     "remark-docusaurus-tabs": "^0.2.0",
     "remark-math": "^6.0.0",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "typescript-eslint": "^8.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4",
     "@commitlint/config-conventional": "^19.4",
     "@docusaurus/module-type-aliases": "^3.4.0",
     "@docusaurus/tsconfig": "^3.4.0",
+    "@eslint/compat": "^1.1.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^10.1.7",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
     "cspell": "^8.14.2",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.37.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.5.4",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "globals": "^15.9.0",
     "lint-staged": "^15.2.9",
-    "prettier": "2.8.8",
+    "prettier": "3.3.3",
     "semantic-release": "^24.1.0",
-    "stylelint": "^14.16.1",
+    "stylelint": "^16.9.0",
     "stylelint-config-prettier": "^9.0.4",
-    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard": "^36.0.0",
     "tsc-files": "^1.1.3",
     "typescript": "^5.0.0"
   },
@@ -96,7 +99,7 @@
     ]
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=21.1.0"
   },
   "commitlint": {
     "extends": [
