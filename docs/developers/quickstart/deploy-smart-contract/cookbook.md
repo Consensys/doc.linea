@@ -318,5 +318,5 @@ the following resources:
 
 - [Documentation](https://docs.cookbook.dev/)
 - [Blog](https://medium.com/@cookbookdev)
-- [X (Twitter)](https://twitter.com/cookbook_dev)
+- [X (Twitter)](https://x.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)

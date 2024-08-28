@@ -89,5 +89,5 @@ For more information on using Cookbook to find, learn about or build with smart 
 
 - [Documentation](https://docs.cookbook.dev)
 - [Blog](https://medium.com/@cookbookdev)
-- [Twitter](https://twitter.com/cookbook_dev)
+- [X](https://x.com/cookbook_dev)
 - [Community](https://discord.gg/cookbook)
