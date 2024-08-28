@@ -67,28 +67,6 @@ The message service is responsible for cross-chain messages between Ethereum and
       </tbody>
     </table>
   </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-    <table>
-      <tbody>
-        <tr>
-          <th>L1 (Goerli) Address</th>
-          <th>L2 (Linea Goerli) Address</th>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract">
-              0x70BaD09280FD342D02fe64119779BC1f0791BAC2
-            </a>
-          </td>
-          <td>
-            <a href="https://goerli.lineascan.build/address/0xC499a572640B64eA1C8c194c43Bc3E19940719dC/contracts#address-tabs">
-              0xC499a572640B64eA1C8c194c43Bc3E19940719dC
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </TabItem>
 </Tabs>
 
 ## How to use
@@ -99,7 +77,7 @@ The message service is responsible for cross-chain messages between Ethereum and
    - Args:
      - `_to`: the destination address on the destination chain
      - `_fee`: the message service fee on the origin chain
-       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (this is not yet available)
+       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (not available when bridging from L2 to L1)
      - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
 1. dApp uses the Postman SDK (details to come) to pay for the execution of messages on the destination layer by:
    - Triggering the delivery

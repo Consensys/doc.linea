@@ -108,7 +108,6 @@ const sidebars = {
         },
         "developers/quickstart/ethereum-differences",
         "developers/quickstart/info-contracts",
-        "developers/quickstart/goerli-to-sepolia",
       ],
     },
     {
@@ -166,12 +165,13 @@ const sidebars = {
               items: [
                 "developers/guides/community/irys/irys-dynamic-nfts",
                 "developers/guides/community/irys/irys-nfts",
-              ]
-            }
+              ],
+            },
           ],
         },
         "developers/guides/linea-api/index",
         "developers/guides/linea-sdk/index",
+        "developers/guides/finalized-block",
         {
           type: "category",
           label: "Run a Linea node",
@@ -262,7 +262,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Contracts templates",
+          label: "Contract templates",
           link: {
             type: "doc",
             id: "developers/tooling/contracts-templates/index",
@@ -281,6 +281,7 @@ const sidebars = {
           },
           items: [
             "developers/tooling/cross-chain/axelar",
+            "developers/tooling/cross-chain/ccip-read-gateway",
             "developers/tooling/cross-chain/layerzero",
             "developers/tooling/cross-chain/shortcuts",
           ],
@@ -293,13 +294,21 @@ const sidebars = {
             id: "developers/tooling/data-indexers/index",
           },
           items: [
+            "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
             "developers/tooling/data-indexers/decommas",
-            "developers/tooling/data-indexers/dipdup",
+            {
+              type: "category",
+              label: "DipDup",
+              items: [
+                "developers/tooling/data-indexers/dipdup/overview",
+                "developers/tooling/data-indexers/dipdup/quickstart",   
+              ],
+            },            
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
-            "developers/tooling/data-indexers/flair",
+            "developers/tooling/data-indexers/flair",            
             {
               type: "category",
               label: "Goldsky",
@@ -340,6 +349,17 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Node providers",
+          link: {
+            type: "doc",
+            id: "developers/tooling/node-providers/index",
+          },
+          items: [
+            "developers/tooling/node-providers/erpc",
+          ],
+        },
+        {
+          type: "category",
           label: "Oracles",
           link: {
             type: "doc",
@@ -349,6 +369,7 @@ const sidebars = {
             "developers/tooling/oracles/api3",
             "developers/tooling/oracles/chainlink",
             "developers/tooling/oracles/dia",
+            "developers/tooling/oracles/ora",
             "developers/tooling/oracles/pyth",
             "developers/tooling/oracles/redstone",
             "developers/tooling/oracles/supra",
@@ -392,6 +413,7 @@ const sidebars = {
             "developers/tooling/security/scamfari",
             "developers/tooling/security/spherex",
             "developers/tooling/security/hexagate",
+            "developers/tooling/security/hypernative"
           ],
         },
         {
@@ -406,7 +428,6 @@ const sidebars = {
             "developers/tooling/social-login/openfort",
           ],
         },
-        "developers/tooling/node-providers",
       ],
     },
     {
@@ -421,8 +442,9 @@ const sidebars = {
             id: "developers/reference/api/index",
           },
           items: [
-            "developers/reference/api/linea-estimategas",
             "developers/reference/api/eth-sendrawtransaction",
+            "developers/reference/api/linea-estimategas",
+            "developers/reference/api/linea-getproof",
           ],
         },
       ],
@@ -461,7 +483,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "The Linea stack",
+      label: "Linea software",
       link: {
         type: "doc",
         id: "architecture/stack/index",

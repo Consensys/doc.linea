@@ -51,4 +51,4 @@ Find our technical documentation [here](https://umbrella-network.readme.io/docs)
 
 ## Follow Umbrella Network
 
-[Discord](https://discord.com/invite/AHHSM7Bks2) | [Twitter](https://twitter.com/UmbNetwork) | [Announcements](https://t.me/umbnetannouncement) | [Website](https://www.umb.network/) | [Governance](https://gov.umb.network/)
+[Discord](https://discord.com/invite/AHHSM7Bks2) | [Twitter](https://twitter.com/UmbNetwork) | [Announcements](https://t.me/umbnetannouncement) | [Website](https://www.umb.network/) | [Governance](https://umb.network/community)

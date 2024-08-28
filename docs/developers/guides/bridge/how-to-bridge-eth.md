@@ -1,5 +1,5 @@
 ---
-title: Bridge ETH between Ethereum and Linea.
+title: Bridge ETH between Ethereum and Linea
 sidebar_position: 1
 description: Transfer ETH using the native bridge.
 image: /img/socialCards/bridge-eth-between-ethereum-and-linea.jpg

@@ -1,5 +1,6 @@
 ---
 title: Release notes
+description: Find out all you need to know about the latest Linea versions.
 sidebar_position: 4
 image: /img/socialCards/release-notes.jpg
 ---
@@ -10,7 +11,46 @@ import L2MessageService from "!!raw-loader!/files/testnet/2023-06-13-release/L2M
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 
-Find out all you need to know about the latest Linea versions.
+## Alpha v3.4
+
+**Mainnet and Testnet: July 30**
+
+### ENS on Linea
+
+Adds support for Linea ENS domains, including a frontend app for users to register and manage their
+domains. The Linea ENS system is comparable to ENS on Ethereum Mainnet, except that domains are 
+limited to one per account and registering requires completion of [Proof of Humanity](https://poh.linea.build/).
+As the system leverages CCIP Read, which enables L1 to trustlessly query the Linea ENS registry 
+through an offchain gateway, Linea ENS domains resolve on L1. 
+
+Read more about ENS in the user guide [here](https://support.linea.build/general/ens).
+
+### CCIP Read
+
+One of the building blocks of ENS on Linea is a custom implementation of CCIP Read, which uses the
+gateway system introduced in EIP-3668 to enable Linea ENS names to resolve on L1. The key 
+contracts created by ENS have been adjusted by the Linea team to ensure they work with Linea's
+Sparse Merkle Tree system. 
+
+The CCIP Read functionality can be applied to any context where a L1 protocol may benefit from 
+securely querying data on Linea. See our [page on CCIP Read](/developers/tooling/cross-chain/ccip-read-gateway) 
+for more information and guidance on how to use the relevant contracts.
+
+The Linea repository containing the relevant contracts is [here](https://github.com/Consensys/linea-ens).
+
+Consensys Diligence carried out an audit on Linea ENS, available [here](https://consensys.io/diligence/audits/2024/06/linea-ens/).
+
+### `linea_estimateGas` mainnet activation
+
+:::note
+
+Available on Linea Sepolia on July 31; available on Mainnet from August 1.
+
+:::
+
+Activates the `linea_estimateGas` endpoint for use on Mainnet. 
+
+See our [reference page](/developers/reference/api/linea-estimategas) for more information and usage.
 
 ## Alpha v3.3
 

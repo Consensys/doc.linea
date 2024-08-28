@@ -12,7 +12,7 @@ In Linea, gnark is the final part of the prover. It is also standalone software 
 
 #### What does it do?
 
-Similarly to Corset, gnark has two functions: it prepares a set of “circuits”, another way of referring to a constraint system, of the kind that will create a **zk-SNARK proof** that can be verified in an L1 Ethereum environment. It also, in fact, _makes_ those proofs.
+Similarly to Corset, gnark has two functions: it prepares a set of “circuits”, another way of referring to a constraint system, of the kind that will create a zk-SNARK proof that can be verified in an L1 Ethereum environment. It also, in fact, _makes_ those proofs.
 
 #### How does it do it?
 
