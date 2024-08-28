@@ -17,9 +17,10 @@
     "typecheck-staged": "tsc-files --noEmit",
     "lint": "npm run lint:spelling && npm run lint:js && npm run lint:style",
     "lint:js": "eslint",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "lint:spelling": "cspell \"**\" --no-progress",
     "lint:style": "stylelint \"**/*.css\"",
-    "lint:fix": "npm run lint:js -- --fix",
+    "lint:style:fix": "npm run lint:style -- --fix",
     "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\""
   },
   "lint-staged": {
@@ -40,6 +41,7 @@
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "hast-util-is-element": "^3.0.0",
+    "postcss-safe-parser": "^7.0.0",
     "prism-react-renderer": "^2.3.1",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
@@ -81,8 +83,7 @@
     "prettier": "3.3.3",
     "semantic-release": "^24.1.0",
     "stylelint": "^16.9.0",
-    "stylelint-config-prettier": "^9.0.4",
-    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard": "^36.0.1",
     "tsc-files": "^1.1.3",
     "typescript": "^5.0.0"
   },
