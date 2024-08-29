@@ -8,14 +8,6 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Estimate transaction costs
 
-:::info[Reducing gas fees]
-
-Building on gas optimizations introduced with Alpha v2 in February 2024, Linea implemented 
-EIP-4844 with Alpha v3 on March 26 2024. Gas fees are anticipated to be a fraction of what they 
-were. See [here](./gas-on-linea) for details.
-
-:::
-
 ## How gas works on Linea
 
 Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas). 
@@ -46,8 +38,8 @@ Use the [`linea_estimateGas`](/developers/reference/api/linea-estimategas) API m
 gas cost for sending a transaction. The method returns the recommended gas limit, the base fee per 
 gas, and the priority fee per gas.
 
-Please note the `linea_estimateGas` endpoint is currently only available on the Linea Sepolia 
-testnet. For more information, see our [reference page](/developers/reference/api/linea-estimategas).
+The `linea_estimateGas` endpoint is currently unavailable. For more information, see 
+our [reference page](/developers/reference/api/linea-estimategas).
 
 :::info important
 
