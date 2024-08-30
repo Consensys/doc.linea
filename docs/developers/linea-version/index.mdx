@@ -33,7 +33,7 @@ contracts created by ENS have been adjusted by the Linea team to ensure they wor
 Sparse Merkle Tree system. 
 
 The CCIP Read functionality can be applied to any context where a L1 protocol may benefit from 
-securely querying data on Linea. See our [page on CCIP Read](/developers/tooling/cross-chain/ccip-read-gateway) 
+securely querying data on Linea. See our [page on CCIP Read](../tooling/cross-chain/ccip-read-gateway.mdx) 
 for more information and guidance on how to use the relevant contracts.
 
 The Linea repository containing the relevant contracts is [here](https://github.com/Consensys/linea-ens).
@@ -50,7 +50,7 @@ Available on Linea Sepolia on July 31; available on Mainnet from August 1.
 
 Activates the `linea_estimateGas` endpoint for use on Mainnet. 
 
-See our [reference page](/developers/reference/api/linea-estimategas) for more information and usage.
+See our [reference page](../reference/api/linea-estimategas.mdx) for more information and usage.
 
 ## Alpha v3.3
 
@@ -125,7 +125,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 **Mainnet: May 14**
 
 - Introduces dynamic L1 gwei thresholds for submitting data to L1 for finalization.
-- Adds the [`eth_sendRawTransaction`](reference/api/eth-sendrawtransaction) method, 
+- Adds the [`eth_sendRawTransaction`](../reference/api/eth-sendrawtransaction.mdx) method, 
 available only via Besu endpoints.
 
 ## Alpha v3
@@ -226,25 +226,32 @@ Primarily, the L1 costs are driven by the following:
 
 - Hashing the batch submission data to produce the public input of the Plonk verifier.
 
-- Calldata costs, driven by the size of the batch submission data. This includes all the transaction data from L2, as well as messaging data (one hash per L2 to L1 message).
+- Calldata costs, driven by the size of the batch submission data. This includes all the transaction data
+    from L2, as well as messaging data (one hash per L2 to L1 message).
 
 ### Features
 
 To decrease L1 costs, we implemented the following features:
 
 - Proof aggregation:
-  - This allows us to create a set of execution proofs for conflated batches and generates an aggregated proof that verifies that all the batches are correct. Since it takes the same amount of gas to verify an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a proof aggregating N proofs is N times cheaper.
+  - This allows us to create a set of execution proofs for conflated batches and generates an aggregated proof
+      that verifies that all the batches are correct. Since it takes the same amount of gas to verify
+      an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a
+      proof aggregating N proofs is N times cheaper.
 - Data compression:
   - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
 - Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
-  - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there is a 32x calldata size reduction for message hashes
+  - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there
+      is a 32x calldata size reduction for message hashes
 
 ### Smart contract changes
 
 To support these new features, we implemented changes to our smart contracts. 
 
-We introduce a `VERIFIER_SETTER_ROLE`, that will be attributed to the Timelock.sol so that all core contract upgrades (Rollup and Message and Token bridge) and verifiers are executed through a TimeLock mechanism.
-Note that we are also using this upgrade to update the way the type 2 state was calculated; as such we'll need to call `finalizeWithoutProof` to perform a state transition from type2 state v1 to type2 state v2.
+We introduce a `VERIFIER_SETTER_ROLE`, that will be attributed to the Timelock.sol so that all core
+contract upgrades (Rollup and Message and Token bridge) and verifiers are executed through a TimeLock mechanism.
+Note that we are also using this upgrade to update the way the type 2 state was calculated; as such we'll
+need to call `finalizeWithoutProof` to perform a state transition from type2 state v1 to type2 state v2.
 
 The Security Council will first execute the following transactions on L1:
 - Assign Operator Role via the Safe to the account for blob submission
@@ -263,7 +270,8 @@ Post upgrade, Execute the following Security Council transactions on L1:
 - Call FinalizeWithoutProof
 - Clear verifier mapping at index 6 and 7
 
-The audited commit for this update can be found [here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
+The audited commit for this update can be found
+[here](https://github.com/Consensys/linea-contracts-audit/commit/99039ebc8d6cb3009cf46286d5de4c484e03bc81). 
 
 Two independent audits have been performed for this update. Reports can be found here: 
 
@@ -275,23 +283,28 @@ Two independent audits have been performed for this update. Reports can be found
 
 **Message claiming**
 
-- Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof generation requests and their submission when claiming a message. This applies to messages sent post upgrading. Pre-existing messages must be claimed with the current approach.
+- Parties claiming messages on Layer 1 will need to adjust claiming behavior to account for Merkle Proof
+    generation requests and their submission when claiming a message. This applies to messages sent post
+    upgrading. Pre-existing messages must be claimed with the current approach.
 
 :::info[Note] 
 
 If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages
-their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](/developers/guides/linea-sdk).
+their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../guides/linea-sdk/index.md).
 
 :::
 
 **Finalization events**
 
-- After migration to the new finalization mechanism, the rollup contract will no longer emit finalization events per block, but will instead emit events for data submission as well as an event indicating the current point of finalization.
+- After migration to the new finalization mechanism, the rollup contract will no longer emit finalization
+    events per block, but will instead emit events for data submission as well as an event indicating the
+    current point of finalization.
   - The calldata will contain only the final block state root hash and final block number.
 
 :::info[Note]
 
-This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will be replaced by the `DataFinalized` event.
+This is a breaking change for consumers listening to the existing events. The `BlockFinalized` event will
+be replaced by the `DataFinalized` event.
 
 :::
 
@@ -384,19 +397,23 @@ This is a breaking change for consumers listening to the existing events. The `B
 
 ### Performance improvements
 
-- Changes to the Genesis File: We made changes to the genesis file to enable block times to be reduced. This enhancement improves the overall performance and throughput of Linea.
+- Changes to the Genesis File: We made changes to the genesis file to enable block times to be reduced. This
+    enhancement improves the overall performance and throughput of Linea.
 
 - Improved Gas Limit Estimation for Finalization on L1: We improved the gas limit estimation for finalization on L1.
 
 ### Cost efficiency
 
-- We updated the L1 message service contract to work with the Merkle tree, reducing gas costs and further enhancing the cost-effectiveness of Linea.
+- We updated the L1 message service contract to work with the Merkle tree, reducing gas costs and further
+    enhancing the cost-effectiveness of Linea.
 
-- We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This change ensures the long-term financial viability of Linea.
+- We added a fixed cost to the gas price to cover infrastructure costs for system economic sustainability. This
+    change ensures the long-term financial viability of Linea.
 
 ### User experience
 
-- We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price estimation more accurate and reliable.
+- We smoothed the L2 gas price estimation by using an L1 moving average. This update makes our gas price
+    estimation more accurate and reliable.
 
 ## Linea Alpha v0.2.3 (June 22, 2023)
 
@@ -412,13 +429,15 @@ This release focuses on updating the Postman SDK configuration values and revisi
 
 ### Features
 
-- Updated the Postman SDK configuration files to handle messages that are contract calls with zero ETH value being transferred and revised gas fee calculations.
+- Updated the Postman SDK configuration files to handle messages that are contract calls with zero ETH value
+    being transferred and revised gas fee calculations.
 
 ## Linea Alpha v0.2.1 (June 15, 2023)
 
 ### Summary
 
-This release reduces the gas cost of submitting a batch of transactions on L1 by optimizing L2 logs in the calldata that is sent to L1.
+This release reduces the gas cost of submitting a batch of transactions on L1 by optimizing L2 logs in the
+calldata that is sent to L1.
 
 ### Features
 
@@ -447,27 +466,36 @@ This release reduces the gas cost of submitting a batch of transactions on L1 by
 
 ### Summary
 
-This release focuses on testing a substantial architecture upgrade in preparation for Mainnet launch. It contains multiple improvements and breaking changes, specifically around the messaging layer which is changed to a push model. It also improves EVM prover coverage, and provides batch conflation.
+This release focuses on testing a substantial architecture upgrade in preparation for Mainnet launch. It
+contains multiple improvements and breaking changes, specifically around the messaging layer which is changed
+to a push model. It also improves EVM prover coverage, and provides batch conflation.
 
 ### Features
 
 - Add Batch Conflation feature to the sequencer to minimize L1 transactions cost.
-  - With Batch Conflation, L2 blocks' proofs that should have been independent are instead merged together. Therefore, L1 costs for these blocks’ proofs are divided by the number of merged blocks.
+  - With Batch Conflation, L2 blocks' proofs that should have been independent are instead merged together.
+      Therefore, L1 costs for these blocks’ proofs are divided by the number of merged blocks.
 - Improve the following smart contracts:
   - Rollup zkEVM: Upgrade the rollup main contract with support for
     - Conflation
     - Security Council management
     - Verifier
-      - Outer proof system moved from Groth16 to Plonk + custom gates to support efficient Fiat Shamir, c.f.: https://eprint.iacr.org/2022/1072.pdf section 6.2
+      - Outer proof system moved from Groth16 to Plonk + custom gates to support efficient
+          Fiat Shamir, c.f.: https://eprint.iacr.org/2022/1072.pdf section 6.2
     - Messaging Service
-      - Changed the message service model by splitting the delivery into anchoring and claiming of messages to allow more flexible workflows, remove the mandatory fee for L1→L2, reduce the mandatory fee for L2→L1
-  - Canonical Token Bridge: Upgrade from 1-1 ERC-20 basic token bridge to N-N ERC-20 canonical token bridge with reservation and token registry
+      - Changed the message service model by splitting the delivery into anchoring and claiming of
+          messages to allow more flexible workflows, remove the mandatory fee for L1→L2, reduce the mandatory fee for L2→L1
+  - Canonical Token Bridge: Upgrade from 1-1 ERC-20 basic token bridge to N-N ERC-20 canonical token bridge
+      with reservation and token registry
 - Add Postman Service for message execution
-  - The Postman Service is Linea’s off-chain message delivery service. It’s decentralized, permissionless, and used to claim messages once the protocol has anchored the message hashes. The first release will only contain the following scenarios:
+  - The Postman Service is Linea’s off-chain message delivery service. It’s decentralized, permissionless, and
+      used to claim messages once the protocol has anchored the message hashes. The first release will only
+      contain the following scenarios:
     - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas
       - The protocol can filter messages based on origin or destination smart-contracts
     - Linea operating the SDK for dApps/Protocols that aren’t yet integrated
-  - If messages don’t get delivered by the postman, the message can be manually claimed by calling `claimMessage` with the `MessageSent` event parameters or by using the SDK.
+  - If messages don’t get delivered by the postman, the message can be manually claimed by calling
+      `claimMessage` with the `MessageSent` event parameters or by using the SDK.
 - Update prover to integrate with the new architecture and support Batch Conflation
 
 ### Breaking changes
@@ -588,7 +616,7 @@ Contracts audit is in progress. This does not reflect final versions.
 
 **Canonical Token Bridge**
 
-Major changes are applied to the Canonical Token Bridge as described in our [documentation](/architecture/stack/bridges/canonical-token-bridge).
+Major changes are applied to the Canonical Token Bridge as described in our [documentation](../../architecture/stack/bridges/canonical-token-bridge.mdx).
 
 - **L1 (Goerli)**
 

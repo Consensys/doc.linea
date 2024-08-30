@@ -294,7 +294,9 @@ irys upload-dir ./myImages -n mainnet -t linea-eth -w bf20......c9885307
 
 Use the `-t` option, followed by a series of name / value pairs to append metadata tags to your upload.
 
-Irys supports adding any optional [metadata tags](/developers/tooling/permanent-data/irys/overview#tagging) to each upload. When uploading files with a filename extension, the related [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
+Irys supports adding any optional [metadata tags](./overview.mdx#tagging) to each upload. When uploading
+files with a filename extension, the related
+[`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
 
 ```console
 irys upload myImage.png -t tagName1 tagValue1 tagName2 tagValue2 -n mainnet -t linea-eth -w bf20......c9885307
@@ -302,7 +304,8 @@ irys upload myImage.png -t tagName1 tagValue1 tagName2 tagValue2 -n mainnet -t l
 
 ### Pricing
 
-Use the `price` command, followed by a number of bytes to get the cost to upload that number of bytes. You must also provide a token (`-t`) and a node URL (`-h`)
+Use the `price` command, followed by a number of bytes to get the cost to upload that number of bytes. You must
+also provide a token (`-t`) and a node URL (`-h`)
 
 ```console
 irys price 1000000 -t linea-eth -n mainnet
@@ -310,6 +313,7 @@ irys price 1000000 -t linea-eth -n mainnet
 
 ## Download data
 
-When you upload data to Irys, you're given a [receipt](/developers/tooling/permanent-data/irys/overview#receipts) containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
+When you upload data to Irys, you're given a [receipt](./overview.mdx#receipts)
+containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
 
 `https://gateway.irys.xyz/:txId`
