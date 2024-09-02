@@ -16,12 +16,12 @@ process is trust-minimal, as the gateway returns a storage proof that can be ver
 which is immune from any intervention or tampering.
 
 Linea adapted the functionality of the relevant ENS contract, [`evm-gateway`](https://github.com/ensdomains/evmgateway),
-so that it would function correctly with Linea's Sparse Merkle Tree design. The Linea ENS repository
+so that it would function correctly with Linea's sparse Merkle tree design. The Linea ENS repository
 therefore adds support for CCIP Read to Linea.
 
 :::info 
 
-Read more about Sparse Merkle Trees in our [architecture documentation](../../../architecture/stack/evm-state-manager/index.mdx).
+Read more about sparse Merkle trees in our [architecture documentation](../../../architecture/stack/evm-state-manager/index.mdx).
 
 :::
 
@@ -39,6 +39,13 @@ However, Linea ENS is just one example use case; CCIP Read is beneficial in any 
 advantageous to store data on L2. In addition to ENS-like systems, the library enables L1 
 applications to create allowlists that use cross-chain Verax attestations to determine eligibility 
 for NFT mints or governance voting, for example. 
+
+:::tip[Deploy a subdomain on Linea]
+
+You can use the building blocks of Linea ENS to deploy your own subdomain on Linea. View the guide 
+[here](../../guides/deploy-subdomain.mdx).
+
+:::
 
 ## Use CCIP Read on Linea
 
