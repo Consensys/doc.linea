@@ -32,13 +32,13 @@
   transition: padding-left 0.25s ease;
 }
 
-@media (max-width: 1500px) {
+@media (width <= 1500px) {
   .cardBody {
     padding-left: 30px;
   }
 }
 
-@media (max-width: 1500px) {
+@media (width <= 1500px) {
   .cardIcon {
     width: 35px;
   }
@@ -55,7 +55,7 @@
   transition: font-size 0.25s ease, margin-left 0.25s ease;
 }
 
-@media (max-width: 1500px) {
+@media (width <= 1500px) {
   .cardTitle h3 {
     font-size: 1.45rem;
     font-weight: 500;
@@ -69,7 +69,7 @@
   margin-top: 0;
 }
 
-@media (max-width: 1500px) {
+@media (width <= 1500px) {
   .description {
     font-size: 16px;
   }
