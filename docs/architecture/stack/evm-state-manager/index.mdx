@@ -6,7 +6,8 @@ image: /img/socialCards/evm-state-manager.jpg
 ---
 
 The state manager is the part of the execution client responsible for updating the state of the 
-network globally, and the state of every account individually. 
+network globally, and the state of every account individually. The state manager also audits the 
+"read" access made in the EVM.
 
 :::info
 
@@ -18,7 +19,7 @@ changed.
 
 Its main task is to receive blocks that have been executed by the sequencer and use the trace data 
 from their execution to update the state of the network. The state manager uses a variation of the 
-Merkle tree called a sparse Merkle tree to track, manage, and update storage slots representing 
+Merkle tree called a sparse Merkle tree (SMT) to track, manage, and update storage slots representing 
 accounts more efficiently. 
 
 It then passes this updated network state information to the [prover](/architecture/stack/trace-expansion-proving/proving) 
@@ -74,22 +75,30 @@ correspond to _non-empty_ subtrees.
 
 ## Cryptographic accumulator
 
-A sparse Merkle tree can be considered a cryptographic accumulator—a term for a system where a hash 
-function is able to take multiple values as an input, and output a single hash. (This differs from 
-a traditional hash function, which would only take one value as an input.) The accumulator is a 
-data structure used in the state manager of Linea's zkEVM to efficiently track updates to the 
-storage of Linea accounts.
+A cryptographic accumulator is a type of cryptographic primitive encoding a collection of items into 
+very short strings and allowing read/write operations to be proven. Merkle trees and sparse Merkle 
+trees are elementary examples of accumulators but there are others with more powerful capabilities.
 
-The sparse Merkle tree, or accumulator, allows us to track updates to a large, pre-allocated 
-'vector', in mathematical terms. In this context, the vector is a data structure mapping integer 
-indices (corresponding to each node in the tree) to leaves, and it is 'pre-allocated' because we 
-already know that the sparse Merkle tree is populated with default values at initialization. 
+To fit the EVM requirements, Linea's state manager uses an extended version of a sparse Merkle tree 
+that enables it to prove all CRUD (create, read, update, delete) operations for a key-addressed 
+database. As an outline, the construction uses a sparse Merkle tree to store the nodes of a 
+sorted doubly-linked list that encodes all the non-zero items of the state.
 
-The Linea state manager uses the sparse Merkle tree as a powerful cryptographic accumulator that 
-supports key-value addressing, rather than position addressing as in a traditional vector, which 
-defines the location of the node relative to its origin. This means every leaf node is indexed into 
-a sorted, doubly-linked list, where each leaf 'points' to the leaves whose keys are immediately 
-above and below it in the list.
+The accumulator is used to track the account trie of Linea but also the storage of every contract 
+separately.
+
+The leaves of the tree have the following structure: `prev || next || hKey || hVal`.
+
+`hKey` and `hVal` are the hashes of the key and the value of the stored state entry, respectively. 
+`prev` and `next` are pointers storing the position of the leaves whose `hKeys` are immediately 
+lower and higher, respectively, following lexicographic order. The first two leaves of the SMT are 
+called the head and the tail, and are special in that they do not encode a stored tuple. The head is 
+the lowest possible `hKey`, while the tail is the highest possible `hKey`. They are therefore 
+situated at the beginning and the end of the linked list, respectively. Starting from the head, we 
+can access the SMT leaf stored at `head.next` to get the lowest "actually stored" item. Further 
+incrementing the `next` value will give us the second-lowest stored item and so on. Repeating the 
+process walks us through the entire set of stored items before we end up at the tail node, marking 
+the final step.
 
 Leaves can also be referred to as storage slots, in that they contain data about the contents of 
 the account in question.
