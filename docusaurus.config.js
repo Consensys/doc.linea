@@ -40,6 +40,10 @@ const config = {
     locales: ["en"],
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
   presets: [
     [
       "classic",
@@ -489,6 +493,7 @@ const config = {
         hashed: true,
       },
     ],
+    "@docusaurus/theme-mermaid",
   ],
   headTags: [
     {
