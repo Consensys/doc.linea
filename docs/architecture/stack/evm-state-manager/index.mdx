@@ -35,12 +35,21 @@ The Merkle tree and its variations are commonly used across EVM chains for effic
 retrieval of data about the state of every account on the blockchain. 
 
 A Merkle tree is comprised of 'nodes' that branch off from each other. At the base is the 'root', 
-or state root, from which branches stem; and from the branches stem leaves. Each node, regardless 
-of type, is represented by a cryptographic hash which encodes data about its properties — for 
-example, the contents of your account. 
+or state root, from which branches stem, and leaves stem from the branches. 
 
-Each hash encodes the hashes of its child nodes. Taken to its full extent, this cascading system 
-means the root encodes data of the state of every single account on the blockchain. 
+<center class="img-large">
+    ```mermaid
+        flowchart TD
+            A[root] --> B[node] & C[node]
+            B --> D[node] & E[node]
+            C --> F[node] & G[node]
+    ```
+</center>
+
+Each node, regardless of type, is represented by a cryptographic hash which encodes data about its 
+properties — for example, the contents of your account. Each hash encodes the hashes of its child 
+nodes. Taken to its full extent, this cascading system means the root encodes data of the state of 
+every single account on the blockchain. 
 
 Cryptographic hashes are deterministic, which means you can reverse the hash function to get the 
 data which it encoded. If you have the hash of the root—the only node without a parent—you can 
@@ -67,6 +76,24 @@ At initialization, all leaf nodes are set to a default value, which is typically
 specific value, such as zero. Because all leaf nodes have the same hash value, the parent nodes and 
 higher-level nodes also have the same hash value. A node whose hash is the default value for its 
 level is therefore considered to represent an _empty_ subtree. 
+
+<center class="img-large">
+    ```mermaid
+    flowchart TD
+        A[root] --> B["`**node A**`"
+        null] & C["`**node B**`"
+        contains data]
+        B --> D["`**node C**`":
+        null] & E["`**node D:**`"
+        null]
+        C --> F["`**node E**`":
+        data] & G["`**node F**`":
+        data]
+    ```
+</center>
+
+In the example above, the children of node A (leaves) contain null values, which means node A does 
+too. Node B, meanwhile, reflects that its children also contain values.
 
 With this construction, we do not need to keep track of every individual node's hash. Instead, we 
 can assume hashes that reflect the default value are empty, and the subtree or node that lies 
@@ -105,9 +132,9 @@ the account in question.
 
 ### Tracking empty leaves
 
-As mentioned (above)[#sparse-merkle-trees], all leaves in the tree are populated with default/zero 
-values at initialization. Since a deterministic hashing function will ensure that these leaves are 
-always represented by the same hash, empty leaves can be easily recognized by the accumulator. 
+All leaves in the tree are populated with default/zero values at initialization. Since a 
+deterministic hashing function will ensure that these leaves are always represented by the same 
+hash, empty leaves can be easily recognized by the accumulator. 
 
 However, in order for the state manager to update a storage slot with data about a Linea account's 
 contents, it must know which empty leaf to overwrite, and exactly where these empty leaves are. A 
