@@ -38,12 +38,14 @@ A Merkle tree is comprised of 'nodes' that branch off from each other. At the ba
 or state root, from which branches stem, and leaves stem from the branches. 
 
 <center class="img-large">
+  <div class="mermaid-medium">
     ```mermaid
         flowchart TD
             A[root] --> B[node] & C[node]
             B --> D[node] & E[node]
             C --> F[node] & G[node]
     ```
+  </div>
 </center>
 
 Each node, regardless of type, is represented by a cryptographic hash which encodes data about its 
@@ -77,7 +79,8 @@ specific value, such as zero. Because all leaf nodes have the same hash value, t
 higher-level nodes also have the same hash value. A node whose hash is the default value for its 
 level is therefore considered to represent an _empty_ subtree. 
 
-<center class="img-large">
+<div class="center-container">
+  <div class="mermaid-medium">
     ```mermaid
     flowchart TD
         A[root] --> B["`**node A**`"
@@ -90,7 +93,8 @@ level is therefore considered to represent an _empty_ subtree.
         data] & G["`**node F**`":
         data]
     ```
-</center>
+  </div>
+</div>
 
 In the example above, the children of node A (leaves) contain null values, which means node A does 
 too. Node B, meanwhile, reflects that its children also contain values.
