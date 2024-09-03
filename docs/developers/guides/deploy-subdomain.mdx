@@ -104,14 +104,14 @@ Deploy the subdomain contracts on the Linea network:
     yarn hardhat deploy --network lineaMainnet
     ```
 
-1. Copy the `PublicResolver` contract address in the first line of the
-    `./deployments/lineaMainnet/PublicResolver.json` file. For example:
+1. Copy the `PublicResolver` contract address from the `./deployments/lineaMainnet/PublicResolver.json` 
+file:
 
     ```
     "address": "0x86c5AED9F27837074612288610fB98ccC1733126",
     ```
 
-    Copy this address because you'll need it in the next step.
+    Copy this address — you'll need it in the next step.
 
 The contracts to manage your subdomains on Linea have now been deployed. The next step is to link 
 these subdomains to your L1 domain on L1 for [CCIP resolution](../tooling/cross-chain/ccip-read-gateway.mdx) to work.
