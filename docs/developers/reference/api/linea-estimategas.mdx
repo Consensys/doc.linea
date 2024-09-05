@@ -83,12 +83,12 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 <Tabs>
   <TabItem value="cURL">
 
-   ```bash
-   curl https://rpc.linea.build \
-   -X POST \
-   -H "Content-Type: application/json" \
-   -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
-   ```
+  ```bash
+  curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
+  ```
 
   </TabItem>
   <TabItem value="ethers.js">
@@ -126,4 +126,20 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
     "priorityFeePerGas": "0x43a82a4"
   }
 }
-  ```
+```
+
+Where:
+- `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
+- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
+- `priorityFeePerGas` - Calculates the fee required to prioritize a transaction by considering factors such as the
+    compressed transaction size, layer 1 verification costs and capacity, gas price ratio between layer 1 and
+    layer 2, the transaction's gas usage, the minimum gas price on layer 2, and a minimum
+    margin (for error) for gas price estimation.
+
+:::note
+
+The result of the request returns hexadecimal equivalent integers of gas prices in wei. Convert the hexadecimal value into
+decimals to get the wei value. You can use any hexadecimal to decimal converter such as
+[RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
+
+:::

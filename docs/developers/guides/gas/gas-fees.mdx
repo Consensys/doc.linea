@@ -12,9 +12,19 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas). 
 However, as a layer 2 blockchain, Linea provides a more stable and cost-effective solution 
-for transaction fees.
+for transaction fees. The EIP-1559 model formula is:
+```
+units of gas used * (base fee + priority fee)
+```
 
-There are minor differences in the way Linea handles gas calculations when compared with Ethereum:
+Using parameters in the [Linea source code](https://github.com/Consensys/linea-monorepo/blob/a001342170768a22988a29b2dca8601199c6e205/sdk/src/clients/blockchain/gas/LineaGasProvider.ts), 
+the formula can be rendered as:
+```
+gasLimit * (maxBaseFeePerGas + maxPriorityFeePerGas)
+```
+
+However, there are minor differences in the way Linea handles gas calculations when compared with 
+Ethereum:
 
 - **The base fee uses a set price of 7 wei.** Blocks created by Linea use up to 24 million gas
     (less than 50% of the maximum Linea block size of 61 million gas), and the fee decreases by 
@@ -32,75 +42,113 @@ components:
 - **Layer 1 fee** - The L1 fee is the cost to publish your L2 transaction onto Ethereum and can 
     vary based on the blob fee market.
 
+To read more about how gas works on Linea, see [_Gas on Linea_](./gas-on-linea.mdx).
+
 ## Estimating transaction costs
 
-Use the [`linea_estimateGas`](../../reference/api/linea-estimategas.mdx) API method to estimate the 
-gas cost for sending a transaction. The method returns the recommended gas limit, the base fee per 
-gas, and the priority fee per gas.
+:::info
+The best method for estimating gas on Linea, `linea_estimateGas`, is currently unavailable, and will
+be activated soon. See our [reference page](../../reference/api/linea-estimategas.mdx) for more
+information. 
 
-The `linea_estimateGas` endpoint is currently unavailable. For more information, see 
-our [reference page](../../reference/api/linea-estimategas.mdx).
+Please get in touch via the [Linea Discord](https://discord.gg/linea) if you intend to use 
+`linea_estimateGas` once it is available.
+:::
 
-:::info important
-
-Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
+Linea supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
 [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
-[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory), but 
-they usually return a higher (and less accurate) estimate than `linea_estimateGas`. 
+[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
 
-We recommend you use `linea_estimateGas` where possible to maximize the accuracy of the gas 
-estimate.
+We suggest you first use `eth_gasPrice` to get the gas price, in wei, and then use this value in 
+`eth_estimateGas`. 
 
-:::
+`eth_estimateGas` returns a total quantity of gas estimated for the transaction, contrasting with
+`linea_estimateGas`, which also will return `baseFeePerGas` and `priorityFeePerGas` once available. 
+`eth_estimateGas` is therefore less precise and generally provides a higher estimate.
 
-The following example executes `linea_estimateGas` on the Linea testnet using the public RPC URL.
+## Step 1: `eth_gasPrice`
 
-:::tip
+### Parameters
 
-You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
-:::
+None.
 
-<Tabs className="my-tabs">
-  <TabItem value="curl" label="curl" default>
+### Returns
 
-```bash
-curl https://rpc.sepolia.linea.build \
+A hexadecimal equivalent of an integer representing the current gas price in wei.
+
+### Example
+
+#### Request
+
+<Tabs>
+  <TabItem value="cURL">
+    ```bash
+    curl https://rpc.sepolia.linea.build \
        -X POST \
        -H "Content-Type: application/json" \
-       -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0xFE3B557E8Fb62b89F4916B721be55cEb828dBd73","gasPrice":"0x100000000","gas":"0x21000"}],"id": 53}'
-```
-
-</TabItem>
-<TabItem value="result" label="Result">
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 53,
-  "result": {
-    "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
-  }
-}
-```
-
+       -d '{"jsonrpc": "2.0","method": "eth_gasPrice","params": [],"id": 1}'
+    ```
   </TabItem>
 </Tabs>
 
-The `linea_estimateGas` API calculates gas fees as follows:
+#### Response
 
-- `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
-- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
-- `priorityFeePerGas` - Calculates the fee required to prioritize a transaction by considering factors such as the
-    compressed transaction size, layer 1 verification costs and capacity, gas price ratio between layer 1 and
-    layer 2, the transaction's gas usage, the minimum gas price on layer 2, and a minimum
-    margin (for error) for gas price estimation.
+<Tabs>
+  <TabItem value="JSON">
+    ```json
+    {
+      "jsonrpc":"2.0",
+      "id":1,
+      "result":"0x12eb10e0c"
+    }
+    ```
+  </TabItem>
+</Tabs>
 
-:::note
+## Step 2: `eth_estimateGas`
 
-The result of the request returns hexadecimal equivalent integers of gas prices in wei. Convert the hexadecimal value into
-decimals to get the wei value. You can use any hexadecimal to decimal converter such as
-[RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
+### Parameters
 
-:::
+- `TRANSACTION CALL OBJECT` [required]
+  - `from`: [optional] 20 Bytes - The address the transaction is sent from.
+  - `to`: 20 Bytes - The address the transaction is directed to.
+  - `gas`: [optional] Hexadecimal value of the gas provided for the transaction execution. `eth_estimateGas` consumes zero gas, but this parameter may be needed by some executions.
+  - `gasPrice`: [optional] Hexadecimal value of the gas price used for each paid gas.
+  - `maxPriorityFeePerGas`: [optional] Maximum fee, in Wei, the sender is willing to pay per gas above the base fee. 
+  - `maxFeePerGas`: [optional] Maximum total fee (base fee + priority fee), in Wei, the sender is willing to pay per gas. 
+  - `value`: [optional] Hexadecimal value of the value sent with this transaction.
+  - `data`: [optional] Hash of the method signature and encoded parameters. See the [Ethereum contract ABI specification](https://docs.soliditylang.org/en/latest/abi-spec.html).
+  - `block number`: [required] A string representing a block number, or one of the string tags `latest`, `earliest`, `pending`, `safe`, or `finalized`. See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
+
+### Returns
+
+A hexadecimal of the estimate of the gas required for the given transaction.
+
+### Example
+
+#### Request
+
+<Tabs>
+  <TabItem value="cURL">
+    ```bash
+    curl https://rpc.sepolia.linea.build \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params": [{"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gasPrice": "0x12eb10e0c","value": "0x9184e72a"}],"id":1}'
+    ```
+  </TabItem>
+</Tabs>
+
+#### Response
+
+<Tabs>
+  <TabItem value="JSON">
+  ```json
+  {
+    "jsonrpc":"2.0",
+    "id":1,
+    "result":"0x5208"
+  }
+  ```
+  </TabItem>
+</Tabs>
