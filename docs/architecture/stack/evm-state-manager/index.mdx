@@ -6,21 +6,22 @@ image: /img/socialCards/evm-state-manager.jpg
 ---
 
 The state manager is the part of the execution client responsible for updating the state of the 
-network globally, and the state of every account individually. The state manager also audits the 
-"read" access made in the EVM.
+network globally, and the state of every account individually. The state manager also audits the
+"read" access made in the EVM, meaning it monitors, verifies, and logs all operations where the
+EVM needs to read data from the blockchain state.
 
 :::info
 
-"State", in this context, refers to the data stored on the blockchain at any given point in time. To
+"State" refers to the data stored on the blockchain at any given point in time. To
 update state is to update the record of the contents of every account — if the contents have 
 changed. 
 
 :::
 
-Its main task is to receive blocks that have been executed by the sequencer and use the trace data 
-from their execution to update the state of the network. The state manager uses a variation of the 
-Merkle tree called a sparse Merkle tree (SMT) to track, manage, and update storage slots representing 
-accounts more efficiently. 
+The main task of the state manager is to receive blocks that have been executed by the [sequencer](../sequencer/index.mdx) 
+and use the trace data from their execution to update the state of the network. The state manager 
+uses a variation of the Merkle tree called a sparse Merkle tree (SMT) to track, manage, and update 
+storage slots representing accounts more efficiently. 
 
 It then passes this updated network state information to the [prover](/architecture/stack/trace-expansion-proving/proving) 
 in the form of Merkle proofs for submission to Ethereum Mainnet (L1). 
@@ -29,10 +30,8 @@ Below, we'll explain the element of Linea's state management in greater detail.
 
 ## Merkle trees
 
-### Overview: how Merkle trees work
-
-The Merkle tree and its variations are commonly used across EVM chains for efficient storage and 
-retrieval of data about the state of every account on the blockchain. 
+The Merkle tree and its variations are commonly used across EVM chains to store and retrieve 
+data about the state of every account on the blockchain. 
 
 A Merkle tree is comprised of 'nodes' that branch off from each other. At the base is the 'root', 
 or state root, from which branches stem, and leaves stem from the branches. 
@@ -58,12 +57,9 @@ data which it encoded. If you have the hash of the root—the only node without 
 theoretically derive from it the data of any node in the entire tree. 
 
 As a layer 2 (L2) network, Linea is in the business of making transacting faster and more efficient.
-Viewed from this angle, the standard implementation of a Merkle tree, described above, can present
-problems. 
-
-A Merkle tree must be computed anew for every single block, accounting for any state changes 
-resulting from the transactions included in the block. This can quickly snowball to the point where 
-an incredible amount of computation is required to finalize a block. 
+Linea implements a sparse Merkle tree due to the inefficiencies of standard Merkle tree
+implementations. Standard Merkle trees require recomputation for every block, leading to excessive 
+computational demands.
 
 ### Sparse Merkle trees
 
@@ -74,10 +70,10 @@ A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf
 with data; instead, data is only stored in nodes where it's needed. It is a complete tree of fixed 
 depth, meaning that all branches of the tree have the same length—i.e. the same number of leaves. 
 
-At initialization, all leaf nodes are set to a default value, which is typically a hash of a 
-specific value, such as zero. Because all leaf nodes have the same hash value, the parent nodes and 
-higher-level nodes also have the same hash value. A node whose hash is the default value for its 
-level is therefore considered to represent an _empty_ subtree. 
+At initializatio—at the beginning of the chain's history—all leaf nodes are set to a default value, 
+which is typically a hash of a specific value, such as zero. Because all leaf nodes have the same 
+hash value, the parent nodes and higher-level nodes also have the same hash value. A node whose 
+hash is the default value for its level is therefore considered to represent an _empty_ subtree. 
 
 <div class="center-container">
   <div class="mermaid-medium">
@@ -106,17 +102,19 @@ correspond to _non-empty_ subtrees.
 
 ## Cryptographic accumulator
 
-A cryptographic accumulator is a type of cryptographic primitive encoding a collection of items into 
-very short strings and allowing read/write operations to be proven. Merkle trees and sparse Merkle 
-trees are elementary examples of accumulators but there are others with more powerful capabilities.
+In this context, we can consider Linea's sparse Merkle tree as a type of "cryptographic 
+accumulator". A cryptographic accumulator is a type of cryptographic primitive encoding a collection 
+of items into very short strings and allowing read/write operations to be proven. Merkle trees and 
+sparse Merkle trees are elementary examples of accumulators but there are others with more powerful 
+capabilities.
 
 To fit the EVM requirements, Linea's state manager uses an extended version of a sparse Merkle tree 
 that enables it to prove all CRUD (create, read, update, delete) operations for a key-addressed 
 database. As an outline, the construction uses a sparse Merkle tree to store the nodes of a 
 sorted doubly-linked list that encodes all the non-zero items of the state.
 
-The accumulator is used to track the account trie of Linea but also the storage of every contract 
-separately.
+Linea's state manager uses the accumulator to track the account trie of Linea but also the storage 
+of every contract separately.
 
 The leaves of the tree have the following structure: `prev || next || hKey || hVal`.
 
@@ -172,7 +170,7 @@ updated, and its value is zero.
 - **Read non-zero**: proving membership, triggered when a storage slot has been accessed, but not 
 updated and its value is non-zero.
 
-These operations are applied to two trees:
+These operations are applied to two trees; [world state](#world-state) and [account storage state](#account-storage-state).
 
 ### World state
 
