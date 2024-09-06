@@ -6,7 +6,20 @@ description: >-
 image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
-Transactions on Linea mainnet and testnet proceed through the following steps:
+:::note[A note on finality]
+
+Finality has two definitions on Linea:
+- Soft finality: The transaction is confirmed on Linea. This takes two seconds, i.e Linea's block 
+time. See [step 3](#step-3-transaction-data-sent-to-the-state-manager). For simplicity, Linea does 
+not reorg—remove competing versions of blockchain history in favor of a canonical one—when there 
+are reorgs on L1. 
+- Hard finality: The proof submitted to L1 has been verified, and two epochs have elapsed. The 
+typical time before hard finality is 8-32 hours, although the 8-hour minimum will be reduced to
+zero in a future release. See [step 6](#step-6-batch-finalization).
+
+:::
+
+Transactions on Linea proceed through the following steps:
 
 ## Step 1: Submission
 
@@ -16,10 +29,10 @@ Ethereum, where they become pending transactions.
 
 ## Step 2: Block building
 
-The Linea [sequencer](../stack/sequencer/index.mdx) is responsible for ordering, building, and executing blocks. 
-For each transaction added to the mempool, the sequencer checks its validity, rejecting 
-transactions as necessary. Transaction validity conditions are specific to Linea, and differ 
-slightly from those on other networks, including Ethereum.
+The Linea [sequencer](../stack/sequencer/index.mdx) is responsible for ordering, building, and 
+executing blocks. For each transaction added to the mempool, the sequencer checks its validity, 
+rejecting transactions as necessary. Transaction validity conditions are specific to Linea, and 
+differ slightly from those on other networks, including Ethereum.
 
 The sequencer orders transactions according to the priority fee paid for each, a method known as
 a priority gas auction. So, having passed the above checks, valid transactions are placed into
