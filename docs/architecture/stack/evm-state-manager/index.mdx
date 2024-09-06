@@ -70,7 +70,7 @@ A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf
 with data; instead, data is only stored in nodes where it's needed. It is a complete tree of fixed 
 depth, meaning that all branches of the tree have the same length—i.e. the same number of leaves. 
 
-At initializatio—at the beginning of the chain's history—all leaf nodes are set to a default value, 
+At initialization—the beginning of the chain's history—all leaf nodes are set to a default value, 
 which is typically a hash of a specific value, such as zero. Because all leaf nodes have the same 
 hash value, the parent nodes and higher-level nodes also have the same hash value. A node whose 
 hash is the default value for its level is therefore considered to represent an _empty_ subtree. 
