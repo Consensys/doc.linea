@@ -41,21 +41,21 @@ To create a Foundry project, run:
 forge init linea-tutorial
 ```
 
-And change into the directory:
+Running `forge init` sets up a sample contract, test, and script for `Counter.sol`.
+
+Now change into the directory:
 
 ```bash
 cd linea-tutorial
 ```
 
-Running `forge init` sets up a sample contract, test, and script for `Counter.sol`.
-
 ## Deploy a smart contract
 
-To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience
-rate limiting and not meant for production use.
+To deploy a smart contract we highly recommend using an Infura endpoint, as the public endpoint may experience
+rate limiting and is not meant for production use.
 
 [Sign up for an Infura account](https://docs.infura.io/api/getting-started) to get an API key that
-provides access the Linea endpoints. Assign the Linea endpoints you want to access, to your API key.
+provides access to the Linea endpoints. Assign the Linea endpoints you want to access to your API key.
 
 :::caution
 
