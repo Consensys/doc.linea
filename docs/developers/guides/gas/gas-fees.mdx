@@ -50,9 +50,8 @@ You can use `eth_gasPrice` or `eth_feeHistory` to get the gas price, in wei, and
 
 :::note
 `eth_estimateGas` returns a total quantity of gas estimated for the transaction, whereas
-`linea_estimateGas` will return `gasLimit`, `baseFeePerGas`, and `priorityFeePerGas` once available.
-This makes it more precise; the gas quantity returned  by`eth_estimateGas` is generally higher than
-the `gasLimit` returned by `linea_estimateGas`.
+`linea_estimateGas` will return `gasLimit`, `baseFeePerGas`, and `priorityFeePerGas` once available,
+providing a more precise estimate.
 :::
 
 ## `eth_gasPrice`
