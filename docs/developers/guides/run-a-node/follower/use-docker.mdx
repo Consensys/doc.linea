@@ -1,5 +1,5 @@
 ---
-description: Use Docker to run a Besu or Geth client as a Linea node.
+description: Use Docker to run a Besu or Geth client as a Linea follower node.
 image: /img/socialCards/use-docker-to-run-a-besu-or-geth-client-as-a-linea-node.jpg
 ---
 
@@ -9,7 +9,7 @@ import TabItem from "@theme/TabItem";
 # Use Docker
 
 You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
-a Linea node on the mainnet or testnets.
+a node on Linea Mainnet or Linea Sepolia.
 
 ## Prerequisites
 
@@ -25,8 +25,8 @@ The Besu Docker image does not run on Windows.
 
 ### Step 1. Download configuration files
 
-Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration
-files include the network genesis file, Docker Compose file and Besu configuration file.
+Download the configuration files for the relevant network (in ZIP format) and extract them. The 
+configuration files include the network genesis file, Docker Compose file and Besu configuration file.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -38,7 +38,7 @@ files include the network genesis file, Docker Compose file and Besu configurati
   config file named `config-snap-mainnet.toml` where enodes are specified. The file uses all enodes
   by default.
 
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+  See our [enodes page](../enodes.mdx) for a full list of available enodes.
   :::
   
   </TabItem>
@@ -92,7 +92,7 @@ Download the configuration files for the relevant network. Ensure that you downl
   You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Geth `docker-compose.yml`
   file uses all enodes by default. 
 
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+  See our [enodes page](../enodes.mdx) for a full list of available enodes.
   :::
   
   </TabItem>

@@ -472,6 +472,13 @@ const config = {
             to: "/developers/tooling/data-indexers/dipdup/overview",
             from: "/developers/tooling/data-indexers/dipdup",
           },
+          {
+            to: "/developers/run-a-node",
+            from: [
+              "/developers/run-a-node/use-docker",
+              "/developers/run-a-node/use-binary",
+            ],
+          },
         ],
       },
     ],

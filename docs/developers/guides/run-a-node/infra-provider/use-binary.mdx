@@ -1,0 +1,19 @@
+---
+description: Install the Linea Besu client and plugins to run a node as an infrastructure provider.
+---
+
+# Use a binary distribution
+
+You can install Linea Besu to run a Linea node
+
+The Besu installation depends on your intended purpose for the node:
+- If you are an infrastructure provider, you need to use [Linea Besu](https://github.com/Consensys/linea-besu-package). 
+Linea-specific JSON-RPC API methods such as `linea_estimateGas` will only work correctly if the node 
+they are called on has the appropriate plugins installed and configured. 
+- If you simply want to run a follower node and keep a local copy of the chain, you can use either
+standard Besu or Linea Besu.
+
+## Prerequisites 
+
+## Run the Linea Besu client
+

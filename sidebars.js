@@ -180,8 +180,30 @@ const sidebars = {
             id: "developers/guides/run-a-node/index",
           },
           items: [
-            "developers/guides/run-a-node/use-docker",
-            "developers/guides/run-a-node/use-binary",
+            {
+              type: "category",
+              label: "Infrastructure providers",
+              link: {
+                type: "doc",
+                id: "developers/guides/run-a-node/infra-provider/index",
+              },
+              items: [
+                "developers/guides/run-a-node/infra-provider/use-docker",
+                "developers/guides/run-a-node/infra-provider/use-binary",
+              ],
+            },
+            {
+              type: "category",
+              label: "Follower node",
+              link: {
+                type: "doc",
+                id: "developers/guides/run-a-node/follower/index",
+              },
+              items: [
+                "developers/guides/run-a-node/follower/use-docker",
+                "developers/guides/run-a-node/follower/use-binary",
+              ],
+            },
           ],
         },
         "developers/guides/linea-safe",

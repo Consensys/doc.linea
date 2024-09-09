@@ -6,16 +6,23 @@ image: /img/socialCards/install-the-besu-or-geth-client-to-run-a-linea-node.jpg
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-import VolumeCreation from "./volume-creation.mdx";
+import VolumeCreation from "../volume-creation.mdx";
 
 # Use a binary distribution
 
 You can install the Hyperledger Besu or Geth client to run a Linea node from a binary distribution.
 
+The Besu installation depends on your intended purpose for the node:
+- If you are an infrastructure provider, you need to use [Linea Besu](https://github.com/Consensys/linea-besu-package). 
+Linea-specific JSON-RPC API methods such as `linea_estimateGas` will only work correctly if the node 
+they are called on has the appropriate plugins installed and configured. 
+- If you simply want to run a follower node and keep a local copy of the chain, you can use either
+standard Besu or Linea Besu.
+
 ## Prerequisites
 
-Set up the required and recommended hardware and all the utilities. You can find the recommendations for the clients from the
-official documentation:
+Set up the required and recommended hardware and all the utilities. You can find the recommendations 
+for the clients from the official documentation:
 
 - [Hyperledger Besu](https://besu.hyperledger.org/public-networks/get-started/system-requirements)
 - [Geth](https://geth.ethereum.org/docs/getting-started/hardware-requirements).
@@ -42,7 +49,7 @@ Download the genesis file and Besu configuration file.
   You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Besu `config-mainnet.toml`
   file uses all enodes by default.
 
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+  See our [enodes page](../enodes.mdx) for a full list of available enodes.
 
   :::
   
@@ -201,7 +208,7 @@ Start the node using the following command:
   You can choose from a range of edge nodes (enodes) for Linea Mainnet. The above command uses 
   all enodes by default.
 
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+  See our [enodes page](../enodes.mdx) for a full list of available enodes.
   :::
   
   </TabItem>
