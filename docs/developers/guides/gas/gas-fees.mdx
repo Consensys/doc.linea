@@ -167,8 +167,8 @@ A hexadecimal equivalent of an integer representing the current gas price in wei
   - `to`: 20 Bytes - The address the transaction is directed to.
   - `gas`: [optional] Hexadecimal value of the gas provided for the transaction execution. `eth_estimateGas` consumes zero gas, but this parameter may be needed by some executions.
   - `gasPrice`: [optional] Hexadecimal value of the gas price used for each paid gas.
-  - `maxPriorityFeePerGas`: [optional] Maximum fee, in Wei, the sender is willing to pay per gas above the base fee. 
-  - `maxFeePerGas`: [optional] Maximum total fee (base fee + priority fee), in Wei, the sender is willing to pay per gas. 
+  - `maxPriorityFeePerGas`: [optional] Maximum fee, in wei, the sender is willing to pay per gas above the base fee. 
+  - `maxFeePerGas`: [optional] Maximum total fee (base fee + priority fee), in wei, the sender is willing to pay per gas. 
   - `value`: [optional] Hexadecimal value of the value sent with this transaction.
   - `data`: [optional] Hash of the method signature and encoded parameters. See the [Ethereum contract ABI specification](https://docs.soliditylang.org/en/latest/abi-spec.html).
   - `block number`: [required] A string representing a block number, or one of the string tags `latest`, `earliest`, `pending`, `safe`, or `finalized`. See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
