@@ -30,7 +30,7 @@ projects:
       - endpoint: evm+alchemy://xxxx-my-alchemy-api-key-xxxx
 ```
 
-See [a complete config example](https://docs.erpc.cloud/config/example) for inspiration.
+View [the complete config example](https://docs.erpc.cloud/config/example) for inspiration.
 
 2. Use the Docker image:
 
@@ -71,5 +71,3 @@ docker-compose up -d
 - password: `admin`
 
 6. Send more requests and watch the metrics being collected and visualized in Grafana.
-
-![eRPC Grafana Dashboard](https://docs.erpc.cloud/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmonitoring-example-erpc.2cb040a1.png&w=3840&q=75)

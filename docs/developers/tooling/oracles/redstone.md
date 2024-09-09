@@ -36,9 +36,9 @@ That's why, RedStone proposes a completely new modular design where data is firs
 
 Depending on the smart contract architecture and business demands, Builders can choose among 3 different models of data consumption:
 
-- [RedStone Core](https://docs.redstone.finance/docs/get-started/models/redstone-core), data is dynamically injected to user transactions achieving maximum gas efficiency and maintaining a great user experience as the whole process fits into a single transaction. Best for most use cases.
+- [RedStone Core](https://docs.redstone.finance/docs/introduction), data is dynamically injected to user transactions achieving maximum gas efficiency and maintaining a great user experience as the whole process fits into a single transaction. Best for most use cases.
 
-- [RedStone Classic](https://docs.redstone.finance/docs/get-started/models/redstone-classic), data is pushed into on-chain storage via relayer. Dedicated to protocols designed for the traditional Oracles model, that want to have full control of the data source and update conditions.
+- [RedStone Classic](https://docs.redstone.finance/docs/introduction), data is pushed into on-chain storage via relayer. Dedicated to protocols designed for the traditional Oracles model, that want to have full control of the data source and update conditions.
 
 - [RedStone X](https://docs.redstone.finance/docs/get-started/models/redstone-x), targeting the needs of the most advanced protocols such as Perpetuals, Options and Derivatives by eliminating the front-running risk providing price feeds at the very next block after users' interactions.
 
