@@ -1,19 +1,74 @@
 ---
+title: Use a binary distribution
 description: Install the Linea Besu client and plugins to run a node as an infrastructure provider.
 ---
 
-# Use a binary distribution
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-You can install Linea Besu to run a Linea node
+Linea Besu is an implementation of the Hyperledger Besu client that extends its functionality. 
 
-The Besu installation depends on your intended purpose for the node:
-- If you are an infrastructure provider, you need to use [Linea Besu](https://github.com/Consensys/linea-besu-package). 
-Linea-specific JSON-RPC API methods such as `linea_estimateGas` will only work correctly if the node 
-they are called on has the appropriate plugins installed and configured. 
-- If you simply want to run a follower node and keep a local copy of the chain, you can use either
-standard Besu or Linea Besu.
+We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact with the blockchain, rather than just [following it](../follower/index.mdx). This includes if you're an infrastructure provider that operates nodes for others to use. 
+
+Linea Besu enables you to use plugins adapted specifically for Linea:
+- [Linea Sequencer](https://github.com/Consensys/linea-sequencer)
+- [Shomei](https://github.com/Consensys/shomei)
+- [gnark](https://github.com/Consensys/gnark).
+
+These plugins are necessary, in different ways, to enable full functionality for the node. Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` plugin.
+
+The `linea-besu-package` comes with functionality that enables you to select "profiles" that correspond to the plugins. 
 
 ## Prerequisites 
 
+Download the latest version of `linea-besu-package` from its [releases page](https://github.com/Consensys/linea-besu-package/releases). Find the "Assets" subheading on the latest release and download the zip file named `linea-besu-package-<version>.tar.gz`. 
+
 ## Run the Linea Besu client
 
+### Step 1. Unzip the folder
+
+The `linea-besu-package-<version>.tar.gz` is a zip file; move it to the directory of your choice and unzip it. 
+
+### Step 2. Select a profile
+
+In the unzipped directory, find `profiles`. The `.toml` configuration files in this folder define the parameters for each possible profile you can select for your Linea Besu node. 
+
+Select one according to your preferences:
+- `follower`:
+- `sequencer`:
+- `shomei`:
+- `tracer`:
+
+### Step 3. Adjust configuration file
+
+In the `.toml` file you chose, set `genesis-file` to the path of your downloaded genesis file. Since we will be running the client from within the `linea-besu-package-<version>` directory, this does not need to be a full path:
+
+<Tabs className="my-tabs">
+    <TabItem value="Mainnet" label="Mainnet">
+    `genesis/genesis.mainnet.json`
+    </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    `genesis/genesis.testnet-sepolia.json`
+    </TabItem>
+</Tabs>
+
+### Step 4. Start the Linea Besu client
+
+In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, `profiles` etc. directories are. 
+
+Now run Linea Besu with the location of your configuration file:
+
+<Tabs className="my-tabs">
+    <TabItem value="Mainnet" label="Mainnet">
+    ```bash
+    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/sequencer-mainnet.toml
+    ```
+    </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    ```bash
+    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/sequencer-sepolia.toml
+    ```
+    </TabItem>
+</Tabs>
+
+The node will attempt to find peers to begin synchronizing and to download the world state. 
