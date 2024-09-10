@@ -3,6 +3,8 @@ title: Use Docker
 description: Use Docker to run the Besu client as an infrastructure provider.
 ---
 
+You can use Docker to run a Linea Besu node, and make use of "profiles"
+
 ## Prerequisites
 
 Download and install [Docker](https://www.docker.com/products/docker-desktop/).
@@ -15,4 +17,29 @@ The Besu Docker image does not run on Windows.
 
 :::
 
-### Step 1
+### Step 1. Download the relevant `docker-compose.yaml` file
+
+Find and download the `.yaml` file from the [`/docker` directory](https://github.com/Consensys/linea-besu-package/tree/main/docker) in the Linea Besu repository.
+
+The `.yaml` file you need depends on the Linea Besu profile you want for your node, which, in turn, depends on your use case:
+- `follower`:
+- `sequencer`:
+- `shomei`:
+- `tracer`:
+
+### Step 2. Update IP address
+
+In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your public IP address:
+
+```yaml
+--p2p-host=103.10.10.10
+```
+
+:::tip
+
+You can use [this page](https://www.whatismyip.com/) to find your public IP address.
+
+:::
+
+### Step 3. Start the Linea Besu node
+

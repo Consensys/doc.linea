@@ -1,4 +1,5 @@
 ---
+title: Infrastructure providers
 description: Run a Linea node with plugins to interact with the blockchain.
 ---
 
@@ -6,11 +7,22 @@ import DocCardList from "@theme/DocCardList";
 
 # Run a node: infrastructure providers
 
+Linea Besu is an implementation of the Hyperledger Besu client that extends its functionality. 
+
+We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact with the blockchain, rather than just [following it](../follower/index.mdx). 
+
+Linea Besu enables you to use plugins adapted specifically for Linea:
+- [Linea Sequencer](https://github.com/Consensys/linea-sequencer)
+- [Shomei](https://github.com/Consensys/shomei)
+- [gnark](https://github.com/Consensys/gnark).
+
+These plugins are necessary, in different ways, to enable full functionality for the node. Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` plugin.
+
 These guides are for infrastructure providers and operators who intend to run a Linea node. This is 
 relevant to you if:
 - You are responsible for operating nodes as a service for others to use
 - You want to use Linea with a personal, private RPC endpoint. 
 
-You can choose to download a binary distribution of the relevant files or use Docker:
+You can choose to download a binary distribution or use Docker:
 
 <DocCardList />

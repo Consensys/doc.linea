@@ -6,18 +6,7 @@ description: Install the Linea Besu client and plugins to run a node as an infra
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-Linea Besu is an implementation of the Hyperledger Besu client that extends its functionality. 
-
-We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact with the blockchain, rather than just [following it](../follower/index.mdx). This includes if you're an infrastructure provider that operates nodes for others to use. 
-
-Linea Besu enables you to use plugins adapted specifically for Linea:
-- [Linea Sequencer](https://github.com/Consensys/linea-sequencer)
-- [Shomei](https://github.com/Consensys/shomei)
-- [gnark](https://github.com/Consensys/gnark).
-
-These plugins are necessary, in different ways, to enable full functionality for the node. Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` plugin.
-
-The `linea-besu-package` comes with functionality that enables you to select "profiles" that correspond to the plugins. 
+The `linea-besu-package` comes with functionality that enables you to select "profiles" that correspond to Linea Besu plugins. 
 
 ## Prerequisites 
 
