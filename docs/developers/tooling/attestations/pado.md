@@ -44,7 +44,7 @@ Learn more and start using PADO!
 
 ## Learn More About PADO
 
-- [X (Twitter)](https://x.com/padolabs)
+- [X formerly (Twitter)](https://x.com/padolabs)
 - [Discord](https://discord.gg/YxJftNRxhh)
 - [Website](https://padolabs.org)
 - [Medium](https://medium.com/@padolabs)
