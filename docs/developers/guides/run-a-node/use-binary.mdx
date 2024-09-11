@@ -117,14 +117,12 @@ Linea Besu is an implementation of the Hyperledger Besu client that extends its 
 We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact 
 with the blockchain, rather than just following it. 
 
-Linea Besu enables you to use plugins adapted specifically for Linea:
-- [Linea Sequencer](https://github.com/Consensys/linea-sequencer)
-- [Shomei](https://github.com/Consensys/shomei)
-- [gnark](https://github.com/Consensys/gnark).
+Linea Besu enables you to use plugins adapted specifically for Linea, such as the [Linea Sequencer 
+plugin](https://github.com/Consensys/linea-sequencer) and [Shomei](https://github.com/Consensys/shomei).
 
 These plugins are necessary, in different ways, to enable full functionality for the node. 
 Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` 
-plugin.
+plugin. You can pick a plugin by selecting a profile in [step 2](#step-2-select-a-profile).
 
 This guide is for infrastructure providers and operators who intend to run a Linea node. This is 
 relevant to you if:
@@ -142,11 +140,13 @@ In the unzipped directory, find `profiles`. The `.toml` configuration files in t
 the parameters for each possible profile you can select for your Linea Besu node. 
 
 Select one according to your preferences:
-- `follower`:
-- `sequencer`:
-- `shomei`:
-- `tracer`:
-
+- `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+- `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
+`linea_estimateGas` and the `finalized` block parameter tag.
+- `sequencer-mainnet`: Creates a sequencer node on Linea Mainnet.
+- `shomei-mainnet`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
+- `tracer-mainnet`: Creates a tracer node on the Linea Mainnet. 
+ 
 ### Step 3. Adjust configuration file
 
 In the `.toml` file you chose, set `genesis-file` to the path of your downloaded genesis file. Since 
