@@ -245,15 +245,6 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Automation",
-          link: {
-            type: "doc",
-            id: "developers/tooling/automation/index",
-          },
-          items: ["developers/tooling/automation/hal-stream"],
-        },
-        {
-          type: "category",
           label: "Cloud infrastructure",
           link: {
             type: "doc",
@@ -298,7 +289,6 @@ const sidebars = {
             "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
             "developers/tooling/data-indexers/covalent",
-            "developers/tooling/data-indexers/decommas",
             {
               type: "category",
               label: "DipDup",
