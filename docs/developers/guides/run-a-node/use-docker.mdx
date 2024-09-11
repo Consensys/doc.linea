@@ -8,14 +8,14 @@ import TabItem from "@theme/TabItem";
 
 # Use Docker
 
-You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/) or [Geth](https://geth.ethereum.org/) as
-a Linea node on the mainnet or testnets.
+You can use Docker to run [Hyperledger Besu](https://besu.hyperledger.org/), [Linea Besu](https://github.com/Consensys/linea-besu-package/tree/main),
+ or [Geth](https://geth.ethereum.org/) as a Linea node on Mainnet or Linea Sepolia.
 
 ## Prerequisites
 
 Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
-## Run a Besu node
+## Run a standard Besu node
 
 :::warning Important
 
@@ -75,6 +75,55 @@ Refer to the [Besu troubleshooting information](https://besu.hyperledger.org/pub
 for help if you experience peering issues.   
 
 :::
+
+## Run a Linea Besu node
+
+### Step 1. Download the relevant `docker-compose.yaml` file
+
+Access the [`/docker` directory](https://github.com/Consensys/linea-besu-package/tree/main/docker) 
+in the Linea Besu repository. There are several `.yaml` files here corresponding to Besu profiles. 
+Each profile enables you to run a node with different Linea Besu plugin configurations depending on
+your use case.
+
+Download the appropriate `.yaml` file for your use case:
+- `basic`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+- `advanced`: Creates an advanced node on Linea Mainnet with plugins that enable support for
+`linea_estimateGas` and the `finalized` block parameter tag.
+- `sequencer`: Creates a sequencer node on Linea Mainnet.
+- `shomei`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
+- `tracer`: Creates a tracer node on Linea Mainnet. 
+
+### Step 2. Update IP address
+
+In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your public IP address:
+
+```yaml
+--p2p-host=103.10.10.10
+```
+
+:::tip
+
+You can use [this page](https://www.whatismyip.com/) to find your public IP address.
+
+:::
+
+### Step 3. Start the Linea Besu node
+
+In a terminal, navigate to your `.yaml` file's directory. Then start the node by running 
+`docker compose`: 
+
+```bash
+docker compose -f ./your-file-path/docker-compose-basic-mainnet.yaml up
+```
+
+Alternatively, you can run a node without downloading a `.yaml` file with a `docker run` command. 
+For example:
+
+```bash
+docker run -e BESU_PROFILE=basic-mainnet consensys/linea-besu-package:latest
+```
+
+Adjust the `BESU-PROFILE` to match one of the profiles listed in step 1. 
 
 ## Run a Geth node
 
