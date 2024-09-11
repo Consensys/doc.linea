@@ -3,16 +3,16 @@ title: Hardhat
 image: /img/socialCards/hardhat.jpg
 ---
 
-To verify your Hardhat contracts, you can use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on Lineascan.
+To verify your Hardhat contracts, use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on Lineascan.
 
 :::note
 
-
-Note that this is included as part of the `hardhat-toolbox` plugin.
+This is included as part of the `hardhat-toolbox` plugin.
 
 :::
 
-These steps assume you stored your secret keys in a `.env` file, which you can read more about [here](../deploy-smart-contract/hardhat).
+These steps assume you stored your secret keys in a `.env` file. which you can read more about
+[in the Hardhat deployment instructions](../deploy-smart-contract/hardhat.mdx#deploy-the-contract).
 
 ## Download the plugin
 
@@ -20,9 +20,8 @@ If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use `@no
 
 ## Add your Lineascan API Key
 
-We'll be using a `.env` file to store our sensitive information. You can find instructions on how to set up the file [here](../deploy-smart-contract/hardhat).
-
-Next, you'll need to get a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
+Obtain a Lineascan (Linea instance of Etherscan) key by creating an account at
+[https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
 
 ```
 LINEASCAN_API_KEY=YOUR_API_KEY_HERE
@@ -39,7 +38,8 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 :::note
 
 
-These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](/developers/quickstart/info-contracts#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you
+would like to verify using Blockscout, please use the [Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
 
 :::
 

@@ -17,8 +17,8 @@ Cookbook's no-code deploy and using Cookbook with Remix, Hardhat and Foundry.
 
 Before you begin, ensure you:
 
-1. [Set up your wallet](/users/move-funds/set-up-your-wallet)
-2. [Fund your wallet with Linea ETH](/users/move-funds/fund) on either the testnet or mainnet
+1. [Set up your wallet](../../../users/move-funds/set-up-your-wallet.mdx)
+2. [Fund your wallet with Linea ETH](../../../users/move-funds/fund.mdx) on either the testnet or mainnet
 
 ## Search Cookbook's smart contract registry
 

@@ -73,8 +73,8 @@ includes an example of both the on- and off-chain code necessary to integrate wi
 
 ### Examples
 
-See [here](https://github.com/pyth-network/pyth-crosschain/tree/main/target_chains/ethereum/examples)
-for example applications.
+View [the example applications](https://github.com/pyth-network/pyth-examples/tree/main/price_feeds)
+in the Pyth repository.
 
 ### Networks
 
