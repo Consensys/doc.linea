@@ -9,7 +9,9 @@ import DocCardList from "@theme/DocCardList";
 
 There are no financial incentives for running a Linea node, but it does allow you to:
 
-- Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an RPC provider.
+- Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an 
+RPC provider. Note that using [Linea-specific API methods](/developers/reference/api) such as 
+`linea_estimateGas` requires Besu and may also need specific plugins to be enabled. 
 - Have a local copy of the Linea blockchain. This view of the state is "trusted" until the transaction, or the
     block that transaction is in, has been finalized on L1.
 
