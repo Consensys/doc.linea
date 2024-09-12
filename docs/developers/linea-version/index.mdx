@@ -10,6 +10,52 @@ import zkEVM2 from "!!raw-loader!/files/testnet/2023-06-13-release/zkEVM2.abi";
 import L2MessageService from "!!raw-loader!/files/testnet/2023-06-13-release/L2MessageService.abi";
 import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL1.abi";
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Alpha v3.5.2
+
+### Transaction exclusion API
+
+**Mainnet: September 23**
+
+**Linea Sepolia: September 16**
+
+Introduces an API that can be used to check whether a transaction was rejected because it exceeded
+the sequencer's trace limits.
+
+## Alpha v3.5.1
+
+### Linea native bridge UI v2 
+
+**Mainnet: September 18**
+
+**Linea Sepolia: September 16**
+
+Upgrades the [Linea bridge](https://bridge.linea.build/) UI.  
+
+## Alpha v3.5.0
+
+### `finalized` tag
+
+**Mainnet: September 16**
+
+**Linea Sepolia: Already available**
+
+Adds support for the `finalized` tag to the `blockParameters` strings that can be used in various
+JSON-RPC API calls. The tag enables you to confirm whether or not a block has been finalized on L1.
+See our [guide](../guides/finalized-block.mdx) for more.
+
+## Alpha v3.4.1
+
+### Reactivate `linea_estimateGas`
+
+**Mainnet: September 16**
+
+**Linea Sepolia: September 9**
+
+Reactivates [`linea_estimateGas`](../reference/api/linea-estimategas.mdx), disabling compatibility 
+mode. 
 
 ## Alpha v3.4
 

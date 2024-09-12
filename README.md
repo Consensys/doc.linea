@@ -37,7 +37,7 @@ In fact, it's part of the PR process.
 ### Contribute to community tutorials
 
 If you've created fleshed-out guides and tutorials, or intend to, we'd love to feature your content
-in our [community tutorials section](developers/guides/community).
+in our [community tutorials section](./docs/developers/guides/community/index.mdx).
 
 First, create an issue describing the content you want to see added or intend to add. If you're
 representing an organization (such as a dapp), please use the ecosystem contribution issue form.
