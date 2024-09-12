@@ -435,6 +435,7 @@ const sidebars = {
           items: [
             "developers/reference/api/eth-sendrawtransaction",
             "developers/reference/api/linea-estimategas",
+            "developers/reference/api/linea-gettransactionexclusionstatusv1",
             "developers/reference/api/linea-getproof",
           ],
         },
