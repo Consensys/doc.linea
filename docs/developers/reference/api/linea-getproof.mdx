@@ -16,21 +16,17 @@ The supplied block parameter must be an L2 block that has been finalized on L1.
 
 In the [example response](#response) the account exists but the slot does not.
 
-:::info important
-
-Linea currently does not support the block parameter `finalized`, meaning that to get the current
-finalised block on the L1, users must [retrieve the value from the `currentL2BlockNumber`](../../guides/finalized-block.mdx)
-variable in the [LineaRollup L1 contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract).
-
-:::
-
 ## Parameters
 
 - `address`: A string representing the address (20 bytes) for which the proof is requested.
 - `storageKeys`: An array of 32-byte storage keys to be proofed and included.
-- `blockParameter`: A hexadecimal block number, or one of the string tags `latest`, `earliest`, or
-      `pending`. See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
-      You can [query the L1 rollup contract](../../guides/finalized-block.mdx) to retrieve the current finalized block.
+- `blockParameter`: A hexadecimal block number, or one of the string tags  `latest`, `earliest`,
+      `pending`, or `finalized`.
+     
+      :::note
+      A `finalized` block is a block on an L2 blockchain (Linea) that has been confirmed and validated by
+      the L1 blockchain (Ethereum).
+      :::
 
 ## Returns
 
