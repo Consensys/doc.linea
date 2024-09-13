@@ -84,13 +84,26 @@ in the Linea Besu repository. There are several `.yaml` files here corresponding
 Each profile enables you to run a node with different Linea Besu plugin configurations depending on
 your use case.
 
-Download the appropriate `.yaml` file for your use case:
-- `basic`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
-- `advanced`: Creates an advanced node on Linea Mainnet with plugins that enable support for
-`linea_estimateGas` and the `finalized` block parameter tag.
-- `sequencer`: Creates a sequencer node on Linea Mainnet.
-- `shomei`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
-- `tracer`: Creates a tracer node on Linea Mainnet. 
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    Download the appropriate `.yaml` file for your use case:
+    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support 
+    for `linea_estimateGas` and the `finalized` block parameter tag.
+    - `sequencer-mainnet`: Creates a sequencer node on Linea Mainnet.
+    - `shomei-mainnet`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
+    - `tracer-mainnet`: Creates a tracer node on Linea Mainnet. 
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    Download the appropriate `.yaml` file for your use case:
+    - `basic-testnet`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-testnet`: Creates an advanced node on Linea Sepolia with plugins that enable support 
+    for `linea_estimateGas` and the `finalized` block parameter tag.
+    - `sequencer-testnet`: Creates a sequencer node on Linea Sepolia.
+    - `shomei-testnet`: Creates a Shomei node on Linea Sepolia, enabling full state management support.
+    - `tracer-testnet`: Creates a tracer node on Linea Sepolia. 
+  </TabItem>
+</Tabs>
 
 ### Step 2. Update IP address
 
@@ -108,21 +121,42 @@ You can use [this page](https://www.whatismyip.com/) to find your public IP addr
 
 ### Step 3. Start the Linea Besu node
 
-In a terminal, navigate to your `.yaml` file's directory. Then start the node by running 
-`docker compose`: 
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    In a terminal, navigate to your `.yaml` file's directory. Then start the node by running 
+    `docker compose`: 
 
-```bash
-docker compose -f ./your-file-path/docker-compose-basic-mainnet.yaml up
-```
+    ```bash
+    docker compose -f ./your-file-path/docker-compose-advanced-mainnet.yaml up
+    ```
 
-Alternatively, you can run a node without downloading a `.yaml` file with a `docker run` command. 
-For example:
+    Alternatively, you can run a node without downloading a `.yaml` file with a `docker run` command. 
+    For example:
 
-```bash
-docker run -e BESU_PROFILE=basic-mainnet consensys/linea-besu-package:latest
-```
+    ```bash
+    docker run -e BESU_PROFILE=advanced-mainnet consensys/linea-besu-package:latest
+    ```
 
-Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
+    Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+      In a terminal, navigate to your `.yaml` file's directory. Then start the node by running 
+      `docker compose`: 
+
+      ```bash
+      docker compose -f ./your-file-path/docker-compose-advanced-testnet.yaml up
+      ```
+
+      Alternatively, you can run a node without downloading a `.yaml` file with a `docker run` command. 
+      For example:
+
+      ```bash
+      docker run -e BESU_PROFILE=advanced-testnet consensys/linea-besu-package:latest
+      ```
+
+      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
+    </TabItem>
+</Tabs>
 
 ## Run a Geth node
 

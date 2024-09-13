@@ -64,7 +64,7 @@ Download the genesis file and Besu configuration file.
 
 </Tabs>
 
-### Step 3. Define disk space volume (optional) {#disk-space-besu}
+### Step 3. Define disk space volume (optional) \{#disk-space-besu}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
 
@@ -140,13 +140,26 @@ and unzip it.
 In the unzipped directory, find `profiles`. The `.toml` configuration files in this folder define 
 the parameters for each possible profile you can select for your Linea Besu node. 
 
-Select one according to your preferences:
-- `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
-- `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
-`linea_estimateGas` and the `finalized` block parameter tag.
-- `sequencer-mainnet`: Creates a sequencer node on Linea Mainnet.
-- `shomei-mainnet`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
-- `tracer-mainnet`: Creates a tracer node on the Linea Mainnet. 
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    Select one according to your preferences:
+    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+    - `sequencer-mainnet`: Creates a sequencer node on Linea Mainnet.
+    - `shomei-mainnet`: Creates a Shomei node on Linea Mainnet, enabling full state management support.
+    - `tracer-mainnet`: Creates a tracer node on the Linea Mainnet. 
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    Select one according to your preferences:
+    - `basic-testnet`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-testnet`: Creates an advanced node on Linea Sepolia with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+    - `sequencer-testnet`: Creates a sequencer node on Linea Sepolia.
+    - `shomei-testnet`: Creates a Shomei node on Linea Sepolia, enabling full state management support.
+    - `tracer-testnet`: Creates a tracer node on the Linea Sepolia. 
+  </TabItem>
+</Tabs>
  
 ### Step 3. Adjust configuration file
 
@@ -154,8 +167,8 @@ In the `.toml` file you chose, set `genesis-file` to the path of your downloaded
 we will be running the client from within the `linea-besu-package-<version>` directory, this does 
 not need to be a full path:
 
-<Tabs className="my-tabs">
-    <TabItem value="Mainnet" label="Mainnet">
+<Tabs groupId="networks" className="my-tabs">
+    <TabItem value="mainnet" label="Mainnet">
     `genesis/genesis.mainnet.json`
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -170,15 +183,15 @@ In a terminal, navigate to the `linea-besu-package-<version>` directory, where t
 
 Now run Linea Besu with the location of your configuration file:
 
-<Tabs className="my-tabs">
-    <TabItem value="Mainnet" label="Mainnet">
+<Tabs groupId="networks" className="my-tabs">
+    <TabItem value="mainnet" label="Mainnet">
     ```bash
-    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/sequencer-mainnet.toml
+    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/advanced-mainnet.toml
     ```
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
     ```bash
-    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/sequencer-sepolia.toml
+    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/advanced-testnet.toml
     ```
     </TabItem>
 </Tabs>
@@ -216,7 +229,7 @@ Download the genesis file for the relevant network.
   </TabItem>
 </Tabs>
 
-### Step 3. Define disk space volume (optional) {#disk-space-geth}
+### Step 3. Define disk space volume (optional) \{#disk-space-geth}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
 - Full nodes: 170GB, growing ~2.6GB per day.
