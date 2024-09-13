@@ -378,7 +378,7 @@ const sidebars = {
               items: [
                 "developers/tooling/permanent-data/irys/overview",
                 "developers/tooling/permanent-data/irys/irys-quickstart",
-                "developers/tooling/permanent-data/irys/irys-query-package",
+                "developers/tooling/permanent-data/irys/irys-querying",
               ],
             },
           ],

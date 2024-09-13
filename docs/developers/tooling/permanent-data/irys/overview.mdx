@@ -1,30 +1,15 @@
 ---
 title: Overview
 image: /img/socialCards/overview.jpg
-description: Using Irys' permanent data with Linea.
+description: Using Irys's onchain data with Linea.
 ---
 
-[Irys](https://docs.irys.xyz/) is a provenance layer. Data on Irys is permanent, precise, and unconstrained.
+[Irys](https://docs.irys.xyz/) is a datachain, a blockchain optimized for data storage. Irys is built to store, retrieve, and process datasets of any size with minimal latency.
 
-- **Permanent:** Data stored on Irys is censorship-resistant and immutable. There's
-    no counterparty risk of data being removed.
+Irys makes it easy to store your data onchain by supporting payments with ETH on Linea. With a single upfront payment, you can upload data, with guaranteed retrieval for a duration you set at the upload time — from a few days to forever
 
-- **Precise:** Data is timestamped with a high-precision timestamp, providing
-    a reliable sequence of events.
+Data on Irys is fully verifiable; you can inspect the blockchain at any time and verify what data was posted, when, and where it's located in Irys’s data ledgers.
 
-- **Unconstrained:** There are no limits on file upload sizes. Users can always read, write, and
-    discover data at scale.
-
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/docs/build-on-linea/tooling/permanent-data/irys/irys-provenance-layer.gif"
-    />
-  </div>
-</div>
-
-You can imagine Irys as an assembly line. Data enters on one side, it's stamped with a
-timestamp, attribution, and authorship details before being stored permanently as data with strong provenance.
 
 ## Use Irys with Linea
 
@@ -41,17 +26,15 @@ You can use [ETH on Linea](https://arweave-tools.irys.xyz/overview/supported-tok
 
 ## Paying for uploads
 
-Irys has a pay-once-store-forever payment model based on the number of bytes you upload. For the exact
-cost to upload, use their [payment calculator](https://arweave-tools.irys.xyz/overview/cost-to-upload).
+Irys has a pay-once-store-forever payment model based on the number of bytes you upload. 
 
 ## Free uploads
 
-Uploads of less then 100Kib are free on Irys' mainnet and devnet.
+Uploads of less then 100Kib are free on Irys.
 
 ## Receipts
 
-Each upload to Irys is given a cryptographically signed receipt that can be used by anyone to trustlessly
-verify the data's provenance.
+Each upload to Irys is given a cryptographically signed receipt that can be trustlessly verified. 
 
 Receipts are a JSON object with the following format:
 
@@ -77,7 +60,7 @@ Receipts are a JSON object with the following format:
 
 ## Paying for users' uploads
 
-Use [balance approvals](https://arweave-tools.irys.xyz/irys-sdk/balance-approvals) to pay for
+Use [balance approvals](https://docs.irys.xyz/build/d/features/balance-approvals) to pay for
 your users' uploads and build a Web2-style UX that saves users from having to convert fiat or own tokens.
 
 With balance approvals:
@@ -88,8 +71,8 @@ With balance approvals:
 ### Create an approval
 
 ```js
-const receipt = await irys.approval.createApproval({
-  amount: irys.utils.toAtomic(1), // Amount in atomic units
+const receipt = await irysUploader.approval.createApproval({
+  amount: irysUploader.utils.toAtomic(1), // Amount in atomic units
   approvedAddress: "<address>",
   expiresInSeconds: 100, // Expires in 100 seconds. Delete to remove expiration.
 });
@@ -98,7 +81,7 @@ const receipt = await irys.approval.createApproval({
 ### Upload using an approval
 
 ```js
-const receipt = await irys.upload("GM World", {
+const receipt = await irysUploader.upload("GM World", {
   upload: { paidBy: "<address>" },
 });
 ```
@@ -111,10 +94,10 @@ Irys supports attaching up to 20 metadata tags to each transaction. Tags are ind
 // Your file
 const fileToUpload = "./myNFT.png";
 
-const tags = [{ name: "application-id", value: "NFTs To The Moon" }];
+const tags = [{ name: "application-id", value: "foo" }];
 
 try {
-  const response = await irys.uploadFile(fileToUpload, { tags });
+  const response = await irysUploader.uploadFile(fileToUpload, { tags });
   console.log(`File uploaded ==> https://gateway.irys.xyz/${response.id}`);
 } catch (e) {
   console.log("Error uploading file ", e);
@@ -123,4 +106,4 @@ try {
 
 ## Querying
 
-Transaction metadata can be queried using the [Irys query package](../../../tooling/permanent-data/irys/irys-query-package.mdx).
+Transaction metadata can be queried using the [Irys's GraphQL](../../../tooling/permanent-data/irys/irys-querying.mdx).

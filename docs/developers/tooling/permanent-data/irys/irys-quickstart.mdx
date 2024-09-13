@@ -4,8 +4,7 @@ image: /img/socialCards/irys-quickstart.jpg
 description: Creating permanent data using Irys SDK.
 ---
 
-All uploads to Irys' mainnet are stored permanently onchain. They are guaranteed to be retrievable now and
-hundreds of years into the future.
+Irys makes it easy to store your data onchain by supporting payments with ETH on Linea. With a single upfront payment, you can upload data, with guaranteed retrieval for a duration you set at the upload time — from a few days to forever
 
 - To upload data, use the Irys [SDK](#irys-sdk) or [CLI](#irys-cli).
 - To [download data](#download-data), use the Irys gateway.
@@ -17,44 +16,50 @@ hundreds of years into the future.
 Install using npm:
 
 ```bash
-npm install @irys/sdk
+npm install @irys/upload @irys/upload-ethereum
 ```
 
 or yarn:
 
 ```bash
-yarn add @irys/sdk
+yarn add @irys/upload @irys/upload-ethereum
 ```
 
-### Import from the SDK
+### Import 
 
 ```ts
-import Irys from "@irys/sdk";
+import { Uploader } from "@irys/upload";
+import { LineaEth } from "@irys/upload-ethereum";
 ```
 
 ### Connect to Irys
-
-Irys has two networks:
-
-- `mainnet`: Uploads are permanent. Pay using [Linea Mainnet ETH](https://docs.linea.build/use-mainnet/fund).
-- `devnet`: Uploads are kept for ~60 days. Pay using [Linea Sepolia ETH](https://docs.linea.build/use-mainnet/fund).
 
 #### On the server
 
 When connecting to Irys on the server, provide a private key linked to a wallet funded with `linea-eth`. This wallet will be used to pay for uploads and to sign transactions.
 
-```js
-const getIrys = async () => {
-  // One of https://docs.linea.build/build-on-linea/tooling/node-providers#public-rpc-endpoints
-  const providerUrl = "https://rpc.sepolia.linea.build";
+Using ETH on Linea
 
-  const irys = new Irys({
-    network: "devnet", // "mainnet" or "devnet"
-    token: "linea-eth",
-    key: process.env.PRIVATE_KEY, // Linea private key
-    config: { providerUrl }, // Optional provider URL, only required when using Devnet
-  });
-  return irys;
+```ts
+const getIrysUploader = async () => {
+  const irysUploader = await Uploader(LineaEth).withWallet(process.env.PRIVATE_KEY);
+  return irysUploader;
+};
+```
+
+or the Irys devnet using ETH Sepolia on Linea
+
+> Uploads to the Irys devnet are purged after 60 days
+
+```ts
+const getIrysUploader = async () => {
+  const providerUrl = "https://rpc.sepolia.linea.build";
+  const irysUploader = await Uploader(Ethereum)
+    .withWallet(process.env.PRIVATE_KEY)
+    .withRpc(rpcURL)
+    .devnet();
+ 
+  return irysUploader;
 };
 ```
 
@@ -67,55 +72,42 @@ Irys supports:
 - Ethers v5
 - Ethers v6
 - Viem v2
-
-Additionally, these can be [used with extra setup code](https://arweave-tools.irys.xyz/irys-sdk/irys-in-the-browser):
-
 - Privy
-- Othent
+
+> The following code example is for Ethers v6. For other providers, [see Irys's docs](https://docs.irys.xyz/build/d/irys-in-the-browser).
 
 ```js
-const getWebIrys = async () => {
-  // Ethers5 provider
-  await window.ethereum.enable();
-  const provider = new providers.Web3Provider(window.ethereum);
-
-  // Only required when connecting to devnet
-  // One of https://docs.linea.build/build-on-linea/tooling/node-providers#public-rpc-endpoints
-  const rpcUrl = "https://rpc.sepolia.linea.build";
-
-  // Provider type
-  const name = "ethersv5"; // "ethersv5" || "ethersv6" || "viemv2"
-
-  const wallet = { rpcUrl, name, provider };
-  const webIrys = new WebIrys({
-    network: "devnet", // "mainnet" || "devnet"
-    token: "linea-eth",
-    wallet,
-  });
-  await webIrys.ready();
-
-  return webIrys;
+import { WebUploader } from "@irys/web-upload";
+import { WebLineaEth } from "@irys/web-upload-ethereum";
+import { EthersV6Adapter } from "@irys/web-upload-ethereum-ethers-v6";
+import { ethers } from "ethers";
+ 
+const getIrysUploader = async () => {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const irysUploader = await WebUploader(WebLineaEth).withAdapter(EthersV6Adapter(provider));
+ 
+  return irysUploader;
 };
 ```
 
 ### Fund your account
 
 When you use Irys to upload data, you pay once and the data is guaranteed to be retrievable forever.
-The [fee is based on the number of bytes uploaded](https://arweave-tools.irys.xyz/overview/cost-to-upload).
+The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/build/d/sdk/payment/getPrice).
 
-When calling `irys.fund()` pass a value in atomic units. Use the utility functions `irys.utils.toAtomic()`
-and `irys.utils.fromAtomic()` to convert between atomic and standard units.
+When calling `fund()` pass a value in atomic units. Use the utility functions `utils.toAtomic()`
+and `utils.fromAtomic()` to convert between atomic and standard units.
 
 You can fund up-front, allowing you send over enough tokens to cover all of a project’s uploads.
 
 ```js
 try {
-  const irys = await getIrys();
+  const irysUploader = await getIrysUploader();
 
-  const fundTx = await irys.fund(irys.utils.toAtomic(0.05));
+  const fundTx = await irysUploader.fund(irysUploader.utils.toAtomic(0.05));
   console.log(
-    `Successfully funded ${irys.utils.fromAtomic(fundTx.quantity)} ${
-      irys.token
+    `Successfully funded ${irysUploader.utils.fromAtomic(fundTx.quantity)} ${
+      irysUploader.token
     }`,
   );
 } catch (e) {
@@ -127,14 +119,14 @@ Or lazy-fund and fund per upload:
 
 ```js
 try {
-  const irys = await getIrys();
+  const irysUploader = await getIrysUploader();
 
   const pathToFile = "./myNFT.png";
   const { size } = await fs.promises.stat(pathToFile);
-  const price = await irys.getPrice(size);
-  await irys.fund(price);
+  const price = await irysUploader.getPrice(size);
+  await irysUploader.fund(price);
 
-  const { id } = await irys.uploadFile(pathToFile);
+  const { id } = await irysUploader.uploadFile(pathToFile);
   console.log(`${pathToFile} --> Uploaded to https://gateway.irys.xyz/${id}`);
 } catch (e) {
   console.log("Error funding node ", e);
@@ -145,7 +137,7 @@ try {
 
 ```js
 const uploadData = async () => {
-  const irys = await getIrys();
+  const irys = await getIrysUploader();
   const dataToUpload = "GM world.";
   try {
     const tags = [{ name: "Content-Type", value: "text/plain" }];
@@ -162,7 +154,7 @@ const uploadData = async () => {
 
 ```js
 const uploadFile = async () => {
-  const irys = await getIrys();
+  const irys = await getIrysUploader();
   const fileToUpload = "./myImage.png";
 
   const tags = [{ name: "application-id", value: "MyNFTDrop" }];
@@ -184,12 +176,12 @@ You can upload a group of files as a single transaction from both the server and
 
 ```js
 const uploadFolder = async () => {
-  const irys = await getIrys();
+  const irysUploader = await getIrysUploader();
 
   // Upload an entire folder
   const folderToUpload = "./my-images/"; // Path to folder
   try {
-    const receipt = await irys.uploadFolder("./" + folderToUpload, {
+    const receipt = await irysUploader.uploadFolder("./" + folderToUpload, {
       indexFile: "", // Optional index file (file the user will load when accessing the manifest)
       batchSize: 50, // Number of items to upload at once
       keepDeleted: false, // Whether to keep now deleted items from previous uploads
@@ -205,7 +197,7 @@ const uploadFolder = async () => {
 #### In the browser
 
 ```js
-const webIrys = await getWebIrys();
+const irysUploader = await getIrysUploder();
 
 const files: File[] = [];
 const tags: { name: string, value: string }[][] = [];
@@ -216,54 +208,47 @@ const taggedFiles = files.map((f: TaggedFile, i: number) => {
   return f;
 });
 
-const response = await webIrys.uploadFolder(taggedFiles);
+const response = await irysUploader.uploadFolder(taggedFiles);
 ```
 
 ## Irys CLI
 
 ### Install the CLI
 
-Install the CLI globally using the `-g` flag. Depending on your setup, you may or may not need to use sudo.
+Install using npm with the `-g` global flag.
 
-```console
-npm i -g @irys/sdk
-sudo npm i -g @irys/sdk
+```bash
+npm i -g @irys/cli
+```
+
+Depending on your setup, you may need to use the sudo command.
+
+```bash
+sudo npm i -g @irys/cli
 ```
 
 ### Use private keys
 
 When executing CLI commands involving funding nodes or signing transactions, you must provide a private key.
 
-Use the -w flag to specify a private key along with the -t flag to indicate the token you'll use.
+Use the `-w` flag to specify a private key along with the -t flag to indicate the token you'll use.
 
 ```console
 irys -w <wallet-file-name> -t linea-eth
 ```
 
-### Networks
+### Devnet
 
-Fund the network you plan to upload to.
-
-```console
-# Mainnet
-irys -n mainnet
-
-# Devnet
-irys -n devnet
-```
-
-When connecting to Devnet, you must supply the additional --provider-url parameter.
-
-```console
-irys -n devnet --provider-url https://rpc.sepolia.linea.build
-```
+To use Irys's devnet where uploads are kept for ~60 and you pay with Linea Sepolia ETH, append `-n devnet` to any of the commands below.
 
 ### Fund a node
 
 Use the `fund` command to fund a node.
 
 ```console
-irys fund 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
+irys fund 1000000000000000 \
+  -t linea-eth \
+  -w bf20......c9885307 
 ```
 
 ### Withdraw funds
@@ -271,7 +256,9 @@ irys fund 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
 Use the `withdraw` command to withdraw funds from a node.
 
 ```console
-irys withdraw 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
+irys withdraw 1000000000000000 \
+  -t linea-eth \
+  -w bf20......c9885307 
 ```
 
 ### Upload a file
@@ -279,7 +266,10 @@ irys withdraw 1000000000000000 -n mainnet -t linea-eth -w bf20......c9885307
 Use the `upload` command to upload a file.
 
 ```console
-irys upload myImage.png -n mainnet -t linea-eth -w bf20......c9885307
+irys upload myImage.png \
+  -t linea-eth \
+  -w bf20......c9885307 \
+  --tags tagName1 tagValue1 tagName2 tagValue2 
 ```
 
 ### Upload a folder
@@ -287,7 +277,9 @@ irys upload myImage.png -n mainnet -t linea-eth -w bf20......c9885307
 Use the `upload-dir` command to upload a folder.
 
 ```console
-irys upload-dir ./myImages -n mainnet -t linea-eth -w bf20......c9885307
+irys upload-dir ./myImages \
+  -t linea-eth \
+  -w bf20......c9885307 
 ```
 
 ### Use tags
@@ -299,7 +291,10 @@ files with a filename extension, the related
 [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
 
 ```console
-irys upload myImage.png -t tagName1 tagValue1 tagName2 tagValue2 -n mainnet -t linea-eth -w bf20......c9885307
+irys upload myImage.png \
+  -t linea-eth \
+  -w bf20......c9885307 \
+  --tags tagName1 tagValue1 tagName2 tagValue2 
 ```
 
 ### Pricing
@@ -308,7 +303,10 @@ Use the `price` command, followed by a number of bytes to get the cost to upload
 also provide a token (`-t`) and a node URL (`-h`)
 
 ```console
-irys price 1000000 -t linea-eth -n mainnet
+irys price 1000000 \
+  -t linea-eth \
+  -n devnet \
+  --provider-url https://rpc.sepolia.dev
 ```
 
 ## Download data
