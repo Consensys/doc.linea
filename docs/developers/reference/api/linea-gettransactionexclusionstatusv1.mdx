@@ -8,10 +8,10 @@ import TabItem from '@theme/TabItem';
 
 # `linea_getTransactionExclusionStatusV1`
 
-Queries a database maintained by the sequencer to check if a tranasction was rejected because it 
+Queries a database maintained by the sequencer to check if a transaction was rejected because it 
 exceeded limits that would prevent the prover from generating a proof for the block.
 
-If the transaction was rejected, the API call will be successful and provide details of why. 
+If the transaction was rejected, the API call will be successful and provide the reason. 
 
 Transactions that were not rejected for this reason will return a `Rejected transaction not available` 
 error. 
