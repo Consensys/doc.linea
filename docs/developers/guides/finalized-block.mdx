@@ -6,24 +6,34 @@ image: /img/socialCards/retrieve-finalized-l2-blocks.jpg
 A finalized L2 block is a block on an L2 blockchain (Linea) that has been confirmed and validated
 by the L1 blockchain (Ethereum), ensuring its immutability and security.
 
-Linea doesn't currently support the Ethereum-standard `finalized` block parameter tag, meaning you
-cannot use the tag in JSON-RPC API calls to retrieve blocks that have been confirmed by the L1
-network. This includes, for example, methods where you can specify a block parameter, such as
-[`linea_estimateGas`](../reference/api/linea-estimategas.mdx).
+There are two methods to obtain the current finalized block:
 
-:::note
-Support for the `finalized` block parameter is planned in a future Linea release.
-:::
+- [Use the `finalized` block parameter tag](#use-the-finalized-tag) in JSON-RPC API calls.
+- [Query the Linea L1 rollup contract](#query-the-rollup-contract).
 
-This limitation requires you to query the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract)
-to retrieve the value of the current finalized L2 block number stored in the `currentL2BlockNumber`
-variable.
+## Use the `finalized` tag
 
-## Prerequisites
+Use the `finalized` tag in API calls to specify a block that has been confirmed by the L1
+network. For example, here the `eth_getBlockByNumber` method returns information about the current
+finalized block:
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["finalized",false],"id":1}'
+```
+
+## Query the rollup contract
+
+Query the [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract)
+to retrieve the value of the current finalized L2 block number stored in the `currentL2BlockNumber` variable.
+
+### Prerequisites
 
 - [Download and install Node.js](https://nodejs.org/en)
 
-## Create the script
+### Create the script
 
 1. In your project folder, initialize the project and install the `web3` package:
 
