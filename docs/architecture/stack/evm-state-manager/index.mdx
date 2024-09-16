@@ -13,20 +13,24 @@ EVM needs to read data from the blockchain state.
 :::info
 
 "State" refers to the data stored on the blockchain at any given point in time. To
-update state is to update the record of the contents of every account — if the contents have 
+update state is to update the record of the contents of every account whose contents have 
 changed. 
 
 :::
 
 The main task of the state manager is to receive blocks that have been executed by the [sequencer](../sequencer/index.mdx) 
-and use the trace data from their execution to update the state of the network. The state manager 
-uses a variation of the Merkle tree called a sparse Merkle tree (SMT) to track, manage, and update 
-storage slots representing accounts more efficiently. 
+and use the trace data from their execution to update the state of the network. Linea uses two 
+data structure types to manage state: 
+1. A Merkle-Patricia Trie to record the world state, maintain consensus, and process blocks. This 
+mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/). 
+2. A variant of regular Merkle trees called a sparse Merkle tree (SMT), which is used to more 
+efficiently track, manage, and update storage slots representing accounts. 
 
-It then passes this updated network state information to the [prover](/architecture/stack/trace-expansion-proving/proving) 
+It then passes this updated network state information to the [prover](../trace-expansion-proving/index.mdx) 
 in the form of Merkle proofs for submission to Ethereum Mainnet (L1). 
 
-Below, we'll explain the element of Linea's state management in greater detail.
+Below, we'll explain the element of Linea's state management in greater detail, focussing on the 
+SMT configuration that sets Linea apart.
 
 ## Merkle trees
 
@@ -57,9 +61,9 @@ data which it encoded. If you have the hash of the root—the only node without 
 theoretically derive from it the data of any node in the entire tree. 
 
 As a layer 2 (L2) network, Linea is in the business of making transacting faster and more efficient.
-Linea implements a sparse Merkle tree due to the inefficiencies of standard Merkle tree
-implementations. Standard Merkle trees require recomputation for every block, leading to excessive 
-computational demands.
+Linea implements a sparse Merkle tree to track account state and generate and store proofs, and 
+unlock greater effiency when compared to standard Merkle trees, which require recomputation for 
+every block, leading to excessive computational demands.
 
 ### Sparse Merkle trees
 
@@ -108,10 +112,10 @@ of items into very short strings and allowing read/write operations to be proven
 sparse Merkle trees are elementary examples of accumulators but there are others with more powerful 
 capabilities.
 
-To fit the EVM requirements, Linea's state manager uses an extended version of a sparse Merkle tree 
-that enables it to prove all CRUD (create, read, update, delete) operations for a key-addressed 
-database. As an outline, the construction uses a sparse Merkle tree to store the nodes of a 
-sorted doubly-linked list that encodes all the non-zero items of the state.
+Linea's state manager uses an extended version of a sparse Merkle tree that enables it to prove all 
+CRUD (create, read, update, delete) operations for a key-addressed database. As an outline, the 
+construction uses a sparse Merkle tree to store the nodes of a sorted doubly-linked list that 
+encodes all the non-zero items of the state.
 
 Linea's state manager uses the accumulator to track the account trie of Linea but also the storage 
 of every contract separately.
@@ -155,8 +159,8 @@ The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a [M
 - World state, which keeps track of accounts, and;
 - Account storage state (or simply 'storage'), which keeps track of the contents of each account. 
 
-On Linea, we adapt this structure, incorporating the custom cryptographic accumulator described 
-above.
+On Linea, we adapt this structure. The Merkle-Patricia Trie is still used for world state, but the
+custom cryptographic accumulator described above is used for account storage state.
 
 The accumulator can perform the following operations:
 - **Insertion**: adding a new storage slot to the tree, triggered by storing a non-zero value in a 
