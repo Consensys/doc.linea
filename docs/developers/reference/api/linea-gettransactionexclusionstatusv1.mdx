@@ -26,17 +26,17 @@ Transactions older than 24 hours cannot be checked.
 
 ## Returns
 
-`txHash`: The hash of the subject transaction.
-`from`: The public address of the account that sent the transaction.
-`nonce`: The transaction nonce, hexadecimal.
-`txRejectionStage`: A string detailing the point at which the transaction was rejected. One of:
+- `txHash`: The hash of the subject transaction. 
+- `from`: The public address of the account that sent the transaction. 
+- `nonce`: The transaction nonce, hexadecimal. 
+- `txRejectionStage`: A string detailing the point at which the transaction was rejected. One of:
     - `SEQUENCER`: Rejected by the sequencer.
     - `RPC`: Rejected by an RPC node (e.g. `https://rpc.linea.build`).
-    - `P2P`: Rejected by a P2P-connected node (e.g. an edge node).
-`reasonMessage`: Explains why the transaction was rejected.
-`blockNumber`: The block that the transaction was rejected from, in hexadecimal format. Only 
-returned for transactions rejected by the sequencer.
-`timestamp`: Time of rejection, in ISO8601 format.
+    - `P2P`: Rejected by a P2P-connected node (e.g. an edge node). 
+- `reasonMessage`: Explains why the transaction was rejected. 
+- `blockNumber`: The block that the transaction was rejected from, in hexadecimal format. Only 
+returned for transactions rejected by the sequencer. 
+- `timestamp`: Time of rejection, in ISO8601 format. 
 
 ## Example
 
@@ -65,7 +65,7 @@ returned for transactions rejected by the sequencer.
         ```json
         {
             "jsonrpc": "2.0",
-            "id": "53",
+            "id": "1",
             "result": {
                 "txHash": "0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7",
                 "from": "0x4d144d7b9c96b26361d6ac74dd1d8267edca4fc2",
