@@ -8,13 +8,14 @@ import TabItem from '@theme/TabItem';
 
 # `linea_getTransactionExclusionStatusV1`
 
-Queries a database maintained by the sequencer to check if a transaction was rejected because it 
-exceeded data line limits that would prevent the prover from generating a proof for the block.
+Queries a database maintained by the transaction exclusion API service to check if a transaction 
+was rejected because it exceeded data line limits that would prevent the prover from generating a 
+proof for the block. The database is updated by a parallel write API endpoint called by the 
+sequencer, edge nodes, or RPC nodes.
 
 If the transaction was rejected, the API call will be successful and provide the reason. 
 
-Transactions that were not rejected for this reason will return a `Rejected transaction not available` 
-error. 
+Transactions that were not rejected for this reason will return `null` as the `result`. 
 
 :::warning
 Transactions older than 24 hours cannot be checked.
