@@ -84,6 +84,63 @@
   }
 }
 
+.mermaid-xsmall {
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-small {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-medium {
+  max-width: 60%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-large {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-xsmall svg,
+.mermaid-small svg,
+.mermaid-medium svg,
+.mermaid-large svg {
+  display: block;
+  width: 100% !important;
+  max-width: inherit !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+@media (width <= 768px) {
+  .mermaid-xsmall {
+    width: 50%;
+  }
+
+  .mermaid-small {
+    width: 80%;
+  }
+
+  .mermaid-medium {
+    width: 90%;
+  }
+
+  .mermaid-large {
+    width: 100%;
+  }
+}
+
 /* Atyp font */
 
 @font-face {
