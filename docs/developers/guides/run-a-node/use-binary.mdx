@@ -154,38 +154,23 @@ the parameters for each possible profile you can select for your Linea Besu node
     `linea_estimateGas` and the `finalized` block parameter tag.
   </TabItem>
 </Tabs>
- 
-### Step 3. Adjust configuration file
 
-In the `.toml` file you chose, set `genesis-file` to the path of your downloaded genesis file. Since 
-we will be running the client from within the `linea-besu-package-<version>` directory, this does 
-not need to be a full path:
-
-<Tabs groupId="networks" className="my-tabs">
-    <TabItem value="mainnet" label="Mainnet">
-    `genesis/genesis.mainnet.json`
-    </TabItem>
-    <TabItem value="Linea Sepolia" label="Linea Sepolia">
-    `genesis/genesis.testnet-sepolia.json`
-    </TabItem>
-</Tabs>
-
-### Step 4. Start the Linea Besu client
+### Step 3. Start the Linea Besu client
 
 In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
 `profiles` etc. directories are. 
 
-Now run Linea Besu with the location of your configuration file:
+Now run Linea Besu, specifying your preferred profile:
 
 <Tabs groupId="networks" className="my-tabs">
     <TabItem value="mainnet" label="Mainnet">
     ```bash
-    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/advanced-mainnet.toml
+    bin/besu --profile=advanced-mainnet
     ```
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
     ```bash
-    bin/besu --config-file=/your-file-path/linea-besu-package-<version>/profiles/advanced-testnet.toml
+    bin/besu --profile=basic-testnet
     ```
     </TabItem>
 </Tabs>
