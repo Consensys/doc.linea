@@ -8,8 +8,8 @@ import TabItem from '@theme/TabItem';
 
 # `linea_getTransactionExclusionStatusV1`
 
-Queries a database maintained by the transaction exclusion API service to check if a transaction 
-was rejected because it exceeded data line limits that would prevent the prover from generating a 
+Queries a temporary database maintained by the transaction exclusion API service to check if a 
+was rejected for exceeding data line limits that would prevent the prover from generating a 
 proof for the block. The database is updated by a parallel write API endpoint called by the 
 sequencer, edge nodes, or RPC nodes.
 
@@ -18,7 +18,7 @@ If the transaction was rejected, the API call will be successful and provide the
 Transactions that were not rejected for this reason will return `null` as the `result`. 
 
 :::warning
-Transactions older than 24 hours cannot be checked.
+Transactions older than 24 hours can't be checked.
 :::
 
 ## Parameters
@@ -37,7 +37,7 @@ Transactions older than 24 hours cannot be checked.
 - `reasonMessage`: Explains why the transaction was rejected. 
 - `blockNumber`: The block that the transaction was rejected from, in hexadecimal format. Only 
 returned for transactions rejected by the sequencer. 
-- `timestamp`: Time of rejection, in ISO8601 format. 
+- `timestamp`: Time of rejection, in ISO 8601 format. 
 
 ## Example
 
@@ -47,13 +47,13 @@ returned for transactions rejected by the sequencer.
     <TabItem value="cURL">
         ```bash
         curl https://rpc.linea.build \
-        -X POST
+        -X POST \
         -H "Content-Type: application/json" \
         -d '{
             "jsonrpc": "2.0",
             "id": "1",
             "method": "linea_getTransactionExclusionStatusV1",
-            "params": ["0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7"],
+            "params": ["0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7"]
         }'
         ```
     </TabItem>
@@ -80,6 +80,13 @@ returned for transactions rejected by the sequencer.
         ```
     </TabItem>
 </Tabs>
+
+:::note
+
+This example is purely representative; the database only retains transaction data for 24 hours, so
+you will be unable to reproduce this response with the transaction in the above example.
+
+:::
 
 If the transaction was not rejected for exceeding line limits, the transaction will not be found 
 in the database, and return a `null` result. For example:
