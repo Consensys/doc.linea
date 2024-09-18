@@ -12,13 +12,6 @@ import VolumeCreation from "./volume-creation.mdx";
 
 You can install the Hyperledger Besu or Geth client to run a Linea node from a binary distribution.
 
-:::caution deprecation notice
-
-Linea Goerli is being deprecated. We discourage new development with this testnet and recommend using
-Linea Sepolia instead.
-
-:::
-
 ## Prerequisites
 
 Set up the required and recommended hardware and all the utilities. You can find the recommendations for the clients from the
@@ -43,6 +36,15 @@ Download the genesis file and Besu configuration file.
   
   Mainnet [`genesis-mainnet.json`](pathname:///files/besu/genesis-mainnet.json) file and Besu
   [`config-mainnet.toml`](pathname:///files/besu/config-mainnet.toml) file.
+
+  :::note[enodes]
+
+  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Besu `config-mainnet.toml`
+  file uses all enodes by default.
+
+  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+
+  :::
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -52,12 +54,6 @@ Download the genesis file and Besu configuration file.
   
   </TabItem>
 
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  Testnet [`genesis-goerli.json`](pathname:///files/besu/genesis-goerli.json) file and Besu
-  [`config-goerli.toml`](pathname:///files/besu/config-goerli.toml) file.
-  
-  </TabItem>
 </Tabs>
 
 ### Step 3. Define disk space volume (optional) {#disk-space-besu}
@@ -103,13 +99,6 @@ Run the Besu client with the location of your configuration file. For example:
   ```
   
   </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  ```bash
-  besu --config-file=/Users/myuser/goerli/config-goerli.toml
-  ```
-  
-  </TabItem>
 </Tabs>
 
 The Besu node will attempt to find peers to begin synchronizing and to download the world state. 
@@ -141,11 +130,6 @@ Download the genesis file for the relevant network.
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
   Sepolia [`genesis.json`](pathname:///files/geth/sepolia/genesis.json) file.
-  
-  </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  Goerli [`genesis.json`](pathname:///files/geth/goerli/genesis.json) file.
   
   </TabItem>
 </Tabs>
@@ -185,14 +169,6 @@ Bootstrap the node using the following command:
   ```
   
   </TabItem>
-  
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-  ```bash
-  geth --datadir ./geth-goerli-data init ./genesis.json
-  ```
-  
-  </TabItem>
 </Tabs>
 
 ### Step 5. Start the Geth client
@@ -215,11 +191,18 @@ Start the node using the following command:
     --txpool.nolocals \
     --http --http.addr '127.0.0.1' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
     --ws --ws.addr '127.0.0.1' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
-    --bootnodes "enode://ca2f06aa93728e2883ff02b0c2076329e475fe667a48035b4f77711ea41a73cf6cb2ff232804c49538ad77794185d83295b57ddd2be79eefc50a9dd5c48bbb2e@3.23.106.165:30303,enode://eef91d714494a1ceb6e06e5ce96fe5d7d25d3701b2d2e68c042b33d5fa0e4bf134116e06947b3f40b0f22db08f104504dd2e5c790d8bcbb6bfb1b7f4f85313ec@3.133.179.213:30303,enode://cfd472842582c422c7c98b0f2d04c6bf21d1afb2c767f72b032f7ea89c03a7abdaf4855b7cb2dc9ae7509836064ba8d817572cf7421ba106ac87857836fa1d1b@3.145.12.13:30303" \
+    --bootnodes "enode://069800db9e6e0ec9cadca670994ef1aea2cfd3d88133e63ecadbc1cdbd1a5847b09838ee08d8b5f02a9c32ee13abeb4d4104bb5514e5322c9d7ee19f41ff3e51@3.132.73.210:31002,enode://a8e03a71eab12ec4b47bb6e19169d8e4dc7a58373a2476969bbe463f2dded6003037fa4dd5f71e15027f7fc8d7340956fbbefed67ddd116ac19a7f74da034b61@3.132.73.210:31003,enode://97706526cf79df9d930003644f9156805f6c8bd964fc79e083444f7014ce10c9bdd2c5049e63b58040dca1d4c82ebef970822198cf0714de830cff4111534ff1@18.223.198.165:31004,enode://24e1c654a801975a96b7f54ebd7452ab15777fc635c1db25bdbd4425fdb04e7f4768e9e838a87ab724320a765e41631d5d37758c933ad0e8668693558125c8aa@18.223.198.165:31000,enode://27010891d960f73d272a553f72b6336c6698db3ade98d631f09c764e57674a797be5ebc6829ddbb65ab564f439ebc75215d20aa98b6f351d12ea623e7d139ac3@3.132.73.210:31001,enode://228e1b8a4931e46f383e30721dac21fb8fb4e5e1b32c870e13b25478c82db3dc1cd9e7ceb93d302a766466b55638cc9c5cbfc43aa48fa41ced19baf365951f76@3.1.142.64:31002,enode://c22eb0d40fc3ad5ea710aeddea906567778166bfe18c157955e8c39b23a46c45db18a0fa2ba07f2b64c81178a8c796aec2a29151533920ead06fcdfc6d8d03c6@47.128.192.57:31004,enode://8ce733abe39fd7ae0a278b9893f85c1193c611a3886168690dd843435460f22cc4d61f9e8d0ace7f5905836a665319a31cccdaacdada2acc69972c382ecce7db@3.1.142.64:31003,enode://b7c1b2bed65a855f7a2104aac9a14674dfdf018fdac763415b373b29ce18cdb81d36328ba4e5c9f12629f3a50c3e8f9ee048f22dbdbe93a82813da89c6b81334@51.20.235.126:31004,enode://95270e0550848a72fb141cf27f1c4ea10714edde365b411dc0fa06c81c0f282ce155eb9fa472b6b8bb9ee98395eeaf4c5a7b02a01fe58b37ea98ba152eda4c37@13.50.94.193:31000,enode://72013391755f24f08567b932feeeec4c893c06e0b1fb480890c83bf87fd277ad86a5ab9cb586db9ae9970371a2f8cb0c96f6c9f69045abca0fb801db7f047138@51.20.235.126:31001" \
     --syncmode full \
     --metrics \
     --verbosity 3
     ```
+
+  :::note[enodes]
+  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The above command uses 
+  all enodes by default.
+
+  See our [enodes page](./enodes.mdx) for a full list of available enodes.
+  :::
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -238,27 +221,6 @@ Start the node using the following command:
     --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
     --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
     --bootnodes "enode://6f20afbe4397e51b717a7c1ad3095e79aee48c835eebd9237a3e8a16951ade1fe0e66e981e30ea269849fcb6ba03d838da37f524fabd2a557474194a2e2604fa@18.221.100.27:31002,enode://ce1e0d8e0500cb5c0ac56bdcdafb2d6320c3a2c5125b5ccf12f5dfc9b47ee74acbcafc32559017613136c9c36a0ce74ba4f83b7fb8244f099f3b15708d9d3129@3.23.75.47:31000,enode://1b026a5eb0ae74300f58987d235ef0e3a550df963345cb3574be3b0b54378bd11f14dfd515a8976f2c2d2826090e9507b8ccc24f896a9ffffffcabcfd996a733@3.129.120.128:31001" \
-    --syncmode full \
-    --metrics \
-    --verbosity 3
-    ```
-  </TabItem>
-  <TabItem value="Linea Goerli" label="Linea Goerli">
-  
-    ```bash
-    geth \
-    --datadir $HOME/geth-goerli-data \
-    --networkid 59140 \
-    --rpc.allow-unprotected-txs \
-    --txpool.accountqueue 50000 \
-    --txpool.globalqueue 50000 \
-    --txpool.globalslots 50000 \
-    --txpool.pricelimit 1000000 \
-    --txpool.pricebump 1 \
-    --txpool.nolocals \
-    --http --http.addr '0.0.0.0' --http.port 8545 --http.corsdomain '*' --http.api 'web3,eth,txpool,net' --http.vhosts='*' \
-    --ws --ws.addr '0.0.0.0' --ws.port 8546 --ws.origins '*' --ws.api 'web3,eth,txpool,net' \
-    --bootnodes "enode://700f0d5a5f2beadc307b7b8f1a251f8b75033c8222ca65bfb1aecc4c4a0a86d6d6ef8420e780f6ace7cc3d1b837606b116109cc53b00931d3debc1346b9ccbb8@13.51.255.207:31001,enode://cbbaacaf47a005cb389b40f6676d63800cc65295aad0983e5ce9f2e5bf805274cded5ef313993a2564591d6caab6322c2a39a0b3a21143034378179c7d5ecd44@3.16.167.169:31001" \
     --syncmode full \
     --metrics \
     --verbosity 3
@@ -295,7 +257,7 @@ curl localhost:8545 \
 
 ```
 
-You should get a result, similar to:
+You should get a result similar to:
 
 ```bash
 {

@@ -73,10 +73,8 @@ includes an example of both the on- and off-chain code necessary to integrate wi
 
 ### Examples
 
-[Oracle Swap](https://github.com/pyth-network/pyth-crosschain/tree/main/target_chains/ethereum/examples/oracle_swap) 
-is an end-to-end example application that uses Pyth Network price feeds. This application is an 
-AMM that allows users to swap two assets at the Pyth-provided exchange rate. The example contains 
-both the contract and a frontend to interact with it.
+View [the example applications](https://github.com/pyth-network/pyth-examples/tree/main/price_feeds)
+in the Pyth repository.
 
 ### Networks
 

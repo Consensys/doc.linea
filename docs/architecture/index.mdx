@@ -9,8 +9,7 @@ image: /img/socialCards/architecture-of-linea.jpg
 
 ## Linea's ideal state
 
-Linea has the goal of being a fully decentralized, permissionless network. To that end, we are 
-building towards an architecture made up of three main elements:
+Linea aims to be a fully decentralized, permissionless network. To support this goal, the Linea architecture is made up of three main elements:
 
 - Sequencer
 - Prover
@@ -19,7 +18,7 @@ building towards an architecture made up of three main elements:
 ## Current state
 
 Linea is in mainnet status, and the team is fervently working towards full decentralization. 
-Currently, this is a good representation of the main components of Linea, and how they interact:
+The following is a good representation of the main components of Linea, and how they interact:
 
 <div class="center-container">
   <div class="img-large">
@@ -32,38 +31,36 @@ Currently, this is a good representation of the main components of Linea, and ho
 
 ## First of all: what _is_ Linea, anyway? What's a zkEVM L2?
 
-There are a number of different mental models that people in web3 use to explain these different 
-networks and how they relate to one another. Some people prefer to call them "rollup networks", 
-or "scaling solutions"; probably the most popular way of discussing them is by imagining them as 
-"layers", where one network is "built on top of another". Let's try and set metaphor aside for 
-a moment, and speak in clear terms:
+There are several different mental models that people use to explain the different
+networks and how they relate to one another. Some people prefer to call L2s "rollup networks", 
+or "scaling solutions". The term "layer" is a popular mental model: where one network is "built on top of another". 
+
+Let's set metaphor aside for a moment, and clarify:
 
 **The Ethereum network has several functional areas:**
 
-- It has the _blockchain_, where it keeps track of addresses, and which tokens are allocated to 
-which addresses;
-- It has the _consensus_ mechanism, wherein many many nodes communicate about the movement of 
-tokens from one address to another, and each keeps their local copy of the ledger up to date;
-- And it has the _execution environment_, wherein computer programs can be run. That's the "EVM", 
-or "Ethereum Virtual Machine", part of things.
+- _Blockchain_: keeps track of addresses, and which tokens are allocated to 
+which addresses
+- _Consensus_ mechanism: wherein many many nodes communicate about the movement of 
+tokens from one address to another, and each keeps their local copy of the ledger up to date
+- _Execution environment_: the EVM (Ethereum Virtual Machine) wherein computer programs can be run. 
 
 These three areas are heavily interconnected, and this is a simplification, but it's a helpful 
-one to understand what's going on with other networks.
+one to understand the tradeoffs all networks must make.
 
 Ethereum prioritizes security: that consensus mechanism is designed to ensure that no one can 
 singlehandedly alter the state of the network. This is a very impressive feat of engineering, 
 and it comes with a tradeoff: the execution environment is highly limited in the amount of work 
 it can do, because the consensus mechanism intentionally runs slowly, to keep everything safe.
 
-Linea, and other networks like it, is designed to participate in the security mechanism of Ethereum, 
-while optimizing for execution. In other words, it allows people to do lots of transactions, run 
-lots of programs, deploy contracts, mint NFTs, absolutely go to town—fast, and cheap-and then 
-report all that back to Ethereum, and include it in Ethereum's blockchain. By sending regular 
+Linea and other L2s are designed to participate in the security mechanism of Ethereum, 
+while optimizing for execution. In other words, L2s enables users to make many transactions, run 
+lots of programs, deploy contracts, mint NFTs, absolutely go to town—fast and cheap, and then compresses this data into a report back to Ethereum for inclusion in Ethereum's blockchain. By sending regular 
 reports of activity on Linea to Ethereum, the network can optimize for execution without being as 
 limited by security.
 
-This is the action known as "rolling up": we would say that Linea "rolls up its transactions to 
-Ethereum". And the fact that it relies on Ethereum for something-the security-leads people to say 
+This is the action known as "rolling up": we can say that Linea "rolls up its transactions to 
+Ethereum". And the fact that it relies on Ethereum for its security leads people to say 
 that it's "built on top of Ethereum": it's a "second-layer network", an L2. And before you ask, 
 yes, Ethereum is an L1, and L3s exist, too: networks that roll up to Linea would roll up to 
 Ethereum.
@@ -72,7 +69,7 @@ The trick is in how that _rollup_ happens. Linea is special: it uses cutting-edg
 a branch of mathematics and computer science often referred to as zero-knowledge, or 
 _zero-knowledge cryptography_, to prove to the Ethereum network that everything that is happening 
 on the Linea network is, in fact, happening, without having to submit a complete record of every 
-last transaction and check each one. That's the 'zk' part.
+last transaction and check each one. Instead, Linea submits a verifiable proof to Ethereum of each transaction: that's the 'zk' part.
 
 So, now that we've walked through some concepts, we can roll it all up: Linea is a zkEVM L2 
 network.
@@ -115,18 +112,8 @@ _...in other words, there's a lot involved._
   </div>
 </div>
 
-## Simplifying things
+## Next steps
 
-In order to make this explanation as clear and navigable as possible, in the [Linea Stack section](architecture/stack)
-we'll break each component down, and explain it in three steps:
-
-- What is it?
-- What does it do?
-- How does it do it?
-
-Let's start with the thing that a lot of users encounter when trying to access an L2 for the first 
-time: a bridge.
-
-But not just any bridge; there are a lot of data to pass back and forth between Linea and other 
-networks, and therefore, Linea has more than one bridge; and that number is likely to continue to 
-grow. But there's one in particular that matters: the [Linea canonical message service](architecture/stack/canonical-msg-service).
+- Learn more about the different components that comprise the [Linea architecture](./stack/index.mdx).
+- Understand the first point of contact for many new L2 users, the bridge. Linea has more than one bridge; and that number is likely to continue to 
+grow. The [Linea canonical message service](./stack/canonical-msg-service/index.mdx) is key to these bridges and how they function.

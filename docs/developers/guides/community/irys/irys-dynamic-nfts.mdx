@@ -5,7 +5,7 @@ description: Create NFTs that evolve based on user actions.
 ---
 
 Data on Irys is permanent and immutable, but you can use
-[Irys' mutable references](https://docs.irys.xyz/developer-docs/mutable-references) to simulate
+[Irys' mutable references](https://arweave-tools.irys.xyz/irys-sdk/mutable-references) to simulate
 mutability and create dynamic NFTs that evolve based on onchain or offchain actions.
 
 With mutable references, you create a single, static URL that is linked to a series of transactions.
@@ -24,12 +24,12 @@ metadata evolves over time. They are commonly used in:
 
 This tutorial focuses on creating a SuperMon NFT that can evolve during gameplay. The NFT starts with
 a basic appearance that can be upgraded twice. We will use the
-[Irys CLI](/developers/tooling/permanent-data/irys/irys-quickstart#irys-cli) to "mutate" the
+[Irys CLI](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-cli) to "mutate" the
 metadata, simulating the automatic changes that would occur through player interactions in an actual game.
 
 ## Prerequisites
 
-[Install the Irys CLI](/developers/tooling/permanent-data/irys/irys-quickstart#irys-cli) to upload
+[Install the Irys CLI](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-cli) to upload
 your images and metadata.
 
 ## Create mutable references
@@ -86,7 +86,7 @@ contract SuperMon is ERC721URIStorage {
 
 ```
 
-[Deploy the smart contract using Remix](/developers/quickstart/deploy-smart-contract/remix), or
+[Deploy the smart contract using Remix](../../../quickstart/deploy-smart-contract/remix.md), or
 [any other environment](https://docs.linea.build/developers/quickstart/deploy-smart-contract).
 
 ## Upload the images

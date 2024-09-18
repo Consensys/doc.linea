@@ -6,7 +6,7 @@
 
 /* You can override the default Infima variables here. */
 
-/* Custom stlying made by CSCT */
+/* Custom styling made by CSCT */
 
 .video-container {
   position: relative;
@@ -25,7 +25,7 @@
   border: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .video-container {
     width: 100%;
   }
@@ -62,7 +62,7 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .img-xsmall {
     width: 50%;
     flex-shrink: 0;
@@ -81,6 +81,63 @@
   .img-large {
     width: 100%;
     flex-shrink: 0;
+  }
+}
+
+.mermaid-xsmall {
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-small {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-medium {
+  max-width: 60%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-large {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-xsmall svg,
+.mermaid-small svg,
+.mermaid-medium svg,
+.mermaid-large svg {
+  display: block;
+  width: 100% !important;
+  max-width: inherit !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+@media (width <= 768px) {
+  .mermaid-xsmall {
+    width: 50%;
+  }
+
+  .mermaid-small {
+    width: 80%;
+  }
+
+  .mermaid-medium {
+    width: 90%;
+  }
+
+  .mermaid-large {
+    width: 100%;
   }
 }
 
@@ -440,7 +497,7 @@ html[data-theme="dark"] .header-twitter-link::before {
   background-size: 20px 20px;
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   .header-twitter-link::before {
     margin-top: 0;
     background-size: 24px 24px;
@@ -472,7 +529,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   filter: invert(100%);
 }
 
-@media only screen and (max-width: 525px) {
+@media only screen and (width <= 525px) {
   .menu__link {
     display: flex;
     justify-content: flex-start;
@@ -503,6 +560,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 /* Navbar formatting */
 .navbar {
   --ifm-navbar-height: 8vh;
+  height: clamp(60px, var(--ifm-navbar-height), 100px);
 }
 
 .navbar__logo {
@@ -517,14 +575,14 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   top: -6px;
 }
 
-@media (max-width: 1320px) {
+@media (width <= 1320px) {
   .navbar__logo {
     height: 25px;
     top: -5px;
   }
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   .navbar__logo {
     height: 35px;
     top: -6px;
@@ -537,21 +595,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   padding-right: 35px;
 }
 
-@media (max-width: 1320px) {
+@media (width <= 1320px) {
   .navbar__title {
     display: flex;
     font-size: 18px;
   }
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   .navbar__title {
     display: flex;
     font-size: 22px;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .navbar__logo {
     height: 35px;
   }
@@ -602,7 +660,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   border: 1px solid #61dfff;
 }
 
-@media (max-width: 1500px) {
+@media (width <= 1500px) {
   .navbar__item {
     font-size: 16px;
   }
@@ -615,7 +673,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   }
 }
 
-@media (max-width: 1320px) {
+@media (width <= 1320px) {
   .navbar__item {
     font-size: 14px;
   }
@@ -626,7 +684,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   transition: width 0.25s ease;
 }
 
-@media (max-width: 1320px) {
+@media (width <= 1320px) {
   .navbar__search input {
     width: 150px;
   }
@@ -641,7 +699,7 @@ html[data-theme="dark"] .navbar {
 }
 
 /* Make navbar look friendly on small devices. */
-@media only screen and (max-width: 400px) {
+@media only screen and (width <= 400px) {
   .nav_src-pages-index-module .linkItem_src-pages-index-module {
     padding-right: 0 !important;
   }

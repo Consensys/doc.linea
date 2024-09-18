@@ -14,7 +14,8 @@ You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating
 :::note
 
 
-These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you would like to verify using Blockscout, please use the API URLs referenced [here](/developers/quickstart/info-contracts#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you
+would like to verify using Blockscout, please use the [Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
 
 :::
 
@@ -84,9 +85,11 @@ You can check that it was verified correctly by navigating to the [testnet block
 
 ## Using `.env` and `foundry.toml` to store etherscan information
 
-If you don't want to paste your keys inline and have multiple Etherscan API keys to manage, you can use `.env` and `foundry.toml` to set up custom configurations.
+If you don't want to paste your keys inline and have multiple Etherscan API keys to manage, you can use
+the `.env` and `foundry.toml` files to set up custom configurations.
 
-Assuming you followed the instructions to create a `.env` file [here](../deploy-smart-contract/foundry), add your Lineascan API key to the file:
+These steps assume you stored your secret keys in a `.env` file. which you can read more about
+[in the Foundry deployment instructions](../deploy-smart-contract/foundry.md#deploy-a-smart-contract-using-a-env-file).
 
 ```bash
 LINEASCAN_API_KEY=YOUR_LINEASCAN_API_KEY
@@ -126,8 +129,7 @@ forge verify-contract --chain linea-testnet path_to_contract:contract_name --wat
 </Tabs>
 
 :::info
-
-
-Learn more about different configurations for verifying your smart contracts [here](https://book.getfoundry.sh/reference/forge/forge-verify-contract) and [here](https://book.getfoundry.sh/forge/deploying).
-
+Learn more about different configurations for verifying your smart contracts using the
+[`forge verify-contract`](https://book.getfoundry.sh/reference/forge/forge-verify-contract#forge-verify-contract)
+command and the [Forge deployment instructions](https://book.getfoundry.sh/forge/deploying).
 :::

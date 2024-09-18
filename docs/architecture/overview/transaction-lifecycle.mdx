@@ -6,7 +6,20 @@ description: >-
 image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
-Transactions on Linea mainnet and testnet proceed through the following steps:
+:::note[A note on finality]
+
+Finality has two definitions on Linea:
+- Soft finality: The transaction is confirmed on Linea. This takes two seconds, i.e Linea's block 
+time. See [step 3](#step-3-transaction-data-sent-to-the-state-manager). For simplicity, Linea is 
+guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical 
+one—when there are reorgs on L1. 
+- Hard finality: The proof submitted to L1 has been verified, and two epochs have elapsed. The 
+typical time before hard finality is 8-32 hours, although the 8-hour minimum will be reduced to
+zero in a future release. See [step 6](#step-6-batch-finalization).
+
+:::
+
+Transactions on Linea proceed through the following steps:
 
 ## Step 1: Submission
 
@@ -16,10 +29,10 @@ Ethereum, where they become pending transactions.
 
 ## Step 2: Block building
 
-The Linea [sequencer](/architecture/stack/sequencer) is responsible for ordering, building, and executing blocks. 
-For each transaction added to the mempool, the sequencer checks its validity, rejecting 
-transactions as necessary. Transaction validity conditions are specific to Linea, and differ 
-slightly from those on other networks, including Ethereum.
+The Linea [sequencer](../stack/sequencer/index.mdx) is responsible for ordering, building, and 
+executing blocks. For each transaction added to the mempool, the sequencer checks its validity, 
+rejecting transactions as necessary. Transaction validity conditions are specific to Linea, and 
+differ slightly from those on other networks, including Ethereum.
 
 The sequencer orders transactions according to the priority fee paid for each, a method known as
 a priority gas auction. So, having passed the above checks, valid transactions are placed into
@@ -36,7 +49,7 @@ generate ZK proofs. Let's press on.
 ## Step 3: Transaction data sent to the state manager
 
 Data about the transaction and the state of the network at its time of execution are recorded
-in **traces**, an output of part of the sequencer called the [trace generator](/architecture/stack/sequencer/traces-generator).
+in **traces**, an output of part of the sequencer called the [trace generator](../stack/sequencer/traces-generator.md).
 
 Traces are passed to the state manager block-by-block and then used to update the network state.
 Once state is up to date, you'll see the transaction reflected and confirmed in your wallet.
@@ -48,7 +61,7 @@ before true finality is reached.
 
 ## Step 4: Conflation
 
-The transaction's block will then be subject to [conflation](/architecture/stack/sequencer/conflation), which
+The transaction's block will then be subject to [conflation](../stack/sequencer/conflation.md), which
 combines two or more blocks' transaction data into a single data set (batch) that forms part of
 the package of data passed on to Ethereum. Combining the transaction data of multiple blocks
 means that a single proof can be used to verify a large volume of transactions, minimizing the
@@ -66,7 +79,7 @@ With the block that contains the transaction's trace data conflated into a batch
 more others, the only remaining task on the checklist to achieve **_hard_ finality** is to use
 the transaction's data—as contained in its trace—to generate a proof.
 
-When prompted by the [Coordinator](/architecture/stack/coordinator), Linea's [prover](/architecture/stack/trace-expansion-proving)
+When prompted by the [Coordinator](../stack/coordinator/index.mdx), Linea's [prover](../stack/trace-expansion-proving/index.mdx)
 will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs
 a two-stage method for developing the proofs that eventually get passed to L1, first developing
 an **inner proof** and then an **outer proof**.

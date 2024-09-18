@@ -1,5 +1,5 @@
 ---
-title: '`linea_estimateGas`'
+title: linea_estimateGas
 description: Reference content for the linea_estimateGas method.
 image: /img/socialCards/lineaestimategas.jpg
 ---
@@ -9,14 +9,20 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
+:::warning
+
+`linea_estimateGas` is currently unavailable, but we will provide activation dates soon. In the 
+meantime, please get in touch via the [Linea Discord](https://discord.gg/linea) if you intend to 
+use `linea_estimateGas` once it is available.
+
+:::
+
 :::info
 
-`linea_estimateGas` is currently not available on the Linea Sepolia testnet, but will be activated
-soon. **Mainnet activation is scheduled for July 30, 2024.** 
-
-It will only be fully compatible with endpoints using the Besu client — if it is unavailable, try 
-updating Besu. If you prefer to use Geth, `linea_estimateGas` is only available if you redirect
-your request through an Infura endpoint.
+`linea_estimateGas` is only fully compatible with endpoints using the Besu client with the 
+[`linea-sequencer`](https://github.com/Consensys/linea-sequencer/tree/main) plugin enabled. If it 
+is unavailable, try updating Besu. If you prefer to use Geth, `linea_estimateGas` is only available 
+if you redirect your request through an Infura endpoint.
 
 We recommend using `linea_estimateGas` rather than alternatives, such as `eth_gasPrice`. 
 `linea_estimateGas` returns estimates with greater accuracy, minimizing the risk of transactions
@@ -28,7 +34,7 @@ Generates and returns an estimate of how much gas is necessary to allow the tran
 and be published on Ethereum. The transaction will not be added to the blockchain.
 
 For more information about estimating gas, and how this API formulates the transaction costs, see 
-the [Estimate transaction costs](/developers/guides/gas/gas-fees) topic.
+the [Estimate transaction costs](../../guides/gas/gas-fees.mdx) topic.
 
 The `priorityFeePerGas` returned by this method includes the cost of submitting the transaction to 
 Ethereum, which can vary based on the size of the calldata.
@@ -55,9 +61,13 @@ using `linea_estimateGas` for more accurate results.
   - `value`: _\[optional]_ Hexadecimal value of the value sent with this transaction.
   - `data`: _\[optional]_ Hash of the method signature and encoded parameters. See the
       [Ethereum contract ABI specification](https://docs.soliditylang.org/en/latest/abi-spec.html).
-  - `block number`: _\[optional]_ A string representing a block number, or one of the string tags `latest`, `earliest`, or
-      `pending`. See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
+  - `block number`: _\[optional]_ A string representing a block number, or one of the string tags `latest`, `earliest`,
+      `pending`, or `finalized`.
 
+      :::note
+      A `finalized` block is a block on an L2 blockchain (Linea) that has been confirmed and validated by
+      the L1 blockchain (Ethereum).
+      :::
 
 ## Returns
 
@@ -71,18 +81,43 @@ fee per gas.
 You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
 :::
 
-<Tabs>
-  <TabItem value="cURL request">
+### Request
 
-   ```bash
-  curl https://rpc.sepolia.linea.build \
-          -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"jsonrpc":"2.0","method":"linea_estimateGas","params":[{"from":"0x42c27251C710864Cf76f1b9918Ace3E585e6E21b","gasPrice":"0x100000000","gas":"0x21000"}],"id":53}'
+<Tabs>
+  <TabItem value="cURL">
+
+  ```bash
+  curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
   ```
 
   </TabItem>
-  <TabItem value="Response">
+  <TabItem value="ethers.js">
+  ```javascript
+  type LineaEstimateGasResponse = {
+    baseFeePerGas: string;
+    priorityFeePerGas: string;
+    gasLimit: string;
+  };
+
+  const provider = new ethers.JsonRpcProvider("<RPC_URL>");
+
+  const params = {
+    from: "0x...", // Signer address
+    to: "0x...", // Recipient address
+    value: ethers.parseEther("1").toString(), // Value in wei
+    data: "0x...", // Encoded call in case of smart contract interaction
+  };
+
+  const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
+  console.log(fees);
+  ``` 
+  </TabItem>
+</Tabs>
+
+### Response
 
 ```JSON
 {
@@ -95,5 +130,19 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   }
 }
 ```
-  </TabItem>
-</Tabs>
+
+Where:
+- `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
+- `gasLimit` - Uses the standard `eth_estimateGas` API calculation.
+- `priorityFeePerGas` - Calculates the fee required to prioritize a transaction by considering factors such as the
+    compressed transaction size, layer 1 verification costs and capacity, gas price ratio between layer 1 and
+    layer 2, the transaction's gas usage, the minimum gas price on layer 2, and a minimum
+    margin (for error) for gas price estimation.
+
+:::note
+
+The result of the request returns hexadecimal equivalent integers of gas prices in wei. Convert the hexadecimal value into
+decimals to get the wei value. You can use any hexadecimal to decimal converter such as
+[RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
+
+:::

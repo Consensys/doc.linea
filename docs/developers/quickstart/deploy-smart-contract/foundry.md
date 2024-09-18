@@ -23,8 +23,8 @@ In this quickstart, we'll create a basic [Foundry](https://book.getfoundry.sh/) 
 
 Before you begin, ensure you:
 
-1. [Set up your wallet](/users/move-funds/set-up-your-wallet)
-1. [Fund your wallet with Linea ETH](/users/move-funds/fund) on either the testnet, or mainnet
+1. [Set up your wallet](../../../users/move-funds/set-up-your-wallet.mdx)
+1. [Fund your wallet with Linea ETH](../../../users/move-funds/fund.mdx) on either the testnet, or mainnet
 1. Download and install Foundry:
 
     ```bash
@@ -41,21 +41,21 @@ To create a Foundry project, run:
 forge init linea-tutorial
 ```
 
-And change into the directory:
+Running `forge init` sets up a sample contract, test, and script for `Counter.sol`.
+
+Now change into the directory:
 
 ```bash
 cd linea-tutorial
 ```
 
-Running `forge init` sets up a sample contract, test, and script for `Counter.sol`.
-
 ## Deploy a smart contract
 
-To deploy a smart contract, we highly recommend using an Infura endpoint, as the public endpoint may experience
-rate limiting and not meant for production use.
+To deploy a smart contract we highly recommend using an Infura endpoint, as the public endpoint may experience
+rate limiting and is not meant for production use.
 
 [Sign up for an Infura account](https://docs.infura.io/api/getting-started) to get an API key that
-provides access the Linea endpoints. Assign the Linea endpoints you want to access, to your API key.
+provides access to the Linea endpoints. Assign the Linea endpoints you want to access to your API key.
 
 :::caution
 
@@ -72,8 +72,9 @@ forge create --rpc-url YOUR_LINEA_ENDPOINT src/Counter.sol:Counter --private-key
 
 In the command:
 
-- Replace `YOUR_LINEA_ENDPOINT` with the URL of a [supported Infura Linea network](https://docs.infura.io/api/networks/linea/choose-a-network)
-    or [public endpoint URL](/developers/quickstart/info-contracts#network-information).
+- Replace `YOUR_LINEA_ENDPOINT` with the URL of a
+    [supported Infura Linea network](https://docs.infura.io/api/networks/linea/choose-a-network)
+    or [public endpoint URL](../info-contracts.mdx#network-information).
 - Replace `YOUR_PRIVATE_KEY` with your wallet's private key.
 
 Your output should look similar to:
@@ -106,7 +107,6 @@ Finally, modify the `foundry.toml` file to store the various RPC endpoints we mi
 
 ```bash
 [rpc_endpoints]
-linea-goerli = "https://linea-goerli.infura.io/v3/${INFURA_API_KEY}"
 linea-sepolia = "https://linea-sepolia.infura.io/v3/${INFURA_API_KEY}"
 linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```
@@ -121,13 +121,6 @@ forge create --rpc-url linea-mainnet src/Counter.sol:Counter --private-key $PRIV
 ```
 
 </TabItem>
-<TabItem value="Goerli" label="Goerli">
-
-```bash
-forge create --rpc-url linea-goerli src/Counter.sol:Counter --private-key $PRIVATE_KEY
-```
-
-  </TabItem>
 
 <TabItem value="Sepolia" label="Sepolia">
 

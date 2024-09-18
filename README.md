@@ -37,7 +37,7 @@ In fact, it's part of the PR process.
 ### Contribute to community tutorials
 
 If you've created fleshed-out guides and tutorials, or intend to, we'd love to feature your content
-in our [community tutorials section](developers/guides/community).
+in our [community tutorials section](./docs/developers/guides/community/index.mdx).
 
 First, create an issue describing the content you want to see added or intend to add. If you're
 representing an organization (such as a dapp), please use the ecosystem contribution issue form.
@@ -74,7 +74,7 @@ to manage Node.js versions on your machine.
 ### Installing recommended Node.js version with `nvm`
 
 1. Follow the above instructions to install `nvm` on your machine, or go [here](https://github.com/nvm-sh/nvm#installing-and-updating).
-2. Go to root folder of this project in your terminal.
+2. Go to the root folder of this project in your terminal.
 3. Run `nvm install` followed by `nvm use`. This will install the version specified by this project in the `.nvmrc` file.
 
 ### Running this project
@@ -95,7 +95,7 @@ to manage Node.js versions on your machine.
 
 ### Build
 
-    $ npm run build
+   $ npm run build
 
 This command generates static content into the `build` directory and can be served using any static
 contents hosting service.
@@ -103,7 +103,7 @@ contents hosting service.
 ### Adding new words to the dictionary
 
 This repository includes a _linter_, which you can think of as a spell-check that also checks code
-formatting and standards, and a lot more. It's possible that you will use a word in your content
+formatting and standards, and a lot more. It's possible that you might use a word in your content
 that is not known to the linter, and your build, or commit, will fail.
 
 You can run the linter any time with the command `npm run lint`.
