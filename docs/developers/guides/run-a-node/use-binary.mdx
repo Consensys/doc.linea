@@ -113,13 +113,20 @@ The Besu node will attempt to find peers to begin synchronizing and to download 
 
 ## Run Linea Besu with plugins
 
+:::warning
+
+Please note that the `advanced` profile option does not currently support macOS/ARM. Please use 
+Linux/ARM or Windows/X86_64. 
+
+:::
+
 Linea Besu is an implementation of the Hyperledger Besu client that extends its functionality. 
 
 We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact 
 with the blockchain, rather than just following it. 
 
 Linea Besu enables you to use plugins adapted specifically for Linea, such as the [Linea Sequencer 
-plugin](https://github.com/Consensys/linea-sequencer) and [Shomei](https://github.com/Consensys/shomei).
+plugin](https://github.com/Consensys/linea-sequencer).
 
 These plugins are necessary, in different ways, to enable full functionality for the node. 
 Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` 
@@ -160,17 +167,19 @@ the parameters for each possible profile you can select for your Linea Besu node
 In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
 `profiles` etc. directories are. 
 
-Now run Linea Besu, specifying your preferred profile:
+Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must 
+only be defined if you are running an `advanced` node, since this is needed to query finalization
+on L1.
 
 <Tabs groupId="networks" className="my-tabs">
     <TabItem value="mainnet" label="Mainnet">
     ```bash
-    bin/besu --profile=advanced-mainnet
+    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
     ```
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
     ```bash
-    bin/besu --profile=basic-testnet
+    bin/besu --profile=advanced-testnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
     ```
     </TabItem>
 </Tabs>
