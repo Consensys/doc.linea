@@ -113,7 +113,18 @@ You can use [this page](https://www.whatismyip.com/) to find your public IP addr
 
 :::
 
-### Step 3. Start the Linea Besu node
+### Step 3. Configure your L1 RPC endpoint
+
+If you're using an `advanced` profile, insert your preferred L1 RPC endpoint in the 
+`docker-compose.yaml` file:
+
+```yaml
+--plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
+```
+
+If you only intend to run a `basic` profile, go straight to the next step.
+
+### Step 4. Start the Linea Besu node
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
