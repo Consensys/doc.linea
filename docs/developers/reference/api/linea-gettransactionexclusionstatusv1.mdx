@@ -18,7 +18,7 @@ If the transaction was rejected, the API call will be successful and provide the
 Transactions that were not rejected for this reason will return `null` as the `result`. 
 
 :::warning
-Transaction rejection reason can only be checked within 24 hours of transaction attempt.
+Transaction rejection reason can only be checked within 24 hours of the transaction attempt.
 :::
 
 ## Parameters
@@ -89,7 +89,7 @@ you will be unable to reproduce this response with the transaction in the above 
 :::
 
 If the transaction was not rejected for exceeding line limits, the transaction will not be found 
-in the database, and return a `null` result. For example:
+in the database, and a `null` result is returned. For example:
 
 ```json
 {
