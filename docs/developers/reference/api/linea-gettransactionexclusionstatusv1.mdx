@@ -17,16 +17,16 @@ made available, please get in touch with technical support via the "Contact" but
 :::
 
 Queries a temporary database maintained by the transaction exclusion API service to check if a 
-was rejected for exceeding data line limits that would prevent the prover from generating a 
-proof for the block. The database is updated by a parallel write API endpoint called by the 
-sequencer, edge nodes, or RPC nodes.
+transaction  was rejected for exceeding data line limits that would prevent the prover from 
+generating a proof for the block. The database is updated by a parallel write API endpoint called 
+by the sequencer, edge nodes, or RPC nodes.
 
 If the transaction was rejected, the API call will be successful and provide the reason. 
 
 Transactions that were not rejected for this reason will return `null` as the `result`. 
 
 :::warning
-Transaction rejection reason can only be checked within 24 hours of the transaction attempt.
+Transaction rejection can only be checked within seven days of the transaction attempt.
 :::
 
 ## Parameters
