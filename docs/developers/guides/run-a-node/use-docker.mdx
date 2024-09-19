@@ -77,6 +77,23 @@ for help if you experience peering issues.
 
 ## Run a Linea Besu node
 
+Linea Besu is an implementation of the Hyperledger Besu client that extends its functionality. 
+
+We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact 
+with the blockchain, rather than just following it. 
+
+Linea Besu enables you to use plugins adapted specifically for Linea, such as the [Linea Sequencer 
+plugin](https://github.com/Consensys/linea-sequencer).
+
+These plugins are necessary, in different ways, to enable full functionality for the node. 
+Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` 
+plugin. You can pick a plugin by selecting a profile in step 1.
+
+This guide is for infrastructure providers and operators who intend to run a Linea node. This is 
+relevant to you if:
+- You are responsible for operating nodes as a service for others to use
+- You want to use Linea with a personal, private RPC endpoint.
+
 ### Step 1. Download the relevant `docker-compose.yaml` file
 
 Access the [`/docker` directory](https://github.com/Consensys/linea-besu-package/tree/main/docker) 
