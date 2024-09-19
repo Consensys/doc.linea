@@ -22,13 +22,14 @@ many lines of data, and exceed that module's limit. Transactions that reach this
 rejected by the [sequencer](../sequencer/index.mdx) to ensure that the trace data passed to the 
 prover is of a manageable scope, and that a proof can be generated.
 
-Transaction rejections caused by module limits are prevented at one of three stages:
+Transaction rejections caused by module limits can be identified through three different methods:
 1. [`linea_estimateGas`](../../../developers/reference/api/linea-estimategas.mdx), which simulates
 a transaction using given parameters. Transactions that exceed module limits cause an error.
 2. [`eth_sendRawTransaction`](../../../developers/reference/api/eth-sendrawtransaction.mdx). 
 Similarly, `eth_sendRawTransaction` simulates the transaction before it is submitted, and 
 returns an error if module limits would be exceeded.
-3. As a final protection, the [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
+3. Finally, if the transaction was sent and doesn't get rejected directly, nor included in a block, 
+the [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
 API method can be used to query the reason for transaction rejection in edge cases where 
 `linea_estimateGas` or `eth_sendRawTransaction` did not return an error. `linea_getTransactionExclusionStatusV1`
 is only available for Infura nodes via request. View its [reference page](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx) 
