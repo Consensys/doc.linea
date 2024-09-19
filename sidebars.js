@@ -522,6 +522,7 @@ const sidebars = {
           items: [
             "architecture/stack/trace-expansion-proving/proving",
             "architecture/stack/trace-expansion-proving/trace-expansion",
+            "architecture/stack/trace-expansion-proving/prover-limits"
           ],
         },
       ],
