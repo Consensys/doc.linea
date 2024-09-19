@@ -9,24 +9,14 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
-:::warning
+:::info Compatibility mode
 
-`linea_estimateGas` is currently unavailable, but we will provide activation dates soon. In the 
-meantime, please get in touch via the [Linea Discord](https://discord.gg/linea) if you intend to 
-use `linea_estimateGas` once it is available.
+`linea_estimateGas` is currently only available on Mainnet in compatibility mode, which means it 
+returns the same results as `eth_gasPrice`.
 
-:::
-
-:::info
-
-`linea_estimateGas` is only fully compatible with endpoints using the Besu client with the 
-[`linea-sequencer`](https://github.com/Consensys/linea-sequencer/tree/main) plugin enabled. If it 
-is unavailable, try updating Besu. If you prefer to use Geth, `linea_estimateGas` is only available 
-if you redirect your request through an Infura endpoint.
-
-We recommend using `linea_estimateGas` rather than alternatives, such as `eth_gasPrice`. 
-`linea_estimateGas` returns estimates with greater accuracy, minimizing the risk of transactions
-being priced incorrectly and failing as a result. 
+`linea_estimateGas` will be fully activated on September 30. Infrastructure providers must adjust
+their node configurations to ensure compatibility mode is deactivated and `linea_estimateGas` 
+functions fully. See our [guide](#compatibility-mode).
 
 :::
 
@@ -146,3 +136,39 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 :::
+
+## Compatibility mode
+
+When `linea_estimateGas` is activated on Mainnet on September 30, infrastructure providers and those
+using their own nodes to submit transactions must adjust their configuration files to disable 
+compatibility mode.
+
+### Effects 
+
+`linea_estimateGas` in compatibility mode returns the same gas price as `eth_gasPrice`. This means
+gas price is applied consistently regardless of the relative complexity of the transaction 
+(measured through its `calldata` size). As a result, transactions can be underpriced and risk 
+getting stuck, or be overpriced and result in the user overpaying in fees.
+
+This can be described with the following formula:
+```
+fee = gasPrice * gasUsed
+```
+
+### Benefits of disabling
+
+With compatibility mode disabled, `linea_estimateGas` is able to function as designed and return a 
+more accurate gas price, better suited to the transaction. The gas price scales with the amount of
+`calldata` a transaction contains. As a result, Linea can more effectively ensure the gas price
+reflects L1 costs and prover costs, which rise with transaction complexity/`calldata` size.
+
+The formula with `linea_estimateGas` enabled is:
+```
+fee = (calldataUsed * multiplier + constant) * gasUsed
+```
+
+Where the `multiplier` is applied to ensure network profitability, and the `constant` is a 
+reflection of several other aspects factored into the calculation. 
+
+### How to disable
+
