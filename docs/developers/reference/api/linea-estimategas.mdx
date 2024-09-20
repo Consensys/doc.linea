@@ -172,3 +172,31 @@ reflection of several other aspects factored into the calculation.
 
 ### How to disable
 
+For most people running an `advanced` Linea Besu node—a prerequisite for using `linea_estimateGas`—
+compatibility mode will already be disabled in the files you downloaded from the [`linea-besu-package`
+repository](https://github.com/Consensys/linea-besu-package/tree/main). 
+
+:::note
+
+See our run a node guides for information on running a Linea Besu node [with Docker](../../guides/run-a-node/use-docker.mdx#run-a-linea-besu-node) 
+and [using the binary distribution](../../guides/run-a-node/use-binary.mdx#run-a-linea-besu-node).
+
+:::
+
+### Binary distribution
+
+To ensure compatibility is not running, check your `.toml` configuration file for the following
+setting, and ensure it is `false`:
+```
+plugin-linea-estimate-gas-compatibility-mode-enabled=false
+```
+
+This configuration may be `true` if you downloaded the files before September 30.
+
+### Docker
+
+The Docker image accessed via the `compose` files in the [`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/tree/main)
+will be updated via image update to ensure compatibility mode is disabled after September 30. 
+
+You do not need to take any action regarding compatibility mode if you are using Docker to run an
+`advanced` Linea Besu node.
