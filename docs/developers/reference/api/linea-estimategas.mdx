@@ -12,10 +12,10 @@ import TabItem from '@theme/TabItem';
 :::info Compatibility mode
 
 `linea_estimateGas` is currently only available on Mainnet in compatibility mode, which means it 
-returns the same results as `eth_gasPrice`.
+returns the same results as `eth_gasPrice`. 
 
-`linea_estimateGas` will be fully activated on September 30. Infrastructure providers must adjust
-their node configurations to ensure compatibility mode is deactivated and `linea_estimateGas` 
+`linea_estimateGas` will be fully activated on Mainnet on September 30. Infrastructure providers 
+must adjust their node configurations to ensure compatibility mode is deactivated and `linea_estimateGas` 
 functions fully. See our [guide](#compatibility-mode).
 
 :::
@@ -142,6 +142,10 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 When `linea_estimateGas` is activated on Mainnet on September 30, infrastructure providers and those
 using their own nodes to submit transactions must adjust their configuration files to disable 
 compatibility mode.
+
+No action is required for Linea Sepolia nodes using the `advanced-testnet` profile from the 
+[`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/tree/main), since 
+`linea_estimateGas` is already activated on Linea Sepolia.
 
 ### Effects 
 
