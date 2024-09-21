@@ -11,8 +11,8 @@ import TabItem from '@theme/TabItem';
 
 :::info Compatibility mode
 
-`linea_estimateGas` is currently only available on Mainnet in compatibility mode, which means it 
-returns the same results as `eth_gasPrice`. 
+`linea_estimateGas` is currently only available on Linea Sepolia fully activated and on Mainnet in compatibility mode, which means it 
+returns the same results as `eth_gasPrice` on mainnet. 
 
 `linea_estimateGas` will be fully activated on Mainnet on September 30. Infrastructure providers 
 must adjust their node configurations to ensure compatibility mode is deactivated and `linea_estimateGas` 
@@ -154,11 +154,6 @@ gas price is applied consistently regardless of the relative complexity of the t
 (measured through its `calldata` size). As a result, transactions can be underpriced and risk 
 getting stuck, or be overpriced and result in the user overpaying in fees.
 
-This can be described with the following formula:
-```
-fee = gasPrice * gasUsed
-```
-
 ### Benefits of disabling
 
 With compatibility mode disabled, `linea_estimateGas` is able to function as designed and return a 
@@ -166,17 +161,9 @@ more accurate gas price, better suited to the transaction. The gas price scales 
 `calldata` a transaction contains. As a result, Linea can more effectively ensure the gas price
 reflects L1 costs and prover costs, which rise with transaction complexity/`calldata` size.
 
-The formula with `linea_estimateGas` enabled is:
-```
-fee = (calldataUsed * multiplier + constant) * gasUsed
-```
-
-Where the `multiplier` is applied to ensure network profitability, and the `constant` is a 
-reflection of several other aspects factored into the calculation. 
-
 ### How to disable
 
-For most people running an `advanced` Linea Besu node—a prerequisite for using `linea_estimateGas`—
+For most people running an `advanced` Linea Besu node —a prerequisite for using `linea_estimateGas`—
 compatibility mode will already be disabled in the files you downloaded from the [`linea-besu-package`
 repository](https://github.com/Consensys/linea-besu-package/tree/main). 
 
@@ -199,8 +186,5 @@ This configuration may be `true` if you downloaded the files before September 30
 
 ### Docker
 
-The Docker image accessed via the `compose` files in the [`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/tree/main)
+The Docker image accessed via the `compose` files in the [`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/blob/main/linea-besu/profiles/advanced-sepolia.toml)
 will be updated via image update to ensure compatibility mode is disabled after September 30. 
-
-You do not need to take any action regarding compatibility mode if you are using Docker to run an
-`advanced` Linea Besu node.
