@@ -13,33 +13,32 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Beta v1
+## Beta v1a
 
 **Mainnet: TBC**
 
-**Linea Sepolia: September 23**
+**Linea Sepolia: September 26**
 
-### Arithmetization
+Beta v1 on Linea introduces new arithmetization, and is split into two phases to:
+1. Beta v1a: Transition to the new arithmetization, and;
+2. Beta v1b: Ensure the new arithmetization is 100% proven.
 
-Introduces new arithmetization to prepare Linea for future decentralization:
-- New specification completed
-- Implementing the Besu trace generator
-- New counting in sequencer
-- Improvements to tracing and sequencing efficiency.
+The overall objective of the Linea Beta is to prove 100% of the zkEVM specification.
 
-### Prover
-
-Refactor the prover to ensure it can be run in a decentralized way.
+This release includes:
+- New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
+- The transition to generating traces with Besu. 
 
 ## Alpha v3.6 
 
 ### Block size changes
 
-**Mainnet: September 26**
+**Mainnet: September 25**
 
-**Linea Sepolia: September 26**
+**Linea Sepolia: September 25**
 
-Increase block limit to 30M units of gas. Block time remains the same, at 2 seconds.
+Increase block limit to 30M units of gas. The transaction limit remains at 24M. Block time also 
+remains the same, at 2 seconds.
 
 ## Alpha v3.5.2
 
