@@ -15,7 +15,8 @@ others coordinate interactions between modules.
 
 Regardless of its purpose, each module has a specific limit to the amount of lines of data that 
 its operations can generate. You can view each module's limits in the [Linea source code](https://github.com/Consensys/linea-monorepo/blob/main/config/common/traces-limits-besu-v2.toml).
-Every time one of the operations in a module is used, it generates additional lines.
+Every time unique instructions are provided to one of the operations in a module, additional lines
+are generated (repeat calls with the same arguments do not generate new lines).
 
 Transactions with a high complexity—using a large volume of operations repeatedly—may generate too 
 many lines of data, and exceed that module's limit. Transactions that reach this point are 
