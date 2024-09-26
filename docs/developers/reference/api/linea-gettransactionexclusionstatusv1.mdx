@@ -10,24 +10,25 @@ import TabItem from '@theme/TabItem';
 
 :::info Only available on request
 
-This API method is only available via Infura endpoints on request. If you would like to have it 
-made available, please get in touch with technical support via the "Contact" button on our 
-[support page](https://support.linea.build/).
+This API method is only available via Infura endpoints on request. [Contact support](https://support.linea.build/)
+to request access to this method.
 
 :::
 
 Queries a temporary database maintained by the transaction exclusion API service to check if a 
-transaction  was rejected for exceeding data line limits that would prevent the prover from 
-generating a proof for the block. The database is updated by a parallel write API endpoint called 
+transaction was rejected for exceeding data line limits that would prevent the prover from 
 by the sequencer, edge nodes, or RPC nodes.
+
+:::
+
+You can only check for transaction rejection within seven days of the transaction attempt.
+
+:::
 
 If the transaction was rejected, the API call will be successful and provide the reason. 
 
-Transactions that were not rejected for this reason will return `null` as the `result`. 
-
-:::warning
-Transaction rejection can only be checked within seven days of the transaction attempt.
-:::
+If the transaction is rejected, the API call will succeed and provide the reason; otherwise, it
+will return `null`.
 
 ## Parameters
 
@@ -37,7 +38,7 @@ Transaction rejection can only be checked within seven days of the transaction a
 
 - `txHash`: The hash of the subject transaction. 
 - `from`: The public address of the account that sent the transaction. 
-- `nonce`: The transaction nonce, hexadecimal. 
+- `nonce`: Number of transaction made by the sender, in hexadecimal format. 
 - `txRejectionStage`: A string detailing the point at which the transaction was rejected. One of:
     - `SEQUENCER`: Rejected by the sequencer.
     - `RPC`: Rejected by an RPC node (e.g. `https://rpc.linea.build`).
@@ -91,13 +92,13 @@ returned for transactions rejected by the sequencer.
 
 :::note
 
-This example is purely representative; the database only retains transaction data for seven days, so
-you will be unable to reproduce this response with the transaction in the above example.
+This example is purely representative; the database retains transaction data for only seven days, so
+you'll be unable to reproduce this response with the above example.
 
 :::
 
-If the transaction was not rejected for exceeding line limits, the transaction will not be found 
-in the database, and a `null` result is returned. For example:
+If a transaction was not rejected for exceeding line limits, it will not be found in the database, 
+and a `null` result is returned. For example:
 
 ```json
 {
