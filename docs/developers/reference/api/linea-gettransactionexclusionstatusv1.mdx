@@ -21,7 +21,8 @@ by the sequencer, edge nodes, or RPC nodes.
 
 :::
 
-You can only check for transaction rejection within seven days of the transaction attempt.
+You can only check for transaction rejection within seven days of the transaction attempt. Querying
+transactions older than this will return a `null` response.
 
 :::
 
@@ -107,3 +108,5 @@ and a `null` result is returned. For example:
     "result": null
 }
 ```
+
+A similar `null` result is also returned if the transaction is older than seven days.
