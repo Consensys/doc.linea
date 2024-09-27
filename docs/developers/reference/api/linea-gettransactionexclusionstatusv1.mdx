@@ -1,0 +1,105 @@
+---
+title: linea_getTransactionExclusionStatusV1
+description: Reference content for the linea_getTransactionExclusionStatusV1 method.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# `linea_getTransactionExclusionStatusV1`
+
+Queries a temporary database maintained by the transaction exclusion API service to check if a 
+transaction was rejected for exceeding data line limits that would prevent the prover from 
+by the sequencer, edge nodes, or RPC nodes.
+
+:::
+
+You can only check for transaction rejection within seven days of the transaction attempt. Querying
+transactions older than this will return a `null` response.
+
+:::
+
+If the transaction was rejected, the API call will be successful and provide the reason. 
+
+If the transaction is rejected, the API call will succeed and provide the reason; otherwise, it
+will return `null`.
+
+## Parameters
+
+`txHash`: [Required] The hash of the subject transaction.
+
+## Returns
+
+- `txHash`: The hash of the subject transaction. 
+- `from`: The public address of the account that sent the transaction. 
+- `nonce`: Number of transaction made by the sender, in hexadecimal format. 
+- `txRejectionStage`: A string detailing the point at which the transaction was rejected. One of:
+    - `SEQUENCER`: Rejected by the sequencer.
+    - `RPC`: Rejected by an RPC node (e.g. `https://rpc.linea.build`).
+    - `P2P`: Rejected by a P2P-connected node (e.g. an edge node). 
+- `reasonMessage`: Explains why the transaction was rejected. 
+- `blockNumber`: The block that the transaction was rejected from, in hexadecimal format. Only 
+returned for transactions rejected by the sequencer. 
+- `timestamp`: Time of rejection, in ISO 8601 format. 
+
+## Example
+
+### Request
+
+<Tabs>
+    <TabItem value="cURL">
+        ```bash
+        curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{
+            "jsonrpc": "2.0",
+            "id": "1",
+            "method": "linea_getTransactionExclusionStatusV1",
+            "params": ["0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7"]
+        }'
+        ```
+    </TabItem>
+</Tabs>
+
+### Response
+
+<Tabs>
+    <TabItem value="JSON">
+        ```json
+        {
+            "jsonrpc": "2.0",
+            "id": "1",
+            "result": {
+                "txHash": "0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7",
+                "from": "0x4d144d7b9c96b26361d6ac74dd1d8267edca4fc2",
+                "nonce": "0x64",
+                "txRejectionStage": "SEQUENCER",
+                "reasonMessage": "Transaction line count for module ADD=402 is above the limit 70",
+                "blockNumber": "0x3039",
+                "timestamp": "2024-08-22T09:18:51Z"
+            }
+        }
+        ```
+    </TabItem>
+</Tabs>
+
+:::note
+
+This example is purely representative; the database retains transaction data for only seven days, so
+you'll be unable to reproduce this response with the above example.
+
+:::
+
+If a transaction was not rejected for exceeding line limits, it will not be found in the database, 
+and a `null` result is returned. For example:
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": null
+}
+```
+
+A similar `null` result is also returned if the transaction is older than seven days.
