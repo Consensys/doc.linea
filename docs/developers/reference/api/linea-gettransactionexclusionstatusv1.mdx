@@ -9,17 +9,16 @@ import TabItem from '@theme/TabItem';
 # `linea_getTransactionExclusionStatusV1`
 
 Queries a temporary database maintained by the transaction exclusion API service to check if a 
-transaction was rejected for exceeding data line limits that would prevent the prover from 
-by the sequencer, edge nodes, or RPC nodes.
+transaction was rejected by the sequencer, edge nodes, or RPC nodes for exceeding data line limits 
+that would prevent the prover from generating a proof.
 
-:::
+
+:::info
 
 You can only check for transaction rejection within seven days of the transaction attempt. Querying
 transactions older than this will return a `null` response.
 
 :::
-
-If the transaction was rejected, the API call will be successful and provide the reason. 
 
 If the transaction is rejected, the API call will succeed and provide the reason; otherwise, it
 will return `null`.
