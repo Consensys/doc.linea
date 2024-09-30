@@ -4,34 +4,33 @@ description: How module limits ensure the prover can generate proofs.
 sidebar_position: 3
 ---
 
-Linea has a built-in mechanism for ensuring that the prover can continue to generate proofs
-without increasing proof complexity to such a level that current infrastructure cannot process them. 
-This mechanism involves module limits. 
+Linea uses module limits to keep proof complexity manageable and ensure that the prover can
+generate proofs efficiently without overwhelming the infrastructure. 
 
-Modules are the sections into which Linea's arithmetization specification is divided. Each module 
-represents a collection of operations (opcodes) at the EVM level, or corresponds to a specific 
-function of Linea's zkEVM. Some of the modules process transaction data; some manage zkEVM memory; 
-others coordinate interactions between modules.
+Linea's arithmetization specification is divided into modules, and each module represents a collection
+of EVM or Linea zkEVM operations (opcodes). Modules can:
+- Process transaction data.
+- Manage zkEVM memory.
+- Coordinate interactions between modules.
 
-Regardless of its purpose, each module has a specific limit to the amount of lines of data that 
-its operations can generate. You can view each module's limits in the [Linea source code](https://github.com/Consensys/linea-monorepo/blob/main/config/common/traces-limits-besu-v2.toml).
-Every time unique instructions are provided to one of the operations in a module, additional lines
-are generated (repeat calls with the same arguments do not generate new lines).
+Each module has a specific limit on the number of lines of data its operations can generate, 
+regardless of its purpose. You can view these limits in the 
+[Linea source code](https://github.com/Consensys/linea-monorepo/blob/main/config/common/traces-limits-besu-v2.toml). 
+Additional lines are generated each time unique instructions are provided to a module's operations, 
+but repeat calls with the same arguments do not generate new lines.
 
-Transactions with a high complexity—using a large volume of operations repeatedly—may generate too 
-many lines of data, and exceed that module's limit. Transactions that reach this point are 
-rejected by the [sequencer](../sequencer/index.mdx) to ensure that the trace data passed to the 
-prover is of a manageable scope, and that a proof can be generated.
+High-complexity transactions that repeatedly use a large volume of operations may generate too many 
+lines of data and exceed a module's limit. Transactions that reach this point are rejected by the 
+[sequencer](../sequencer/index.mdx) to ensure that the trace data passed to the prover is of a 
+manageable scope, and that a proof can be generated.
 
-Transaction rejections caused by module limits can be identified through three different methods:
-1. [`linea_estimateGas`](../../../developers/reference/api/linea-estimategas.mdx), which simulates
-a transaction using given parameters. Transactions that exceed module limits cause an error.
-2. [`eth_sendRawTransaction`](../../../developers/reference/api/eth-sendrawtransaction.mdx). 
-Similarly, `eth_sendRawTransaction` simulates the transaction before it is submitted, and 
-returns an error if module limits would be exceeded.
-3. Finally, if the transaction was sent and doesn't get rejected directly, nor included in a block, 
-the [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
-API method can be used to query the reason for transaction rejection in edge cases where 
-`linea_estimateGas` or `eth_sendRawTransaction` did not return an error. `linea_getTransactionExclusionStatusV1`
-is only available for Infura nodes via request. View its [reference page](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx) 
-for more information on requesting it.
+Transactions rejected for exceeding module limits can be identified through the following
+methods, which return an error:
+
+- [`linea_estimateGas`](../../../developers/reference/api/linea-estimategas.mdx)
+- [`eth_sendRawTransaction`](../../../developers/reference/api/eth-sendrawtransaction.mdx)
+
+Use [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
+if a transaction was sent and didn't get rejected directly, nor included in a block.
+This API method can be used to query the reason for transaction rejection in edge cases where
+`linea_estimateGas` or `eth_sendRawTransaction` did not return an error.
