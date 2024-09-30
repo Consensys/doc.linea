@@ -31,6 +31,9 @@ methods, which return an error:
 - [`eth_sendRawTransaction`](../../../developers/reference/api/eth-sendrawtransaction.mdx)
 
 Use [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
-if a transaction was sent and didn't get rejected directly, nor included in a block.
+to get the rejection status of a transaction hash, if it was sent and didn't get rejected directly, 
+nor included in a block.
+
 This API method can be used to query the reason for transaction rejection in edge cases where
-`linea_estimateGas` or `eth_sendRawTransaction` did not return an error.
+`linea_estimateGas` or `eth_sendRawTransaction` did not return an error. It's intended to be used 
+only in cases the transaction execution differs between an RPC node and the sequencer.
