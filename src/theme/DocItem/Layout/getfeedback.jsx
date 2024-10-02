@@ -19,13 +19,13 @@ const GetFeedback = (props) => {
     <div className="getfeedback-container">
       {/*Light*/}
       <div
-        ub-in-page="66fd14d8a1d073225e4ca10f"
+        ub-in-page="66fd19777582bd0f0b3f8314"
         className={theme === "dark" ? "getfeedback-hidden" : undefined}
         ref={feedbackContRef}
       />
       {/*Dark*/}
       <div
-        ub-in-page="66fbd0c790845616a838f8a9"
+        ub-in-page="66fd1931467c23680b03167d"
         className={theme === "light" ? "getfeedback-hidden" : undefined}
         ref={feedbackContRef}
       />
