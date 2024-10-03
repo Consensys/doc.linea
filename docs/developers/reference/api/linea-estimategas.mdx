@@ -14,9 +14,8 @@ import TabItem from '@theme/TabItem';
 `linea_estimateGas` is currently only available on Linea Sepolia fully activated and on Mainnet in compatibility mode, which means it 
 returns the same results as `eth_gasPrice` on mainnet. 
 
-`linea_estimateGas` will be fully activated on Mainnet on September 30. Infrastructure providers 
-must adjust their node configurations to ensure compatibility mode is deactivated and `linea_estimateGas` 
-functions fully. See our [guide](#compatibility-mode).
+If you're an infrastructure provider you must deactivate compatibility mode in your node 
+configurations to ensure `linea_estimateGas` functions fully. See our [guide](#compatibility-mode).
 
 :::
 
