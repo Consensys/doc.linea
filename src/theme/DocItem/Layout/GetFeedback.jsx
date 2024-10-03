@@ -12,7 +12,7 @@ const GetFeedback = (props) => {
 
   useEffect(() => {
     setTheme(window?.localStorage?.getItem("theme") || colorMode);
-    window.usabilla.load("w.usabilla.com", "3ab372ce5993");
+    window.usabilla.load("w.usabilla.com", "a0e35f23333a");
   }, []);
 
   return (
