@@ -40,6 +40,10 @@ const config = {
     locales: ["en"],
   },
 
+  scripts: [
+    {src: "/js/getfeedback.js", defer: true, async: true}
+  ],
+
   markdown: {
     mermaid: true,
   },
