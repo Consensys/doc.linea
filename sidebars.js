@@ -401,6 +401,7 @@ const sidebars = {
           },
           items: [
             "developers/tooling/security/goplus-security-api",
+            "developers/tooling/security/mamoru-ai",
             "developers/tooling/security/scamfari",
             "developers/tooling/security/spherex",
             "developers/tooling/security/hexagate",
