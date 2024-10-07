@@ -914,3 +914,14 @@ html[data-theme="dark"] .navbar {
 .footer__copyright {
   color: var(--banner-text);
 }
+
+/* Necessary for enabling GetFeedback widgets to display */
+
+.getfeedback-container {
+  margin-top: 50px;
+  margin-bottom: -2rem;
+}
+
+.getfeedback-hidden {
+  display: none !important;
+}

@@ -435,6 +435,7 @@ const sidebars = {
           items: [
             "developers/reference/api/eth-sendrawtransaction",
             "developers/reference/api/linea-estimategas",
+            "developers/reference/api/linea-gettransactionexclusionstatusv1",
             "developers/reference/api/linea-getproof",
           ],
         },
@@ -522,6 +523,7 @@ const sidebars = {
           items: [
             "architecture/stack/trace-expansion-proving/proving",
             "architecture/stack/trace-expansion-proving/trace-expansion",
+            "architecture/stack/trace-expansion-proving/prover-limits"
           ],
         },
       ],

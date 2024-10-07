@@ -31,7 +31,7 @@ On Linea, each transaction is represented by a sequence of lines representing th
 happening at the EVM level. These lines are grouped by modules and are used as inputs to the prover. 
 In order to limit the resources required to generate proofs, limits are enforced on the maximum 
 number of lines each module can have. Hence, when a transaction is considered for inclusion in a 
-block, a line count check is perform to ensure it conforms to the requirements.
+block, a [line count check is performed to ensure it conforms to the requirements](../../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
 
 ## Parameters
 
@@ -46,7 +46,7 @@ The 32-byte transaction hash, or the zero hash if the transaction is not yet ava
 ### Request
 
 ```bash
-curl https://rpc.sepolia.linea.build \
+curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
 -X POST \
 -H "Content-Type: application/json" \
 -d '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params": ["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"],"id":1}'

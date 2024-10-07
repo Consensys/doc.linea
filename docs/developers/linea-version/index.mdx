@@ -13,6 +13,33 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+## Beta v1a
+
+**Mainnet: TBC**
+
+**Linea Sepolia: September 26**
+
+Beta v1 on Linea introduces new arithmetization, and is split into two phases:
+1. Beta v1a: Transition to the new arithmetization, and;
+2. Beta v1b: Ensure the new arithmetization is 100% proven.
+
+The overall objective of the Linea Beta is to prove 100% of the zkEVM specification.
+
+This release includes:
+- New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
+- The transition to generating traces with Besu. 
+
+## Alpha v3.6 
+
+### Block size changes
+
+**Mainnet: September 25**
+
+**Linea Sepolia: September 25**
+
+Increase block limit to 30M units of gas. The transaction limit remains at 24M. Block time also 
+remains the same, at 2 seconds.
+
 ## Alpha v3.5.2
 
 ### Transaction exclusion API
@@ -38,7 +65,7 @@ Upgrades the [Linea bridge](https://bridge.linea.build/) UI.
 
 ### `finalized` tag
 
-**Mainnet: September 18**
+**Mainnet: October 9**
 
 **Linea Sepolia: September 17**
 
@@ -50,7 +77,7 @@ See our [guide](../guides/finalized-block.mdx) for more.
 
 ### Reactivate `linea_estimateGas`
 
-**Mainnet: September 16**
+**Mainnet: September 30**
 
 **Linea Sepolia: September 9**
 
@@ -94,7 +121,7 @@ Available on Linea Sepolia on July 31; available on Mainnet from August 1.
 
 :::
 
-Activates the `linea_estimateGas` endpoint for use on Mainnet. 
+Activates the `linea_estimateGas` endpoint for use on Mainnet in compatibility mode. 
 
 See our [reference page](../reference/api/linea-estimategas.mdx) for more information and usage.
 

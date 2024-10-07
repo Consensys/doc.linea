@@ -1,6 +1,7 @@
 ---
+title: Use a binary distribution
 description: Install the Besu or Geth client to run a Linea node.
-image: /img/socialCards/install-the-besu-or-geth-client-to-run-a-linea-node.jpg
+image: /img/socialCards/use-a-binary-distribution.jpg
 ---
 
 import Tabs from "@theme/Tabs";
@@ -8,19 +9,26 @@ import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
 
-# Use a binary distribution
-
-You can install the Hyperledger Besu or Geth client to run a Linea node from a binary distribution.
+You can install the Besu or Geth client to run a Linea node from a binary distribution.
+For Besu nodes, you have a choice between: 
+- Using standard Besu software to run a follower node, which keeps a local copy of the blockchain, 
+or;
+- Using Linea Besu if you intend to use the node to interact with the blockchain, or provide it to
+others to do so. Linea Besu extends Besu's functionality with plugins and is recommended for 
+infrastructure providers.
 
 ## Prerequisites
 
 Set up the required and recommended hardware and all the utilities. You can find the recommendations for the clients from the
 official documentation:
 
-- [Hyperledger Besu](https://besu.hyperledger.org/public-networks/get-started/system-requirements)
+- [Besu](https://besu.hyperledger.org/public-networks/get-started/system-requirements)
 - [Geth](https://geth.ethereum.org/docs/getting-started/hardware-requirements).
+- Linea Besu: Download the latest version of `linea-besu-package` from its [releases page](https://github.com/Consensys/linea-besu-package/releases). 
+Find the "Assets" subheading on the latest release and download the zip file named 
+`linea-besu-package-<version>.tar.gz`. 
 
-## Run the Besu client
+## Run a standard Besu client
 
 ### Step 1. Install Besu
 
@@ -56,7 +64,7 @@ Download the genesis file and Besu configuration file.
 
 </Tabs>
 
-### Step 3. Define disk space volume (optional) {#disk-space-besu}
+### Step 3. Define disk space volume (optional) \{#disk-space-besu}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
 
@@ -103,6 +111,81 @@ Run the Besu client with the location of your configuration file. For example:
 
 The Besu node will attempt to find peers to begin synchronizing and to download the world state. 
 
+## Run a Linea Besu node
+
+:::warning
+
+Please note that the `advanced` profile option does not currently support macOS/ARM. Please use 
+Linux/ARM or Windows/X86_64. 
+
+:::
+
+Linea Besu is an implementation of the Besu client that extends its functionality. 
+
+We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact 
+with the blockchain, rather than just following it. 
+
+Linea Besu enables you to use plugins adapted specifically for Linea, such as the [Linea Sequencer 
+plugin](https://github.com/Consensys/linea-sequencer).
+
+These plugins are necessary, in different ways, to enable full functionality for the node. 
+Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` 
+plugin. You can pick a plugin by selecting a profile in [step 2](#step-2-select-a-profile).
+
+This guide is for infrastructure providers and operators who intend to run a Linea node. This is 
+relevant to you if:
+- You are responsible for operating nodes as a service for others to use
+- You want to use Linea with a personal, private RPC endpoint.
+
+### Step 1. Unzip the folder
+
+The `linea-besu-package-<version>.tar.gz` is a zip file; move it to the directory of your choice 
+and unzip it. 
+
+### Step 2. Select a profile
+
+In the unzipped directory, find `profiles`. The `.toml` configuration files in this folder define 
+the parameters for each possible profile you can select for your Linea Besu node. 
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    Select one according to your preferences:
+    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    Select one according to your preferences:
+    - `basic-testnet`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-testnet`: Creates an advanced node on Linea Sepolia with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+</Tabs>
+
+### Step 3. Start the Linea Besu client
+
+In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
+`profiles` etc. directories are. 
+
+Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must 
+only be defined if you are running an `advanced` node, since this is needed to query finalization
+on L1.
+
+<Tabs groupId="networks" className="my-tabs">
+    <TabItem value="mainnet" label="Mainnet">
+    ```bash
+    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
+    ```
+    </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    ```bash
+    bin/besu --profile=advanced-testnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
+    ```
+    </TabItem>
+</Tabs>
+
+The node will attempt to find peers to begin synchronizing and to download the world state. 
+
 ## Run the Geth client
 
 ### Step 1. Install Geth
@@ -134,7 +217,7 @@ Download the genesis file for the relevant network.
   </TabItem>
 </Tabs>
 
-### Step 3. Define disk space volume (optional) {#disk-space-geth}
+### Step 3. Define disk space volume (optional) \{#disk-space-geth}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
 - Full nodes: 170GB, growing ~2.6GB per day.
