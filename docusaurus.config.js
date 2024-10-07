@@ -414,8 +414,8 @@ const config = {
             from: "/build-on-linea/tooling/linea-safe",
           },
           {
-            to: "/developers/tooling/permanent-data/irys/irys-query-package",
-            from: "/developers/tooling/permanent-data/irys/irys-querying",
+            to: "/developers/tooling/permanent-data/irys/irys-querying",
+            from: "/developers/tooling/permanent-data/irys/irys-query-package",
           },
           {
             to: "/architecture/overview/decentralization-roadmap",
