@@ -7,16 +7,30 @@ import DocCardList from "@theme/DocCardList";
 
 # Run a Linea node
 
+:::warning Reset Linea Sepolia nodes
+
+Linea's arithmetization will be updated as part of the Beta v1 release, which will be on 
+Linea Sepolia from September 23. 
+
+If you are running a Linea Sepolia node using the `advanced-testnet` profile, please reset your
+node(s) after September 23 to ensure they function correctly.
+
+:::
+
 There are no financial incentives for running a Linea node, but it does allow you to:
 
-- Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an RPC provider.
-- Have a local copy of the Linea blockchain. This view of the state is "trusted" until the transaction, or the
-    block that transaction is in, has been finalized on L1.
+- Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an 
+RPC provider. Note that using [Linea-specific API methods](../../reference/api/index.mdx) such as 
+`linea_estimateGas` and the `finalized` tag require using Linea Besu with the necessary plugins 
+enabled. Configuring your node to run with these plugins is covered in our guides. 
+- Have a local copy of the Linea blockchain, also known as a "follower" node. This view of the 
+state is "trusted" until the transaction, or the block that transaction is in, has been finalized 
+on L1.
 
 :::note
 
-Running a sequencer node is currently not possible and there is no option to vote on blocks as part of the consensus
-mechanism or [fork-choice](https://eth2book.info/capella/part3/forkchoice/#whats-a-fork-choice) like on Ethereum.
+There is currently no option to vote on blocks as part of the consensus mechanism or [fork-choice](https://eth2book.info/capella/part3/forkchoice/#whats-a-fork-choice) 
+like on Ethereum.
 
 :::
 

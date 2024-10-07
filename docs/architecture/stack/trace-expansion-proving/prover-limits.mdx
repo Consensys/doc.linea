@@ -1,0 +1,40 @@
+---
+title: Module limits
+description: How module limits ensure the prover can generate proofs.
+sidebar_position: 3
+image: /img/socialCards/module-limits.jpg
+---
+
+Linea uses module limits to keep proof complexity manageable and ensure that the prover can
+generate proofs efficiently without overwhelming the infrastructure. 
+
+Linea's arithmetization specification is divided into modules, and each module represents a collection
+of EVM or Linea zkEVM operations (opcodes). Modules can:
+- Process transaction data.
+- Manage zkEVM memory.
+- Coordinate interactions between modules.
+
+Each module has a specific limit on the number of lines of data its operations can generate, 
+regardless of its purpose. You can view these limits in the 
+[Linea source code](https://github.com/Consensys/linea-monorepo/blob/main/config/common/traces-limits-besu-v2.toml). 
+Additional lines are generated each time unique instructions are provided to a module's operations, 
+but repeat calls with the same arguments do not generate new lines.
+
+High-complexity transactions that repeatedly use a large volume of operations may generate too many 
+lines of data and exceed a module's limit. Transactions that reach this point are rejected by the 
+[sequencer](../sequencer/index.mdx) to ensure that the trace data passed to the prover is of a 
+manageable scope, and that a proof can be generated.
+
+Transactions rejected for exceeding module limits can be identified through the following
+methods, which return an error:
+
+- [`linea_estimateGas`](../../../developers/reference/api/linea-estimategas.mdx)
+- [`eth_sendRawTransaction`](../../../developers/reference/api/eth-sendrawtransaction.mdx)
+
+Use [`linea_getTransactionExclusionStatusV1`](../../../developers/reference/api/linea-gettransactionexclusionstatusv1.mdx)
+to get the rejection status of a transaction hash, if it was sent and didn't get rejected directly, 
+nor included in a block.
+
+This API method can be used to query the reason for transaction rejection in edge cases where
+`linea_estimateGas` or `eth_sendRawTransaction` did not return an error. It's intended to be used 
+only in cases the transaction execution differs between an RPC node and the sequencer.
