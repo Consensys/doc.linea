@@ -480,6 +480,18 @@ const config = {
             to: "/developers/tooling/data-indexers/dipdup/overview",
             from: "/developers/tooling/data-indexers/dipdup",
           },
+          {
+            to: "/developers/quickstart",
+            from: "/build-on-linea/quickstart",
+          },
+          {
+            to: "/users",
+            from: "/use-mainnet",
+          },
+          {
+            to: "/developers/tooling",
+            from: "/build-on-linea/tooling",
+          },
         ],
       },
     ],
