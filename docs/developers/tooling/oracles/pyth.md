@@ -96,7 +96,7 @@ above):
 ---
 
 ## Links
-- [Twitter](https://twitter.com/PythNetwork)
+- [X](https://x.com/PythNetwork)
 - [Discord](https://discord.com/invite/PythNetwork)
 - [Website](https://pyth.network/)
 - [Docs](https://docs.pyth.network/documentation)
