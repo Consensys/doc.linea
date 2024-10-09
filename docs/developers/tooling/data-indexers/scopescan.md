@@ -5,7 +5,7 @@ image: /img/socialCards/scopescan.jpg
 
 As Web3 platforms, protocols, and dapps become more mainstream, there is an increasing demand for these companies to know their users’ behaviors and connections. Thus, having a partner that can help companies and developers understand their users better is important for Linea and its mission to provide better scalability. 
 
-This article provides information on using Scopescan and its analytical tools to determine authentic users and their relations on LInea.
+This article provides information on using Scopescan and its analytical tools to determine authentic users and their relations on Linea.
 
 ## Scopescan and its unique value proposition
 Understanding Web3 users’ patterns can be difficult, especially given that any particular user can have multiple addresses and that Web3 prioritizes privacy. Unlike their Web2 counterparts, Web3 companies understandably have additional hurdles to clear to fine-tune their products to users’ evolving needs. This is where Scopescan brings unique value to the Linea platform and its projects.
