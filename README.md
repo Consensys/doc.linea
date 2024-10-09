@@ -84,7 +84,7 @@ to manage Node.js versions on your machine.
 
    ```bash
    npm install
-   npm run prepare
+   npm run prebuild
    ```
 
 3. To preview and for every time afterwards:
