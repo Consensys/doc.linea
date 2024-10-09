@@ -43,16 +43,17 @@ Linea also supports:
 
 ## Gas pricing
 
-The gas price you retrieve using methods such as `linea_estimateGas` is based on values calculated
-by the [coordinator](../../../architecture/stack/coordinator/index.mdx), and uses the gas price of 
+The gas price you retrieve using methods such as `linea_estimateGas` is based on the gas price of 
 the previous block with a profitability multiplier applied.
 
-Firstly, the coordinator records:
-- A fixed cost of 0.03 Gwei, which reflects infrastructure costs, and;
-- Variable cost, which is the cost per byte of data submitted to L1. 
+The first stage of returning gas price values with `linea_estimateGas` is to populate values in an
+object called `extraData`. The two most relevant values here are:
+- A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs, and;
+- `VARIABLE_COST`, which is the cost per byte of data submitted to L1. 
 
-These values are sent to the sequencer so that it can compute the gas prices for the upcoming 
-block and ensure that included transactions are profitable.
+These values are inserted into each block's `extraData` field—32 bytes available in every Ethereum 
+block to store any data—and then used by the sequencer and Linea Besu nodes running the correct 
+plugins to expose `linea_estimateGas`, in both cases with the same logic.
 
 Variable cost is calculated with the following formula:
 
@@ -60,22 +61,22 @@ Variable cost is calculated with the following formula:
 VARIABLE_COST (4 bytes) = min(max(
 (
   (
-    ((averageWeightedBaseFee + averageWeigthedPriorityFee) * 
+    ((averageWeightedBaseFee + averageWeightedPriorityFee) * 
     blob-submission-expected-execution-gas + averageWeightedBlobBaseFee * expected-blob-gas
   ) / bytes-per-data-submission) * profit-margin
 )
 , min-bound), max-bound)
 ```
 
-The `profit-margin` is `5`, ensuring sustainable network profitability. `min-bound` is `0.050000000` 
-Gwei, and `max-bound` is `0.127500000` Gwei, and together guarantee the gas price stays within a 
-reasonable range.
+The `profit-margin` is `3`, ensuring sustainable network profitability. `min-bound` and `max-bound` 
+are variable, and guarantee the gas price stays within a reasonable range.
 
 The variable cost formula is similar to the standard Ethereum gas price formula that Linea uses, 
 except that it allows `linea_estimateGas` to price according to the variable costs of submitting 
 blob data to L1. The amount of the blob data in each block stays roughly consistent, though the 
 amount _per transaction_ varies, so the `linea_estimateGas` API accounts for this, and ensures a 
-gas price is returned for the transaction that reflects the amount of data it contains. 
+gas price is returned for the transaction that reflects the amount of data it contains. In turn,
+it ensures that transactions are profitable. 
 
 To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
 into account:
@@ -86,7 +87,7 @@ priorityFeePerGas = MINIMUM_MARGIN * (min-gas-price * L2_compressed_tx_size_in_b
 ```
 
 Where:
-- `extraData.variable_cost` is the way the coordinator stores the `VARIABLE_COST` for the previous 
+- `extraData.variable_cost` is where the previous block's `VARIABLE_COST` is stored
 block
 - `MINIMUM_MARGIN` varies depending on the stage of the transaction:
   - RPC method, i.e. calling `linea_estimateGas`: `1.2`
@@ -95,8 +96,8 @@ block
 
 The `linea_estimateGas` formula above essentially ensures that transactions are checked for 
 profitability for inclusion in a block. However, the nonce order of transactions submitted from the 
-same account takes precedence, so there may be occasions where less profitable tranasctions are 
-favored for inclusion. 
+same account takes precedence, so there may be occasions where less profitable transactions must be
+included first. 
 
 ## [`linea_estimateGas`](../../reference/api/linea-estimategas.mdx)
 
