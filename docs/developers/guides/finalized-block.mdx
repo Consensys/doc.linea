@@ -3,14 +3,6 @@ title: Retrieve finalized L2 blocks
 image: /img/socialCards/retrieve-finalized-l2-blocks.jpg
 ---
 
-:::info
-
-The `finalized` tag is available on Mainnet and Linea Sepolia, with the exception of:
-- `eth_call`
-- `eth_getProof` 
-
-:::
-
 A finalized L2 block is a block on an L2 blockchain (Linea) that has been confirmed and validated
 by the L1 blockchain (Ethereum), ensuring its immutability and security.
 
@@ -34,16 +26,10 @@ curl https://rpc.linea.build \
 
 ### Supported methods
 
-`eth_getBlockByNumber` is currently the only JSON-RPC API method that supports the `finalized` tag
-on Linea. Support for the `finalized` tag will be added to other JSON-RPC API methods from October 
-9, 2024.
-
-:::note
-
-The `finalized` tag works with all JSON-RPC API methods on Linea Mainnet if you are using a node 
-running the Besu client. 
-
-:::
+The `finalized` tag is supported by all applicable JSON-RPC API methods on Linea Mainnet and Linea 
+Sepolia with the exception of:
+- `eth_call`
+- `eth_getProof`
 
 ## Query the rollup contract
 
