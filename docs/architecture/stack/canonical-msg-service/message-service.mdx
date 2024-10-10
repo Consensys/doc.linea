@@ -82,7 +82,8 @@ addresses above.
        - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically 
        on the destination chain (not available when bridging from L2 to L1)
      - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
-1. Dapp uses the Postman SDK to pay for the execution of messages on the destination layer by:
+1. Dapp uses the [Postman SDK](https://www.npmjs.com/package/@consensys/linea-sdk?activeTab=readme) 
+to pay for the execution of messages on the destination layer by:
    - Triggering the delivery
      - If messages don't get delivered by the postman, the message can be manually claimed by 
      calling `claimMessage` or `claimMessageWithProof` with the parameters detailed in the [interface below](#interface-imessageservicesol) 
