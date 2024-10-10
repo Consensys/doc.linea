@@ -119,14 +119,14 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
     try {
       const gasEstimate = await estimateGas(client, {
         account: '0x...', // Source account's address
-      to: '0x...', // Destination account's address
-      value: parseEther('0.004') // Amount of ETH to transfer
+        to: '0x...', // Destination account's address
+        value: parseEther('0.004') // Amount of ETH to transfer
       });
       console.log('Gas Estimate:', gasEstimate);
     } catch (error) {
       console.error('Error estimating gas:', error);
+    }
   }
-}
 
   EstimateGas();
   ```
