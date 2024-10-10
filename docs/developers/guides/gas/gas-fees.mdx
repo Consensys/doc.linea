@@ -43,8 +43,8 @@ Linea also supports:
 
 ## Gas pricing
 
-The gas price you retrieve using methods such as `linea_estimateGas` is based on the gas price of 
-the previous block with a profitability multiplier applied.
+The gas price you retrieve using methods such as `linea_estimateGas` is based on the variable data
+cost of the previous block with a profitability multiplier applied.
 
 The first stage of returning gas price values with `linea_estimateGas` is to populate values in an
 object called `extraData`. The two most relevant values here are:
@@ -71,12 +71,11 @@ VARIABLE_COST (4 bytes) = min(max(
 The `profit-margin` is `3`, ensuring sustainable network profitability. `min-bound` and `max-bound` 
 are variable, and guarantee the gas price stays within a reasonable range.
 
-The variable cost formula is similar to the standard Ethereum gas price formula that Linea uses, 
-except that it allows `linea_estimateGas` to price according to the variable costs of submitting 
-blob data to L1. The amount of the blob data in each block stays roughly consistent, though the 
-amount _per transaction_ varies, so the `linea_estimateGas` API accounts for this, and ensures a 
-gas price is returned for the transaction that reflects the amount of data it contains. In turn,
-it ensures that transactions are profitable. 
+The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
+submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
+in each block stays roughly consistent, though the amount _per transaction_ varies, so the 
+`linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction 
+that reflects the amount of data it contains. In turn, it ensures that transactions are profitable. 
 
 To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
 into account:
@@ -93,6 +92,12 @@ block
   - RPC method, i.e. calling `linea_estimateGas`: `1.2`
   - In the transaction pool: `0.8`
   - At transaction selection stage: `1.0`
+
+:::note
+The RPC method and transaction pool values are configurable by node runners according to preference;
+the transaction selection stage value is fixed. For example, it may be preferable to set a lower
+margin to facilitate lower gas prices, but this risks transactions not being included.
+:::
 
 The `linea_estimateGas` formula above essentially ensures that transactions are checked for 
 profitability for inclusion in a block. However, the nonce order of transactions submitted from the 
