@@ -180,8 +180,11 @@ const sidebars = {
             id: "developers/guides/run-a-node/index",
           },
           items: [
-            "developers/guides/run-a-node/use-docker",
-            "developers/guides/run-a-node/use-binary",
+            "developers/guides/run-a-node/besu",
+            "developers/guides/run-a-node/erigon",
+            "developers/guides/run-a-node/geth",
+            "developers/guides/run-a-node/linea-besu",
+            "developers/guides/run-a-node/enodes",
           ],
         },
         "developers/guides/linea-safe",

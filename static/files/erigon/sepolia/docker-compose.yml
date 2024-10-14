@@ -1,0 +1,44 @@
+version: "1.0"
+
+volumes:
+  linea-sepolia:
+    name: "linea-sepolia"
+
+services:
+  init:
+    image: erigontech/erigon:2.60.8
+    command:
+      - init
+      - /genesis.json
+      - --datadir=/data
+    volumes:
+      - ./genesis.json:/genesis.json:ro
+      - /tmp/linea-datadir:/data
+
+  node:
+    image: erigontech/erigon:2.60.8
+    pull_policy: always
+    restart: unless-stopped
+    stop_grace_period: 30s
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    command:
+      - --networkid=59141
+      - --prune=hrtc
+      - --http
+      - --http.addr='0.0.0.0'
+      - --http.port=8545
+      - --http.corsdomain='*'
+      - --http.api='admin,web3,eth,txpool,net'
+      - --http.vhosts='*'
+      - --bootnodes "enode://6f20afbe4397e51b717a7c1ad3095e79aee48c835eebd9237a3e8a16951ade1fe0e66e981e30ea269849fcb6ba03d838da37f524fabd2a557474194a2e2604fa@18.221.100.27:31002,enode://ce1e0d8e0500cb5c0ac56bdcdafb2d6320c3a2c5125b5ccf12f5dfc9b47ee74acbcafc32559017613136c9c36a0ce74ba4f83b7fb8244f099f3b15708d9d3129@3.23.75.47:31000,enode://1b026a5eb0ae74300f58987d235ef0e3a550df963345cb3574be3b0b54378bd11f14dfd515a8976f2c2d2826090e9507b8ccc24f896a9ffffffcabcfd996a733@3.129.120.128:31001"
+      - --verbosity=3
+    ports:
+      - 30303:30303
+      - 30303:30303/udp
+      - 8545:8545
+      - 8546:8546
+    volumes:
+      - ./genesis.json:/genesis.json:ro
+      - /tmp/linea-datadir:/data

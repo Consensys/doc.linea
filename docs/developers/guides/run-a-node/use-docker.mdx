@@ -1,6 +1,6 @@
 ---
 title: Use Docker
-description: Use Docker to run a Besu or Geth client as a Linea node.
+description: Use Docker to run a Besu, Erigon, or Geth client as a Linea node.
 image: /img/socialCards/use-docker.jpg
 ---
 
@@ -14,80 +14,17 @@ You can use Docker to run [Besu](https://besu.hyperledger.org/), [Linea Besu](ht
 
 Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
-## Run a standard Besu node
 
-:::warning Important
+## Run a Linea Besu node 
 
-The Besu Docker image does not run on Windows.
+We recommend using Linea Besu over standard Besu if you intend to run a node to interact 
+with the blockchain, rather than just following it. Linea Besu is an implementation of the Besu
+client that extends its functionality using plugins adapted specifically for Linea, such as the
+[Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
 
-:::
-
-### Step 1. Download configuration files
-
-Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration
-files include the network genesis file, Docker Compose file and Besu configuration file.
-
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
-  
-  Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
-
-  :::note[enodes]
-  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Besu `.zip` includes a
-  config file named `config-snap-mainnet.toml` where enodes are specified. The file uses all enodes
-  by default.
-
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
-  :::
-  
-  </TabItem>
-  <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  Download the testnet [`besu-sepolia` ZIP file](pathname:///files/besu/besu-sepolia.zip).
-  
-  </TabItem>
-</Tabs>
-
-### Step 2. Update the Docker Compose file
-
-In the `docker-compose.yaml` file, update the `--p2p-host` command to include your public IP address. For example:
-
-```yaml
---p2p-host=103.10.10.10
-```
-
-:::tip
-
-You can use [this page](https://www.whatismyip.com/) to find your public IP address.
-
-:::
-
-### Step 3. Start the Besu node
-
-Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`. 
-
-It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node.
-
-:::tip Troubleshoot peering issues
-
-Refer to the [Besu troubleshooting information](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/peering)
-for help if you experience peering issues.   
-
-:::
-
-## Run a Linea Besu node
-
-Linea Besu is an implementation of the Besu client that extends its functionality. 
-
-We recommend using Linea Besu over standard Besu if you intend to run a node and use it to interact 
-with the blockchain, rather than just following it. 
-
-Linea Besu enables you to use plugins adapted specifically for Linea, such as the [Linea Sequencer 
-plugin](https://github.com/Consensys/linea-sequencer).
-
-These plugins are necessary, in different ways, to enable full functionality for the node. 
-Linea-specific API endpoints like `linea_estimateGas`, for example, require the `linea-sequencer` 
-plugin. You can pick a plugin by selecting a profile in step 1.
+Plugins enable full functionality for the node. For example,
+Linea-specific API endpoints like `linea_estimateGas` require the `linea-sequencer` plugin.
+Plugins are installed with the `advanced` profile in [step 3](#step-3-select-a-profile).
 
 This guide is for infrastructure providers and operators who intend to run a Linea node. This is 
 relevant to you if:
@@ -180,40 +117,8 @@ If you only intend to run a `basic` profile, go straight to the next step.
     </TabItem>
 </Tabs>
 
-## Run a Geth node
 
-### Step 1. Download configuration files
 
-Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
-
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
-  
-  Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
-  files.
-
-  :::note[enodes]
-  You can choose from a range of edge nodes (enodes) for Linea Mainnet. The Geth `docker-compose.yml`
-  file uses all enodes by default. 
-
-  See our [enodes page](./enodes.mdx) for a full list of available enodes.
-  :::
-  
-  </TabItem>
-  <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  Download the Sepolia testnet [`docker-compose.yml`](pathname:///files/geth/sepolia/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/sepolia/genesis.json)
-  files.
-  
-  </TabItem>
-</Tabs>
-
-### Step 2. Start the Geth node
-
-Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
-and run `docker compose up`
-
-The node should now be running and looking for peers to sync.
 
 ## Confirm the node is running
 
