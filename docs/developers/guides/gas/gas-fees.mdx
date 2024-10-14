@@ -43,17 +43,24 @@ Linea also supports:
 
 ## Gas pricing
 
-The gas price you retrieve using methods such as `linea_estimateGas` is based on the variable data
-cost of the previous block with a profitability multiplier applied.
+The gas price returned by `linea_estimateGas` is based on the variable data cost of the previous 
+block with a profitability multiplier applied.
 
-The first stage of returning gas price values with `linea_estimateGas` is to populate values in an
-object called `extraData`. The two most relevant values here are:
-- A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs, and;
-- `VARIABLE_COST`, which is the cost per byte of data submitted to L1. 
+Each Linea block's `extraData` field is populated with the following gas price values that are used 
+by `linea_estimateGas` to calculate the cost of a transaction:
+- A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs;
+- `VARIABLE_COST`, which is the cost per byte of data submitted to L1, and;
+- `ETH_GAS_PRICE`, used to set a more accurate return value for any `eth_gasPrice` calls. 
 
-These values are inserted into each block's `extraData` field—32 bytes available in every Ethereum 
-block to store any data—and then used by the sequencer and Linea Besu nodes running the correct 
-plugins to expose `linea_estimateGas`, in both cases with the same logic.
+:::note
+
+The `extraData` field is a 32-byte space used to store arbitrary data, such as metadata or 
+additional information relevant to the block. 
+
+On Linea, it is used by the sequencer and Linea Besu nodes running the correct plugins to expose 
+`linea_estimateGas`.
+
+:::
 
 Variable cost is calculated with the following formula:
 
@@ -94,13 +101,15 @@ block
   - At transaction selection stage: `1.0`
 
 :::note
-The RPC method and transaction pool values are configurable by node runners according to preference;
-the transaction selection stage value is fixed. For example, it may be preferable to set a lower
-margin to facilitate lower gas prices, but this risks transactions not being included.
+The RPC method and transaction pool values are configurable by RPC providers or those running their 
+own nodes according to preference; the transaction selection stage value is fixed. For example, 
+it may be preferable to set a lower margin to facilitate lower gas prices, but this risks 
+transactions not being included.
 :::
 
-The `linea_estimateGas` formula above essentially ensures that transactions are checked for 
-profitability for inclusion in a block. However, the nonce order of transactions submitted from the 
+`linea_estimateGas` enables its users to reproduce on demand the transaction profitability logic 
+that the sequencer applies to all transactions when building blocks, ensuring that the transaction
+is profitable enough for inclusion. However, the nonce order of transactions submitted from the 
 same account takes precedence, so there may be occasions where less profitable transactions must be
 included first. 
 
