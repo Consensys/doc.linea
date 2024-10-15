@@ -13,7 +13,7 @@ services:
       - --datadir=/data
     volumes:
       - ./genesis.json:/genesis.json:ro
-      - /tmp/linea-datadir:/data
+      - /tmp/linea-datadir:/home/erigon/.local/share/erigon/
 
   node:
     image: erigontech/erigon:2.60.8
@@ -41,4 +41,4 @@ services:
       - 8546:8546
     volumes:
       - ./genesis.json:/genesis.json:ro
-      - /tmp/linea-datadir:/data
+      - /tmp/linea-datadir:/home/erigon/.local/share/erigon/
