@@ -36,12 +36,82 @@ and gas used.
 `linea_estimateGas` is the recommended method for estimating gas on Linea. See our 
 [reference page](../../reference/api/linea-estimategas.mdx) for more information. 
 
-Linea also supports [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas),
-[`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice), and
-[`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
+Linea also supports:
+- [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
+- [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice)
+- [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
 
-You can use `eth_gasPrice` or `eth_feeHistory` to get the gas price, in wei, and you can use 
-`eth_estimateGas` to find out how many units of gas a specific transaction will need. 
+## Gas pricing
+
+The gas price returned by `linea_estimateGas` is based on the variable data cost of the previous 
+block with a profitability multiplier applied.
+
+Each Linea block's `extraData` field is populated with the following gas price values that are used 
+by `linea_estimateGas` to calculate the cost of a transaction:
+- A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs;
+- `VARIABLE_COST`, which is the cost per byte of data submitted to L1, and;
+- `ETH_GAS_PRICE`, used to set a more accurate return value for any `eth_gasPrice` calls. 
+
+:::note
+
+The `extraData` field is a 32-byte space used to store arbitrary data, such as metadata or 
+additional information relevant to the block. 
+
+On Linea, it is used by the sequencer and Linea Besu nodes running the correct plugins to expose 
+`linea_estimateGas`.
+
+:::
+
+Variable cost is calculated with the following formula:
+
+```python
+VARIABLE_COST (4 bytes) = min(max(
+(
+  (
+    ((averageWeightedBaseFee + averageWeightedPriorityFee) * 
+    blob-submission-expected-execution-gas + averageWeightedBlobBaseFee * expected-blob-gas
+  ) / bytes-per-data-submission) * profit-margin
+)
+, min-bound), max-bound)
+```
+
+The `profit-margin` is `3`, ensuring sustainable network profitability. `min-bound` and `max-bound` 
+are variable, and guarantee the gas price stays within a reasonable range.
+
+The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
+submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
+in each block stays roughly consistent, though the amount _per transaction_ varies, so the 
+`linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction 
+that reflects the amount of data it contains. In turn, it ensures that transactions are profitable. 
+
+To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
+into account:
+```python
+min-gas-price = previousBlock.extraData.variable_cost
+baseFeePerGas = vanillaProtocolBaseFee
+priorityFeePerGas = MINIMUM_MARGIN * (min-gas-price * L2_compressed_tx_size_in_bytes / L2_tx_gas_used + extraData.fixed_cost)
+```
+
+Where:
+- `extraData.variable_cost` is where the previous block's `VARIABLE_COST` is stored
+block
+- `MINIMUM_MARGIN` varies depending on the stage of the transaction:
+  - RPC method, i.e. calling `linea_estimateGas`: `1.2`
+  - In the transaction pool: `0.8`
+  - At transaction selection stage: `1.0`
+
+:::note
+The RPC method and transaction pool values are configurable by RPC providers or those running their 
+own nodes according to preference; the transaction selection stage value is fixed. For example, 
+it may be preferable to set a lower margin to facilitate lower gas prices, but this risks 
+transactions not being included.
+:::
+
+`linea_estimateGas` enables its users to reproduce on demand the transaction profitability logic 
+that the sequencer applies to all transactions when building blocks, ensuring that the transaction
+is profitable enough for inclusion. However, the nonce order of transactions submitted from the 
+same account takes precedence, so there may be occasions where less profitable transactions must be
+included first. 
 
 ## [`linea_estimateGas`](../../reference/api/linea-estimategas.mdx)
 
