@@ -131,7 +131,7 @@ The callback to the Requester contains two parameters:
 
 :::note
 
-Sponsors should not fund a `sponsorWallet` with more then they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+Sponsors should not fund a `sponsorWallet` with more than they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
 
 :::
 
@@ -416,7 +416,7 @@ contract QrngExample is RrpRequesterV0, Ownable {
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/QrngRequesterUpdated.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js&lang=en)
 
-You can try QRNG on Linea for free. Check out the all the QRNG Providers for Linea [here](https://docs.api3.org/reference/qrng/providers.html).
+You can try QRNG on Linea for free. Check out all the QRNG Providers for Linea [here](https://docs.api3.org/reference/qrng/providers.html).
 
 [Click here to read more about API3 QRNG](https://docs.api3.org/explore/qrng/)
 
