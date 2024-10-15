@@ -10,9 +10,11 @@ import VolumeCreation from "./volume-creation.mdx";
 
 [Geth](https://geth.ethereum.org/) is an open-source Go implementation of Ethereum.
 
+:::info important
 Install and run a Geth node if you want to follow the Linea network by 
 maintaining a local copy of the blockchain. However, if you want to interact with the network and use
 Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
+:::
 
 You can run Geth from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
 
@@ -109,11 +111,11 @@ Start the node using the following command:
     --verbosity 3
     ```
 
-  :::note[enodes]
+  :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
   all bootnodes by default.
 
-  See our [enodes page](./enodes.mdx) for a full list of available bootnodes.
+  See our [bootnodes page](./enodes.mdx) for a full list of available bootnodes.
   :::
   
   </TabItem>
@@ -170,7 +172,7 @@ Download the configuration files for the relevant network. Ensure that you downl
   You can choose from a range of bootnodes for Linea Mainnet. The Geth `docker-compose.yml`
   file uses all bootnodes by default. 
 
-  See our [enodes page](./enodes.mdx) for a full list of available bootnodes.
+  See our [bootnodes page](./enodes.mdx) for a full list of available bootnodes.
   :::
   
   </TabItem>
