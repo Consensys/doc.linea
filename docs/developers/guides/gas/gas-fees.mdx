@@ -44,7 +44,7 @@ Linea also supports:
 ## Gas pricing
 
 The gas price returned by `linea_estimateGas` is based on the variable data cost of the previous 
-block with a profitability multiplier applied.
+block with a multiplier applied as a buffer to ensure inclusion.
 
 Each Linea block's `extraData` field is populated with the following gas price values that are used 
 by `linea_estimateGas` to calculate the cost of a transaction:
@@ -75,14 +75,15 @@ VARIABLE_COST (4 bytes) = min(max(
 , min-bound), max-bound)
 ```
 
-The `profit-margin` is `3`, ensuring sustainable network profitability. `min-bound` and `max-bound` 
+The `profit-margin` is `3`, ensuring the network is sustainable. `min-bound` and `max-bound` 
 are variable, and guarantee the gas price stays within a reasonable range.
 
 The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
 submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
 in each block stays roughly consistent, though the amount _per transaction_ varies, so the 
 `linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction 
-that reflects the amount of data it contains. In turn, it ensures that transactions are profitable. 
+that reflects the amount of data it contains. In turn, it ensures that the network is sustainable,
+and that the cost to the protocol of L1 data availability is covered. 
 
 To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
 into account:
@@ -107,11 +108,15 @@ it may be preferable to set a lower margin to facilitate lower gas prices, but t
 transactions not being included.
 :::
 
-`linea_estimateGas` enables its users to reproduce on demand the transaction profitability logic 
-that the sequencer applies to all transactions when building blocks, ensuring that the transaction
-is profitable enough for inclusion. However, the nonce order of transactions submitted from the 
-same account takes precedence, so there may be occasions where less profitable transactions must be
-included first. 
+`linea_estimateGas` enables its users to reproduce on demand the transaction order logic that the 
+sequencer applies to all transactions when building blocks, ensuring that the transaction price has 
+enough of a buffer for inclusion. This logic involves selecting transactions for the priority fees
+they pay, a system known as a priority gas auction, but also ensuring the priority fees offered by
+each transaction are high enough to support the network's sustainability, and cover L1 data costs.
+
+In some cases, transactions with lower priority fees are included ahead of others with higher 
+priority fees. This is because the nonce order of transactions submitted from the same account 
+takes precedence. 
 
 ## [`linea_estimateGas`](../../reference/api/linea-estimategas.mdx)
 
