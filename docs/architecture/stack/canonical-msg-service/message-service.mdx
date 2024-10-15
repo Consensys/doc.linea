@@ -14,7 +14,8 @@ import TabItem from "@theme/TabItem";
 
 The message service is responsible for cross-chain messages between Ethereum and Linea, which:
 
-- Allows a contract on the source chain to safely interact with a contract on the target chain (e.g. L1TokenBridge triggering mint on the L2TokenBridge),
+- Allows a contract on the source chain to safely interact with a contract on the target chain 
+(e.g. L1TokenBridge triggering mint on the L2TokenBridge),
 - Is responsible for bridging ETH (native currency on L1 and L2)
 - Supports:
   - **push**: auto-execution on target layer if a fee is paid
@@ -73,20 +74,38 @@ The message service is responsible for cross-chain messages between Ethereum and
 
 ### Workflow
 
-1. dApp calls `sendMessage(...)` on the origin layer using [`MessageService.sol`](https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract)
+1. Dapp calls `sendMessage(...)` on the origin layer using the proxy contract at one of the testnet 
+addresses above.
    - Args:
      - `_to`: the destination address on the destination chain
      - `_fee`: the message service fee on the origin chain
-       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically on the destination chain (not available when bridging from L2 to L1)
+       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically 
+       on the destination chain (not available when bridging from L2 to L1, or for non-ETH transfers)
      - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
-1. dApp uses the Postman SDK (details to come) to pay for the execution of messages on the destination layer by:
+1. Dapp uses the [Postman SDK](https://www.npmjs.com/package/@consensys/linea-sdk?activeTab=readme) 
+to simplify the execution of messages on the destination layer by:
    - Triggering the delivery
-     - If messages don’t get delivered by the postman, the message can be manually claimed by calling `claimMessage` with the parameters detailed in the [interface below](#interface-imessageservicesol) or by using the SDK.
-   - Receiving the delivery in the dApp smart-contract
-     - This triggers `claimMessage(...)` on the destination layer that will call `_to` with `_calldata` and a value equal to.
-     - The dApp smart-contract can inherit from `MessageServiceBase.sol` to:
+     - If messages don't get delivered by the postman, the message can be manually claimed by 
+     calling, with the parameters detailed in the [interface below](#interface-imessageservicesol),
+     one of:
+      - L2: `claimMessage` 
+      - L1: `claimMessageWithProof`  
+    You can also use the SDK to claim messages.
+   - Receiving the delivery in the dapp smart contract
+     - This triggers `claimMessage(...)` on the destination layer that will call `_to` with 
+     `_calldata` and a value equal to.
+     - The dapp smart contract can inherit from `MessageServiceBase.sol` to:
        - Verify that the call comes from the MessageService `onlyMessagingService`
-       - Verify that the sender on the origin chain comes from a trusted contract (usually the dApp sibling contract) using `onlyAuthorizedRemoteSender()`
+       - Verify that the sender on the origin chain comes from a trusted contract (usually the dapp 
+       sibling contract) using `onlyAuthorizedRemoteSender()`
+
+:::info[Proxy contract]
+A proxy contract is one that simply points towards the actual "implementation" contracts. This model
+is beneficial as it allows the implementation contracts to be upgraded independently of the proxy,
+allowing contract upgrades without having to start afresh and lose the proxy contract's history. 
+When the implementation contracts are updated, the proxy contract is simply amended to point 
+towards the new implementation contract addresses.
+:::
 
 ## Interface IMessageService.sol
 
