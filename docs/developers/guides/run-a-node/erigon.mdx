@@ -20,13 +20,21 @@ You can run Erigon from a [binary distribution](#run-using-the-binary-distributi
 
 ## Run using the binary distribution
 
+:::info
+Ensure you review [Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites)
+before installing the Erigon client.
+
+If you're not comfortable with installing the binary distribution, consider using [Docker](#run-using-docker) instead.
+:::
+
 ### Step 1. Install Erigon
 
 [Download and install the Erigon client](https://erigon.gitbook.io/erigon/basic-usage/getting-started).
 
 ### Step 2. Download the genesis file
 
-Download the genesis file for the relevant network.
+Download the genesis file for the relevant network. In the example, we'll download the file to the
+directory specified by [`datadir` in Step 4](#step-4-bootstrap-your-node).
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -108,7 +116,7 @@ Start the node using the following command:
   You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
   all bootnodes by default.
 
-  The [bootnodes page](./enodes.mdx) contains a full list of available bootnodes.
+  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
   :::
   
   </TabItem>
@@ -139,6 +147,10 @@ The Erigon node will attempt to find peers to begin synchronizing and to downloa
 
 ## Run using Docker
 
+### Prerequisites
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/).
+
 ### Step 1. Download configuration files
 
 Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
@@ -153,7 +165,7 @@ Download the configuration files for the relevant network. Ensure that you downl
   You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
   all bootnodes by default.
 
-  The [bootnodes page](./enodes.mdx) contains a full list of available bootnodes.
+  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
   :::
   
   </TabItem>

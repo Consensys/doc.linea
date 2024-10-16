@@ -184,7 +184,7 @@ const sidebars = {
             "developers/guides/run-a-node/erigon",
             "developers/guides/run-a-node/geth",
             "developers/guides/run-a-node/linea-besu",
-            "developers/guides/run-a-node/enodes",
+            "developers/guides/run-a-node/bootnodes",
           ],
         },
         "developers/guides/linea-safe",
