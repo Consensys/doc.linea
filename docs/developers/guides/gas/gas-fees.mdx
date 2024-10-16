@@ -108,11 +108,12 @@ it may be preferable to set a lower margin to facilitate lower gas prices, but t
 transactions not being included.
 :::
 
-`linea_estimateGas` enables its users to reproduce on demand the transaction order logic that the 
-sequencer applies to all transactions when building blocks, ensuring that the transaction price has 
-enough of a buffer for inclusion. This logic involves selecting transactions for the priority fees
-they pay, a system known as a priority gas auction, but also ensuring the priority fees offered by
-each transaction are high enough to support the network's sustainability, and cover L1 data costs.
+`linea_estimateGas` simulates the transaction ordering logic that the sequencer uses when building 
+blocks, and then obtains a gas price that will ensure that the priority fee is high enough for 
+inclusion. The sequencer's transaction ordering policy includes transactions in block in order of 
+highest priority fee, a system known as a priority gas auction. It also checks that the priority 
+fees offered by each transaction are high enough to support network sustainability, and cover L1 
+data costs.
 
 In some cases, transactions with lower priority fees are included ahead of others with higher 
 priority fees. This is because the nonce order of transactions submitted from the same account 
