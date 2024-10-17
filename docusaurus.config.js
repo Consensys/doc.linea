@@ -295,11 +295,15 @@ const config = {
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/users/zero-knowledge-glossary",
-            from: ["/reference/glossary", "/zero-knowledge-glossary"],
+            to: "/zero-knowledge-glossary",
+            from: [
+              "/reference/glossary", 
+              "/zero-knowledge-glossary",
+              "/users/zero-knowledge-glossary"
+            ],
           },
           {
-            to: "/users",
+            to: "/",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -307,15 +311,23 @@ const config = {
               "/get-started/quickstart",
               "/use-zkevm",
               "/use-linea/index.md",
+              "/users",
+              "/users/index.mdx",
             ],
           },
           {
-            to: "/users/move-funds/set-up-your-wallet",
-            from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+            to: "/",
+            from: [
+              "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+              "/users/move-funds/set-up-your-wallet",
+            ],
           },
           {
-            to: "/users/move-funds/fund",
-            from: "/build-on-linea/use-linea-testnet/fund",
+            to: "/",
+            from: [
+              "/build-on-linea/use-linea-testnet/fund",
+              "/users/move-funds/fund",
+            ],
           },
           {
             to: "/developers/quickstart/info-contracts",
@@ -330,12 +342,18 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/users/move-funds/bridge",
-            from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
+            to: "/",
+            from: [
+              "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
+              "/users/move-funds/bridge",
+            ],
           },
           {
-            to: "/users/move-funds/bridge",
-            from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+            to: "/",
+            from: [
+              "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+              "/users/move-funds/bridge",
+            ],
           },
           {
             to: "/developers/guides/gas/gas-fees",
@@ -370,12 +388,18 @@ const config = {
             from: "/use-mainnet/bridges-of-linea",
           },
           {
-            to: "/users/move-funds/fund",
-            from: "/use-mainnet/fund",
+            to: "/",
+            from: [
+              "/use-mainnet/fund",
+              "/users/move-funds/fund",
+            ],
           },
           {
-            to: "/users/move-funds/set-up-your-wallet",
-            from: "/use-mainnet/set-up-your-wallet",
+            to: "/",
+            from: [
+              "/use-mainnet/set-up-your-wallet",
+              "/users/move-funds/set-up-your-wallet",
+            ],
           },
           {
             to: "/developers/quickstart/info-contracts",
@@ -485,7 +509,7 @@ const config = {
             from: "/build-on-linea/quickstart",
           },
           {
-            to: "/users",
+            to: "/",
             from: "/use-mainnet",
           },
           {
