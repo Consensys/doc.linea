@@ -1,74 +1,6 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
-    "users/index",
-    {
-      type: "category",
-      collapsed: true,
-      label: "Move funds to Linea",
-      link: {
-        type: "doc",
-        id: "users/move-funds/index",
-      },
-      items: [
-        "users/move-funds/set-up-your-wallet",
-        "users/move-funds/fund",
-        "users/move-funds/bridge",
-      ],
-    },
-    {
-      type: "category",
-      label: "Linea Voyage",
-      link: {
-        type: "doc",
-        id: "users/linea-voyage/index",
-      },
-      items: [
-        "users/linea-voyage/lxp/index",
-        {
-          type: "category",
-          label: "The Surge",
-          link: {
-            type: "doc",
-            id: "users/linea-voyage/linea-surge/index",
-          },
-          items: [
-            "users/linea-voyage/linea-surge/linea-surge-model",
-            "users/linea-voyage/linea-surge/linea-surge-overview",
-          ],
-        },
-      ],
-    },
-    "users/zero-knowledge-glossary/index",
-    "risk-disclosures/index",
-    {
-      type: "category",
-      label: "Contact us",
-      items: [
-        {
-          type: "link",
-          label: "Get help",
-          href: "https://support.linea.build/",
-        },
-        {
-          type: "link",
-          label: "Provide feedback",
-          href: "https://community.linea.build/c/feedback",
-        },
-        {
-          type: "link",
-          label: "Report an issue",
-          href: "https://community.linea.build/c/bug-reports/",
-        },
-        {
-          type: "link",
-          label: "Join our Discord",
-          href: "https://discord.gg/linea",
-        },
-      ],
-    },
-  ],
-  developersSidebar: [
     {
       type: "category",
       label: "Getting started",
@@ -438,6 +370,32 @@ const sidebars = {
             "developers/reference/api/linea-gettransactionexclusionstatusv1",
             "developers/reference/api/linea-getproof",
           ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Contact",
+      items: [
+        {
+          type: "link",
+          label: "Support",
+          href: "https://support.linea.build/",
+        },
+        {
+          type: "link",
+          label: "Feedback",
+          href: "https://community.linea.build/c/feedback",
+        },
+        {
+          type: "link",
+          label: "Report an issue",
+          href: "https://community.linea.build/c/bug-reports/",
+        },
+        {
+          type: "link",
+          label: "Discord",
+          href: "https://discord.gg/linea",
         },
       ],
     },

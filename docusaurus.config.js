@@ -190,8 +190,8 @@ const config = {
                 href: "https://lineascan.build",
               },
               {
-                label: "Linea Sepolia block explorer",
-                href: "https://sepolia.lineascan.build",
+                label: "Risk disclosures",
+                href: "risk-disclosures/index",
               },
             ],
           },
