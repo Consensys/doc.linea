@@ -118,21 +118,15 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "users/index",
-            position: "left",
-            label: "Users",
-          },
-          {
-            type: "doc",
             docId: "developers/quickstart/index",
             position: "left",
-            label: "Developers",
+            label: "Quickstart",
           },
           {
             type: "doc",
-            docId: "architecture/index",
+            docId: "developers/guides/index",
             position: "left",
-            label: "Architecture",
+            label: "Guides",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -153,6 +147,12 @@ const config = {
             to: "/developers/guides/run-a-node",
             position: "left",
             label: "Run a node",
+          },
+          {
+            type: "doc",
+            docId: "architecture/index",
+            position: "left",
+            label: "Architecture",
           },
           {
             to: "/developers/linea-version",
@@ -178,11 +178,11 @@ const config = {
             title: "Links",
             items: [
               {
-                label: "Linea homepage",
+                label: "Home",
                 href: "https://linea.build/",
               },
               {
-                label: "Network status",
+                label: "Status",
                 href: "https://linea.statuspage.io/",
               },
               {
@@ -216,7 +216,7 @@ const config = {
             title: "Contribute",
             items: [
               {
-                label: "Contribute to our documentation",
+                label: "Documentation",
                 href: "https://github.com/Consensys/doc.linea",
               },
             ],
