@@ -441,22 +441,6 @@ const sidebars = {
         },
       ],
     },
-    {
-      type: "category",
-      label: "Community",
-      link: {
-        type: "doc",
-        id: "developers/community/hackathons",
-      },
-      items: [
-        "developers/community/hackathons",
-        {
-          type: "link",
-          label: "Bug bounty program",
-          href: "https://immunefi.com/bounty/linea/",
-        },
-      ],
-    },
   ],
   architectureSidebar: [
     "architecture/index",
