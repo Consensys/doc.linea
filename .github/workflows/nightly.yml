@@ -19,6 +19,7 @@
           with:
               FILE_EXTENSION: mdx
               MODIFIED_FILES_ONLY: no
+
     linkCheckMd:
       needs: linkCheckMdx
       name: Run link check on .md files
@@ -33,6 +34,7 @@
           with:
               FILE_EXTENSION: md
               MODIFIED_FILES_ONLY: no
+
     slackNotification:
       needs: [linkCheckMdx, linkCheckMd]
       if: ${{ failure() }}

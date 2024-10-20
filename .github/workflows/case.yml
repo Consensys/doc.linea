@@ -21,5 +21,4 @@ jobs:
       - name: Case check action
         uses: Consensys/docs-gha/case@main
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOC_DIR: ${{ matrix.folder }}
