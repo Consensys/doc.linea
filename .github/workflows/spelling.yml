@@ -1,0 +1,22 @@
+---
+name: Check for spelling with vale
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  vale:
+    name: Spelling
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vale
+        uses: Consensys/docs-gha/spelling@main
+        with:
+          FILEPATHS: "docs"
+
