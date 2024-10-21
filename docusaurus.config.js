@@ -191,7 +191,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "/risk-disclosures/index",
+                href: "/risk-disclosures",
               },
             ],
           },
