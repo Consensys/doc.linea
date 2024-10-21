@@ -384,6 +384,8 @@ const config = {
               "/build-on-linea/run-a-node",
               "/build-on-linea/run-a-node/use-binary",
               "/build-on-linea/run-a-node/use-docker",
+              "/developers/guides/run-a-node/use-docker",
+              "/developers/guides/run-a-node/use-binary",
             ],
           },
           {
