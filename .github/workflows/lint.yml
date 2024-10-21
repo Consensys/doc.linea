@@ -1,5 +1,5 @@
 ---
-name: Check for lint/build errors
+name: Check for lint errors
 
 on:
   pull_request:
@@ -15,21 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Lint
-        uses: Consensys/docs-gha/lint@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint code
+        uses: ConsenSys/docs-gha/lint@main
 
-  linkCheck:
-    name: Link Checking
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        file-extensions: [".md", ".mdx"]
-    steps:
-      - uses: actions/checkout@v4
-      - name: LinkCheck
-        uses: Consensys/docs-gha/linkcheck@main
-        with:
-          FILE_EXTENSION: '${{ matrix.file-extensions }}'
-          CONFIG_FILE: 'mlc_config.json'
+      - name: Lint markdown
+        uses: ConsenSys/docs-gha/lint-markdown@main

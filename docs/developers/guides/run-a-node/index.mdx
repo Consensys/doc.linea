@@ -7,31 +7,35 @@ import DocCardList from "@theme/DocCardList";
 
 # Run a Linea node
 
-:::warning Reset Linea Sepolia nodes
+This section guides you through running a Linea node using various compatible Ethereum clients.
 
-Linea's arithmetization will be updated as part of the Beta v1 release, which will be on 
-Linea Sepolia from September 23. 
+:::info important
+While Linea supports multiple clients, only Linea Besu currently allows you to access Linea-specific
+features, such as using [Linea methods](../../reference/api/index.mdx) (for example, `linea_estimateGas`)
+or calling methods using the `finalized` tag.
 
-If you are running a Linea Sepolia node using the `advanced-testnet` profile, please reset your
-node(s) after September 23 to ensure they function correctly.
-
+Linea Besu is recommended for infrastructure providers and operators who intend to run a Linea
+node, whether for offering node services to others or for using Linea with a personal, private RPC endpoint.
 :::
 
-There are no financial incentives for running a Linea node, but it does allow you to:
+The vanilla Ethereum clients such as Besu, Geth, and Erigon are recommended if you only want to follow the
+Linea chain. They allow you to have a local copy of the Linea blockchain. This view of the state is
+"trusted" until the transaction, or the block that transaction is in, has been finalized on L1.
 
-- Call the Linea JSON RPC API methods and submit transactions to the mempool without relying on an 
-RPC provider. Note that using [Linea-specific API methods](../../reference/api/index.mdx) such as 
-`linea_estimateGas` and the `finalized` tag require using Linea Besu with the necessary plugins 
-enabled. Configuring your node to run with these plugins is covered in our guides. 
-- Have a local copy of the Linea blockchain, also known as a "follower" node. This view of the 
-state is "trusted" until the transaction, or the block that transaction is in, has been finalized 
-on L1.
+The following table lists the clients covered in this guide, and whether they provide direct access
+to Linea-specific features.
 
-:::note
+| Name                           | Description                                                                                                                                                 | Run Linea-specific features? |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|
+| [Besu](./besu.mdx)             | An Java-based open-source Ethereum client that can be extended using plugins.                                                                               | ❌                     |
+| [Linea Besu](./linea-besu.mdx) | Besu client with plugins that implement Linea-specific features, such as [API methods](../../reference/api/index.mdx) and [`finalized`](../finalized-block.mdx) tag.                                                                                            | ✅                     |
+| [Erigon](./erigon.mdx)         | A client implementation focused on performance and saving disk space, written in Go.                                                                        | ❌                     |
+| [Geth](./geth.mdx)             | The most widely used open-source Ethereum client, written in Go.                                                                                            | ❌                     |
 
-There is currently no option to vote on blocks as part of the consensus mechanism or [fork-choice](https://eth2book.info/capella/part3/forkchoice/#whats-a-fork-choice) 
-like on Ethereum.
 
-:::
+There are no financial incentives for running a Linea node, and there is currently no option to
+vote on blocks as part of the consensus mechanism or
+[fork-choice](https://eth2book.info/capella/part3/forkchoice/#whats-a-fork-choice) like on Ethereum.
+
 
 <DocCardList />
