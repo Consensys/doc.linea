@@ -191,7 +191,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "risk-disclosures/index",
+                href: "/risk-disclosures/index",
               },
             ],
           },
@@ -298,7 +298,6 @@ const config = {
             to: "/zero-knowledge-glossary",
             from: [
               "/reference/glossary", 
-              "/zero-knowledge-glossary",
               "/users/zero-knowledge-glossary"
             ],
           },
@@ -318,15 +317,9 @@ const config = {
           {
             to: "/",
             from: [
-              "/build-on-linea/use-linea-testnet/set-up-your-wallet",
-              "/users/move-funds/set-up-your-wallet",
-            ],
-          },
-          {
-            to: "/",
-            from: [
               "/build-on-linea/use-linea-testnet/fund",
               "/users/move-funds/fund",
+              "/use-mainnet/fund",
             ],
           },
           {
@@ -346,13 +339,7 @@ const config = {
             from: [
               "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
               "/users/move-funds/bridge",
-            ],
-          },
-          {
-            to: "/",
-            from: [
               "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
-              "/users/move-funds/bridge",
             ],
           },
           {
@@ -360,28 +347,8 @@ const config = {
             from: "/use-mainnet/gas-import",
           },
           {
-            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
-            from: "/use-mainnet/linea-surge/linea-surge-overview",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge/linea-surge-model",
-            from: "/use-mainnet/linea-surge/linea-surge-model",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge/linea-surge-model",
-            from: "/use-mainnet/linea-surge-model",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge",
-            from: "/use-mainnet/linea-surge",
-          },
-          {
             to: "/developers/guides/gas/gas-fees",
             from: "/reference/api/linea-estimategas",
-          },
-          {
-            to: "/users/linea-voyage/lxp",
-            from: "/use-mainnet/linea-xp",
           },
           {
             to: "/developers/guides/bridge",
@@ -390,15 +357,9 @@ const config = {
           {
             to: "/",
             from: [
-              "/use-mainnet/fund",
-              "/users/move-funds/fund",
-            ],
-          },
-          {
-            to: "/",
-            from: [
               "/use-mainnet/set-up-your-wallet",
               "/users/move-funds/set-up-your-wallet",
+              "/build-on-linea/use-linea-testnet/set-up-your-wallet",
             ],
           },
           {
@@ -426,8 +387,11 @@ const config = {
             ],
           },
           {
-            to: "/developers/community/hackathons",
-            from: "/build-on-linea/hackathons",
+            to: "/",
+            from: [
+              "/build-on-linea/hackathons",
+              "/developers/community/hackathons",
+            ],
           },
           {
             to: "/developers/guides/linea-inscriptions",
