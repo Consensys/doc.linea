@@ -9,30 +9,50 @@ itself is published at [`docs.linea.build`](https://docs.linea.build/).
 
 See [more](https://docs-template.consensys.net/) information about how Consensys uses Docusaurus.
 
-## Contribute to the docs
+## Contribute
 
 See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.linea/issues).
 
 Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.linea/fork),
-create a pull request, and tag us for review! (for help on this, see [below](#how-to-submit-a-suggestion-or-change)).
+create a pull request, and tag us for review. (For help on this, see [below](#how-to-submit-a-suggestion-or-change)).
 
-Take a look at some [good first issues](https://github.com/ConsenSys/doc.linea/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-to get started.
+Alternatively, get in touch via the [community forum](https://community.linea.build/) or the 
+[Linea Discord](https://discord.gg/linea) if you have an issue or question.
 
-### How to submit a suggestion or change
+Please follow these steps if you wish to contribute:
+1. Please make an issue describing the change you wish to make _before_ you start working on it, and
+[link to it in your pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
+This is particularly important if you are an ecosystem contributor — submitting your details in an 
+issue first will make it much easier for our docs team to process your contributions.
+2. [Fork our repo](https://github.com/ConsenSys/doc.linea/fork) so that you're able to work on it. 
+3. Make your changes, paying attention to our [contribution guidelines](#contribution-guidelines).
+4. Review your changes locally. See our [guide](#running-locally) on previewing your 
+changes locally.
+5. Submit your changes as a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+New pull requests are reviewed regularly.
 
-The best way to suggest a change to these docs is through a process known as a **pull request**.
-If you're not familiar with how that works, check out [GitHub's guide here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+### Contribution guidelines
 
-If you do intend to submit a pull request, please open an issue first, and [link to it in your pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue). **This is particularly important if you are an ecosystem contributor** —
-submitting your details in an issue first will make it much easier for our docs team to process your
-contributions.
+The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide).
 
-If that process is too involved for you, you can always open a thread on the [Community forum](https://community.linea.build/),
-or a ticket on the [Support page](https://support.linea.build/hc/en-us).
+Please return to any submitted PRs regularly to help us work through feedback and comments and 
+merge them as soon as we can. If you do not return to your PR for edits within three months of us 
+reviewing, we will close the PR. 
 
-If you are familiar with making a pull request, we **highly recommend that you run a version of these docs locally, and preview your changes locally, before submitting them**.
-In fact, it's part of the PR process.
+#### Guidance for ecosystem contributions
+
+By "ecosystem contributions", we mean contributions from projects in the Linea ecosystem, such as 
+dapps, libraries, or tooling. If your submission is in this category, please keep the following
+guidelines in mind:
+
+- Your contribution should be informative above all; the docs are not a marketing tool for your 
+project. We may request edits to adjust your writing style if we feel it falls on the wrong side of 
+this line. We encourage you to write about your project's features and benefits, but please avoid 
+superlatives or selling your project.
+- You are responsible for maintaining the information about your project. Out-of-date docs will be 
+an inconvenience for users at best, or leave a negative impression of your project at worst. This 
+includes keeping links to external sites up-to-date and returning for updates as your project
+matures.
 
 ### Contribute to community tutorials
 
@@ -41,9 +61,6 @@ in our [community tutorials section](./docs/developers/guides/community/index.md
 
 First, create an issue describing the content you want to see added or intend to add. If you're
 representing an organization (such as a dapp), please use the ecosystem contribution issue form.
-
-When you're ready to start work, [fork our repo](https://github.com/Consensys/doc.linea/fork),
-create a pull request, and tag us for review!
 
 ### Contribute to the Zero-Knowledge Glossary
 
@@ -54,7 +71,7 @@ into the L2 landscape.
 [Fork our repo](https://github.com/Consensys/doc.linea/fork), and add a term in alphabetical
 order to `docs/reference/glossary.md`. Then, make a pull request and tag us for review!
 
-### Additional Resources
+### Additional resources
 
 View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for
 information on how to:
@@ -66,7 +83,7 @@ information on how to:
 
 ## Running locally
 
-You will need to have **Node.js** installed to run the live previews of the docs locally.
+You will need to have Node.js installed to run the live previews of the docs locally.
 
 It is highly recommended that you use a tool like [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
 to manage Node.js versions on your machine.
@@ -84,7 +101,6 @@ to manage Node.js versions on your machine.
 
    ```bash
    npm install
-   npm run prepare
    ```
 
 3. To preview and for every time afterwards:
@@ -95,10 +111,18 @@ to manage Node.js versions on your machine.
 
 ### Build
 
-   $ npm run build
+   ```bash
+   npm run build
+   ```
 
 This command generates static content into the `build` directory and can be served using any static
 contents hosting service.
+
+To run the local build you created, run:
+
+   ```bash
+   npm run serve
+   ```
 
 ### Adding new words to the dictionary
 
