@@ -16,15 +16,30 @@ const redirects = {
 };
 
 export default function RedirectPage() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const redirectUrl = redirects[currentPath];
+    const location = useLocation();
+    const currentPath = location.pathname;
+    const redirectUrl = redirects[currentPath];
 
-  useEffect(() => {
-    if (redirectUrl) {
-      setTimeout(() => {
-        window.location.href = redirectUrl;
-      }, 0); // Redirect immediately.
-    }
-  }, [redirectUrl]);
+    useEffect(() => {
+        if (redirectUrl) {
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 0); // Redirect immediately.
+        }
+    }, [redirectUrl]);
+
+    return (
+        <html>
+            <head>
+                {redirectUrl && <meta http-equiv="refresh" content={`0;url=${redirectUrl}`} />}
+            </head>
+            <body>
+                {redirectUrl ? (
+                    <p>If you are not redirected automatically, click <a href={redirectUrl}>here</a>.</p>
+                ) : (
+                    <p>No redirect available for this path.</p>
+                )}
+            </body>
+        </html>
+    );
 }

@@ -13,7 +13,6 @@ import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import ContentVisibility from '@theme/ContentVisibility';
 import styles from './styles.module.css';
 import GetFeedback from './GetFeedback';
-import RedirectPage from '../../../components/RedirectPage';
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -42,7 +41,6 @@ export default function DocItemLayout({children}) {
       <div className={clsx('col', !docTOC.hidden && styles.docItemCol)}>
         <ContentVisibility metadata={metadata} />
         <DocVersionBanner />
-        <RedirectPage /> 
         <div className={styles.docItemContainer}>
           <article>
             <DocBreadcrumbs />
