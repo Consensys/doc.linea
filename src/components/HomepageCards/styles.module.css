@@ -1,5 +1,5 @@
-.mainBackground {
-  background-color: var(--homepage-card-background) !important;
+main {
+  background-color: var(--page-background) !important;
 }
 
 .cardContainer {
@@ -48,6 +48,7 @@
   color: var(--banner-text);
   font-size: 1.55rem;
   font-weight: 400;
+  text-align: left;
   padding-right: 60px;
   padding-top: 10px;
   margin-bottom: 10px;
@@ -76,19 +77,25 @@
 }
 
 .heading {
+  display: inline-block;
   text-align: center;
-  padding-top: 10px;
+  padding: 10px 0 0 0;
   font-weight: 400;
+  font-size: 2.5rem;
   color: var(--banner-text);
+  border-bottom: 2px solid var(--linea-highlight-color-2);
+}
+
+.heading, .cardContainer {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .card_glow {
   position: relative;
   background-color: var(--homepage-card-background);
   color: var(--ifm-color-primary);
-  border-radius: 3px;
-  border: 1px solid var(--homepage-card-border-color);
-  box-shadow: 0 0 10px rgb(97 223 255 / 20%);
+  border-radius: 17px;
   overflow: visible;
   transform: scale(1);
   transition: transform 0.15s ease-in-out, border-color 0.3s ease-in-out;
@@ -120,18 +127,18 @@
 }
 
 .button {
-  background-color: #1d1d1d;
+  background-color: #fff;
   transition: transform 0.2s ease-in-out, background-color 0.25s ease-in-out,
     border 0.15s ease-in-out;
   height: 45px;
   border-radius: 500px;
-  border: 1px solid #61dfff;
+  border: none;
   overflow: visible;
   text-align: center;
   font-weight: 500;
   font-size: 17px;
   line-height: 32px;
-  color: #fff;
+  color: #121212;
 }
 
 .button:hover {
@@ -141,8 +148,4 @@
   border: 1px solid var(--homepage-card-icon);
   transform: scale(1.02);
   color: #1d1d1d;
-}
-
-.icon {
-  color: var(--homepage-card-icon);
 }

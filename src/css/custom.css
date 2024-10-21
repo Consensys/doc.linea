@@ -284,6 +284,7 @@ html {
   tab-size: 4;
   font-family: inherit;
   font-feature-settings: normal;
+  background: var(--page-background) !important;
 }
 
 hr {
@@ -370,6 +371,7 @@ textarea {
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
+  --page-background: #121212;
   --ifm-color-primary-lightest: #fff;
   --ifm-color-primary-lighter: #fff;
   --ifm-color-primary-light: #bfe8ff;
@@ -387,7 +389,7 @@ textarea {
   --ifm-background-color: #121212;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
   --search-local-hit-active-color: #000;
-  --banner-background: #121212;
+  --banner-background: #1d1d1d;
   --banner-text: #fff;
   --banner-text-shadow: #121212;
   --banner-button-hover: #fff;
@@ -401,11 +403,13 @@ textarea {
   --footer-background: #121212;
   --linea-highlight-color-1: #fff068;
   --linea-highlight-color-2: #6119ef;
+  --linea-banner-logo: #fff;
   --linea-text-color-1: #190066;
   --search-bar-background: #fff;
 }
 
 [data-theme="light"] {
+  --page-background: #f8f7f2;
   --ifm-color-primary-lightest: #eaf0ff;
   --ifm-color-primary-lighter: #a5e5ff;
   --ifm-color-primary-light: #61dfff;
@@ -438,6 +442,7 @@ textarea {
   --linea-highlight-color-1: #fff068;
   --linea-highlight-color-2: #6119ef;
   --linea-text-color-1: #190066;
+  --linea-banner-logo: #190066;
   --search-bar-background: #fff;
 }
 
@@ -587,6 +592,8 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   --ifm-navbar-height:7vh;
   height: clamp(60px, var(--ifm-navbar-height), 100px);
   box-shadow: none;
+  border: none !important;
+  background: none !important;
 }
 
 .navbar__inner { /* adds yellow rounded rectangle to navbar items */
