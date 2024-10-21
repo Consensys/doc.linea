@@ -598,6 +598,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 .navbar__inner { /* adds yellow rounded rectangle to navbar items */
   background-color: var(--linea-highlight-color-1);
+  border: 1px solid var(--page-background);
   border-radius: 17px;
   width: calc(100% - 20rem);
   max-width: 1500px;
