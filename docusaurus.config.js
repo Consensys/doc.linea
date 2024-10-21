@@ -310,17 +310,14 @@ const config = {
               "/get-started/quickstart",
               "/use-zkevm",
               "/use-linea/index.md",
-              "/users",
-              "/users/index.mdx",
             ],
           },
           {
-            to: "/",
+            to: "/users/move-funds/fund",
             from: [
               "/build-on-linea/use-linea-testnet/fund",
-              "/users/move-funds/fund",
               "/use-mainnet/fund",
-            ],
+            ]
           },
           {
             to: "/developers/quickstart/info-contracts",
@@ -335,10 +332,9 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/",
+            to: "/users/move-funds/bridge",
             from: [
               "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
-              "/users/move-funds/bridge",
               "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
             ],
           },
@@ -355,10 +351,9 @@ const config = {
             from: "/use-mainnet/bridges-of-linea",
           },
           {
-            to: "/",
+            to: "/users/move-funds/set-up-your-wallet",
             from: [
               "/use-mainnet/set-up-your-wallet",
-              "/users/move-funds/set-up-your-wallet",
               "/build-on-linea/use-linea-testnet/set-up-your-wallet",
             ],
           },
@@ -475,12 +470,32 @@ const config = {
             from: "/build-on-linea/quickstart",
           },
           {
-            to: "/",
+            to: "/users",
             from: "/use-mainnet",
           },
           {
             to: "/developers/tooling",
             from: "/build-on-linea/tooling",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
+            from: "/use-mainnet/linea-surge/linea-surge-overview",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge/linea-surge-model",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge/linea-surge-model",
+            from: "/use-mainnet/linea-surge-model",
+          },
+          {
+            to: "/users/linea-voyage/linea-surge",
+            from: "/use-mainnet/linea-surge",
+          },
+          {
+            to: "/users/linea-voyage/lxp",
+            from: "/use-mainnet/linea-xp",
           },
         ],
       },
