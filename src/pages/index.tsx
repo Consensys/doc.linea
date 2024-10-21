@@ -33,7 +33,7 @@ function HomepageHeader() {
               styles.bannerButton,
             )}
             to="developers/quickstart">
-            Start building
+            START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
         </div>

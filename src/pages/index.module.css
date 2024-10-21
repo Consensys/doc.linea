@@ -1,8 +1,8 @@
 .icon {
-  color: #121212;
+  color: #fff;
   height: 30px;
   width: 30px;
-  margin-left: 10px;
+  margin-left: 20px;
   vertical-align: middle;
   position: relative;
   top: -2px;
@@ -10,20 +10,20 @@
 }
 
 .bannerButton {
-  background-color: #61dfff;
-  color: white;
+  background-color: var(--linea-highlight-color-2);
+  color: #fff !important;
   border: none;
-  padding: 20px 80px;
+  padding: 20px 60px 20px 70px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-family: AtypDisplay;
   font-size: 20px;
   font-weight: 500;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px var(--banner-text-shadow);
 }
 
 @media (width <= 768px) {
@@ -40,14 +40,13 @@
 }
 
 .bannerButton:hover {
-  background-color: var(--banner-button-hover);
-  color: var(--banner-button-text-hover);
+  background-color: var(--linea-highlight-color-1);
+  color: #121212 !important;
   transform: scale(1.05);
-  box-shadow: 0 0 10px #61dfff;
 }
 
 .bannerButton:hover .icon {
-  color: var(--banner-button-text-hover);
+  color: #121212;
 }
 
 .buttons {
@@ -65,7 +64,7 @@ html[data-theme="dark"] .forceColor {
 }
 
 .logo {
-  color: var(--banner-text);
+  color: var(--linea-text-color-1);
   padding-right: 10px;
   padding-left: 10px;
   height: 70px;
@@ -89,7 +88,7 @@ html[data-theme="dark"] .forceColor {
 }
 
 .title {
-  color: var(--banner-text);
+  color: var(--linea-text-color-1);
   font-size: 45px;
   padding-bottom: 20px;
   text-shadow: 2px 2px 3px var(--banner-text-shadow);
@@ -108,7 +107,7 @@ html[data-theme="dark"] .forceColor {
 }
 
 .subtitle {
-  color: var(--banner-text);
+  color: var(--linea-text-color-1);
   font-size: 21px;
   padding: 0 14rem 20px;
   text-shadow: 2px 2px 3px var(--banner-text-shadow);
