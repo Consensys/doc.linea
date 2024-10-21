@@ -651,13 +651,10 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   border: 1px solid #61dfff;
 }
 
-/* persist circle highlight when in a specific section */
-/* intentionally leaving out "Run a node" for now, as this falls under the "Developers" section, and it was less clear UI to have two navbar dots highlighted */
-.navbar__link[href="/users"][aria-current="page"]::before,
-.navbar__link[href="/architecture"][aria-current="page"]::before,
-.navbar__link[href="/developers/quickstart"][aria-current="page"]::before {
-  background-color: #61dfff;
-  border: 1px solid #61dfff;
+/* Highlight the dot for the current page */
+.navbar__link[aria-current="page"]::before {
+  background-color: #61dfff; /* Dot color */
+  border: 1px solid #61dfff; /* Dot border color */
 }
 
 @media (width <= 1500px) {
