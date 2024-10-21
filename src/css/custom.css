@@ -438,7 +438,7 @@ textarea {
   --homepage-card-border-color-hover: #505050;
   --homepage-card-dot-hover: #61dfff;
   --homepage-card-icon: #c0c0c0;
-  --footer-background: #e5e5e5;
+  --footer-background: #f8f7f2;
   --linea-highlight-color-1: #fff068;
   --linea-highlight-color-2: #6119ef;
   --linea-text-color-1: #190066;
@@ -973,14 +973,24 @@ html[data-theme="dark"] .navbar {
 
 .footer__title {
   color: var(--banner-text);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .footer__link-item {
   color: var(--banner-text);
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .footer__copyright {
+  padding-top: 10px;
+  text-align: left;
   color: var(--banner-text);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 /* Necessary for enabling GetFeedback widgets to display */
