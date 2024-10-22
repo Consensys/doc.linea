@@ -185,16 +185,16 @@ html[data-theme="dark"] .forceColor {
 
 .footerImageContainer {
   position: relative;
-  text-align: center; /* Ensures the image is centered */
-  padding-top: 20px; /* Adds space above the image */
-  margin-top: 30px; /* Adds more space between the footer and image */
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 30px;
   margin: 0;
 }
 
 .footerImage {
-  max-width: 100%; /* Ensures the image scales with the viewport */
-  height: auto; /* Maintains the aspect ratio */
-  display: inline-block; /* Aligns it properly */
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
   margin: 0;
   padding-bottom: -10px;
 }

@@ -54,10 +54,9 @@ export default function Home(): JSX.Element {
           <HomepageCards />
         </main>
       </Layout>
-      {/* Render the SVG as a React component */}
       <div className={styles.footerImageContainer}>
-        <LineaFooter className={styles.footerImage} />
-      </div>
+  <LineaFooter className={styles.footerImage} style={{ color: "var(--banner-text)" }} />
+</div>
     </>
   );
 }
