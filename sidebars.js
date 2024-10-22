@@ -1,46 +1,5 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  // The userSidebar only exists so that we have paths to redirect externally
-  userSidebar: [
-    "users/index",
-    {
-      type: "category",
-      collapsed: true,
-      label: "Move funds to Linea",
-      link: {
-        type: "doc",
-        id: "users/move-funds/index",
-      },
-      items: [
-        "users/move-funds/set-up-your-wallet",
-        "users/move-funds/fund",
-        "users/move-funds/bridge",
-      ],
-    },
-    {
-      type: "category",
-      label: "Linea Voyage",
-      link: {
-        type: "doc",
-        id: "users/linea-voyage/index",
-      },
-      items: [
-        "users/linea-voyage/lxp/index",
-        {
-          type: "category",
-          label: "The Surge",
-          link: {
-            type: "doc",
-            id: "users/linea-voyage/linea-surge/index",
-          },
-          items: [
-            "users/linea-voyage/linea-surge/linea-surge-model",
-            "users/linea-voyage/linea-surge/linea-surge-overview",
-          ],
-        },
-      ],
-    },
-  ],
   docSidebar: [
     {
       type: "category",
