@@ -42,7 +42,7 @@ const config = {
 
   scripts: [
     {src: "/js/getfeedback.js", defer: true, async: true},
-    {src: "/js/navbarHighlight.js", async: true}
+    {src: "/js/navbarHighlight.js", defer: true}
   ],
 
   markdown: {

@@ -625,11 +625,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   text-align: center;
 }
 
-/* circle icons */
+/* Basic circle icons for navbar items */
 .navbar__link[href="/developers/guides"]::before,
 .navbar__link[href="/developers/quickstart"]::before,
-.navbar__link[href="/architecture"]::before,
-.navbar__link[href="/developers/guides/run-a-node"]::before {
+.navbar__link[href="/developers/guides/run-a-node"]::before,
+.navbar__link[href="/architecture"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -642,30 +642,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   margin-left: 12px;
 }
 
-/* circle hover */
-.navbar__link[href="/developers/guides"]:hover::before,
-.navbar__link[href="/developers/quickstart"]:hover::before,
-.navbar__link[href="/architecture"]:hover::before,
-.navbar__link[href="/developers/guides/run-a-node"]:hover::before {
+/* Hover effect for circles */
+.navbar__link:hover::before {
   background-color: #61dfff;
   border: 1px solid #61dfff;
 }
 
-/* Highlight the dot for the current page */
+/* Highlight the dot for the current page using aria-current */
 .navbar__link[aria-current="page"]::before {
-  background-color: #61dfff; /* Dot color */
-  border: 1px solid #61dfff; /* Dot border color */
+  background-color: #61dfff; /* Dot color for the active page */
+  border: 1px solid #61dfff; /* Border color for the active page */
 }
 
+/* Ensure dots are hidden on smaller screens */
 @media (width <= 1500px) {
-  .navbar__item {
-    font-size: 16px;
-  }
-
-  .navbar__link[href="/developers/guides"]::before,
-  .navbar__link[href="/developers/quickstart"]::before,
-  .navbar__link[href="/architecture"]::before,
-  .navbar__link[href="/developers/guides/run-a-node"]::before {
+  .navbar__link::before {
     display: none;
   }
 }
