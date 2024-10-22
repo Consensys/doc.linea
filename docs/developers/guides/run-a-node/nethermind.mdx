@@ -1,0 +1,158 @@
+---
+title: Nethermind
+description: Install the Nethermind client to run a Linea node.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Nethermind is a high-performance Ethereum client written in C# that supports various networks, including Linea.
+
+:::info important
+Install and run a Nethermind client if you want to follow the Linea network by 
+maintaining a local copy of the blockchain. However, if you want to interact with the network and use
+Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
+:::
+
+You can run Nethermind from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
+
+## Run using the binary distribution
+
+:::info
+Ensure you review [Nethermind's installation Guidelines](https://docs.nethermind.io/get-started/installing-nethermind) 
+before installing the Nethermind client.
+
+If you're not comfortable with installing the binary distribution, consider using [Docker](#run-using-docker) instead.
+:::
+
+### Step 1. Install Nethermind
+
+[Download and install the Nethermind client](https://docs.nethermind.io/get-started/installing-nethermind/#standalone-downloads).
+
+### Step 2. Start the Nethermind client
+
+Start the node using the following command:
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+    ```bash
+    nethermind \
+    --datadir ./nethermind-data \
+    --config linea-mainnet \
+    --JsonRpc.Enabled=true \
+    --JsonRpc.Host=0.0.0.0 \
+    --JsonRpc.Port=8545 \
+    --Metrics.Enabled=true \
+    --Metrics.ExposePort=8008
+    ```
+
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+    ```bash
+    nethermind \
+    --datadir ./nethermind-data \
+    --config linea-sepolia \
+    --JsonRpc.Enabled=true \
+    --JsonRpc.Host=0.0.0.0 \
+    --JsonRpc.Port=8545 \
+    --Metrics.Enabled=true \
+    --Metrics.ExposePort=8008
+    ```
+  </TabItem>
+</Tabs>
+
+The Nethermind node will attempt to find peers to begin synchronizing and to download the world state.
+
+## Run using Docker
+
+### Prerequisites
+
+Download and install [Docker](https://www.docker.com/products/docker-desktop/).
+
+### Step 1. Download Docker image
+
+Download the Nethermind docker image:
+
+```
+docker pull nethermind/nethermind:latest
+```
+
+
+### Step 2. Start the Nethermind node
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+    ```bash
+    docker run -it \
+  -v nethermind_data:/nethermind/nethermind_db \
+  -p 8545:8545 \
+  -p 8008:8008 \
+  nethermind/nethermind \
+  --datadir /nethermind/nethermind_db \
+  --config linea-mainnet \
+  --JsonRpc.Enabled=true \
+  --JsonRpc.Host=0.0.0.0 \
+  --JsonRpc.Port=8545 \
+  --Metrics.Enabled=true \
+  --Metrics.ExposePort=8008
+    ```
+
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+    ```bash
+    docker run -it \
+  -v nethermind_data:/nethermind/nethermind_db \
+  -p 8545:8545 \
+  -p 8008:8008 \
+  nethermind/nethermind \
+  --datadir /nethermind/nethermind_db \
+  --config linea-sepolia \
+  --JsonRpc.Enabled=true \
+  --JsonRpc.Host=0.0.0.0 \
+  --JsonRpc.Port=8545 \
+  --Metrics.Enabled=true \
+  --Metrics.ExposePort=8008
+    ```
+  </TabItem>
+</Tabs>
+
+:::note
+
+Ensure that you correctly configure the Docker volume to persist data between container restarts. 
+Without proper volume setup, data will be lost when the container is stopped. 
+Additionally, make sure to expose the necessary ports (e.g., 8545 for JSON-RPC and 8008 for metrics) 
+to enable external access to these services.
+
+:::
+
+## Confirm the node is running
+
+You can call the JSON-RPC API methods to confirm the node is running. For example, call
+`eth_syncing` to return the synchronization status.
+For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+
+```bash
+curl localhost:8545 \
+        -X POST \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
+```
+
+You should get a result similar to:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "startingBlock": "0x0",
+    "currentBlock": "0x5d228",
+    "highestBlock": "0x3cedec"
+  }
+}
+```
+
