@@ -169,7 +169,7 @@ const sidebars = {
             },
           ],
         },
-        "developers/guides/linea-api/index",
+        "developers/guides/linea-api",
         "developers/guides/linea-sdk/index",
         "developers/guides/finalized-block",
         {

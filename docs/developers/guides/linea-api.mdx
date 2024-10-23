@@ -1,0 +1,220 @@
+---
+title: Use the Linea API
+description: How to make calls to the Linea blockchain using the Linea JSON-RPC APIs
+sidebar_position: 6
+image: /img/socialCards/json-rpc-api.jpg
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Linea supports the standard Ethereum JSON-RPC API methods, meaning the developer experience is
+identical to building on Ethereum itself. There are also
+[Linea-specific methods, and method implementations](../reference/api/index.mdx) that differ to Ethereum.
+
+:::info
+View the full list of Linea methods in the
+[MetaMask services documentation](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
+:::
+
+You must connect to an RPC endpoint when making calls to the Linea blockchain. Use one or more of the
+following options:
+
+- **Run your own node**: Either [run your own node by setting it up yourself](./run-a-node/index.mdx), or
+    [use a node provider](../tooling/node-providers/index.mdx#run-your-own-node).
+    We recommend running [Linea Besu](./run-a-node/linea-besu.mdx) if you want to run a node yourself and interact with the
+    blockchain.
+- **Connect to a private RPC endpoint**: [Connect to a blockchain infrastructure provider](../tooling/node-providers/index.mdx#private-rpc-endpoints)
+    such as Infura or Alchemy. Many providers offer free tier access.
+- **Use a public endpoint**: [Public endpoints](../tooling/node-providers/index.mdx#public-rpc-endpoints) are
+    free to use but are rate limited and not suitable for production environments.
+
+## Make calls
+
+The following examples call the Linea API methods using an Infura endpoint, however you can substitute
+the endpoint with whichever endpoint you prefer.
+
+In the examples, replace `<YOUR-API-KEY>` with your actual Infura API key.
+
+:::info
+View the [list of node providers](../tooling/node-providers/index.mdx) if you require an endpoint.
+:::
+
+
+### cURL
+
+Run the [`curl`](https://curl.se/) command in a terminal:
+
+```bash
+curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}'
+```
+
+### Node (JavaScript)
+
+The following examples use various JavaScript libraries to make calls to the Linea blockchain.
+
+#### Prerequisites
+
+Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+or [yarn](https://yarnpkg.com/getting-started/install) as the package manager. Then, in your project
+folder, initialise your new project:
+
+    <Tabs>
+      <TabItem value="npm">
+
+      ```bash
+      npm init -y
+      ```
+      </TabItem>
+      <TabItem value="yarn">
+
+      ```bash
+      yarn init -y
+      ```
+      </TabItem>
+    </Tabs>
+
+#### Node Fetch
+
+1. In your project folder, install the `node-fetch` package:
+
+    <Tabs>
+      <TabItem value="npm">
+
+      ```bash
+      npm i node-fetch
+      ```
+      </TabItem>
+      <TabItem value="yarn">
+
+      ```bash
+      yarn add node-fetch
+      ```
+      </TabItem>
+    </Tabs>
+
+1. Create your JavaScript file and copy the following code:
+
+    ```javascript title="index.js"
+    const fetch = require("node-fetch");
+
+    fetch("https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jsonrpc: "2.0",
+        method: "eth_blockNumber",
+        params: [],
+        id: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    ```
+
+1. Run the code using the following command:
+
+    ```bash
+    node index.js
+    ```
+
+#### Axios
+
+1. In your project folder, install the `axios` package:
+
+    <Tabs>
+      <TabItem value="npm">
+
+      ```bash
+      npm i axios
+      ```
+      </TabItem>
+      <TabItem value="yarn">
+
+      ```bash
+      yarn add axios
+      ```
+      </TabItem>
+    </Tabs>
+
+1. Create your JavaScript file and copy the following code:
+
+    ```javascript title="index.js"
+    const axios = require("axios")
+
+    axios
+      .post("https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>", {
+        jsonrpc: "2.0",
+        method: "eth_blockNumber",
+        params: [],
+        id: 1,
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    ```
+
+1. Run the code using the following command:
+
+    ```bash
+    node index.js
+    ```
+
+#### Viem
+
+1. In your project folder, install the `viem` package:
+
+    <Tabs>
+      <TabItem value="npm">
+
+      ```bash
+      npm i viem
+      ```
+      </TabItem>
+      <TabItem value="yarn">
+
+      ```bash
+      yarn add viem
+      ```
+      </TabItem>
+    </Tabs>
+
+1. Create your JavaScript file and copy the following code:
+
+    ```javascript title="index.js"
+    const { createClient, http } = require('viem');
+
+    const client = createClient({
+      transport: http('https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>')
+    });
+
+    client.request({
+      method: 'eth_blockNumber',
+      params: []
+    })
+    .then((blockNumber) => {
+      console.log(parseInt(blockNumber, 16)); // Convert hex to decimal
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+    ```
+
+1. Run the code using the following command:
+
+    ```bash
+    node index.js
+    ```
