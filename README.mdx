@@ -130,9 +130,10 @@ This repository includes multiple linters, which you can think of as spell-check
 code formatting and standards, and a lot more. It's possible that you might use a word in your content
 that is not known to the linter, and its checks will fail in your PR.
 
-The main linter, Vale, checks spelling as well as formatting and adherence to various style guides.
-Please pay attention to its suggestions and error warnings in the check that runs on your PR. These
-errors will not prevent your PR from building, but you should address them nonetheless. 
+The main linter, Vale, is run through Github Actions and checks spelling, formatting, and adherence to
+various style guides. Please pay attention to its suggestions and error warnings in the check that
+runs on your PR. These errors will not prevent your PR from building, but you should address them
+nevertheless. 
 
 You can run other linters for code style (CSS, JavaScript) and link formatting any time with the 
 command `npm run lint`.
