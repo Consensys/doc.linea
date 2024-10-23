@@ -291,6 +291,7 @@ const sidebars = {
           items: [
             "developers/tooling/data-indexers/alchemy",
             "developers/tooling/data-indexers/arkham",
+            "developers/tooling/data-indexers/ceramic",
             "developers/tooling/data-indexers/covalent",
             {
               type: "category",
