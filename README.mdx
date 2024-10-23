@@ -124,17 +124,15 @@ To run the local build you created, run:
    npm run serve
    ```
 
-### Adding new words to the dictionary
+### Check spelling and style
 
-This repository includes a _linter_, which you can think of as a spell-check that also checks code
-formatting and standards, and a lot more. It's possible that you might use a word in your content
-that is not known to the linter, and your build, or commit, will fail.
+This repository includes multiple linters, which you can think of as spell-checks that also inspect
+code formatting and standards, and a lot more. It's possible that you might use a word in your content
+that is not known to the linter, and its checks will fail in your PR.
 
-You can run the linter any time with the command `npm run lint`.
+The main linter, Vale, checks spelling as well as formatting and adherence to various style guides.
+Please pay attention to its suggestions and error warnings in the check that runs on your PR. These
+errors will not prevent your PR from building, but you should address them nonetheless. 
 
-If the linter finds a word that it doesn't recognize, take a look at `project-words.txt` in the root
-directory; if the word that the linter caught is correctly spelled, and you wish it to pass the
-linter's test, add it to `project-words.txt`, save, add and commit those changes, and see if it
-passes.
-
-For tidiness, please ensure you adhere to the alphabetical order established in `project-words.txt`.
+You can run other linters for code style (CSS, JavaScript) and link formatting any time with the 
+command `npm run lint`.
