@@ -55,8 +55,8 @@ export default function Home(): JSX.Element {
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
-  <LineaFooter className={styles.footerImage} style={{ color: "var(--banner-text)" }} />
-</div>
+        <LineaFooter className={styles.footerImage} style={{ color: "var(--banner-text)" }} />
+      </div>
     </>
   );
 }

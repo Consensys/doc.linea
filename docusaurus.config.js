@@ -155,9 +155,9 @@ const config = {
             label: "Run a node",
           },
           {
-            to: "/developers/linea-version",
+            href: "/developers/linea-version",
+            className: "header-release-notes-link",
             position: "right",
-            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
