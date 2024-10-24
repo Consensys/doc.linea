@@ -496,7 +496,13 @@ html[data-theme="dark"] .header-discord-link::before {
 
 @media (width <= 1070px) {
   .header-discord-link {
-    padding-left: 0 !important;
+    padding-left: 0;
+  }
+}
+
+@media (width <= 996px) {
+  .header-discord-link {
+    padding-left: 12px;
   }
 }
 
@@ -600,6 +606,7 @@ html[data-theme="dark"] .header-twitter-link::before {
     padding: 6px 12px;
     margin: 0 8px 0 0;
     text-align: left;
+    width: auto;
     color: var(--linea-sidebar-text-color) !important;
   }
 

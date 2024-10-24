@@ -55,14 +55,6 @@
   justify-content: center;
 }
 
-.forceColor {
-  color: var(--ifm-color-content-inverse);
-}
-
-html[data-theme="dark"] .forceColor {
-  color: var(--ifm-font-color-secondary);
-}
-
 .logo {
   color: var(--linea-banner-color-1);
   padding-right: 10px;
@@ -139,7 +131,7 @@ html[data-theme="dark"] .forceColor {
   height: 70vh;
 }
 
-/* banner background image */
+/* banner background images */
 .introductionBlock {
   background-color: var(--banner-background);
   /* adjust banner background svgs independently */
