@@ -61,7 +61,6 @@
   padding-left: 10px;
   height: 70px;
   width: auto;
-  filter: drop-shadow(2px 2px 3px var(--banner-text-shadow));
 }
 
 @media (width <= 768px) {
@@ -80,7 +79,7 @@
 }
 
 .title {
-  color: var(--linea-text-color-1);
+  color: var(--linea-banner-logo);
   font-size: 45px;
   padding-bottom: 20px;
 }
@@ -98,7 +97,7 @@
 }
 
 .subtitle {
-  color: var(--linea-text-color-1);
+  color: var(--linea-banner-logo);
   font-size: 21px;
   padding: 0 9rem 20px;
 }
