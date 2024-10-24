@@ -86,6 +86,7 @@
 
 @media (width <= 768px) {
   .title {
+    margin-top: 60px;
     font-size: 30px;
   }
 }
@@ -143,6 +144,7 @@
   padding: 6rem;
   text-align: center;
   height: 52vh;
+  min-height: 500px;
   width: calc(100% - 22rem) !important;
   max-width: 1500px;
   border-radius: 17px;
