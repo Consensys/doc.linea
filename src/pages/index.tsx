@@ -6,7 +6,7 @@ import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
-import LineaFooter from "../../static/img/Linea_footer.svg";
+import LineaFooter from "../../static/img/linea_footer.svg";
 
 import styles from "./index.module.css";
 
@@ -15,14 +15,13 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
-        <h1 className={clsx("hero__title", styles.forceColor, styles.title)}>
+        <h1 className={clsx("hero__title", styles.title)}>
           <LineaLogo className={styles.logo} />
           Docs
         </h1>
         <p
           className={clsx(
             "hero__subtitle",
-            styles.forceColor,
             styles.subtitle,
           )}>
           {siteConfig.tagline}
