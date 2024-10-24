@@ -6,6 +6,7 @@ import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
+import LineaFooter from "../../static/img/linea_footer.svg";
 
 import styles from "./index.module.css";
 
@@ -14,14 +15,13 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
-        <h1 className={clsx("hero__title", styles.forceColor, styles.title)}>
+        <h1 className={clsx("hero__title", styles.title)}>
           <LineaLogo className={styles.logo} />
           Docs
         </h1>
         <p
           className={clsx(
             "hero__subtitle",
-            styles.forceColor,
             styles.subtitle,
           )}>
           {siteConfig.tagline}
@@ -33,7 +33,7 @@ function HomepageHeader() {
               styles.bannerButton,
             )}
             to="developers/quickstart">
-            Start building
+            START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
         </div>
@@ -43,15 +43,19 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  // const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`Welcome`}
-      description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
-      <HomepageHeader />
-      <main style={{ backgroundColor: "var(--banner-background)" }}>
-        <HomepageCards />
-      </main>
-    </Layout>
+    <>
+      <Layout
+        title={`Welcome`}
+        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
+        <HomepageHeader />
+        <main style={{ backgroundColor: "var(--banner-background)" }}>
+          <HomepageCards />
+        </main>
+      </Layout>
+      <div className={styles.footerImageContainer}>
+        <LineaFooter className={styles.footerImage} style={{ color: "var(--banner-text)" }} />
+      </div>
+    </>
   );
 }
