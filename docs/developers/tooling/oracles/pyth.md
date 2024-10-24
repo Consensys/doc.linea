@@ -28,7 +28,7 @@ confidence interval.
 Pyth Network uses a pull price update model that is slightly different from other oracles you 
 may be more familiar with. Most oracles today use a push model, where the oracle runs an 
 off-chain process that continuously sends transactions to update an on-chain price. In contrast, 
-Pyth Network does not operate an off-chain process that pushes prices on-chain. Instead, it 
+Pyth Network doesn't operate an off-chain process that pushes prices on-chain. Instead, it 
 delegates this work to Pyth Network users.
 
 Pyth price updates are created on [Pythnet](https://docs.pyth.network/documentation/how-pyth-works/pythnet) 

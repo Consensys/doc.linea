@@ -38,7 +38,7 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 :::note
 
 
-These instructions verify using the Linea instance of Etherscan, which currently does not support Yul. If you
+These instructions verify using the Linea instance of Etherscan, which currently doesn't support Yul. If you
 would like to verify using Blockscout, please use the [Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
 
 :::
@@ -155,7 +155,7 @@ https://sepolia.lineascan.build/address/address/0x3Af089fee468eb7fcf750e929321b0
 :::note
 
 
-If you get an error saying that the address does not have bytecode, it probably means that Etherscan has not indexed your contract yet. In that case, wait for a while and then try again.
+If you get an error saying that the address doesn't have bytecode, it probably means that Etherscan has not indexed your contract yet. In that case, wait for a while and then try again.
 
 :::
 
