@@ -17,7 +17,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-family: AtypDisplay;
+  font-family: AtypDisplay, sans-serif;
   font-size: 20px;
   font-weight: 500;
   margin: 4px 2px;
@@ -146,30 +146,30 @@
   width: calc(100% - 22rem) !important;
   max-width: 1500px;
   border-radius: 17px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 30px;
   position: relative;
 }
 
-@media (max-width: 1350px) {
+@media (width <= 1350px) {
   .introductionBlock {
     height: 60vh;
     width: 87.5% !important;
   }
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   .introductionBlock {
     width: 94% !important;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .introductionBlock {
     padding: 2rem;
   }
 }
 
-@media (max-width: 320px) {
+@media (width <= 320px) {
   .introductionBlock {
     padding: 0;
     height: 55vh;
@@ -180,8 +180,7 @@
   position: relative;
   text-align: center;
   padding-top: 20px;
-  margin-top: 30px;
-  margin: 0;
+  margin: 30px 0 0 0;
 }
 
 .footerImage {

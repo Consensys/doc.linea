@@ -633,7 +633,7 @@ html[data-theme="dark"] .header-twitter-link::before {
   visibility: visible;
 }
 
-@media (max-width: 1070px) {
+@media (width <= 1070px) {
   /* hides in the navbar for mobile displays */
   .navbar .header-release-notes-link {
     display: none !important;
@@ -645,7 +645,7 @@ html[data-theme="dark"] .header-twitter-link::before {
     display: block !important;
     font-size: 16px;
     font-weight: 500;
-    font-family: "AtypText", sans-serif;
+    font-family: AtypText, sans-serif;
     padding: 6px 12px;
     margin: 0 8px 0 0;
     text-align: left;
@@ -837,7 +837,6 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/developers/quickstart"]::before,
 .navbar__link[href="/architecture"]::before,
 .navbar__link[href="/developers/guides/run-a-node"]::before {
-  border: 1px solid var(--linea-text-color-1);
   content: "";
   display: inline-block;
   width: 7px;
@@ -896,7 +895,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 @media (width <= 1320px) {
   .navbar__search input {
     width: 150px;
-    right: 0px;
+    right: 0;
     margin-right: 10px;
   }
 }
@@ -927,6 +926,11 @@ html[data-theme="dark"] .navbar {
   .socialLinks_src-pages-index-module {
     display: none !important;
   }
+}
+
+.menu__link {
+  margin-right: 8px;
+  color: var(--linea-sidebar-text-color);
 }
 
 /* Sidebar Method labels */
@@ -1159,7 +1163,7 @@ html[data-theme="dark"] .navbar {
 
 .thin-scrollbar {
   background-color: var(--banner-background) !important;
-  margin: 35px 20px 0 20px;
+  margin: 35px 20px 0;
   border-radius: 15px;
   max-height: 75vh;
 }
@@ -1167,13 +1171,8 @@ html[data-theme="dark"] .navbar {
 button[aria-label="Collapse sidebar"] {
   border: none !important;
   background-color: var(--linea-highlight-color-1);
-  margin: 20px 20px 35px 20px;
+  margin: 20px 20px 35px;
   border-radius: 15px;
-}
-
-.menu__link {
-  margin-right: 8px;
-  color: var(--linea-sidebar-text-color);
 }
 
 .menu__link--active:hover {
