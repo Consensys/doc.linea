@@ -65,8 +65,8 @@
 
 @media (width <= 768px) {
   .logo {
-  height: 40px;
-  width: auto;
+    height: 40px;
+    width: auto;
   }
 }
 
@@ -134,9 +134,11 @@
 .introductionBlock {
   background-color: var(--banner-background);
   /* adjust banner background svgs independently */
-  background-image: url('/img/linea_globe.svg'), url('/img/linea_globe.svg');
+  background-image: url("/img/linea_globe.svg"), url("/img/linea_globe.svg");
   background-repeat: no-repeat, no-repeat;
-  background-position: right -170% top 100%, left -165% top -20%; 
+  background-position:
+    right -170% top 100%,
+    left -165% top -20%;
   background-size: 70%, 70%;
   padding: 6rem;
   text-align: center;
