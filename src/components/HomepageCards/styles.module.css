@@ -148,3 +148,10 @@ main {
   transform: scale(1.02);
   color: #fff;
 }
+
+@media (width <= 300px) {
+  .cardIcon {
+    display: none;
+  }
+}
+
