@@ -727,11 +727,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   }
 }
 
+/* Navbar formatting */
 .navbar--fixed-top {
   margin-top: 25px; /* adds space above navbar */
 }
 
-/* Navbar formatting */
 .navbar {
   --ifm-navbar-height: 7vh;
   height: clamp(60px, var(--ifm-navbar-height), 100px);
@@ -1178,6 +1178,10 @@ button[aria-label="Collapse sidebar"] {
 .menu__link--active:hover {
   margin-right: 8px;
   color: var(--linea-highlight-color-2);
+}
+
+.menu__list-item-collapsible {
+  margin-right: 8px;
 }
 
 .expandButton {
