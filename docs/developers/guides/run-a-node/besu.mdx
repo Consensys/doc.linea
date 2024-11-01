@@ -7,6 +7,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
+import NodeSize from "../../../../src/components/NodeSize";
 
 [Besu](https://besu.hyperledger.org/) is an open source Ethereum client developed under the
 Apache 2.0 license and written in Java.
@@ -56,6 +57,14 @@ Download the genesis file and Besu configuration file.
 ### Step 3. Define disk space volume (optional) \{#disk-space-besu}
 
 Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
+
+#### Test
+
+Full node:
+<NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+
+Archive node:
+<NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
 
 - Full nodes: 120GB, growing ~1.5GB per day.
 - Archive nodes: 740GB, growing ~9.5GB per day.
