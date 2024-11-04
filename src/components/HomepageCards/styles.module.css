@@ -149,9 +149,21 @@ main {
   color: #fff;
 }
 
+@media (width <= 1150px) {
+  .cardIcon {
+    opacity: 0;
+  }
+}
+
+@media (width <= 996px) {
+  .cardIcon {
+    opacity: 1;
+  }
+}
+
 @media (width <= 300px) {
   .cardIcon {
-    display: none;
+    opacity: 0;
   }
 }
 

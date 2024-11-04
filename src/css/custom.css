@@ -843,9 +843,12 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 /* hover effect for circles */
-.navbar__link:hover::before {
-  background-color: var(--linea-text-color-1);
-  border: 1px solid var(--linea-text-color-1);
+.navbar__link[href="/developers/guides"]:hover::before,
+.navbar__link[href="/developers/quickstart"]:hover::before,
+.navbar__link[href="/developers/guides/run-a-node"]:hover::before,
+.navbar__link[href="/architecture"]:hover::before {
+  background-color: var(--linea-highlight-color-2);
+  border: 1px solid var(--linea-highlight-color-2);
 }
 
 /* highlight the dot for the current page using aria-current */
@@ -855,13 +858,22 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 /* ensure dots are hidden on smaller screens */
-@media (width <= 1500px) {
-  .navbar__link::before {
+@media (width <= 1600px) {
+  .navbar__link[href="/developers/guides"]::before,
+  .navbar__link[href="/developers/quickstart"]::before,
+  .navbar__link[href="/developers/guides/run-a-node"]::before,
+  .navbar__link[href="/architecture"]::before {
     display: none;
   }
 }
 
-@media (width <= 1320px) {
+@media (width <= 1440px) {
+  .navbar__item {
+    font-size: 14px;
+  }
+}
+
+@media (width <= 1380px) {
   .navbar__item {
     font-size: 15px;
   }
