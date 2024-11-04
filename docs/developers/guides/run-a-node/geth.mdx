@@ -51,9 +51,12 @@ Download the genesis file for the relevant network.
 
 ### Step 3. Define disk space volume (optional) \{#disk-space-geth}
 
-Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
-- Full nodes: 170GB, growing ~2.6GB per day.
-- Archive nodes: 760GB, growing ~10GB per day.
+Define a volume size appropriate to your expected usage. Geth nodes use:
+
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-full-snapshot-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-archive-0" />
+
+<LastUpdated />
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
