@@ -10,8 +10,30 @@ const formatBytes = (bytes, decimals = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
+const getLatestData = (nodeSizeData, network, cluster, pvc) => {
+  const years = Object.keys(nodeSizeData).sort((a, b) => b - a); // Sort years descending
+
+  for (const year of years) {
+    const weeks = Object.keys(nodeSizeData[year]).sort((a, b) => b - a); // Sort weeks descending
+
+    for (const week of weeks) {
+      const data = nodeSizeData[year][week].find(item => 
+        item.network === network && 
+        item.cluster === cluster && 
+        item.pvc === pvc
+      );
+
+      if (data) {
+        return data;
+      }
+    }
+  }
+
+  return null;
+};
+
 const NodeSize = ({ network, cluster, pvc }) => {
-  const data = nodeSizeData.find(item => item.network === network && item.cluster === cluster && item.pvc === pvc);
+  const data = getLatestData(nodeSizeData, network, cluster, pvc);
 
   if (!data) {
     return <span>No data available</span>;

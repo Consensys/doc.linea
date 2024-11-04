@@ -24,6 +24,15 @@ const calculateDailyIncrease = (values) => {
   return dailyIncrease;
 };
 
+// Helper function to get week number
+function getWeekNumber(d) {
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+  return weekNo;
+}
+
 const fetchData = async () => {
   console.log('Starting data fetch...');
 
@@ -57,8 +66,8 @@ const fetchData = async () => {
     try {
       const response = await axios.get(url, {
         auth: {
-          username: user,
-          password: password,
+          username: process.env.LINEA_OBSERVABILITY_USER,
+          password: process.env.LINEA_OBSERVABILITY_PASS,
         },
       });
 
@@ -105,8 +114,25 @@ const fetchData = async () => {
 
   // Write data to /linea-node-size/data.json
   const dataFilePath = path.join(__dirname, '../linea-node-size/data.json');
+  let existingData = {};
+  
+  if (fs.existsSync(dataFilePath)) {
+    const fileContent = fs.readFileSync(dataFilePath, 'utf8');
+    existingData = JSON.parse(fileContent);
+  }
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentWeek = getWeekNumber(currentDate);
+
+  if (!existingData[currentYear]) {
+    existingData[currentYear] = {};
+  }
+  
+  existingData[currentYear][currentWeek] = results;
+
   console.log(`Writing results to ${dataFilePath}`);
-  fs.writeFileSync(dataFilePath, JSON.stringify(results, null, 2));
+  fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
   console.log('Node size data fetched and saved.');
 };
 

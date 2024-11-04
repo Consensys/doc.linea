@@ -1,34 +1,38 @@
-[
-  {
-    "network": "mainnet",
-    "cluster": "linea-prod-eks",
-    "pvc": "data-linea-besu-full-0",
-    "totalSize": 218216951808,
-    "dailyIncrease": 6714802176,
-    "timestamp": "2024-11-01T16:25:39.490Z"
-  },
-  {
-    "network": "mainnet",
-    "cluster": "linea-prod-eks",
-    "pvc": "data-linea-besu-archive-v2-0",
-    "totalSize": 2859672858624,
-    "dailyIncrease": 4731572224,
-    "timestamp": "2024-11-01T16:25:39.701Z"
-  },
-  {
-    "network": "mainnet",
-    "cluster": "linea-prod-eks",
-    "pvc": "data-linea-geth-full-snapshot-0",
-    "totalSize": 623539400704,
-    "dailyIncrease": 940683264,
-    "timestamp": "2024-11-01T16:25:40.101Z"
-  },
-  {
-    "network": "mainnet",
-    "cluster": "linea-prod-eks",
-    "pvc": "data-linea-geth-archive-0",
-    "totalSize": 2925017575424,
-    "dailyIncrease": 4246626304,
-    "timestamp": "2024-11-01T16:25:40.336Z"
+{
+  "2024": {
+    "45": [
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-full-0",
+        "totalSize": 219667169280,
+        "dailyIncrease": 3019358208,
+        "timestamp": "2024-11-04T11:30:01.779Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-archive-v2-0",
+        "totalSize": 2871020601344,
+        "dailyIncrease": 4754972672,
+        "timestamp": "2024-11-04T11:30:02.067Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-geth-full-snapshot-0",
+        "totalSize": 626085388288,
+        "dailyIncrease": 760295424,
+        "timestamp": "2024-11-04T11:30:02.480Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-geth-archive-0",
+        "totalSize": 2936292204544,
+        "dailyIncrease": 4026421248,
+        "timestamp": "2024-11-04T11:30:02.818Z"
+      }
+    ]
   }
-]
+}
