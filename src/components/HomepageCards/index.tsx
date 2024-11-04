@@ -25,12 +25,11 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Bridge your funds",
-    link: "/users/move-funds/bridge",
+    title: "Guides",
+    link: "/developers/guides",
     description: (
       <>
-        Learn how to safely bridge your tokens over to Linea via MetaMask and
-        ecosystem bridges
+        Learn how to get the most out of Linea with our developer-focused guides
       </>
     ),
     buttonName: "Bridge",
