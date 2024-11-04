@@ -495,12 +495,6 @@ html[data-theme="dark"] .header-github-link::before {
   background-position: center;
 }
 
-@media (width <= 1070px) {
-  .header-discord-link {
-    padding-left: 0;
-  }
-}
-
 @media (width <= 996px) {
   .header-discord-link {
     padding-left: 12px;
@@ -633,13 +627,13 @@ html[data-theme="dark"] .header-twitter-link::before {
   visibility: visible;
 }
 
-@media (width <= 1070px) {
-  /* hides in the navbar for mobile displays */
-  .navbar .header-release-notes-link {
-    display: none !important;
-    width: 0;
+@media (width <= 1080px) {
+  .navbar__inner:has(.navbar__search input:focus) .header-release-notes-link {
+    display: none !important
   }
+}
 
+@media (width <= 996px) {
   .navbar-sidebar .header-release-notes-link {
     /* shows in the mobile sidebar instead */
     display: block !important;
@@ -733,8 +727,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 .navbar {
-  --ifm-navbar-height: 7vh;
-  height: clamp(60px, var(--ifm-navbar-height), 100px);
+  min-height: 68px;
   box-shadow: none;
   border: none !important;
   background: none !important;
@@ -762,14 +755,14 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   top: -5px;
 }
 
-@media (width <= 1350px) {
+@media (width <= 1380px) {
+  .navbar__inner {
+    width: 90%;
+  }
+  
   .navbar__logo {
     height: 25px;
     top: -5px;
-  }
-
-  .navbar__inner {
-    width: 90%;
   }
 
   .navbar {
@@ -798,7 +791,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   padding-right: 15px;
 }
 
-@media (width <= 1500px) {
+@media (width <= 1520px) {
   .navbar__title {
     display: flex;
     font-size: 20px;
@@ -866,7 +859,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   border: 1px solid var(--linea-text-color-1);
 }
 
-@media (width <= 1500px) {
+@media (width <= 1520px) {
   .navbar__item {
     font-size: 15px;
   }
@@ -894,7 +887,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 @media (width <= 1320px) {
   .navbar__search input {
-    width: 150px;
+    width: 115px;
+    right: 0;
+    margin-right: 10px;
+  }
+}
+
+@media (width <= 1080px) {
+  .navbar__search input {
+    width: 0px;
+    right: 0;
+    margin-right: 10px;
+  }
+
+  .navbar__search input:focus {
+    width: 110px;
     right: 0;
     margin-right: 10px;
   }
