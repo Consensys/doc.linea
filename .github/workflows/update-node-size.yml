@@ -1,11 +1,12 @@
 name: Update Node Size Data
 
 on:
+
+  workflow_dispatch: 
+
   schedule:
     - cron: '0 0 * * 1'  # Runs at 00:00 UTC every Monday
   
-  workflow_dispatch:  # Allows manual triggering
-
 jobs:
   update-data:
     runs-on: ubuntu-latest
