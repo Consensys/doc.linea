@@ -9,13 +9,6 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
-:::info Compatibility mode
-
-If you're an infrastructure provider you must deactivate compatibility mode in your node 
-configurations to ensure `linea_estimateGas` functions fully. See our [guide](#compatibility-mode).
-
-:::
-
 Generates and returns an estimate of how much gas is necessary to allow the transaction to complete 
 and be published on Ethereum. The transaction will not be added to the blockchain.
 
@@ -159,53 +152,3 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 :::
-
-## Compatibility mode
-
-`linea_estimateGas` was activated on Mainnet on September 30. Infrastructure providers and those
-using their own nodes to submit transactions must adjust their configuration files to disable 
-compatibility mode.
-
-No action is required for Linea Sepolia nodes using the `advanced-testnet` profile from the 
-[`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/tree/main).
-
-### Effects 
-
-`linea_estimateGas` in compatibility mode returns the same gas price as `eth_gasPrice`. This means
-gas price is applied consistently regardless of the relative complexity of the transaction 
-(measured through its `calldata` size). As a result, transactions can be underpriced and risk 
-getting stuck, or be overpriced and result in the user overpaying in fees.
-
-### Benefits of disabling
-
-With compatibility mode disabled, `linea_estimateGas` is able to function as designed and return a 
-more accurate gas price, better suited to the transaction. The gas price scales with the amount of
-`calldata` a transaction contains. As a result, Linea can more effectively ensure the gas price
-reflects L1 costs and prover costs, which rise with transaction complexity/`calldata` size.
-
-### How to disable
-
-For most people running an `advanced` Linea Besu node —a prerequisite for using `linea_estimateGas`—
-compatibility mode is already be disabled in the files you downloaded from the [`linea-besu-package`
-repository](https://github.com/Consensys/linea-besu-package/tree/main). 
-
-:::note
-
-Refer to the information on running a Linea Besu node using [Docker or binary distribution](../../guides/run-a-node/linea-besu.mdx).
-
-:::
-
-### Binary distribution
-
-To ensure compatibility is not running, check your `.toml` configuration file for the following
-setting, and ensure it is `false`:
-```
-plugin-linea-estimate-gas-compatibility-mode-enabled=false
-```
-
-This configuration may be `true` if you downloaded the files before September 30.
-
-### Docker
-
-The Docker image accessed via the `compose` files in the [`linea-besu-package` repository](https://github.com/Consensys/linea-besu-package/blob/main/linea-besu/profiles/advanced-sepolia.toml)
-will be updated via image update to ensure compatibility mode is disabled after September 30. 
