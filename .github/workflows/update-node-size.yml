@@ -1,0 +1,61 @@
+name: Update Node Size Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Runs at 00:00 UTC every Monday
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.9.0'  # or whatever version you're using
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run update script
+      env:
+        LINEA_OBSERVABILITY_USER: ${{ secrets.LINEA_OBSERVABILITY_USER }}
+        LINEA_OBSERVABILITY_PASS: ${{ secrets.LINEA_OBSERVABILITY_PASS }}
+      run: node path/to/your/script.js
+
+    - name: Check for changes
+      id: git-check
+      run: |
+        git add linea-node-size/data.json
+        git diff --staged --exit-code
+      continue-on-error: true
+
+    - name: Create Pull Request
+      if: steps.git-check.outcome == 'failure'
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Update node size data
+        title: 'Update Node Size Data'
+        body: |
+          This is an automated PR to update the node size data.
+          Please review the changes and merge if everything looks correct.
+        branch: update-node-size-data
+        delete-branch: true
+
+  slackNotification:
+    needs: [update-data]
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: doc-ci-alerts
+          SLACK_COLOR: danger
+          SLACK_USERNAME: ci
+          SLACK_TITLE: Linea node size update - Failure
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          MSG_MINIMAL: true
