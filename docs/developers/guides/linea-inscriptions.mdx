@@ -3,19 +3,17 @@ title: Create an inscription
 image: /img/socialCards/create-an-inscription.jpg
 ---
 
-## What are inscriptions?
-
 Bitcoin inscriptions are a method of adding metadata to the smallest unit of Bitcoin, a satoshi (sat). Various types of data, including images, videos, messages, etc., can be "inscribed" onto the Bitcoin blockchain to create NFTs. This concept has been adapted for the Ethereum blockchain, where it's known as ["Ethscriptions"](https://docs.ethscriptions.com/overview/introducing-ethscriptions).
 
 ## Implementation
 
-Traditionally, calldata is the most straightforward method for implementing inscriptions. However, this approach can become quite expensive on L1 during finalization by the sequencer, which in turn can drive up the price on L2 for users to maintain profitability.
+Traditionally, calldata is the most straightforward method for implementing inscriptions. However, this approach can become expensive on L1 during finalization by the sequencer, which in turn can drive up the price on L2 for users to maintain profitability.
 
 To avoid this increase in costs, Linea recommends following [ESIP-3](https://docs.ethscriptions.com/esips/accepted-esips/esip-3-smart-contract-ethscription-creations), for creating inscriptions. This is because events and subcalls do not involve any finalization costs on L1, making them a more cost-effective option for users.
 
 :::info[attention]
 
-**We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support.** Any team that is building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3. Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation.
+**We want to emphasize that this is the best and only method for creating inscriptions on Linea that we will support.** Any team building tools for inscriptions or issuing inscriptions will receive our support, including marketing support, only if they use this pattern documented in ESIP-3. Special thanks to the Lins20 and Carpenter teams! Their collaboration and support were invaluable in creating this reference implementation.
 
 :::
 
@@ -33,7 +31,7 @@ event ethscriptions_protocol_CreateEthscription(
 - `initialOwner`is usually the msg.sender.
 - `contentURI` should be crafted by minimizing the amount of calldata.
 
-Linea recommends loading it (at least partially) from the contract code to reduce the amount of calldata that has to be passed to the contract.
+We recommend loading it from the contract code to reduce the amount of calldata that has to be passed to the contract.
 
 :::
 
