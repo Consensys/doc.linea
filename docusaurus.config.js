@@ -41,7 +41,8 @@ const config = {
   },
 
   scripts: [
-    {src: "/js/getfeedback.js", defer: true, async: true}
+    {src: "/js/getfeedback.js", defer: true, async: true},
+    {src: "/js/navbarHighlight.js", defer: true}
   ],
 
   markdown: {
@@ -118,21 +119,15 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "users/index",
-            position: "left",
-            label: "Users",
-          },
-          {
-            type: "doc",
             docId: "developers/quickstart/index",
             position: "left",
-            label: "Developers",
+            label: "Quickstart",
           },
           {
             type: "doc",
-            docId: "architecture/index",
+            docId: "developers/guides/index",
             position: "left",
-            label: "Architecture",
+            label: "Guides",
           },
           // { can add this section back if we want it
           //   type: "dropdown",
@@ -155,9 +150,15 @@ const config = {
             label: "Run a node",
           },
           {
-            href: "/developers/linea-version",
-            className: "header-release-notes-link",
+            type: "doc",
+            docId: "architecture/index",
+            position: "left",
+            label: "Architecture",
+          },
+          {
+            to: "/developers/linea-version",
             position: "right",
+            className: "header-release-notes-link"
           },
           {
             href: "https://discord.gg/linea",
@@ -178,11 +179,11 @@ const config = {
             title: "Links",
             items: [
               {
-                label: "Linea homepage",
+                label: "Home",
                 href: "https://linea.build/",
               },
               {
-                label: "Network status",
+                label: "Status",
                 href: "https://linea.statuspage.io/",
               },
               {
@@ -190,8 +191,8 @@ const config = {
                 href: "https://lineascan.build",
               },
               {
-                label: "Linea Sepolia block explorer",
-                href: "https://sepolia.lineascan.build",
+                label: "Risk disclosures",
+                href: "/risk-disclosures",
               },
             ],
           },
@@ -216,7 +217,7 @@ const config = {
             title: "Contribute",
             items: [
               {
-                label: "Contribute to our documentation",
+                label: "Documentation",
                 href: "https://github.com/Consensys/doc.linea",
               },
             ],
@@ -295,11 +296,14 @@ const config = {
             from: "/developers/deploy-smart-contracts",
           },
           {
-            to: "/users/zero-knowledge-glossary",
-            from: ["/reference/glossary", "/zero-knowledge-glossary"],
+            to: "/zero-knowledge-glossary",
+            from: [
+              "/reference/glossary", 
+              "/users/zero-knowledge-glossary"
+            ],
           },
           {
-            to: "/users",
+            to: "/",
             from: [
               "/get-started",
               "/get-started/fund",
@@ -307,15 +311,14 @@ const config = {
               "/get-started/quickstart",
               "/use-zkevm",
               "/use-linea/index.md",
+              "/build-on-linea/use-linea-testnet/fund",
+              "/use-mainnet/fund",
+              "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
+              "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
+              "/use-mainnet/set-up-your-wallet",
+              "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+              "/use-mainnet",
             ],
-          },
-          {
-            to: "/users/move-funds/set-up-your-wallet",
-            from: "/build-on-linea/use-linea-testnet/set-up-your-wallet",
-          },
-          {
-            to: "/users/move-funds/fund",
-            from: "/build-on-linea/use-linea-testnet/fund",
           },
           {
             to: "/developers/quickstart/info-contracts",
@@ -330,52 +333,16 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/users/move-funds/bridge",
-            from: "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
-          },
-          {
-            to: "/users/move-funds/bridge",
-            from: "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
-          },
-          {
             to: "/developers/guides/gas/gas-fees",
             from: "/use-mainnet/gas-import",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge/linea-surge-overview",
-            from: "/use-mainnet/linea-surge/linea-surge-overview",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge/linea-surge-model",
-            from: "/use-mainnet/linea-surge/linea-surge-model",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge/linea-surge-model",
-            from: "/use-mainnet/linea-surge-model",
-          },
-          {
-            to: "/users/linea-voyage/linea-surge",
-            from: "/use-mainnet/linea-surge",
           },
           {
             to: "/developers/guides/gas/gas-fees",
             from: "/reference/api/linea-estimategas",
           },
           {
-            to: "/users/linea-voyage/lxp",
-            from: "/use-mainnet/linea-xp",
-          },
-          {
             to: "/developers/guides/bridge",
             from: "/use-mainnet/bridges-of-linea",
-          },
-          {
-            to: "/users/move-funds/fund",
-            from: "/use-mainnet/fund",
-          },
-          {
-            to: "/users/move-funds/set-up-your-wallet",
-            from: "/use-mainnet/set-up-your-wallet",
           },
           {
             to: "/developers/quickstart/info-contracts",
@@ -402,10 +369,6 @@ const config = {
               "/developers/guides/run-a-node/use-docker",
               "/developers/guides/run-a-node/use-binary",
             ],
-          },
-          {
-            to: "/developers/community/hackathons",
-            from: "/build-on-linea/hackathons",
           },
           {
             to: "/developers/guides/linea-inscriptions",
@@ -485,10 +448,6 @@ const config = {
           {
             to: "/developers/quickstart",
             from: "/build-on-linea/quickstart",
-          },
-          {
-            to: "/users",
-            from: "/use-mainnet",
           },
           {
             to: "/developers/tooling",

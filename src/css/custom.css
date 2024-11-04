@@ -842,19 +842,19 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   margin-left: 12px;
 }
 
-/* Hover effect for circles */
+/* hover effect for circles */
 .navbar__link:hover::before {
-  background-color: #61dfff;
-  border: 1px solid #61dfff;
+  background-color: var(--linea-text-color-1);
+  border: 1px solid var(--linea-text-color-1);
 }
 
-/* Highlight the dot for the current page using aria-current */
+/* highlight the dot for the current page using aria-current */
 .navbar__link[aria-current="page"]::before {
-  background-color: #61dfff; /* Dot color for the active page */
-  border: 1px solid #61dfff; /* Border color for the active page */
+  background-color: var(--linea-text-color-1);
+  border: 1px solid var(--linea-text-color-1);
 }
 
-/* Ensure dots are hidden on smaller screens */
+/* ensure dots are hidden on smaller screens */
 @media (width <= 1500px) {
   .navbar__link::before {
     display: none;
