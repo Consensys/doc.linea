@@ -1,6 +1,7 @@
 name: Update Node Size Data
 
 on:
+  branches: [node-size-2]
   schedule:
     - cron: '0 0 * * 1'  # Runs at 00:00 UTC every Monday
   workflow_dispatch:  # Allows manual triggering
