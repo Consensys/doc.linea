@@ -84,7 +84,7 @@ select it.
 When an ERC-20 token is bridged from one chain to the other and the token has not been deployed on 
 the destination chain, the Token Bridge Smart Contract will attempt to determine the “decimals” of 
 the ERC-20 token. If the decimals cannot be determined by reading the origin ERC-20 token contract 
-(e.g. a token contract does not adhere to the [ERC-20 standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)), 
+(e.g. a token contract doesn't adhere to the [ERC-20 standard](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)), 
 it will default to 18 decimals.
 
 This can result in the token quantities displaying incorrectly on the destination chain. For example, 
