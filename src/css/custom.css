@@ -825,11 +825,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   padding-right: 10px;
 }
 
-/* circle icons */
-.navbar__link[href="/users"]::before,
+/* Basic circle icons for navbar items */
+.navbar__link[href="/developers/guides"]::before,
 .navbar__link[href="/developers/quickstart"]::before,
-.navbar__link[href="/architecture"]::before,
-.navbar__link[href="/developers/guides/run-a-node"]::before {
+.navbar__link[href="/developers/guides/run-a-node"]::before,
+.navbar__link[href="/architecture"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -842,32 +842,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   margin-left: 12px;
 }
 
-/* circle hover */
-.navbar__link[href="/users"]:hover::before,
-.navbar__link[href="/developers/quickstart"]:hover::before,
-.navbar__link[href="/architecture"]:hover::before,
-.navbar__link[href="/developers/guides/run-a-node"]:hover::before {
-  background-color: var(--linea-text-color-1);
-  border: 1px solid var(--linea-text-color-1);
+/* Hover effect for circles */
+.navbar__link:hover::before {
+  background-color: #61dfff;
+  border: 1px solid #61dfff;
 }
 
-/* persist circle highlight when in a specific section */
-.navbar__link[href="/users"][aria-current="page"]::before,
-.navbar__link[href="/architecture"][aria-current="page"]::before,
-.navbar__link[href="/developers/quickstart"][aria-current="page"]::before {
-  background-color: var(--linea-text-color-1);
-  border: 1px solid var(--linea-text-color-1);
+/* Highlight the dot for the current page using aria-current */
+.navbar__link[aria-current="page"]::before {
+  background-color: #61dfff; /* Dot color for the active page */
+  border: 1px solid #61dfff; /* Border color for the active page */
 }
 
-@media (width <= 1520px) {
-  .navbar__item {
-    font-size: 15px;
-  }
-
-  .navbar__link[href="/users"]::before,
-  .navbar__link[href="/developers/quickstart"]::before,
-  .navbar__link[href="/architecture"]::before,
-  .navbar__link[href="/developers/guides/run-a-node"]::before {
+/* Ensure dots are hidden on smaller screens */
+@media (width <= 1500px) {
+  .navbar__link::before {
     display: none;
   }
 }
