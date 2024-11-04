@@ -23,7 +23,7 @@ jobs:
       env:
         LINEA_OBSERVABILITY_USER: ${{ secrets.LINEA_OBSERVABILITY_USER }}
         LINEA_OBSERVABILITY_PASS: ${{ secrets.LINEA_OBSERVABILITY_PASS }}
-      run: node path/to/your/script.js
+      run: node scripts/fetchNodeSize.js
 
     - name: Check for changes
       id: git-check
