@@ -158,7 +158,7 @@ const config = {
           {
             to: "/developers/linea-version",
             position: "right",
-            label: "Release notes",
+            className: "header-release-notes-link"
           },
           {
             href: "https://discord.gg/linea",
