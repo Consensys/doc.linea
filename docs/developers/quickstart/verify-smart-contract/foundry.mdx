@@ -3,19 +3,22 @@ title: Foundry
 image: /img/socialCards/foundry.jpg
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; 
+import TabItem from '@theme/TabItem';
 
-To verify your Foundry contracts, you can use Foundry's [`verify-contract`](https://book.getfoundry.sh/reference/forge/forge-verify-contract) to verify contracts on Lineascan.
+To verify your Foundry contracts, you can use Foundry's [`verify-contract`](https://book.getfoundry.sh/reference/forge/forge-verify-contract) 
+to verify contracts on Lineascan.
 
-You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey).
+You'll need to get a Lineascan (Linea instance of Etherscan) API key by creating an account at 
+[https://lineascan.build/myapikey](https://lineascan.build/myapikey).
 
 ## Verify your smart contract
 
 :::note
 
-
-These instructions verify using the Linea instance of Etherscan, which currently doesn't support Yul. If you
-would like to verify using Blockscout, please use the [Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently doesn't support 
+Yul. If you would like to verify using Blockscout, please use the [Blockscout API URL for the 
+required network](../info-contracts.mdx#block-explorers).
 
 :::
 
@@ -105,7 +108,7 @@ Finally, modify `foundry.toml` to include the Etherscan configurations:
 
 ```bash
 [etherscan]
-linea-testnet = { key = "${LINEASCAN_API_KEY}", url = "https://api-sepolia.lineascan.build/api" }
+linea-sepolia = { key = "${LINEASCAN_API_KEY}", url = "https://api-sepolia.lineascan.build/api" }
 linea-mainnet = { key = "${LINEASCAN_API_KEY}", url = "https://api.lineascan.build/api" }
 ```
 
@@ -115,14 +118,14 @@ Then, to verify your smart contracts, you can simply run:
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
-forge verify-contract --chain linea-mainnet path_to_contract:contract_name --watch
+forge verify-contract --chain linea-mainnet YOUR_CONTRACT_ADDRESS path_to_contract:contract_name --watch
 ```
 
   </TabItem>
   <TabItem value="Testnet" label="Testnet">
 
 ```bash
-forge verify-contract --chain linea-testnet path_to_contract:contract_name --watch
+forge verify-contract --chain linea-sepolia YOUR_CONTRACT_ADDRESS path_to_contract:contract_name --watch
 ```
 
   </TabItem>
