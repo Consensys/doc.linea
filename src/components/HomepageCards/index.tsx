@@ -21,6 +21,8 @@ type CardItem = {
     | "danger"
     | "link";
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  backgroundColor: string;
+  textColor: string;
 };
 
 const CardList: CardItem[] = [
@@ -32,9 +34,11 @@ const CardList: CardItem[] = [
         Learn how to get the most out of Linea with our developer-focused guides
       </>
     ),
-    buttonName: "Bridge",
+    buttonName: "BRIDGE",
     buttonType: "primary",
     icon: CardIcon1,
+    backgroundColor: "#190066",
+    textColor: "#fff",
   },
   {
     title: "Developer quickstart",
@@ -42,12 +46,14 @@ const CardList: CardItem[] = [
     description: (
       <>
         Deploy and verify your first smart contract on Linea using your favorite
-        developer tools
+        developer tools.
       </>
     ),
-    buttonName: "Build",
+    buttonName: "BUILD",
     buttonType: "success",
     icon: CardIcon2,
+    backgroundColor: "#61dfff",
+    textColor: "#121212",
   },
   {
     title: "Run a node",
@@ -55,12 +61,14 @@ const CardList: CardItem[] = [
     description: (
       <>
         Learn how to run a Linea node with Besu or Geth, and interact with the
-        blockchain locally
+        blockchain locally.
       </>
     ),
-    buttonName: "Learn",
+    buttonName: "LEARN",
     buttonType: "info",
     icon: CardIcon3,
+    backgroundColor: "#6119ef",
+    textColor: "#fff",
   },
   {
     title: "Builder Launchpad",
@@ -71,9 +79,11 @@ const CardList: CardItem[] = [
         mini-hacks, events, and more!
       </>
     ),
-    buttonName: "Launch",
+    buttonName: "LAUNCH",
     buttonType: "info",
     icon: CardIcon4,
+    backgroundColor: "#fff068",
+    textColor: "#121212",
   },
 ];
 
@@ -84,21 +94,28 @@ function Card({
   buttonName,
   buttonType,
   icon: Icon,
+  backgroundColor,
+  textColor,
 }: CardItem) {
   return (
     <div className={clsx("col", "col--3", "margin-top--md")}>
       <div className={clsx("card-demo", styles.cardDemo)}>
-        <div className={clsx("card", styles.card_glow)}>
+        <div
+          className={clsx("card", styles.card_glow)}
+          style={{ backgroundColor: backgroundColor }}
+        >
           <div className={clsx("card__header", styles.cardHeader)}>
-            <div className={styles.cardIcon}>
+            <div className={styles.cardIcon} style={{ color: textColor }}>
               <Icon />
             </div>
             <div className={styles.cardTitle}>
-              <h3>{title}</h3>
+              <h3 style={{ color: textColor }}>{title}</h3>
             </div>
           </div>
           <div className={clsx("card__body", styles.cardBody)}>
-            <p className={styles.description}>{description}</p>
+            <p className={styles.description} style={{ color: textColor }}>
+              {description}
+            </p>
           </div>
           <div
             className="card__footer"
@@ -108,7 +125,8 @@ function Card({
               alignItems: "center",
               textAlign: "center",
               paddingBottom: "30px",
-            }}>
+            }}
+          >
             <Link
               className={clsx(
                 "button",
@@ -117,7 +135,8 @@ function Card({
                 styles.button,
               )}
               to={link}
-              style={{ width: "90%" }}>
+              style={{ width: "90%" }}
+            >
               {buttonName}
             </Link>
           </div>
@@ -162,7 +181,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={styles.cardContainer}>
         <br />
-        <h1 className={styles.heading}>Quick links</h1>
+        <h1 className={styles.heading}>QUICK LINKS</h1>
         <br />
         <div className="row" ref={rowRef} style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (
