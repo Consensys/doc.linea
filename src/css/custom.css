@@ -312,7 +312,7 @@ abbr:where([title]) {
 
 a {
   font-family: inherit;
-  color: #2eb9dc;
+  color: var(--linea-link-highlight-color);
   text-decoration: inherit;
 }
 
@@ -418,6 +418,7 @@ textarea {
   --linea-banner-logo: #fff;
   --linea-text-color-1: #190066;
   --linea-sidebar-text-color: #fff;
+  --linea-link-highlight-color: #2eb9dc;
   --search-bar-background: #fff;
 }
 
@@ -457,6 +458,7 @@ textarea {
   --linea-text-color-1: #190066;
   --linea-banner-logo: #190066;
   --linea-sidebar-text-color: #190066;
+  --linea-link-highlight-color: #6119ef;
   --search-bar-background: #fff;
 }
 
@@ -1185,7 +1187,7 @@ button[aria-label="Collapse sidebar"] {
 
 .menu__link--active:hover {
   margin-right: 8px;
-  color: var(--linea-highlight-color-2);
+  color: var(--linea-link-highlight-color);
 }
 
 .menu__list-item-collapsible {
