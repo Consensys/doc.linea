@@ -14,6 +14,61 @@
       "source": "/en/stable/:match*",
       "destination": "/:match*",
       "permanent": true
+    },
+    { 
+      "source": "/users", 
+      "destination": "https://support.linea.build/", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/move-funds", 
+      "destination": "https://support.linea.build/bridging/how-to-bridge-to-linea", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/move-funds/bridge", 
+      "destination": "https://support.linea.build/bridging/how-to-bridge-to-linea", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/move-funds/set-up-your-wallet", 
+      "destination": "https://support.linea.build/getting-started/can-you-use-linea-with-metamask", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/move-funds/fund", 
+      "destination": "https://support.linea.build/getting-started/how-to-buy-tokens-on-linea-using-metamask-portfolio", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/linea-voyage", 
+      "destination": "https://support.linea.build/linea-voyage", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/linea-voyage/linea-surge/linea-surge-overview", 
+      "destination": "https://support.linea.build/linea-voyage/linea-surge/linea-surge-overview", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/linea-voyage/linea-surge/linea-surge-model", 
+      "destination": "https://support.linea.build/linea-voyage/linea-surge/linea-surge-model", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/linea-voyage/linea-surge", 
+      "destination": "https://support.linea.build/linea-voyage/linea-surge", 
+      "permanent": true 
+    },
+    { 
+      "source": "/users/linea-voyage/lxp", 
+      "destination": "https://support.linea.build/linea-voyage/lxp", 
+      "permanent": true 
+    },
+    {
+      "source": "/developers/community/hackathons",
+      "destination": "https://linea.build/developers",
+      "permanent": true
     }
   ]
 }

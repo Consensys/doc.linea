@@ -1,19 +1,19 @@
-.mainBackground {
-  background-color: var(--homepage-card-background) !important;
+main {
+  background-color: var(--page-background) !important;
 }
 
 .cardContainer {
-  padding: 0;
+  padding-bottom: 60px;
   margin: 20px auto;
   align-items: center;
-  max-width: 95% !important;
+  max-width: 90% !important;
 }
 
 .cardHeader {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 20px 5px 20px 20px;
 }
 
 .cardIcon {
@@ -21,7 +21,7 @@
   position: absolute;
   right: 22px;
   top: 25px;
-  width: 43px;
+  width: 35px;
   height: auto;
   transition: width 0.25s ease;
 }
@@ -46,8 +46,10 @@
 
 .cardTitle h3 {
   color: var(--banner-text);
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 400;
+  text-align: left;
+  text-transform: uppercase;
   padding-right: 60px;
   padding-top: 10px;
   margin-bottom: 10px;
@@ -64,7 +66,7 @@
 }
 
 .description {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   margin-top: 0;
 }
@@ -76,19 +78,25 @@
 }
 
 .heading {
+  display: inline-block;
   text-align: center;
   padding-top: 10px;
   font-weight: 400;
+  font-size: 2.5rem;
   color: var(--banner-text);
+  border-bottom: 2px solid var(--linea-highlight-color-2);
+}
+
+.heading, .cardContainer {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .card_glow {
   position: relative;
   background-color: var(--homepage-card-background);
   color: var(--ifm-color-primary);
-  border-radius: 3px;
-  border: 1px solid var(--homepage-card-border-color);
-  box-shadow: 0 0 10px rgb(97 223 255 / 20%);
+  border-radius: 17px;
   overflow: visible;
   transform: scale(1);
   transition: transform 0.15s ease-in-out, border-color 0.3s ease-in-out;
@@ -120,29 +128,42 @@
 }
 
 .button {
-  background-color: #1d1d1d;
+  background-color: #fff;
   transition: transform 0.2s ease-in-out, background-color 0.25s ease-in-out,
     border 0.15s ease-in-out;
   height: 45px;
   border-radius: 500px;
-  border: 1px solid #61dfff;
+  border: none;
   overflow: visible;
   text-align: center;
   font-weight: 500;
   font-size: 17px;
   line-height: 32px;
-  color: #fff;
+  color: #121212;
 }
 
 .button:hover {
-  background-color: #fff;
+  background-color: #121212;
   overflow: visible;
-  box-shadow: 0 0 10px rgb(97 223 255 / 50%);
-  border: 1px solid var(--homepage-card-icon);
   transform: scale(1.02);
-  color: #1d1d1d;
+  color: #fff;
 }
 
-.icon {
-  color: var(--homepage-card-icon);
+@media (width <= 1150px) {
+  .cardIcon {
+    opacity: 0;
+  }
 }
+
+@media (width <= 996px) {
+  .cardIcon {
+    opacity: 1;
+  }
+}
+
+@media (width <= 300px) {
+  .cardIcon {
+    opacity: 0;
+  }
+}
+
