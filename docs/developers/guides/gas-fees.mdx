@@ -31,10 +31,11 @@ components:
 These two resource costs are abstracted by the rollup and covered by the recommended L2 gas price
 and gas used.
 
-> Learn more about [gas on Linea](./gas-on-linea.mdx).
+> Learn more about gas on Linea on our [support page](https://support.linea.build/getting-started/what-does-gas-pay-for/) 
+and release notes for [Alpha v2](../linea-version/index.mdx#alpha-v2) and [Alpha v3](../linea-version/index.mdx#alpha-v3).
 
 `linea_estimateGas` is the recommended method for estimating gas on Linea. See our 
-[reference page](../../reference/api/linea-estimategas.mdx) for more information. 
+[reference page](../reference/api/linea-estimategas.mdx) for more information. 
 
 Linea also supports:
 - [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
@@ -119,13 +120,13 @@ In some cases, transactions with lower priority fees are included ahead of other
 priority fees. This is because the nonce order of transactions submitted from the same account 
 takes precedence. 
 
-## [`linea_estimateGas`](../../reference/api/linea-estimategas.mdx)
+## [`linea_estimateGas`](../reference/api/linea-estimategas.mdx)
 
 `linea_estimateGas` is the recommended method for estimating gas on Linea. It returns `gasLimit`, 
 `baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise gas estimate than 
 the alternatives.
 
-It can also help prevent transactions from being rejected due to exceeding [module limits](../../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
+It can also help prevent transactions from being rejected due to exceeding [module limits](../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
 
 ### Example
 
@@ -152,4 +153,4 @@ curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
 }
 ```
 
-See the [reference page](../../reference/api/linea-estimategas.mdx) for full usage.
+See the [reference page](../reference/api/linea-estimategas.mdx) for full usage.
