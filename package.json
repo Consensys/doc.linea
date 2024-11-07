@@ -1,6 +1,6 @@
 {
   "name": "doc.linea",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -30,11 +30,12 @@
     "**/*.{md,mdx,ts,js,tsx,jsx,json}": "npm run format"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.4.0",
-    "@docusaurus/plugin-client-redirects": "^3.4.0",
-    "@docusaurus/plugin-google-tag-manager": "^3.4.0",
-    "@docusaurus/preset-classic": "^3.4.0",
-    "@docusaurus/theme-mermaid": "^3.5.2",
+    "@docusaurus/core": "^3.6.0",
+    "@docusaurus/faster": "^3.6.0",
+    "@docusaurus/plugin-client-redirects": "^3.6.0",
+    "@docusaurus/plugin-google-tag-manager": "^3.6.0",
+    "@docusaurus/preset-classic": "^3.6.0",
+    "@docusaurus/theme-mermaid": "^3.6.0",
     "@easyops-cn/docusaurus-search-local": "^0.44.3",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.1",
@@ -55,7 +56,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.4",
     "@commitlint/config-conventional": "^19.4",
-    "@docusaurus/module-type-aliases": "^3.4.0",
+    "@docusaurus/module-type-aliases": "^3.6.0",
     "@docusaurus/tsconfig": "^3.4.0",
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^3.1.0",
