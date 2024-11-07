@@ -234,6 +234,7 @@ const sidebars = {
             },            
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
+            "developers/tooling/data-indexers/etherscan",
             "developers/tooling/data-indexers/flair",            
             {
               type: "category",
