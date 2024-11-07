@@ -268,13 +268,6 @@ const config = {
     }),
   plugins: [
     [
-      "@docusaurus/plugin-google-gtag",
-      {
-        trackingID: "G-PY7JFNPXNH",
-        anonymizeIP: true,
-      },
-    ],
-    [
       "@docusaurus/plugin-google-tag-manager",
       {
         containerId: "GTM-TB58STH",
