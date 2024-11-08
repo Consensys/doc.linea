@@ -17,8 +17,8 @@ total fee = units of gas used * (base fee + priority fee)
 
 Linea fundamentally works exactly the same as Ethereum. The only difference is that **the base fee 
 is constant at 7 wei.** Blocks created by Linea use up to 24 million gas (less than 50% of the 
-maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, effectively 
-keeping it at a stable 7 wei.
+maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, keeping it 
+at a stable 7 wei.
 
 The gas cost to submit your transaction and include it on Ethereum involves the following fee 
 components:
@@ -58,7 +58,7 @@ by `linea_estimateGas` to calculate the cost of a transaction:
 The `extraData` field is a 32-byte space used to store arbitrary data, such as metadata or 
 additional information relevant to the block. 
 
-On Linea, it is used by the sequencer and Linea Besu nodes running the correct plugins to expose 
+On Linea, it's used by the sequencer and Linea Besu nodes running the correct plugins to expose 
 `linea_estimateGas`.
 
 :::
