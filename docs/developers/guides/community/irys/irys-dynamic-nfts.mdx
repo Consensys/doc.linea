@@ -12,7 +12,14 @@ A mutable-style URL is a single, static URL that is linked to a series of transa
 You can add a new transaction to the series at any time, and the URL will always resolve to the
 most recent transaction.
 
-<img src="/img/docs/build-on-linea/tooling/permanent-data/irys/mutable-references.png" />
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/developers/guides/community/irys/irys_dynamic_nfts/mutable-references.png"
+      alt=""
+    />
+  </div>
+</div>
 
 In this guide, you will create a dynamic NFT using Irys's mutability features. Dynamic NFTs are NFTs whose
 metadata evolves over time. They are commonly used in:
@@ -20,7 +27,14 @@ metadata evolves over time. They are commonly used in:
 - Gaming projects where in-game assets evolve as players progress.
 - Loyalty programs where NFTs evolve as users accumulate points.
 
-<img src="/img/docs/build-on-linea/tooling/permanent-data/irys/all-characters.png" />
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/developers/guides/community/irys/irys_dynamic_nfts/all-characters.png"
+      alt=""
+    />
+  </div>
+</div>
 
 This tutorial focuses on creating a SuperMon NFT that can evolve during gameplay. The NFT starts with
 a basic appearance that can be upgraded twice. We will use the
@@ -91,45 +105,14 @@ contract SuperMon is ERC721URIStorage {
 
 1. Right-click each image and save it on your local drive.
 
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "0.5rem",
-        width: "100%",
-        maxWidth: "83.333333%",
-      }}>
-      <img
-        style={{
-          border: "1px solid #FEF4EE",
-          borderRadius: "0.75rem",
-          marginTop: "1.25rem",
-          width: "33.333333%",
-        }}
-        src="/img/docs/build-on-linea/tooling/permanent-data/irys/image-level-1.png"
-        alt="Image Level 1"
-      />
-      <img
-        style={{
-          border: "1px solid #FEF4EE",
-          borderRadius: "0.75rem",
-          marginTop: "1.25rem",
-          width: "33.333333%",
-        }}
-        src="/img/docs/build-on-linea/tooling/permanent-data/irys/image-level-2.png"
-        alt="Image Level 2"
-      />
-      <img
-        style={{
-          border: "1px solid #FEF4EE",
-          borderRadius: "0.75rem",
-          marginTop: "1.25rem",
-          width: "33.333333%",
-        }}
-        src="/img/docs/build-on-linea/tooling/permanent-data/irys/image-level-3.png"
-        alt="Image Level 3"
-      />
-    </div>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/developers/guides/community/irys/irys_dynamic_nfts/image-level-1-3.png"
+      alt=""
+    />
+  </div>
+</div>
 
 1. Fund the Irys Devnet with 0.1 [Linea Sepolia ETH](https://www.infura.io/faucet/linea) to pay
     for your uploads.
@@ -250,10 +233,14 @@ To mint your NFT in [Remix](https://remix.ethereum.org/):
     the previous step.
 1. Select **Transact**.
 
-<img
-  className="border border-[#FEF4EE] rounded-xl mt-5 lg:w-5/6 w-full"
-  src="/img/docs/build-on-linea/tooling/permanent-data/irys/open-sea-mockup.jpg"
-/>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/developers/guides/community/irys/irys_dynamic_nfts/open-sea-mockup.jpg"
+      alt=""
+    />
+  </div>
+</div>
 
 You can now view the NFT on the [Opensea Testnet](https://testnets.opensea.io/account).
 
@@ -275,10 +262,14 @@ irys upload metadata-level-2.json \
 
 Return to Opensea and request that it refresh your metadata.
 
-<img
-  className="border border-[#FEF4EE] rounded-xl mt-5 lg:w-5/6 w-full"
-  src="/img/docs/build-on-linea/tooling/permanent-data/irys/refresh-metadata.png"
-/>
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/developers/guides/community/irys/irys_dynamic_nfts/refresh-metadata.png"
+      alt=""
+    />
+  </div>
+</div>
 
 Give it a few minutes and your updated NFT should be visible.
 

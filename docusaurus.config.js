@@ -268,13 +268,6 @@ const config = {
     }),
   plugins: [
     [
-      "@docusaurus/plugin-google-gtag",
-      {
-        trackingID: "G-PY7JFNPXNH",
-        anonymizeIP: true,
-      },
-    ],
-    [
       "@docusaurus/plugin-google-tag-manager",
       {
         containerId: "GTM-TB58STH",
@@ -333,11 +326,17 @@ const config = {
             from: "/build-on-linea/use-linea-testnet/bridge-funds",
           },
           {
-            to: "/developers/guides/gas/gas-fees",
-            from: "/use-mainnet/gas-import",
+            to: "/developers/guides/gas-fees",
+            from: [
+              "/use-mainnet/gas-import",
+              "/build-on-linea/gas-fees",
+              "/developers/guides/gas/gas-fees",
+              "/use-mainnet/gas-on-linea",
+              "/developers/guides/gas/gas-on-linea"
+            ],
           },
           {
-            to: "/developers/guides/gas/gas-fees",
+            to: "/developers/reference/api/linea-estimategas",
             from: "/reference/api/linea-estimategas",
           },
           {
@@ -355,10 +354,6 @@ const config = {
           {
             to: "/developers/quickstart/ethereum-differences",
             from: "/build-on-linea/ethereum-differences",
-          },
-          {
-            to: "/developers/guides/gas/gas-fees",
-            from: "/build-on-linea/gas-fees",
           },
           {
             to: "/developers/guides/run-a-node",
@@ -420,10 +415,6 @@ const config = {
           {
             to: "/architecture/stack/trace-expansion-proving",
             from: "/architecture/trace-expansion-proving",
-          },
-          {
-            to: "/developers/guides/gas/gas-on-linea",
-            from: "/use-mainnet/gas-on-linea",
           },
           {
             to: "/developers/tooling/cross-chain/shortcuts",
