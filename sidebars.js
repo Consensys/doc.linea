@@ -52,18 +52,6 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Gas",
-          link: {
-            type: "doc",
-            id: "developers/guides/gas/gas-fees",
-          },
-          items: [
-            "developers/guides/gas/gas-fees",
-            "developers/guides/gas/gas-on-linea",
-          ],
-        },
-        {
-          type: "category",
           label: "Bridge your tokens",
           link: {
             type: "doc",
@@ -101,6 +89,7 @@ const sidebars = {
             },
           ],
         },
+        "developers/guides/gas-fees",
         "developers/guides/linea-api",
         "developers/guides/linea-sdk/index",
         "developers/guides/finalized-block",

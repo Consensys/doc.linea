@@ -141,3 +141,54 @@ information.
 
 You can run other linters for code style (CSS, JavaScript) and link formatting any time with the 
 command `npm run lint`.
+
+## Adding images to articles
+
+### Add image files
+
+Any images for articles should be added to the `/static/img/` directory. Here, the `/img` folder
+structure mirrors that of the docs, and images are stored in the corresponding subdirectory. If
+you have added a _new_ article in `/docs`, create the new subdirectory in `/img` according to this
+structure.
+
+#### Format image files
+
+Use the following JSX formatting to add an image into an article:
+
+```
+<div class="center-container">
+  <div class="img-medium">
+      <img
+        src="/img/path-to-file/image.png"
+        alt="alt text here"
+      />
+  </div>
+</div>
+```
+
+To adjust the display size of the image, adjust the size class to one of the following:
+
+`img-xsmall`, `img-small`, `img-medium`, `img-large`
+
+Adhere to using these predefined sizings where possible.
+
+#### Format svg files
+
+Use the following formatting for svg files. Place the import statement at the top of the file,
+beneath the front matter.
+
+```
+import MySVGGraphic from "/img/path-to-file/image.svg";
+```
+```
+<div className="img-large">
+  <MySVGGraphic />
+</div>
+```
+
+As outlined above, you can adjust the display size of the svg by changing the class applied.
+
+### Social cards
+
+A social card for any new article(s) will be generated and applied when the site builds, so there
+is no need to manually create or add one.
