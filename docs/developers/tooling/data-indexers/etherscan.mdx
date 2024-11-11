@@ -1,0 +1,48 @@
+---
+title: Etherscan
+description: Use one API key across multiple chains with the Etherscan API v2
+---
+
+Use the Etherscan API v2 to access data across over 50 [supported chains](https://docs.etherscan.io/etherscan-v2/getting-started/supported-chains), 
+including Linea, with a single API key. 
+
+To get started, create an account on [Etherscan](https://etherscan.io/register), and then head to 
+the [API key page](https://etherscan.io/myapikey) and generate a new key.
+
+:::warning
+
+Although you can use the same API key across multiple chains, you can only make requests to one
+chain at a time.
+
+:::
+
+From here, you can use the API key in any request, defining the chains you want to use it with:
+
+```javascript
+async function main() {
+
+    // query ETH balances on Ethereum Mainnet and Linea
+
+    const chains = [1, 59144]
+
+    for (const chain of chains) {
+   
+        const query = await fetch(`https://api.etherscan.io/v2/api
+           ?chainid=${chain}
+           &module=account
+           &action=balance
+           &address=INSERT_ADDRESS
+           &tag=latest&apikey=INSERT_API_KEY`)
+           
+        const response = await query.json()
+
+        const balance = response.result
+        console.log(balance)
+
+    }
+}
+
+main()
+```
+
+For full details of how to use the Etherscan API v2, see the [documentation](https://docs.etherscan.io/etherscan-v2).
