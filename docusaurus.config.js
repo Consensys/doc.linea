@@ -49,6 +49,11 @@ const config = {
     mermaid: true,
   },
 
+  // Enable experimental infrastructure for Docusaurus Faster project
+  future: {
+    experimental_faster: true
+  },
+
   presets: [
     [
       "classic",
