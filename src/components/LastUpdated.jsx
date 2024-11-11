@@ -9,10 +9,10 @@ const LastUpdated = () => {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
+      // hour: '2-digit',
+      // minute: '2-digit',
+      // second: '2-digit',
+      // hour12: false
     });
   };
 
@@ -44,7 +44,7 @@ const LastUpdated = () => {
 
   return (
     <p>
-      <em>Last updated: {formatDate(latestTimestamp)} UTC</em>
+      <em>Last updated: {formatDate(latestTimestamp)}</em>
     </p>
   );
 };
