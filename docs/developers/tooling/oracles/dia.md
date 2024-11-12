@@ -34,9 +34,7 @@ You can find DIA's oracle integration samples in Solidity and Vyper languages by
 
 DIA has deployed the following demo oracles for the Linea community. It provides a limited selection of cryptocurrency price feeds with predefined configuration settings.
 
-:::note
-DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. Start the request process: [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle)
-:::
+:::note DIA demo oracles are not intended for use in production environments. Developers can request a dedicated, production-ready oracle with custom price feeds and configuration settings. Start the request process: [Request a Custom Oracle | DIA Documentation](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle) :::
 
 ### Demo Oracle Smart Contracts
 
@@ -61,6 +59,7 @@ DIA NFT floor price feeds provide smart contracts with real-time price informati
 DIA also supports API endpoints to return cryptocurrency price data. Developers can directly access the example endpoints listed below or [visit the DIA Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints) to see all API endpoints.
 
 # Learn more about DIA
+
 - [Twitter](https://twitter.com/DIAdata_org)
 - [Discord](https://go.diadata.org/discord-menu)
 - [Website](https://diadata.org/)

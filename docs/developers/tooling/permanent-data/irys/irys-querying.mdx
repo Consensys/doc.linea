@@ -25,25 +25,16 @@ https://uploader.irys.xyz/graphql
 
 Any of the following query arguments can be used as search parameters:
 
-| Field   | Description                                                                                                                                                                                              |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ids`   | An array of transaction IDs passed as strings. Values are ORed together, matching results will include transactions that have any of the supplied IDs.                                                   |
+| Field | Description |
+| --- | --- |
+| `ids` | An array of transaction IDs passed as strings. Values are ORed together, matching results will include transactions that have any of the supplied IDs. |
 | `owner` | The address used when posting the transaction. Can be a native address from [any of the chains supported by Irys](https://docs.irys.xyz/build/d/features/supported-tokens). Note in results fields, this is referred to as `address`. |
-| `token` | The [token](https://docs.irys.xyz/build/d/features/supported-tokens) used to pay for the transaction.                                                                                                                                 |
-| `tags`  | An array of tag name / value pairs passed as JSON objects.                                                                                                                                               |
+| `token` | The [token](https://docs.irys.xyz/build/d/features/supported-tokens) used to pay for the transaction. |
+| `tags` | An array of tag name / value pairs passed as JSON objects. |
 
 ## Results Fields
 
-When building a query, any of the following values be included in your results:
-| Field | Description |
-|---|---|
-| `id` | The transaction ID. |
-| `address` | The address used when posting the transaction. Can be a native address from any of the chains supported by Irys. Note in query arguements, this is referred to as `owner`. |
-| `token` | The token used to pay for the transaction. |
-| `receipt { `<br/>&nbsp;&nbsp;`deadlineHeight `<br/>&nbsp;&nbsp;`signature  `<br/>&nbsp;&nbsp;`version `<br/>`}` | An optional receipt, only exists if a user requested one at upload.<br/> `deadlineHeight`: The block number by which the transaction must be finalized. <br/>`signature`: A signed deep hash of the JSON receipt. |
-| `tags {    `<br/>&nbsp;&nbsp;`name     `<br/>&nbsp;&nbsp;`value`<br/>`}` | An array of tags supplied as name / value pairs. Exists if the user added them at upload. |
-|`timestamp` | The timestamp, accurate to the millisecond of when the transaction was posted. This value is the same as the receipt timestamp. |
-
+When building a query, any of the following values be included in your results: | Field | Description | |---|---| | `id` | The transaction ID. | | `address` | The address used when posting the transaction. Can be a native address from any of the chains supported by Irys. Note in query arguements, this is referred to as `owner`. | | `token` | The token used to pay for the transaction. | | `receipt { `<br/>&nbsp;&nbsp;`deadlineHeight `<br/>&nbsp;&nbsp;`signature  `<br/>&nbsp;&nbsp;`version `<br/>`}` | An optional receipt, only exists if a user requested one at upload.<br/> `deadlineHeight`: The block number by which the transaction must be finalized. <br/>`signature`: A signed deep hash of the JSON receipt. | | `tags {    `<br/>&nbsp;&nbsp;`name     `<br/>&nbsp;&nbsp;`value`<br/>`}` | An array of tags supplied as name / value pairs. Exists if the user added them at upload. | |`timestamp` | The timestamp, accurate to the millisecond of when the transaction was posted. This value is the same as the receipt timestamp. |
 
 ## Sample Queries
 
@@ -55,17 +46,22 @@ Search by transaction IDs.
 
 ```graphql
 query getByIds {
-	transactions(ids: ["--52WQHJIJod_rni8pkl1Vxt9MFGoXZAm8SC7ex6C1o", "--52THRWpX_RJzGcNXmtQ2DSP37d1e1VQ4YmvbY5ZXo"]) {
-		edges {
-			node {
-				id
-				tags {
-					name
-					value
-				}
-			}
-		}
-	}
+  transactions(
+    ids: [
+      "--52WQHJIJod_rni8pkl1Vxt9MFGoXZAm8SC7ex6C1o"
+      "--52THRWpX_RJzGcNXmtQ2DSP37d1e1VQ4YmvbY5ZXo"
+    ]
+  ) {
+    edges {
+      node {
+        id
+        tags {
+          name
+          value
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -75,20 +71,17 @@ Search by timestamps:
 
 ```graphql
 query getByTimestamp {
-	transactions(timestamp: { from: 1688144401000, to: 1688317201000 }) {
-		edges {
-			node {
-				id
-			}
-		}
-	}
+  transactions(timestamp: { from: 1688144401000, to: 1688317201000 }) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
 }
 ```
 
-
-> Irys timestamps are accurate to the millisecond, so you need to provide a timestamp in millisecond format when querying. You can
-convert from human-readable time to UNIX timestamp using websites like [Epoch101](https://www.epoch101.com/), be sure
-to convert in **millisecond** format, not **second**.
+> Irys timestamps are accurate to the millisecond, so you need to provide a timestamp in millisecond format when querying. You can convert from human-readable time to UNIX timestamp using websites like [Epoch101](https://www.epoch101.com/), be sure to convert in **millisecond** format, not **second**.
 
 ### Owners
 
@@ -96,14 +89,19 @@ Search for transactions matching the wallet address used when posting the transa
 
 ```graphql
 query getByOwner {
-	transactions(owners: ["0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE", "0xaC568a981B1370B2e1bAA8cE30BD5AC9E28C572D"]) {
-		edges {
-			node {
-				id
-				address
-			}
-		}
-	}
+  transactions(
+    owners: [
+      "0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE"
+      "0xaC568a981B1370B2e1bAA8cE30BD5AC9E28C572D"
+    ]
+  ) {
+    edges {
+      node {
+        id
+        address
+      }
+    }
+  }
 }
 ```
 
@@ -113,14 +111,14 @@ Search for transactions matching [tag](https://docs.irys.xyz/build/d/features/ta
 
 ```graphql
 query getAllPNGs {
-	transactions(tags: [{ name: "Content-Type", values: ["image/png"] }]) {
-		edges {
-			node {
-				id
-				address
-			}
-		}
-	}
+  transactions(tags: [{ name: "Content-Type", values: ["image/png"] }]) {
+    edges {
+      node {
+        id
+        address
+      }
+    }
+  }
 }
 ```
 
@@ -128,16 +126,18 @@ Search for transactions matching the tag with name **Content-Type** and the valu
 
 ```graphql
 query getTagsWithOR {
-	transactions(tags: [{ name: "Content-Type", values: ["image/png", "image/jpg"] }]) {
-		edges {
-			node {
-				tags {
-					name
-					value
-				}
-			}
-		}
-	}
+  transactions(
+    tags: [{ name: "Content-Type", values: ["image/png", "image/jpg"] }]
+  ) {
+    edges {
+      node {
+        tags {
+          name
+          value
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -145,18 +145,21 @@ Search for transactions matching the tag with name **Content-Type** and the valu
 
 ```graphql
 query getTagsWithAnd {
-	transactions(
-		tags: [{ name: "Content-Type", values: ["image/jpg"] }, { name: "Content-Type", values: ["image/png"] }]
-	) {
-		edges {
-			node {
-				tags {
-					name
-					value
-				}
-			}
-		}
-	}
+  transactions(
+    tags: [
+      { name: "Content-Type", values: ["image/jpg"] }
+      { name: "Content-Type", values: ["image/png"] }
+    ]
+  ) {
+    edges {
+      node {
+        tags {
+          name
+          value
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -166,14 +169,17 @@ Limit the number of results returned by including the `limit` parameter:
 
 ```graphql
 query getAllPNGs {
-	transactions(limit: 10, tags: [{ name: "Content-Type", values: ["image/png"] }]) {
-		edges {
-			node {
-				id
-				address
-			}
-		}
-	}
+  transactions(
+    limit: 10
+    tags: [{ name: "Content-Type", values: ["image/png"] }]
+  ) {
+    edges {
+      node {
+        id
+        address
+      }
+    }
+  }
 }
 ```
 
@@ -190,18 +196,18 @@ The following query returns 10 transactions tagged `image/png` occurring after t
 
 ```graphql
 query getPNGs {
-	transactions(
-		limit: 10
-		tags: [{ name: "Content-Type", values: ["image/png"] }]
-		after: "LS02d1NsM3R6aUprd3dKUzVjN1FXaWg5aUxsbXh5dVJJbGlydHJtNlpPbw"
-	) {
-		edges {
-			node {
-				id
-			}
-			cursor
-		}
-	}
+  transactions(
+    limit: 10
+    tags: [{ name: "Content-Type", values: ["image/png"] }]
+    after: "LS02d1NsM3R6aUprd3dKUzVjN1FXaWg5aUxsbXh5dVJJbGlydHJtNlpPbw"
+  ) {
+    edges {
+      node {
+        id
+      }
+      cursor
+    }
+  }
 }
 ```
 
@@ -211,26 +217,32 @@ You can sort results by timestamp in either ascending or descending order using 
 
 ```graphql
 query getAllByOwnerAsc {
-	transactions(owners: ["0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE"], order: ASC) {
-		edges {
-			node {
-				id
-				address
-			}
-		}
-	}
+  transactions(
+    owners: ["0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE"]
+    order: ASC
+  ) {
+    edges {
+      node {
+        id
+        address
+      }
+    }
+  }
 }
 ```
 
 ```graphql
 query getAllByOwnerDesc {
-	transactions(owners: ["0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE"], order: DESC) {
-		edges {
-			node {
-				id
-				address
-			}
-		}
-	}
+  transactions(
+    owners: ["0xBcb812C6e26F4F0F78Bd7B6222461FF24F2942AE"]
+    order: DESC
+  ) {
+    edges {
+      node {
+        id
+        address
+      }
+    }
+  }
 }
 ```

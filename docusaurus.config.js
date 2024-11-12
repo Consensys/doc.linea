@@ -41,8 +41,8 @@ const config = {
   },
 
   scripts: [
-    {src: "/js/getfeedback.js", defer: true, async: true},
-    {src: "/js/navbarHighlight.js", defer: true}
+    { src: "/js/getfeedback.js", defer: true, async: true },
+    { src: "/js/navbarHighlight.js", defer: true },
   ],
 
   markdown: {
@@ -51,7 +51,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true
+    experimental_faster: true,
   },
 
   presets: [
@@ -65,7 +65,7 @@ const config = {
           path: "docs",
           routeBasePath: "/",
           // @ts-ignore
-          // eslint-disable-next-line global-require
+
           remarkPlugins: [require("remark-docusaurus-tabs")],
           remarkPlugins: [math],
           rehypePlugins: [katex],
@@ -163,7 +163,7 @@ const config = {
           {
             to: "/developers/linea-version",
             position: "right",
-            className: "header-release-notes-link"
+            className: "header-release-notes-link",
           },
           {
             href: "https://discord.gg/linea",
@@ -295,10 +295,7 @@ const config = {
           },
           {
             to: "/zero-knowledge-glossary",
-            from: [
-              "/reference/glossary", 
-              "/users/zero-knowledge-glossary"
-            ],
+            from: ["/reference/glossary", "/users/zero-knowledge-glossary"],
           },
           {
             to: "/",
@@ -337,7 +334,7 @@ const config = {
               "/build-on-linea/gas-fees",
               "/developers/guides/gas/gas-fees",
               "/use-mainnet/gas-on-linea",
-              "/developers/guides/gas/gas-on-linea"
+              "/developers/guides/gas/gas-on-linea",
             ],
           },
           {

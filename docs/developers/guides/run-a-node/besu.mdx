@@ -11,14 +11,9 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-[Besu](https://besu.hyperledger.org/) is an open source Ethereum client developed under the
-Apache 2.0 license and written in Java.
+[Besu](https://besu.hyperledger.org/) is an open source Ethereum client developed under the Apache 2.0 license and written in Java.
 
-:::info important
-Install and run a Besu node if you want to follow the Linea network by 
-maintaining a local copy of the blockchain. However, if you want to interact with the network and use
-Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
-:::
+:::info important Install and run a Besu node if you want to follow the Linea network by maintaining a local copy of the blockchain. However, if you want to interact with the network and use Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead. :::
 
 You can run Besu from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
 
@@ -26,10 +21,9 @@ You can run Besu from a [binary distribution](#run-using-the-binary-distribution
 
 ### Step 1. Install Besu
 
-[Download and install Besu](https://besu.hyperledger.org/public-networks/get-started/install/binary-distribution) using
-the instructions in the official documentation. 
+[Download and install Besu](https://besu.hyperledger.org/public-networks/get-started/install/binary-distribution) using the instructions in the official documentation.
 
-### Step 2. Download the genesis file and Besu configuration file 
+### Step 2. Download the genesis file and Besu configuration file
 
 Download the genesis file and Besu configuration file.
 
@@ -39,13 +33,10 @@ Download the genesis file and Besu configuration file.
   Mainnet [`genesis-mainnet.json`](pathname:///files/besu/genesis-mainnet.json) file and Besu
   [`config-mainnet.toml`](pathname:///files/besu/config-mainnet.toml) file.
 
-  :::note[bootnodes]
-  You can choose from a range of bootnodes for Linea Mainnet. The above configuration file uses 
-  all bootnodes by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The above configuration file uses all bootnodes by default.
 
-  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
-  :::
-  
+The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes. :::
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
@@ -58,7 +49,7 @@ Download the genesis file and Besu configuration file.
 
 ### Step 3. Define disk space volume (optional) \{#disk-space-besu}
 
-Define a volume size appropriate to your expected usage. Besu nodes use: 
+Define a volume size appropriate to your expected usage. Besu nodes use:
 
 - Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
 - Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
@@ -67,8 +58,7 @@ Define a volume size appropriate to your expected usage. Besu nodes use:
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
-To limit disk space required, we recommend you configure Besu to use the [Bonsai](https://besu.hyperledger.org/public-networks/concepts/data-storage-formats#bonsai-tries)
-data storage format, which prunes orphaned nodes and old branches.
+To limit disk space required, we recommend you configure Besu to use the [Bonsai](https://besu.hyperledger.org/public-networks/concepts/data-storage-formats#bonsai-tries) data storage format, which prunes orphaned nodes and old branches.
 
 Ensure you mount the Besu `data-path` to the custom volume when you start the node.
 
@@ -76,10 +66,9 @@ Ensure you mount the Besu `data-path` to the custom volume when you start the no
 
 ### Step 4. Configure the Besu configuration file
 
-In your Besu configuration file (`config-mainnet.toml` or `config-sepolia.toml`), configure
-the following options:
+In your Besu configuration file (`config-mainnet.toml` or `config-sepolia.toml`), configure the following options:
 
-- Set `data-path` to the location you want to store your data. 
+- Set `data-path` to the location you want to store your data.
 - Set `genesis-file` to the path of your downloaded genesis file.
 
 ### Step 5. Start the Besu client
@@ -88,22 +77,14 @@ Run the Besu client with the location of your configuration file. For example:
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
-  
-  ```bash
-  besu --config-file=/Users/myuser/mainnet/config-mainnet.toml
-  ```
-  
+    ```bash besu --config-file=/Users/myuser/mainnet/config-mainnet.toml ```
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  ```bash
-  besu --config-file=/Users/myuser/sepolia/config-sepolia.toml
-  ```
-  
+    ```bash besu --config-file=/Users/myuser/sepolia/config-sepolia.toml ```
   </TabItem>
 </Tabs>
 
-The Besu node will attempt to find peers to begin synchronizing and to download the world state. 
+The Besu node will attempt to find peers to begin synchronizing and to download the world state.
 
 ## Run using Docker
 
@@ -119,22 +100,17 @@ Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
 ### Step 1. Download configuration files
 
-Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration
-files include the network genesis file, Docker Compose file and Besu configuration file.
+Download the configuration files for the relevant network (in ZIP format) and extract them. The configuration files include the network genesis file, Docker Compose file and Besu configuration file.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
   Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
 
-  :::note[bootnodes]
-  You can choose from a range of bootnodes for Linea Mainnet. The Besu `.zip` includes a
-  config file named `config-snap-mainnet.toml` where bootnodes are specified. The file uses all bootnodes
-  by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The Besu `.zip` includes a config file named `config-snap-mainnet.toml` where bootnodes are specified. The file uses all bootnodes by default.
 
-  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
-  :::
-  
+The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes. :::
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
@@ -159,22 +135,19 @@ You can use [this page](https://www.whatismyip.com/) to find your public IP addr
 
 ### Step 3. Start the Besu node
 
-Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`. 
+Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`.
 
 It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node.
 
 :::tip Troubleshoot peering issues
 
-Refer to the [Besu troubleshooting information](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/peering)
-for help if you experience peering issues.   
+Refer to the [Besu troubleshooting information](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/peering) for help if you experience peering issues.
 
 :::
 
 ## Confirm the node is running
 
-You can call the JSON-RPC API methods to confirm the node is running. For example, call
-[`eth_syncing`](https://besu.hyperledger.org/public-networks/reference/api#eth_syncing) to return the synchronization status.
-For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+You can call the JSON-RPC API methods to confirm the node is running. For example, call [`eth_syncing`](https://besu.hyperledger.org/public-networks/reference/api#eth_syncing) to return the synchronization status. For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
 
 ```bash
 

@@ -4,25 +4,19 @@ image: /img/socialCards/create-an-nft.jpg
 description: Build permanent NFTs using Irys and Linea.
 ---
 
-You can use [Irys](../../../tooling/permanent-data/irys/overview.mdx) to  create an NFT on Linea in three steps:
+You can use [Irys](../../../tooling/permanent-data/irys/overview.mdx) to create an NFT on Linea in three steps:
 
 1. Deploy your smart contract on Linea
 2. Permanently store your NFT assets on Irys
 3. Mint your NFTs using metadata stored on Irys
 
-When you upload NFTs to Irys, you make a one-time payment for and your data is guaranteed to be retrievable forever. Creators and
-collectors benefit from the assurance that their NFTs are preserved indefinitely. NFT metadata and
-images stored are Irys are permanent and immutable.
+When you upload NFTs to Irys, you make a one-time payment for and your data is guaranteed to be retrievable forever. Creators and collectors benefit from the assurance that their NFTs are preserved indefinitely. NFT metadata and images stored are Irys are permanent and immutable.
 
-:::note
-You can also use Irys to create [dynamic NFTs](./irys-dynamic-nfts.mdx) that evolve based on onchain or
-offchain actions.
-:::
+:::note You can also use Irys to create [dynamic NFTs](./irys-dynamic-nfts.mdx) that evolve based on onchain or offchain actions. :::
 
 ## Deploy your smart contract
 
-If you're new to NFTs and smart contract development, consider deploying
-one of [the audited ThirdWeb contracts](../../../../developers/quickstart/deploy-smart-contract/thirdweb.mdx) to learn more.
+If you're new to NFTs and smart contract development, consider deploying one of [the audited ThirdWeb contracts](../../../../developers/quickstart/deploy-smart-contract/thirdweb.mdx) to learn more.
 
 You can also [deploy this minimal contract using Remix](../../../../developers/quickstart/deploy-smart-contract/remix.mdx).
 
@@ -72,12 +66,9 @@ contract IrysLineaNFT is ERC721, ERC721URIStorage, Ownable {
 
 ## Store your assets on Irys
 
-Uploads to Irys are fully unconstrained; you can upload files of any size and use Irys to make
-images, videos, music, or interactive NFTs.
+Uploads to Irys are fully unconstrained; you can upload files of any size and use Irys to make images, videos, music, or interactive NFTs.
 
-This guide covers using the [Irys CLI](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-cli) to
-upload your assets to Irys. You can also do the same using the
-[Irys SDK](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-sdk).
+This guide covers using the [Irys CLI](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-cli) to upload your assets to Irys. You can also do the same using the [Irys SDK](../../../tooling/permanent-data/irys/irys-quickstart.mdx#irys-sdk).
 
 ### Store your visual assets
 
@@ -88,6 +79,7 @@ Install the CLI globally using the `-g` flag. Depending on your setup, you may o
 ```bash
 npm i -g @irys/cli
 ```
+
 Depending on your setup, you may need to use the sudo command.
 
 ```bash
@@ -144,8 +136,7 @@ The CLI also produces a `.json` file containing the transaction IDs of each uplo
 }
 ```
 
-You can download files by using the transaction ID directly, or by creating a URL using the manifest
-ID combined with the original file name. For example, `nft1.png` can be downloaded with either of these URLs:
+You can download files by using the transaction ID directly, or by creating a URL using the manifest ID combined with the original file name. For example, `nft1.png` can be downloaded with either of these URLs:
 
 - `https://gateway.irys.xyz/gF7CXNp4WqwkY73TRxKR2o3gfSCw3ghhZZXiP8CM6Yv1x`
 - `https://gateway.irys.xyz/F7CXNp4WqwkY73TRxKR2o3gfSCw3ghhZZXiP8CM6Yv1x/nft1.png`
@@ -177,5 +168,4 @@ irys upload metadata.json \
 
 ## Mint the NFTs
 
-Now use your metadata URLs (in the format `https://gateway.irys.xyz/:txId`) to mint the NFTs
-using [the contract you deployed on Linea](../../../../developers/quickstart/deploy-smart-contract/index.mdx).
+Now use your metadata URLs (in the format `https://gateway.irys.xyz/:txId`) to mint the NFTs using [the contract you deployed on Linea](../../../../developers/quickstart/deploy-smart-contract/index.mdx).

@@ -6,13 +6,10 @@ image: /img/socialCards/lineagetproof.jpg
 
 # `linea_getProof`
 
-Returns the account and storage values, including the Merkle proof, of the specified account.
-The supplied block parameter must be an L2 block that has been finalized on L1.
+Returns the account and storage values, including the Merkle proof, of the specified account. The supplied block parameter must be an L2 block that has been finalized on L1.
 
-- When an account or storage slot exists, the response includes the `leafIndex` and
-    a proof of existence.
-- When an account or storage slot doesn't exist, the response will include the proof of the
-    elements before and after it in the tree.
+- When an account or storage slot exists, the response includes the `leafIndex` and a proof of existence.
+- When an account or storage slot doesn't exist, the response will include the proof of the elements before and after it in the tree.
 
 In the [example response](#response) the account exists but the slot doesn't.
 
@@ -20,13 +17,7 @@ In the [example response](#response) the account exists but the slot doesn't.
 
 - `address`: A string representing the address (20 bytes) for which the proof is requested.
 - `storageKeys`: An array of 32-byte storage keys to be proofed and included.
-- `blockParameter`: A hexadecimal block number, or one of the string tags  `latest`, `earliest`,
-      `pending`, or `finalized`.
-     
-      :::note
-      A `finalized` block is a block on an L2 blockchain (Linea) that has been confirmed and validated by
-      the L1 blockchain (Ethereum).
-      :::
+- `blockParameter`: A hexadecimal block number, or one of the string tags `latest`, `earliest`, `pending`, or `finalized`. :::note A `finalized` block is a block on an L2 blockchain (Linea) that has been confirmed and validated by the L1 blockchain (Ethereum). :::
 
 ## Returns
 
@@ -38,14 +29,10 @@ In the [example response](#response) the account exists but the slot doesn't.
     - `value`: The value stored at the account's leaf node in the sparse Merkle tree.
 - `storageProof`: An array of storage-entries as requested. Each entry is an object with these properties:
   - `key`: The requested storage key.
-  - `leftLeafIndex`: The index of the left leaf node in the sparse Merkle tree that corresponds to the
-      storage slot.
-  - `leftProof`: Contains the proof data for the left leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the left leaf node in the sparse Merkle tree.
-  - `rightLeafIndex`: The index of the right leaf node in the sparse Merkle tree that corresponds to
-      the storage slot.
-  - `rightProof`: Contains the proof data for the right leaf node, which includes the array of nodes used
-      to construct the proof and the value stored at the right leaf node in the sparse Merkle tree.
+  - `leftLeafIndex`: The index of the left leaf node in the sparse Merkle tree that corresponds to the storage slot.
+  - `leftProof`: Contains the proof data for the left leaf node, which includes the array of nodes used to construct the proof and the value stored at the left leaf node in the sparse Merkle tree.
+  - `rightLeafIndex`: The index of the right leaf node in the sparse Merkle tree that corresponds to the storage slot.
+  - `rightProof`: Contains the proof data for the right leaf node, which includes the array of nodes used to construct the proof and the value stored at the right leaf node in the sparse Merkle tree.
 
 ## Example
 

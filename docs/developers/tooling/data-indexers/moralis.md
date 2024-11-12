@@ -10,6 +10,7 @@ image: /img/socialCards/moralis.jpg
 ## Indexed data APIs
 
 Moralis' Linea API integration supports:
+
 - **[Wallet API](https://moralis.io/api/wallet/?utm_source=linea-docs&utm_medium=partner-docs)**: Insights into wallet balances, token balances, NFTs, wallet history, transactions, wallet net-worth, and more.
 - **[NFT API](https://moralis.io/api/nft/?utm_source=linea-docs&utm_medium=partner-docs)**: NFT metadata, NFT transfers, NFT owners, NFT prices, and more.
 - **[Token API](https://moralis.io/api/token/?utm_source=linea-docs&utm_medium=partner-docs)**: Token metadata, token transfers, token approvals, token prices, and more.
@@ -20,6 +21,7 @@ Moralis' Linea API integration supports:
 ### Example features
 
 Moralis indexed data APIs can be used for:
+
 - Fetching all NFTs for a user's wallet
 - Fetching all ERC20 tokens, with prices, for a user's wallet
 - Fetching a decoded transaction history for a user's wallet
@@ -30,6 +32,7 @@ Moralis indexed data APIs can be used for:
 ### Example use cases
 
 Moralis indexed data APIs can be used to build:
+
 - **Web3 wallets:** Integrating wallet functionalities such as displaying token balances, transaction history, and NFT holdings.
 - **Portfolio pages:** Creating personalized portfolio trackers to monitor asset performance across multiple blockchains.
 - **NFT marketplaces:** Building platforms for buying, selling, and trading NFTs by fetching and displaying NFT data.
@@ -38,11 +41,13 @@ Moralis indexed data APIs can be used to build:
 ## Real-time data APIs
 
 Moralis' Linea real-time data integration supports:
+
 - **[Streams API](https://moralis.io/streams/?utm_source=linea-docs&utm_medium=partner-docs)**: Stream blockchain data directly to your server via webhooks in real-time. Setup and configure advanced filters, or use any of our out-of-the-box configurations.
 
 ### Example features
 
 Moralis real-time data APIs can be used for:
+
 - Listening to transfer events for a given ERC20 token
 - Listening to native transfer events for a given wallet
 - Listening to token mints or burns
@@ -53,6 +58,7 @@ Moralis real-time data APIs can be used for:
 ### Example use cases
 
 Moralis real-time data APIs can be used to build:
+
 - **In-app notifications:** Sending real-time alerts to users based on their wallet holdings, for events like token transfers, price changes, staking rewards etc. to increase engagement.
 - **Real-time token balances:** Continuously updating and displaying users' wallet balances in real-time within dapps, enabling instant visibility into their current asset holdings and values.
 - **Discord alerts:** Providing real-time updates to Discord communities about blockchain activities and token movements.

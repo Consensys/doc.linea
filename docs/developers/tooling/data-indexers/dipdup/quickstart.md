@@ -3,11 +3,13 @@ title: Quickstart
 sidebar_position: 2
 image: /img/socialCards/quickstart.jpg
 ---
+
 This page will guide you through the steps to get your first DipDup indexer up and running in a few minutes without getting too deep into the details.
 
 Let's create an indexer for output transactions from a specific address. We will need to set up the indexing environment, configure the indexer, and store the results in a database.
 
 ## Prerequisites
+
 Here are a few things you need to get started with DipDup:
 
 - **Skills**: Basic Python 3 knowledge to implement data handlers.
@@ -15,6 +17,7 @@ Here are a few things you need to get started with DipDup:
 - **Python Version**: Python 3.11 is required for DipDup. You can check your Python version by running `python3 --version` in your terminal.
 
 ## Step 1 — Install DipDup
+
 The easiest way to install DipDup as a CLI application is [pipx](https://pipx.pypa.io/stable/) with pipx install dipdup command. If you don't want to deal with tooling, we have a convenient installer script. Run the following command in your terminal:
 
 ```bash
@@ -24,6 +27,7 @@ curl -Lsf https://dipdup.io/install.py | python3
 See the [Installation](https://dipdup.io/docs/installation) page for other options.
 
 ## Step 2 — Create a project
+
 DipDup CLI has a built-in project generator with lots of templates. To create a new project interactively, run the following command:
 
 ```bash
@@ -35,6 +39,7 @@ For educational purposes, we'll create a project from scratch, so choose `[none]
 Follow the instructions; the project will be created in the new directory.
 
 ## Step 3 — Configuration file
+
 The project root directory contains a bash file named `dipdup.bash`. It's the main configuration file of your indexer. Available options are described in detail on [this page](https://dipdup.io/docs/getting-started/config). For now, just replace its content with the following:
 
 ```bash
@@ -43,16 +48,16 @@ package: linea
 
 datasources:
   subsquid:
-    kind: evm.subsquid	
+    kind: evm.subsquid
     url: https://v2.archive.subsquid.io/network/linea-mainnet
     node: evm_node
 
   etherscan:
-    kind: abi.etherscan	
-    url: https://api.lineascan.build/api    
+    kind: abi.etherscan
+    url: https://api.lineascan.build/api
 
   mainnet_node:
-    kind: evm.node	
+    kind: evm.node
     url: https://linea-mainnet.infura.io/v3
     ws_url: wss://linea-mainnet.infura.io/ws/v3
 
@@ -86,6 +91,7 @@ dipdup init
 You can read more about the structure of the DipDup package [here](https://dipdup.io/docs/getting-started/package).
 
 ## Step 4 — Define models and implement data handlers
+
 In this step, we define the business logic of our application. DipDup supports storing data in SQLite, PostgreSQL and TimescaleDB databases. We use custom ORM based on Tortoise ORM as an abstraction layer.
 
 First, you need to define a model class. Our schema will consist of a single `Transaction` model:
@@ -103,7 +109,6 @@ class Transaction(Model):
 
     created_at = fields.DatetimeField(auto_now_add=True)
 ```
-
 
 Our single handler will be responsible for processing output transactions as described in the index definition in config:
 
@@ -128,6 +133,7 @@ async def on_output_transaction(
 ```
 
 ## Step 5 — Results
+
 Time to run the indexer. Processed data will be written to the SQLite file defined in the configuration:
 
 ```bash

@@ -3,9 +3,7 @@ title: ORA
 image: /img/socialCards/ora.jpg
 ---
 
-[ORA](https://ora.io) is Ethereum's Trustless AI. 
-As a verifiable oracle protocol, ORA brings AI and complex compute onchain.
-Its main product, **Onchain AI Oracle (OAO)**, integrates AI capabilities directly onchain.
+[ORA](https://ora.io) is Ethereum's Trustless AI. As a verifiable oracle protocol, ORA brings AI and complex compute onchain. Its main product, **Onchain AI Oracle (OAO)**, integrates AI capabilities directly onchain.
 
 ORA breaks down the limitations of smart contracts by offering verifiable AI inference, so developers can innovate freely.
 
@@ -19,9 +17,9 @@ This quickstart is designed to help you to build a smart contract on Linea able 
 2. Each AI request will initiate an opML inference.
 3. OAO will emit a `requestCallback` event which will be collected by opML node.
 4. opML node will run the AI inference, and then upload the result on Linea, waiting for the challenge period.
-    1. During the challenge period, the opML validators will check the result, and challenge it if the submitted result is incorrect.
-    2. If the submitted result is successfully challenged by one of the validators, the submitted result will be updated on Linea.
-    3. After the challenge period, the submitted result on chain is finalized.
+   1. During the challenge period, the opML validators will check the result, and challenge it if the submitted result is incorrect.
+   2. If the submitted result is successfully challenged by one of the validators, the submitted result will be updated on Linea.
+   3. After the challenge period, the submitted result on chain is finalized.
 5. When the result is uploaded or updated on Linea, the provided AI inference in opML will be dispatched to the user's smart contract via its specific callback function.
 
 ## Integration
@@ -62,7 +60,7 @@ For simpler application scenarios (eg. Prompt Engineering-based AI like GPTs), y
 
 SimplePrompt saves gas by only emitting the event without storing historical data.
 
-Linea mainnet: 
+Linea mainnet:
 
 - OAO Proxy: [0x0A0f4321214BB6C7811dD8a71cF587bdaF03f0A0](https://lineascan.build/address/0x0A0f4321214BB6C7811dD8a71cF587bdaF03f0A0)
 - Prompt: [0xC20DeDbE8642b77EfDb4372915947c87b7a526bD](https://lineascan.build/address/0xC20DeDbE8642b77EfDb4372915947c87b7a526bD)

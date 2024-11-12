@@ -11,22 +11,15 @@ import VolumeCreation from "./volume-creation.mdx";
 
 Erigon is a client implementation focused on performance and saving disk space, written in Go.
 
-:::info important
-Install and run an Erigon if you want to follow the Linea network by 
-maintaining a local copy of the blockchain. However, if you want to interact with the network and use
-Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
-:::
+:::info important Install and run an Erigon if you want to follow the Linea network by maintaining a local copy of the blockchain. However, if you want to interact with the network and use Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead. :::
 
 You can run Erigon from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
 
 ## Run using the binary distribution
 
-:::info
-Ensure you review [Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites)
-before installing the Erigon client.
+:::info Ensure you review [Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites) before installing the Erigon client.
 
-If you're not comfortable with installing the binary distribution, consider using [Docker](#run-using-docker) instead.
-:::
+If you're not comfortable with installing the binary distribution, consider using [Docker](#run-using-docker) instead. :::
 
 ### Step 1. Install Erigon
 
@@ -34,25 +27,23 @@ If you're not comfortable with installing the binary distribution, consider usin
 
 ### Step 2. Download the genesis file
 
-Download the genesis file for the relevant network. In the example, we'll download the file to the
-directory specified by [`datadir` in Step 4](#step-4-bootstrap-your-node).
+Download the genesis file for the relevant network. In the example, we'll download the file to the directory specified by [`datadir` in Step 4](#step-4-bootstrap-your-node).
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
-  
-  Mainnet [`genesis.json`](pathname:///files/erigon/mainnet/genesis.json) file.
-  
+    Mainnet [`genesis.json`](pathname:///files/erigon/mainnet/genesis.json)
+    file.
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  Sepolia [`genesis.json`](pathname:///files/erigon/sepolia/genesis.json) file.
-  
+    Sepolia [`genesis.json`](pathname:///files/erigon/sepolia/genesis.json)
+    file.
   </TabItem>
 </Tabs>
 
 ### Step 3. Define disk space volume (optional)
 
 Define a volume size appropriate to your expected usage. As of October 8 2024, Erigon nodes use:
+
 - Full nodes: 122GB.
 - Archive nodes: 472GB.
 
@@ -60,8 +51,7 @@ Use these figures as a basis to determine the extent to which you want to future
 
 Ensure you mount the Erigon `datadir` to the custom volume.
 
-If you run out of space, or need to actively maintain how much space is being used, consider
-[pruning](https://erigon.gitbook.io/erigon/advanced-usage/options).
+If you run out of space, or need to actively maintain how much space is being used, consider [pruning](https://erigon.gitbook.io/erigon/advanced-usage/options).
 
 <VolumeCreation />
 
@@ -71,19 +61,13 @@ Bootstrap the node using the following command:
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
-  
-    ```bash
-    erigon --datadir $HOME/erigon-mainnet-data/ init $HOME/erigon-mainnet-data/genesis.json
-    ```
-  
+    ```bash erigon --datadir $HOME/erigon-mainnet-data/ init
+    $HOME/erigon-mainnet-data/genesis.json ```
   </TabItem>
-  
+
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  ```bash
-  erigon --datadir $HOME/erigon-sepolia-data/ init $HOME/erigon-sepolia-data/genesis.json
-  ```
-  
+    ```bash erigon --datadir $HOME/erigon-sepolia-data/ init
+    $HOME/erigon-sepolia-data/genesis.json ```
   </TabItem>
 </Tabs>
 
@@ -113,13 +97,10 @@ Start the node using the following command:
     --verbosity 3
     ```
 
-  :::note[bootnodes]
-  You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
-  all bootnodes by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The above command uses all bootnodes by default.
 
-  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
-  :::
-  
+The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes. :::
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
@@ -162,13 +143,10 @@ Download the configuration files for the relevant network. Ensure that you downl
   Download the mainnet [`docker-compose.yml`](pathname:///files/erigon/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/erigon/mainnet/genesis.json)
   files.
 
-  :::note[bootnodes]
-  You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
-  all bootnodes by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The above command uses all bootnodes by default.
 
-  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
-  :::
-  
+The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes. :::
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
@@ -180,16 +158,13 @@ Download the configuration files for the relevant network. Ensure that you downl
 
 ### Step 2. Start the Erigon node
 
-Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
-and run `docker compose up`
+Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory) and run `docker compose up`
 
 The node should now be running and looking for peers to sync.
 
 ## Confirm the node is running
 
-You can call the JSON-RPC API methods to confirm the node is running. For example, call
-`eth_syncing` to return the synchronization status.
-For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+You can call the JSON-RPC API methods to confirm the node is running. For example, call `eth_syncing` to return the synchronization status. For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
 
 ```bash
 

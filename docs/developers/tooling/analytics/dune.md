@@ -5,7 +5,7 @@ image: /img/socialCards/dune.jpg
 
 ## Crypto's data platform
 
-[Dune](https://dune.com/) is crypto's data platform. Teams and individuals alike use Dune to explore, query, access, and export blockchain data. Dune's community of data engineers, researchers, and analysts use the platform to gain deeper insights into blockchain activity. Dune provides organized, decoded and human-readable blockchain data, across 15+ chains and 1.5M datasets.  
+[Dune](https://dune.com/) is crypto's data platform. Teams and individuals alike use Dune to explore, query, access, and export blockchain data. Dune's community of data engineers, researchers, and analysts use the platform to gain deeper insights into blockchain activity. Dune provides organized, decoded and human-readable blockchain data, across 15+ chains and 1.5M datasets.
 
 ### Features
 
@@ -32,4 +32,3 @@ Here are some resources to help you learn more about Dune Analytics:
 - [Blog](https://dune.com/blog): The Dune blog features articles, case studies, and updates about the platform.
 
 - [Twitter](https://twitter.com/duneanalytics): Follow Dune Analytics on Twitter for the latest news and announcements.
-

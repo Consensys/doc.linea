@@ -15,7 +15,7 @@ To start, check out Secret Network’s [Confidential Computing Layer](https://sc
 
 - [Basics](https://docs.scrt.network/secret-network-documentation/development/ethereum-evm-developer-toolkit/basics) - explains the cross-chain communication technologies used, and how to connect a MetaMask wallet to Secret Network.
 - [Use-cases](https://docs.scrt.network/secret-network-documentation/development/ethereum-evm-developer-toolkit/usecases) - provides tutorials showing how to build various types of EVM applications using Secret’s CCL. All of these tutorials can be used to connect Linea cross-chain with Secret Network.
-- [Supported Networks](https://docs.scrt.network/secret-network-documentation/development/ethereum-evm-developer-toolkit/supported-networks) - provides a list of gateway contract addresses. This is how your Linea application will communicate with Secret. 
+- [Supported Networks](https://docs.scrt.network/secret-network-documentation/development/ethereum-evm-developer-toolkit/supported-networks) - provides a list of gateway contract addresses. This is how your Linea application will communicate with Secret.
 
 ## Get Support
 

@@ -102,8 +102,7 @@ function Card({
       <div className={clsx("card-demo", styles.cardDemo)}>
         <div
           className={clsx("card", styles.card_glow)}
-          style={{ backgroundColor: backgroundColor }}
-        >
+          style={{ backgroundColor: backgroundColor }}>
           <div className={clsx("card__header", styles.cardHeader)}>
             <div className={styles.cardIcon} style={{ color: textColor }}>
               <Icon />
@@ -125,8 +124,7 @@ function Card({
               alignItems: "center",
               textAlign: "center",
               paddingBottom: "30px",
-            }}
-          >
+            }}>
             <Link
               className={clsx(
                 "button",
@@ -135,8 +133,7 @@ function Card({
                 styles.button,
               )}
               to={link}
-              style={{ width: "90%" }}
-            >
+              style={{ width: "90%" }}>
               {buttonName}
             </Link>
           </div>

@@ -10,7 +10,6 @@ Irys makes it easy to store your data onchain by supporting payments with ETH on
 
 Data on Irys is fully verifiable; you can inspect the blockchain at any time and verify what data was posted, when, and where it's located in Irys’s data ledgers.
 
-
 ## Use Irys with Linea
 
 Irys is **chain agnostic**, smart contracts on Linea can link to data on Irys.
@@ -26,7 +25,7 @@ You can use [ETH on Linea](https://arweave-tools.irys.xyz/overview/supported-tok
 
 ## Paying for uploads
 
-Irys has a pay-once-store-forever payment model based on the number of bytes you upload. 
+Irys has a pay-once-store-forever payment model based on the number of bytes you upload.
 
 ## Free uploads
 
@@ -34,7 +33,7 @@ Uploads of less than 100KiB are free on Irys.
 
 ## Receipts
 
-Each upload to Irys is given a cryptographically signed receipt that can be trustlessly verified. 
+Each upload to Irys is given a cryptographically signed receipt that can be trustlessly verified.
 
 Receipts are a JSON object with the following format:
 
@@ -49,19 +48,18 @@ Receipts are a JSON object with the following format:
 }
 ```
 
-| Field          | Description                                                            |
-|----------------|------------------------------------------------------------------------|
-| id             | Transaction id (used to download the data)                             |
-| timestamp      | Timestamp (UNIX milliseconds) of when the transaction was created      |
-| version        | The version of this JSON file, currently 1.0.0                         |
-| public         | Public key of the bundler node used                                    |
-| signature      | A signed deep hash of the JSON receipt                                 |
+| Field | Description |
+| --- | --- |
+| id | Transaction id (used to download the data) |
+| timestamp | Timestamp (UNIX milliseconds) of when the transaction was created |
+| version | The version of this JSON file, currently 1.0.0 |
+| public | Public key of the bundler node used |
+| signature | A signed deep hash of the JSON receipt |
 | deadlineHeight | The block number by which the transaction must be finalized on Arweave |
 
 ## Paying for users' uploads
 
-Use [balance approvals](https://docs.irys.xyz/build/d/features/balance-approvals) to pay for
-your users' uploads and build a Web2-style UX that saves users from having to convert fiat or own tokens.
+Use [balance approvals](https://docs.irys.xyz/build/d/features/balance-approvals) to pay for your users' uploads and build a Web2-style UX that saves users from having to convert fiat or own tokens.
 
 With balance approvals:
 

@@ -3,7 +3,7 @@ title: OKLink
 image: /img/socialCards/oklink.jpg
 ---
 
-[OKLink](https://www.oklink.com/) is a one-stop blockchain data platform covering a wide range of on-chain metrics. 
+[OKLink](https://www.oklink.com/) is a one-stop blockchain data platform covering a wide range of on-chain metrics.
 
 OKLink provides on-chain information, prioritizing accessibility by simplifying insights for easy understanding. Users can search through transactions, blocks, wallet addresses, smart contracts, and other on-chain data covering 40+ chains.
 

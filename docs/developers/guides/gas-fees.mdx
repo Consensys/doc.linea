@@ -4,62 +4,53 @@ sidebar_position: 6
 image: /img/socialCards/how-to-estimate-linea-gas-costs.jpg
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Estimate transaction costs
 
 ## How gas works on Linea
 
 Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas):
+
 ```
 total fee = units of gas used * (base fee + priority fee)
 ```
 
-Linea fundamentally works exactly the same as Ethereum. The only difference is that **the base fee 
-is constant at 7 wei.** Blocks created by Linea use up to 24 million gas (less than 50% of the 
-maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, keeping it 
-at a stable 7 wei.
+Linea fundamentally works exactly the same as Ethereum. The only difference is that **the base fee is constant at 7 wei.** Blocks created by Linea use up to 24 million gas (less than 50% of the maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, keeping it at a stable 7 wei.
 
-The gas cost to submit your transaction and include it on Ethereum involves the following fee 
-components:
+The gas cost to submit your transaction and include it on Ethereum involves the following fee components:
 
-- **Layer 2 cost**: The execution fee; the cost of including your transaction on the Linea 
-  sequencer, and calculated using a similar formula to Ethereum (as described above). 
-- **Layer 1 cost**: The cost of publishing your L2 transaction on Ethereum, which varies 
-  based on the blob fee market.
+- **Layer 2 cost**: The execution fee; the cost of including your transaction on the Linea sequencer, and calculated using a similar formula to Ethereum (as described above).
+- **Layer 1 cost**: The cost of publishing your L2 transaction on Ethereum, which varies based on the blob fee market.
 
-These two resource costs are abstracted by the rollup and covered by the recommended L2 gas price
-and gas used.
+These two resource costs are abstracted by the rollup and covered by the recommended L2 gas price and gas used.
 
-> Learn more about gas on Linea on our [support page](https://support.linea.build/getting-started/what-does-gas-pay-for/) 
-and release notes for [Alpha v2](../linea-version/index.mdx#alpha-v2) and [Alpha v3](../linea-version/index.mdx#alpha-v3).
+> Learn more about gas on Linea on our [support page](https://support.linea.build/getting-started/what-does-gas-pay-for/) and release notes for [Alpha v2](../linea-version/index.mdx#alpha-v2) and [Alpha v3](../linea-version/index.mdx#alpha-v3).
 
-`linea_estimateGas` is the recommended method for estimating gas on Linea. See our 
-[reference page](../reference/api/linea-estimategas.mdx) for more information. 
+`linea_estimateGas` is the recommended method for estimating gas on Linea. See our [reference page](../reference/api/linea-estimategas.mdx) for more information.
 
 Linea also supports:
+
 - [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
 - [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice)
 - [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
 
 ## Gas pricing
 
-The gas price returned by `linea_estimateGas` is based on the variable data cost of the previous 
-block with a multiplier applied as a buffer to ensure inclusion.
+The gas price returned by `linea_estimateGas` is based on the variable data cost of the previous block with a multiplier applied as a buffer to ensure inclusion.
 
-Each Linea block's `extraData` field is populated with the following gas price values that are used 
-by `linea_estimateGas` to calculate the cost of a transaction:
+Each Linea block's `extraData` field is populated with the following gas price values that are used by `linea_estimateGas` to calculate the cost of a transaction:
+
 - A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs;
 - `VARIABLE_COST`, which is the cost per byte of data submitted to L1, and;
-- `ETH_GAS_PRICE`, used to set a more accurate return value for any `eth_gasPrice` calls. 
+- `ETH_GAS_PRICE`, used to set a more accurate return value for any `eth_gasPrice` calls.
 
 :::note
 
-The `extraData` field is a 32-byte space used to store arbitrary data, such as metadata or 
-additional information relevant to the block. 
+The `extraData` field is a 32-byte space used to store arbitrary data, such as metadata or additional information relevant to the block.
 
-On Linea, it's used by the sequencer and Linea Besu nodes running the correct plugins to expose 
-`linea_estimateGas`.
+On Linea, it's used by the sequencer and Linea Besu nodes running the correct plugins to expose `linea_estimateGas`.
 
 :::
 
@@ -69,25 +60,19 @@ Variable cost is calculated with the following formula:
 VARIABLE_COST (4 bytes) = min(max(
 (
   (
-    ((averageWeightedBaseFee + averageWeightedPriorityFee) * 
+    ((averageWeightedBaseFee + averageWeightedPriorityFee) *
     blob-submission-expected-execution-gas + averageWeightedBlobBaseFee * expected-blob-gas
   ) / bytes-per-data-submission) * profit-margin
 )
 , min-bound), max-bound)
 ```
 
-The `profit-margin` is `3`, ensuring the network is sustainable. `min-bound` and `max-bound` 
-are variable, and guarantee the gas price stays within a reasonable range.
+The `profit-margin` is `3`, ensuring the network is sustainable. `min-bound` and `max-bound` are variable, and guarantee the gas price stays within a reasonable range.
 
-The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
-submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
-in each block stays roughly consistent, though the amount _per transaction_ varies, so the 
-`linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction 
-that reflects the amount of data it contains. In turn, it ensures that the network is sustainable,
-and that the cost to the protocol of L1 data availability is covered. 
+The variable cost formula enables `linea_estimateGas` to price according to the variable costs of submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data in each block stays roughly consistent, though the amount _per transaction_ varies, so the `linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction that reflects the amount of data it contains. In turn, it ensures that the network is sustainable, and that the cost to the protocol of L1 data availability is covered.
 
-To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
-into account:
+To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` into account:
+
 ```python
 min-gas-price = previousBlock.extraData.variable_cost
 baseFeePerGas = vanillaProtocolBaseFee
@@ -95,36 +80,22 @@ priorityFeePerGas = MINIMUM_MARGIN * (min-gas-price * L2_compressed_tx_size_in_b
 ```
 
 Where:
-- `extraData.variable_cost` is where the previous block's `VARIABLE_COST` is stored
-block
+
+- `extraData.variable_cost` is where the previous block's `VARIABLE_COST` is stored block
 - `MINIMUM_MARGIN` varies depending on the stage of the transaction:
   - RPC method, i.e. calling `linea_estimateGas`: `1.2`
   - In the transaction pool: `0.8`
   - At transaction selection stage: `1.0`
 
-:::note
-The RPC method and transaction pool values are configurable by RPC providers or those running their 
-own nodes according to preference; the transaction selection stage value is fixed. For example, 
-it may be preferable to set a lower margin to facilitate lower gas prices, but this risks 
-transactions not being included.
-:::
+:::note The RPC method and transaction pool values are configurable by RPC providers or those running their own nodes according to preference; the transaction selection stage value is fixed. For example, it may be preferable to set a lower margin to facilitate lower gas prices, but this risks transactions not being included. :::
 
-`linea_estimateGas` simulates the transaction ordering logic that the sequencer uses when building 
-blocks, and then obtains a gas price that will ensure that the priority fee is high enough for 
-inclusion. The sequencer's transaction ordering policy includes transactions in block in order of 
-highest priority fee, a system known as a priority gas auction. It also checks that the priority 
-fees offered by each transaction are high enough to support network sustainability, and cover L1 
-data costs.
+`linea_estimateGas` simulates the transaction ordering logic that the sequencer uses when building blocks, and then obtains a gas price that will ensure that the priority fee is high enough for inclusion. The sequencer's transaction ordering policy includes transactions in block in order of highest priority fee, a system known as a priority gas auction. It also checks that the priority fees offered by each transaction are high enough to support network sustainability, and cover L1 data costs.
 
-In some cases, transactions with lower priority fees are included ahead of others with higher 
-priority fees. This is because the nonce order of transactions submitted from the same account 
-takes precedence. 
+In some cases, transactions with lower priority fees are included ahead of others with higher priority fees. This is because the nonce order of transactions submitted from the same account takes precedence.
 
 ## [`linea_estimateGas`](../reference/api/linea-estimategas.mdx)
 
-`linea_estimateGas` is the recommended method for estimating gas on Linea. It returns `gasLimit`, 
-`baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise gas estimate than 
-the alternatives.
+`linea_estimateGas` is the recommended method for estimating gas on Linea. It returns `gasLimit`, `baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise gas estimate than the alternatives.
 
 It can also help prevent transactions from being rejected due to exceeding [module limits](../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
 

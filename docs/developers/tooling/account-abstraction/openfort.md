@@ -9,4 +9,4 @@ image: /img/socialCards/openfort.jpg
 
 Powered by [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) and [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337).
 
-[This page](https://www.openfort.xyz/docs) will help you get started with Openfort by deploying a smart account on Linea and creating your first transaction. 
+[This page](https://www.openfort.xyz/docs) will help you get started with Openfort by deploying a smart account on Linea and creating your first transaction.

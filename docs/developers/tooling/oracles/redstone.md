@@ -5,13 +5,9 @@ image: /img/socialCards/redstone-oracles.jpg
 
 # RedStone Oracles
 
-RedStone provides data feeds with update times of less than 10 seconds, suitable for various DeFi applications
-such as lending, perpetuals, options, derivatives, and stablecoins. The infrastructure is used on mainnets
-and by several protocols in the DeFi space.
+RedStone provides data feeds with update times of less than 10 seconds, suitable for various DeFi applications such as lending, perpetuals, options, derivatives, and stablecoins. The infrastructure is used on mainnets and by several protocols in the DeFi space.
 
-:::tip
-Learn more about how to integrate RedStone Oracles in the [official Redstone documentation](https://docs.redstone.finance/).
-:::
+:::tip Learn more about how to integrate RedStone Oracles in the [official Redstone documentation](https://docs.redstone.finance/). :::
 
 ## Links
 

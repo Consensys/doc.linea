@@ -1,5 +1,5 @@
 ---
-title: 'Proving: Circuit execution and runtime'
+title: "Proving: Circuit execution and runtime"
 sidebar_position: 2
 image: /img/socialCards/proving-circuit-execution-and-runtime.jpg
 ---
