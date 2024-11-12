@@ -1,6 +1,6 @@
 ---
 title: SubQuery
-description: "Fast, flexible, universal, open source and decentralised APIs"
+description: 'Fast, flexible, universal, open source and decentralised APIs'
 image: /img/socialCards/subquery.jpg
 ---
 
