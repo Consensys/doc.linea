@@ -8,13 +8,18 @@ image: /img/socialCards/ethereum-and-linea-differences.jpg
 
 ## EVM opcodes
 
-:::info important Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed identically to Ethereum London unless presented in the following table.
+:::info important Linea uses the London version of the Ethereum Virtual Machine
+(EVM). All EVM opcodes are managed identically to Ethereum London unless
+presented in the following table.
 
-Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london` command to ensure compatibility with Linea. :::
+Solidity 8.23 and later compiles newer versions of the EVM by default. Use the
+`solc --evm-version london` command to ensure compatibility with Linea. :::
 
-Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, forks, and updates to the blockchain.
+Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about
+major milestones, forks, and updates to the blockchain.
 
-> ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
+> ⚠️ At the moment we do not support the `eth_newFilter` and
+> `eth_newBlockFilter` RPC calls.
 
 <table>
   <tr>
@@ -83,24 +88,34 @@ Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about 
   </tr>
 </table>
 
-_Consult the Ethereum Foundation's [Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) for more._
+_Consult the Ethereum Foundation's
+[Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) for
+more._
 
-[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum.
+[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea
+with Ethereum.
 
 ## Precompiles
 
 ### Precompiles as transaction recipients
 
-On Linea, transactions cannot set the recipient of a transaction (the address in `to`) as a precompile. The `to` address of transactions cannot be in the range `0x01`-`0x09`.
+On Linea, transactions cannot set the recipient of a transaction (the address in
+`to`) as a precompile. The `to` address of transactions cannot be in the range
+`0x01`-`0x09`.
 
 ### MODEXP
 
-`MODEXP` (`0x05`) on Linea currently only supports arguments (base, exponent, modulus) that do not exceed 512-byte integers.
+`MODEXP` (`0x05`) on Linea currently only supports arguments (base, exponent,
+modulus) that do not exceed 512-byte integers.
 
 ### Point evaluation
 
-The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile), and is therefore unavailable on Linea.
+The point evaluation precompile was introduced in
+[EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile),
+and is therefore unavailable on Linea.
 
 ## JSON RPC API
 
-Linea uses the standard Ethereum JSON RPC API methods. However, in a few cases, methods differ from those on Ethereum. These methods are documented in the [reference section](../reference/api/).
+Linea uses the standard Ethereum JSON RPC API methods. However, in a few cases,
+methods differ from those on Ethereum. These methods are documented in the
+[reference section](../reference/api/).

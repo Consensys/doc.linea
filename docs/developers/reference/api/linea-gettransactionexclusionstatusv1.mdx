@@ -1,6 +1,7 @@
 ---
 title: linea_getTransactionExclusionStatusV1
-description: Reference content for the linea_getTransactionExclusionStatusV1 method.
+description:
+  Reference content for the linea_getTransactionExclusionStatusV1 method.
 image: /img/socialCards/lineagettransactionexclusionstatusv1.jpg
 ---
 
@@ -9,15 +10,21 @@ import TabItem from "@theme/TabItem";
 
 # `linea_getTransactionExclusionStatusV1`
 
-Queries a temporary database maintained by the transaction exclusion API service to check if a transaction was rejected by the sequencer, connected P2P node, or RPC nodes for exceeding data line limits that would prevent the prover from generating a proof.
+Queries a temporary database maintained by the transaction exclusion API service
+to check if a transaction was rejected by the sequencer, connected P2P node, or
+RPC nodes for exceeding data line limits that would prevent the prover from
+generating a proof.
 
 :::info
 
-You can only check for transaction rejection within seven days of the transaction attempt. Querying transactions older than this will return a `null` response.
+You can only check for transaction rejection within seven days of the
+transaction attempt. Querying transactions older than this will return a `null`
+response.
 
 :::
 
-If the transaction is rejected, the API call will succeed and provide the reason; otherwise, it will return `null`.
+If the transaction is rejected, the API call will succeed and provide the
+reason; otherwise, it will return `null`.
 
 ## Parameters
 
@@ -28,12 +35,14 @@ If the transaction is rejected, the API call will succeed and provide the reason
 - `txHash`: The hash of the subject transaction.
 - `from`: The public address of the account that sent the transaction.
 - `nonce`: Number of transaction made by the sender, in hexadecimal format.
-- `txRejectionStage`: A string detailing the point at which the transaction was rejected. One of:
+- `txRejectionStage`: A string detailing the point at which the transaction was
+  rejected. One of:
   - `SEQUENCER`: Rejected by the sequencer.
   - `RPC`: Rejected by an RPC node (e.g. `https://rpc.linea.build`).
   - `P2P`: Rejected by a P2P-connected node (for example, a bootnode).
 - `reasonMessage`: Explains why the transaction was rejected.
-- `blockNumber`: The block that the transaction was rejected from, in hexadecimal format. Only returned for transactions rejected by the sequencer.
+- `blockNumber`: The block that the transaction was rejected from, in
+  hexadecimal format. Only returned for transactions rejected by the sequencer.
 - `timestamp`: Time of rejection, in ISO 8601 format.
 
 ## Example
@@ -80,11 +89,14 @@ If the transaction is rejected, the API call will succeed and provide the reason
 
 :::note
 
-This example is purely representative; the database retains transaction data for only seven days, so you'll be unable to reproduce this response with the above example.
+This example is purely representative; the database retains transaction data for
+only seven days, so you'll be unable to reproduce this response with the above
+example.
 
 :::
 
-If a transaction was not rejected for exceeding line limits, it will not be found in the database, and a `null` result is returned. For example:
+If a transaction was not rejected for exceeding line limits, it will not be
+found in the database, and a `null` result is returned. For example:
 
 ```json
 {
@@ -94,4 +106,5 @@ If a transaction was not rejected for exceeding line limits, it will not be foun
 }
 ```
 
-A similar `null` result is also returned if the transaction is older than seven days.
+A similar `null` result is also returned if the transaction is older than seven
+days.

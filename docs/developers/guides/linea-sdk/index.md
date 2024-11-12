@@ -13,7 +13,9 @@ npm install @consensys/linea-sdk
 
 ## Features
 
-The SDK focuses on interacting with smart contracts on both Ethereum and Linea networks and provides custom functions to obtain message information. Notable features of the Linea SDK include:
+The SDK focuses on interacting with smart contracts on both Ethereum and Linea
+networks and provides custom functions to obtain message information. Notable
+features of the Linea SDK include:
 
 1.  Getting contract instances and addresses
 
@@ -23,32 +25,47 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 4.  Getting a message status by message hash
 
-5.  Claiming messages (use one of the get message methods to grab all the parameters values)
+5.  Claiming messages (use one of the get message methods to grab all the
+    parameters values)
 
 :::info[New Features]
 
-The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires a Merkle proof for claiming.
+The updated Linea SDK package enhances the L1 contract interaction and adds
+support for the new L1 claiming system, which is based on a Merkle tree and
+requires a Merkle proof for claiming.
 
 There are three important things to note:
 
 - The previous L1 claiming and all functions associated are still supported.
-- The L2 claiming remains unaltered, and all SDK features for interacting with L2 will remain unchanged.
-- The previous L1 claiming function and code samples provided here cater to the transition period where pre-transition messages are claimed without the Merkle proof and post-transition with proof. If this SDK is being used after the transition, using the logic that switches between Merkle and non-Merkle proof claiming is sub-optimal.
+- The L2 claiming remains unaltered, and all SDK features for interacting with
+  L2 will remain unchanged.
+- The previous L1 claiming function and code samples provided here cater to the
+  transition period where pre-transition messages are claimed without the Merkle
+  proof and post-transition with proof. If this SDK is being used after the
+  transition, using the logic that switches between Merkle and non-Merkle proof
+  claiming is sub-optimal.
 
 The updated SDK introduces several new features for L1 interactions:
 
 A new L1ClaimingService class that includes the following functions:
 
-- getMessageProof: This function retrieves the message Merkle tree proof required for new message claims on L1.
-- isClaimingNeedingProof: This function determines whether a proof is needed to claim a message.
-- getMessageStatus: This function retrieves a message's status, returning the status of both old and new messages.
-- estimateClaimMessageGas: This function provides an estimate of the gas cost for both old and new claim transactions.
-- claimMessage: This function enables a message to be claimed using either the old or new function.
+- getMessageProof: This function retrieves the message Merkle tree proof
+  required for new message claims on L1.
+- isClaimingNeedingProof: This function determines whether a proof is needed to
+  claim a message.
+- getMessageStatus: This function retrieves a message's status, returning the
+  status of both old and new messages.
+- estimateClaimMessageGas: This function provides an estimate of the gas cost
+  for both old and new claim transactions.
+- claimMessage: This function enables a message to be claimed using either the
+  old or new function.
 
 Two new functions in the L1 contract:
 
-- estimateClaimWithProofGas: This functions estimates the gas cost for new claim transactions.
-- claimWithProof: This functions claims a message using the new claimMessageWithProof function.
+- estimateClaimWithProofGas: This functions estimates the gas cost for new claim
+  transactions.
+- claimWithProof: This functions claims a message using the new
+  claimMessageWithProof function.
 
 :::
 
@@ -56,7 +73,8 @@ Two new functions in the L1 contract:
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-<Tabs className="my-tabs" defaultValue="new" values={[ {label: 'v0.2.0-rc.1', value: 'new'}, {label: 'v0.1.6', value: 'old'}, ] }> <TabItem value="old">
+<Tabs className="my-tabs" defaultValue="new" values={[ {label: 'v0.2.0-rc.1',
+value: 'new'}, {label: 'v0.1.6', value: 'old'}, ] }> <TabItem value="old">
 
 ```typescript
 import * as dotenv from "dotenv";

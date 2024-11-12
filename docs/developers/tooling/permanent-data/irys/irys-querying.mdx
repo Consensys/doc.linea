@@ -6,7 +6,8 @@ description: Querying data on Irys.
 
 # Querying Irys Transactions
 
-Irys transaction metadata can be queried using GraphQL. You can use it to search for transactions by:
+Irys transaction metadata can be queried using GraphQL. You can use it to search
+for transactions by:
 
 - Signer's address
 - Payment token
@@ -15,7 +16,9 @@ Irys transaction metadata can be queried using GraphQL. You can use it to search
 
 ## GraphQL Clients
 
-You can query using an HTTP library like fetch or axios, or use specialized clients like [Apollo Client](https://www.apollographql.com/) or [urql](https://formidable.com/open-source/urql/).
+You can query using an HTTP library like fetch or axios, or use specialized
+clients like [Apollo Client](https://www.apollographql.com/) or
+[urql](https://formidable.com/open-source/urql/).
 
 ## Endpoint
 
@@ -25,20 +28,34 @@ https://uploader.irys.xyz/graphql
 
 Any of the following query arguments can be used as search parameters:
 
-| Field | Description |
-| --- | --- |
-| `ids` | An array of transaction IDs passed as strings. Values are ORed together, matching results will include transactions that have any of the supplied IDs. |
+| Field   | Description                                                                                                                                                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ids`   | An array of transaction IDs passed as strings. Values are ORed together, matching results will include transactions that have any of the supplied IDs.                                                                                |
 | `owner` | The address used when posting the transaction. Can be a native address from [any of the chains supported by Irys](https://docs.irys.xyz/build/d/features/supported-tokens). Note in results fields, this is referred to as `address`. |
-| `token` | The [token](https://docs.irys.xyz/build/d/features/supported-tokens) used to pay for the transaction. |
-| `tags` | An array of tag name / value pairs passed as JSON objects. |
+| `token` | The [token](https://docs.irys.xyz/build/d/features/supported-tokens) used to pay for the transaction.                                                                                                                                 |
+| `tags`  | An array of tag name / value pairs passed as JSON objects.                                                                                                                                                                            |
 
 ## Results Fields
 
-When building a query, any of the following values be included in your results: | Field | Description | |---|---| | `id` | The transaction ID. | | `address` | The address used when posting the transaction. Can be a native address from any of the chains supported by Irys. Note in query arguements, this is referred to as `owner`. | | `token` | The token used to pay for the transaction. | | `receipt { `<br/>&nbsp;&nbsp;`deadlineHeight `<br/>&nbsp;&nbsp;`signature  `<br/>&nbsp;&nbsp;`version `<br/>`}` | An optional receipt, only exists if a user requested one at upload.<br/> `deadlineHeight`: The block number by which the transaction must be finalized. <br/>`signature`: A signed deep hash of the JSON receipt. | | `tags {    `<br/>&nbsp;&nbsp;`name     `<br/>&nbsp;&nbsp;`value`<br/>`}` | An array of tags supplied as name / value pairs. Exists if the user added them at upload. | |`timestamp` | The timestamp, accurate to the millisecond of when the transaction was posted. This value is the same as the receipt timestamp. |
+When building a query, any of the following values be included in your results:
+| Field | Description | |---|---| | `id` | The transaction ID. | | `address` |
+The address used when posting the transaction. Can be a native address from any
+of the chains supported by Irys. Note in query arguements, this is referred to
+as `owner`. | | `token` | The token used to pay for the transaction. | |
+`receipt { `<br/>&nbsp;&nbsp;`deadlineHeight `<br/>&nbsp;&nbsp;`signature  `<br/>&nbsp;&nbsp;`version `<br/>`}`
+| An optional receipt, only exists if a user requested one at upload.<br/>
+`deadlineHeight`: The block number by which the transaction must be finalized.
+<br/>`signature`: A signed deep hash of the JSON receipt. | |
+`tags {    `<br/>&nbsp;&nbsp;`name     `<br/>&nbsp;&nbsp;`value`<br/>`}` | An
+array of tags supplied as name / value pairs. Exists if the user added them at
+upload. | |`timestamp` | The timestamp, accurate to the millisecond of when the
+transaction was posted. This value is the same as the receipt timestamp. |
 
 ## Sample Queries
 
-> Queries return transaction metadata. To then retrieve data, use the returned transaction ID and download the data from the Irys gateway using a URL formed as follows: `https://gateway.irys.xyz/:transactionId`.
+> Queries return transaction metadata. To then retrieve data, use the returned
+> transaction ID and download the data from the Irys gateway using a URL formed
+> as follows: `https://gateway.irys.xyz/:transactionId`.
 
 ### Transaction IDs
 
@@ -81,11 +98,16 @@ query getByTimestamp {
 }
 ```
 
-> Irys timestamps are accurate to the millisecond, so you need to provide a timestamp in millisecond format when querying. You can convert from human-readable time to UNIX timestamp using websites like [Epoch101](https://www.epoch101.com/), be sure to convert in **millisecond** format, not **second**.
+> Irys timestamps are accurate to the millisecond, so you need to provide a
+> timestamp in millisecond format when querying. You can convert from
+> human-readable time to UNIX timestamp using websites like
+> [Epoch101](https://www.epoch101.com/), be sure to convert in **millisecond**
+> format, not **second**.
 
 ### Owners
 
-Search for transactions matching the wallet address used when posting the transaction:
+Search for transactions matching the wallet address used when posting the
+transaction:
 
 ```graphql
 query getByOwner {
@@ -107,7 +129,8 @@ query getByOwner {
 
 ### Tags
 
-Search for transactions matching [tag](https://docs.irys.xyz/build/d/features/tags) name / value pairs:
+Search for transactions matching
+[tag](https://docs.irys.xyz/build/d/features/tags) name / value pairs:
 
 ```graphql
 query getAllPNGs {
@@ -122,7 +145,8 @@ query getAllPNGs {
 }
 ```
 
-Search for transactions matching the tag with name **Content-Type** and the values of **image/png** OR **image/jpg**:
+Search for transactions matching the tag with name **Content-Type** and the
+values of **image/png** OR **image/jpg**:
 
 ```graphql
 query getTagsWithOR {
@@ -141,7 +165,8 @@ query getTagsWithOR {
 }
 ```
 
-Search for transactions matching the tag with name **Content-Type** and the values of **image/png** AND **image/jpg**:
+Search for transactions matching the tag with name **Content-Type** and the
+values of **image/png** AND **image/jpg**:
 
 ```graphql
 query getTagsWithAnd {
@@ -185,14 +210,20 @@ query getAllPNGs {
 
 ### Pagination
 
-You can request a maximum of 100 results returned from each query, to obtain additional results use pagination.
+You can request a maximum of 100 results returned from each query, to obtain
+additional results use pagination.
 
 When using pagination you:
 
-1. Retrieve the `cursor` field, this acts like a bookmark in the search results you can then return to.
+1. Retrieve the `cursor` field, this acts like a bookmark in the search results
+   you can then return to.
 2. Use saved `cursor` value to obtain subsequent search results.
 
-The following query returns 10 transactions tagged `image/png` occurring after the cursor with value: `LS02d1NsM3R6aUprd3dKUzVjN1FXaWg5aUxsbXh5dVJJbGlydHJtNlpPbw`. To then obtain the next 10 transactions, use the final `cursor` value returned from this query as the value of the `after` parameter in the following query.
+The following query returns 10 transactions tagged `image/png` occurring after
+the cursor with value:
+`LS02d1NsM3R6aUprd3dKUzVjN1FXaWg5aUxsbXh5dVJJbGlydHJtNlpPbw`. To then obtain the
+next 10 transactions, use the final `cursor` value returned from this query as
+the value of the `after` parameter in the following query.
 
 ```graphql
 query getPNGs {
@@ -213,7 +244,8 @@ query getPNGs {
 
 ### Sorting
 
-You can sort results by timestamp in either ascending or descending order using the `order` field.
+You can sort results by timestamp in either ascending or descending order using
+the `order` field.
 
 ```graphql
 query getAllByOwnerAsc {

@@ -1,6 +1,7 @@
 ---
 title: Use the Linea API
-description: How to make calls to the Linea blockchain using the Linea JSON-RPC APIs
+description:
+  How to make calls to the Linea blockchain using the Linea JSON-RPC APIs
 sidebar_position: 6
 image: /img/socialCards/use-the-linea-api.jpg
 ---
@@ -8,23 +9,40 @@ image: /img/socialCards/use-the-linea-api.jpg
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-Linea supports the standard Ethereum JSON-RPC API methods, meaning the developer experience is identical to building on Ethereum itself. However, some [Linea-specific methods, and method implementations](../reference/api/index.mdx) differ to Ethereum.
+Linea supports the standard Ethereum JSON-RPC API methods, meaning the developer
+experience is identical to building on Ethereum itself. However, some
+[Linea-specific methods, and method implementations](../reference/api/index.mdx)
+differ to Ethereum.
 
-:::info View the full list of Linea methods in the [MetaMask services documentation](https://docs.metamask.io/services/reference/linea/json-rpc-methods/). :::
+:::info View the full list of Linea methods in the
+[MetaMask services documentation](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
+:::
 
-You must connect to an RPC endpoint when making calls to the Linea blockchain. Use one or more of the following options:
+You must connect to an RPC endpoint when making calls to the Linea blockchain.
+Use one or more of the following options:
 
-- **Run your own node**: Either [run your own node by setting it up yourself](./run-a-node/index.mdx), or [use a node provider](../tooling/node-providers/index.mdx#run-your-own-node). We recommend running [Linea Besu](./run-a-node/linea-besu.mdx) if you want to run a node yourself and interact with the blockchain.
-- **Connect to a private RPC endpoint**: [Connect to a blockchain infrastructure provider](../tooling/node-providers/index.mdx#private-rpc-endpoints) such as Infura or Alchemy. Multiple providers offer free tier access.
-- **Use a public endpoint**: [Public endpoints](../tooling/node-providers/index.mdx#public-rpc-endpoints) are free to use but are rate limited and not suitable for production environments.
+- **Run your own node**: Either
+  [run your own node by setting it up yourself](./run-a-node/index.mdx), or
+  [use a node provider](../tooling/node-providers/index.mdx#run-your-own-node).
+  We recommend running [Linea Besu](./run-a-node/linea-besu.mdx) if you want to
+  run a node yourself and interact with the blockchain.
+- **Connect to a private RPC endpoint**:
+  [Connect to a blockchain infrastructure provider](../tooling/node-providers/index.mdx#private-rpc-endpoints)
+  such as Infura or Alchemy. Multiple providers offer free tier access.
+- **Use a public endpoint**:
+  [Public endpoints](../tooling/node-providers/index.mdx#public-rpc-endpoints)
+  are free to use but are rate limited and not suitable for production
+  environments.
 
 ## Make calls
 
-The following examples call the Linea API methods using an Infura endpoint, however you can substitute the endpoint with whichever endpoint you prefer.
+The following examples call the Linea API methods using an Infura endpoint,
+however you can substitute the endpoint with whichever endpoint you prefer.
 
 In the examples, replace `<YOUR-API-KEY>` with your actual Infura API key.
 
-:::info View the [list of node providers](../tooling/node-providers/index.mdx) if you require an endpoint. :::
+:::info View the [list of node providers](../tooling/node-providers/index.mdx)
+if you require an endpoint. :::
 
 ### cURL
 
@@ -39,11 +57,14 @@ curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
 
 ### Node (JavaScript)
 
-The following examples use various JavaScript libraries to make calls to the Linea blockchain.
+The following examples use various JavaScript libraries to make calls to the
+Linea blockchain.
 
 #### Prerequisites
 
-Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://yarnpkg.com/getting-started/install) as the package manager. Then, in your project folder, initialise your new project:
+Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+or [yarn](https://yarnpkg.com/getting-started/install) as the package manager.
+Then, in your project folder, initialise your new project:
 
     <Tabs>
       <TabItem value="npm">

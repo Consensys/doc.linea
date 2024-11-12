@@ -18,15 +18,25 @@ import TabItem from "@theme/TabItem";
   <LineaBridgeGraphic />
 </div>
 
-The canonical token bridge is the pair of “lock & mint” contracts that allow bridging of any ERC-20 token. The bridge relies on the [message service](../canonical-msg-service/message-service.mdx) for cross-chain interactions.
+The canonical token bridge is the pair of “lock & mint” contracts that allow
+bridging of any ERC-20 token. The bridge relies on the
+[message service](../canonical-msg-service/message-service.mdx) for cross-chain
+interactions.
 
-The Linea team operates a UI for the [official Linea bridge](https://bridge.linea.build/).
+The Linea team operates a UI for the
+[official Linea bridge](https://bridge.linea.build/).
 
-The canonical token bridge is optimized for technical partners who are deploying on Linea. We recommend that everyday users of Linea seeking to bridge their personal tokens between networks leverage one of the many bridges deployed to the network.
+The canonical token bridge is optimized for technical partners who are deploying
+on Linea. We recommend that everyday users of Linea seeking to bridge their
+personal tokens between networks leverage one of the many bridges deployed to
+the network.
 
-Linea seeks to foster a permissionless, resilient, decentralized environment — not to have our bridge be a centralized arbiter and point of failure.
+Linea seeks to foster a permissionless, resilient, decentralized environment —
+not to have our bridge be a centralized arbiter and point of failure.
 
-To find out which bridges are currently operating on Linea, head to the [ecosystem portal](https://linea.build/apps) and click on the **Bridge** button to show all that are available.
+To find out which bridges are currently operating on Linea, head to the
+[ecosystem portal](https://linea.build/apps) and click on the **Bridge** button
+to show all that are available.
 
 ## Contracts
 
@@ -91,11 +101,13 @@ To find out which bridges are currently operating on Linea, head to the [ecosyst
   - This is done by calling `allowance()` on the TokenBridge.
   - Then, the user should call the `bridgeToken()` method.
 - **With Permit**
-  - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction
+  - User can call `bridgeTokenWithPermit()` to pass permit data in a single
+    transaction
 
 2. Triggering the delivery
 
-- See the [message service workflow](../canonical-msg-service/message-service.mdx#workflow).
+- See the
+  [message service workflow](../canonical-msg-service/message-service.mdx#workflow).
 
 ## Interface TokenBridge.sol
 

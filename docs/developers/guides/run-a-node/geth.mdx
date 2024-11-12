@@ -11,21 +11,29 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-[Geth](https://geth.ethereum.org/) is an open-source Go implementation of Ethereum.
+[Geth](https://geth.ethereum.org/) is an open-source Go implementation of
+Ethereum.
 
-:::info important Install and run a Geth node if you want to follow the Linea network by maintaining a local copy of the blockchain. However, if you want to interact with the network and use Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead. :::
+:::info important Install and run a Geth node if you want to follow the Linea
+network by maintaining a local copy of the blockchain. However, if you want to
+interact with the network and use Linea-specific methods and features, you
+should [install Linea Besu](./linea-besu.mdx) instead. :::
 
-You can run Geth from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
+You can run Geth from a
+[binary distribution](#run-using-the-binary-distribution) or
+[using Docker](#run-using-docker).
 
 ## Run using the binary distribution
 
 ### Step 1. Install Geth
 
-[Download and install](https://geth.ethereum.org/docs/getting-started/installing-geth) the Geth client.
+[Download and install](https://geth.ethereum.org/docs/getting-started/installing-geth)
+the Geth client.
 
 :::warning
 
-Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent versions aren't supported.
+Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent
+versions aren't supported.
 
 :::
 
@@ -46,16 +54,20 @@ Download the genesis file for the relevant network.
 
 Define a volume size appropriate to your expected usage. Geth nodes use:
 
-- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-full-snapshot-0" />
-- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-archive-0" />
+- Full node:
+  <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-full-snapshot-0" />
+- Archive node:
+  <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-archive-0" />
 
 <LastUpdated />
 
-Use these figures as a basis to determine the extent to which you want to future-proof your node.
+Use these figures as a basis to determine the extent to which you want to
+future-proof your node.
 
 Ensure you mount the Geth `datadir` to the custom volume.
 
-If you run out of space, or need to actively maintain how much space is being used, consider [pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
+If you run out of space, or need to actively maintain how much space is being
+used, consider [pruning](https://geth.ethereum.org/docs/fundamentals/pruning).
 
 <VolumeCreation />
 
@@ -99,9 +111,11 @@ Start the node using the following command:
     --verbosity 3
     ```
 
-:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The above command uses all bootnodes by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet.
+The above command uses all bootnodes by default.
 
-See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes. :::
+See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes.
+:::
 
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -127,9 +141,13 @@ See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes. 
   </TabItem>
 </Tabs>
 
-The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks to your node, **that doesn't mean that the node is not syncing**.
+The Linea network only produces blocks if there is currently at least 1 pending
+transaction. If you see no incoming blocks to your node, **that doesn't mean
+that the node is not syncing**.
 
-**If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes**; otherwise, you might not be connected to the Linea network.
+**If you don't see any incoming blocks**, check and make sure that you have **at
+least one peer from the bootnodes**; otherwise, you might not be connected to
+the Linea network.
 
 <aside>
   {/* Is this a Discord channel? */}
@@ -147,7 +165,8 @@ Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
 ### Step 1. Download configuration files
 
-Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
+Download the configuration files for the relevant network. Ensure that you
+download the files to the same directory.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -155,9 +174,11 @@ Download the configuration files for the relevant network. Ensure that you downl
   Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
   files.
 
-:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet. The Geth `docker-compose.yml` file uses all bootnodes by default.
+:::note[bootnodes] You can choose from a range of bootnodes for Linea Mainnet.
+The Geth `docker-compose.yml` file uses all bootnodes by default.
 
-See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes. :::
+See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes.
+:::
 
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
@@ -170,13 +191,17 @@ See our [bootnodes page](bootnodes.mdx) for a full list of available bootnodes. 
 
 ### Step 2. Start the Geth node
 
-Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory) and run `docker compose up`
+Open up a terminal where the both `docker-compose.yml` and `genesis.json` are
+located (they should be in the same directory) and run `docker compose up`
 
 The node should now be running and looking for peers to sync.
 
 ## Confirm the node is running
 
-You can call the JSON-RPC API methods to confirm the node is running. For example, call `eth_syncing` to return the synchronization status. For example the starting, current, and highest block, or `false` if not synchronizing (or if the head of the chain has been reached).
+You can call the JSON-RPC API methods to confirm the node is running. For
+example, call `eth_syncing` to return the synchronization status. For example
+the starting, current, and highest block, or `false` if not synchronizing (or if
+the head of the chain has been reached).
 
 ```bash
 

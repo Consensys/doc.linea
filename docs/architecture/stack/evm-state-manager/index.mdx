@@ -5,140 +5,256 @@ sidebar_position: 4
 image: /img/socialCards/evm-state-manager.jpg
 ---
 
-The state manager is the part of the execution client responsible for updating the state of the network globally, and the state of every account individually. The state manager also audits the "read" access made in the EVM, meaning it monitors, verifies, and logs all operations where the EVM needs to read data from the blockchain state.
+The state manager is the part of the execution client responsible for updating
+the state of the network globally, and the state of every account individually.
+The state manager also audits the "read" access made in the EVM, meaning it
+monitors, verifies, and logs all operations where the EVM needs to read data
+from the blockchain state.
 
 :::info
 
-"State" refers to the data stored on the blockchain at any given point in time. To update state is to update the record of the contents of every account whose contents have changed.
+"State" refers to the data stored on the blockchain at any given point in time.
+To update state is to update the record of the contents of every account whose
+contents have changed.
 
 :::
 
-The main task of the state manager is to receive blocks that have been executed by the [sequencer](../sequencer/index.mdx) and use the trace data from their execution to update the state of the network. Linea uses two data structure types to manage state:
+The main task of the state manager is to receive blocks that have been executed
+by the [sequencer](../sequencer/index.mdx) and use the trace data from their
+execution to update the state of the network. Linea uses two data structure
+types to manage state:
 
-1. A Merkle-Patricia Trie to record the world state, maintain consensus, and process blocks. This mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/).
-2. A variant of regular Merkle trees called a sparse Merkle tree (SMT), which is used to more efficiently track, manage, and update storage slots representing accounts.
+1. A Merkle-Patricia Trie to record the world state, maintain consensus, and
+   process blocks. This mirrors how consensus and state are
+   [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/).
+2. A variant of regular Merkle trees called a sparse Merkle tree (SMT), which is
+   used to more efficiently track, manage, and update storage slots representing
+   accounts.
 
-It then passes this updated network state information to the [prover](../trace-expansion-proving/index.mdx) in the form of Merkle proofs for submission to Ethereum Mainnet (L1).
+It then passes this updated network state information to the
+[prover](../trace-expansion-proving/index.mdx) in the form of Merkle proofs for
+submission to Ethereum Mainnet (L1).
 
-Below, we'll explain the element of Linea's state management in greater detail, focussing on the SMT configuration that sets Linea apart.
+Below, we'll explain the element of Linea's state management in greater detail,
+focussing on the SMT configuration that sets Linea apart.
 
 ## Merkle trees
 
-The Merkle tree and its variations are commonly used across EVM chains to store and retrieve data about the state of every account on the blockchain.
+The Merkle tree and its variations are commonly used across EVM chains to store
+and retrieve data about the state of every account on the blockchain.
 
-A Merkle tree is comprised of 'nodes' that branch off from each other. At the base is the 'root', or state root, from which branches stem, and leaves stem from the branches.
+A Merkle tree is comprised of 'nodes' that branch off from each other. At the
+base is the 'root', or state root, from which branches stem, and leaves stem
+from the branches.
 
 <div class="img-large">
   <div class="mermaid-medium">
-    ```mermaid 
-    flowchart TD 
-    A[root] --> B[node] & C[node] 
-    B --> D[node] & E[node] 
-    C --> F[node] & G[node] 
-    ```
+    ```mermaid flowchart TD A[root] --> B[node] & C[node] B --> D[node] &
+    E[node] C --> F[node] & G[node] ```
   </div>
 </div>
 
-Each node, regardless of type, is represented by a cryptographic hash which encodes data about its properties — for example, the contents of your account. Each hash encodes the hashes of its child nodes. Taken to its full extent, this cascading system means the root encodes data of the state of every single account on the blockchain.
+Each node, regardless of type, is represented by a cryptographic hash which
+encodes data about its properties — for example, the contents of your account.
+Each hash encodes the hashes of its child nodes. Taken to its full extent, this
+cascading system means the root encodes data of the state of every single
+account on the blockchain.
 
-Cryptographic hashes are deterministic, which means you can reverse the hash function to get the data which it encoded. If you have the hash of the root—the only node without a parent—you can theoretically derive from it the data of any node in the entire tree.
+Cryptographic hashes are deterministic, which means you can reverse the hash
+function to get the data which it encoded. If you have the hash of the root—the
+only node without a parent—you can theoretically derive from it the data of any
+node in the entire tree.
 
-As a layer 2 (L2) network, Linea is in the business of making transacting faster and more efficient. Linea implements a sparse Merkle tree to track account state and generate and store proofs, and unlock greater efficiency when compared to standard Merkle trees, which require recomputation for every block, leading to excessive computational demands.
+As a layer 2 (L2) network, Linea is in the business of making transacting faster
+and more efficient. Linea implements a sparse Merkle tree to track account state
+and generate and store proofs, and unlock greater efficiency when compared to
+standard Merkle trees, which require recomputation for every block, leading to
+excessive computational demands.
 
 ### Sparse Merkle trees
 
-Linea's state management uses sparse Merkle trees to minimize computation and contribute to the blockchain's efficiency.
+Linea's state management uses sparse Merkle trees to minimize computation and
+contribute to the blockchain's efficiency.
 
-A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf nodes are filled with data; instead, data is only stored in nodes where it's needed. It is a complete tree of fixed depth, meaning that all branches of the tree have the same length—i.e. the same number of leaves.
+A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf
+nodes are filled with data; instead, data is only stored in nodes where it's
+needed. It is a complete tree of fixed depth, meaning that all branches of the
+tree have the same length—i.e. the same number of leaves.
 
-At initialization—the beginning of the chain's history—all leaf nodes are set to a default value, which is typically a hash of a specific value, such as zero. Because all leaf nodes have the same hash value, the parent nodes and higher-level nodes also have the same hash value. A node whose hash is the default value for its level is therefore considered to represent an _empty_ subtree.
+At initialization—the beginning of the chain's history—all leaf nodes are set to
+a default value, which is typically a hash of a specific value, such as zero.
+Because all leaf nodes have the same hash value, the parent nodes and
+higher-level nodes also have the same hash value. A node whose hash is the
+default value for its level is therefore considered to represent an _empty_
+subtree.
 
 <div class="center-container">
   <div class="mermaid-medium">
-    ```mermaid
-    flowchart TD 
-    A[root] --> B["`**node A**`" null] & C["`**node B**`" contains data] 
-    B --> D["`**node C**`": null] & E["`**node D:**`" null]
-    C --> F["`**node E**`": data] & G["`**node F**`": data] 
-    ```
+    ```mermaid flowchart TD A[root] --> B["`**node A**`" null] & C["`**node
+    B**`" contains data] B --> D["`**node C**`": null] & E["`**node D:**`" null]
+    C --> F["`**node E**`": data] & G["`**node F**`": data] ```
   </div>
 </div>
 
-In the example above, the children of node A (leaves) contain null values, which means node A does too. Node B, meanwhile, reflects that its children also contain values.
+In the example above, the children of node A (leaves) contain null values, which
+means node A does too. Node B, meanwhile, reflects that its children also
+contain values.
 
-With this construction, we do not need to keep track of every individual node's hash. Instead, we can assume hashes that reflect the default value are empty, and the subtree or node that lies further down the chain of nodes can be disregarded; we only need to pay attention to the ones that correspond to _non-empty_ subtrees.
+With this construction, we do not need to keep track of every individual node's
+hash. Instead, we can assume hashes that reflect the default value are empty,
+and the subtree or node that lies further down the chain of nodes can be
+disregarded; we only need to pay attention to the ones that correspond to
+_non-empty_ subtrees.
 
 ## Cryptographic accumulator
 
-In this context, we can consider Linea's sparse Merkle tree as a type of "cryptographic accumulator". A cryptographic accumulator is a type of cryptographic primitive encoding a collection of items into very short strings and allowing read/write operations to be proven. Merkle trees and sparse Merkle trees are elementary examples of accumulators but there are others with more powerful capabilities.
+In this context, we can consider Linea's sparse Merkle tree as a type of
+"cryptographic accumulator". A cryptographic accumulator is a type of
+cryptographic primitive encoding a collection of items into very short strings
+and allowing read/write operations to be proven. Merkle trees and sparse Merkle
+trees are elementary examples of accumulators but there are others with more
+powerful capabilities.
 
-Linea's state manager uses an extended version of a sparse Merkle tree that enables it to prove all CRUD (create, read, update, delete) operations for a key-addressed database. As an outline, the construction uses a sparse Merkle tree to store the nodes of a sorted doubly-linked list that encodes all the non-zero items of the state.
+Linea's state manager uses an extended version of a sparse Merkle tree that
+enables it to prove all CRUD (create, read, update, delete) operations for a
+key-addressed database. As an outline, the construction uses a sparse Merkle
+tree to store the nodes of a sorted doubly-linked list that encodes all the
+non-zero items of the state.
 
-Linea's state manager uses the accumulator to track the account trie of Linea but also the storage of every contract separately.
+Linea's state manager uses the accumulator to track the account trie of Linea
+but also the storage of every contract separately.
 
-The leaves of the tree have the following structure: `prev || next || hKey || hVal`.
+The leaves of the tree have the following structure:
+`prev || next || hKey || hVal`.
 
-`hKey` and `hVal` are the hashes of the key and the value of the stored state entry, respectively. `prev` and `next` are pointers storing the position of the leaves whose `hKeys` are immediately lower and higher, respectively, following lexicographic order. The first two leaves of the SMT are called the head and the tail, and are special in that they do not encode a stored tuple. The head is the lowest possible `hKey`, while the tail is the highest possible `hKey`. They are therefore situated at the beginning and the end of the linked list, respectively. Starting from the head, we can access the SMT leaf stored at `head.next` to get the lowest "actually stored" item. Further incrementing the `next` value will give us the second-lowest stored item and so on. Repeating the process walks us through the entire set of stored items before we end up at the tail node, marking the final step.
+`hKey` and `hVal` are the hashes of the key and the value of the stored state
+entry, respectively. `prev` and `next` are pointers storing the position of the
+leaves whose `hKeys` are immediately lower and higher, respectively, following
+lexicographic order. The first two leaves of the SMT are called the head and the
+tail, and are special in that they do not encode a stored tuple. The head is the
+lowest possible `hKey`, while the tail is the highest possible `hKey`. They are
+therefore situated at the beginning and the end of the linked list,
+respectively. Starting from the head, we can access the SMT leaf stored at
+`head.next` to get the lowest "actually stored" item. Further incrementing the
+`next` value will give us the second-lowest stored item and so on. Repeating the
+process walks us through the entire set of stored items before we end up at the
+tail node, marking the final step.
 
-Leaves can also be referred to as storage slots, in that they contain data about the contents of the account in question.
+Leaves can also be referred to as storage slots, in that they contain data about
+the contents of the account in question.
 
 ### Tracking empty leaves
 
-All leaves in the tree are populated with default/zero values at initialization. Since a deterministic hashing function will ensure that these leaves are always represented by the same hash, empty leaves can be easily recognized by the accumulator.
+All leaves in the tree are populated with default/zero values at initialization.
+Since a deterministic hashing function will ensure that these leaves are always
+represented by the same hash, empty leaves can be easily recognized by the
+accumulator.
 
-However, in order for the state manager to update a storage slot with data about a Linea account's contents, it must know which empty leaf to overwrite, and exactly where these empty leaves are. A further consideration is that we require the index of any 'new' leaf—an empty leaf being updated so that it stores data—to be overwritten in a deterministic way. This requirement means that anyone can theoretically reconstruct the tree simply by looking at transaction history.
+However, in order for the state manager to update a storage slot with data about
+a Linea account's contents, it must know which empty leaf to overwrite, and
+exactly where these empty leaves are. A further consideration is that we require
+the index of any 'new' leaf—an empty leaf being updated so that it stores
+data—to be overwritten in a deterministic way. This requirement means that
+anyone can theoretically reconstruct the tree simply by looking at transaction
+history.
 
-To ensure consistency in the leaves' position, the state manager only ever inserts 'new' leaves to the left of the previous leaf in the tree. If this wasn't the case, and the state manager was able to insert any node in any position, it would be impossible to reconstitute the tree in the exact same configuration, severely impacting the ability of L1 to verify the Merkle proof provided.
+To ensure consistency in the leaves' position, the state manager only ever
+inserts 'new' leaves to the left of the previous leaf in the tree. If this
+wasn't the case, and the state manager was able to insert any node in any
+position, it would be impossible to reconstitute the tree in the exact same
+configuration, severely impacting the ability of L1 to verify the Merkle proof
+provided.
 
 ## Applying the accumulator
 
-The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a [Merkle-Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/) to track:
+The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a
+[Merkle-Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/)
+to track:
 
 - World state, which keeps track of accounts, and;
-- Account storage state (or simply 'storage'), which keeps track of the contents of each account.
+- Account storage state (or simply 'storage'), which keeps track of the contents
+  of each account.
 
-On Linea, we adapt this structure. The Merkle-Patricia Trie is still used for world state, but the custom cryptographic accumulator described above is used for account storage state.
+On Linea, we adapt this structure. The Merkle-Patricia Trie is still used for
+world state, but the custom cryptographic accumulator described above is used
+for account storage state.
 
 The accumulator can perform the following operations:
 
-- **Insertion**: adding a new storage slot to the tree, triggered by storing a non-zero value in a previously zero-valued slot.
-- **Update**: changing the value of an existing storage slot in the tree, triggered by storing a new non-zero value in a previously non-zero slot.
-- **Deletion**: removing a storage slot from the tree, triggered by storing the zero value in a previously non-zero slot.
-- **Read zero**: proving non-membership, triggered when a storage slot has been accessed, but not updated, and its value is zero.
-- **Read non-zero**: proving membership, triggered when a storage slot has been accessed, but not updated and its value is non-zero.
+- **Insertion**: adding a new storage slot to the tree, triggered by storing a
+  non-zero value in a previously zero-valued slot.
+- **Update**: changing the value of an existing storage slot in the tree,
+  triggered by storing a new non-zero value in a previously non-zero slot.
+- **Deletion**: removing a storage slot from the tree, triggered by storing the
+  zero value in a previously non-zero slot.
+- **Read zero**: proving non-membership, triggered when a storage slot has been
+  accessed, but not updated, and its value is zero.
+- **Read non-zero**: proving membership, triggered when a storage slot has been
+  accessed, but not updated and its value is non-zero.
 
-These operations are applied to two trees; [world state](#world-state) and [account storage state](#account-storage-state).
+These operations are applied to two trees; [world state](#world-state) and
+[account storage state](#account-storage-state).
 
 ### World state
 
-The world state tree maps all accounts that exist on the blockchain—contracts and externally-owned accounts (EOAs)—and points towards the account storage state for each. While on Ethereum Mainnet, this data is stored in a standard trie, Linea uses the accumulator to map accounts as key:value pairs. Otherwise, the implementation is similar to the EVM.
+The world state tree maps all accounts that exist on the blockchain—contracts
+and externally-owned accounts (EOAs)—and points towards the account storage
+state for each. While on Ethereum Mainnet, this data is stored in a standard
+trie, Linea uses the accumulator to map accounts as key:value pairs. Otherwise,
+the implementation is similar to the EVM.
 
 Their structure is as follows:
 
 - `HKey`: Hash(`address`)
-- `Val`: Hash(`nonce`, `balance`, `storageRoot`, `codeHash`, `keccakCodeHash`, `CodeSize`)
+- `Val`: Hash(`nonce`, `balance`, `storageRoot`, `codeHash`, `keccakCodeHash`,
+  `CodeSize`)
 
-Critically, every piece of data fed into the `Val` (value) hash function must have a finite field interpretation. The data must be formatted this way to enable the Linea prover to correctly access the world state when verifying proofs. Each element is formatted as follows (all elements require one field, other than `keccakCodeHash`):
+Critically, every piece of data fed into the `Val` (value) hash function must
+have a finite field interpretation. The data must be formatted this way to
+enable the Linea prover to correctly access the world state when verifying
+proofs. Each element is formatted as follows (all elements require one field,
+other than `keccakCodeHash`):
 
-- `nonce`: The nonce is written in big-endian form into a `byte32`. For instance if the nonce is 10, then the nonce should be encoded as `0x000000000000000000000000000000000000000000000000000000000000000a`.
+- `nonce`: The nonce is written in big-endian form into a `byte32`. For instance
+  if the nonce is 10, then the nonce should be encoded as
+  `0x000000000000000000000000000000000000000000000000000000000000000a`.
 - `balance`: Formatted the same as the nonce; big-endian `byte32`.
-- `storageRoot`: The storage root should _not_ be the Keccak of the Patricia trie root as in the EVM, but the “custom Merkle tree” root of the account storage state that we describe in the [following section](#account-storage-state).
-- `codeHash`: The code hash should not be the Keccak of the code, it should instead be the one obtained as described in the following section.
-- 2 field elements for `keccakCodeHash`: One for the 128 most significant bits and one for the 128 least significant bits. The Keccak code hash corresponds exactly to the Keccak hash as specified by the EVM (i.e. the output of [EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052). We keep the Keccak and the “custom” version for practical reasons.
-- `codeSize`: The code size should be the same value as that returned by the CODESIZE/EXTCODESIZE opcodes.
+- `storageRoot`: The storage root should _not_ be the Keccak of the Patricia
+  trie root as in the EVM, but the “custom Merkle tree” root of the account
+  storage state that we describe in the
+  [following section](#account-storage-state).
+- `codeHash`: The code hash should not be the Keccak of the code, it should
+  instead be the one obtained as described in the following section.
+- 2 field elements for `keccakCodeHash`: One for the 128 most significant bits
+  and one for the 128 least significant bits. The Keccak code hash corresponds
+  exactly to the Keccak hash as specified by the EVM (i.e. the output of
+  [EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052). We keep the Keccak and
+  the “custom” version for practical reasons.
+- `codeSize`: The code size should be the same value as that returned by the
+  CODESIZE/EXTCODESIZE opcodes.
 
 ### Account storage state
 
-Also referred to as the storage trie, the account storage state is the database the state manager accesses to retrieve data about the contents of accounts. Account storage is mainly relevant for contract accounts; for EOAs, the data about assets and transactions is stored in the [world state](#world-state) `Val`, and the `codeHash` and its variants are empty.
+Also referred to as the storage trie, the account storage state is the database
+the state manager accesses to retrieve data about the contents of accounts.
+Account storage is mainly relevant for contract accounts; for EOAs, the data
+about assets and transactions is stored in the [world state](#world-state)
+`Val`, and the `codeHash` and its variants are empty.
 
-Since the main function of account storage is to record contracts in such a way that they can be easily retrieved and processed, it must efficiently encode the contract. It does this using the following format:
+Since the main function of account storage is to record contracts in such a way
+that they can be easily retrieved and processed, it must efficiently encode the
+contract. It does this using the following format:
 
 - `HKey`: Hash(`StorageKeyMSB`, `StorageKeyLSB`)
 - `Val`: Hash(`StorageValueMSB`, `StorageValueLSB`)
 
-In both cases, the `MSB` refers to the first 16 bytes of a 'word', and `LSB` the last 16. 'Word' in this context refers to the natural unit of data used by the EVM, which is 256-bit (32 byte) chunks.
+In both cases, the `MSB` refers to the first 16 bytes of a 'word', and `LSB` the
+last 16. 'Word' in this context refers to the natural unit of data used by the
+EVM, which is 256-bit (32 byte) chunks.
 
-For example, if the data regarding a contract's code was encoded in a `byte32`, the standard data type for words on the EVM and equivalents like Linea, it might look like this:
+For example, if the data regarding a contract's code was encoded in a `byte32`,
+the standard data type for words on the EVM and equivalents like Linea, it might
+look like this:
 
 ```
 [a0, a1, a2, …., a15, b0, b1, …, b15]
@@ -156,7 +272,14 @@ The `MSB` takes the first 16 bytes, and the `LSB` the second 16 bytes.
 The accumulator, built using a sparse Merkle tree, is simultaneously:
 
 - A data structure on which we can perform operations;
-- A dataset that we can summarize using a short string at any time (i.e. the root hash);
-- A tool that can be used by the Linea protocol to verify that a given operation triggered a transition from hash A to hash B.
+- A dataset that we can summarize using a short string at any time (i.e. the
+  root hash);
+- A tool that can be used by the Linea protocol to verify that a given operation
+  triggered a transition from hash A to hash B.
 
-Once the accumulator has processed the trace information it receives about a new block and updated state accordingly, it can pass a new state root hash to the prover, via the coordinator. The state root hash can then be used by the prover as a "witness": a verifiable method of proving that the transactions in each block have taken place, without having to divulge the nature of those transactions.
+Once the accumulator has processed the trace information it receives about a new
+block and updated state accordingly, it can pass a new state root hash to the
+prover, via the coordinator. The state root hash can then be used by the prover
+as a "witness": a verifiable method of proving that the transactions in each
+block have taken place, without having to divulge the nature of those
+transactions.

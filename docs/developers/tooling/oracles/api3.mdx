@@ -3,19 +3,33 @@ title: API3
 image: /img/socialCards/api3.jpg
 ---
 
-[API3](https://api3.org/) is a collaborative project to deliver traditional API services to smart contract platforms in a decentralized and trust-minimized way. It is governed by a decentralized autonomous organization (DAO), namely the [API3 DAO](https://api3.org/dao).
+[API3](https://api3.org/) is a collaborative project to deliver traditional API
+services to smart contract platforms in a decentralized and trust-minimized way.
+It is governed by a decentralized autonomous organization (DAO), namely the
+[API3 DAO](https://api3.org/dao).
 
 :::info
 
-Read more about how The API3 DAO works. [Click here](https://docs.api3.org/explore/dao-members/)
+Read more about how The API3 DAO works.
+[Click here](https://docs.api3.org/explore/dao-members/)
 
 :::
 
 ## Airnode
 
-Developers can use [Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html) to request off-chain data inside their Smart Contracts on Linea. An Airnode is a first-party oracle that pushes off-chain API data to your on-chain contract. Airnode lets API providers easily run their own first-party oracle nodes. That way, they can provide data to any on-chain dApp that's interested in their services, all without an intermediary.
+Developers can use
+[Airnode](https://docs.api3.org/explore/airnode/what-is-airnode.html) to request
+off-chain data inside their Smart Contracts on Linea. An Airnode is a
+first-party oracle that pushes off-chain API data to your on-chain contract.
+Airnode lets API providers easily run their own first-party oracle nodes. That
+way, they can provide data to any on-chain dApp that's interested in their
+services, all without an intermediary.
 
-An on-chain smart contract makes a request in the [RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/) contract (`AirnodeRrpV0.sol`) that adds the request to the event logs. The Airnode then accesses the event logs, fetches the API data and performs a callback to the requester with the requested data.
+An on-chain smart contract makes a request in the
+[RRP (Request Response Protocol)](https://docs.api3.org/reference/airnode/latest/concepts/)
+contract (`AirnodeRrpV0.sol`) that adds the request to the event logs. The
+Airnode then accesses the event logs, fetches the API data and performs a
+callback to the requester with the requested data.
 
 <div class="center-container">
   <div class="img-medium">
@@ -28,7 +42,10 @@ An on-chain smart contract makes a request in the [RRP (Request Response Protoco
 
 ## Requesting off-chain data by calling an Airnode
 
-Requesting off-chain data essentially involves triggering an Airnode and getting its response through your smart contract. The smart contract in this case would be the requester contract which will make a request to the desired off-chain Airnode and then capture its response.
+Requesting off-chain data essentially involves triggering an Airnode and getting
+its response through your smart contract. The smart contract in this case would
+be the requester contract which will make a request to the desired off-chain
+Airnode and then capture its response.
 
 The requester calling an Airnode primarily focuses on two tasks:
 
@@ -44,7 +61,8 @@ The requester calling an Airnode primarily focuses on two tasks:
   </div>
 </div>
 
-**Here is an example of a basic requester contract to request data from an Airnode:**
+**Here is an example of a basic requester contract to request data from an
+Airnode:**
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -107,7 +125,9 @@ contract Requester is RrpRequesterV0, Ownable {
 }
 ```
 
-The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have already been deployed on-chain. You can also try [deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
+The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have
+already been deployed on-chain. You can also try
+[deploying it on Remix](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/RequesterWithWithdrawal.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js)
 
 |   Contract   |                  Addresses                   |
 | :----------: | :------------------------------------------: |
@@ -115,23 +135,41 @@ The `_rrpAddress` is the main `airnodeRrpAddress`. The RRP Contracts have alread
 
 ### Request parameters
 
-The `makeRequest()` function expects the following parameters to make a valid request.
+The `makeRequest()` function expects the following parameters to make a valid
+request.
 
-- [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html): Specifies the Airnode Address.
-- [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html): Specifies which endpoint to be used.
-- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html) and [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet): Specifies which wallet will be used to fulfill the request.
-- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html): Specifies the API and Reserved Parameters (see [Airnode ABI specifications](https://docs.api3.org/reference/ois/latest/) for how these are encoded). Parameters can be encoded off-chain using `@airnode-abi` library.
+- [**`airnode`**](https://docs.api3.org/reference/airnode/latest/concepts/airnode.html):
+  Specifies the Airnode Address.
+- [**`endpointId`**](https://docs.api3.org/reference/airnode/latest/concepts/endpoint.html):
+  Specifies which endpoint to be used.
+- [**`sponsor`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html)
+  and
+  [**`sponsorWallet`**](https://docs.api3.org/reference/airnode/latest/concepts/sponsor.html#sponsorwallet):
+  Specifies which wallet will be used to fulfill the request.
+- [**`parameters`**](https://docs.api3.org/reference/ois/latest/reserved-parameters.html):
+  Specifies the API and Reserved Parameters (see
+  [Airnode ABI specifications](https://docs.api3.org/reference/ois/latest/) for
+  how these are encoded). Parameters can be encoded off-chain using
+  `@airnode-abi` library.
 
 ### Response parameters
 
 The callback to the Requester contains two parameters:
 
-- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid): First acquired when making the request and passed here as a reference to identify the request for which the response is intended.
-- **`data`**: In case of a successful response, this is the requested data which has been encoded and contains a timestamp in addition to other response data. Decode it using the `decode()` function from the `abi` object.
+- [**`requestId`**](https://docs.api3.org/reference/airnode/latest/concepts/request.html#requestid):
+  First acquired when making the request and passed here as a reference to
+  identify the request for which the response is intended.
+- **`data`**: In case of a successful response, this is the requested data which
+  has been encoded and contains a timestamp in addition to other response data.
+  Decode it using the `decode()` function from the `abi` object.
 
 :::note
 
-Sponsors should not fund a `sponsorWallet` with more than they can trust the Airnode with, as the Airnode controls the private key to the `sponsorWallet`. The deployer of such Airnode undertakes no custody obligations, and the risk of loss or misuse of any excess funds sent to the `sponsorWallet` remains with the sponsor.
+Sponsors should not fund a `sponsorWallet` with more than they can trust the
+Airnode with, as the Airnode controls the private key to the `sponsorWallet`.
+The deployer of such Airnode undertakes no custody obligations, and the risk of
+loss or misuse of any excess funds sent to the `sponsorWallet` remains with the
+sponsor.
 
 :::
 
@@ -139,15 +177,28 @@ Sponsors should not fund a `sponsorWallet` with more than they can trust the Air
 
 ## Using dAPIs - API3 datafeeds
 
-[dAPIs](https://docs.api3.org/reference/dapis/understand/) are continuously updated streams of off-chain data, such as the latest cryptocurrency, stock and commodity prices. They can power various decentralized applications such as DeFi lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+[dAPIs](https://docs.api3.org/reference/dapis/understand/) are continuously
+updated streams of off-chain data, such as the latest cryptocurrency, stock and
+commodity prices. They can power various decentralized applications such as DeFi
+lending, synthetic assets, stablecoins, derivatives, NFTs and more.
 
-The data feeds are continuously updated by [first-party oracles](https://docs.api3.org/explore/introduction/first-party.html) using signed data. dApp owners can read the on-chain value of any dAPI in real-time.
+The data feeds are continuously updated by
+[first-party oracles](https://docs.api3.org/explore/introduction/first-party.html)
+using signed data. dApp owners can read the on-chain value of any dAPI in
+real-time.
 
-Due to being composed of first-party data feeds, dAPIs offer security, transparency, cost-efficiency and scalability in a turn-key package.
+Due to being composed of first-party data feeds, dAPIs offer security,
+transparency, cost-efficiency and scalability in a turn-key package.
 
-Apart from relying on deviation threshold and heartbeat configuration updates, unlike traditional data feeds, [OEV Network](https://docs.api3.org/explore/introduction/oracle-extractable-value.html) enables dApps using dAPIs to auction off the right to update the data feeds to searcher bots. Searcher bots can bid for price updates through the OEV Network to update the data feeds. All the OEV proceeds go back to the dApp.
+Apart from relying on deviation threshold and heartbeat configuration updates,
+unlike traditional data feeds,
+[OEV Network](https://docs.api3.org/explore/introduction/oracle-extractable-value.html)
+enables dApps using dAPIs to auction off the right to update the data feeds to
+searcher bots. Searcher bots can bid for price updates through the OEV Network
+to update the data feeds. All the OEV proceeds go back to the dApp.
 
-The [API3 Market](https://market.api3.org/linea) enables users to connect to a dAPI and access the associated data feed services.
+The [API3 Market](https://market.api3.org/linea) enables users to connect to a
+dAPI and access the associated data feed services.
 
 <div class="center-container">
   <div class="img-large">
@@ -162,11 +213,18 @@ The [API3 Market](https://market.api3.org/linea) enables users to connect to a d
 
 ### Subscribing to dAPIs
 
-The [API3 Market](https://market.api3.org/linea) lets users access dAPIs on both [Linea Mainnet](https://market.api3.org/linea) and [Testnet](https://market.api3.org/linea-sepolia-testnet).
+The [API3 Market](https://market.api3.org/linea) lets users access dAPIs on both
+[Linea Mainnet](https://market.api3.org/linea) and
+[Testnet](https://market.api3.org/linea-sepolia-testnet).
 
 #### Exploring, selecting and configuring your dAPI
 
-The [API3 Market](https://market.api3.org/linea) provides a list of all the dAPIs available across multiple chains including testnets. You can filter the list by mainnet or testnet chains. After selecting the chain, you can now search for a specific dAPI by name. Once selected, you will land on the details page (eg ETH/USD on Linea Testnet) where you can find more information about the dAPI.
+The [API3 Market](https://market.api3.org/linea) provides a list of all the
+dAPIs available across multiple chains including testnets. You can filter the
+list by mainnet or testnet chains. After selecting the chain, you can now search
+for a specific dAPI by name. Once selected, you will land on the details page
+(eg ETH/USD on Linea Testnet) where you can find more information about the
+dAPI.
 
 The current supported configurations for dAPIs are:
 
@@ -187,11 +245,15 @@ The current supported configurations for dAPIs are:
 
 :::note
 
-If a dAPI is already activated, make sure to check the expiration date and update parameters. You can update the parameters and extend the subscription by purchasing a new configuration.
+If a dAPI is already activated, make sure to check the expiration date and
+update parameters. You can update the parameters and extend the subscription by
+purchasing a new configuration.
 
 :::
 
-After selecting the dAPI and the configuration, you will be presented with an option to purchase the dAPI and activate it. Make sure to check the time and amount of the subscription. If everything looks good, click on Purchase.
+After selecting the dAPI and the configuration, you will be presented with an
+option to purchase the dAPI and activate it. Make sure to check the time and
+amount of the subscription. If everything looks good, click on Purchase.
 
 <div class="center-container">
   <div class="img-small">
@@ -199,11 +261,13 @@ After selecting the dAPI and the configuration, you will be presented with an op
   </div>
 </div>
 
-You can then connect your wallet and confirm the transaction. Once it's confirmed, you will be able to see the updated configuration for the dAPI.
+You can then connect your wallet and confirm the transaction. Once it's
+confirmed, you will be able to see the updated configuration for the dAPI.
 
 #### Getting the proxy address
 
-Once you are done configuring and activating the dAPI, you can now integrate it. To do so, click on the **Integrate** button on the dAPI details page.
+Once you are done configuring and activating the dAPI, you can now integrate it.
+To do so, click on the **Integrate** button on the dAPI details page.
 
 <div class="center-container">
   <div class="img-large">
@@ -211,7 +275,8 @@ Once you are done configuring and activating the dAPI, you can now integrate it.
   </div>
 </div>
 
-You can now see the deployed proxy contract address. You can now use this to read from the configured dAPI.
+You can now see the deployed proxy contract address. You can now use this to
+read from the configured dAPI.
 
 ### Reading from a dAPI
 
@@ -251,19 +316,33 @@ contract DataFeedReaderExample is Ownable {
 
 - `setProxyAddress()` is used to set the address of the dAPI Proxy Contract.
 
-- `readDataFeed()` is a view function that returns the latest price of the set dAPI.
+- `readDataFeed()` is a view function that returns the latest price of the set
+  dAPI.
 
-You can read more about dAPIs [here](https://docs.api3.org/guides/dapis/subscribing-to-dapis/).
+You can read more about dAPIs
+[here](https://docs.api3.org/guides/dapis/subscribing-to-dapis/).
 
 ### [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DapiReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js)
 
 ## API3 QRNG
 
-[API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility provided with the courtesy of Australian National University (ANU), Quintessence Labs and Quantum Blockchains. It is powered by an Airnode deployed by the QRNG Providers, meaning that it is a first-party service. It is served as a public good and is free of charge (apart from the gas costs), and it provides ‘true’ quantum randomness via an easy-to-use solution when requiring RNG on-chain.
+[API3 QRNG](https://docs.api3.org/explore/qrng/) is a public utility provided
+with the courtesy of Australian National University (ANU), Quintessence Labs and
+Quantum Blockchains. It is powered by an Airnode deployed by the QRNG Providers,
+meaning that it is a first-party service. It is served as a public good and is
+free of charge (apart from the gas costs), and it provides ‘true’ quantum
+randomness via an easy-to-use solution when requiring RNG on-chain.
 
-To request randomness on-chain, the requester submits a request for a random number to `AirnodeRrpV0`. The QRNG Airnode gathers the request from the `AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the requester with the random number.
+To request randomness on-chain, the requester submits a request for a random
+number to `AirnodeRrpV0`. The QRNG Airnode gathers the request from the
+`AirnodeRrpV0` protocol contract, retrieves the random number off-chain, and
+sends it back to `AirnodeRrpV0`. Once received, it performs a callback to the
+requester with the random number.
 
-Click here to check out the [`AirnodeRrpV0`](https://docs.api3.org/reference/qrng/chains.html) and available [QRNG Providers' addresses](https://docs.api3.org/reference/qrng/providers.html) on Linea.
+Click here to check out the
+[`AirnodeRrpV0`](https://docs.api3.org/reference/qrng/chains.html) and available
+[QRNG Providers' addresses](https://docs.api3.org/reference/qrng/providers.html)
+on Linea.
 
 Here is an example of a basic `QrngRequester` that requests a random number:
 
@@ -399,15 +478,22 @@ contract QrngExample is RrpRequesterV0, Ownable {
 }
 ```
 
-- The `setRequestParameters()` takes in `airnode` (The Quantum Blockchains/Quintessence Airnode address) , `endpointIdUint256`, `sponsorWallet` and sets these parameters. You can get Airnode address and the endpoint ID [here](https://docs.api3.org/reference/qrng/providers.html).
+- The `setRequestParameters()` takes in `airnode` (The Quantum
+  Blockchains/Quintessence Airnode address) , `endpointIdUint256`,
+  `sponsorWallet` and sets these parameters. You can get Airnode address and the
+  endpoint ID [here](https://docs.api3.org/reference/qrng/providers.html).
 
-- The `makeRequestUint256()` function calls the `airnodeRrp.makeFullRequest()` function of the `AirnodeRrpV0.sol` protocol contract which adds the request to its storage and returns a `requestId`.
+- The `makeRequestUint256()` function calls the `airnodeRrp.makeFullRequest()`
+  function of the `AirnodeRrpV0.sol` protocol contract which adds the request to
+  its storage and returns a `requestId`.
 
-- The targeted off-chain Airnode gathers the request and performs a callback to the requester with the random number.
+- The targeted off-chain Airnode gathers the request and performs a callback to
+  the requester with the random number.
 
 [Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/QrngRequesterUpdated.sol&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.9+commit.e5eed63a.js&lang=en)
 
-You can try QRNG on Linea for free. Check out all the QRNG Providers for Linea [here](https://docs.api3.org/reference/qrng/providers.html).
+You can try QRNG on Linea for free. Check out all the QRNG Providers for Linea
+[here](https://docs.api3.org/reference/qrng/providers.html).
 
 [Click here to read more about API3 QRNG](https://docs.api3.org/explore/qrng/)
 

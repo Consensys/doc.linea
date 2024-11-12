@@ -7,11 +7,16 @@ image: /img/socialCards/thirdweb.jpg
 
 ### thirdweb SDK
 
-thirdweb's Smart Wallet SDK allows you to implement EIP-4337-compliant smart contract-enabled accounts on Linea, and leverages Pimlico infrastructure for Bundler and Paymaster.
+thirdweb's Smart Wallet SDK allows you to implement EIP-4337-compliant smart
+contract-enabled accounts on Linea, and leverages Pimlico infrastructure for
+Bundler and Paymaster.
 
-A smart contract-enabled account, or _smart account_, is a type of web3 account that can be customized and managed by smart contracts.
+A smart contract-enabled account, or _smart account_, is a type of web3 account
+that can be customized and managed by smart contracts.
 
-This smart account is unlocked by a private key. This key can be held in MetaMask, on your local machine, or elsewhere, and is used as a way to 'sign in' to the account.
+This smart account is unlocked by a private key. This key can be held in
+MetaMask, on your local machine, or elsewhere, and is used as a way to 'sign in'
+to the account.
 
 ### Benefits of Smart Contract-Enabled Accounts:
 
@@ -24,7 +29,10 @@ This smart account is unlocked by a private key. This key can be held in MetaMas
 
 ### Use cases for the thirdweb Smart Wallet SDK:
 
-As a dapp developer, you may want to control the user experience from the onboarding phase and embed a smart wallet in your dapp by default. thirdweb's Smart Wallet SDK will help you to do this with low-code, with Node.js, and React templates.
+As a dapp developer, you may want to control the user experience from the
+onboarding phase and embed a smart wallet in your dapp by default. thirdweb's
+Smart Wallet SDK will help you to do this with low-code, with Node.js, and React
+templates.
 
 You can find the documentation on thirdweb's Smart Wallet here:
 

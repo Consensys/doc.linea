@@ -3,7 +3,10 @@ title: Arkham
 image: /img/socialCards/arkham.jpg
 ---
 
-[Arkham](https://platform.arkhamintelligence.com/) is a crypto intelligence platform that systematically analyzes blockchain transactions, showing users the people and companies behind blockchain activity, with a suite of advanced tools for analyzing their activity.
+[Arkham](https://platform.arkhamintelligence.com/) is a crypto intelligence
+platform that systematically analyzes blockchain transactions, showing users the
+people and companies behind blockchain activity, with a suite of advanced tools
+for analyzing their activity.
 
 Access Arkham [here](https://platform.arkhamintelligence.com/)
 

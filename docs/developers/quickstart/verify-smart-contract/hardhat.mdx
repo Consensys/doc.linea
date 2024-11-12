@@ -3,7 +3,9 @@ title: Hardhat
 image: /img/socialCards/hardhat.jpg
 ---
 
-To verify your Hardhat contracts, use [Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan) to verify contracts on Lineascan.
+To verify your Hardhat contracts, use
+[Hardhat's Etherscan plugin](https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan)
+to verify contracts on Lineascan.
 
 :::note
 
@@ -11,15 +13,22 @@ This is included as part of the `hardhat-toolbox` plugin.
 
 :::
 
-These steps assume you stored your secret keys in a `.env` file. which you can read more about [in the Hardhat deployment instructions](../deploy-smart-contract/hardhat.mdx#deploy-the-contract).
+These steps assume you stored your secret keys in a `.env` file. which you can
+read more about
+[in the Hardhat deployment instructions](../deploy-smart-contract/hardhat.mdx#deploy-the-contract).
 
 ## Download the plugin
 
-If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use `@nomicfoundation/hardhat-verify` instead. Find the instructions on how to add it to your project [here](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#installation).
+If you aren't already using `@nomicfoundation/hardhat-toolbox`, you can use
+`@nomicfoundation/hardhat-verify` instead. Find the instructions on how to add
+it to your project
+[here](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-verify#installation).
 
 ## Add your Lineascan API Key
 
-Obtain a Lineascan (Linea instance of Etherscan) key by creating an account at [https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your key, and add it to the `.env` file:
+Obtain a Lineascan (Linea instance of Etherscan) key by creating an account at
+[https://lineascan.build/myapikey](https://lineascan.build/myapikey). Grab your
+key, and add it to the `.env` file:
 
 ```
 LINEASCAN_API_KEY=YOUR_API_KEY_HERE
@@ -35,7 +44,10 @@ const { PRIVATE_KEY, LINEASCAN_API_KEY } = process.env;
 
 :::note
 
-These instructions verify using the Linea instance of Etherscan, which currently doesn't support Yul. If you would like to verify using Blockscout, please use the [Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
+These instructions verify using the Linea instance of Etherscan, which currently
+doesn't support Yul. If you would like to verify using Blockscout, please use
+the
+[Blockscout API URL for the required network](../info-contracts.mdx#block-explorers).
 
 :::
 
@@ -101,7 +113,8 @@ etherscan: {
 
 :::note
 
-The Etherscan `apiKey` and network name for your custom chain must match the network name under `networks` in your `hardhat.config.js`.
+The Etherscan `apiKey` and network name for your custom chain must match the
+network name under `networks` in your `hardhat.config.js`.
 
 :::
 
@@ -126,7 +139,8 @@ npx hardhat verify --network linea_sepolia <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT
   </TabItem>
 </Tabs>
 
-You should see something that looks a little like this if verifying on Linea Sepolia:
+You should see something that looks a little like this if verifying on Linea
+Sepolia:
 
 ```bash
 npx hardhat verify --network linea_sepolia 0x3Af089fee468eb7fcf750e929321b0D7f7845f5C "1893456000"
@@ -150,11 +164,16 @@ https://sepolia.lineascan.build/address/address/0x3Af089fee468eb7fcf750e929321b0
 
 :::note
 
-If you get an error saying that the address doesn't have bytecode, it probably means that Etherscan has not indexed your contract yet. In that case, wait for a while and then try again.
+If you get an error saying that the address doesn't have bytecode, it probably
+means that Etherscan has not indexed your contract yet. In that case, wait for a
+while and then try again.
 
 :::
 
-You can check that it was verified correctly by navigating to the [testnet block explorer](https://sepolia.lineascan.build/) or the [mainnet block explorer](https://lineascan.build/) and pasting in the deployed contract address.
+You can check that it was verified correctly by navigating to the
+[testnet block explorer](https://sepolia.lineascan.build/) or the
+[mainnet block explorer](https://lineascan.build/) and pasting in the deployed
+contract address.
 
 :::info
 

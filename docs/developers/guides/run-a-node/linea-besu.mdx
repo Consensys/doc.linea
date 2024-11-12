@@ -11,17 +11,23 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-Linea Besu is an implementation of the Besu client that extends its functionality using plugins adapted specifically for Linea, such as the [Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
+Linea Besu is an implementation of the Besu client that extends its
+functionality using plugins adapted specifically for Linea, such as the
+[Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
 
-Plugins enable full functionality for the node. For example, Linea-specific API endpoints like `linea_estimateGas` require the `linea-sequencer` plugin. Plugins are installed with the `advanced` profile during the configuration steps.
+Plugins enable full functionality for the node. For example, Linea-specific API
+endpoints like `linea_estimateGas` require the `linea-sequencer` plugin. Plugins
+are installed with the `advanced` profile during the configuration steps.
 
 :::warning
 
-The `advanced` profile option doesn't currently support macOS/ARM. Please use Linux/ARM or Windows/X86_64.
+The `advanced` profile option doesn't currently support macOS/ARM. Please use
+Linux/ARM or Windows/X86_64.
 
 :::
 
-We recommend using Linea Besu over standard Besu if you intend to run a node to interact with the blockchain, rather than just following it. Use Linea Besu if:
+We recommend using Linea Besu over standard Besu if you intend to run a node to
+interact with the blockchain, rather than just following it. Use Linea Besu if:
 
 - You are responsible for operating nodes as a service for others to use.
 - You want to use Linea with a personal, private RPC endpoint.
@@ -30,13 +36,16 @@ We recommend using Linea Besu over standard Besu if you intend to run a node to 
 
 ### Step 1. Download the Linea Besu package
 
-[Download the latest version](https://github.com/Consensys/linea-besu-package/releases) of the Linea Besu package from the releases page.
+[Download the latest version](https://github.com/Consensys/linea-besu-package/releases)
+of the Linea Besu package from the releases page.
 
-:::note Find the **Assets** subheading on the latest release and download the file named `linea-besu-package-<version>.tar.gz`. :::
+:::note Find the **Assets** subheading on the latest release and download the
+file named `linea-besu-package-<version>.tar.gz`. :::
 
 ### Step 2. Extract the package contents
 
-The `linea-besu-package-<version>.tar.gz` is a compressed file; move it to the directory of your choice and extract it.
+The `linea-besu-package-<version>.tar.gz` is a compressed file; move it to the
+directory of your choice and extract it.
 
 ```bash
 tar -xzvf linea-besu-package-<version>.tar.gz
@@ -46,12 +55,15 @@ tar -xzvf linea-besu-package-<version>.tar.gz
 
 Define a volume size appropriate to your expected usage. Besu nodes use:
 
-- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
-- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
+- Full node:
+  <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+- Archive node:
+  <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
 
 <LastUpdated />
 
-Use these figures as a basis to determine the extent to which you want to future-proof your node.
+Use these figures as a basis to determine the extent to which you want to
+future-proof your node.
 
 Ensure you mount the `data-path` to the custom volume when you start the node.
 
@@ -59,7 +71,9 @@ Ensure you mount the `data-path` to the custom volume when you start the node.
 
 ### Step 4. Select a profile
 
-In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define the parameters for each possible profile you can select for your Linea Besu node.
+In the extracted directory, find `profiles`. The `.toml` configuration files in
+this folder define the parameters for each possible profile you can select for
+your Linea Besu node.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -80,9 +94,12 @@ In the extracted directory, find `profiles`. The `.toml` configuration files in 
 
 ### Step 5. Start the Linea Besu client
 
-In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, `profiles` etc. directories are.
+In a terminal, navigate to the `linea-besu-package-<version>` directory, where
+the `bin`, `genesis`, `profiles` etc. directories are.
 
-Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must only be defined if you are running an `advanced` node, since this is needed to query finalization on L1.
+Now run Linea Besu, specifying your preferred profile. The
+`--plugin-linea-l1-rpc-endpoint` must only be defined if you are running an
+`advanced` node, since this is needed to query finalization on L1.
 
 <Tabs groupId="networks" className="my-tabs">
     <TabItem value="mainnet" label="Mainnet">
@@ -97,7 +114,8 @@ Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rp
     </TabItem>
 </Tabs>
 
-The node will attempt to find peers to begin synchronizing and to download the world state.
+The node will attempt to find peers to begin synchronizing and to download the
+world state.
 
 ## Run using Docker
 
@@ -107,7 +125,11 @@ Download and install [Docker](https://www.docker.com/products/docker-desktop/).
 
 ### Step 1. Download the relevant `docker-compose.yaml` file
 
-Access the [`/docker` directory](https://github.com/Consensys/linea-besu-package/tree/main/docker) in the Linea Besu repository. There are several `.yaml` files here corresponding to Besu profiles. Each profile enables you to run a node with different Linea Besu plugin configurations depending on your use case.
+Access the
+[`/docker` directory](https://github.com/Consensys/linea-besu-package/tree/main/docker)
+in the Linea Besu repository. There are several `.yaml` files here corresponding
+to Besu profiles. Each profile enables you to run a node with different Linea
+Besu plugin configurations depending on your use case.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -128,7 +150,8 @@ Access the [`/docker` directory](https://github.com/Consensys/linea-besu-package
 
 ### Step 2. Update IP address
 
-In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your public IP address:
+In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your
+public IP address:
 
 ```yaml
 --p2p-host=103.10.10.10
@@ -136,13 +159,15 @@ In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your pu
 
 :::tip
 
-You can use [this page](https://www.whatismyip.com/) to find your public IP address.
+You can use [this page](https://www.whatismyip.com/) to find your public IP
+address.
 
 :::
 
 ### Step 3. Configure your L1 RPC endpoint
 
-If you're using an `advanced` profile, insert your preferred L1 RPC endpoint in the `docker-compose.yaml` file:
+If you're using an `advanced` profile, insert your preferred L1 RPC endpoint in
+the `docker-compose.yaml` file:
 
 ```yaml
 --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT

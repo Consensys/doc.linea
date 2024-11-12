@@ -1,6 +1,7 @@
 ---
 title: eth_sendRawTransaction
-description: Simulate transaction submission to help prevent failed transactions.
+description:
+  Simulate transaction submission to help prevent failed transactions.
 image: /img/socialCards/ethsendrawtransaction.jpg
 ---
 
@@ -8,21 +9,34 @@ image: /img/socialCards/ethsendrawtransaction.jpg
 
 :::note
 
-`eth_sendRawTransaction` is functionally very similar to the [Ethereum Mainnet equivalent](https://docs.infura.io/api/networks/ethereum/json-rpc-methods/eth_sendrawtransaction).
+`eth_sendRawTransaction` is functionally very similar to the
+[Ethereum Mainnet equivalent](https://docs.infura.io/api/networks/ethereum/json-rpc-methods/eth_sendrawtransaction).
 
-The difference lies in the [error responses](#errors). On Linea, `eth_sendRawTransaction` has some unique error responses.
+The difference lies in the [error responses](#errors). On Linea,
+`eth_sendRawTransaction` has some unique error responses.
 
 :::
 
-Submits a pre-signed and serialized transaction and returns the transaction hash if successful. This endpoint can help prevent transactions being rejected due to exceeding the sequencer's per-block line limit. If the line count check fails, it returns an error message indicating the transaction is likely to be rejected.
+Submits a pre-signed and serialized transaction and returns the transaction hash
+if successful. This endpoint can help prevent transactions being rejected due to
+exceeding the sequencer's per-block line limit. If the line count check fails,
+it returns an error message indicating the transaction is likely to be rejected.
 
 :::info
 
-Please note the error relating to exceeding the line limit is only available on Besu nodes using version `delivery-25` or later, together with `linea-sequencer` v0.1.4-test28 or later.
+Please note the error relating to exceeding the line limit is only available on
+Besu nodes using version `delivery-25` or later, together with `linea-sequencer`
+v0.1.4-test28 or later.
 
 :::
 
-On Linea, each transaction is represented by a sequence of lines representing the operations happening at the EVM level. These lines are grouped by modules and are used as inputs to the prover. In order to limit the resources required to generate proofs, limits are enforced on the maximum number of lines each module can have. Hence, when a transaction is considered for inclusion in a block, a [line count check is performed to ensure it conforms to the requirements](../../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
+On Linea, each transaction is represented by a sequence of lines representing
+the operations happening at the EVM level. These lines are grouped by modules
+and are used as inputs to the prover. In order to limit the resources required
+to generate proofs, limits are enforced on the maximum number of lines each
+module can have. Hence, when a transaction is considered for inclusion in a
+block, a
+[line count check is performed to ensure it conforms to the requirements](../../../architecture/stack/trace-expansion-proving/prover-limits.mdx).
 
 ## Parameters
 
@@ -30,7 +44,8 @@ On Linea, each transaction is represented by a sequence of lines representing th
 
 ## Returns
 
-The 32-byte transaction hash, or the zero hash if the transaction is not yet available.
+The 32-byte transaction hash, or the zero hash if the transaction is not yet
+available.
 
 ## Example
 
@@ -57,10 +72,14 @@ curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
 
 ### Gas price too low
 
-The error `Gas price too low` is thrown when the transaction's gas is too low; specifically, the offered gas doesn't create enough of a buffer to ensure that Linea can cover the costs of finalizing the transaction on L1.
+The error `Gas price too low` is thrown when the transaction's gas is too low;
+specifically, the offered gas doesn't create enough of a buffer to ensure that
+Linea can cover the costs of finalizing the transaction on L1.
 
 ### Transaction line count above limit
 
-This error will display in the format: `Transaction line count for module [A] is above the limit [B]`
+This error will display in the format:
+`Transaction line count for module [A] is above the limit [B]`
 
-Where `[A]` is the module for which the number of lines is above the maximum allowed value `[B]`, with `[B]` a parameter of the system.
+Where `[A]` is the module for which the number of lines is above the maximum
+allowed value `[B]`, with `[B]` a parameter of the system.

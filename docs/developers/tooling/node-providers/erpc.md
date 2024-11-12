@@ -5,7 +5,9 @@ image: /img/socialCards/erpc.jpg
 
 # Linea RPC Proxy and Caching
 
-[eRPC](https://erpc.cloud/) is a fault-tolerant EVM RPC proxy and re-org aware permanent caching solution. It is built with read-heavy use-cases in mind such as data indexing and high-load frontend usage.
+[eRPC](https://erpc.cloud/) is a fault-tolerant EVM RPC proxy and re-org aware
+permanent caching solution. It is built with read-heavy use-cases in mind such
+as data indexing and high-load frontend usage.
 
 - [Github](https://github.com/erpc/erpc)
 - [Docs](https://docs.erpc.cloud/)
@@ -17,7 +19,8 @@ image: /img/socialCards/erpc.jpg
 
 # Quickstart
 
-1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file:
+1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example)
+   configuration file:
 
 ```yaml filename="erpc.yaml"
 logLevel: debug
@@ -30,7 +33,8 @@ projects:
       - endpoint: evm+alchemy://xxxx-my-alchemy-api-key-xxxx
 ```
 
-View [the complete config example](https://docs.erpc.cloud/config/example) for inspiration.
+View [the complete config example](https://docs.erpc.cloud/config/example) for
+inspiration.
 
 2. Use the Docker image:
 
@@ -65,9 +69,11 @@ cd erpc
 docker-compose up -d
 ```
 
-5. Open Grafana at [http://localhost:3000](http://localhost:3000) and login with the following credentials:
+5. Open Grafana at [http://localhost:3000](http://localhost:3000) and login with
+   the following credentials:
 
 - username: `admin`
 - password: `admin`
 
-6. Send more requests and watch the metrics being collected and visualized in Grafana.
+6. Send more requests and watch the metrics being collected and visualized in
+   Grafana.
