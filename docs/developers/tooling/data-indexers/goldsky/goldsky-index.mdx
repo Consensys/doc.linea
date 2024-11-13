@@ -8,7 +8,8 @@ To get started with Goldsky Index:
 
 1. Create an account at **[app.goldsky.com](https://app.goldsky.com/)**.
 2. Choose a plan that best fits your needs.
-3. Create an API key on the **[Settings page](https://app.goldsky.com/dashboard/settings)**.
+3. Create an API key on
+   the **[Settings page](https://app.goldsky.com/dashboard/settings)**.
 4. Install the Goldsky CLI:
 
    ```bash
@@ -29,13 +30,16 @@ To get started with Goldsky Index:
    goldsky subgraph deploy my-subgraph/1.0.0
    ```
 
-7. Alternative, subgraphs can be deployed using Goldsky’s instant subgraph functionality
+7. Alternative, subgraphs can be deployed using Goldsky’s instant subgraph
+   functionality
 
    ```bash
    goldsky subgraph deploy <subgraphName>/<subgraphVersion> --from-abi <path-to-config-file>
    ```
 
-   Config files for instant subgraphs are written in JSON and outline key information such as the chain, contract address, and path to ABI file. Example of a basic configuration file below.
+   Config files for instant subgraphs are written in JSON and outline key
+   information such as the chain, contract address, and path to ABI file.
+   Example of a basic configuration file below.
 
    ```bash
    {
@@ -58,8 +62,11 @@ To get started with Goldsky Index:
    }
    ```
 
-8. Once deployed, you can access data using the GraphQL API link provided, and review all deployed subgraphs with `goldsky subgraph list` or at app.goldsky.com.
+8. Once deployed, you can access data using the GraphQL API link provided, and
+   review all deployed subgraphs with `goldsky subgraph list` or at
+   app.goldsky.com.
 
 ---
 
-For more detail & context, and the full CLI reference, visit [Goldsky’s docs](https://docs.goldsky.com/indexing).
+For more detail & context, and the full CLI reference, visit
+[Goldsky’s docs](https://docs.goldsky.com/indexing).
