@@ -18,7 +18,7 @@ Learn more about ReservoirKit [here](https://docs.reservoir.tools/reference/rese
 
 # [Open-source marketplace](https://docs.reservoir.tools/reference/open-source-marketplace)
 
-Reservoir's open-source marketplace is a NextJS app that you can fork and use freely as a stand alone marketplace or a base for building something more custom and unique. You can checkout our fully-functional reference deployment [here](https://marketplace.reservoir.tools/).
+Reservoir's open-source marketplace is a NextJS app that you can fork and use freely as a standalone marketplace or a base for building something more custom and unique. You can checkout our fully-functional reference deployment [here](https://marketplace.reservoir.tools/).
 
 Learn more about our Open-source Marketplace [here](https://docs.reservoir.tools/reference/open-source-marketplace).
 
