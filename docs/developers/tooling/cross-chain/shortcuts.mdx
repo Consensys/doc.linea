@@ -4,6 +4,8 @@ description: No-code tool for executing multiple DeFi actions in one transaction
 image: /img/socialCards/onthis-shortcuts.jpg
 ---
 
+import ShortcutsDiagram from "/img/developers/tooling/cross_chain/shortcuts/Shortcuts.svg"
+
 A Shortcut allows users to execute onchain actions by sending funds to a contract address.
 
 Each Shortcut is a unique smart contract designed to carry out the desired function. Shortcuts are
@@ -29,13 +31,8 @@ bridging ETH to Linea:
 More complex Shortcuts can do additional things: bridge and swap, bridge and deposit to a liquidity 
 pool, bridge and stake/restake. The developer's imagination is the only limit.
 
-<div class="center-container">
-  <div class="img-large">
-      <img
-        src="/img/article_images/Build_on_Linea/Tooling_and_infrastructure/Cross-chain/Shortcuts/Shortcuts.svg"
-        alt="Shortcuts diagram"
-      />
-  </div>
+<div className="img-large">
+  <ShortcutsDiagram alt="Shortcuts Diagram" />
 </div>
 
 ## How it works (technical)

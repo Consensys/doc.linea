@@ -1,12 +1,15 @@
 ---
 title: Besu
 description: Install the Besu client to run a Linea node.
+image: /img/socialCards/besu.jpg
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
+import NodeSize from "../../../../src/components/NodeSize";
+import LastUpdated from "../../../../src/components/LastUpdated";
 
 [Besu](https://besu.hyperledger.org/) is an open source Ethereum client developed under the
 Apache 2.0 license and written in Java.
@@ -55,10 +58,12 @@ Download the genesis file and Besu configuration file.
 
 ### Step 3. Define disk space volume (optional) \{#disk-space-besu}
 
-Define a volume size appropriate to your expected usage. As of March 20 2024, Besu nodes use:
+Define a volume size appropriate to your expected usage. Besu nodes use: 
 
-- Full nodes: 120GB, growing ~1.5GB per day.
-- Archive nodes: 740GB, growing ~9.5GB per day.
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
+
+<LastUpdated />
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
@@ -69,7 +74,7 @@ Ensure you mount the Besu `data-path` to the custom volume when you start the no
 
 <VolumeCreation />
 
-### Step 4. Configure the Besu configuration file.
+### Step 4. Configure the Besu configuration file
 
 In your Besu configuration file (`config-mainnet.toml` or `config-sepolia.toml`), configure
 the following options:
@@ -104,7 +109,7 @@ The Besu node will attempt to find peers to begin synchronizing and to download 
 
 :::warning Important
 
-The Besu Docker image does not run on Windows.
+The Besu Docker image doesn't run on Windows.
 
 :::
 

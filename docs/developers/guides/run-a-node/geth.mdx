@@ -1,12 +1,15 @@
 ---
 title: Geth
 description: Install the Geth client to run a Linea node.
+image: /img/socialCards/geth.jpg
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
+import NodeSize from "../../../../src/components/NodeSize";
+import LastUpdated from "../../../../src/components/LastUpdated";
 
 [Geth](https://geth.ethereum.org/) is an open-source Go implementation of Ethereum.
 
@@ -26,7 +29,7 @@ You can run Geth from a [binary distribution](#run-using-the-binary-distribution
 
 :::warning
 
-Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent versions are not 
+Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent versions aren't 
 supported. 
 
 :::
@@ -50,9 +53,12 @@ Download the genesis file for the relevant network.
 
 ### Step 3. Define disk space volume (optional) \{#disk-space-geth}
 
-Define a volume size appropriate to your expected usage. As of March 20 2024, Geth nodes use:
-- Full nodes: 170GB, growing ~2.6GB per day.
-- Archive nodes: 760GB, growing ~10GB per day.
+Define a volume size appropriate to your expected usage. Geth nodes use:
+
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-full-snapshot-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-geth-archive-0" />
+
+<LastUpdated />
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
@@ -143,7 +149,7 @@ Start the node using the following command:
 </Tabs>
 
 The Linea network only produces blocks if there is currently at least 1 pending transaction. If you see no incoming blocks
-to your node, **that does not mean that the node is not syncing**.
+to your node, **that doesn't mean that the node is not syncing**.
 
 **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes**;
 otherwise, you might not be connected to the Linea network.

@@ -1,12 +1,15 @@
 ---
 title: Linea Besu
 description: Install the Besu client to run a Linea node.
+image: /img/socialCards/linea-besu.jpg
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
+import NodeSize from "../../../../src/components/NodeSize";
+import LastUpdated from "../../../../src/components/LastUpdated";
 
 Linea Besu is an implementation of the Besu client that extends its functionality using plugins
 adapted specifically for Linea, such as the
@@ -18,7 +21,7 @@ Plugins are installed with the `advanced` profile during the configuration steps
 
 :::warning
 
-The `advanced` profile option does not currently support macOS/ARM. Please use 
+The `advanced` profile option doesn't currently support macOS/ARM. Please use 
 Linux/ARM or Windows/X86_64. 
 
 :::
@@ -49,7 +52,22 @@ and extract it.
 tar -xzvf linea-besu-package-<version>.tar.gz
 ```
 
-### Step 3. Select a profile
+### Step 3. Define disk space volume (optional) \{#disk-space-besu}
+
+Define a volume size appropriate to your expected usage. Besu nodes use: 
+
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v2-0" />
+
+<LastUpdated />
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the `data-path` to the custom volume when you start the node.
+
+<VolumeCreation />
+
+### Step 4. Select a profile
 
 In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define 
 the parameters for each possible profile you can select for your Linea Besu node. 
@@ -69,7 +87,7 @@ the parameters for each possible profile you can select for your Linea Besu node
   </TabItem>
 </Tabs>
 
-### Step 4. Start the Linea Besu client
+### Step 5. Start the Linea Besu client
 
 In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
 `profiles` etc. directories are. 

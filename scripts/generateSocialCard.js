@@ -83,7 +83,7 @@ async function generateSocialCard(title, outputPath) {
   // Construct the SVG with text elements for each line
   let svgText = `<svg width="1200" height="630">
         <style>
-        text { font: ${fontSize}px sans-serif; fill: #61dfff; font-weight: 600; }
+        text { font: ${fontSize}px sans-serif; fill: #190066; font-weight: 600; }
         </style>`;
 
   lines.forEach((line, index) => {

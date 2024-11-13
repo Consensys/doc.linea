@@ -1,74 +1,6 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docSidebar: [
-    "users/index",
-    {
-      type: "category",
-      collapsed: true,
-      label: "Move funds to Linea",
-      link: {
-        type: "doc",
-        id: "users/move-funds/index",
-      },
-      items: [
-        "users/move-funds/set-up-your-wallet",
-        "users/move-funds/fund",
-        "users/move-funds/bridge",
-      ],
-    },
-    {
-      type: "category",
-      label: "Linea Voyage",
-      link: {
-        type: "doc",
-        id: "users/linea-voyage/index",
-      },
-      items: [
-        "users/linea-voyage/lxp/index",
-        {
-          type: "category",
-          label: "The Surge",
-          link: {
-            type: "doc",
-            id: "users/linea-voyage/linea-surge/index",
-          },
-          items: [
-            "users/linea-voyage/linea-surge/linea-surge-model",
-            "users/linea-voyage/linea-surge/linea-surge-overview",
-          ],
-        },
-      ],
-    },
-    "users/zero-knowledge-glossary/index",
-    "risk-disclosures/index",
-    {
-      type: "category",
-      label: "Contact us",
-      items: [
-        {
-          type: "link",
-          label: "Get help",
-          href: "https://support.linea.build/",
-        },
-        {
-          type: "link",
-          label: "Provide feedback",
-          href: "https://community.linea.build/c/feedback",
-        },
-        {
-          type: "link",
-          label: "Report an issue",
-          href: "https://community.linea.build/c/bug-reports/",
-        },
-        {
-          type: "link",
-          label: "Join our Discord",
-          href: "https://discord.gg/linea",
-        },
-      ],
-    },
-  ],
-  developersSidebar: [
     {
       type: "category",
       label: "Getting started",
@@ -120,18 +52,6 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Gas",
-          link: {
-            type: "doc",
-            id: "developers/guides/gas/gas-fees",
-          },
-          items: [
-            "developers/guides/gas/gas-fees",
-            "developers/guides/gas/gas-on-linea",
-          ],
-        },
-        {
-          type: "category",
           label: "Bridge your tokens",
           link: {
             type: "doc",
@@ -169,6 +89,7 @@ const sidebars = {
             },
           ],
         },
+        "developers/guides/gas-fees",
         "developers/guides/linea-api",
         "developers/guides/linea-sdk/index",
         "developers/guides/finalized-block",
@@ -302,6 +223,7 @@ const sidebars = {
             },            
             "developers/tooling/data-indexers/dune",
             "developers/tooling/data-indexers/envio",
+            "developers/tooling/data-indexers/etherscan",
             "developers/tooling/data-indexers/flair",            
             {
               type: "category",
@@ -446,17 +368,27 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Community",
-      link: {
-        type: "doc",
-        id: "developers/community/hackathons",
-      },
+      label: "Contact",
       items: [
-        "developers/community/hackathons",
         {
           type: "link",
-          label: "Bug bounty program",
-          href: "https://immunefi.com/bounty/linea/",
+          label: "Support",
+          href: "https://support.linea.build/",
+        },
+        {
+          type: "link",
+          label: "Feedback",
+          href: "https://community.linea.build/c/feedback",
+        },
+        {
+          type: "link",
+          label: "Report an issue",
+          href: "https://community.linea.build/c/bug-reports/",
+        },
+        {
+          type: "link",
+          label: "Discord",
+          href: "https://discord.gg/linea",
         },
       ],
     },
