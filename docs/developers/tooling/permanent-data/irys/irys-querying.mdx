@@ -38,7 +38,7 @@ When building a query, any of the following values be included in your results:
 | Field | Description |
 |---|---|
 | `id` | The transaction ID. |
-| `address` | The address used when posting the transaction. Can be a native address from any of the chains supported by Irys. Note in query arguements, this is referred to as `owner`. |
+| `address` | The address used when posting the transaction. Can be a native address from any of the chains supported by Irys. Note in query arguments, this is referred to as `owner`. |
 | `token` | The token used to pay for the transaction. |
 | `receipt { `<br/>&nbsp;&nbsp;`deadlineHeight `<br/>&nbsp;&nbsp;`signature  `<br/>&nbsp;&nbsp;`version `<br/>`}` | An optional receipt, only exists if a user requested one at upload.<br/> `deadlineHeight`: The block number by which the transaction must be finalized. <br/>`signature`: A signed deep hash of the JSON receipt. |
 | `tags {    `<br/>&nbsp;&nbsp;`name     `<br/>&nbsp;&nbsp;`value`<br/>`}` | An array of tags supplied as name / value pairs. Exists if the user added them at upload. |
