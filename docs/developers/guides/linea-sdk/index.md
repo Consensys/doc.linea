@@ -47,8 +47,8 @@ A new L1ClaimingService class that includes the following functions:
 
 Two new functions in the L1 contract:
 
-- estimateClaimWithProofGas: This functions estimates the gas cost for new claim transactions.
-- claimWithProof: This functions claims a message using the new claimMessageWithProof function.
+- estimateClaimWithProofGas: This function estimates the gas cost for new claim transactions.
+- claimWithProof: This function claims a message using the new claimMessageWithProof function.
 
 :::
 
