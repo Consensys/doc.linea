@@ -449,6 +449,10 @@ const config = {
             to: "/developers/tooling",
             from: "/build-on-linea/tooling",
           },
+          {
+            to: "/developers/tooling/libraries/walletconnect",
+            from: "/developers/tooling/libraries/wallet-connect",
+          }
         ],
       },
     ],
