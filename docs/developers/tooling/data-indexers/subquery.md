@@ -19,7 +19,7 @@ Other advantages include superior performance with multiple RPC endpoint configu
 
 Take a look at this SubQuery Starter Project that introduces SubQuery's Linea support by indexing [Linea](https://github.com/subquery/ethereum-subql-starter/tree/main/Linea/linea-starter).
 
-You can also follow along this [step by step guide](https://academy.subquery.network/quickstart/quickstart.html) to get familiar with SubQuery.
+You can also follow along this [step-by-step guide](https://academy.subquery.network/quickstart/quickstart.html) to get familiar with SubQuery.
 
 # Running and hosting your Linea SubQuery APIs
 
