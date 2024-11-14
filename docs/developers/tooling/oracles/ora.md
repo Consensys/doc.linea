@@ -11,7 +11,7 @@ ORA breaks down the limitations of smart contracts by offering verifiable AI inf
 
 ## OAO Quickstart
 
-This quickstart is designed to help you to build a smart contract on Linea able to interact with OAO. You can find more details in [our docs Quickstart](https://docs.ora.io/doc/oao-onchain-ai-oracle/develop-guide).
+This quickstart is designed to help you build a smart contract on Linea able to interact with OAO. You can find more details in [our docs Quickstart](https://docs.ora.io/doc/oao-onchain-ai-oracle/develop-guide).
 
 ### Workflow
 
@@ -56,7 +56,7 @@ aiOracle.requestCallback(modelId, input, address(this), gas_limit, callbackData)
 
 **Two models** are available on Linea: Stable Diffusion (ID: 50) and Llama3 8B Instruct (ID: 11).
 
-[Prompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) and [SimplePrompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) are both example smart contracts interacted with OAO.
+[Prompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) and [SimplePrompt](https://docs.ora.io/doc/oao-onchain-ai-oracle/reference) are both example smart contracts that interacted with OAO.
 
 For simpler application scenarios (eg. Prompt Engineering-based AI like GPTs), you can directly use Prompt or SimplePrompt.
 
