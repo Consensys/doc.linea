@@ -55,8 +55,7 @@ data.
 
 ## Get started
 
-1. Clone the
-   [starter boilerplate](https://github.com/flair-sdk/starter-boilerplate)
+1. Clone the [starter boilerplate](https://github.com/flair-sdk/starter-boilerplate)
    template and follow the instructions:
 
 ```bash
@@ -70,8 +69,7 @@ Boilerplate instructions will create a **new cluster**, generate **an API Key**,
 and set up a `manifest.yml` to index your **first contract** with **sample
 custom processor** scripts.
 
-Learn more about the
-[structure of `manifest.yml`](https://docs.flair.dev/reference/manifest.yml).
+Learn more about the [structure of `manifest.yml`](https://docs.flair.dev/reference/manifest.yml).
 
 :::
 
@@ -102,10 +100,9 @@ Learn more about the
 }
 ```
 
-3. Sync some historical data using the
-   [`backfill` command](https://docs.flair.dev/reference/backfilling). Remember
-   that the `enabled: true` flag in your `config` already enables your indexer
-   to capture data in real-time.
+3. Sync some historical data using the [`backfill` command](https://docs.flair.dev/reference/backfilling).
+Remember that the `enabled: true` flag in your `config` already enables your
+indexer to capture data in real-time.
 
 ```bash
 # backfill certain contracts or block ranges
@@ -118,8 +115,7 @@ pnpm flair backfill --chain 59140 --min-timestamp="30 mins ago" -d backward
 
 4. [Query](https://docs.flair.dev/#getting-started) your custom indexed data.
 
-5. Stream the data to your
-   [own database](https://docs.flair.dev/reference/database#your-own-database).
+5. Stream the data to your [own database](https://docs.flair.dev/reference/database#your-own-database).
 
 ## Examples
 
