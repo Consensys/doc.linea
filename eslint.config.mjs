@@ -48,7 +48,6 @@ export default [
     ],
 }, ...fixupConfigRules(compat.extends(
     "plugin:react/recommended",
-    "airbnb-typescript",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
 )), {
