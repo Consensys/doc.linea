@@ -1,6 +1,5 @@
 import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
 import react from "eslint-plugin-react";
-import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11Y from "eslint-plugin-jsx-a11y";
 import _import from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
@@ -44,6 +43,8 @@ export default [
         "**/sidebars.js",
         "**/LICENSE",
         "**/*.json",
+        "**/.docusaurus/**/*",
+        "**/.releaserc.js",
     ],
 }, ...fixupConfigRules(compat.extends(
     "plugin:react/recommended",
@@ -53,7 +54,6 @@ export default [
 )), {
     plugins: {
         react: fixupPluginRules(react),
-        "react-hooks": fixupPluginRules(reactHooks),
         "jsx-a11y": jsxA11Y,
         import: fixupPluginRules(_import),
         prettier: fixupPluginRules(prettier),
