@@ -124,44 +124,24 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "developers/quickstart/index",
+            docId: "get-started/index",
             position: "left",
-            label: "Quickstart",
+            label: "Get started",
           },
           {
             type: "doc",
-            docId: "developers/guides/index",
+            docId: "learn/index",
             position: "left",
-            label: "Guides",
-          },
-          // { can add this section back if we want it
-          //   type: "dropdown",
-          //   label: "Tutorials",
-          //   position: "left",
-          //   items: [
-          //     {
-          //       label: "Community Guides",
-          //       to: "blog",
-          //     },
-          //     {
-          //       label: "ZK Glossary",
-          //       to: "/zero-knowledge-glossary",
-          //     },
-          //   ],
-          // },
-          {
-            to: "/developers/guides/run-a-node",
-            position: "left",
-            label: "Run a node",
+            label: "Learn",
           },
           {
-            type: "doc",
-            docId: "architecture/index",
+            type: "dock"
+            to: "api/index",
             position: "left",
-            label: "Architecture",
+            label: "API & SDK",
           },
           {
-            to: "/developers/linea-version",
+            to: "release-notes.mdx",
             position: "right",
             className: "header-release-notes-link"
           },
