@@ -64,10 +64,10 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          // @ts-ignore
-          // eslint-disable-next-line global-require
-          remarkPlugins: [require("remark-docusaurus-tabs")],
-          remarkPlugins: [math],
+          remarkPlugins: [
+            require("remark-docusaurus-tabs"),
+            math
+          ],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
@@ -135,8 +135,8 @@ const config = {
             label: "Learn",
           },
           {
-            type: "dock"
-            to: "api/index",
+            type: "doc",
+            docId: "api/index",
             position: "left",
             label: "API & SDK",
           },

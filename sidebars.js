@@ -49,7 +49,7 @@ const sidebars = {
             {
               type: "category",
               label: "Verify a smart contract",
-              link {
+              link: {
                 type: "doc",
                 id: "get-started/how-to/verify-smart-contract/index",
               },
@@ -82,7 +82,7 @@ const sidebars = {
               link: {
                 type: "doc",
                 id: "get-started/how-to/run-a-node/index",
-              }
+              },
               items: [
                 "get-started/how-to/run-a-node/besu",
                 "get-started/how-to/run-a-node/erigon",
@@ -149,7 +149,7 @@ const sidebars = {
               label: "Account abstraction",
               link: {
                 type: "doc",
-                id: "get-started/tooling/account-abstraction/account-abstraction",
+                id: "get-started/tooling/account-abstraction/index",
               },
               items: [
                 "get-started/tooling/account-abstraction/arcana",
@@ -192,12 +192,12 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Cloud infrastructure",
+              label: "AI",
               link: {
                 type: "doc",
-                id: "get-started/tooling/cloud-infra/index",
+                id: "get-started/tooling/ai/index",
               },
-              items: ["get-started/tooling/cloud-infra/spheron"],
+              items: ["get-started/tooling/ai/spheron"],
             },
             {
               type: "category",
@@ -391,7 +391,7 @@ const sidebars = {
           items: [
             {
               type: "category",
-              label: "Irys"
+              label: "Irys",
               link: {
                 type: "doc",
                 id: "learn/ecosystem-tutorials/irys/index"
@@ -409,11 +409,11 @@ const sidebars = {
   apiSidebar: [
     {
       type: "category",
-      label: "API & SDK"
+      label: "API & SDK",
       link: {
         type: "doc",
         id: "api/index"
-      }
+      },
       items: [
         "api/linea-api",
         "api/linea-sdk",
