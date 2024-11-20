@@ -154,3 +154,13 @@ curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
 ```
 
 See the [reference page](../reference/api/linea-estimategas.mdx) for full usage.
+
+## Blocknative Gas API & Extension
+To help developers and users estimate fees on Linea, please reference the associated APIs provided by Blocknative. Their estimates are based on real-time Linea data and  ML modeling to accurately and consistently estimate Linea transaction fees. Linea fee estimation is also available in their [Browser Extension](https://www.blocknative.com/gas-extension)
+
+** Using Blocknative's Gas API
+
+To leverage Blocknative's Gas API, you will need an [API Key](https://docs.blocknative.com/gas-prediction/gas-platform). Once you have an API key, you can request fee estimation for Linea:
+
+```
+curl -H "Authorization: your-apikey-here" https://api.blocknative.com/gasprices/blockprices?chainid=59144
