@@ -14,131 +14,141 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
 export default [
-    {
-        files: [
-            "**/*.js",
-            "**/*.jsx",
-            "**/*.ts",
-            "**/*.tsx"
-        ]
-    },
-    {
+  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  },
+  {
     ignores: [
-        "**/build/",
-        "**/.eslintrc.js",
-        "docs/test-api",
-        "./node_modules/*",
-        "**/*.md",
-        "**/*.mdx",
-        "**/*.mp4",
-        "**/*.mov",
-        "src/components/cardlist.jsx",
-        "src/components/HomepageCards/index.tsx",
-        "**/sidebars.js",
-        "**/LICENSE",
-        "**/*.json",
-        "**/.docusaurus/**/*",
-        "**/.releaserc.js",
+      "**/build/",
+      "**/.eslintrc.js",
+      "docs/test-api",
+      "./node_modules/*",
+      "**/*.md",
+      "**/*.mdx",
+      "**/*.mp4",
+      "**/*.mov",
+      "src/components/cardlist.jsx",
+      "src/components/HomepageCards/index.tsx",
+      "**/sidebars.js",
+      "**/LICENSE",
+      "**/*.json",
+      "**/.docusaurus/**/*",
+      "**/.releaserc.js",
     ],
-}, ...fixupConfigRules(compat.extends(
-    "plugin:react/recommended",
-    "plugin:import/typescript",
-    "plugin:prettier/recommended",
-)), {
+  },
+  ...fixupConfigRules(
+    compat.extends(
+      "plugin:react/recommended",
+      "plugin:import/typescript",
+      "plugin:prettier/recommended",
+    ),
+  ),
+  {
     plugins: {
-        react: fixupPluginRules(react),
-        "jsx-a11y": jsxA11Y,
-        import: fixupPluginRules(_import),
-        prettier: fixupPluginRules(prettier),
-        "@typescript-eslint": typescriptEslint,
+      react: fixupPluginRules(react),
+      "jsx-a11y": jsxA11Y,
+      import: fixupPluginRules(_import),
+      prettier: fixupPluginRules(prettier),
+      "@typescript-eslint": typescriptEslint,
     },
 
     languageOptions: {
-        globals: {
-            ...globals.browser,
+      globals: {
+        ...globals.browser,
+      },
+      parser: tsParser,
+      ecmaVersion: 2020,
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
         },
-
-        parser: tsParser,
-        ecmaVersion: 2020,
-        sourceType: "module",
-
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: true,
-            },
-
-            project: ["./tsconfig.json"],
-        },
+        project: ["./tsconfig.json"],
+      },
     },
 
     settings: {
-        react: {
-            pragma: "React",
-            fragment: "Fragment",
-            version: "detect",
-        },
-
-        "import/parsers": {
-            "@typescript-eslint/parser": [".ts", ".tsx"],
-        },
-
-        "import/resolver": {
-            typescript: {},
-        },
+      react: {
+        pragma: "React",
+        fragment: "Fragment",
+        version: "detect",
+      },
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+      "import/resolver": {
+        typescript: {},
+      },
     },
 
     rules: {
-        "react/jsx-filename-extension": [1, {
-            extensions: [".js", ".tsx", ".jsx"],
-        }],
-
-        "import/prefer-default-export": 0,
-        "react/prop-types": 0,
-
-        "import/no-unresolved": ["error", {
-            ignore: ["^@theme", "^@docusaurus", "^@site"],
-        }],
-
-        "no-nested-ternary": 0,
-        "no-console": 0,
-        "no-unused-vars": 0,
-        "no-use-before-define": 0,
-        "arrow-body-style": 0,
-        "jsx-a11y/anchor-is-valid": 0,
-        "jsx-a11y/no-static-element-interactions": 0,
-        "jsx-a11y/click-events-have-key-events": 0,
-        "@typescript-eslint/no-unused-expressions": 0,
-
-        "@typescript-eslint/no-unused-vars": ["warn", {
-            args: "none",
-        }],
-
-        "@typescript-eslint/no-use-before-define": "warn",
-        "react/require-default-props": 0,
-        "react/jsx-props-no-spreading": 0,
-        "react/button-has-type": 0,
-
-        "jsx-a11y/label-has-associated-control": ["error", {
-            labelComponents: [],
-            labelAttributes: [],
-            controlComponents: [],
-            assert: "either",
-            depth: 2,
-        }],
-
-        "@typescript-eslint/naming-convention": ["error", {
-            selector: "variableLike",
-            leadingUnderscore: "forbid",
-            trailingUnderscore: "forbid",
-            format: ["camelCase", "PascalCase", "UPPER_CASE"],
-        }],
-
-        "import/extensions": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          extensions: [".js", ".tsx", ".jsx"],
+        },
+      ],
+      "import/prefer-default-export": 0,
+      "react/prop-types": 0,
+      "import/no-unresolved": [
+        "error",
+        {
+          ignore: ["^@theme", "^@docusaurus", "^@site"],
+        },
+      ],
+      "no-nested-ternary": 0,
+      "no-console": 0,
+      "no-unused-vars": 0,
+      "no-use-before-define": 0,
+      "arrow-body-style": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "jsx-a11y/no-static-element-interactions": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "@typescript-eslint/no-unused-expressions": 0,
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          args: "none",
+        },
+      ],
+      "@typescript-eslint/no-use-before-define": "warn",
+      "react/require-default-props": 0,
+      "react/jsx-props-no-spreading": 0,
+      "react/button-has-type": 0,
+      "jsx-a11y/label-has-associated-control": [
+        "error",
+        {
+          labelComponents: [],
+          labelAttributes: [],
+          controlComponents: [],
+          assert: "either",
+          depth: 2,
+        },
+      ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          selector: "variableLike",
+          leadingUnderscore: "forbid",
+          trailingUnderscore: "forbid",
+          format: ["camelCase", "PascalCase", "UPPER_CASE"],
+        },
+        {
+          selector: "variable",
+          filter: {
+            regex: "^__(?:dirname|filename)$",
+            match: true,
+          },
+          format: null,
+        },
+      ],
+      "import/extensions": 0,
     },
-}];
+  },
+];
