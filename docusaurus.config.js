@@ -43,8 +43,8 @@ const config = {
   },
 
   scripts: [
-    {src: "/js/getfeedback.js", defer: true, async: true},
-    {src: "/js/navbarHighlight.js", defer: true}
+    { src: "/js/getfeedback.js", defer: true, async: true },
+    { src: "/js/navbarHighlight.js", defer: true },
   ],
 
   markdown: {
@@ -53,7 +53,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true
+    experimental_faster: true,
   },
 
   presets: [
@@ -66,8 +66,6 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          // @ts-ignore
-          // eslint-disable-next-line global-require
           remarkPlugins: [require("remark-docusaurus-tabs")],
           remarkPlugins: [math],
           rehypePlugins: [katex],
@@ -165,7 +163,7 @@ const config = {
           {
             to: "/developers/linea-version",
             position: "right",
-            className: "header-release-notes-link"
+            className: "header-release-notes-link",
           },
           {
             href: "https://discord.gg/linea",
