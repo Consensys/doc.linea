@@ -4,7 +4,8 @@
         "from": [
             "/developers/bridge-architecture/message-service",
             "/developers/use-message-bridge",
-            "/architecture/stack/canonical-msg-service/message-service"
+            "/architecture/stack/canonical-msg-service/message-service",
+            "/architecture/stack/canonical-msg-service"
         ]
     },
     {
@@ -148,7 +149,8 @@
         "to": "/get-started/concepts/canonical-token-bridge",
         "from": [
             "/architecture/bridges",
-            "/architecture/stack/bridges"
+            "/architecture/stack/bridges",
+            "/architecture/stack/bridges/canonical-token-bridge"
         ]
     },
     {
@@ -235,5 +237,21 @@
     {
         "to": "/get-started/tooling/libraries/walletconnect",
         "from": "/developers/tooling/libraries/wallet-connect"
+    },
+    {
+        "to": "/get-started/concepts/architecture",
+        "from": "/architecture"
+    },
+    {
+        "to": "/get-started/build/repos",
+        "from": "/architecture/stack"
+    },
+    {
+        "to": "/get-started/concepts/sequencer/conflation",
+        "from": "/architecture/stack/sequencer/conflation"
+    },
+    {
+        "to": "/get-started/concepts/sequencer/traces-generator",
+        "from": "/architecture/stack/sequencer/traces-generator"
     }
 ]
