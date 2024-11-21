@@ -8,6 +8,7 @@ const sidebars = {
         type: "doc",
         id: "get-started/index",
       },
+      collapsed: false,
       items: [
         {
           type: "category",
@@ -16,6 +17,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/build/index",
           },
+          collapsed: false,
           items: [
             "get-started/build/ethereum-differences",
             "get-started/build/info-contracts",
@@ -29,6 +31,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/index",
           },
+          collapsed: false,
           items: [
             {
               type: "category",
@@ -100,6 +103,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/concepts/index",
           },
+          collapsed: false,
           items: [
             "get-started/concepts/architecture",
             "get-started/concepts/decentralization",
@@ -380,6 +384,7 @@ const sidebars = {
         type: "doc",
         id: "learn/index",
       },
+      collapsed: false,
       items: [
         {
           type: "category",
@@ -388,6 +393,7 @@ const sidebars = {
             type: "doc",
             id: "learn/ecosystem-tutorials/index"
           },
+          collapsed: false,
           items: [
             {
               type: "category",
@@ -414,6 +420,7 @@ const sidebars = {
         type: "doc",
         id: "api/index"
       },
+      collapsed: false,
       items: [
         "api/linea-sdk",
         {
@@ -423,6 +430,7 @@ const sidebars = {
             type: "doc",
             id: "api/reference/index"
           },
+          collapsed: false,
           items: [
             "api/reference/eth-sendrawtransaction",
             "api/reference/linea-estimategas",
