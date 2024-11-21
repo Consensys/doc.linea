@@ -1,7 +1,7 @@
-require('dotenv').config();
-const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
+require("dotenv").config();
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
 
 // Function to calculate the daily increase using "Range", matching the "Reduce" transformation in Grafana
 const calculateDailyIncrease = (values) => {
@@ -9,11 +9,12 @@ const calculateDailyIncrease = (values) => {
   values.sort((a, b) => a[0] - b[0]);
 
   // Calculate the total time range in days
-  const timeRangeDays = (values[values.length - 1][0] - values[0][0]) / (24 * 60 * 60);
+  const timeRangeDays =
+    (values[values.length - 1][0] - values[0][0]) / (24 * 60 * 60);
 
   // Find the minimum and maximum values
-  const minValue = Math.min(...values.map(v => parseFloat(v[1])));
-  const maxValue = Math.max(...values.map(v => parseFloat(v[1])));
+  const minValue = Math.min(...values.map((v) => parseFloat(v[1])));
+  const maxValue = Math.max(...values.map((v) => parseFloat(v[1])));
 
   // Calculate the range (difference between max and min)
   const rangeIncrease = maxValue - minValue;
@@ -27,27 +28,28 @@ const calculateDailyIncrease = (values) => {
 // Helper function to get week number
 function getWeekNumber(d) {
   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-  var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-  var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
   return weekNo;
 }
 
 const fetchData = async () => {
-  console.log('Starting data fetch...');
+  console.log("Starting data fetch...");
 
-  const user = process.env.LINEA_OBSERVABILITY_USER;
-  const password = process.env.LINEA_OBSERVABILITY_PASS;
-  const baseUrl = 'https://mimir.o11y.web3factory.consensys.net/prometheus/api/v1/query_range';
+  const baseUrl =
+    "https://mimir.o11y.web3factory.consensys.net/prometheus/api/v1/query_range";
 
-  const configFilePath = path.join(__dirname, '../linea-node-size/config.json');
+  const configFilePath = path.join(__dirname, "../linea-node-size/config.json");
   console.log(`Reading configuration from ${configFilePath}`);
-  const config = JSON.parse(fs.readFileSync(configFilePath, 'utf8'));
+  const config = JSON.parse(fs.readFileSync(configFilePath, "utf8"));
 
   const results = [];
 
   for (const { network, cluster, pvc } of config) {
-    console.log(`Fetching data for network: ${network}, cluster: ${cluster}, pvc: ${pvc}`);
+    console.log(
+      `Fetching data for network: ${network}, cluster: ${cluster}, pvc: ${pvc}`,
+    );
 
     // Subtracts available bytes from capacity bytes to get the used bytes
     const query = `
@@ -71,24 +73,28 @@ const fetchData = async () => {
         },
       });
 
-      console.log(`Response received for network: ${network}, cluster: ${cluster}, pvc: ${pvc}`);
+      console.log(
+        `Response received for network: ${network}, cluster: ${cluster}, pvc: ${pvc}`,
+      );
       const result = response.data.data.result[0];
       let values = result.values;
-
       console.log(`Number of data points received: ${values.length}`);
-      
       if (values.length >= 2) {
         const startTime = new Date(values[0][0] * 1000);
         const endTime = new Date(values[values.length - 1][0] * 1000);
         const timeDiffHours = (endTime - startTime) / (1000 * 60 * 60);
-        console.log(`Time range: ${startTime.toISOString()} to ${endTime.toISOString()}`);
+        console.log(
+          `Time range: ${startTime.toISOString()} to ${endTime.toISOString()}`,
+        );
         console.log(`Time difference: ${timeDiffHours.toFixed(2)} hours`);
       }
 
       // Filter out invalid data points
-      values = values.filter(value => !isNaN(parseFloat(value[1])));
+      values = values.filter((value) => !isNaN(parseFloat(value[1])));
       if (values.length !== result.values.length) {
-        console.warn(`Filtered out ${result.values.length - values.length} invalid data points for ${pvc}`);
+        console.warn(
+          `Filtered out ${result.values.length - values.length} invalid data points for ${pvc}`,
+        );
       }
 
       // Total size = last value in the series
@@ -96,9 +102,12 @@ const fetchData = async () => {
       // Daily increase calculated using the "Range" method
       const dailyIncrease = calculateDailyIncrease(values);
 
-      console.log(`${pvc} - Total size: ${totalSize} bytes (${(totalSize / (1024 * 1024 * 1024)).toFixed(2)} GiB)`);
-      console.log(`${pvc} - Daily increase: ${dailyIncrease} bytes (${(dailyIncrease / (1024 * 1024 * 1024)).toFixed(2)} GiB)`);
-
+      console.log(
+        `${pvc} - Total size: ${totalSize} bytes (${(totalSize / (1024 * 1024 * 1024)).toFixed(2)} GiB)`,
+      );
+      console.log(
+        `${pvc} - Daily increase: ${dailyIncrease} bytes (${(dailyIncrease / (1024 * 1024 * 1024)).toFixed(2)} GiB)`,
+      );
       results.push({
         network,
         cluster,
@@ -108,16 +117,19 @@ const fetchData = async () => {
         timestamp: new Date().toISOString(),
       });
     } catch (err) {
-      console.error(`Error fetching data for ${network}, ${cluster}, ${pvc}:`, err);
+      console.error(
+        `Error fetching data for ${network}, ${cluster}, ${pvc}:`,
+        err,
+      );
     }
   }
 
   // Write data to /linea-node-size/data.json
-  const dataFilePath = path.join(__dirname, '../linea-node-size/data.json');
+  const dataFilePath = path.join(__dirname, "../linea-node-size/data.json");
   let existingData = {};
-  
+
   if (fs.existsSync(dataFilePath)) {
-    const fileContent = fs.readFileSync(dataFilePath, 'utf8');
+    const fileContent = fs.readFileSync(dataFilePath, "utf8");
     existingData = JSON.parse(fileContent);
   }
 
@@ -128,12 +140,12 @@ const fetchData = async () => {
   if (!existingData[currentYear]) {
     existingData[currentYear] = {};
   }
-  
+
   existingData[currentYear][currentWeek] = results;
 
   console.log(`Writing results to ${dataFilePath}`);
   fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
-  console.log('Node size data fetched and saved.');
+  console.log("Node size data fetched and saved.");
 };
 
 fetchData();
