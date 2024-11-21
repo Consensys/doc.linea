@@ -18,7 +18,7 @@ changed.
 
 :::
 
-The main task of the state manager is to receive blocks that have been executed by the [sequencer](../sequencer/index.mdx) 
+The main task of the state manager is to receive blocks that have been executed by the [sequencer](./sequencer/index.mdx) 
 and use the trace data from their execution to update the state of the network. Linea uses two 
 data structure types to manage state: 
 1. A Merkle-Patricia Trie to record the world state, maintain consensus, and process blocks. This 
@@ -26,7 +26,7 @@ mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethere
 2. A variant of regular Merkle trees called a sparse Merkle tree (SMT), which is used to more 
 efficiently track, manage, and update storage slots representing accounts. 
 
-It then passes this updated network state information to the [prover](../trace-expansion-proving/index.mdx) 
+It then passes this updated network state information to the [prover](./prover/index.mdx) 
 in the form of Merkle proofs for submission to Ethereum Mainnet (L1). 
 
 Below, we'll explain the element of Linea's state management in greater detail, focussing on the 
