@@ -1,14 +1,14 @@
 // components/LastUpdated.js
-import React from 'react';
-import nodeSizeData from '../../linea-node-size/data.json';
+import React from "react";
+import nodeSizeData from "../../linea-node-size/data.json";
 
 const LastUpdated = () => {
   const formatDate = (timestamp) => {
-    return new Date(timestamp).toLocaleString('en-US', {
-      timeZone: 'UTC',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+    return new Date(timestamp).toLocaleString("en-US", {
+      timeZone: "UTC",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -35,7 +35,11 @@ const LastUpdated = () => {
   const latestTimestamp = getLatestTimestamp(nodeSizeData);
 
   if (!latestTimestamp) {
-    return <p><em>No update data available</em></p>;
+    return (
+      <p>
+        <em>No update data available</em>
+      </p>
+    );
   }
 
   return (

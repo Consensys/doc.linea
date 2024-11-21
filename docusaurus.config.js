@@ -3,6 +3,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const math = require("remark-math");
 const katex = require("rehype-katex");
+const redirectsData = require("./redirects.json");
 
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
@@ -41,8 +42,8 @@ const config = {
   },
 
   scripts: [
-    {src: "/js/getfeedback.js", defer: true, async: true},
-    {src: "/js/navbarHighlight.js", defer: true}
+    { src: "/js/getfeedback.js", defer: true, async: true },
+    { src: "/js/navbarHighlight.js", defer: true },
   ],
 
   markdown: {
@@ -51,7 +52,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true
+    experimental_faster: true,
   },
 
   presets: [
@@ -64,8 +65,6 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          // @ts-ignore
-          // eslint-disable-next-line global-require
           remarkPlugins: [require("remark-docusaurus-tabs")],
           remarkPlugins: [math],
           rehypePlugins: [katex],
@@ -163,7 +162,7 @@ const config = {
           {
             to: "/developers/linea-version",
             position: "right",
-            className: "header-release-notes-link"
+            className: "header-release-notes-link",
           },
           {
             href: "https://discord.gg/linea",
@@ -281,175 +280,7 @@ const config = {
     [
       "@docusaurus/plugin-client-redirects",
       {
-        redirects: [
-          {
-            to: "/architecture/stack/canonical-msg-service/message-service",
-            from: [
-              "/developers/bridge-architecture/message-service",
-              "/developers/use-message-bridge",
-            ],
-          },
-          {
-            to: "/developers/quickstart",
-            from: "/developers/deploy-smart-contracts",
-          },
-          {
-            to: "/zero-knowledge-glossary",
-            from: [
-              "/reference/glossary", 
-              "/users/zero-knowledge-glossary"
-            ],
-          },
-          {
-            to: "/",
-            from: [
-              "/get-started",
-              "/get-started/fund",
-              "/get-started/configure-metamask",
-              "/get-started/quickstart",
-              "/use-zkevm",
-              "/use-linea/index.md",
-              "/build-on-linea/use-linea-testnet/fund",
-              "/use-mainnet/fund",
-              "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
-              "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
-              "/use-mainnet/set-up-your-wallet",
-              "/build-on-linea/use-linea-testnet/set-up-your-wallet",
-              "/use-mainnet",
-            ],
-          },
-          {
-            to: "/developers/quickstart/info-contracts",
-            from: "/build-on-linea/use-linea-testnet/info-contracts",
-          },
-          {
-            to: "/developers/guides/bridge/how-to-bridge-eth",
-            from: "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
-          },
-          {
-            to: "/developers/guides/bridge",
-            from: "/build-on-linea/use-linea-testnet/bridge-funds",
-          },
-          {
-            to: "/developers/guides/gas-fees",
-            from: [
-              "/use-mainnet/gas-import",
-              "/build-on-linea/gas-fees",
-              "/developers/guides/gas/gas-fees",
-              "/use-mainnet/gas-on-linea",
-              "/developers/guides/gas/gas-on-linea"
-            ],
-          },
-          {
-            to: "/developers/reference/api/linea-estimategas",
-            from: "/reference/api/linea-estimategas",
-          },
-          {
-            to: "/developers/guides/bridge",
-            from: "/use-mainnet/bridges-of-linea",
-          },
-          {
-            to: "/developers/quickstart/info-contracts",
-            from: "/use-mainnet/info-contracts",
-          },
-          {
-            to: "/developers/guides/linea-api",
-            from: "/build-on-linea/quickstart/rpc",
-          },
-          {
-            to: "/developers/quickstart/ethereum-differences",
-            from: "/build-on-linea/ethereum-differences",
-          },
-          {
-            to: "/developers/guides/run-a-node",
-            from: [
-              "/build-on-linea/run-a-node",
-              "/build-on-linea/run-a-node/use-binary",
-              "/build-on-linea/run-a-node/use-docker",
-              "/developers/guides/run-a-node/use-docker",
-              "/developers/guides/run-a-node/use-binary",
-            ],
-          },
-          {
-            to: "/developers/guides/linea-inscriptions",
-            from: "/build-on-linea/tooling/linea-inscriptions",
-          },
-          {
-            to: "/developers/guides/linea-safe",
-            from: "/build-on-linea/tooling/linea-safe",
-          },
-          {
-            to: "/developers/tooling/permanent-data/irys/irys-querying",
-            from: "/developers/tooling/permanent-data/irys/irys-query-package",
-          },
-          {
-            to: "/architecture/overview/decentralization-roadmap",
-            from: [
-              "/use-mainnet/decentralization-roadmap",
-              "/decentralization-roadmap",
-            ],
-          },
-          {
-            to: "/architecture/overview/transaction-lifecycle",
-            from: "/architecture/transaction-lifecycle",
-          },
-          {
-            to: "/architecture/overview/network-data",
-            from: "/architecture/network-data",
-          },
-          {
-            to: "/architecture/stack/bridges",
-            from: "/architecture/bridges",
-          },
-          {
-            to: "/architecture/stack/canonical-msg-service",
-            from: "/architecture/canonical-msg-service",
-          },
-          {
-            to: "/architecture/stack/coordinator",
-            from: "/architecture/coordinator",
-          },
-          {
-            to: "/architecture/stack/evm-state-manager",
-            from: "/architecture/evm-state-manager",
-          },
-          {
-            to: "/architecture/stack/sequencer",
-            from: "/architecture/sequencer",
-          },
-          {
-            to: "/architecture/stack/trace-expansion-proving",
-            from: "/architecture/trace-expansion-proving",
-          },
-          {
-            to: "/developers/tooling/cross-chain/shortcuts",
-            from: "/build-on-linea/tooling/cross-chain/shortcuts",
-          },
-          {
-            to: "/developers/tooling/node-providers",
-            from: "/build-on-linea/tooling/node-providers",
-          },
-          {
-            to: "/developers/linea-version",
-            from: "/build-on-linea/linea-version",
-          },
-          {
-            to: "/developers/quickstart",
-            from: "/developers/quickstart/goerli-to-sepolia",
-          },
-          {
-            to: "/developers/tooling/data-indexers/dipdup/overview",
-            from: "/developers/tooling/data-indexers/dipdup",
-          },
-          {
-            to: "/developers/quickstart",
-            from: "/build-on-linea/quickstart",
-          },
-          {
-            to: "/developers/tooling",
-            from: "/build-on-linea/tooling",
-          },
-        ],
+        redirects: redirectsData,
       },
     ],
   ],
