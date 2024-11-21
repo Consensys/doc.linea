@@ -21,7 +21,6 @@
     {
         "to": "/",
         "from": [
-            "/get-started",
             "/get-started/fund",
             "/get-started/configure-metamask",
             "/get-started/quickstart",
@@ -40,7 +39,8 @@
         "to": "/get-started/build/info-contracts",
         "from": [
             "/build-on-linea/use-linea-testnet/info-contracts",
-            "/developers/quickstart/info-contracts"
+            "/developers/quickstart/info-contracts",
+            "/use-mainnet/info-contracts"
         ]
     },
     {
@@ -54,7 +54,8 @@
         "to": "/get-started/how-to/bridge",
         "from": [
             "/build-on-linea/use-linea-testnet/bridge-funds",
-            "/developers/guides/bridge"
+            "/developers/guides/bridge",
+            "/use-mainnet/bridges-of-linea"
         ]
     },
     {
@@ -73,20 +74,6 @@
         "from": [
             "/reference/api/linea-estimategas",
             "/developers/reference/api/linea-estimategas"
-        ]
-    },
-    {
-        "to": "/get-started/how-to/bridge",
-        "from": [
-            "/use-mainnet/bridges-of-linea",
-            "/developers/guides/bridge"
-        ]
-    },
-    {
-        "to": "/get-started/build/info-contracts",
-        "from": [
-            "/use-mainnet/info-contracts",
-            "/developers/quickstart/info-contracts"
         ]
     },
     {

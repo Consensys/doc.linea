@@ -28,7 +28,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Guides",
-    link: "/developers/guides",
+    link: "/get-started/how-to",
     description: (
       <>
         Learn how to get the most out of Linea with our developer-focused guides
@@ -41,12 +41,11 @@ const CardList: CardItem[] = [
     textColor: "#fff",
   },
   {
-    title: "Developer quickstart",
-    link: "/developers/quickstart",
+    title: "Deploy a smart contract",
+    link: "/get-started/how-to/deploy-smart-contract",
     description: (
       <>
-        Deploy and verify your first smart contract on Linea using your favorite
-        developer tools.
+        Get up and running quickly by deploying your smart contract on Linea
       </>
     ),
     buttonName: "BUILD",
@@ -57,7 +56,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Run a node",
-    link: "/developers/guides/run-a-node",
+    link: "/get-started/how-to/run-a-node",
     description: (
       <>
         Learn how to run a Linea node with Besu or Geth, and interact with the
