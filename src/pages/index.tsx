@@ -19,11 +19,7 @@ function HomepageHeader() {
           <LineaLogo className={styles.logo} />
           Docs
         </h1>
-        <p
-          className={clsx(
-            "hero__subtitle",
-            styles.subtitle,
-          )}>
+        <p className={clsx("hero__subtitle", styles.subtitle)}>
           {siteConfig.tagline}
         </p>
         <div className={styles.buttons}>
@@ -54,7 +50,10 @@ export default function Home(): JSX.Element {
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
-        <LineaFooter className={styles.footerImage} style={{ color: "var(--banner-text)" }} />
+        <LineaFooter
+          className={styles.footerImage}
+          style={{ color: "var(--banner-text)" }}
+        />
       </div>
     </>
   );
