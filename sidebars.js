@@ -9,7 +9,7 @@ const sidebars = {
         id: "get-started/index",
       },
       collapsible: false,
-      items: [
+      items: [  
         {
           type: "category",
           label: "Build",
@@ -60,7 +60,7 @@ const sidebars = {
                 "get-started/how-to/verify-smart-contract/atlas",
                 "get-started/how-to/verify-smart-contract/foundry",
                 "get-started/how-to/verify-smart-contract/hardhat",
-              ]
+              ],
             },
             "get-started/how-to/gas-fees",
             {
@@ -73,7 +73,7 @@ const sidebars = {
               items: [
                 "get-started/how-to/bridge/how-to-bridge-eth",
                 "get-started/how-to/bridge/how-to-bridge-erc20-tokens",
-              ]
+              ],
             },
             "get-started/how-to/linea-safe",
             "get-started/how-to/deploy-subdomain",
@@ -92,8 +92,8 @@ const sidebars = {
                 "get-started/how-to/run-a-node/geth",
                 "get-started/how-to/run-a-node/linea-besu",
                 "get-started/how-to/run-a-node/bootnodes",
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -425,7 +425,7 @@ const sidebars = {
         "api/linea-sdk",
         {
           type: "category",
-          label: "Linea JSON-RPC API Reference",
+          label: "Linea JSON-RPC API",
           link: {
             type: "doc",
             id: "api/reference/index"

@@ -28,7 +28,7 @@ function HomepageHeader() {
               "button button--secondary button--lg",
               styles.bannerButton,
             )}
-            to="get-started">
+            to="/get-started">
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
