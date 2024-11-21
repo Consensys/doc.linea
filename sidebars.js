@@ -415,7 +415,6 @@ const sidebars = {
         id: "api/index"
       },
       items: [
-        "api/linea-api",
         "api/linea-sdk",
         {
           type: "category",
