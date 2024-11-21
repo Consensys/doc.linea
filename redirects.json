@@ -1,13 +1,14 @@
 [
     {
-        "to": "/architecture/stack/canonical-msg-service/message-service",
+        "to": "/get-started/concepts/message-service",
         "from": [
             "/developers/bridge-architecture/message-service",
-            "/developers/use-message-bridge"
+            "/developers/use-message-bridge",
+            "/architecture/stack/canonical-msg-service/message-service"
         ]
     },
     {
-        "to": "/developers/quickstart",
+        "to": "/get-started/how-to/deploy-smart-contract",
         "from": "/developers/deploy-smart-contracts"
     },
     {
@@ -36,138 +37,216 @@
         ]
     },
     {
-        "to": "/developers/quickstart/info-contracts",
-        "from": "/build-on-linea/use-linea-testnet/info-contracts"
+        "to": "/get-started/build/info-contracts",
+        "from": [
+            "/build-on-linea/use-linea-testnet/info-contracts",
+            "/developers/quickstart/info-contracts"
+        ]
     },
     {
-        "to": "/developers/guides/bridge/how-to-bridge-eth",
-        "from": "/use-mainnet/bridges-of-linea/how-to-bridge-eth"
+        "to": "/get-started/how-to/bridge/how-to-bridge-eth",
+        "from": [
+            "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
+            "/developers/guides/bridge/how-to-bridge-eth"
+        ]
     },
     {
-        "to": "/developers/guides/bridge",
-        "from": "/build-on-linea/use-linea-testnet/bridge-funds"
+        "to": "/get-started/how-to/bridge",
+        "from": [
+            "/build-on-linea/use-linea-testnet/bridge-funds",
+            "/developers/guides/bridge"
+        ]
     },
     {
-        "to": "/developers/guides/gas-fees",
+        "to": "get-started/how-to/gas-fees",
         "from": [
             "/use-mainnet/gas-import",
             "/build-on-linea/gas-fees",
             "/developers/guides/gas/gas-fees",
             "/use-mainnet/gas-on-linea",
-            "/developers/guides/gas/gas-on-linea"
+            "/developers/guides/gas/gas-on-linea",
+            "/developers/guides/gas-fees"
         ]
     },
     {
-        "to": "/developers/reference/api/linea-estimategas",
-        "from": "/reference/api/linea-estimategas"
+        "to": "/api/reference/linea-estimategas",
+        "from": [
+            "/reference/api/linea-estimategas",
+            "/developers/reference/api/linea-estimategas"
+        ]
     },
     {
-        "to": "/developers/guides/bridge",
-        "from": "/use-mainnet/bridges-of-linea"
+        "to": "/get-started/how-to/bridge",
+        "from": [
+            "/use-mainnet/bridges-of-linea",
+            "/developers/guides/bridge"
+        ]
     },
     {
-        "to": "/developers/quickstart/info-contracts",
-        "from": "/use-mainnet/info-contracts"
+        "to": "/get-started/build/info-contracts",
+        "from": [
+            "/use-mainnet/info-contracts",
+            "/developers/quickstart/info-contracts"
+        ]
     },
     {
-        "to": "/developers/guides/linea-api",
-        "from": "/build-on-linea/quickstart/rpc"
+        "to": "/api/linea-api",
+        "from": [
+            "/build-on-linea/quickstart/rpc",
+            "/developers/guides/linea-api"
+        ]
     },
     {
-        "to": "/developers/quickstart/ethereum-differences",
-        "from": "/build-on-linea/ethereum-differences"
+        "to": "/get-started/build/ethereum-differences",
+        "from": [
+            "/build-on-linea/ethereum-differences",
+            "/developers/quickstart/ethereum-differences"
+        ]
     },
     {
-        "to": "/developers/guides/run-a-node",
+        "to": "/get-started/how-to/run-a-node",
         "from": [
             "/build-on-linea/run-a-node",
             "/build-on-linea/run-a-node/use-binary",
             "/build-on-linea/run-a-node/use-docker",
             "/developers/guides/run-a-node/use-docker",
-            "/developers/guides/run-a-node/use-binary"
+            "/developers/guides/run-a-node/use-binary",
+            "/developers/guides/run-a-node"
         ]
     },
     {
-        "to": "/developers/guides/linea-inscriptions",
-        "from": "/build-on-linea/tooling/linea-inscriptions"
+        "to": "/get-started/how-to/linea-inscriptions",
+        "from": [
+            "/build-on-linea/tooling/linea-inscriptions",
+            "/developers/guides/linea-inscriptions"
+        ]
     },
     {
-        "to": "/developers/guides/linea-safe",
-        "from": "/build-on-linea/tooling/linea-safe"
+        "to": "/get-started/how-to/linea-safe",
+        "from": [
+            "/build-on-linea/tooling/linea-safe",
+            "/developers/guides/linea-safe"
+        ]
     },
     {
-        "to": "/developers/tooling/permanent-data/irys/irys-querying",
-        "from": "/developers/tooling/permanent-data/irys/irys-query-package"
+        "to": "/get-started/tooling/permanent-data/irys/irys-querying",
+        "from": [
+            "/developers/tooling/permanent-data/irys/irys-query-package",
+            "/developers/tooling/permanent-data/irys/irys-querying"
+        ]
     },
     {
-        "to": "/architecture/overview/decentralization-roadmap",
+        "to": "/get-started/concepts/decentralization",
         "from": [
             "/use-mainnet/decentralization-roadmap",
-            "/decentralization-roadmap"
+            "/decentralization-roadmap",
+            "/architecture/overview/decentralization-roadmap"
         ]
     },
     {
-        "to": "/architecture/overview/transaction-lifecycle",
-        "from": "/architecture/transaction-lifecycle"
+        "to": "/get-started/concepts/transaction-lifecycle",
+        "from": [
+            "/architecture/transaction-lifecycle",
+            "/architecture/overview/transaction-lifecycle"
+        ]
     },
     {
-        "to": "/architecture/overview/network-data",
-        "from": "/architecture/network-data"
+        "to": "get-started/concepts/network-data",
+        "from": [
+            "/architecture/network-data",
+            "/architecture/overview/network-data"
+        ]
     },
     {
-        "to": "/architecture/stack/bridges",
-        "from": "/architecture/bridges"
+        "to": "/get-started/concepts/canonical-token-bridge",
+        "from": [
+            "/architecture/bridges",
+            "/architecture/stack/bridges"
+        ]
     },
     {
-        "to": "/architecture/stack/canonical-msg-service",
-        "from": "/architecture/canonical-msg-service"
+        "to": "/get-started/concepts/message-service",
+        "from": [
+            "/architecture/canonical-msg-service",
+            "/architecture/stack/canonical-msg-service"
+        ]
     },
     {
-        "to": "/architecture/stack/coordinator",
-        "from": "/architecture/coordinator"
+        "to": "/get-started/concepts/coordinator",
+        "from": [
+            "/architecture/coordinator",
+            "/architecture/stack/coordinator"
+        ]
     },
     {
-        "to": "/architecture/stack/evm-state-manager",
-        "from": "/architecture/evm-state-manager"
+        "to": "/get-started/concepts/state-manager",
+        "from": [
+            "/architecture/evm-state-manager",
+            "/architecture/stack/evm-state-manager"
+        ]
     },
     {
-        "to": "/architecture/stack/sequencer",
-        "from": "/architecture/sequencer"
+        "to": "/get-started/concepts/sequencer",
+        "from": [
+            "/architecture/sequencer",
+            "/architecture/stack/sequencer"
+        ]
     },
     {
-        "to": "/architecture/stack/trace-expansion-proving",
-        "from": "/architecture/trace-expansion-proving"
+        "to": "/get-started/concepts/prover",
+        "from": [
+            "/architecture/trace-expansion-proving",
+            "/architecture/stack/trace-expansion-proving"
+        ]
     },
     {
-        "to": "/developers/tooling/cross-chain/shortcuts",
-        "from": "/build-on-linea/tooling/cross-chain/shortcuts"
+        "to": "get-started/tooling/cross-chain/shortcuts",
+        "from": [
+            "/build-on-linea/tooling/cross-chain/shortcuts",
+            "/developers/tooling/cross-chain/shortcuts"
+        ]
     },
     {
-        "to": "/developers/tooling/node-providers",
-        "from": "/build-on-linea/tooling/node-providers"
+        "to": "get-started/tooling/node-providers",
+        "from": [
+            "/build-on-linea/tooling/node-providers",
+            "/developers/tooling/node-providers"
+        ]
     },
     {
-        "to": "/developers/linea-version",
-        "from": "/build-on-linea/linea-version"
+        "to": "/release-notes",
+        "from": [
+            "/build-on-linea/linea-version",
+            "/developers/linea-version"
+        ]
     },
     {
-        "to": "/developers/quickstart",
+        "to": "get-started",
         "from": "/developers/quickstart/goerli-to-sepolia"
     },
     {
-        "to": "/developers/tooling/data-indexers/dipdup/overview",
-        "from": "/developers/tooling/data-indexers/dipdup"
+        "to": "get-started/tooling/data-indexers/dipdup",
+        "from": [
+            "/developers/tooling/data-indexers/dipdup",
+            "/developers/tooling/data-indexers/dipdup/overview"
+        ]
     },
     {
-        "to": "/developers/quickstart",
-        "from": "/build-on-linea/quickstart"
+        "to": "/get-started",
+        "from": [
+            "/build-on-linea/quickstart",
+            "/developers/quickstart"
+        ]
     },
     {
-        "to": "/developers/tooling",
-        "from": "/build-on-linea/tooling"
+        "to": "get-started/tooling",
+        "from": [
+            "/build-on-linea/tooling",
+            "/developers/tooling"
+        ]
     },
     {
-        "to": "/developers/tooling/libraries/walletconnect",
+        "to": "/get-started/tooling/libraries/walletconnect",
         "from": "/developers/tooling/libraries/wallet-connect"
     }
 ]
