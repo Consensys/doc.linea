@@ -1,3 +1,8 @@
+> [!NOTE]
+> Linea recently announced that it is targeting a token generation event (TGE) in Q1 2025, as part
+> of its decentralization. While we welcome contributions to the documentation from anyone, please 
+>note that contributions will not entitle you to any potential token airdrop(s).
+
 # Linea documentation
 
 [Linea](https://linea.build/) is a developer-ready layer 2 network, scaling Ethereum by providing
@@ -33,10 +38,20 @@ New pull requests are reviewed regularly.
 
 ### Contribution guidelines
 
-The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide).
+The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
+other than for images and other media, for which we have [specific guidelines](#adding-images-to-articles).
+
+Additionally, please adhere to these rules: 
+- **Use `.mdx` files.** The docs site is standardized to use `.mdx` files rather than `.md` files to
+ensure that React components and other elements can be rendered properly. 
+- **Use HTML-like formatting** rather than traditional Markdown formatting. For example, create a 
+`<table>` rather than using the Markdown syntax with dashes and vertical lines. In many cases, 
+HTML syntax is easier to maintain. Standardization also applies here: some elements we frequently
+use, such as `<Tabs>`, _must_ use HTMl syntax, so applying HTML universally helps to avoid the site 
+containing a mix of both styles.
 
 Please return to any submitted PRs regularly to help us work through feedback and comments and 
-merge them as soon as we can. If you do not return to your PR for edits within three months of us 
+merge as soon as we can. If you do not return to your PR for edits within three months of us 
 reviewing, we will close the PR. 
 
 #### Guidance for ecosystem contributions
