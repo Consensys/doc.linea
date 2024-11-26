@@ -970,16 +970,18 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 /* search bar */
 .navbar__search input {
+  border-radius: 8px;
   background-color: var(--banner-background);
   width: 95%;
   transition: width 0.25s ease;
+  right: -1px;
 }
 
 @media (width <= 1320px) {
   .navbar__search input {
     width: 150px;
     right: 0;
-    margin-right: 10px;
+    margin-right: 9px;
   }
 }
 
@@ -993,10 +995,10 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 @media (width <= 996px) {
   .navbar__search input {
-    max-width: 12px;
-    border-radius: 999px;
-    height: 44px;
-    scale: 0.85;
+    max-width: 30px;
+    border-radius: 8px;
+    height: 32px;
+    margin-right: 14px;
   }
 
   .navbar__search input:focus {

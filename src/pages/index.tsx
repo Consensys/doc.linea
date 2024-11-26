@@ -4,8 +4,9 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
+import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
-import LineaLogo from "../../static/img/Linea_logo.svg";
+import LineaDocsLogo from "../../static/img/Linea_docs_logo_currentColor.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
 
 import styles from "./index.module.css";
@@ -15,10 +16,10 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
-        <h1 className={clsx("hero__title", styles.title)}>
-          <LineaLogo className={styles.logo} />
-          Docs
-        </h1>
+      <h1 className={clsx("hero__title", styles.title)}>
+        <LineaDocsLogo className={styles.logo} />
+        <span className={styles.visuallyHidden}>Docs</span>
+      </h1>
         <p className={clsx("hero__subtitle", styles.subtitle)}>
           {siteConfig.tagline}
         </p>
@@ -47,6 +48,7 @@ export default function Home(): JSX.Element {
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
+          <SecondaryCards />
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
