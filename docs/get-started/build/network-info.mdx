@@ -1,0 +1,80 @@
+---
+title: Network information
+description: Key network details for Linea Mainnet and Linea Sepolia.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+**Status**: [https://linea.statuspage.io/](https://linea.statuspage.io/)
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem 
+  value="Mainnet" label="Mainnet" default>
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59144</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
+      </tr>
+  </table>
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.sepolia.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59141</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://sepolia.lineascan.build">Lineascan</a> </td>
+      </tr>
+  </table>
+  </TabItem> 
+</Tabs>
+
+## Connect with node providers
+
+If your dapp is using public endpoints, it may encounter rate limiting. You can find Linea node providers
+[here](../tooling/node-providers/index.mdx).
+
+We recommend connecting to Linea via [private RPCs](../tooling/node-providers/index.mdx#private-rpc-endpoints).
+
+## Faucets
+
+You can use one of the following Linea Sepolia faucets to drip testnet ETH directly to your
+Linea Sepolia address:
+
+- [Covalent](https://www.covalenthq.com/faucet/)
+- [Infura](https://www.infura.io/faucet/linea)
+- [GetBlock](https://getblock.io/faucet/linea-sepolia/)
+- [HackQuest](https://www.hackquest.io/en/faucets/59141) (and check out their [Linea Learning Track](https://www.hackquest.io/en/learning-track/9be129e7-575b-49bd-a64e-1bbe32427ace))
+
+Alternatively, [use the Linea native bridge to bridge tokens between Sepolia and Linea Sepolia](../how-to/bridge/how-to-bridge-eth.mdx).

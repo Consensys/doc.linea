@@ -13,7 +13,9 @@ const sidebars = {
       collapsible: false,
       items: [
         "get-started/build/ethereum-differences",
-        "get-started/build/info-contracts",
+        "get-started/build/network-info",
+        "get-started/build/contracts",
+        "get-started/build/block-explorers",
         "get-started/build/repos"
       ],
     },
