@@ -28,7 +28,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Guides",
-    link: "/get-started/how-to",
+    link: "/get-started",
     description: (
       <>
         Learn how to get the most out of Linea with our developer-focused guides
