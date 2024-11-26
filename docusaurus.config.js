@@ -65,10 +65,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [
-            require("remark-docusaurus-tabs"),
-            math
-          ],
+          remarkPlugins: [require("remark-docusaurus-tabs"), math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
@@ -129,12 +126,12 @@ const config = {
             position: "left",
             label: "Get started",
           },
-          {
-            type: "doc",
-            docId: "learn/index",
-            position: "left",
-            label: "Learn",
-          },
+          // {
+          //   type: "doc",
+          //   docId: "learn/index",
+          //   position: "left",
+          //   label: "Learn",
+          // },
           {
             type: "doc",
             docId: "api/index",
@@ -144,17 +141,12 @@ const config = {
           {
             to: "release-notes",
             position: "right",
-            className: "header-release-notes-link",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
-            className: "header-discord-link",
             position: "right",
-          },
-          {
-            href: "https://twitter.com/lineabuild",
-            className: "header-twitter-link",
-            position: "right",
+            label: "Support",
           },
         ],
       },
