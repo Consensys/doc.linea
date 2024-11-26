@@ -1,10 +1,6 @@
-.docItemContainer header + *,
-.docItemContainer article > *:first-child {
-  margin-top: 35px;
-}
-
 @media (width >= 997px) {
   .docItemCol {
     max-width: 75% !important;
+    padding-top: 10px;
   }
 }

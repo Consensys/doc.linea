@@ -145,23 +145,15 @@
   text-align: center;
   height: 52vh;
   min-height: 500px;
-  width: calc(100% - 22rem) !important;
-  max-width: 1500px;
-  border-radius: 17px;
-  margin: 0 auto 30px;
+  width: calc(100vw - 2.5rem) !important;
+  border-radius: 14px;
+  margin: 0 auto;
   position: relative;
 }
 
 @media (width <= 1380px) {
   .introductionBlock {
     height: 60vh;
-    width: 87.5% !important;
-  }
-}
-
-@media (width <= 996px) {
-  .introductionBlock {
-    width: 94% !important;
   }
 }
 

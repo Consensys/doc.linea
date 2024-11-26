@@ -117,8 +117,7 @@ const config = {
         title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/Linea_logo_black.svg",
-          srcDark: "img/Linea_logo_white.svg",
+          src: "img/Linea_docs_logo.svg",
         },
         items: [
           {

@@ -4,9 +4,9 @@ main {
 
 .cardContainer {
   padding-bottom: 60px;
-  margin: 20px auto;
+  margin: 0 auto;
   align-items: center;
-  max-width: 90% !important;
+  max-width: calc(100vw - 2.5rem) !important;
 }
 
 .cardHeader {
@@ -27,14 +27,16 @@ main {
 }
 
 .cardBody {
+  position: absolute;
+  top: 80px;
   text-align: left;
-  padding-left: 40px;
+  padding: 14px 12px 0 30px;
   transition: padding-left 0.25s ease;
 }
 
 @media (width <= 1500px) {
   .cardBody {
-    padding-left: 30px;
+    padding: 14px 30px;
   }
 }
 
