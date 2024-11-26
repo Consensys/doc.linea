@@ -376,6 +376,7 @@ textarea {
   font-family: AtypDisplay, serif;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-code-border-radius: 15px;
+  --doc-sidebar-width: 350px !important;
 }
 
 .footer--dark {
@@ -727,13 +728,20 @@ html[data-theme='dark'] .header-release-notes-link::before {
 
 /* light/dark toggle colour */
 .navbar .clean-btn {
-  color: var(--linea-navbar-background);
-  background-color: var(--linea-navbar-items);
+  scale: 0.9;
+  color: var(--linea-navbar-items);
+  background-color: var(--linea-navbar-background);
+  transition: color 0.1s ease-in-out;
 }
 
-.navbar .clean-btn:hover {
-  color: #fff;
-  background-color: var(--linea-highlight-color-2);
+html[data-theme="light"] .navbar .clean-btn:hover {
+  color: #fff068;
+  background: none;
+}
+
+html[data-theme="dark"] .navbar .clean-btn:hover {
+  color: #6119ef;
+  background: none;
 }
 
 @media (width <= 996px) {
@@ -747,6 +755,43 @@ html[data-theme='dark'] .header-release-notes-link::before {
   .navbar .clean-btn:hover {
     color: var(--linea-navbar-items);
     background-color: var(--linea-navbar-background);
+  }
+}
+
+.navbar-sidebar__back {
+  margin-top: 10px;
+}
+
+.community-link svg {
+  /* removing external link icon from navbar item */
+  display: none;
+}
+
+.community-link {
+  font-size: calc(14px + (15 - 12) * ((100vw - 996px) / (1920 - 996)));
+  margin-right: 20px;
+  color: #61dfff;
+}
+
+.community-link:hover {
+  /* turns off underline on hover, fixes colour */
+  text-decoration: none;
+  color: #61dfff;
+}
+
+@media (width <= 996px) {
+  .navbar__items .community-link {
+    display: none;
+  }
+
+  .community-link {
+    line-height: 1.25;
+    margin-right: 8px;
+    padding: var(--ifm-menu-link-padding-vertical) var(--ifm-menu-link-padding-horizontal);
+    color: var(--linea-sidebar-text-color);
+    align-items: center;
+    border-radius: 0.25rem;
+    display: flex;
   }
 }
 
@@ -819,7 +864,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 .navbar__logo {
   color: var(--linea-text-color-1);
-  height: 28px;
+  height: 25px;
   width: auto;
   padding: 3px 10px 0 20px;
   display: flex;
@@ -833,14 +878,8 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__inner {
     width: 90%;
   }
-  
-  .navbar__logo {
-    height: 25px;
-    top: -5px;
-  }
 
   .navbar {
-    --ifm-navbar-height: 7vh;
     height: clamp(60px, var(--ifm-navbar-height), 100px);
     box-shadow: none;
   }
@@ -875,20 +914,21 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 .navbar__item {
   color: var(--linea-navbar-items);
-  font-size: 16px;
   font-weight: 400;
   text-align: center;
 }
 
 .navbar__link {
-  padding-right: 10px;
+  font-size: calc(14px + (15 - 12) * ((100vw - 996px) / (1920 - 996)));
+  padding: calc(5px + (12 - 5) * ((100vw - 996px) / (1920 - 996)));
 }
 
 /* Basic circle icons for navbar items */
-.navbar__link[href="/developers/guides"]::before,
-.navbar__link[href="/developers/quickstart"]::before,
-.navbar__link[href="/developers/guides/run-a-node"]::before,
-.navbar__link[href="/architecture"]::before {
+.navbar__link[href="/get-started"]::before,
+.navbar__link[href="/learn"]::before,
+.navbar__link[href="/api"]::before,
+.navbar__link[href="/release-notes"]::before,
+.community-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -902,10 +942,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 /* hover effect for circles */
-.navbar__link[href="/developers/guides"]:hover::before,
-.navbar__link[href="/developers/quickstart"]:hover::before,
-.navbar__link[href="/developers/guides/run-a-node"]:hover::before,
-.navbar__link[href="/architecture"]:hover::before {
+.navbar__link[href="/get-started"]:hover::before,
+.navbar__link[href="/learn"]:hover::before,
+.navbar__link[href="/api"]:hover::before,
+.navbar__link[href="/release-notes"]:hover::before,
+.community-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
 }
@@ -917,24 +958,13 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 /* ensure dots are hidden on smaller screens */
-@media (width <= 1600px) {
-  .navbar__link[href="/developers/guides"]::before,
-  .navbar__link[href="/developers/quickstart"]::before,
-  .navbar__link[href="/developers/guides/run-a-node"]::before,
-  .navbar__link[href="/architecture"]::before {
+@media (width <= 996px) {
+  .navbar__link[href="/get-started"]::before,
+  .navbar__link[href="/learn"]::before,
+  .navbar__link[href="/api"]::before,
+  .navbar__link[href="/release-notes"]::before,
+  .community-link[href="https://discord.gg/linea"]::before {
     display: none;
-  }
-}
-
-@media (width <= 1440px) {
-  .navbar__item {
-    font-size: 14px;
-  }
-}
-
-@media (width <= 1380px) {
-  .navbar__item {
-    font-size: 15px;
   }
 }
 
@@ -947,7 +977,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 @media (width <= 1320px) {
   .navbar__search input {
-    width: 115px;
+    width: 150px;
     right: 0;
     margin-right: 10px;
   }
@@ -955,13 +985,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 @media (width <= 1080px) {
   .navbar__search input {
-    width: 0;
-    right: 0;
-    margin-right: 10px;
-  }
-
-  .navbar__search input:focus {
-    width: 110px;
+    width: 120px;
     right: 0;
     margin-right: 10px;
   }
@@ -969,8 +993,14 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 @media (width <= 996px) {
   .navbar__search input {
-    height: 40px;
     max-width: 12px;
+    border-radius: 999px;
+    height: 44px;
+    scale: 0.85;
+  }
+
+  .navbar__search input:focus {
+    max-width: 170px;
     border-radius: 999px;
   }
 }
@@ -1239,7 +1269,7 @@ html[data-theme="dark"] .navbar {
 
 .thin-scrollbar {
   background-color: var(--banner-background) !important;
-  margin: 5px 20px 0;
+  margin: 5px 22px 0;
   border-radius: 12px;
   max-height: 70vh;
 }
@@ -1247,12 +1277,13 @@ html[data-theme="dark"] .navbar {
 button[aria-label="Collapse sidebar"] {
   border: none !important;
   background-color: var(--banner-background);
-  margin: 10px 20px 35px;
+  margin: 10px 22px 35px;
   border-radius: 12px;
 
 }
 
 div[aria-label="Expand sidebar"] {
+  margin-left: 20px;
   margin-top: 70px !important;
 }
 
@@ -1269,15 +1300,26 @@ div[aria-label="Expand sidebar"] {
   background-color: var(--page-background) !important;
 }
 
-.container.padding-top--md.padding-bottom--lg {
+.container.padding-top--md .padding-bottom--lg {
+  margin: 0 0;
   margin-right: 0;
   margin-left: 10px;
-  max-width: 100vw;
-  padding-top: 0px !important;
+  max-width: 99%;
+  padding: 0 20px !important;
 }
 
-.container .table-of-contents {
-  margin-top: 0 !important;
+@media (width <= 996px) {
+  .container .padding-top--md .padding-bottom--lg {
+    max-width: 100vw;
+    margin-left: 0;
+    padding: 0;
+  }
+}
+
+.col[class*='col--'] .table-of-contents {
+  right: 0;
+  padding: 10px;
+  margin-right: -10px;
 }
 
 .table-of-contents {
@@ -1301,5 +1343,5 @@ div[aria-label="Expand sidebar"] {
   background-color: var(--banner-background);
   margin-top: 35px;
   border-radius: 15px;
-  max-height: 85vh;
+  max-height: 80vh;
 }
