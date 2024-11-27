@@ -4,7 +4,9 @@ image: /img/socialCards/irys-quickstart.jpg
 description: Creating permanent data using Irys SDK.
 ---
 
-Irys makes it easy to store your data onchain by supporting payments with ETH on Linea. With a single upfront payment, you can upload data, with guaranteed retrieval for a duration you set at the upload time — from a few days to forever.
+Irys makes it easy to store your data onchain by supporting payments with ETH on 
+Linea. You can upload data with a single upfront payment, with guaranteed 
+retrieval for a duration you set at the upload time — from a few days to forever.
 
 - To upload data, use the Irys [SDK](#irys-sdk) or [CLI](#irys-cli).
 - To [download data](#download-data), use the Irys gateway.
@@ -36,7 +38,9 @@ import { LineaEth } from "@irys/upload-ethereum";
 
 #### On the server
 
-When connecting to Irys on the server, provide a private key linked to a wallet funded with `linea-eth`. This wallet will be used to pay for uploads and to sign transactions.
+When connecting to Irys on the server, provide a private key linked to a wallet 
+funded with `linea-eth`. This wallet will be used to pay for uploads and to sign 
+transactions.
 
 Using ETH on Linea:
 
@@ -49,7 +53,9 @@ const getIrysUploader = async () => {
 
 Or use the Irys devnet with Linea Sepolia ETH:
 
-> Uploads to the Irys devnet are purged after 60 days
+:::note
+Uploads to the Irys devnet are purged after 60 days
+:::
 
 ```ts
 const getIrysUploader = async () => {
@@ -65,7 +71,8 @@ const getIrysUploader = async () => {
 
 #### In the browser
 
-When using Irys in the browser, the wallet browser extension injects a signer into the browser. This signer is used to pay for uploads and sign transactions.
+When using Irys in the browser, the wallet browser extension injects a signer 
+into the browser. This signer is used to pay for uploads and sign transactions.
 
 Irys supports:
 
@@ -74,7 +81,10 @@ Irys supports:
 - Viem v2
 - Privy
 
-> The following code example is for Ethers v6. For other providers, [see Irys's docs](https://docs.irys.xyz/build/d/irys-in-the-browser).
+:::note
+The following code example is for Ethers v6. For other providers, [see Irys's 
+docs](https://docs.irys.xyz/build/d/irys-in-the-browser).
+:::
 
 ```js
 import { WebUploader } from "@irys/web-upload";
@@ -92,13 +102,15 @@ const getIrysUploader = async () => {
 
 ### Fund your account
 
-When you use Irys to upload data, you pay once and the data is guaranteed to be retrievable forever.
-The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/build/d/sdk/payment/getPrice).
+When you use Irys to upload data, you pay once and the data is guaranteed to be 
+retrievable forever. The [fee is based on the number of bytes uploaded](https://docs.irys.xyz/build/d/sdk/payment/getPrice).
 
-When calling `fund()` pass a value in atomic units. Use the utility functions `utils.toAtomic()`
-and `utils.fromAtomic()` to convert between atomic and standard units.
+When calling `fund()` pass a value in atomic units. Use the utility functions 
+`utils.toAtomic()` and `utils.fromAtomic()` to convert between atomic and 
+standard units.
 
-You can fund up-front, allowing you send over enough tokens to cover all of a project’s uploads.
+You can fund up-front, allowing you send over enough tokens to cover all of a 
+project's uploads.
 
 ```js
 try {
@@ -170,7 +182,8 @@ const uploadFile = async () => {
 
 ### Upload a folder
 
-You can upload a group of files as a single transaction from both the server and the browser.
+You can upload a group of files as a single transaction from both the server and 
+the browser.
 
 #### On the server
 
@@ -229,9 +242,11 @@ sudo npm i -g @irys/cli
 
 ### Use private keys
 
-When executing CLI commands involving funding nodes or signing transactions, you must provide a private key.
+When executing CLI commands involving funding nodes or signing transactions, you 
+must provide a private key.
 
-Use the `-w` flag to specify a private key along with the -t flag to indicate the token you'll use.
+Use the `-w` flag to specify a private key along with the -t flag to indicate 
+the token you'll use.
 
 ```console
 irys -w <wallet-file-name> -t linea-eth
@@ -239,7 +254,8 @@ irys -w <wallet-file-name> -t linea-eth
 
 ### Devnet
 
-To use Irys's devnet where uploads are kept for ~60 and you pay with Linea Sepolia ETH, append `-n devnet` to any of the commands below.
+To use Irys's devnet, where uploads are kept for ~60 days and you pay with Linea 
+Sepolia ETH, append `-n devnet` to any of the commands below.
 
 ### Fund a node
 
@@ -284,11 +300,13 @@ irys upload-dir ./myImages \
 
 ### Use tags
 
-Use the `-t` option, followed by a series of name / value pairs to append metadata tags to your upload.
+Use the `-t` option, followed by a series of name/value pairs to append metadata 
+tags to your upload.
 
-Irys supports adding any optional [metadata tags](./overview.mdx#tagging) to each upload. When uploading
-files with a filename extension, the related
-[`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) (MIME type) tag is automatically added.
+Irys supports adding any optional [metadata tags](./overview.mdx#tagging) to 
+each upload. When uploading files with a filename extension, the related
+[`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) 
+(MIME type) tag is automatically added.
 
 ```console
 irys upload myImage.png \
@@ -299,8 +317,9 @@ irys upload myImage.png \
 
 ### Pricing
 
-Use the `price` command, followed by a number of bytes to get the cost to upload that number of bytes. You must
-also provide a token (`-t`) and a node URL (`-h`)
+Use the `price` command, followed by a number of bytes, to get the cost to 
+upload that number of bytes. You must also provide a token (`-t`) and a node 
+URL (`-h`).
 
 ```console
 irys price 1000000 \
@@ -312,6 +331,7 @@ irys price 1000000 \
 ## Download data
 
 When you upload data to Irys, you're given a [receipt](./overview.mdx#receipts)
-containing a transaction ID. Use this ID to download your data from the Irys gateway by creating a URL in the format:
+containing a transaction ID. Use this ID to download your data from the Irys 
+gateway by creating a URL in the format:
 
 `https://gateway.irys.xyz/:txId`
