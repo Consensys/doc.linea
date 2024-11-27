@@ -271,7 +271,7 @@ const sidebars = {
             "developers/tooling/libraries/multicall",
             "developers/tooling/libraries/viem",
             "developers/tooling/libraries/wagmi",
-            "developers/tooling/libraries/wallet-connect",
+            "developers/tooling/libraries/walletconnect",
           ],
         },
         {
