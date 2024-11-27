@@ -39,6 +39,7 @@
     "@easyops-cn/docusaurus-search-local": "^0.44.3",
     "@mdx-js/react": "^3.0.0",
     "axios": "^1.7.7",
+    "browserslist": "^4.24.2",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "gray-matter": "^4.0.3",
@@ -60,6 +61,7 @@
     "@commitlint/config-conventional": "^19.4",
     "@docusaurus/module-type-aliases": "^3.6.0",
     "@docusaurus/tsconfig": "^3.4.0",
+    "@eslint/compat": "^1.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
     "@semantic-release/git": "^10.0.1",
@@ -68,7 +70,6 @@
     "@semantic-release/release-notes-generator": "^14.0.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.0.0",
-    "@eslint/compat": "^1.2.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.5.4",
     "eslint-plugin-import": "^2.27.5",
@@ -86,7 +87,8 @@
   },
   "browserslist": {
     "production": [
-      ">0.5%",
+      ">0.2%",
+      "last 2 versions",
       "not dead",
       "not op_mini all"
     ],
