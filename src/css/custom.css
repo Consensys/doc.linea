@@ -1118,7 +1118,6 @@ html[data-theme="dark"] .navbar {
 }
 
 /* Styling for callouts */
-
 .callout {
   padding: 20px;
   margin: 20px 0;
@@ -1187,12 +1186,19 @@ button[aria-label="Collapse sidebar"] {
   border-radius: 15px;
 }
 
+.menu__list-item-collapsible {
+  margin-right: 8px;
+}
+
+.menu__link--active {
+  color: var(--ifm-link-color) !important;
+}
+
 .menu__link:hover,
 .menu__list-item-collapsible--active,
 .menu__list-item-collapsible--active:hover,
 .menu__link--active:not(.menu__link--sublist),
 .menu__list-item-collapsible:hover,
-.menu__link:hover, 
 .menu__caret:hover {
   background: none;
 }
@@ -1200,14 +1206,6 @@ button[aria-label="Collapse sidebar"] {
 .menu__link--active:hover {
   margin-right: 8px;
   color: var(--linea-link-highlight-color);
-}
-
-.menu__list-item-collapsible {
-  margin-right: 8px;
-}
-
-.menu__link--active {
-  color: var(--ifm-link-color) !important;
 }
 
 .menu__link--sublist-caret {
