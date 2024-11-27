@@ -233,6 +233,10 @@ const sidebars = {
             {
               type: "category",
               label: "DipDup",
+              link: {
+                type: "doc",
+                id: "get-started/tooling/data-indexers/dipdup/overview"
+              },
               items: [
                 "get-started/tooling/data-indexers/dipdup/overview",
                 "get-started/tooling/data-indexers/dipdup/quickstart",   
@@ -245,6 +249,10 @@ const sidebars = {
             {
               type: "category",
               label: "Goldsky",
+              link: {
+                type: "doc",
+                id: "get-started/tooling/data-indexers/goldsky/overview"
+              },
               items: [
                 "get-started/tooling/data-indexers/goldsky/overview",
                 "get-started/tooling/data-indexers/goldsky/goldsky-index",
@@ -321,6 +329,10 @@ const sidebars = {
             {
               type: "category",
               label: "Irys",
+              link: {
+                type: "doc",
+                id: "get-started/tooling/permanent-data/irys/overview"
+              },
               items: [
                 "get-started/tooling/permanent-data/irys/overview",
                 "get-started/tooling/permanent-data/irys/irys-quickstart",
