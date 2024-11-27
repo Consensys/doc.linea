@@ -313,6 +313,10 @@ const sidebars = {
         {
           type: "category",
           label: "Permanent data",
+          link: {
+            type: "doc",
+            id: "get-started/tooling/permanent-data/index"
+          },
           items: [
             {
               type: "category",
