@@ -20,7 +20,7 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Guides",
+    title: "Create your builder profile",
     link: "/get-started/how-to",
     description: (
       <>
@@ -31,7 +31,7 @@ const CardList: CardItem[] = [
     buttonType: "primary",
   },
   {
-    title: "Deploy a smart contract",
+    title: "Get funded",
     link: "/get-started/how-to/deploy-smart-contract",
     description: (
       <>
@@ -42,7 +42,7 @@ const CardList: CardItem[] = [
     buttonType: "success",
   },
   {
-    title: "Run a node",
+    title: "Get noticed",
     link: "/get-started/how-to/run-a-node",
     description: (
       <>
@@ -54,7 +54,7 @@ const CardList: CardItem[] = [
     buttonType: "info",
   },
   {
-    title: "Builder Launchpad",
+    title: "Get involved",
     link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
@@ -150,7 +150,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={styles.cardContainer}>
         <br />
-        <h1 className={styles.heading}>QUICK LINKS</h1>
+        <h1 className={styles.heading}>BUILDER OFFERING</h1>
         <br />
         <div className="row" ref={rowRef} style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (
