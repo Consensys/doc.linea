@@ -77,8 +77,9 @@ This release includes:
 - Create granular roles for contracts `LineaRollup`, `L2MessageService` and `TokenBridge`:
   - `LineaRollup`: Introduce more granular pausing and an additional verifier unsetting role 
   - `L2MessageService`: Introduce more granular pausing
-  - `TokenBridge`: Previously, the contract was owned by the Security Council multisig. The update adds 
-    role-based access with more granular roles per function, particularly for pausing.
+  - `TokenBridge`: Previously all administration functions were managed by a single owner (multisig) 
+  role. The update adds role-based access with more granular roles per function, particularly for 
+  pausing.
 - Remove `finalizeBlocksWithoutProof` function
   - The function enabled finalization without proofs. This allowed network activity to continue 
   while fundamental changes, such as changing the state management hashing mechanism, were being 
