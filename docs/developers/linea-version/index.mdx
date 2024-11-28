@@ -47,7 +47,7 @@ finalization, enabling withdrawal of potentially locked funds.
 - Adjust blob aubmission and finalization events to be state reconstruction-compatible
   - This is a breaking change for the event structures. The new structures are below:
   ```solidity
-    /**
+  /**
    * @notice Emitted when compressed data is being submitted and verified succesfully on L1.
    * @dev The block range is indexed and parent shnarf included for state reconstruction simplicity.
    * @param parentShnarf The parent shnarf for the data being submitted.
