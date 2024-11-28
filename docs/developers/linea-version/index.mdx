@@ -29,19 +29,20 @@ This release includes:
 - New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
 - The transition to generating traces with Besu. 
 
-## Alpha v4.1
-
-**Mainnet: December 2, 2024**
-
-**Linea Sepolia: December 2, 2024**
-
-- Increase block limit to 36M units of gas. Block time remains at 2 seconds.
-
 ## Alpha v4
 
 **Mainnet: December 10, 2024**
 
 **Linea Sepolia: November 27, 2024**
+
+This update upgrades several key contracts. Some updates prepare the protocol for the ability to 
+reconstruct the Linea state, while others add granularity to available roles, better preparing them
+for any required pauses. Many of the contract modifications have also resulted in gas optimizations.
+
+Additionally, we are deprecating the `finalizeBlocksWithoutProof` function, and adding functionality
+that enables any address to send blob submission and finalization transactions through a call 
+forwarding contract if no finalization occurs for more than six months. This effectively allows L1 
+finalization, enabling withdrawal of potentially locked funds. 
 
 - Adjust blob aubmission and finalization events to be state reconstruction-compatible
   - This is a breaking change for the event structures. The new structures are below:
@@ -95,7 +96,10 @@ This release includes:
 - Bump L1 Solidity version to v0.8.26. Introduces slight gas optimizations.
 - Optimize message and new token creation hashing, making it slightly cheaper to send and claim 
 messages.
-- Address non-critical Cyfrin, Diligence, and OpenZeppelin findings from previous audit rounds.
+- Address non-critical findings from previous audit rounds:
+  - [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-11-28-cyfrin-linea-v2.0.pdf)
+  - Diligence
+  - OpenZeppelin
 - Generally clean up error management and interfaces.
 
 ## Alpha v3.6 
