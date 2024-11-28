@@ -6,7 +6,7 @@ import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
-import LineaDocsLogo from "../../static/img/Linea_docs_logo_currentColor.svg";
+import LineaLogo from "../../static/img/Linea_logo.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
 import SearchBar from "@theme/SearchBar";
 
@@ -18,8 +18,8 @@ function HomepageHeader() {
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
       <h1 className={clsx("hero__title", styles.title)}>
-        <LineaDocsLogo className={styles.logo} />
-        <span className={styles.visuallyHidden}>Docs</span>
+        <LineaLogo className={styles.logo} />
+        <span className={styles.visuallyHidden}>Developer Center</span>
       </h1>
         <p className={clsx("hero__subtitle", styles.subtitle)}>
           {siteConfig.tagline}

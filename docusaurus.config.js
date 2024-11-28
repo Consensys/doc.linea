@@ -19,7 +19,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 const config = {
   title: "Linea",
   tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
+    "Everything you need to build onchain.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -148,9 +148,9 @@ const config = {
           },
           {
             href: "https://discord.gg/linea",
-            label: "Community",
+            label: "Support",
             position: "right",
-            class: "community-link",
+            class: "support-link",
           },
         ],
       },

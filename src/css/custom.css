@@ -386,6 +386,7 @@ textarea {
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
   --page-background: #121212;
+  --search-background: #121212;
   --ifm-color-primary-lightest: #fff;
   --ifm-color-primary-lighter: #fff;
   --ifm-color-primary-light: #bfe8ff;
@@ -442,6 +443,7 @@ textarea {
 
 [data-theme="light"] {
   --page-background: #f8f7f2;
+  --search-background: #ebeae5;
   --ifm-color-primary-lightest: #eaf0ff;
   --ifm-color-primary-lighter: #a5e5ff;
   --ifm-color-primary-light: #61dfff;
@@ -783,29 +785,29 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
   margin-top: 10px;
 }
 
-.community-link svg {
+.support-link svg {
   /* removing external link icon from navbar item */
   display: none;
 }
 
-.community-link {
+.support-link {
   font-size: calc(14px + (15 - 12) * ((100vw - 996px) / (1920 - 996)));
   margin-right: 20px;
   color: #61dfff;
 }
 
-.community-link:hover {
+.support-link:hover {
   /* turns off underline on hover, fixes colour */
   text-decoration: none;
   color: #61dfff;
 }
 
 @media (width <= 996px) {
-  .navbar__items .community-link {
+  .navbar__items .support-link {
     display: none;
   }
 
-  .community-link {
+  .support-link {
     line-height: 1.25;
     margin-right: 8px;
     padding: var(--ifm-menu-link-padding-vertical) var(--ifm-menu-link-padding-horizontal);
@@ -949,7 +951,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/learn"]::before,
 .navbar__link[href="/api"]::before,
 .navbar__link[href="/release-notes"]::before,
-.community-link[href="https://discord.gg/linea"]::before {
+.support-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -967,7 +969,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/learn"]:hover::before,
 .navbar__link[href="/api"]:hover::before,
 .navbar__link[href="/release-notes"]:hover::before,
-.community-link[href="https://discord.gg/linea"]:hover::before {
+.support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
 }
@@ -984,7 +986,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
   .navbar__link[href="/release-notes"]::before,
-  .community-link[href="https://discord.gg/linea"]::before {
+  .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
 }
@@ -996,6 +998,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   width: 95%;
   transition: width 0.25s ease;
   right: -1px;
+}
+
+/* changes searchbar border colour when active */
+.navbar__search input:focus-visible {
+  outline: 2px solid #61dfff !important;
 }
 
 @media (width <= 1320px) {
@@ -1020,11 +1027,23 @@ html[data-theme="dark"] .header-dockerhub-link::before {
     border-radius: 8px;
     height: 32px;
     margin-right: 14px;
+    transition: all 0.15s ease-in-out;
   }
 
   .navbar__search input:focus {
     max-width: 170px;
     border-radius: 999px;
+  }
+
+  .navbar__search-input:not(.navbar .navbar__search-input) {
+    max-width: 450px;
+    width: 450px;
+  }
+}
+
+@media (width <= 600px) {
+  .navbar__search-input:not(.navbar .navbar__search-input) {
+    max-width: 80vw;
   }
 }
 
@@ -1296,17 +1315,21 @@ html[data-theme="dark"] .navbar {
   max-height: 80vh;
 }
 
-button [aria-label="Collapse sidebar"] {
+button[aria-label="Collapse sidebar"] {
   border: none !important;
   background-color: var(--banner-background);
   margin: 10px 22px 35px;
   border-radius: 12px;
 }
 
-div [aria-label="Expand sidebar"] {
+div[aria-label="Expand sidebar"] {
+  background-color: var(--banner-background);
   margin-left: 20px;
   margin-top: 70px !important;
+  border-radius: 15px;
+  max-height: 80vh;
 }
+
 
 .menu__list-item-collapsible {
   margin-right: 8px;
@@ -1376,6 +1399,17 @@ div [aria-label="Expand sidebar"] {
 .table-of-contents__link--active {
   color: var(--linea-link-highlight-color);
   font-weight: 700;
+}
+
+.theme-doc-toc-desktop {
+  transform: translateY(-16px);
+}
+
+@media (width <= 1200px) {
+  /* hides TOC hen viewport gets too slim */
+  ul.table-of-contents {
+    display: none;
+  }
 }
 
 div[aria-label="Expand sidebar"] {

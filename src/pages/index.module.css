@@ -1,5 +1,5 @@
 .icon {
-  color: #fff;
+  color: #61dfff;
   height: 30px;
   width: 30px;
   margin-left: 20px;
@@ -10,8 +10,8 @@
 }
 
 .bannerButton {
-  background-color: var(--linea-highlight-color-2);
-  color: #fff !important;
+  background-color: var(--linea-navbar-background);
+  color: #61dfff !important;
   border: none;
   padding: 20px 60px 20px 70px;
   text-align: center;
@@ -24,12 +24,6 @@
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.3s ease;
-}
-
-@media (width <= 768px) {
-  .bannerButton {
-    padding: 15px 65px;
-  }
 }
 
 @media (width <= 320px) {
@@ -57,17 +51,10 @@
 
 .logo {
   color: var(--linea-banner-color-1);
-  padding-right: 10px;
+  padding-right: 15px;
   padding-left: 10px;
-  height: 70px;
+  height: 55px;
   width: auto;
-}
-
-@media (width <= 768px) {
-  .logo {
-    height: 40px;
-    width: auto;
-  }
 }
 
 @media (width <= 320px) {
@@ -77,28 +64,19 @@
     width: auto;
   }
 }
-.visuallyHidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 
 .title {
   color: var(--linea-banner-logo);
-  font-size: 45px;
-  padding-bottom: 20px;
+  font-size: 55px;
+  font-weight: 400;
+  padding-bottom: 10px;
 }
 
 @media (width <= 768px) {
   .title {
     margin-top: 60px;
-    font-size: 30px;
+    padding-left: 10vw;
+    padding-right: 10vw;
   }
 }
 
@@ -110,14 +88,36 @@
 
 .subtitle {
   color: var(--linea-banner-logo);
-  font-size: 21px;
+  font-size: 32px;
+  font-weight: 400;
   padding: 0 9rem 10px;
+  margin-bottom: 25px;
+}
+
+@media (width <= 1250px) {
+  .logo {
+    height: 38px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+
+  .subtitle {
+    font-size: 26px;
+  }
 }
 
 @media (width <= 996px) {
   .subtitle {
-    font-size: 18px;
-    padding: 0 15vw 20px;
+    font-size: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .bannerButton {
+    padding: 20px 40px;
   }
 }
 
@@ -154,8 +154,8 @@
   background-size: 70%, 70%;
   padding: 6rem;
   text-align: center;
-  height: 65vh;
-  min-height: 500px;
+  height: 60vh;
+  min-height: 550px;
   width: calc(100vw - 2.5rem) !important;
   border-radius: 14px;
   margin: 0 auto;
@@ -171,6 +171,7 @@
 @media (width <= 768px) {
   .introductionBlock {
     padding: 2rem;
+    height: 75vh;
   }
 }
 
@@ -189,11 +190,11 @@
 }
 
 .footerImage {
-  max-width: 100%;
+  max-width: 80vw;
   height: auto;
   display: inline-block;
-  margin: 0;
-  padding-bottom: -10px;
+  margin: 0 20px;
+  transform: translateY(10px);
 }
 
 /* search bar */
@@ -203,17 +204,21 @@
 }
 
 .searchBarContainer {
-  padding-top: 50px;
+  padding-top: 80px;
 }
 
 .searchBarContainer input {
   font-size: 1.3rem;
   font-weight: 600;
-  width: 500px;
+  width: 40vw;
   height: 65px;
   border-radius: 12px;
   border: 2px solid var(--navbar-background);
-  background: var(--page-background);
+  background: var(--search-background);
+}
+
+.navbar__search-input:focus-visible {
+  outline-color: #61dfff !important;
 }
 
 .searchBarContainer .navbar__search {
