@@ -7,7 +7,7 @@ type CardItem = {
   title: string;
   link: string;
   description: JSX.Element;
-  buttonName: string;
+  buttonName: JSX.Element; // Updated to allow JSX.Element for SVG
   buttonType:
     | "primary"
     | "secondary"
@@ -24,10 +24,25 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to",
     description: (
       <>
-        Learn how to get the most out of Linea with our developer-focused guides
+        Claim your Linea Name to establish your onchain identity.
       </>
     ),
-    buttonName: "BRIDGE",
+    buttonName: (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.9358 0.0886693L15.8627 3.01557V11.6618L13.6272 11.6618L13.6272 3.94154L13.6089 3.92331L2.2039 15.3284L0.623169 13.7476L12.0282 2.34257L12.0098 2.32416L4.22512 2.32412L4.22513 0.088623L12.9358 0.0886693Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    ),
     buttonType: "primary",
   },
   {
@@ -35,10 +50,25 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to/deploy-smart-contract",
     description: (
       <>
-        Get up and running quickly by deploying your smart contract on Linea
+        Get rewarded, secure grants and funding opportunities to bring your projects to life on Linea.
       </>
     ),
-    buttonName: "BUILD",
+    buttonName: (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.9358 0.0886693L15.8627 3.01557V11.6618L13.6272 11.6618L13.6272 3.94154L13.6089 3.92331L2.2039 15.3284L0.623169 13.7476L12.0282 2.34257L12.0098 2.32416L4.22512 2.32412L4.22513 0.088623L12.9358 0.0886693Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    ),
     buttonType: "success",
   },
   {
@@ -46,11 +76,25 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to/run-a-node",
     description: (
       <>
-        Learn how to run a Linea node with Besu or Geth, and interact with the
-        blockchain locally.
+        Get amplified and showcase your work to the Linea community and beyond.
       </>
     ),
-    buttonName: "LEARN",
+    buttonName: (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.9358 0.0886693L15.8627 3.01557V11.6618L13.6272 11.6618L13.6272 3.94154L13.6089 3.92331L2.2039 15.3284L0.623169 13.7476L12.0282 2.34257L12.0098 2.32416L4.22512 2.32412L4.22513 0.088623L12.9358 0.0886693Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    ),
     buttonType: "info",
   },
   {
@@ -58,11 +102,25 @@ const CardList: CardItem[] = [
     link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
-        Start your dev journey with exclusive builder NFTs, tech talks,
-        mini-hacks, events, and more!
+        Join the vibrant Linea Discord to connect with like-minded builders, collaborate on ideas and projects, and build the future together.
       </>
     ),
-    buttonName: "LAUNCH",
+    buttonName: (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.9358 0.0886693L15.8627 3.01557V11.6618L13.6272 11.6618L13.6272 3.94154L13.6089 3.92331L2.2039 15.3284L0.623169 13.7476L12.0282 2.34257L12.0098 2.32416L4.22512 2.32412L4.22513 0.088623L12.9358 0.0886693Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    ),
     buttonType: "info",
   },
 ];
@@ -86,25 +144,14 @@ function Card({
           <div className={clsx("card__body", styles.cardBody)}>
             <p className={styles.description}>{description}</p>
           </div>
-          <div
-            className="card__footer"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              paddingBottom: "30px",
-            }}
-          >
+          <div className={clsx("card__footer", styles.cardFooter)}>
             <Link
               className={clsx(
                 "button",
                 "button--" + buttonType,
-                "button--block",
                 styles.button
               )}
               to={link}
-              style={{ width: "90%" }}
             >
               {buttonName}
             </Link>

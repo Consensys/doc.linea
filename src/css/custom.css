@@ -1213,7 +1213,6 @@ html[data-theme="dark"] .navbar {
 }
 
 /* Styling for callouts */
-
 .callout {
   padding: 20px;
   margin: 20px 0;
@@ -1289,12 +1288,19 @@ div[aria-label="Expand sidebar"] {
   margin-top: 70px !important;
 }
 
+.menu__list-item-collapsible {
+  margin-right: 8px;
+}
+
+.menu__link--active {
+  color: var(--ifm-link-color) !important;
+}
+
 .menu__link:hover,
 .menu__list-item-collapsible--active,
 .menu__list-item-collapsible--active:hover,
 .menu__link--active:not(.menu__link--sublist),
 .menu__list-item-collapsible:hover,
-.menu__link:hover, 
 .menu__caret:hover {
   background: none;
 }
@@ -1304,17 +1310,8 @@ div[aria-label="Expand sidebar"] {
   color: var(--linea-link-highlight-color);
 }
 
-.menu__list-item-collapsible {
-  margin-right: 8px;
-}
-
-.menu__link--active {
-  color: var(--ifm-link-color) !important;
-}
-
 .menu__link--sublist-caret {
-  /* Match these to other links, if needed */
-  color: inherit; /* or specify desired color */
+  color: inherit;
   background: none;
 }
 

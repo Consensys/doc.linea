@@ -13,7 +13,7 @@ main {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 20px 5px 20px 20px;
+  padding: 20px 5px 20px 30px;
 }
 
 .cardIcon {
@@ -30,7 +30,7 @@ main {
   position: absolute;
   top: 80px;
   text-align: left;
-  padding: 14px 12px 0 30px;
+  padding: 14px 25px 0 30px;
   transition: padding-left 0.25s ease;
 }
 
@@ -55,7 +55,7 @@ main {
   padding-right: 60px;
   padding-top: 10px;
   margin-bottom: 10px;
-  margin-left: 20px;
+  margin-left: 0;
   transition: font-size 0.25s ease, margin-left 0.25s ease;
 }
 
@@ -63,12 +63,11 @@ main {
   .cardTitle h3 {
     font-size: 1.45rem;
     font-weight: 500;
-    margin-left: 10px;
   }
 }
 
 .description {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   margin-top: 0;
 }
