@@ -76,8 +76,8 @@ VARIABLE_COST (4 bytes) = min(max(
 , min-bound), max-bound)
 ```
 
-The `profit-margin` is `3`, ensuring the network is sustainable. `min-bound` and `max-bound` 
-are variable, and guarantee the gas price stays within a reasonable range.
+The `profit-margin` ensures the network is sustainable. `min-bound` and `max-bound` are variable, 
+and guarantee the gas price stays within a reasonable range.
 
 The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
 submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
