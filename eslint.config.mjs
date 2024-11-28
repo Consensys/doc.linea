@@ -121,6 +121,7 @@ export default [
       "react/require-default-props": 0,
       "react/jsx-props-no-spreading": 0,
       "react/button-has-type": 0,
+      "react/no-unknown-property": [2, { ignore: ["ub-in-page"] }],
       "jsx-a11y/label-has-associated-control": [
         "error",
         {
