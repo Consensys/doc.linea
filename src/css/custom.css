@@ -427,7 +427,17 @@ textarea {
   --linea-link-highlight-color: #61dfff;
   --search-bar-background: #fff;
   --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg fill='%23505050' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16px' width='16px'%3E%3Cpath d='M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z'/%3E%3C/svg%3E") !important;
-
+  --searchbar-background: #50505d;
+  --searchbar-background-hover: #1e1f24;
+  --search-local-modal-background: #24292e;
+  --search-local-hit-background: #161616;
+  --search-local-hit-shadow: none;
+  --search-local-hit-active-color: #fff;
+  --search-local-modal-shadow: none;
+  --search-local-muted-color: #45aaf2;
+  --search-local-hit-color: #fff;
+  --search-local-highlight-color: #f4841f;
+  --search-result-hl: #2a2623;
 }
 
 [data-theme="light"] {
@@ -473,6 +483,17 @@ textarea {
   --linea-link-highlight-color: #6119ef;
   --search-bar-background: #fff;
   --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg fill='%23190066' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16px' width='16px'%3E%3Cpath d='M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z'/%3E%3C/svg%3E") !important;
+  --searchbar-background: #e9ebee;
+  --searchbar-background-hover: #efefef;
+  --search-local-modal-background: #e9ebee;
+  --search-local-hit-background: #fff;
+  --search-local-hit-shadow: none;
+  --search-local-hit-active-color: #fff;
+  --search-local-modal-shadow: none;
+  --search-local-muted-color: #f4841f;
+  --search-local-hit-color: #161616;
+  --search-local-highlight-color: #037dd6;
+  --search-result-hl: #f8dac3;
 }
 
 /* github */

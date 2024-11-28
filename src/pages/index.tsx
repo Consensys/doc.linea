@@ -8,6 +8,7 @@ import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaDocsLogo from "../../static/img/Linea_docs_logo_currentColor.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
+import SearchBar from "@theme/SearchBar";
 
 import styles from "./index.module.css";
 
@@ -33,6 +34,9 @@ function HomepageHeader() {
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
+        </div>
+        <div className={clsx(styles.searchBarContainer, "banner-searchbar")}>
+          <SearchBar />
         </div>
       </div>
     </header>

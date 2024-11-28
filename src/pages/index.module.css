@@ -111,13 +111,13 @@
 .subtitle {
   color: var(--linea-banner-logo);
   font-size: 21px;
-  padding: 0 9rem 20px;
+  padding: 0 9rem 10px;
 }
 
 @media (width <= 996px) {
   .subtitle {
     font-size: 18px;
-    padding: 0 10vw 20px;
+    padding: 0 15vw 20px;
   }
 }
 
@@ -154,7 +154,7 @@
   background-size: 70%, 70%;
   padding: 6rem;
   text-align: center;
-  height: 52vh;
+  height: 65vh;
   min-height: 500px;
   width: calc(100vw - 2.5rem) !important;
   border-radius: 14px;
@@ -194,4 +194,41 @@
   display: inline-block;
   margin: 0;
   padding-bottom: -10px;
+}
+
+/* search bar */
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.searchBarContainer {
+  padding-top: 50px;
+}
+
+.searchBarContainer input {
+  font-size: 1.3rem;
+  font-weight: 600;
+  width: 500px;
+  height: 65px;
+  border-radius: 12px;
+  border: 2px solid var(--navbar-background);
+  background: var(--page-background);
+}
+
+.searchBarContainer .navbar__search {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 700px) {
+  .searchBarContainer .navbar__search {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
