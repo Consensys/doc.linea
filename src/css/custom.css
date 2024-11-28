@@ -1272,18 +1272,17 @@ html[data-theme="dark"] .navbar {
   background-color: var(--banner-background) !important;
   margin: 5px 22px 0;
   border-radius: 12px;
-  max-height: 70vh;
+  max-height: 80vh;
 }
 
-button[aria-label="Collapse sidebar"] {
+button [aria-label="Collapse sidebar"] {
   border: none !important;
   background-color: var(--banner-background);
   margin: 10px 22px 35px;
   border-radius: 12px;
-
 }
 
-div[aria-label="Expand sidebar"] {
+div [aria-label="Expand sidebar"] {
   margin-left: 20px;
   margin-top: 70px !important;
 }

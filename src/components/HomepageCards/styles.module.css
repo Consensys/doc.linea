@@ -34,18 +34,6 @@ main {
   transition: padding-left 0.25s ease;
 }
 
-@media (width <= 1500px) {
-  .cardBody {
-    padding: 14px 30px;
-  }
-}
-
-@media (width <= 1500px) {
-  .cardIcon {
-    width: 35px;
-  }
-}
-
 .cardTitle h3 {
   color: var(--banner-text);
   font-size: 1.45rem;
@@ -59,13 +47,6 @@ main {
   transition: font-size 0.25s ease, margin-left 0.25s ease;
 }
 
-@media (width <= 1500px) {
-  .cardTitle h3 {
-    font-size: 1.45rem;
-    font-weight: 500;
-  }
-}
-
 .description {
   font-size: 18px;
   font-weight: 300;
@@ -73,8 +54,17 @@ main {
 }
 
 @media (width <= 1500px) {
+  .cardTitle h3 {
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
   .description {
     font-size: 16px;
+  }
+
+  .cardBody {
+    padding: 14px 30px;
   }
 }
 
@@ -90,14 +80,15 @@ main {
 
 .heading, .cardContainer {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
+  padding-bottom: 0;
 }
 
 .card_glow {
   position: relative;
   background-color: var(--homepage-card-background);
   color: var(--ifm-color-primary);
-  border-radius: 17px;
+  border-radius: 14px;
   overflow: visible;
   transform: scale(1);
   transition: transform 0.15s ease-in-out, border-color 0.3s ease-in-out;
@@ -150,15 +141,27 @@ main {
   color: #fff;
 }
 
-@media (width <= 1150px) {
+@media (width <= 1350px) {
   .cardIcon {
     opacity: 0;
+  }
+
+  .cardTitle h3 {
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 1.25rem;
   }
 }
 
 @media (width <= 996px) {
   .cardIcon {
     opacity: 1;
+    width: 35px;
+  }
+
+  .cardTitle h3 {
+    padding-right: 60px;
+    font-size: 1.45rem;
   }
 }
 
@@ -167,4 +170,3 @@ main {
     opacity: 0;
   }
 }
-

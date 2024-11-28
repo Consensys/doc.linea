@@ -101,9 +101,15 @@ main {
 
 .card_glow {
   background-color: var(--homepage-card-background);
-  border-radius: 17px;
+  border-radius: 14px;
   min-height: 280px;
   position: relative;
+  box-shadow: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.card_glow:hover {
+  transform: translateY(-10px);
 }
 
 .cardFooter {

@@ -178,7 +178,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={styles.cardContainer}>
         <br />
-        <h1 className={styles.heading}>QUICK LINKS</h1>
+        <h1 className={styles.heading}>TUTORIALS AND GUIDES</h1>
         <br />
         <div className="row" ref={rowRef} style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (
