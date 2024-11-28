@@ -47,8 +47,8 @@ export default function DocItemLayout({ children }) {
             <DocBreadcrumbs />
             <DocVersionBadge />
             {docTOC.mobile}
-            <ToolingCTA />
             <DocItemContent>{children}</DocItemContent>
+            <ToolingCTA />
             <GetFeedback />
             <DocItemFooter />
           </article>
