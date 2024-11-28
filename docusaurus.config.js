@@ -92,6 +92,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+
+      /*
       announcementBar: {
         id: "announcement_bar",
         content:
@@ -100,6 +102,8 @@ const config = {
         textColor: "#121212",
         isCloseable: false,
       },
+      */
+     
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
