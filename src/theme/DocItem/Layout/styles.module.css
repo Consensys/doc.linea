@@ -1,18 +1,14 @@
 :root {
-  --ifm-container-width-xl: 1378px;
-  --ifm-container-width: 1200px;
+  --ifm-container-width-xl: none;
+}
+
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 35px;
 }
 
 @media (width >= 997px) {
   .docItemCol {
-    min-height: 80vh;
-    padding:  0 40px 5px 40px;
-  }
-}
-
-@media (width <= 996px) {
-  .col .docItemCol {
-    width: 500px;
-    padding: 0 !important;
+    max-width: 75% !important;
   }
 }
