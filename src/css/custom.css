@@ -1433,7 +1433,7 @@ div[aria-label="Expand sidebar"] {
     display: none !important;
   }
 
-  .col--3 {
+  div.col .col--3 {
     --ifm-col-width: 0;
     padding: 0;
   }
