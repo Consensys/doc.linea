@@ -75,14 +75,8 @@
 @media (width <= 768px) {
   .title {
     margin-top: 60px;
-    padding-left: 10vw;
-    padding-right: 10vw;
-  }
-}
-
-@media (width <= 320px) {
-  .title {
-    font-size: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -112,8 +106,8 @@
 @media (width <= 996px) {
   .subtitle {
     font-size: 24px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .bannerButton {
@@ -121,9 +115,8 @@
   }
 }
 
-@media (width <= 320px) {
+@media (width <= 350px) {
   .subtitle {
-    font-size: 15px;
     padding: 0 0 20px;
     padding: 0;
   }
@@ -132,6 +125,12 @@
 @media (height <= 850px) {
   .subtitle {
     font-size: 16px;
+  }
+}
+
+@media (width <= 350px) {
+  .title {
+    font-size: 38px;
   }
 }
 
@@ -155,7 +154,7 @@
   padding: 6rem;
   text-align: center;
   height: 60vh;
-  min-height: 550px;
+  min-height: 575px;
   width: calc(100vw - 2.5rem) !important;
   border-radius: 14px;
   margin: 0 auto;
@@ -172,13 +171,28 @@
   .introductionBlock {
     padding: 2rem;
     height: 75vh;
+    background-position:
+    right -270% top 150%,
+    left -280% top -80%;
+    background-size: 80%, 80%;
+  }
+}
+
+@media (width <= 530px) {
+  .introductionBlock {
+    padding: 0;
+    height: 75vh;
+    background-position:
+    right -100% top 100%,
+    left -100% top -20%;
+    background-size: 60%, 60%;
   }
 }
 
 @media (width <= 320px) {
   .introductionBlock {
     padding: 0;
-    height: 55vh;
+    height: 75vh;
   }
 }
 
@@ -215,6 +229,7 @@
   border-radius: 12px;
   border: 2px solid var(--navbar-background);
   background: var(--search-background);
+  margin-right: 0;
 }
 
 .navbar__search-input:focus-visible {
@@ -235,5 +250,29 @@
     padding: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
+  }
+}
+
+/* search results dropdown, somewhat workaroundy but swizzle-free way to target and center */
+[role="listbox"][id^="searchBar_"] {
+  position: absolute;
+  margin: 0;
+  right: 50%;
+  left: 50%;
+  margin-top: 10px;
+  width: var(--search-local-modal-width, 39.8vw); 
+  z-index: 100;
+  display: block;
+}
+
+@media (max-width: 996px) {
+  [role="listbox"][id^="searchBar_"] {
+    width: var(--search-local-modal-width, 450px); 
+  }
+}
+
+@media (max-width: 550px) {
+  [role="listbox"][id^="searchBar_"] {
+    width: var(--search-local-modal-width, 80vw); 
   }
 }

@@ -435,10 +435,10 @@ textarea {
   --search-local-hit-shadow: none;
   --search-local-hit-active-color: #fff;
   --search-local-modal-shadow: none;
-  --search-local-muted-color: #45aaf2;
+  --search-local-muted-color: #61dfff;
   --search-local-hit-color: #fff;
-  --search-local-highlight-color: #f4841f;
-  --search-result-hl: #2a2623;
+  --search-local-highlight-color: #6f7da6;
+  --search-result-hl: #23282a;
 }
 
 [data-theme="light"] {
@@ -492,10 +492,10 @@ textarea {
   --search-local-hit-shadow: none;
   --search-local-hit-active-color: #fff;
   --search-local-modal-shadow: none;
-  --search-local-muted-color: #f4841f;
+  --search-local-muted-color: #190066;
   --search-local-hit-color: #161616;
-  --search-local-highlight-color: #037dd6;
-  --search-result-hl: #f8dac3;
+  --search-local-highlight-color: #6119ef;
+  --search-result-hl: #fff068;
 }
 
 /* github */
@@ -1032,7 +1032,6 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
   .navbar__search input:focus {
     max-width: 170px;
-    border-radius: 999px;
   }
 
   .navbar__search-input:not(.navbar .navbar__search-input) {
