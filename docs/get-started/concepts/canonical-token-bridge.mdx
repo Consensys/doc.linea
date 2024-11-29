@@ -1,0 +1,109 @@
+---
+title: Canonical token bridge
+sidebar_position: 1
+image: /img/socialCards/canonical-token-bridge.jpg
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import TokenBridge from "!!raw-loader!/files/testnet/ITokenBridge.sol";
+import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
+import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
+import LineaBridgeGraphic from "/img/get_started/concepts/canonical_token_bridge/Linea_canonical_token_bridge.svg";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<div className="img-large">
+  <LineaBridgeGraphic />
+</div>
+
+The canonical token bridge is the pair of “lock & mint” contracts that allow bridging of any 
+ERC-20 token. The bridge relies on the [message service](./message-service.mdx)
+for cross-chain interactions.
+
+The Linea team operates a UI for the [official Linea bridge](https://bridge.linea.build/).
+
+The canonical token bridge is optimized for technical partners who are deploying on Linea. 
+We recommend that everyday users of Linea seeking to bridge their personal tokens between 
+networks leverage one of the many bridges deployed to the network.
+
+Linea seeks to foster a permissionless, resilient, decentralized environment — not to have our 
+bridge be a centralized arbiter and point of failure.
+
+To find out which bridges are currently operating on Linea, head to the [ecosystem portal](https://linea.build/apps) 
+and click on the **Bridge** button to show all that are available.
+
+## Contracts
+
+<Tabs className="my-tabs">
+
+<TabItem value="Mainnet" label="Mainnet">
+
+- **Ethereum Mainnet**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://etherscan.io/address/0x051F1D88f0aF5763fB888eC4378b4D8B29ea3319)
+
+- **Linea Mainnet**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://lineascan.build/address/0x353012dc4a9a6cf55c941badc267f82004a8ceb9)
+
+</TabItem>
+<TabItem value="Linea Sepolia" label="Linea Sepolia">
+
+- **Ethereum Sepolia**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://sepolia.etherscan.io/address/0x5A0a48389BB0f12E5e017116c1105da97E129142)
+
+- **Linea Sepolia**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://sepolia.lineascan.build/address/0x93DcAdf238932e6e6a85852caC89cBd71798F463)
+
+</TabItem>
+</Tabs>
+
+## How to use
+
+### Workflow
+
+1. Triggering the transfer
+
+- **Without Permit**
+  - User should first allow the bridge to transfer tokens on their behalf
+  - This is done by calling `allowance()` on the TokenBridge.
+  - Then, the user should call the `bridgeToken()` method.
+- **With Permit**
+  - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction
+
+2. Triggering the delivery
+
+- See the [message service workflow](./message-service.mdx#workflow).
+
+## Interface TokenBridge.sol
+
+<details>
+  <summary>ITokenBridge.sol</summary>
+  <CodeBlock language="solidity">{TokenBridge}</CodeBlock>
+</details>
