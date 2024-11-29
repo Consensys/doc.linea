@@ -39,7 +39,7 @@ This update upgrades several key contracts. Some updates prepare the protocol fo
 reconstruct the Linea state, while others add granularity to available roles, better preparing them
 for any required pauses. Many of the contract modifications have also resulted in gas optimizations.
 
-Additionally, we are deprecating the `finalizeBlocksWithoutProof` function, and adding functionality
+Additionally, we are removing the `finalizeBlocksWithoutProof` function, and adding functionality
 that enables any address to send blob submission and finalization transactions through a call 
 forwarding contract if no finalization occurs for more than six months. This effectively allows L1 
 finalization, enabling withdrawal of potentially locked funds. 
