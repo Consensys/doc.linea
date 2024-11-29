@@ -75,8 +75,16 @@
 @media (width <= 768px) {
   .title {
     margin-top: 60px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (width <= 530px) {
+  .title {
+    margin-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -172,20 +180,19 @@
     padding: 2rem;
     height: 75vh;
     background-position:
-    right -270% top 150%,
-    left -280% top -80%;
+    right -285% top 150%,
+    left -295% top -80%;
     background-size: 80%, 80%;
   }
 }
 
 @media (width <= 530px) {
   .introductionBlock {
-    padding: 0;
-    height: 75vh;
-    background-position:
-    right -100% top 100%,
-    left -100% top -20%;
-    background-size: 60%, 60%;
+    background-image: url("/img/Linea_mob_banner_1.svg"), url("/img/Linea_mob_banner_2.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 40%, 40%;
+    background-position: bottom left, top right;
+    height: auto;
   }
 }
 

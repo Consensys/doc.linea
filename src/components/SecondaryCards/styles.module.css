@@ -55,9 +55,15 @@ main {
 }
 
 .description {
+  color: var(--banner-text);
   font-size: 16px;
   font-weight: 300;
   margin-top: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.card_glow:hover .description {
+  color: var(--search-local-muted-color);
 }
 
 @media (width <= 1300px) {

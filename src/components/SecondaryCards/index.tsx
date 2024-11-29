@@ -134,7 +134,7 @@ function Card({
 }: CardItem) {
   return (
     <div className={clsx("col", "col--3", "margin-top--md")}>
-      <div className={clsx("card-demo", styles.cardDemo)}>
+      <Link to={link} className={clsx("card-demo", styles.cardDemo)}>
         <div className={clsx("card", styles.card_glow)}>
           <div className={clsx("card__header", styles.cardHeader)}>
             <div className={styles.cardTitle}>
@@ -145,19 +145,18 @@ function Card({
             <p className={styles.description}>{description}</p>
           </div>
           <div className={clsx("card__footer", styles.cardFooter)}>
-            <Link
+            <span
               className={clsx(
                 "button",
                 "button--" + buttonType,
                 styles.button
               )}
-              to={link}
             >
               {buttonName}
-            </Link>
+            </span>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
