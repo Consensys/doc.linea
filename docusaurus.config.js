@@ -65,8 +65,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [require("remark-docusaurus-tabs")],
-          remarkPlugins: [math],
+          remarkPlugins: [require("remark-docusaurus-tabs"), math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
@@ -93,7 +92,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -110,7 +109,7 @@ const config = {
       docs: {
         sidebar: {
           hideable: true,
-          autoCollapseCategories: true,
+          autoCollapseCategories: false,
         },
       },
       navbar: {
@@ -123,56 +122,31 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "developers/quickstart/index",
+            docId: "get-started/index",
             position: "left",
-            label: "Quickstart",
+            label: "Get started",
           },
-          {
-            type: "doc",
-            docId: "developers/guides/index",
-            position: "left",
-            label: "Guides",
-          },
-          // { can add this section back if we want it
-          //   type: "dropdown",
-          //   label: "Tutorials",
+          // {
+          //   type: "doc",
+          //   docId: "learn/index",
           //   position: "left",
-          //   items: [
-          //     {
-          //       label: "Community Guides",
-          //       to: "blog",
-          //     },
-          //     {
-          //       label: "ZK Glossary",
-          //       to: "/zero-knowledge-glossary",
-          //     },
-          //   ],
+          //   label: "Learn",
           // },
           {
-            to: "/developers/guides/run-a-node",
-            position: "left",
-            label: "Run a node",
-          },
-          {
             type: "doc",
-            docId: "architecture/index",
+            docId: "api/index",
             position: "left",
-            label: "Architecture",
+            label: "API & SDK",
           },
           {
-            to: "/developers/linea-version",
+            to: "release-notes",
             position: "right",
-            className: "header-release-notes-link",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
-            className: "header-discord-link",
             position: "right",
-          },
-          {
-            href: "https://twitter.com/lineabuild",
-            className: "header-twitter-link",
-            position: "right",
+            label: "Support",
           },
         ],
       },

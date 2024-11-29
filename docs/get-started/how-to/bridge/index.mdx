@@ -1,0 +1,69 @@
+---
+title: Bridge your tokens
+sidebar_position: 3
+image: /img/socialCards/bridge-your-tokens.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+There are multiple options to bridge tokens (ETH or ERC-20) when you need to provide liquidity. 
+Linea's default canonical token bridge allows you to bridge ETH or ERC-20 tokens using a UI.
+
+The default canonical token bridge is suited for protocols that need their tokens on L2 for
+DeFi and other uses without any special requirement for custom features (Vanilla ERC20). For protocols
+that require custom features or want to implement complex cross-chain logic, consider a custom
+implementation or building a dedicated token bridge.
+
+:::note
+We recommend that tech operators that want to provide liquidity use the
+[**Native Bridge for Tech Operators**](https://bridge.linea.build/) which provides the interface to
+the [canonical token bridge](../../concepts/canonical-token-bridge.mdx).
+:::
+
+Select one of the following cards for instructions to bridge using the default canonical token bridge.
+
+<DocCardList />
+
+## Custom options for moving large liquidity
+
+### Use the canonical token bridge with a custom `BridgedToken` implementation
+
+This is suited for protocols that want to implement special features for the bridged ERC20 on L2.
+**This is only possible if the token has not yet been bridged from L1 to L2 in order to avoid
+unexpected changes for end-users.**
+
+Protocols that want to use a custom BridgedToken will be able to incorporate arbitrary logic on the L2
+ERC20, while still relying on the Token Bridge lock and mint logic and cross-chain communication.
+**For this to work, protocols need to keep compatibility with the Token Bridge by enabling it to call the ERC20 mint and burn functions.**
+
+If you are interested in this option, please contact the Linea team to get started. The process is as follows:
+
+- The token issuer deploys a custom BridgedToken which should enable the Token Bridge to call mint and burn functions.
+- Linea team will configure the bridge so that it will use your custom contract to mint and burn tokens on L2.
+
+:::note
+
+If you are not yet ready with your own implementation, you can deploy the standard BridgedToken implementation behind a dedicated upgradable proxy that you will be able to upgrade later
+
+:::
+
+### Build a dedicated token bridge
+
+This is intended for partners who need full control over the bridge and want to implement complex cross-chain logic.
+
+The partner will be in charge of building, auditing and operating their own token bridge.
+
+If you are interested by this option, please get in touch with us so that we can:
+
+- Block your L1 token from being bridged on L1 in order to avoid having several copies on Linea
+- Provide guidance if you want to rely on our cross-chain messaging system
+
+## What are the execution fees?
+
+There are two types of execution fees that can be applied when you are bridging your tokens, the postman fee and the anti-DDOS fee.
+
+The postman fee is only applied during the automatic claiming process and is calculated by the following formula:
+
+`Postman Fee = target layer gas price * (gas estimated + gas limit surplus) * margin` where target layer gas price is `eth_gasPrice` on the target layer, `gas estimated = 100,000`, `gas limit surplus = 6000`, and `margin = 2`.
+
+The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.001 Eth`
