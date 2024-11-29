@@ -83,8 +83,15 @@
 @media (width <= 530px) {
   .title {
     margin-top: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (width <= 450px) {
+  .title {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -139,6 +146,8 @@
 @media (width <= 350px) {
   .title {
     font-size: 38px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
