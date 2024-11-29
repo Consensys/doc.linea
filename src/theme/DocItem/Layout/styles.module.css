@@ -12,3 +12,8 @@
     max-width: 75% !important;
   }
 }
+
+/* adjusts Y position of the main article section in the layout */
+nav[aria-label="Breadcrumbs"] {
+  margin-top: 0px !important;
+}
