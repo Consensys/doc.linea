@@ -818,6 +818,10 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
   }
 }
 
+.navbar__item .navbar__link svg {
+  display: none !important;
+}
+
 /* dockerhub */
 .header-dockerhub-link:hover {
   opacity: 0.6;
@@ -1037,6 +1041,11 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__search-input:not(.navbar .navbar__search-input) {
     max-width: 450px;
     width: 450px;
+  }
+
+  .support-link {
+    font-size: 16px;
+    padding: 3px 12px;
   }
 }
 
@@ -1329,6 +1338,9 @@ div[aria-label="Expand sidebar"] {
   max-height: 80vh;
 }
 
+a.menu__link {
+  padding: 3px 12px;
+}
 
 .menu__list-item-collapsible {
   margin-right: 8px;
