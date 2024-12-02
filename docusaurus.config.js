@@ -51,7 +51,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true,
+    experimental_faster: false,
   },
 
   presets: [
@@ -86,13 +86,12 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       /*
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
           '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
@@ -113,7 +112,6 @@ const config = {
         sidebar: {
           hideable: true,
           autoCollapseCategories: false,
-          autoCollapseCategories: false,
         },
       },
       navbar: {
@@ -125,7 +123,6 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "get-started/index",
             docId: "get-started/index",
             position: "left",
             label: "Get started",
@@ -139,16 +136,13 @@ const config = {
           {
             type: "doc",
             docId: "api/index",
-            docId: "api/index",
             position: "left",
-            label: "API & SDK",
             label: "API & SDK",
           },
           {
             type: "doc",
             docId: "release-notes",
             position: "right",
-            label: "Release notes",
             label: "Release notes",
           },
           {

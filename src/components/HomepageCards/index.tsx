@@ -42,7 +42,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Get Linea Testnet ETH",
-    link: "/get-started/build/info-contracts#faucets",
+    link: "/get-started/build/network-info#faucets",
     description: (
       <>
         Learn how to get Linea Testnet ETH to deploy on Linea Sepolia.

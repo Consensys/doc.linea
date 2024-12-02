@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Create your builder profile",
-    link: "/get-started/how-to",
+    link: "/get-started",
     description: <>Claim your Linea Name to establish your onchain identity.</>,
     buttonName: (
       <svg
