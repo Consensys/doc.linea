@@ -19,7 +19,7 @@ const GetFeedback = (props) => {
     <div className="getfeedback-container">
       {/*Light*/}
       <div
-        dub-in-page="66fd19777582bd0f0b3f8314"
+        ub-in-page="66fd19777582bd0f0b3f8314"
         className={theme === "dark" ? "getfeedback-hidden" : undefined}
         ref={feedbackContRef}
       />
