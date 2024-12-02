@@ -260,7 +260,7 @@
   box-sizing: border-box !important;
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .searchBarContainer .navbar__search {
     align-items: center !important;
     justify-content: center !important;
@@ -282,13 +282,13 @@
   display: block;
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   [role="listbox"][id^="searchBar_"] {
     width: var(--search-local-modal-width, 450px); 
   }
 }
 
-@media (max-width: 550px) {
+@media (width <= 550px) {
   [role="listbox"][id^="searchBar_"] {
     width: var(--search-local-modal-width, 80vw); 
   }
