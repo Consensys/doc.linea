@@ -113,7 +113,6 @@ const config = {
         sidebar: {
           hideable: true,
           autoCollapseCategories: false,
-          autoCollapseCategories: false,
         },
       },
       navbar: {
@@ -125,7 +124,6 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "get-started/index",
             docId: "get-started/index",
             position: "left",
             label: "Get started",
@@ -139,16 +137,13 @@ const config = {
           {
             type: "doc",
             docId: "api/index",
-            docId: "api/index",
             position: "left",
-            label: "API & SDK",
             label: "API & SDK",
           },
           {
             type: "doc",
             docId: "release-notes",
             position: "right",
-            label: "Release notes",
             label: "Release notes",
           },
           {
