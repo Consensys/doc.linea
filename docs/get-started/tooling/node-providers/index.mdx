@@ -5,17 +5,61 @@ image: /img/socialCards/node-providers.jpg
 
 ## Private RPC endpoints
 
-- [Alchemy](https://www.alchemy.com/)
-- [ANKR](https://www.ankr.com/rpc/)
-- [BLAST API](https://blastapi.io/)
-- [Blockpi](https://blockpi.io/)
-- [DRPC](https://drpc.org/)
-- [GetBlock](https://getblock.io/)
-- [Infura](https://www.infura.io/)
-- [Moralis](https://moralis.io/nodes/)
-- [NOWNodes](https://nownodes.io/nodes)
-- [QuickNode](https://www.quicknode.com)
-- [Unifra](https://unifra.io/)
+<table>
+  <tr>
+    <th>Provider</th>
+    <th>Linea feature support*</th>
+  </tr>
+  <tr>
+    <td><a href="https://www.alchemy.com/">Alchemy</a></td>
+    <td>:white_check_mark:</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.ankr.com/rpc/">ANKR</a></td>
+    <td>:x:</td>
+  </tr>
+  <tr>
+    <td><a href="https://blastapi.io/">BLAST API</a></td>
+    <td>:white_check_mark:</td>
+  </tr>
+  <tr>
+    <td><a href="https://blockpi.io/">Blockpi</a></td>
+    <td>:white_check_mark:</td>
+  </tr>
+  <tr>
+    <td><a href="https://drpc.org/">DRPC</a></td>
+    <td>:x:</td>
+  </tr>
+  <tr>
+    <td><a href="https://getblock.io/">GetBlock</a></td>
+    <td>:white_check_mark:</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.infura.io/">Infura</a></td>
+    <td>:white_check_mark:</td>
+  </tr>
+  <tr>
+    <td><a href="https://moralis.io/nodes/">Moralis</a></td>
+    <td>:x:</td>
+  </tr>
+  <tr>
+    <td><a href="https://nownodes.io/nodes">NOWNodes</a></td>
+    <td>:x:</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.quicknode.com">QuickNode</a></td>
+    <td>:x:</td>
+  </tr>
+  <tr>
+    <td><a href="https://unifra.io/">Unifra</a></td>
+    <td>:x:</td>
+  </tr>
+</table>
+
+> \* _"Linea feature support" indicates endpoints that support custom features beyond standard
+> Ethereum functionality, such as the [`linea_estimateGas`](../../../api/reference/linea-estimategas.mdx) 
+> API method, or features that require a specific implementation to work on Linea, such as use of
+> the [`finalized` tag](../../how-to/finalized-block.mdx)._
 
 ## Run your own node
 
@@ -105,11 +149,10 @@ Public endpoints are rate limited, and not meant for production systems.
   </tr>
 </table>
 
-> \* _"Linea feature support" indicates endpoints that support custom features
-> beyond standard Ethereum functionality, such as the
-> [`linea_estimateGas`](../../../api/reference/linea-estimategas.mdx) API method,
-> or features that require a specific implementation to work on Linea, such as
-> use of the [`finalized` tag](../../how-to/finalized-block.mdx)._
+> \* _"Linea feature support" indicates endpoints that support custom features beyond standard
+> Ethereum functionality, such as the [`linea_estimateGas`](../../../api/reference/linea-estimategas.mdx) 
+> API method, or features that require a specific implementation to work on Linea, such as use of
+> the [`finalized` tag](../../how-to/finalized-block.mdx)._
 
 If you're an RPC endpoint provider and would like to be added to the list, reach
 out to our team, or make a PR to the docs.
