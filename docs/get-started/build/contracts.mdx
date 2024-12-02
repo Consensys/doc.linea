@@ -1,0 +1,127 @@
+---
+title: Contracts
+description: Important contracts on Linea Mainnet and Linea Sepolia.
+image: /img/socialCards/contracts.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Deployed contracts
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+    <table>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>L1 Message Service</td>
+        <td>
+          <a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">
+            0xd19d4B5d358258f05D7B411E21A1460D11B0876F
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>L2 Message Service</td>
+        <td>
+          <a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">
+            0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec
+          </a>
+        </td>
+      </tr>
+    </table>
+  </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    <table>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>L1 Message Service</td>
+        <td>
+          <a href="https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5">
+          0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>L2 Message Service</td>
+        <td>
+          <a href="https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51ec16e73acac83a7">
+          0x971e727e956690b9957be6d51Ec16E73AcAC83A7
+          </a>
+        </td>
+      </tr>
+    </table>
+  </TabItem>
+</Tabs>
+
+## Token contract addresses and bridges
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+
+To see **the most up to date list of tokens on Linea**, see
+[the token explorer here](https://consensys.github.io/linea-token-list/), which is derived from the
+official lists in [this repo](https://github.com/Consensys/linea-token-list/blob/main/json/linea-mainnet-token-shortlist.json). 
+
+:::warning[Note]
+
+We recommend you rely on the shortlist in the above links, rather than the full list. The shortlist is
+actively curated by our team, whereas the full list isn't, and automatically populates with all
+tokens bridged to Linea. 
+
+:::
+
+To **get your own token included**, please follow the instructions on this [repository](https://github.com/Consensys/linea-token-list).
+
+To see **which third-party bridges are available**, consult our [Ecosystem Portal's list](https://linea.build/apps?types=bridge).
+
+If you're **looking to bridge tokens to or from Linea**, head to the [Linea bridge page](https://bridge.linea.build/)
+to access the various options.
+
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+Sepolia token contract addresses will be added to the
+[official token lists repository](https://github.com/Consensys/linea-token-list/tree/main/json) as soon as possible.
+  </TabItem>
+</Tabs>
+
+## Important contracts
+
+For both mainnet and testnet:
+
+<table>
+  <tr>
+    <th>Contracts</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="/files/testnet/IBridge.sol">IBridge.sol</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/files/testnet/IL1Bridge.sol">IL1Bridge.sol</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/files/testnet/IMessageService.sol">IMessageService.sol</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/files/testnet/MessageServiceBase.sol">MessageServiceBase.sol</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="/files/testnet/ITokenBridge.sol">ITokenBridge.sol</a>
+    </td>
+  </tr>
+</table>
