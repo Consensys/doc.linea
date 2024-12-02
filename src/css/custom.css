@@ -978,8 +978,8 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   border: 1px solid var(--linea-navbar-items);
 }
 
-/* highlight the dot for the current page using aria-current */
-.navbar__link[aria-current="page"]::before {
+/* highlight the dot for the current page using active class state */
+.navbar__link--active::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
 }
