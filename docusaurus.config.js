@@ -135,12 +135,12 @@ const config = {
             position: "left",
             label: "Get started",
           },
-          {
+/*           {
             type: "doc",
             docId: "learn/index",
             position: "left",
             label: "Learn",
-          },
+          }, */
           {
             type: "doc",
             docId: "api/index",
