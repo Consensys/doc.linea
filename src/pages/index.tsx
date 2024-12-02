@@ -17,10 +17,10 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
-      <h1 className={clsx("hero__title", styles.title)}>
-        <LineaLogo className={styles.logo} />
-        <span className={styles.visuallyHidden}>Developer Center</span>
-      </h1>
+        <h1 className={clsx("hero__title", styles.title)}>
+          <LineaLogo className={styles.logo} />
+          <span className={styles.visuallyHidden}>Developer Center</span>
+        </h1>
         <p className={clsx("hero__subtitle", styles.subtitle)}>
           {siteConfig.tagline}
         </p>

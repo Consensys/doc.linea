@@ -18,8 +18,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
-  tagline:
-    "Everything you need to build onchain.",
+  tagline: "Everything you need to build onchain.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -65,10 +64,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [
-            require("remark-docusaurus-tabs"),
-            math
-          ],
+          remarkPlugins: [require("remark-docusaurus-tabs"), math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
@@ -92,7 +88,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-
       /*
       announcementBar: {
         id: "announcement_bar",
@@ -104,7 +99,7 @@ const config = {
         isCloseable: false,
       },
       */
-     
+
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -135,7 +130,7 @@ const config = {
             position: "left",
             label: "Get started",
           },
-/*           {
+          /*           {
             type: "doc",
             docId: "learn/index",
             position: "left",
