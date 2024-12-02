@@ -87,7 +87,7 @@ const config = {
 
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       /*
       announcementBar: {
         id: "announcement_bar",
@@ -246,7 +246,7 @@ const config = {
           logoClass: "nodejs",
         },
       ],
-    }),
+    },
   plugins: [
     [
       "@docusaurus/plugin-google-tag-manager",
