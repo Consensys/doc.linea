@@ -1,0 +1,17 @@
+---
+title: Blocknative
+image: /img/socialCards/blocknative.jpg
+---
+
+Blocknative offers APIs to help developers and users estimate fees on Linea. The estimates are based 
+on real-time Linea data and ML modeling to accurately and consistently estimate Linea transaction 
+fees. Linea fee estimation is also available in the Blocknative [browser extension](https://www.blocknative.com/gas-extension).
+
+## Use the Blocknative Gas API
+
+To leverage Blocknative's Gas API, you will need an [API Key](https://docs.blocknative.com/gas-prediction/gas-platform). 
+Once you have an API key, you can request fee estimation for Linea:
+
+```bash
+curl -H "Authorization: your-apikey-here" https://api.blocknative.com/gasprices/blockprices?chainid=59144
+```
