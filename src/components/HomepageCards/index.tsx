@@ -45,7 +45,7 @@ const CardList: CardItem[] = [
     link: "/get-started/build/network-info#faucets",
     description: (
       <>
-        Learn how to get Linea Testnet ETH to deploy on Linea Sepolia.
+        Learn how to get Linea Testnet ETH so you can deploy on Linea Sepolia.
       </>
     ),
     buttonName: "GET STARTED",
@@ -55,11 +55,11 @@ const CardList: CardItem[] = [
     textColor: "#121212",
   },
   {
-    title: "Bridge Tokens",
+    title: "Bridge tokens",
     link: "/get-started/how-to/bridge",
     description: (
       <>
-        Learn how to bridge your tokens from any chains to Linea.
+        Learn how to bridge your tokens from any chain to Linea.
       </>
     ),
     buttonName: "GET STARTED",
@@ -69,11 +69,11 @@ const CardList: CardItem[] = [
     textColor: "#fff",
   },
   {
-    title: "Run a Linea Node",
+    title: "Run a Linea node",
     link: "/get-started/how-to/run-a-node",
     description: (
       <>
-        Learn how to deploy and sync a Linea Node.
+        Learn how to deploy and sync a Linea node.
       </>
     ),
     buttonName: "GET STARTED",
