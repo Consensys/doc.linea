@@ -27,11 +27,8 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Build",
-          link: {
-            type: "doc",
-            id: "get-started/how-to/deploy-smart-contract/index",
-          },
+          label: "Deploy a smart contract",
+          link: null,
           collapsible: false,
           items: [
             "get-started/how-to/deploy-smart-contract/atlas",
@@ -44,11 +41,8 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "How-to",
-          link: {
-            type: "doc",
-            id: "get-started/how-to/verify-smart-contract/index",
-          },
+          label: "Verify a smart contract",
+          link: null,
           collapsible: false,
           items: [
             "get-started/how-to/verify-smart-contract/atlas",
