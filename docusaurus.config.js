@@ -51,7 +51,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true,
+    experimental_faster: false,
   },
 
   presets: [

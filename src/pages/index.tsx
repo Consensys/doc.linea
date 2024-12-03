@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
 import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
@@ -11,6 +10,15 @@ import LineaFooter from "../../static/img/linea_footer.svg";
 import SearchBar from "@site/src/theme/SearchBar";
 
 import styles from "./index.module.css";
+
+// Explicitly define the props for Layout to include `title` and `description`
+type LayoutProps = {
+  title?: string;
+  description?: string;
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = require("@theme/Layout").default;
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -28,9 +36,10 @@ function HomepageHeader() {
           <Link
             className={clsx(
               "button button--secondary button--lg",
-              styles.bannerButton,
+              styles.bannerButton
             )}
-            to="/get-started">
+            to="/get-started"
+          >
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
@@ -48,7 +57,8 @@ export default function Home(): JSX.Element {
     <>
       <Layout
         title={`Welcome`}
-        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
+        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys."
+      >
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
