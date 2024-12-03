@@ -1328,6 +1328,7 @@ button[aria-label="Collapse sidebar"] {
 
 a.menu__link {
   padding: 3px 12px;
+  line-height: 1.25 !important;
 }
 
 .menu__list-item-collapsible {
@@ -1354,7 +1355,7 @@ a.menu__link {
 
 .menu__link--sublist-caret {
   color: inherit;
-  background: none;
+  background: none;;
 }
 
 .expandButton {
@@ -1399,6 +1400,10 @@ a.menu__link {
 .theme-doc-toc-desktop {
   margin-right: 5px;
   transform: translateY(-16px);
+}
+
+button.clean-btn.menu__caret {
+  padding: 3px 12px;
 }
 
 @media (width <= 1200px) {
