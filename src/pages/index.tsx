@@ -36,10 +36,9 @@ function HomepageHeader() {
           <Link
             className={clsx(
               "button button--secondary button--lg",
-              styles.bannerButton
+              styles.bannerButton,
             )}
-            to="/get-started"
-          >
+            to="/get-started">
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
@@ -57,8 +56,7 @@ export default function Home(): JSX.Element {
     <>
       <Layout
         title={`Welcome`}
-        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys."
-      >
+        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
