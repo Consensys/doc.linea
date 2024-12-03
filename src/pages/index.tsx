@@ -8,7 +8,7 @@ import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
-import SearchBar from "@theme/SearchBar";
+import SearchBar from "@site/src/theme/SearchBar";
 
 import styles from "./index.module.css";
 
