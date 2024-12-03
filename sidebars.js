@@ -32,6 +32,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/deploy-smart-contract/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/deploy-smart-contract/atlas",
             "get-started/how-to/deploy-smart-contract/foundry",
@@ -48,6 +49,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/verify-smart-contract/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/verify-smart-contract/atlas",
             "get-started/how-to/verify-smart-contract/foundry",
@@ -78,6 +80,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/run-a-node/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/run-a-node/besu",
             "get-started/how-to/run-a-node/erigon",
