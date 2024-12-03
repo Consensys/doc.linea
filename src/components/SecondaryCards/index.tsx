@@ -21,7 +21,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Create your builder profile",
-    link: "/get-started",
+    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: <>Claim your Linea Name to establish your onchain identity.</>,
     buttonName: (
       <svg
@@ -41,7 +41,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Get funded",
-    link: "/get-started/how-to/deploy-smart-contract",
+    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
         Get rewarded, secure grants and funding opportunities to bring your
@@ -66,7 +66,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Get noticed",
-    link: "/get-started/how-to/run-a-node",
+    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
     description: (
       <>
         Get amplified and showcase your work to the Linea community and beyond.

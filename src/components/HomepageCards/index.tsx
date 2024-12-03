@@ -56,7 +56,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Bridge Tokens",
-    link: "/get-started/how-to/run-a-node",
+    link: "/get-started/how-to/bridge",
     description: (
       <>
         Learn how to bridge your tokens from any chains to Linea.
