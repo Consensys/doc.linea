@@ -7,7 +7,8 @@ import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
-import SearchBar from "@site/src/theme/SearchBar";
+// @ts-ignore: suppressing type declarations error for the SearchBar.
+import SearchBar from "@theme/SearchBar";
 
 import styles from "./index.module.css";
 
