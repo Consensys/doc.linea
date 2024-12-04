@@ -1011,6 +1011,10 @@ html[data-theme="dark"] .header-dockerhub-link::before {
     right: 0;
     margin-right: 9px;
   }
+
+  .navbar__search-input:not(.navbar .navbar__search-input) {
+    width: 40vw;
+  }
 }
 
 @media (width <= 1080px) {
@@ -1037,6 +1041,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__search-input:not(.navbar .navbar__search-input) {
     max-width: 450px;
     width: 450px;
+    height: 65px;
   }
 
   .support-link {
