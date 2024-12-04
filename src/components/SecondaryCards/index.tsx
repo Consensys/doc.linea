@@ -20,9 +20,9 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Create your builder profile",
+    title: "Create your profile",
     link: "https://names.linea.build/",
-    description: <>Claim your Linea Name to establish your onchain identity.</>,
+    description: <>Claim a Linea Name to establish your onchain identity.</>,
     buttonName: (
       <svg
         width="16"
@@ -40,7 +40,7 @@ const CardList: CardItem[] = [
     buttonType: "primary",
   },
   {
-    title: "Get funded",
+    title: "Funding",
     link: "https://linea.build/linea-ecosystem-investment-alliance",
     description: (
       <>
@@ -65,11 +65,11 @@ const CardList: CardItem[] = [
     buttonType: "success",
   },
   {
-    title: "Get noticed",
+    title: "Amplify",
     link: "https://consensys-software.typeform.com/to/kSYGqACt?typeform-source=linea.build",
     description: (
       <>
-        Get amplified and showcase your work to the Linea community and beyond.
+        Showcase your work to the Linea community and beyond.
       </>
     ),
     buttonName: (

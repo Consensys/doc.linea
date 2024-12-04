@@ -18,7 +18,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
-  tagline: "Everything you need to build onchain.",
+  tagline: "Your guide to building on Linea",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",

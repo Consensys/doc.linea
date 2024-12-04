@@ -31,7 +31,7 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to/deploy-smart-contract",
     description: (
       <>
-        Learn how to deploy a smart contract on Linea.
+        Get your contract deployed onchain quickly and smoothly.
       </>
     ),
     buttonName: "GET STARTED",
@@ -45,7 +45,7 @@ const CardList: CardItem[] = [
     link: "/get-started/build/network-info#faucets",
     description: (
       <>
-        Learn how to get Linea Testnet ETH so you can deploy on Linea Sepolia.
+        Get Linea Testnet ETH so you can test and deploy on Linea Sepolia.
       </>
     ),
     buttonName: "GET STARTED",
@@ -59,7 +59,7 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to/bridge",
     description: (
       <>
-        Learn how to bridge your tokens from any chain to Linea.
+        Bridge your tokens from any chain to Linea.
       </>
     ),
     buttonName: "GET STARTED",
@@ -73,7 +73,7 @@ const CardList: CardItem[] = [
     link: "/get-started/how-to/run-a-node",
     description: (
       <>
-        Learn how to deploy and sync a Linea node.
+        Guides for deploying and syncing a Linea node.
       </>
     ),
     buttonName: "GET STARTED",
