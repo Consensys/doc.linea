@@ -17,10 +17,10 @@ const sidebars = {
           label: "Quickstart",
           link: {
             type: "doc",
-            id: "get-started/build/quickstart/backend",
+            id: "get-started/build/quickstart/deploy",
           },
           items: [
-            "get-started/build/quickstart/backend",
+            "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/frontend",
           ]
         },
