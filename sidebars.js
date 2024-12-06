@@ -26,6 +26,7 @@ const sidebars = {
       link: null,
       collapsible: false,
       items: [
+        "get-started/how-to/get-testnet-eth",
         {
           type: "category",
           label: "Deploy a smart contract",
