@@ -42,7 +42,7 @@ directory you want to create your project in:
 forge init linea_test_project
 ```
 
-Foundry will build out the file structure and create a GitHub repository. It also installs one 
+Foundry will build out the file structure and create a git repository. It also installs one 
 dependency: `forge-std`, the Forge Standard Library, which enables you to test your project.
 To get more familiar with your new project, it might help to open it in a code editor and inspect
 the files.
@@ -158,7 +158,7 @@ Add this line to `[profile.default]` in your `foundry.toml` file:
 solc-version = 0.8.19
 ```
 
-So that your `[profile.default]` now looks like this:
+So that your `[profile.default]`, which is applied universally, now looks like this:
 
 ```toml
 [profile.default]
@@ -218,9 +218,10 @@ Since it's best practice to avoid using API keys in the command line, add the AP
 LINEASCAN_API_KEY=YOUR_LINEASCAN_API_KEY
 ```
 
-Then modify the `foundry.toml` configuration file to include the Lineascan API key:
+Then modify the `foundry.toml` configuration file to include the Lineascan API key, pulling it from
+the `.env` file:
 
-```
+```toml
 [etherscan]
 linea-sepolia = { key = "${LINEASCAN_API_KEY}" }
 ```
