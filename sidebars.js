@@ -37,6 +37,7 @@ const sidebars = {
       link: null,
       collapsible: false,
       items: [
+        "get-started/how-to/get-testnet-eth",
         {
           type: "category",
           label: "Deploy a smart contract",
@@ -229,7 +230,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/cross-chain/axelar",
-            "get-started/tooling/cross-chain/ccip-read-gateway",
+            "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
             "get-started/tooling/cross-chain/shortcuts",
           ],
