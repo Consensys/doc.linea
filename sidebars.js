@@ -21,7 +21,7 @@ const sidebars = {
           },
           items: [
             "get-started/build/quickstart/deploy",
-            "get-started/build/quickstart/frontend",
+            "get-started/build/quickstart/app",
           ]
         },
         "get-started/build/ethereum-differences",
