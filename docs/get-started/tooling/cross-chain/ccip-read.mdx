@@ -6,16 +6,15 @@ image: /img/socialCards/ccip-read.jpg
 
 import LineaCCIPGraphic from "/img/get_started/tooling/cross_chain/ccip_read_gateway/Linea_ENS_CCIP_read.svg"
 
-[CCIP Read](https://eips.ethereum.org/EIPS/eip-3668), also referred to by its 
-full name [Cross-chain Interoperability Protocol](https://chain.link/cross-chain), 
-is a protocol developed by Chainlink to enable applications to access 
-cross-chain (i.e. on an L2) or offchain data through a gateway server. 
+[CCIP Read](https://eips.ethereum.org/EIPS/eip-3668) is a protocol developed by ENS that introduces
+functionality for cross-chain data retrieval through a gateway server. It extends the [Cross Chain
+Interoperability Protocol (CCIP)](https://chain.link/cross-chain) developed by Chainlink, who funded
+its development through a [Chainlink Community Grant](https://blog.chain.link/ens-grant-for-ccip-read-development/). 
 
-Ethereum Name Service (ENS) implements CCIP Read so that it can resolve domains 
-on Ethereum even if the relevant data and records are stored on an L2 chain — an 
-offchain resolver framework. The process is trust-minimal, as the gateway 
-returns a storage proof that can be verified on L1, and which is immune from any 
-intervention or tampering.
+Ethereum Name Service (ENS) implements CCIP Read so that it can resolve domains on Ethereum even if 
+the relevant data and records are stored on an L2 chain—an offchain resolver framework. The 
+process is trust-minimal, as the gateway returns a storage proof that can be verified on L1, and 
+which is immune from any intervention or tampering.
 
 Linea adapted the functionality of the relevant ENS contract, [`evm-gateway`](https://github.com/ensdomains/evmgateway),
 so that it would function correctly with Linea's sparse Merkle tree design. The 
@@ -27,7 +26,17 @@ Read more about sparse Merkle trees in our [architecture documentation](../../co
 
 :::
 
-### Linea ENS
+## CCIP 
+
+The Chainlink CCIP is middleware designed to enable traditional backends to securely interact with 
+blockchains, preventing the need for organizations to devote resources to developing case-by-case
+solutions to this problem. This enables applications to transfer assets and data between chains,
+allowing developers to access different chains for their relative strengths, and also access a 
+larger audience.
+
+Read more about CCIP in the [Chainlink documentation](https://docs.chain.link/ccip).
+
+## Linea ENS
 
 Linea ENS allows Linea users to register human-readable domains for considerably 
 lower fees than on Ethereum Mainnet, it also leverages smart contracts with 

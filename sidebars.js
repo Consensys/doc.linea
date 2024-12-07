@@ -25,6 +25,7 @@ const sidebars = {
       link: null,
       collapsible: false,
       items: [
+        "get-started/how-to/get-testnet-eth",
         {
           type: "category",
           label: "Deploy a smart contract",
@@ -32,6 +33,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/deploy-smart-contract/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/deploy-smart-contract/atlas",
             "get-started/how-to/deploy-smart-contract/foundry",
@@ -48,6 +50,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/verify-smart-contract/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/verify-smart-contract/atlas",
             "get-started/how-to/verify-smart-contract/foundry",
@@ -78,6 +81,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/how-to/run-a-node/index",
           },
+          collapsible: false,
           items: [
             "get-started/how-to/run-a-node/besu",
             "get-started/how-to/run-a-node/erigon",
@@ -214,7 +218,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/cross-chain/axelar",
-            "get-started/tooling/cross-chain/ccip-read-gateway",
+            "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
             "get-started/tooling/cross-chain/shortcuts",
           ],

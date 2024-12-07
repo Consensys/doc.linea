@@ -332,8 +332,11 @@
         "from": "/developers/tooling/oracles/dia"
     },
     {
-        "to": "/get-started/tooling/cross-chain/ccip-read-gateway",
-        "from": "/developers/tooling/cross-chain/ccip-read-gateway"
+        "to": "/get-started/tooling/cross-chain/ccip-read",
+        "from": [
+            "/developers/tooling/cross-chain/ccip-read-gateway",
+            "/get-started/tooling/cross-chain/ccip-read-gateway"
+        ]
     },
     {
         "to": "/get-started/tooling/cross-chain",
