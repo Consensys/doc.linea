@@ -12,6 +12,18 @@ const sidebars = {
       link: null,
       collapsible: false,
       items: [
+        {
+          type: "category",
+          label: "Quickstart",
+          link: {
+            type: "doc",
+            id: "get-started/build/quickstart/deploy",
+          },
+          items: [
+            "get-started/build/quickstart/deploy",
+            "get-started/build/quickstart/app",
+          ]
+        },
         "get-started/build/ethereum-differences",
         "get-started/build/network-info",
         "get-started/build/contracts",
