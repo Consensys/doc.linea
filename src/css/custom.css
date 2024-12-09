@@ -1458,7 +1458,7 @@ div[aria-label="Expand sidebar"] {
   text-align: center;
 }
 
-@media (max-width: 1499px) {
+@media (width <= 1499px) {
   .responsive-graphic picture {
     display: block;
     padding-left: 5vw;
@@ -1466,14 +1466,14 @@ div[aria-label="Expand sidebar"] {
   }
 }
 
-@media (max-width: 996px) {
+@media (width <= 996px) {
   .responsive-graphic picture {
     padding-left: 15vw;
     padding-right: 15vw;
   }
 }
 
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .responsive-graphic picture {
     padding-left: 6vw;
     padding-right: 6vw;
