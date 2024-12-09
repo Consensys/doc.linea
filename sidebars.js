@@ -87,6 +87,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
             "get-started/how-to/run-a-node/linea-besu",
+            "get-started/how-to/run-a-node/nethermind",
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
