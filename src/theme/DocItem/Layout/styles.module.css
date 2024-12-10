@@ -1,10 +1,31 @@
+:root {
+  --ifm-container-width-xl: none;
+}
+
 .docItemContainer header + *,
 .docItemContainer article > *:first-child {
   margin-top: 35px;
 }
 
-@media (width >= 997px) {
+@media (width >= 1200px) {
   .docItemCol {
     max-width: 75% !important;
   }
+}
+
+@media (width <= 1200px) {
+  .docItemCol {
+    max-width: 99.2% !important;
+  }
+}
+
+@media (width <= 996px) {
+  .docItemCol {
+    max-width: 100% !important;
+  }
+}
+
+/* adjusts Y position of the main article section in the layout */
+nav[aria-label="Breadcrumbs"] {
+  margin-top: 0 !important;
 }

@@ -18,8 +18,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
-  tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
+  tagline: "Everything you need to build onchain.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -52,7 +51,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true,
+    experimental_faster: false,
   },
 
   presets: [
@@ -87,8 +86,9 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    {
+      /*
       announcementBar: {
         id: "announcement_bar",
         content:
@@ -97,6 +97,8 @@ const config = {
         textColor: "#121212",
         isCloseable: false,
       },
+      */
+
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -116,8 +118,7 @@ const config = {
         title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/Linea_logo_black.svg",
-          srcDark: "img/Linea_logo_white.svg",
+          src: "img/Linea_docs_logo.svg",
         },
         items: [
           {
@@ -126,12 +127,12 @@ const config = {
             position: "left",
             label: "Get started",
           },
-          // {
-          //   type: "doc",
-          //   docId: "learn/index",
-          //   position: "left",
-          //   label: "Learn",
-          // },
+          /*           {
+            type: "doc",
+            docId: "learn/index",
+            position: "left",
+            label: "Learn",
+          }, */
           {
             type: "doc",
             docId: "api/index",
@@ -139,14 +140,16 @@ const config = {
             label: "API & SDK",
           },
           {
-            to: "release-notes",
+            type: "doc",
+            docId: "release-notes",
             position: "right",
             label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
-            position: "right",
             label: "Support",
+            position: "right",
+            class: "support-link",
           },
         ],
       },
@@ -243,7 +246,7 @@ const config = {
           logoClass: "nodejs",
         },
       ],
-    }),
+    },
   plugins: [
     [
       "@docusaurus/plugin-google-tag-manager",
