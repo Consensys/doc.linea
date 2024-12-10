@@ -4,6 +4,7 @@ description: Create a new project and deploy and verify your contracts using Fou
 sidebar_position: 1
 pagination_next: get-started/build/quickstart/app
 pagination_prev: null
+image: /img/socialCards/contract-deployment.jpg
 ---
 
 Building apps on Linea needn't be complicated. In this guide, we'll walk you through using
@@ -12,9 +13,6 @@ Building apps on Linea needn't be complicated. In this guide, we'll walk you thr
 This involves:
 1. [Creating a project](#create-a-project)
 2. [Deploying](#deploy-a-contract) and then [verifying](#verify-a-contract) your contract.
-
-After that, we'll move to [part two](./app.mdx): deploying your app and ensuring it interacts 
-with your deployed contract.
 
 > _Estimated time to complete: ~20 minutes._
 
@@ -25,7 +23,7 @@ A Linea-compatible wallet with some Linea Sepolia ETH. We recommend using [MetaM
 Get some testnet ETH by heading to our [Discord server](https://discord.gg/linea) and asking in 
 the `#developer-chat` channel. Our admins or other community members will help you out.
 
-## Create a project
+## Create your project
 
 To get started, we're going to use Foundry's `forge init` command to create a new project. [`forge`](https://book.getfoundry.sh/forge/)
 is the Foundry CLI tool.
@@ -59,7 +57,7 @@ for more information.
 
 :::
 
-## Deploy a contract
+## Deploy your contract
 
 The default Foundry template comes with a simple placeholder contract, `Counter.sol`. You're likely 
 going to need something with a bit more functionality. You probably already have a idea of what 
@@ -138,7 +136,7 @@ stored successfully:
 
 Run `cast wallet list` to see accounts in your keystore.
 
-### Deploy the contract
+### Deploy
 
 #### Adjust Solidity version
 
@@ -201,7 +199,7 @@ to see the deployed contract.
 
 Make sure to copy the `Deployed to` address, as you'll need it to verify the contract.
 
-## Verify a contract
+## Verify your contract
 
 Verifying a contract makes the source code publicly visible, and also confirms to others that it 
 originated from a genuine source.
@@ -251,8 +249,5 @@ forge create --rpc-url https://rpc.sepolia.linea.build --account test-account --
 
 :::
 
-## Next steps
-
 Now you've successfully deployed and verified your contract! It's recorded on the blockchain and
-ready to receive calls from your app. Speaking of which, head to [part two of our quickstart](./app.mdx) 
-to learn how to deploy an app and configure it to interact with your deployed contract.
+ready to receive calls from your app. 
