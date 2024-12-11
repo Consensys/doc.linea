@@ -197,7 +197,9 @@ Transaction hash: 0x ... // The deployment transaction itself
 You can copy each of these addresses and head to the [block explorer](https://sepolia.lineascan.build/) 
 to see the deployed contract.
 
-Make sure to copy the `Deployed to` address, as you'll need it to verify the contract.
+Make sure to copy the `Deployed to` address, as you'll need it to verify the contract. It'll also
+be useful in part two of this quickstart, where we'll need it to interact with the contract in our
+app.
 
 ## Verify your contract
 
@@ -251,3 +253,19 @@ forge create --rpc-url https://rpc.sepolia.linea.build --account test-account --
 
 Now you've successfully deployed and verified your contract! It's recorded on the blockchain and
 ready to receive calls from your app. 
+
+## Next steps 
+
+Proceed to [part two](./app.mdx) of this quickstart, where we'll build a simple web app for 
+interacting with the counter contract.
+
+## Help and resources
+
+If you get stuck at any point in this guide, head to our [Discord](https://discord.gg/linea) and 
+visit the `#developer-chat` channel.
+
+- [Foundry documentation](https://book.getfoundry.sh/)
+  - [Foundry CLI](https://book.getfoundry.sh/forge/)
+  - [Foundry Cast](https://book.getfoundry.sh/cast/)
+- [Linea Sepolia block explorer](https://sepolia.lineascan.build/)
+- [Node providers](../../tooling/node-providers/index.mdx)
