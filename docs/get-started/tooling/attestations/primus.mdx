@@ -1,45 +1,45 @@
 ---
-title: Primus
+title: PRIMUS
 image: /img/socialCards/primus.jpg
 ---
 
-[Primus](https://www.primuslabs.xyz) is a cryptography-based attestation protocol to bring all Internet 
-data into smart contracts. Primus relies heavily on cryptography to minimize trust, and enables end 
+[PRIMUS](https://www.primuslabs.xyz) is a cryptography-based attestation protocol to bring all Internet
+data into smart contracts. PRIMUS applies advanced cryptography to minimize trust and enables end
 users to prove the correctness of their personal web data in a privacy-preserving manner.
 
-The core techniques used in Primus include zkTLS and zkFHE. End users run Primus client apps to attest their personal web data, and create related data proofs with the help of Primus nodes. These data proofs are cryptographically verified attestations with security guarantees including:
+The core techniques used in PRIMUS include zkTLS and zkFHE. End users run PRIMUS client apps to attest their personal web data and create related data proofs with the help of PRIMUS nodes. These data proofs are cryptographically verified attestations with security guarantees including:
 
-- **Data authenticity**: The user web data is honestly retrieved from the indicated data source, and 
-the integrity is secured by zkTLS and other advanced cryptographic techniques.
-- **Privacy**: When coupled with specific application logic, users' sensitive information is 
+- **Data authenticity**: The user web data is retrieved from the indicated data source with verified integrity
+secured by zkTLS and other advanced cryptographic techniques.
+- **Privacy**: When coupled with specific application logic users' sensitive information is
 well-protected under the zero-knowledge property.
 
-The zkTLS and zkFHE techniques are general enough for both data source integration and data 
-computation. For instance, you can create your own attestations including but not limited to:
+The zkTLS and zkFHE techniques are general enough for both data source integration and data
+computation. You can create your own attestations such as:
 
-- Proofs of CEX assets, e.g., Alice has more than 1000 USD for her total token values in Coinbase;
-- Proofs of specific token holding, e.g., Alice holds more than 2 ETH in Binance;
-- Proofs of nationality, e.g., Alice is a verified bank user with British nationality;
-- Proofs of a heavy gamer, e.g., Bob plays more than 10 hours per day on Steam games.
+- Proofs of CEX assets: Alice has more than 1000 USD for her total token values in Coinbase
+- Proofs of specific token holding: Alice holds more than 2 ETH in Binance
+- Proofs of nationality: Alice is a verified bank user with British nationality
+- Proofs of gaming activity: Bob plays more than 10 hours per day on Steam games
 
 ## For developers
 
-The Primus team is creating a template-based SDK (in progress) for developers to build their own 
-applications using Primus' off-chain attestation capabilities. The SDK will encapsulate the details 
-of underlying cryptographic algorithms and protocols, and provide high-level interfaces for 
-application developers to manage the data retrieval and data computation. Developers can leverage 
+The PRIMUS team is creating a template-based SDK (in progress) for developers to build their own
+applications using PRIMUS' off-chain attestation capabilities. The SDK will encapsulate the details
+of underlying cryptographic algorithms and protocols and provide high-level interfaces for
+application developers to manage the data retrieval and data computation. Developers can leverage
 the SDK in two aspects:
 
-- Use the data source templates to integrate with any preferred Internet data source, and to attest
+- Use the data source templates to integrate with any preferred Internet data source and to attest
 the corresponding type of data.
 - Define and implement their own application logic by integrating with data consumption templates.
 
 ## Networks
 
-Primus is deployed on Linea, and integrated with [Verax](https://github.com/Consensys/verax-documentation), 
-a public attestation registry to store and manage attestation data that can be accessed by any 
-party. This means Primus users can submit these data proofs to Linea via Verax, which can be further 
-accessed by other dapps. The following contract address is the Primus portal contract:
+PRIMUS is deployed on Linea and integrated with [Verax](https://github.com/Consensys/verax-documentation)
+a public attestation registry to store and manage attestation data that can be accessed by any
+party. This means PRIMUS users can submit these data proofs to Linea via Verax which can be further
+accessed by other dapps. The following contract address is the PRIMUS portal contract:
 
 | Network | Contract address |
 | --- | --- |
@@ -47,10 +47,10 @@ accessed by other dapps. The following contract address is the Primus portal con
 
 ## Resources
 
-Learn more and start using Primus!
+Learn more and start using PRIMUS!
 
 - [Product tutorial](https://docs.primuslabs.xyz/)
-- [Technical whitepaper](https://eprint.iacr.org/2023/964.pdf)
+- [Technical paper](https://eprint.iacr.org/2023/964.pdf)
 
 ## Learn more
 
@@ -58,4 +58,4 @@ Learn more and start using Primus!
 - [Discord](https://discord.gg/YxJftNRxhh)
 - [Website](https://www.primuslabs.xyz)
 - [Medium](https://medium.com/@primuslabs)
-- [Github](https://github.com/primus-labs)
+- [GitHub](https://github.com/primus-labs)
