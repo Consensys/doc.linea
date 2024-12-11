@@ -1452,3 +1452,30 @@ div[aria-label="Expand sidebar"] {
 .theme-doc-markdown .markdown {
   margin-right: 10px !important;
 }
+
+/* responsive classes for architecture diagram */
+.responsive-graphic {
+  text-align: center;
+}
+
+@media (width <= 1499px) {
+  .responsive-graphic picture {
+    display: block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media (width <= 996px) {
+  .responsive-graphic picture {
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+}
+
+@media (width <= 700px) {
+  .responsive-graphic picture {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+}
