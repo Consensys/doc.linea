@@ -12,6 +12,18 @@ const sidebars = {
       link: null,
       collapsible: false,
       items: [
+        {
+          type: "category",
+          label: "Quickstart",
+          link: {
+            type: "doc",
+            id: "get-started/build/quickstart/deploy",
+          },
+          items: [
+            "get-started/build/quickstart/deploy",
+            "get-started/build/quickstart/app",
+          ]
+        },
         "get-started/build/ethereum-differences",
         "get-started/build/network-info",
         "get-started/build/contracts",
@@ -87,6 +99,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
             "get-started/how-to/run-a-node/linea-besu",
+            "get-started/how-to/run-a-node/nethermind",
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
