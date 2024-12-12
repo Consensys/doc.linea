@@ -61,6 +61,16 @@ incompatible with the Dynamic SDK:
   }
 ```
 
+And also adjust the `devDependencies: 
+
+```json
+  "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    // other dependencies
+  }
+```
+
 Afterwards, run `npm install` to install the dependencies.
 
 You can now run `npm run dev` to start the app locally. You can already connect your wallet, but 
@@ -401,6 +411,44 @@ ETH, you should be able to click the "Increment Counter" button to add +1 to the
 </div>
 
 There you have it! A functioning web3-enabled app that interacts with a smart contract. 
+
+## Deploy your app
+
+Now that you have a working app, you can deploy it to make it publicly accessible. As we've been 
+using Next.js, a framework developed by Vercel, we can easily use Vercel to deploy our app for free.
+
+Since we're working on Linea Sepolia, we don't have the usual security concerns we'd need for a 
+production app, so we can go straight ahead. 
+
+### Add your repository to GitHub
+
+The `create-dynamic-app` package we used at the start of this guide automatically created a git
+repository for your project. This means your changes have been tracked. 
+
+Firstly, run `npm run build` to build the app. This should surface any errors in your code that 
+may prevent it from being deployed. If you need help resolving any, head to the #developer-chat
+channel in our [Discord server](https://discord.gg/linea).
+
+When you're ready, make sure you've staged your changes with `git add .` and then committed them:
+
+```bash
+git commit -m "Initial commit"
+```
+
+Now you're ready to publish your repository to GitHub. The easiest method is to [download and use
+GitHub Desktop](https://docs.github.com/en/desktop/adding-and-cloning-repositories/adding-a-repository-from-your-local-computer-to-github-desktop),
+though if you're comfortable with git, you might prefer [using the command line](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#importing-a-git-repository-with-the-command-line).
+
+You can set your repository to public or private depending on your preference. You'll be able to 
+deploy it either way.
+
+### Deploy using Vercel
+
+Now that your repository is on GitHub, you can deploy it using Vercel. [See the Vercel guide for
+instructions](https://nextjs.org/learn-pages-router/basics/deploying-nextjs-app/deploy).
+
+You'll need to create a Vercel account and link it to your GitHub account. Once you've done that,
+you can deploy, and manage your app from Vercel.
 
 ## Next steps
 
