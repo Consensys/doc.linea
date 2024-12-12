@@ -15,6 +15,7 @@ const sidebars = {
         {
           type: "category",
           label: "Quickstart",
+          collapsible: false,
           link: {
             type: "doc",
             id: "get-started/build/quickstart/deploy",
