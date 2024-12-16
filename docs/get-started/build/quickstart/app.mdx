@@ -1,11 +1,476 @@
 ---
 title: Build your app
-description: Connect your contracts to a frontend app
+description: Build and deploy a frontend app to interact with your contract
 sidebar_position: 2
 pagination_next: null
 pagination_prev: get-started/build/quickstart/deploy
-unlisted: true
 image: /img/socialCards/build-your-app.jpg
 ---
 
-TODO
+Now that you've deployed and verified your smart contract in [part one](./deploy.mdx), the next step 
+is to create a frontend app that enables users to connect their wallet and interact with the 
+smart contract.
+
+In this guide, we will:
+1. Set up a Next.js app 
+2. Configure our app to connect to Linea Sepolia and your MetaMask wallet
+3. Add buttons to the app to interact with your smart contract.
+
+> _Estimated time to complete: ~25 minutes._
+
+## Prerequisites
+
+A wallet that can connect to Linea Sepolia. We recommend [MetaMask](https://metamask.io/).
+
+Get some Linea Sepolia ETH by heading to our [Discord server](https://discord.gg/linea) and asking 
+in the `#developer-chat` channel.
+
+## Set up a Next.js app using Dynamic
+
+There are many frameworks out there for building web apps. We're going to focus on [Next.js](https://nextjs.org/),
+a React framework.
+
+Conveniently, [Dynamic](https://www.dynamic.xyz/) have created the `create-dynamic-app` which 
+quickly creates a web3-enabled Next.js app which already has important packages like [Wagmi](../../tooling/libraries/wagmi.mdx) 
+and [Viem](../../tooling/libraries/viem.mdx) (which Wagmi depends on) installed.
+
+Run it like this:
+
+```bash
+npx create-dynamic-app@latest 
+```
+
+You'll also be prompted in the terminal to to confirm a few project settings. Select Next.js as the 
+framework, then make sure to enable Viem and Wagmi—libraries that we'll be using later.
+
+Once you confirm the configuration, the `create-dynamic-app` package will install the necessary 
+dependencies and your project will be ready to access in the new directory.
+
+## Setup
+
+The app needs a few adjustments before it will run.
+
+Head to your `package.json` and adjust `react` and `react-dom` to `^18.0.0`. 
+`create-dynamic-app` automatically installs `react` and `react-dom` `^19.0.0`, which are 
+incompatible with the Dynamic SDK:
+
+```json
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    // other dependencies
+  }
+```
+
+And also adjust the `devDependencies: 
+
+```json
+  "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    // other dependencies
+  }
+```
+
+Afterwards, run `npm install` to install the dependencies.
+
+You can now run `npm run dev` to start the app locally. You can already connect your wallet, but 
+you'll be unable to connect on Linea or Linea Sepolia until we configure our Dynamic dashboard, 
+which we'll cover in the next step.
+
+### Add a "Connect wallet" button
+
+The first step to making the app usable is enabling visitors to connect their wallet. To do so,
+we're going to use Dynamic's `DynamicWidget` component. Although we're just going to use the 
+conventional "Connect wallet" usage—connecting an externally owned account (EOA)—the component has 
+the advantage of allowing you to enable other sign-in methods and embedded wallet features with a few
+minor changes on the Dynamic dashboard. This isn't something we're going cover here, but it's 
+worth considering for your own app. 
+
+To set up the widget, you'll need to sign up for a free [Dynamic](https://www.dynamic.xyz/get-started) 
+account, which enables you to access your own Dynamic dashboard. You can sign in with your wallet, 
+so you don't have to worry about handing over personal information.
+
+#### Get your environment ID
+
+Now you've signed up and have access to your Dynamic dashboard, we can access an environment ID,
+and then use the dashboard to configure the `DynamicWidget`.
+
+On the dashboard, copy your `environmentId` from Developers > SDK & API Keys. 
+
+Back in your project directory, head to `lib/providers` and find the `DynamicContextProvider` 
+component. Insert your `environmentId` into the `settings`:
+
+```tsx
+  return (
+    <DynamicContextProvider
+      theme="auto"
+      settings={{
+        environmentId: "YOUR_ENVIRONMENT_ID", // Add your environment ID here
+           walletConnectors: [EthereumWalletConnectors],
+      }}
+    >
+  )
+```
+
+#### Enable Linea wallet connectors
+
+Connecting your local app to the dashboard means you can now configure the behaviour of the 
+`DynamicWidget` component that is used in `app/page.tsx`.
+
+On the dashboard, got to Chains & Networks in the sidebar. In the code snippet above, you can see 
+that the `EthereumWalletConnectors` are already enabled; this means you should see the EVM button on
+this dashboard page. Click it, then scroll and enable Linea and Linea Sepolia:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/build/quickstart/app/enable_linea_networks.png"
+      alt="Toggles for the Linea and Linea Sepolia networks"
+    />
+  </div>
+</div>
+
+If you now run `npm run dev`, you'll be able to connect your wallet on Linea and Linea Sepolia. 
+We now have the barebones of a web3 app: a frontend web app to which you can connect your wallet.
+
+## Interact with your contract
+
+Given the functionality of the contract we deployed in [part one](./deploy.mdx), we'll need a 
+button to interact with the contract, prompting a transaction that will call our smart contract's 
+`increment()` function and increment the counter. It'll also be helpful to display the current 
+counter value in the app. 
+
+To implement these features, we'll be using Wagmi hooks:
+- [`useReadContract`](https://wagmi.sh/react/api/hooks/useReadContract) to read the current counter 
+value, and;
+- [`useWriteContract`](https://wagmi.sh/react/api/hooks/useWriteContract) to call the smart 
+contract's `increment()` function, and increase the counter.
+
+### Display the counter value 
+
+To display the counter value, we'll use the Wagmi `useReadContract` hook to retrieve the value
+from the contract and display it in the app.
+
+#### Configure Wagmi
+
+To enable Wagmi to interact with Linea Sepolia, head to `lib/wagmi.ts` to find the Wagmi 
+configuration file. Here, we need to replace `mainnet` with `lineaSepolia` and `linea` in a few 
+places:
+1. The import statement
+2. The `chains` settings
+3. The `transports` settings
+
+Your Wagmi configuration should look like this:
+
+```ts
+// lib/wagmi.ts
+import { http, createConfig } from "wagmi";
+import { lineaSepolia, linea } from "wagmi/chains"; // Add this
+
+export const config = createConfig({
+  chains: [lineaSepolia, linea], // Add this
+  multiInjectedProviderDiscovery: false,
+  ssr: true,
+  transports: {
+    [lineaSepolia.id]: http(), // Add this
+    [linea.id]: http(), // and this
+  },
+});
+
+declare module "wagmi" {
+  interface Register {
+    config: typeof config;
+  }
+}
+```
+
+With these changes, Wagmi hooks will now be able to interact with Linea Sepolia.
+
+#### Get the ABI
+
+Next, we'll need the smart contract's application binary interface (ABI)—a kind of standardized data 
+structure that defines the inputs and outputs necessary for other programs to interact with the smart 
+contract. This is a necessary step to ensure the Wagmi hooks work.
+
+You can find it by pasting the smart contract address into the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
+Find the "Contract" tab and scroll down to "Contract ABI". Copy the code:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/build/quickstart/app/abi.png"
+      alt="The ABI of the smart contract"
+    />
+  </div>
+</div>
+
+Head back to your project repo and paste the code into a new file in your `lib` directory called 
+`abi.ts`, adjusting the formatting:
+
+```tsx
+// lib/abi.ts
+export const abi = [
+    {
+        "inputs":[],
+        "name":"increment",
+        "outputs":[],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {
+        "inputs":[],
+        "name":"number",
+        "outputs":[{"internalType":"uint256","name":"","type":"uint256"}],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[{"internalType":"uint256","name":"newNumber","type":"uint256"}],
+        "name":"setNumber",
+        "outputs":[],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    }
+]
+```
+
+#### Create counter component
+
+Fetching the counter value from the smart contract and displaying it in the app requires more code 
+than we could neatly place in `page.tsx`. Instead, we'll create a React component in 
+`app/components` and import it into `page.tsx`.
+
+Head to `app/components` in your project and create a new file, `Counter.js`, and add the below
+code:
+
+```js
+// app/components/Counter.js
+import { useReadContract } from "wagmi";
+import { abi } from "@/lib/abi";
+
+export default function Counter() {
+  const { 
+    data: counterValue, 
+    error,
+    isPending,
+    refetch 
+  } = useReadContract({
+    address: "YOUR_CONTRACT_ADDRESS", // Add your deployed smart contract address here
+    abi: abi,
+    functionName: "number",
+  });
+
+  const statusText = isPending 
+    ? "Loading..." 
+    : error 
+      ? "Error: " + error.shortMessage 
+      : `Counter: ${counterValue?.toString() ?? "?"}`;
+
+  return (
+    <button 
+      className="docs-button" 
+      onClick={() => refetch()}
+    >
+      {statusText} • Click to refresh
+    </button>
+  );
+}
+```
+
+:::note
+
+Make sure to insert the address of your deployed smart contract.
+
+:::
+
+The component imports the `useReadContract` hook and the ABI you added previously. It then calls our
+contract's `number()` function using `useReadContract` and displays the result in a button in the
+app. We've also added some logic that displays "Loading..." while the data is being fetched, an 
+error handling message that displays errors that are built into `useReadContract`, and the ability
+to click the button to refresh the data.
+
+#### Add counter component your app
+
+Go back to your `page.tsx` and, alongside the existing import statements, add a statement to import 
+the component you just created:
+
+```tsx
+import Counter from './components/Counter.js';
+```
+
+Now we can insert the component into the page:
+
+```tsx
+<div className="modal">
+  <DynamicWidget />
+  <Counter />
+</div>
+```
+
+:::note
+
+The Dynamic template app comes with a `<DynamicMethods />` component. We've removed it so we can
+focus on the counter functionality, but you can leave it if you prefer.
+
+:::
+
+You can test the component works by heading to Lineascan and calling the `increment()` function on 
+the Contract > Write Contract page. Click the "Connect to Web3" button to connect your wallet, and
+then "Write" to prompt a transaction from your wallet that will increment the counter. If you head
+back to your app and retrieve new data, you'll see that the counter has been incremented by 1.
+
+Here's how it looks:
+
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/get_started/build/quickstart/app/counter.png"
+      alt="The counter component"
+    />
+  </div>
+</div>
+
+### Add a button to increment the counter
+
+Our method for calling the `increment()` function in our smart contract is to use the Wagmi hook 
+`useWriteContract`. Instead of reading data this time, we're asking the smart contract to do some
+computation—incrementing the counter—which means we need to send a transaction with gas to pay for
+the computation.
+
+Since we've already configured `wagmi.ts` file and created `abi.ts`, we can move straight to adding
+the component.
+
+### Create increment component
+
+Head to `app/components` and add a new file called `Increment.js`. Paste in this code, making sure
+to replace `YOUR_CONTRACT_ADDRESS` with the address of your deployed smart contract:
+
+```js
+import { useWriteContract } from "wagmi";
+import { abi } from "@/lib/abi";
+
+export default function Increment() {
+  const { writeContract, isPending } = useWriteContract();
+
+  const handleIncrement = () => {
+    writeContract({
+      address: "YOUR_CONTRACT_ADDRESS", // Add your deployed smart contract address here
+      abi: abi,
+      functionName: "increment",
+    });
+  };
+
+  return (
+    <button 
+      className="docs-button" 
+      onClick={handleIncrement}
+      disabled={isPending}
+    >
+      {isPending ? "Incrementing..." : "Increment Counter"}
+    </button>
+  );
+}
+```
+
+### Add the increment component to your app
+
+Go back to your `page.tsx` and, alongside the existing import statements, add a statement to import 
+the component you just created:
+
+```tsx
+import Increment from './components/Increment.js';
+```
+
+Now we can insert the component into the page:  
+
+```tsx
+<div className="modal">
+  <DynamicWidget />
+  <Counter />
+  <Increment />
+</div>
+```
+
+## Test your app
+
+Now that everything is in place, we can test the app. 
+
+Run `npm run dev` to run your app locally. 
+
+The counter button should display the counter value already, and you can click to fetch the latest 
+value at any time without sending a transaction. With your wallet connected and some Linea Sepolia
+ETH, you should be able to click the "Increment Counter" button to add +1 to the counter value:
+
+<div class="center-container">
+  <div class="img-small">
+    <img
+      src="/img/get_started/build/quickstart/app/increment_button.png"
+      alt="The increment button"
+    />
+  </div>
+</div>
+
+There you have it! A functioning web3-enabled app that interacts with a smart contract. 
+
+## Deploy your app
+
+Now that you have a working app, you can deploy it to make it publicly accessible. As we've been 
+using Next.js, a framework developed by Vercel, we can easily use Vercel to deploy our app for free.
+
+Since we're working on Linea Sepolia, we don't have the usual security concerns we'd need for a 
+production app, so we can go straight ahead. 
+
+### Add your repository to GitHub
+
+The `create-dynamic-app` package we used at the start of this guide automatically created a git
+repository for your project. This means your changes have been tracked. 
+
+Firstly, run `npm run build` to build the app. This should surface any errors in your code that 
+may prevent it from being deployed. If you need help resolving any, head to the #developer-chat
+channel in our [Discord server](https://discord.gg/linea).
+
+When you're ready, make sure you've staged your changes with `git add .` and then committed them:
+
+```bash
+git commit -m "Initial commit"
+```
+
+Now you're ready to publish your repository to GitHub. The easiest method is to [download and use
+GitHub Desktop](https://docs.github.com/en/desktop/adding-and-cloning-repositories/adding-a-repository-from-your-local-computer-to-github-desktop),
+though if you're comfortable with git, you might prefer [using the command line](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#importing-a-git-repository-with-the-command-line).
+
+You can set your repository to public or private depending on your preference. You'll be able to 
+deploy it either way.
+
+### Deploy using Vercel
+
+Now that your repository is on GitHub, you can deploy it using Vercel. [See the Vercel guide for
+instructions](https://nextjs.org/learn-pages-router/basics/deploying-nextjs-app/deploy).
+
+You'll need to create a Vercel account and link it to your GitHub account. Once you've done that,
+you can deploy, and manage your app from Vercel.
+
+## Next steps
+
+Now that you have a grasp of the basics, you can start to experiment and build innovative apps that 
+solve real-world problems and attract users. Here are some ideas for taking your app to the next 
+level:
+
+- Build in [account abstraction](../../tooling/account-abstraction/index.mdx) features to make your
+app more accessible and user-friendly. The Dynamic widget that we used in this guide already 
+enables you to use some of these features, configurable via the Dynamic dashboard.
+- Accelerate development by using audited, reliable [contract templates](../../tooling/contracts-templates/index.mdx).
+- Leverage an [oracle](../../tooling/oracles/index.mdx) to fetch data, such as token prices, and
+display it in your app.
+
+## Help and resources
+
+If you get stuck at any point in this guide, head to our [Discord](https://discord.gg/linea) and 
+visit the `#developer-chat` channel.
+
+- [Dynamic documentation](https://docs.dynamic.xyz/introduction/welcome)
+- [Wagmi documentation](https://wagmi.sh/)
+  - [`useReadContract`](https://wagmi.sh/react/api/hooks/useReadContract)
+  - [`useWriteContract`](https://wagmi.sh/react/api/hooks/useWriteContract)
+- [Linea Sepolia block explorer](https://sepolia.lineascan.build/)
