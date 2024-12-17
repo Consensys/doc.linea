@@ -1,0 +1,111 @@
+## RateLimiter
+
+You can use this control numeric limits over a period using timestamp.
+
+### RATE_LIMIT_SETTER_ROLE
+
+```solidity
+bytes32 RATE_LIMIT_SETTER_ROLE
+```
+
+### USED_RATE_LIMIT_RESETTER_ROLE
+
+```solidity
+bytes32 USED_RATE_LIMIT_RESETTER_ROLE
+```
+
+### periodInSeconds
+
+```solidity
+uint256 periodInSeconds
+```
+
+### limitInWei
+
+```solidity
+uint256 limitInWei
+```
+
+### currentPeriodEnd
+
+```solidity
+uint256 currentPeriodEnd
+```
+
+The time at which the current period ends at.
+
+_Public for ease of consumption._
+
+### currentPeriodAmountInWei
+
+```solidity
+uint256 currentPeriodAmountInWei
+```
+
+Amounts already withdrawn this period.
+
+_Public for ease of consumption._
+
+### __RateLimiter_init
+
+```solidity
+function __RateLimiter_init(uint256 _periodInSeconds, uint256 _limitInWei) internal
+```
+
+Initialises the limits and period for the rate limiter.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _periodInSeconds | uint256 | The length of the period in seconds. |
+| _limitInWei | uint256 | The limit allowed in the period in Wei. |
+
+### _addUsedAmount
+
+```solidity
+function _addUsedAmount(uint256 _usedAmount) internal
+```
+
+Increments the amount used in the period.
+
+_The amount determining logic is external to this (e.g. fees are included when calling here).
+Ignores the calculation if _usedAmount is zero.
+Reverts if the limit is breached._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _usedAmount | uint256 | The amount used to be added. |
+
+### resetRateLimitAmount
+
+```solidity
+function resetRateLimitAmount(uint256 _amount) external
+```
+
+Resets the rate limit amount.
+
+_If the used amount is higher, it is set to the limit to avoid confusion/issues.
+Only the RATE_LIMIT_SETTER_ROLE is allowed to execute this function.
+Emits the LimitAmountChanged event.
+usedLimitAmountToSet will use the default value of zero if period has expired._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _amount | uint256 | The amount to reset the limit to. |
+
+### resetAmountUsedInPeriod
+
+```solidity
+function resetAmountUsedInPeriod() external
+```
+
+Resets the amount used to zero.
+
+_Only the USED_RATE_LIMIT_RESETTER_ROLE is allowed to execute this function.
+Emits the AmountUsedInPeriodReset event._
+

@@ -1,0 +1,72 @@
+## TransientStorageHelpers
+
+### tstoreUint256
+
+```solidity
+function tstoreUint256(bytes32 _key, uint256 _value) internal
+```
+
+Internal function that stores a uint256 value at a given key in the EVM's transient storage using the `tstore` opcode.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _key | bytes32 | The key in the EVM transient storage where the value should be stored. |
+| _value | uint256 | The uint256 value to be stored at the specified key in the EVM transient storage. |
+
+### tloadUint256
+
+```solidity
+function tloadUint256(bytes32 _key) internal view returns (uint256 value)
+```
+
+Internal function that retrieves a uint256 value from the EVM's transient storage using the `tload` opcode.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _key | bytes32 | The key in the EVM transient storage from which the value should be retrieved. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| value | uint256 | The uint256 value retrieved from the specified key in the EVM transient storage. |
+
+### tstoreAddress
+
+```solidity
+function tstoreAddress(bytes32 _key, address _addr) internal
+```
+
+Internal function that stores an address at a given key in the EVM's transient storage using the `tstore` opcode.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _key | bytes32 | The key in the EVM transient storage where the value should be stored. |
+| _addr | address | The address to be stored at the specified key in the EVM transient storage. |
+
+### tloadAddress
+
+```solidity
+function tloadAddress(bytes32 _key) internal view returns (address addr)
+```
+
+Internal function that retrieves an address from the EVM's transient storage using the `tload` opcode.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _key | bytes32 | The key in the EVM transient storage from which the value should be retrieved. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| addr | address | The address retrieved from the specified key in the EVM transient storage. |
+

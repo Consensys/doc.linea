@@ -1,0 +1,89 @@
+## BridgedToken
+
+ERC20 token created when a native token is bridged to a target chain.
+
+### bridge
+
+```solidity
+address bridge
+```
+
+### _decimals
+
+```solidity
+uint8 _decimals
+```
+
+### OnlyBridge
+
+```solidity
+error OnlyBridge(address bridgeAddress)
+```
+
+### constructor
+
+```solidity
+constructor() public
+```
+
+_Disable constructor for safety_
+
+### initialize
+
+```solidity
+function initialize(string _tokenName, string _tokenSymbol, uint8 _tokenDecimals) external
+```
+
+### onlyBridge
+
+```solidity
+modifier onlyBridge()
+```
+
+_Ensures call come from the bridge._
+
+### mint
+
+```solidity
+function mint(address _recipient, uint256 _amount) external
+```
+
+_Called by the bridge to mint tokens during a bridge transaction._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _recipient | address | The address to receive the minted tokens. |
+| _amount | uint256 | The amount of tokens to mint. |
+
+### burn
+
+```solidity
+function burn(address _account, uint256 _amount) external
+```
+
+_Called by the bridge to burn tokens during a bridge transaction.
+User should first have allowed the bridge to spend tokens on their behalf._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _account | address | The account from which tokens will be burned. |
+| _amount | uint256 | The amount of tokens to burn. |
+
+### decimals
+
+```solidity
+function decimals() public view returns (uint8)
+```
+
+_Overrides ERC20 default function to support tokens with different decimals._
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| [0] | uint8 | The number of decimal. |
+

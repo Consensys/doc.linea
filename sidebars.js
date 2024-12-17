@@ -23,13 +23,13 @@ const sidebars = {
           items: [
             "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/app",
-          ]
+          ],
         },
         "get-started/build/ethereum-differences",
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
-        "get-started/build/repos"
+        "get-started/build/repos",
       ],
     },
     {
@@ -124,12 +124,12 @@ const sidebars = {
           label: "Sequencer",
           link: {
             type: "doc",
-            id: "get-started/concepts/sequencer/index"
+            id: "get-started/concepts/sequencer/index",
           },
           items: [
             "get-started/concepts/sequencer/conflation",
-            "get-started/concepts/sequencer/traces-generator"
-          ]
+            "get-started/concepts/sequencer/traces-generator",
+          ],
         },
         "get-started/concepts/state-manager",
         {
@@ -137,14 +137,14 @@ const sidebars = {
           label: "Prover",
           link: {
             type: "doc",
-            id: "get-started/concepts/prover/index"
+            id: "get-started/concepts/prover/index",
           },
           items: [
             "get-started/concepts/prover/proving",
             "get-started/concepts/prover/trace-expansion",
-            "get-started/concepts/prover/prover-limits"
-          ]
-        }
+            "get-started/concepts/prover/prover-limits",
+          ],
+        },
       ],
     },
     {
@@ -250,23 +250,23 @@ const sidebars = {
               label: "DipDup",
               link: {
                 type: "doc",
-                id: "get-started/tooling/data-indexers/dipdup/overview"
+                id: "get-started/tooling/data-indexers/dipdup/overview",
               },
               items: [
                 "get-started/tooling/data-indexers/dipdup/overview",
-                "get-started/tooling/data-indexers/dipdup/quickstart",   
+                "get-started/tooling/data-indexers/dipdup/quickstart",
               ],
-            },            
+            },
             "get-started/tooling/data-indexers/dune",
             "get-started/tooling/data-indexers/envio",
             "get-started/tooling/data-indexers/etherscan",
-            "get-started/tooling/data-indexers/flair",            
+            "get-started/tooling/data-indexers/flair",
             {
               type: "category",
               label: "Goldsky",
               link: {
                 type: "doc",
-                id: "get-started/tooling/data-indexers/goldsky/overview"
+                id: "get-started/tooling/data-indexers/goldsky/overview",
               },
               items: [
                 "get-started/tooling/data-indexers/goldsky/overview",
@@ -310,9 +310,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/tooling/node-providers/index",
           },
-          items: [
-            "get-started/tooling/node-providers/erpc",
-          ],
+          items: ["get-started/tooling/node-providers/erpc"],
         },
         {
           type: "category",
@@ -338,7 +336,7 @@ const sidebars = {
           label: "Permanent data",
           link: {
             type: "doc",
-            id: "get-started/tooling/permanent-data/index"
+            id: "get-started/tooling/permanent-data/index",
           },
           items: [
             {
@@ -346,7 +344,7 @@ const sidebars = {
               label: "Irys",
               link: {
                 type: "doc",
-                id: "get-started/tooling/permanent-data/irys/overview"
+                id: "get-started/tooling/permanent-data/irys/overview",
               },
               items: [
                 "get-started/tooling/permanent-data/irys/overview",
@@ -377,7 +375,7 @@ const sidebars = {
             "get-started/tooling/security/scamfari",
             "get-started/tooling/security/spherex",
             "get-started/tooling/security/hexagate",
-            "get-started/tooling/security/hypernative"
+            "get-started/tooling/security/hypernative",
           ],
         },
         {
@@ -410,7 +408,7 @@ const sidebars = {
           label: "Ecosystem tutorials",
           link: {
             type: "doc",
-            id: "learn/ecosystem-tutorials/index"
+            id: "learn/ecosystem-tutorials/index",
           },
           collapsible: false,
           items: [
@@ -419,17 +417,17 @@ const sidebars = {
               label: "Irys",
               link: {
                 type: "doc",
-                id: "learn/ecosystem-tutorials/irys/index"
+                id: "learn/ecosystem-tutorials/irys/index",
               },
               items: [
                 "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
                 "learn/ecosystem-tutorials/irys/irys-nfts",
-              ]
-            }
-          ]
-        }
-      ]
-    }
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
   apiSidebar: [
     {
@@ -447,10 +445,167 @@ const sidebars = {
         "api/reference/linea-estimategas",
         "api/reference/linea-gettransactionexclusionstatusv1",
         "api/reference/linea-getproof",
-      ]
+      ],
     },
     "api/linea-sdk",
-  ]
-}
+    {
+      type: "category",
+      label: "Linea Smart Contracts",
+      link: null,
+      collapsible: false,
+      items: [
+        "api/linea-smart-contracts/LineaRollup",
+        "api/linea-smart-contracts/ZkEvmV2",
+        {
+          type: "category",
+          label: "interfaces",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/interfaces/IGenericErrors",
+            "api/linea-smart-contracts/interfaces/IMessageService",
+            "api/linea-smart-contracts/interfaces/IPauseManager",
+            "api/linea-smart-contracts/interfaces/IPermissionsManager",
+            "api/linea-smart-contracts/interfaces/IRateLimiter",
+            {
+              type: "category",
+              label: "l1",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/interfaces/l1/IL1MessageManager",
+                "api/linea-smart-contracts/interfaces/l1/IL1MessageManagerV1",
+                "api/linea-smart-contracts/interfaces/l1/IL1MessageService",
+                "api/linea-smart-contracts/interfaces/l1/ILineaRollup",
+                "api/linea-smart-contracts/interfaces/l1/IPlonkVerifier",
+                "api/linea-smart-contracts/interfaces/l1/IZkEvmV2",
+              ],
+            },
+            {
+              type: "category",
+              label: "l2",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/interfaces/l2/IL2MessageManager",
+                "api/linea-smart-contracts/interfaces/l2/IL2MessageManagerV1",
+                "api/linea-smart-contracts/interfaces/l2/IL2MessageServiceV1",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "lib",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/lib/CallForwardingProxy",
+            "api/linea-smart-contracts/lib/L2MessageServicePauseManager",
+            "api/linea-smart-contracts/lib/LineaRollupPauseManager",
+            "api/linea-smart-contracts/lib/Mimc",
+            "api/linea-smart-contracts/lib/PauseManager",
+            "api/linea-smart-contracts/lib/PermissionsManager",
+            "api/linea-smart-contracts/lib/SparseMerkleProof",
+            "api/linea-smart-contracts/lib/TokenBridgePauseManager",
+            "api/linea-smart-contracts/lib/Utils",
+          ],
+        },
+        {
+          type: "category",
+          label: "messageService",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/messageService/MessageServiceBase",
+            {
+              type: "category",
+              label: "l1",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageService/l1/L1MessageManager",
+                "api/linea-smart-contracts/messageService/l1/L1MessageService",
+                "api/linea-smart-contracts/messageService/l1/TransientStorageReentrancyGuardUpgradeable",
+                {
+                  type: "category",
+                  label: "v1",
+                  link: null,
+                  collapsible: true,
+                  items: [
+                    "api/linea-smart-contracts/messageService/l1/v1/L1MessageManagerV1",
+                    "api/linea-smart-contracts/messageService/l1/v1/L1MessageServiceV1",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "l2",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageService/l2/L2MessageManager",
+                "api/linea-smart-contracts/messageService/l2/L2MessageService",
+                {
+                  type: "category",
+                  label: "v1",
+                  link: null,
+                  collapsible: true,
+                  items: [
+                    "api/linea-smart-contracts/messageService/l2/v1/L2MessageManagerV1",
+                    "api/linea-smart-contracts/messageService/l2/v1/L2MessageServiceV1",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "lib",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageService/lib/MessageHashing",
+                "api/linea-smart-contracts/messageService/lib/RateLimiter",
+                "api/linea-smart-contracts/messageService/lib/SparseMerkleTreeVerifier",
+                "api/linea-smart-contracts/messageService/lib/TimeLock",
+                "api/linea-smart-contracts/messageService/lib/TransientStorageHelpers",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "tokenBridge",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/tokenBridge/BridgedToken",
+            "api/linea-smart-contracts/tokenBridge/CustomBridgedToken",
+            "api/linea-smart-contracts/tokenBridge/TokenBridge",
+            {
+              type: "category",
+              label: "interfaces",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/tokenBridge/interfaces/ITokenBridge",
+              ],
+            },
+            {
+              type: "category",
+              label: "lib",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/tokenBridge/lib/StorageFiller39",
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 
 module.exports = sidebars;

@@ -1,0 +1,89 @@
+## IL2MessageManager
+
+### RollingHashUpdated
+
+```solidity
+event RollingHashUpdated(uint256 messageNumber, bytes32 rollingHash)
+```
+
+Emitted after all messages are anchored on L2 and the latest message index and rolling hash stored.
+
+_NB: This event is used to provide data to the rollup. The last messageNumber and rollingHash,
+emitted in a rollup will be used in the public input for validating the L1->L2 messaging state transition._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| messageNumber | uint256 | The indexed unique L1 computed indexed message number for the message. |
+| rollingHash | bytes32 | The indexed L1 rolling hash computed for the current message number. |
+
+### ServiceVersionMigrated
+
+```solidity
+event ServiceVersionMigrated(uint256 version)
+```
+
+_Emitted when the service switches over to a new version.
+This is currently not in use, but left for existing consumers._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| version | uint256 | The indexed version. |
+
+### MessageHashesListLengthIsZero
+
+```solidity
+error MessageHashesListLengthIsZero()
+```
+
+_Reverts when the message hashes array length is zero._
+
+### L1MessageNumberSynchronizationWrong
+
+```solidity
+error L1MessageNumberSynchronizationWrong(uint256 expected, uint256 found)
+```
+
+_Reverts when message number synchronization is mismatched._
+
+### L1RollingHashSynchronizationWrong
+
+```solidity
+error L1RollingHashSynchronizationWrong(bytes32 expected, bytes32 found)
+```
+
+_Reverts when rolling hash synchronization is mismatched._
+
+### FinalRollingHashIsZero
+
+```solidity
+error FinalRollingHashIsZero()
+```
+
+_Reverts when final rolling hash is zero hash._
+
+### anchorL1L2MessageHashes
+
+```solidity
+function anchorL1L2MessageHashes(bytes32[] _messageHashes, uint256 _startingMessageNumber, uint256 _finalMessageNumber, bytes32 _finalRollingHash) external
+```
+
+Add cross-chain L1->L2 message hashes in storage.
+
+_Only address that has the role 'L1_L2_MESSAGE_SETTER_ROLE' are allowed to call this function.
+NB: In the unlikely event of a duplicate anchoring, the lastAnchoredL1MessageNumber MUST NOT be incremented.
+and the rolling hash not calculated, else synchronisation will break.
+If starting number is zero, an underflow error is expected._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _messageHashes | bytes32[] | New message hashes to anchor on L2. |
+| _startingMessageNumber | uint256 | The expected L1 message number to start when anchoring. |
+| _finalMessageNumber | uint256 | The expected L1 message number to end on when anchoring. |
+| _finalRollingHash | bytes32 | The expected L1 rolling hash to end on when anchoring. |
+

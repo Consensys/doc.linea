@@ -1,0 +1,32 @@
+## Utils
+
+### _efficientKeccak
+
+```solidity
+function _efficientKeccak(bytes32 _left, bytes32 _right) internal pure returns (bytes32 value)
+```
+
+Performs a gas optimized keccak hash for two bytes32 values.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _left | bytes32 | Left value. |
+| _right | bytes32 | Right value. |
+
+### _efficientKeccak
+
+```solidity
+function _efficientKeccak(uint256 _left, address _right) internal pure returns (bytes32 value)
+```
+
+Performs a gas optimized keccak hash for uint256 and address.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _left | uint256 | Left value. |
+| _right | address | Right value. |
+
