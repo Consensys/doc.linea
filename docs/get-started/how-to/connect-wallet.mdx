@@ -4,11 +4,10 @@ description: Learn how to connect a wallet to your app so users can interact wit
 ---
 
 Enabling users' wallets to connect to your dapp is critical, since it's the only way they can
-send transacctions and sign messages that enable them to interact with smart contracts underlying
-the dapp. 
+send transactions and sign messages that enable them to interact with underlying smart contracts. 
 
 You can build your own "connect wallet" component or use an SDK that takes care of some of the 
-complexity for you. This guide includes several methods for connecting wallets to a React dapp.
+complexity for you; we'll go with the latter route, working with React dapps. 
 
 ## Dynamic
 
@@ -116,86 +115,6 @@ npm run dev
 ```
 
 You should be able to connect to Linea and Linea Sepolia. 
-
-
-## MetaMask SDK
-
-The [MetaMask SDK](https://docs.metamask.io/wallet/connect/metamask-sdk/) is specifically designed
-for connecting directly with MetaMask. 
-
-We're going to use the [React UI variant](https://docs.metamask.io/wallet/connect/metamask-sdk/javascript/react/react-ui/),
-which comes with a basic button that you can add to your dapp.  
-
-Firstly, install the SDK: 
-
-```bash
-npm install @metamask/sdk-react-ui
-```
-
-### Add the provider
-
-To enable the MetaMask SDK to function, you need to wrap your app in the `MetaMaskUIProvider` 
-component. For example:
-
-```tsx
-import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
-
-export default function App() {
-  return (
-    <MetaMaskUIProvider
-      sdkOptions={{
-        dappMetadata: {
-          name: "Your dapp name",
-        },
-        infuraAPIKey: process.env.INFURA_API_KEY,
-        // Add other options here
-      }}
-    >
-        <AppContent />
-    </MetaMaskUIProvider>
-  );
-}
-```
-
-Customize the `dappMetadata` according to your needs; this is the information that will be displayed
-in the wallet connection modal that users will see. Our usage of `infuraAPIKey` assumes that your
-API key is stored in an `.env` file. See the [full list of available `sdkOptions`](https://docs.metamask.io/wallet/reference/sdk-js-options/).
-
-### Add the component
-
-Import the component:
-
-```tsx
-import { MetaMaskUIProvider,MetaMaskButton } from "@metamask/sdk-react-ui";
-```
-
-Then slot it into your dapp:
-
-```tsx
-import { MetaMaskUIProvider, MetaMaskButton } from "@metamask/sdk-react-ui";
-
-export default function App() {
-  return (
-    <MetaMaskUIProvider
-      sdkOptions={{
-        dappMetadata: {
-          name: "Your dapp name",
-        },
-        infuraAPIKey: process.env.INFURA_API_KEY,
-      }}
-    >
-        <MetaMaskButton />
-    </MetaMaskUIProvider>
-  );
-}
-```
-
-If you run the project, you should be able to see the MetaMask button and be able to connect to
-your wallet:
-
-```bash
-npm run dev
-```
 
 ## Reown AppKit
 
