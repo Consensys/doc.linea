@@ -1,14 +1,20 @@
 [
     {
-        "to": "/architecture/stack/canonical-msg-service/message-service",
+        "to": "/get-started/concepts/message-service",
         "from": [
             "/developers/bridge-architecture/message-service",
-            "/developers/use-message-bridge"
+            "/developers/use-message-bridge",
+            "/architecture/stack/canonical-msg-service/message-service",
+            "/architecture/stack/canonical-msg-service",
+            "/architecture/canonical-msg-service"
         ]
     },
     {
-        "to": "/developers/quickstart",
-        "from": "/developers/deploy-smart-contracts"
+        "to": "/get-started/how-to/deploy-smart-contract",
+        "from": [
+            "/developers/deploy-smart-contract",
+            "/developers/quickstart/deploy-smart-contract"
+        ]
     },
     {
         "to": "/zero-knowledge-glossary",
@@ -20,7 +26,6 @@
     {
         "to": "/",
         "from": [
-            "/get-started",
             "/get-started/fund",
             "/get-started/configure-metamask",
             "/get-started/quickstart",
@@ -36,138 +41,665 @@
         ]
     },
     {
-        "to": "/developers/quickstart/info-contracts",
-        "from": "/build-on-linea/use-linea-testnet/info-contracts"
+        "to": "/get-started/build/network-info",
+        "from": [
+            "/build-on-linea/use-linea-testnet/info-contracts",
+            "/developers/quickstart/info-contracts",
+            "/use-mainnet/info-contracts"
+        ]
     },
     {
-        "to": "/developers/guides/bridge/how-to-bridge-eth",
-        "from": "/use-mainnet/bridges-of-linea/how-to-bridge-eth"
+        "to": "/get-started/how-to/bridge/how-to-bridge-eth",
+        "from": [
+            "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
+            "/developers/guides/bridge/how-to-bridge-eth"
+        ]
     },
     {
-        "to": "/developers/guides/bridge",
-        "from": "/build-on-linea/use-linea-testnet/bridge-funds"
+        "to": "/get-started/how-to/bridge",
+        "from": [
+            "/build-on-linea/use-linea-testnet/bridge-funds",
+            "/developers/guides/bridge",
+            "/use-mainnet/bridges-of-linea"
+        ]
     },
     {
-        "to": "/developers/guides/gas-fees",
+        "to": "/get-started/how-to/gas-fees",
         "from": [
             "/use-mainnet/gas-import",
             "/build-on-linea/gas-fees",
             "/developers/guides/gas/gas-fees",
             "/use-mainnet/gas-on-linea",
-            "/developers/guides/gas/gas-on-linea"
+            "/developers/guides/gas/gas-on-linea",
+            "/developers/guides/gas-fees"
         ]
     },
     {
-        "to": "/developers/reference/api/linea-estimategas",
-        "from": "/reference/api/linea-estimategas"
+        "to": "/api/reference/linea-estimategas",
+        "from": [
+            "/reference/api/linea-estimategas",
+            "/developers/reference/api/linea-estimategas"
+        ]
     },
     {
-        "to": "/developers/guides/bridge",
-        "from": "/use-mainnet/bridges-of-linea"
+        "to": "/api",
+        "from": [
+            "/build-on-linea/quickstart/rpc",
+            "/developers/guides/linea-api",
+            "/developers/reference/api"
+        ]
     },
     {
-        "to": "/developers/quickstart/info-contracts",
-        "from": "/use-mainnet/info-contracts"
+        "to": "/get-started/build/ethereum-differences",
+        "from": [
+            "/build-on-linea/ethereum-differences",
+            "/developers/quickstart/ethereum-differences"
+        ]
     },
     {
-        "to": "/developers/guides/linea-api",
-        "from": "/build-on-linea/quickstart/rpc"
-    },
-    {
-        "to": "/developers/quickstart/ethereum-differences",
-        "from": "/build-on-linea/ethereum-differences"
-    },
-    {
-        "to": "/developers/guides/run-a-node",
+        "to": "/get-started/how-to/run-a-node",
         "from": [
             "/build-on-linea/run-a-node",
             "/build-on-linea/run-a-node/use-binary",
             "/build-on-linea/run-a-node/use-docker",
             "/developers/guides/run-a-node/use-docker",
-            "/developers/guides/run-a-node/use-binary"
+            "/developers/guides/run-a-node/use-binary",
+            "/developers/guides/run-a-node"
         ]
     },
     {
-        "to": "/developers/guides/linea-inscriptions",
-        "from": "/build-on-linea/tooling/linea-inscriptions"
+        "to": "/get-started/how-to/linea-inscriptions",
+        "from": [
+            "/build-on-linea/tooling/linea-inscriptions",
+            "/developers/guides/linea-inscriptions"
+        ]
     },
     {
-        "to": "/developers/guides/linea-safe",
-        "from": "/build-on-linea/tooling/linea-safe"
+        "to": "/get-started/how-to/linea-safe",
+        "from": [
+            "/build-on-linea/tooling/linea-safe",
+            "/developers/guides/linea-safe"
+        ]
     },
     {
-        "to": "/developers/tooling/permanent-data/irys/irys-querying",
-        "from": "/developers/tooling/permanent-data/irys/irys-query-package"
+        "to": "/get-started/tooling/permanent-data/irys/irys-querying",
+        "from": [
+            "/developers/tooling/permanent-data/irys/irys-query-package",
+            "/developers/tooling/permanent-data/irys/irys-querying"
+        ]
     },
     {
-        "to": "/architecture/overview/decentralization-roadmap",
+        "to": "/get-started/concepts/decentralization",
         "from": [
             "/use-mainnet/decentralization-roadmap",
-            "/decentralization-roadmap"
+            "/decentralization-roadmap",
+            "/architecture/overview/decentralization-roadmap"
         ]
     },
     {
-        "to": "/architecture/overview/transaction-lifecycle",
-        "from": "/architecture/transaction-lifecycle"
+        "to": "/get-started/concepts/transaction-lifecycle",
+        "from": [
+            "/architecture/transaction-lifecycle",
+            "/architecture/overview/transaction-lifecycle"
+        ]
     },
     {
-        "to": "/architecture/overview/network-data",
-        "from": "/architecture/network-data"
+        "to": "/get-started/concepts/network-data",
+        "from": [
+            "/architecture/network-data",
+            "/architecture/overview/network-data"
+        ]
     },
     {
-        "to": "/architecture/stack/bridges",
-        "from": "/architecture/bridges"
+        "to": "/get-started/concepts/canonical-token-bridge",
+        "from": [
+            "/architecture/bridges",
+            "/architecture/stack/bridges",
+            "/architecture/stack/bridges/canonical-token-bridge"
+        ]
     },
     {
-        "to": "/architecture/stack/canonical-msg-service",
-        "from": "/architecture/canonical-msg-service"
+        "to": "/get-started/concepts/coordinator",
+        "from": [
+            "/architecture/coordinator",
+            "/architecture/stack/coordinator"
+        ]
     },
     {
-        "to": "/architecture/stack/coordinator",
-        "from": "/architecture/coordinator"
+        "to": "/get-started/concepts/state-manager",
+        "from": [
+            "/architecture/evm-state-manager",
+            "/architecture/stack/evm-state-manager"
+        ]
     },
     {
-        "to": "/architecture/stack/evm-state-manager",
-        "from": "/architecture/evm-state-manager"
+        "to": "/get-started/concepts/sequencer",
+        "from": [
+            "/architecture/sequencer",
+            "/architecture/stack/sequencer"
+        ]
     },
     {
-        "to": "/architecture/stack/sequencer",
-        "from": "/architecture/sequencer"
+        "to": "/get-started/concepts/prover",
+        "from": [
+            "/architecture/trace-expansion-proving",
+            "/architecture/stack/trace-expansion-proving"
+        ]
     },
     {
-        "to": "/architecture/stack/trace-expansion-proving",
-        "from": "/architecture/trace-expansion-proving"
+        "to": "/get-started/tooling/cross-chain/shortcuts",
+        "from": [
+            "/build-on-linea/tooling/cross-chain/shortcuts",
+            "/developers/tooling/cross-chain/shortcuts"
+        ]
     },
     {
-        "to": "/developers/tooling/cross-chain/shortcuts",
-        "from": "/build-on-linea/tooling/cross-chain/shortcuts"
+        "to": "/get-started/tooling/node-providers",
+        "from": [
+            "/build-on-linea/tooling/node-providers",
+            "/developers/tooling/node-providers"
+        ]
     },
     {
-        "to": "/developers/tooling/node-providers",
-        "from": "/build-on-linea/tooling/node-providers"
+        "to": "/release-notes",
+        "from": [
+            "/build-on-linea/linea-version",
+            "/developers/linea-version"
+        ]
     },
     {
-        "to": "/developers/linea-version",
-        "from": "/build-on-linea/linea-version"
+        "to": "/get-started",
+        "from": [
+            "/build-on-linea/quickstart",
+            "/developers/quickstart",
+            "/developers/quickstart/goerli-to-sepolia",
+            "/build-on-linea"
+        ]
     },
     {
-        "to": "/developers/quickstart",
-        "from": "/developers/quickstart/goerli-to-sepolia"
+        "to": "/get-started",
+        "from": [
+            "/build-on-linea/tooling",
+            "/developers/tooling"
+        ]
     },
     {
-        "to": "/developers/tooling/data-indexers/dipdup/overview",
-        "from": "/developers/tooling/data-indexers/dipdup"
-    },
-    {
-        "to": "/developers/quickstart",
-        "from": "/build-on-linea/quickstart"
-    },
-    {
-        "to": "/developers/tooling",
-        "from": "/build-on-linea/tooling"
-    },
-    {
-        "to": "/developers/tooling/libraries/walletconnect",
+        "to": "/get-started/tooling/libraries/walletconnect",
         "from": "/developers/tooling/libraries/wallet-connect"
+    },
+    {
+        "to": "/get-started/concepts/architecture",
+        "from": "/architecture"
+    },
+    {
+        "to": "/get-started/build/repos",
+        "from": "/architecture/stack"
+    },
+    {
+        "to": "/get-started/concepts/sequencer/conflation",
+        "from": "/architecture/stack/sequencer/conflation"
+    },
+    {
+        "to": "/get-started/concepts/sequencer/traces-generator",
+        "from": "/architecture/stack/sequencer/traces-generator"
+    },
+    {
+        "to": "/get-started/concepts/prover/prover-limits",
+        "from": "/architecture/stack/trace-expansion-proving/prover-limits"
+    },
+    {
+        "to": "/get-started/concepts/prover/proving",
+        "from": "/architecture/stack/trace-expansion-proving/proving"
+    },
+    {
+        "to": "/get-started/concepts/prover/trace-expansion",
+        "from": "/architecture/stack/trace-expansion-proving/trace-expansion"
+    },
+    {
+        "to": "/get-started/concepts",
+        "from": "/architecture/overview"
+    },
+    {
+        "to": "/get-started/tooling/social-login/openfort",
+        "from": "/developers/tooling/social-login/openfort"
+    },
+    {
+        "to": "/get-started/tooling/social-login/arcana",
+        "from": "/developers/tooling/social-login/arcana"
+    },
+    {
+        "to": "/get-started/tooling/social-login",
+        "from": "/developers/tooling/social-login"
+    },
+    {
+        "to": "/get-started/tooling/attestations/verax",
+        "from": "/developers/tooling/attestations/verax"
+    },
+    {
+        "to": "/get-started/tooling/attestations",
+        "from": "/developers/tooling/attestations"
+    },
+    {
+        "to": "/get-started/tooling/attestations/pado",
+        "from": "/developers/tooling/attestations/pado"
+    },
+    {
+        "to": "/get-started/tooling/privacy/secret",
+        "from": "/developers/tooling/privacy/secret"
+    },
+    {
+        "to": "/get-started/tooling/privacy",
+        "from": "/developers/tooling/privacy"
+    },
+    {
+        "to": "/get-started/tooling/oracles/umbrella",
+        "from": "/developers/tooling/oracles/umbrella"
+    },
+    {
+        "to": "/get-started/tooling/oracles/api3",
+        "from": "/developers/tooling/oracles/api3"
+    },
+    {
+        "to": "/get-started/tooling/oracles",
+        "from": "/developers/tooling/oracles"
+    },
+    {
+        "to": "/get-started/tooling/oracles/pyth",
+        "from": "/developers/tooling/oracles/pyth"
+    },
+    {
+        "to": "/get-started/tooling/oracles/ora",
+        "from": "/developers/tooling/oracles/ora"
+    },
+    {
+        "to": "/get-started/tooling/oracles/tellor",
+        "from": "/developers/tooling/oracles/tellor"
+    },
+    {
+        "to": "/get-started/tooling/oracles/supra",
+        "from": "/developers/tooling/oracles/supra"
+    },
+    {
+        "to": "/get-started/tooling/oracles/redstone",
+        "from": "/developers/tooling/oracles/redstone"
+    },
+    {
+        "to": "/get-started/tooling/oracles/chainlink",
+        "from": "/developers/tooling/oracles/chainlink"
+    },
+    {
+        "to": "/get-started/tooling/oracles/dia",
+        "from": "/developers/tooling/oracles/dia"
+    },
+    {
+        "to": "/get-started/tooling/cross-chain/ccip-read",
+        "from": [
+            "/developers/tooling/cross-chain/ccip-read-gateway",
+            "/get-started/tooling/cross-chain/ccip-read-gateway"
+        ]
+    },
+    {
+        "to": "/get-started/tooling/cross-chain",
+        "from": "/developers/tooling/cross-chain"
+    },
+    {
+        "to": "/get-started/tooling/cross-chain/layerzero",
+        "from": "/developers/tooling/cross-chain/layerzero"
+    },
+    {
+        "to": "/get-started/tooling/cross-chain/axelar",
+        "from": "/developers/tooling/cross-chain/axelar"
+    },
+    {
+        "to": "/get-started/tooling/security",
+        "from": "/developers/tooling/security"
+    },
+    {
+        "to": "/get-started/tooling/security/hypernative",
+        "from": "/developers/tooling/security/hypernative"
+    },
+    {
+        "to": "/get-started/tooling/security/scamfari",
+        "from": "/developers/tooling/security/scamfari"
+    },
+    {
+        "to": "/get-started/tooling/security/goplus-security-api",
+        "from": "/developers/tooling/security/goplus-security-api"
+    },
+    {
+        "to": "/get-started/tooling/security/hexagate",
+        "from": "/developers/tooling/security/hexagate"
+    },
+    {
+        "to": "/get-started/tooling/security/spherex",
+        "from": "/developers/tooling/security/spherex"
+    },
+    {
+        "to": "/get-started/tooling/node-providers/erpc",
+        "from": "/developers/tooling/node-providers/erpc"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction",
+        "from": "/developers/tooling/account-abstraction/account-abstraction"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/openfort",
+        "from": "/developers/tooling/account-abstraction/openfort"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/noves",
+        "from": "/developers/tooling/account-abstraction/noves"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/station",
+        "from": "/developers/tooling/account-abstraction/station"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/arcana",
+        "from": "/developers/tooling/account-abstraction/arcana"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/pimlico",
+        "from": "/developers/tooling/account-abstraction/pimlico"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/oklink",
+        "from": "/developers/tooling/account-abstraction/oklink"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/etherspot",
+        "from": "/developers/tooling/account-abstraction/etherspot"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/smartwallets",
+        "from": "/developers/tooling/account-abstraction/smartwallets"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/particle-network",
+        "from": "/developers/tooling/account-abstraction/particle-network"
+    },
+    {
+        "to": "/get-started/tooling/account-abstraction/biconomy",
+        "from": "/developers/tooling/account-abstraction/biconomy"
+    },
+    {
+        "to": "/get-started/tooling/contracts-templates",
+        "from": "/developers/tooling/contracts-templates"
+    },
+    {
+        "to": "/get-started/tooling/contracts-templates/thirdweb",
+        "from": "/developers/tooling/contracts-templates/thirdweb"
+    },
+    {
+        "to": "/get-started/tooling/contracts-templates/cookbook",
+        "from": "/developers/tooling/contracts-templates/cookbook"
+    },
+    {
+        "to": "/get-started/tooling/libraries/multicall",
+        "from": "/developers/tooling/libraries/multicall"
+    },
+    {
+        "to": "/get-started/tooling/libraries/ethereum-list",
+        "from": "/developers/tooling/libraries/ethereum-list"
+    },
+    {
+        "to": "/get-started/tooling/libraries",
+        "from": "/developers/tooling/libraries"
+    },
+    {
+        "to": "/get-started/tooling/libraries/ape",
+        "from": "/developers/tooling/libraries/ape"
+    },
+    {
+        "to": "/get-started/tooling/libraries/ethers-js",
+        "from": "/developers/tooling/libraries/ethers-js"
+    },
+    {
+        "to": "/get-started/tooling/libraries/viem",
+        "from": "/developers/tooling/libraries/viem"
+    },
+    {
+        "to": "/get-started/tooling/libraries/wagmi",
+        "from": "/developers/tooling/libraries/wagmi"
+    },
+    {
+        "to": "/get-started/tooling/permanent-data/irys/overview",
+        "from": "/developers/tooling/permanent-data/irys/overview"
+    },
+    {
+        "to": "/get-started/tooling/permanent-data/irys/irys-quickstart",
+        "from": "/developers/tooling/permanent-data/irys/irys-quickstart"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/scopescan",
+        "from": "/developers/tooling/data-indexers/scopescan"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/thegraph",
+        "from": "/developers/tooling/data-indexers/thegraph"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/moralis",
+        "from": "/developers/tooling/data-indexers/moralis"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/subquery",
+        "from": "/developers/tooling/data-indexers/subquery"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/noves",
+        "from": "/developers/tooling/data-indexers/noves"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/arkham",
+        "from": "/developers/tooling/data-indexers/arkham"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/covalent",
+        "from": "/developers/tooling/data-indexers/covalent"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers",
+        "from": "/developers/tooling/data-indexers"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/mobula",
+        "from": "/developers/tooling/data-indexers/mobula"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/envio",
+        "from": "/developers/tooling/data-indexers/envio"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/subsquid",
+        "from": "/developers/tooling/data-indexers/subsquid"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/flair",
+        "from": "/developers/tooling/data-indexers/flair"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/reservoir",
+        "from": "/developers/tooling/data-indexers/reservoir"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/dune",
+        "from": "/developers/tooling/data-indexers/dune"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/alchemy",
+        "from": "/developers/tooling/data-indexers/alchemy"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/etherscan",
+        "from": "/developers/tooling/data-indexers/etherscan"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/dipdup/overview",
+        "from": "/developers/tooling/data-indexers/dipdup/overview"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/dipdup/quickstart",
+        "from": "/developers/tooling/data-indexers/dipdup/quickstart"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/nftscan",
+        "from": "/developers/tooling/data-indexers/nftscan"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/sentio",
+        "from": "/developers/tooling/data-indexers/sentio"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/goldsky/overview",
+        "from": "/developers/tooling/data-indexers/goldsky/overview"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/goldsky/goldsky-mirror",
+        "from": "/developers/tooling/data-indexers/goldsky/goldsky-mirror"
+    },
+    {
+        "to": "/get-started/tooling/data-indexers/goldsky/goldsky-index",
+        "from": "/developers/tooling/data-indexers/goldsky/goldsky-index"
+    },
+    {
+        "to": "/get-started/tooling/ai/spheron",
+        "from": "/developers/tooling/cloud-infra/spheron"
+    },
+    {
+        "to": "/get-started/tooling/ai",
+        "from": "/developers/tooling/cloud-infra"
+    },
+    {
+        "to": "/get-started/tooling/analytics/arkham",
+        "from": "/developers/tooling/analytics/arkham"
+    },
+    {
+        "to": "/get-started/tooling/analytics",
+        "from": "/developers/tooling/analytics"
+    },
+    {
+        "to": "/get-started/tooling/analytics/mobula",
+        "from": "/developers/tooling/analytics/mobula"
+    },
+    {
+        "to": "/get-started/tooling/analytics/dune",
+        "from": "/developers/tooling/analytics/dune"
+    },
+    {
+        "to": "/get-started/tooling/analytics/cookie3",
+        "from": "/developers/tooling/analytics/cookie3"
+    },
+    {
+        "to": "/get-started/how-to/verify-smart-contract",
+        "from": "/developers/quickstart/verify-smart-contract"
+    },
+    {
+        "to": "/get-started/how-to/verify-smart-contract/foundry",
+        "from": "/developers/quickstart/verify-smart-contract/foundry"
+    },
+    {
+        "to": "/get-started/how-to/verify-smart-contract/atlas",
+        "from": "/developers/quickstart/verify-smart-contract/atlas"
+    },
+    {
+        "to": "/get-started/how-to/verify-smart-contract/hardhat",
+        "from": "/developers/quickstart/verify-smart-contract/hardhat"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/foundry",
+        "from": "/developers/quickstart/deploy-smart-contract/foundry"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/thirdweb",
+        "from": "/developers/quickstart/deploy-smart-contract/thirdweb"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/cookbook",
+        "from": "/developers/quickstart/deploy-smart-contract/cookbook"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/remix",
+        "from": "/developers/quickstart/deploy-smart-contract/remix"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/atlas",
+        "from": "/developers/quickstart/deploy-smart-contract/atlas"
+    },
+    {
+        "to": "/get-started/how-to/deploy-smart-contract/hardhat",
+        "from": "/developers/quickstart/deploy-smart-contract/hardhat"
+    },
+    {
+        "to": "/api/linea-sdk",
+        "from": "/developers/guides/linea-sdk"
+    },
+    {
+        "to": "/get-started/how-to/bridge/how-to-bridge-erc20-tokens",
+        "from": "/developers/guides/bridge/how-to-bridge-erc20-tokens"
+    },
+    {
+        "to": "/get-started/how-to/deploy-subdomain",
+        "from": "/developers/guides/deploy-subdomain"
+    },
+    {
+        "to": "/get-started",
+        "from": "/developers/guides"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/erigon",
+        "from": "/developers/guides/run-a-node/erigon"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/geth",
+        "from": "/developers/guides/run-a-node/geth"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/bootnodes",
+        "from": "/developers/guides/run-a-node/bootnodes"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/linea-besu",
+        "from": "/developers/guides/run-a-node/linea-besu"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/besu",
+        "from": "/developers/guides/run-a-node/besu"
+    },
+    {
+        "to": "/get-started/how-to/run-a-node/volume-creation",
+        "from": "/developers/guides/run-a-node/volume-creation"
+    },
+    {
+        "to": "/learn/ecosystem-tutorials",
+        "from": "/developers/guides/community"
+    },
+    {
+        "to": "/learn/ecosystem-tutorials/irys",
+        "from": "/developers/guides/community/irys"
+    },
+    {
+        "to": "/learn/ecosystem-tutorials/irys/irys-nfts",
+        "from": "/developers/guides/community/irys/irys-nfts"
+    },
+    {
+        "to": "/learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
+        "from": "/developers/guides/community/irys/irys-dynamic-nfts"
+    },
+    {
+        "to": "/get-started/how-to/finalized-block",
+        "from": "/developers/guides/finalized-block"
+    },
+    {
+        "to": "/api/reference/eth-sendrawtransaction",
+        "from": "/developers/reference/api/eth-sendrawtransaction"
+    },
+    {
+        "to": "/api/reference/linea-gettransactionexclusionstatusv1",
+        "from": "/developers/reference/api/linea-gettransactionexclusionstatusv1"
+    },
+    {
+        "to": "/api/reference/linea-getproof",
+        "from": "/developers/reference/api/linea-getproof"
     }
 ]

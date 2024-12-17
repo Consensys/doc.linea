@@ -1,0 +1,182 @@
+---
+title: Onthis Shortcuts
+description: No-code tool for executing multiple DeFi actions in one transaction
+image: /img/socialCards/onthis-shortcuts.jpg
+---
+
+import ShortcutsDiagram from "/img/get_started/tooling/cross_chain/shortcuts/Shortcuts.svg"
+
+A Shortcut allows users to execute onchain actions by sending funds to a 
+contract address.
+
+Each Shortcut is a unique smart contract designed to carry out the desired 
+function. Shortcuts are represented by ENS domains, making addresses 
+human-readable.
+
+:::note
+
+Shortcuts currently only supports Ethereum Mainnet as the source chain, unless 
+explicitly specified by the Shortcut description. Shortcut addresses are not 
+chain-agnostic, but are different from network to network. Sending ETH (or other 
+tokens) to the wrong network may result in a loss of funds.
+
+:::
+
+## How it works: user flow
+
+A simple use case for a Shortcut could involve a user who wants to streamline 
+the process of bridging ETH to Linea:
+
+1. A user sends ETH to a Shortcut address 
+2. The ETH is automatically bridged to Linea via [Across](https://across.to/)
+3. The ETH is returned as native Linea ETH to the sender on the destination 
+chain (Linea).
+
+More complex Shortcuts can do additional things: bridge and swap, bridge and 
+deposit to a liquidity pool, bridge and stake/restake. The developer's 
+imagination is the only limit.
+
+<div className="img-large">
+  <ShortcutsDiagram alt="Shortcuts Diagram" />
+</div>
+
+## How it works: technical
+
+Shortcuts trigger actions using a fallback function in the smart contract called 
+`receive()`. This allows users to initiate a transaction without approvals. The 
+contract engages with Across intent-based listeners and paths that will execute 
+the action on the destination chain. 
+
+The output token(s) from the automation are returned to `msg.sender` (the 
+account that called the function; in this case, the person using the Shortcut).
+
+## Onthis Snap
+
+A MetaMask Snap has been built specifically to help you verify that a Shortcut 
+is behaving as intended.
+
+:::info[MetaMask Snaps]
+
+MetaMask Snaps is a system that enables third-party developers to add features 
+and functionality to MetaMask. Read more in the [MetaMask Help Center](https://support.metamask.io/metamask-snaps), 
+or visit the [Snaps directory](https://snaps.metamask.io/) to browse what's 
+available.
+
+:::
+
+Before you send funds to the Shortcut, the Snap automatically recognizes that 
+the transaction involves an Onthis Shortcut, and provides a breakdown of:
+- The contract address, enabling you to confirm it is correct
+- A description of what will happen once you send funds to the Shortcut. 
+
+Install the Snap by heading either to the [Snaps Directory](https://snaps.metamask.io/snap/npm/onthis-snap/) 
+or the [dedicated Onthis page](https://www.onthis.xyz/snap), and then hitting 
+'Add to MetaMask'.
+
+## Fees
+
+Shortcuts are provided by [onthis.xyz](https://www.onthis.xyz/) and are built on 
+top of [Across](https://across.to/). Both services charge users a fee on the 
+origin network. This fee covers the bridging costs and automation costs and is 
+shared between the two providers. The fee is calculated as a percentage of the 
+amount transferred, and is on top of the network gas fee paid to execute the 
+origin chain.
+
+Here is an example of the Shortcuts fee model:
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount ($)</th>
+      <th>Swap + bridge fees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>100</td>
+      <td>5.4% ($5.40)</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>0.5% ($0.50)</td>
+    </tr>
+    <tr>
+      <td>1,000</td>
+      <td>0.5% ($5.00)</td>
+    </tr>
+    <tr>
+      <td>10,000</td>
+      <td>0.5% ($50.00)</td>
+    </tr>
+    <tr>
+      <td>100,000</td>
+      <td>0.5% ($500.00)</td>
+    </tr>
+  </tbody>
+</table>
+
+## Risks
+
+Shortcuts do not store value, so the smart contract risk is lower than a 
+traditional dapp. Since they are built on Across, they share its risk profile.
+
+There are several other risks inherent in Shortcuts: 
+
+### Chain-dependent addressing
+
+Every Shortcut has a different contract address. Even the same Shortcut deployed 
+on two different networks (Ethereum Mainnet and Arbitrum, for example) will have 
+a different address. Moreover, Shortcuts only work with ETH. Sending tokens 
+(ERC-20, ERC-721, or others) to a Shortcut may result in a loss of funds, as 
+will sending ETH to a Shortcut deployed on a different network.
+
+Linea addresses this risk by clearly identifying the Shortcut's network in its 
+name. If a network is specified, it means that the Shortcut can only accept 
+ETH on that specific network. The naming convention for Shortcut ENS names 
+curated by Linea is as follows:
+
+`[network].[usecase/partner].onlinea.eth`
+
+In practice, this could look something like:
+
+`arbitrum.bridge.onlinea.eth`
+
+The omission of the `[network]` prefix indicates that the Shortcut relates to 
+Ethereum Mainnet; `bridge.onlinea.eth`, for example, only works on Ethereum 
+Mainnet.
+
+### Naming system
+
+The easy UX of sending ETH to an ENS name can present a risk for the user. An 
+attacker can obtain access to the owner key of the ENS name and change the 
+address record, pointing it to their own wallet and collecting the funds sent 
+there. 
+
+Linea addresses this risk by controlling the ENS name with a multisig wallet and 
+assigning the manager role to the Linea Security Council (the maximum grade of 
+security). We also have monitors in place that listen for role changes for the 
+ENS name.
+
+### Upgradability of contracts 
+
+Shortcuts can be upgraded by the creator. An attacker can upgrade the contract 
+and change its behavior. Linea addresses this risk by requiring trusted creators 
+(like the [onthis.xyz](https://www.onthis.xyz/) team) to hold the owner keys in 
+a secure multisig or asking the creators to hand over the ownership of the 
+contracts to the Linea multisig.
+
+### Contract security 
+
+Even though Shortcuts contracts do not store value, security audits are still 
+important. Shortcuts created via the [Creator Tool](https://create.onthis.xyz/) 
+have a deterministic output that is included in the audit scope of the 
+Creator Tool itself. Custom built shortcuts require an independent audit. 
+
+Linea addresses this risk by including a third-party audit of the Shortcuts 
+listed under [onlinea.eth](https://onlinea.eth) as part of the curation 
+process. 
+
+## Further information
+
+Refer to the official [onthis.xyz documentation](https://docs.onthis.xyz) for 
+more information.

@@ -1,0 +1,163 @@
+---
+title: Deploy a Linea subdomain
+description: Guide to deploy a subdomain for any L1 .eth domain on Linea
+image: /img/socialCards/deploy-a-linea-subdomain.jpg
+---
+
+This guide is for developers who want to manage subdomains on Linea for domains they own
+on [L1 ENS](https://app.ens.domains/).
+
+For example, if you own the domain `example.eth` on L1, you can create and manage subdomains like
+`sub.example.eth` on Linea that resolves to the L1 domain, ensuring seamless integration and resolution
+across both layers.
+
+## Requirements 
+
+- [L2 contracts](https://github.com/Consensys/linea-ens/tree/main/packages/linea-ens-contracts): 
+    These Linea contracts handle all operations on your subdomains, including registrations and setting records.
+- [L1 contracts](https://github.com/Consensys/linea-ens/tree/main/packages/linea-ens-resolver): 
+    These contracts enable subdomains created on Linea to resolve on L1. You can reuse the
+    existing Linea contracts, unless you require customizations.
+- User interface (UI): The UI for managing subdomains; you can adapt the [Linea ENS app](https://names.linea.build/)
+    in the [Linea ENS GitHub repository](https://github.com/Consensys/linea-ens/tree/main/packages/linea-ens-app). 
+    If you decide to deploy this UI, you will also need to deploy the
+    [Linea ENS Subgraph](https://github.com/Consensys/linea-ens/tree/main/packages/linea-ens-subgraph), and
+    include your own values into the [`env.ts`](https://github.com/Consensys/linea-ens/blob/main/packages/linea-ens-subgraph/src/env.ts)
+    file.
+
+    :::tip
+    Follow the [quickstart guide](https://github.com/Consensys/linea-ens/tree/main/packages/linea-ens-app#quick-start-on-localhost) 
+    to test it locally. Replace the environment variables `BASE_DOMAIN`, `BASE_NODE`, `BASE_LABEL`, and
+    `BASE_LABEL_HASH` in the `.env` files (`.env.example` and `env.ts`) with the values matching your ENS domain.
+    :::
+
+## Available deployment methods
+
+Use one of the following deployment methods to deploy your subdomain.
+
+### Use the same approach as `linea.eth`
+
+Manage your subdomains the same way `linea.eth` subdomains are managed using the deployment [steps below](#steps).
+This includes using the Proof of Humanity (PoH) check for registering subdomains.
+
+### Deploy registrar contracts only 
+
+Deploy only your `Registrar` contracts while using the same `Registry` and `Resolver` contract
+addresses deployed for the `linea.eth` subdomain. Contact [Linea Support](https://support.linea.build/)
+to gain ownership of an L1 domain on Linea. This solution allows you to deploy only the registrar contracts.
+
+### Use ENS contracts 
+
+Modify the [original ENS contracts deployed on Ethereum Mainnet](https://github.com/ensdomains/ens-contracts).
+You must modify the node managed by the Registrar contract to match your domain's node. 
+
+For example, for `linea.eth`, we set the node in the [contract's constructor](https://github.com/Consensys/linea-ens/blob/49c1bd707467daa3a77d06592e2523d74825bdfb/packages/linea-ens-contracts/contracts/ethregistrar/ETHRegistrarController.sol#L162). 
+
+:::warning 
+
+If you modify the `PublicResolver` contract and it impacts storage, you must deploy your own 
+`L1Resolver` contract on L1 to match those modifications, as the `L1Resolver` uses hard-coded 
+storage slots (as seen [here](https://github.com/Consensys/linea-ens/blob/1b896c9f6f77c6258926957af370bb3d692f540a/packages/linea-ens-resolver/contracts/L1Resolver.sol#L36)).
+
+:::
+
+## Steps
+
+The following steps show how to deploy and configure subdomain contracts on Linea in the same way that 
+they were used to create the `linea.eth` subdomain.
+
+### 1. Deploy subdomain contracts
+
+Deploy the subdomain contracts on the Linea network:
+
+1. Clone the [Linea ENS repository](https://github.com/Consensys/linea-ens) and execute the 
+    following commands:
+
+    ```bash
+    cd ./packages/linea-ens-contracts
+    yarn
+    cp .env.org .env
+    ```
+
+1. Replace the following keys in the `.env` file with your own information:
+
+    :::danger
+    Do not commit the `.env` file to your repository if it contains sensitive data. You can
+    create a `.gitignore` file to prevent accidentally committing the file.
+    :::
+
+    ```
+    DEPLOYER_PRIVATE_KEY=
+    OWNER_PRIVATE_KEY=
+    INFURA_API_KEY=
+    BASE_DOMAIN=
+    ```
+
+   :::note
+   Replace `BASE_DOMAIN` environment variable with the L1 ENS domain you own. For example, for `linea.eth`,
+   it's `linea`.
+   :::
+
+1. Deploy the contract: 
+
+    ```bash
+    yarn hardhat deploy --network lineaMainnet
+    ```
+
+1. Copy the `PublicResolver` contract address from the `./deployments/lineaMainnet/PublicResolver.json` 
+file:
+
+    ```
+    "address": "0x86c5AED9F27837074612288610fB98ccC1733126",
+    ```
+
+    Copy this address — you'll need it in the next step.
+
+The contracts to manage your subdomains on Linea have now been deployed. The next step is to link 
+these subdomains to your L1 domain on L1 for [CCIP resolution](../tooling/cross-chain/ccip-read.mdx) to work.
+
+### 2. Set the Linea target resolution
+
+Set the Linea target resolution on the L1 ENS domain:
+
+1. Retrieve the DNS encoded name for your ENS domain by running:
+
+    ```bash
+    ts-node scripts/getENSHashes.ts yourdomain.eth
+    ```
+
+    For example, `ts-node scripts/getENSHashes.ts linea.eth`
+
+    Example output:
+
+    ```bash
+    The namehash of 'linea.eth' is: 0x527aac89ac1d1de5dd84cff89ec92c69b028ce9ce3fa3d654882474ab4402ec3
+    The DNS encoded name of 'linea.eth' is: 0x056c696e65610365746800
+    ```
+
+    Keep the DNS encoded name result, for example `0x056c696e65610365746800`.
+
+1. Go to the [Linea Custom Resolver contract on Etherscan](https://etherscan.io/address/0xde16ee87B0C019499cEBDde29c9F7686560f679a#writeContract).
+
+1. In the **Write Contract** tab, connect your wallet using the **Connect with web3** button.
+    Make sure to connect with the wallet containing the account that owns your L1 ENS domain.
+    In the `setTarget` function add the following parameters:
+    - `name`: The DNS encoded name you got from step 1.
+    - `target`: The Linea resolver target address you copied from the `PublicResolver.json` file
+        in the previous step.
+
+    Then select **Write** and approve the transaction.
+
+1. Go to the [ENS app](https://app.ens.domains/).
+
+1. Search for your ENS domain and go to the profile page.
+
+1. Select the **More** tab, and in the **Resolver** section select **Edit**.
+
+1. Select **Custom Resolver** and add the address `0xde16ee87B0C019499cEBDde29c9F7686560f679a`.
+
+1. Select **Update** and approve the transaction.
+
+The setup to manage subdomains on Linea for your ENS domain is now complete and configured 
+similarly to `linea.eth`. This means anyone with an active PoH on Linea can now register a 
+`subdomain.yourdomain.eth` that will be resolved on the L1 ENS.

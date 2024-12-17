@@ -1,0 +1,154 @@
+main {
+  background-color: var(--page-background) !important;
+}
+
+.cardContainer {
+  padding-bottom: 60px;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  max-width: calc(100vw - 2.5rem) !important;
+}
+
+.cardHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20px 5px 20px 30px;
+}
+
+.cardIcon {
+  color: var(--banner-text);
+  position: absolute;
+  right: 22px;
+  top: 25px;
+  width: 35px;
+  height: auto;
+  transition: width 0.25s ease;
+}
+
+.cardBody {
+  position: absolute;
+  top: 80px;
+  text-align: left;
+  padding: 14px 12px 0 30px;
+  transition: padding-left 0.25s ease;
+}
+
+@media (width <= 1500px) {
+  .cardBody {
+    padding: 14px 30px;
+  }
+}
+
+.cardTitle h3 {
+  color: var(--banner-text);
+  font-size: 1.45rem;
+  font-weight: 400;
+  text-align: left;
+  text-transform: uppercase;
+  padding-right: 30px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.description {
+  color: var(--banner-text);
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.card_glow:hover .description {
+  color: var(--search-local-muted-color);
+}
+
+@media (width <= 1300px) {
+  .cardBody {
+    padding: 14px 16px 0 30px;
+  }
+
+  .cardTitle h3 {
+    padding-right: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (width <= 996px) {  
+  .cardTitle h3 {
+    padding-right: 10px;
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
+
+.heading {
+  display: inline-block; /* Width matches text */
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--banner-text);
+  border-bottom: 2px solid #61dfff; /* Underline */
+  margin-bottom: 40px;
+  padding-bottom: 4px; /* Space between text and underline */
+}
+
+.card_glow {
+  background-color: var(--homepage-card-background);
+  border-radius: 14px;
+  min-height: 280px;
+  position: relative;
+  box-shadow: none;
+  transition: transform 0.15s ease-in-out;
+}
+
+.card_glow:hover {
+  transform: translateY(-10px);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 25px 30px 0;
+}
+
+.button {
+  background-color: #61dfff;
+  color: #121212;
+  font-size: 16px;
+  border-radius: 1px;
+  border: none;
+  width: 47px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  overflow: visible;
+}
+
+.button:hover {
+  scale: 1.1;
+  transform: translateY(-5px);
+  background-color: #fff068;
+  color: #121212;
+}

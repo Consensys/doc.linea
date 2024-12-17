@@ -1,5 +1,5 @@
 .icon {
-  color: #fff;
+  color: #61dfff;
   height: 30px;
   width: 30px;
   margin-left: 20px;
@@ -10,8 +10,8 @@
 }
 
 .bannerButton {
-  background-color: var(--linea-highlight-color-2);
-  color: #fff !important;
+  background-color: var(--linea-navbar-background);
+  color: #61dfff !important;
   border: none;
   padding: 20px 60px 20px 70px;
   text-align: center;
@@ -24,12 +24,6 @@
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.3s ease;
-}
-
-@media (width <= 768px) {
-  .bannerButton {
-    padding: 15px 65px;
-  }
 }
 
 @media (width <= 320px) {
@@ -57,17 +51,10 @@
 
 .logo {
   color: var(--linea-banner-color-1);
-  padding-right: 10px;
+  padding-right: 15px;
   padding-left: 10px;
-  height: 70px;
+  height: 55px;
   width: auto;
-}
-
-@media (width <= 768px) {
-  .logo {
-    height: 40px;
-    width: auto;
-  }
 }
 
 @media (width <= 320px) {
@@ -80,39 +67,71 @@
 
 .title {
   color: var(--linea-banner-logo);
-  font-size: 45px;
-  padding-bottom: 20px;
+  font-size: 55px;
+  font-weight: 400;
+  padding-bottom: 10px;
 }
 
 @media (width <= 768px) {
   .title {
     margin-top: 60px;
-    font-size: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
-@media (width <= 320px) {
+@media (width <= 530px) {
   .title {
-    font-size: 20px;
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (width <= 450px) {
+  .title {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 .subtitle {
   color: var(--linea-banner-logo);
-  font-size: 21px;
-  padding: 0 9rem 20px;
+  font-size: 32px;
+  font-weight: 400;
+  padding: 0 9rem 10px;
+  margin-bottom: 25px;
+}
+
+@media (width <= 1250px) {
+  .logo {
+    height: 38px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+
+  .subtitle {
+    font-size: 26px;
+  }
 }
 
 @media (width <= 996px) {
   .subtitle {
-    font-size: 18px;
-    padding: 0 10vw 20px;
+    font-size: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bannerButton {
+    padding: 20px 40px;
   }
 }
 
-@media (width <= 320px) {
+@media (width <= 350px) {
   .subtitle {
-    font-size: 15px;
     padding: 0 0 20px;
     padding: 0;
   }
@@ -121,6 +140,14 @@
 @media (height <= 850px) {
   .subtitle {
     font-size: 16px;
+  }
+}
+
+@media (width <= 350px) {
+  .title {
+    font-size: 38px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -143,38 +170,45 @@
   background-size: 70%, 70%;
   padding: 6rem;
   text-align: center;
-  height: 52vh;
-  min-height: 500px;
-  width: calc(100% - 22rem) !important;
-  max-width: 1500px;
-  border-radius: 17px;
-  margin: 0 auto 30px;
+  height: 60vh;
+  min-height: 575px;
+  width: calc(100vw - 2.5rem) !important;
+  border-radius: 14px;
+  margin: 0 auto;
   position: relative;
 }
 
 @media (width <= 1380px) {
   .introductionBlock {
     height: 60vh;
-    width: 87.5% !important;
-  }
-}
-
-@media (width <= 996px) {
-  .introductionBlock {
-    width: 94% !important;
   }
 }
 
 @media (width <= 768px) {
   .introductionBlock {
     padding: 2rem;
+    height: 75vh;
+    background-position:
+    right -285% top 150%,
+    left -295% top -80%;
+    background-size: 80%, 80%;
+  }
+}
+
+@media (width <= 530px) {
+  .introductionBlock {
+    background-image: url("/img/Linea_mob_banner_1.svg"), url("/img/Linea_mob_banner_2.svg");
+    background-repeat: no-repeat, no-repeat;
+    background-size: 40%, 40%;
+    background-position: bottom left, top right;
+    height: auto;
   }
 }
 
 @media (width <= 320px) {
   .introductionBlock {
     padding: 0;
-    height: 55vh;
+    height: 75vh;
   }
 }
 
@@ -186,9 +220,73 @@
 }
 
 .footerImage {
-  max-width: 100%;
+  max-width: 80vw;
   height: auto;
   display: inline-block;
+  margin: 0 20px;
+  transform: translateY(10px);
+}
+
+/* search bar */
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+  padding-right: 16px;
+}
+
+.searchBarContainer input {
+  font-size: 1.3rem;
+  font-weight: 600;
+  width: 40vw;
+  height: 65px;
+  border-radius: 12px;
+  border: 2px solid var(--navbar-background);
+  background: var(--search-background);
+  margin-right: 0;
+}
+
+.navbar__search-input:focus-visible {
+  outline-color: #61dfff !important;
+}
+
+.searchBarContainer .navbar__search {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (width <= 700px) {
+  .searchBarContainer .navbar__search {
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* search results dropdown, somewhat workaroundy but swizzle-free way to target and center */
+[role="listbox"][id^="searchBar_"] {
+  position: absolute;
   margin: 0;
-  padding-bottom: -10px;
+  right: 50%;
+  left: 50%;
+  margin-top: 10px;
+  width: var(--search-local-modal-width, 39.8vw); 
+  z-index: 100;
+  display: block;
+}
+
+@media (width <= 996px) {
+  [role="listbox"][id^="searchBar_"] {
+    width: var(--search-local-modal-width, 450px); 
+  }
+}
+
+@media (width <= 550px) {
+  [role="listbox"][id^="searchBar_"] {
+    width: var(--search-local-modal-width, 80vw); 
+  }
 }
