@@ -1,0 +1,127 @@
+---
+title: Connect a wallet to your dapp
+description: Learn how to connect a wallet to your app so users can interact with your contracts
+---
+
+Enabling users' wallets to connect to your dapp is critical, since it's the only way they can
+send transacctions and sign messages that enable them to interact with smart contracts underlying
+the dapp. 
+
+You can build your own "connect wallet" component or use an SDK that takes care of some of the 
+complexity for you.
+
+## Dynamic
+
+Install the Dynamic SDK and the Ethereum connectors:
+
+```bash
+npm install @dynamic-labs/sdk-react-core @dynamic-labs/ethereum
+```
+
+The latter contains wallet connectors for all chains compatible with the Ethereum Virtual Machine 
+(EVM), Linea included.
+
+### Add the provider
+
+To set up the dapp to work with the Dynamic wallet connector button, we need to:
+- Wrap dapp contents in the `DynamicContextProvider` component.
+- Import the Dynamic Ethereum wallet connectors and pass these to the `DynamicContextProvider` in
+its `settings`.
+- Enable Linea (and Linea Sepolia, if you need it) on the [Dynamic dashboard](https://app.dynamic.xyz/).
+You need to sign up with Dynamic to do so. [See the guide to configuring your chains](https://docs.dynamic.xyz/chains/enabling-chains). 
+- Get the `environmentId` from the [Dynamic dashboard](https://app.dynamic.xyz/) under Developers >
+SDK & API Keys. 
+
+Then, paste the following code into your dapp:
+
+```tsx
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+        settings={{
+            environmentId: "YOUR_ENVIRONMENT_ID",
+            walletConnectors: [EthereumWalletConnectors]
+        }}
+    >
+      <AppContent />
+    </DynamicContextProvider>
+  );
+}
+```
+
+Replace `YOUR_ENVIRONMENT_ID` with the `environmentId` with your own.
+
+:::note
+
+If you intend to use Wagmi in your project, you also need to add a [`DynamicWagmiProvider`](https://docs.dynamic.xyz/react-sdk/providers/dynamicwagmiconnector) 
+component and wrap it with [`WagmiProvider`](https://wagmi.sh/react/api/WagmiProvider), like this:
+
+```tsx
+<DynamicContextProvider>
+    <WagmiProvider>
+        <DynamicWagmiProvider>
+            <AppContent />
+        </DynamicWagmiProvider>
+    </WagmiProvider>
+</DynamicContextProvider>
+```
+
+:::
+
+### Add the component
+
+Next, [select a wallet component](https://docs.dynamic.xyz/react-sdk/components/components-introduction).
+For example, you can use the `DynamicWidget` component if you want a wallet connector button that 
+you can configure to use various user onboarding methods such as email, phone number, or even
+embedded wallets. 
+
+For simplicity, let's go with [`DynamicConnectButton`](https://docs.dynamic.xyz/react-sdk/components/dynamicconnectbutton), 
+which is a classic wallet connection button. 
+
+Add it to your import statement:
+
+```tsx
+import { DynamicContextProvider, DynamicConnectButton } from "@dynamic-labs/sdk-react-core";
+```
+
+Then slot it into your dapp, adding some text:
+
+```tsx
+import { DynamicContextProvider, DynamicConnectButton } from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+        settings={{
+            environmentId: "7cc1f95f-6015-4f0b-888d-e52178b1b27d",
+                walletConnectors: [EthereumWalletConnectors]
+        }}
+    >
+       <DynamicConnectButton>
+          Connect wallet
+       </DynamicConnectButton>
+    </DynamicContextProvider>
+  );
+}
+```
+
+Now, run your dapp locally and click the button to test your work:
+
+```bash
+npm run dev
+```
+
+You should be able to connect to Linea and Linea Sepolia. 
+
+
+## MetaMask SDK
+
+## Reown AppKit
+
+## thirdweb 
+
+## Wagmi
