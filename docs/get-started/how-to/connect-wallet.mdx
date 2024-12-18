@@ -1,6 +1,6 @@
 ---
 title: Connect a wallet to your dapp
-description: Learn how to connect a wallet to your app so users can interact with your contracts
+description: Learn how to connect a wallet to your dapp so users can interact with your contracts
 ---
 
 Enabling users' wallets to connect to your dapp is critical, since it's the only way they can
@@ -10,7 +10,7 @@ In this guide, we'll go through several methods for connecting wallets to a Reac
 
 ## Wagmi
 
-Wagmi is a library of React hooks for developing apps that interact with Ethereum-based blockchains
+Wagmi is a library of React hooks for developing dapps that interact with Ethereum-based blockchains
 like Linea. 
 
 To get started, install the packages:
@@ -61,12 +61,12 @@ import { config } from './wagmi' // path your wagmi.ts config file
 :::info TanStack Query
 
 TanStack Query, formerly known as React Query, is a library that adds state management for the 
-onchain data your app requests from the blockchain using Wagmi hooks. It's not essential, but 
+onchain data your dapp requests from the blockchain using Wagmi hooks. It's not essential, but 
 recommended.
 
 :::
 
-Then add the following code, so that your app is wrapped within the Wagmi and TanStack Query 
+Then add the following code, so that your dapp is wrapped within the Wagmi and TanStack Query 
 providers:
 
 ```tsx
@@ -409,4 +409,4 @@ export default function App() {
 }
 ```
 
-Now if you run your app with `npm run dev`, the Privy modal will appear when you click the button.
+Now if you run your dapp with `npm run dev`, the Privy modal will appear when you click the button.
