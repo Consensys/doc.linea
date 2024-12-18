@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - "docs/api/linea-smart-contracts"
+      - "docs/api/linea-smart-contracts/**"
 
 jobs:
   case:
