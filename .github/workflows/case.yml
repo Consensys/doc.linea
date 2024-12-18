@@ -6,7 +6,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - "docs/api/linea-smart-contracts/**"
+      - 'sidebars.js'
+      - 'docs/api/linea-smart-contracts/**'
 
 jobs:
   case:
