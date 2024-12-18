@@ -5,9 +5,9 @@ on:
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - 'sidebars.js'
-      - 'docs/api/linea-smart-contracts/**'
+    paths:
+      - 'docs/**'
+      - '!docs/api/linea-smart-contracts/**'
 
 jobs:
   case:
