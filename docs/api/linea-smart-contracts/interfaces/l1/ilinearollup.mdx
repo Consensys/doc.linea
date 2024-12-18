@@ -1,0 +1,505 @@
+# `ILineaRollup`
+
+### InitializationData
+
+Initialization data structure for the LineaRollup contract.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+
+```solidity
+struct InitializationData {
+  bytes32 initialStateRootHash;
+  uint256 initialL2BlockNumber;
+  uint256 genesisTimestamp;
+  address defaultVerifier;
+  uint256 rateLimitPeriodInSeconds;
+  uint256 rateLimitAmountInWei;
+  struct IPermissionsManager.RoleAddress[] roleAddresses;
+  struct IPauseManager.PauseTypeRole[] pauseTypeRoles;
+  struct IPauseManager.PauseTypeRole[] unpauseTypeRoles;
+  address fallbackOperator;
+  address defaultAdmin;
+}
+```
+
+### CompressedCalldataSubmission
+
+Supporting data for compressed calldata submission including compressed data.
+
+_finalStateRootHash is used to set state root at the end of the data.
+snarkHash is the computed hash for compressed data (using a SNARK-friendly hash function) that aggregates per data submission to be used in public input.
+compressedData is the compressed transaction data. It contains ordered data for each L2 block - l2Timestamps, the encoded transaction data._
+
+```solidity
+struct CompressedCalldataSubmission {
+  bytes32 finalStateRootHash;
+  bytes32 snarkHash;
+  bytes compressedData;
+}
+```
+
+### ShnarfData
+
+Shnarf data for validating a shnarf.
+
+_parentShnarf is the parent computed shnarf.
+snarkHash is the computed hash for compressed data (using a SNARK-friendly hash function) that aggregates per data submission to be used in public input.
+finalStateRootHash is the final state root hash.
+dataEvaluationPoint is the data evaluation point.
+dataEvaluationClaim is the data evaluation claim._
+
+```solidity
+struct ShnarfData {
+  bytes32 parentShnarf;
+  bytes32 snarkHash;
+  bytes32 finalStateRootHash;
+  bytes32 dataEvaluationPoint;
+  bytes32 dataEvaluationClaim;
+}
+```
+
+### BlobSubmission
+
+Data stucture for compressed blob data submission.
+
+_submissionData The supporting data for blob data submission excluding the compressed data.
+dataEvaluationClaim The data evaluation claim.
+kzgCommitment The blob KZG commitment.
+kzgProof The blob KZG point proof._
+
+```solidity
+struct BlobSubmission {
+  uint256 dataEvaluationClaim;
+  bytes kzgCommitment;
+  bytes kzgProof;
+  bytes32 finalStateRootHash;
+  bytes32 snarkHash;
+}
+```
+
+### FinalizationDataV3
+
+Supporting data for finalization with proof.
+
+_NB: the dynamic sized fields are placed last on purpose for efficient keccaking on public input.
+parentStateRootHash is the expected last state root hash finalized.
+endBlockNumber is the end block finalizing until.
+shnarfData contains data about the last data submission's shnarf used in finalization.
+lastFinalizedTimestamp is the expected last finalized block's timestamp.
+finalTimestamp is the timestamp of the last block being finalized.
+lastFinalizedL1RollingHash is the last stored L2 computed rolling hash used in finalization.
+l1RollingHash is the calculated rolling hash on L2 that is expected to match L1 at l1RollingHashMessageNumber.
+This value will be used along with the stored last finalized L2 calculated rolling hash in the public input.
+lastFinalizedL1RollingHashMessageNumber is the last stored L2 computed message number used in finalization.
+l1RollingHashMessageNumber is the calculated message number on L2 that is expected to match the existing L1 rolling hash.
+This value will be used along with the stored last finalized L2 calculated message number in the public input.
+l2MerkleTreesDepth is the depth of all l2MerkleRoots.
+l2MerkleRoots is an array of L2 message Merkle roots of depth l2MerkleTreesDepth between last finalized block and finalSubmissionData.finalBlockNumber.
+l2MessagingBlocksOffsets indicates by offset from currentL2BlockNumber which L2 blocks contain MessageSent events._
+
+```solidity
+struct FinalizationDataV3 {
+  bytes32 parentStateRootHash;
+  uint256 endBlockNumber;
+  struct ILineaRollup.ShnarfData shnarfData;
+  uint256 lastFinalizedTimestamp;
+  uint256 finalTimestamp;
+  bytes32 lastFinalizedL1RollingHash;
+  bytes32 l1RollingHash;
+  uint256 lastFinalizedL1RollingHashMessageNumber;
+  uint256 l1RollingHashMessageNumber;
+  uint256 l2MerkleTreesDepth;
+  bytes32[] l2MerkleRoots;
+  bytes l2MessagingBlocksOffsets;
+}
+```
+
+### LineaRollupVersionChanged
+
+```solidity
+event LineaRollupVersionChanged(bytes8 previousVersion, bytes8 newVersion)
+```
+
+Emitted when the LineaRollup contract version has changed.
+
+_All bytes8 values are string based SemVer in the format M.m - e.g. "6.0"._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| previousVersion | bytes8 | The previous version. |
+| newVersion | bytes8 | The new version. |
+
+### FallbackOperatorRoleGranted
+
+```solidity
+event FallbackOperatorRoleGranted(address caller, address fallbackOperator)
+```
+
+Emitted when the fallback operator role is granted.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| caller | address | The address that called the function granting the role. |
+| fallbackOperator | address | The fallback operator address that received the operator role. |
+
+### FallbackOperatorAddressSet
+
+```solidity
+event FallbackOperatorAddressSet(address caller, address fallbackOperator)
+```
+
+Emitted when the fallback operator role is set on the contract.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| caller | address | The address that set the fallback operator address. |
+| fallbackOperator | address | The fallback operator address. |
+
+### VerifierAddressChanged
+
+```solidity
+event VerifierAddressChanged(address verifierAddress, uint256 proofType, address verifierSetBy, address oldVerifierAddress)
+```
+
+Emitted when a verifier is set for a particular proof type.
+
+_The verifier will be set by an account with the VERIFIER_SETTER_ROLE. Typically the Safe.
+The oldVerifierAddress can be the zero address._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| verifierAddress | address | The indexed new verifier address being set. |
+| proofType | uint256 | The indexed proof type/index that the verifier is mapped to. |
+| verifierSetBy | address | The index address who set the verifier at the mapping. |
+| oldVerifierAddress | address | Indicates the previous address mapped to the proof type. |
+
+### DataSubmittedV3
+
+```solidity
+event DataSubmittedV3(bytes32 parentShnarf, bytes32 shnarf, bytes32 finalStateRootHash)
+```
+
+Emitted when compressed data is being submitted and verified succesfully on L1.
+
+_The block range is indexed and parent shnarf included for state reconstruction simplicity._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| parentShnarf | bytes32 | The parent shnarf for the data being submitted. |
+| shnarf | bytes32 | The indexed shnarf for the data being submitted. |
+| finalStateRootHash | bytes32 | The L2 state root hash that the current blob submission ends on. NB: The last blob in the collection. |
+
+### DataFinalizedV3
+
+```solidity
+event DataFinalizedV3(uint256 startBlockNumber, uint256 endBlockNumber, bytes32 shnarf, bytes32 parentStateRootHash, bytes32 finalStateRootHash)
+```
+
+Emitted when L2 blocks have been finalized on L1.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| startBlockNumber | uint256 | The indexed L2 block number indicating which block the finalization the data starts from. |
+| endBlockNumber | uint256 | The indexed L2 block number indicating which block the finalization the data ends on. |
+| shnarf | bytes32 | The indexed shnarf being set as currentFinalizedShnarf in the current finalization. |
+| parentStateRootHash | bytes32 | The parent L2 state root hash that the current finalization starts from. |
+| finalStateRootHash | bytes32 | The L2 state root hash that the current finalization ends on. |
+
+### LastFinalizationTimeNotLapsed
+
+```solidity
+error LastFinalizationTimeNotLapsed()
+```
+
+_Thrown when the last finalization time has not lapsed when trying to grant the OPERATOR_ROLE to the fallback operator address._
+
+### PointEvaluationResponseInvalid
+
+```solidity
+error PointEvaluationResponseInvalid(uint256 fieldElements, uint256 blsCurveModulus)
+```
+
+_Thrown when the point evaluation precompile's call return data field(s) are wrong._
+
+### PrecompileReturnDataLengthWrong
+
+```solidity
+error PrecompileReturnDataLengthWrong(uint256 expected, uint256 actual)
+```
+
+_Thrown when the point evaluation precompile's call return data length is wrong._
+
+### PointEvaluationFailed
+
+```solidity
+error PointEvaluationFailed()
+```
+
+_Thrown when the point evaluation precompile call returns false._
+
+### EmptyBlobDataAtIndex
+
+```solidity
+error EmptyBlobDataAtIndex(uint256 index)
+```
+
+_Thrown when the blobhash at an index equals to the zero hash._
+
+### BlobSubmissionDataIsMissing
+
+```solidity
+error BlobSubmissionDataIsMissing()
+```
+
+_Thrown when the data for multiple blobs submission has length zero._
+
+### BlobSubmissionDataEmpty
+
+```solidity
+error BlobSubmissionDataEmpty(uint256 emptyBlobIndex)
+```
+
+_Thrown when a blob has been submitted but there is no data for it._
+
+### DataAlreadySubmitted
+
+```solidity
+error DataAlreadySubmitted(bytes32 currentDataHash)
+```
+
+_Thrown when the current data was already submitted._
+
+### EmptySubmissionData
+
+```solidity
+error EmptySubmissionData()
+```
+
+_Thrown when submissionData is empty._
+
+### L1RollingHashDoesNotExistOnL1
+
+```solidity
+error L1RollingHashDoesNotExistOnL1(uint256 messageNumber, bytes32 rollingHash)
+```
+
+_Thrown when finalizationData.l1RollingHash does not exist on L1 (Feedback loop)._
+
+### FinalizationStateIncorrect
+
+```solidity
+error FinalizationStateIncorrect(bytes32 expected, bytes32 value)
+```
+
+_Thrown when finalization state does not match._
+
+### FinalBlockNumberLessThanOrEqualToLastFinalizedBlock
+
+```solidity
+error FinalBlockNumberLessThanOrEqualToLastFinalizedBlock(uint256 finalBlockNumber, uint256 lastFinalizedBlock)
+```
+
+_Thrown when the final block number in finalization data is less than or equal to the last finalized block during finalization._
+
+### FinalBlockStateEqualsZeroHash
+
+```solidity
+error FinalBlockStateEqualsZeroHash()
+```
+
+_Thrown when the final block state equals the zero hash during finalization._
+
+### FinalizationInTheFuture
+
+```solidity
+error FinalizationInTheFuture(uint256 l2BlockTimestamp, uint256 currentBlockTimestamp)
+```
+
+_Thrown when final l2 block timestamp higher than current block.timestamp during finalization._
+
+### MissingMessageNumberForRollingHash
+
+```solidity
+error MissingMessageNumberForRollingHash(bytes32 rollingHash)
+```
+
+_Thrown when a rolling hash is provided without a corresponding message number._
+
+### MissingRollingHashForMessageNumber
+
+```solidity
+error MissingRollingHashForMessageNumber(uint256 messageNumber)
+```
+
+_Thrown when a message number is provided without a corresponding rolling hash._
+
+### FirstByteIsNotZero
+
+```solidity
+error FirstByteIsNotZero()
+```
+
+_Thrown when the first byte is not zero.
+This is used explicitly with the four bytes in assembly 0x729eebce._
+
+### BytesLengthNotMultipleOf32
+
+```solidity
+error BytesLengthNotMultipleOf32()
+```
+
+_Thrown when bytes length is not a multiple of 32._
+
+### FinalShnarfWrong
+
+```solidity
+error FinalShnarfWrong(bytes32 expected, bytes32 value)
+```
+
+_Thrown when the computed shnarf does not match what is expected._
+
+### ParentBlobNotSubmitted
+
+```solidity
+error ParentBlobNotSubmitted(bytes32 shnarf)
+```
+
+_Thrown when a shnarf does not exist for a parent blob._
+
+### FinalBlobNotSubmitted
+
+```solidity
+error FinalBlobNotSubmitted(bytes32 shnarf)
+```
+
+_Thrown when a shnarf does not exist for the final blob being finalized._
+
+### OnlyNonFallbackOperator
+
+```solidity
+error OnlyNonFallbackOperator()
+```
+
+_Thrown when the fallback operator tries to renounce their operator role._
+
+### setVerifierAddress
+
+```solidity
+function setVerifierAddress(address _newVerifierAddress, uint256 _proofType) external
+```
+
+Adds or updates the verifier contract address for a proof type.
+
+_VERIFIER_SETTER_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _newVerifierAddress | address | The address for the verifier contract. |
+| _proofType | uint256 | The proof type being set/updated. |
+
+### setFallbackOperator
+
+```solidity
+function setFallbackOperator(uint256 _messageNumber, bytes32 _rollingHash, uint256 _lastFinalizedTimestamp) external
+```
+
+Sets the fallback operator role to the specified address if six months have passed since the last finalization.
+
+_Reverts if six months have not passed since the last finalization._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _messageNumber | uint256 | Last finalized L1 message number as part of the feedback loop. |
+| _rollingHash | bytes32 | Last finalized L1 rolling hash as part of the feedback loop. |
+| _lastFinalizedTimestamp | uint256 | Last finalized L2 block timestamp. |
+
+### unsetVerifierAddress
+
+```solidity
+function unsetVerifierAddress(uint256 _proofType) external
+```
+
+Unsets the verifier contract address for a proof type.
+
+_VERIFIER_UNSETTER_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _proofType | uint256 | The proof type being set/updated. |
+
+### submitBlobs
+
+```solidity
+function submitBlobs(struct ILineaRollup.BlobSubmission[] _blobSubmissions, bytes32 _parentShnarf, bytes32 _finalBlobShnarf) external
+```
+
+Submit one or more EIP-4844 blobs.
+
+_OPERATOR_ROLE is required to execute.
+This should be a blob carrying transaction._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _blobSubmissions | struct ILineaRollup.BlobSubmission[] | The data for blob submission including proofs and required polynomials. |
+| _parentShnarf | bytes32 | The parent shnarf used in continuity checks as it includes the parentStateRootHash in its computation. |
+| _finalBlobShnarf | bytes32 | The expected final shnarf post computation of all the blob shnarfs. |
+
+### submitDataAsCalldata
+
+```solidity
+function submitDataAsCalldata(struct ILineaRollup.CompressedCalldataSubmission _submission, bytes32 _parentShnarf, bytes32 _expectedShnarf) external
+```
+
+Submit blobs using compressed data via calldata.
+
+_OPERATOR_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _submission | struct ILineaRollup.CompressedCalldataSubmission | The supporting data for compressed data submission including compressed data. |
+| _parentShnarf | bytes32 | The parent shnarf used in continuity checks as it includes the parentStateRootHash in its computation. |
+| _expectedShnarf | bytes32 | The expected shnarf post computation of all the submission. |
+
+### finalizeBlocks
+
+```solidity
+function finalizeBlocks(bytes _aggregatedProof, uint256 _proofType, struct ILineaRollup.FinalizationDataV3 _finalizationData) external
+```
+
+Finalize compressed blocks with proof.
+
+_OPERATOR_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _aggregatedProof | bytes | The aggregated proof. |
+| _proofType | uint256 | The proof type. |
+| _finalizationData | struct ILineaRollup.FinalizationDataV3 | The full finalization data. |
+
