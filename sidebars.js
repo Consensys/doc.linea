@@ -450,7 +450,7 @@ const sidebars = {
     "api/linea-sdk",
     {
       type: "category",
-      label: "Linea Smart Contracts",
+      label: "Linea smart contracts",
       link: null,
       collapsible: false,
       items: [
