@@ -224,8 +224,11 @@
         ]
     },
     {
-        "to": "/get-started/tooling/libraries/walletconnect",
-        "from": "/developers/tooling/libraries/wallet-connect"
+        "to": "/get-started/tooling/libraries/reown",
+        "from": [
+            "/get-started/tooling/libraries/walletconnect",
+            "/developers/tooling/libraries/wallet-connect"
+        ]
     },
     {
         "to": "/get-started/concepts/architecture",
@@ -280,8 +283,11 @@
         "from": "/developers/tooling/attestations"
     },
     {
-        "to": "/get-started/tooling/attestations/pado",
-        "from": "/developers/tooling/attestations/pado"
+        "to": "/get-started/tooling/attestations/primus",
+        "from": [
+            "/get-started/tooling/attestations/pado",
+            "/developers/tooling/attestations/pado"
+        ]
     },
     {
         "to": "/get-started/tooling/privacy/secret",
