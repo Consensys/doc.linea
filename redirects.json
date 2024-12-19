@@ -280,8 +280,11 @@
         "from": "/developers/tooling/attestations"
     },
     {
-        "to": "/get-started/tooling/attestations/pado",
-        "from": "/developers/tooling/attestations/pado"
+        "to": "/get-started/tooling/attestations/primus",
+        "from": [
+            "/get-started/tooling/attestations/pado",
+            "/developers/tooling/attestations/pado"
+        ]
     },
     {
         "to": "/get-started/tooling/privacy/secret",

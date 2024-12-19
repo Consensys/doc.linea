@@ -196,7 +196,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/attestations/verax",
-            "get-started/tooling/attestations/pado",
+            "get-started/tooling/attestations/primus",
           ],
         },
         {
