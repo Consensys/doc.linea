@@ -135,6 +135,12 @@ const config = {
           }, */
           {
             type: "doc",
+            docId: "technology/architecture",
+            position: "left",
+            label: "Technology",
+          },
+          {
+            type: "doc",
             docId: "api/index",
             position: "left",
             label: "API & SDK",
