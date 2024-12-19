@@ -458,7 +458,7 @@ const sidebars = {
         "api/linea-smart-contracts/zkevmv2",
         {
           type: "category",
-          label: "interfaces",
+          label: "Interfaces",
           link: null,
           collapsible: true,
           items: [
@@ -469,7 +469,7 @@ const sidebars = {
             "api/linea-smart-contracts/interfaces/iratelimiter",
             {
               type: "category",
-              label: "l1",
+              label: "L1",
               link: null,
               collapsible: true,
               items: [
@@ -483,7 +483,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "l2",
+              label: "L2",
               link: null,
               collapsible: true,
               items: [
@@ -513,14 +513,14 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "messageservice",
+          label: "Message service",
           link: null,
           collapsible: true,
           items: [
             "api/linea-smart-contracts/messageservice/messageservicebase",
             {
               type: "category",
-              label: "l1",
+              label: "L1",
               link: null,
               collapsible: true,
               items: [
@@ -541,7 +541,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "l2",
+              label: "L2",
               link: null,
               collapsible: true,
               items: [
@@ -576,7 +576,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "tokenbridge",
+          label: "Token bridge",
           link: null,
           collapsible: true,
           items: [
@@ -585,7 +585,7 @@ const sidebars = {
             "api/linea-smart-contracts/tokenbridge/tokenbridge",
             {
               type: "category",
-              label: "interfaces",
+              label: "Interfaces",
               link: null,
               collapsible: true,
               items: [
