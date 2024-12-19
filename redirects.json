@@ -1,12 +1,13 @@
 [
     {
-        "to": "/get-started/concepts/message-service",
+        "to": "/technology/message-service",
         "from": [
             "/developers/bridge-architecture/message-service",
             "/developers/use-message-bridge",
             "/architecture/stack/canonical-msg-service/message-service",
             "/architecture/stack/canonical-msg-service",
-            "/architecture/canonical-msg-service"
+            "/architecture/canonical-msg-service",
+            "/get-started/concepts/message-service"
         ]
     },
     {
@@ -129,61 +130,69 @@
         ]
     },
     {
-        "to": "/get-started/concepts/decentralization",
+        "to": "/technology/decentralization",
         "from": [
             "/use-mainnet/decentralization-roadmap",
             "/decentralization-roadmap",
-            "/architecture/overview/decentralization-roadmap"
+            "/architecture/overview/decentralization-roadmap",
+            "/get-started/concepts/decentralization"
         ]
     },
     {
-        "to": "/get-started/concepts/transaction-lifecycle",
+        "to": "/technology/transaction-lifecycle",
         "from": [
             "/architecture/transaction-lifecycle",
-            "/architecture/overview/transaction-lifecycle"
+            "/architecture/overview/transaction-lifecycle",
+            "/get-started/concepts/transaction-lifecycle"
         ]
     },
     {
-        "to": "/get-started/concepts/network-data",
+        "to": "/technology/network-data",
         "from": [
             "/architecture/network-data",
-            "/architecture/overview/network-data"
+            "/architecture/overview/network-data",
+            "/get-started/concepts/network-data"
         ]
     },
     {
-        "to": "/get-started/concepts/canonical-token-bridge",
+        "to": "/technology/canonical-token-bridge",
         "from": [
             "/architecture/bridges",
             "/architecture/stack/bridges",
-            "/architecture/stack/bridges/canonical-token-bridge"
+            "/architecture/stack/bridges/canonical-token-bridge",
+            "/get-started/concepts/canonical-token-bridge"
         ]
     },
     {
-        "to": "/get-started/concepts/coordinator",
+        "to": "/technology/coordinator",
         "from": [
             "/architecture/coordinator",
-            "/architecture/stack/coordinator"
+            "/architecture/stack/coordinator",
+            "/get-started/concepts/coordinator"
         ]
     },
     {
-        "to": "/get-started/concepts/state-manager",
+        "to": "/technology/state-manager",
         "from": [
             "/architecture/evm-state-manager",
-            "/architecture/stack/evm-state-manager"
+            "/architecture/stack/evm-state-manager",
+            "/get-started/concepts/state-manager"
         ]
     },
     {
-        "to": "/get-started/concepts/sequencer",
+        "to": "/technology/sequencer",
         "from": [
             "/architecture/sequencer",
-            "/architecture/stack/sequencer"
+            "/architecture/stack/sequencer",
+            "/get-started/concepts/sequencer"
         ]
     },
     {
-        "to": "/get-started/concepts/prover",
+        "to": "/technology/prover",
         "from": [
             "/architecture/trace-expansion-proving",
-            "/architecture/stack/trace-expansion-proving"
+            "/architecture/stack/trace-expansion-proving",
+            "/get-started/concepts/prover"
         ]
     },
     {
@@ -231,36 +240,60 @@
         ]
     },
     {
-        "to": "/get-started/concepts/architecture",
-        "from": "/architecture"
+        "to": "/technology/architecture",
+        "from": [
+            "/architecture",
+            "/get-started/concepts/architecture"
+        ]
     },
     {
-        "to": "/get-started/build/repos",
-        "from": "/architecture/stack"
+        "to": "/technology/repos",
+        "from": [
+            "/architecture/stack",
+            "/get-started/build/repos"
+        ]
     },
     {
-        "to": "/get-started/concepts/sequencer/conflation",
-        "from": "/architecture/stack/sequencer/conflation"
+        "to": "/technology/sequencer/conflation",
+        "from": [
+            "/architecture/stack/sequencer/conflation",
+            "/get-started/concepts/sequencer/conflation"
+        ]
     },
     {
-        "to": "/get-started/concepts/sequencer/traces-generator",
-        "from": "/architecture/stack/sequencer/traces-generator"
+        "to": "/technology/sequencer/traces-generator",
+        "from": [
+            "/architecture/stack/sequencer/traces-generator",
+            "/get-started/concepts/sequencer/traces-generator"
+        ]
     },
     {
-        "to": "/get-started/concepts/prover/prover-limits",
-        "from": "/architecture/stack/trace-expansion-proving/prover-limits"
+        "to": "/technology/prover/prover-limits",
+        "from": [
+            "/architecture/stack/trace-expansion-proving/prover-limits",
+            "/get-started/concepts/prover/prover-limits"
+        ]
     },
     {
-        "to": "/get-started/concepts/prover/proving",
-        "from": "/architecture/stack/trace-expansion-proving/proving"
+        "to": "/technology/prover/proving",
+        "from": [
+            "/architecture/stack/trace-expansion-proving/proving",
+            "/get-started/concepts/prover/proving"
+        ]
     },
     {
-        "to": "/get-started/concepts/prover/trace-expansion",
-        "from": "/architecture/stack/trace-expansion-proving/trace-expansion"
+        "to": "/technology/prover/trace-expansion",
+        "from": [
+            "/architecture/stack/trace-expansion-proving/trace-expansion",
+            "/get-started/concepts/prover/trace-expansion"
+        ]
     },
     {
-        "to": "/get-started/concepts",
-        "from": "/architecture/overview"
+        "to": "/technology/architecture",
+        "from": [
+            "/architecture/overview",
+            "/get-started/concepts"
+        ]
     },
     {
         "to": "/get-started/tooling/social-login/openfort",

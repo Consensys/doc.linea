@@ -141,6 +141,12 @@ const config = {
           },
           {
             type: "doc",
+            docId: "technology/architecture",
+            position: "left",
+            label: "Technology",
+          },
+          {
+            type: "doc",
             docId: "release-notes",
             position: "right",
             label: "Release notes",

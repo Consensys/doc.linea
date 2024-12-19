@@ -29,7 +29,6 @@ const sidebars = {
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
-        "get-started/build/repos",
       ],
     },
     {
@@ -99,50 +98,6 @@ const sidebars = {
             "get-started/how-to/run-a-node/linea-besu",
             "get-started/how-to/run-a-node/nethermind",
             "get-started/how-to/run-a-node/bootnodes",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Concepts",
-      link: {
-        type: "doc",
-        id: "get-started/concepts/index",
-      },
-      collapsible: false,
-      items: [
-        "get-started/concepts/architecture",
-        "get-started/concepts/decentralization",
-        "get-started/concepts/transaction-lifecycle",
-        "get-started/concepts/network-data",
-        "get-started/concepts/canonical-token-bridge",
-        "get-started/concepts/message-service",
-        "get-started/concepts/coordinator",
-        {
-          type: "category",
-          label: "Sequencer",
-          link: {
-            type: "doc",
-            id: "get-started/concepts/sequencer/index",
-          },
-          items: [
-            "get-started/concepts/sequencer/conflation",
-            "get-started/concepts/sequencer/traces-generator",
-          ],
-        },
-        "get-started/concepts/state-manager",
-        {
-          type: "category",
-          label: "Prover",
-          link: {
-            type: "doc",
-            id: "get-started/concepts/prover/index",
-          },
-          items: [
-            "get-started/concepts/prover/proving",
-            "get-started/concepts/prover/trace-expansion",
-            "get-started/concepts/prover/prover-limits",
           ],
         },
       ],
@@ -614,6 +569,44 @@ const sidebars = {
             },
           ],
         },
+      ],
+    },
+  ],
+  technologySidebar: [
+    "technology/architecture",
+    "technology/decentralization",
+    "technology/repos",
+    "technology/transaction-lifecycle",
+    "technology/network-data",
+    "technology/canonical-token-bridge",
+    "technology/message-service",
+    "technology/coordinator",
+    {
+      type: "category",
+      label: "Sequencer",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/sequencer/index",
+      },
+      items: [
+        "technology/sequencer/conflation",
+        "technology/sequencer/traces-generator",
+      ],
+    },
+    "technology/state-manager",
+    {
+      type: "category",
+      label: "Prover",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/prover/index",
+      },
+      items: [
+        "technology/prover/proving",
+        "technology/prover/trace-expansion",
+        "technology/prover/prover-limits",
       ],
     },
   ],
