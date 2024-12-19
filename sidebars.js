@@ -288,6 +288,17 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Gas",
+          link: {
+            type: "doc",
+            id: "developers/tooling/gas/index",
+          },
+          items: [
+            "developers/tooling/gas/blocknative",
+          ],
+        },
+        {
+          type: "category",
           label: "Libraries",
           link: {
             type: "doc",
