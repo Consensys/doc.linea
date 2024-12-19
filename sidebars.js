@@ -246,10 +246,10 @@ const sidebars = {
           label: "Gas",
           link: {
             type: "doc",
-            id: "developers/tooling/gas/index",
+            id: "get-started/tooling/gas/index",
           },
           items: [
-            "developers/tooling/gas/blocknative",
+            "get-started/tooling/gas/blocknative",
           ],
         },
         {
