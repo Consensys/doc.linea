@@ -196,7 +196,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/attestations/verax",
-            "get-started/tooling/attestations/pado",
+            "get-started/tooling/attestations/primus",
           ],
         },
         {
@@ -300,7 +300,7 @@ const sidebars = {
             "get-started/tooling/libraries/multicall",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
-            "get-started/tooling/libraries/walletconnect",
+            "get-started/tooling/libraries/reown",
           ],
         },
         {
