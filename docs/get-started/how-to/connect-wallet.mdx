@@ -1,0 +1,412 @@
+---
+title: Connect a wallet to your dapp
+description: Learn how to connect a wallet to your dapp so users can interact with your contracts
+---
+
+Enabling users' wallets to connect to your dapp is critical, since it's the only way they can
+send transactions and sign messages that enable them to interact with underlying smart contracts. 
+
+In this guide, we'll go through several methods for connecting wallets to a React dapp.
+
+## Wagmi
+
+Wagmi is a library of React hooks for developing dapps that interact with Ethereum-based blockchains
+like Linea. 
+
+To get started, install the packages:
+
+```bash
+npm install wagmi viem@2.x @tanstack/react-query
+```
+
+### Wagmi configuration
+
+Create a file named `wagmi.ts` in your in your project directory, and add this code:
+
+```ts
+import { http, createConfig } from 'wagmi'
+import { linea, lineaSepolia, mainnet } from 'wagmi/chains'
+import { injected } from 'wagmi/connectors'
+
+const projectId = '<WALLETCONNECT_PROJECT_ID>'
+
+export const config = createConfig({
+  chains: [lineaSepolia, linea, mainnet],
+  connectors: [injected()],
+  transports: {
+    [lineaSepolia.id]: http(),
+    [linea.id]: http(),
+    [mainnet.id]: http(),
+  },
+})
+```
+
+This configuration file ensures Wagmi works with Linea, Linea Sepolia, and Ethereum Mainnet, and 
+also defines that we should use the `injected` wallet connector, which works with any wallet that
+uses the common EIP-1193 standard. There are a few wallets that also have [separate connectors](https://wagmi.sh/react/api/connectors).
+
+### Add Wagmi and query providers
+
+Next, head to your app file. 
+
+Import the the relevant providers from Wagmi and Tanstack Query, as well as the `QueryClient` 
+function we'll use: 
+
+```tsx
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { WagmiProvider } from 'wagmi'
+import { config } from './wagmi' // path your wagmi.ts config file
+```
+
+:::info TanStack Query
+
+TanStack Query, formerly known as React Query, is a library that adds state management for the 
+onchain data your dapp requests from the blockchain using Wagmi hooks. It's not essential, but 
+recommended.
+
+:::
+
+Then add the following code, so that your dapp is wrapped within the Wagmi and TanStack Query 
+providers:
+
+```tsx
+'use client'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { WagmiProvider } from 'wagmi'
+import { config } from './wagmi'
+
+const queryClient = new QueryClient()
+
+export default function App() {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <AppContent />
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+### Add a wallet connection
+
+There are several ways you could use Wagmi to connect wallets. The simplest is to create a wallet
+connector component that uses the `useConnect` hook. 
+
+:::tip Multi-wallet discovery 
+
+If you're up for the challenge, and particularly if you're creating a production dapp, we recommend 
+you set up your dapp to support EIP-6963, a standard that defines "multi-wallet discovery". In short, 
+this means that your dapp can detect the presence of multiple wallets on the user's device and give 
+them the choice of which wallet to connect. 
+
+To see how, follow a guide like [this one](https://hackmd.io/@VydelHxmR0CbKxAe4TjhbQ/BJ9Bf4XD6) or 
+[this one](https://metamask.io/news/developers/how-to-implement-eip-6963-support-in-your-web3-dapp/).
+
+:::
+
+To proceed with the simpler implementation, we'll create a new component, in a `/components` 
+directory if you prefer, and add the below code. We'll call it `ConnectButton.js`, but choose 
+whatever filename you like:
+
+```js
+import { useConnect } from 'wagmi'
+import { injected } from 'wagmi/connectors'
+
+export function ConnectButton() {
+  const { connect } = useConnect()
+
+  return (
+    <button onClick={() => connect({ connector: injected() })}>
+      Connect wallet
+    </button>
+  )
+}
+```
+
+The `useConnect` hook is the main object of note here. 
+
+Now that we've defined the component, we can import and insert it into the dapp:
+
+```tsx
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { WagmiProvider } from 'wagmi'
+import { config } from './wagmi'
+import { ConnectButton } from '../components/ConnectButton'
+
+const queryClient = new QueryClient()
+
+export default function App() {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <ConnectButton />
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+Now if you run `npm run dev`, you should be able to connect your wallet, such as MetaMask, on 
+Linea, Linea Sepolia, or Ethereum Mainnet.
+
+Note that this is a very basic implementation, with no CSS styling and missing a few other necessary
+features, such as displaying the connected wallet's address ([useAccount](https://wagmi.sh/react/api/hooks/useAccount#address)), 
+[connection status](https://wagmi.sh/react/api/hooks/useConnections), and a [disconnect button](https://wagmi.sh/react/api/hooks/useDisconnect). 
+
+## Dynamic
+
+Install the Dynamic SDK and the Ethereum connectors:
+
+```bash
+npm install @dynamic-labs/sdk-react-core @dynamic-labs/ethereum
+```
+
+The latter contains wallet connectors for all chains compatible with the Ethereum Virtual Machine 
+(EVM), Linea included.
+
+### Set up Dynamic dashboard
+
+To properly configure the Dynamic component we're about to use, you need to sign up for Dynamic to
+access the [Dynamic dashboard](https://app.dynamic.xyz/).
+
+Once you're in the dashboard, you need to:
+1. Enable Linea (and Linea Sepolia, if you need it). [See the guide to configuring your chains](https://docs.dynamic.xyz/chains/enabling-chains).
+2. Get the `environmentId` from Developers > SDK & API Keys. 
+
+### Add the provider
+
+To set up the dapp to work with the Dynamic wallet connector button, we need to:
+- Wrap dapp contents in the `DynamicContextProvider` component.
+- Import the Dynamic Ethereum wallet connectors and pass these to the `DynamicContextProvider` in
+its `settings`.
+
+Then, paste the following code into your dapp:
+
+```tsx
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+        settings={{
+            environmentId: "YOUR_ENVIRONMENT_ID",
+            walletConnectors: [EthereumWalletConnectors]
+        }}
+    >
+      <AppContent />
+    </DynamicContextProvider>
+  );
+}
+```
+
+Replace `YOUR_ENVIRONMENT_ID` with the `environmentId` with your own. This enables Dynamic to pull
+your configured chains and any other preferences you set up in the dashboard.
+
+:::note
+
+If you intend to use Wagmi in your project, you also need to add a [`DynamicWagmiProvider`](https://docs.dynamic.xyz/react-sdk/providers/dynamicwagmiconnector) 
+component and wrap it with [`WagmiProvider`](https://wagmi.sh/react/api/WagmiProvider), like this:
+
+```tsx
+<DynamicContextProvider>
+    <WagmiProvider>
+        <DynamicWagmiProvider>
+            <AppContent />
+        </DynamicWagmiProvider>
+    </WagmiProvider>
+</DynamicContextProvider>
+```
+
+:::
+
+### Add the component
+
+Next, [select a wallet component](https://docs.dynamic.xyz/react-sdk/components/components-introduction).
+For example, you can use the `DynamicWidget` component if you want a wallet connector button that 
+you can configure to use various user onboarding methods such as email, phone number, or even
+embedded wallets. 
+
+For simplicity, let's go with [`DynamicConnectButton`](https://docs.dynamic.xyz/react-sdk/components/dynamicconnectbutton), 
+which is a classic wallet connection button for connecting external wallets. 
+
+Add it to your import statement:
+
+```tsx
+import { DynamicContextProvider, DynamicConnectButton } from "@dynamic-labs/sdk-react-core";
+```
+
+Then slot it into your dapp, adding some text:
+
+```tsx
+import { DynamicContextProvider, DynamicConnectButton } from "@dynamic-labs/sdk-react-core";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+        settings={{
+            environmentId: "7cc1f95f-6015-4f0b-888d-e52178b1b27d",
+                walletConnectors: [EthereumWalletConnectors]
+        }}
+    >
+       <DynamicConnectButton>
+          Connect wallet
+       </DynamicConnectButton>
+    </DynamicContextProvider>
+  );
+}
+```
+
+Now, run your dapp locally and click the button to test your work:
+
+```bash
+npm run dev
+```
+
+You should be able to connect to Linea and Linea Sepolia. 
+
+## Privy
+
+[Privy](https://docs.privy.io/) provides multiple SDKs for building dapps. Their [React SDK](https://docs.privy.io/guide/react/)
+is an easy way to get a flexible, configurable wallet connection component into your dapp. 
+
+Install the Privy SDK with this command:
+
+```bash
+npm install @privy-io/react-auth@latest
+```
+
+### Set up Privy dashboard
+
+[Sign up for Privy](https://dashboard.privy.io/) to access the dashboard.
+
+Go to Login Methods in the sidebar to configure login methods for your dapp, and make sure that 
+external wallets are enabled. Optionally, feel free to toggle any other methods you want to use.
+
+Now go to App Settings and get your App ID. We'll need to add this to the dapp code to ensure Privy
+functions correctly.
+
+### Add the provider
+
+Now we need to import the Privy provider to the dapp and then use it to wrap the dapp contents:
+
+```tsx
+'use client'
+
+import { PrivyProvider } from '@privy-io/react-auth';
+
+export default function App() {
+  return (
+    <PrivyProvider
+    appId="your-privy-app-id" // add your App ID here
+    config={{
+      appearance: {
+        theme: 'dark',
+      },
+    }}
+  >
+      <AppContent />
+    </PrivyProvider>
+  );
+}
+```
+
+The [`appearance` configuration](https://docs.privy.io/guide/react/configuration/appearance) is 
+optional.
+
+### Configure Linea
+
+To enable Privy to use Linea, we need to import it from Viem. First, install Viem with this command:
+
+```bash
+npm install viem
+```
+
+And then add this import statement to your dapp:
+
+```tsx
+import { linea, lineaSepolia } from 'viem/chains'
+```
+
+Now we need to add the Linea chains to the `PrivyProvider` `config`:
+
+```tsx
+'use client'
+
+import { PrivyProvider } from '@privy-io/react-auth';
+import { linea, lineaSepolia } from 'viem/chains'
+
+export default function App() {
+  return (
+    <PrivyProvider
+    appId="cm4tv4knx03yv4baen04ozlhv"
+    config={{
+      appearance: {
+        theme: 'dark',
+      },
+      defaultChain: linea,
+      supportedChains: [linea, lineaSepolia],
+    }}
+  >
+      <AppContent />
+    </PrivyProvider>
+  );
+}
+```
+
+We've chosen Linea Mainnet as the `defaultChain`, but you can set this with Linea Sepolia instead,
+if you prefer.
+
+### Add the component
+
+To implement the wallet connection button, we'll create a new component that uses the `usePrivy` 
+hook, which enables you to trigger the Privy login modal to appear.
+
+Create a new file named `ConnectButton.js` in your `/components` directory, and add the following 
+code:
+
+```js
+import { usePrivy } from '@privy-io/react-auth';
+
+function ConnectButton() {
+  const { login } = usePrivy();
+
+  return (
+    <button onClick={login}>
+      Connect wallet
+    </button>
+  );
+}
+```
+
+Now we can import the component and insert it into the dapp. Ensure your dapp reflects this code:
+
+```tsx
+'use client'
+
+import { PrivyProvider } from '@privy-io/react-auth';
+import { linea, lineaSepolia } from 'viem/chains'
+import { ConnectButton } from '../components/ConnectButton';
+
+export default function App() {
+  return (
+    <PrivyProvider
+    appId="cm4tv4knx03yv4baen04ozlhv"
+    config={{
+      appearance: {
+        theme: 'dark',
+      },
+      defaultChain: linea,
+      supportedChains: [linea, lineaSepolia],
+    }}
+  >
+      <ConnectButton />
+    </PrivyProvider>
+  );
+}
+```
+
+Now if you run your dapp with `npm run dev`, the Privy modal will appear when you click the button.
