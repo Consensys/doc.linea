@@ -1,0 +1,95 @@
+# `IL1MessageManager`
+
+### RollingHashUpdated
+
+```solidity
+event RollingHashUpdated(uint256 messageNumber, bytes32 rollingHash, bytes32 messageHash)
+```
+
+Emitted when a new message is sent and the rolling hash updated.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| messageNumber | uint256 | The unique indexed message number for the message. |
+| rollingHash | bytes32 | The indexed rolling hash computed for the current message number. |
+| messageHash | bytes32 | The indexed hash of the message parameters. |
+
+### L2MerkleRootAdded
+
+```solidity
+event L2MerkleRootAdded(bytes32 l2MerkleRoot, uint256 treeDepth)
+```
+
+Emitted when the L2 Merkle root has been anchored on L1.
+
+_There may be more than one of these in a finalization depending on the amount of L2->L1 messages in the finalization._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| l2MerkleRoot | bytes32 | The indexed L2 Merkle root that has been anchored on L1 Ethereum. |
+| treeDepth | uint256 | The indexed tree depth of the Merkle root. |
+
+### L2MessagingBlockAnchored
+
+```solidity
+event L2MessagingBlockAnchored(uint256 l2Block)
+```
+
+Emitted when the L2 block contains L2 messages during finalization.
+
+_This is used externally in the logic for determining which messages belong to which Merkle root when claiming._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| l2Block | uint256 | The indexed L2 block containing L2 to L1 messages. |
+
+### MessageAlreadyClaimed
+
+```solidity
+error MessageAlreadyClaimed(uint256 messageIndex)
+```
+
+_Thrown when the message has already been claimed._
+
+### L2MerkleRootAlreadyAnchored
+
+```solidity
+error L2MerkleRootAlreadyAnchored(bytes32 merkleRoot)
+```
+
+_Thrown when the L2 Merkle root has already been anchored on L1._
+
+### BytesLengthNotMultipleOfTwo
+
+```solidity
+error BytesLengthNotMultipleOfTwo(uint256 bytesLength)
+```
+
+_Thrown when the L2 messaging blocks offsets bytes length is not a multiple of 2._
+
+### isMessageClaimed
+
+```solidity
+function isMessageClaimed(uint256 _messageNumber) external view returns (bool isClaimed)
+```
+
+Checks if the L2->L1 message is claimed or not.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _messageNumber | uint256 | The message number on L2. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| isClaimed | bool | Returns whether or not the message with _messageNumber has been claimed. |
+

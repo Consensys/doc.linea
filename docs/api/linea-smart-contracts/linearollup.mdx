@@ -1,0 +1,466 @@
+# `LineaRollup`
+
+### CONTRACT_VERSION
+
+```solidity
+string CONTRACT_VERSION
+```
+
+This is the ABI version and not the reinitialize version.
+
+### VERIFIER_SETTER_ROLE
+
+```solidity
+bytes32 VERIFIER_SETTER_ROLE
+```
+
+The role required to set/add  proof verifiers by type.
+
+### VERIFIER_UNSETTER_ROLE
+
+```solidity
+bytes32 VERIFIER_UNSETTER_ROLE
+```
+
+The role required to set/remove  proof verifiers by type.
+
+### GENESIS_SHNARF
+
+```solidity
+bytes32 GENESIS_SHNARF
+```
+
+The default genesis shnarf using empty/default hashes and a default state.
+
+### SHNARF_EXISTS_DEFAULT_VALUE
+
+```solidity
+uint256 SHNARF_EXISTS_DEFAULT_VALUE
+```
+
+_Value indicating a shnarf exists._
+
+### EMPTY_HASH
+
+```solidity
+bytes32 EMPTY_HASH
+```
+
+_The default hash value._
+
+### BLS_CURVE_MODULUS
+
+```solidity
+uint256 BLS_CURVE_MODULUS
+```
+
+_The BLS Curve modulus value used._
+
+### POINT_EVALUATION_PRECOMPILE_ADDRESS
+
+```solidity
+address POINT_EVALUATION_PRECOMPILE_ADDRESS
+```
+
+_The well-known precompile address for point evaluation._
+
+### POINT_EVALUATION_RETURN_DATA_LENGTH
+
+```solidity
+uint256 POINT_EVALUATION_RETURN_DATA_LENGTH
+```
+
+_The expected point evaluation return data length._
+
+### POINT_EVALUATION_FIELD_ELEMENTS_LENGTH
+
+```solidity
+uint256 POINT_EVALUATION_FIELD_ELEMENTS_LENGTH
+```
+
+_The expected point evaluation field element length returned._
+
+### SIX_MONTHS_IN_SECONDS
+
+```solidity
+uint256 SIX_MONTHS_IN_SECONDS
+```
+
+_In practice, when used, this is expected to be a close approximation to 6 months, and is intentional._
+
+### dataFinalStateRootHashes
+
+```solidity
+mapping(bytes32 => bytes32) dataFinalStateRootHashes
+```
+
+_DEPRECATED in favor of the single blobShnarfExists mapping._
+
+### dataParents
+
+```solidity
+mapping(bytes32 => bytes32) dataParents
+```
+
+_DEPRECATED in favor of the single blobShnarfExists mapping._
+
+### dataShnarfHashes
+
+```solidity
+mapping(bytes32 => bytes32) dataShnarfHashes
+```
+
+_DEPRECATED in favor of the single blobShnarfExists mapping._
+
+### dataStartingBlock
+
+```solidity
+mapping(bytes32 => uint256) dataStartingBlock
+```
+
+_DEPRECATED in favor of the single blobShnarfExists mapping._
+
+### dataEndingBlock
+
+```solidity
+mapping(bytes32 => uint256) dataEndingBlock
+```
+
+_DEPRECATED in favor of the single blobShnarfExists mapping._
+
+### currentL2StoredL1MessageNumber
+
+```solidity
+uint256 currentL2StoredL1MessageNumber
+```
+
+_DEPRECATED in favor of currentFinalizedState hash._
+
+### currentL2StoredL1RollingHash
+
+```solidity
+bytes32 currentL2StoredL1RollingHash
+```
+
+_DEPRECATED in favor of currentFinalizedState hash._
+
+### currentFinalizedShnarf
+
+```solidity
+bytes32 currentFinalizedShnarf
+```
+
+Contains the most recent finalized shnarf.
+
+### blobShnarfExists
+
+```solidity
+mapping(bytes32 => uint256) blobShnarfExists
+```
+
+_NB: THIS IS THE ONLY MAPPING BEING USED FOR DATA SUBMISSION TRACKING.
+NB: This was shnarfFinalBlockNumbers and is replaced to indicate only that a shnarf exists with a value of 1._
+
+### currentFinalizedState
+
+```solidity
+bytes32 currentFinalizedState
+```
+
+Hash of the L2 computed L1 message number, rolling hash and finalized timestamp.
+
+### fallbackOperator
+
+```solidity
+address fallbackOperator
+```
+
+The address of the fallback operator.
+
+_This address is granted the OPERATOR_ROLE after six months of finalization inactivity by the current operators._
+
+### constructor
+
+```solidity
+constructor() public
+```
+
+### initialize
+
+```solidity
+function initialize(struct ILineaRollup.InitializationData _initializationData) external
+```
+
+Initializes LineaRollup and underlying service dependencies - used for new networks only.
+
+_DEFAULT_ADMIN_ROLE is set for the security council.
+OPERATOR_ROLE is set for operators.
+Note: This is used for new testnets and local/CI testing, and will not replace existing proxy based contracts._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _initializationData | struct ILineaRollup.InitializationData | The initial data used for proof verification. |
+
+### reinitializeLineaRollupV6
+
+```solidity
+function reinitializeLineaRollupV6(struct IPermissionsManager.RoleAddress[] _roleAddresses, struct IPauseManager.PauseTypeRole[] _pauseTypeRoles, struct IPauseManager.PauseTypeRole[] _unpauseTypeRoles, address _fallbackOperator) external
+```
+
+Sets permissions for a list of addresses and their roles as well as initialises the PauseManager pauseType:role mappings and fallback operator.
+
+_This function is a reinitializer and can only be called once per version. Should be called using an upgradeAndCall transaction to the ProxyAdmin._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _roleAddresses | struct IPermissionsManager.RoleAddress[] | The list of addresses and roles to assign permissions to. |
+| _pauseTypeRoles | struct IPauseManager.PauseTypeRole[] | The list of pause types to associate with roles. |
+| _unpauseTypeRoles | struct IPauseManager.PauseTypeRole[] | The list of unpause types to associate with roles. |
+| _fallbackOperator | address | The address of the fallback operator. |
+
+### renounceRole
+
+```solidity
+function renounceRole(bytes32 _role, address _account) public
+```
+
+Revokes `role` from the calling account.
+
+_Fallback operator cannot renounce role. Reverts with OnlyNonFallbackOperator._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _role | bytes32 | The role to renounce. |
+| _account | address | The account to renounce - can only be the _msgSender(). |
+
+### setVerifierAddress
+
+```solidity
+function setVerifierAddress(address _newVerifierAddress, uint256 _proofType) external
+```
+
+Adds or updates the verifier contract address for a proof type.
+
+_VERIFIER_SETTER_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _newVerifierAddress | address | The address for the verifier contract. |
+| _proofType | uint256 | The proof type being set/updated. |
+
+### setFallbackOperator
+
+```solidity
+function setFallbackOperator(uint256 _messageNumber, bytes32 _rollingHash, uint256 _lastFinalizedTimestamp) external
+```
+
+Sets the fallback operator role to the specified address if six months have passed since the last finalization.
+
+_Reverts if six months have not passed since the last finalization._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _messageNumber | uint256 | Last finalized L1 message number as part of the feedback loop. |
+| _rollingHash | bytes32 | Last finalized L1 rolling hash as part of the feedback loop. |
+| _lastFinalizedTimestamp | uint256 | Last finalized L2 block timestamp. |
+
+### unsetVerifierAddress
+
+```solidity
+function unsetVerifierAddress(uint256 _proofType) external
+```
+
+Unset the verifier contract address for a proof type.
+
+_VERIFIER_UNSETTER_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _proofType | uint256 | The proof type being set/updated. |
+
+### submitBlobs
+
+```solidity
+function submitBlobs(struct ILineaRollup.BlobSubmission[] _blobSubmissions, bytes32 _parentShnarf, bytes32 _finalBlobShnarf) external
+```
+
+Submit one or more EIP-4844 blobs.
+
+_OPERATOR_ROLE is required to execute.
+This should be a blob carrying transaction._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _blobSubmissions | struct ILineaRollup.BlobSubmission[] | The data for blob submission including proofs and required polynomials. |
+| _parentShnarf | bytes32 | The parent shnarf used in continuity checks as it includes the parentStateRootHash in its computation. |
+| _finalBlobShnarf | bytes32 | The expected final shnarf post computation of all the blob shnarfs. |
+
+### submitDataAsCalldata
+
+```solidity
+function submitDataAsCalldata(struct ILineaRollup.CompressedCalldataSubmission _submission, bytes32 _parentShnarf, bytes32 _expectedShnarf) external
+```
+
+Submit blobs using compressed data via calldata.
+
+_OPERATOR_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _submission | struct ILineaRollup.CompressedCalldataSubmission | The supporting data for compressed data submission including compressed data. |
+| _parentShnarf | bytes32 | The parent shnarf used in continuity checks as it includes the parentStateRootHash in its computation. |
+| _expectedShnarf | bytes32 | The expected shnarf post computation of all the submission. |
+
+### _computeLastFinalizedState
+
+```solidity
+function _computeLastFinalizedState(uint256 _messageNumber, bytes32 _rollingHash, uint256 _timestamp) internal pure returns (bytes32 hashedFinalizationState)
+```
+
+Internal function to compute and save the finalization state.
+
+_Using assembly this way is cheaper gas wise._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _messageNumber | uint256 | Is the last L2 computed L1 message number in the finalization. |
+| _rollingHash | bytes32 | Is the last L2 computed L1 rolling hash in the finalization. |
+| _timestamp | uint256 | The final timestamp in the finalization. |
+
+### _computeShnarf
+
+```solidity
+function _computeShnarf(bytes32 _parentShnarf, bytes32 _snarkHash, bytes32 _finalStateRootHash, bytes32 _dataEvaluationPoint, bytes32 _dataEvaluationClaim) internal pure returns (bytes32 shnarf)
+```
+
+Internal function to compute the shnarf more efficiently.
+
+_Using assembly this way is cheaper gas wise._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _parentShnarf | bytes32 | The shnarf of the parent data item. |
+| _snarkHash | bytes32 | Is the computed hash for compressed data (using a SNARK-friendly hash function) that aggregates per data submission to be used in public input. |
+| _finalStateRootHash | bytes32 | The final state root hash of the data being submitted. |
+| _dataEvaluationPoint | bytes32 | The data evaluation point. |
+| _dataEvaluationClaim | bytes32 | The data evaluation claim. |
+
+### _verifyPointEvaluation
+
+```solidity
+function _verifyPointEvaluation(bytes32 _currentDataHash, uint256 _dataEvaluationPoint, uint256 _dataEvaluationClaim, bytes _kzgCommitment, bytes _kzgProof) internal view
+```
+
+Performs point evaluation for the compressed blob.
+
+__dataEvaluationPoint is modular reduced to be lower than the BLS_CURVE_MODULUS for precompile checks._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _currentDataHash | bytes32 | The current blob versioned hash. |
+| _dataEvaluationPoint | uint256 | The data evaluation point. |
+| _dataEvaluationClaim | uint256 | The data evaluation claim. |
+| _kzgCommitment | bytes | The blob KZG commitment. |
+| _kzgProof | bytes | The blob KZG point proof. |
+
+### finalizeBlocks
+
+```solidity
+function finalizeBlocks(bytes _aggregatedProof, uint256 _proofType, struct ILineaRollup.FinalizationDataV3 _finalizationData) external
+```
+
+Finalize compressed blocks with proof.
+
+_OPERATOR_ROLE is required to execute._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _aggregatedProof | bytes | The aggregated proof. |
+| _proofType | uint256 | The proof type. |
+| _finalizationData | struct ILineaRollup.FinalizationDataV3 | The full finalization data. |
+
+### _finalizeBlocks
+
+```solidity
+function _finalizeBlocks(struct ILineaRollup.FinalizationDataV3 _finalizationData, uint256 _lastFinalizedBlock) internal returns (bytes32 finalShnarf)
+```
+
+Internal function to finalize compressed blocks.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _finalizationData | struct ILineaRollup.FinalizationDataV3 | The full finalization data. |
+| _lastFinalizedBlock | uint256 | The last finalized block. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| finalShnarf | bytes32 | The final computed shnarf in finalizing. |
+
+### _validateL2ComputedRollingHash
+
+```solidity
+function _validateL2ComputedRollingHash(uint256 _rollingHashMessageNumber, bytes32 _rollingHash) internal view
+```
+
+Internal function to validate l1 rolling hash.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _rollingHashMessageNumber | uint256 | Message number associated with the rolling hash as computed on L2. |
+| _rollingHash | bytes32 | L1 rolling hash as computed on L2. |
+
+### _calculateY
+
+```solidity
+function _calculateY(bytes _data, bytes32 _dataEvaluationPoint) internal pure returns (bytes32 compressedDataComputedY)
+```
+
+Internal function to calculate Y for public input generation.
+
+_Each chunk of 32 bytes must start with a 0 byte.
+The dataEvaluationPoint value is modulo-ed down during the computation and scalar field checking is not needed.
+There is a hard constraint in the circuit to enforce the polynomial degree limit (4096), which will also be enforced with EIP-4844._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _data | bytes | Compressed data from submission data. |
+| _dataEvaluationPoint | bytes32 | The data evaluation point. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| compressedDataComputedY | bytes32 | The Y calculated value using the Horner method. |
+
