@@ -47,8 +47,8 @@ cd linea-tutorial
 
 ## Deploy a smart contract
 
-To deploy a smart contract we highly recommend using an Infura endpoint, as the public endpoint may experience
-rate limiting and is not meant for production use.
+To deploy a smart contract we highly recommend using an Infura endpoint, as the public endpoint may 
+experience rate limiting and is not meant for production use.
 
 [Sign up for an Infura account](https://docs.infura.io/api/getting-started) to get an API key that
 provides access to the Linea endpoints. Assign the Linea endpoints you want to access to your API key.
@@ -69,7 +69,7 @@ forge create --rpc-url YOUR_LINEA_ENDPOINT src/Counter.sol:Counter --private-key
 In the command:
 
 - Replace `YOUR_LINEA_ENDPOINT` with the URL of a
-    [supported Infura Linea network](https://docs.infura.io/api/networks/linea/choose-a-network)
+    [supported Infura Linea network](https://docs.metamask.io/services/get-started/endpoints/)
     or [public endpoint URL](../../build/network-info.mdx).
 - Replace `YOUR_PRIVATE_KEY` with your wallet's private key.
 
@@ -83,10 +83,10 @@ Transaction hash: 0x967e1290b285e67b3d74940ee19925416734c345f58bd1ec64dcea134647
 
 ## Deploy a smart contract using a `.env` file
 
-Directly pasting your private key into the command line poses security risks. To avoid exposing sensitive
-information such as wallet private keys or API keys, use files with the `.env` extension to store private
-data. Create a `.env` file, then add the file to the `.gitignore` file to prevent committing it. Populate
-the `.env` file with the relevant private information:
+Directly pasting your private key into the command line poses security risks. To avoid exposing 
+sensitive information such as wallet private keys or API keys, use files with the `.env` extension 
+to store private data. Create a `.env` file, then add the file to the `.gitignore` file to prevent 
+committing it. Populate the `.env` file with the relevant private information:
 
 ```bash
 PRIVATE_KEY=YOUR_PRIVATE_KEY
@@ -102,7 +102,7 @@ source .env
 Finally, modify the `foundry.toml` file to store the various RPC endpoints we might be working with. For example:
 
 ```bash
-[rpc_endpoints]
+[profile.rpc-endpoints]
 linea-sepolia = "https://linea-sepolia.infura.io/v3/${INFURA_API_KEY}"
 linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 ```

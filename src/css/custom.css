@@ -950,6 +950,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/get-started"]::before,
 .navbar__link[href="/learn"]::before,
 .navbar__link[href="/api"]::before,
+.navbar__link[href="/technology/architecture"]::before,
 .navbar__link[href="/release-notes"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
@@ -968,6 +969,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 .navbar__link[href="/get-started"]:hover::before,
 .navbar__link[href="/learn"]:hover::before,
 .navbar__link[href="/api"]:hover::before,
+.navbar__link[href="/technology/architecture"]:hover::before,
 .navbar__link[href="/release-notes"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
@@ -985,6 +987,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   .navbar__link[href="/get-started"]::before,
   .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
+  .navbar__link[href="/technology/architecture"]::before,
   .navbar__link[href="/release-notes"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
@@ -1451,4 +1454,31 @@ div[aria-label="Expand sidebar"] {
 
 .theme-doc-markdown .markdown {
   margin-right: 10px !important;
+}
+
+/* responsive classes for architecture diagram */
+.responsive-graphic {
+  text-align: center;
+}
+
+@media (width <= 1499px) {
+  .responsive-graphic picture {
+    display: block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media (width <= 996px) {
+  .responsive-graphic picture {
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+}
+
+@media (width <= 700px) {
+  .responsive-graphic picture {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
 }
