@@ -6,6 +6,7 @@ const sidebars = {
       label: "Overview",
       id: "get-started/index",
     },
+    "get-started/connect",
     {
       type: "category",
       label: "Build on Linea",
