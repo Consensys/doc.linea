@@ -62,7 +62,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 
 ### Request
 
-<Tabs>
+<Tabs groupId="sdk-lang">
   <TabItem value="curl">
 
   ```bash
@@ -73,7 +73,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   ```
 
   </TabItem>
-  {/* <TabItem value="ethers.js">
+  <TabItem value="ethers.js">
   ```javascript
   type LineaEstimateGasResponse = {
     baseFeePerGas: string;
@@ -93,7 +93,7 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
   console.log(fees);
   ``` 
-  </TabItem> */}
+  </TabItem>
   <TabItem value="viem">
   ```javascript
   import { createPublicClient, http, parseEther } from 'viem'
@@ -125,6 +125,9 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 
 ### Response
 
+<Tabs groupId="sdk-lang">
+  <TabItem value="curl">
+
 ```JSON
 {
   "jsonrpc": "2.0",
@@ -136,6 +139,27 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   }
 }
 ```
+
+  </TabItem>
+  <TabItem value="ethers.js">
+  ```javascript
+  {
+    baseFeePerGas: "0x7",
+    gasLimit: "0xcf08",
+    priorityFeePerGas: "0x43a82a4"
+  }
+  ```
+  </TabItem>
+  <TabItem value="viem">
+  ```javascript
+  {
+    baseFeePerGas: 7n,
+    gasLimit: 53000n,
+    priorityFeePerGas: 4444716n
+  }
+  ```
+  </TabItem>
+</Tabs>
 
 Where:
 - `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
