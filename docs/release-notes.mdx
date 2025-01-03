@@ -44,11 +44,16 @@ that enables any address to send blob submission and finalization transactions t
 forwarding contract if no finalization occurs for more than six months. This effectively allows L1 
 finalization, enabling withdrawal of potentially locked funds. 
 
+Code in the upgrade has been audited by:
+- OpenZeppelin, whose report is available [here](https://blog.openzeppelin.com/linearollup-and-tokenbridge-role-upgrade),
+- Dilligence, and;
+- Cyfrin, whose report is [here](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-12-04-cyfrin-linea-v2.1.pdf).
+
 - Adjust blob submission and finalization events to be state reconstruction-compatible
   - This is a breaking change for the event structures. The new structures are below:
   ```solidity
   /**
-   * @notice Emitted when compressed data is being submitted and verified succesfully on L1.
+   * @notice Emitted when compressed data is being submitted and verified successfully on L1.
    * @dev The block range is indexed and parent shnarf included for state reconstruction simplicity.
    * @param parentShnarf The parent shnarf for the data being submitted.
    * @param shnarf The indexed shnarf for the data being submitted.
@@ -78,7 +83,7 @@ finalization, enabling withdrawal of potentially locked funds.
 - Create granular roles for contracts `LineaRollup`, `L2MessageService` and `TokenBridge`:
   - `LineaRollup`: Introduce more granular pausing and an additional verifier unsetting role 
   - `L2MessageService`: Introduce more granular pausing
-  - `TokenBridge`: Previously all administration functions were managed by a single owner (multisig) 
+  - `TokenBridge`: Previously, all administration functions were managed by a single owner (multisig) 
   role. The update adds role-based access with more granular roles per function, particularly for 
   pausing.
 - Remove `finalizeBlocksWithoutProof` function
@@ -96,10 +101,7 @@ finalization, enabling withdrawal of potentially locked funds.
 - Bump L1 Solidity version to v0.8.26. Introduces slight gas optimizations.
 - Optimize message and new token creation hashing, making it slightly cheaper to send and claim 
 messages.
-- Address non-critical findings from previous audit rounds:
-  - [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-12-04-cyfrin-linea-v2.1.pdf)
-  - Diligence (ongoing)
-  - [OpenZeppelin](https://blog.openzeppelin.com/linearollup-and-tokenbridge-role-upgrade)
+- Address non-critical findings from previous audit rounds
 - Generally clean up error management and interfaces.
 
 ## Alpha v3.6 
@@ -270,7 +272,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 
 **Mainnet: May 14**
 
-- Introduces dynamic L1 gwei thresholds for submitting data to L1 for finalization.
+- Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
 - Adds the [`eth_sendRawTransaction`](../docs/api/reference/eth-sendrawtransaction.mdx) method, 
 available only via Besu endpoints.
 
