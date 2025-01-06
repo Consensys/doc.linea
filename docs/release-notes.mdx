@@ -467,7 +467,7 @@ To support these new features, we implemented changes to our smart contracts.
 We introduce a `VERIFIER_SETTER_ROLE`, that will be attributed to the Timelock.sol so that all core
 contract upgrades (Rollup and Message and Token bridge) and verifiers are executed through a TimeLock mechanism.
 Note that we are also using this upgrade to update the way the type 2 state was calculated; as such we'll
-need to call `finalizeWithoutProof` to perform a state transition from type2 state v1 to type2 state v2.
+need to call `finalizeWithoutProof()` to perform a state transition from type2 state v1 to type2 state v2.
 
 The Security Council will first execute the following transactions on L1:
 - Assign Operator Role via the Safe to the account for blob submission
@@ -483,7 +483,7 @@ The Security Council will then execute the following transactions on L2:
 - Execute L2MessageService upgrade
 
 Post upgrade, Execute the following Security Council transactions on L1:
-- Call FinalizeWithoutProof
+- Call `finalizeWithoutProof()`
 - Clear verifier mapping at index 6 and 7
 
 The audited commit for this update can be found
