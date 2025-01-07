@@ -71,7 +71,7 @@ Occasionally, a batch may only consist of one block, with no conflation having t
 This occurs when chain activity levels are particularly high, and the block size is larger
 than normal.
 
-Amongst Ethereum's L2 networks, Linea is the only network that uses batch conflation.
+Among Ethereum's L2 networks, Linea is the only network that uses batch conflation.
 
 ## Step 5: Generating a ZK proof using transaction data
 
@@ -104,7 +104,7 @@ transactions, our transaction is involved in this process as well.
 Let's break down the two elements submitted to L1:
 
 - The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
-- Blob data, which contains L2 transaction and messaging data. Once shared to L1, blob data
+- Blob data, which contains L2 transaction and messaging data. Once shared with L1, blob data
 can be used to reconstruct Linea's state and verify the contents of the proof, before it disappears
 after 4,096 epochs (~18 days). The Linea rollup contract on L1 calls the Ethereum verifier contract
 using blob data, determining whether or not to accept the batch as valid.

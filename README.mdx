@@ -27,7 +27,7 @@ itself is published at [`docs.linea.build`](https://docs.linea.build/).
 See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.linea/issues).
 
 Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.linea/fork),
-create a pull request, and tag us for review.
+create a pull request, and tag us for review. (For help on this, see [below](#how-to-submit-a-suggestion-or-change)).
 
 Alternatively, get in touch via the [community forum](https://community.linea.build/) or the 
 [Linea Discord](https://discord.gg/linea) if you have an issue or question.
@@ -71,7 +71,7 @@ ensure that React components and other elements can be rendered properly.
 - **Use HTML-like formatting** rather than traditional Markdown formatting. For example, create a 
 `<table>` rather than using the Markdown syntax with dashes and vertical lines. In many cases, 
 HTML syntax is easier to maintain. Standardization also applies here: some elements we frequently
-use, such as `<Tabs>`, _must_ use HTMl syntax, so applying HTML universally helps to avoid the site 
+use, such as `<Tabs>`, _must_ use HTML syntax, so applying HTML universally helps to avoid the site 
 containing a mix of both styles.
 - Use a YAML-style front matter at the top of each file, like this: (check existing files for an 
 example)
@@ -90,9 +90,6 @@ example)
 Please return to any submitted PRs regularly to help us work through feedback and comments and 
 merge as soon as we can. If you do not return to your PR for edits within three months of us 
 reviewing, we will close the PR. 
-
-> [!NOTE]  
-> The files at `api/linea-smart-contracts` are automatically generated, and should not be edited.
 
 #### Guidance for ecosystem contributions
 
@@ -143,14 +140,14 @@ to manage Node.js versions on your machine.
 
 ### Running this project
 
-1. Navigate to root folder of the project after installing Node.js
+1. Navigate to the root folder of the project after installing Node.js
 2. Run the following in sequence, which only needs to be done once:
 
    ```bash
    npm install
    ```
 
-3. To preview and for every time afterwards:
+3. To preview and for every time afterward:
 
    ```bash
    npm run start
@@ -186,7 +183,7 @@ nevertheless.
 See our [guidance on using Vale](https://docs-template.consensys.net/contribute/run-vale) for more
 information.
 
-You can run other linters for code style (CSS, JavaScript) and link formatting any time with the 
+You can run other linters for code style (CSS, JavaScript) and link formatting at any time with the 
 command `npm run lint`.
 
 ## Adding images to articles
@@ -200,7 +197,7 @@ structure.
 
 #### Format image files
 
-Use the following JSX formatting to add an image into an article:
+Use the following JSX formatting to add an image to an article:
 
 ```
 <div class="center-container">
@@ -237,5 +234,5 @@ As outlined above, you can adjust the display size of the svg by changing the cl
 
 ### Social cards
 
-A social card for any new article(s) will be generated and applied when the site builds, so there
+A social card for any new article(s) will be generated and applied when the site builds so there
 is no need to manually create or add one.
