@@ -1,0 +1,181 @@
+---
+title: API3
+image: /img/socialCards/api3.jpg
+---
+
+[API3](https://api3.org/) is a collaborative project to deliver traditional API
+services to smart contract platforms in a decentralized and trust-minimized way.  Its primary focus
+is to bring cryptocurrency price data to smart contracts in a secure and reliable manner.  API3 price feeds
+have [OEV](https://docs.api3.org/oev-searchers/) (Oracle Extractable Value) built in to the price feeds by default, this allows dapps to 
+monetize the update of the price feeds they are using.  It is governed by a decentralized autonomous organization (DAO).
+
+:::info
+
+Read more about how The API3 DAO works. 
+[Click here](https://api3.org/dao/)
+
+:::
+
+## Using dAPIs - API3 datafeeds
+
+[dAPIs](https://docs.api3.org/dapps/quickstart/) are continuously
+updated streams of offchain cryptocurrency price data. They can power various decentralized applications such as DeFi
+lending, synthetic assets, stablecoins, derivatives, NFTs and more.
+
+The data feeds are continuously updated by first party oracles using signed data. Dapp owners can read the onchain value of any dAPI in 
+real-time.
+
+Due to being composed of first-party data feeds, dAPIs offer security,
+transparency, cost-efficiency and scalability in a turn-key package.
+
+Apart from relying on deviation threshold and heartbeat configuration updates,
+unlike traditional data feeds, [OEV Network](https://docs.api3.org/oev-searchers/in-depth/oev-network/)
+enables dapps using dAPIs to auction off the right to update the data feeds to
+searcher bots. Searcher bots can bid for price updates through the OEV Network
+to update the data feeds. All the OEV proceeds go back to the dapp.
+
+The [API3 Market](https://market.api3.org/linea) enables users to connect to a
+dAPI and access the associated data feed services.
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/get_started/tooling/oracles/api3/dapi-main.png"
+        alt="dapi-main"
+      />
+  </div>
+</div>
+
+
+[Learn more about how dAPIs work](https://docs.api3.org/oev-searchers/in-depth/dapis/).
+
+### Subscribe to dAPIs
+
+The [API3 Market](https://market.api3.org/linea) lets users access dAPIs on both
+[Linea Mainnet](https://market.api3.org/linea) and [testnet](https://market.api3.org/linea-sepolia-testnet).
+
+#### Explore, select and configure your dAPI
+
+The [API3 Market](https://market.api3.org/linea) provides a list of all the
+dAPIs available across multiple chains including testnets. You can filter the
+list by mainnet or testnet chains. After selecting the chain, you can search for
+a specific dAPI by name. Once selected, you will land on the details page (eg
+ETH/USD on Linea Testnet) where you can find more information about the dAPI.
+
+The current supported configurations for dAPIs are:
+
+| Deviation | Heartbeat |
+| --------- | --------- |
+| 0.25%     | 24 hours  |
+| 0.5%      | 24 hours  |
+| 1%        | 24 hours  |
+| 5%        | 24 hours  |
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/get_started/tooling/oracles/api3/dapi-1.png"
+        alt="dapi-1"
+      />
+  </div>
+</div>
+
+#### Activate your dAPI
+
+:::note
+
+If a dAPI is already activated, make sure to check the expiration date and
+update parameters. You can update the parameters and extend the subscription by
+purchasing a new configuration.
+
+:::
+
+After selecting the dAPI and the configuration, you will be presented with an
+option to purchase the dAPI and activate it. Make sure to check the time and
+amount of the subscription. If everything looks good, click "Purchase".
+
+<div class="center-container">
+  <div class="img-small">
+      <img
+        src="/img/get_started/tooling/oracles/api3/dapi-2.png"
+        alt="dapi-2"
+      />
+  </div>
+</div>
+
+You can then connect your wallet and confirm the transaction. Once it's
+confirmed, you will be able to see the updated configuration for the dAPI.
+
+#### Get the proxy address
+
+Once you are done configuring and activating the dAPI, you can now integrate it.
+To do so, click on the "Integrate" button on the dAPI details page.
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/get_started/tooling/oracles/api3/dapi-5.png"
+        alt="dapi-5"
+      />
+  </div>
+</div>
+
+You can now see the deployed proxy contract address. You can now use this to
+read from the configured dAPI.
+
+### Read from a dAPI
+
+Here's an example of a basic contract that reads from a dAPI.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.17;
+
+import "@openzeppelin/contracts@4.9.5/access/Ownable.sol";
+import "@api3/contracts/api3-server-v1/proxies/interfaces/IProxy.sol";
+
+contract DataFeedReaderExample is Ownable {
+    // The proxy contract address obtained from the API3 Market UI.
+    address public proxyAddress;
+
+    // Updating the proxy contract address is a security-critical
+    // action. In this example, only the owner is allowed to do so.
+    function setProxyAddress(address _proxyAddress) public onlyOwner {
+        proxyAddress = _proxyAddress;
+    }
+
+    function readDataFeed()
+        external
+        view
+        returns (int224 value, uint256 timestamp)
+    {
+        // Use the IProxy interface to read a dAPI via its proxy contract .
+        (value, timestamp) = IProxy(proxyAddress).read();
+        // If you have any assumptions about `value` and `timestamp`,
+        // make sure to validate them after reading from the proxy.
+    }
+}
+
+```
+
+- `setProxyAddress()` is used to set the address of the dAPI Proxy Contract.
+
+- `readDataFeed()` is a view function that returns the latest price of the set
+dAPI.
+
+[Read more about dAPIs](https://docs.api3.org/oev-searchers/in-depth/dapis/).
+
+> 
+[Try deploying it on Remix!](https://remix.ethereum.org/#url=https://github.com/api3-ecosystem/remix-contracts/blob/master/contracts/DapiReader.sol&lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.18+commit.87f61d96.js)
+
+## Resources
+
+Here are some additional developer resources:
+
+- [API3 docs](https://docs.api3.org/)
+- [API3 Market](https://market.api3.org/linea)
+- [dAPI docs](https://docs.api3.org/oev-searchers/in-depth/dapis/)
+- [OEV docs](https://docs.api3.org/oev-searchers/)
+- [Github](https://github.com/api3dao/)
+- [Medium](https://medium.com/api3)
+- [YouTube](https://www.youtube.com/API3DAO)

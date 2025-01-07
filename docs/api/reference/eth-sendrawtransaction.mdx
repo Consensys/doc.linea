@@ -1,0 +1,78 @@
+---
+title: eth_sendRawTransaction
+description: Simulate transaction submission to help prevent failed transactions.
+image: /img/socialCards/ethsendrawtransaction.jpg
+---
+
+# `eth_sendRawTransaction`
+
+:::note
+
+`eth_sendRawTransaction` is functionally very similar to the [Ethereum Mainnet equivalent](https://docs.infura.io/api/networks/ethereum/json-rpc-methods/eth_sendrawtransaction). 
+
+The difference lies in the [error responses](#errors). On Linea, `eth_sendRawTransaction` has some 
+unique error responses.
+
+:::
+
+Submits a pre-signed and serialized transaction and returns the transaction hash if successful. 
+This endpoint can help prevent transactions being rejected due to exceeding the sequencer's 
+per-block line limit. If the line count check fails, it returns an error message indicating the 
+transaction is likely to be rejected.
+
+:::info
+
+Please note the error relating to exceeding the line limit is only available on Besu nodes using 
+version `delivery-25` or later, together with `linea-sequencer` v0.1.4-test28 or later.
+
+:::
+
+On Linea, each transaction is represented by a sequence of lines representing the operations 
+happening at the EVM level. These lines are grouped by modules and are used as inputs to the prover. 
+In order to limit the resources required to generate proofs, limits are enforced on the maximum 
+number of lines each module can have. Hence, when a transaction is considered for inclusion in a 
+block, a [line count check is performed to ensure it conforms to the requirements](../../technology/prover/prover-limits.mdx).
+
+## Parameters
+
+`transaction data`: [Required] The signed transaction data.
+
+## Returns
+
+The 32-byte transaction hash, or the zero hash if the transaction is not yet available.
+
+## Example
+
+### Request
+
+```bash
+curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{"jsonrpc":"2.0","method":"eth_sendRawTransaction","params": ["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"],"id":1}'
+```
+### Response
+
+```JSON
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+}
+```
+
+## Errors
+
+### Gas price too low
+
+The error `Gas price too low` is thrown when the transaction's gas is too low; specifically, the 
+offered gas doesn't create enough of a buffer to ensure that Linea can cover the costs of 
+finalizing the transaction on L1.
+
+### Transaction line count above limit
+
+This error will display in the format:
+`Transaction line count for module [A] is above the limit [B]`
+
+Where `[A]`  is the module for which the number of lines is above the maximum allowed value `[B]`,
+with `[B]` a parameter of the system.

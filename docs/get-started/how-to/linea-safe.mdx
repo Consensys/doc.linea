@@ -1,0 +1,126 @@
+---
+title: Create a multi-signature smart contract wallet
+description: Use Safe to create a multi-signature smart contract wallet on Linea
+image: /img/socialCards/create-a-multi-signature-smart-contract-wallet.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Safe is a multi-signature smart contract wallet, which means it requires a minimum number of 
+signatures to approve a transaction before it can occur. For example, if your business has three 
+main stakeholders, you can configure the wallet to require approval from either two out of three 
+or all three individuals before a transaction can proceed. This security measure ensures that no 
+single person can compromise the funds.
+
+On top of that, Linea Safe gives complete self-custody over funds. In other words, the smart
+contract deployed for the wallet has complete control over the wallet's contents, and doesn't
+rely on any trusted external party for execution.
+
+To create your Safe wallet click [here](https://app.safe.global/), and select Linea as the network.
+To use the app on Linea Sepolia, click [here](https://safe.linea.build).
+
+If you need guidance on using the Safe app, check out their support page [here](https://help.safe.global/).
+
+## Contracts
+
+<Tabs className="my-tabs">
+    <TabItem value="mainnet" label="Linea Mainnet">
+        <table>
+            <tr>
+                <th>Contract</th>
+                <th>Address</th>
+            </tr>
+            <tr>
+                <td>`CompatibilityFallbackHandler`</td>
+                <td><a href="https://lineascan.build/address/0xf48f2B2d2a534e402487b3ee7C18c33Aec0Fe5e4#code">0xf48f2B2d2a534e402487b3ee7C18c33Aec0Fe5e4</a></td>
+            </tr>
+            <tr>
+                <td>`CreateCall`</td>
+                <td><a href="https://lineascan.build/address/0x7cbB62EaA69F79e6873cD1ecB2392971036cFAa4#code">0x7cbB62EaA69F79e6873cD1ecB2392971036cFAa4</a></td>
+            </tr>
+            <tr>
+                <td>`DefaultCallbackHandler`</td>
+                <td><a href="https://lineascan.build/address/0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd#code">0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafe`</td>
+                <td><a href="https://lineascan.build/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552#code">0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafeL2`</td>
+                <td><a href="https://lineascan.build/address/0x3E5c63644E683549055b9Be8653de26E0B4CD36E#code">0x3E5c63644E683549055b9Be8653de26E0B4CD36E</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafeProxyFactory`</td>
+                <td><a href="https://lineascan.build/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code">0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2</a></td>
+            </tr>
+            <tr>
+                <td>`MultiSend`</td>
+                <td><a href="https://lineascan.build/address/0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761#code">0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761</a></td>
+            </tr>
+            <tr>
+                <td>`MultiSendCallOnly`</td>
+                <td><a href="https://lineascan.build/address/0x40A2aCCbd92BCA938b02010E17A5b8929b49130D#code">0x40A2aCCbd92BCA938b02010E17A5b8929b49130D</a></td>
+            </tr>
+            <tr>
+                <td>`SignMessageLib`</td>
+                <td><a href="https://lineascan.build/address/0xA65387F16B013cf2Af4605Ad8aA5ec25a2cbA3a2#code">0xA65387F16B013cf2Af4605Ad8aA5ec25a2cbA3a2</a></td>
+            </tr>
+            <tr>
+                <td>`SimulateTxAccessor`</td>
+                <td><a href="https://lineascan.build/address/0x59AD6735bCd8152B84860Cb256dD9e96b85F69Da#code">0x59AD6735bCd8152B84860Cb256dD9e96b85F69Da</a></td>
+            </tr>
+        </table>
+    </TabItem>
+    <TabItem value="sepolia" label="Linea Sepolia">
+        <table>
+            <tr>
+                <th>Contract</th>
+                <th>Address</th>
+            </tr>
+            <tr>
+                <td>`CompatibilityFallbackHandler`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0xf48f2B2d2a534e402487b3ee7C18c33Aec0Fe5e4#code">0xf48f2B2d2a534e402487b3ee7C18c33Aec0Fe5e4</a></td>
+            </tr>
+            <tr>
+                <td>`CreateCall`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0x7cbB62EaA69F79e6873cD1ecB2392971036cFAa4#code">0x7cbB62EaA69F79e6873cD1ecB2392971036cFAa4</a></td>
+            </tr>
+            <tr>
+                <td>`DefaultCallbackHandler`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd#code">0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafe`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552#code">0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafeL2`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0x3E5c63644E683549055b9Be8653de26E0B4CD36E#code">0x3E5c63644E683549055b9Be8653de26E0B4CD36E</a></td>
+            </tr>
+            <tr>
+                <td>`GnosisSafeProxyFactory`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2#code">0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2</a></td>
+            </tr>
+            <tr>
+                <td>`MultiSend`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761#code">0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761</a></td>
+            </tr>
+            <tr>
+                <td>`MultiSendCallOnly`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0x40A2aCCbd92BCA938b02010E17A5b8929b49130D#code">0x40A2aCCbd92BCA938b02010E17A5b8929b49130D</a></td>
+            </tr>
+            <tr>
+                <td>`SignMessageLib`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0xA65387F16B013cf2Af4605Ad8aA5ec25a2cbA3a2#code">0xA65387F16B013cf2Af4605Ad8aA5ec25a2cbA3a2</a></td>
+            </tr>
+            <tr>
+                <td>`SimulateTxAccessor`</td>
+                <td><a href="https://sepolia.lineascan.build/address/0x59AD6735bCd8152B84860Cb256dD9e96b85F69Da#code">0x59AD6735bCd8152B84860Cb256dD9e96b85F69Da</a></td>
+            </tr>
+        </table>
+    </TabItem>
+</Tabs>
+
+

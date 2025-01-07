@@ -1,0 +1,172 @@
+---
+title: Canonical message service
+image: /img/socialCards/canonical-message-service.jpg
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import IMessageService from "!!raw-loader!/files/testnet/IMessageService.sol";
+import MessageServiceBase from "!!raw-loader!/files/testnet/MessageServiceBase.sol";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/concepts/message_service/Linea_message_service_2.png"
+      alt="Linea message service architecture"
+    />
+  </div>
+</div>
+
+## What is it?
+
+The canonical message service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between Linea and other networks.
+
+## What does it do?
+
+If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The canonical message service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The Service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
+
+One of the most important things that the Message Service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the canonical message service transmits the rollup data.
+
+However, the Service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/concepts/message_service/Linea_bridge_architecture.png"
+      alt="Linea bridge architecture"
+    />
+  </div>
+</div>
+
+## How does it do it?
+
+The canonical message service consists of three main elements: two smart contracts, and the Postbots service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](./message-service.mdx#message-service-contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+
+A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the Postbots.
+
+The Postbots (sometimes referred to as postmen) are one part of Linea that are currently centralized, but will be decentralized. The Postbots are essentially actors that "listen" for calls being made to one of the contracts, either on Linea or Ethereum, and pass the information submitted to the other network.
+
+Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users can either choose to manually _pull_ the transferred assets out of the destination end of the bridge, or pay up-front and allow the assets to be _pushed_ directly to the destination address.
+
+There's an additional layer of logic, though, which serves to ensure that the message delivered to the L2 is valid. Essentially, a message is sent from Ethereum, relayed through the Message Service, and is delivered to the Linea smart contract. That smart contract checks the message received against the list of messages sent on the Ethereum side, verifies that it exists on the L1, and only then accepts it as a valid message:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/concepts/message_service/Linea_message_service_1.png"
+      alt="Linea message service verification"
+    />
+  </div>
+</div>
+
+## Technical reference
+
+The message service is responsible for cross-chain messages between Ethereum and Linea, which:
+
+- Allows a contract on the source chain to safely interact with a contract on the target chain 
+(e.g. L1TokenBridge triggering mint on the L2TokenBridge),
+- Is responsible for bridging ETH (native currency on L1 and L2)
+- Supports:
+  - **push**: auto-execution on target layer if a fee is paid
+  - **pull**: users / protocols responsible for triggering the transaction
+
+### Message service contracts
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Ethereum) Address</th>
+          <th>L2 (Linea) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">
+              0xd19d4B5d358258f05D7B411E21A1460D11B0876F
+            </a>
+          </td>
+          <td>
+            <a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">
+              0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Sepolia) Address</th>
+          <th>L2 (Linea Sepolia) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5">
+            0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5
+            </a>
+          </td>
+          <td>
+            <a href="https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51ec16e73acac83a7">
+            0x971e727e956690b9957be6d51Ec16E73AcAC83A7
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
+
+### How to use
+
+#### Workflow
+
+1. Dapp calls `sendMessage(...)` on the origin layer using the proxy contract at one of the testnet 
+addresses above.
+   - Args:
+     - `_to`: the destination address on the destination chain
+     - `_fee`: the message service fee on the origin chain
+       - An optional field used to incentivize a Postman to perform `claimMessage(...)` automatically 
+       on the destination chain (not available when bridging from L2 to L1, or for non-ETH transfers)
+     - `_calldata`: a flexible field that is generally created using `abi.encode(...)`
+1. Dapp uses the [Postman SDK](https://www.npmjs.com/package/@consensys/linea-sdk?activeTab=readme) 
+to simplify the execution of messages on the destination layer by:
+   - Triggering the delivery
+     - If messages don't get delivered by the postman, the message can be manually claimed by 
+     calling, with the parameters detailed in the [interface below](#interface-imessageservicesol),
+     one of:
+      - L2: `claimMessage` 
+      - L1: `claimMessageWithProof`  
+    You can also use the SDK to claim messages.
+   - Receiving the delivery in the dapp smart contract
+     - This triggers `claimMessage(...)` on the destination layer that will call `_to` with 
+     `_calldata` and a value equal to.
+     - The dapp smart contract can inherit from `MessageServiceBase.sol` to:
+       - Verify that the call comes from the MessageService `onlyMessagingService`
+       - Verify that the sender on the origin chain comes from a trusted contract (usually the dapp 
+       sibling contract) using `onlyAuthorizedRemoteSender()`
+
+:::info[Proxy contract]
+A proxy contract is one that simply points towards the actual "implementation" contracts. This model
+is beneficial as it allows the implementation contracts to be upgraded independently of the proxy,
+allowing contract upgrades without having to start afresh and lose the proxy contract's history. 
+When the implementation contracts are updated, the proxy contract is simply amended to point 
+towards the new implementation contract addresses.
+:::
+
+### Interface IMessageService.sol
+
+<details>
+  <summary>IMessageService.sol</summary>
+  <CodeBlock language="solidity">{IMessageService}</CodeBlock>
+</details>
+
+### Abstract contract MessageServiceBase.sol
+
+<details>
+  <summary>MessageServiceBase.sol</summary>
+  <CodeBlock language="solidity">{MessageServiceBase}</CodeBlock>
+</details>

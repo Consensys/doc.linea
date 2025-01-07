@@ -18,8 +18,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Linea",
-  tagline:
-    "An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.",
+  tagline: "Everything you need to build onchain.",
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -52,7 +51,7 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: true,
+    experimental_faster: false,
   },
 
   presets: [
@@ -65,8 +64,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [require("remark-docusaurus-tabs")],
-          remarkPlugins: [math],
+          remarkPlugins: [require("remark-docusaurus-tabs"), math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
@@ -88,16 +86,19 @@ const config = {
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    {
+      /*
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/developers/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
       },
+      */
+
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -110,69 +111,51 @@ const config = {
       docs: {
         sidebar: {
           hideable: true,
-          autoCollapseCategories: true,
+          autoCollapseCategories: false,
         },
       },
       navbar: {
         title: "Docs",
         logo: {
           alt: "Linea",
-          src: "img/Linea_logo_black.svg",
-          srcDark: "img/Linea_logo_white.svg",
+          src: "img/Linea_docs_logo.svg",
         },
         items: [
           {
             type: "doc",
-            docId: "developers/quickstart/index",
+            docId: "get-started/index",
             position: "left",
-            label: "Quickstart",
+            label: "Get started",
+          },
+          /*           {
+            type: "doc",
+            docId: "learn/index",
+            position: "left",
+            label: "Learn",
+          }, */
+          {
+            type: "doc",
+            docId: "technology/architecture",
+            position: "left",
+            label: "Technology",
           },
           {
             type: "doc",
-            docId: "developers/guides/index",
+            docId: "api/index",
             position: "left",
-            label: "Guides",
-          },
-          // { can add this section back if we want it
-          //   type: "dropdown",
-          //   label: "Tutorials",
-          //   position: "left",
-          //   items: [
-          //     {
-          //       label: "Community Guides",
-          //       to: "blog",
-          //     },
-          //     {
-          //       label: "ZK Glossary",
-          //       to: "/zero-knowledge-glossary",
-          //     },
-          //   ],
-          // },
-          {
-            to: "/developers/guides/run-a-node",
-            position: "left",
-            label: "Run a node",
+            label: "API & SDK",
           },
           {
             type: "doc",
-            docId: "architecture/index",
-            position: "left",
-            label: "Architecture",
-          },
-          {
-            to: "/developers/linea-version",
+            docId: "release-notes",
             position: "right",
-            className: "header-release-notes-link",
+            label: "Release notes",
           },
           {
             href: "https://discord.gg/linea",
-            className: "header-discord-link",
+            label: "Support",
             position: "right",
-          },
-          {
-            href: "https://twitter.com/lineabuild",
-            className: "header-twitter-link",
-            position: "right",
+            class: "support-link",
           },
         ],
       },
@@ -269,7 +252,7 @@ const config = {
           logoClass: "nodejs",
         },
       ],
-    }),
+    },
   plugins: [
     [
       "@docusaurus/plugin-google-tag-manager",

@@ -1,0 +1,66 @@
+---
+title: Linea repositories
+image: /img/socialCards/linea-repositories.jpg
+---
+
+import DocCardList from "@theme/DocCardList";
+
+Linea is open source, meaning you can inspect the code yourself. 
+
+Each repository that hosts the Linea software is listed below, together with a description of its 
+purpose.
+
+## Linea repositories
+
+### [`linea-monorepo`](https://github.com/Consensys/linea-monorepo)
+
+The principal Linea repository. This mainly includes the smart contracts covering Linea's core 
+functions, the prover in charge of generating ZK proofs, the coordinator responsible for multiple 
+orchestrations, and the postman for executing bridge messages. 
+
+### [`linea-specification`](https://github.com/Consensys/linea-specification)
+
+Specification of the constraint system underlying Linea's zkEVM.
+
+Constraints are mathematical equations and a constraint system is a collection of such equations. 
+Linea's constraint system aims to capture the logic of valid EVM executions.
+
+The constraints specified here are implemented in the `linea-constraints` repo.
+
+### [`linea-constraints`](https://github.com/Consensys/linea-constraints)
+
+Implementation of the constraint system specified in the `linea-specification` repo.
+
+Linea's constraint system applies to so-called "traces", which are large matrices of fixed width 
+(i.e. fixed number of columns or "registries") and variable depth (correlating with the complexity 
+of the EVM execution). The production of such traces is the job of the `linea-tracer` repo.
+
+Constraints and traces are two of the inputs to the prover.
+
+### [`linea-tracer`](https://github.com/Consensys/linea-tracer)
+
+Tracing refers to the process of extracting data from the execution of an EVM client in order to 
+construct large matrices known as execution traces. Execution traces are subject to the constraint 
+system specified in the `linea-specification` repo and implemented in the `linea-constraints` repo.
+
+The repository contains the elements of Linea responsible for this process.
+
+### [`linea-besu`](https://github.com/Consensys/linea-besu)
+
+The Linea implementation of Besu, an Ethereum client, extended with plugins.
+
+As Linea is EVM-equivalent, it is compatible with standard Ethereum clients without plugins; for 
+example, you can also [run a Linea node using Erigon, Nethermind, or Geth](../get-started/how-to/run-a-node/index.mdx). 
+
+### [`linea-sequencer`](https://github.com/Consensys/linea-sequencer)
+
+The implementation of the sequencer, the component of Linea responsible for ordering and building 
+blocks, as well as executing them. 
+
+### [`gnark`](https://github.com/Consensys/gnark)
+
+Linea's zk-SNARK with a high-level API to design circuits and efficient cryptographic primitives,
+
+### [`shomei`](https://github.com/Consensys/shomei)
+
+A plugin that extends Besu functionality by maintaining and updating Linea's state. 

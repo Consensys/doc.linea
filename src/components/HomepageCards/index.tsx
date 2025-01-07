@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import CardIcon1 from "../../../static/img/icon_bridge.svg";
 import CardIcon2 from "../../../static/img/icon_developer.svg";
 import CardIcon3 from "../../../static/img/icon_blockexplorer.svg";
-import CardIcon4 from "../../../static/img/icon_group.svg";
+import CardIcon4 from "../../../static/img/icon_wallet.svg";
 
 type CardItem = {
   title: string;
@@ -27,61 +27,58 @@ type CardItem = {
 
 const CardList: CardItem[] = [
   {
-    title: "Guides",
-    link: "/developers/guides",
+    title: "Deploy a smart contract",
+    link: "/get-started/build/quickstart/deploy",
     description: (
       <>
-        Learn how to get the most out of Linea with our developer-focused guides
+        Learn how to deploy a smart contract on Linea.
       </>
     ),
-    buttonName: "BRIDGE",
+    buttonName: "GET STARTED",
     buttonType: "primary",
-    icon: CardIcon1,
+    icon: CardIcon2,
     backgroundColor: "#190066",
     textColor: "#fff",
   },
   {
-    title: "Developer quickstart",
-    link: "/developers/quickstart",
+    title: "Get Linea Testnet ETH",
+    link: "/get-started/how-to/get-testnet-eth",
     description: (
       <>
-        Deploy and verify your first smart contract on Linea using your favorite
-        developer tools.
+        Learn how to get Linea Testnet ETH so you can deploy on Linea Sepolia.
       </>
     ),
-    buttonName: "BUILD",
+    buttonName: "GET STARTED",
     buttonType: "success",
-    icon: CardIcon2,
+    icon: CardIcon4,
     backgroundColor: "#61dfff",
     textColor: "#121212",
   },
   {
-    title: "Run a node",
-    link: "/developers/guides/run-a-node",
+    title: "Bridge tokens",
+    link: "/get-started/how-to/bridge",
     description: (
       <>
-        Learn how to run a Linea node with Besu or Geth, and interact with the
-        blockchain locally.
+        Learn how to bridge your tokens from any chain to Linea.
       </>
     ),
-    buttonName: "LEARN",
+    buttonName: "GET STARTED",
     buttonType: "info",
-    icon: CardIcon3,
+    icon: CardIcon1,
     backgroundColor: "#6119ef",
     textColor: "#fff",
   },
   {
-    title: "Builder Launchpad",
-    link: "https://aspecta.id/builder-matrix/Linea-builder-launchpad",
+    title: "Run a Linea node",
+    link: "/get-started/how-to/run-a-node",
     description: (
       <>
-        Start your dev journey with exclusive builder NFTs, tech talks,
-        mini-hacks, events, and more!
+        Learn how to deploy and sync a Linea node.
       </>
     ),
-    buttonName: "LAUNCH",
+    buttonName: "GET STARTED",
     buttonType: "info",
-    icon: CardIcon4,
+    icon: CardIcon3,
     backgroundColor: "#fff068",
     textColor: "#121212",
   },
@@ -181,7 +178,7 @@ export default function HomepageCards(): JSX.Element {
     <section className={clsx("margin-top--lg", "margin-bottom--lg")}>
       <div className={styles.cardContainer}>
         <br />
-        <h1 className={styles.heading}>QUICK LINKS</h1>
+        <h1 className={styles.heading}>TUTORIALS AND GUIDES</h1>
         <br />
         <div className="row" ref={rowRef} style={{ paddingBottom: "3rem" }}>
           {CardList.map((props, idx) => (

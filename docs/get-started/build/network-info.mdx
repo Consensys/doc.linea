@@ -1,0 +1,69 @@
+---
+title: Network information
+description: Key network details for Linea Mainnet and Linea Sepolia.
+image: /img/socialCards/network-information.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+**Status**: [https://linea.statuspage.io/](https://linea.statuspage.io/)
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem 
+  value="Mainnet" label="Mainnet" default>
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59144</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
+      </tr>
+  </table>
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  <table>
+      <tr>
+          <td align="left"><b>Network</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.sepolia.linea.build or via <a href="https://support.linea.build/hc/en-us/articles/15752713253147">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59141</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block explorer</b></td>
+          <td align="left"> <a href="https://sepolia.lineascan.build">Lineascan</a> </td>
+      </tr>
+  </table>
+  </TabItem> 
+</Tabs>
+
+## Connect with node providers
+
+If your dapp is using public endpoints, it may encounter rate limiting. You can find Linea node providers
+[here](../tooling/node-providers/index.mdx).
+
+We recommend connecting to Linea via [private RPCs](../tooling/node-providers/index.mdx#private-rpc-endpoints).

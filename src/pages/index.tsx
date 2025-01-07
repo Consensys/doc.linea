@@ -2,13 +2,24 @@ import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
 import HomepageCards from "@site/src/components/HomepageCards";
+import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
+// @ts-ignore: suppressing type declarations error for the SearchBar.
+import SearchBar from "@theme/SearchBar";
 
 import styles from "./index.module.css";
+
+// Explicitly define the props for Layout to include `title` and `description`
+type LayoutProps = {
+  title?: string;
+  description?: string;
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = require("@theme/Layout").default;
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -17,7 +28,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className={clsx("hero__title", styles.title)}>
           <LineaLogo className={styles.logo} />
-          Docs
+          <span className={styles.visuallyHidden}>Developer Center</span>
         </h1>
         <p className={clsx("hero__subtitle", styles.subtitle)}>
           {siteConfig.tagline}
@@ -28,10 +39,13 @@ function HomepageHeader() {
               "button button--secondary button--lg",
               styles.bannerButton,
             )}
-            to="developers/quickstart">
+            to="/get-started/build/quickstart/deploy">
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>
+        </div>
+        <div className={clsx(styles.searchBarContainer, "banner-searchbar")}>
+          <SearchBar />
         </div>
       </div>
     </header>
@@ -47,6 +61,7 @@ export default function Home(): JSX.Element {
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
+          <SecondaryCards />
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
