@@ -6,6 +6,7 @@ const sidebars = {
       label: "Overview",
       id: "get-started/index",
     },
+    "get-started/connect",
     {
       type: "category",
       label: "Build on Linea",
@@ -23,13 +24,12 @@ const sidebars = {
           items: [
             "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/app",
-          ]
+          ],
         },
         "get-started/build/ethereum-differences",
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
-        "get-started/build/repos"
       ],
     },
     {
@@ -68,6 +68,7 @@ const sidebars = {
             "get-started/how-to/verify-smart-contract/hardhat",
           ],
         },
+        "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
         {
           type: "category",
@@ -101,50 +102,6 @@ const sidebars = {
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "Concepts",
-      link: {
-        type: "doc",
-        id: "get-started/concepts/index",
-      },
-      collapsible: false,
-      items: [
-        "get-started/concepts/architecture",
-        "get-started/concepts/decentralization",
-        "get-started/concepts/transaction-lifecycle",
-        "get-started/concepts/network-data",
-        "get-started/concepts/canonical-token-bridge",
-        "get-started/concepts/message-service",
-        "get-started/concepts/coordinator",
-        {
-          type: "category",
-          label: "Sequencer",
-          link: {
-            type: "doc",
-            id: "get-started/concepts/sequencer/index"
-          },
-          items: [
-            "get-started/concepts/sequencer/conflation",
-            "get-started/concepts/sequencer/traces-generator"
-          ]
-        },
-        "get-started/concepts/state-manager",
-        {
-          type: "category",
-          label: "Prover",
-          link: {
-            type: "doc",
-            id: "get-started/concepts/prover/index"
-          },
-          items: [
-            "get-started/concepts/prover/proving",
-            "get-started/concepts/prover/trace-expansion",
-            "get-started/concepts/prover/prover-limits"
-          ]
-        }
       ],
     },
     {
@@ -196,7 +153,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/attestations/verax",
-            "get-started/tooling/attestations/pado",
+            "get-started/tooling/attestations/primus",
           ],
         },
         {
@@ -250,23 +207,23 @@ const sidebars = {
               label: "DipDup",
               link: {
                 type: "doc",
-                id: "get-started/tooling/data-indexers/dipdup/overview"
+                id: "get-started/tooling/data-indexers/dipdup/overview",
               },
               items: [
                 "get-started/tooling/data-indexers/dipdup/overview",
-                "get-started/tooling/data-indexers/dipdup/quickstart",   
+                "get-started/tooling/data-indexers/dipdup/quickstart",
               ],
-            },            
+            },
             "get-started/tooling/data-indexers/dune",
             "get-started/tooling/data-indexers/envio",
             "get-started/tooling/data-indexers/etherscan",
-            "get-started/tooling/data-indexers/flair",            
+            "get-started/tooling/data-indexers/flair",
             {
               type: "category",
               label: "Goldsky",
               link: {
                 type: "doc",
-                id: "get-started/tooling/data-indexers/goldsky/overview"
+                id: "get-started/tooling/data-indexers/goldsky/overview",
               },
               items: [
                 "get-started/tooling/data-indexers/goldsky/overview",
@@ -288,6 +245,17 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Gas",
+          link: {
+            type: "doc",
+            id: "get-started/tooling/gas/index",
+          },
+          items: [
+            "get-started/tooling/gas/blocknative",
+          ],
+        },
+        {
+          type: "category",
           label: "Libraries",
           link: {
             type: "doc",
@@ -300,7 +268,7 @@ const sidebars = {
             "get-started/tooling/libraries/multicall",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
-            "get-started/tooling/libraries/walletconnect",
+            "get-started/tooling/libraries/reown",
           ],
         },
         {
@@ -310,9 +278,7 @@ const sidebars = {
             type: "doc",
             id: "get-started/tooling/node-providers/index",
           },
-          items: [
-            "get-started/tooling/node-providers/erpc",
-          ],
+          items: ["get-started/tooling/node-providers/erpc"],
         },
         {
           type: "category",
@@ -338,7 +304,7 @@ const sidebars = {
           label: "Permanent data",
           link: {
             type: "doc",
-            id: "get-started/tooling/permanent-data/index"
+            id: "get-started/tooling/permanent-data/index",
           },
           items: [
             {
@@ -346,7 +312,7 @@ const sidebars = {
               label: "Irys",
               link: {
                 type: "doc",
-                id: "get-started/tooling/permanent-data/irys/overview"
+                id: "get-started/tooling/permanent-data/irys/overview",
               },
               items: [
                 "get-started/tooling/permanent-data/irys/overview",
@@ -377,7 +343,7 @@ const sidebars = {
             "get-started/tooling/security/scamfari",
             "get-started/tooling/security/spherex",
             "get-started/tooling/security/hexagate",
-            "get-started/tooling/security/hypernative"
+            "get-started/tooling/security/hypernative",
           ],
         },
         {
@@ -410,7 +376,7 @@ const sidebars = {
           label: "Ecosystem tutorials",
           link: {
             type: "doc",
-            id: "learn/ecosystem-tutorials/index"
+            id: "learn/ecosystem-tutorials/index",
           },
           collapsible: false,
           items: [
@@ -419,17 +385,17 @@ const sidebars = {
               label: "Irys",
               link: {
                 type: "doc",
-                id: "learn/ecosystem-tutorials/irys/index"
+                id: "learn/ecosystem-tutorials/irys/index",
               },
               items: [
                 "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
                 "learn/ecosystem-tutorials/irys/irys-nfts",
-              ]
-            }
-          ]
-        }
-      ]
-    }
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
   apiSidebar: [
     {
@@ -447,10 +413,205 @@ const sidebars = {
         "api/reference/linea-estimategas",
         "api/reference/linea-gettransactionexclusionstatusv1",
         "api/reference/linea-getproof",
-      ]
+      ],
     },
     "api/linea-sdk",
-  ]
-}
+    {
+      type: "category",
+      label: "Linea smart contracts",
+      link: null,
+      collapsible: false,
+      items: [
+        "api/linea-smart-contracts/linearollup",
+        "api/linea-smart-contracts/zkevmv2",
+        {
+          type: "category",
+          label: "Interfaces",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/interfaces/igenericerrors",
+            "api/linea-smart-contracts/interfaces/imessageservice",
+            "api/linea-smart-contracts/interfaces/ipausemanager",
+            "api/linea-smart-contracts/interfaces/ipermissionsmanager",
+            "api/linea-smart-contracts/interfaces/iratelimiter",
+            {
+              type: "category",
+              label: "L1",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/interfaces/l1/il1messagemanager",
+                "api/linea-smart-contracts/interfaces/l1/il1messagemanagerv1",
+                "api/linea-smart-contracts/interfaces/l1/il1messageservice",
+                "api/linea-smart-contracts/interfaces/l1/ilinearollup",
+                "api/linea-smart-contracts/interfaces/l1/iplonkverifier",
+                "api/linea-smart-contracts/interfaces/l1/izkevmv2",
+              ],
+            },
+            {
+              type: "category",
+              label: "L2",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/interfaces/l2/il2messagemanager",
+                "api/linea-smart-contracts/interfaces/l2/il2messagemanagerv1",
+                "api/linea-smart-contracts/interfaces/l2/il2messageservicev1",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "lib",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/lib/callforwardingproxy",
+            "api/linea-smart-contracts/lib/l2messageservicepausemanager",
+            "api/linea-smart-contracts/lib/linearolluppausemanager",
+            "api/linea-smart-contracts/lib/mimc",
+            "api/linea-smart-contracts/lib/pausemanager",
+            "api/linea-smart-contracts/lib/permissionsmanager",
+            "api/linea-smart-contracts/lib/sparsemerkleproof",
+            "api/linea-smart-contracts/lib/tokenbridgepausemanager",
+            "api/linea-smart-contracts/lib/utils",
+          ],
+        },
+        {
+          type: "category",
+          label: "Message service",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/messageservice/messageservicebase",
+            {
+              type: "category",
+              label: "L1",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageservice/l1/l1messagemanager",
+                "api/linea-smart-contracts/messageservice/l1/l1messageservice",
+                "api/linea-smart-contracts/messageservice/l1/transientstoragereentrancyguardupgradeable",
+                {
+                  type: "category",
+                  label: "v1",
+                  link: null,
+                  collapsible: true,
+                  items: [
+                    "api/linea-smart-contracts/messageservice/l1/v1/l1messagemanagerv1",
+                    "api/linea-smart-contracts/messageservice/l1/v1/l1messageservicev1",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "L2",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageservice/l2/l2messagemanager",
+                "api/linea-smart-contracts/messageservice/l2/l2messageservice",
+                {
+                  type: "category",
+                  label: "v1",
+                  link: null,
+                  collapsible: true,
+                  items: [
+                    "api/linea-smart-contracts/messageservice/l2/v1/l2messagemanagerv1",
+                    "api/linea-smart-contracts/messageservice/l2/v1/l2messageservicev1",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "lib",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/messageservice/lib/messagehashing",
+                "api/linea-smart-contracts/messageservice/lib/ratelimiter",
+                "api/linea-smart-contracts/messageservice/lib/sparsemerkletreeverifier",
+                "api/linea-smart-contracts/messageservice/lib/timelock",
+                "api/linea-smart-contracts/messageservice/lib/transientstoragehelpers",
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Token bridge",
+          link: null,
+          collapsible: true,
+          items: [
+            "api/linea-smart-contracts/tokenbridge/bridgedtoken",
+            "api/linea-smart-contracts/tokenbridge/custombridgedtoken",
+            "api/linea-smart-contracts/tokenbridge/tokenbridge",
+            {
+              type: "category",
+              label: "Interfaces",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/tokenbridge/interfaces/itokenbridge",
+              ],
+            },
+            {
+              type: "category",
+              label: "lib",
+              link: null,
+              collapsible: true,
+              items: [
+                "api/linea-smart-contracts/tokenbridge/lib/storagefiller39",
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  technologySidebar: [
+    "technology/architecture",
+    "technology/decentralization",
+    "technology/repos",
+    "technology/transaction-lifecycle",
+    "technology/network-data",
+    "technology/canonical-token-bridge",
+    "technology/message-service",
+    "technology/coordinator",
+    {
+      type: "category",
+      label: "Sequencer",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/sequencer/index",
+      },
+      items: [
+        "technology/sequencer/conflation",
+        "technology/sequencer/traces-generator",
+      ],
+    },
+    "technology/state-manager",
+    {
+      type: "category",
+      label: "Prover",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/prover/index",
+      },
+      items: [
+        "technology/prover/proving",
+        "technology/prover/trace-expansion",
+        "technology/prover/prover-limits",
+      ],
+    },
+  ],
+};
 
 module.exports = sidebars;

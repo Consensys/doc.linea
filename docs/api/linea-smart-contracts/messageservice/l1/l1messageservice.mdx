@@ -1,0 +1,77 @@
+# `L1MessageService`
+
+### systemMigrationBlock
+
+```solidity
+uint256 systemMigrationBlock
+```
+
+_This is currently not in use, but is reserved for future upgrades._
+
+### __MessageService_init
+
+```solidity
+function __MessageService_init(uint256 _rateLimitPeriod, uint256 _rateLimitAmount) internal
+```
+
+Initialises underlying message service dependencies.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _rateLimitPeriod | uint256 | The period to rate limit against. |
+| _rateLimitAmount | uint256 | The limit allowed for withdrawing the period. |
+
+### sendMessage
+
+```solidity
+function sendMessage(address _to, uint256 _fee, bytes _calldata) external payable
+```
+
+Adds a message for sending cross-chain and emits MessageSent.
+
+_The message number is preset (nextMessageNumber) and only incremented at the end if successful for the next caller.
+This function should be called with a msg.value = _value + _fee. The fee will be paid on the destination chain._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _to | address | The address the message is intended for. |
+| _fee | uint256 | The fee being paid for the message delivery. |
+| _calldata | bytes | The calldata to pass to the recipient. |
+
+### claimMessageWithProof
+
+```solidity
+function claimMessageWithProof(struct IL1MessageService.ClaimMessageWithProofParams _params) external
+```
+
+Claims and delivers a cross-chain message using a Merkle proof.
+
+_if tree depth is empty, it will revert with L2MerkleRootDoesNotExist.
+if tree depth is different than proof size, it will revert with ProofLengthDifferentThanMerkleDepth._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _params | struct IL1MessageService.ClaimMessageWithProofParams | Collection of claim data with proof and supporting data. |
+
+### sender
+
+```solidity
+function sender() external view returns (address originalSender)
+```
+
+Claims and delivers a cross-chain message.
+
+_The message sender address is set temporarily in the transient storage when claiming._
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| originalSender | address | The message sender address that is stored temporarily in the transient storage when claiming. |
+

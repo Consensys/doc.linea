@@ -1,0 +1,155 @@
+# `IPauseManager`
+
+### PauseTypeRole
+
+```solidity
+struct PauseTypeRole {
+  enum IPauseManager.PauseType pauseType;
+  bytes32 role;
+}
+```
+
+### PauseType
+
+```solidity
+enum PauseType {
+  UNUSED,
+  GENERAL,
+  L1_L2,
+  L2_L1,
+  BLOB_SUBMISSION,
+  CALLDATA_SUBMISSION,
+  FINALIZATION,
+  INITIATE_TOKEN_BRIDGING,
+  COMPLETE_TOKEN_BRIDGING
+}
+```
+
+### Paused
+
+```solidity
+event Paused(address messageSender, enum IPauseManager.PauseType pauseType)
+```
+
+Emitted when a pause type is paused.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| messageSender | address | The address performing the pause. |
+| pauseType | enum IPauseManager.PauseType | The indexed pause type that was paused. |
+
+### UnPaused
+
+```solidity
+event UnPaused(address messageSender, enum IPauseManager.PauseType pauseType)
+```
+
+Emitted when a pause type is unpaused.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| messageSender | address | The address performing the unpause. |
+| pauseType | enum IPauseManager.PauseType | The indexed pause type that was unpaused. |
+
+### PauseTypeRoleSet
+
+```solidity
+event PauseTypeRoleSet(enum IPauseManager.PauseType pauseType, bytes32 role)
+```
+
+Emitted when a pause type and its associated role are set in the `_pauseTypeRoles` mapping.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| pauseType | enum IPauseManager.PauseType | The indexed type of pause. |
+| role | bytes32 | The indexed role associated with the pause type. |
+
+### UnPauseTypeRoleSet
+
+```solidity
+event UnPauseTypeRoleSet(enum IPauseManager.PauseType unPauseType, bytes32 role)
+```
+
+Emitted when an unpause type and its associated role are set in the `_unPauseTypeRoles` mapping.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| unPauseType | enum IPauseManager.PauseType | The indexed type of unpause. |
+| role | bytes32 | The indexed role associated with the unpause type. |
+
+### IsPaused
+
+```solidity
+error IsPaused(enum IPauseManager.PauseType pauseType)
+```
+
+_Thrown when a specific pause type is paused._
+
+### IsNotPaused
+
+```solidity
+error IsNotPaused(enum IPauseManager.PauseType pauseType)
+```
+
+_Thrown when a specific pause type is not paused and expected to be._
+
+### pauseByType
+
+```solidity
+function pauseByType(enum IPauseManager.PauseType _pauseType) external
+```
+
+Pauses functionality by specific type.
+
+_Requires the role mapped in pauseTypeRoles for the pauseType._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _pauseType | enum IPauseManager.PauseType | The pause type value. |
+
+### unPauseByType
+
+```solidity
+function unPauseByType(enum IPauseManager.PauseType _pauseType) external
+```
+
+Unpauses functionality by specific type.
+
+_Requires the role mapped in unPauseTypeRoles for the pauseType._
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _pauseType | enum IPauseManager.PauseType | The pause type value. |
+
+### isPaused
+
+```solidity
+function isPaused(enum IPauseManager.PauseType _pauseType) external view returns (bool pauseTypeIsPaused)
+```
+
+Check if a pause type is enabled.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _pauseType | enum IPauseManager.PauseType | The pause type value. |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| pauseTypeIsPaused | bool | Returns true if the pause type if paused, false otherwise. |
+

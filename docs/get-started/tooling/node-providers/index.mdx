@@ -8,55 +8,67 @@ image: /img/socialCards/node-providers.jpg
 <table>
   <tr>
     <th>Provider</th>
-    <th>Linea feature support*</th>
+    <th>Linea API methods*</th>
+    <th>WebSocket</th>
   </tr>
   <tr>
     <td><a href="https://www.alchemy.com/">Alchemy</a></td>
+    <td>:white_check_mark:</td>
     <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://www.ankr.com/rpc/">ANKR</a></td>
     <td>:x:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://blastapi.io/">BLAST API</a></td>
+    <td>:white_check_mark:</td>
     <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://blockpi.io/">Blockpi</a></td>
     <td>:white_check_mark:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://drpc.org/">DRPC</a></td>
-    <td>:x:</td>
+    <td>:white_check_mark:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://getblock.io/">GetBlock</a></td>
+    <td>:white_check_mark:</td>
     <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://www.infura.io/">Infura</a></td>
     <td>:white_check_mark:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://moralis.io/nodes/">Moralis</a></td>
+    <td>:x:</td>
     <td>:x:</td>
   </tr>
   <tr>
     <td><a href="https://nownodes.io/nodes">NOWNodes</a></td>
     <td>:x:</td>
+    <td>:x:</td>
   </tr>
   <tr>
     <td><a href="https://www.quicknode.com">QuickNode</a></td>
     <td>:x:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td><a href="https://unifra.io/">Unifra</a></td>
     <td>:x:</td>
+    <td>:white_check_mark:</td>
   </tr>
 </table>
 
-> \* _"Linea feature support" indicates endpoints that support custom features beyond standard
+> \* _"Linea API methods" indicates endpoints that support custom features beyond standard
 > Ethereum functionality, such as the [`linea_estimateGas`](../../../api/reference/linea-estimategas.mdx) 
 > API method, or features that require a specific implementation to work on Linea, such as use of
 > the [`finalized` tag](../../how-to/finalized-block.mdx)._
@@ -84,7 +96,8 @@ Public endpoints are rate limited, and not meant for production systems.
   <tr>
     <th>Mainnet</th>
     <th>Testnet</th>
-    <th>Linea feature support*</th>
+    <th>Linea API methods*</th>
+    <th>Websocket</th>
   </tr>
   <tr>
     <td>
@@ -93,6 +106,7 @@ Public endpoints are rate limited, and not meant for production systems.
     <td>
       <code>https://linea-sepolia.public.blastapi.io</code>
     </td>
+    <td>:white_check_mark:</td>
     <td>:white_check_mark:</td>
   </tr>
   <tr>
@@ -103,6 +117,7 @@ Public endpoints are rate limited, and not meant for production systems.
       <code>https://rpc.sepolia.linea.build</code>
     </td>
     <td>:white_check_mark:</td>
+    <td>:x:</td>
   </tr>
   <tr>
     <td>
@@ -112,15 +127,7 @@ Public endpoints are rate limited, and not meant for production systems.
       <code>https://linea-sepolia.rpc.thirdweb.com</code>
     </td>
     <td>:x:</td>
-  </tr>
-  <tr>
-    <td>
-      <code>https://linea.blockpi.network/v1/rpc/public</code>
-    </td>
-    <td>
-      <code>https://linea-sepolia.blockpi.network/v1/rpc/public</code>
-    </td>
-    <td>:white_check_mark:</td>
+    <td>:x:</td>
   </tr>
   <tr>
     <td>
@@ -128,6 +135,7 @@ Public endpoints are rate limited, and not meant for production systems.
     </td>
     <td>N/A</td>
     <td>:x:</td>
+    <td>:x:</td>
   </tr>
   <tr>
     <td>
@@ -137,6 +145,7 @@ Public endpoints are rate limited, and not meant for production systems.
       <code>https://go.getblock.io/ACCESS_TOKEN</code>
     </td>
     <td>:x:</td>
+    <td>:white_check_mark:</td>
   </tr>
   <tr>
     <td>
@@ -146,10 +155,11 @@ Public endpoints are rate limited, and not meant for production systems.
       <code>https://site1.moralis-nodes.com/linea-sepolia/API_KEY</code>
     </td>
     <td>:x:</td>
+    <td>:x:</td>
   </tr>
 </table>
 
-> \* _"Linea feature support" indicates endpoints that support custom features beyond standard
+> \* _"Linea API methods" indicates endpoints that support custom features beyond standard
 > Ethereum functionality, such as the [`linea_estimateGas`](../../../api/reference/linea-estimategas.mdx) 
 > API method, or features that require a specific implementation to work on Linea, such as use of
 > the [`finalized` tag](../../how-to/finalized-block.mdx)._
