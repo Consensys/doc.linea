@@ -1,0 +1,527 @@
+# Building a Simple Marketplace DApp on Linea: A Step-by-Step Guide
+
+### Introduction
+
+In web3 ecosystem, dectralized applications (DApps) has become quite popular because of the ability to provide secure, transparent and trustless service. One of the most popular types of DApps are decentralized marketplaces to give the users ability to buy and sell items directly on the blockchain while removing the need of any middlemen.
+
+In this tutorial, we will build a simple marketplace DApp on Linea, a layer 2 zkEVM technology which provides a scalable and cost-efficient environment while having the security of Ethereum. 
+
+We will cover both the **frontend** and **smart contract development.**
+
+## **What is Linea L2 and zkEVM?**
+
+Before we start building, let’s take a moment to understand what Linea L2 is and how it utilizes zkEVM to scale effectively.
+
+A **zkEVM** (zero-knowledge Ethereum Virtual Machine) is a type of Ethereum Virtual Machine which includes zero-knowledge proof technology. Smart contracts can take the advantage of privacy and scalability benefits that comes with zero-knowledge proofs. While the execution of smart contracts, this zero-knowledge proof can be verified quickly and efficiently by other nodes, without the need to re-execute the smart contract.
+
+Linea is a type 2 zkEVM, which means it was designed to be almost fully compatiable with Ethereum Virtual Machine. Developers has the advantage of moving their existing Ethereum applications to Linea without creating any major changes in their code. 
+
+In Linea zkEVM transactions are carried out in it’s own network where it creates cryptographic proofs using SNARKs. A **SNARK** (Succinct Non-interactive Argument of Knowledge) is a type of zero-knowledge proof that allows one party (the prover) to demonstrate to another party (the verifier) that a statement is true. Snarks are known for it’s succinctness which means that the proof is very short and can be quickly verified even with the complex statement being proven. This is why SNARKS are perfect for scenarios where scalability and efficiency are important. 
+
+The generated proofs are sent to the Ethereum network for quick and low-cost verification without re-executing all transactions. This maintains compatibility with Ethereum and reduces the cost and time needed for processing transactions, improving scalability and efficiency.
+
+Developers can use Linea to create DApps that are more efficient and cost-effective. These DApps can reach a wider audience because they are easier to use and have lower transaction costs. In the next sections, we'll show you how to build a simple marketplace DApp on Linea.
+
+
+## Understanding the Marketplace DApp Architecture
+
+We will be diving into the architecture of the marketplace DApp and its components.
+
+The marketplace will incorporate smart contracts, frontend, and blockchain integration. The smart contract will include features such as listing items, buying items, and transferring ownership of an item.
+
+The frontend serves as the user interface where buyers and sellers can interact with each other using the smart contract. While having a frontend and backend is important, the way the DApp interacts with the Linea blockchain is also crucial. We will be using the Metamask SDK along with Wagmi and Infura RPC providers.
+
+### Setting Up the Environment
+
+We will start by initializing a monorepo, A monorepo (short for monolithic repository) is a software development strategy where code for multiple projects is stored in a single version control repository.
+
+Let’s create a monorepo with pnpm:
+ 
+Create a new directory for your monorepo and initialize it:
+
+```
+mkdir web3-marketplace-linea
+cd web3-marketplace-linea
+pnpm init
+
+```
+
+Create a `pnpm-workspace.yaml` file in the root to define your workspace structure:
+
+```yaml
+packages:
+  - 'packages/*'
+
+```
+
+Here’s what our workspace file structure will be like:
+
+```
+packages
+├── site          # Frontend built with Next.js, Tailwind CSS, and Shadcn UI
+└── blockchain    # Smart contracts using Hardhat
+
+```
+
+Let’s head over to the `blockchain` directory and initialize a hardhat project.
+
+```
+cd blockchain
+npx hardhat init
+
+```
+
+You'll be presented with several options:
+
+```
+? What do you want to do? …
+❯ Create a JavaScript project
+  Create a TypeScript project
+  Create a TypeScript project (with Viem)
+  Create an empty hardhat.config.js
+  Quit
+
+```
+
+For this tutorial we’ll be using `TypeScript` project. Hardhat will automatically install the necessary dependencies for you.
+
+### Project Structure
+
+After initialization, you'll have a project structure that includes:
+
+- **`contracts/`**: Solidity contracts
+- **`ignition/`**: Ignition deployment modules
+- **`test/`**: Test files
+- **`hardhat.config.js`**: Hardhat configuration
+
+### Write the Smart Contract:
+
+Let’s start writing the smart contract:
+
+```jsx
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+/// @title Marketplace
+/// @notice A simple marketplace contract for listing, purchasing, and transferring items
+/// @dev This contract manages items, their ownership, and transactions
+contract Marketplace {
+    /// @notice Structure to represent an item in the marketplace
+    /// @dev Each item has a unique ID, name, price, seller, owner, and sale status
+    struct Item {
+        uint id;
+        string name;
+        uint price;
+        address payable seller;
+        address owner;
+        bool isSold;
+    }
+
+    /// @notice Total number of items listed in the marketplace
+    uint public itemCount = 0;
+
+    /// @notice Mapping of item IDs to Item structs
+    mapping(uint => Item) public items;
+
+    /// @notice Mapping of owner addresses to arrays of owned item IDs
+    mapping(address => uint[]) public ownedItems;
+
+    /// @notice Lists a new item in the marketplace
+    /// @param _name The name of the item
+    /// @param _price The price of the item in wei
+    /// @dev Increments itemCount and adds the new item to the items mapping
+    function listItem(string memory _name, uint _price) public {
+        require(_price > 0, "Price must be greater than zero");
+
+        itemCount++;
+        items[itemCount] = Item(itemCount, _name, _price, payable(msg.sender), msg.sender, false);
+        ownedItems[msg.sender].push(itemCount);
+    }
+
+    /// @notice Allows a user to purchase an item
+    /// @param _id The ID of the item to purchase
+    /// @dev Transfers the item's price to the seller and updates ownership
+    function purchaseItem(uint _id) public payable {
+        Item storage item = items[_id];
+        require(_id > 0 && _id <= itemCount, "Item does not exist");
+        require(msg.value == item.price, "Incorrect price");
+        require(!item.isSold, "Item already sold");
+        require(msg.sender != item.seller, "Seller cannot buy their own item");
+
+        item.isSold = true;
+        item.seller.transfer(msg.value);
+
+        // Transfer ownership
+        _transferOwnership(_id, item.seller, msg.sender);
+    }
+
+    /// @notice Internal function to transfer ownership of an item
+    /// @param _id The ID of the item
+    /// @param _from The current owner's address
+    /// @param _to The new owner's address
+    /// @dev Updates the item's owner and adjusts the ownedItems mappings
+    function _transferOwnership(uint _id, address _from, address _to) internal {
+        Item storage item = items[_id];
+        item.owner = _to;
+
+        // Remove item from the previous owner's list
+        uint[] storage fromItems = ownedItems[_from];
+        for (uint i = 0; i < fromItems.length; i++) {
+            if (fromItems[i] == _id) {
+                fromItems[i] = fromItems[fromItems.length - 1];
+                fromItems.pop();
+                break;
+            }
+        }
+
+        // Add item to the new owner's list
+        ownedItems[_to].push(_id);
+    }
+
+    /// @notice Allows the owner to transfer an item to another address
+    /// @param _id The ID of the item to transfer
+    /// @param _to The address of the recipient
+    /// @dev Calls the internal _transferOwnership function
+    function transferItem(uint _id, address _to) public {
+        Item storage item = items[_id];
+        require(_id > 0 && _id <= itemCount, "Item does not exist");
+        require(msg.sender == item.owner, "You do not own this item");
+
+        _transferOwnership(_id, msg.sender, _to);
+    }
+
+    /// @notice Retrieves all item IDs owned by a specific address
+    /// @param _owner The address of the owner
+    /// @return An array of item IDs owned by the specified address
+    function getItemsByOwner(address _owner) public view returns (uint[] memory) {
+        return ownedItems[_owner];
+    }
+}
+```
+
+This contract provides a basic framework for a decentralized marketplace where users can list items for sale, purchase items, and transfer ownership of items. It maintains a record of item ownership and ensures that only valid transactions can occur. Let’s explore the concept of the smart contract a bit more:
+
+![image](https://hackmd.io/_uploads/Sy-QnK2nR.png)
+
+
+1. **Seller**:
+    - **Listing an Item**:
+        - Sellers can list items for sale by calling the `listItem` function.
+        - This function requires a name and price for the item.
+        - The item is added to the marketplace with a unique ID, and the seller is recorded as the owner.
+2. **Buyer**:
+    - **Purchasing an Item**:
+        - Buyers can purchase items using the `purchaseItem` function.
+        - The function checks that the item exists, the price is correct, and that the item is not already sold.
+        - The payment is transferred to the seller, and ownership of the item is updated.
+3. **Transferring Ownership**:
+    - **Ownership Transfer**:
+        - The `_transferOwnership` function handles the internal logic for transferring item ownership.
+        - It updates the owner in the `items` mapping and adjusts the `ownedItems` lists for both the previous and new owners.
+    - **Manual Transfer**:
+        - The `transferItem` function allows current owners to transfer their items to another address.
+        - It ensures the sender is the current owner before calling the `_transferOwnership` function.
+4. **Retrieving Owned Items**:
+    - **Get Items by Owner**:
+        - The `getItemsByOwner` function returns a list of item IDs owned by a specific address.
+
+This smart contract facilitates a decentralized marketplace where items can be listed, purchased, and transferred securely, with all transactions and ownership changes recorded on the blockchain.
+
+On the `ignition` folder Let’s create `Marketplace.ts`  to deploy our contract and add the following code:
+
+```jsx
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+
+const MarketplaceModule = buildModule("MarketplaceModule", (m) => {
+  // Deploy the Marketplace contract
+  const marketplace = m.contract("Marketplace");
+
+  // Return the deployed contract instance
+  return { marketplace };
+});
+
+export default MarketplaceModule;
+
+```
+
+To compile the contract run the following command:
+
+```
+npx hardhat compile
+
+```
+
+### .env Variables
+
+Before deploying the smart contract, make sure to update the `.env` file in the `packages/blockchain` directory with the following values:
+
+```bash
+# Infura API key for connecting to Ethereum networks
+INFURA_API_KEY=your_infura_api_key_here
+
+# Private key of the account to be used for deployments and transactions
+ACCOUNT_PRIVATE_KEY=your_account_private_key_here
+
+```
+
+### Deploy the Smart Contract
+
+To deploy the smart contract to the Linea testnet, run the following command:
+
+```bash
+npx hardhat ignition deploy ignition/modules/Marketplace.ts --network linea-testnet
+
+```
+
+This will deploy the marketplace smart contract on Linea Sepolia. You can always write a script to deploy quicker by writing small commands like this on `package.json` file:
+
+```jsx
+"deploy:testnet": "npx hardhat ignition deploy ignition/modules/Marketplace.ts --network linea-testnet"
+```
+
+After the deployment we’ll get the `contract address` , let’s keep that. We will need it soon while integrating with the frontend. 
+
+## Frontend: Next.js with Shadcn UI
+
+### Create and Navigate to the Project Directory
+
+```bash
+mkdir site
+cd site
+
+```
+
+### Initialize Next.js Project
+
+```bash
+npx create-next-app@latest .
+
+```
+
+When prompted, choose the following options:
+
+- TypeScript: Yes
+- ESLint: Yes
+- Tailwind CSS: Yes
+- `src/` directory: No (or Yes, if you prefer)
+- App Router: Yes
+- Import alias: Yes (default @/*)
+
+### Install Shadcn UI CLI
+
+```bash
+npx shadcn-ui@latest init
+
+```
+
+Install the necessary UI components like button, card and input as needed.
+
+We will create a `wagmi.config.ts` and add the following code:
+
+```jsx
+import { http, createConfig } from "wagmi";
+import { lineaSepolia } from "wagmi/chains";
+import { metaMask } from "wagmi/connectors";
+
+export const config = createConfig({
+  chains: [lineaSepolia],
+  connectors: [metaMask()],
+  transports: {
+    [lineaSepolia.id]: http(),
+  },
+});
+
+```
+
+We will be using wagmi and metamask sdk to connect our wallet and make transactions. Now all that is left is to create a `ConnectWallet.tsx` UI component.
+
+On the `site/src` directory let’s create a file called `constants.ts` and add the following:
+
+```jsx
+export const CONTRACT_ADDRESS = //paste deployed contract here
+export const ABI = 
+  // Paste the ABI here
+```
+
+Remember the deployed contract that we’ve saved earlier, we’ll add it here. Head over to `blockchain/ignition` module and find the `artifacts` folder to find the ABI.
+
+![image](https://hackmd.io/_uploads/HJqu3tn20.png)
+
+
+Let’s break down the code `app.tsx` and explain its key aspects in more detail:
+
+## React and Hooks Usage
+
+```jsx
+import { useState, useEffect } from "react";
+import { useAccount, useWalletClient } from "wagmi";
+
+```
+
+- The component uses React's `useState` for local state management and `useEffect` for side effects.
+- It also uses custom hooks from `wagmi` (`useAccount` and `useWalletClient`) for blockchain wallet integration.
+
+## State Management
+
+```jsx
+const [items, setItems] = useState<any[]>([]);
+const [ownedItems, setOwnedItems] = useState<any[]>([]);
+const [newItemName, setNewItemName] = useState("");
+const [newItemPrice, setNewItemPrice] = useState("");
+
+```
+
+- Multiple state variables are defined to manage the component's data.
+- `items` and `ownedItems` are arrays to store marketplace items.
+- `newItemName` and `newItemPrice` are for form inputs when listing a new item.
+
+## useEffect for Data Loading
+
+```jsx
+useEffect(() => {
+  loadItems();
+  loadOwnedItems();
+}, []);
+
+```
+
+- This effect runs once when the component mounts.
+- It calls `loadItems()` and `loadOwnedItems()` to populate the state with data from the blockchain.
+
+## Smart Contract Interaction
+
+```jsx
+const loadItems = async () => {
+  try {
+    const itemCount = await client.readContract({
+      address: CONTRACT_ADDRESS,
+      abi: ABI_STRING_ARRAY,
+      functionName: "itemCount",
+    });
+    // ... (fetching individual items)
+  } catch (error) {
+    console.error("Error loading items:", error);
+  }
+};
+
+```
+
+- This function reads data from the smart contract using `client.readContract`.
+- It first gets the total item count, then fetches details for each item.
+
+## Writing to the Blockchain
+
+```jsx
+const listItem = async () => {
+  try {
+    if (!walletClient) return;
+    const { request } = await client.simulateContract({
+      // ... contract call details
+    });
+    await walletClient.writeContract(request);
+    loadItems();
+  } catch (error) {
+    console.error("Error listing item:", error);
+  }
+};
+
+```
+
+- This function writes data to the blockchain (listing a new item).
+- It first simulates the contract call, then uses `walletClient.writeContract` to execute the transaction.
+
+## UI Components and Styling
+
+```jsx
+<Card className="p-4 sm:p-6" key={index}>
+  <li key={item.id} className=" p-4">
+    <p><strong>Name:</strong> {item.name}</p>
+    {/* ... other item details */}
+    <Button
+      variant="outline"
+      onClick={() => purchaseItem(item.id, item.price)}
+      className="border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white py-2 px-4 rounded  duration-200 hover:shadow-xl"
+    >
+      Purchase
+    </Button>
+  </li>
+</Card>
+
+```
+
+- The component uses custom UI components like `Card` and `Button`.
+- Tailwind CSS classes are used for styling (`className` props).
+- Conditional rendering is used to show/hide the purchase button based on item status and ownership.
+
+## Form Handling
+
+```jsx
+<Input
+  type="text"
+  placeholder="Item Name"
+  value={newItemName}
+  onChange={(e) => setNewItemName(e.target.value)}
+  className="border p-2 flex-1"
+/>
+
+```
+
+- Controlled inputs are used for the form fields.
+- The `value` and `onChange` props connect the input to the component's state.
+
+## Error Handling
+
+```jsx
+try {
+  // ... contract interaction
+} catch (error) {
+  console.error("Error loading items:", error);
+}
+
+```
+
+- Try-catch blocks are used throughout the code to handle potential errors in asynchronous operations, especially during blockchain interactions.
+
+The `app.tsx` can become quite large so we can also refactor the code in`site/src/app/components/` directory.
+
+```
+/components
+  - ListItem.tsx
+  - AvailableItems.tsx
+  - OwnedItems.tsx
+/hooks
+  - useItems.ts
+
+```
+
+View the [full-code](https://github.com/meowyx/web3-marketplace-linea/blob/code-refactor/packages/site/src/app/page.tsx) here.
+
+Also view the refactored code [here](https://github.com/meowyx/web3-marketplace-linea/tree/code-refactor/packages/site/src/app).
+
+This component demonstrates advanced React patterns, integration with blockchain technology, and modern UI practices. It showcases how to build a decentralized application frontend that interacts with a smart contract while providing a user-friendly interface.
+
+### Run the Development Server
+
+```bash
+npm run dev
+
+```
+
+Your Next.js application with Shadcn UI should now be running at `http://localhost:3000`.
+
+
+![image](https://hackmd.io/_uploads/rkRw6YhhC.png)
+
+Now we should be able to list and item,buy and transfer ownership.
+
+In this guide, we built a simple decentralized marketplace DApp on Linea, leveraging zkEVM technology for scalability and cost efficiency. We covered everything from setting up the environment to writing and deploying smart contracts, and integrating the frontend with Next.js and ShadcnUI.
+
+As we continue to explore and expand on this foundational knowledge, consider the potential for further enhancements, such as integrating additional features or optimizing the user experience, bidding on items, auctions etc. The possibility of decentralized applications (DApps) are endless.
+
+Happy coding!
+
+
+## The Resources:
+
+- The github: https://github.com/meowyx/web3-marketplace-linea
+- The Website: https://web3-marketplace-linea.vercel.app/
