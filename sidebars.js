@@ -1,4 +1,4 @@
-/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+/** @type {import("@docusaurus/plugin-content-docs").SidebarsConfig} */
 const sidebars = {
   getStartedSidebar: [
     {
@@ -573,6 +573,7 @@ const sidebars = {
         },
       ],
     },
+    "api/token-api",
   ],
   technologySidebar: [
     "technology/architecture",
