@@ -1,0 +1,319 @@
+---
+title: Token API
+image: /img/socialCards/token-api.jpg
+---
+
+The Token API provides comprehensive programmatic access to token data on the Linea network.
+This API is designed for developers, builders and analysts who need detailed information about
+ERC-20 tokens and associated activity on Linea.
+
+:::warning[Alpha Version Disclaimer]
+Linea's Token API is an alpha version and is subject to breaking changes.
+We recommend using it for testing and development purposes only.
+We are looking for your feedback on this new service—please reach out to us on [Discord](https://discord.com/invite/linea)
+in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024)
+channel.
+:::
+
+The Token API's key uses cases include:
+
+- Building automated trading bots
+- Creating token monitoring dashboards
+- Performing onchain data analysis
+- DeFi application integration
+- Wallet and transaction tracking
+
+## Data sources
+
+### Data collection
+
+Data is collected from multiple sources:
+
+1. **Onchain data**
+ - Smart contract state (name, symbol, decimals)
+
+2. **External sources**
+ - [CoinGecko](https://www.coingecko.com/en/api)
+ - [MetaMask Token API](https://docs.cx.metamask.io/docs/token-v2/)
+ - [MetaMask Price API](https://docs.cx.metamask.io/docs/price/)
+ - [Pond.fun](https://pond.fun/)
+ - [Dune Analytics](https://dune.com/)
+
+### Data updates
+
+The API data updates at various intervals, depending on the data type:
+
+- Token detection and metadata: every two hours
+- Historical prices: every hour
+- Current prices: every five minutes
+
+## API endpoints
+
+### Tokens
+
+These endpoints provide information about tokens on Linea when available, including their metadata,
+prices, and trading activity.
+
+#### Get [`/`](https://token-api.devnet.linea.build/tokens)
+
+Retrieve a list of all available tokens on Linea.
+
+<details>
+  <summary>**Response**</summary>
+
+  ```json
+  [
+    {
+      "name": "Wrapped Ether",
+      "symbol": "WETH",
+      "decimals": 18,
+      "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
+      "contractAddress": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+      "currentPrice": "3321.74000000000000",
+      "priceUpdatedAt": "2025-01-09T09:36:02.194Z",
+      "info": {
+        "prices": [
+          {
+            "price": "3321.74000000000000",
+            "date": "2025-01-09T09:00:00.000Z"
+          }
+        ],
+        "sells": 3279,
+        "buys": 3722,
+        "graduatedAt": null
+      }
+    }
+  ]
+  ```
+
+</details>
+
+#### Get [`/{contractAddress}`](https://token-api.devnet.linea.build/tokens/0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f)
+
+Retrieve detailed information for a specific token.
+
+**Parameters:**
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`contractAddress`</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Token address</td>
+    </tr>
+  </tbody>
+</table>
+
+  <details>
+    <summary>**Response**</summary>
+
+    ```json
+    {
+      "name": "Wrapped Ether",
+      "symbol": "WETH",
+      "decimals": 18,
+      "logo": "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
+      "contractAddress": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+      "currentPrice": "3321.74000000000000",
+      "priceUpdatedAt": "2025-01-09T09:36:02.194Z",
+      "info": {
+          "prices": [
+              {
+                  "price": "3321.74000000000000",
+                  "date": "2025-01-09T09:00:00.000Z"
+              }
+          ],
+          "sells": 3279,
+          "buys": 3722,
+          "graduatedAt": null
+      }
+    }
+    ```
+
+  </details>
+
+#### Get [`/bonded`](https://token-api.devnet.linea.build/tokens/bonded)
+
+Retrieve recently bonded tokens.
+
+<details>
+  <summary>**Response**</summary>
+
+  ```json
+  [
+    {
+      "name": "CatWifCap",
+      "symbol": "CWC",
+      "decimals": 18,
+      "logo": "https://d12kvghf2eznx1.cloudfront.net/tokens/images/d0a931cd-7982-47e4-86c7-74be11ab0b09",
+      "contractAddress": "0x092b9e25a7d143c83d44c27194f5cee7c1150f22",
+      "currentPrice": "0.00013412000000",
+      "priceUpdatedAt": "2025-01-09T09:45:04.799Z",
+      "info": {
+          "prices": [
+              {
+                  "price": "0.00013412000000",
+                  "date": "2025-01-09T09:00:00.000Z"
+              }
+          ],
+          "sells": 0,
+          "buys": 0,
+          "graduatedAt": "2024-12-01T18:19:42.095Z"
+      }
+    }
+  ]
+  ```
+
+</details>
+
+#### Get [`/most-swapped`](https://token-api.devnet.linea.build/tokens/most-swapped)
+
+Retrieve the most swapped tokens over the last 24 hours (from the [corresponding Dune query](https://dune.com/queries/4396527)).
+
+  <details>
+    <summary>**Response**</summary>
+
+    ```json
+    [
+      {
+        "name": "Foxy",
+        "symbol": "FOXY",
+        "decimals": 18,
+        "logo": "https://i.ibb.co/MSKkFbf/logo.png",
+        "contractAddress": "0x5fbdf89403270a1846f5ae7d113a989f850d1566",
+        "currentPrice": "0.01080016000000",
+        "priceUpdatedAt": "2025-01-09T09:50:05.106Z",
+        "info": {
+            "prices": [
+                {
+                    "price": "0.01078276000000",
+                    "date": "2025-01-09T09:00:00.000Z"
+                }
+            ],
+            "sells": 219,
+            "buys": 212,
+            "graduatedAt": null
+        }
+      }
+    ]
+    ```
+
+</details>
+
+#### Get [`/top-winners`](https://token-api.devnet.linea.build/tokens/top-winners)
+
+Retrieve tokens with the highest price increase over the last 24 hours.
+
+<details>
+  <summary>**Response**</summary>
+
+  ```json
+  [
+    {
+        "name": "Yellow Duckies",
+        "symbol": "DUCKIES",
+        "decimals": 8,
+        "logo": "https://assets.coingecko.com/coins/images/27630/thumb/duckies_logo.png?1706528164",
+        "contractAddress": "0x796000fad0d00b003b9dd8e531ba90cff39e01e0",
+        "currentPrice": "0.00662527000000",
+        "priceUpdatedAt": "2025-01-10T14:05:02.603Z",
+        "last24hVariation": 48.75177091589188,
+        "info": {
+            "prices": [],
+            "sells": 0,
+            "buys": 0,
+            "graduatedAt": null
+        }
+    }
+  ]
+  ```
+
+</details>
+
+#### Get [`/top-losers`](https://token-api.devnet.linea.build/tokens/top-losers)
+
+Retrieve tokens with the highest price decrease over the last 24 hours.
+
+<details>
+  <summary>**Response**</summary>
+
+  ```json
+  [
+    {
+        "name": "CROAK",
+        "symbol": "CROAK",
+        "decimals": 18,
+        "logo": "https://bafybeiempzjdoflyvrhs6uk3424pij753jus3hz5ztkcri4d3zkyjmyd34.ipfs.dweb.link/logo/coin.png",
+        "contractAddress": "0xacb54d07ca167934f57f829bee2cc665e1a5ebef",
+        "currentPrice": "0.00146891000000",
+        "priceUpdatedAt": "2025-01-10T14:05:03.982Z",
+        "last24hVariation": -8.218352482560526,
+        "info": {
+            "prices": [],
+            "sells": 30,
+            "buys": 34,
+            "graduatedAt": null
+        }
+    }
+  ]
+  ```
+
+</details>
+
+## Usage examples
+
+### Simple token price bot
+
+```typescript
+async function monitorPriceChange(contractAddress: string, threshold: number) {
+  const BASE_URL = 'https://token-api.devnet.linea.build';
+  const initialPrice = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+
+  setInterval(async () => {
+    const currentPrice = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+    const priceChange = (currentPrice.price.usd - initialPrice.price.usd) / initialPrice.price.usd;
+
+    if (Math.abs(priceChange) > threshold) {
+      // Execute trading strategy
+      console.log(`Price changed by ${priceChange}% - Trading signal`);
+    }
+  }, 60000); // Check every minute
+}
+```
+
+## Best practices
+
+1. **Rate limiting**
+ - This is an alpha version with strict rate limits per calling IP:
+    - 2 requests per second
+    - 60 requests per minute
+ - Cache static data
+ - Implement backoff strategies when limits are reached
+
+2. **Error handling**
+ - Always check HTTP status of responses
+ - Implement retry with exponential backoff
+ - Validate token addresses before requests
+
+3. **Performance**
+ - (Not available yet) Use pagination for large lists
+ - Implement local caching when appropriate
+
+## Security considerations
+
+- Validate all input parameters
+- Sanitize response data
+
+## Support and feedback
+
+For technical support or feature requests,
+reach out to us on [Discord](https://discord.com/invite/linea) in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
