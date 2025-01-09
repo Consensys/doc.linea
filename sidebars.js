@@ -554,8 +554,8 @@ const sidebars = {
             },
           ],
         },
-      ],  
-    },  
+      ],
+    },
     {
       type: "category",
       label: "JSON-RPC API reference",
