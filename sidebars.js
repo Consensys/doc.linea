@@ -572,6 +572,21 @@ const sidebars = {
       ],
     },
     {
+      type: "category",
+      label: "JSON-RPC API reference",
+      link: {
+        type: "doc",
+        id: "api/reference/index"
+      },
+      collapsible: false,
+      items: [
+        "api/reference/eth-sendrawtransaction",
+        "api/reference/linea-estimategas",
+        "api/reference/linea-gettransactionexclusionstatusv1",
+        "api/reference/linea-getproof",
+      ],
+    },
+    {
       type: "doc",
       label: "Token API reference",
       id: "api/token-api"
