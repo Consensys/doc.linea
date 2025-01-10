@@ -4,16 +4,18 @@ image: /img/socialCards/token-api.jpg
 ---
 
 The Token API provides comprehensive programmatic access to token data on the Linea network.
-This API is designed for developers, builders and analysts who need detailed information about ERC-20 tokens and their activities on Linea.
+This API is designed for developers, builders and analysts who need detailed information about 
+ERC-20 tokens and associated activity on Linea.
 
 :::warning[Alpha Version Disclaimer]
 Linea's Token API is an alpha version and is subject to breaking changes.
 We recommend using it for testing and development purposes only.
-We are looking for your feedback on this new service,
-please reach out to us on [Discord](https://discord.com/invite/linea) in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
+We are looking for your feedback on this new service — please reach out to us on [Discord](https://discord.com/invite/linea) 
+in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) 
+channel.
 :::
 
-### Key use cases
+The Token API's key uses cases include:
 
 - Building automated trading bots
 - Creating token monitoring dashboards
@@ -27,10 +29,10 @@ please reach out to us on [Discord](https://discord.com/invite/linea) in the [#d
 
 Data is collected from multiple sources:
 
-1. **Onchain Data**
+1. **Onchain data**
  - Smart contract state (name, symbol, decimals)
 
-2. **External Sources**
+2. **External sources**
  - [CoinGecko](https://www.coingecko.com/en/api)
  - [MetaMask Token API](https://docs.cx.metamask.io/docs/token-v2/)
  - [MetaMask Price API](https://docs.cx.metamask.io/docs/price/)
@@ -39,7 +41,7 @@ Data is collected from multiple sources:
 
 ### Data updates
 
-Linea Token API data updates at various intervals, depending on the data type.
+The API data updates at various intervals, depending on the data type:
 
 - Token detection and metadata: every two hours
 - Historical prices: every hour
@@ -49,8 +51,8 @@ Linea Token API data updates at various intervals, depending on the data type.
 
 ### Tokens
 
-These endpoints provide information about tokens on Linea,
-including their metadata, prices and trading activities when available.
+These endpoints provide information about tokens on Linea when available, including their metadata, 
+prices, and trading activity.
 
 #### Get `/api/tokens`
 
@@ -90,7 +92,7 @@ Retrieve a list of all available tokens on Linea.
 
 Retrieve detailed information for a specific token.
 
-**Parameters**
+**Parameters:**
 
 <table>
   <thead>
