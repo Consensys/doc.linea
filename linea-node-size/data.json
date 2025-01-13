@@ -273,6 +273,40 @@
         "dailyIncrease": 2876510208,
         "timestamp": "2025-01-06T00:04:09.498Z"
       }
+    ],
+    "3": [
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-full-0",
+        "totalSize": 251464990720,
+        "dailyIncrease": 477069312,
+        "timestamp": "2025-01-13T00:04:06.632Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-archive-v2-0",
+        "totalSize": 3115158228992,
+        "dailyIncrease": 2579513344,
+        "timestamp": "2025-01-13T00:04:06.873Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-geth-full-snapshot-0",
+        "totalSize": 691207974912,
+        "dailyIncrease": 767135744,
+        "timestamp": "2025-01-13T00:04:07.055Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-geth-archive-0",
+        "totalSize": 3183933927424,
+        "dailyIncrease": 2462269440,
+        "timestamp": "2025-01-13T00:04:07.294Z"
+      }
     ]
   }
 }
