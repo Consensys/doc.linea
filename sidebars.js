@@ -186,6 +186,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/cross-chain/axelar",
+            "get-started/tooling/cross-chain/ccip",
             "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
             "get-started/tooling/cross-chain/shortcuts",
