@@ -141,9 +141,9 @@ const config = {
           },
           {
             type: "doc",
-            docId: "api/index",
+            docId: "api/linea-smart-contracts/linearollup",
             position: "left",
-            label: "API & SDK",
+            label: "APIs & SDK",
           },
           {
             type: "doc",
