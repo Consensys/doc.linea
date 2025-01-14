@@ -8,19 +8,6 @@ In this tutorial, we will build a simple marketplace dapp.
 
 We will cover both the **frontend** and **smart contract development.**
 
-## **What is Linea L2 and zkEVM?**
-
-Before we start building, let’s take a moment to understand what Linea L2 is and how it utilizes zkEVM to scale effectively.
-
-A **zkEVM** (zero-knowledge Ethereum Virtual Machine) is a type of Ethereum Virtual Machine which includes zero-knowledge proof technology. Smart contracts can take the advantage of privacy and scalability benefits that comes with zero-knowledge proofs. While the execution of smart contracts, this zero-knowledge proof can be verified quickly and efficiently by other nodes, without the need to re-execute the smart contract.
-
-Linea is a type 2 zkEVM, which means it was designed to be almost fully compatiable with Ethereum Virtual Machine. Developers has the advantage of moving their existing Ethereum applications to Linea without creating any major changes in their code. 
-
-In Linea zkEVM transactions are carried out in it’s own network where it creates cryptographic proofs using SNARKs. A **SNARK** (Succinct Non-interactive Argument of Knowledge) is a type of zero-knowledge proof that allows one party (the prover) to demonstrate to another party (the verifier) that a statement is true. Snarks are known for it’s succinctness which means that the proof is very short and can be quickly verified even with the complex statement being proven. This is why SNARKS are perfect for scenarios where scalability and efficiency are important. 
-
-The generated proofs are sent to the Ethereum network for quick and low-cost verification without re-executing all transactions. This maintains compatibility with Ethereum and reduces the cost and time needed for processing transactions, improving scalability and efficiency.
-
-Developers can use Linea to create DApps that are more efficient and cost-effective. These DApps can reach a wider audience because they are easier to use and have lower transaction costs. In the next sections, we'll show you how to build a simple marketplace DApp on Linea.
 
 
 ## Architecture
@@ -201,7 +188,16 @@ contract Marketplace {
 
 This contract provides a basic framework for a decentralized marketplace where users can list items for sale, purchase items, and transfer ownership of items. It maintains a record of item ownership and ensures that only valid transactions can occur. Let’s explore the concept of the smart contract a bit more:
 
-![image](https://hackmd.io/_uploads/Sy-QnK2nR.png)
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/marketplace/marketplace-contract.png"
+      alt=""
+    />
+  </div>
+</div>
+
 
 
 1. **Seller**:
@@ -345,7 +341,14 @@ export const ABI =
 
 Remember the deployed contract that we’ve saved earlier, we’ll add it here. Head over to `blockchain/ignition` module and find the `artifacts` folder to find the ABI.
 
-![image](https://hackmd.io/_uploads/HJqu3tn20.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/marketplace/marketplace-ui.png"
+      alt=""
+    />
+  </div>
+</div>
 
 
 Let’s break down the code `app.tsx` and explain its key aspects in more detail:
@@ -510,7 +513,14 @@ npm run dev
 Your Next.js application with Shadcn UI should now be running at `http://localhost:3000`.
 
 
-![image](https://hackmd.io/_uploads/rkRw6YhhC.png)
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/marketplace/marketplace-dapp.png"
+      alt=""
+    />
+  </div>
+</div>
 
 Now we should be able to list and item,buy and transfer ownership.
 
