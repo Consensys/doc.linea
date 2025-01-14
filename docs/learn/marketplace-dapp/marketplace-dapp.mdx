@@ -72,7 +72,7 @@ You'll be presented with several options:
 
 For this tutorial we’ll be using `TypeScript` project. Hardhat will automatically install the necessary dependencies for you.
 
-### Project Structure
+### Project structure
 
 After initialization, you'll have a project structure that includes:
 
@@ -81,7 +81,7 @@ After initialization, you'll have a project structure that includes:
 - **`test/`**: Test files
 - **`hardhat.config.js`**: Hardhat configuration
 
-### Write the Smart Contract:
+### Write the smart contract
 
 Let’s start writing the smart contract:
 
@@ -201,29 +201,29 @@ This contract provides a basic framework for a decentralized marketplace where u
 
 
 1. **Seller**:
-    - **Listing an Item**:
+    - **Listing an item**:
         - Sellers can list items for sale by calling the `listItem` function.
         - This function requires a name and price for the item.
         - The item is added to the marketplace with a unique ID, and the seller is recorded as the owner.
 2. **Buyer**:
-    - **Purchasing an Item**:
+    - **Purchasing an item**:
         - Buyers can purchase items using the `purchaseItem` function.
         - The function checks that the item exists, the price is correct, and that the item is not already sold.
         - The payment is transferred to the seller, and ownership of the item is updated.
-3. **Transferring Ownership**:
-    - **Ownership Transfer**:
+3. **Transferring ownership**:
+    - **Ownership transfer**:
         - The `_transferOwnership` function handles the internal logic for transferring item ownership.
         - It updates the owner in the `items` mapping and adjusts the `ownedItems` lists for both the previous and new owners.
-    - **Manual Transfer**:
+    - **Manual transfer**:
         - The `transferItem` function allows current owners to transfer their items to another address.
         - It ensures the sender is the current owner before calling the `_transferOwnership` function.
-4. **Retrieving Owned Items**:
-    - **Get Items by Owner**:
+4. **Retrieving owned items**:
+    - **Get items by owner**:
         - The `getItemsByOwner` function returns a list of item IDs owned by a specific address.
 
 This smart contract facilitates a decentralized marketplace where items can be listed, purchased, and transferred securely, with all transactions and ownership changes recorded on the blockchain.
 
-On the `ignition` folder Let’s create `Marketplace.ts`  to deploy our contract and add the following code:
+In the `ignition` folder, let’s create `Marketplace.ts`  to deploy our contract. Add the following code:
 
 ```jsx
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
@@ -240,14 +240,14 @@ export default MarketplaceModule;
 
 ```
 
-To compile the contract run the following command:
+To compile the contract, run the following command:
 
 ```
 npx hardhat compile
 
 ```
 
-### .env Variables
+### `.env` variables
 
 Before deploying the smart contract, make sure to update the `.env` file in the `packages/blockchain` directory with the following values:
 
@@ -260,7 +260,7 @@ ACCOUNT_PRIVATE_KEY=your_account_private_key_here
 
 ```
 
-### Deploy the Smart Contract
+### Deploy the smart contract
 
 To deploy the smart contract to the Linea testnet, run the following command:
 
@@ -275,11 +275,11 @@ This will deploy the marketplace smart contract on Linea Sepolia. You can always
 "deploy:testnet": "npx hardhat ignition deploy ignition/modules/Marketplace.ts --network linea-testnet"
 ```
 
-After the deployment we’ll get the `contract address` , let’s keep that. We will need it soon while integrating with the frontend. 
+After the deployment we’ll get the `contract address` — make a note of this. We will need it soon while integrating with the frontend. 
 
 ## Frontend: Next.js with Shadcn UI
 
-### Create and Navigate to the Project Directory
+### Create and navigate to the project directory
 
 ```bash
 mkdir site
@@ -287,7 +287,7 @@ cd site
 
 ```
 
-### Initialize Next.js Project
+### Initialize Next.js project
 
 ```bash
 npx create-next-app@latest .
@@ -310,9 +310,9 @@ npx shadcn-ui@latest init
 
 ```
 
-Install the necessary UI components like button, card and input as needed.
+Install the necessary UI components like buttons, cards, and input fields as needed.
 
-We will create a `wagmi.config.ts` and add the following code:
+Create a `wagmi.config.ts` and add the following code:
 
 ```jsx
 import { http, createConfig } from "wagmi";
@@ -329,7 +329,7 @@ export const config = createConfig({
 
 ```
 
-We will be using wagmi and metamask sdk to connect our wallet and make transactions. Now all that is left is to create a `ConnectWallet.tsx` UI component.
+We will be using Wagmi and the MetaMask SDK to connect our wallet and make transactions. All that is left now is to create a `ConnectWallet.tsx` UI component.
 
 On the `site/src` directory let’s create a file called `constants.ts` and add the following:
 
@@ -339,7 +339,7 @@ export const ABI =
   // Paste the ABI here
 ```
 
-Remember the deployed contract that we’ve saved earlier, we’ll add it here. Head over to `blockchain/ignition` module and find the `artifacts` folder to find the ABI.
+Remember the deployed contract address that you saved earlier? We’ll add it here. Head over to the `blockchain/ignition` module and find the `artifacts` folder to find the ABI.
 
 <div class="center-container">
   <div class="img-large">
@@ -351,9 +351,9 @@ Remember the deployed contract that we’ve saved earlier, we’ll add it here. 
 </div>
 
 
-Let’s break down the code `app.tsx` and explain its key aspects in more detail:
+Let’s break down the code in `app.tsx` and explain its key aspects in more detail:
 
-## React and Hooks Usage
+## React and hooks usage
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -364,7 +364,7 @@ import { useAccount, useWalletClient } from "wagmi";
 - The component uses React's `useState` for local state management and `useEffect` for side effects.
 - It also uses custom hooks from `wagmi` (`useAccount` and `useWalletClient`) for blockchain wallet integration.
 
-## State Management
+## State management
 
 ```jsx
 const [items, setItems] = useState<any[]>([]);
@@ -378,7 +378,7 @@ const [newItemPrice, setNewItemPrice] = useState("");
 - `items` and `ownedItems` are arrays to store marketplace items.
 - `newItemName` and `newItemPrice` are for form inputs when listing a new item.
 
-## useEffect for Data Loading
+## `useEffect` for data loading
 
 ```jsx
 useEffect(() => {
@@ -391,7 +391,7 @@ useEffect(() => {
 - This effect runs once when the component mounts.
 - It calls `loadItems()` and `loadOwnedItems()` to populate the state with data from the blockchain.
 
-## Smart Contract Interaction
+## Smart contract interaction
 
 ```jsx
 const loadItems = async () => {
@@ -412,7 +412,7 @@ const loadItems = async () => {
 - This function reads data from the smart contract using `client.readContract`.
 - It first gets the total item count, then fetches details for each item.
 
-## Writing to the Blockchain
+## Writing to the blockchain
 
 ```jsx
 const listItem = async () => {
@@ -433,7 +433,7 @@ const listItem = async () => {
 - This function writes data to the blockchain (listing a new item).
 - It first simulates the contract call, then uses `walletClient.writeContract` to execute the transaction.
 
-## UI Components and Styling
+## UI components and styling
 
 ```jsx
 <Card className="p-4 sm:p-6" key={index}>
@@ -456,7 +456,7 @@ const listItem = async () => {
 - Tailwind CSS classes are used for styling (`className` props).
 - Conditional rendering is used to show/hide the purchase button based on item status and ownership.
 
-## Form Handling
+## Form handling
 
 ```jsx
 <Input
@@ -497,13 +497,13 @@ The `app.tsx` can become quite large so we can also refactor the code in`site/sr
 
 ```
 
-View the [full-code](https://github.com/meowyx/web3-marketplace-linea/blob/code-refactor/packages/site/src/app/page.tsx) here.
+View the [full code](https://github.com/meowyx/web3-marketplace-linea/blob/code-refactor/packages/site/src/app/page.tsx) here.
 
 Also view the refactored code [here](https://github.com/meowyx/web3-marketplace-linea/tree/code-refactor/packages/site/src/app).
 
 This component demonstrates advanced React patterns, integration with blockchain technology, and modern UI practices. It showcases how to build a decentralized application frontend that interacts with a smart contract while providing a user-friendly interface.
 
-### Run the Development Server
+### Run the development server
 
 ```bash
 npm run dev
@@ -522,7 +522,7 @@ Your Next.js application with Shadcn UI should now be running at `http://localho
   </div>
 </div>
 
-Now we should be able to list and item,buy and transfer ownership.
+Now we should be able to list an item, buy and sell, and transfer ownership.
 
 In this guide, we built a simple decentralized marketplace DApp on Linea, leveraging zkEVM technology for scalability and cost efficiency. We covered everything from setting up the environment to writing and deploying smart contracts, and integrating the frontend with Next.js and ShadcnUI.
 
