@@ -591,15 +591,15 @@ const sidebars = {
       label: "Token API reference",
       link: {
         type: "doc",
-        id: "api/token-api"
+        id: "api/token-api/index"
       },
       collapsible: false,
       items: [
-        {
+        /*{
           type: "doc",
           id: "api/token-api/reference",
           label: "Token API reference"
-        }
+        }*/
       ],
     },
     {
