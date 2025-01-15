@@ -554,8 +554,8 @@ const sidebars = {
             },
           ],
         },
-      ],  
-    },  
+      ],
+    },
     {
       type: "category",
       label: "JSON-RPC API reference",
@@ -572,9 +572,35 @@ const sidebars = {
       ],
     },
     {
-      type: "doc",
+      type: "category",
+      label: "JSON-RPC API reference",
+      link: {
+        type: "doc",
+        id: "api/reference/index"
+      },
+      collapsible: false,
+      items: [
+        "api/reference/eth-sendrawtransaction",
+        "api/reference/linea-estimategas",
+        "api/reference/linea-gettransactionexclusionstatusv1",
+        "api/reference/linea-getproof",
+      ],
+    },
+    {
+      type: "category",
       label: "Token API reference",
-      id: "api/token-api"
+      link: {
+        type: "doc",
+        id: "api/token-api"
+      },
+      collapsible: false,
+      items: [
+        {
+          type: "doc",
+          id: "api/token-api/reference",
+          label: "Token API reference"
+        }
+      ],
     },
     {
       type: "doc",
