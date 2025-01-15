@@ -88,7 +88,7 @@ const config = {
       {
         specs: [
           {
-            spec: "./openapi.yaml",
+            spec: "https://token-api.devnet.linea.build/docs-yaml",
             route: "api/token-api/reference",
           },
         ],
