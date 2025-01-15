@@ -573,7 +573,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Token API",
+      label: "Token API reference",
       link: {
         type: "doc",
         id: "api/token-api/overview"
