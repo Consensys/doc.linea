@@ -127,12 +127,12 @@ const config = {
             position: "left",
             label: "Get started",
           },
-          /*           {
+          {
             type: "doc",
-            docId: "learn/index",
+            docId: "learn/marketplace-dapp",
             position: "left",
             label: "Learn",
-          }, */
+          },
           {
             type: "doc",
             docId: "technology/architecture",
