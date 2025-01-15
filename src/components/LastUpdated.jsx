@@ -21,7 +21,7 @@ const LastUpdated = () => {
       const weeks = Object.keys(data[year]).sort((a, b) => b - a); // Sort weeks descending
 
       for (const week of weeks) {
-        if (data[year][week].length > 0) {
+        if (data[year][week].length > 1) {
           // Assuming the timestamp is the same for all entries in a week
           latestTimestamp = data[year][week][0].timestamp;
           return latestTimestamp;
