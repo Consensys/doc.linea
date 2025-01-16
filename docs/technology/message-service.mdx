@@ -135,14 +135,14 @@ addresses above.
   :::info[Calculating `_fee`]
 
   - L1 -> L2:
-    - Automatic claiming: Postman fee — `target layer gas price * (gas estimated + gas limit surplus) * margin`, where:
+    - Automatic claiming: Postman fee = `target layer gas price * (gas estimated + gas limit surplus) * margin`, where:
       - `target layer gas price` = `eth_gasPrice` on the target layer
       - `gas estimated` = 100,000
       - `gas limit surplus` = 6000
       - `margin` = 2
     - Manual claiming: 0
   - L2 -> L1:
-    - Manual claiming: Anti-DDOS fee — `0.001 ETH`
+    - Manual claiming: Anti-DDOS fee = `0.001 ETH`
 
   See our [main bridge page](../get-started/how-to/bridge/index.mdx) for more information on the 
   execution fees that apply.
