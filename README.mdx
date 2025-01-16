@@ -1,97 +1,56 @@
-> [!NOTE]
+> [!IMPORTANT]
 > Linea recently announced that it is targeting a token generation event (TGE) in Q1 2025, as part
-> of its decentralization. While we welcome contributions to the documentation from anyone, please 
+> of its decentralization journey. While we welcome contributions to the documentation from anyone, please
 > note that contributions will not entitle you to any potential token airdrop(s).
 
-# Linea documentation
+# Linea Documentation
 
-[Linea](https://linea.build/) is a developer-ready layer 2 network, scaling Ethereum by providing
-an Ethereum-equivalent environment in which to execute transactions, which are then submitted to
-Ethereum Mainnet through a zero-knowledge rollup.
+## Overview
 
-This documentation repository is built using [Docusaurus](https://docusaurus.io/), and the site
-itself is published at [`docs.linea.build`](https://docs.linea.build/).
+[Linea](https://linea.build/) is a high-performance layer 2 network built to scale Ethereum. It provides:
+- An Ethereum-equivalent environment for transaction execution
+- Zero-knowledge rollup technology for secure and efficient transaction submission to Ethereum Mainnet
+- Developer-friendly tools and infrastructure
+- Seamless integration with existing Ethereum tooling
 
-See [more](https://docs-template.consensys.net/) information about how Consensys uses Docusaurus.
+Visit our live documentation at [`docs.linea.build`](https://docs.linea.build/).
 
-## Contribute
+## Quick Links
 
-See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.linea/issues).
+- 🌐 [Official Website](https://linea.build/)
+- 💬 [Community Forum](https://community.linea.build/)
+- 🎮 [Discord Community](https://discord.gg/linea)
+- 📚 [Zero-Knowledge Glossary](docs/zero-knowledge-glossary/index.mdx)
 
-Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.linea/fork),
-create a pull request, and tag us for review. (For help on this, see [below](#how-to-submit-a-suggestion-or-change)).
+## Contributing
 
-Alternatively, get in touch via the [community forum](https://community.linea.build/) or the 
-[Linea Discord](https://discord.gg/linea) if you have an issue or question.
+We welcome contributions from the community! Here's how you can help:
 
-Please follow these steps if you wish to contribute:
-1. Please make an issue describing the change you wish to make _before_ you start working on it, and
-[link to it in your pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
-This is particularly important if you are an ecosystem contributor — submitting your details in an 
-issue first will make it much easier for our docs team to process your contributions.
-2. [Fork our repo](https://github.com/ConsenSys/doc.linea/fork) so that you're able to work on it. 
-3. Make your changes, paying attention to our [contribution guidelines](#contribution-guidelines).
-4. Review your changes locally. See our [guide](#running-locally) on previewing your 
-changes locally.
-5. Submit your changes as a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
-New pull requests are reviewed regularly.
+### Getting Started
 
-Our team will do our best to help you get the PR over the line, though we cannot guarantee our 
-capacity. For this reason, please do not submit a PR if you think you'll be unable to address 
-necessary changes, fix linter errors, or otherwise address feedback. If you're in this position,
-consider creating an issue instead.
+1. **Create an Issue First**: Before making changes, [create an issue](https://github.com/Consensys/doc.linea/issues) describing your proposed contribution
+2. **Fork the Repository**: [Fork our repo](https://github.com/ConsenSys/doc.linea/fork) to your account
+3. **Make Changes**: Follow our [contribution guidelines](#contribution-guidelines)
+4. **Test Locally**: Preview your changes using our [local setup guide](#running-locally)
+5. **Submit PR**: Create a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and link it to your issue
 
-### Contribution guidelines
+### Contribution Guidelines
 
-The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
-other than for images and other media, for which we have [specific guidelines](#adding-images-to-articles).
+#### Technical Requirements
 
-Additionally, please adhere to these rules: 
-- **Use `.mdx` files.** The docs site is standardized to use `.mdx` files rather than `.md` files to
-ensure that React components and other elements can be rendered properly. 
-- **Use HTML-like formatting** rather than traditional Markdown formatting. For example, create a 
-`<table>` rather than using the Markdown syntax with dashes and vertical lines. In many cases, 
-HTML syntax is easier to maintain. Standardization also applies here: some elements we frequently
-use, such as `<Tabs>`, _must_ use HTMl syntax, so applying HTML universally helps to avoid the site 
-containing a mix of both styles.
+- Use `.mdx` files instead of `.md` for better React component compatibility
+- Prefer HTML-like formatting over traditional Markdown
+- Follow the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide)
+- Maintain consistent formatting with existing documentation
 
-Please return to any submitted PRs regularly to help us work through feedback and comments and 
-merge as soon as we can. If you do not return to your PR for edits within three months of us 
-reviewing, we will close the PR. 
+#### For Ecosystem Contributors
 
-#### Guidance for ecosystem contributions
+If you're contributing documentation about your project in the Linea ecosystem:
 
-By "ecosystem contributions", we mean contributions from projects in the Linea ecosystem, such as 
-dapps, libraries, or tooling. If your submission is in this category, please keep the following
-guidelines in mind:
-
-- Your contribution should be informative above all; the docs are not a marketing tool for your 
-project. We may request edits to adjust your writing style if we feel it falls on the wrong side of 
-this line. We encourage you to write about your project's features and benefits, but please avoid 
-superlatives or selling your project.
-- You are responsible for maintaining the information about your project. Out-of-date docs will be 
-an inconvenience for users at best, or leave a negative impression of your project at worst. This 
-includes keeping links to external sites up-to-date and returning for updates as your project
-matures.
-
-### Contribute to the Zero-Knowledge Glossary
-
-Diving into zero-knowledge rollups and getting stumped by the technical jargon? We've started an
-open source Zero-Knowledge glossary to define some common terms you might encounter as you dive
-into the L2 landscape.
-
-[Fork our repo](https://github.com/Consensys/doc.linea/fork), and add a term in alphabetical
-order to `docs/zero-knowledge-glossary/index.mdx`. Then, make a pull request and tag us for review!
-
-### Additional resources
-
-View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for
-information on how to:
-
-- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution) using forks and pull requests.
-- Consult the [documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
-- [Format your Markdown](https://docs-template.consensys.net/contribute/format-markdown) correctly.
-- [Preview the docs](https://docs-template.consensys.net/contribute/preview) locally.
+- Focus on informative content over marketing
+- Keep information up-to-date and accurate
+- Maintain external links and documentation
+- Return to update content as your project evolves
 
 ## Running locally
 
@@ -140,18 +99,18 @@ To run the local build you created, run:
 
 This repository includes multiple linters, which you can think of as spell-checks that also inspect
 code formatting and standards, and a lot more. It's possible that you might use an unrecognized word,
-style your Markdown incorrectly, or otherwise format your content in a way that conflicts with 
+style your Markdown incorrectly, or otherwise format your content in a way that conflicts with
 style guides.
 
 The main linter, Vale, is run through Github Actions and checks spelling, formatting, and adherence to
 various style guides. Please pay attention to its suggestions and error warnings in the check that
 runs on your PR. These errors will not prevent your PR from building, but you should address them
-nevertheless. 
+nevertheless.
 
 See our [guidance on using Vale](https://docs-template.consensys.net/contribute/run-vale) for more
 information.
 
-You can run other linters for code style (CSS, JavaScript) and link formatting any time with the 
+You can run other linters for code style (CSS, JavaScript) and link formatting any time with the
 command `npm run lint`.
 
 ## Adding images to articles
