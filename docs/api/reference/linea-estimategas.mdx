@@ -40,7 +40,7 @@ using `linea_estimateGas` for more accurate results.
   - `value`: _\[optional]_ Hexadecimal value of the value sent with this transaction.
   - `data`: _\[optional]_ Hash of the method signature and encoded parameters. See the
       [Ethereum contract ABI specification](https://docs.soliditylang.org/en/latest/abi-spec.html).
-- `stateOverride`: _\[optional]_  Object that contains the address-to-state mapping to [override state values](#override-state-values)
+- `stateOverride`: _\[optional]_  Object that contains the address-to-state mapping to [override state values](#override-state-values).
     Each entry specifies a state that will be temporarily overridden before executing the call:
   - `balance`: _\[optional]_ Hexadecimal of the temporary account balance for the call execution.
   - `nonce`: _\[optional]_ Hexadecimal of the temporary nonce value for the call execution.
@@ -188,11 +188,11 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 You can override an account with temporary state values before making the call. This allows you to
 make temporary state changes without affecting the actual blockchain state.
 
-The following example estimates the cost for transferring an ERC20 token for an account which does not
+The following example estimates the cost for transferring an ERC-20 token for an account which does not
 have the required assets onchain.
 
 The example sets a custom ETH balance for the sender (to cover gas costs) and modifies the account's
-balance within the ERC20 contract's storage for the duration of the call.
+balance within the ERC-20 contract's storage for the duration of the call.
 
 ```json
 curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
