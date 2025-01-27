@@ -22,7 +22,7 @@ Contains the last L1 message number anchored on L2.
 mapping(uint256 => bytes32) l1RollingHashes
 ```
 
-Contains the L1 to L2 messaging rolling hashes mapped to message number computed on L2.
+Contains the L1 to L2 messaging rolling hashes mapped to the message number computed on L2.
 
 ### anchorL1L2MessageHashes
 
@@ -34,7 +34,7 @@ Add cross-chain L1->L2 message hashes in storage.
 
 _Only address that has the role 'L1_L2_MESSAGE_SETTER_ROLE' are allowed to call this function.
 NB: In the unlikely event of a duplicate anchoring, the lastAnchoredL1MessageNumber MUST NOT be incremented.
-and the rolling hash not calculated, else synchronisation will break.
+and the rolling hash not calculated, else synchronization will break.
 If starting number is zero, an underflow error is expected._
 
 #### Parameters
