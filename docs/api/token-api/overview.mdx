@@ -43,15 +43,12 @@ Data is collected and updated from multiple sources:
 - MetaMask Token & Price API
 - [Pond.fun](https://pond.fun/)
 - [Dune Analytics](https://dune.com/)
+- [Nile](https://www.nile.build/)
 
 ### Update frequencies
 - Token detection and metadata: every two hours
 - Historical prices: hourly
 - Current prices: every five minutes
-
-## API documentation
-
-The complete API documentation is available in our [Swagger UI](https://token-api.devnet.linea.build/docs).
 
 ## Usage examples
 
@@ -78,8 +75,8 @@ async function monitorPriceChange(contractAddress: string, threshold: number) {
 
 1. **Rate limiting**
 - Alpha version has strict rate limits per IP:
-- Two requests per second
-- 60 requests per minute
+  - Two requests per second
+  - 60 requests per minute
 - Cache static data
 - Implement backoff strategies
 
@@ -89,10 +86,6 @@ async function monitorPriceChange(contractAddress: string, threshold: number) {
 - Validate token addresses
 
 3. **Performance and security**
-- (Not available yet) Use pagination for large lists
+- Use pagination for large lists
 - Use local caching when appropriate
 - Validate and sanitize all inputs
-
-## Support
-
-For technical support or feature requests, reach out to us on [Discord](https://discord.com/invite/linea) in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
