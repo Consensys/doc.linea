@@ -1,0 +1,91 @@
+---
+title: Token API
+image: /img/socialCards/token-api.jpg
+---
+
+The Token API provides comprehensive programmatic access to token data on the Linea network. This API is designed for developers, builders and analysts who need detailed information about ERC-20 tokens and their activity on Linea.
+
+:::warning[Alpha Version]
+Linea's Token API is in alpha version and subject to breaking changes.
+We recommend using it for testing and development purposes only.
+We welcome your feedback on our [Discord](https://discord.com/invite/linea)
+in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
+:::
+
+## Key features
+
+### Token data
+- Complete list of available tokens on Linea
+- Detailed token metadata (name, symbol, decimals, logo)
+- Current and historical prices
+- Trading statistics (buy/sell counts)
+
+### Market analytics
+- Most traded tokens in the last 24h
+- Top gainers and losers (price variation)
+- Recently bonded tokens
+- Price movement tracking
+
+### Use cases
+- Automated trading bots
+- Token monitoring dashboards
+- Onchain data analysis
+- DeFi application integration
+- Wallet and transaction tracking
+
+## Data sources
+
+Data is collected and updated from multiple sources:
+
+### Primary sources
+- Onchain data (smart contract states)
+- [CoinGecko](https://www.coingecko.com/en/api)
+- MetaMask Token & Price API
+- [Pond.fun](https://pond.fun/)
+- [Dune Analytics](https://dune.com/)
+- [Nile](https://www.nile.build/)
+
+### Update frequencies
+- Token detection and metadata: every two hours
+- Historical prices: hourly
+- Current prices: every five minutes
+
+## Usage examples
+
+### Simple token price bot
+
+```typescript
+async function monitorPriceChange(contractAddress: string, threshold: number) {
+  const BASE_URL = "https://token-api.devnet.linea.build";
+  const { currentPrice: initialPrice } = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+
+  setInterval(async () => {
+    const { currentPrice } = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+    const priceChange = (currentPrice - initialPrice) / initialPrice;
+
+    if (Math.abs(priceChange) > threshold) {
+      // Execute trading strategy
+      console.log(`Price changed by ${priceChange}% - Trading signal`);
+    }
+  }, 60000); // Check every minute
+}
+```
+
+## Best practices
+
+1. **Rate limiting**
+- Alpha version has strict rate limits per IP:
+  - Two requests per second
+  - 60 requests per minute
+- Cache static data
+- Implement backoff strategies
+
+2. **Error handling**
+- Check HTTP status codes
+- Implement retry with exponential backoff
+- Validate token addresses
+
+3. **Performance and security**
+- Use pagination for large lists
+- Use local caching when appropriate
+- Validate and sanitize all inputs
