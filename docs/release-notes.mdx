@@ -13,17 +13,30 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Beta v1a
+## Beta v1
+
+Beta v1 on Linea introduces new arithmetization, and is split into two phases:
+1. Beta v1.1: Transition to the new arithmetization, and;
+2. Beta v1.2: Ensure the new arithmetization is 100% proven.
+
+The overall objective of the Linea Beta is to prove 100% of the zkEVM specification.
+
+### Beta v1.2
 
 **Mainnet: TBC**
 
-**Linea Sepolia: September 26**
+**Linea Sepolia: February 4, 2025**
 
-Beta v1 on Linea introduces new arithmetization, and is split into two phases:
-1. Beta v1a: Transition to the new arithmetization, and;
-2. Beta v1b: Ensure the new arithmetization is 100% proven.
+- Full implementation of new arithmetization, with all modules from the Linea specification except 
+the consistency arguments of the HUB.
+- Proof of all the activated modules. 
+- Raises the block gas limit to 2B.
 
-The overall objective of the Linea Beta is to prove 100% of the zkEVM specification.
+### Beta v1.1
+
+**Mainnet: TBC**
+
+**Linea Sepolia: September 26, 2024**
 
 This release includes:
 - New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
