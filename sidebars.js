@@ -1,4 +1,4 @@
-/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+/** @type {import("@docusaurus/plugin-content-docs").SidebarsConfig} */
 const sidebars = {
   getStartedSidebar: [
     {
@@ -391,26 +391,8 @@ const sidebars = {
   ],
   apiSidebar: [
     {
-      type: "doc",
-      label: "Overview",
-      id: "api/index",
-    },
-    {
       type: "category",
-      label: "Linea JSON-RPC API",
-      link: null,
-      collapsible: false,
-      items: [
-        "api/reference/eth-sendrawtransaction",
-        "api/reference/linea-estimategas",
-        "api/reference/linea-gettransactionexclusionstatusv1",
-        "api/reference/linea-getproof",
-      ],
-    },
-    "api/linea-sdk",
-    {
-      type: "category",
-      label: "Linea smart contracts",
+      label: "Smart contract reference",
       link: null,
       collapsible: false,
       items: [
@@ -563,8 +545,44 @@ const sidebars = {
             },
           ],
         },
+      ],  
+    },  
+    {
+      type: "category",
+      label: "JSON-RPC API reference",
+      link: {
+        type: "doc",
+        id: "api/reference/index"
+      },
+      collapsible: false,
+      items: [
+        "api/reference/eth-sendrawtransaction",
+        "api/reference/linea-estimategas",
+        "api/reference/linea-gettransactionexclusionstatusv1",
+        "api/reference/linea-getproof",
       ],
     },
+    {
+      type: "category",
+      label: "Token API reference",
+      link: {
+        type: "doc",
+        id: "api/token-api/overview"
+      },
+      collapsible: false,
+      items: [
+        {
+          type: "link",
+          label: "Reference",
+          href: "/api/token-api/reference"
+        }
+      ],
+    },
+    {
+      type: "doc",
+      label: "SDK guide",
+      id: "api/linea-sdk"
+    }
   ],
   technologySidebar: [
     "technology/architecture",
