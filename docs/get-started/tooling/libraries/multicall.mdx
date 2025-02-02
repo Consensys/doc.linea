@@ -11,7 +11,7 @@ Multicall aggregates results from multiple contract constant function calls.
 This reduces the number of separate JSON RPC requests that need to be sent,
 which is especially useful if using remote nodes like Infura. This guarantees
 that all values returned are from the same block (like an atomic read) and
-returning the block number the values are from (giving them important context so
+returns the block number the values are from (giving them important context so
 that results from old blocks can be ignored if they're from an out-of-date
 node).
 
