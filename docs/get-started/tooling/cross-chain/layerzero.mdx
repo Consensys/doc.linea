@@ -6,25 +6,25 @@ description: "Omnichain interoperability protocol enabling secure cross-chain co
 
 [LayerZero](https://layerzero.network) is an **omnichain interoperability protocol** that enables smart contracts to seamlessly communicate between different blockchain networks. With LayerZero V2, applications deployed on Linea can connect and interact with 100+ supported blockchains through secure, configurable messaging channels.
 
-## Key Features
+## Key features
 
 LayerZero enables powerful cross-chain capabilities for builders on Linea:
 
-1. **Cross-chain Messaging** - Send arbitrary messages and data between contracts on different chains
-2. **Omnichain Tokens** - Deploy tokens (fungible `OFT` and non-fungible `ONFT`) that work seamlessly across multiple chains
-3. **External Chain Data Access** (`lzRead`) - Fetch and compute on-chain state from other networks
-4. **Composed Messages** - Chain multiple cross-chain operations together
+1. **Cross-chain messaging** - Send arbitrary messages and data between contracts on different chains
+2. **Omnichain tokens** - Deploy tokens (fungible `OFT` and non-fungible `ONFT`) that work seamlessly across multiple chains
+3. **External chain data access** (`lzRead`) - Fetch and compute onchain state from other networks
+4. **Composed messages** - Chain multiple cross-chain operations together
 
 ## How it works
 
 1. **DVNs** independently verify that a message is valid, waiting for a configured number of block confirmations on the source chain.
-2. When the message is verified, **Executors** on the destination chain deliver the message to the target contract, paying for the destination gas automatically in the background. The user only pays for gas on the source chain.
+2. When the message is verified, **executors** on the destination chain deliver the message to the target contract, paying for the destination gas automatically in the background. The user only pays for gas on the source chain.
 
 Because each application can configure its own DVN sets, your security is not locked into a single aggregator or middlechain. For more details, check out the [LayerZero docs](https://docs.layerzero.network/).
 
 To run your own DVN as part of your security set, check out the [DVN docs](https://docs.layerzero.network/v2/developers/evm/off-chain/build-dvns).
 
-## Linea Integration
+## Linea integration
 
 When integrating with LayerZero, there are two key aspects to understand:
 
@@ -37,7 +37,7 @@ When integrating with LayerZero, there are two key aspects to understand:
    - Allows applications to customize security and cost tradeoffs
    - Ensures message integrity across chains
 
-### Contract Addresses
+### Contract addresses
 
 <table>
   <tbody>
@@ -45,7 +45,7 @@ When integrating with LayerZero, there are two key aspects to understand:
       <th>Chain</th>
       <th>Chain Id</th>
       <th>Endpoint Id</th>
-      <th>Endpoint Address</th>
+      <th>Endpoint address</th>
     </tr>
     <tr>
       <td>Linea Mainnet</td>
@@ -72,33 +72,33 @@ When integrating with LayerZero, there are two key aspects to understand:
 
 Once a transaction is submitted, you can trace it on [LayerZero Scan](https://layerzeroscan.com/), which shows cross-chain message flow from source to destination in real time.
 
-## Getting Started
+## Get started
 
 Developers should:
 
 1. Deploy contracts on each chain: [Quickstart - Create Your First Omnichain App](https://docs.layerzero.network/v2/developers/evm/create-lz-oapp/start)
-2. Configure a Security Stack by selecting DVNs & block confirmations (optional).
-3. Optionally configure an Executor or use defaults to deliver messages.
+2. Configure a Security Stack by selecting DVNs and block confirmations (optional).
+3. Optionally configure an executor or use defaults to deliver messages.
 4. Send messages, send tokens (OFT, ONFT), or read state on any chain, using LayerZero.
 
-## Example Use Cases
+## Example use cases
 
 LayerZero powers various cross-chain applications across different categories:
 
-1. **Omnichain Tokens (OFTs)** (e.g., [Ethena's USDe](https://ethena.fi/), Wrapped Bitcoin)
+1. **Omnichain tokens (OFTs)** (e.g., [Ethena's USDe](https://ethena.fi/), Wrapped Bitcoin)
    - Unified token supply across chains
    - Native bridging without intermediary tokens
    - Real-world examples include USDe, sUSDe, ENA tokens, and WBTC
 2. **Cross-chain DEXs** (e.g., [Trader Joe](https://traderjoexyz.com/))
    - Unified liquidity pools across chains
    - Cross-chain swaps and trading
-3. **Omnichain Lending** (e.g., [Radiant Capital](https://radiant.capital/))
+3. **Omnichain lending** (e.g., [Radiant Capital](https://radiant.capital/))
    - Supply assets on any chain
    - Borrow against cross-chain collateral
-4. **Cross-chain Governance** (e.g., [Stargate DAO](https://stargate.finance/))
+4. **Cross-chain governance** (e.g., [Stargate DAO](https://stargate.finance/))
    - Vote on one chain, execute on many
    - Unified governance across deployments
-5. **Chain Data Oracles**
+5. **Chain data oracles**
    - Read and verify external chain state
    - Make decisions based on cross-chain data
 
