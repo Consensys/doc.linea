@@ -83,6 +83,17 @@ const config = {
         },
       },
     ],
+    [
+      "redocusaurus",
+      {
+        specs: [
+          {
+            spec: "https://token-api.devnet.linea.build/docs-yaml",
+            route: "api/token-api/reference",
+          },
+        ],
+      },
+    ],
   ],
 
   themeConfig:
@@ -141,9 +152,9 @@ const config = {
           },
           {
             type: "doc",
-            docId: "api/index",
+            docId: "api/linea-smart-contracts/linearollup",
             position: "left",
-            label: "API & SDK",
+            label: "APIs & SDK",
           },
           {
             type: "doc",

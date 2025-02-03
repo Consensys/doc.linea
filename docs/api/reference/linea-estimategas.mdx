@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 
 # `linea_estimateGas`
 
-Generates and returns an estimate of how much gas is necessary to allow the transaction to complete 
+Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
 and be published on Ethereum. The transaction will not be added to the blockchain.
 
-For more information about estimating gas, and how this API formulates the transaction costs, see 
+For more information about estimating gas, and how this API formulates the transaction costs, see
 the [Estimate transaction costs](../../get-started/how-to/gas-fees.mdx) topic.
 
-The `priorityFeePerGas` returned by this method includes the cost of submitting the transaction to 
+The `priorityFeePerGas` returned by this method includes the cost of submitting the transaction to
 Ethereum, which can vary based on the size of the calldata.
 
 :::note
@@ -29,7 +29,7 @@ using `linea_estimateGas` for more accurate results.
 
 ## Parameters
 
-- `TRANSACTION CALL OBJECT` _\[required]_
+- `call`: _\[required]_ Transaction call object:
   - `from`: _\[optional]_ 20 bytes - The address the transaction is sent from.
   - `to`: _\[optional]_ 20 bytes - The address the transaction is directed to.
   - `gas`: _\[optional]_ Hexadecimal value of the gas provided for the transaction execution. `linea_estimateGas` consumes
@@ -40,13 +40,12 @@ using `linea_estimateGas` for more accurate results.
   - `value`: _\[optional]_ Hexadecimal value of the value sent with this transaction.
   - `data`: _\[optional]_ Hash of the method signature and encoded parameters. See the
       [Ethereum contract ABI specification](https://docs.soliditylang.org/en/latest/abi-spec.html).
-  - `block number`: _\[optional]_ A string representing a block number, or one of the string tags `latest`, `earliest`,
-      `pending`, or `finalized`.
-
-      :::note
-      A `finalized` block is a block on an L2 blockchain (Linea) that has been confirmed and validated by
-      the L1 blockchain (Ethereum).
-      :::
+- `stateOverride`: _\[optional]_  Object that contains the address-to-state mapping to [override state values](#override-state-values).
+    Each entry specifies a state that will be temporarily overridden before executing the call:
+  - `balance`: _\[optional]_ Hexadecimal of the temporary account balance for the call execution.
+  - `nonce`: _\[optional]_ Hexadecimal of the temporary nonce value for the call execution.
+  - `code` : _\[optional]_ Bytecode to inject into the account.
+  - `stateDiff`: `key:value` pairs to override individual slots in the account storage.
 
 ## Returns
 
@@ -57,12 +56,13 @@ fee per gas.
 
 :::tip
 
-You can also call the API using [Infura's supported Linea endpoints](https://docs.infura.io/api/networks/linea/choose-a-network).
+You can also call the API using [Infura's supported Linea endpoints](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
+
 :::
 
 ### Request
 
-<Tabs>
+<Tabs groupId="sdk-lang">
   <TabItem value="curl">
 
   ```bash
@@ -73,7 +73,8 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   ```
 
   </TabItem>
-  {/* <TabItem value="ethers.js">
+  <TabItem value="ethers.js">
+
   ```javascript
   type LineaEstimateGasResponse = {
     baseFeePerGas: string;
@@ -92,9 +93,10 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 
   const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
   console.log(fees);
-  ``` 
-  </TabItem> */}
+  ```
+  </TabItem>
   <TabItem value="viem">
+
   ```javascript
   import { createPublicClient, http, parseEther } from 'viem'
   import { linea } from 'viem/chains'
@@ -120,10 +122,14 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 
   EstimateGas();
   ```
+
   </TabItem>
 </Tabs>
 
 ### Response
+
+<Tabs groupId="sdk-lang">
+  <TabItem value="curl">
 
 ```JSON
 {
@@ -136,6 +142,30 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   }
 }
 ```
+
+  </TabItem>
+  <TabItem value="ethers.js">
+
+  ```javascript
+  {
+    baseFeePerGas: "0x7",
+    gasLimit: "0xcf08",
+    priorityFeePerGas: "0x43a82a4"
+  }
+  ```
+  </TabItem>
+  <TabItem value="viem">
+
+  ```javascript
+  {
+    baseFeePerGas: 7n,
+    gasLimit: 53000n,
+    priorityFeePerGas: 4444716n
+  }
+  ```
+
+  </TabItem>
+</Tabs>
 
 Where:
 - `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
@@ -152,3 +182,42 @@ decimals to get the wei value. You can use any hexadecimal to decimal converter 
 [RapidTables](https://www.rapidtables.com/convert/number/hex-to-decimal.html).
 
 :::
+
+## Override state values
+
+You can override an account with temporary state values before making the call. This allows you to
+make temporary state changes without affecting the actual blockchain state.
+
+The following example estimates the cost for transferring an ERC-20 token for an account which does not
+have the required assets onchain.
+
+The example sets a custom ETH balance for the sender (to cover gas costs) and modifies the account's
+balance within the ERC-20 contract's storage for the duration of the call.
+
+```json
+curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{
+  "jsonrpc":"2.0",
+  "method":"linea_estimateGas",
+  "params":[
+      {
+          "from":"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73",
+          "to":"0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f",
+          "data":"0xa9059cbb000000000000000000000000627306090abaB3A6e1400e9345bC60c78a8BEf570000000000000000000000000000000000000000000000001bc16d674ec80000"
+      },
+      {
+          "0xfe3b557e8fb62b89f4916b721be55ceb828dbd73": {
+              "balance": "0x16345785d8a0000"
+          },
+          "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f": {
+              "stateDiff":{
+                  "0x2d206e5210c119b1cbed144f517f1f1dfd586eed26793a233e6afc261f4cf97f":"0x0000000000000000000000000000000000000000000000001bc16d674ec80000"
+              }
+          }
+      }
+  ],
+  "id":53
+}'
+```

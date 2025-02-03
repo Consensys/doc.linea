@@ -5,9 +5,11 @@ image: /img/socialCards/bridge-your-tokens.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-There are multiple options to bridge tokens (ETH or ERC-20) when you need to provide liquidity. 
-Linea's default canonical token bridge allows you to bridge ETH or ERC-20 tokens using a UI.
+You can bridge tokens (ETH or ERC-20) to provide liquidity in different ways. Linea's default 
+canonical token bridge allows you to bridge ETH or ERC-20 tokens using a UI.
 
 The default canonical token bridge is suited for protocols that need their tokens on L2 for
 DeFi and other uses without any special requirement for custom features (Vanilla ERC20). For protocols
@@ -60,10 +62,70 @@ If you are interested by this option, please get in touch with us so that we can
 
 ## What are the execution fees?
 
-There are two types of execution fees that can be applied when you are bridging your tokens, the postman fee and the anti-DDOS fee.
+Two types of execution fees can be applied when you are bridging your tokens: the postman fee and 
+the anti-DDOS fee. Since the postman fee is only applied during the automatic claiming process, 
+execution fees vary depending on _what_ you're bridging and the direction.
 
-The postman fee is only applied during the automatic claiming process and is calculated by the following formula:
+Refer to the table for which fees will apply to your bridge transfer: 
 
-`Postman Fee = target layer gas price * (gas estimated + gas limit surplus) * margin` where target layer gas price is `eth_gasPrice` on the target layer, `gas estimated = 100,000`, `gas limit surplus = 6000`, and `margin = 2`.
+<Tabs className="my-tabs">
+    <TabItem value="ETH" label="ETH">
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Transaction fee</th>
+                <th>Anti-DDOS fee</th>
+                <th>Postman fee</th>
+            </tr>
+            <tr>
+                <td>L1 to L2 (Manual claiming)</td>
+                <td>:white_check_mark:</td>
+                <td>:x:</td>
+                <td>:x:</td>
+            </tr>
+            <tr>
+                <td>L1 to L2 (Automatic claiming)</td>
+                <td>:white_check_mark:</td>
+                <td>:x:</td>
+                <td>:white_check_mark:</td>
+            </tr>
+            <tr>
+                <td>L2 to L1 (Manual claiming)</td>
+                <td>:white_check_mark:</td>
+                <td>:white_check_mark:</td>
+                <td>:x:</td>
+            </tr>
+        </table>
+    </TabItem>
+    <TabItem value="ERC-20" label="ERC-20">
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Transaction fee</th>
+                <th>Anti-DDOS fee</th>
+                <th>Postman fee</th>
+            </tr>
+            <tr>
+                <td>L1 to L2 (Manual claiming)</td>
+                <td>:white_check_mark:</td>
+                <td>:x:</td>
+                <td>:x:</td>
+            </tr>
+            <tr>
+                <td>L2 to L1 (Manual claiming)</td>
+                <td>:white_check_mark:</td>
+                <td>:white_check_mark:</td>
+                <td>:x:</td>
+            </tr>
+        </table>
+    </TabItem>
+</Tabs>
 
-The anti-DDOS fee is only applied when bridging from L2 to L1 and is set to `0.001 Eth`
+Key:
+- Transaction fee: The transaction (gas) fee required for the bridge operation.
+- Anti-DDOS fee: A 0.001 ETH fee applied when bridging from L2 to L1.
+- Postman fee: `target layer gas price * (gas estimated + gas limit surplus) * margin`, where:
+  - `target layer gas price` = `eth_gasPrice` on the target layer
+  - `gas estimated` = 100,000
+  - `gas limit surplus` = 6000
+  - `margin` = 2

@@ -33,6 +33,8 @@
     "@docusaurus/core": "^3.6.3",
     "@docusaurus/faster": "^3.6.3",
     "@docusaurus/plugin-client-redirects": "^3.6.3",
+    "@docusaurus/plugin-content-docs": "^3.7.0",
+    "@docusaurus/plugin-google-gtag": "^3.7.0",
     "@docusaurus/plugin-google-tag-manager": "^3.6.3",
     "@docusaurus/preset-classic": "^3.6.3",
     "@docusaurus/theme-mermaid": "^3.6.3",
@@ -45,17 +47,20 @@
     "dotenv": "^16.4.5",
     "gray-matter": "^4.0.3",
     "hast-util-is-element": "^3.0.0",
+    "ignore": "^5.2.0",
     "postcss-safe-parser": "^7.0.0",
     "prism-react-renderer": "^1.3.5",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.12.0",
+    "redocusaurus": "^2.2.1",
     "rehype-katex": "^7.0.0",
     "remark-docusaurus-tabs": "^0.2.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.33.5",
-    "typescript-eslint": "^8.3.0"
+    "typescript-eslint": "^8.3.0",
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4",
@@ -82,8 +87,8 @@
     "lint-staged": "^15.2.9",
     "prettier": "3.3.3",
     "semantic-release": "^24.1.0",
-    "stylelint": "^16.9.0",
-    "stylelint-config-standard": "^36.0.1",
+    "stylelint": "16.13.0",
+    "stylelint-config-standard": "35.0.0",
     "tsc-files": "^1.1.3",
     "typescript": "^5.0.0"
   },
@@ -101,7 +106,7 @@
     ]
   },
   "engines": {
-    "node": "20.x"
+    "node": "20"
   },
   "commitlint": {
     "extends": [

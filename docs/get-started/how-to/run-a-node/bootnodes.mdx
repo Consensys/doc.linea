@@ -13,6 +13,16 @@ optimize performance, we recommend you select a location that corresponds to you
 Choosing a closer region will minimize latency, but any enode will work regardless of the location 
 you choose.
 
+:::info
+
+Only bootnodes listening to `31004` are bootnodes, as they are used by nodes to find other peers,
+and do not process any transactions. Others, listening to `31000`-`31003` are peer-to-peer nodes, 
+which do process transactions. 
+
+Any of the nodes on this page can be used for peer discovery.
+
+:::
+
 ## `us-east-2`
 
 - `enode://069800db9e6e0ec9cadca670994ef1aea2cfd3d88133e63ecadbc1cdbd1a5847b09838ee08d8b5f02a9c32ee13abeb4d4104bb5514e5322c9d7ee19f41ff3e51@3.132.73.210:31002`
