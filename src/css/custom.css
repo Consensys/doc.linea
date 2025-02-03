@@ -948,7 +948,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 /* Basic circle icons for navbar items */
 .navbar__link[href="/get-started"]::before,
-.navbar__link[href="/learn"]::before,
+.navbar__link[href="/learn/marketplace-dapp"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
 .navbar__link[href="/technology/architecture"]::before,
 .navbar__link[href="/release-notes"]::before,
@@ -967,8 +967,8 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 
 /* hover effect for circles */
 .navbar__link[href="/get-started"]:hover::before,
-.navbar__link[href="/learn"]:hover::before,
-.navbar__link[href="/api"]:hover::before,
+.navbar__link[href="/learn/marketplace-dapp"]:hover::before,
+.navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
 .navbar__link[href="/technology/architecture"]:hover::before,
 .navbar__link[href="/release-notes"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
