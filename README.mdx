@@ -53,6 +53,17 @@ consider creating an issue instead.
 The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
 other than for images and other media, for which we have [specific guidelines](#adding-images-to-articles).
 
+#### Orthography
+
+Some key points include:
+- Sentence case for all headings and subheadings.
+  - More generally, and if in doubt, stick to lowercase for nouns unless you're referencing a 
+  product name or feature.
+- Use [descriptive link text](https://developers.google.com/style/link-text?hl=en) — embed the link
+in your statement rather than asking the reader to "click here" or similar.
+
+#### Markdown style
+
 Additionally, please adhere to these rules: 
 - **Use `.mdx` files.** The docs site is standardized to use `.mdx` files rather than `.md` files to
 ensure that React components and other elements can be rendered properly. 
@@ -61,10 +72,26 @@ ensure that React components and other elements can be rendered properly.
 HTML syntax is easier to maintain. Standardization also applies here: some elements we frequently
 use, such as `<Tabs>`, _must_ use HTMl syntax, so applying HTML universally helps to avoid the site 
 containing a mix of both styles.
+- Use a YAML-style front matter at the top of each file, like this: (check existing files for an 
+example)
+   ```
+   ---
+   title: Title of the article
+   description: Description of the article
+   ---
+   ```
 
+> [!TIP]
+> You may notice a field in the front matter of our docs called `image`, like:
+> `image: /img/socialCards/architecture.jpg`. **This field is auto-generated
+> on build, so don't add it manually.**
+  
 Please return to any submitted PRs regularly to help us work through feedback and comments and 
 merge as soon as we can. If you do not return to your PR for edits within three months of us 
 reviewing, we will close the PR. 
+
+> [!NOTE]  
+> The files at `api/linea-smart-contracts` are automatically generated, and should not be edited.
 
 #### Guidance for ecosystem contributions
 
