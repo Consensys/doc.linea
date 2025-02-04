@@ -166,18 +166,18 @@ mode.
 
 ### ENS on Linea
 
-Adds support for Linea ENS domains, including a frontend app for users to register and manage their
-domains. The Linea ENS system is comparable to ENS on Ethereum Mainnet, except that domains are 
+Adds support for Linea Names domains, including a frontend app for users to register and manage their
+domains. The Linea Names system is comparable to ENS on Ethereum Mainnet, except that domains are 
 limited to one per account and registering requires completion of [Proof of Humanity](https://poh.linea.build/).
-As the system leverages CCIP Read, which enables L1 to trustlessly query the Linea ENS registry 
-through an offchain gateway, Linea ENS domains resolve on L1. 
+As the system leverages CCIP Read, which enables L1 to trustlessly query the Linea Names registry 
+through an offchain gateway, Linea Names domains resolve on L1. 
 
 Read more about ENS in the user guide [here](https://support.linea.build/general/ens).
 
 ### CCIP Read
 
 One of the building blocks of ENS on Linea is a custom implementation of CCIP Read, which uses the
-gateway system introduced in EIP-3668 to enable Linea ENS names to resolve on L1. The key 
+gateway system introduced in EIP-3668 to enable Linea Names domains to resolve on L1. The key 
 contracts created by ENS have been adjusted by the Linea team to ensure they work with Linea's
 Sparse Merkle Tree system. 
 
@@ -187,7 +187,7 @@ for more information and guidance on how to use the relevant contracts.
 
 The Linea repository containing the relevant contracts is [here](https://github.com/Consensys/linea-ens).
 
-Consensys Diligence carried out an audit on Linea ENS, available [here](https://consensys.io/diligence/audits/2024/06/linea-ens/).
+Consensys Diligence carried out an audit on Linea Names, available [here](https://consensys.io/diligence/audits/2024/06/linea-ens/).
 
 ### `linea_estimateGas` mainnet activation
 
