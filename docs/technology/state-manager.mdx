@@ -160,7 +160,7 @@ The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a [M
 - Account storage state (or simply 'storage'), which keeps track of the contents of each account. 
 
 On Linea, we adapt this structure. The Merkle-Patricia Trie is still used for world state, but the
-custom cryptographic accumulator described above is used for account storage state.
+custom cryptographic accumulator described above is used for the account storage state.
 
 The accumulator can perform the following operations:
 - **Insertion**: adding a new storage slot to the tree, triggered by storing a non-zero value in a 
