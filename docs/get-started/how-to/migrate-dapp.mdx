@@ -1,0 +1,67 @@
+---
+title: Migrate a dapp to Linea
+description: An overview of the steps to move a dapp from an EVM-compatible chain to Linea.
+---
+
+Linea is EVM-equivalent, which means any dapp running on another chain compatible with the 
+Ethereum Virtual Machine (EVM) can run on Linea with no changes. Accordingly, all you'll need to do 
+is: 
+- Duplicate your existing smart contracts and deploy them on Linea.
+- Configure your dapp's backend code to interact with Linea.
+- Update your dapp's frontend to display Linea options to users.
+
+## Differences with other EVM-compatible chains
+
+Although Linea's functions under the hood are, naturally, significantly different from Ethereum 
+Mainnet and from many other EVM-compatible chains, the differences for builders are intentionally
+minimal. However, there are a handful of differences to bear in mind.
+
+These are covered in detail on our [Ethereum differences page](../build/ethereum-differences.mdx). 
+In summary:
+- Linea uses the [London](https://ethereum.org/en/history/#london) version of the EVM, which means
+the availability of some opcodes differs from other chains. 
+- Some precompiles behave differently.
+- The standard JSON-RPC API is largely the same, but has a few Linea-specific methods and one that
+behaves differently from its Ethereum Mainnet equivalent. Notably, we recommend you use 
+`linea_estimateGas` for the most accurate gas prices for your users.
+
+[Evmdiff](https://www.evmdiff.com/) is a useful resource for comparing Linea with other chains.
+
+## Deploy smart contracts
+
+Your dapp's existing contracts must be deployed on Linea. [Part one](../build/quickstart/deploy.mdx) 
+of our quickstart covers this, or you can pick one of multiple [contract deployment tooling guides](./deploy-smart-contract/index.mdx).
+
+## Configure backend
+
+You'll need to make sure your dapp is configured to interact with Linea. 
+
+### Chain information
+
+You may need to update your dapp with Linea chain information, which our [network information page](../build/network-info.mdx)
+covers.
+
+### RPC providers
+
+Most major RPC providers support Linea RPC endpoints. Visit our [RPC providers page](../tooling/node-providers/index.mdx) 
+for a non-exhaustive list of public and private endpoints.
+
+:::note
+Not all RPC providers support Linea-specific JSON-RPC API methods such as `linea_estimateGas`. The
+node providers page details which providers do support these methods.
+:::
+
+### Wallet connection
+
+Multiple [libraries](../tooling/libraries), including Wagmi and Viem, support Linea wallet 
+connectors. 
+
+Check out our [wallet connection guide](../how-to/connect-wallet.mdx) for additional information.
+
+## Configure frontend
+
+### Linea brand assets
+
+The Linea site has a zip file of official Linea logos and icons [available for download](https://linea.build/assets),
+available as both PNGs and SVGs. If you need some assets or media that aren't covered here, please 
+reach out on Discord.
