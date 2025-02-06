@@ -84,7 +84,6 @@ const sidebars = {
         },
         "get-started/how-to/linea-safe",
         "get-started/how-to/deploy-subdomain",
-        "get-started/how-to/linea-inscriptions",
         "get-started/how-to/finalized-block",
         {
           type: "category",
