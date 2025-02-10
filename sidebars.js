@@ -242,6 +242,7 @@ const sidebars = {
             "get-started/tooling/data-indexers/subquery",
             "get-started/tooling/data-indexers/scopescan",
             "get-started/tooling/data-indexers/thegraph",
+            "get-started/tooling/data-indexers/bitscrunch",
           ],
         },
         {
