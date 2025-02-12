@@ -362,36 +362,27 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/marketplace-dapp",
+    "learn/voting-dapp",
     {
       type: "category",
-      label: "Learn",
+      label: "Ecosystem tutorials",
       link: {
         type: "doc",
-        id: "learn/index",
+        id: "learn/ecosystem-tutorials/index",
       },
       collapsible: false,
       items: [
         {
           type: "category",
-          label: "Ecosystem tutorials",
+          label: "Irys",
           link: {
             type: "doc",
-            id: "learn/ecosystem-tutorials/index",
+            id: "learn/ecosystem-tutorials/irys/index",
           },
-          collapsible: false,
           items: [
-            {
-              type: "category",
-              label: "Irys",
-              link: {
-                type: "doc",
-                id: "learn/ecosystem-tutorials/irys/index",
-              },
-              items: [
-                "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
-                "learn/ecosystem-tutorials/irys/irys-nfts",
-              ],
-            },
+            "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
+            "learn/ecosystem-tutorials/irys/irys-nfts",
           ],
         },
       ],

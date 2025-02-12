@@ -107,8 +107,8 @@ Finally, modify `foundry.toml` to include the Etherscan configurations:
 
 ```bash
 [etherscan]
-linea-sepolia = { key = "${LINEASCAN_API_KEY}", url = "https://api-sepolia.lineascan.build/api" }
-linea-mainnet = { key = "${LINEASCAN_API_KEY}", url = "https://api.lineascan.build/api" }
+linea-sepolia = { key = "${LINEASCAN_API_KEY}", chain = 59141, url = "https://api-sepolia.lineascan.build/api" }
+linea-mainnet = { key = "${LINEASCAN_API_KEY}", chain = 59144, url = "https://api.lineascan.build/api" }
 ```
 
 Then, to verify your smart contracts, you can simply run:
