@@ -3,29 +3,19 @@ title: Arcana
 image: /img/socialCards/arcana.jpg
 ---
 
-[Arcana Network](https://arcana.network) SDKs enable web3 developers to use [social login](https://docs.arcana.network/concepts/social-login) 
-to onboard app users. 
+## Social Login
 
-Authenticated users can instantly access the embedded, non-custodial [Arcana wallet](https://docs.arcana.network/concepts/anwallet/) 
-from within the app context and sign blockchain transactions.
+[Arcana Auth SDK](https://arcana.network/auth) enables web3 developers to onboard app users quickly via [social login](https://docs.arcana.network/concepts/social-login). It enables the in-app, non-custodial [Arcana wallet](https://docs.arcana.network/concepts/anwallet/) for authenticated users to sign blockchain transactions. 
 
-Developers can leverage the built-in gasless feature to sponsor gas fees for allowlisted blockchain 
-transactions. The gasless transactions can be enabled for Arcana Wallet and third-party, 
-browser-based wallets.
+To get started, see the [Auth Quickstart Guide](https://docs.arcana.network/quick-start/) and follow the steps to integrate Web3 app. Use the appropriate SDK flavor as per your [app type](https://docs.arcana.network/sdk-installation). 
 
-Use the [auth quickstart guide](https://docs.arcana.network/howto/) to allow social login for 
-onboarding users and enable Arcana Wallet in the app context. 
+## In-app Arcana Wallet
 
-To enable gasless transactions in third-party wallets, see the [Arcana gasless quickstart guide](https://docs.arcana.network/quick-start/gasless-standalone-quick-start).
+The [Arcana wallet](https://docs.arcana.network/concepts/anwallet/) is a built-in, in-app, non-custodial, wallet available via the [Arcana Auth SDK](https://docs.arcana.network/concepts/authsdk). It is available for [web, mobile, and gaming apps](https://docs.arcana.network/sdk-installation). 
 
-## Arcana Wallet
+The Linea chain is available out of the box for Web3 app users via the in-app Arcana wallet. It is pre-configured in the blockchain network list. Developers can select it as the [default chain](https://docs.arcana.network/setup/config-dapp-with-db/) by using the [Arcana Developer Dashboard](https://dashboard.arcana.network/). 
 
-Linea chain is available out of the box as part of the pre-configured blockchain network list in the 
-[Arcana wallet](https://docs.arcana.network/concepts/anwallet/). Users don't need to install a 
-browser extension to use the Arcana wallet. Authenticated users of apps integrated with the 
-[Arcana Auth SDK](https://docs.arcana.network/concepts/authsdk) can instantly access the Arcana 
-wallet from within the app context. It is a built-in, non-custodial, embedded wallet available via 
-the Arcana Auth SDK.
+The users of apps integrated with the Arcana Auth SDK don't need to install a browser extension to use the Arcana wallet or switch to Linea chain. When a user logs into the app, they can instantly access the Arcana wallet and sign blockchain transactions on Linea which is automatically selected as the active chain. This simplifies UX and speeds up app onboarding. 
 
 <div class="center-container">
   <div class="img-medium">
@@ -39,10 +29,6 @@ the Arcana Auth SDK.
 Developers can tailor the user experience of signing blockchain transactions. Besides the look and 
 feel of the wallet, developers can also control the Arcana wallet UI display to sign blockchain 
 transactions.
-
-Arcana Wallet is available for [desktop, mobile, and gaming apps (coming soon!)](https://docs.arcana.network/sdk-installation). 
-App developers can configure [gasless transactions](https://docs.arcana.network/concepts/gasless-ops) 
-through the Arcana Wallet where users pay zero gas fees.
 
 [Learn more](https://docs.arcana.network/user-guides/wallet-ui/).
 
@@ -58,22 +44,19 @@ Developers need to follow these steps for integration:
 and copy the unique client identifier for the app.
 2. **Configure Auth SDK usage** via the dashboard, specify social login options, wallet user 
 experience settings, gasless transaction settings, etc.
-3. **Install the Arcana Auth SDK and use the client identifier to integrate the app**. Initialize 
-the `AuthProvider`, then add a single line code to onboard users by calling the `connect()` method 
-and enabling the plug-and-play login UI. After a successful user login, *Arcana wallet will 
-automatically display within the app context*, enabling the user to sign blockchain transactions 
-instantly. 
+3. **Download and [install](https://docs.arcana.network/sdk-installation)** the Arcana Auth SDK, integrate the app, and add a single line code to onboard users by using the plug-and-play login ui via the`connect()` method. After a successful user login, *Arcana wallet will automatically display within the app context*, enabling the user to sign blockchain transactions instantly. 
 
 :::note
 
-Arcana wallet supports [JSON/RPC calls and web3 wallet operations](https://docs.arcana.network/web-sdk/auth-usage-guide#arcana-wallet-operations).
+The in-app Arcana Wallet supports [JSON/RPC calls and web3 wallet operations](https://docs.arcana.network/auth/web3-ops/evm/).
 
 :::
 
 ## References
 
-* [Social login providers](https://docs.arcana.network/state-of-the-arcana-auth#app-login)
-* [Blockchain networks](https://docs.arcana.network/state-of-the-arcana-auth#supported-blockchains)
-* [Browsers](https://docs.arcana.network/state-of-the-arcana-auth#supported-browsers)
-* [Supported app types](https://docs.arcana.network/sdk-installation)
-* [SDK reference guides](https://docs.arcana.network/dev-resources/sdk-ref/)
+* [Social login providers](https://docs.arcana.network/web3-stack/auth/)
+* [Blockchain networks](https://docs.arcana.network/web3-stack/chains/)
+* [Browsers](https://docs.arcana.network/web3-stack/browsers/)
+* [Supported app types](https://docs.arcana.network/web3-stack/apps/)
+* [API](https://docs.arcana.network/auth/auth-usage-guide/)
+* [Arcana Developer Dashboard](https://dashboard.arcana.network/)
