@@ -1,6 +1,6 @@
 # `TokenBridge`
 
-Contract to manage cross-chain ERC20 bridging.
+Contract to manage cross-chain ERC-20 bridging.
 
 ### CONTRACT_VERSION
 
@@ -217,7 +217,7 @@ function bridgeToken(address _token, uint256 _amount, address _recipient) public
 
 This function is the single entry point to bridge tokens to the
   other chain, both for native and already bridged tokens. You can use it
-  to bridge any ERC20. If the token is bridged for the first time an ERC20
+  to bridge any ERC-20. If the token is bridged for the first time an ERC-20
   (BridgedToken.sol) will be automatically deployed on the target chain.
 
 _User should first allow the bridge to transfer tokens on his behalf.
@@ -230,7 +230,7 @@ _User should first allow the bridge to transfer tokens on his behalf.
   Linea can pause the bridge for security reason. In this case new bridge
   transaction would revert.
 Note: If, when bridging an unbridged token and decimals are unknown,
-the call will revert to prevent mismatched decimals. Only those ERC20s,
+the call will revert to prevent mismatched decimals. Only those ERC-20s,
 with a decimals function are supported._
 
 #### Parameters
@@ -248,7 +248,7 @@ function bridgeTokenWithPermit(address _token, uint256 _amount, address _recipie
 ```
 
 Similar to `bridgeToken` function but allows to pass additional
-  permit data to do the ERC20 approval in a single transaction.
+  permit data to do the ERC-20 approval in a single transaction.
 _permit can fail silently, don't rely on this function passing as a form
   of authentication
 
@@ -412,7 +412,7 @@ REMOVE_RESERVED_TOKEN_ROLE is required to execute._
 function setCustomContract(address _nativeToken, address _targetContract) external
 ```
 
-_Linea can set a custom ERC20 contract for specific ERC20.
+_Linea can set a custom ERC-20 contract for specific ERC-20.
   For security purpose, Linea can only call this function if the token has
   not been bridged yet.
 SET_CUSTOM_CONTRACT_ROLE is required to execute._
@@ -430,7 +430,7 @@ SET_CUSTOM_CONTRACT_ROLE is required to execute._
 function _safeName(address _token) internal view returns (string tokenName)
 ```
 
-_Provides a safe ERC20.name version which returns 'NO_NAME' as fallback string._
+_Provides a safe ERC-20.name version which returns 'NO_NAME' as fallback string._
 
 #### Parameters
 
@@ -450,7 +450,7 @@ _Provides a safe ERC20.name version which returns 'NO_NAME' as fallback string._
 function _safeSymbol(address _token) internal view returns (string symbol)
 ```
 
-_Provides a safe ERC20.symbol version which returns 'NO_SYMBOL' as fallback string_
+_Provides a safe ERC-20.symbol version which returns 'NO_SYMBOL' as fallback string_
 
 #### Parameters
 
@@ -470,7 +470,7 @@ _Provides a safe ERC20.symbol version which returns 'NO_SYMBOL' as fallback stri
 function _safeDecimals(address _token) internal view returns (uint8)
 ```
 
-Provides a safe ERC20.decimals version which reverts when decimals are unknown
+Provides a safe ERC-20.decimals version which reverts when decimals are unknown
   Note Tokens with (decimals > 255) are not supported
 
 #### Parameters
@@ -511,13 +511,13 @@ _Converts returned data to string. Returns 'NOT_VALID_ENCODING' as fallback valu
 function _permit(address _token, bytes _permitData) internal
 ```
 
-Call the token permit method of extended ERC20
+Call the token permit method of extended ERC-20
 Only support tokens implementing ERC-2612
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _token | address | ERC20 token address |
+| _token | address | ERC-20 token address |
 | _permitData | bytes | Raw data of the call `permit` of the token |
 

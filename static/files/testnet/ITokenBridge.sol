@@ -37,7 +37,7 @@ interface ITokenBridge {
 
   /**
    * @notice Similar to `bridgeToken` function but allows to pass additional
-   *   permit data to do the ERC20 approval in a single transaction.
+   *   permit data to do the ERC-20 approval in a single transaction.
    * @param _token The address of the token to be bridged.
    * @param _amount The amount of the token to be bridged.
    * @param _recipient The address that will receive the tokens on the other chain.
@@ -97,7 +97,7 @@ interface ITokenBridge {
   function removeReserved(address _token) external;
 
   /**
-   * @dev Linea can set a custom ERC20 contract for specific ERC20.
+   * @dev Linea can set a custom ERC-20 contract for specific ERC-20.
    *   For security purpose, Linea can only call this function if the token has
    *   not been bridged yet.
    * @param _nativeToken address of the token on the source chain.
