@@ -184,6 +184,7 @@ const sidebars = {
             id: "get-started/tooling/cross-chain/index",
           },
           items: [
+            "get-started/tooling/cross-chain/arcana",
             "get-started/tooling/cross-chain/axelar",
             "get-started/tooling/cross-chain/ccip",
             "get-started/tooling/cross-chain/ccip-read",
