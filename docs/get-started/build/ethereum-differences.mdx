@@ -42,7 +42,9 @@ forks, and updates to the blockchain.
         <td>`BLOCKHASH`</td>
         <td>Returns the hash of a requested block from the 256 most recent blocks.</td>
         <td>Identical function to Ethereum.</td>
-        <td>Returns the correct value, but the value is not guaranteed by the proof.</td>
+        <td>Returns the correct value, but the value is not guaranteed by the proof (Linea is a 
+        [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and uses/proves an 
+        L2-specific state representation).</td>
     </tr>
     <tr>
         <td>`DIFFICULTY`/`PREVRANDAO`</td>
