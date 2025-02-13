@@ -101,6 +101,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
+        "get-started/how-to/poh-api",
       ],
     },
     {

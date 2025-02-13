@@ -1,0 +1,112 @@
+---
+title: Check Proof of Humanity
+description: Use the Linea Proof of Humanity API to verify the authenticity of your users.
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Proof of Humanity (API) is a service that was originally created to verify community members 
+taking part in the Linea Voyage. It pulls together many potential attestation providers that users 
+can authorise to demonstrate their personhood.
+
+You can check PoH status through our public API, enabling you to better determine that your users 
+are genuine and not Sybil accounts.
+
+To check and secure PoH status, visit the [Linea PoH page](https://poh.linea.build/).
+
+## Offchain verification
+
+The API endpoint for the service is: `https://linea-xp-poh-api.linea.build/`
+
+### Usage
+
+Call the endpoint with the format:
+
+```
+https://linea-xp-poh-api.linea.build/poh/{address}
+```
+
+For example: 
+
+```bash
+curl -X GET "https://linea-xp-poh-api.linea.build/poh/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46C6"
+```
+
+### Response
+
+The main focus of the response is the `poh` field:
+- `false` = address does not have PoH status, i.e. is likely a Sybil account
+- `true` = address has PoH status.
+
+Response schema:
+
+```json
+{
+    "poh": boolean,  // Proof of Humanity status
+    "isFlagged": boolean,  // Indicates PoH status
+    "attestations": [
+        {
+        "validated": boolean,  // Whether the attestation is verified
+        "issuerName": string,  // Attestation provider name
+        "issuerSlugName": string,  // Unique identifier for the issuer
+        "issuerDescription": string,  // Description of the attestation
+        "issuerWebsiteUrl": string,  // URL to the issuer’s website
+        "issuerLogoUrl": string,  // Logo URL of the issuer
+        "group": integer  // Category of the attestation
+        }
+    ]
+}
+```
+
+### Reference
+
+See the [Swagger UI](https://linea-xp-poh-api.linea.build/#/PoH/PohController_getOnePOH) for more 
+information. 
+
+## Signed onchain verification
+
+The [PohVerifier.sol contract](https://lineascan.build/address/0xBf14cFAFD7B83f6de881ae6dc10796ddD7220831) 
+can be used together with a trusted source of PoH status data.
+
+### Usage
+
+#### Get signed PoH status
+
+Call the signer endpoint `https://linea-poh-signer-api.linea.build/` in the format:
+
+```
+https://linea-poh-signer-api.linea.build/poh/{address}
+```
+
+This is the _trusted source_ of PoH status data. 
+
+For example:
+```bash
+curl -X GET https://linea-poh-signer-api.linea.build/poh/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46C6
+```
+
+This returns a signed message that contains the PoH status of the provided address. For example:
+
+```
+0xa11a6c92fa0027d9de2a0c8ab363b1af083497da57f871c93aeb9efcd32ffaeb677fafb2c005e8165181713220b8a1da2f70ed31d7820b8fa086a8e7361dbf121c
+```
+
+#### Call `PohVerifier.sol`
+
+Call the `PohVerifier.sol` smart contract's `verify()` function with the signed message and the 
+address of the account being queried. The contract confirms that the signed message provided in the 
+previous step was signed by the signer defined in the contract, and returns a boolean demonstrating
+whether the address has PoH status.
+
+```
+verify(bytes memory signature, address human)
+```
+
+Parameters:
+- `signature`: The signed message from the previous step.
+- `address`: The address of the account being queried.
+
+`verify()` returns a boolean:
+- `true`: The account has PoH status.
+- `false`: The account does not have PoH status.
