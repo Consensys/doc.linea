@@ -118,7 +118,6 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            "get-started/tooling/account-abstraction/arcana",
             "get-started/tooling/account-abstraction/pimlico",
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
