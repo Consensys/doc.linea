@@ -1,0 +1,50 @@
+---
+title: Get data from an oracle
+description: Learn how to access price data from an oracle.
+---
+
+Web3 oracles are services that enable smart contracts and offchain code to access "real-world" 
+(offchain) data, such as token prices. Without oracles, smart contracts would be restricted to using
+only the data that is stored onchain, and unable to react to external inputs. 
+
+Oracles can be accessed both onchain, by smart contracts, and offchain, in widely used languages like
+JavaScript. 
+
+In this guide, we'll focus on the most popular oracle data type: token prices.
+
+## Use an oracle in a smart contract
+
+### Chainlink
+
+## Use an oracle in offchain code
+
+### Chainlink
+
+The Chainlink oracle product is called Data Feeds, and all the necessary smart contracts are 
+available on Linea.
+
+To query a Chainlink Data Feed, you need:
+- An RPC endpoint on Linea Mainnet or Linea Sepolia
+- A smart contract address for the Data Feed you want to read. 
+
+### Get LINK on Linea
+
+LINK is the native token of the Chainlink network and is required to pay for requests, reflecting
+the service rendered by Chainlink's decentralized network of node operators.
+
+If you want to develop on Linea Mainnet, you'll need to purchase LINK; for Linea Sepolia, a [faucet
+is provided by Chainlink](https://faucets.chain.link/linea-sepolia). 
+
+### Install ethers.js
+
+ethers.js is a JavaScript library for interacting with EVM-compatible blockchains like Linea. 
+
+Install the npm package:
+
+```bash
+npm install ethers
+```
+
+### Find Data Feed
+
+Chainlink maintains a registry of Data Feeds, each represented by a smart contract address. [Access it](https://docs.chain.link/data-feeds/price-feeds/addresses?network=linea) and ensure you filter by Linea. 
