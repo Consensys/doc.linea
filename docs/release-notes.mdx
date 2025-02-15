@@ -87,7 +87,7 @@ Code in the upgrade has been audited by:
   role. The update adds role-based access with more granular roles per function, particularly for 
   pausing.
 - Remove `finalizeBlocksWithoutProof` function
-  - The function enabled finalization without proof. This allowed network activity to continue 
+  - The function enabled finalization without proofs. This allowed network activity to continue 
   while fundamental changes, such as changing the state management hashing mechanism, were being 
   made. This is the only time the function was used, and it was primarily retained as a contingency.
 - Allow any address to finalize blocks if no finalization has occurred in the last six months
