@@ -25,7 +25,7 @@
   border: 0;
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .video-container {
     width: 100%;
   }
@@ -62,7 +62,7 @@
   flex-shrink: 0;
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .img-xsmall {
     width: 50%;
     flex-shrink: 0;
