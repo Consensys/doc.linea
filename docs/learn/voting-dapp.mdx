@@ -4,42 +4,42 @@ description: A step-by-step guide to building a simple voting dapp on Linea.
 image: /img/socialCards/build-a-voting-dapp.jpg
 ---
 
-Web3 values such as transparency, trust and decentralization naturally lend themselves to 
+Web3 values such as transparency, trust and decentralization naturally lend themselves to
 decentralized voting, where removing intermediaries and ensuring transparency can significantly
-enhance the democratic process. 
+enhance the democratic process.
 
-In this tutorial, we will build a simple voting dapp, and you'll learn how to write, deploy and 
+In this tutorial, we will build a simple voting dapp, and you'll learn how to write, deploy and
 interact with a smart contract designed for a decentralized voting process.
 
 ## Architecture
 
-The voting dapp has three main components: 
+The voting dapp has three main components:
 - Smart contracts
 - The smart contracts' integration
 - Frontend interface.
 
-The smart contract handles critical functionalities such as: 
+The smart contract handles critical functionalities such as:
 - Registering candidates
 - Allowing users to give their votes based on candidates index numbers
 - Enforcing a one-vote-per-address policy
-- Managing the voting period by automatically closing it after a specified duration. 
+- Managing the voting period by automatically closing it after a specified duration.
 
-The smart contract makes sure that the voting process is secure, transparent, and tamper-proof by 
+The smart contract makes sure that the voting process is secure, transparent, and tamper-proof by
 recording all votes on the blockchain.
 
-The frontend interface is the user-facing part of the application where users can interact and cast 
-their votes by inputting the candidate index number. It also can show information about the 
+The frontend interface is the user-facing part of the application where users can interact and cast
+their votes by inputting the candidate index number. It also can show information about the
 remaining time period.
 
-To ensure seamless interaction with the Linea blockchain, we'll utilize the MetaMask SDK and Wagmi 
-and connect through Infura RPC providers. These tools allow the frontend to communicate with the 
-blockchain, enabling users to sign transactions and interact with the smart contracts directly from 
-their web browsers. 
+To ensure seamless interaction with the Linea blockchain, we'll utilize the MetaMask SDK and Wagmi
+and connect through Infura RPC providers. These tools allow the frontend to communicate with the
+blockchain, enabling users to sign transactions and interact with the smart contracts directly from
+their web browsers.
 
 ## Set up the environment
 
-Before we start building our dapp, we'll set up the development environment using **Consensys's 
-Create Web3 Template CLI**. This tool streamlines the process by generating a monorepo structure 
+Before we start building our dapp, we'll set up the development environment using **Consensys's
+Create Web3 Template CLI**. This tool streamlines the process by generating a monorepo structure
 that includes both the frontend and backend components needed for our application.
 
 ### Prerequisites
@@ -49,62 +49,62 @@ that includes both the frontend and backend components needed for our applicatio
 
 ### Initialize the project
 
-Let's create a new project using the [Create Web3 Template CLI](https://www.npmjs.com/package/@consensys/create-web3-template) 
+Let's create a new project using the [Create Web3 Template CLI](https://www.npmjs.com/package/@consensys/create-web3-template)
 by Consensys.
 
-This command-line tool simplifies the setup process by providing all the necessary tools and 
-integrations out of the box, including MetaMask SDK, Linea support, Infura integration, and a 
+This command-line tool simplifies the setup process by providing all the necessary tools and
+integrations out of the box, including MetaMask SDK, Linea support, Infura integration, and a
 selection of templates to choose from.
 
 1. Open your terminal and run the following command:
-    
+
     ```bash
     pnpm create @consensys/create-web3-template
     ```
-    
+
 2. You'll be prompted to specify a name for your project. We'll name it `simple-voting-dapp`:
-    
+
     ```
     ? Please specify a name for your project: simple-voting-dapp
     ```
-    
+
 3. Next, select the framework for your frontend. We'll choose **Next.js**:
-    
+
     ```
     ? Please select the framework you want to use:
       HardHat Vanilla
       React
     ❯ Next.js
     ```
-    
+
     *Selected framework: Next.js*
-    
+
 4. Choose the smart contract development environment. We'll go with **HardHat**:
-    
+
     ```
     ? Would you like to use HardHat or Foundry?
     ❯ HardHat
       Foundry
-    
+
     ```
-    
+
     *Selected tooling: HardHat*
-    
+
 5. Select your preferred package manager. We'll use **pnpm**:
-    
+
     ```
     ? Please select the package manager you want to use:
       Yarn
       NPM
     ❯ pnpm
-    
+
     ```
-    
+
 6. The CLI will generate the project based on your selections.
 
 ### Project structure
 
-After the setup is complete, your project directory `simple-voting-dapp` will have the following 
+After the setup is complete, your project directory `simple-voting-dapp` will have the following
 structure:
 
 ```
@@ -138,8 +138,8 @@ This command will install all packages for both the frontend and backend compone
 
 ### Understanding the monorepo
 
-A **monorepo** (monolithic repository) is a single repository that stores code for multiple 
-projects or packages. In our case, it allows us to manage both the frontend and backend in a 
+A **monorepo** (monolithic repository) is a single repository that stores code for multiple
+projects or packages. In our case, it allows us to manage both the frontend and backend in a
 unified codebase, making development and maintenance more efficient.
 
 ### Verify the setup
@@ -149,40 +149,40 @@ To ensure everything is set up correctly, let's run the development servers.
 **For the frontend:**
 
 1. Navigate to the `site` directory:
-    
+
     ```bash
     cd packages/site
     ```
-    
+
 2. Start the Next.js development server:
-    
+
     ```bash
     pnpm dev
     ```
-    
+
 3. Open your browser and go to `http://localhost:3000` to see the frontend running.
 
 **For the backend:**
 
 1. Open a new terminal window.
 2. Navigate to the `blockchain` directory:
-    
+
     ```bash
     cd packages/blockchain
     ```
-    
+
 3. Compile the default smart contracts:
-    
+
     ```bash
     pnpm hardhat compile
     ```
-    
+
     This will compile the sample contracts included in the HardHat setup.
-    
+
 
 ## Write the smart contract
 
-Let's create a `Voting.sol` file and add the following code: 
+Let's create a `Voting.sol` file and add the following code:
 
 ```jsx
 // SPDX-License-Identifier: MIT
@@ -200,16 +200,16 @@ contract Voting {
 
     /// @notice Array to store all candidates
     Candidate[] public candidates;
-    
+
     /// @notice Address of the contract owner
     address owner;
-    
+
     /// @notice Mapping to track if an address has voted
     mapping(address => bool) public voters;
 
     /// @notice Timestamp when voting starts
     uint256 public votingStart;
-    
+
     /// @notice Timestamp when voting ends
     uint256 public votingEnd;
 
@@ -277,11 +277,11 @@ contract Voting {
 }
 ```
 
-This contract provides a basic framework for a decentralized voting system where users can cast 
-votes for candidates securely and transparently. It ensures that each user can vote only once by 
-tracking voter addresses, and it maintains a record of all votes on the blockchain. The contract 
-manages the voting period by specifying start and end times, enforcing voting rules, and providing 
-functions to retrieve voting results and status. Let's explore the concept of the smart contract a 
+This contract provides a basic framework for a decentralized voting system where users can cast
+votes for candidates securely and transparently. It ensures that each user can vote only once by
+tracking voter addresses, and it maintains a record of all votes on the blockchain. The contract
+manages the voting period by specifying start and end times, enforcing voting rules, and providing
+functions to retrieve voting results and status. Let's explore the concept of the smart contract a
 bit more:
 
 <div class="center-container">
@@ -320,12 +320,12 @@ bit more:
 - `getRemainingTime` calculates and returns how much time is left in the voting period.
 - These functions provide users with real-time information about the election.
 
-This smart contract facilitates a decentralized voting system where users can vote for candidates 
+This smart contract facilitates a decentralized voting system where users can vote for candidates
 securely, with all votes and results recorded on the blockchain.
 
 ## Deploy the smart contract
 
-In the `ignition` folder, let's create a file named `Voting.ts` to deploy our contract. Add the 
+In the `ignition` folder, let's create a file named `Voting.ts` to deploy our contract. Add the
 following code:
 
 ```tsx
@@ -355,8 +355,8 @@ const VotingModule = buildModule("VotingModule", (m) => {
 export default VotingModule;
 ```
 
-In this deployment script, we utilize Hardhat Ignition to manage the deployment of our `Voting` 
-contract. We set default candidates and a default voting duration but also allow these values to be 
+In this deployment script, we utilize Hardhat Ignition to manage the deployment of our `Voting`
+contract. We set default candidates and a default voting duration but also allow these values to be
 customized through parameters if needed.
 
 ### Compile the contract
@@ -371,7 +371,7 @@ This will compile your Solidity code and prepare it for deployment.
 
 ### Set up environment variables
 
-Before deploying the smart contract, ensure that your `.env` file in the `packages/blockchain` 
+Before deploying the smart contract, ensure that your `.env` file in the `packages/blockchain`
 directory is updated with the necessary environment variables:
 
 ```bash
@@ -384,22 +384,22 @@ ACCOUNT_PRIVATE_KEY=your_account_private_key_here
 ```
 
 - Replace `your_infura_api_key_here` with your actual Infura API key.
-- Replace `your_account_private_key_here` with the private key of the Ethereum account you will use 
+- Replace `your_account_private_key_here` with the private key of the Ethereum account you will use
 for deploying the contract.
 
 ### Deploy the smart contract
 
-To deploy the smart contract on Linea Sepolia, run the following command from the `blockchain` 
+To deploy the smart contract on Linea Sepolia, run the following command from the `blockchain`
 directory:
 
 ```bash
 npx hardhat ignition deploy ignition/modules/Voting.ts --network linea-testnet
 ```
 
-This command tells Hardhat to use Ignition to deploy the `Voting` module to the `linea-testnet` 
+This command tells Hardhat to use Ignition to deploy the `Voting` module to the `linea-testnet`
 network.
 
-Alternatively, you can add a deployment script to your `package.json` to simplify the process. Add 
+Alternatively, you can add a deployment script to your `package.json` to simplify the process. Add
 the following line under the `"scripts"` section:
 
 ```json
@@ -414,7 +414,7 @@ Now you can deploy the contract by simply running:
 pnpm run deploy:testnet
 ```
 
-After deployment, you'll receive the contract address. Keep this address safe, as we'll need it 
+After deployment, you'll receive the contract address. Keep this address safe, as we'll need it
 when integrating with the frontend.
 
 ## Frontend integration with Next.js and Shadcn UI
@@ -427,7 +427,7 @@ Navigate to the `site` directory in your monorepo:
 cd packages/site
 ```
 
-Since we've already set up the frontend using the Create Web3 Template CLI, we can proceed to 
+Since we've already set up the frontend using the Create Web3 Template CLI, we can proceed to
 integrate our smart contract.
 
 ### Configure Wagmi and MetaMask SDK
@@ -448,7 +448,7 @@ export const config = createConfig({
 });
 ```
 
-This configuration sets up the connection to the Linea testnet and enables wallet integration 
+This configuration sets up the connection to the Linea testnet and enables wallet integration
 using MetaMask.
 
 ### Add contract constants
@@ -463,7 +463,7 @@ export const ABI = [
 ];
 ```
 
-- Replace `'your_deployed_contract_address_here'` with the actual contract address you obtained 
+- Replace `'your_deployed_contract_address_here'` with the actual contract address you obtained
 after deployment.
 - For the ABI, you can find it in the `artifacts` folder generated by Hardhat after compilation.
 
@@ -482,10 +482,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { contractAddress, contractAbi } from "../../constants";
 ```
 
-This Next.js client-side component uses React's `useState` for state management, Wagmi hooks 
-(`useAccount`, `useWalletClient`, `useReadContract`, `useWriteContract`) for wallet and contract 
-interactions, imports UI elements (`Button`, `Input`, `Card`, `CardContent`) from Shadcn UI, 
-includes a `ConnectButton` for MetaMask connection, and brings in `contractAddress` and `contractAbi` 
+This Next.js client-side component uses React's `useState` for state management, Wagmi hooks
+(`useAccount`, `useWalletClient`, `useReadContract`, `useWriteContract`) for wallet and contract
+interactions, imports UI elements (`Button`, `Input`, `Card`, `CardContent`) from Shadcn UI,
+includes a `ConnectButton` for MetaMask connection, and brings in `contractAddress` and `contractAbi`
 from constants for contract use.
 
 ## Interface definition
@@ -575,33 +575,82 @@ if (!candidates) return;
 
 ```jsx
 async function vote() {
-  if (!walletClient || !address || number === "") {
-    console.error("Missing required data for voting");
-    return;
-  }
-  if (
-    isNaN(Number(number)) ||
-    Number(number) < 0 ||
-    Number(number) >= candidates.length
-  ) {
-    console.error("Invalid candidate index");
-    return;
-  }
-  if (!votingStatus) {
-    console.error("Voting is not currently active");
-    return;
-  }
   try {
-    console.log("Attempting to vote for candidate index:", number);
-    writeContract({
+    // Basic validation checks
+    if (!walletClient) {
+      console.error("Wallet client is not initialized");
+      throw new Error("Please connect your wallet");
+    }
+
+    if (!address) {
+      console.error("No wallet address found");
+      throw new Error("Please connect your wallet to vote");
+    }
+
+    if (number === "") {
+      console.error("No candidate number provided");
+      throw new Error("Please enter a candidate number");
+    }
+
+    const candidateNumber = Number(number);
+
+    // Enhanced number validation
+    if (isNaN(candidateNumber)) {
+      console.error("Invalid input: Not a number");
+      throw new Error("Please enter a valid number");
+    }
+
+    if (!Number.isInteger(candidateNumber)) {
+      console.error("Invalid input: Not an integer");
+      throw new Error("Please enter a whole number");
+    }
+
+    if (candidateNumber < 0) {
+      console.error(`Invalid candidate index: ${candidateNumber} (negative)`);
+      throw new Error("Candidate number cannot be negative");
+    }
+
+    if (candidateNumber >= candidates.length) {
+      console.error(`Invalid candidate index: ${candidateNumber} (out of range)`);
+      throw new Error(`Please enter a number between 0 and ${candidates.length - 1}`);
+    }
+
+    // Voting status check
+    if (!votingStatus) {
+      console.error("Voting is not active");
+      throw new Error("Voting period has ended");
+    }
+
+    // Check if user has already voted
+    if (canVote) {
+      console.error("User has already voted");
+      throw new Error("You have already cast your vote");
+    }
+
+    console.log(`Attempting to vote for candidate ${candidateNumber}: ${candidates[candidateNumber].name}`);
+
+    // Send transaction
+    const tx = await writeContract({
       address: contractAddress,
       abi: contractAbi,
       functionName: "vote",
-      args: [BigInt(number)],
+      args: [BigInt(candidateNumber)],
       account: address,
     });
+
+    console.log("Vote transaction submitted:", tx);
+    return tx;
+
   } catch (error) {
-    console.error("Detailed error in vote function:", error);
+    // Log the full error for debugging
+    console.error("Voting error:", error);
+
+    // Re-throw user-friendly error message
+    if (error instanceof Error) {
+      throw error;
+    } else {
+      throw new Error("Failed to submit vote. Please try again.");
+    }
   }
 }
 ```
@@ -615,7 +664,7 @@ async function vote() {
     - Passes the candidate index as a `BigInt`.
     - Uses the user's wallet address as the account.
 - **Error handling**:
-    - Wraps the contract interaction in a `try-catch` block to handle any errors that occur during 
+    - Wraps the contract interaction in a `try-catch` block to handle any errors that occur during
     the voting process.
     - Logs detailed error information to the console.
 
@@ -673,10 +722,10 @@ return (
 
 ```
 
-The component features a styled main container with a header and a `ConnectButton` for MetaMask 
+The component features a styled main container with a header and a `ConnectButton` for MetaMask
 integration. It conditionally renders content based on `votingStatus` and user connection: if voting
-is active and the user is connected, it displays their address, remaining time, and voting options; 
-if they've already voted, it notifies them and lists all candidates. If the user isn't connected, 
+is active and the user is connected, it displays their address, remaining time, and voting options;
+if they've already voted, it notifies them and lists all candidates. If the user isn't connected,
 it prompts them to connect their wallet. When voting has ended, it shows "Voting has finished".
 
 ## Error handling and validation
@@ -698,10 +747,10 @@ npm run dev
 
 Your Next.js application with Shadcn UI should now be running at `http://localhost:3000`.
 
-Now, you have a decentralized voting dapp where users can vote for the candidates by using their 
+Now, you have a decentralized voting dapp where users can vote for the candidates by using their
 index number. These votes are secure, transparent and recorded on Linea blockchain.
 
-To build on this project, you could add voter registration or vote delegation, enhance security 
+To build on this project, you could add voter registration or vote delegation, enhance security
 measures, or improve the user interface for better accessibility.
 
 Happy coding!
