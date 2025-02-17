@@ -36,6 +36,48 @@ To enable chain abstraction on Linea, web3 apps must install and integrate with 
 
 Try the [CA SDK demo app](https://sdk.arcana.network/) to see how it works for Linea. Use any third-party browser-based wallet and connect to the app. 
 
+## Use cases
+
+Arcana's Chain Abstraction (CA) is designed to onboard users across a wide range of applications. It is particularly impactful for DeFi applications that depend on deposits in stablecoin like USDC or USDT and native tokens like ETH.
+
+Key benefits of using Arcana's Chain Abstraction include:
+
+- Removes friction of bridging with a unified multi-chain balance
+- Allows larger transaction values 
+- Helps launch apps on emerging chains while onboarding users from established ecosystems
+
+### Swaps
+
+Allow users to execute token swaps on a single chain DEX while using funds held across multiple chains as a unified balance. For example, a user holding USDC on Ethereum and Arbitrum can seamlessly swap tokens on Polygon without needing to bridge or consolidate assets manually. This removes friction for users, ensuring smoother transactions and higher conversion rates for swap protocols.
+
+### Bridges
+
+Bridges enable users to move funds from Chain A to Chain B, but when users hold assets across multiple chains, they face the challenge of tracking and transferring funds chain by chain. With Arcana's CA, users can bridge their entire multi-chain balance to the desired chain in one step.
+
+For example, let us consider a case where a user holds USDC on Ethereum, Polygon, and Optimism and wants to consolidate their funds on Arbitrum. Instead of manually bridging USDC from each chain one at a time, users can bridge their total USDC balance from all three chains to Arbitrum in a single step
+
+### Decentralized Exchanges (DEXes)
+
+For liquidity providers and traders, fragmented funds across chains often hinder participation in DEXes. With Arcana's CA, users can trade or provide liquidity on a single-chain DEX (for example, Optimism) using their unified balance from multiple chains, such as Ethereum, Polygon, and Arbitrum. This enables more efficient capital utilization, increases trading volumes, and expands access to liquidity for DEX platforms.
+
+### Perpetuals Trading
+
+Arcana's CA allows users to trade on a perpetual protocol on one chain, like Base, using a unified balance of funds held on Ethereum, Polygon, or other chains. This is particularly useful for protocols that need users to deposit stable coins to a particular address on a specific chain (for example, Hyperliquid on Arbitrum). Arcana's CA removes the need for manual bridging and ensures traders can respond quickly to market changes without delays in fund transfers.
+
+### Prediction Markets
+
+Prediction markets often have strong user bases tied to specific chains. Arcana's CA allows users to stake or wager assets on a prediction market hosted on a single chain (for example, Polymarket on Polygon) using funds held across multiple chains. For instance, a user can use their combined stablecoin holdings from Ethereum and Polygon to place a bet on Polygon, ensuring greater cross-chain participation and deeper liquidity for these markets.
+
+### Lending
+
+Borrowers and lenders often face challenges when their assets are distributed across chains and they want to access new yield products on specific chains. With Arcana's CA, a user can supply liquidity to a lending protocol on one chain, such as Ethereum, using their unified balance aggregated from other chains like Optimism and Base. This leads to larger deposit and borrow transactions with the access to a larger pool of capital
+
+### Staking/Restaking
+
+Restaking requires users to bring assets or derivatives to specific chains. Arcana CA enables users to stake or restake assets on a protocol running on a single chain (for example, Polygon) by leveraging their unified balance across multiple chains. For instance, a user with ETH on Ethereum and Arbitrum can stake and restake seamlessly on another chain without manual transfers.
+
+This allows users from multiple EVM ecosystems to participate in the protocol
+
 ## Resources
 
 - [Get Started with Arcana CA SDK](https://docs.arcana.network/quick-start/ca-quick-start/)
