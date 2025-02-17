@@ -789,7 +789,7 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
 }
 
 .support-link {
-  font-size: calc(14px + (15 - 12) * ((100vw - 996px) / (1920 - 996)));
+  font-size: clamp(12px, 0.95vw, 15px);
   margin-right: 20px;
   color: #61dfff;
 }
@@ -887,11 +887,15 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   margin: 0 auto;
 }
 
+a.navbar__brand {
+  margin-right: calc(0.5vw);
+}
+
 .navbar__logo {
   color: var(--linea-text-color-1);
   height: 25px;
   width: auto;
-  padding: 3px 10px 0 20px;
+  padding: 3px 10px 0 calc(1.5vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -944,8 +948,9 @@ html[data-theme="dark"] .header-dockerhub-link::before {
 }
 
 .navbar__link {
-  font-size: calc(14px + (15 - 12) * ((100vw - 996px) / (1920 - 996)));
+  font-size: clamp(12px, 0.95vw, 15px);
   padding: calc(5px + (12 - 5) * ((100vw - 996px) / (1920 - 996)));
+  padding-left: calc(0.5vw);
 }
 
 /* Basic circle icons for navbar items */
@@ -959,7 +964,7 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   display: inline-block;
   width: 7px;
   height: 7px;
-  margin-right: 8px;
+  margin-right: calc(0.5vw);
   border: 1px solid currentColor;
   border-radius: 50%;
   vertical-align: middle;
