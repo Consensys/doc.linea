@@ -74,12 +74,14 @@
   }
 
   .img-medium {
+    max-width: none;
     width: 90%;
     flex-shrink: 0;
   }
 
   .img-large {
-    width: 100%;
+    max-width: none;
+    width: 90%;
     flex-shrink: 0;
   }
 }
