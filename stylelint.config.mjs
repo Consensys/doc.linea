@@ -13,6 +13,6 @@ export default {
     "declaration-empty-line-before": null,
     "comment-empty-line-before": null,
     "value-keyword-case": ["lower", { camelCaseSvgKeywords: true }],
-    "media-feature-range-notation": "standard",
+    "media-feature-range-notation": "prefix",
   },
 };
