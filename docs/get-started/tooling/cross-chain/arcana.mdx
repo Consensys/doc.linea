@@ -1,0 +1,85 @@
+---
+title: Arcana
+image: /img/socialCards/arcana.jpg
+---
+
+import ArcanaCAGraphic from "/img/get_started/tooling/cross_chain/arcana/chain_abstraction.png";
+import ArcanaUBGraphic from "/img/get_started/tooling/cross_chain/arcana/unified_balance.png";
+
+The [Arcana Network](https://arcana.network) [Chain Abstraction](https://docs.arcana.network/ca/introduction/ca/) (CA) SDK integrates with any web3 app and enables app users to beat liquidity fragmentation. Users can view a [unified balance](https://docs.arcana.network/concepts/ca/unified-balance/) associated with their EoA and spend it on any chain using any third-party wallet.
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/get_started/tooling/cross_chain/arcana/chain_abstraction.png"
+        alt="Chain Abstraction with Arcana SDK"
+      />
+  </div>
+</div>
+
+Unified balance allows users to spend the consolidated multi-chain balance of supported tokens (for example, ETH, USDC, USDT) within the app context on any [chain](https://docs.arcana.network/web3-stack/ca_stack#chains) including Linea. This allows web3 apps to onboard users from any ecosystem effortlessly.
+
+<div class="center-container">
+  <div class="img-large">
+      <img
+        src="/img/get_started/tooling/cross_chain/arcana/unified_balance.png"
+        alt="Unified Balance"
+      />
+  </div>
+</div>
+
+## Linea integration
+
+To enable chain abstraction on Linea, web3 apps must install and integrate with the [Arcana Chain Abstraction SDK](https://www.npmjs.com/package/@arcana/ca-sdk). See the [quick start guide](https://docs.arcana.network/quick-start/ca-quick-start/) and the CA [API](https://ca-sdk-ref-guide.netlify.app/) for details. Check out web3 app [integration examples](https://docs.arcana.network/ca/examples/). 
+
+## CA SDK demonstration
+
+Try the [CA SDK demo app](https://sdk.arcana.network/) to see how it works for Linea. Use any third-party browser-based wallet and connect to the app. 
+
+## Use cases
+
+Arcana's Chain Abstraction (CA) is designed to onboard users across a wide range of applications. It is particularly impactful for DeFi applications that depend on deposits in stablecoins like USDC or USDT and native tokens like ETH.
+
+Key benefits of using Arcana's Chain Abstraction include:
+
+- Removes friction of bridging with a unified multi-chain balance
+- Allows larger transaction values 
+- Helps launch apps on emerging chains while onboarding users from established ecosystems.
+
+### Swaps
+
+Allow users to execute token swaps on a single chain DEX while using funds held across multiple chains as a unified balance. For example, a user holding USDC on Ethereum and an L2 can seamlessly swap tokens on Linea without needing to bridge or consolidate assets manually. This removes friction for users, ensuring smoother transactions and higher conversion rates for swap protocols.
+
+### Bridges
+
+Bridges enable users to move funds from Chain A to Chain B, but when users hold assets across multiple chains, they face the challenge of tracking and transferring funds chain by chain. With Arcana's CA, users can bridge their entire multi-chain balance to the desired chain in one step.
+
+For example, let us consider a case where a user holds USDC on Ethereum, Polygon, and Optimism and wants to consolidate their funds on Linea. Instead of manually bridging USDC from each chain one at a time, users can bridge their total USDC balance from all three chains to Linea in a single step.
+
+### Decentralized exchanges (DEXs)
+
+For liquidity providers and traders, fragmented funds across chains often hinder participation in DEXs. With Arcana's CA, users can trade or provide liquidity on a single-chain DEX using their unified balance from multiple chains. This enables more efficient capital utilization, increases trading volumes, and expands access to liquidity for DEX platforms.
+
+### Perpetuals trading
+
+Arcana's CA allows users to trade on a perpetual protocol on one chain using a unified balance of funds held on other chains. This is particularly useful for protocols that need users to deposit stable coins to a particular address on a specific chain. Arcana's CA removes the need for manual bridging and ensures traders can respond quickly to market changes without delays in fund transfers.
+
+### Prediction markets
+
+Prediction markets often have strong user bases tied to specific chains. Arcana's CA allows users to stake or wager assets on a prediction market hosted on a single chain using funds held across multiple chains, ensuring greater cross-chain participation and deeper liquidity for these markets.
+
+### Lending
+
+Borrowers and lenders often face challenges when their assets are distributed across chains and they want to access new yield products on specific chains. With Arcana's CA, a user can supply liquidity to a lending protocol on one chain, such as Ethereum, using their unified balance aggregated from other chains. This leads to larger deposit and borrow transactions with access to a larger pool of capital.
+
+### Staking/restaking
+
+Restaking requires users to bring assets or derivatives to specific chains. Arcana CA enables users to stake or restake assets on a protocol running on a single chain by leveraging their unified balance across multiple chains. For instance, a user with ETH on Ethereum and Linea can stake and restake seamlessly on another chain without manual transfers.
+
+This allows users from multiple EVM ecosystems to participate in the protocol.
+
+## Resources
+
+- [Get Started with Arcana CA SDK](https://docs.arcana.network/quick-start/ca-quick-start/)
+- [SDK Demo](https://sdk.arcana.network/)
+- [Arcana CA Blogs](https://blog.arcana.network/)

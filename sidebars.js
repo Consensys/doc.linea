@@ -102,6 +102,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
+        "get-started/how-to/poh-api",
       ],
     },
     {
@@ -118,7 +119,6 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            "get-started/tooling/account-abstraction/arcana",
             "get-started/tooling/account-abstraction/pimlico",
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
@@ -185,6 +185,7 @@ const sidebars = {
             id: "get-started/tooling/cross-chain/index",
           },
           items: [
+            "get-started/tooling/cross-chain/arcana",
             "get-started/tooling/cross-chain/axelar",
             "get-started/tooling/cross-chain/ccip",
             "get-started/tooling/cross-chain/ccip-read",
