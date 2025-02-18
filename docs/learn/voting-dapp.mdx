@@ -512,7 +512,12 @@ export default function Home() {
   const { data: walletClient } = useWalletClient();
   const [number, setNumber] = useState("");
 
-```
+  // Basic validation checks
+  if (!walletClient) {
+    console.error("Wallet client is not initialized");
+    return;
+  }
+}
 - **Function component**: Defines the `Home` component as the default export.
 - **Wallet information**:
     - `address`: The user's wallet address obtained from `useAccount`.
