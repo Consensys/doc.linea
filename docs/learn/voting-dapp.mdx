@@ -575,97 +575,49 @@ if (!candidates) return;
 
 ```jsx
 async function vote() {
+  // Input validation first
+  if (!walletClient || !address) {
+    console.error("Wallet not connected");
+    return;
+  }
+
+  if (number === "") {
+    console.error("No candidate number provided");
+    return;
+  }
+
+  if (parseInt(number) === NaN || parseInt(number) < 0 || parseInt(number) >= candidates.length) {
+    console.error("Invalid candidate index");
+    return;
+  }
+
+  // Only after all validation passes, we try to execute the transaction
   try {
-    // Basic validation checks
-    if (!walletClient) {
-      console.error("Wallet client is not initialized");
-      throw new Error("Please connect your wallet");
-    }
-
-    if (!address) {
-      console.error("No wallet address found");
-      throw new Error("Please connect your wallet to vote");
-    }
-
-    if (number === "") {
-      console.error("No candidate number provided");
-      throw new Error("Please enter a candidate number");
-    }
-
-    const candidateNumber = Number(number);
-
-    // Enhanced number validation
-    if (isNaN(candidateNumber)) {
-      console.error("Invalid input: Not a number");
-      throw new Error("Please enter a valid number");
-    }
-
-    if (!Number.isInteger(candidateNumber)) {
-      console.error("Invalid input: Not an integer");
-      throw new Error("Please enter a whole number");
-    }
-
-    if (candidateNumber < 0) {
-      console.error(`Invalid candidate index: ${candidateNumber} (negative)`);
-      throw new Error("Candidate number cannot be negative");
-    }
-
-    if (candidateNumber >= candidates.length) {
-      console.error(`Invalid candidate index: ${candidateNumber} (out of range)`);
-      throw new Error(`Please enter a number between 0 and ${candidates.length - 1}`);
-    }
-
-    // Voting status check
-    if (!votingStatus) {
-      console.error("Voting is not active");
-      throw new Error("Voting period has ended");
-    }
-
-    // Check if user has already voted
-    if (canVote) {
-      console.error("User has already voted");
-      throw new Error("You have already cast your vote");
-    }
-
-    console.log(`Attempting to vote for candidate ${candidateNumber}: ${candidates[candidateNumber].name}`);
-
-    // Send transaction
+    console.log(`Attempting to vote for candidate ${number}`);
     const tx = await writeContract({
       address: contractAddress,
       abi: contractAbi,
       functionName: "vote",
-      args: [BigInt(candidateNumber)],
+      args: [BigInt(number)],
       account: address,
     });
-
     console.log("Vote transaction submitted:", tx);
     return tx;
-
   } catch (error) {
-    // Log the full error for debugging
-    console.error("Voting error:", error);
-
-    // Re-throw user-friendly error message
-    if (error instanceof Error) {
-      throw error;
-    } else {
-      throw new Error("Failed to submit vote. Please try again.");
-    }
+    console.error("Failed to submit vote:", error);
+    return;
   }
 }
 ```
 
 - **Input validation**:
-    - Checks if the wallet client, user address, and candidate number are available.
-    - Validates that the candidate index is a valid number within the range of available candidates.
-    - Ensures that voting is currently active.
+    - Checks if the wallet client and user address are available.
+    - Checks if the candidate index is a valid number within the range of available candidates.
 - **Voting process**:
     - Uses `writeContract` to call the `vote` function on the smart contract.
     - Passes the candidate index as a `BigInt`.
     - Uses the user's wallet address as the account.
 - **Error handling**:
-    - Wraps the contract interaction in a `try-catch` block to handle any errors that occur during
-    the voting process.
     - Logs detailed error information to the console.
 
 ## UI rendering
