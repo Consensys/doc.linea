@@ -53,7 +53,7 @@ main {
   margin-top: 0;
 }
 
-@media (width <= 1500px) {
+@media (max-width: 1500px) {
   .cardTitle h3 {
     font-size: 1.45rem;
     font-weight: 500;
@@ -141,7 +141,7 @@ main {
   color: #fff;
 }
 
-@media (width <= 1350px) {
+@media (max-width: 1350px) {
   .cardIcon {
     opacity: 0;
   }
@@ -153,7 +153,7 @@ main {
   }
 }
 
-@media (width <= 996px) {
+@media (max-width: 996px) {
   .cardIcon {
     opacity: 1;
     width: 35px;
@@ -165,7 +165,7 @@ main {
   }
 }
 
-@media (width <= 300px) {
+@media (max-width: 300px) {
   .cardIcon {
     opacity: 0;
   }
