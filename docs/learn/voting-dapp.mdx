@@ -255,7 +255,7 @@ contract Voting {
 
     /// @notice Retrieves all candidates and their vote counts
     /// @return An array of Candidate structs
-    function getAllVotesOfCandiates() public view returns (Candidate[] memory){
+    function getAllVotesOfCandidates() public view returns (Candidate[] memory){
         return candidates;
     }
 
@@ -548,7 +548,7 @@ const { data: remainingTime } = useReadContract({
 const { data: candidates } = useReadContract({
   address: contractAddress,
   abi: contractAbi,
-  functionName: "getAllVotesOfCandiates",
+  functionName: "getAllVotesOfCandidates",
 }) as { data: Candidate[] };
 ```
 
