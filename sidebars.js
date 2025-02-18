@@ -68,6 +68,7 @@ const sidebars = {
             "get-started/how-to/verify-smart-contract/hardhat",
           ],
         },
+        "get-started/how-to/migrate-dapp",
         "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
         {
