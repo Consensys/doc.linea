@@ -48,11 +48,11 @@ const sidebars = {
           },
           items: [
             "get-started/how-to/deploy-smart-contract/atlas",
+            "get-started/how-to/deploy-smart-contract/cookbook",
             "get-started/how-to/deploy-smart-contract/foundry",
             "get-started/how-to/deploy-smart-contract/hardhat",
             "get-started/how-to/deploy-smart-contract/remix",
             "get-started/how-to/deploy-smart-contract/thirdweb",
-            "get-started/how-to/deploy-smart-contract/cookbook",
           ],
         },
         {
@@ -119,15 +119,16 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            "get-started/tooling/account-abstraction/pimlico",
+            
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
-            "get-started/tooling/account-abstraction/smartwallets",
-            "get-started/tooling/account-abstraction/station",
-            "get-started/tooling/account-abstraction/particle-network",
             "get-started/tooling/account-abstraction/noves",
             "get-started/tooling/account-abstraction/oklink",
             "get-started/tooling/account-abstraction/openfort",
+            "get-started/tooling/account-abstraction/particle-network",
+            "get-started/tooling/account-abstraction/pimlico",
+            "get-started/tooling/account-abstraction/station",
+            "get-started/tooling/account-abstraction/smartwallets",
           ],
         },
         {
@@ -152,8 +153,8 @@ const sidebars = {
             id: "get-started/tooling/attestations/index",
           },
           items: [
-            "get-started/tooling/attestations/verax",
             "get-started/tooling/attestations/primus",
+            "get-started/tooling/attestations/verax",
           ],
         },
         {
@@ -173,8 +174,8 @@ const sidebars = {
             id: "get-started/tooling/contracts-templates/index",
           },
           items: [
-            "get-started/tooling/contracts-templates/thirdweb",
             "get-started/tooling/contracts-templates/cookbook",
+            "get-started/tooling/contracts-templates/thirdweb",
           ],
         },
         {
@@ -268,9 +269,9 @@ const sidebars = {
             "get-started/tooling/libraries/ethereum-list",
             "get-started/tooling/libraries/ethers-js",
             "get-started/tooling/libraries/multicall",
+            "get-started/tooling/libraries/reown",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
-            "get-started/tooling/libraries/reown",
           ],
         },
         {
@@ -342,10 +343,10 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/security/goplus-security-api",
-            "get-started/tooling/security/scamfari",
-            "get-started/tooling/security/spherex",
             "get-started/tooling/security/hexagate",
             "get-started/tooling/security/hypernative",
+            "get-started/tooling/security/scamfari",
+            "get-started/tooling/security/spherex",
           ],
         },
         {
