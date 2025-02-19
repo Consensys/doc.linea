@@ -13,12 +13,12 @@ export default function ContractsWarning() {
   return (
     <div style={{ marginTop: "2rem" }}>
       <Admonition type="warning" title="Contributions not accepted">
-        These reference pages are automatically generated based on Linea's {" "}
-        <a href="https://github.com/Consensys/linea-monorepo/tree/main/contracts/src">smart contracts
+        These reference pages are automatically generated based on Linea&#39s{" "}
+        <a href="https://github.com/Consensys/linea-monorepo/tree/main/contracts/src">
+          smart contracts
         </a>
-        .
-        To ensure they accurately match the deployed smart contracts, we cannot accept any 
-        contributions that edit these pages.
+        . To ensure they accurately match the deployed smart contracts, we
+        cannot accept any contributions that edit these pages.
       </Admonition>
     </div>
   );
