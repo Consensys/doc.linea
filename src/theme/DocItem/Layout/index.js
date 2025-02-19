@@ -14,6 +14,7 @@ import ContentVisibility from "@theme/ContentVisibility";
 import styles from "./styles.module.css";
 import GetFeedback from "./GetFeedback";
 import ToolingCTA from "../../../components/ToolingCTA";
+import ContractsWarning from "../../../components/ContractsWarning";
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -49,6 +50,7 @@ export default function DocItemLayout({ children }) {
             {docTOC.mobile}
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
+            <ContractsWarning />
             <GetFeedback />
             <DocItemFooter />
           </article>
