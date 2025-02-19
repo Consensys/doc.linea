@@ -36,7 +36,7 @@ to be "sandwiched" between others, enabling services such as:
 curl 'https://linea-mainnet.infura.io/v3/YOUR-API-KEY' \
 -H 'Content-Type: application/json' \
 -d '{
-    "jsonrpc": "2.0","method": "eth_sendBundle","params":[{"txs": ["0xf84f01821388825208800480820a96a05e69dba6b4413db2df32614646adf27c5774bf49c69ce6fef7a82df426514541a0754f79cba2c3353338496c2ccce98a4457e1ca0b6de4e79456e6619a9832a9e7"],"blockNumber": "0x962FC1"}],"id": 1}'
+    "jsonrpc": "2.0","method": "eth_sendBundle","params":[{"txs": ["0x1234567890abcdef...", "0x1234567890abcdef..."],"blockNumber": "0x123..."}],"id": 1}'
 ```
 
 ### Response
@@ -45,6 +45,8 @@ curl 'https://linea-mainnet.infura.io/v3/YOUR-API-KEY' \
 {
     "jsonrpc": "2.0",
     "id": 1,
-    "result": "0x1234567890abcdef..."
+    "result": {
+        "bundleHash": "0x1234567890abcdef..."
+    }
 }
 ```
