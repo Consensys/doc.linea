@@ -1,0 +1,50 @@
+---
+title: eth_sendBundle
+description: Send a bundle of signed transactions to be executed atomically.
+---
+
+# `eth_sendBundle`
+
+:::note
+
+Access to this endpoint is permissioned via Infura, and can only be used by the sequencer, so is
+not relevant for node operators.
+
+:::
+
+Sends a bundle of signed transactions to be executed atomically, allowing the intended transaction
+to be "sandwiched" between others, enabling services such as:
+- Frontrunning protection
+- Gas abstraction
+- Reversion protection
+- Backrunning. 
+
+## Parameters
+
+- `txs`: An array of signed transactions to execute in the bundle.
+- `blockNumber`: Hexadecimal block number for the block the bundle is valid in.
+
+## Returns
+
+- `bundleHash`: The hash of the executed bundle.
+
+## Example
+
+### Request
+
+```bash
+curl 'https://linea-mainnet.infura.io/v3/YOUR-API-KEY' \
+-H 'Content-Type: application/json' \
+-d '{
+    "jsonrpc": "2.0","method": "eth_sendBundle","params":[{"txs": ["0xf84f01821388825208800480820a96a05e69dba6b4413db2df32614646adf27c5774bf49c69ce6fef7a82df426514541a0754f79cba2c3353338496c2ccce98a4457e1ca0b6de4e79456e6619a9832a9e7"],"blockNumber": "0x962FC1"}],"id": 1}'
+```
+
+### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": "0x1234567890abcdef..."
+}
+```
