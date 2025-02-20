@@ -26,7 +26,7 @@
   transition: all 0.3s ease;
 }
 
-@media (width <= 320px) {
+@media (max-width: 320px) {
   .bannerButton {
     font-size: 16px;
     padding: 15px 25px;
@@ -57,7 +57,7 @@
   width: auto;
 }
 
-@media (width <= 320px) {
+@media (max-width: 320px) {
   .logo {
     margin-top: 35px;
     height: 35px;
@@ -72,7 +72,7 @@
   padding-bottom: 10px;
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .title {
     margin-top: 60px;
     padding-left: 60px;
@@ -80,7 +80,7 @@
   }
 }
 
-@media (width <= 530px) {
+@media (max-width: 530px) {
   .title {
     margin-top: 60px;
     padding-left: 15px;
@@ -88,7 +88,7 @@
   }
 }
 
-@media (width <= 450px) {
+@media (max-width: 450px) {
   .title {
     padding-left: 0;
     padding-right: 0;
@@ -103,7 +103,7 @@
   margin-bottom: 25px;
 }
 
-@media (width <= 1250px) {
+@media (max-width: 1250px) {
   .logo {
     height: 38px;
     width: auto;
@@ -118,7 +118,7 @@
   }
 }
 
-@media (width <= 996px) {
+@media (max-width: 996px) {
   .subtitle {
     font-size: 24px;
     padding-left: 20px;
@@ -130,20 +130,20 @@
   }
 }
 
-@media (width <= 350px) {
+@media (max-width: 350px) {
   .subtitle {
     padding: 0 0 20px;
     padding: 0;
   }
 }
 
-@media (height <= 850px) {
+@media (max-height: 850px) {
   .subtitle {
     font-size: 16px;
   }
 }
 
-@media (width <= 350px) {
+@media (max-width: 350px) {
   .title {
     font-size: 38px;
     padding-left: 0;
@@ -178,13 +178,13 @@
   position: relative;
 }
 
-@media (width <= 1380px) {
+@media (max-width: 1380px) {
   .introductionBlock {
     height: 60vh;
   }
 }
 
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .introductionBlock {
     padding: 2rem;
     height: 75vh;
@@ -195,7 +195,7 @@
   }
 }
 
-@media (width <= 530px) {
+@media (max-width: 530px) {
   .introductionBlock {
     background-image: url("/img/Linea_mob_banner_1.svg"), url("/img/Linea_mob_banner_2.svg");
     background-repeat: no-repeat, no-repeat;
@@ -205,7 +205,7 @@
   }
 }
 
-@media (width <= 320px) {
+@media (max-width: 320px) {
   .introductionBlock {
     padding: 0;
     height: 75vh;
@@ -257,7 +257,7 @@
   box-sizing: border-box !important;
 }
 
-@media (width <= 700px) {
+@media (max-width: 700px) {
   .searchBarContainer .navbar__search {
     align-items: center !important;
     justify-content: center !important;
@@ -279,13 +279,13 @@
   display: block;
 }
 
-@media (width <= 996px) {
+@media (max-width: 996px) {
   [role="listbox"][id^="searchBar_"] {
     width: var(--search-local-modal-width, 450px); 
   }
 }
 
-@media (width <= 550px) {
+@media (max-width: 550px) {
   [role="listbox"][id^="searchBar_"] {
     width: var(--search-local-modal-width, 80vw); 
   }

@@ -1,4 +1,4 @@
-/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+/** @type {import("@docusaurus/plugin-content-docs").SidebarsConfig} */
 const sidebars = {
   getStartedSidebar: [
     {
@@ -48,11 +48,11 @@ const sidebars = {
           },
           items: [
             "get-started/how-to/deploy-smart-contract/atlas",
+            "get-started/how-to/deploy-smart-contract/cookbook",
             "get-started/how-to/deploy-smart-contract/foundry",
             "get-started/how-to/deploy-smart-contract/hardhat",
             "get-started/how-to/deploy-smart-contract/remix",
             "get-started/how-to/deploy-smart-contract/thirdweb",
-            "get-started/how-to/deploy-smart-contract/cookbook",
           ],
         },
         {
@@ -68,6 +68,7 @@ const sidebars = {
             "get-started/how-to/verify-smart-contract/hardhat",
           ],
         },
+        "get-started/how-to/migrate-dapp",
         "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
         {
@@ -84,7 +85,6 @@ const sidebars = {
         },
         "get-started/how-to/linea-safe",
         "get-started/how-to/deploy-subdomain",
-        "get-started/how-to/linea-inscriptions",
         "get-started/how-to/finalized-block",
         {
           type: "category",
@@ -102,6 +102,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
+        "get-started/how-to/poh-api",
       ],
     },
     {
@@ -118,16 +119,16 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            "get-started/tooling/account-abstraction/arcana",
-            "get-started/tooling/account-abstraction/pimlico",
+            
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
-            "get-started/tooling/account-abstraction/smartwallets",
-            "get-started/tooling/account-abstraction/station",
-            "get-started/tooling/account-abstraction/particle-network",
             "get-started/tooling/account-abstraction/noves",
             "get-started/tooling/account-abstraction/oklink",
             "get-started/tooling/account-abstraction/openfort",
+            "get-started/tooling/account-abstraction/particle-network",
+            "get-started/tooling/account-abstraction/pimlico",
+            "get-started/tooling/account-abstraction/station",
+            "get-started/tooling/account-abstraction/smartwallets",
           ],
         },
         {
@@ -152,8 +153,8 @@ const sidebars = {
             id: "get-started/tooling/attestations/index",
           },
           items: [
-            "get-started/tooling/attestations/verax",
             "get-started/tooling/attestations/primus",
+            "get-started/tooling/attestations/verax",
           ],
         },
         {
@@ -173,8 +174,8 @@ const sidebars = {
             id: "get-started/tooling/contracts-templates/index",
           },
           items: [
-            "get-started/tooling/contracts-templates/thirdweb",
             "get-started/tooling/contracts-templates/cookbook",
+            "get-started/tooling/contracts-templates/thirdweb",
           ],
         },
         {
@@ -185,6 +186,7 @@ const sidebars = {
             id: "get-started/tooling/cross-chain/index",
           },
           items: [
+            "get-started/tooling/cross-chain/arcana",
             "get-started/tooling/cross-chain/axelar",
             "get-started/tooling/cross-chain/ccip",
             "get-started/tooling/cross-chain/ccip-read",
@@ -268,9 +270,9 @@ const sidebars = {
             "get-started/tooling/libraries/ethereum-list",
             "get-started/tooling/libraries/ethers-js",
             "get-started/tooling/libraries/multicall",
+            "get-started/tooling/libraries/reown",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
-            "get-started/tooling/libraries/reown",
           ],
         },
         {
@@ -342,10 +344,10 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/security/goplus-security-api",
-            "get-started/tooling/security/scamfari",
-            "get-started/tooling/security/spherex",
             "get-started/tooling/security/hexagate",
             "get-started/tooling/security/hypernative",
+            "get-started/tooling/security/scamfari",
+            "get-started/tooling/security/spherex",
           ],
         },
         {
@@ -364,36 +366,27 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/marketplace-dapp",
+    "learn/voting-dapp",
     {
       type: "category",
-      label: "Learn",
+      label: "Ecosystem tutorials",
       link: {
         type: "doc",
-        id: "learn/index",
+        id: "learn/ecosystem-tutorials/index",
       },
       collapsible: false,
       items: [
         {
           type: "category",
-          label: "Ecosystem tutorials",
+          label: "Irys",
           link: {
             type: "doc",
-            id: "learn/ecosystem-tutorials/index",
+            id: "learn/ecosystem-tutorials/irys/index",
           },
-          collapsible: false,
           items: [
-            {
-              type: "category",
-              label: "Irys",
-              link: {
-                type: "doc",
-                id: "learn/ecosystem-tutorials/irys/index",
-              },
-              items: [
-                "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
-                "learn/ecosystem-tutorials/irys/irys-nfts",
-              ],
-            },
+            "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
+            "learn/ecosystem-tutorials/irys/irys-nfts",
           ],
         },
       ],
@@ -401,26 +394,8 @@ const sidebars = {
   ],
   apiSidebar: [
     {
-      type: "doc",
-      label: "Overview",
-      id: "api/index",
-    },
-    {
       type: "category",
-      label: "Linea JSON-RPC API",
-      link: null,
-      collapsible: false,
-      items: [
-        "api/reference/eth-sendrawtransaction",
-        "api/reference/linea-estimategas",
-        "api/reference/linea-gettransactionexclusionstatusv1",
-        "api/reference/linea-getproof",
-      ],
-    },
-    "api/linea-sdk",
-    {
-      type: "category",
-      label: "Linea smart contracts",
+      label: "Smart contract reference",
       link: null,
       collapsible: false,
       items: [
@@ -573,8 +548,44 @@ const sidebars = {
             },
           ],
         },
+      ],  
+    },  
+    {
+      type: "category",
+      label: "JSON-RPC API reference",
+      link: {
+        type: "doc",
+        id: "api/reference/index"
+      },
+      collapsible: false,
+      items: [
+        "api/reference/eth-sendrawtransaction",
+        "api/reference/linea-estimategas",
+        "api/reference/linea-gettransactionexclusionstatusv1",
+        "api/reference/linea-getproof",
       ],
     },
+    {
+      type: "category",
+      label: "Token API reference",
+      link: {
+        type: "doc",
+        id: "api/token-api/overview"
+      },
+      collapsible: false,
+      items: [
+        {
+          type: "link",
+          label: "Reference",
+          href: "/api/token-api/reference"
+        }
+      ],
+    },
+    {
+      type: "doc",
+      label: "SDK guide",
+      id: "api/linea-sdk"
+    }
   ],
   technologySidebar: [
     "technology/architecture",

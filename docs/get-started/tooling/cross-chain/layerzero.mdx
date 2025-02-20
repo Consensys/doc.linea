@@ -1,61 +1,113 @@
 ---
 title: LayerZero Omnichain Messaging
 image: /img/socialCards/layerzero-omnichain-messaging.jpg
+description: >-
+  Omnichain interoperability protocol enabling secure cross-chain communication
+  for Linea applications. Connect to 100+ blockchains, send messages, and deploy
+  omnichain tokens.
 ---
 
-LayerZero is an omnichain interoperability protocol that enables cross-chain 
-messaging. Applications built on Linea can use the LayerZero protocol to 
-seamlessly connect to 35+ supported blockchains.
+[LayerZero](https://layerzero.network) is an **omnichain interoperability protocol** that enables smart contracts to seamlessly communicate between different blockchain networks. With LayerZero V2, applications deployed on Linea can connect and interact with 100+ supported blockchains through secure, configurable messaging channels.
 
-LayerZero Endpoint has been deployed on Linea for builders to leverage omnichain 
-messaging in their dapps. LayerZero's Endpoint ULNv2 validation library relies 
-on two parties, the Oracle and Relayer, to transfer messages between onchain 
-smart contracts known as endpoints. When LayerZero sends a message from Linea to 
-chain `X`, the message is routed through the endpoint on Linea to the ULNv2 
-validation library. The ULNv2 library notifies the Oracle and Relayer of the 
-message and its destination chain `X`. The Oracle forwards the packet hash to 
-the endpoint on chain `X`, and the Relayer submits the packet to be verified 
-onchain against the hash, and delivers the message.
+## Key features
 
-As a developer, you can leverage LayerZero's Endpoint contract by using our 
-`LzApp` interface for your User Application (UA). The Endpoint allows UAs to 
-configure the Messaging Library for sending and receiving verified messages and 
-guarantees the message-delivering ordering across all messaging libraries:
+LayerZero enables powerful cross-chain capabilities for builders on Linea:
 
-- `Send()`: the message will be sent through the endpoint first, and then 
-redirected to the UA-configured Messaging Library. 
-- `Receive()`: the message will be verified at the Messaging Library first, then 
-forwarded to the endpoint and eventually delivered to the UA.
+1. **Cross-chain messaging** - Send arbitrary messages and data between contracts on different chains
+2. **Omnichain tokens** - Deploy tokens (fungible `OFT` and non-fungible `ONFT`) that work seamlessly across multiple chains
+3. **External chain data access** (`lzRead`) - Fetch and compute onchain state from other networks
+4. **Composed messages** - Chain multiple cross-chain operations together
 
-Learn how to integrate LayerZero into your contracts [here](https://docs.layerzero.network/v1).
+## How it works
+
+1. **DVNs** (Decentralized Verifier Networks) independently verify that a message is valid, waiting for a configured number of block confirmations on the source chain.
+2. When the message is verified, **executors** on the destination chain deliver the message to the target contract, paying for the destination gas automatically in the background. The user only pays for gas on the source chain.
+
+Because each application can configure its own DVN sets, your security is not locked into a single aggregator or middlechain. For more details, check out the [LayerZero docs](https://docs.layerzero.network/).
+
+To run your own DVN as part of your security set, check out the [DVN docs](https://docs.layerzero.network/v2/developers/evm/off-chain/build-dvns).
+
+## Linea integration
+
+When integrating with LayerZero, there are two key aspects to understand:
+
+1. The [LayerZero Endpoint](https://docs.layerzero.network/v2/home/protocol/layerzero-endpoint)
+   - Immutable smart contract that serves as the entry and exit point for messages
+   - Allows applications to configure security and execution parameters
+   - Provides interfaces for sending, receiving and reading cross-chain data
+2. [Security Stack](https://docs.layerzero.network/v2/home/modular-security/security-stack-dvns)
+   - Configurable set of Decentralized Verifier Networks (DVNs) that validate messages
+   - Allows applications to customize security and cost tradeoffs
+   - Ensures message integrity across chains
+
+### Contract addresses
 
 <table>
   <tbody>
     <tr>
-      <th>Contract</th>
-      <th>Chain Name</th>
+      <th>Chain</th>
       <th>Chain Id</th>
-      <th>Endpoint</th>
+      <th>Endpoint Id</th>
+      <th>Endpoint address</th>
     </tr>
     <tr>
-      <td>Testnet</td>
-      <td>Linea</td>
-      <td>10157</td>
+      <td>Linea Mainnet</td>
+      <td>59144</td>
+      <td>30183</td>
       <td>
-        <a href="https://sepolia.lineascan.build/address/0x6EDCE65403992e310A62460808c4b910D972f10f">
-          0x6EDCE65403992e310A62460808c4b910D972f10f
+        <a href="https://layerzeroscan.com/api/explorer/linea/address/0x1a44076050125825900e736c501f859c50fE728c">
+          0x1a44076050125825900e736c501f859c50fE728c
         </a>
       </td>
     </tr>
     <tr>
-      <td>Mainnet</td>
-      <td>Linea</td>
-      <td>183</td>
+      <td>Linea Sepolia Testnet</td>
+      <td>59141</td>
+      <td>40287</td>
       <td>
-        <a href="https://lineascan.build/address/0xb6319cC6c8c27A8F5dAF0dD3DF91EA35C4720dd7">
-          0xb6319cC6c8c27A8F5dAF0dD3DF91EA35C4720dd7
+        <a href="https://layerzeroscan.com/api/explorer/lineasep-testnet/address/0x6EDCE65403992e310A62460808c4b910D972f10f">
+          0x6EDCE65403992e310A62460808c4b910D972f10f
         </a>
       </td>
     </tr>
   </tbody>
 </table>
+
+Once a transaction is submitted, you can trace it on [LayerZero Scan](https://layerzeroscan.com/), which shows cross-chain message flow from source to destination in real time.
+
+## Get started
+
+Developers should:
+
+1. Deploy contracts on each chain: [Quickstart - Create Your First Omnichain App](https://docs.layerzero.network/v2/developers/evm/create-lz-oapp/start)
+2. Configure a Security Stack by selecting DVNs and block confirmations (optional).
+3. Optionally configure an executor or use defaults to deliver messages.
+4. Send messages, send tokens (OFT, ONFT), or read state on any chain, using LayerZero.
+
+## Example use cases
+
+LayerZero powers various cross-chain applications across different categories:
+
+1. **Omnichain tokens (OFTs)** (e.g., [Ethena's USDe](https://ethena.fi/), Wrapped Bitcoin)
+   - Unified token supply across chains
+   - Native bridging without intermediary tokens
+   - Real-world examples include USDe, sUSDe, ENA tokens, and WBTC
+2. **Cross-chain DEXs** (e.g., [Trader Joe](https://traderjoexyz.com/))
+   - Unified liquidity pools across chains
+   - Cross-chain swaps and trading
+3. **Omnichain lending** (e.g., [Radiant Capital](https://radiant.capital/))
+   - Supply assets on any chain
+   - Borrow against cross-chain collateral
+4. **Cross-chain governance** (e.g., [Stargate DAO](https://stargate.finance/))
+   - Vote on one chain, execute on many
+   - Unified governance across deployments
+5. **Chain data oracles**
+   - Read and verify external chain state
+   - Make decisions based on cross-chain data
+
+## Resources
+
+1. [LayerZero Developer Documentation](https://docs.layerzero.network/v2)
+2. [LayerZero Scan](https://layerzeroscan.com/) - Message explorer and debugging
+3. [Discord Community](https://discord.gg/layerzero)
+4. [GitHub](https://github.com/LayerZero-Labs/)

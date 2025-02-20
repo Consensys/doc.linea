@@ -35,7 +35,7 @@ main {
   transition: padding-left 0.25s ease;
 }
 
-@media (width <= 1500px) {
+@media (max-width: 1500px) {
   .cardBody {
     padding: 14px 30px;
   }
@@ -66,7 +66,7 @@ main {
   color: var(--search-local-muted-color);
 }
 
-@media (width <= 1300px) {
+@media (max-width: 1300px) {
   .cardBody {
     padding: 14px 16px 0 30px;
   }
@@ -82,7 +82,7 @@ main {
   }
 }
 
-@media (width <= 996px) {  
+@media (max-width: 996px) {  
   .cardTitle h3 {
     padding-right: 10px;
     font-size: 1.45rem;
@@ -147,8 +147,7 @@ main {
 }
 
 .button:hover {
-  scale: 1.1;
-  transform: translateY(-5px);
+  transform: scale(1.1);
   background-color: #fff068;
   color: #121212;
 }

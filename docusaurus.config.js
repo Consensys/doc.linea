@@ -83,6 +83,17 @@ const config = {
         },
       },
     ],
+    [
+      "redocusaurus",
+      {
+        specs: [
+          {
+            spec: "https://token-api.devnet.linea.build/docs-yaml",
+            route: "api/token-api/reference",
+          },
+        ],
+      },
+    ],
   ],
 
   themeConfig:
@@ -127,12 +138,12 @@ const config = {
             position: "left",
             label: "Get started",
           },
-          /*           {
+          {
             type: "doc",
-            docId: "learn/index",
+            docId: "learn/marketplace-dapp",
             position: "left",
             label: "Learn",
-          }, */
+          },
           {
             type: "doc",
             docId: "technology/architecture",
@@ -141,9 +152,9 @@ const config = {
           },
           {
             type: "doc",
-            docId: "api/index",
+            docId: "api/linea-smart-contracts/linearollup",
             position: "left",
-            label: "API & SDK",
+            label: "APIs & SDK",
           },
           {
             type: "doc",
