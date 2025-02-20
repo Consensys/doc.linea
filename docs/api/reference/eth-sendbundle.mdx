@@ -7,17 +7,16 @@ description: Send a bundle of signed transactions to be executed atomically.
 
 :::note
 
-Access to this endpoint is permissioned via Infura, and can only be used by the sequencer, so is
-not relevant for node operators.
+Access to this endpoint is permissioned via Infura, and is not relevant for node operators as it's 
+available on sequencers only.
 
 :::
 
-Sends a bundle of signed transactions to be executed atomically, allowing the intended transaction
-to be "sandwiched" between others, enabling services such as:
+Privately sends a bundle of signed transactions to be executed atomically, allowing the intended 
+transaction to be "sandwiched" between others, enabling services such as:
 - Frontrunning protection
 - Gas abstraction
-- Reversion protection
-- Backrunning. 
+- Revert protection
 
 ## Parameters
 
