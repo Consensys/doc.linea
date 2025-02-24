@@ -14,10 +14,21 @@ const calculateDailyIncrease = (values) => {
 };
 
 function getWeekNumber(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const startOfYear = new Date(Date.UTC(d.getFullYear(), 0, 1));
-  return Math.ceil(((date - startOfYear) / 86400000 + 1) / 7);
+    // Create a date in UTC time
+    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    
+    // Set the reference day to Thursday (ISO 8601 standard)
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+    
+    // Get the first day of the year
+    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    
+    // Calculate the week number
+    const weekNo = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+    
+    return weekNo;
 }
+
 
 const fetchData = async () => {
   console.log("Starting data fetch...");
