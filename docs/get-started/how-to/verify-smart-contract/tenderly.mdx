@@ -1,0 +1,143 @@
+---
+title: Tenderly
+description: Tenderly is a comprehensive Web3 development infrastructure that enables developers to build, test, and monitor decentralized applications with support for Virtual TestNets and contract verification using both Hardhat and Foundry frameworks.
+---
+
+# Tenderly 
+
+[Tenderly](https://tenderly.co?mtm_campaign=ext-docs&mtm_kwd=linea) is a full-stack Web3 development infrastructure that helps developers build, stage, test, and monitor decentralized applications. It provides Virtual TestNets for staging and testing in mainnet-like environments, with public and private verification support for both Hardhat and Foundry.
+
+## Create a Virtual TestNet
+Both Hardhat and Foundry examples will use a Virtual TestNet as contract deployment and staging infrastructure.
+
+Provision a [new Virtual TestNet](https://docs.tenderly.co/virtual-testnets/quickstart?mtm_campaign=ext-docs&mtm_kwd=linea) and place the RPC URL in the variable:
+
+```bash
+export TENDERLY_VIRTUAL_TESTNET_RPC_URL=...
+```
+
+## Foundry verification
+
+To verify contracts with Foundry, follow the instructions in the [Tenderly documentation](https://docs.tenderly.co/contract-verification/foundry?mtm_campaign=ext-docs&mtm_kwd=linea). Tenderly offers etherscan-like verification API so all you need to do is use the correct [verification url](https://docs.tenderly.co/contract-verification#verification-on-tenderly-development-infrastructure??mtm_campaign=ext-docs&mtm_kwd=linea).
+
+:::note
+
+When working with Virtual TestNets, in case you use a custom chain ID, you also must [extend `foundry.toml`](https://docs.tenderly.co/contract-verification/foundry#extend-foundrytoml?mtm_campaign=ext-docs&mtm_kwd=linea) with information for the custom chain.
+
+:::
+
+**1. `forge create` verification**
+```bash
+TENDERLY_VERIFIER_URL=$TENDERLY_VIRTUAL_TESTNET_RPC_URL/verify/etherscan
+
+forge create Counter \
+  --rpc-url $TENDERLY_VIRTUAL_TESTNET_RPC_URL \
+  --etherscan-api-key $TENDERLY_ACCESS_TOKEN \
+  --private-key $DEPLOYER_PRIVATE_KEY  \
+  --verify \
+  --verifier-url $TENDERLY_VERIFIER_URL
+
+```
+
+**2. `forge script` verification**
+```bash
+TENDERLY_VERIFIER_URL=$TENDERLY_VIRTUAL_TESTNET_RPC_URL/verify/etherscan
+
+forge script script/Counter.s.sol:CounterScript \
+  --rpc-url $TENDERLY_VIRTUAL_TESTNET_RPC_URL \
+  --private-key $DEPLOYER_PRIVATE_KEY  \
+  --etherscan-api-key $TENDERLY_ACCESS_TOKEN \
+  --broadcast \
+  --verify \
+  --verifier-url $TENDERLY_VERIFIER_URL \
+  --slow
+```
+
+**3. `forge verify` verification**
+```bash
+TENDERLY_VERIFIER_URL=$TENDERLY_VIRTUAL_TESTNET_RPC_URL/verify/etherscan
+
+forge verify-contract $COUNTER_ADDRESS  \
+  Counter \
+  --etherscan-api-key $TENDERLY_ACCESS_TOKEN \
+  --verifier-url $TENDERLY_VERIFIER_URL \
+  --watch
+```
+
+## Hardhat verification
+
+To verify contracts with both `hardhat-verify` and `hardhat-ignition`, follow the instructions in the [Tenderly documentation](https://docs.tenderly.co/contract-verification/hardhat?mtm_campaign=ext-docs&mtm_kwd=linea).
+
+**1. Install Tenderly CLI**
+
+Install the [Tenderly CLI](https://github.com/Tenderly/tenderly-cli) and follow the prompts of `tenderly login`:
+
+```bash
+brew tap tenderly/tenderly
+brew install tenderly
+tenderly login
+```
+
+**2. Set up hardhat**
+
+Extend `hardhat.config.ts` with following configuration:
+- Add the `@tenderly/hardhat-tenderly` plugin
+- Add the `tenderly_linea` network
+- Add the `etherscan` plugin and configure it with the Tenderly
+- Add the `tenderly` plugin configuration, and set up the Tenderly [`access key`](https://docs.tenderly.co/account/projects/how-to-generate-api-access-token?mtm_campaign=ext-docs&mtm_kwd=linea) and [`project` and `username`](https://docs.tenderly.co/account/projects/account-project-slug?mtm_campaign=ext-docs&mtm_kwd=linea)
+
+```typescript
+import { HardhatUserConfig } from 'hardhat/config';
+import '@nomicfoundation/hardhat-toolbox';
+import '@tenderly/hardhat-tenderly';
+
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const config: HardhatUserConfig = {
+  solidity: '0.8.27',
+  networks: {
+    tenderly_linea: {
+      url: process.env.TENDERLY_ADMIN_RPC_URL_LINEA || "",
+      chainId: parseInt(process.env.TENDERLY_CHAIN_ID_LINEA || "-1"),
+    }
+  },
+  etherscan: {
+    apiKey: {
+      tenderly_1: process.env.TENDERLY_ACCESS_KEY!,
+      tenderly_8453: process.env.TENDERLY_ACCESS_KEY!,
+    },
+    customChains: [
+      {
+        network: 'tenderly_linea',
+        chainId: parseInt(process.env.TENDERLY_CHAIN_ID!),
+        urls: {
+          apiURL: `${process.env.TENDERLY_ADMIN_RPC_URL}/verify/etherscan`,
+          browserURL: process.env.TENDERLY_ADMIN_RPC_URL!,
+        },
+      },
+    ],
+  },
+  tenderly: {
+    project: process.env.TENDERLY_PROJECT_NAME!,
+    username: process.env.TENDERLY_ACCOUNT_NAME!,
+    accessKey: process.env.TENDERLY_ACCESS_KEY!,
+  }
+};
+
+export default config;
+```
+
+**3. Verify the contract**
+
+For `hardhat-ignition`, run the following command:
+```bash
+npx hardhat ignition deploy ./ignition/modules/Counter.ts --network tenderly_linea --deployment-id deploy-1
+```
+
+For `hardhat-verify`, run the following command:
+
+```bash
+npx hardhat deploy --network tenderly_linea
+```

@@ -1,0 +1,47 @@
+---
+title: Tenderly
+description: Tenderly offers specialized RPC methods for Linea blockchain developers to accurately estimate gas usage and predict optimal gas prices for upcoming blocks with probability-based transaction inclusion rates.
+---
+
+Tenderly provides RPC methods to help developers estimate gas usage for a transaction, and predict gas price for the next block:
+
+- estimate gas on Linea with 100% accuracy with [`tenderly_estimateGas`](https://docs.tenderly.co/node/rpc-reference/linea/tenderly_estimateGas?mtm_campaign=ext-docs&mtm_kwd=linea) RPC method. This method estimates gas by profiling the transaction, and Tenderly ensures entire transaction runs fully, regardless of the initially provided gas for said transaction.
+- predict gas prices for the next block using [`tenderly_gasPrice`](https://docs.tenderly.co/node/rpc-reference/linea/tenderly_gasPrice?mtm_campaign=ext-docs&mtm_kwd=linea) RPC method. Gas price prediction is based on historical data and statistical analysis, and it comes in 3 probability levels for transaction inclusion in the next block, including `maxFeePerGas`, `maxPriorityFeePerGas`, and transaction `waitTime`.
+
+## Use the Tenderly Gas API
+
+To leverage Tenderly's Gas API, create an RPC Node and call the RPC methods:
+
+
+**`tenderly_estimateGas`**
+```bash
+curl https://linea.gateway.tenderly.co/$TENDERLY_NODE_ACCESS_KEY \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "tenderly_estimateGas",
+  "params": [
+    {
+      "from": "0x8516feaea147ea0db64d1c5b97bb651ca5435155",
+      "to": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "data": "0xa9059cbb0000000000000000000000003fc3c4c84bdd2db5ab2cc62f93b2a9a347de25fb00000000000000000000000000000000000000000000001869c36187f3430000",
+      "value": "0x0"
+    },
+    "21285787"
+  ]
+}'
+```
+
+**`tenderly_gasPrice`**
+```bash
+curl https://linea.gateway.tenderly.co/$TENDERLY_NODE_ACCESS_KEY \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "jsonrpc": "2.0",
+        "id": 0,
+        "method": "tenderly_gasPrice"
+    }'
+```

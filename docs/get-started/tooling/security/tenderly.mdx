@@ -1,0 +1,52 @@
+---
+title: Tenderly
+description: Tenderly offers robust monitoring and security solutions for Linea blockchain with features including configurable alerts, automated Web3 Actions, and simulation capabilities to predict transaction outcomes before execution.
+---
+
+Tenderly provides comprehensive monitoring and security solutions for Linea, allowing you to stay informed about on-chain events, and respond proactively to potential issues. 
+
+- Configure [**Tenderly Alerts**](https://docs.tenderly.co/alerts/intro-to-alerts?mtm_campaign=ext-docs&mtm_kwd=linea) to get notifications on transactions and contract events, allowing you to stay aware of critical issues and to signal problems to external webhooks. Use the [Alert API](https://docs.tenderly.co/reference/api#/operations/createAlert?mtm_campaign=ext-docs&mtm_kwd=linea) for dynamic configuration and building more  powerful triggering criteria.
+- Use [**Web3 Actions**](https://docs.tenderly.co/web3-actions/intro-to-web3-actions?mtm_campaign=ext-docs&mtm_kwd=linea) to automate predefined responses, improving security and user experience. 
+- Leverage [**Simulation RPC**](https://docs.tenderly.co/simulations/single-simulations#simulate-via-rpc?mtm_campaign=ext-docs&mtm_kwd=linea) to predict transaction execution beforehand, and get insights about asset changes, state changes, and gas usage. 
+  - It's possible to simulate single transactions with [`tenderly_simulateTransaction`](https://docs.tenderly.co/node/rpc-reference/linea/tenderly_simulateTransaction?mtm_campaign=ext-docs&mtm_kwd=linea) 
+  - Simulate batches of interconnected transactions with [`tenderly_simulateBundle`](https://docs.tenderly.co/node/rpc-reference/linea/tenderly_simulateBundle?mtm_campaign=ext-docs&mtm_kwd=linea)
+
+```
+curl https://linea.gateway.tenderly.co/$TENDERLY_NODE_ACCESS_KEY \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+  "jsonrpc": "2.0",
+  "id": 0,
+  "method": "tenderly_simulateBundle",
+  "params": [
+    [
+      {
+        "from": "0xe2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
+        "to": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "data": "0x40c10f19000000000000000000000000e58b9ee93700a616b50509c8292977fa7a0f8ce10000000000000000000000000000000000000000000000001bc16d674ec80000"
+      },
+      {
+        "from": "0xe58b9ee93700a616b50509c8292977fa7a0f8ce1",
+        "to": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "gas": "0x7a1200",
+        "data": "0x095ea7b3000000000000000000000000f7ddedc66b1d482e5c38e4730b3357d32411e5dd0000000000000000000000000000000000000000000000000de0b6b3a7640000"
+      },
+      {
+        "from": "0xf7ddedc66b1d482e5c38e4730b3357d32411e5dd",
+        "to": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "gas": "0x7a1200",
+        "data": "0x23b872dd000000000000000000000000e58b9ee93700a616b50509c8292977fa7a0f8ce1000000000000000000000000bd8daa414fda8a8a129f7035e7496759c5af8570000000000000000000000000000000000000000000000000006a94d74f430000"
+      }
+    ],
+    "latest",
+    {
+      "0x6b175474e89094c44da98b954eedeac495271d0f": {
+        "stateDiff": {
+          "0xedd7d04419e9c48ceb6055956cbb4e2091ae310313a4d1fa7cbcfe7561616e03": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        }
+      }
+    }
+  ]
+}' | jq
+```
