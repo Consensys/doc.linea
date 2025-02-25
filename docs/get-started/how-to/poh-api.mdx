@@ -37,6 +37,11 @@ For example:
 curl -X GET "https://linea-xp-poh-api.linea.build/poh/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46C6"
 ```
 
+### Rate limiting
+
+The API is rate-limited to 5 requests per second.  
+Exceeding this limit will result in a 429 error.
+
 ### Response
 
 The main focus of the response is the `poh` field:
