@@ -202,8 +202,7 @@ const sdk = new LineaSDK({
       await l1Contract.claim(message);
     } else {
       const proofInfo = // Implement your own function to get a merkle proof
-        // The L1ClaimingService exposes some utility functions to assist you: getFinalizationMessagingInfo, getL2MessageHashesInBlockRange, getMessageSiblings
-
+        // The L1ClaimingService exposes some utility functions to assist you: getFinalizationMessagingInfo, getL2MessageHashesInBlockRange, and getMessageSiblings
         // Follow these steps:
         // 1. Retrieve the MessageSent event on L2 by messageHash
         // 2. Retrieve the L2MessagingBlockAnchored event on L1 using the MessageSent.blockNumber you acquired in step 1. This is used to get the finalization transaction hash where the L2 block number associated to your message has been finalized.
