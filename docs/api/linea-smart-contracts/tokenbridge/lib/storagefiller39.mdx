@@ -1,2 +1,15 @@
 # `StorageFiller39`
 
+Contract used to reserve storage slots in the TokenBridge contract. This helps maintain storage layout compatibility during upgrades.
+
+The StorageFiller39 reserves 39 storage slots that can be used in future upgrades without changing the storage layout of existing variables.
+
+```solidity
+contract StorageFiller39 {
+    // Reserved storage slots
+    uint256[39] private __gap;
+}
+```
+
+This pattern is commonly used in upgradeable contracts to ensure that new variables can be added in future versions without causing storage collisions.
+
