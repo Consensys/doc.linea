@@ -234,6 +234,7 @@ const sidebars = {
                 "get-started/tooling/data-indexers/goldsky/goldsky-mirror",
               ],
             },
+            "get-started/tooling/data-indexers/bitscrunch",
             "get-started/tooling/data-indexers/mobula",
             "get-started/tooling/data-indexers/moralis",
             "get-started/tooling/data-indexers/nftscan",
