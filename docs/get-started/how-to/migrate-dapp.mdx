@@ -1,0 +1,69 @@
+---
+title: Migrate a dapp to Linea
+description: An overview of the steps to move a dapp from an EVM-compatible chain to Linea.
+image: /img/socialCards/migrate-a-dapp-to-linea.jpg
+---
+
+Linea is EVM-equivalent, which means any dapp running on another chain compatible with the 
+Ethereum Virtual Machine (EVM) can run on Linea with no changes. Accordingly, all you'll need to do 
+is: 
+- Duplicate your existing smart contracts and deploy them on Linea.
+- Configure your dapp to interact with Linea.
+
+## Deploy smart contracts
+
+Your dapp's existing contracts must be deployed on Linea. [Part one](../build/quickstart/deploy.mdx) 
+of our quickstart covers this, or you can pick one of multiple [contract deployment tooling guides](./deploy-smart-contract/index.mdx).
+
+## Chain information
+
+You may need to update your dapp with Linea chain information, which our [network information page](../build/network-info.mdx)
+covers.
+
+## RPC providers
+
+Most major RPC providers support Linea RPC endpoints. Visit our [RPC providers page](../tooling/node-providers/index.mdx) 
+for a non-exhaustive list of public and private endpoints.
+
+:::note
+Not all RPC providers support Linea-specific JSON-RPC API methods such as `linea_estimateGas`. The
+node providers page details which providers do support these methods.
+:::
+
+## Wallet connection
+
+Multiple [libraries](../tooling/libraries), including Wagmi and Viem, support Linea wallet 
+connectors. 
+
+Check out our [wallet connection guide](../how-to/connect-wallet.mdx) for additional information.
+
+## Moving your token
+
+If your project has its own token, we recommend you: 
+
+### Deploy a canonical token
+
+[Deploy](../how-to/deploy-smart-contract/) and [verify](../how-to/verify-smart-contract/) your 
+token on Linea as you would on any other EVM-compatible chain. 
+
+### Add to the token list
+
+With your token deployed, you should make a pull request to add it to the token shortlist on Linea's 
+[canonical token list repository](https://github.com/Consensys/linea-token-list/tree/main), after 
+which it will be reviewed by our team.
+
+Being on the shortlist means that your token will be displayed in the [native bridge](https://bridge.linea.build/) 
+UI. 
+
+### Submit metadata to Lineascan
+
+Adding token metadata to Lineascan is not essential, but strongly recommended to support a 
+positive user experience. 
+
+See the [Lineascan guide](https://info.lineascan.build/how-to-update-token-info/).
+
+## Linea brand assets
+
+The Linea site has a zip file of official Linea logos and icons [available for download](https://linea.build/assets),
+available as both PNGs and SVGs for use in your dapp. If you need some assets or media that aren't 
+covered here, please reach out on Discord.
