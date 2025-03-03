@@ -146,6 +146,12 @@ const config = {
           },
           {
             type: "doc",
+            docId: "learn/aiagent-quickstart",
+            position: "left",
+            label: "Learn",
+          },
+          {
+            type: "doc",
             docId: "technology/architecture",
             position: "left",
             label: "Technology",

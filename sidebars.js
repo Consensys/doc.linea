@@ -365,6 +365,7 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
     {
