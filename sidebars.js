@@ -365,6 +365,7 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/first-dapp",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
     {

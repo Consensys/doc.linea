@@ -1,0 +1,725 @@
+---
+title: How to build on Linea: a step-by-step tutorial to deploy your first dApp
+description: A step-by-step guide to building your first dApp on Linea.
+---
+
+## Gm developers 👋
+
+Today we're going to learn together how to create a dapp that will allow a web3 degen to stake certain tokens in your contract! 🔥
+
+We'll be using the Linea blockchain ⛓️ for this tutorial. It's a zk-rollup EVM equivalent, fully EVM-compatible and 100% proven, with advantages such as high speed and low costs.
+
+You can get some Linea Sepolia (testnet) ETH [here](https://www.infura.io/faucet/linea). 
+
+> ℹ️ As Linea uses the **London** version of Ethereum, a small number of recent opcodes are not available.
+> 
+
+### Requirements:
+
+- Basic blockchain and web development knowledge
+- A setup Metamask wallet (be sure to download it from [metamask.io](https://metamask.io))
+- [Node](https://nodejs.org/en/download/package-manager) and your favorite package manager ([pnpm](https://pnpm.io/installation) | [npm](https://docs.npmjs.com/cli/v10/configuring-npm/install) | [yarn](https://classic.yarnpkg.com/lang/en/docs/install/))
+    
+    > ℹ️ Versions used for this tutorial: `node 20.11.1` & `pnpm 9.9.0`
+    > 
+
+### 1️⃣ Create your contract
+
+First, we'll start with the staking contract. To simplify the deployment, we'll use Remix, an online tool that speeds up Solidity development. For a complete development environment, you can use [Foundry](https://book.getfoundry.sh/) or [Hardhat](https://hardhat.org/).
+
+*You can follow the steps directly on the images if you don't know how to use Remix.*
+
+1. Go to [Remix ↗️](https://remix.ethereum.org/) and create a new file in the contracts folder.
+2. Copy and paste the following code ⏬
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract StakingWithWhitelist {
+    mapping(address => mapping(address => uint256)) public stakedBalances;
+    mapping(address => bool) public whitelistedTokens;
+
+    event Staked(address indexed user, address indexed token, uint256 amount);
+    event Withdrawn(address indexed user, address indexed token, uint256 amount);
+
+    constructor(address[] memory tokens) {
+        for (uint256 i = 0; i < tokens.length; i++) {
+            whitelistedTokens[tokens[i]] = true;
+        }
+    }
+
+    function stake(address _token, uint256 _amount) public {
+        require(whitelistedTokens[_token], "Token is not whitelisted");
+        require(_amount > 0, "Amount must be greater than 0");
+        IERC20 token = IERC20(_token);
+        require(token.transferFrom(msg.sender, address(this), _amount), "Token transfer failed");
+        stakedBalances[msg.sender][_token] += _amount;
+        emit Staked(msg.sender, _token, _amount);
+    }
+
+    function withdraw(address _token, uint256 _amount) public {
+        require(whitelistedTokens[_token], "Token is not whitelisted");
+        require(_amount > 0, "Amount must be greater than 0");
+        require(stakedBalances[msg.sender][_token] >= _amount, "Insufficient staked balance");
+        IERC20 token = IERC20(_token);
+        stakedBalances[msg.sender][_token] -= _amount;
+        require(token.transfer(msg.sender, _amount), "Token transfer failed");
+        emit Withdrawn(msg.sender, _token, _amount);
+    }
+
+    function isTokenWhitelisted(address _token) public view returns (bool) {
+        return whitelistedTokens[_token];
+    }
+}
+```
+
+This is a simplified version of a staking contract with whitelist, so let's take a moment to explain it:
+
+- This contract allows you to virtually stake any ERC20, and contains the two basic functions "stake" and "withdraw".
+- The whitelist is set up when the contract is deployed; there are other versions where the whitelist can be modified, usually by the owner.
+
+![First two steps (1 & 2)](/img/learn/first-dapp/tutoremix_1.png)
+
+First two steps (1 & 2)
+
+1. Then go to the *Solidity Compiler* tab.
+2. Select the london version in the EVM Version list under Advanced Configurations (to avoid any compatibility problems, even if there won't be any with this contract).
+3. Click on the *Compile* button.
+    
+    You can also get the ABI on this page, after compiling the code, you'll see this below the compile button:
+    
+    ![image.png](/img/learn/first-dapp/image.png)
+    
+    You can copy the ABI using the button at the bottom. Save it in a json file, as you'll need it later.
+    
+
+![Steps 3 to 5](/img/learn/first-dapp/tutoremix_2.png)
+
+Steps 3 to 5
+
+1. Finally, we're ready to deploy the contract. To do this, go to the *Deploy* tab.
+2. Select your injected provider (for us, Metamask) as environment. You'll get a connection request that you'll have to accept.
+    - What should I do if my injected provider doesn't appear? 🆘
+        
+        It may happen that your injected provider does not appear by default. If this happens to you, follow these steps:
+        
+        1. Click on *Customize this list* at the very bottom of the environment list. A page will open in remix.
+        2. You should see your injected provider here. Simply click on the box at the top right and it should appear at the top of the list.
+        
+        ![Troubleshoot: injected provider not in Environment list](/img/learn/first-dapp/tutoremix_troubleshoot1.png)
+        
+        Troubleshoot: injected provider not in Environment list
+        
+3. Check that the contract is the one you want to deploy.
+4. Enter the list of tokens you want to whitelist. For this tutorial, I've deployed 3 ERC20 contracts that you can use (you can copy and paste directly into the field): 
+
+```solidity
+["0x46871676658472B99720F2a368CDa6430c1647b9","0xB7D70343639aF53a02f6ea7d9cde240fc72de6Dd","0x66a6F52C2100FB82EE21FD1380b4D516CB540c93"]
+```
+
+Those ERC20 contracts are verified so you can interact with them directly on LineaScan to mint some tokens. Put your address and the number of tokens you want (don't forget that if you want 1 token you have to put 1e18, e.g., 100000000000000000)
+
+- [Mint link for COFFEE](https://sepolia.lineascan.build/address/0x46871676658472b99720f2a368cda6430c1647b9#writeContract#F3)
+- [Mint link for TEA](https://sepolia.lineascan.build/address/0xb7d70343639af53a02f6ea7d9cde240fc72de6dd#writeContract#F3)
+- [Mint link for WATER](https://sepolia.lineascan.build/address/0x66a6f52c2100fb82ee21fd1380b4d516cb540c93#writeContract#F3)
+1. Finally, click on deploy and confirm the transaction in Metamask. You should see success logs appear in the console at bottom right. The contract address can be copied by going to recorded transactions (under the deploy button), but you can also find it by searching for your address on the [Sepolia Linea explorer](https://sepolia.lineascan.build).
+
+![Steps 6 to 10](/img/learn/first-dapp/tutoremix_3.png)
+
+Steps 6 to 10
+
+### 2️⃣ Create the frontend
+
+We're going to create a simple frontend. You can find all the code [here](https://github.com/jidohanbaiki/linea_staking).
+
+We'll create this frontend using `rainbowkit`, which will set up a new [Next.js](https://nextjs.org/) app and is built on top of another library called `wagmi`. These libraries greatly simplify how to handle reading chain state, wallet connections, sending transactions, listening for events and state changes, etc.
+
+Let's begin! 🔥
+
+1. Run this command: `pnpm create @rainbow-me/rainbowkit@latest` and choose a project name.
+2. Then run `cd yourprojectname` and open the project in your favorite IDE (eg: `code .` to open it in VS Code).
+3. Now you can configure the chain to Linea Sepolia by modifying the `src/wagmi.ts` file:
+
+```tsx
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
+import { lineaSepolia } from 'wagmi/chains';
+
+export const config = getDefaultConfig({
+  appName: 'Linea Token Staking App',
+  projectId: 'YOUR_PROJECT_ID',
+  chains: [lineaSepolia],
+  ssr: true,
+});
+```
+
+1. We need configure the project and setup some styling. We'll use `shadcn` with `tailwindcss` to make it easier:
+
+```bash
+pnpm install -D tailwindcss postcss autoprefixer lucide-react
+npx tailwindcss init -p
+npx shadcn-ui@latest init
+```
+
+Then press `enter` each time to choose the default parameters (if you are an expert, feel free to use your preferred config).
+
+Depending on your system, you might have some differences (we love config 🙃), so i'll guide you to be sure we have the same configuration:
+
+a. You should have an `app` folder, with a `global.css` file inside. You can move it to `src/pages/globals.css` and edit the import at the top of `_app.tsx`:
+
+```tsx
+import './globals.css';
+```
+
+b. Shadcn works by manually adding each component with the `pnpm dlx shadcn-ui@atest add <component>`, so be sure to do it for each import. Run this command to add all the components we'll use:
+
+```bash
+pnpm dlx shadcn-ui@latest add tabs button card input label popover command
+```
+
+c. You also have a folder containing two folders `components` and `lib`. You can move them under `src` —> `src/components` and `src/lib` .
+
+d. Verify that in the `tsconfig.json` file that you have this under `compilerOptions`:
+
+```tsx
+"compilerOptions": {    
+		...,
+		"paths": {
+      "@/*": ["./src/*"]
+    }
+}
+```
+
+e. Finally we can delete the empty folders (might vary depending on your system, but you should have an empty `app` folder at least). Also, if you have both `tailwind.config.js` and `tailwind.config.ts`  you should remove the useless `tailwind.config.js` file.
+
+The configuration is finally done, you should have a project structure like:
+
+```bash
+src
+├── components
+│   └── ui
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── command.tsx
+│       ├── dialog.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       └── popover.tsx
+├── lib
+│   └── utils.ts
+├── pages
+│   ├── _app.tsx
+│   ├── globals.css
+│   └── index.tsx
+└── wagmi.ts
+```
+
+1. We are now ready to integrate our contracts and build the main interface! We'll do that in the `src/pages/index.tsx` file that will be our main page. You can remove the content in this file and start from scratch.
+    
+    Let's start by defining an empty page with a connect button and some useful debug information. We use the `ConnectButton` from rainbowkit to handle the wallet connection, and we use the `useAccount` hook from wagmi to get the connected account information.
+    
+
+```tsx
+import type { NextPage } from 'next';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi';
+
+const Home: NextPage = () => {
+  const account = useAccount();
+
+  return (
+    <div className="bg-background w-full h-screen flex items-center justify-center">
+      {/* Top right corner: Wallet informations */}
+      <div className="absolute top-0 right-0 p-4">
+        <ConnectButton />
+      </div>
+
+      {/* Bottom left corner: Debug informations */}
+      <div className="absolute text-xs text-gray-500 bottom-0 left-0 p-4">
+        status: {account.status}
+        <br />
+        address: {JSON.stringify(account.address)}
+        <br />
+        chainId: {account.chainId}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+1. You can now run `pnpm dev` and go to [`http://localhost:3000/`](http://localhost:3000/) in your browser. Try to connect your wallet, rainbowKit should automatically ask you to switch to Linea Sepolia. Verify that chainId is `59141` in the debug information corner.
+2. Now that we have our frontend set up, our wallet connection working and our chain set to Linea Sepolia, we can move to the next part: interacting with the contract 🥳
+    
+    Copy and paste this code on top of `index.tsx`, it's a simple staking card design:
+    
+    ```tsx
+    import { useEffect, useState } from "react";
+    import { cn } from "@/lib/utils";
+    import { Button } from "@/components/ui/button";
+    import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+    import { Label } from "@/components/ui/label";
+    import { Input } from "@/components/ui/input";
+    import {
+      Command,
+      CommandEmpty,
+      CommandGroup,
+      CommandInput,
+      CommandItem,
+      CommandList,
+    } from "@/components/ui/command";
+    import {
+      Popover,
+      PopoverContent,
+      PopoverTrigger,
+    } from "@/components/ui/popover";
+    import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+    import { Check, ChevronsUpDown } from "lucide-react";
+    
+    const tokens: { value: `0x${string}`; label: string }[] = [
+      {
+        value: "0x46871676658472B99720F2a368CDa6430c1647b9",
+        label: "COFFEE",
+      },
+      {
+        value: "0xB7D70343639aF53a02f6ea7d9cde240fc72de6Dd",
+        label: "TEA",
+      },
+      {
+        value: "0x66a6F52C2100FB82EE21FD1380b4D516CB540c93",
+        label: "WATER",
+      },
+    ];
+    
+    const TokensCombobox = ({ value, setValue, disabled }: any) => {
+      const [open, setOpen] = useState(false);
+      return (
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className="w-full justify-between"
+              disabled={disabled}
+            >
+              {value
+                ? tokens.find((token) => token.value === value)?.label
+                : "Select token..."}
+              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-full p-0">
+            <Command>
+              <CommandInput placeholder="Search by address..." />
+              <CommandList>
+                <CommandEmpty>No token found.</CommandEmpty>
+                <CommandGroup>
+                  {tokens.map((token) => (
+                    <CommandItem
+                      key={token.value}
+                      value={token.value}
+                      onSelect={(currentValue) => {
+                        setValue(currentValue === value ? "" : currentValue);
+                        setOpen(false);
+                      }}
+                    >
+                      <Check
+                        className={cn(
+                          "mr-2 h-4 w-4",
+                          value === token.value ? "opacity-100" : "opacity-0"
+                        )}
+                      />
+                      {token.label}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+      );
+    };
+    
+    const StakingCard = ({ account, disabled }: any) => {
+      const [menuTab, setMenuTab] = useState<"stake" | "unstake">("stake");
+      const [token, setToken] = useState<`0x${string}`>(tokens[0].value);
+      const [amountToStake, setAmountToStake] = useState<number>(0);
+      const [amountToUnstake, setAmountToUnstake] = useState<number>(0);
+      const [amountStakable, setAmountStakable] = useState<number>(0);
+      const [amountStaked, setAmountStaked] = useState<number>(0);
+    
+      const mockFetchAmountStakableForToken = (tokenAddress: string) => 10;
+      const mockFetchAmountStakedForToken = (tokenAddress: string) => 10;
+      useEffect(() => {
+        const stakable = mockFetchAmountStakableForToken(token);
+        const staked = mockFetchAmountStakedForToken(token);
+        setAmountStakable(stakable);
+        setAmountToStake(stakable);
+        setAmountStaked(staked);
+        setAmountToUnstake(staked);
+      }, [token]);
+    
+      return (
+        <Card className="w-full max-w-sm relative">
+          {disabled && (
+            <div className="z-50 backdrop-blur-[3px] rounded-lg absolute inset-0 flex items-center justify-center">
+              <p className="text-md text-gray-500">
+                Please connect your wallet first
+              </p>
+            </div>
+          )}
+    
+          <div className="absolute text-xs text-gray-500 top-0 right-0 p-4">
+            Available to stake: {amountStakable}
+            <br />
+            Amount staked: {amountStaked}
+          </div>
+    
+          <CardHeader>
+            <CardTitle className="text-2xl">Linea Staking</CardTitle>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="targetToken">Token</Label>
+              <TokensCombobox
+                id="targetToken"
+                value={token}
+                setValue={setToken}
+                disabled={disabled}
+              />
+            </div>
+    
+            <Tabs defaultValue="stake" value={menuTab}>
+              <TabsList
+                className="grid w-full grid-cols-2"
+                hidden={amountStakable === 0 || amountStaked === 0}
+              >
+                <TabsTrigger
+                  value="stake"
+                  disabled={amountStakable === 0}
+                  onClick={() => setMenuTab("stake")}
+                >
+                  Stake
+                </TabsTrigger>
+                <TabsTrigger
+                  value="unstake"
+                  disabled={amountStaked === 0}
+                  onClick={() => setMenuTab("unstake")}
+                >
+                  Unstake/Withdraw
+                </TabsTrigger>
+              </TabsList>
+    
+              <TabsContent value="stake">
+                <div className="grid gap-2">
+                  <div className="flex w-full max-w-sm items-center space-x-2">
+                    <Input
+                      id="amountToStake"
+                      value={amountToStake}
+                      onChange={(e) => {
+                        const value = Math.min(
+                          Number(e.target.value),
+                          amountStakable
+                        );
+                        setAmountToStake(value);
+                      }}
+                      disabled={disabled || amountStakable === 0}
+                      type="number"
+                    />
+                    <Button
+                      type="submit"
+                      variant="secondary"
+                      onClick={() => setAmountToStake(amountStakable)}
+                    >
+                      Max
+                    </Button>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-4"
+                  onClick={() => {}}
+                  disabled={disabled || amountStakable === 0}
+                >
+                  Stake
+                </Button>
+              </TabsContent>
+    
+              <TabsContent value="unstake">
+                <div className="grid gap-2">
+                  <div className="flex w-full max-w-sm items-center space-x-2">
+                    <Input
+                      id="amountToUnstake"
+                      value={amountToUnstake}
+                      onChange={(e) => {
+                        const value = Math.min(
+                          Number(e.target.value),
+                          amountStaked
+                        );
+                        setAmountToUnstake(value);
+                      }}
+                      disabled={disabled || amountStaked === 0}
+                      type="number"
+                    />
+                    <Button
+                      type="submit"
+                      variant="secondary"
+                      onClick={() => setAmountToUnstake(amountStaked)}
+                    >
+                      Max
+                    </Button>
+                  </div>
+                </div>
+                <Button
+                  className="w-full mt-4"
+                  onClick={() => {}}
+                  disabled={disabled || amountStaked === 0}
+                >
+                  Unstake
+                </Button>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
+      );
+    };
+    ```
+    
+    We'll not explain much this code as it's mostly React state management. We define the list of tokens as a constant to simplify. The `StakingCard` component handles all the token selection and inputs as well. 
+    
+    We can then add it to the page (in React, it means you have to put this code in `return( ... )`:
+    
+    ```tsx
+    {/* Main content */}
+    <StakingCard
+      account={account}
+      disabled={account.status !== "connected"}
+    />
+    ```
+    
+3. For now, nothing is connected to the blockchain. You can note that the `mockFetchAmountStakableForToken` and `mockFetchAmountStakedForToken`  functions just return a constant. We will use the `useReadContracts` hook for this purpose. We are also using `useWatchBlockNumber` to re-read the state on each new block.
+    
+    Before doing that, let's create an `abi.json` file in `src/pages` and paste the ABI from the smart-contract (step 5 from the first part if you lost the file).
+    
+4. You need to define the contract address and ABI:
+
+```tsx
+import { useAccount, useReadContracts, useWatchBlockNumber } from "wagmi";
+import { erc20Abi } from 'viem'
+import CONTRACT_ABI from "./abi.json";
+const CONTRACT_ADDRESS = "0x2df41652713069B8f05539d9E0E93ADaffCAcA78";
+```
+
+1. Now you can remove the previous mocked part with this new one:
+
+```tsx
+const mockFetchAmountStakableForToken = (tokenAddress: string) => 10;
+const mockFetchAmountStakedForToken = (tokenAddress: string) => 10;
+useEffect(() => {
+  const stakable = mockFetchAmountStakableForToken(token);
+  const staked = mockFetchAmountStakedForToken(token);
+  setAmountStakable(stakable);
+  setAmountToStake(stakable);
+  setAmountStaked(staked);
+  setAmountToUnstake(staked);
+}, [token]);
+
+const [blockNumber, setBlockNumber] = useState<bigint>(BigInt(0));
+  useWatchBlockNumber({
+    onBlockNumber(blockNumber) {
+      setBlockNumber(blockNumber);
+    },
+  })
+
+const { data, isSuccess, isLoading } = useReadContracts({
+	allowFailure: false,
+	blockNumber,
+	contracts: [
+	  // Token decimals
+	  {
+	    address: token,
+	    abi: erc20Abi,
+	    functionName: "decimals",
+	  },
+	  // Stakable
+	  {
+	    address: token,
+	    abi: erc20Abi,
+	    functionName: "balanceOf",
+	    args: [account.address],
+	  },
+	  // Staked
+	  {
+	    address: CONTRACT_ADDRESS,
+	    abi: CONTRACT_ABI,
+	    functionName: "stakedBalances",
+      args: [account.address, token],
+	  },
+		//Allowance
+    {
+      address: token,
+      abi: erc20Abi,
+      functionName: "allowance",
+      args: [account.address, CONTRACT_ADDRESS],
+    },
+	],
+});
+
+useEffect(() => {
+	if (isSuccess) {
+	  const decimals = data?.[0] ?? 18;
+	  const stakable = Number((data?.[1] as bigint) ?? 0) / 10 ** decimals;
+	  const staked = Number((data?.[2] as bigint) ?? 0) / 10 ** decimals;
+	  setAmountStakable(stakable);
+	  setAmountStaked(staked);
+	}
+}, [data]);
+
+useEffect(() => {
+      setAmountToStake(0);
+      setAmountToUnstake(0);
+  }, [token])
+```
+
+- Optional animation:
+    
+    We can use the `isLoading` boolean to add some animation when we are fetching on the two Inputs of Stake and Unstake:
+    
+    ```tsx
+    <Input
+      id="amountToUnstake"
+      value={amountToUnstake}
+      className={isLoading ? " animate-pulse" : ""}
+      onChange={(e) => {
+        const value = Math.min(
+          Number(e.target.value),
+          amountStaked
+        );
+        setAmountToUnstake(value);
+      }}
+      disabled={disabled || amountStaked === 0}
+      type="number"
+    />
+    ```
+    
+
+If you choose a token on your dapp now, the frontend should automatically fetch the token decimals, available balances and staked balances. 
+
+1. Finally, we will handle the deposit and withdraw transactions! In this last part, we will need to prepare and send a transaction. We will use the `useWriteContract` hook.
+
+```tsx
+import { useAccount, useReadContracts, useWriteContract } from "wagmi";
+import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
+
+// ...
+
+// StakingCard:
+const { writeContract, isPending } = useWriteContract();
+
+return (
+	//...
+	
+  <Button
+    className="w-full mt-4"
+    onClick={() => {}}
+    disabled={disabled || amountStakable === 0}
+  >
+    Stake
+  </Button>
+{(data?.[3] ?? 0) < amountToStake * 10 ** (data?.[0] ?? 18) ? (
+  <Button
+    className="w-full mt-4"
+    onClick={() =>
+      writeContract({
+        abi: erc20Abi,
+        address: token,
+        functionName: "approve",
+        args: [
+          CONTRACT_ADDRESS,
+          BigInt(amountToStake * 10 ** (data?.[0] ?? 18)),
+        ],
+      })
+    }
+    disabled={disabled || amountStakable === 0 || isPending}
+  >
+    {isPending ? (
+      <Loader2 className="animate-spin" />
+    ) : (
+      <p>Approve</p>
+    )}
+  </Button>
+) : (
+  <Button
+    className="w-full mt-4"
+    onClick={() =>
+      writeContract({
+        abi: CONTRACT_ABI,
+        address: CONTRACT_ADDRESS,
+        functionName: "stake",
+        args: [token, amountToStake * 10 ** (data?.[0] ?? 18)],
+      })
+    }
+    disabled={disabled || amountStakable === 0 || isPending}
+  >
+    {isPending ? (
+      <Loader2 className="animate-spin" />
+    ) : (
+      <p>Stake</p>
+    )}
+  </Button>
+)}
+  
+	//...
+	
+  <Button
+    className="w-full mt-4"
+    onClick={() => {}}
+    disabled={disabled || amountStaked === 0}
+  >
+    Unstake
+  </Button>
+  <Button
+    className="w-full mt-4"
+    onClick={() =>
+      writeContract({
+        abi: CONTRACT_ABI,
+        address: CONTRACT_ADDRESS,
+        functionName: "withdraw",
+        args: [token, amountToUnstake * 10 ** (data?.[0] ?? 18)],
+      })
+    }
+    disabled={disabled || amountStaked === 0 || isPending}
+  >
+    {isPending ? <Loader2 className="animate-spin" /> : <p>Unstake</p>}
+  </Button>
+  
+	//...
+)
+```
+
+And voilà! 🎉 You should be able to easily stake and unstake from the list of whitelisted tokens.
+
+This frontend part only demonstrated read and write operations. Most hooks of wagmi return lots of data such as `isLoading` or `error`, which is really useful for building reactive and beautiful frontends so be sure to check the documentation. We also omit error handling here for simplicity.
+
+Lastly, we can listen for events to dynamically update the frontend. So I'll let this part as an exercise to go further (hint: you can use [watchContractEvent](https://wagmi.sh/core/api/actions/watchContractEvent) or [watchAsset](https://wagmi.sh/core/api/actions/watchAsset))
+
+---
+
+I hope you enjoyed following this tutorial about how to create a simple staking contract on Linea 🧑‍💻 See you soon for a new one!
+
+Gwen, DevRel @Consensys
+
+Find more content about Linea on my X: [https://x.com/Gwenole_M](https://x.com/Gwenole_M)
+
+## Additional Resources
+
+[Linea Docs](https://docs.linea.build): where you can find more informations about Linea
+
+[Solidity by Example](https://solidity-by-example.org/): really useful website when you want to create a smart-contract
+
+[Linea Discord](https://discord.gg/linea): to contact the team if you need more help
+
+Also check the [full codebase on Github](https://github.com/Gwen-M/linea-first-dapp)
