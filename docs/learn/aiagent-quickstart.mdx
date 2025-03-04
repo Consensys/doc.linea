@@ -1,20 +1,20 @@
 ---
-title: How to build an AI agent on Linea
+title: Build an AI agent
 description: A quickstart guide to building a simple AI agent on Linea.
 image: /img/socialCards/how-to-build-an-ai-agent-on-linea.jpg
 ---
 
-ElizaOS is an open-source framework for creating AI agents that interact with blockchain networks. This tutorial will guide you through setting up an AI agent on the **Linea blockchain** using ElizaOS. By the end, your agent will be able to execute smart contract transactions, interact with the blockchain autonomously. You’ll be able to add any custom action to improve it and make it the best agent in town.
+ElizaOS is an open-source framework for creating AI agents that interact with blockchain networks. This tutorial will guide you through setting up an AI agent on the **Linea blockchain** using ElizaOS. By the end, your agent will be able to execute smart contract transactions and interact with the blockchain autonomously. You’ll be able to add any custom action to improve it and make it the best agent in town.
 
 ### Prerequisites
 
 - Install [Node.js](https://nodejs.org/) (23.3) and [pnpm](https://pnpm.io/).
 - Basic knowledge of **TypeScript** and **blockchain concepts**.
-- Access to a Linea RPC endpoint and a funded Ethereum wallet for testing. I strongly recommend you to use a development wallet, stay safe!
+- Access to a Linea RPC endpoint and a funded Ethereum wallet for testing. We strongly recommend you use a development wallet. Stay safe!
 
 ---
 
-## 1. Setting Up the Environment
+## 1. Set up the environment
 
 To start, we want to clone the main ElizaOS repo, there’s also a starter-kit if you prefer but I recommend you to use the full package:
 
@@ -25,9 +25,9 @@ cd eliza # Starter kit : eliza-starter
 
 This sets up the framework on your local machine. ElizaOS is iterating fast, so a few things might have changed if you’re following this tutorial a long time after its publication.
 
-Be sure you’re using the right version of Node, if you get an error message, sometimes you’ll have to start with a clean node modules installation. 
+Be sure you’re using the right version of Node. If you get an error message, it can help to to start again with a clean Node modules installation. 
 
-Then, you need to checkout to the last version of ElizaOS:
+Then, you need to checkout to the latest version of ElizaOS:
 
 ```bash
 git checkout $(git describe --tags --abbrev=0)
@@ -41,11 +41,11 @@ Installation can take time, so relax and go grab a drink ☕
 
 ---
 
-## 2. Configuring the AI Agent for Linea
+## 2. Configure the AI agent for Linea
 
 ElizaOS uses environment variables stored in a `.env` file to manage configurations, including blockchain settings.
 
-### Setting Up the `.env` File
+### Set up the `.env` file
 
 Copy the `.env.example` file in a `.env` file in the root directory and configure it as follows:
 
@@ -57,9 +57,9 @@ EVM_PRIVATE_KEY=your_private_key_here
 
 Replace `your_private_key_here` with your Ethereum **development** private key. Be sure to keep this key private and do not reuse it to store funds.
 
-We’ll also need a modelProvider (unless you feel confortable running a local model on your computer, it can be quite slow depending on your computer performance), you can add your api key in the .env file, depending which provider you’ll use (OpenAI, Anthropic, Gaia, …). Some also provide you options, you can choose which model you would like to use for each type of actions. 
+We’ll also need a `modelProvider` (unless you feel comfortable running a local model on your computer; it can be quite slow depending on your computer's performance). You can add your API key in the `.env` file, depending on which provider you’ll use (OpenAI, Anthropic, Gaia, etc.). Some `modelProvider`s provide different options, such as enabling you to choose a specific model for certain actions. 
 
-### Installing the EVM Plugin
+### Install the EVM plugin
 
 We’ll use the [EVM Plugin](https://github.com/elizaOS/eliza/tree/main/packages/plugin-evm) to interact with the Linea blockchain.
 
@@ -71,7 +71,7 @@ pnpm add @elizaos/plugin-evm
 
 Then, configure the plugin in your character settings.
 
-ElizaOS is using some “characters” files, that define your agent personnality. You can create one, or choose a preconfigured one in the characters folder.
+ElizaOS uses some “characters” files that define your agent's personality. You can create one or choose a preconfigured one in the characters folder.
 
 On top, you’ll need to add this:
 
@@ -89,11 +89,11 @@ On top, you’ll need to add this:
 }
 ```
 
-This will allow you to use all the actions in the evm plugin + you’re configuring your AI agent to use your provider.
+This will allow you to use all the actions in the EVM plugin and configure your AI agent to use your provider.
 
-## 3. Let’s explore how it works
+## 3. How it works
 
-If you go check the plugin-evm folder, you’ll see differents types of files:
+If you check the `/plugin-evm` folder, you’ll see different types of files:
 
 ### Actions files
 
@@ -285,17 +285,17 @@ export const transferAction: Action = {
 
 ### Contracts artifacts and sources
 
-If you want to allow your agent to deploy new contracts or interact with existing contracts, you can put them in this folder to be able to refer to the abi in your actions files.
+If you want to allow your agent to deploy new contracts or interact with existing contracts, you can put them in this folder to be able to refer to the ABI in your actions files.
 
 ### Providers
 
-Contains wallet providers files, you can modify to use AA wallets or if you want to connect your agent with an MPC provider for example.
+Contains wallet providers files. You can modify these to use AA wallets, for example, or connect your agent with an MPC provider.
 
 ### Templates
 
-A really important section: Every time you send a prompt to the agent, it’ll try to determine if you’re trying to perform an action, then use the template for this action. 
+A very important section: every time you send a prompt to the agent, it’ll try to determine if you’re trying to perform an action, then use the template for this action. 
 
-Here with the transfer template:
+Here's the transfer template:
 
 ```tsx
 export const transferTemplate = `You are an AI assistant specialized in processing cryptocurrency transfer requests. Your task is to extract specific information from user messages and format it into a structured JSON response.
@@ -360,7 +360,7 @@ Now, process the user's request and provide your response.
 
 ---
 
-## 4. Running the AI Agent
+## 4. Run the AI agent
 
 Start the agent with:
 
@@ -375,11 +375,11 @@ You’ll also want to start the web interface, so you can chat with your agent:
 pnpm start:client
 ```
 
-The interface is available by default on localhost:5173, if you want to interact with multiples agents, don’t forget to launch them on different ports.
+The interface is available by default on `localhost:5173`. If you want to interact with multiple agents, launch them on different ports.
 
 And you’re good to go!
 
-You can ask your agent to send some ETH to another address, or to bridge a token from one chain to another (for that you’ll need to add more chains in your configuration). By default, the agent will need the exact name of the chain, e.g.
+You can ask your agent to send some ETH to another address or bridge a token from one chain to another (though for that, you’ll need to add more chains in your configuration). By default, the agent will need the exact name of the chain, e.g.:
 
 ```bash
 Send 1 ETH to 0x9FA746b844747f77c6C54F4f88ab71048c608864 on lineaSepolia
@@ -391,6 +391,6 @@ You can modify this by changing the templates in the EVM plugin.
 
 In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that is able to send transactions on Linea and interact with contracts.
 
-There’s much much more you can do with ElizaOS, the framework is evolving very fast be sure to have plenty of time if you plan to explore it further.
+There’s much much more you can do with ElizaOS. The framework is evolving very fast, so be ready to devote plenty of time if you plan to explore it further.
 
 For more details, explore the [ElizaOS documentation](https://github.com/elizaOS/eliza). Happy building!
