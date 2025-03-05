@@ -449,7 +449,6 @@ const sidebars = {
             "api/linea-smart-contracts/lib/linearolluppausemanager",
             "api/linea-smart-contracts/lib/mimc",
             "api/linea-smart-contracts/lib/pausemanager",
-            "api/linea-smart-contracts/lib/permissionsmanager",
             "api/linea-smart-contracts/lib/sparsemerkleproof",
             "api/linea-smart-contracts/lib/tokenbridgepausemanager",
             "api/linea-smart-contracts/lib/utils",
@@ -470,7 +469,6 @@ const sidebars = {
               items: [
                 "api/linea-smart-contracts/messageservice/l1/l1messagemanager",
                 "api/linea-smart-contracts/messageservice/l1/l1messageservice",
-                "api/linea-smart-contracts/messageservice/l1/transientstoragereentrancyguardupgradeable",
                 {
                   type: "category",
                   label: "v1",
@@ -525,7 +523,6 @@ const sidebars = {
           collapsible: true,
           items: [
             "api/linea-smart-contracts/tokenbridge/bridgedtoken",
-            "api/linea-smart-contracts/tokenbridge/custombridgedtoken",
             "api/linea-smart-contracts/tokenbridge/tokenbridge",
             {
               type: "category",
@@ -534,15 +531,6 @@ const sidebars = {
               collapsible: true,
               items: [
                 "api/linea-smart-contracts/tokenbridge/interfaces/itokenbridge",
-              ],
-            },
-            {
-              type: "category",
-              label: "lib",
-              link: null,
-              collapsible: true,
-              items: [
-                "api/linea-smart-contracts/tokenbridge/lib/storagefiller39",
               ],
             },
           ],
