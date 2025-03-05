@@ -1,0 +1,90 @@
+---
+title: Recover state from a finalized block
+description: How to reconstruct Linea's state as it was at a given block number.
+---
+
+In the highly unlikely event that Linea's sequencer fails, it must be possible to reconstruct
+Linea's state as it was at the last point in time data was finalized, using L1 data. Conceivably,
+any entity could then resume transacton sequencing, confident that state was resuming from the 
+correct point. 
+
+State recovery insures against the risks of a single point of failure that could cripple the network.
+Since this system can be used by any independent actor to validate state roots against L1-published 
+data, it also reduces the need for trust in the Linea [sequencer and coordinator](../../technology/architecture.mdx).
+
+To this end, the Linea Besu execution client has a state recovery plugin that:
+
+1. Retrieves finalized blobs from L1; 
+2. Decompresses the blob data;
+3. Replays the transactions in the execution client, and, finally,
+4. Checks that the resulting `stateRootHash` matches the one finalized on L1. 
+
+Linea Besu executes the fetched transactions in the blob, while the state management plugin, Shomei, 
+rebuilds state.
+
+## Prerequisites
+
+:::note Availability
+
+The state recovery plugin only works from the following block numbers onwards:
+- Linea Mainnet: TBC (once Beta v2 is live)
+- Linea Sepolia: `9572301` (the block where the 2B gas limit was implemented)
+
+:::
+
+The Linea Besu node being used must have been running with the following configuration in the `.toml` 
+file since genesis (i.e. from when it started to sync):
+- [`FULL`](https://besu.hyperledger.org/public-networks/concepts/node-sync#full-synchronization) sync
+mode:
+    ```toml
+    sync-mode="FULL"
+    ```
+- [`BONSAI`](https://besu.hyperledger.org/public-networks/reference/cli/options#data-storage-format) 
+data storage:
+    ```toml
+    data-storage-format="BONSAI"
+    ```
+
+
+To learn how to run a Linea Besu node, see our [guide](../how-to/run-a-node/linea-besu.mdx).
+
+## Update configuration
+
+To proceed with state recovery, your node must have been running normally, in line with the above 
+conditions (i.e. `FULL` sync mode and `BONSAI` data storage enabled).
+
+Only then can you proceed by adding the following configuration parameters.
+
+Insert them into the `.toml` configuration file alongside any existing plugin configurations:
+
+```toml
+### Plugin Configuration ###
+Xplugins-external-enabled=true
+Xbonsai-limit-trie-logs-enabled=false
+plugins=["BesuShomeiRpcPlugin","ZkTrieLogPlugin","LineaStateRecoveryPlugin"]
+plugin-shomei-http-host="11.11.13.11"
+plugin-shomei-http-port=8888
+plugin-staterecovery-linea-sequencer-beneficiary-address="0xa27342f1b74c0cfb2cda74bac1628d0c1a9752f2"
+plugin-staterecovery-l1-smart-contract-address="0xb218f8a4bc926cf1ca7b3423c154a0d627bdb7e5"
+plugin-staterecovery-l1-endpoint="https://sepolia.infura.io/v3/INFURA_APP_KEY"
+plugin-staterecovery-l1-polling-interval="PT12S"
+plugin-staterecovery-l1-success-backoff-delay="PT2S"
+plugin-staterecovery-l1-retry-backoff-delay="PT4S"
+plugin-staterecovery-l1-earliest-search-block="7316705"
+plugin-staterecovery-l1-highest-search-block="FINALIZED"
+plugin-staterecovery-shomei-endpoint="http://shomei-sr-sepolia:8888"
+plugin-staterecovery-blobscan-endpoint="https://api.sepolia.blobscan.com"
+plugin-staterecovery-overriding-recovery-start-block-number=9572301
+```
+
+:::note
+
+The `plugin-staterecovery-l1-endpoint` parameter assumes that you have the variable `INFURA_APP_KEY` 
+stored in your environment. If not, or if you want to use a different RPC endpoint, ensure you
+update this.
+
+:::
+
+`plugin-staterecovery-overriding-recovery-start-block-number=9572301` will instruct the client to
+sync as normal, via P2P, until block `9572300`, the block before the one specified. After this, it 
+will begin using the state recovery plugin and sync based on data recovered from L1 blobs. 
