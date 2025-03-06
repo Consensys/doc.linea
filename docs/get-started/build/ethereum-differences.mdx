@@ -38,7 +38,15 @@ forks, and updates to the blockchain.
         <td>n/a</td>
         <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
     </tr>
-        <tr>
+    <tr>
+        <td>`BLOCKHASH`</td>
+        <td>Returns the hash of a requested block from the 256 most recent blocks.</td>
+        <td>Identical function to Ethereum.</td>
+        <td>Returns the correct value, but the value is not guaranteed by the proof (Linea is a 
+        [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and uses/proves an 
+        L2-specific state representation).</td>
+    </tr>
+    <tr>
         <td>`DIFFICULTY`/`PREVRANDAO`</td>
         <td>Returns the RANDAO value from the previous block</td>
         <td>Returns a fixed number: `2`</td>
@@ -80,7 +88,8 @@ forks, and updates to the blockchain.
 _Consult the Ethereum Foundation's [Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) 
 for more._
 
-[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum.
+[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum, and
+[evm.codes](https://www.evm.codes/) is useful for information about specific opcodes on Ethereum.
 
 ## Precompiles
 
