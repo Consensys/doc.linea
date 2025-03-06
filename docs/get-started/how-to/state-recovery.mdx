@@ -54,9 +54,19 @@ To learn how to run a Linea Besu node, see our [guide](../how-to/run-a-node/line
 To proceed with state recovery, your node must have been running normally, in line with the above 
 conditions (i.e. `FULL` sync mode and `BONSAI` data storage enabled).
 
+:::info 
+
+Only enable state recovery if you intend the node to be used specifically for state recovery. Even 
+if you do not specify a block from which state recovery should start, default behavior will 
+ensure that state recovery will replace standard P2P syncing. It's therefore not possible to add
+the state recovery plugin and configuration without it affecting your node's behavior.
+
+:::
+
 Only then can you proceed by adding the following configuration parameters.
 
-Insert them into the `.toml` configuration file alongside any existing plugin configurations:
+Insert them into the `.toml` configuration file alongside any existing plugin configurations, or via
+the command line by adding `--` before each parameter:
 
 ```toml
 ### Plugin Configuration ###
@@ -89,3 +99,6 @@ update this.
 `plugin-staterecovery-overriding-recovery-start-block-number=9572301` will instruct the client to
 sync as normal, via P2P, until block `9572300`, the block before the one specified. After this, it 
 will begin using the state recovery plugin and sync based on data recovered from L1 blobs. 
+
+If your node has already synced to a block number greater than the one you specify in this parameter,
+the state recovery plugin will start on the next block (`head block + 1`).
