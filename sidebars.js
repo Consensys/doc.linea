@@ -204,6 +204,7 @@ const sidebars = {
           items: [
             "get-started/tooling/data-indexers/alchemy",
             "get-started/tooling/data-indexers/arkham",
+            "get-started/tooling/data-indexers/bitscrunch",
             "get-started/tooling/data-indexers/covalent",
             {
               type: "category",
@@ -365,6 +366,7 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
     {
