@@ -6,8 +6,17 @@
     "paths": {
       "@site/*": ["./*"]
     },
-    "types": ["@docusaurus/module-type-aliases", "node"]
+    "types": ["@docusaurus/module-type-aliases", "node"],
+    "allowJs": true,
+    "checkJs": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*",
+    "docusaurus.config.js",
+    "eslint.config.mjs",
+    "scripts/**/*.js",
+    "static/js/**/*.js",
+    "stylelint.config.mjs"
+  ],
+  "exclude": ["node_modules", "build", "dist", ".docusaurus"]
 }
