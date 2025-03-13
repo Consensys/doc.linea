@@ -13,21 +13,46 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Beta v1a
+## Beta v1
 
-**Mainnet: TBC**
+Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove 
+100% of the zkEVM specification, an objective currently scheduled to be complete in Beta v2.
 
-**Linea Sepolia: September 26**
+### Beta v1.3
 
-Beta v1 on Linea introduces new arithmetization, and is split into two phases:
-1. Beta v1a: Transition to the new arithmetization, and;
-2. Beta v1b: Ensure the new arithmetization is 100% proven.
+**Linea Mainnet: March 3, 2025**
 
-The overall objective of the Linea Beta is to prove 100% of the zkEVM specification.
+**Linea Sepolia: February 18, 2025**
 
-This release includes:
+- Raises the block gas limit to 2B.
+
+### Beta v1.2
+
+**Linea Mainnet: with Beta v2**
+
+**Linea Sepolia: February 4, 2025**
+
+- Full implementation of new arithmetization, with all modules from the Linea specification except 
+the hub's consistency arguments. 
+- Proof of all the activated modules (i.e. excluding the hub consistency arguments).
+
+### Beta v1.1
+
+**Linea Mainnet: with Beta v2**
+
+**Linea Sepolia: September 26, 2024**
+
 - New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
 - The transition to generating traces with Besu. 
+
+## Alpha v4.1
+
+**Mainnet: February 4, 2025**
+
+**Linea Sepolia: January 28, 2025**
+
+- Add automatic claiming for L1 -> L2 bridging on the Linea native bridge.
+- Introduces the [Linea Token API](./api/token-api/overview.mdx) at alpha stage.
 
 ## Alpha v4
 
