@@ -1,6 +1,6 @@
 ---
 title: How to build on Linea: a step-by-step tutorial to deploy your first dApp
-description: A step-by-step guide to building your first dApp on Linea.
+description: A step-by-step guide to building your first dapp on Linea.
 ---
 
 ## Gm developers 👋
@@ -82,9 +82,9 @@ contract StakingWithAllowlist {
 }
 ```
 
-This is a simplified version of a staking contract with allowlist, so let's take a moment to explain it:
+This is a simplified version of a staking contract with an allowlist, so let's take a moment to explain it:
 
-- This contract allows you to virtually stake any ERC-20, and contains the two basic functions "stake" and "withdraw".
+- This contract allows you to stake virtually any ERC-20, and contains the two basic functions "stake" and "withdraw".
 - The allowlist is set up when the contract is deployed; there are other versions where the allowlist can be modified, usually by the owner.
 
 First two steps (1 & 2)
@@ -133,7 +133,7 @@ Steps 3 to 5
         
         If your injected provider does not appear by default, follow these steps:
         
-        1. Click on *Customize this list* at the very bottom of the environment list. A page will open in remix.
+        1. Click on *Customize this list* at the very bottom of the environment list. A page will open in Remix.
         2. You should see your injected provider here. Simply click on the box at the top right and it should appear at the top of the list.
         
         <div class="center-container">
@@ -148,13 +148,13 @@ Steps 3 to 5
         Troubleshoot: injected provider not in Environment list
         
 3. Check that the contract is the one you want to deploy.
-4. Enter the list of tokens you want to allowlist. For this tutorial, I've deployed 3 ERC20 contracts that you can use (you can copy and paste directly into the field): 
+4. Enter the list of tokens you want to allowlist. For this tutorial, I've deployed 3 ERC-20 contracts that you can use (you can copy and paste directly into the field): 
 
 ```solidity
 ["0x46871676658472B99720F2a368CDa6430c1647b9","0xB7D70343639aF53a02f6ea7d9cde240fc72de6Dd","0x66a6F52C2100FB82EE21FD1380b4D516CB540c93"]
 ```
 
-Those ERC-20 contracts are verified so you can interact with them directly on Lineascan to mint some tokens. Put your address and the number of tokens you want (don't forget that if you want 1 token you have to put 1e18, e.g., 100000000000000000)
+Those ERC-20 contracts are verified so you can interact with them directly on Lineascan to mint some tokens. Put your address and the number of tokens you want (don't forget that if you want 1 token you have to put 1e18, e.g., 100000000000000000).
 
 - [Mint link for COFFEE](https://sepolia.lineascan.build/address/0x46871676658472b99720f2a368cda6430c1647b9#writeContract#F3)
 - [Mint link for TEA](https://sepolia.lineascan.build/address/0xb7d70343639af53a02f6ea7d9cde240fc72de6dd#writeContract#F3)
@@ -531,9 +531,9 @@ export default Home;
     };
     ```
     
-    We'll not explain much this code as it's mostly React state management. We define the list of tokens as a constant to simplify. The `StakingCard` component handles all the token selection and inputs as well. 
+    We'll not explain this code much as it's mostly React state management. We define the list of tokens as a constant to simplify. The `StakingCard` component handles all the token selection and inputs as well. 
     
-    We can then add it to the page (in React, it means you have to put this code in `return( ... )`:
+    We can then add it to the page (in React, it means you have to put this code in `return( ... )`):
     
     ```tsx
     {/* Main content */}
@@ -543,7 +543,7 @@ export default Home;
     />
     ```
     
-3. For now, nothing is connected to the blockchain. Note that the `mockFetchAmountStakableForToken` and `mockFetchAmountStakedForToken`  functions just return a constant. We will use the `useReadContracts` hook for this purpose. We are also using `useWatchBlockNumber` to re-read the state on each new block.
+3. For now, nothing is connected to the blockchain. Note that the `mockFetchAmountStakableForToken` and `mockFetchAmountStakedForToken`  functions just return a constant. We will use the `useReadContracts` hook for this purpose. We are also using `useWatchBlockNumber` to reread the state on each new block.
     
     Before doing that, let's create an `abi.json` file in `src/pages` and paste the ABI from the smart contract (step 5 from the first part if you lost the file).
     
