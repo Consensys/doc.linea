@@ -274,6 +274,7 @@ const sidebars = {
             "get-started/tooling/libraries/reown",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
+            "get-started/tooling/libraries/web3j",
           ],
         },
         {
