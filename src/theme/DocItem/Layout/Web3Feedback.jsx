@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { ethers } from "ethers";
 import { VeraxSdk } from "@verax-attestation-registry/verax-sdk";
-import styles from "./Web3Feedback.module.css";
+import styles from "./styles.module.css";
+
+// For development, we'll hardcode these values
+// In production, these would come from a secure backend
+const WALLET_PUBLIC_KEY = ""; // Replace with your actual public key
+const WALLET_PRIVATE_KEY = ""; // Replace with your actual private key
+const PORTAL_ADDRESS = "0xF494B93E9661333d0e7Ca1B880B9Aaf79Cb84697";
+const SCHEMA_ID = "0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
 
 const Web3Feedback = () => {
   const { colorMode } = useColorMode();
@@ -11,6 +18,7 @@ const Web3Feedback = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("");
+  const [debugInfo, setDebugInfo] = useState(null);
 
   // Update theme when color mode changes
   useEffect(() => {
@@ -28,42 +36,67 @@ const Web3Feedback = () => {
     console.log(`Submitting ${isPositive ? 'positive' : 'negative'} feedback for ${currentUrl}`);
     setIsSubmitting(true);
     setError(null);
+    setDebugInfo(null);
     
     try {
-      // Initialize the Verax SDK with environment variables
-      // In production, these would come from a secure source or wallet connection
+      // Initialize the Verax SDK
       const veraxSdk = new VeraxSdk(
         VeraxSdk.DEFAULT_LINEA_SEPOLIA,
-        process.env.WALLET_PUBLIC_KEY,
-        process.env.WALLET_KEY
+        WALLET_PUBLIC_KEY,
+        WALLET_PRIVATE_KEY
       );
-      console.log("Verax SDK initialized");
+      console.log("Verax SDK initialized for Linea Sepolia");
       
-      // Portal and schema IDs from your deployment
-      const portalAddress = "0xF494B93E9661333d0e7Ca1B880B9Aaf79Cb84697";
-      const schemaId = "0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
-      
-      console.log(`Preparing attestation with schema: ${schemaId}`);
+      // Verify the schema exists
+      try {
+        const schemaInfo = await veraxSdk.schema.getSchema(SCHEMA_ID);
+        console.log("Schema found:", schemaInfo);
+      } catch (schemaError) {
+        console.error("Error fetching schema:", schemaError);
+        throw new Error(`Schema not found. Please verify the schema ID: ${SCHEMA_ID}`);
+      }
       
       // Create attestation data
+      const abiCoder = new ethers.AbiCoder();
+      const encodedData = abiCoder.encode(
+        ["bool", "string", "address"],
+        [isPositive, currentUrl, WALLET_PUBLIC_KEY]
+      );
+      
+      console.log(`Preparing attestation with schema: ${SCHEMA_ID}`);
+      console.log(`Encoded data: ${encodedData}`);
+      
       const attestationData = {
-        schemaId,
+        schemaId: SCHEMA_ID,
         expirationDate: 0, // No expiration
-        subject: process.env.WALLET_PUBLIC_KEY, // The subject is the user's address
-        attestationData: ethers.utils.defaultAbiCoder.encode(
-          ["bool", "string", "address"],
-          [isPositive, currentUrl, process.env.WALLET_PUBLIC_KEY]
-        ),
+        subject: WALLET_PUBLIC_KEY, // The subject is the user's address
+        attestationData: encodedData
       };
+      
+      // Log the attestation data for debugging
+      const debugData = {
+        network: "Linea Sepolia",
+        portalAddress: PORTAL_ADDRESS,
+        schemaId: SCHEMA_ID,
+        subject: WALLET_PUBLIC_KEY,
+        encodedData: encodedData,
+        currentUrl: currentUrl,
+        isPositive: isPositive
+      };
+      console.log("Debug data:", debugData);
+      setDebugInfo(debugData);
       
       console.log("Attestation data prepared, submitting...");
       
       // Submit the attestation
-      const { transactionHash } = await veraxSdk.portal.attest(
-        portalAddress,
+      const result = await veraxSdk.portal.attest(
+        PORTAL_ADDRESS,
         [attestationData],
         true // Wait for transaction validation
       );
+      
+      console.log("Attestation result:", result);
+      const transactionHash = result.transactionHash || result.hash || "unknown";
       
       console.log(`Attestation submitted successfully! TX: ${transactionHash}`);
       setFeedbackSubmitted(true);
@@ -71,6 +104,7 @@ const Web3Feedback = () => {
       // Reset after 5 seconds to allow for more feedback
       setTimeout(() => {
         setFeedbackSubmitted(false);
+        setDebugInfo(null);
       }, 5000);
       
     } catch (error) {
@@ -122,6 +156,15 @@ const Web3Feedback = () => {
       {error && (
         <div className={styles.errorMessage}>
           {error}
+        </div>
+      )}
+      
+      {debugInfo && (
+        <div className={styles.debugInfo} style={{fontSize: '0.8rem', marginTop: '1rem', color: 'var(--ifm-color-emphasis-600)', textAlign: 'left'}}>
+          <details>
+            <summary>Debug Information</summary>
+            <pre>{JSON.stringify(debugInfo, null, 2)}</pre>
+          </details>
         </div>
       )}
     </div>
