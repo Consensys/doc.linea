@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { VeraxSdk } from "@verax-attestation-registry/verax-sdk";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import { createWalletClient, custom, http } from "viem";
+import { lineaSepolia } from "viem/chains";
 import styles from "./styles.module.css";
 
-// For development, we'll hardcode these values
-// In production, these would come from a secure backend
-const WALLET_PUBLIC_KEY = "";
-const WALLET_KEY = "";
+// Only hardcode the portal and schema addresses, not wallet keys
 const PORTAL_ADDRESS = "0xF494B93E9661333d0e7Ca1B880B9Aaf79Cb84697";
 const SCHEMA_ID = "0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
+const LINEA_SEPOLIA_RPC = "https://rpc.sepolia.linea.build";
 
 const Web3Feedback = () => {
   const { colorMode } = useColorMode();
@@ -18,75 +19,94 @@ const Web3Feedback = () => {
   const [error, setError] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("");
   const [debugInfo, setDebugInfo] = useState(null);
+  
+  // Get Dynamic wallet context
+  const { user, primaryWallet, handleLogOut, showAuthFlow } = useDynamicContext();
+  
+  // Update theme when color mode changes
+  useEffect(() => {
+    setTheme(colorMode);
+  }, [colorMode]);
 
-    // Update theme when color mode changes
-    useEffect(() => {
-      setTheme(colorMode);
-    }, [colorMode]);
-
-    // Get current URL when component mounts
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
-        setCurrentUrl(window.location.href);
-      }
-    }, []);
+  // Get current URL when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
 
   const submitFeedback = async (isPositive) => {
-  console.log(`Submitting ${isPositive ? "positive" : "negative"} feedback for ${currentUrl}`);
-  setIsSubmitting(true);
-  setError(null);
-  setDebugInfo(null);
-
-  try {
-    const veraxSdk = new VeraxSdk(
-      VeraxSdk.DEFAULT_LINEA_SEPOLIA,
-      WALLET_PUBLIC_KEY,
-      WALLET_KEY
-    );
-    console.log("Verax SDK initialized for Linea Sepolia");
-
-    // First, verify the schema exists
-    try {
-      const schemaInfo = await veraxSdk.schema.getSchema(SCHEMA_ID);
-      console.log("Schema found:", schemaInfo);
-      console.log("Schema structure:", schemaInfo.schema);
-    } catch (schemaError) {
-      console.error("Error fetching schema:", schemaError);
-      throw new Error(`Schema not found. Please verify the schema ID: ${SCHEMA_ID}`);
+    console.log(`Preparing to submit ${isPositive ? "positive" : "negative"} feedback for ${currentUrl}`);
+    
+    // First, ensure user is connected to a wallet
+    if (!user || !primaryWallet) {
+      console.log("No wallet connected. Opening auth flow...");
+      showAuthFlow();
+      return;
     }
-
-    // Prepare the attestation data
-    const attestationRequest = {
-      schemaId: SCHEMA_ID,
-      expirationDate: 0,
-      subject: WALLET_PUBLIC_KEY,
-      attestationData: [{
-          isPositive: isPositive,
-          articlePage: currentUrl,
-          submitter: WALLET_PUBLIC_KEY,
+    
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      // Get the user's address
+      const userAddress = primaryWallet.address;
+      console.log("Connected wallet address:", userAddress);
+      
+      // Log available methods on the connector for debugging
+      console.log("Connector:", primaryWallet.connector);
+      console.log("Connector methods:", Object.keys(primaryWallet.connector));
+      
+      // Prepare the attestation data
+      const attestationData = {
+        isPositive: isPositive,
+        articlePage: currentUrl,
+        submitter: userAddress
+      };
+      
+      try {
+        // Get the provider from the wallet
+        const provider = await primaryWallet.connector.getProvider();
+        console.log("Provider:", provider);
+        console.log("Provider methods:", Object.keys(provider));
+        
+        // Check if provider has request method (EIP-1193 compliant)
+        if (provider && typeof provider.request === 'function') {
+          console.log("Using provider.request method");
+          
+          // Create transaction parameters
+          const transactionParameters = {
+            to: PORTAL_ADDRESS,
+            from: userAddress,
+            data: `0x${Buffer.from(JSON.stringify({
+              schemaId: SCHEMA_ID,
+              attestationData: [attestationData]
+            })).toString('hex')}`,
+            chainId: '0xe707' // Linea Sepolia chainId in hex
+          };
+          
+          // Send transaction using provider.request
+          const txHash = await provider.request({
+            method: 'eth_sendTransaction',
+            params: [transactionParameters],
+          });
+          
+          console.log("Transaction sent! Hash:", txHash);
+          setFeedbackSubmitted(true);
+          
+          // Reset after 5 seconds
+          setTimeout(() => {
+            setFeedbackSubmitted(false);
+          }, 5000);
+        } else {
+          throw new Error("Provider does not support the request method");
         }
-      ]
-    };
-    console.log("Attestation data prepared:", attestationRequest);
-
-    // Log the attestation data for debugging
-    const debugData = {
-      network: "Linea Sepolia",
-      portalAddress: PORTAL_ADDRESS,
-      schemaId: SCHEMA_ID,
-      subject: WALLET_PUBLIC_KEY,
-      currentUrl: currentUrl,
-      isPositive: isPositive,
-      schemaStructure: "(bool isPositive, string articlePage, address submitter)",
-    };
-    console.log("Debug data:", debugData);
-
-    // Submit the attestation
-    const result = await veraxSdk.portal.attest(PORTAL_ADDRESS, attestationRequest, []);
-    console.log("Attestation submitted successfully! TX:", result.transactionHash);
-    setFeedbackSubmitted(true);
-
-  } catch (error) {
+      } catch (txError) {
+        console.error("Transaction error:", txError);
+        throw new Error(`Failed to submit transaction: ${txError.message}`);
+      }
+      
+    } catch (error) {
       console.error("Error submitting feedback:", error);
       setError(`Failed to submit feedback: ${error.message}`);
     } finally {
@@ -133,6 +153,20 @@ const Web3Feedback = () => {
       {error && (
         <div className={styles.errorMessage}>
           {error}
+          {!user && (
+            <button 
+              onClick={showAuthFlow}
+              className={styles.connectButton}
+              style={{marginLeft: '10px', padding: '4px 8px', fontSize: '0.8rem'}}
+            >
+              Connect Wallet
+            </button>
+          )}
+        </div>
+      )}
+      {user && (
+        <div className={styles.walletInfo} style={{fontSize: '0.7rem', marginTop: '0.5rem', color: 'var(--ifm-color-emphasis-600)'}}>
+          Connected: {primaryWallet?.address?.substring(0, 6)}...{primaryWallet?.address?.substring(38)}
         </div>
       )}
       {debugInfo && (
