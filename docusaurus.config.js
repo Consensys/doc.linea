@@ -5,8 +5,9 @@ const math = require("remark-math");
 const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
 
-// Make sure this is properly imported - this is likely the issue
-const remarkDocusaurusTabs = require("remark-docusaurus-tabs").default;
+// Fix the import - the issue is here
+// Don't use .default and don't wrap in an array when importing
+const remarkDocusaurusTabs = require("remark-docusaurus-tabs");
 
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
@@ -63,8 +64,8 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [[remarkDocusaurusTabs], [math]],
-          rehypePlugins: [[katex]],
+          remarkPlugins: [remarkDocusaurusTabs, math],
+          rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
