@@ -20,7 +20,8 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\""
+    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\"",
+    "clean-slate": "rm -rf build && rm -rf node_modules && rm -rf .docusaurus && package-lock.json && npm install"
   },
   "lint-staged": {
     "src/**/*.{ts,js,jsx,tsx}": "npm run lint:fix",

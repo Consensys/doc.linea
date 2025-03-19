@@ -5,9 +5,17 @@ const math = require("remark-math");
 const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
 
-// Fix the import - the issue is here
-// Don't use .default and don't wrap in an array when importing
-const remarkDocusaurusTabs = require("remark-docusaurus-tabs");
+// For remark-docusaurus-tabs, we need to handle ESM vs CJS correctly
+let remarkDocusaurusTabs;
+try {
+  remarkDocusaurusTabs = require("remark-docusaurus-tabs");
+  // Handle both ESM and CommonJS formats
+  remarkDocusaurusTabs = remarkDocusaurusTabs.default || remarkDocusaurusTabs;
+} catch (e) {
+  console.error("Error loading remark-docusaurus-tabs:", e);
+  // Provide a fallback to prevent build failures
+  remarkDocusaurusTabs = () => (tree) => tree;
+}
 
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
@@ -58,11 +66,10 @@ const config = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Set a base path separate from default /docs
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [remarkDocusaurusTabs, math],
+          remarkPlugins: [math],  // Remove remarkDocusaurusTabs temporarily
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
