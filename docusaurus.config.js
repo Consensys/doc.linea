@@ -57,8 +57,8 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
+          remarkPlugins: [[math]],
+          rehypePlugins: [[katex]],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
