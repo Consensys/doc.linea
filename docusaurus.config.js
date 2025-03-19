@@ -5,18 +5,6 @@ const math = require("remark-math");
 const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
 
-// For remark-docusaurus-tabs, we need to handle ESM vs CJS correctly
-let remarkDocusaurusTabs;
-try {
-  remarkDocusaurusTabs = require("remark-docusaurus-tabs");
-  // Handle both ESM and CommonJS formats
-  remarkDocusaurusTabs = remarkDocusaurusTabs.default || remarkDocusaurusTabs;
-} catch (e) {
-  console.error("Error loading remark-docusaurus-tabs:", e);
-  // Provide a fallback to prevent build failures
-  remarkDocusaurusTabs = () => (tree) => tree;
-}
-
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
@@ -69,7 +57,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [math],  // Remove remarkDocusaurusTabs temporarily
+          remarkPlugins: [math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
