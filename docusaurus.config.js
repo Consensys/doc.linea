@@ -13,8 +13,6 @@ const remarkDocusaurusTabs = require("remark-docusaurus-tabs");
 const COOKBOOK_PUBLIC_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
 
-// const isDev = process.env.NODE_ENV === "development";
-// const baseUrl = isDev ? "/" : "/";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
