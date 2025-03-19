@@ -32,40 +32,44 @@ nav[aria-label="Breadcrumbs"] {
 
 .feedbackContainer {
   margin: 2rem 0;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: var(--ifm-color-emphasis-100);
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--page-background);
   text-align: center;
+  transition: background-color 0.2s ease;
 }
 
 .feedbackPrompt {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--ifm-font-color-base);
 }
 
 .feedbackButtons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .feedbackButton {
-  background: none;
+  background: var(--page-background);
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--ifm-font-color-base);
 }
 
 .feedbackButton:hover {
-  background-color: var(--ifm-color-emphasis-200);
+  background-color: var(--ifm-hover-overlay);
   transform: scale(1.05);
 }
 
@@ -76,26 +80,28 @@ nav[aria-label="Breadcrumbs"] {
 
 .thumbsUp:hover {
   border-color: var(--ifm-color-success);
+  color: var(--ifm-color-success);
 }
 
 .thumbsDown:hover {
   border-color: var(--ifm-color-danger);
+  color: var(--ifm-color-danger);
 }
 
 .thankYouMessage {
-  font-weight: bold;
+  font-weight: 600;
   color: var(--ifm-color-success);
   animation: fadeIn 0.5s ease;
 }
 
 .loadingIndicator {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   font-size: 0.9rem;
   color: var(--ifm-color-emphasis-600);
 }
 
 .errorMessage {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   color: var(--ifm-color-danger);
   font-size: 0.9rem;
 }
@@ -107,5 +113,21 @@ nav[aria-label="Breadcrumbs"] {
 
 /* Dark mode adjustments */
 html[data-theme='dark'] .feedbackContainer {
-  background-color: var(--ifm-color-emphasis-200);
+  background-color: #121212;
+}
+
+html[data-theme='dark'] .feedbackButton {
+  background-color: #121212;
+  border-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme='light'] .feedbackContainer {
+  background-color: #f8f7f2;
+}
+
+html[data-theme='light'] .feedbackButton {
+  background-color: #f8f7f2;
+  border-color: var(--ifm-color-emphasis-300);
+  color: var(--ifm-font-color-base);
 }
