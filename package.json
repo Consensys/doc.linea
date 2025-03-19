@@ -20,8 +20,7 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\"",
-    "clean-slate": "rm -rf build && rm -rf node_modules && rm -rf .docusaurus && package-lock.json && npm install"
+    "format": "prettier --write \"{blog,docs,src,static}/(**/*).{md,mdx,ts,js,tsx,jsx,json}\""
   },
   "lint-staged": {
     "src/**/*.{ts,js,jsx,tsx}": "npm run lint:fix",
@@ -57,6 +56,7 @@
     "react-player": "^2.12.0",
     "redocusaurus": "^2.2.1",
     "rehype-katex": "^7.0.0",
+    "remark-docusaurus-tabs": "^0.2.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.33.5",
     "typescript-eslint": "^8.3.0",
