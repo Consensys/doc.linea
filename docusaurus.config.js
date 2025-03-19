@@ -19,7 +19,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 const config = {
   title: "Linea",
   tagline: "Everything you need to build onchain.",
-  url: "https://github.com/Consensys/web3-feedback",
+  url: "https://github.com/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
