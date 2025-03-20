@@ -4,26 +4,39 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const math = require("remark-math");
 const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
+require("dotenv").config();
 
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
 
+// const isDev = process.env.NODE_ENV === "development";
+// const baseUrl = isDev ? "/" : "/";
+
+// const organizationName = "Consensys";
+// const projectName = "doc.linea";
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Web3 Feedback",
-  tagline: "Give feedback to the docs -- with web3.",
+  title: "Linea",
+  tagline: "Everything you need to build onchain.",
   url: "https://consensys.github.io",
-  baseUrl: "/web3-feedback",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  baseUrl: "/web3-feedback/",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: false,
+
+  // Add customFields to expose environment variables
+  customFields: {
+    dynamicEnvironmentId: process.env.DYNAMIC_ENVIRONMENT_ID,
+  },
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "Consensys", // Your GitHub organization name
-  projectName: "web3-feedback", // Your repository name
-  deploymentBranch: "gh-pages", // Keep this as is
+  organizationName: "Consensys", // Usually your GitHub org/user name.
+  projectName: "web3-feedback", // Usually your repo name.
+  deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -54,7 +67,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Set a base path separate from default /docs
-          editUrl: "https://github.com/Consensys/web3-feedback/tree/main/",
+          editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
           remarkPlugins: [require("remark-docusaurus-tabs"), math],
@@ -160,6 +173,10 @@ const config = {
             label: "Support",
             position: "right",
             class: "support-link",
+          },
+          {
+            type: "custom-wallet",
+            position: "right",
           },
         ],
       },

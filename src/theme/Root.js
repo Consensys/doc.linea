@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { MetaMaskSDK } from "@metamask/sdk";
 
 // Create context for MetaMask provider
