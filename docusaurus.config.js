@@ -9,7 +9,6 @@ const redirectsData = require("./redirects.json");
 const COOKBOOK_PUBLIC_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
 
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Web3 Feedback",
