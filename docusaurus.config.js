@@ -65,7 +65,7 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [require("remark-docusaurus-tabs"), math],
+          remarkPlugins: [remarkTabs, math],
           rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
