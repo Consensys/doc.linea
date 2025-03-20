@@ -1,6 +1,5 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { MetaMaskSDK, SDKProvider } from "@metamask/sdk";
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import { MetaMaskSDK } from "@metamask/sdk";
 
 // Create context for MetaMask provider
 export const MetamaskProviderContext = createContext({
@@ -33,7 +32,6 @@ const MetaMaskProvider = ({ children }) => {
   const [metaMaskAccount, setMetaMaskAccount] = useState(undefined);
   const [metaMaskAccountEns, setMetaMaskAccountEns] = useState(undefined);
   const [isInitialized, setIsInitialized] = useState(false);
-  const { siteConfig } = useDocusaurusContext();
 
   if (sdk.isInitialized() && !isInitialized) {
     setIsInitialized(true);
@@ -44,7 +42,7 @@ const MetaMaskProvider = ({ children }) => {
       console.log("Connecting to MetaMask...");
       const accounts = await sdk.connect();
       console.log("Connected accounts:", accounts);
-      
+
       if (accounts && accounts.length > 0) {
         setMetaMaskAccount(accounts[0]);
         const provider = sdk.getProvider();
@@ -72,15 +70,15 @@ const MetaMaskProvider = ({ children }) => {
   useEffect(() => {
     const provider = sdk?.getProvider();
     setMetaMaskProvider(provider);
-    
+
     // Check if already connected
     if (provider && provider.selectedAddress) {
       setMetaMaskAccount(provider.selectedAddress);
     }
-    
+
     // Listen for account changes
     if (provider) {
-      provider.on('accountsChanged', (accounts) => {
+      provider.on("accountsChanged", (accounts) => {
         console.log("Accounts changed:", accounts);
         if (accounts && accounts.length > 0) {
           setMetaMaskAccount(accounts[0]);
@@ -89,7 +87,7 @@ const MetaMaskProvider = ({ children }) => {
         }
       });
     }
-    
+
     return () => {
       // Clean up listeners
       if (provider) {
@@ -118,17 +116,12 @@ const MetaMaskProvider = ({ children }) => {
         metaMaskProvider,
         setMetaMaskProvider,
         sdk,
-      }}
-    >
+      }}>
       {children}
     </MetamaskProviderContext.Provider>
   );
 };
 
 export default function Root({ children }) {
-  return (
-    <MetaMaskProvider>
-      {children}
-    </MetaMaskProvider>
-  );
-} 
+  return <MetaMaskProvider>{children}</MetaMaskProvider>;
+}

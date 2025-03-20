@@ -4,7 +4,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const math = require("remark-math");
 const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
-require('dotenv').config();
+require("dotenv").config();
 
 /** It's a public API key, so it's safe to expose it here. */
 const COOKBOOK_PUBLIC_API_KEY =
@@ -20,10 +20,10 @@ const COOKBOOK_PUBLIC_API_KEY =
 const config = {
   title: "Linea",
   tagline: "Everything you need to build onchain.",
-  url: "https://docs.linea.build",
-  baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  url: "https://consensys.github.io",
+  baseUrl: "/web3-feedback/",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: false,
 
@@ -35,7 +35,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "Consensys", // Usually your GitHub org/user name.
-  projectName: "doc.linea", // Usually your repo name.
+  projectName: "web3-feedback", // Usually your repo name.
   deploymentBranch: "gh-pages", // Github Pages deploying branch
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -176,8 +176,8 @@ const config = {
           },
           {
             type: "custom-wallet",
-            position: "right"
-          }
+            position: "right",
+          },
         ],
       },
       footer: {
