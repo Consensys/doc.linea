@@ -12,9 +12,9 @@ import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import ContentVisibility from "@theme/ContentVisibility";
 import styles from "./styles.module.css";
-import GetFeedback from "./GetFeedback";
 import ToolingCTA from "../../../components/ToolingCTA";
 import ContractsWarning from "../../../components/ContractsWarning";
+import Web3Feedback from "./Web3Feedback";
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -51,7 +51,7 @@ export default function DocItemLayout({ children }) {
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
-            <GetFeedback />
+            <Web3Feedback />
             <DocItemFooter />
           </article>
           <DocItemPaginator />
