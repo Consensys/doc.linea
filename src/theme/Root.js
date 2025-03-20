@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { MetaMaskSDK, SDKProvider } from "@metamask/sdk";
+import { MetaMaskSDK } from "@metamask/sdk";
 
 // Create context for MetaMask provider
 export const MetamaskProviderContext = createContext({
@@ -33,7 +33,6 @@ const MetaMaskProvider = ({ children }) => {
   const [metaMaskAccount, setMetaMaskAccount] = useState(undefined);
   const [metaMaskAccountEns, setMetaMaskAccountEns] = useState(undefined);
   const [isInitialized, setIsInitialized] = useState(false);
-  const { siteConfig } = useDocusaurusContext();
 
   if (sdk.isInitialized() && !isInitialized) {
     setIsInitialized(true);
