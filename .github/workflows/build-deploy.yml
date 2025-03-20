@@ -60,6 +60,9 @@ jobs:
           folder: build
           branch: gh-pages
           clean: true
+          clean-exclude: |
+            .nojekyll
+            CNAME
           
       - name: Log deployment status
         run: |
