@@ -391,6 +391,7 @@ const sidebars = {
             "learn/ecosystem-tutorials/irys/irys-nfts",
           ],
         },
+        "learn/ecosystem-tutorials/usdc",
       ],
     },
   ],
