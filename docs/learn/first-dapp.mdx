@@ -88,8 +88,6 @@ This is a simplified version of a staking contract with an allowlist, so let's t
 - This contract allows you to stake virtually any ERC-20, and contains the two basic functions "stake" and "withdraw".
 - The allowlist is set up when the contract is deployed; there are other versions where the allowlist can be modified, usually by the owner.
 
-First two steps (1 & 2)
-
 <div class="center-container">
   <div class="img-large">
     <img
@@ -98,6 +96,8 @@ First two steps (1 & 2)
     />
   </div>
 </div>
+
+*First two steps (1 & 2)*
 
 1. Then go to the *Solidity Compiler* tab.
 2. Select the London version in the EVM Version list under Advanced Configurations (to avoid any compatibility problems, even if there won't be any with this contract).
@@ -115,9 +115,6 @@ First two steps (1 & 2)
 </div>
     
     You can copy the ABI using the button at the bottom. Save it in a JSON file, as you'll need it later.
-    
-
-Steps 3 to 5
 
 <div class="center-container">
   <div class="img-large">
@@ -127,6 +124,8 @@ Steps 3 to 5
     />
   </div>
 </div>
+
+*Steps 3 to 5*
 
 1. Finally, we're ready to deploy the contract. To do this, go to the *Deploy* tab.
 2. Select your injected provider (for us, MetaMask) as environment. You'll get a connection request that you'll have to accept.
@@ -162,8 +161,6 @@ Those ERC-20 contracts are verified so you can interact with them directly on Li
 - [Mint link for WATER](https://sepolia.lineascan.build/address/0x66a6f52c2100fb82ee21fd1380b4d516cb540c93#writeContract#F3)
 1. Finally, click on deploy and confirm the transaction in MetaMask. You should see success logs appear in the console at bottom right. The contract address can be copied by going to recorded transactions (under the deploy button), but you can also find it by searching for your address on the [Sepolia Linea explorer](https://sepolia.lineascan.build).
 
-Steps 6 to 10
-
 <div class="center-container">
   <div class="img-large">
     <img
@@ -173,6 +170,7 @@ Steps 6 to 10
   </div>
 </div>
 
+*Steps 6 to 10*
 
 
 ### 2️⃣ Create the frontend
@@ -748,7 +746,7 @@ And voilà! 🎉 You should be able to easily stake and unstake from the list of
 
 This frontend part only demonstrated read and write operations. Most Wagmi hooks return lots of data such as `isLoading` or `error`, which are useful for building reactive and beautiful frontends, so be sure to check the documentation. We also omit error handling here for simplicity.
 
-Lastly, we can listen for events to dynamically update the frontend. I'll leave this to you as an optional exercise if you want to go further (hint: you can use [`watchContractEvent`](https://wagmi.sh/core/api/actions/watchContractEvent) or [watchAsset](https://wagmi.sh/core/api/actions/watchAsset))
+Lastly, we can listen for events to dynamically update the frontend. I'll leave this to you as an optional exercise if you want to go further (hint: you can use `watchContractEvent`(https://wagmi.sh/core/api/actions/watchContractEvent) or `watchAsset`(https://wagmi.sh/core/api/actions/watchAsset))
 
 ---
 
