@@ -141,7 +141,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "learn/marketplace-dapp",
+            docId: "learn/first-dapp",
             position: "left",
             label: "Learn",
           },
