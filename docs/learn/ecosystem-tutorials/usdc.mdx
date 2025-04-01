@@ -1,0 +1,240 @@
+---
+title: USDC quickstart
+description: Build a simple dapp to transfer USDC on Linea.
+image: /img/socialCards/usdc-quickstart.jpg
+---
+
+USDC, [issued by Circle](https://developers.circle.com/stablecoins/what-is-usdc),
+enables the seamless transfer of digital dollars on the Linea network using a smart contract. 
+This guide will walk you through building a simple React app that allows users to connect their
+wallet and send USDC transactions over Linea Sepolia.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- ✅ Development environment
+  - [Node.js (16+)](https://nodejs.org/) installed (comes with `npm`).
+  - MetaMask browser extension installed.
+- ✅ Fund your wallet
+  - Native gas token (ETH on Linea Sepolia) to cover transaction fees.
+  - USDC tokens for testing. ([Use a faucet](../../get-started/how-to/get-testnet-eth.mdx) to get 
+  testnet USDC and ETH.)
+
+## Project setup
+
+### Step 1: Create a new project
+
+Run the following commands to set up your project:
+
+```bash
+mkdir usdc-transfer-app
+cd usdc-transfer-app
+npm init -y
+```
+
+### Step 2: Install dependencies
+
+Run the following command to install the required libraries:
+
+```bash
+npm install react@latest react-dom@latest @types/react@latest @types/react-dom@latest @vitejs/plugin-react@latest typescript@latest vite@latest viem@latest
+```
+
+### Step 3: Configure `package.json`
+
+After installing dependencies, open your `package.json` file and verify that it looks similar to this:
+
+```json
+{
+  "name": "usdc-transfer-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/react": "^19.0.11",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.8.2",
+    "viem": "^2.23.12"
+  },
+  "devDependencies": {
+    "vite": "^6.2.2"
+  }
+}
+```
+
+If your `package.json` doesn't have the `scripts` section, add it. This ensures you can run the 
+project using:
+
+```bash
+npm run dev
+```
+
+## Configure blockchain clients
+
+### Public client (for reading blockchain data)
+
+Create a `src/clients.ts` file and add:
+
+```ts
+import { http, createPublicClient } from 'viem';
+import { lineaSepolia } from 'viem/chains';
+
+export const publicClient = createPublicClient({
+  chain: lineaSepolia,
+  transport: http(),
+});
+```
+
+### Wallet client (for sending transactions)
+
+Modify `src/clients.ts`:
+
+```ts
+import { createWalletClient, custom } from 'viem';
+
+export const walletClient = createWalletClient({
+  chain: lineaSepolia,
+  transport: custom(window.ethereum!),
+});
+```
+
+## Define USDC contract details
+
+Add this to `src/constants.ts`:
+
+```ts
+export const USDC_CONTRACT_ADDRESS = '0xfece4462d57bd51a6a552365a011b95f0e16d9b7';
+
+export const USDC_ABI = [
+  {
+    constant: false,
+    inputs: [
+      { name: "_to", type: "address" },
+      { name: "_value", type: "uint256" },
+    ],
+    name: "transfer",
+    outputs: [{ name: "", type: "bool" }],
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [{ name: "_owner", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "balance", type: "uint256" }],
+    type: "function",
+  },
+];
+```
+
+## Implement wallet connection and USDC transfer
+
+Create `src/App.tsx`:
+
+```tsx
+import React, { useEffect, useState } from 'react';
+import { publicClient, walletClient } from './clients';
+import { USDC_CONTRACT_ADDRESS, USDC_ABI } from './constants';
+import { type Address, encodeFunctionData, type Hash, type TransactionReceipt, stringify } from 'viem';
+
+function USDCApp() {
+  const [account, setAccount] = useState<Address>();
+  const [balance, setBalance] = useState<string>();
+  const [hash, setHash] = useState<Hash>();
+  const [receipt, setReceipt] = useState<TransactionReceipt>();
+
+  const addressInput = React.createRef<HTMLInputElement>();
+  const valueInput = React.createRef<HTMLInputElement>();
+
+  // Fetch USDC balance
+  const fetchBalance = async (address: Address) => {
+    const balance: bigint = await publicClient.readContract({
+      address: USDC_CONTRACT_ADDRESS,
+      abi: USDC_ABI,
+      functionName: "balanceOf",
+      args: [address],
+    });
+    setBalance((Number(balance) / 10 ** 6).toFixed(2));
+  };
+
+  // Connect Wallet
+  const connect = async () => {
+    const [address] = await walletClient.requestAddresses();
+    setAccount(address);
+    fetchBalance(address);
+  };
+
+  return (
+    <div>
+      <h1>USDC Transfer Sample App</h1>
+      {account ? (
+        <>
+          <p><strong>Connected Wallet:</strong> {account}</p>
+          <p><strong>USDC Balance:</strong> {balance ? `${balance} USDC` : "Fetching..."}</p>
+        </>
+      ) : (
+        <button onClick={connect}>Connect Wallet</button>
+      )}
+    </div>
+  );
+}
+
+export default USDCApp;
+```
+
+## Configure your entry point
+
+Create `src/main.tsx`:
+
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import USDCApp from './App';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <USDCApp />
+  </React.StrictMode>
+);
+```
+
+## Create your HTML file
+
+Create `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USDC Transfer Sample App</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
+```
+
+## Start your app
+
+Run the following command:
+
+```bash
+npm run dev
+```
+
+Then open `http://localhost:5173` in your browser.
+
