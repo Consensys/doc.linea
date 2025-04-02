@@ -551,6 +551,7 @@ const sidebars = {
       },
       collapsible: false,
       items: [
+        "api/reference/eth-sendbundle",
         "api/reference/eth-sendrawtransaction",
         "api/reference/linea-estimategas",
         "api/reference/linea-gettransactionexclusionstatusv1",
