@@ -368,6 +368,7 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/first-dapp",
     "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
