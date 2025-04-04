@@ -50,18 +50,16 @@
         ]
     },
     {
-        "to": "/get-started/how-to/bridge/how-to-bridge-eth",
-        "from": [
-            "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            "/developers/guides/bridge/how-to-bridge-eth"
-        ]
-    },
-    {
         "to": "/get-started/how-to/bridge",
         "from": [
             "/build-on-linea/use-linea-testnet/bridge-funds",
             "/developers/guides/bridge",
-            "/use-mainnet/bridges-of-linea"
+            "/use-mainnet/bridges-of-linea",
+            "/get-started/how-to/bridge/how-to-bridge-eth",
+            "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
+            "/developers/guides/bridge/how-to-bridge-eth",
+            "/developers/guides/bridge/how-to-bridge-erc20-tokens",
+            "/get-started/how-to/bridge/how-to-bridge-erc20-tokens"
         ]
     },
     {
@@ -668,10 +666,6 @@
     {
         "to": "/api/linea-sdk",
         "from": "/developers/guides/linea-sdk"
-    },
-    {
-        "to": "/get-started/how-to/bridge/how-to-bridge-erc20-tokens",
-        "from": "/developers/guides/bridge/how-to-bridge-erc20-tokens"
     },
     {
         "to": "/get-started/how-to/deploy-subdomain",
