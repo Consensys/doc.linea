@@ -15,7 +15,7 @@
       steps:
         - uses: actions/checkout@v4
         - name: LinkCheck mdx files
-          uses: ConsenSys/docs-gha/linkcheck@main
+          uses: ConsenSys/github-actions/docs-link-check@main
           with:
               FILE_EXTENSION: mdx
               MODIFIED_FILES_ONLY: no
@@ -30,10 +30,10 @@
       steps:
         - uses: actions/checkout@v4
         - name: LinkCheck md files
-          uses: ConsenSys/docs-gha/linkcheck@main
+          uses: ConsenSys/github-actions/docs-link-check@main
           with:
-              FILE_EXTENSION: md
-              MODIFIED_FILES_ONLY: no
+            FILE_EXTENSION: md
+            MODIFIED_FILES_ONLY: no
 
     slackNotification:
       needs: [linkCheckMdx, linkCheckMd]
@@ -41,11 +41,10 @@
       runs-on: ubuntu-latest
       steps:
         - name: Slack Notification
-          uses: rtCamp/action-slack-notify@v2
-          env:
+          uses: ConsenSys/github-actions/slack-notify@main
+          with:
             SLACK_CHANNEL: doc-ci-alerts
             SLACK_COLOR: danger
-            SLACK_USERNAME: ci
             SLACK_TITLE: Linea docs nightly build - Failure
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
             MSG_MINIMAL: true
