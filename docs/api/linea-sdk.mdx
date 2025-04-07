@@ -23,11 +23,11 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 4.  Getting a message status by message hash
 
-5.  Claiming messages (use one of the get message methods to grab all the parameters values)
+5.  Claiming messages (use one of the get message methods to grab all the parameter values)
 
 :::info[New Features]
 
-The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires a Merkle proof for claiming.
+The updated Linea SDK package enhances the L1 contract interaction and adds support for the new L1 claiming system, which is based on a Merkle tree and requires Merkle proof for claiming.
 
 There are three important things to note:
 
@@ -40,7 +40,7 @@ The updated SDK introduces several new features for L1 interactions:
 A new L1ClaimingService class that includes the following functions:
 
 - getMessageProof: This function retrieves the message Merkle tree proof required for new message claims on L1.
-- isClaimingNeedingProof: This function determines whether a proof is needed to claim a message.
+- isClaimingNeedingProof: This function determines whether proof is needed to claim a message.
 - getMessageStatus: This function retrieves a message's status, returning the status of both old and new messages.
 - estimateClaimMessageGas: This function provides an estimate of the gas cost for both old and new claim transactions.
 - claimMessage: This function enables a message to be claimed using either the old or new function.
@@ -211,7 +211,7 @@ const sdk = new LineaSDK({
         // This will return all merkle roots anchored during this finalization transaction, the depth of trees, the first and the last L2 block containing messages finalized on L1 in this transaction.
         // 4. Invoke the getL2MessageHashesInBlockRange function using the first and last L2 block number that you obtained in step 3. This will return all l2 messages hashes in this L2 block range.
         // 5. Invoke the getMessageSiblings function to obtain all message siblings
-        // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree and return a merkle proof
+        // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree, and return a merkle proof
 
         // NOTE: You can create your own functions that encompass all steps. Utility functions are merely provided as a helper.
 
