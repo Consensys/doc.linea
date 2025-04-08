@@ -24,7 +24,7 @@ See the below sections for instructions on each option.
 
 ## Bridge aggregator
 
-Find the bridge aggregator under the "All Bridges" tab. It's powered by Li.Fi, and supports a 
+Find the bridge aggregator under the "All Bridges" tab. It's powered by Li.Fi and supports a 
 range of chains and tokens. The optimal bridging routes are automatically selected based on your priority 
 (speed or price, configurable in settings), and use a combination of decentralized exchanges (DEXs) 
 and bridges.
@@ -103,7 +103,7 @@ the wallet icon in the bottom-right of the widget and input the recipient addres
 After the transaction is confirmed, your bridge transfer will be visible in your transaction history,
 accessible via the icon next to settings in the top-right of the widget.
 
-### Bridging USDC
+### Bridge USDC
 
 USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.mirror.xyz/VX4CIab0JP17_WLKHuf9v8bIKBHP6gLNv2etUv9UFK0), 
 the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol) 
@@ -112,8 +112,8 @@ elements that underpin other native bridge transfers.
 
 USDC transfers currently require [manual claiming](#manual-claiming).
 
-CCTP enables faster transfers. USDC transfers typically complete within the usual 20-minute
-timeframe for L1 deposits, and often much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
+CCTP enables faster transfers. USDC transfers in both directions (L1 -> L2 _and_ L2 -> L1) typically 
+complete within 20 minutes, and generally much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
 for a fuller explanation.
 
 ### Claiming
@@ -125,6 +125,10 @@ the bridging process and the other on the target layer by the recipient to recei
 we call "claiming". To claim, the recipient has to pay a fee on the target layer.
 - **Automatic claiming** requires one transaction to be approved on the source layer. The recipient 
 will automatically receive their funds because a "postman" will handle the claiming process for them.
+
+Manual claiming is required for any transfers:
+- From Linea to Ethereum (L2 -> L1)
+- Involving USDC.
 
 #### Manual claiming
 
