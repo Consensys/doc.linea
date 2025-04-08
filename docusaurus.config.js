@@ -41,10 +41,7 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    { src: "/js/getfeedback.js", defer: true, async: true },
-    { src: "/js/navbarHighlight.js", defer: true },
-  ],
+  scripts: [{ src: "/js/navbarHighlight.js", defer: true }],
 
   markdown: {
     mermaid: true,

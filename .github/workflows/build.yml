@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build
-        uses: Consensys/docs-gha/build@main
+        uses: Consensys/github-actions/docs-build@main

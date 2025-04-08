@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Vale
-        uses: Consensys/docs-gha/spelling@main
+        uses: Consensys/github-actions/docs-spelling-check@main
         with:
           FILEPATHS: "docs"
 
