@@ -8,11 +8,17 @@ import TabItem from "@theme/TabItem";
 
 The Linea bridge app at [bridge.linea.build](https://bridge.linea.build) provides multiple ways to 
 get funds onto Linea:
-- **Native bridge**: Built by our team to provide an interface for the canonical token bridge. **Best 
-suited for tech operators, protocols, or moving large liquidity**.
+- **Native bridge**: Built by our team to provide an interface for the [canonical token bridge](../../technology/canonical-token-bridge.mdx). 
+**Best suited for tech operators, protocols, or moving large liquidity**.
 - **All bridges**: A bridge aggregator powered by Li.Fi, supporting numerous networks and tokens. 
 Faster than the native bridge, and the **best option for most users**.
 - **Buy**: A fiat onramp aggregator provided by Onramper, enabling you to buy funds on Linea.
+
+:::tip Testnets
+
+Testnet bridging is only possible on the native bridge.
+
+:::
 
 See the below sections for instructions on each option.
 
@@ -97,6 +103,18 @@ the wallet icon in the bottom-right of the widget and input the recipient addres
 After the transaction is confirmed, your bridge transfer will be visible in your transaction history,
 accessible via the icon next to settings in the top-right of the widget.
 
+### Bridging USDC
+
+USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.mirror.xyz/VX4CIab0JP17_WLKHuf9v8bIKBHP6gLNv2etUv9UFK0), 
+the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol) 
+(CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
+elements that underpin other native bridge transfers.
+
+USDC transfers currently require [manual claiming](#claiming).
+
+CCTP enables faster transfers. USDC transfers typically complete within the usual 20-minute
+timeframe for L1 deposits, and often much faster.
+
 ### Claiming
 
 The native bridge allows you to claim your bridged funds manually or automatically. 
@@ -136,6 +154,9 @@ The manual claiming toggle will then be available:
 </div>
 
 ### Execution fees
+
+The only fees you'll pay on the native bridge are those required to complete the transaction — 
+other than network fees, the native bridge is fee-free and Linea does not profit from it.
 
 Two types of execution fees can be applied when bridging with the native bridge: the postman fee and 
 the anti-DDOS fee. Since the postman fee is only applied during the automatic claiming process, 
