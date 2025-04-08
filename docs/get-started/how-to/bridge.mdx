@@ -110,7 +110,7 @@ the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross
 (CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
 elements that underpin other native bridge transfers.
 
-USDC transfers currently require [manual claiming](#claiming).
+USDC transfers currently require [manual claiming](#manual-claiming).
 
 CCTP enables faster transfers. USDC transfers typically complete within the usual 20-minute
 timeframe for L1 deposits, and often much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
@@ -125,6 +125,50 @@ the bridging process and the other on the target layer by the recipient to recei
 we call "claiming". To claim, the recipient has to pay a fee on the target layer.
 - **Automatic claiming** requires one transaction to be approved on the source layer. The recipient 
 will automatically receive their funds because a "postman" will handle the claiming process for them.
+
+#### Manual claiming
+
+Go to the transaction history page by clicking the receipt icon in the top-right of the widget.
+
+If your manual claim transaction is ready to claim, it will be marked as "Ready to claim":
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/ready_to_claim.png"
+      alt="Transaction history entry marked as ready to claim"
+    />
+  </div>
+</div>
+
+When you click the transaction, you'll see its details and a "Claim" button — click it to prompt
+a transaction in your wallet:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claim_button.png"
+      alt="Claim transaction button in modal"
+    />
+  </div>
+</div>
+
+Once the transaction is complete, your funds will be available in your wallet and the transaction 
+history will update accordingly:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claim_complete.png"
+      alt="Transaction history entry marked as complete"
+    />
+  </div>
+</div>
+
+If you encounter any issues, contact us via our [support site](https://support.linea.build) or 
+[Discord](https://discord.gg/linea).
+
+#### Configure claiming
 
 Automatic claiming is the default option wherever possible, though for the following transfers, 
 manual claiming is required:
