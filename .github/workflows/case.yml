@@ -19,7 +19,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-github-actions
+
       - name: Case check action
         uses: Consensys/docs-gha/docs-case-check@main
         with:
