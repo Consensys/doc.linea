@@ -12,7 +12,6 @@ import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import ContentVisibility from "@theme/ContentVisibility";
 import styles from "./styles.module.css";
-import GetFeedback from "./GetFeedback";
 import ToolingCTA from "../../../components/ToolingCTA";
 import ContractsWarning from "../../../components/ContractsWarning";
 
@@ -51,7 +50,6 @@ export default function DocItemLayout({ children }) {
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
-            <GetFeedback />
             <DocItemFooter />
           </article>
           <DocItemPaginator />

@@ -1,0 +1,307 @@
+---
+title: Bridge tokens to Linea
+image: /img/socialCards/bridge-tokens-to-linea.jpg
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+The Linea bridge app at [bridge.linea.build](https://bridge.linea.build) provides multiple ways to 
+get funds onto Linea:
+- **Native bridge**: Built by our team to provide an interface for the [canonical token bridge](../../technology/canonical-token-bridge.mdx). 
+**Best suited for tech operators, protocols, or moving large liquidity**.
+- **All bridges**: A bridge aggregator powered by Li.Fi, supporting numerous networks and tokens. 
+Faster than the native bridge, and the **best option for most users**.
+- **Buy**: A fiat onramp aggregator provided by Onramper, enabling you to buy funds on Linea.
+
+:::tip Testnets
+
+Testnet bridging is only possible on the native bridge.
+
+:::
+
+See the below sections for instructions on each option.
+
+## Bridge aggregator
+
+Find the bridge aggregator under the "All Bridges" tab. It's powered by Li.Fi and supports a 
+range of chains and tokens. The optimal bridging routes are automatically selected based on your priority 
+(speed or price, configurable in settings), and use a combination of decentralized exchanges (DEXs) 
+and bridges.
+
+Transfers initiated using the bridge aggregator are much faster than those created with the native
+bridge, but cost slightly more. (The same applies in reverse for the native bridge: it's slower,
+but cheaper.)
+
+For a guide on using the bridge aggregator and FAQs, see our [support guide](https://support.linea.build/bridging/how-to-bridge-to-linea).
+
+## Native bridge
+
+Head to the [bridge app](https://bridge.linea.build) and select the "Native Bridge" tab.
+
+1. Select the direction of your transfer — either L1 -> L2 or L2 -> L1. 
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/network_selection.png"
+      alt="Network selector showing L1 -> L2"
+    />
+  </div>
+</div>
+
+2. Select the asset you'd like to bridge: ETH or an ERC-20 token. Available ERC-20 tokens are
+based on a shortlist we maintain [here](https://github.com/Consensys/linea-token-list/tree/main/json).
+
+:::warning
+
+For some combinations of origin and destination chains and assets, you may need to submit an 
+additional transaction on the destination network to claim your funds. This is **manual claiming**,
+and is required for any transfers:
+- From Linea to Ethereum (L2 -> L1)
+- Involving USDC.
+
+Automatic claiming is seleceted by default for all transfers where it is possible, and manual
+claiming is automatically applied when necessary. [See below for more information](#claiming).
+
+:::
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/token_selection.png"
+      alt="Token selector showing USD stablecoins"
+    />
+  </div>
+</div>
+
+3. Enter the amount you'd like to bridge.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/input_amount.png"
+      alt="Input amount field"
+    />
+  </div>
+</div>
+
+4. If needed, you can nominate a recipient address different to the origin address. To do so, click
+the wallet icon in the bottom-right of the widget and input the recipient address you need:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/specify_recipient.png"
+      alt="Input a specific recipient address"
+    />
+  </div>
+</div>
+
+5. Click "Bridge", and then confirm the details and sign the transaction to proceed.
+
+After the transaction is confirmed, your bridge transfer will be visible in your transaction history,
+accessible via the icon next to settings in the top-right of the widget.
+
+### Bridge USDC
+
+USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.mirror.xyz/VX4CIab0JP17_WLKHuf9v8bIKBHP6gLNv2etUv9UFK0), 
+the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol) 
+(CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
+elements that underpin other native bridge transfers.
+
+USDC transfers currently require [manual claiming](#manual-claiming).
+
+CCTP enables faster transfers. USDC transfers in both directions (L1 -> L2 _and_ L2 -> L1) typically 
+complete within 20 minutes, and generally much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
+for a fuller explanation.
+
+### Claiming
+
+The native bridge allows you to claim your bridged funds manually or automatically. 
+
+- **Manual claiming** requires two transactions to be approved. One on the source layer to initiate 
+the bridging process and the other on the target layer by the recipient to receive the funds, which 
+we call "claiming". To claim, the recipient has to pay a fee on the target layer.
+- **Automatic claiming** requires one transaction to be approved on the source layer. The recipient 
+will automatically receive their funds because a "postman" will handle the claiming process for them.
+
+Manual claiming is required for any transfers:
+- From Linea to Ethereum (L2 -> L1)
+- Involving USDC.
+
+#### Manual claiming
+
+Go to the transaction history page by clicking the receipt icon in the top-right of the widget.
+
+If your manual claim transaction is ready to claim, it will be marked as "Ready to claim":
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/ready_to_claim.png"
+      alt="Transaction history entry marked as ready to claim"
+    />
+  </div>
+</div>
+
+When you click the transaction, you'll see its details and a "Claim" button — click it to prompt
+a transaction in your wallet:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claim_button.png"
+      alt="Claim transaction button in modal"
+    />
+  </div>
+</div>
+
+Once the transaction is complete, your funds will be available in your wallet and the transaction 
+history will update accordingly:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claim_complete.png"
+      alt="Transaction history entry marked as complete"
+    />
+  </div>
+</div>
+
+If you encounter any issues, contact us via our [support site](https://support.linea.build) or 
+[Discord](https://discord.gg/linea).
+
+#### Configure claiming
+
+Automatic claiming is the default option wherever possible, though for the following transfers, 
+manual claiming is required:
+- Linea to Ethereum (L2 -> L1)
+- Any transfer involving USDC.
+
+Although manual claiming is mandatory depending on the context, you can toggle between manual and
+automatic claiming where applicable by clicking the gear icon in the "Receive" panel:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claiming_settings.png"
+      alt="Receive panel with gear icon"
+    />
+  </div>
+</div>
+
+The manual claiming toggle will then be available:
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claiming_toggle.png"
+      alt="Manual claiming toggle"
+    />
+  </div>
+</div>
+
+### Execution fees
+
+The only fees you'll pay on the native bridge are those required to complete the transaction — 
+other than network fees, the native bridge is fee-free and Linea does not profit from it.
+
+Two types of execution fees can be applied when bridging with the native bridge: the postman fee and 
+the anti-DDOS fee. Since the postman fee is only applied during the automatic claiming process, 
+execution fees vary depending on _what_ you're bridging and the direction.
+
+Refer to the table for which fees will apply to your bridge transfer. These fees apply to both
+ETH and ERC-20 transfers. 
+
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Transaction fee</th>
+        <th>Anti-DDOS fee</th>
+        <th>Postman fee</th>
+    </tr>
+    <tr>
+        <td>L1 to L2 (Manual claiming)</td>
+        <td>:white_check_mark:</td>
+        <td>:x:</td>
+        <td>:x:</td>
+    </tr>
+    <tr>
+        <td>L1 to L2 (Automatic claiming)</td>
+        <td>:white_check_mark:</td>
+        <td>:x:</td>
+        <td>:white_check_mark:</td>
+    </tr>
+    <tr>
+        <td>L2 to L1 (Manual claiming)</td>
+        <td>:white_check_mark:</td>
+        <td>:white_check_mark:</td>
+        <td>:x:</td>
+    </tr>
+</table>
+
+Key:
+- Transaction fee: The transaction (gas) fee required for the bridge operation.
+- Anti-DDOS fee: A 0.001 ETH fee applied when bridging from L2 to L1.
+- Postman fee: `target layer gas price * (gas estimated + gas limit surplus) * margin`, where:
+  - `target layer gas price` = `eth_gasPrice` on the target layer
+  - `gas estimated` = 100,000
+  - `gas limit surplus` = 6000
+  - `margin` = 2
+
+## Buy
+
+Under the "Buy" tab, you'll find the [Onramper](https://onramper.com/) widget, which enables you
+to buy funds on Linea using fiat currency. 
+
+For a guide on using Onramper, see [their resources](https://knowledge.onramper.com/how-to-buy-crypto-using-onramper).
+
+Onramper is an aggregator, and aims to select the best option for your payment method, location, and
+token.
+
+KYC is required to use Onramper. 
+
+Onramp options may differ based on your location — check the Onramper [coverage page](https://onramper.com/coverage) 
+to see what's available.
+
+## Custom options for moving large liquidity
+
+### Use the canonical token bridge with a custom `BridgedToken` implementation
+
+This is suited for protocols that want to implement special features for the bridged ERC-20 on L2.
+**This is only possible if the token has not yet been bridged from L1 to L2 in order to avoid
+unexpected changes for end-users.**
+
+Protocols that want to use a custom BridgedToken will be able to incorporate arbitrary logic on the L2
+ERC-20, while still relying on the Token Bridge lock and mint logic and cross-chain communication.
+**For this to work, protocols need to keep compatibility with the Token Bridge by enabling it to 
+call the ERC-20 mint and burn functions.**
+
+If you are interested in this option, please contact the Linea team to get started. The process is 
+as follows:
+
+- The token issuer deploys a custom BridgedToken which should enable the Token Bridge to call mint 
+and burn functions.
+- Linea team will configure the bridge so that it will use your custom contract to mint and burn 
+tokens on L2.
+
+:::note
+
+If you are not yet ready with your own implementation, you can deploy the standard BridgedToken 
+implementation behind a dedicated upgradable proxy that you will be able to upgrade later
+
+:::
+
+### Build a dedicated token bridge
+
+This is intended for partners who need full control over the bridge and want to implement complex 
+cross-chain logic.
+
+The partner will be in charge of building, auditing and operating their own token bridge.
+
+If you are interested by this option, please get in touch with us so that we can:
+
+- Block your L1 token from being bridged on L1 in order to avoid having several copies on Linea
+- Provide guidance if you want to rely on our cross-chain messaging system
+

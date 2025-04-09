@@ -41,10 +41,7 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    { src: "/js/getfeedback.js", defer: true, async: true },
-    { src: "/js/navbarHighlight.js", defer: true },
-  ],
+  scripts: [{ src: "/js/navbarHighlight.js", defer: true }],
 
   markdown: {
     mermaid: true,
@@ -89,7 +86,7 @@ const config = {
       {
         specs: [
           {
-            spec: "https://token-api.devnet.linea.build/docs-yaml",
+            spec: "https://token-api.linea.build/docs-yaml",
             route: "api/token-api/reference",
           },
         ],

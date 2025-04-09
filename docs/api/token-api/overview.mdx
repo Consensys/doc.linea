@@ -23,7 +23,6 @@ in the [#developer-chat](https://discord.com/channels/1141419161893998702/114141
 ### Market analytics
 - Most traded tokens in the last 24h
 - Top gainers and losers (price variation)
-- Recently bonded tokens
 - Price movement tracking
 
 ### Use cases
@@ -43,6 +42,7 @@ Data is collected and updated from multiple sources:
 - MetaMask Token & Price API
 - [Dune Analytics](https://dune.com/)
 - [Nile](https://www.nile.build/)
+- [Moralis](https://moralis.com/)
 
 ### Update frequencies
 - Token detection and metadata: every two hours
@@ -55,7 +55,7 @@ Data is collected and updated from multiple sources:
 
 ```typescript
 async function monitorPriceChange(contractAddress: string, threshold: number) {
-  const BASE_URL = "https://token-api.devnet.linea.build";
+  const BASE_URL = "https://token-api.linea.build";
   const { currentPrice: initialPrice } = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
 
   setInterval(async () => {
