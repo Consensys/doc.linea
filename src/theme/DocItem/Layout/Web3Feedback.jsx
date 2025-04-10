@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { ethers } from "ethers";
 import { MetamaskProviderContext } from '@site/src/theme/Root';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useLocation } from '@docusaurus/router';
 import styles from "./styles.module.css";
 
 // Only hardcode the portal and schema addresses, not wallet keys
@@ -15,14 +17,98 @@ const PORTAL_ABI = [
   "function attest(tuple(bytes32 schemaId, uint64 expirationDate, bytes subject, bytes attestationData) attestationPayload, bytes[] validationPayload) public payable"
 ];
 
+// Function to extract URL and feedback data from transaction input
+const extractFeedbackData = (inputData) => {
+  try {
+    if (!inputData) {
+      console.log("No input data provided");
+      return null;
+    }
+    
+    console.log("Processing transaction data...");
+    
+    // Create an interface for decoding
+    const abiCoder = new ethers.AbiCoder();
+    
+    // Remove the function selector (first 4 bytes / 8 hex chars + '0x')
+    const data = '0x' + inputData.slice(10);
+    
+    try {
+      // Decode attestation payload
+      const [attestationPayload, _] = abiCoder.decode(
+        ['tuple(bytes32 schemaId, uint64 expirationDate, bytes subject, bytes attestationData)', 'bytes[]'],
+        data
+      );
+      
+      // Decode attestation data to get feedback details
+      const [isPositive, url, userAddress] = abiCoder.decode(
+        ['bool', 'string', 'address'],
+        attestationPayload.attestationData
+      );
+      
+      console.log("Successfully decoded feedback data:", { isPositive, url });
+      
+      // Normalize URL path
+      let normalizedUrl = url;
+      
+      // Handle full URLs or just paths
+      if (normalizedUrl && typeof normalizedUrl === 'string') {
+        // Try to parse as URL if it has protocol
+        if (normalizedUrl.includes('://')) {
+          try {
+            const urlObj = new URL(normalizedUrl);
+            normalizedUrl = urlObj.pathname;
+          } catch (e) {
+            // If URL parsing fails, proceed with the string as is
+            console.log("URL parsing failed:", e.message);
+          }
+        }
+        
+        // Ensure consistent format
+        normalizedUrl = normalizedUrl.startsWith('/') ? normalizedUrl : '/' + normalizedUrl;
+        normalizedUrl = normalizedUrl.replace(/\/+$/, ''); // Remove trailing slashes
+      } else {
+        console.log("Invalid URL format in payload:", url);
+        return null;
+      }
+      
+      return {
+        url: normalizedUrl,
+        isPositive,
+        userAddress
+      };
+    } catch (error) {
+      console.error("Error decoding transaction data:", error);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error extracting feedback data:", error);
+    return null;
+  }
+};
+
 const Web3Feedback = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const location = useLocation();
+  
+  // Access API key from environment directly if customFields doesn't have it
+  // This is for debugging only - in production, use the config setup
+  const envApiKey = typeof process !== 'undefined' && process.env && process.env.LINEA_SCAN_API_KEY;
+  const configApiKey = siteConfig?.customFields?.lineaScanApiKey;
+  const LINEA_SCAN_API_KEY = configApiKey || envApiKey || '4HGIEUCE29MIAW7U23RGEB1N72BN7PNJTJ'; // Fallback to the key from your .env
+  
+  console.log("API Keys - Config:", configApiKey, "Env:", envApiKey, "Using:", LINEA_SCAN_API_KEY);
+  
   const { colorMode } = useColorMode();
   const [theme, setTheme] = useState(colorMode);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFetchingCounts, setIsFetchingCounts] = useState(false);
   const [error, setError] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("");
   const [debugInfo, setDebugInfo] = useState(null);
+  const [positiveCount, setPositiveCount] = useState(0);
+  const [negativeCount, setNegativeCount] = useState(0);
   
   // Get MetaMask context
   const { 
@@ -37,12 +123,174 @@ const Web3Feedback = () => {
     setTheme(colorMode);
   }, [colorMode]);
 
-  // Get current URL when component mounts
+  // Get current URL when component mounts or location changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.href);
+      const pathname = location.pathname.replace(/\/+$/, ''); // Remove trailing slashes
+      setCurrentUrl(pathname.startsWith('/') ? pathname : '/' + pathname);
     }
-  }, []);
+  }, [location]);
+  
+  // Helper function to check if paths match for feedback purposes
+  const pathsMatch = (path1, path2) => {
+    if (!path1 || !path2) return false;
+    
+    // Normalize paths: remove trailing slashes and ensure leading slash
+    const normalize = (p) => {
+      p = p.replace(/\/+$/, '');
+      p = p.startsWith('/') ? p : '/' + p;
+      // Remove any domain part if present
+      if (p.includes('://')) {
+        try {
+          const url = new URL(p);
+          p = url.pathname;
+        } catch (e) {
+          // If parsing fails, just use the path as is
+        }
+      }
+      return p;
+    };
+    
+    const normalizedPath1 = normalize(path1);
+    const normalizedPath2 = normalize(path2);
+    
+    // Special case for the root page with web3-feedback prefix
+    if (normalizedPath1 === '/web3-feedback' && normalizedPath2 === '/') {
+      console.log("✅ Match for root page with prefix");
+      return true;
+    }
+    
+    if (normalizedPath2 === '/web3-feedback' && normalizedPath1 === '/') {
+      console.log("✅ Match for root page with prefix");
+      return true;
+    }
+    
+    // Log the path comparison for debugging
+    console.log(`Comparing paths: "${normalizedPath1}" vs "${normalizedPath2}"`);
+    
+    // For exact match
+    if (normalizedPath1 === normalizedPath2) {
+      console.log("✅ Exact match");
+      return true;
+    }
+    
+    // Remove index.html if present
+    const cleanPath1 = normalizedPath1.replace(/\/index\.html$/, '');
+    const cleanPath2 = normalizedPath2.replace(/\/index\.html$/, '');
+    
+    if (cleanPath1 === cleanPath2) {
+      console.log("✅ Match after cleaning index.html");
+      return true;
+    }
+    
+    // Check for paths that are the same when trailing slash is normalized
+    if (cleanPath1 + '/' === cleanPath2 || cleanPath1 === cleanPath2 + '/') {
+      console.log("✅ Match with trailing slash difference");
+      return true;
+    }
+    
+    // Handle baseUrl in development - check if one path has /web3-feedback prefix
+    if (cleanPath1 === '/web3-feedback' + cleanPath2 || cleanPath2 === '/web3-feedback' + cleanPath1) {
+      console.log("✅ Match with baseUrl difference");
+      return true;
+    }
+    
+    // Check for hash/query parameters
+    const basePath1 = cleanPath1.split(/[#?]/)[0];
+    const basePath2 = cleanPath2.split(/[#?]/)[0];
+    
+    if (basePath1 === basePath2) {
+      console.log("✅ Match ignoring hash/query");
+      return true;
+    }
+    
+    console.log("❌ No match");
+    return false;
+  };
+  
+  // Fetch feedback counts when component mounts or URL changes
+  useEffect(() => {
+    if (currentUrl) {
+      fetchFeedbackCounts();
+      
+      // Set up interval to refresh counts every 30 seconds
+      const interval = setInterval(() => {
+        fetchFeedbackCounts();
+      }, 30000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [currentUrl, LINEA_SCAN_API_KEY]);
+
+  // Function to fetch feedback counts from Lineascan API 
+  const fetchFeedbackCounts = async () => {
+    if (!currentUrl) {
+      console.log("No current URL available");
+      return;
+    }
+    
+    console.log("Fetching feedback counts for:", currentUrl);
+    console.log("Using API key:", LINEA_SCAN_API_KEY ? "Available" : "Missing");
+    setIsFetchingCounts(true);
+    
+    try {
+      // Use Lineascan API to get transactions for the portal contract
+      const apiUrl = `https://api-sepolia.lineascan.build/api?module=account&action=txlist&address=${PORTAL_ADDRESS}&startblock=0&endblock=latest&page=1&offset=1000&sort=desc&apikey=${LINEA_SCAN_API_KEY}`;
+      
+      console.log("Fetching from API URL:", apiUrl);
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      
+      console.log("API response status:", data.status, "message:", data.message);
+      
+      if (!data.result || data.status === "0") {
+        console.error("API error:", data);
+        throw new Error(data.message || "Failed to fetch transaction data");
+      }
+      
+      // Filter transactions that include our schema ID
+      const relevantTxs = data.result.filter(tx => 
+        tx.input && tx.input.includes(SCHEMA_ID.slice(2))
+      );
+      
+      console.log(`Found ${relevantTxs.length} transactions with schema ID`);
+      
+      // Process transactions to count feedback for the current URL
+      let positiveCount = 0;
+      let negativeCount = 0;
+      let matchedTransactions = 0;
+      
+      for (const tx of relevantTxs) {
+        const feedbackData = extractFeedbackData(tx.input);
+        
+        if (feedbackData) {
+          console.log("Transaction URL:", feedbackData.url);
+          
+          if (pathsMatch(feedbackData.url, currentUrl)) {
+            matchedTransactions++;
+            console.log(`Match found for transaction: ${tx.hash}`);
+            if (feedbackData.isPositive) {
+              positiveCount++;
+            } else {
+              negativeCount++;
+            }
+          }
+        }
+      }
+      
+      console.log(`Matched ${matchedTransactions} transactions for current URL. Positive: ${positiveCount}, Negative: ${negativeCount}`);
+      
+      setPositiveCount(positiveCount);
+      setNegativeCount(negativeCount);
+      setError(null);
+    } catch (error) {
+      console.error("Error fetching feedback counts:", error);
+      // Now show API errors to help with debugging
+      setError(`Error fetching counts: ${error.message}`);
+    } finally {
+      setIsFetchingCounts(false);
+    }
+  };
 
   const submitFeedback = async (isPositive) => {
     console.log(`Preparing to submit ${isPositive ? "positive" : "negative"} feedback for ${currentUrl}`);
@@ -105,11 +353,15 @@ const Web3Feedback = () => {
       // Create an ethers interface for encoding the function call
       const portalInterface = new ethers.Interface(PORTAL_ABI);
       
+      // When encoding the attestation data, make sure we're using just the pathname
+      const pathname = currentUrl;
+      console.log("Submitting feedback for pathname:", pathname);
+      
       // Encode the attestation data properly
       const abiCoder = new ethers.AbiCoder();
       const encodedAttestationData = abiCoder.encode(
         ["bool", "string", "address"],
-        [isPositive, currentUrl, metaMaskAccount]
+        [isPositive, pathname, metaMaskAccount]
       );
       
       // Encode the subject (user address)
@@ -192,7 +444,16 @@ const Web3Feedback = () => {
       console.log("Transaction sent! Hash:", txHash);
       setFeedbackSubmitted(true);
       
-      // Reset after 5 seconds
+      // Wait for the transaction to be mined
+      const ethersProvider = new ethers.BrowserProvider(provider);
+      await ethersProvider.waitForTransaction(txHash);
+      
+      // Refresh the feedback counts after a short delay to allow indexing
+      setTimeout(() => {
+        fetchFeedbackCounts();
+      }, 5000);
+      
+      // Reset feedback submitted state after a delay
       setTimeout(() => {
         setFeedbackSubmitted(false);
         setDebugInfo(null);
@@ -217,22 +478,32 @@ const Web3Feedback = () => {
           <>
             <span>Was this page helpful?</span>
             <div className={styles.feedbackButtons}>
-              <button
-                className={`${styles.feedbackButton} ${styles.thumbsUp}`}
-                onClick={() => submitFeedback(true)}
-                disabled={isSubmitting}
-                aria-label="Thumbs up"
-              >
-                👍
-              </button>
-              <button
-                className={`${styles.feedbackButton} ${styles.thumbsDown}`}
-                onClick={() => submitFeedback(false)}
-                disabled={isSubmitting}
-                aria-label="Thumbs down"
-              >
-                👎
-              </button>
+              <div className={styles.feedbackButtonContainer}>
+                <button
+                  className={`${styles.feedbackButton} ${styles.thumbsUp}`}
+                  onClick={() => submitFeedback(true)}
+                  disabled={isSubmitting}
+                  aria-label="Thumbs up"
+                >
+                  👍
+                </button>
+                <span className={styles.feedbackCount}>
+                  {isFetchingCounts ? "..." : positiveCount}
+                </span>
+              </div>
+              <div className={styles.feedbackButtonContainer}>
+                <button
+                  className={`${styles.feedbackButton} ${styles.thumbsDown}`}
+                  onClick={() => submitFeedback(false)}
+                  disabled={isSubmitting}
+                  aria-label="Thumbs down"
+                >
+                  👎
+                </button>
+                <span className={styles.feedbackCount}>
+                  {isFetchingCounts ? "..." : negativeCount}
+                </span>
+              </div>
             </div>
           </>
         )}
@@ -249,24 +520,10 @@ const Web3Feedback = () => {
             <button 
               onClick={metaMaskWalletIdConnectHandler}
               className={styles.connectButton}
-              style={{marginLeft: '10px', padding: '4px 8px', fontSize: '0.8rem'}}
             >
               Connect MetaMask
             </button>
           )}
-        </div>
-      )}
-      {metaMaskAccount && (
-        <div className={styles.walletInfo} style={{fontSize: '0.7rem', marginTop: '0.5rem', color: 'var(--ifm-color-emphasis-600)'}}>
-          Connected: {metaMaskAccount.substring(0, 6)}...{metaMaskAccount.substring(38)}
-        </div>
-      )}
-      {debugInfo && (
-        <div className={styles.debugInfo} style={{fontSize: '0.8rem', marginTop: '1rem', color: 'var(--ifm-color-emphasis-600)', textAlign: 'left'}}>
-          <details>
-            <summary>Debug Information</summary>
-            <pre>{JSON.stringify(debugInfo, null, 2)}</pre>
-          </details>
         </div>
       )}
     </div>
