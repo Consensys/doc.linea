@@ -49,7 +49,14 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: false,
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: false,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+    },
   },
 
   presets: [
