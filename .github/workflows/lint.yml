@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Lint code
-        uses: ConsenSys/docs-gha/lint@main
+        uses: ConsenSys/github-actions/docs-lint-all@main
 
       - name: Lint markdown
-        uses: ConsenSys/docs-gha/lint-markdown@main
+        uses: ConsenSys/github-actions/docs-lint-markdown@main

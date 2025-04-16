@@ -1,0 +1,394 @@
+---
+title: Build an AI agent
+description: A quickstart guide to building a simple AI agent on Linea.
+image: /img/socialCards/build-an-ai-agent.jpg
+---
+
+ElizaOS is an open-source framework for creating AI agents that interact with blockchain networks. This tutorial will guide you through setting up an AI agent on the **Linea blockchain** using ElizaOS. By the end, your agent will be able to execute smart contract transactions and interact with the blockchain autonomously. You’ll be able to add any custom action to improve it and make it the best agent in town.
+
+### Prerequisites
+
+- Install [Node.js](https://nodejs.org/) (23.3) and [pnpm](https://pnpm.io/).
+- Basic knowledge of **TypeScript** and **blockchain concepts**.
+- Access to a Linea RPC endpoint and a funded Ethereum wallet for testing. We strongly recommend you use a development wallet. Stay safe!
+
+---
+
+## 1. Set up the environment
+
+To start, we want to clone the main ElizaOS repo, there’s also a starter-kit if you prefer but I recommend you to use the full package:
+
+```bash
+git clone https://github.com/elizaOS/eliza.git # Starter kit: eliza-starter.git
+cd eliza # Starter kit : eliza-starter
+```
+
+This sets up the framework on your local machine. ElizaOS is iterating fast, so a few things might have changed if you’re following this tutorial a long time after its publication.
+
+Be sure you’re using the right version of Node. If you get an error message, it can help to to start again with a clean Node modules installation. 
+
+Then, you need to checkout to the latest version of ElizaOS:
+
+```bash
+git checkout $(git describe --tags --abbrev=0)
+# If the above doesn't checkout the latest release, this should work:
+# git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
+pnpm install
+```
+
+Installation can take time, so relax and go grab a drink ☕
+
+---
+
+## 2. Configure the AI agent for Linea
+
+ElizaOS uses environment variables stored in a `.env` file to manage configurations, including blockchain settings.
+
+### Set up the `.env` file
+
+Copy the `.env.example` file in a `.env` file in the root directory and configure it as follows:
+
+```
+# Blockchain Connection
+EVM_RPC_URL=https://rpc.linea.build
+EVM_PRIVATE_KEY=your_private_key_here
+```
+
+Replace `your_private_key_here` with your Ethereum **development** private key. Be sure to keep this key private and do not reuse it to store funds.
+
+We’ll also need a `modelProvider` (unless you feel comfortable running a local model on your computer; it can be quite slow depending on your computer's performance). You can add your API key in the `.env` file, depending on which provider you’ll use (OpenAI, Anthropic, Gaia, etc.). Some `modelProvider`s provide different options, such as enabling you to choose a specific model for certain actions. 
+
+### Install the EVM plugin
+
+We’ll use the [EVM Plugin](https://github.com/elizaOS/eliza/tree/main/packages/plugin-evm) to interact with the Linea blockchain.
+
+If you used the main repository, it should already be installed, otherwise, you need to install it:
+
+```bash
+pnpm add @elizaos/plugin-evm
+```
+
+Then, configure the plugin in your character settings.
+
+ElizaOS uses some “characters” files that define your agent's personality. You can create one or choose a preconfigured one in the characters folder.
+
+At the top of the file, you'll need to add the following:
+
+```json
+{
+	...,
+	"modelProvider": "your_provider_name", //eg. openai
+	"settings": {
+		"chains": {
+			"evm": [ "lineaSepolia" ]
+		}
+	},
+	"plugins": ["@elizaos/plugin-evm"],
+	...
+}
+```
+
+This will allow you to use all the actions in the EVM plugin and configure your AI agent to use your provider.
+
+## 3. How it works
+
+If you check the `/plugin-evm` folder, you’ll see different types of files:
+
+### Actions files
+
+They define actions that can be performed by the agent.
+
+```tsx title="actions/transfer.ts"
+import { type ByteArray, formatEther, parseEther, type Hex } from "viem";
+import {
+    type Action,
+    composeContext,
+    generateObjectDeprecated,
+    type HandlerCallback,
+    ModelClass,
+    type IAgentRuntime,
+    type Memory,
+    type State,
+} from "@elizaos/core";
+
+import { initWalletProvider, type WalletProvider } from "../providers/wallet";
+import type { Transaction, TransferParams } from "../types";
+import { transferTemplate } from "../templates";
+
+// Exported for tests
+export class TransferAction {
+    constructor(private walletProvider: WalletProvider) {}
+
+    async transfer(params: TransferParams): Promise<Transaction> {
+        console.log(
+            `Transferring: ${params.amount} tokens to (${params.toAddress} on ${params.fromChain})`
+        );
+
+        if (!params.data) {
+            params.data = "0x";
+        }
+
+        this.walletProvider.switchChain(params.fromChain);
+
+        const walletClient = this.walletProvider.getWalletClient(
+            params.fromChain
+        );
+
+        try {
+            const hash = await walletClient.sendTransaction({
+                account: walletClient.account,
+                to: params.toAddress,
+                value: parseEther(params.amount),
+                data: params.data as Hex,
+                kzg: {
+                    blobToKzgCommitment: (_: ByteArray): ByteArray => {
+                        throw new Error("Function not implemented.");
+                    },
+                    computeBlobKzgProof: (
+                        _blob: ByteArray,
+                        _commitment: ByteArray
+                    ): ByteArray => {
+                        throw new Error("Function not implemented.");
+                    },
+                },
+                chain: undefined,
+            });
+
+            return {
+                hash,
+                from: walletClient.account.address,
+                to: params.toAddress,
+                value: parseEther(params.amount),
+                data: params.data as Hex,
+            };
+        } catch (error) {
+            throw new Error(`Transfer failed: ${error.message}`);
+        }
+    }
+}
+
+const buildTransferDetails = async (
+    state: State,
+    runtime: IAgentRuntime,
+    wp: WalletProvider
+): Promise<TransferParams> => {
+    const chains = Object.keys(wp.chains);
+    state.supportedChains = chains.map((item) => `"${item}"`).join("|");
+
+    const context = composeContext({
+        state,
+        template: transferTemplate,
+    });
+
+    const transferDetails = (await generateObjectDeprecated({
+        runtime,
+        context,
+        modelClass: ModelClass.SMALL,
+    })) as TransferParams;
+
+    const existingChain = wp.chains[transferDetails.fromChain];
+
+    if (!existingChain) {
+        throw new Error(
+            "The chain " +
+                transferDetails.fromChain +
+                " not configured yet. Add the chain or choose one from configured: " +
+                chains.toString()
+        );
+    }
+
+    return transferDetails;
+};
+
+export const transferAction: Action = {
+    name: "transfer",
+    description: "Transfer tokens between addresses on the same chain",
+    handler: async (
+        runtime: IAgentRuntime,
+        message: Memory,
+        state: State,
+        _options: any,
+        callback?: HandlerCallback
+    ) => {
+        if (!state) {
+            state = (await runtime.composeState(message)) as State;
+        } else {
+            state = await runtime.updateRecentMessageState(state);
+        }
+
+        console.log("Transfer action handler called");
+        const walletProvider = await initWalletProvider(runtime);
+        const action = new TransferAction(walletProvider);
+
+        // Compose transfer context
+        const paramOptions = await buildTransferDetails(
+            state,
+            runtime,
+            walletProvider
+        );
+
+        try {
+            const transferResp = await action.transfer(paramOptions);
+            if (callback) {
+                callback({
+                    text: `Successfully transferred ${paramOptions.amount} tokens to ${paramOptions.toAddress}\nTransaction Hash: ${transferResp.hash}`,
+                    content: {
+                        success: true,
+                        hash: transferResp.hash,
+                        amount: formatEther(transferResp.value),
+                        recipient: transferResp.to,
+                        chain: paramOptions.fromChain,
+                    },
+                });
+            }
+            return true;
+        } catch (error) {
+            console.error("Error during token transfer:", error);
+            if (callback) {
+                callback({
+                    text: `Error transferring tokens: ${error.message}`,
+                    content: { error: error.message },
+                });
+            }
+            return false;
+        }
+    },
+    validate: async (runtime: IAgentRuntime) => {
+        const privateKey = runtime.getSetting("EVM_PRIVATE_KEY");
+        return typeof privateKey === "string" && privateKey.startsWith("0x");
+    },
+    examples: [
+        [
+            {
+                user: "assistant",
+                content: {
+                    text: "I'll help you transfer 1 ETH to 0x9FA746b844747f77c6C54F4f88ab71048c608864",
+                    action: "SEND_TOKENS",
+                },
+            },
+            {
+                user: "user",
+                content: {
+                    text: "Transfer 1 ETH to 0x9FA746b844747f77c6C54F4f88ab71048c608864",
+                    action: "SEND_TOKENS",
+                },
+            },
+        ],
+    ],
+    similes: ["SEND_TOKENS", "TOKEN_TRANSFER", "MOVE_TOKENS"],
+};
+
+```
+
+### Contracts artifacts and sources
+
+If you want to allow your agent to deploy new contracts or interact with existing contracts, you can put them in this folder to be able to refer to the ABI in your actions files.
+
+### Providers
+
+Contains wallet providers files. You can modify these to use AA wallets, for example, or connect your agent with an MPC provider.
+
+### Templates
+
+A very important section: every time you send a prompt to the agent, it’ll try to determine if you’re trying to perform an action, then use the template for this action. 
+
+Here's the transfer template:
+
+```tsx
+export const transferTemplate = `You are an AI assistant specialized in processing cryptocurrency transfer requests. Your task is to extract specific information from user messages and format it into a structured JSON response.
+
+First, review the recent messages from the conversation:
+
+<recent_messages>
+{{recentMessages}}
+</recent_messages>
+
+Here's a list of supported chains:
+<supported_chains>
+{{supportedChains}}
+</supported_chains>
+
+Your goal is to extract the following information about the requested transfer:
+1. Chain to execute on (must be one of the supported chains)
+2. Amount to transfer (in ETH, without the coin symbol)
+3. Recipient address (must be a valid Ethereum address)
+4. Token symbol or address (if not a native token transfer)
+
+Before providing the final JSON output, show your reasoning process inside <analysis> tags. Follow these steps:
+
+1. Identify the relevant information from the user's message:
+   - Quote the part of the message mentioning the chain.
+   - Quote the part mentioning the amount.
+   - Quote the part mentioning the recipient address.
+   - Quote the part mentioning the token (if any).
+
+2. Validate each piece of information:
+   - Chain: List all supported chains and check if the mentioned chain is in the list.
+   - Amount: Attempt to convert the amount to a number to verify it's valid.
+   - Address: Check that it starts with "0x" and count the number of characters (should be 42).
+   - Token: Note whether it's a native transfer or if a specific token is mentioned.
+
+3. If any information is missing or invalid, prepare an appropriate error message.
+
+4. If all information is valid, summarize your findings.
+
+5. Prepare the JSON structure based on your analysis.
+
+After your analysis, provide the final output in a JSON markdown block. All fields except 'token' are required. The JSON should have this structure:
+
+\`\`\`json
+{
+    "fromChain": string,
+    "amount": string,
+    "toAddress": string,
+    "token": string | null
+}
+\`\`\`
+
+Remember:
+- The chain name must be a string and must exactly match one of the supported chains.
+- The amount should be a string representing the number without any currency symbol.
+- The recipient address must be a valid Ethereum address starting with "0x".
+- If no specific token is mentioned (i.e., it's a native token transfer), set the "token" field to null.
+
+Now, process the user's request and provide your response.
+`;
+```
+
+---
+
+## 4. Run the AI agent
+
+Start the agent with:
+
+```bash
+pnpm build
+pnpm start --character-"characters/yourcharactername.character.json"
+```
+
+You’ll also want to start the web interface, so you can chat with your agent:
+
+```bash
+pnpm start:client
+```
+
+The interface is available by default on `localhost:5173`. If you want to interact with multiple agents, launch them on different ports.
+
+And you’re good to go!
+
+You can ask your agent to send some ETH to another address or bridge a token from one chain to another (though for that, you’ll need to add more chains in your configuration). By default, the agent will need the exact name of the chain, e.g.:
+
+```bash
+Send 1 ETH to 0x9FA746b844747f77c6C54F4f88ab71048c608864 on lineaSepolia
+```
+
+You can modify this by changing the templates in the EVM plugin.
+
+---
+
+In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that is able to send transactions on Linea and interact with contracts.
+
+There’s much much more you can do with ElizaOS. The framework is evolving very fast, so be ready to devote plenty of time if you plan to explore it further.
+
+For more details, explore the [ElizaOS documentation](https://github.com/elizaOS/eliza). Happy building!

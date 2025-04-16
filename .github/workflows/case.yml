@@ -21,6 +21,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Case check action
-        uses: Consensys/docs-gha/case@main
+        uses: Consensys/docs-gha/docs-case-check@main
         with:
           DOC_DIR: ${{ matrix.folder }}

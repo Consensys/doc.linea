@@ -2,6 +2,21 @@
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@site/*": ["./*"]
+    },
+    "types": ["@docusaurus/module-type-aliases", "node"],
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": [
+    "src/**/*",
+    "docusaurus.config.js",
+    "eslint.config.mjs",
+    "scripts/**/*.js",
+    "static/js/**/*.js",
+    "stylelint.config.mjs"
+  ],
+  "exclude": ["node_modules", "build", "dist", ".docusaurus"]
 }
