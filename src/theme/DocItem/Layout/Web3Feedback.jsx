@@ -7,8 +7,8 @@ import styles from "./styles.module.css";
 // Only hardcode the portal and schema addresses, not wallet keys
 const PORTAL_ADDRESS = "0xF494B93E9661333d0e7Ca1B880B9Aaf79Cb84697";
 const SCHEMA_ID = "0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
-const LINEA_SEPOLIA_RPC = "https://rpc.sepolia.linea.build";
-const LINEA_SEPOLIA_CHAIN_ID = 59141;
+const LINEA_MAINNET_RPC = "https://rpc.linea.build";
+const LINEA_MAINNET_CHAIN_ID = 59144;
 
 // Portal contract ABI (just the attest function we need)
 const PORTAL_ABI = [
@@ -72,12 +72,12 @@ const Web3Feedback = () => {
       const currentChainId = parseInt(chainId, 16);
       
       console.log("Current chain ID:", currentChainId);
-      if (currentChainId !== LINEA_SEPOLIA_CHAIN_ID) {
-        console.log("Switching to Linea Sepolia...");
+      if (currentChainId !== LINEA_MAINNET_CHAIN_ID) {
+        console.log("Switching to Linea Mainnet...");
         try {
           await provider.request({
             method: 'wallet_switchEthereumChain',
-            params: [{ chainId: '0xe707' }], // Linea Sepolia in hex
+            params: [{ chainId: '0xe708' }], // Linea Mainnet in hex
           });
         } catch (switchError) {
           // This error code indicates that the chain has not been added to MetaMask
@@ -85,15 +85,15 @@ const Web3Feedback = () => {
             await provider.request({
               method: 'wallet_addEthereumChain',
               params: [{
-                chainId: '0xe707',
-                chainName: 'Linea Sepolia',
+                chainId: '0xe708',
+                chainName: 'Linea Mainnet',
                 nativeCurrency: {
                   name: 'ETH',
                   symbol: 'ETH',
                   decimals: 18
                 },
-                rpcUrls: [LINEA_SEPOLIA_RPC],
-                blockExplorerUrls: ['https://sepolia.lineascan.build/']
+                rpcUrls: [LINEA_MAINNET_RPC],
+                blockExplorerUrls: ['https://lineascan.build/']
               }]
             });
           } else {
@@ -175,7 +175,7 @@ const Web3Feedback = () => {
         to: PORTAL_ADDRESS,
         from: metaMaskAccount,
         data: encodedFunction,
-        chainId: '0xe707', // Linea Sepolia chainId in hex
+        chainId: '0xe708', // Linea Mainnet chainId in hex
         gasPrice: "0x" + gasPriceWithPremium,
         gas: "0x" + gasEstimateWithBuffer
       };
