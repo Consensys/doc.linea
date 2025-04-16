@@ -38,9 +38,13 @@ method added in EIP-5792.
 
 - `txs`: An array of signed transactions to execute in the bundle.
 - `blockNumber`: Hexadecimal block number for the block the bundle is valid in.
+- `minTimestamp`: [optional] A number representing the minimum timestamp for which the bundle is 
+valid, in seconds since the unix epoch.
+- `maxTimestamp`: [optional] A number representing the maximum timestamp for which the bundle is 
+valid, in seconds since the unix epoch.
 
 Additional optional parameters supported [elsewhere](https://docs.flashbots.net/flashbots-auction/advanced/rpc-endpoint#eth_sendbundle) 
-are not available.
+are not supported on Linea.
 
 ## Returns
 
