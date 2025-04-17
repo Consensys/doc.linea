@@ -72,18 +72,7 @@ const sidebars = {
         "get-started/how-to/migrate-dapp",
         "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
-        {
-          type: "category",
-          label: "Bridge your tokens",
-          link: {
-            type: "doc",
-            id: "get-started/how-to/bridge/index",
-          },
-          items: [
-            "get-started/how-to/bridge/how-to-bridge-eth",
-            "get-started/how-to/bridge/how-to-bridge-erc20-tokens",
-          ],
-        },
+        "get-started/how-to/bridge",
         "get-started/how-to/linea-safe",
         "get-started/how-to/deploy-subdomain",
         "get-started/how-to/finalized-block",
@@ -205,6 +194,7 @@ const sidebars = {
           items: [
             "get-started/tooling/data-indexers/alchemy",
             "get-started/tooling/data-indexers/arkham",
+            "get-started/tooling/data-indexers/bitscrunch",
             "get-started/tooling/data-indexers/covalent",
             {
               type: "category",
@@ -274,6 +264,7 @@ const sidebars = {
             "get-started/tooling/libraries/reown",
             "get-started/tooling/libraries/viem",
             "get-started/tooling/libraries/wagmi",
+            "get-started/tooling/libraries/web3j",
           ],
         },
         {
@@ -368,6 +359,8 @@ const sidebars = {
     },
   ],
   learnSidebar: [
+    "learn/first-dapp",
+    "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
     {
@@ -391,6 +384,7 @@ const sidebars = {
             "learn/ecosystem-tutorials/irys/irys-nfts",
           ],
         },
+        "learn/ecosystem-tutorials/usdc",
       ],
     },
   ],
@@ -452,7 +446,6 @@ const sidebars = {
             "api/linea-smart-contracts/lib/linearolluppausemanager",
             "api/linea-smart-contracts/lib/mimc",
             "api/linea-smart-contracts/lib/pausemanager",
-            "api/linea-smart-contracts/lib/permissionsmanager",
             "api/linea-smart-contracts/lib/sparsemerkleproof",
             "api/linea-smart-contracts/lib/tokenbridgepausemanager",
             "api/linea-smart-contracts/lib/utils",
@@ -473,7 +466,6 @@ const sidebars = {
               items: [
                 "api/linea-smart-contracts/messageservice/l1/l1messagemanager",
                 "api/linea-smart-contracts/messageservice/l1/l1messageservice",
-                "api/linea-smart-contracts/messageservice/l1/transientstoragereentrancyguardupgradeable",
                 {
                   type: "category",
                   label: "v1",
@@ -528,7 +520,6 @@ const sidebars = {
           collapsible: true,
           items: [
             "api/linea-smart-contracts/tokenbridge/bridgedtoken",
-            "api/linea-smart-contracts/tokenbridge/custombridgedtoken",
             "api/linea-smart-contracts/tokenbridge/tokenbridge",
             {
               type: "category",
@@ -537,15 +528,6 @@ const sidebars = {
               collapsible: true,
               items: [
                 "api/linea-smart-contracts/tokenbridge/interfaces/itokenbridge",
-              ],
-            },
-            {
-              type: "category",
-              label: "lib",
-              link: null,
-              collapsible: true,
-              items: [
-                "api/linea-smart-contracts/tokenbridge/lib/storagefiller39",
               ],
             },
           ],
@@ -561,6 +543,7 @@ const sidebars = {
       },
       collapsible: false,
       items: [
+        "api/reference/eth-sendbundle",
         "api/reference/eth-sendrawtransaction",
         "api/reference/linea-estimategas",
         "api/reference/linea-gettransactionexclusionstatusv1",

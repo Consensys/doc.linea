@@ -6,8 +6,8 @@ import styles from "./styles.module.css";
 type CardItem = {
   title: string;
   link: string;
-  description: JSX.Element;
-  buttonName: JSX.Element; // Updated to allow JSX.Element for SVG
+  description: React.ReactNode;
+  buttonName: React.ReactNode;
   buttonType:
     | "primary"
     | "secondary"
@@ -144,7 +144,7 @@ function Card({ title, link, description, buttonName, buttonType }: CardItem) {
   );
 }
 
-export default function HomepageCards(): JSX.Element {
+export default function HomepageCards(): React.ReactNode {
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

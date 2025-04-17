@@ -10,7 +10,7 @@ import CardIcon4 from "../../../static/img/icon_wallet.svg";
 type CardItem = {
   title: string;
   link: string;
-  description: JSX.Element;
+  description: React.ReactNode;
   buttonName: string;
   buttonType:
     | "primary"
@@ -143,7 +143,7 @@ function Card({
   );
 }
 
-export default function HomepageCards(): JSX.Element {
+export default function HomepageCards(): React.ReactNode {
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
