@@ -1,32 +1,34 @@
 ---
-title: Learn to use eth_sendBundle on Linea
+title: Use eth_sendBundle
 description: A guide to learn how to use eth_sendBundle on Linea.
-image: /img/socialCards/build-your-first-dapp-on-linea.jpg
 ---
 
-## Recovering Tokens from a Compromised Wallet on Linea with `eth_sendBundle`
+# Recover tokens from a compromised wallet on Linea with `eth_sendBundle`
 
-**Scenario:** You have a compromised Ethereum wallet (`hackedAddress`) on Linea that holds several ERC-20 tokens but has no ETH for gas. You’ve created a new secure wallet (`safeAddress`) to rescue those tokens. In this tutorial, we'll build a React dApp that uses Linea’s private bundle API (`eth_sendBundle`) to safely transfer the tokens (and any leftover ETH) from the compromised wallet to your safe wallet in one atomic action.
+**Scenario:** You have a compromised Ethereum wallet (`hackedAddress`) on Linea that holds several ERC-20 tokens but has no ETH for gas. You've created a new secure wallet (`safeAddress`) to rescue those tokens. In this tutorial, we'll build a React dapp that uses Linea's private bundle API (`eth_sendBundle`) to safely transfer the tokens (and any leftover ETH) from the compromised wallet to your safe wallet in one atomic action.
 
-## **Import disclaimer: Security**
+For an overview of `eth_sendBundle` on Linea, see the [reference page](../api/reference/eth-sendbundle.mdx).
+
+## Import disclaimer: security
 
 To simplify things and avoid giving too much code, we've deliberately removed a lot of things that could put your wallet at risk if you use this code in production.
-Use this code locally only, it's intended to show you how *eth_sendBundle* works. To recover your funds, use a more robust solution.
 
-## How `eth_sendBundle` Ensures a Safe Recovery
+Use this code locally only; it's intended to show you how `eth_sendBundle` works. To recover your funds, use a more robust solution.
 
-Linea’s `eth_sendBundle` is a JSON-RPC method that allows sending multiple signed transactions as a **bundle** to the network’s sequencer. The bundle is executed privately and atomically – meaning all included transactions execute in order, in the same block, or none do. This has two major benefits for our recovery scenario:
+## How `eth_sendBundle` ensures a safe recovery
 
-- **Frontrunning Protection:** Because the bundle is sent privately (not via the public mempool), attackers or bots cannot see the interim transactions (like funding the hacked wallet) and cannot frontrun or interrupt the process. In other words, no one can spy the ETH you send to the hacked wallet to pay gas and use it before your token transfers execute.
-- **Atomic Execution:** The transactions in the bundle either all succeed or none are executed. This ensures that the token transfers and the final ETH sweep happen together. If any step fails (e.g., due to insufficient gas), the whole bundle is dropped, preventing partial moves.
+Linea's `eth_sendBundle` is a JSON-RPC method that allows sending multiple signed transactions as a **bundle** to the network's sequencer. The bundle is executed privately and atomically – meaning all included transactions execute in order, in the same block, or none of them do. This has two major benefits for our recovery scenario:
+
+- **Frontrunning protection:** Because the bundle is sent privately (not via the public mempool), attackers or bots cannot see the interim transactions (like funding the hacked wallet) and cannot frontrun or interrupt the process. In other words, no one can see the ETH you send to the hacked wallet (to pay gas) and use it before your token transfers execute.
+- **Atomic execution:** The transactions in the bundle either all succeed or none are executed. This ensures that the token transfers and the final ETH sweep happen together. If any step fails (e.g., due to insufficient gas), the whole bundle is dropped, preventing partial moves.
 
 By bundling a **sponsor** transaction from the safe wallet and **executor** transactions from the compromised wallet, we replicate the Flashbots-style rescue approach on Linea. In our case, the safe wallet is the sponsor (providing ETH), and the compromised wallet is the executor (sending out tokens using that ETH for gas).
 
-**Why Linea’s private bundles?** This method is analogous to Flashbots on Ethereum but is built into Linea’s RPC via providers like Infura. By using `eth_sendBundle`, you can securely recover assets from a compromised account (even if a “sweeper bot” is watching it) because our transactions are not exposed until they are mined, at which point it’s too late for the attacker to react. It’s also very useful for MEV applications.
+**Why Linea's private bundles?** This method is analogous to Flashbots on Ethereum but is built into Linea's RPC via providers like Infura. By using `eth_sendBundle`, you can securely recover assets from a compromised account (even if a “sweeper bot” is watching it) because our transactions are not exposed until they are mined, at which point it's too late for the attacker to react. It's also very useful for MEV applications.
 
-## Overview of the Recovery Approach
+## Overview of the recovery approach
 
-To clarify the plan, here’s what our private bundle will contain (all executed in one block):
+To clarify the plan, here's what our private bundle will contain (all executed in one block):
 
 - **Tx1 (Sponsor):** `safeAddress` → `hackedAddress`: transfer some ETH (enough to cover gas for subsequent transactions).
 - **Tx2:** `hackedAddress` (compromised) calls `token1.transfer(safeAddress, amount1)` – moving Token1 to the safe wallet.
@@ -34,32 +36,31 @@ To clarify the plan, here’s what our private bundle will contain (all executed
 - **Tx4:** `hackedAddress` calls `token3.transfer(safeAddress, amount3)` – moving Token3.
 - **Tx5:** `hackedAddress` → `safeAddress`: transfer any remaining ETH back to the safe wallet.
 
-All of these are signed transactions (Tx2–Tx5 signed with the compromised wallet’s key, and Tx1 with the safe wallet’s key) and sent together via `eth_sendBundle`. Because the hacked address had no ETH initially, Tx2–Tx5 would normally be impossible; but with Tx1 providing ETH in the same block, they can execute. And because the bundle is private and atomic, the attacker’s sweeper bot can’t interfere, and all tokens plus any leftover ETH will safely end up in `safeAddress` if the bundle succeeds.
+All of these are signed transactions (Tx2–Tx5 signed with the compromised wallet's key, and Tx1 with the safe wallet's key) and sent together via `eth_sendBundle`. Because the hacked address had no ETH initially, Tx2–Tx5 would normally be impossible; but with Tx1 providing ETH in the same block, they can execute. And because the bundle is private and atomic, the attacker's sweeper bot can't interfere, and all tokens plus any leftover ETH will safely end up in `safeAddress` if the bundle succeeds.
 
-## Building the Recovery dApp (React + Wagmi + Ethers.js)
+## Build the recovery dapp (React + Wagmi + Ethers.js)
 
-Now, let's build a front-end dApp that implements this recovery. We’ll use **React** for the UI, **Wagmi** hooks for wallet connection, and **Ethers.js** for blockchain interactions. The app will allow you to connect their safe wallet, input the compromised wallet address and token contract addresses, and then execute the bundle. We’ll also cover estimating gas, signing transactions, and sending the bundle to Linea.
+Now, let's build a front-end dapp that implements this recovery. We'll use **React** for the UI, **Wagmi** hooks for wallet connection, and **Ethers.js** for blockchain interactions. The app will allow you to connect the safe wallet, input the compromised wallet address and token contract addresses, and then execute the bundle. We'll also cover estimating gas, signing transactions, and sending the bundle to Linea.
 
-### Setting Up the Project
+### Set up the project
 
 First, set up a React project (using Create React App, Vite, Next.js, etc.) and install the necessary dependencies:
-
 ```bash
 npx create-next-app linea-recovery-app
 pnpm install wagmi ethers @tanstack/react-query
 ```
 
-### **Configure Wagmi and Ethers**
+### Configure Wagmi and Ethers
 
 We need a Wagmi client configured for the Linea network. 
 
-We’ll use an Infura RPC with an API key to ensure a consistent access to the endpoint.
+We'll use an Infura RPC with an API key to ensure a consistent access to the endpoint.
 
-If you don’t have an account yet, you can go [here](https://www.infura.io/) and create a free one in a few seconds. 
+If you don't have an account yet, you can go [here](https://www.infura.io/) and create a free one in a few seconds. 
 
-Create a *providers.tsx* file and add this code:
+Create a `providers.tsx` file and add this code:
 
-```jsx
+```jsx title="providers.tsx"
 'use client';
 
 import { WagmiProvider, createConfig } from 'wagmi';
@@ -92,9 +93,9 @@ export function Providers({ children }: { children: ReactNode }) {
 } 
 ```
 
-Then in your *layout.tsx* file (or _app.jsx/tsx) depending on your config, wrap your app in the provider:
+Then in your `layout.tsx` file (or `_app.jsx/tsx`) depending on your config, wrap your app in the provider:
 
-```jsx
+```jsx title="layout.tsx"
 import { Providers } from "./providers";
 
 return(
@@ -104,17 +105,15 @@ return(
 )
 ```
 
-In this config, we added our Infura project ID in a .env file. Make sure your Infura project has the Linea bundle endpoint enabled.
+In this config, we added our Infura project ID in a `.env` file. Make sure your Infura project has the Linea bundle endpoint enabled.
 
-### Connecting the Safe Wallet (MetaMask)
+### Connecting the safe wallet (MetaMask)
 
-With Wagmi configured, we can create a simple connection component. This will let the user connect their safe wallet, so we know where to send the recovered assets. We use Wagmi’s `useConnect` and `useAccount` hooks for this.
+With Wagmi configured, we can create a simple connection component. This will let the user connect their safe wallet, so we know where to send the recovered assets. We use Wagmi's `useConnect` and `useAccount` hooks for this.
 
-We can create this component in a new file (in a new folder components for example):
+We can create this component in a new file (in a new folder `components` for example):
 
-*components/ConnectWallet.tsx*
-
-```jsx
+```jsx title="components/ConnectWallet.tsx"
 'use client';
 
 import { useConnect, useAccount } from 'wagmi';
@@ -146,15 +145,13 @@ export function ConnectWallet() {
 
 When not connected, it shows a "Connect Wallet" button. Once connected, it displays the connected address (our `safeAddress`). The user should connect with their **safe wallet** (the new wallet that has ETH), not the compromised one.
 
-### Inputting the Compromised Address and Token Addresses
+### Input the compromised address and token addresses
 
 Next, we provide input fields for the user to specify the compromised wallet address and the ERC-20 token contract addresses they want to rescue. We assume exactly three token addresses for this scenario but you can adjust. 
 
-Let’s create a new component for that, we’ll add the logic later:
+Let's create a new component for this; we'll add the logic later:
 
-*components/RecoveryForm.tsx*
-
-```jsx
+```jsx title="components/RecoveryForm.tsx"
 'use client';
 
 import { useState } from 'react';
@@ -164,7 +161,7 @@ export function RecoveryForm() {
   const [tokenAddresses, setTokenAddresses] = useState(['', '', '']);
 
   const handleRecover = () => {
-    // À implémenter plus tard
+    // To be implemented later
     console.log('Recovery initiated for:', hackedAddress, tokenAddresses);
   };
 
@@ -221,13 +218,13 @@ export function RecoveryForm() {
 This UI collects:
 
 - The `hackedAddress` (compromised address).
-- Three token contract addresses (Token 1, Token 2, Token 3). You can leave unused ones blank if fewer than 3 tokens, or extend the logic to skip blanks.
+- Three token contract addresses (Token 1, Token 2, Token 3). You can leave unused ones blank if fewer than three tokens, or extend the logic to skip blanks.
 
-The **Recover Tokens** button triggers `handleRecover`, which we’ll define to perform the bundling process.
+The **Recover Tokens** button triggers `handleRecover`, which we'll define to perform the bundling process.
 
-We also need to update the *page.tsx* file to show it, you can replace everything in this file with the following code:
+We also need to update the `page.tsx` file to show it, you can replace everything in this file with the following code:
 
-```jsx
+```jsx title="page.tsx"
 'use client';
 
 import { ConnectWallet } from './components/ConnectWallet';
@@ -252,25 +249,23 @@ export default function Home() {
 
 ```
 
-### Constructing and Signing the Bundle Transactions
+### Construct and sign the bundle transactions
 
 Now comes the core logic: preparing and dispatching the private bundle. We will:
 
 1. **Fetch token balances:** For each provided token address, read how many tokens the hacked wallet holds (so we know how much to transfer).
 2. **Estimate gas needs:** Estimate the gas for each token transfer and for the final ETH transfer, so we can fund the hacked wallet with the right amount of ETH.
 3. **Construct transactions:** Create unsigned transaction objects for each step (Tx1 through Tx5).
-4. **Sign transactions:** Use the safe wallet key to sign Tx1, and use the compromised wallet’s private key to sign Tx2–Tx5.
+4. **Sign transactions:** Use the safe wallet key to sign Tx1, and use the compromised wallet's private key to sign Tx2–Tx5.
 5. **Send the bundle:** Call `eth_sendBundle` via our provider with all the raw signed transactions and a target block number.
 
-We’ll ask the user both **private keys**, the safe one first and then the compromised wallet’s private key to sign its transactions. 
+We'll ask the user for both **private keys** to sign transactions: the safe one first, and then the compromised wallet's private key. 
 
-Since the wallet is already compromised, we assume the user has its compromised wallet private key (and that an attacker may also have it). For simplicity in this tutorial, we’ll just prompt for it when needed (or store it in state after prompting). 
+Since the wallet is already compromised, we assume the user has its compromised wallet private key (and that an attacker may also have it). For simplicity in this tutorial, we'll just prompt for it when needed (or store it in state after prompting). 
 
 Let's proceed with coding `handleRecover` inside our component:
 
-*components/RecoveryForm.tsx*
-
-```jsx
+```jsx title="components/RecoveryForm.tsx"
 'use client';
 
 import { useState } from 'react';
@@ -323,18 +318,18 @@ export function RecoveryForm() {
       // 1. Fetch token balances for the hacked wallet
       const tokenBalances: bigint[] = [];
       
-      // Ajouter un délai entre chaque requête
+      // Add a delay between each request
       for (let tokenAddr of tokens) {
         try {
           const provider = new ethers.JsonRpcProvider(publicClient.transport.url);
           const contract = new ethers.Contract(tokenAddr, erc20ABI, provider);
           const balance = await contract.balanceOf(hackedAddress);
           tokenBalances.push(BigInt(balance.toString()));
-          // Attendre 1 seconde entre chaque requête
+          // Wait 1 second between each request
           await delay(1000);
         } catch (error) {
           console.error(`Failed to fetch balance for token ${tokenAddr}:`, error);
-          tokenBalances.push(BigInt(0)); // Utiliser 0 comme valeur par défaut
+          tokenBalances.push(BigInt(0)); // Use 0 as default value
         }
       }
 
@@ -346,7 +341,7 @@ export function RecoveryForm() {
       for (let i = 0; i < tokens.length; i++) {
         const tokenAddr = tokens[i];
         const balance = tokenBalances[i];
-        if (balance === BigInt(0)) continue; // Skip si le solde est 0
+        if (balance === BigInt(0)) continue; // Skip if the balance is 0
 
         // Prepare a call transaction for estimation
         const tx = {
@@ -359,7 +354,7 @@ export function RecoveryForm() {
         let estimate;
         try {
           estimate = await publicClient.estimateGas(tx);
-          await delay(1000); // Attendre 1 seconde entre chaque estimation
+          await delay(1000); // Wait 1 second between each estimation
         } catch (err) {
           console.warn("Gas estimation for token transfer failed, using default.", err);
           estimate = BigInt(100000); // fallback to 100k gas if estimate fails
@@ -447,7 +442,7 @@ export function RecoveryForm() {
       // 4. Sign the transactions
       const signedTxs = [];
       
-      // Signer la première transaction (safe -> hacked) avec la clé privée du .env
+      // Sign the first transaction (safe -> hacked) with the private key from .env
       const safeTx = {
         to: tx1.to,
         value: tx1.value,
@@ -474,7 +469,7 @@ export function RecoveryForm() {
       }
       const hackedWallet = new ethers.Wallet(hackedPrivateKey);
       
-      // Signer les transactions du wallet compromis
+      // Sign the transactions from the compromised wallet
       for (let utx of unsignedTxs) {
         const tx = {
           to: utx.to,
@@ -496,14 +491,14 @@ export function RecoveryForm() {
         blockNumber: ethers.toQuantity(currentBlock + BigInt(1))
       };
       
-      // Utiliser le provider ethers avec l'URL Infura de Linea Sepolia
+      // Use the ethers provider with the Infura URL for Linea Sepolia
       const infuraUrl = `https://linea-sepolia.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_API_KEY}`;
       const provider = new ethers.JsonRpcProvider(infuraUrl);
       const result = await provider.send('eth_sendBundle', [bundleParams]);
       
       if (result) {
         console.log("Bundle result:", result);
-        // Afficher le hash du bundle correctement
+        // Display the bundle hash correctly
         const bundleHash = typeof result === 'string' ? result : result.bundleHash || result.hash || 'Unknown hash';
         alert(`Bundle submitted! Hash: ${bundleHash}`);
       } else {
@@ -529,11 +524,9 @@ export function RecoveryForm() {
   )
 ```
 
-We also need to add a minimal ERC20 ABI as a constant:
+We also need to add a minimal ERC-20 ABI as a constant:
 
-*constants/erc20ABI.ts*
-
-```jsx
+```jsx title="constants/erc20ABI.ts"
 export const erc20ABI = [
   {
     "inputs": [
@@ -581,13 +574,13 @@ export const erc20ABI = [
 ] as const; 
 ```
 
-Let’s break down the important parts of this code:
+Let's break down the important parts of this code:
 
-**Fetching Token Balances:**
+**Fetching token balances:**
 
 We create an `ethers.Contract` instance for each provided token address using a minimal ERC-20 ABI containing `balanceOf`. For each contract, we call `balanceOf(hackedAddress)` to get the amount of that token held in the compromised wallet. These balances are stored for use in the transfer transactions later. If any call fails (e.g., the token contract is invalid or unavailable), we catch the error and record a `0` balance to avoid blocking the process. A short delay (`await delay(1000)`) is added between calls to avoid rate-limiting or request batching issues.
 
-**Estimating Gas:**
+**Estimating gas:**
 
 We estimate gas usage for each planned transaction:
 
@@ -595,25 +588,25 @@ We estimate gas usage for each planned transaction:
 - Separately, we estimate the gas for a simple ETH transfer (from the hacked address to the safe address) and default to `21000` if it fails.
 - We sum all gas estimates and apply a 10% buffer to prevent out-of-gas errors due to underestimation or network volatility.
 
-**Calculating ETH Needed:**
+**Calculating ETH needed:**
 
 We calculate the amount of ETH required to fund the hacked wallet by multiplying the total gas needed (including buffer) by the current gas price. This is the exact amount of ETH the safe address will send in the first transaction. The ETH covers **only** the gas cost of the recovery transactions, not any arbitrary extra ETH.
 
-**Constructing Transactions:**
+**Constructing transactions:**
 
 We retrieve the nonce for both the safe wallet and the hacked wallet:
 
 - **Tx1 (Funding):** Sends `ethNeeded` from `safeAddress` to `hackedAddress`. It uses a `gasLimit` of `21000` and the current gas price.
 - **Tx2 to Tx(n):** Each token transfer is built from the hacked address to the safe address using the `transfer()` function with the previously fetched balances. The nonce is incremented per transaction, and each uses a gas limit of `100000` (or the estimated amount).
-- **Tx(n+1) (Final ETH transfer):** Sends back all remaining ETH from the hacked address to the safe address after subtracting gas for this last transaction. This ensures no ETH is left behind once the tokens are recovered. If this value is negative due to overestimation, it’s capped at 0 to prevent reverts.
+- **Tx(n+1) (Final ETH transfer):** Sends back all remaining ETH from the hacked address to the safe address after subtracting gas for this last transaction. This ensures no ETH is left behind once the tokens are recovered. If this value is negative due to overestimation, it's capped at 0 to prevent reverts.
 
-**Signing Transactions:**
+**Signing transactions:**
 
-- **Tx1** is signed using the **safe wallet’s private key**, which the user enters manually via `prompt()`. Although not ideal for production, this allows local signing for demonstration.
-- **Tx2...Tx(n+1)** are signed using the **compromised wallet’s private key**, also entered by the user. These transactions must be signed by the original sender to authorize the token transfers and ETH withdrawal.
+- **Tx1** is signed using the **safe wallet's private key**, which the user enters manually via `prompt()`. Although not ideal for production, this allows local signing for demonstration.
+- **Tx2...Tx(n+1)** are signed using the **compromised wallet's private key**, also entered by the user. These transactions must be signed by the original sender to authorize the token transfers and ETH withdrawal.
 - All signed transactions are stored in an array (`signedTxs`) as raw hex strings, ready for bundling.
 
-**Submitting the Bundle:**
+**Submitting the bundle:**
 
 We calculate the current block number and set the target block as 10 after the actual block, to avoid any timing problem. The `bundleParams` object looks like: 
 
@@ -626,36 +619,36 @@ const bundleParams = {
 
 The bundle is submitted to the Linea Sepolia testnet using the `eth_sendBundle` method via an `ethers.JsonRpcProvider` pointing to the Infura endpoint. If the submission is successful, we log the response and show a bundle hash or identifier to the user. If it fails due to rate limits or connection issues, we surface helpful error messages.
 
-### Security Considerations
+### Security considerations
 
 Recovering tokens from a compromised wallet is a delicate task. Keep in mind the following to do it safely:
 
-- **You should never expose your new safe wallet’s private key:** In our approach, we use it locally, but it’s just to simplify the flow, that’s why you should not use this code in production.
-- **Permission and Rate Limits:** Since `eth_sendBundle` on Linea is a special call, ensure your RPC provider (Infura in our example) is set up for it. If not, the call might fail.
-- **No Reuse of Compromised Accounts:** After recovery, stop using the compromised address entirely. Move any recovered assets from the safe wallet to long-term storage if needed and revoke any approvals the hacked wallet had on any protocols.
+- **You should never expose your new safe wallet's private key:** In our approach, we use it locally, but it's just to simplify the flow. You should not use this code in production.
+- **Permission and rate limits:** Since `eth_sendBundle` on Linea is a special call, ensure your RPC provider (Infura in our example) is set up for it. If not, the call might fail.
+- **Do not reuse compromised accounts:** After recovery, stop using the compromised address entirely. Move any recovered assets from the safe wallet to long-term storage if needed and revoke any approvals the hacked wallet had on any protocols.
 
-### Testing the Recovery on Linea Sepolia
+### Test the recovery on Linea Sepolia
 
-Now it’s time to test what we just created! Here’s how you can test the entire flow end-to-end:
+Now it's time to test what we just created! Here's how you can test the entire flow end-to-end:
 
-1. **Prepare two accounts:** In your MetaMask (or other wallet), create two accounts to simulate the scenario. Account A will play the role of the safe wallet, and Account B will be the compromised one. Use new accounts, as you’ll have to type the private key, those wallets should be used for development purposes only.
-2. **Get test ETH for the safe wallet:** Use a faucet to acquire Linea Sepolia ETH for Account A (safe wallet). The official Linea docs suggest using the MetaMask faucet (0.5 ETH/day) or other community faucets ([Get Linea testnet ETH | Linea](https://docs.linea.build/get-started/how-to/get-testnet-eth#:~:text=Other%20faucets)).
-3. **Get test tokens into the hacked wallet:** You need some ERC-20 tokens in Account A (hacked wallet) while it has 0 ETH. You can use the Linea testnet token faucet. For example, you can reuse the tokens we deployed for you in our first tutorial. 
+1. **Prepare two accounts:** In your MetaMask (or other wallet), create two accounts to simulate the scenario. Account A will play the role of the safe wallet, and Account B will be the compromised one. Use new accounts, as you'll have to type the private key, those wallets should be used for development purposes only.
+2. **Get test ETH for the safe wallet:** Use a faucet to acquire Linea Sepolia ETH for Account A (safe wallet). The [official Linea docs](../get-started/how-to/get-testnet-eth.mdx) suggest using the MetaMask faucet (0.5 ETH/day) or other community faucets.
+3. **Get test tokens into the hacked wallet:** You need some ERC-20 tokens in Account A (hacked wallet) while it has 0 ETH. You can use the Linea testnet token faucet. For example, you can reuse the tokens we deployed for you in our [first tutorial](./first-dapp.mdx). 
 [Mint link for COFFEE](https://sepolia.lineascan.build/address/0x46871676658472b99720f2a368cda6430c1647b9#writeContract#F3)
 [Mint link for TEA](https://sepolia.lineascan.build/address/0xb7d70343639af53a02f6ea7d9cde240fc72de6dd#writeContract#F3)
 [Mint link for WATER](https://sepolia.lineascan.build/address/0x66a6f52c2100fb82ee21fd1380b4d516cb540c93#writeContract#F3)
 Send a small amount of 2-3 different tokens to Account B. 
 4. **Configure the app:** Update the Infura ID in the code (or use the public RPC if needed, though Infura is preferred for `eth_sendBundle`). Run the app and connect with Account A (safe wallet).
-5. **Input addresses:** Enter Account B’s address as the hacked address, and the token contract addresses that you sent to Account B. You can find these contract addresses from the faucet info or block explorer.
+5. **Input addresses:** Enter Account B's address as the hacked address, and the token contract addresses that you sent to Account B. You can find these contract addresses from the faucet info or block explorer.
 6. **Execute recovery:** Click **Recover Tokens**. Approve the MetaMask prompt to sign the transaction from Account A (sending ETH to B). When prompted, enter the private key of Account A, then B. The bundle will be submitted.
-7. **Verify the result:** If the bundle succeeds, in one block you should see Account A (safe) receive the tokens from Account B, and also receive back the ETH (minus gas) that it sent. Account B will have 0 tokens and likely 0 ETH left (maybe a few wei if our buffer wasn’t fully consumed). You can verify on the Linea Sepolia explorer (lineascan) for each transaction hash or just check the balances in your wallet. On testnet, the bundle might take a block or two to be picked up – if it doesn’t succeed on the first try (no changes in balances), increase the gas buffer or try again, possibly with a slightly higher gas price.
+7. **Verify the result:** If the bundle succeeds, in one block you should see Account A (safe) receive the tokens from Account B, and also receive back the ETH (minus gas) that it sent. Account B will have 0 tokens and likely 0 ETH left (maybe a few wei if our buffer wasn't fully consumed). You can verify on the Linea Sepolia explorer (Lineascan) for each transaction hash or just check the balances in your wallet. On testnet, the bundle might take a block or two to be picked up – if it doesn't succeed on the first try (no changes in balances), increase the gas buffer or try again, possibly with a slightly higher gas price.
 
 By following these steps, you simulate the exact scenario on a test network with no risk.
 
 ## Conclusion
 
-We hope this tutorial allows to understand how Linea’s `eth_sendBundle` works, and what you can do with it.
+We hope this tutorial allows to understand how Linea's `eth_sendBundle` works, and what you can do with it.
 
-Always remember that with great power (access to private keys and low-level transaction control) comes great responsibility – be extremely careful with key management, and be sure to bring an expert to help you (not the guy you just dmed you on telegram) if you need some help. The approach shown here is powerful: it **ensures your rescue transactions execute in the intended order or not at all** ([eth_sendBundle | Linea](https://docs.linea.build/api/reference/eth-sendbundle)), and remain unseen until it’s too late for any attacker to react.
+Always remember that with great power (access to private keys and low-level transaction control) comes great responsibility – be extremely careful with key management, and be sure to bring an expert to help you (not the guy who just appeared in your DMs) if you need. The approach shown here is powerful: it **ensures your rescue transactions execute in the intended order or not at all**, and remain unseen until it's too late for any attacker to react.
 
-We hope you found this guide useful. By practicing on testnet and following security best practices ([What to do if you have a sweeper bot on your account | MetaMask Help Center](https://support.metamask.io/stay-safe/protect-yourself/fighting-back-against-sweeper-bots/#:~:text=In%20this%20context%E2%80%94fighting%20against%20an,%E2%80%9D)), we hope you know have a better knowledge about token recovery solutions using private transaction bundles on Linea. Good luck, and stay safe out there in Web3!
+We hope you found this guide useful. By practicing on testnet and [following security best practices](https://support.metamask.io/stay-safe/protect-yourself/fighting-back-against-sweeper-bots), we hope you know have a better knowledge about token recovery solutions using private transaction bundles on Linea. Good luck, and stay safe out there in Web3!
