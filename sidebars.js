@@ -71,18 +71,7 @@ const sidebars = {
         "get-started/how-to/migrate-dapp",
         "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
-        {
-          type: "category",
-          label: "Bridge your tokens",
-          link: {
-            type: "doc",
-            id: "get-started/how-to/bridge/index",
-          },
-          items: [
-            "get-started/how-to/bridge/how-to-bridge-eth",
-            "get-started/how-to/bridge/how-to-bridge-erc20-tokens",
-          ],
-        },
+        "get-started/how-to/bridge",
         "get-started/how-to/linea-safe",
         "get-started/how-to/deploy-subdomain",
         "get-started/how-to/finalized-block",
@@ -551,6 +540,7 @@ const sidebars = {
       },
       collapsible: false,
       items: [
+        "api/reference/eth-sendbundle",
         "api/reference/eth-sendrawtransaction",
         "api/reference/linea-estimategas",
         "api/reference/linea-gettransactionexclusionstatusv1",

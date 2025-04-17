@@ -13,10 +13,42 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+## Beta v3
+
+**Linea Mainnet: July 7, 2025** (target)
+
+**Linea Sepolia: May 14, 2025** (target)
+
+- **Limitless prover**: Eliminates the need for [artificial line counting limits](./technology/prover/prover-limits.mdx), 
+as the prover can handle complex workloads, unlocking:
+  - Higher throughput and TPS
+  - Stabler gas fees during high-traffic periods
+  - Faster transaction confirmation during activity peaks
+
+## Beta v2
+
+**Linea Mainnet: Mid-May 2025** (target)
+
+**Linea Sepolia: Early/mid-May 2025** (target)
+
+- **100% proven**: 100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
+the integrity of all onchain data when sequencing is decentralized.
+
 ## Beta v1
 
 Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove 
 100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
+
+### Beta v1.4
+
+**Linea Mainnet: April 22, 2025** 
+
+**Linea Sepolia: TBC**
+
+- Adds the `eth_sendBundle` RPC method, enabling apps to protect users against MEV and improve UX
+in other ways.
+- Introduces state recovery, enabling anyone to recover and audit Linea state, reducing the risk of
+having a centralized sequencer.
 
 ### Beta v1.3
 
