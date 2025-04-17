@@ -41,10 +41,7 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    { src: "/js/getfeedback.js", defer: true, async: true },
-    { src: "/js/navbarHighlight.js", defer: true },
-  ],
+  scripts: [{ src: "/js/navbarHighlight.js", defer: true }],
 
   markdown: {
     mermaid: true,
@@ -52,7 +49,14 @@ const config = {
 
   // Enable experimental infrastructure for Docusaurus Faster project
   future: {
-    experimental_faster: false,
+    experimental_faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: false,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      mdxCrossCompilerCache: true,
+    },
   },
 
   presets: [
@@ -89,7 +93,7 @@ const config = {
       {
         specs: [
           {
-            spec: "https://token-api.devnet.linea.build/docs-yaml",
+            spec: "https://token-api.linea.build/docs-yaml",
             route: "api/token-api/reference",
           },
         ],
@@ -141,7 +145,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "learn/marketplace-dapp",
+            docId: "learn/first-dapp",
             position: "left",
             label: "Learn",
           },

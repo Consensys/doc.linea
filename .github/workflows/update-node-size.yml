@@ -25,15 +25,20 @@ jobs:
         LINEA_OBSERVABILITY_PASS: ${{ secrets.LINEA_OBSERVABILITY_PASS }}
       run: node scripts/fetchNodeSize.js
 
-    - name: Check for changes
-      id: git-check
+    - name: Check for existing PR
+      id: check-pr
       run: |
-        git add linea-node-size/data.json
-        git diff --staged --exit-code
-      continue-on-error: true
+        PR_BRANCH="update-node-size-data"
+        EXISTING_PR=$(gh pr list --head $PR_BRANCH --json number,title,state | jq -r '.[0]')
+        if [ "$EXISTING_PR" != "null" ]; then
+          echo "Found existing PR: $EXISTING_PR"
+          echo "pr_number=$(echo $EXISTING_PR | jq -r '.number')" >> $GITHUB_OUTPUT
+        else
+          echo "No existing PR found"
+        fi
 
-    - name: Create Pull Request
-      if: steps.git-check.outcome == 'failure'
+    - name: Update existing PR or create new one
+      if: steps.check-pr.outputs.pr_number == ''
       uses: peter-evans/create-pull-request@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,17 +50,25 @@ jobs:
         branch: update-node-size-data
         delete-branch: true
 
+    - name: Update existing PR
+      if: steps.check-pr.outputs.pr_number != ''
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add linea-node-size/data.json
+        git commit -m "Update node size data"
+        git push origin update-node-size-data
+
   slackNotification:
     needs: [update-data]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: Consensys/github-actions/slack-notify@main
         env:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
-          SLACK_USERNAME: ci
-          SLACK_TITLE: Linea node size update - Failure
+          sSLACK_TITLE: Linea node size update - Failure
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
