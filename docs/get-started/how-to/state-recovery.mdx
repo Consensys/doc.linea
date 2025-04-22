@@ -33,6 +33,15 @@ The state recovery plugin only works from the following block numbers onwards:
 
 :::
 
+State recovery requires that you run:
+
+- Linea Besu with the following plugins:
+  - State recovery
+  - Shomei
+- [Shomei state manager](https://github.com/Consensys/shomei).
+
+### Linea Besu node
+
 The Linea Besu node being used must have been running with the following configuration in the `.toml` 
 file since genesis (i.e. from when it started to sync):
 - [`FULL`](https://besu.hyperledger.org/public-networks/concepts/node-sync#full-synchronization) sync
@@ -46,13 +55,21 @@ data storage:
     data-storage-format="BONSAI"
     ```
 
-
 To learn how to run a Linea Besu node, see our [guide](../how-to/run-a-node/linea-besu.mdx).
 
-## Update configuration
+### Shomei 
 
-To proceed with state recovery, your node must have been running normally, in line with the above 
-conditions (i.e. `FULL` sync mode and `BONSAI` data storage enabled).
+Shomei is a state manager that communicates with Linea Besu (via the corresponding plugin) to 
+maintain and update state. 
+
+See the Shomei repository for information on how to run it; [you can access a binary distribution
+or pull the latest build from Docker Hub](https://github.com/Consensys/shomei?tab=readme-ov-file#binary-releases). 
+
+## Configuration
+
+Update your Linea Besu node and your Shomei configuration using the below instructions.
+
+### Linea Besu node
 
 :::info 
 
@@ -62,6 +79,9 @@ ensure that state recovery will replace standard P2P syncing. It's therefore not
 the state recovery plugin and configuration without it affecting your node's behavior.
 
 :::
+
+To proceed with state recovery, your node must have been running normally, in line with the above 
+conditions (i.e. `FULL` sync mode and `BONSAI` data storage enabled).
 
 Only then can you proceed by adding the following configuration parameters.
 
@@ -73,8 +93,8 @@ the command line by adding `--` before each parameter:
 Xplugins-external-enabled=true
 Xbonsai-limit-trie-logs-enabled=false
 plugins=["BesuShomeiRpcPlugin","ZkTrieLogPlugin","LineaStateRecoveryPlugin"]
-plugin-shomei-http-host="11.11.13.11"
-plugin-shomei-http-port=8888
+plugin-shomei-http-host="..." // Replace with your Shomei host IP address
+plugin-shomei-http-port= ... // Replace with your Shomei port
 plugin-staterecovery-linea-sequencer-beneficiary-address="0xa27342f1b74c0cfb2cda74bac1628d0c1a9752f2"
 plugin-staterecovery-l1-smart-contract-address="0xb218f8a4bc926cf1ca7b3423c154a0d627bdb7e5"
 plugin-staterecovery-l1-endpoint="https://sepolia.infura.io/v3/INFURA_APP_KEY"
@@ -102,3 +122,20 @@ will begin using the state recovery plugin and sync based on data recovered from
 
 If your node has already synced to a block number greater than the one you specify in this parameter,
 the state recovery plugin will start on the next block (`head block + 1`).
+
+### Shomei
+
+Run Shomei in [mode 1](https://github.com/Consensys/shomei?tab=readme-ov-file#mode-1-trace-generation),
+which involves enabling these flags, either via the command line or in the configuration file:
+
+```toml
+--enable-trace-generation=true
+--trace-start-block-number=BLOCK_NUMBER // Choose a more recent block for faster syncing
+```
+
+And then ensure that you configure Shomei to be aware of where the Linea Besu node is running:
+
+```toml
+--besu-rpc-http-host=... // Replace with your Linea Besu node's host
+--besu-rpc-http-port=... // Replace with your Linea Besu node's port
+```
