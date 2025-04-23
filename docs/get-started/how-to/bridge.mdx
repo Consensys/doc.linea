@@ -204,12 +204,21 @@ The manual claiming toggle will then be available:
 
 ### Execution fees
 
+:::tip Free postman fees for L1 -> L2
+
+The postman fee for L1 -> L2 transfers (i.e. deposits to Linea) is now sponsored for all users. 
+
+This means that automatic claiming transfers from L1 to L2 now have no fees, apart from some cases
+[outlined above](#configure-claiming). You will, however, still need to cover the costs of the L1 
+transaction.
+
+:::
+
 The only fees you'll pay on the native bridge are those required to complete the transaction — 
 other than network fees, the native bridge is fee-free and Linea does not profit from it.
 
 Two types of execution fees can be applied when bridging with the native bridge: the postman fee and 
-the anti-DDOS fee. Since the postman fee is only applied during the automatic claiming process, 
-execution fees vary depending on _what_ you're bridging and the direction.
+the anti-DDOS fee.
 
 Refer to the table for which fees will apply to your bridge transfer. These fees apply to both
 ETH and ERC-20 transfers. 
@@ -231,7 +240,7 @@ ETH and ERC-20 transfers.
         <td>L1 to L2 (Automatic claiming)</td>
         <td>:white_check_mark:</td>
         <td>:x:</td>
-        <td>:white_check_mark:</td>
+        <td>:x:</td>
     </tr>
     <tr>
         <td>L2 to L1 (Manual claiming)</td>
@@ -249,6 +258,8 @@ Key:
   - `gas estimated` = 100,000
   - `gas limit surplus` = 6000
   - `margin` = 2
+  
+  The postman fee used to be applied to automatic claiming transfers from L1 to L2, but is now free.
 
 ## Buy
 
