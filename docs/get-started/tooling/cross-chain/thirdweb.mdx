@@ -37,7 +37,7 @@ import { createThirdwebClient } from "thirdweb";
 import { PayEmbed } from "thirdweb/react";
 
 import { createWallet } from "thirdweb/wallets";
-import { base } from "thirdweb/chains";
+import { linea } from "thirdweb/chains";
 
 const client = createThirdwebClient({
   clientId: "....",
@@ -50,7 +50,7 @@ function Example() {
       payOptions={{
         mode: "fund_wallet",
         prefillBuy: {
-          chain: base,
+          chain: linea,
           amount: "0.01",
         },
       }}
