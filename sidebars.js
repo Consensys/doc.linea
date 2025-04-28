@@ -182,6 +182,7 @@ const sidebars = {
             "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
             "get-started/tooling/cross-chain/shortcuts",
+            "get-started/tooling/cross-chain/thirdweb",
           ],
         },
         {
