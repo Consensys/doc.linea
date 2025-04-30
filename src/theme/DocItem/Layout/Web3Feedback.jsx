@@ -5,7 +5,7 @@ import { MetamaskProviderContext } from '@site/src/theme/Root';
 import styles from "./styles.module.css";
 
 // Only hardcode the portal and schema addresses, not wallet keys
-const PORTAL_ADDRESS = "0xF494B93E9661333d0e7Ca1B880B9Aaf79Cb84697";
+const PORTAL_ADDRESS = "0x598440d1c9B3302ECaD9Cb3945717Ef2EC632746";
 const SCHEMA_ID = "0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
 const LINEA_MAINNET_RPC = "https://rpc.linea.build";
 const LINEA_MAINNET_CHAIN_ID = 59144;
