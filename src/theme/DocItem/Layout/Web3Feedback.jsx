@@ -15,6 +15,34 @@ const PORTAL_ABI = [
   "function attest(tuple(bytes32 schemaId, uint64 expirationDate, bytes subject, bytes attestationData) attestationPayload, bytes[] validationPayload) public payable"
 ];
 
+// Constants for external links
+const VERAX_SCHEMA_URL = "https://explorer.ver.ax/linea/schemas/0xb3cb018b837f70fa9cbb59bcfc59049fb529151399345845bae3d380b81c4120";
+const LINEASCAN_TX_URL = "https://lineascan.build/tx/";
+
+// Tooltip component
+const Tooltip = ({ text }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  return (
+    <div className={styles.tooltipContainer}>
+      <div 
+        className={styles.tooltipTrigger}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        onClick={() => setIsVisible(!isVisible)}
+      >
+        <span className={styles.infoIcon}>ⓘ</span>
+        <span className={styles.whatIsThis}>What is this?</span>
+      </div>
+      {isVisible && (
+        <div className={styles.tooltipContent}>
+          {text}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Web3Feedback = () => {
   const { colorMode } = useColorMode();
   const [theme, setTheme] = useState(colorMode);
@@ -23,6 +51,7 @@ const Web3Feedback = () => {
   const [error, setError] = useState(null);
   const [currentUrl, setCurrentUrl] = useState("");
   const [debugInfo, setDebugInfo] = useState(null);
+  const [transactionHash, setTransactionHash] = useState(null);
   
   // Get MetaMask context
   const { 
@@ -57,6 +86,7 @@ const Web3Feedback = () => {
     setIsSubmitting(true);
     setError(null);
     setDebugInfo(null);
+    setTransactionHash(null);
     
     try {
       console.log("Connected wallet address:", metaMaskAccount);
@@ -190,13 +220,10 @@ const Web3Feedback = () => {
       });
       
       console.log("Transaction sent! Hash:", txHash);
+      setTransactionHash(txHash);
       setFeedbackSubmitted(true);
       
-      // Reset after 5 seconds
-      setTimeout(() => {
-        setFeedbackSubmitted(false);
-        setDebugInfo(null);
-      }, 5000);
+      // The thank you message will now persist until the page is refreshed
       
     } catch (error) {
       console.error("Error submitting feedback:", error);
@@ -210,12 +237,36 @@ const Web3Feedback = () => {
     <div className={styles.feedbackContainer}>
       <div className={styles.feedbackPrompt}>
         {feedbackSubmitted ? (
-          <div className={styles.thankYouMessage}>
-            Thank you for your feedback!
+          <div className={styles.feedbackSuccess}>
+            <div className={styles.thankYouMessage}>
+              Thank you for your feedback!
+            </div>
+            <div className={styles.veraxLinks}>
+              <a 
+                href={VERAX_SCHEMA_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.veraxLink}
+              >
+                View all feedback on the Verax explorer
+              </a>
+              {transactionHash && (
+                <a 
+                  href={`${LINEASCAN_TX_URL}${transactionHash}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.veraxLink}
+                >
+                  View your transaction on LineaScan
+                </a>
+              )}
+            </div>
           </div>
         ) : (
           <>
-            <span>Was this page helpful?</span>
+            <div className={styles.feedbackHeader}>
+              <span>Was this page helpful?</span>
+            </div>
             <div className={styles.feedbackButtons}>
               <button
                 className={`${styles.feedbackButton} ${styles.thumbsUp}`}
@@ -234,6 +285,7 @@ const Web3Feedback = () => {
                 👎
               </button>
             </div>
+            <Tooltip text="This is a trial feedback system that uses Verax to record your feedback as onchain attestations on Linea Mainnet. When you vote, submit a transaction in your wallet." />
           </>
         )}
       </div>

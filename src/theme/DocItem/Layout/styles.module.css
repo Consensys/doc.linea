@@ -94,6 +94,32 @@ nav[aria-label="Breadcrumbs"] {
   animation: fadeIn 0.5s ease;
 }
 
+.feedbackSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.veraxLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.veraxLink {
+  font-size: 0.85rem;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.veraxLink:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
 .loadingIndicator {
   margin-top: 0.75rem;
   font-size: 0.9rem;
@@ -130,4 +156,80 @@ html[data-theme='light'] .feedbackButton {
   background-color: #f8f7f2;
   border-color: var(--ifm-color-emphasis-300);
   color: var(--ifm-font-color-base);
+}
+
+/* Tooltip styles */
+.feedbackHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.tooltipTrigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.85rem;
+}
+
+.infoIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  border-radius: 50%;
+}
+
+.whatIsThis {
+  font-size: 0.75rem;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.tooltipContent {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: var(--ifm-color-emphasis-900);
+  color: var(--ifm-color-emphasis-0);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  width: max-content;
+  max-width: 250px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltipContent::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--ifm-color-emphasis-900) transparent;
+}
+
+/* Dark mode tooltip */
+html[data-theme='dark'] .tooltipContent {
+  background-color: var(--ifm-color-emphasis-800);
+  color: var(--ifm-color-emphasis-0);
+}
+
+html[data-theme='dark'] .tooltipContent::after {
+  border-color: transparent transparent var(--ifm-color-emphasis-800) transparent;
 }
