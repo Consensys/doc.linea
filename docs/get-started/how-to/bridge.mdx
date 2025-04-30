@@ -39,13 +39,22 @@ For a guide on using the bridge aggregator and FAQs, see our [support guide](htt
 
 Head to the [bridge app](https://bridge.linea.build) and select the "Native Bridge" tab.
 
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_tab_button.png"
+      alt="Linea native bridge tab button"
+    />
+  </div>
+</div>
+
 1. Select the direction of your transfer — either L1 -> L2 or L2 -> L1. 
 
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/network_selection.png"
-      alt="Network selector showing L1 -> L2"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_select_transfer_direction.png"
+      alt="Linea native bridge select transfer direction"
     />
   </div>
 </div>
@@ -69,8 +78,17 @@ claiming is automatically applied when necessary. [See below for more informatio
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/token_selection.png"
-      alt="Token selector showing USD stablecoins"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_select_token_button.png"
+      alt="Linea native bridge select token button"
+    />
+  </div>
+</div>
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_select_token_modal.png"
+      alt="Linea native bridge select token modal"
     />
   </div>
 </div>
@@ -80,8 +98,8 @@ claiming is automatically applied when necessary. [See below for more informatio
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/input_amount.png"
-      alt="Input amount field"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_select_amount.png"
+      alt="Linea native bridge select amount"
     />
   </div>
 </div>
@@ -92,16 +110,52 @@ the wallet icon in the bottom-right of the widget and input the recipient addres
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/specify_recipient.png"
-      alt="Input a specific recipient address"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_add_recipient_address_field.png"
+      alt="Linea native bridge add recipient address field"
     />
   </div>
 </div>
 
+:::note Approve tokens
+
+If you're bridging an ERC-20 token that you haven't bridged before, you'll need to complete an
+additional transaction at this point to approve a spending cap before you can bridge:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_spending_cap_request_MetaMask_prompt3.png"
+      alt="Linea native bridge spending cap request MetaMask prompt"
+    />
+  </div>
+</div>
+
+The spending cap enables the bridge app to access the funds you want to transfer.
+
+:::
+
 5. Click "Bridge", and then confirm the details and sign the transaction to proceed.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_confirm_and_bridge_button.png"
+      alt="Linea native bridge confirm and bridge button"
+    />
+  </div>
+</div>
 
 After the transaction is confirmed, your bridge transfer will be visible in your transaction history,
 accessible via the icon next to settings in the top-right of the widget.
+
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_confirmed_transaction_history.png"
+      alt="Linea native bridge confirmed transaction history"
+    />
+  </div>
+</div>
 
 ### Bridge USDC
 
@@ -134,12 +188,21 @@ Manual claiming is required for any transfers:
 
 Go to the transaction history page by clicking the receipt icon in the top-right of the widget.
 
+<div class="center-container">
+  <div class="img-medium">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_transaction_history_button.png"
+      alt="Linea native bridge transaction history button"
+    />
+  </div>
+</div>
+
 If your manual claim transaction is ready to claim, it will be marked as "Ready to claim":
 
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/ready_to_claim.png"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_manual_ready_to_claim.png"
       alt="Transaction history entry marked as ready to claim"
     />
   </div>
@@ -151,7 +214,7 @@ a transaction in your wallet:
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/claim_button.png"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_claim_manual_transaction_modal.png"
       alt="Claim transaction button in modal"
     />
   </div>
@@ -163,7 +226,7 @@ history will update accordingly:
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/claim_complete.png"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_manual_claim_completed.png"
       alt="Transaction history entry marked as complete"
     />
   </div>
@@ -185,7 +248,7 @@ automatic claiming where applicable by clicking the gear icon in the "Receive" p
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/claiming_settings.png"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_advanced_settings_gear_icon.png"
       alt="Receive panel with gear icon"
     />
   </div>
@@ -196,7 +259,7 @@ The manual claiming toggle will then be available:
 <div class="center-container">
   <div class="img-medium">
     <img
-      src="/img/get_started/how_to/bridge/bridge/claiming_toggle.png"
+      src="/img/get_started/how_to/bridge/bridge/Linea_native_bridge_advanced_settings_manual_claim_toggle.png"
       alt="Manual claiming toggle"
     />
   </div>
