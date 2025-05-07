@@ -26,6 +26,12 @@ forks, and updates to the blockchain.
         <th>Linea</th>
         <th>Explanation</th>
     </tr>
+        <tr>
+        <td>`BEACONROOT`</td>
+        <td></td>
+        <td><strong>WIP</strong>. <br /><br /> Stay tuned for updates.</td>
+        <td>This will be included following Pectra upgrades; the value returned is to be determined.</td>
+    </tr>
     <tr>
         <td>`BLOBHASH`</td>
         <td>Given an an input in the form of an `index`, indicating the position of a
@@ -37,8 +43,8 @@ forks, and updates to the blockchain.
     <tr>
         <td>`BLOBBASEFEE`</td>
         <td>Returns the value of the blob base-fee of the current block.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
+        <td>Will always return the minimum value.</td>
+        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
     </tr>
     <tr>
         <td>`BLOCKHASH`</td>
@@ -51,7 +57,8 @@ forks, and updates to the blockchain.
     <tr>
         <td>`DIFFICULTY`/`PREVRANDAO`</td>
         <td>Returns the RANDAO value from the previous block</td>
-        <td>Returns a fixed number: `2`</td>
+        <td><strong>WIP</strong>. <br /> <br />
+            Linea plans to use a formula similar to Mainnet, e.g. `L2_prevrandao XOR hash(signed(slot_id))`.</td>
         <td>In Ethereum, `PREVRANDAO` was previously known as `DIFFICULTY`. It was renamed to 
         `PREVRANDAO` in [EIP-4399](https://eips.ethereum.org/EIPS/eip-4399) and its functionality 
         changed due to the switch from PoW to PoS. `PREVRANDAO` returns a full 256-bit value that 
