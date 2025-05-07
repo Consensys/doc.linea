@@ -23,7 +23,7 @@ The SDK focuses on interacting with smart contracts on both Ethereum and Linea n
 
 4.  Getting a message status by message hash
 
-5.  Claiming messages (use one of the get message methods to grab all the parameters values)
+5.  Claiming messages (use one of the get message methods to grab all the parameter values)
 
 :::info[New Features]
 
@@ -206,12 +206,12 @@ const sdk = new LineaSDK({
 
         // Follow these steps:
         // 1. Retrieve the MessageSent event on L2 by messageHash
-        // 2. Retrieve the L2MessagingBlockAnchored event on L1 using the MessageSent.blockNumber you acquired in step 1. This is used to get the finalization transaction hash where the L2 block number associated to your message has been finalized.
+        // 2. Retrieve the L2MessagingBlockAnchored event on L1 using the MessageSent.blockNumber you acquired in step 1. This is used to get the finalization transaction hash where the L2 block number associated with your message has been finalized.
         // 3. Invoke the getFinalizationMessagingInfo function using the L2MessagingBlockAnchored.transactionHash you obtained in step 2.
-        // This will return all merkle roots anchored during this finalization transaction, the depth of trees, the first and the last L2 block containing messages finalized on L1 in this transaction.
+        // This will return all merkle roots anchored during this finalization transaction, the depth of trees, and the first and the last L2 block containing messages finalized on L1 in this transaction.
         // 4. Invoke the getL2MessageHashesInBlockRange function using the first and last L2 block number that you obtained in step 3. This will return all l2 messages hashes in this L2 block range.
         // 5. Invoke the getMessageSiblings function to obtain all message siblings
-        // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree and return a merkle proof
+        // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree, and return a merkle proof
 
         // NOTE: You can create your own functions that encompass all steps. Utility functions are merely provided as a helper.
 
