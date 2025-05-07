@@ -28,9 +28,11 @@ forks, and updates to the blockchain.
     </tr>
     <tr>
         <td>`BLOBHASH`</td>
-        <td>Returns a versioned hash.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
+        <td>Given an an input in the form of an `index`, indicating the position of a
+            particular blob within an array of blobs associated with a transaction, returns the hash of the corresponding blob.
+            <br /> <br /> If the index is out of bounds, returns `0`.</td>
+        <td>Will always return `0`.</td>
+        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
     </tr>
     <tr>
         <td>`BLOBBASEFEE`</td>
