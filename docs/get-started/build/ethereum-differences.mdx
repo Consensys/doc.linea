@@ -19,16 +19,18 @@ forks, and updates to the blockchain.
 
 > ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
 
+{/* TODO: Once all context / explanations are added, alphabetize this list, or put it in order of opcode number. */}
 <table>
     <tr>
         <th>Opcode name</th> 
         <th>Ethereum</th>
         <th>Linea</th>
         <th>Explanation</th>
+{/* TODO: Include description of BEACONROOT's functionality on Mainnet / context with Linea */}
     </tr>
         <tr>
         <td>`BEACONROOT`</td>
-        <td></td>
+        <td>Supported</td>
         <td><strong>WIP</strong>. <br /><br /> Stay tuned for updates.</td>
         <td>This will be included following Pectra upgrades; the value returned is to be determined.</td>
     </tr>
@@ -65,32 +67,45 @@ forks, and updates to the blockchain.
         represents the randomness beacon output of the previous block. For more, see the 'Security 
         Considerations' section of EIP-4399.</td>
     </tr>
+{/* TODO: Specify the behavior of the following opcodes on Linea vis-a-vis Mainnet */}
     <tr>
         <td>`MCOPY`</td>
         <td>Copies memory areas, allowing the destination and source to overlap.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
+        <td>Supported</td>
+        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
     </tr>
         <tr>
         <td>`PUSH0`</td>
         <td>Pushes the constant value 0 onto the stack</td>
-        <td>n/a</td>
+        <td>Supported</td>
         <td>PUSH0 was introduced in the Ethereum Mainnet Shanghai upgrade and became available in 
-        Solidity compiler version 0.8.20, which came after the London release. However, Linea 
-        currently supports compiled code targeting the London release of the Ethereum Mainnet. Use 
-        the EVM Version of London when compiling to align with Linea's capabilities.</td>
+        Solidity compiler version 0.8.20, which came after the London release. It became available
+        on Linea as of the inclusion of the Pectra upgrades.</td>
     </tr>
     <tr>
         <td>`TLOAD`</td>
         <td>Load word from transient storage.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
+        <td>Supported</td>
+        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
     </tr>
     <tr>
         <td>`TSTORE`</td>
         <td>Save word to transient storage.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
+        <td>Supported</td>
+        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
+    </tr>
+{/* TODO: Provide explanation of the following opcodes' functionality and context on Mainnet. And maybe an explanation of why they're not on Linea. */}
+    <tr>
+        <td>`BLAKE2f`</td>
+        <td>Supported</td>
+        <td>Not supported.</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>`RIPEMD-160`</td>
+        <td>Supported</td>
+        <td>Not supported.</td>
+        <td></td>
     </tr>
 </table>
 
@@ -114,7 +129,7 @@ exceed 512-byte integers.
 
 ### Point evaluation
 
-The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile), and is therefore unavailable on Linea. 
+The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile). It is available on Linea as of the inclusion of the Pectra upgrades.
 
 ## JSON RPC API
 
