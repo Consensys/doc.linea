@@ -252,6 +252,7 @@ const config = {
         insights: true,
       },
       metadata: [
+        { name: "algolia-site-verification", content: "4A3FE8356A5A677C" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
         { property: "og:image", content: "/img/Linea_social_card_docs.png" },
