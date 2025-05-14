@@ -197,6 +197,14 @@ const config = {
                 label: "Risk disclosures",
                 href: "/risk-disclosures",
               },
+              {
+                label: "Terms of service",
+                href: "https://linea.build/terms-of-service",
+              },
+              {
+                label: "Privacy policy",
+                href: "https://consensys.io/privacy-notice",
+              },
             ],
           },
           {
