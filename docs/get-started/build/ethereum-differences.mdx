@@ -4,6 +4,10 @@ description: Learn about the key differences between Ethereum and Linea.
 image: /img/socialCards/differences-between-ethereum-and-linea.jpg
 ---
 
+This page outlines Ethereum Mainnet functionality that differs on Linea, or is not yet available on 
+Linea. Absence from this page indicates that the functionality is available on Linea and identical 
+to behavior on Ethereum Mainnet; if you're experiencing otherwise, please get in touch via Discord.
+
 ## EVM opcodes
 
 :::info important
@@ -32,7 +36,13 @@ forks, and updates to the blockchain.
         <td>`BEACONROOT`</td>
         <td>Supported</td>
         <td><strong>WIP</strong>. <br /><br /> Stay tuned for updates.</td>
-        <td>This will be included following Pectra upgrades; the value returned is to be determined.</td>
+        <td>Available on Linea with Beta v4; the value returned is to be determined.</td>
+    </tr>
+        <tr>
+        <td>`BLOBBASEFEE`</td>
+        <td>Returns the value of the blob base-fee of the current block.</td>
+        <td>Will always return the minimum value.</td>
+        <td>Available on Linea with Beta v4.</td>
     </tr>
     <tr>
         <td>`BLOBHASH`</td>
@@ -40,13 +50,7 @@ forks, and updates to the blockchain.
             particular blob within an array of blobs associated with a transaction, returns the hash of the corresponding blob.
             <br /> <br /> If the index is out of bounds, returns `0`.</td>
         <td>Will always return `0`.</td>
-        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
-    </tr>
-    <tr>
-        <td>`BLOBBASEFEE`</td>
-        <td>Returns the value of the blob base-fee of the current block.</td>
-        <td>Will always return the minimum value.</td>
-        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
+        <td>Available on Linea with Beta v4.</td>
     </tr>
     <tr>
         <td>`BLOCKHASH`</td>
@@ -57,7 +61,13 @@ forks, and updates to the blockchain.
         L2-specific state representation).</td>
     </tr>
     <tr>
-        <td>`DIFFICULTY`/`PREVRANDAO`</td>
+        <td>`MCOPY`</td>
+        <td>Copies memory areas, allowing the destination and source to overlap.</td>
+        <td>Identical to Ethereum.</td>
+        <td>Supported with Linea Beta v4.</td>
+    </tr>
+    <tr>
+        <td>`PREVRANDAO`</td>
         <td>Returns the RANDAO value from the previous block</td>
         <td><strong>WIP</strong>. <br /> <br />
             Linea plans to use a formula similar to Mainnet, e.g. `L2_prevrandao XOR hash(signed(slot_id))`.</td>
@@ -67,45 +77,25 @@ forks, and updates to the blockchain.
         represents the randomness beacon output of the previous block. For more, see the 'Security 
         Considerations' section of EIP-4399.</td>
     </tr>
-{/* TODO: Specify the behavior of the following opcodes on Linea vis-a-vis Mainnet */}
     <tr>
-        <td>`MCOPY`</td>
-        <td>Copies memory areas, allowing the destination and source to overlap.</td>
-        <td>Supported</td>
-        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
-    </tr>
-        <tr>
         <td>`PUSH0`</td>
         <td>Pushes the constant value 0 onto the stack</td>
-        <td>Supported</td>
+        <td>Identical to Ethereum.</td>
         <td>PUSH0 was introduced in the Ethereum Mainnet Shanghai upgrade and became available in 
-        Solidity compiler version 0.8.20, which came after the London release. It became available
-        on Linea as of the inclusion of the Pectra upgrades.</td>
+        Solidity compiler version 0.8.20, which came after the London release. Available on Linea 
+        with Beta v4.</td>
     </tr>
     <tr>
         <td>`TLOAD`</td>
         <td>Load word from transient storage.</td>
-        <td>Supported</td>
-        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
+        <td>Identical to Ethereum.</td>
+        <td>Available on Linea with Beta v4.</td>
     </tr>
     <tr>
         <td>`TSTORE`</td>
         <td>Save word to transient storage.</td>
-        <td>Supported</td>
-        <td>Available on Linea as of inclusion of the Pectra upgrades.</td>
-    </tr>
-{/* TODO: Provide explanation of the following opcodes' functionality and context on Mainnet. And maybe an explanation of why they're not on Linea. */}
-    <tr>
-        <td>`BLAKE2f`</td>
-        <td>Supported</td>
-        <td>Not supported.</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>`RIPEMD-160`</td>
-        <td>Supported</td>
-        <td>Not supported.</td>
-        <td></td>
+        <td>Identical to Ethereum.</td>
+        <td>Available on Linea with Beta v4.</td>
     </tr>
 </table>
 
@@ -122,19 +112,28 @@ The current limit is 60000 bytes.
 
 ## Precompiles
 
-### Precompiles as transaction recipients
+### `BLAKE2f`
 
-On Linea, transactions cannot set the recipient of a transaction (the address in `to`) as a 
-precompile. The `to` address of transactions cannot be in the range `0x01`-`0x09`.
+`BLAKE2f` is not supported on Linea.
 
-### MODEXP
+### `MODEXP`
 
 `MODEXP` (`0x05`) on Linea currently only supports arguments (base, exponent, modulus) that do not 
 exceed 512-byte integers.
 
 ### Point evaluation
 
-The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile). It is available on Linea as of the inclusion of the Pectra upgrades.
+The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile). 
+It is available on Linea with Beta v4.
+
+### Precompiles as transaction recipients
+
+On Linea, transactions cannot set the recipient of a transaction (the address in `to`) as a 
+precompile. The `to` address of transactions cannot be in the range `0x01`-`0x09`.
+
+### `RIPEMD-160`
+
+`RIPEMD-160` is not supported on Linea.
 
 ## JSON RPC API
 
@@ -145,3 +144,7 @@ and include:
 - `linea_getProof`
 - `linea_getTransactionExclusionStatusV1`
 - `eth_sendRawTransaction`
+
+## Calldata
+
+The calldata field is limited to 60,000 bytes. 
