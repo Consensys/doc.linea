@@ -30,15 +30,8 @@ forks, and updates to the blockchain.
         <th>Ethereum</th>
         <th>Linea</th>
         <th>Explanation</th>
-{/* TODO: Include description of BEACONROOT's functionality on Mainnet / context with Linea */}
     </tr>
-        <tr>
-        <td>`BEACONROOT`</td>
-        <td>Supported</td>
-        <td><strong>WIP</strong>. <br /><br /> Stay tuned for updates.</td>
-        <td>Available on Linea with Beta v4; the value returned is to be determined.</td>
-    </tr>
-        <tr>
+    <tr>
         <td>`BLOBBASEFEE`</td>
         <td>Returns the value of the blob base-fee of the current block.</td>
         <td>Will always return the minimum value.</td>
@@ -148,3 +141,11 @@ and include:
 ## Calldata
 
 The calldata field is limited to 60,000 bytes. 
+
+## Beacon root
+
+[EIP-4788](https://eips.ethereum.org/EIPS/eip-4788), included in Ethereum's Dencun upgrade, 
+introduced a smart contract that enables the caller to `get` or `set` the hash tree root of a 
+beacon chain block. 
+
+This functionaltiy is available with Linea Beta v4.
