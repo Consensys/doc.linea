@@ -246,8 +246,8 @@ const config = {
 
       algolia: {
         appId: "HUSVJ6LWVI",
-        apiKey: "39dddd93a49e7336d5bc18024ac8a5cd",
-        indexName: "linea-docs",
+        apiKey: "c97e45780036228af16b771bf5d98a0a",
+        indexName: "Linea Vercel",
         contextualSearch: true,
         insights: true,
       },
