@@ -1,10 +1,5 @@
 {
   "cleanUrls": true,
-  "version": 2,
-  "buildCommand": "npm run build",
-  "installCommand": "npm ci",
-  "framework": "docusaurus",
-  "nodeVersion": "20.18.0",
   "redirects": [
     { "source": "/en/latest", "destination": "/", "permanent": true },
     { "source": "/en/latest/", "destination": "/", "permanent": true },
