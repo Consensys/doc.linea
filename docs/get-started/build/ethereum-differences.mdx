@@ -111,7 +111,7 @@ for more._
     <th>Precompile</th>
     <th>Ethereum</th>
     <th>Linea: current state</th>
-    <th>Linea: target state</th>
+    <th>Linea: Pectra upgrade (Beta v4)</th>
   </tr>
   <tr>
     <td>`BLAKE2f`</td>
@@ -128,7 +128,8 @@ for more._
       Only supports arguments (base, exponent, modulus) that do not exceed
       512-byte integers.
     </td>
-    <td>Not supported.</td>
+    <td>Only supports arguments (base, exponent, modulus) that do not exceed
+      512-byte integers.</td>
   </tr>
   <tr>
     <td>Point evaluation</td>
@@ -146,7 +147,8 @@ for more._
       Not supported. A transaction `to` address cannot be a precompile, i.e. an
       address in the range `0x01`-`0x09`.
     </td>
-    <td>Not supported.</td>
+    <td>Not supported. A transaction `to` address cannot be a precompile, i.e. an
+      address in the range `0x01`-`0x09`.</td>
   </tr>
   <tr>
     <td>`RIPEMD-160`</td>
