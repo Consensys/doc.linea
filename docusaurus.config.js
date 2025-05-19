@@ -1,7 +1,6 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const katex = require("rehype-katex");
 const redirectsData = require("./redirects.json");
 
 /** It's a public API key, so it's safe to expose it here. */
