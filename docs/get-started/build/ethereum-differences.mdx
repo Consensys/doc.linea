@@ -4,115 +4,186 @@ description: Learn about the key differences between Ethereum and Linea.
 image: /img/socialCards/differences-between-ethereum-and-linea.jpg
 ---
 
+This page outlines Ethereum Mainnet functionality that differs on Linea, or is not yet available on 
+Linea. Absence from this page indicates that the functionality is available on Linea and identical to 
+behavior on Ethereum Mainnet; if you're experiencing otherwise, please get in touch via Discord.
+
 ## EVM opcodes
 
-:::info important
-Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed
+:::info important 
+
+Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed 
 identically to Ethereum London unless presented in the following table.
 
-Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london`
-command to ensure compatibility with Linea.
+Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london` 
+command to ensure compatibility with Linea. 
+
 :::
 
-Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about major milestones, 
-forks, and updates to the blockchain.
-
-> ⚠️ At the moment we do not support the `eth_newFilter` and `eth_newBlockFilter` RPC calls.
+Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about
+major milestones, forks, and updates to the blockchain.
 
 <table>
-    <tr>
-        <th>Opcode name</th> 
-        <th>Ethereum</th>
-        <th>Linea</th>
-        <th>Explanation</th>
-    </tr>
-    <tr>
-        <td>`BLOBHASH`</td>
-        <td>Returns a versioned hash.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
-    </tr>
-    <tr>
-        <td>`BLOBBASEFEE`</td>
-        <td>Returns the value of the blob base-fee of the current block.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
-    </tr>
-    <tr>
-        <td>`BLOCKHASH`</td>
-        <td>Returns the hash of a requested block from the 256 most recent blocks.</td>
-        <td>Identical function to Ethereum.</td>
-        <td>Returns the correct value, but the value is not guaranteed by the proof (Linea is a 
-        [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and uses/proves an 
-        L2-specific state representation).</td>
-    </tr>
-    <tr>
-        <td>`DIFFICULTY`/`PREVRANDAO`</td>
-        <td>Returns the RANDAO value from the previous block</td>
-        <td>Returns a fixed number: `2`</td>
-        <td>In Ethereum, `PREVRANDAO` was previously known as `DIFFICULTY`. It was renamed to 
-        `PREVRANDAO` in [EIP-4399](https://eips.ethereum.org/EIPS/eip-4399) and its functionality 
-        changed due to the switch from PoW to PoS. `PREVRANDAO` returns a full 256-bit value that 
-        represents the randomness beacon output of the previous block. For more, see the 'Security 
-        Considerations' section of EIP-4399.</td>
-    </tr>
-    <tr>
-        <td>`MCOPY`</td>
-        <td>Copies memory areas, allowing the destination and source to overlap.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
-    </tr>
-        <tr>
-        <td>`PUSH0`</td>
-        <td>Pushes the constant value 0 onto the stack</td>
-        <td>n/a</td>
-        <td>PUSH0 was introduced in the Ethereum Mainnet Shanghai upgrade and became available in 
-        Solidity compiler version 0.8.20, which came after the London release. However, Linea 
-        currently supports compiled code targeting the London release of the Ethereum Mainnet. Use 
-        the EVM Version of London when compiling to align with Linea's capabilities.</td>
-    </tr>
-    <tr>
-        <td>`TLOAD`</td>
-        <td>Load word from transient storage.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
-    </tr>
-    <tr>
-        <td>`TSTORE`</td>
-        <td>Save word to transient storage.</td>
-        <td>n/a</td>
-        <td>Unavailable on Linea due to being introduced in the Cancun upgrade.</td>
-    </tr>
+  <tr>
+    <th>Opcode</th>
+    <th>Ethereum</th>
+    <th>Linea: current state</th>
+    <th>Linea: Pectra upgrade (Beta v4)</th>
+  </tr>
+  <tr>
+    <td>`BLOBBASEFEE`</td>
+    <td>Returns the value of the blob base-fee of the current block.</td>
+    <td>Not supported.</td>
+    <td>Will always return the minimum value.</td>
+  </tr>
+  <tr>
+    <td>`BLOBHASH`</td>
+    <td>
+      Given an an input in the form of an `index`, indicating the position of a
+      particular blob within an array of blobs associated with a transaction,
+      returns the hash of the corresponding blob.
+      <br /> <br /> If the index is out of bounds, returns `0`.
+    </td>
+    <td>Not supported.</td>
+    <td>Will always return `0`.</td>
+  </tr>
+  <tr>
+    <td>`BLOCKHASH`</td>
+    <td>
+      Returns the hash of a requested block from the 256 most recent blocks.
+    </td>
+    <td>Not supported.</td>
+    <td>Returns the correct value, but the value is not guaranteed by the proof
+      (Linea is a [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and
+      uses/proves an L2-specific state representation).</td>
+  </tr>
+  <tr>
+    <td>`MCOPY`</td>
+    <td>
+      Copies memory areas, allowing the destination and source to overlap.
+    </td>
+    <td>Not supported.</td>
+    <td>Available on Linea Beta v4.</td>
+  </tr>
+  <tr>
+    <td>`PREVRANDAO`</td>
+    <td>Returns the RANDAO value from the previous block.</td>
+    <td>Not supported.</td>
+    <td>
+      Use a formula similar to Ethereum, e.g. `L2_prevrandao XOR
+      hash(signed(slot_id))`.
+    </td>
+  </tr>
+  <tr>
+    <td>`PUSH0`</td>
+    <td>Pushes the constant value 0 onto the stack.</td>
+    <td>Not supported.</td>
+    <td>
+      PUSH0 was introduced in the Ethereum Mainnet Shanghai upgrade and became
+      available in Solidity compiler version 0.8.20, which came after the London
+      release. Available on Linea Beta v4.
+    </td>
+  </tr>
+  <tr>
+    <td>`TLOAD`</td>
+    <td>Load word from transient storage.</td>
+    <td>Not supported.</td>
+    <td>Available on Linea Beta v4.</td>
+  </tr>
+  <tr>
+    <td>`TSTORE`</td>
+    <td>Save word to transient storage.</td>
+    <td>Not supported</td>
+    <td>Available on Linea Beta v4.</td>
+  </tr>
 </table>
 
 _Consult the Ethereum Foundation's [Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) 
 for more._
 
-[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum, and
+[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum, and 
 [evm.codes](https://www.evm.codes/) is useful for information about specific opcodes on Ethereum.
 
 ## Precompiles
 
-### Precompiles as transaction recipients
+<table>
+  <tr>
+    <th>Precompile</th>
+    <th>Ethereum</th>
+    <th>Linea: current state</th>
+    <th>Linea: Pectra upgrade (Beta v4)</th>
+  </tr>
+  <tr>
+    <td>`BLAKE2f`</td>
+    <td>
+      Compression function F used in the BLAKE2 cryptographic hashing algorithm.
+    </td>
+    <td>Not supported.</td>
+    <td>Not supported.</td>
+  </tr>
+  <tr>
+    <td>`MODEXP`</td>
+    <td>Arbitrary-precision exponentiation under modulo.</td>
+    <td>
+      Only supports arguments (base, exponent, modulus) that do not exceed
+      512-byte integers.
+    </td>
+    <td>Only supports arguments (base, exponent, modulus) that do not exceed
+      512-byte integers.</td>
+  </tr>
+  <tr>
+    <td>Point evaluation</td>
+    <td>
+      Verify that specific points in a polynomial (blobs) match the expected
+      values.
+    </td>
+    <td>Not supported.</td>
+    <td>Available with Linea Beta v4.</td>
+  </tr>
+  <tr>
+    <td>Precompiles as transaction recipients</td>
+    <td>Applicable to various use cases.</td>
+    <td>
+      Not supported. A transaction `to` address cannot be a precompile, i.e. an
+      address in the range `0x01`-`0x09`.
+    </td>
+    <td>Not supported. A transaction `to` address cannot be a precompile, i.e. an
+      address in the range `0x01`-`0x09`.</td>
+  </tr>
+  <tr>
+    <td>`RIPEMD-160`</td>
+    <td>A hash function.</td>
+    <td>Not supported.</td>
+    <td>TBD.</td>
+  </tr>
+</table>
 
-On Linea, transactions cannot set the recipient of a transaction (the address in `to`) as a 
-precompile. The `to` address of transactions cannot be in the range `0x01`-`0x09`.
+## Beacon root
 
-### MODEXP
+[EIP-4788](https://eips.ethereum.org/EIPS/eip-4788), included in Ethereum's Dencun upgrade, 
+introduced a smart contract that enables the caller to `get` or `set` the hash tree root of a 
+beacon chain block.
 
-`MODEXP` (`0x05`) on Linea currently only supports arguments (base, exponent, modulus) that do not 
-exceed 512-byte integers.
+This functionality is available with Linea Beta v4. However, due to the difference in block time
+when compared to Ethereum Mainnet, only the root of the previous block is available.
 
-### Point evaluation
+## Call data
 
-The point evaluation precompile was introduced in [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844#point-evaluation-precompile), and is therefore unavailable on Linea. 
+Linea's sequencer limits the size of call data, so that transactions can fit into the corresponding 
+blob. The current limit is 60000 bytes.
 
-## JSON RPC API
+## JSON-RPC API
 
 Linea uses the standard Ethereum JSON RPC API methods. However, in a few cases, methods differ from 
-those on Ethereum. These methods are documented in the [reference section](../../api/reference/index.mdx),
+those on Ethereum. These methods are documented in the [reference section](../../api/reference/index.mdx), 
 and include:
+
 - `linea_estimateGas`
 - `linea_getProof`
 - `linea_getTransactionExclusionStatusV1`
 - `eth_sendRawTransaction`
+
+Additionally, the following methods are not supported:
+
+- `eth_newFilter`
+- `eth_newBlockFilter`.
