@@ -15,10 +15,12 @@ Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/deve
 total fee = units of gas used * (base fee + priority fee)
 ```
 
-Linea fundamentally works exactly the same as Ethereum. The only difference is that **the base fee 
-is constant at 7 wei.** Blocks created by Linea use up to 24 million gas (less than 50% of the 
-maximum Linea block size of 61 million gas), and the fee decreases by 12.5% per block, keeping it 
-at a stable 7 wei.
+Linea is EVM-equivalent, and gas therefore works extremely similarly to Ethereum. The main difference 
+is that **the base fee effectively stabilizes at 7 wei.** Linea blocks use up to around 50% of the 
+maximum block size of 2 billion gas, and the base fee decreases or increases by 12.5% per block 
+according to network traffic, identically to Ethereum. However, when the base fee reaches 7 wei, 
+12.5% is less than 1 wei, and the reduction is rounded down to zero; so the fee remains 7 wei. 
+The base fee is also burned, like on Ethereum.
 
 The gas cost to submit your transaction and include it on Ethereum involves the following fee 
 components:
