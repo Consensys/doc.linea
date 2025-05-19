@@ -28,13 +28,13 @@ major milestones, forks, and updates to the blockchain.
     <th>Opcode</th>
     <th>Ethereum</th>
     <th>Linea: current state</th>
-    <th>Linea: target state</th>
+    <th>Linea: Pectra upgrade (Beta v4)</th>
   </tr>
   <tr>
     <td>`BLOBBASEFEE`</td>
     <td>Returns the value of the blob base-fee of the current block.</td>
+    <td>Not supported.</td>
     <td>Will always return the minimum value.</td>
-    <td>Available on Linea Beta v4 with behavior identical to Ethereum.</td>
   </tr>
   <tr>
     <td>`BLOBHASH`</td>
@@ -44,21 +44,18 @@ major milestones, forks, and updates to the blockchain.
       returns the hash of the corresponding blob.
       <br /> <br /> If the index is out of bounds, returns `0`.
     </td>
+    <td>Not supported.</td>
     <td>Will always return `0`.</td>
-    <td>Available on Linea Beta v4 with behavior identical to Ethereum.</td>
   </tr>
   <tr>
     <td>`BLOCKHASH`</td>
     <td>
       Returns the hash of a requested block from the 256 most recent blocks.
     </td>
-    <td>
-      Returns the correct value, but the value is not guaranteed by the proof
-      (Linea is a [type 2
-      zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and
-      uses/proves an L2-specific state representation).
-    </td>
-    <td>TBD.</td>
+    <td>Not supported.</td>
+    <td>Returns the correct value, but the value is not guaranteed by the proof
+      (Linea is a [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and
+      uses/proves an L2-specific state representation).</td>
   </tr>
   <tr>
     <td>`MCOPY`</td>
@@ -122,7 +119,7 @@ for more._
       Compression function F used in the BLAKE2 cryptographic hashing algorithm.
     </td>
     <td>Not supported.</td>
-    <td>TBD.</td>
+    <td>Not supported.</td>
   </tr>
   <tr>
     <td>`MODEXP`</td>
@@ -131,7 +128,7 @@ for more._
       Only supports arguments (base, exponent, modulus) that do not exceed
       512-byte integers.
     </td>
-    <td>TBD.</td>
+    <td>Not supported.</td>
   </tr>
   <tr>
     <td>Point evaluation</td>
@@ -149,7 +146,7 @@ for more._
       Not supported. A transaction `to` address cannot be a precompile, i.e. an
       address in the range `0x01`-`0x09`.
     </td>
-    <td>TBD.</td>
+    <td>Not supported.</td>
   </tr>
   <tr>
     <td>`RIPEMD-160`</td>
@@ -165,7 +162,8 @@ for more._
 introduced a smart contract that enables the caller to `get` or `set` the hash tree root of a 
 beacon chain block.
 
-This functionality is available with Linea Beta v4.
+This functionality is available with Linea Beta v4. However, due to the difference in block time
+when compared to Ethereum Mainnet, only the root of the previous block is available.
 
 ## Call data
 
