@@ -4,19 +4,21 @@ description: Learn about the key differences between Ethereum and Linea.
 image: /img/socialCards/differences-between-ethereum-and-linea.jpg
 ---
 
-This page outlines Ethereum Mainnet functionality that differs on Linea, or is
-not yet available on Linea. Absence from this page indicates that the
-functionality is available on Linea and identical to behavior on Ethereum
-Mainnet; if you're experiencing otherwise, please get in touch via Discord.
+This page outlines Ethereum Mainnet functionality that differs on Linea, or is not yet available on 
+Linea. Absence from this page indicates that the functionality is available on Linea and identical to 
+behavior on Ethereum Mainnet; if you're experiencing otherwise, please get in touch via Discord.
 
 ## EVM opcodes
 
-:::info important Linea uses the London version of the Ethereum Virtual Machine
-(EVM). All EVM opcodes are managed identically to Ethereum London unless
-presented in the following table.
+:::info important 
 
-Solidity 8.23 and later compiles newer versions of the EVM by default. Use the
-`solc --evm-version london` command to ensure compatibility with Linea. :::
+Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed 
+identically to Ethereum London unless presented in the following table.
+
+Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london` 
+command to ensure compatibility with Linea. 
+
+:::
 
 Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about
 major milestones, forks, and updates to the blockchain.
@@ -99,13 +101,11 @@ major milestones, forks, and updates to the blockchain.
   </tr>
 </table>
 
-_Consult the Ethereum Foundation's
-[Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) for
-more._
+_Consult the Ethereum Foundation's [Opcode Reference](https://ethereum.org/en/developers/docs/evm/opcodes/) 
+for more._
 
-[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea
-with Ethereum, and [evm.codes](https://www.evm.codes/) is useful for information
-about specific opcodes on Ethereum.
+[Evmdiff](https://www.evmdiff.com) is also a useful resource for comparing Linea with Ethereum, and 
+[evm.codes](https://www.evm.codes/) is useful for information about specific opcodes on Ethereum.
 
 ## Precompiles
 
@@ -161,22 +161,22 @@ about specific opcodes on Ethereum.
 
 ## Beacon root
 
-[EIP-4788](https://eips.ethereum.org/EIPS/eip-4788), included in Ethereum's
-Dencun upgrade, introduced a smart contract that enables the caller to `get` or
-`set` the hash tree root of a beacon chain block.
+[EIP-4788](https://eips.ethereum.org/EIPS/eip-4788), included in Ethereum's Dencun upgrade, 
+introduced a smart contract that enables the caller to `get` or `set` the hash tree root of a 
+beacon chain block.
 
 This functionality is available with Linea Beta v4.
 
 ## Call data
 
-Linea's sequencer limits the size of call data, so that transactions can fit
-into the corresponding blob. The current limit is 60000 bytes.
+Linea's sequencer limits the size of call data, so that transactions can fit into the corresponding 
+blob. The current limit is 60000 bytes.
 
-## JSON RPC API
+## JSON-RPC API
 
-Linea uses the standard Ethereum JSON RPC API methods. However, in a few cases,
-methods differ from those on Ethereum. These methods are documented in the
-[reference section](../../api/reference/index.mdx), and include:
+Linea uses the standard Ethereum JSON RPC API methods. However, in a few cases, methods differ from 
+those on Ethereum. These methods are documented in the [reference section](../../api/reference/index.mdx), 
+and include:
 
 - `linea_estimateGas`
 - `linea_getProof`
