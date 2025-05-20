@@ -1,9 +1,6 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const math = require("remark-math");
-const katex = require("rehype-katex");
-const remarkTabs = require("remark-docusaurus-tabs");
 const redirectsData = require("./redirects.json");
 
 /** It's a public API key, so it's safe to expose it here. */
@@ -69,8 +66,6 @@ const config = {
           editUrl: "https://github.com/Consensys/doc.linea/tree/main/",
           path: "docs",
           routeBasePath: "/",
-          remarkPlugins: [remarkTabs, math],
-          rehypePlugins: [katex],
           include: ["**/*.md", "**/*.mdx"],
           exclude: [
             "**/_*.{js,jsx,ts,tsx,md,mdx}",
@@ -196,6 +191,14 @@ const config = {
               {
                 label: "Risk disclosures",
                 href: "/risk-disclosures",
+              },
+              {
+                label: "Terms of service",
+                href: "https://linea.build/terms-of-service",
+              },
+              {
+                label: "Privacy policy",
+                href: "https://consensys.io/privacy-notice",
               },
             ],
           },

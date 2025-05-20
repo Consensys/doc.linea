@@ -3,12 +3,13 @@ title: Token API
 image: /img/socialCards/token-api.jpg
 ---
 
-The Token API provides comprehensive programmatic access to token data on the Linea network. This API is designed for developers, builders and analysts who need detailed information about ERC-20 tokens and their activity on Linea.
+The Token API provides comprehensive programmatic access to token data on the Linea network. This 
+API is designed for developers, builders and analysts who need detailed information about ERC-20 
+tokens and their activity on Linea.
 
-:::warning[Alpha Version]
-Linea's Token API is in alpha version and subject to breaking changes.
-We recommend using it for testing and development purposes only.
-We welcome your feedback on our [Discord](https://discord.com/invite/linea)
+:::warning[Beta Version]
+Linea's Token API is in beta version and subject to breaking changes. We recommend using it for 
+testing and development purposes only. We welcome your feedback on our [Discord](https://discord.com/invite/linea)
 in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
 :::
 
@@ -19,18 +20,20 @@ in the [#developer-chat](https://discord.com/channels/1141419161893998702/114141
 - Detailed token metadata (name, symbol, decimals, logo)
 - Current and historical prices
 - Trading statistics (buy/sell counts)
+- Fairly diluted valuation
 
 ### Market analytics
 - Most traded tokens in the last 24h
-- Top gainers and losers (price variation)
+- Top movers, gainers and losers (price variation)
 - Price movement tracking
 
 ### Use cases
-- Automated trading bots
 - Token monitoring dashboards
 - Onchain data analysis
 - DeFi application integration
 - Wallet and transaction tracking
+- Filter by secure tokens
+- Automated trading bots
 
 ## Data sources
 
@@ -44,12 +47,60 @@ Data is collected and updated from multiple sources:
 - [Nile](https://www.nile.build/)
 - [Moralis](https://moralis.com/)
 
+Please see the [Linea terms of use](https://linea.build/terms-of-service) about third party 
+information.
+
 ### Update frequencies
 - Token detection and metadata: every two hours
 - Historical prices: hourly
 - Current prices: every five minutes
 
 ## Usage examples
+
+### Filter tokens by security
+
+Getting a raw list of tokens is good, but getting a list of tokens that are secure is even better.
+You can filter tokens according to their security status using the `isSecure` query parameter.
+
+For a token to be considered as secure,
+it must have a Moralis security score greater than 70 and a market capitalization greater than $50k.
+
+```typescript
+async function getSecureTokens() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?isSecure=true`).then(r => r.json());
+  console.log('Secure tokens:', tokens);
+}
+```
+
+### Get new gems
+
+New gems are tokens that were recently deployed and may be the next big thing.
+Adding an `isSecure` filter might be a good idea to avoid scams.
+
+```typescript
+async function getNewGems() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?order=createdAt&sort=desc`).then(r => r.json());
+  console.log('Recent tokens:', tokens);
+}
+```
+
+### Get most-swapped tokens
+
+You can get the most-swapped tokens in the last 24 hours using the `isMostSwapped` query parameter.
+
+:::warning[Deprecation notice]
+This query will change at the end of the beta phase to an ordering method (ordering by `swaps`).
+:::
+
+```typescript
+async function getMostSwapped() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?isMostSwapped=true`).then(r => r.json());
+  console.log('Most swapped tokens:', tokens);
+}
+```
 
 ### Simple token price bot
 
@@ -63,7 +114,7 @@ async function monitorPriceChange(contractAddress: string, threshold: number) {
     const priceChange = (currentPrice - initialPrice) / initialPrice;
 
     if (Math.abs(priceChange) > threshold) {
-      // Execute trading strategy
+      // Execute something, e.g. send a notification or trigger a trade
       console.log(`Price changed by ${priceChange}% - Trading signal`);
     }
   }, 60000); // Check every minute
@@ -73,7 +124,7 @@ async function monitorPriceChange(contractAddress: string, threshold: number) {
 ## Best practices
 
 1. **Rate limiting**
-- Alpha version has strict rate limits per IP:
+- Beta version has strict rate limits per IP:
   - Two requests per second
   - 60 requests per minute
 - Cache static data

@@ -24,6 +24,7 @@ const sidebars = {
           items: [
             "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/app",
+            "get-started/build/quickstart/hub",
           ],
         },
         "get-started/build/ethereum-differences",
@@ -92,6 +93,7 @@ const sidebars = {
           ],
         },
         "get-started/how-to/poh-api",
+        "get-started/how-to/state-recovery",
       ],
     },
     {
@@ -181,6 +183,7 @@ const sidebars = {
             "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
             "get-started/tooling/cross-chain/shortcuts",
+            "get-started/tooling/cross-chain/thirdweb",
           ],
         },
         {
