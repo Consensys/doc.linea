@@ -161,11 +161,15 @@ Call `sendMessage(...)` on the origin chain using the proxy contract at one of t
 #### Use the Linea SDK
 
 The [Linea SDK](../api/linea-sdk.mdx) (view the [npm package](https://www.npmjs.com/package/@consensys/linea-sdk?activeTab=readme))
-simplifies the execution of messages on the destination layer by:
+simplifies the execution of messages on the destination layer.
 
-- Triggering the delivery:
-  - If messages don't get delivered by the postman, the message can be manually claimed by 
-  calling, with the parameters detailed in the [interface below](#interface-imessageservicesol),
+If messages don't get delivered by the postman, you can trigger their delivery (trigger a manual
+claim) with one of two options:
+
+1. Run the postman with event filtering configuration that instructs it to listen only for 
+messages that meet certain criteria. For example, a dapp could filter to ensure the postman only 
+listens for events that originate from its users.
+2. Use the parameters detailed in the [interface below](#interface-imessageservicesol) to call
   one of:
     - L2: `claimMessage` 
     - L1: `claimMessageWithProof`
