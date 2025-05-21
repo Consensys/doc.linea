@@ -34,7 +34,7 @@ nav[aria-label="Breadcrumbs"] {
   margin: 2rem 0;
   padding: 1.5rem;
   border-radius: 12px;
-  background-color: var(--page-background);
+  background-color: var(--linea-navbar-background);
   text-align: center;
   transition: background-color 0.2s ease;
 }
@@ -55,10 +55,10 @@ nav[aria-label="Breadcrumbs"] {
 
 .feedbackButton {
   background: var(--page-background);
-  border: 1px solid var(--ifm-color-emphasis-300);
+  border: none;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +86,24 @@ nav[aria-label="Breadcrumbs"] {
 .thumbsDown:hover {
   border-color: var(--ifm-color-danger);
   color: var(--ifm-color-danger);
+}
+
+.feedbackIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.feedbackIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.feedbackButton:hover .feedbackIcon svg {
+  transform: scale(1.1);
 }
 
 .thankYouMessage {
@@ -138,18 +156,10 @@ nav[aria-label="Breadcrumbs"] {
 }
 
 /* Dark mode adjustments */
-html[data-theme='dark'] .feedbackContainer {
-  background-color: #121212;
-}
-
 html[data-theme='dark'] .feedbackButton {
   background-color: #121212;
   border-color: var(--ifm-color-emphasis-300);
   color: var(--ifm-font-color-base);
-}
-
-html[data-theme='light'] .feedbackContainer {
-  background-color: #f8f7f2;
 }
 
 html[data-theme='light'] .feedbackButton {
@@ -160,10 +170,14 @@ html[data-theme='light'] .feedbackButton {
 
 /* Tooltip styles */
 .feedbackHeader {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  padding-bottom: 12px;
 }
 
 .tooltipContainer {
@@ -182,6 +196,7 @@ html[data-theme='light'] .feedbackButton {
 }
 
 .infoIcon {
+  color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -191,6 +206,7 @@ html[data-theme='light'] .feedbackButton {
 
 .whatIsThis {
   font-size: 0.75rem;
+  color: #61dfff;
   text-decoration: underline;
   white-space: nowrap;
 }

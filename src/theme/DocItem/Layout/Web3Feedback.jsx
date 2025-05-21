@@ -268,22 +268,41 @@ const Web3Feedback = () => {
               <span>Was this page helpful?</span>
             </div>
             <div className={styles.feedbackButtons}>
-              <button
-                className={`${styles.feedbackButton} ${styles.thumbsUp}`}
-                onClick={() => submitFeedback(true)}
-                disabled={isSubmitting}
-                aria-label="Thumbs up"
-              >
-                👍
-              </button>
-              <button
-                className={`${styles.feedbackButton} ${styles.thumbsDown}`}
-                onClick={() => submitFeedback(false)}
-                disabled={isSubmitting}
-                aria-label="Thumbs down"
-              >
-                👎
-              </button>
+                <button
+                  className={`${styles.feedbackButton} ${styles.thumbsUp}`}
+                  onClick={() => submitFeedback(true)}
+                  disabled={isSubmitting}
+                  aria-label="Thumbs up"
+                >
+                  <span className={styles.feedbackIcon}>
+                    {/* :) */}
+                    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.74 83.74">
+                      <path d="M41.87,83.74c23.12,0,41.87-18.746,41.87-41.87S64.99,0,41.87,0,0,18.746,0,41.87s18.75,41.87,41.87,41.87Z" fill="#fff068" />
+                      <path d="M41.87,51.875c5.53,0,10-4.477,10-10s-4.47-10-10-10-10,4.477-10,10,4.48,10,10,10Z" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M37.87,43.875s1.5,2,4,2,4-2,4-2" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M38.87,38.875h.01" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M44.87,38.875h.01" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    </svg>
+                  </span>
+                </button>
+
+                <button
+                  className={`${styles.feedbackButton} ${styles.thumbsDown}`}
+                  onClick={() => submitFeedback(false)}
+                  disabled={isSubmitting}
+                  aria-label="Thumbs down"
+                >
+                  <span className={styles.feedbackIcon}>
+                    {/* :( */}
+                    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.74 83.74">
+                      <path d="M41.87,83.74c23.12,0,41.87-18.746,41.87-41.87S64.99,0,41.87,0,0,18.746,0,41.87s18.75,41.87,41.87,41.87Z" fill="#ff8d4c" />
+                      <path d="M41.87,51.875c5.53,0,10-4.477,10-10s-4.47-10-10-10-10,4.477-10,10,4.48,10,10,10Z" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M45.87,45.495s-1.5-2-4-2-4,2-4,2" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M38.87,38.875h.01" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                      <path d="M44.87,38.875h.01" fill="none" stroke="#121212" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                    </svg>
+                  </span>
+                </button>
             </div>
             <Tooltip text="This is a trial feedback system that uses Verax to record your feedback as onchain attestations on Linea Mainnet. When you vote, submit a transaction in your wallet." />
           </>
