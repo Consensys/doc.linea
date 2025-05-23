@@ -183,7 +183,7 @@ const config = {
               {
                 label: "Blog",
                 href: "https://linea.build/blog",
-              }
+              },
               {
                 label: "Status",
                 href: "https://linea.statuspage.io/",
