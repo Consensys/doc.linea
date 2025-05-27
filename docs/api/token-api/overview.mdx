@@ -3,15 +3,9 @@ title: Token API
 image: /img/socialCards/token-api.jpg
 ---
 
-The Token API provides comprehensive programmatic access to token data on the Linea network. This 
-API is designed for developers, builders and analysts who need detailed information about ERC-20 
+The Token API provides comprehensive programmatic access to token data on the Linea network. This
+API is designed for developers, builders and analysts who need detailed information about ERC-20
 tokens and their activity on Linea.
-
-:::warning[Beta Version]
-Linea's Token API is in beta version and subject to breaking changes. We recommend using it for 
-testing and development purposes only. We welcome your feedback on our [Discord](https://discord.com/invite/linea)
-in the [#developer-chat](https://discord.com/channels/1141419161893998702/1141419163223593024) channel.
-:::
 
 ## Key features
 
@@ -47,7 +41,7 @@ Data is collected and updated from multiple sources:
 - [Nile](https://www.nile.build/)
 - [Moralis](https://moralis.com/)
 
-Please see the [Linea terms of use](https://linea.build/terms-of-service) about third party 
+Please see the [Linea terms of use](https://linea.build/terms-of-service) about third party
 information.
 
 ### Update frequencies
@@ -88,16 +82,13 @@ async function getNewGems() {
 
 ### Get most-swapped tokens
 
-You can get the most-swapped tokens in the last 24 hours using the `isMostSwapped` query parameter.
+You can get the most-swapped tokens in the last 24 hours using the `swaps` ordering parameter.
 
-:::warning[Deprecation notice]
-This query will change at the end of the beta phase to an ordering method (ordering by `swaps`).
-:::
 
 ```typescript
 async function getMostSwapped() {
   const BASE_URL = "https://token-api.linea.build";
-  const tokens = await fetch(`${BASE_URL}/tokens?isMostSwapped=true`).then(r => r.json());
+  const tokens = await fetch(`${BASE_URL}/tokens?order=swaps&sort=desc`).then(r => r.json());
   console.log('Most swapped tokens:', tokens);
 }
 ```
@@ -124,7 +115,7 @@ async function monitorPriceChange(contractAddress: string, threshold: number) {
 ## Best practices
 
 1. **Rate limiting**
-- Beta version has strict rate limits per IP:
+- This API has strict rate limits per IP:
   - Two requests per second
   - 60 requests per minute
 - Cache static data
