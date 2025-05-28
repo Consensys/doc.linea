@@ -1,5 +1,6 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { themes } = require("prism-react-renderer");
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const redirectsData = require("./redirects.json");
 
@@ -45,16 +46,16 @@ const config = {
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
-  future: {
-    experimental_faster: {
-      swcJsLoader: true,
-      swcJsMinimizer: true,
-      swcHtmlMinimizer: false,
-      lightningCssMinimizer: true,
-      rspackBundler: true,
-      mdxCrossCompilerCache: true,
-    },
-  },
+  // future: {
+  //   experimental_faster: {
+  //     swcJsLoader: true,
+  //     swcJsMinimizer: true,
+  //     swcHtmlMinimizer: false,
+  //     lightningCssMinimizer: true,
+  //     rspackBundler: true,
+  //     mdxCrossCompilerCache: true,
+  //   },
+  // },
 
   presets: [
     [
@@ -166,7 +167,7 @@ const config = {
             href: "https://discord.gg/linea",
             label: "Support",
             position: "right",
-            class: "support-link",
+            className: "support-link",
           },
         ],
       },

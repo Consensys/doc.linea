@@ -28,7 +28,7 @@ export default function SearchBar() {
   const aiConfig = {
     // OpenAI API settings
     openAI: {
-      proxyUrl: "https://docusaurus-openai-search-backend.vercel.app/",
+      proxyUrl: "https://docusaurus-openai-search-backend.vercel.app",
       model: "gpt-4.1",
       maxTokens: 32768,
       temperature: 0.45,
