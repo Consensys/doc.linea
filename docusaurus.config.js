@@ -248,7 +248,16 @@ const config = {
           "python",
         ],
       },
+
+      algolia: {
+        appId: "HUSVJ6LWVI",
+        apiKey: "c97e45780036228af16b771bf5d98a0a",
+        indexName: "Linea Vercel",
+        contextualSearch: true,
+        insights: true,
+      },
       metadata: [
+        { name: "algolia-site-verification", content: "4A3FE8356A5A677C" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
         { property: "og:image", content: "/img/Linea_social_card_docs.png" },
