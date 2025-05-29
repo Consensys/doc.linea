@@ -112,7 +112,7 @@ towards the new implementation contract addresses.
   estimated + gas limit surplus) * margin`, where:
 
   - `target layer gas price` = `eth_gasPrice` on the target layer
-  - `gas estimated` = 100,000
+  - `gas estimated` = the current gas estimation
   - `gas limit surplus` = 6000
   - `margin` = 2
 
@@ -155,8 +155,9 @@ listen only for messages that meet certain criteria. Configure the event filteri
     following this format: `"function transfer(address to, uint256 amount)"`. Make sure you specify 
     parameters names in order to use syntax like `calldata.params.messageNumber`.
 
-2. **`claimMessage`**: If you know the specific details of the message, call one of these methods 
-using the parameters detailed in the [interface below](#interface-imessageservicesol):
+2. **`claimMessage`**: This call is made automatically by the postman if the configuration is 
+correct. If, however, gas exceeds 250,000 (the threshold for postman fee sponsorship), you will 
+need to call one of these methods using the parameters detailed in the [interface below](#interface-imessageservicesol):
     - L2: `claimMessage` 
     - L1: `claimMessageWithProof`
 
