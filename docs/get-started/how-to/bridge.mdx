@@ -265,6 +265,57 @@ The manual claiming toggle will then be available:
   </div>
 </div>
 
+#### Claim manually on the block explorer
+
+In the native bridge app, manual claim transactions are only available in your transaction history
+for 90 days. If you need to claim a transfer older than this, you can write directly to the proxy
+contracts on the block explorer using the `claimMessage` function. 
+
+Select the appropriate message service contract for your _destination_ layer:
+
+- L1 (Ethereum):
+  - Mainnet: [`0xd19d4B5d358258f05D7B411E21A1460D11B0876F`](https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F)
+  - Sepolia: [`0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5`](https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+- L2 (Linea):
+  - Mainnet: [`0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec`](https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec)
+  - Sepolia: [`0x971e727e956690b9957be6d51Ec16E73AcAC83A7`](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+
+On the contract's page, find the "Contract" tab and then select the "Write as proxy" tab:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/write_as_proxy_tab.png"
+      alt="Find the contract tab and then select write as proxy"
+    />
+  </div>
+</div>
+
+Make sure your wallet is connected using the "Connect to Web3" button immediately above contract
+functions.
+
+Now locate the `claimMessage` function and click to see its parameters. You'll need to fill these
+out to claim your bridged funds:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/claim_message_function_parameters.png"
+      alt="Claim message function parameters"
+    />
+  </div>
+</div>
+
+{/* TODO: start working from here */}
+
+- `_from`: 
+- `_to`:
+- `_fee`:
+- `_value`:
+- `_feeRecipient`:
+- `_calldata`:
+- `_nonce`:
+
 ### Execution fees
 
 :::tip Free postman fees for L1 -> L2
