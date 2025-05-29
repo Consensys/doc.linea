@@ -579,7 +579,18 @@ const sidebars = {
     "technology/transaction-lifecycle",
     "technology/network-data",
     "technology/canonical-token-bridge",
-    "technology/message-service",
+    {
+      type: "category",
+      label: "Canonical message service",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/message-service/index",
+      },
+      items: [
+        "technology/message-service/reference",
+      ],
+    },
     "technology/coordinator",
     {
       type: "category",
