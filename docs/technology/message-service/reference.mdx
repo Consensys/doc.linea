@@ -153,7 +153,7 @@ listen only for messages that meet certain criteria. Configure the event filteri
     expression. For example: `calldata.funcSignature == "0x6463fb2a" and calldata.params.messageNumber == 85804`
     - `L1_EVENT_FILTER_CALLDATA_FUNCTION_INTERFACE`: Filter by the calldata data function interface, 
     following this format: `"function transfer(address to, uint256 amount)"`. Make sure you specify 
-    parameters names in order to use syntax like `calldata.params.messageNumber`.
+    parameter names in order, using syntax like `calldata.params.messageNumber`.
 
 2. **`claimMessage`**: This call is made automatically by the postman if the configuration is 
 correct. If, however, gas exceeds 250,000 (the threshold for postman fee sponsorship), you will 
@@ -172,7 +172,7 @@ Install the SDK using the package manager of your choice. For example:
 npm install @consensys/linea-sdk
 ```
 
-Refer to the [SDK README](https://github.com/Consensys/zkevm-monorepo/tree/main/sdk#readme) for 
+Refer to the [SDK README](https://github.com/Consensys/linea-monorepo/tree/main/sdk#readme) for 
 directions on initializing the SDK and enabling read-write mode. 
 
 Now you can use the `claim()` function on the destination layer to claim messages, passing the 
