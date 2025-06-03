@@ -212,11 +212,11 @@ const config = {
               {
                 label: "Developer Hub",
                 href: "https://linea.build/developers",
-              }
+              },
               {
                 label: "Linea Hub",
                 href: "https://linea.build/apps",
-              }
+              },
               {
                 label: "Join our Discord",
                 href: "https://discord.gg/linea",
