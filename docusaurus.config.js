@@ -207,8 +207,16 @@ const config = {
             ],
           },
           {
-            title: "Community",
+            title: "Get involved",
             items: [
+              {
+                label: "Developer Hub",
+                href: "https://linea.build/developers",
+              },
+              {
+                label: "Linea Hub",
+                href: "https://linea.build/apps",
+              },
               {
                 label: "Join our Discord",
                 href: "https://discord.gg/linea",
@@ -227,7 +235,7 @@ const config = {
             title: "Contribute",
             items: [
               {
-                label: "Documentation",
+                label: "GitHub",
                 href: "https://github.com/Consensys/doc.linea",
               },
             ],
