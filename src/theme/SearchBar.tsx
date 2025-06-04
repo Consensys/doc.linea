@@ -43,6 +43,7 @@ export default function SearchBar() {
     prompts: {
       siteName: "Linea",
       systemPrompt,
+      useSummarization: true,
     },
   };
   // @ts-ignore
