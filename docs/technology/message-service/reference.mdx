@@ -184,6 +184,140 @@ const tx = await l2Contract.claim(message);
 
 You can call `claim()` either on the `l1Contract` or `l2Contract` depending on which you need.
 
+## Claim on the block explorer
+
+If you need to claim a message manually, using the SDK is the simpler option. However, it's also
+possible to claim manually using the block explorer, filling out the parameters manually to interact
+with the proxy contract.
+
+:::note
+
+Since the message service fee is automatically set to 0 for all deposits to Linea (L1 -> L2) using 
+less than 250,000 gas, your transaction will be claimed by the postman service automatically in 
+most cases.
+
+:::
+
+Select the appropriate message service contract for your _destination_ layer:
+
+- L1 (Ethereum):
+  - Mainnet: [`0xd19d4B5d358258f05D7B411E21A1460D11B0876F`](https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F)
+  - Sepolia: [`0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5`](https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+- L2 (Linea):
+  - Mainnet: [`0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec`](https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec)
+  - Sepolia: [`0x971e727e956690b9957be6d51Ec16E73AcAC83A7`](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+
+See the [message service technical reference](../../technology/message-service.mdx) for 
+more information.
+
+On the contract's page, find the "Contract" tab and then select the "Write as proxy" tab:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/how_to/bridge/bridge/write_as_proxy_tab.png"
+      alt="Find the contract tab and then select write as proxy"
+    />
+  </div>
+</div>
+
+Make sure your wallet is connected using the "Connect to Web3" button immediately above contract
+functions.
+
+The function you need to use to claim your funds depends on the layer you're claiming on:
+- L1 -> L2: use `claimMessage`
+- L2 -> L1: use `claimMessageWithProof`
+
+:::warning
+
+If your L2 -> L1 transfer predates the L2 block `2242568` (Alpha v2, early 2024), use 
+`claimMessage` rather than `claimMessageWithProof`. See the [release notes](../../release-notes.mdx#alpha-v2) 
+for more information. 
+
+:::
+
+<Tabs className="my-tabs">
+  <TabItem value="L1 -> L2: `claimMessage`">
+    Click the `claimMessage` function to see its parameters. You'll need to fill these out to claim 
+    your bridged funds:
+
+    <div class="center-container">
+      <div class="img-large">
+        <img
+          src="/img/get_started/how_to/bridge/bridge/claimmessage_function_parameters.png"
+          alt="claimMessage function parameters"
+        />
+      </div>
+    </div>
+
+    - `_from`: The address that sent the transfer on L1. 
+    - `_to`: The recipient address on the destination layer.
+    - `_fee`: `0`.
+    - `_value`: The amount of ETH to claim, in wei.
+    - `_feeRecipient`: `0x0000000000000000000000000000000000000000`
+    - `_calldata`: Leave blank.
+    - `_nonce`: The next nonce in sequence on the account you're using to claim. To find it, find the 
+    account's latest transaction on Lineascan. Click to open it, and then find the nonce listed under 
+    "Other attributes".
+
+    :::note
+
+    In most cases, the `_from` and `_to` address will be identical, unless you intentionally
+    specified a different recipient when bridging.
+
+    :::
+
+    When ready, click the "Write" button underneath the parameters to prompt the transaction in your
+    wallet, and then confirm it to execute the claim.
+    </TabItem>
+    <TabItem value="L2 -> L1: `claimMessageWithProof`">
+      Click the `claimMessageWithProof` function to see its parameters. You'll need to fill these out 
+      to claim your bridged funds:
+
+      <div class="center-container">
+        <div class="img-large">
+          <img
+            src="/img/get_started/how_to/bridge/bridge/claimmessagewithproof_function_parameters.png"
+            alt="claimMessageWithProof function parameters"
+          />
+        </div>
+      </div>
+      
+      - `proof`:
+      - `messageNumber`:
+      - `leafIndex`:
+      - `from`: The address that sent the transfer on the origin layer.
+      - `to`: The recipient address on the destination layer.
+      - `fee`: `0`.
+      - `value`: The amount of ETH to claim, in wei.
+      - `feeRecipient`: `0x0000000000000000000000000000000000000000`
+      - `merkleRoot`: 
+      - `data`: `0x`. No data is required.
+
+      Obtain some of these parameters (`proof`, `messageNumber`, `leafIndex`, `merkleRoot`) using
+      this method:
+
+      1. On the block explorer, find the block of the L2 (origin layer) transaction.
+      2. Using `eth_getLogs`, query L1 events for the event `L2MessagingBlockAnchored(BLOCK)`, 
+      where `BLOCK` is the block number you found in step 1. 
+      3. In the transaction where this `L2MessagingBlockAnchored` event is emitted, find any other 
+      `L2MessagingBlockAnchored` events.
+      4. Back on L2 (the origin layer), use `eth_getLogs` to query for `MessageSent` events. Query
+      by the block numbers of the `L2MessagingBlockAnchored` events, from oldest block to newest.
+      Record the message hash for each `MessageSent` event.
+      5. Build groups of 32 message hashes from each of the `MessageSent` events' message hashes 
+      that you found in step 4. If there are fewer than 32, make up the difference with empty hashes
+      (e.g. `0x000...000`).
+      {/* To do: add details from here of how to build merkle tree and merkle proof */}
+      6. Take the group your hash is in and build a Merkle tree.
+      7. Build a Merkle proof for your message hash in the tree. This is the `proof` parameter.
+      8. To check you're on the right lines, you can look for an event `L2MerkleRootAdded(MerkleRoot, 5)` 
+      in which the Merkle root for the tree in step 6 should have been anchored on L1 in the event.
+      9. 
+
+    </TabItem>
+</Tabs>
+
 ## Interface IMessageService.sol
 
 <details>
