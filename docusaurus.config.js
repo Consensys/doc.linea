@@ -1,5 +1,6 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { themes } = require("prism-react-renderer");
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const redirectsData = require("./redirects.json");
 
@@ -45,16 +46,16 @@ const config = {
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
-  future: {
-    experimental_faster: {
-      swcJsLoader: true,
-      swcJsMinimizer: true,
-      swcHtmlMinimizer: false,
-      lightningCssMinimizer: true,
-      rspackBundler: true,
-      mdxCrossCompilerCache: true,
-    },
-  },
+  // future: {
+  //   experimental_faster: {
+  //     swcJsLoader: true,
+  //     swcJsMinimizer: true,
+  //     swcHtmlMinimizer: false,
+  //     lightningCssMinimizer: true,
+  //     rspackBundler: true,
+  //     mdxCrossCompilerCache: true,
+  //   },
+  // },
 
   presets: [
     [
@@ -166,7 +167,7 @@ const config = {
             href: "https://discord.gg/linea",
             label: "Support",
             position: "right",
-            class: "support-link",
+            className: "support-link",
           },
         ],
       },
@@ -256,7 +257,16 @@ const config = {
           "python",
         ],
       },
+
+      algolia: {
+        appId: "HUSVJ6LWVI",
+        apiKey: "c97e45780036228af16b771bf5d98a0a",
+        indexName: "Linea Vercel",
+        contextualSearch: true,
+        insights: true,
+      },
       metadata: [
+        { name: "algolia-site-verification", content: "4A3FE8356A5A677C" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
         { property: "og:image", content: "/img/Linea_social_card_docs.png" },
