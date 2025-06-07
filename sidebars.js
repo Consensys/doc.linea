@@ -363,6 +363,7 @@ const sidebars = {
     "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
+    "learn/sendbundle",
     {
       type: "category",
       label: "Ecosystem tutorials",
