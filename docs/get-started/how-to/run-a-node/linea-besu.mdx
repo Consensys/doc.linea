@@ -81,8 +81,8 @@ the parameters for each possible profile you can select for your Linea Besu node
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
     Select one according to your preferences:
-    - `basic-testnet`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
-    - `advanced-testnet`: Creates an advanced node on Linea Sepolia with plugins that enable support for
+    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support for
     `linea_estimateGas` and the `finalized` block parameter tag.
   </TabItem>
 </Tabs>
@@ -104,7 +104,7 @@ on L1.
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
     ```bash
-    bin/besu --profile=advanced-testnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
+    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=<endpoint> 
     ```
     </TabItem>
 </Tabs>
@@ -134,8 +134,8 @@ your use case.
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
     Download the appropriate `.yaml` file for your use case:
-    - `basic-testnet`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
-    - `advanced-testnet`: Creates an advanced node on Linea Sepolia with plugins that enable support 
+    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support 
     for `linea_estimateGas` and the `finalized` block parameter tag.
   </TabItem>
 </Tabs>
@@ -190,14 +190,14 @@ If you only intend to run a `basic` profile, go straight to the next step.
       `docker compose`: 
 
       ```bash
-      docker compose -f ./your-file-path/docker-compose-advanced-testnet.yaml up
+      docker compose -f ./your-file-path/docker-compose-advanced-sepolia.yaml up
       ```
 
       Alternatively, you can run a node without downloading a `.yaml` file with a `docker run` command. 
       For example:
 
       ```bash
-      docker run -e BESU_PROFILE=advanced-testnet consensys/linea-besu-package:latest
+      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:latest
       ```
 
       Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
