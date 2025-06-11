@@ -1,0 +1,152 @@
+---
+title: Send a transaction bundle
+description: Use the EIP-5792 Wallet Call API on Linea
+---
+
+You can use the [EIP-5792 Wallet Call API](https://eips.ethereum.org/EIPS/eip-5792) on Linea with 
+wallets that support Linea's [`eth_sendBundle`](../../api/reference/eth-sendbundle.mdx) RPC method,
+which includes MetaMask (Extension v12.20.x or later).
+
+You can find a non-exhaustive list of wallets that support EIP-5792 [here](https://www.eip5792.xyz/ecosystem/wallets).
+
+## Send bundled transactions with MetaMask
+
+MetaMask supports `eth_sendBundle` natively via the `wallet_sendCalls` method, part of the Wallet
+Call API introduced in EIP-5792. 
+
+The Wallet Call API enables transaction bundling, which enables multiple transactions to be executed
+atomically as part of a single transaction. This minimizes gas costs for the user and streamlines
+many common web3 flows. For example, a transaction bundle could involve approving tokens for a swap 
+and executing the swap simultaneously.
+
+Sending bundled transactions requires the user's externally owned account (EOA) to be upgraded to
+a smart account. In MetaMask, the EOA is upgraded to an ERC-4337 smart account. 
+
+### Step 1: Query account capabilities
+
+Before sending the transaction bundle, use [`wallet_getCapabilities`](https://docs.metamask.io/wallet/reference/json-rpc-methods/wallet_getcapabilities/) 
+to check if the wallet client and the user's account support the Wallet Call API:
+
+```javascript
+const capabilities = await provider.request({
+    "method": "wallet_getCapabilities",
+    "params": [
+        "0x742d35Cc6634C0532925a3b844Bc454e4438f44e", // User's address
+        ["0x1", "0xe708"] // (Optional) Chains to query capabilities for
+    ],
+});
+```
+
+The method returns an object for each queried chain, recording whether the account and chain 
+combination supports the Wallet Call API within the `atomic` object. 
+
+```json
+{
+    "0x1": {
+        "atomic": {
+            "status": "ready",
+        }
+    },
+    "0xe708": {
+        "atomic": {
+            "status": "supported",
+        }
+    }
+}
+```
+
+- `ready`: The account and chain support the Wallet Call API, but the account hasn't yet been
+upgraded to a smart account. MetaMask will prompt the user to upgrade the account.
+- `supported`: MetaMask supports the Wallet Call API methods on the chain and account combination.
+
+If the queried account and chain combination is not supported, the method will return nothing for 
+the chain ID.
+
+### Step 2: Submit transaction bundle 
+
+Use [`wallet_sendCalls`](https://docs.metamask.io/wallet/reference/json-rpc-methods/wallet_sendcalls/) 
+to submit the transaction bundle:
+
+```javascript
+const bundle = await provider.request({
+    "method": "wallet_sendCalls",
+    "params": [
+        {
+            version: "2.0.0", // API format version; must be "2.0.0"
+            from: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e", // User's address
+            chainId: "0xe708",
+            atomicRequired: true, // Whether or not atomicity is required 
+            calls: [
+                {
+                    to: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+                    value: "0x0", // 0 ETH (e.g. contract call)
+                },
+                {
+                    to: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+                    value: "0x2386f26fc10000", // 0.01 ETH (e.g. transfer value)
+                }
+            ]
+        }
+    ]
+})
+```
+
+:::warning
+
+Your implementation must include fallback logic to conventional transaction sending to cover 
+situations where the user's wallet does not support `eth_sendBundle` and/or EIP-5792 methods.
+
+:::
+
+`wallet_sendCalls` returns a batch `id` that can be used in step 3 to track the status of the 
+submitted bundle:
+
+```json
+{
+    "id": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+}
+```
+
+### Step 3: Check bundle status
+
+The third element of the Wallet Call API is `wallet_getCallsStatus`, with which you can query the
+status of the bundle with the `id` from step 2 as the sole parameter:
+
+```javascript
+const status = await provider.request({
+    "method": "wallet_getCallsStatus",
+    "params": [
+        "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+    ]
+})
+```
+
+`wallet_getCallsStatus` returns an object including various pieces of information about the bundle:
+
+```json
+{
+    "version": "2.0.0",
+    "chainId": "0xe708",
+    "id": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331",
+    "status": 200, // Confirmed; see reference page for all codes
+    "atomic": true, 
+    "receipts": [
+        {
+            "logs": [
+                "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+                "data": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+                "topics": [
+                    "0x7f8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8"
+                ],
+            ],
+            "status": 0x1, // 1 = success, 0 = failure 
+            "blockHash": "0x7f8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8",
+            "blockNumber": "0x12f3a4b",
+            "gasUsed": "0x6d60", 
+            "transactionHash": "0x8a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1",
+        }
+    ]
+}
+```
+
+On Linea, the `receipts` array will always contain a single receipt.
