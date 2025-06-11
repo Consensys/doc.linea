@@ -5,15 +5,14 @@ image: /img/socialCards/send-a-transaction-bundle.jpg
 ---
 
 You can use the [EIP-5792 Wallet Call API](https://eips.ethereum.org/EIPS/eip-5792) on Linea with 
-wallets that support Linea's [`eth_sendBundle`](../../api/reference/eth-sendbundle.mdx) RPC method,
-which includes MetaMask (Extension v12.20.x or later).
+wallets that support it, including MetaMask Extension v12.20.x or later.
 
 You can find a non-exhaustive list of wallets that support EIP-5792 [here](https://www.eip5792.xyz/ecosystem/wallets).
 
 ## Send bundled transactions with MetaMask
 
-MetaMask supports `eth_sendBundle` natively via the `wallet_sendCalls` method, part of the Wallet
-Call API introduced in EIP-5792. 
+MetaMask supports `wallet_sendCalls` on Linea by implementing `eth_sendBundle` on the backend; 
+for your dapp, you can focus on using the standard Wallet Call API methods.
 
 The Wallet Call API enables transaction bundling, which enables multiple transactions to be executed
 atomically as part of a single transaction. This minimizes gas costs for the user and streamlines
