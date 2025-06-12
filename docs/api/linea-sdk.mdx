@@ -80,57 +80,57 @@ for a full list of configuration options.
 ### Claim
 
 Regardless of the layer you need to claim on, you'll need the message hash of the message sent 
-from the origin layer. You can find this in the transaction logs on the block explorer.
+from the origin layer. You can find this in the transaction logs of the message sending transaction
+on the block explorer as a `MessageSent` event.
 
 <Tabs className="my-tabs">
   <TabItem value="L1" label="Claim on L1">
-  The contract function for claiming on L1, `claimMessageWithProof`, is complex and requires a proof,
-  Merkle root, and leaf index for the message. The SDK simplifies this by using its [`L1ClaimingService`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/ethereum/L1ClaimingService.ts) 
-  to handle the complex logic, meaning you only need to call `claimMessage`. 
+    The contract function for claiming on L1, `claimMessageWithProof`, is complex and requires a Merkle 
+    proof, Merkle root, and leaf index for the message. The SDK simplifies this by using its [`L1ClaimingService`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/ethereum/L1ClaimingService.ts) 
+    to handle the complex logic, meaning you only need to call `claimMessage`. 
 
-  For example:
+    For example:
 
-  ```typescript
+    ```typescript
 
-  const message = await l2Contract.getMessageByMessageHash("messageHash");
+    const message = await l2Contract.getMessageByMessageHash("messageHash");
 
-  const messageStatus = await l1ClaimingService.getMessageStatus("messageHash"); 
+    const messageStatus = await l1ClaimingService.getMessageStatus("messageHash"); 
 
-  if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
-    await l1ClaimingService.claimMessage(message);
-  }
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      await l1ClaimingService.claimMessage(message);
+    }
 
-  ```
+    ```
 
-  This code checks to locate the message from L2, then whether it's claimable yet on L1. If it is,
-  it calls `claimMessage` to claim the message.
+    This code checks to locate the message from L2, then whether it's claimable yet on L1. If it is,
+    it calls `claimMessage` to claim the message.
   </TabItem>
   <TabItem value="L2" label="Claim on L2">
+    In most situations, messages _to_ L2 will be automatically retrieved by the Postman service, and 
+    manually claiming with the SDK will not be necessary. Most Postman fees are automatically sponsored 
+    by Linea on L2, and therefore require do not require a transaction and an accompanying fee to claim,
+    and are claimed automatically.
 
-  In most situations, messages _to_ L2 will be automatically retrieved by the postman service, and 
-  manually claiming with the SDK will not be necessary. Postman fees are automatically sponsored by
-  Linea on L2, and therefore require do not require a transaction and an accompanying fee to claim,
-  and are claimed automatically.
+    Since claiming on L2 requires fewer and less complex parameters, we can use the `claim` function:
 
-  Since claiming on L2 requires fewer and less complex parameters, we can use the `claim` function:
+    ```typescript
 
-  ```typescript
+    const message = await l1Contract.getMessageByMessageHash("messageHash");
 
-  const message = await l1Contract.getMessageByMessageHash("messageHash");
+    const messageStatus = await l2Contract.getMessageStatus("messageHash");
 
-  const messageStatus = await l2Contract.getMessageStatus("messageHash");
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      await l2Contract.claim(message);
+    }
 
-  if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
-    await l2Contract.claim(message);
-  }
+    ```
 
-  ```
+    This code checks to locate the message from L1, then whether it's claimable yet on L2. If it is,
+    it calls `claim` to claim the message.
 
-  This code checks to locate the message from L1, then whether it's claimable yet on L2. If it is,
-  it calls `claim` to claim the message.
-
-  See the [`L2MessageServiceClient`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/linea/L2MessageServiceClient.ts) 
-  for the source code.
+    See the [`L2MessageServiceClient`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/linea/L2MessageServiceClient.ts) 
+    for the source code.
   </TabItem>
 </Tabs>
 
