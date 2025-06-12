@@ -18,7 +18,7 @@ The updated Linea SDK package enhances the L1 contract interaction and adds supp
 
 There are three important things to note:
 
-- The previous L1 claiming and all functions associated are still supported.
+- The previous L1 claiming and all associated functions are still supported.
 - The L2 claiming remains unaltered, and all SDK features for interacting with L2 will remain unchanged.
 - The previous L1 claiming function and code samples provided here cater to the transition period where pre-transition messages are claimed without the Merkle proof and post-transition with proof. If this SDK is being used after the transition, using the logic that switches between Merkle and non-Merkle proof claiming is suboptimal.
 
@@ -109,7 +109,7 @@ on the block explorer as a `MessageSent` event.
   <TabItem value="L2" label="Claim on L2">
     In most situations, messages _to_ L2 will be automatically retrieved by the Postman service, and 
     manually claiming with the SDK will not be necessary. Most Postman fees are automatically sponsored 
-    by Linea on L2, and therefore require do not require a transaction and an accompanying fee to claim,
+    by Linea on L2, and therefore do not require a transaction and an accompanying fee to claim,
     and are claimed automatically.
 
     Since claiming on L2 requires fewer and less complex parameters, we can use the `claim` function:
@@ -197,7 +197,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
     ),
   ); // returns transaction receipt by message hash
 
-  claimMessage = await l2Contract.claim({
+  const claimMessage = await l2Contract.claim({
     // claims message by message
     messageSender: "", // address of message sender
     messageHash: "", // message hash
