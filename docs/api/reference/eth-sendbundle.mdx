@@ -22,9 +22,12 @@ define transaction execution order. This enables services such as:
 
 Due to being sent atomically, the bundle will only be executed if all transactions are confirmed.
 
-The method can also improve UX, as users can review and approve a bundle of transactions with one 
-click, rather than multiple clicks. (Assuming the dapp and wallet being used have implemented [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), 
-and the wallet supports `eth_sendBundle` on Linea.)
+Assuming the dapp and wallet being used have implemented [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), 
+and the wallet supports `eth_sendBundle` on Linea, `eth_sendBundle` facilitates improved UX, as 
+users can review and approve a bundle of transactions with one click. You can also leverage this
+functionality via the standard Wallet Call API (EIP-5792) methods, rather than using `eth_sendBundle` 
+directly. See our [guide on sending transaction bundles](../../get-started/how-to/bundle-transactions.mdx) 
+for further details.
 
 :::info
 
