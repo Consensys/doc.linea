@@ -61,7 +61,6 @@ export default function Home(): React.ReactNode {
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
-          <SecondaryCards />
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
