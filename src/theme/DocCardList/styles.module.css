@@ -1,0 +1,43 @@
+.docCardListItem {
+  margin-bottom: 2rem;
+}
+
+.docCardListItem > * {
+  height: 100%;
+}
+
+.sectionTitle {
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  clear: both;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.featuredTitle {
+  color: var(--featured-dark);
+}
+
+.featuredIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--featured-light);
+}
+
+.docCardListContainer {
+  margin-bottom: 2rem;
+}
+
+.docCardArticle {
+  margin-bottom: 2rem;
+}
+
+.docCardArticle > * {
+  height: 100%;
+}
+
+.featuredCardArticle {
+  order: -1;
+}
