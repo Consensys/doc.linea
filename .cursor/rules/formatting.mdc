@@ -14,6 +14,7 @@ When editing documentation files (.mdx, .md), always follow these formatting sta
 - Only wrap lines when they would actually exceed 100 characters, not based on grammatical convenience
 - Use imperative tense in headings, e.g. "Configure node" rather than "Configuring a node" or any other formulations. Keep headings as concise as possible
 - Use "dapp" rather than "dApp", and capitalize like any other noun
-- There's no need to include a top-tier heading (with #) generally, unless you want the heading on the rendered page to read differently from the `title` in the metadata. It is the latter which Docusaurus pulls and uses as the sidebar title.
+- There's no need to include a top-tier heading (with #) generally, unless you want the heading on the rendered page to read differently from the `title` in the metadata. It is the latter which Docusaurus pulls and uses as the sidebar title
+- There's no need to add the social card to the metadata manually, as it's automatically added on build
 
 
