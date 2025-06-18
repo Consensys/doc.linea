@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When editing documentation files (.mdx, .md), always follow these formatting standards:
+
+- Respect the 100-character line limit from .editorconfig - use the FULL 100 characters before wrapping, don't break lines early at convenient points
+- Never break words or URLs when wrapping lines
+- Use lowercase "web2" and "web3" (never "Web2"/"Web3") 
+- Use sentence case for all headings and bullet points (e.g., "Key benefits" not "Key Benefits")
+- Maintain proper indentation when continuing bullet/numbered lists across lines
+- Only wrap lines when they would actually exceed 100 characters, not based on grammatical convenience
+- Use imperative tense in headings, e.g. "Configure node" rather than "Configuring a node" or any other formulations. Keep headings as concise as possible.

@@ -1,0 +1,128 @@
+---
+title: Dynamic
+description: Social login authentication that combines web2 familiarity with web3 functionality
+category: featured
+---
+
+Dynamic provides seamless social login authentication for web3 applications, supporting popular 
+platforms including Apple, Discord, Facebook, Farcaster, Github, Google, Telegram, Twitch, and 
+Twitter. It bridges the gap between familiar web2 social authentication and web3 functionality, 
+making it easier for users to onboard to your Linea applications without the complexity of 
+traditional wallet setup.
+
+## Supported social providers
+
+Dynamic supports authentication through many popular social platforms:
+
+- Apple
+- Discord
+- Facebook
+- Farcaster
+- Github
+- Google
+- Telegram
+- Twitch
+- X
+
+See the [social providers overview](https://docs.dynamic.xyz/social-providers/overview) for a full 
+list of options.
+
+## How social login works
+
+When users choose social authentication, Dynamic handles the complete OAuth flow:
+
+1. User selection: Users click their preferred social provider
+2. OAuth redirect: Secure redirect to the chosen social platform  
+3. Permission approval: Users approve access on the familiar social platform
+4. Account creation: Dynamic creates a user profile linked to their social account
+5. Wallet generation: An embedded wallet is automatically created for web3 interactions
+6. Seamless access: Users can now interact with your Linea dApp
+
+## Setup and configuration
+
+### 1. Enable social providers
+
+Configure your social authentication options in the [Dynamic Dashboard](https://app.dynamic.xyz/dashboard/log-in-user-profile):
+
+1. Navigate to the "Social Providers" section
+2. Toggle on your desired social platforms
+3. Configure OAuth credentials for each provider (see provider-specific guides below)
+4. Customize the authentication flow (popup vs redirect)
+
+### 2. Provider-specific configuration
+
+Each social provider requires OAuth configuration, and this process differs depending on which 
+platform you want to enable. 
+
+Detailed setup instructions for each provider are available in the [Dynamic docs](https://docs.dynamic.xyz/social-providers/overview).
+
+### 3. SDK integration
+
+Install and configure the Dynamic SDK:
+
+```bash
+npm install @dynamic-labs/sdk-react-core
+```
+
+```jsx
+import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+      settings={{
+        environmentId: 'your-environment-id',
+        // Customize social authentication behavior
+        social: {
+          // Use 'popup' for better UX, 'redirect' for mobile compatibility  
+          authMode: 'popup'
+        }
+      }}
+    >
+      {/* Your app components */}
+    </DynamicContextProvider>
+  );
+}
+```
+
+### 4. Customization options
+
+Fine-tune the social login experience:
+
+- Authentication mode: Choose between popup or redirect flows
+- Provider selection: Enable only the social platforms relevant to your audience
+- UI customization: Match the login interface to your application design
+- Post-login flow: Configure what happens after successful social authentication
+
+## Embedded wallets for social users
+
+When users authenticate via social login, Dynamic automatically generates embedded wallets, 
+enabling:
+
+- Immediate web3 functionality without additional wallet setup
+- Secure key management handled transparently
+- Full compatibility with Linea and other EVM networks
+- Seamless transition from web2 authentication to web3 interactions
+
+## Best practices
+
+1. Choose relevant providers: Select social platforms that match your target audience
+2. Optimize for mobile: Use redirect mode for better mobile compatibility
+3. Clear value proposition: Explain why users should connect their social accounts
+4. Gradual web3 introduction: Start with familiar social login, introduce web3 features 
+   progressively
+5. Security considerations: Enable MFA for users handling significant value
+
+## Next steps
+
+- Visit the [Dynamic Dashboard](https://app.dynamic.xyz/dashboard) to configure social 
+  authentication
+- Review [social provider configurations](https://docs.dynamic.xyz/social-providers/overview) for 
+  platform-specific setup
+- Explore [embedded wallets](https://docs.dynamic.xyz/wallets/embedded-wallets/dynamic-embedded-wallets) 
+  for seamless web3 integration
+- Check out the [Dynamic Documentation](https://docs.dynamic.xyz/) for advanced customization 
+  options
+
+You can also complement your users' social login with email and SMS authentication, and configure
+multi-factor authentication (MFA) with services such as Google Authenticator.
