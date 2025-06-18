@@ -13,7 +13,7 @@
   --category-card-background: var(--black-mid);
   
   /* normal cards */
-  --card-shadow: 0 6px 20px rgba(255, 255, 255, 0.08), 0 3px 6px rgba(255, 255, 255, 0.04);
+  --card-shadow: 0 6px 20px rgb(255 255 255 / 8%), 0 3px 6px rgb(255 255 255 / 4%);
   
   /* featured */
   --featured-card-bg: var(--featured-dark);
@@ -21,7 +21,7 @@
   --featured-card-content-hover: #fff;
   --featured-card-border: var(--featured-accent);
   --featured-card-hover: #2a0a66;
-  --featured-card-shadow: 0 8px 24px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(255, 255, 255, 0.05), 0 2px 4px rgba(97, 223, 255, 0.2);
+  --featured-card-shadow: 0 8px 24px rgb(255 255 255 / 10%), 0 4px 8px rgb(255 255 255 / 5%), 0 2px 4px rgb(97 223 255 / 20%);
 }
 
 [data-theme="light"] {
@@ -30,7 +30,7 @@
   --category-card-background: var(--black-light);
 
   /* normal cards */
-  --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.10), 0 3px 6px rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 6px 20px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 6%);
 
   /* featured */
   --featured-card-bg: var(--featured-light);
@@ -38,7 +38,7 @@
   --featured-card-content-hover: var(--featured-dark);
   --featured-card-border: var(--featured-accent);
   --featured-card-hover: #fff5a0;
-  --featured-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  --featured-card-shadow: 0 8px 24px rgb(0 0 0 / 12%), 0 4px 8px rgb(0 0 0 / 8%);
 }
 
 .cardContainer {

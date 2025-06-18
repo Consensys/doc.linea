@@ -1,12 +1,12 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 import {
   useCurrentSidebarSiblings,
   filterDocCardListItems,
-} from '@docusaurus/plugin-content-docs/client';
-import DocCard from '@theme/DocCard';
-import styles from './styles.module.css';
-import featuredArticles from '../FeaturedArticles.json';
+} from "@docusaurus/plugin-content-docs/client";
+import DocCard from "@theme/DocCard";
+import styles from "./styles.module.css";
+import featuredArticles from "../FeaturedArticles.json";
 
 function sortItems(items) {
   return items.sort((a, b) => {
@@ -17,28 +17,16 @@ function sortItems(items) {
   });
 }
 
-function DocCardListForCurrentSidebarCategory({className}) {
-  const items = useCurrentSidebarSiblings();
-  return <DocCardList items={items} className={className} />;
-}
-
-function DocCardListItem({item}) {
-  return (
-    <article className={clsx(styles.docCardListItem, 'col col--6')}>
-      <DocCard item={item} />
-    </article>
-  );
-}
-
-export default function DocCardList(props) {
+function DocCardList(props) {
   const { items, className } = props;
   if (!items) {
-    return <DocCardListForCurrentSidebarCategory {...props} />;
+    const currentItems = useCurrentSidebarSiblings();
+    return <DocCardList items={currentItems} className={className} />;
   }
 
   // Enrich items with featured status
-  const enrichedItems = items.map(item => {
-    if (item.type === 'link' && item.docId) {
+  const enrichedItems = items.map((item) => {
+    if (item.type === "link" && item.docId) {
       item.featured = featuredArticles[item.docId] || false;
     }
     return item;
@@ -46,8 +34,8 @@ export default function DocCardList(props) {
 
   const sortedItems = sortItems(filterDocCardListItems(enrichedItems));
 
-  const featuredItems = sortedItems.filter(item => item.featured);
-  const regularItems = sortedItems.filter(item => !item.featured);
+  const featuredItems = sortedItems.filter((item) => item.featured);
+  const regularItems = sortedItems.filter((item) => !item.featured);
 
   return (
     <div>
@@ -56,11 +44,16 @@ export default function DocCardList(props) {
           <h2 className={clsx(styles.sectionTitle, styles.featuredTitle)}>
             Featured
           </h2>
-          <section className={clsx(styles.docCardListContainer, 'row', className)}>
+          <section
+            className={clsx(styles.docCardListContainer, "row", className)}>
             {featuredItems.map((item, index) => (
               <article
                 key={index}
-                className={clsx(styles.docCardArticle, 'col col--6 margin-bottom--lg', styles.featuredCardArticle)}>
+                className={clsx(
+                  styles.docCardArticle,
+                  "col col--6 margin-bottom--lg",
+                  styles.featuredCardArticle,
+                )}>
                 <DocCard item={item} />
               </article>
             ))}
@@ -70,12 +63,16 @@ export default function DocCardList(props) {
 
       {regularItems.length > 0 && (
         <>
-          <h2 className={styles.sectionTitle}>
-            Categories
-          </h2>
-          <section className={clsx(styles.docCardListContainer, 'row', className)}>
+          <h2 className={styles.sectionTitle}>Categories</h2>
+          <section
+            className={clsx(styles.docCardListContainer, "row", className)}>
             {regularItems.map((item, index) => (
-              <article key={index} className={clsx(styles.docCardArticle, 'col col--6 margin-bottom--lg')}>
+              <article
+                key={index}
+                className={clsx(
+                  styles.docCardArticle,
+                  "col col--6 margin-bottom--lg",
+                )}>
                 <DocCard item={item} />
               </article>
             ))}
@@ -85,3 +82,5 @@ export default function DocCardList(props) {
     </div>
   );
 }
+
+export default DocCardList;
