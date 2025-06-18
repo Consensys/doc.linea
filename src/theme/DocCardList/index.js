@@ -64,7 +64,7 @@ export default function DocCardList(props) {
       {featuredItems.length > 0 && (
         <>
           <h2 className={clsx(styles.sectionTitle, styles.featuredTitle)}>
-            Featured Articles <StarIcon />
+            Featured articles <StarIcon />
           </h2>
           <section className={clsx(styles.docCardListContainer, 'row', className)}>
             {featuredItems.map((item, index) => (
