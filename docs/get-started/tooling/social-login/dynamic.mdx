@@ -15,12 +15,18 @@ create embedded wallets via sign-in with social platforms.
 Dynamic supports authentication through many popular social platforms:
 
 - Apple
+- Coinbase
 - Discord
+- Epic Games
 - Facebook
 - Farcaster
 - Github
 - Google
+- Line
+- Shopify
+- Spotify
 - Telegram
+- TikTok
 - Twitch
 - X
 
@@ -35,8 +41,11 @@ When users choose social authentication, Dynamic handles the complete OAuth flow
 2. OAuth redirect: Secure redirect to the chosen social platform  
 3. Permission approval: Users approve access on the familiar social platform
 4. Account creation: Dynamic creates a user profile linked to their social account
-5. Wallet generation: An embedded wallet is automatically created for web3 interactions
-6. Seamless access: Users can now interact with your Linea dapp
+
+Social login creates a profile for the user, but doesn't automatically create an embedded wallet. 
+You can set up your Dynamic widget to automatically create an embedded wallet for the user when they
+sign in with social. To turn this on, use the toggle on the "Embedded Wallets" section of the 
+"Authentication" section in the dashboard.
 
 ## Setup and configuration
 
@@ -44,10 +53,14 @@ When users choose social authentication, Dynamic handles the complete OAuth flow
 
 Configure your social authentication options in the [Dynamic Dashboard](https://app.dynamic.xyz/dashboard/log-in-user-profile):
 
-1. Navigate to the "Social Providers" section
+1. Navigate to the "Authentication" section in the sidebar of the dashboard, and then find the "Log 
+  in and User Profile" section
 2. Toggle on your desired social platforms
-3. Configure OAuth credentials for each provider (see provider-specific guides below)
+3. Configure OAuth credentials for each provider (see [step 2](#2-provider-specific-configuration))
 4. Customize the authentication flow (popup vs redirect)
+
+If you want to create an embedded wallet for the user's profile, you first need to turn on 
+embedded wallets in the "Authentication" section of the dashboard, and then [configure a CORS origin](https://docs.dynamic.xyz/developer-dashboard/security#allowed-cors-origin) to proceed. Embedded wallets need a CORS origin to function.
 
 ### 2. Provider-specific configuration
 
@@ -58,11 +71,15 @@ Detailed setup instructions for each provider are available in the [Dynamic docs
 
 ### 3. SDK integration
 
-Install and configure the Dynamic SDK:
+With the configuration complete, you can start to integrate the Dynamic widget into your dapp.
+
+First, install the Dynamic SDK:
 
 ```bash
 npm install @dynamic-labs/sdk-react-core
 ```
+
+Then, configure the Dynamic widget:
 
 ```jsx
 import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
@@ -72,11 +89,7 @@ export default function App() {
     <DynamicContextProvider
       settings={{
         environmentId: 'your-environment-id',
-        // Customize social authentication behavior
-        social: {
-          // Use 'popup' for better UX, 'redirect' for mobile compatibility  
-          authMode: 'popup'
-        }
+        social: { strategy: 'popup' }
       }}
     >
       {/* Your app components */}
@@ -85,24 +98,8 @@ export default function App() {
 }
 ```
 
-### 4. Customization options
-
-Fine-tune the social login experience:
-
-- Authentication mode: Choose between popup or redirect flows
-- Provider selection: Enable only the social platforms relevant to your audience
-- UI customization: Match the login interface to your application design
-- Post-login flow: Configure what happens after successful social authentication
-
-## Embedded wallets for social users
-
-When users authenticate via social login, Dynamic automatically generates embedded wallets, 
-enabling:
-
-- Immediate web3 functionality without additional wallet setup
-- Secure key management handled transparently
-- Full compatibility with Linea and other EVM networks
-- Seamless transition from web2 authentication to web3 interactions
+The `social` prop takes either `popup` or `redirect` to determine how the social login flow should
+occur.
 
 ## Next steps
 
