@@ -4,13 +4,13 @@
     const clearButton = document.querySelector('[class*="searchClearButton"]');
     if (!input || !clearButton) return;
 
-    const isExpanded = input.getAttribute('aria-expanded') === 'true';
-    const hasText = input.value.trim() !== '';
+    const isExpanded = input.getAttribute("aria-expanded") === "true";
+    const hasText = input.value.trim() !== "";
 
     if (isExpanded && hasText) {
-      clearButton.classList.remove('hide-x-button');
+      clearButton.classList.remove("hide-x-button");
     } else {
-      clearButton.classList.add('hide-x-button');
+      clearButton.classList.add("hide-x-button");
     }
   }
 
@@ -22,8 +22,11 @@
   const interval = setInterval(() => {
     const input = document.querySelector('input[aria-label="Search"]');
     if (input) {
-      observer.observe(input, { attributes: true, attributeFilter: ['aria-expanded'] });
-      input.addEventListener('input', updateClearButtonVisibility);
+      observer.observe(input, {
+        attributes: true,
+        attributeFilter: ["aria-expanded"],
+      });
+      input.addEventListener("input", updateClearButtonVisibility);
       updateClearButtonVisibility(); // Initial sync
       clearInterval(interval);
     }
