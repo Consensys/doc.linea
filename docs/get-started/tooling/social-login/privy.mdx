@@ -44,20 +44,22 @@ When users choose social authentication, Privy handles the complete OAuth flow:
 
 Configure social authentication in the [Privy Dashboard](https://dashboard.privy.io):
 
-1. Navigate to the "Login Methods" page
-2. Click on the "Socials" tab
-3. Toggle on your desired social platforms
-4. Choose between default or custom OAuth credentials
+1. Find the "User management" section in the dashboard sidebar
+2. Click on "Authentication"
+3. Navigate to the "Socials" tab
+4. Toggle on any desired social platforms.
 
 ### 2. OAuth credential options
 
+Next to each social provider, you can see a dropdown that enables you to access OAuth configuration.
 Privy offers two approaches for OAuth configuration:
+- Default credentials: Use Privy's pre-configured OAuth credentials for quick setup and testing. This 
+  is perfect for development and getting started quickly.
+- Custom credentials: Configure your own OAuth applications for production use. This provides better 
+  security, branding control, and eliminates shared rate limits.
 
-Default credentials: Use Privy's pre-configured OAuth credentials for quick setup and testing. This 
-is perfect for development and getting started quickly.
-
-Custom credentials: Configure your own OAuth applications for production use. This provides better 
-security, branding control, and eliminates shared rate limits.
+See the [Privy guide](https://docs.privy.io/basics/get-started/dashboard/configure-login-methods#configure-your-oauth-credentials) 
+to learn how to set up OAuth credentials with each provider.
 
 Benefits of custom credentials:
 - Your app branding appears on social login screens
@@ -65,32 +67,19 @@ Benefits of custom credentials:
 - Dedicated rate limits for your application
 - Enhanced resiliency and reliability
 
-### 3. Provider-specific configuration
+### 3. SDK integration
 
-Each social provider requires OAuth app setup when using custom credentials:
+With configuration done, you can implement the Privy SDK and widget into your dapp.
 
-- Apple: Create App ID, Service ID, and signing key through Apple Developer Console. Note that Apple 
-  configuration differs significantly from other providers and requires additional setup steps.
-- Discord: Register a developer application and generate OAuth2 credentials through the Discord 
-Developer Portal.
-- GitHub: Create a GitHub OAuth App (not a GitHub App) through GitHub Developer Settings.
-- Google: Set up OAuth 2.0 credentials through Google Cloud Console with proper redirect URIs 
-configured.
-Telegram: Create a Telegram bot using @BotFather and configure domain settings. Requires bot token 
-and handle for authentication.
-
-For all providers, use Privy's OAuth callback endpoint as your redirect URI:
-`https://auth.privy.io/api/v1/oauth/callback`
-
-Detailed setup instructions for each provider are available in the [Privy documentation](https://docs.privy.io/basics/get-started/dashboard/configure-login-methods#social-providers).
-
-### 4. SDK integration
-
-Install and configure the Privy SDK:
+First, install the Privy SDK:
 
 ```bash
 npm install @privy-io/react-auth
 ```
+
+There are many SDK flavours, depending on which language you're using. 
+
+Now wrap your app in the `PrivyProvider`:
 
 ```jsx
 import { PrivyProvider } from '@privy-io/react-auth';
@@ -115,30 +104,7 @@ export default function App() {
 }
 ```
 
-### 5. Advanced features
-
-- Token access: Enable "Return OAuth tokens" to receive user OAuth and refresh tokens for making 
-authenticated API calls to social platforms.
-- Custom scopes: Configure additional OAuth scopes beyond the default permissions to access more 
-granular user data or enable write operations.
-- Farcaster integration: Automatically link connected wallets when users log in with Farcaster 
-accounts, enabling seamless web3 social experiences.
-- X flexibility: Choose between OAuth 2.0 (simpler, app-wide rate limits) or OAuth 1.0a 
-(user-specific rate limits, broader API access) based on your needs.
-
-
-## Security
-
-- Multi-factor authentication: Privy recommends enabling MFA alongside social login for enhanced 
-security, especially for applications handling significant value.
-- Token security: OAuth and refresh tokens are highly sensitive. Store them securely and follow best 
-practices for token management if you enable token return features.
-- Telegram bot security: Your Telegram bot token acts as a symmetric key for authentication. Secure 
-this key properly as compromise puts all Telegram users at risk.
-- Rate limiting: Consider OAuth 1.0a for X if you expect high authentication volumes to avoid 
-app-wide rate limit issues.
-
-## Next steps
+## Resources
 
 - Visit the [Privy Dashboard](https://dashboard.privy.io) to configure social authentication
 - Review [OAuth provider setup guides](https://docs.privy.io/basics/get-started/dashboard/configure-login-methods#social-providers) 
