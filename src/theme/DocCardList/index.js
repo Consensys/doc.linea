@@ -63,7 +63,9 @@ function DocCardList(props) {
 
       {regularItems.length > 0 && (
         <>
-          <h2 className={styles.sectionTitle}>More</h2>
+          {featuredItems.length > 0 && (
+            <h2 className={styles.sectionTitle}>More</h2>
+          )}
           <section
             className={clsx(styles.docCardListContainer, "row", className)}>
             {regularItems.map((item, index) => (
