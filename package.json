@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "prebuild": "concurrently \"node scripts/generateSocialCard.js\" \"node scripts/updateCategories.js\"",
+    "prebuild": "node scripts/generateSocialCard.js && node scripts/updateCategories.js",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
