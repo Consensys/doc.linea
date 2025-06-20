@@ -38,7 +38,10 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [{ src: "/js/navbarHighlight.js", defer: true }],
+  scripts: [
+    { src: "/js/navbarHighlight.js", defer: true },
+    { src: "/js/clearSearchOnCollapse.js", async: true },
+  ],
 
   markdown: {
     mermaid: true,
