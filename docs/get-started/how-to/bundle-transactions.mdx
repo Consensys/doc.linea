@@ -7,17 +7,38 @@ image: /img/socialCards/send-a-transaction-bundle.jpg
 You can use the [EIP-5792 Wallet Call API](https://eips.ethereum.org/EIPS/eip-5792) on Linea with 
 wallets that support it, including MetaMask Extension v12.20.x or later.
 
-You can find a non-exhaustive list of wallets that support EIP-5792 [here](https://www.eip5792.xyz/ecosystem/wallets).
+Although [multiple wallets support EIP-5792](https://www.eip5792.xyz/ecosystem/wallets), MetaMask is 
+the only wallet that currently supports the Wallet Call API on Linea.
+
+## Requirements
+
+- Your dapp already supports EIP-5792.
+- A wallet that supports EIP-5792 on Linea.
+
+:::note
+
+`eth_sendBundle` is only supported on Linea via Infura. It's also permissioned; to enable this endpoint 
+on your Infura account, please open a ticket via the "Contact" button on our [support page](https://support.linea.build).
+
+:::
+
+## How it works
+
+The Wallet Call API enables transaction bundling, where multiple transactions are executed 
+atomically in a single transaction. This minimizes gas costs for the user and streamlines many 
+common web3 flows. For example, a transaction bundle could involve approving tokens for a swap and 
+executing the swap simultaneously.
+
+Generally, the flow for sending a transaction bundle involves:
+1. A dapp requests to send a bundle of transactions using `wallet_sendCalls`.
+2. The wallet client needs to manage the logic. Usually, this is achieved through [EIP-7702—type transactions](https://eips.ethereum.org/EIPS/eip-7702). 
+   On Linea, however, MetaMask uses [`eth_sendBundle`](../../api/reference/eth-sendbundle.mdx). 
+3. Once submitted, the dapp can track the status of the bundle using `wallet_getCallsStatus`.
 
 ## Send bundled transactions with MetaMask
 
 MetaMask supports `wallet_sendCalls` on Linea by implementing `eth_sendBundle` on the backend; 
 for your dapp, you can focus on using the standard Wallet Call API methods.
-
-The Wallet Call API enables transaction bundling, which enables multiple transactions to be executed
-atomically as part of a single transaction. This minimizes gas costs for the user and streamlines
-many common web3 flows. For example, a transaction bundle could involve approving tokens for a swap 
-and executing the swap simultaneously.
 
 Sending bundled transactions requires the user's externally owned account (EOA) to be upgraded to
 a smart account. In MetaMask, the EOA is upgraded to an ERC-4337 smart account. 
