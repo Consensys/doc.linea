@@ -31,6 +31,7 @@ const sidebars = {
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
+        "get-started/build/dapp-support",
       ],
     },
     {
