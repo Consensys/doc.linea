@@ -1,0 +1,455 @@
+{
+  "openrpc": "1.2.6",
+  "info": {
+    "title": "Linea JSON-RPC API",
+    "description": "API methods for interacting with Linea network",
+    "version": "1.0.0",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "name": "Linea Mainnet",
+      "url": "https://linea-mainnet.infura.io/v3/YOUR-API-KEY",
+      "description": "Linea Mainnet endpoint via Infura"
+    },
+    {
+      "name": "Linea Sepolia Testnet", 
+      "url": "https://linea-sepolia.infura.io/v3/YOUR-API-KEY",
+      "description": "Linea Sepolia testnet endpoint via Infura"
+    }
+  ],
+  "methods": [
+    {
+      "name": "eth_sendBundle",
+      "summary": "Send a bundle of signed transactions to be executed atomically",
+      "description": "Privately sends a bundle of signed transactions to be executed atomically, allowing the caller to define transaction execution order. This enables services such as frontrunning protection, gas abstraction, and revert protection.",
+      "params": [
+        {
+          "name": "Bundle Parameters",
+          "description": "Bundle configuration object",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "txs": {
+                "type": "array",
+                "description": "An array of signed transactions to execute in the bundle",
+                "items": {
+                  "type": "string",
+                  "description": "Hex-encoded signed transaction"
+                }
+              },
+              "blockNumber": {
+                "type": "string",
+                "description": "Hexadecimal block number for the block the bundle is valid in"
+              },
+              "minTimestamp": {
+                "type": "integer",
+                "description": "Optional minimum timestamp for which the bundle is valid, in seconds since the unix epoch"
+              },
+              "maxTimestamp": {
+                "type": "integer", 
+                "description": "Optional maximum timestamp for which the bundle is valid, in seconds since the unix epoch"
+              }
+            },
+            "required": ["txs", "blockNumber"]
+          }
+        }
+      ],
+      "result": {
+        "name": "Bundle Hash",
+        "description": "The hash of the executed bundle",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "bundleHash": {
+              "type": "string",
+              "description": "The hash of the executed bundle"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "sendBundleExample",
+          "description": "Example of sending a bundle of transactions",
+          "params": [
+            {
+              "name": "bundleParams",
+              "value": {
+                "txs": ["0x1234567890abcdef...", "0x1234567890abcdef..."],
+                "blockNumber": "0x123..."
+              }
+            }
+          ],
+          "result": {
+            "name": "bundleResult",
+            "value": {
+              "bundleHash": "0x1234567890abcdef..."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "eth_sendRawTransaction",
+      "summary": "Submit a signed transaction to the network",
+      "description": "Submits a signed transaction to the network for inclusion in the blockchain.",
+      "params": [
+        {
+          "name": "Transaction Data",
+          "description": "The signed transaction data",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "Hex-encoded signed transaction data"
+          }
+        }
+      ],
+      "result": {
+        "name": "Transaction Hash",
+        "description": "The transaction hash",
+        "schema": {
+          "type": "string",
+          "description": "32-byte transaction hash"
+        }
+      },
+      "examples": [
+        {
+          "name": "sendRawTransactionExample",
+          "description": "Example of sending a raw transaction",
+          "params": [
+            {
+              "name": "transactionData",
+              "value": "0xf86c0a85046c7cfe0083015f9094d46e8dd67c5d32be8058bb8eb970870f07244567849184e72a00064801ba0c6e5e7c5d32be8058bb8eb970870f07244567849184e72a00064801ba0c6e5e7c5"
+            }
+          ],
+          "result": {
+            "name": "transactionHash",
+            "value": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+          }
+        }
+      ]
+    },
+    {
+      "name": "linea_estimateGas",
+      "summary": "Estimate gas for a transaction with Linea-specific pricing",
+      "description": "Generates and returns an estimate of how much gas is necessary to allow the transaction to complete and be published on Ethereum. Returns the recommended gas limit, base fee per gas, and priority fee per gas including the cost of submitting to Ethereum.",
+      "params": [
+        {
+          "name": "Transaction Call Object",
+          "description": "Transaction call object",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "20 bytes - The address the transaction is sent from"
+              },
+              "to": {
+                "type": "string", 
+                "description": "20 bytes - The address the transaction is directed to"
+              },
+              "gas": {
+                "type": "string",
+                "description": "Hexadecimal value of the gas provided for the transaction execution"
+              },
+              "gasPrice": {
+                "type": "string",
+                "description": "Hexadecimal value of the gas price used for each paid gas"
+              },
+              "maxPriorityFeePerGas": {
+                "type": "string",
+                "description": "Maximum fee, in wei, the sender is willing to pay per gas above the base fee"
+              },
+              "maxFeePerGas": {
+                "type": "string",
+                "description": "Maximum total fee (base fee + priority fee), in wei, the sender is willing to pay per gas"
+              },
+              "value": {
+                "type": "string",
+                "description": "Hexadecimal value of the value sent with this transaction"
+              },
+              "data": {
+                "type": "string",
+                "description": "Hash of the method signature and encoded parameters"
+              }
+            }
+          }
+        },
+        {
+          "name": "State Override",
+          "description": "Optional state override object",
+          "required": false,
+          "schema": {
+            "type": "object",
+            "description": "Object that contains the address-to-state mapping to override state values",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "balance": {
+                  "type": "string",
+                  "description": "Hexadecimal of the temporary account balance for the call execution"
+                },
+                "nonce": {
+                  "type": "string",
+                  "description": "Hexadecimal of the temporary nonce value for the call execution"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Bytecode to inject into the account"
+                },
+                "stateDiff": {
+                  "type": "object",
+                  "description": "Key:value pairs to override individual slots in the account storage",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "result": {
+        "name": "Gas Estimation",
+        "description": "Gas estimation with Linea-specific fees",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "baseFeePerGas": {
+              "type": "string",
+              "description": "Hexadecimal value of the base fee per gas"
+            },
+            "gasLimit": {
+              "type": "string", 
+              "description": "Hexadecimal value of the recommended gas limit"
+            },
+            "priorityFeePerGas": {
+              "type": "string",
+              "description": "Hexadecimal value of the priority fee per gas"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "estimateGasExample",
+          "description": "Example of estimating gas for a transaction",
+          "params": [
+            {
+              "name": "transactionCall",
+              "value": {
+                "from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7",
+                "gas": "0x21000"
+              }
+            }
+          ],
+          "result": {
+            "name": "gasEstimation",
+            "value": {
+              "baseFeePerGas": "0x7",
+              "gasLimit": "0xcf08", 
+              "priorityFeePerGas": "0x43a82a4"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "linea_getProof",
+      "summary": "Get account and storage proofs",
+      "description": "Returns the account and storage values including the Merkle proof for the specified account and storage keys.",
+      "params": [
+        {
+          "name": "Address",
+          "description": "The address of the account",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "20-byte address"
+          }
+        },
+        {
+          "name": "Storage Keys",
+          "description": "Array of storage keys to get proofs for",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "32-byte storage key"
+            }
+          }
+        },
+        {
+          "name": "Block Parameter",
+          "description": "Block number or tag",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "Block number in hex or 'latest', 'earliest', 'pending'"
+          }
+        }
+      ],
+      "result": {
+        "name": "Proof Data",
+        "description": "Account and storage proofs",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "The address of the account"
+            },
+            "accountProof": {
+              "type": "array",
+              "description": "Array of RLP-serialized MerkleTree-Nodes for the account proof",
+              "items": {
+                "type": "string"
+              }
+            },
+            "balance": {
+              "type": "string",
+              "description": "The balance of the account"
+            },
+            "codeHash": {
+              "type": "string",
+              "description": "Hash of the code of the account"
+            },
+            "nonce": {
+              "type": "string",
+              "description": "The nonce of the account"
+            },
+            "storageHash": {
+              "type": "string",
+              "description": "Hash of the storage root"
+            },
+            "storageProof": {
+              "type": "array",
+              "description": "Array of storage-entries as requested",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The requested storage key"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The storage value"
+                  },
+                  "proof": {
+                    "type": "array",
+                    "description": "Array of RLP-serialized MerkleTree-Nodes for the storage proof",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "getProofExample",
+          "description": "Example of getting account and storage proofs",
+          "params": [
+            {
+              "name": "address",
+              "value": "0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842"
+            },
+            {
+              "name": "storageKeys",
+              "value": ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"]
+            },
+            {
+              "name": "blockParameter",
+              "value": "latest"
+            }
+          ],
+          "result": {
+            "name": "proofData",
+            "value": {
+              "address": "0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842",
+              "accountProof": ["0x..."],
+              "balance": "0x0",
+              "codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+              "nonce": "0x0",
+              "storageHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+              "storageProof": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "linea_getTransactionExclusionStatusV1",
+      "summary": "Get transaction exclusion status",
+      "description": "Returns the exclusion status of a transaction, indicating whether it was excluded from being processed and the reason for exclusion.",
+      "params": [
+        {
+          "name": "Transaction Hash",
+          "description": "The transaction hash to check",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "description": "32-byte transaction hash"
+          }
+        }
+      ],
+      "result": {
+        "name": "Exclusion Status",
+        "description": "Transaction exclusion status information",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "txHash": {
+              "type": "string",
+              "description": "The transaction hash"
+            },
+            "txRejectionStage": {
+              "type": "string",
+              "description": "The stage at which the transaction was rejected"
+            },
+            "reasonMessage": {
+              "type": "string", 
+              "description": "Human-readable reason for rejection"
+            },
+            "blockNumber": {
+              "type": "string",
+              "description": "Block number when the rejection occurred"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "name": "getTransactionExclusionStatusExample",
+          "description": "Example of checking transaction exclusion status",
+          "params": [
+            {
+              "name": "transactionHash",
+              "value": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+            }
+          ],
+          "result": {
+            "name": "exclusionStatus",
+            "value": {
+              "txHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+              "txRejectionStage": "SEQUENCER",
+              "reasonMessage": "Transaction gas limit exceeds block gas limit",
+              "blockNumber": "0x123456"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

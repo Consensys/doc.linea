@@ -58,7 +58,8 @@ const config = {
 
   presets: [
     [
-      "classic",
+      "@metamask/docusaurus-openrpc/dist/preset",
+      /** @type {import('@metamask/docusaurus-openrpc/dist/preset').Options} */
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
@@ -76,6 +77,11 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
+          openrpc: {
+            openrpcDocument: "./docs/api/reference/linea-openrpc.json",
+            path: "api/reference",
+            sidebarLabel: "JSON-RPC Methods",
+          },
         },
         blog: false, // Disable blog feature
         theme: {
