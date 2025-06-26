@@ -3,27 +3,14 @@ title: Linea SDK
 image: /img/socialCards/linea-sdk.jpg
 ---
 
-## Installation
+The SDK focuses on interacting with smart contracts on both Ethereum and Linea networks and provides 
+custom functions to obtain message information, including claiming bridge messages. You can also use 
+the SDK to get:
 
-To install the package you need to run:
-
-```bash
-npm install @consensys/linea-sdk
-```
-
-## Features
-
-The SDK focuses on interacting with smart contracts on both Ethereum and Linea networks and provides custom functions to obtain message information. Notable features of the Linea SDK include:
-
-1.  Getting contract instances and addresses
-
-2.  Getting message information by message hash
-
-3.  Getting messages by transaction hash
-
-4.  Getting a message status by message hash
-
-5.  Claiming messages (use one of the get message methods to grab all the parameter values)
+- Contract instances and addresses
+- Message information, by message hash
+- Messages by transaction hash
+- Getting a message status by message hash
 
 :::info[New features]
 
@@ -31,7 +18,7 @@ The updated Linea SDK package enhances the L1 contract interaction and adds supp
 
 There are three important things to note:
 
-- The previous L1 claiming and all functions associated are still supported.
+- The previous L1 claiming and all associated functions are still supported.
 - The L2 claiming remains unaltered, and all SDK features for interacting with L2 will remain unchanged.
 - The previous L1 claiming function and code samples provided here cater to the transition period where pre-transition messages are claimed without the Merkle proof and post-transition with proof. If this SDK is being used after the transition, using the logic that switches between Merkle and non-Merkle proof claiming is suboptimal.
 
@@ -49,185 +36,284 @@ The updated SDK introduces several new features for L1 interactions:
 
 :::
 
-## Code examples
+## Usage
+
+:::note
+
+The SDK does not currently support sending messages. This feature will be added in a future release.
+
+:::
+
+To install the package, run:
+
+```bash
+npm install @consensys/linea-sdk
+```
+
+Then initialize the SDK: 
+
+```typescript
+const sdk = new LineaSDK({
+  network: 'linea-mainnet', // or 'linea-sepolia' or 'custom'
+  mode: 'read-write',
+  l1RpcUrlOrProvider: 'YOUR_L1_RPC_URL',
+  l2RpcUrlOrProvider: 'YOUR_L2_RPC_URL',
+  l1SignerPrivateKeyOrWallet: 'YOUR_L1_PRIVATE_KEY',
+  l2SignerPrivateKeyOrWallet: 'YOUR_L2_PRIVATE_KEY'
+});
+
+// Get L1 and L2 contract instances
+const l1Contract = sdk.getL1Contract();
+const l2Contract = sdk.getL2Contract();
+```
+
+The SDK supports two `mode`s: 
+- `read-only`: The client operates without the ability to send transactions; it can only read data 
+from the blockchain and does not require private keys.
+- `read-write`: The client can read data and also send transactions, which means you must include
+signing credentials with `l1SignerPrivateKeyOrWallet` and `l2SignerPrivateKeyOrWallet`, depending
+on which layer you need.
+
+See the [SDK README](https://github.com/Consensys/linea-monorepo/tree/main/sdk#field-explanations) 
+for a full list of configuration options.
+
+### Claim
+
+Regardless of the layer you need to claim on, you'll need the message hash of the message sent 
+from the origin layer. You can find this in the transaction logs of the message sending transaction
+on the block explorer as a `MessageSent` event.
+
+<Tabs className="my-tabs">
+  <TabItem value="L1" label="Claim on L1">
+    The contract function for claiming on L1, `claimMessageWithProof`, is complex and requires a Merkle 
+    proof, Merkle root, and leaf index for the message. The SDK simplifies this by using its [`L1ClaimingService`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/ethereum/L1ClaimingService.ts) 
+    to handle the complex logic, meaning you only need to call `claimMessage`. 
+
+    For example:
+
+    ```typescript
+
+    const message = await l2Contract.getMessageByMessageHash("messageHash");
+
+    const messageStatus = await l1ClaimingService.getMessageStatus("messageHash"); 
+
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      await l1ClaimingService.claimMessage(message);
+    }
+
+    ```
+
+    This code checks to locate the message from L2, then whether it's claimable yet on L1. If it is,
+    it calls `claimMessage` to claim the message.
+  </TabItem>
+  <TabItem value="L2" label="Claim on L2">
+    In most situations, messages _to_ L2 will be automatically retrieved by the Postman service, and 
+    manually claiming with the SDK will not be necessary. Most Postman fees are automatically sponsored 
+    by Linea on L2, and therefore do not require a transaction and an accompanying fee to claim,
+    and are claimed automatically.
+
+    Since claiming on L2 requires fewer and less complex parameters, we can use the `claim` function:
+
+    ```typescript
+
+    const message = await l1Contract.getMessageByMessageHash("messageHash");
+
+    const messageStatus = await l2Contract.getMessageStatus("messageHash");
+
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      await l2Contract.claim(message);
+    }
+
+    ```
+
+    This code checks to locate the message from L1, then whether it's claimable yet on L2. If it is,
+    it calls `claim` to claim the message.
+
+    See the [`L2MessageServiceClient`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/linea/L2MessageServiceClient.ts) 
+    for the source code.
+  </TabItem>
+</Tabs>
+
+## Examples
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-<Tabs className="my-tabs" defaultValue="new" values={[ {label: 'v0.2.0-rc.1', value: 'new'}, {label: 'v0.1.6', value: 'old'}, ] }> <TabItem value="old">
+<Tabs className="my-tabs" defaultValue="new" values={[ {label: 'v0.2.0-rc.1', value: 'new'}, {label: 'v0.1.6', value: 'old'}, ] }> 
+  <TabItem value="old">
 
-```typescript
-import * as dotenv from "dotenv";
-import { LineaSDK } from "@consensys/linea-sdk";
-import { BigNumber } from "ethers";
+  ```typescript
+  import * as dotenv from "dotenv";
+  import { LineaSDK } from "@consensys/linea-sdk";
+  import { BigNumber } from "ethers";
 
-dotenv.config();
+  dotenv.config();
 
-const sdk = new LineaSDK({
-  l1RpcUrl: process.env.L1_RPC_URL ?? "", // L1 rpc url
-  l2RpcUrl: process.env.L2_RPC_URL ?? "", // L2 rpc url
-  l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "", // L1 account private key (optional if you use mode = read-only)
-  l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "", // L2 account private key (optional if you use mode = read-only)
-  network: "linea-mainnet", // network you want to interact with (either linea-mainnet or linea-sepolia)
-  mode: "read-write", // contract wrapper class mode (read-only or read-write), read-only: only read contracts state, read-write: read contracts state and claim messages
-});
-
-const l1Contract = sdk.getL1Contract(); // get the L1 contract wrapper instance
-const l2Contract = sdk.getL2Contract(); // get the L2 contract wrapper instance
-const l1ClaimingService = sdk.getL1ClaimingService();
-
-console.log(
-  await l2Contract.getMessageStatus(
-    "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
-  ),
-); //  returns on-chain message status by message hash
-console.log(
-  await l1Contract.getMessageStatus(
-    "0x28e9e11b53d624500f7610377c97877bb1ecb3127a88f7eba84dd7a146891946",
-  ),
-); // returns on-chain message status by message hash
-
-console.log(
-  await l2Contract.getMessageByMessageHash(
-    "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
-  ),
-); // returns message by message hash
-console.log(await l1Contract.getMessageByMessageHash("")); // returns message by message hash
-
-console.log(
-  await l2Contract.getMessagesByTransactionHash(
-    "0x4b72c6abacd3e2372a32e2797c41cab08df8d5e6fb2eb453e896e52fe7b70a27",
-  ),
-); // returns message by transaction hash
-console.log(await l1Contract.getMessagesByTransactionHash("")); // returns message by transaction hash
-
-console.log(
-  await l2Contract.getTransactionReceiptByMessageHash(
-    "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
-  ),
-); // returns transaction receipt by message hash
-console.log(
-  await l1Contract.getTransactionReceiptByMessageHash(
-    "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
-  ),
-); // returns transaction receipt by message hash
-
-claimMessage = await l2Contract.claim({
-  // claims message by message
-  messageSender: "", // address of message sender
-  messageHash: "", // message hash
-  fee: BigNumber.from(1), // fee
-  destination: "", // destination address of message
-  value: BigNumber.from(2), // value of message
-  calldata: "0x", // call data
-  messageNonce: BigNumber.from(1), // message nonce
-  feeRecipient: "0x", // address that will receive fees. by default it is the message sender
-});
-```
-
-</TabItem> <TabItem value="new">
-
-```typescript
-import * as dotenv from "dotenv";
-import { LineaSDK } from "@consensys/linea-sdk";
-import { BigNumber } from 'ethers';
-
-
-dotenv.config();
-
-const sdk = new LineaSDK({
-    l1RpcUrl: process.env.L1_RPC_URL ?? "",
-    l2RpcUrl: process.env.L2_RPC_URL ?? "",
-    l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "",
-    l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "",
-    network: "linea-mainnet",
-    mode: "read-write",
+  const sdk = new LineaSDK({
+    l1RpcUrl: process.env.L1_RPC_URL ?? "", // L1 rpc url
+    l2RpcUrl: process.env.L2_RPC_URL ?? "", // L2 rpc url
+    l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "", // L1 account private key (optional if you use mode = read-only)
+    l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "", // L2 account private key (optional if you use mode = read-only)
+    network: "linea-mainnet", // network you want to interact with (either linea-mainnet or linea-sepolia)
+    mode: "read-write", // contract wrapper class mode (read-only or read-write), read-only: only read contracts state, read-write: read contracts state and claim messages
   });
 
-  const l1Contract = sdk.getL1Contract();
-  const l2Contract = sdk.getL2Contract();
+  const l1Contract = sdk.getL1Contract(); // get the L1 contract wrapper instance
+  const l2Contract = sdk.getL2Contract(); // get the L2 contract wrapper instance
   const l1ClaimingService = sdk.getL1ClaimingService();
 
-  /********************* Three approaches to claim on L1 *********************/
+  console.log(
+    await l2Contract.getMessageStatus(
+      "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
+    ),
+  ); //  returns on-chain message status by message hash
+  console.log(
+    await l1Contract.getMessageStatus(
+      "0x28e9e11b53d624500f7610377c97877bb1ecb3127a88f7eba84dd7a146891946",
+    ),
+  ); // returns on-chain message status by message hash
 
-  // 1. The L1 Claiming service manages all the necessary logic for you.
-  const message = await l2Contract.getMessageByMessageHash("messageHash");
+  console.log(
+    await l2Contract.getMessageByMessageHash(
+      "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
+    ),
+  ); // returns message by message hash
+  console.log(await l1Contract.getMessageByMessageHash("")); // returns message by message hash
 
-  const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
+  console.log(
+    await l2Contract.getMessagesByTransactionHash(
+      "0x4b72c6abacd3e2372a32e2797c41cab08df8d5e6fb2eb453e896e52fe7b70a27",
+    ),
+  ); // returns message by transaction hash
+  console.log(await l1Contract.getMessagesByTransactionHash("")); // returns message by transaction hash
 
-  if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
-    const estimatedGas = await l1ClaimingService.estimateClaimMessageGas(message); // Optional
-    await l1ClaimingService.claimMessage(message);
-  }
+  console.log(
+    await l2Contract.getTransactionReceiptByMessageHash(
+      "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
+    ),
+  ); // returns transaction receipt by message hash
+  console.log(
+    await l1Contract.getTransactionReceiptByMessageHash(
+      "0x13dd0f5e3611b44c88e80f5206bbe1ce1c6996514cef1e209e9eb06d9f5b9a2d",
+    ),
+  ); // returns transaction receipt by message hash
 
-  // 2. You can handle the logic on your side
-  const message = await l2Contract.getMessageByMessageHash("messageHash");
+  const claimMessage = await l2Contract.claim({
+    // claims message by message
+    messageSender: "", // address of message sender
+    messageHash: "", // message hash
+    fee: BigNumber.from(1), // fee
+    destination: "", // destination address of message
+    value: BigNumber.from(2), // value of message
+    calldata: "0x", // call data
+    messageNonce: BigNumber.from(1), // message nonce
+    feeRecipient: "0x", // address that will receive fees. by default it is the message sender
+  });
+  ```
 
-  const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
+  </TabItem> 
+  <TabItem value="new">
 
-  if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
-    const isProofNeeded = await l1ClaimingService.isClaimingNeedingProof("messageHash");
-    if (!isProofNeeded) {
-      const estimatedGas = await l1Contract.estimateClaimGas(message) // Optional
-      await l1Contract.claim(message);
-    } else {
-      const proofInfo = await l1ClaimingService.getMessageProof("messageHash");
-      const estimatedGas = await l1Contract.estimateClaimWithProofGas({
-        ...message,
-        proof: proofInfo.proof,
-        leafIndex: proofInfo.leafIndex,
-        merkleRoot: proofInfo.root,
-      }); // Optional
+  ```typescript
+  import * as dotenv from "dotenv";
+  import { LineaSDK } from "@consensys/linea-sdk";
+  import { BigNumber } from 'ethers';
 
-      await l1Contract.claimWithProof({
-        ...message,
-        proof: proofInfo.proof,
-        leafIndex: proofInfo.leafIndex,
-        merkleRoot: proofInfo.root,
-      });
+
+  dotenv.config();
+
+  const sdk = new LineaSDK({
+      l1RpcUrl: process.env.L1_RPC_URL ?? "",
+      l2RpcUrl: process.env.L2_RPC_URL ?? "",
+      l1SignerPrivateKey: process.env.L1_SIGNER_PRIVATE_KEY ?? "",
+      l2SignerPrivateKey: process.env.L2_SIGNER_PRIVATE_KEY ?? "",
+      network: "linea-mainnet",
+      mode: "read-write",
+    });
+
+    const l1Contract = sdk.getL1Contract();
+    const l2Contract = sdk.getL2Contract();
+    const l1ClaimingService = sdk.getL1ClaimingService();
+
+    /********************* Three approaches to claim on L1 *********************/
+
+    // 1. The L1 Claiming service manages all the necessary logic for you.
+    const message = await l2Contract.getMessageByMessageHash("messageHash");
+
+    const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
+
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      const estimatedGas = await l1ClaimingService.estimateClaimMessageGas(message); // Optional
+      await l1ClaimingService.claimMessage(message);
     }
-  }
 
-  // 3. You can implement your own logic to get a merkle proof
-  const message = await l2Contract.getMessageByMessageHash("messageHash");
+    // 2. You can handle the logic on your side
+    const message = await l2Contract.getMessageByMessageHash("messageHash");
 
-  const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
+    const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
 
-  if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
-    const isProofNeeded = await l1ClaimingService.isClaimingNeedingProof("messageHash");
-    if (!isProofNeeded) {
-      const estimatedGas = await l1Contract.estimateClaimGas(message) // Optional
-      await l1Contract.claim(message);
-    } else {
-      const proofInfo = // Implement your own function to get a merkle proof
-        // The L1ClaimingService exposes some utility functions to assist you: getFinalizationMessagingInfo, getL2MessageHashesInBlockRange, getMessageSiblings
-
-        // Follow these steps:
-        // 1. Retrieve the MessageSent event on L2 by messageHash
-        // 2. Retrieve the L2MessagingBlockAnchored event on L1 using the MessageSent.blockNumber you acquired in step 1. This is used to get the finalization transaction hash where the L2 block number associated with your message has been finalized.
-        // 3. Invoke the getFinalizationMessagingInfo function using the L2MessagingBlockAnchored.transactionHash you obtained in step 2.
-        // This will return all merkle roots anchored during this finalization transaction, the depth of trees, and the first and the last L2 block containing messages finalized on L1 in this transaction.
-        // 4. Invoke the getL2MessageHashesInBlockRange function using the first and last L2 block number that you obtained in step 3. This will return all l2 messages hashes in this L2 block range.
-        // 5. Invoke the getMessageSiblings function to obtain all message siblings
-        // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree, and return a merkle proof
-
-        // NOTE: You can create your own functions that encompass all steps. Utility functions are merely provided as a helper.
-
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      const isProofNeeded = await l1ClaimingService.isClaimingNeedingProof("messageHash");
+      if (!isProofNeeded) {
+        const estimatedGas = await l1Contract.estimateClaimGas(message) // Optional
+        await l1Contract.claim(message);
+      } else {
+        const proofInfo = await l1ClaimingService.getMessageProof("messageHash");
         const estimatedGas = await l1Contract.estimateClaimWithProofGas({
           ...message,
           proof: proofInfo.proof,
           leafIndex: proofInfo.leafIndex,
           merkleRoot: proofInfo.root,
         }); // Optional
+
         await l1Contract.claimWithProof({
           ...message,
           proof: proofInfo.proof,
           leafIndex: proofInfo.leafIndex,
           merkleRoot: proofInfo.root,
         });
+      }
     }
-  }
 
+    // 3. You can implement your own logic to get a merkle proof
+    const message = await l2Contract.getMessageByMessageHash("messageHash");
 
-```
+    const messageStatus = await l1ClaimingService.getMessageStatus("messageHash");
 
-</TabItem> </Tabs>
+    if (messageStatus == OnChainMessageStatus.CLAIMABLE) {
+      const isProofNeeded = await l1ClaimingService.isClaimingNeedingProof("messageHash");
+      if (!isProofNeeded) {
+        const estimatedGas = await l1Contract.estimateClaimGas(message) // Optional
+        await l1Contract.claim(message);
+      } else {
+        const proofInfo = // Implement your own function to get a merkle proof
+          // The L1ClaimingService exposes some utility functions to assist you: getFinalizationMessagingInfo, getL2MessageHashesInBlockRange, getMessageSiblings
+
+          // Follow these steps:
+          // 1. Retrieve the MessageSent event on L2 by messageHash
+          // 2. Retrieve the L2MessagingBlockAnchored event on L1 using the MessageSent.blockNumber you acquired in step 1. This is used to get the finalization transaction hash where the L2 block number associated with your message has been finalized.
+          // 3. Invoke the getFinalizationMessagingInfo function using the L2MessagingBlockAnchored.transactionHash you obtained in step 2.
+          // This will return all merkle roots anchored during this finalization transaction, the depth of trees, and the first and the last L2 block containing messages finalized on L1 in this transaction.
+          // 4. Invoke the getL2MessageHashesInBlockRange function using the first and last L2 block number that you obtained in step 3. This will return all l2 messages hashes in this L2 block range.
+          // 5. Invoke the getMessageSiblings function to obtain all message siblings
+          // 6. Construct a SparseMerkleTree, add all message siblings you obtained at step 5 to the tree, and return a merkle proof
+
+          // NOTE: You can create your own functions that encompass all steps. Utility functions are merely provided as a helper.
+
+          const estimatedGas = await l1Contract.estimateClaimWithProofGas({
+            ...message,
+            proof: proofInfo.proof,
+            leafIndex: proofInfo.leafIndex,
+            merkleRoot: proofInfo.root,
+          }); // Optional
+          await l1Contract.claimWithProof({
+            ...message,
+            proof: proofInfo.proof,
+            leafIndex: proofInfo.leafIndex,
+            merkleRoot: proofInfo.root,
+          });
+      }
+    }
+
+  ```
+  </TabItem> 
+</Tabs>
