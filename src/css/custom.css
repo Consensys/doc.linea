@@ -1079,6 +1079,22 @@ html[data-theme="dark"] .navbar {
   background-color: #121212;
 }
 
+[class*="searchClearButton"] {
+  /* aligning X button */
+  padding-right: 5px !important;
+  padding-top: 1.5px !important; 
+}
+
+@media (max-width: 996px) {
+  [class*="searchClearButton"] {
+    padding-right: 10px !important;
+  }
+}
+
+.hide-x-button {
+  opacity: 0 !important;
+}
+
 /* Make navbar look friendly on small devices. */
 @media only screen and (max-width: 400px) {
   .nav_src-pages-index-module .linkItem_src-pages-index-module {
