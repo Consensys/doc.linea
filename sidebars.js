@@ -95,6 +95,7 @@ const sidebars = {
         },
         "get-started/how-to/poh-api",
         "get-started/how-to/state-recovery",
+        "get-started/how-to/bundle-transactions",
       ],
     },
     {
