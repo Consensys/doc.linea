@@ -353,7 +353,9 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/social-login/arcana",
+            "get-started/tooling/social-login/dynamic",
             "get-started/tooling/social-login/openfort",
+            "get-started/tooling/social-login/privy",
           ],
         },
       ],

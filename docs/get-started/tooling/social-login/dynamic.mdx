@@ -1,0 +1,116 @@
+---
+title: Dynamic
+description: >-
+  Social login authentication that combines web2 familiarity with web3
+  functionality
+category: featured
+image: /img/socialCards/dynamic.jpg
+---
+
+Dynamic provides seamless social login authentication for web3 applications, enabling users to 
+create embedded wallets via sign-in with social platforms.
+
+## Supported social providers
+
+Dynamic supports authentication through many popular social platforms:
+
+- Apple
+- Coinbase
+- Discord
+- Epic Games
+- Facebook
+- Farcaster
+- Github
+- Google
+- Line
+- Shopify
+- Spotify
+- Telegram
+- TikTok
+- Twitch
+- X
+
+See the [social providers overview](https://docs.dynamic.xyz/social-providers/overview) for a full 
+list of options.
+
+## How social login works
+
+When users choose social authentication, Dynamic handles the complete OAuth flow:
+
+1. User selection: Users click their preferred social provider
+2. OAuth redirect: Secure redirect to the chosen social platform  
+3. Permission approval: Users approve access on the familiar social platform
+4. Account creation: Dynamic creates a user profile linked to their social account
+
+Social login creates a profile for the user, but doesn't automatically create an embedded wallet. 
+You can set up your Dynamic widget to automatically create an embedded wallet for the user when they
+sign in with social. To turn this on, use the toggle on the "Embedded Wallets" section of the 
+"Authentication" section in the dashboard.
+
+## Setup and configuration
+
+### 1. Enable social providers
+
+Configure your social authentication options in the [Dynamic Dashboard](https://app.dynamic.xyz/dashboard/log-in-user-profile):
+
+1. Navigate to the "Authentication" section in the sidebar of the dashboard, and then find the "Log 
+  in and User Profile" section
+2. Toggle on your desired social platforms
+3. Configure OAuth credentials for each provider (see [step 2](#2-provider-specific-configuration))
+4. Customize the authentication flow (popup vs redirect)
+
+If you want to create an embedded wallet for the user's profile, you first need to turn on 
+embedded wallets in the "Authentication" section of the dashboard, and then [configure a CORS origin](https://docs.dynamic.xyz/developer-dashboard/security#allowed-cors-origin) to proceed. Embedded wallets need a CORS origin to function.
+
+### 2. Provider-specific configuration
+
+Each social provider requires OAuth configuration, and this process differs depending on which 
+platform you want to enable. 
+
+Detailed setup instructions for each provider are available in the [Dynamic docs](https://docs.dynamic.xyz/social-providers/overview).
+
+### 3. SDK integration
+
+With the configuration complete, you can start to integrate the Dynamic widget into your dapp.
+
+First, install the Dynamic SDK:
+
+```bash
+npm install @dynamic-labs/sdk-react-core
+```
+
+Then, configure the Dynamic widget:
+
+```jsx
+import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core';
+
+export default function App() {
+  return (
+    <DynamicContextProvider
+      settings={{
+        environmentId: 'your-environment-id',
+        social: { strategy: 'popup' }
+      }}
+    >
+      {/* Your app components */}
+    </DynamicContextProvider>
+  );
+}
+```
+
+The `social` prop takes either `popup` or `redirect` to determine how the social login flow should
+occur.
+
+## Next steps
+
+- Visit the [Dynamic Dashboard](https://app.dynamic.xyz/dashboard) to configure social 
+  authentication
+- Review [social provider configurations](https://docs.dynamic.xyz/social-providers/overview) for 
+  platform-specific setup
+- Explore [embedded wallets](https://docs.dynamic.xyz/wallets/embedded-wallets/dynamic-embedded-wallets) 
+  for seamless web3 integration
+- Check out the [Dynamic Documentation](https://docs.dynamic.xyz/) for advanced customization 
+  options
+
+You can also complement your users' social login with email and SMS authentication, and configure
+multi-factor authentication (MFA) with services such as Google Authenticator.
