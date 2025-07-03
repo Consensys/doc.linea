@@ -31,6 +31,7 @@ const sidebars = {
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
+        "get-started/build/dapp-support",
       ],
     },
     {
@@ -352,7 +353,9 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/social-login/arcana",
+            "get-started/tooling/social-login/dynamic",
             "get-started/tooling/social-login/openfort",
+            "get-started/tooling/social-login/privy",
           ],
         },
       ],
