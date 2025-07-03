@@ -1,0 +1,289 @@
+---
+title: Technical reference
+description: Technical reference for the canonical message service
+image: /img/socialCards/technical-reference.jpg
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import IMessageService from "!!raw-loader!/files/testnet/IMessageService.sol";
+import MessageServiceBase from "!!raw-loader!/files/testnet/MessageServiceBase.sol";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Canonical message service technical reference
+
+The message service is responsible for cross-chain messages between Ethereum and Linea, which:
+
+- Allows a contract on the source layer to safely interact with a contract on the target layer 
+(e.g. L1TokenBridge triggering mint on the L2TokenBridge),
+- Is responsible for bridging ETH (native currency on L1 and L2)
+- Supports:
+  - **push**: auto-execution on target layer if a fee is paid
+  - **pull**: users/protocols responsible for triggering the transaction
+
+## Contracts
+
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet" default>
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Ethereum) Address</th>
+          <th>L2 (Linea) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F">
+              0xd19d4B5d358258f05D7B411E21A1460D11B0876F
+            </a>
+          </td>
+          <td>
+            <a href="https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec">
+              0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    <table>
+      <tbody>
+        <tr>
+          <th>L1 (Sepolia) Address</th>
+          <th>L2 (Linea Sepolia) Address</th>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5">
+            0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5
+            </a>
+          </td>
+          <td>
+            <a href="https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51ec16e73acac83a7">
+            0x971e727e956690b9957be6d51Ec16E73AcAC83A7
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </TabItem>
+</Tabs>
+
+## Usage
+
+### Step 1: Send a message
+
+Call `sendMessage()` on the origin layer using the proxy contract at one of the contract addresses 
+[above](#contracts).
+
+<details>
+
+<summary>Proxy contract?</summary>
+
+A proxy contract is one that simply points towards the actual "implementation" contracts. This model
+is beneficial as it allows the implementation contracts to be upgraded independently of the proxy,
+allowing contract upgrades without having to start afresh and lose the proxy contract's history. 
+When the implementation contracts are updated, the proxy contract is simply amended to point 
+towards the new implementation contract addresses.
+
+</details>
+
+`sendMessage()` takes the following arguments:
+
+- `_to`: the destination address on the destination layer
+- `_fee`: the message service fee on the origin layer. 
+  - An optional field used to incentivize a postman to perform `claimMessage(...)` automatically 
+  on the destination layer (not available when bridging from L2 to L1, or for non-ETH transfers)
+- `_calldata`: a flexible field that is generally created using `abi.encode(...)`
+
+<details>
+
+  <summary>What is the `_fee`?</summary>
+
+  **L1 -> L2:**
+  - Automatic claiming: 0 (The postman fee is sponsored by Linea.)
+  - Manual claiming: 0
+
+  :::note
+
+  The postman fee for automatic claiming is only sponsored for transactions using less than 
+  250,000 gas. Where sponsorship doesn't apply, the postman fee = `target layer gas price * (gas 
+  estimated + gas limit surplus) * margin`, where:
+
+  - `target layer gas price` = `eth_gasPrice` on the target layer
+  - `gas estimated` = the current gas estimation
+  - `gas limit surplus` = 6000
+  - `margin` = 2
+
+  :::
+
+  **L2 -> L1:**
+  - Manual claiming: 0.001 ETH (anti-DDOS fee)
+
+  _Automatic claiming is not available for L2 -> L1._
+
+  See our [main bridge page](../../get-started/how-to/bridge.mdx) for more information on the 
+  execution fees that apply.
+
+</details>
+
+### Step 2: Claim a message
+
+Once the message is sent, you must execute the message on the destination layer by claiming it.
+
+#### Option 1: Run a postman
+
+You can run a postman locally or as part of a dapp to claim messages. This can be useful if messages 
+don't get picked up by the Linea postman because there was no fee attached or the fee was too low, 
+for example. Event filtering, detailed below, also makes it possible to filter for messages
+that relate to specific criteria, such as messages sent on a specific dapp.
+
+Run a postman by cloning the [Linea monorepo](https://github.com/Consensys/linea-monorepo) 
+locally and following the instructions in the [postman README](https://github.com/Consensys/linea-monorepo/tree/main/postman#readme).
+
+You can trigger a manual claim via the postman by:
+
+1. **Event filtering**: Run the postman with event filtering configuration that instructs it to 
+listen only for messages that meet certain criteria. Configure the event filtering in your local 
+`.env` file (available as `env.sample` when you clone the monorepo): 
+    - `L1_EVENT_FILTER_FROM_ADDRESS`: Filter events using a `from` address
+    - `L1_EVENT_FILTER_TO_ADDRESS`: Filter events using a `to` address
+    - `L1_EVENT_FILTER_CALLDATA`: Filter by the contents of event calldata using a [Filtrex](https://github.com/joewalnes/filtrex/tree/master) 
+    expression. For example: `calldata.funcSignature == "0x6463fb2a" and calldata.params.messageNumber == 85804`
+    - `L1_EVENT_FILTER_CALLDATA_FUNCTION_INTERFACE`: Filter by the calldata data function interface, 
+    following this format: `"function transfer(address to, uint256 amount)"`. Make sure you specify 
+    parameter names in order, using syntax like `calldata.params.messageNumber`.
+
+2. **`claimMessage`**: This call is made automatically by the postman if the configuration is 
+correct. If, however, gas exceeds 250,000 (the threshold for postman fee sponsorship), you will 
+need to call one of these methods using the parameters detailed in the [interface below](#interface-imessageservicesol):
+    - L2: `claimMessage` 
+    - L1: `claimMessageWithProof`
+
+#### Option 2: Use the Linea SDK
+
+The [Linea SDK](../../api/linea-sdk.mdx) (view the [npm package](https://www.npmjs.com/package/@consensys/linea-sdk?activeTab=readme))
+simplifies the execution of messages on the destination layer.
+
+Install the SDK using the package manager of your choice. For example:
+
+```bash
+npm install @consensys/linea-sdk
+```
+
+Refer to the [SDK README](https://github.com/Consensys/linea-monorepo/tree/main/sdk#readme) for 
+directions on initializing the SDK and enabling read-write mode. 
+
+Now you can use the `claim()` function on the destination layer to claim messages, passing the 
+message hash as an argument:
+
+```js
+const tx = await l2Contract.claim(message);
+```
+
+You can call `claim()` either on the `l1Contract` or `l2Contract` depending on which you need.
+
+## Claim old messages
+
+The Linea native bridge app only retains unclaimed message for 90 days; if your bridge transfer is
+older than this, you'll need to claim it outside of the native bridge app using a block explorer or 
+the Linea SDK. We recommend you use the SDK, particularly if you're claiming on L1.
+
+:::note
+
+Since the message service fee is automatically set to 0 for all deposits to Linea (L1 -> L2) using 
+less than 250,000 gas, your transaction will be claimed by the postman service automatically in 
+most cases.
+
+:::
+
+Select the appropriate message service contract for your _destination_ layer:
+
+- L1 (Ethereum):
+  - Mainnet: [`0xd19d4B5d358258f05D7B411E21A1460D11B0876F`](https://etherscan.io/address/0xd19d4B5d358258f05D7B411E21A1460D11B0876F)
+  - Sepolia: [`0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5`](https://sepolia.etherscan.io/address/0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5)
+- L2 (Linea):
+  - Mainnet: [`0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec`](https://lineascan.build/address/0x508Ca82Df566dCD1B0DE8296e70a96332cD644ec)
+  - Sepolia: [`0x971e727e956690b9957be6d51Ec16E73AcAC83A7`](https://sepolia.lineascan.build/address/0x971e727e956690b9957be6d51Ec16E73AcAC83A7)
+
+On the contract's page, find the "Contract" tab and then select the "Write as proxy" tab:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/technology/message_service/reference/write_as_proxy_tab.png"
+      alt="Find the contract tab and then select write as proxy"
+    />
+  </div>
+</div>
+
+Make sure your wallet is connected using the "Connect to Web3" button immediately above contract
+functions.
+
+The function you need to use to claim your funds depends on the layer you're claiming on:
+- L1 -> L2: use `claimMessage`
+- L2 -> L1: use `claimMessageWithProof`
+
+:::warning
+
+If your L2 -> L1 transfer predates the L2 block `2242568` (Alpha v2, early 2024), use 
+`claimMessage` rather than `claimMessageWithProof`. See the [release notes](../../release-notes.mdx#alpha-v2) 
+for more information. 
+
+:::
+
+<Tabs className="my-tabs">
+  <TabItem value="L1 -> L2">
+    Click the `claimMessage` function to see its parameters. You'll need to fill these out to claim 
+    your bridged funds:
+
+    <div class="center-container">
+      <div class="img-large">
+        <img
+          src="/img/technology/message_service/reference/claimmessage_function_parameters.png"
+          alt="claimMessage function parameters"
+        />
+      </div>
+    </div>
+
+    - `_from`: The address that sent the transfer on L1. 
+    - `_to`: The recipient address on the destination layer.
+    - `_fee`: `0`.
+    - `_value`: The amount of ETH to claim, in wei.
+    - `_feeRecipient`: `0x0000000000000000000000000000000000000000`
+    - `_calldata`: `0x0`.
+    - `_nonce`: The message nonce. You can find it in the `MessageSent` event on the origin layer.
+
+    :::note
+
+    In most cases, the `_from` and `_to` address will be identical, unless you intentionally
+    specified a different recipient when bridging.
+
+    :::
+
+    When ready, click the "Write" button underneath the parameters to prompt the transaction in your
+    wallet, and then confirm it to execute the claim.
+  </TabItem>
+  <TabItem value="L2 -> L1">
+    We don't recommend manually claiming messages on L1 with `claimMessageWithProof`, as gathering
+    the parameters is complex and involves querying for various events to reconstruct the proof.
+
+    Instead, we recommend using the Linea SDK, which abstracts away most of this complexity. See 
+    the [SDK documentation](../../api/linea-sdk.mdx#claim) for guidance on claiming on L1.
+  </TabItem>
+</Tabs>
+
+## Interface IMessageService.sol
+
+<details>
+  <summary>IMessageService.sol</summary>
+  <CodeBlock language="solidity">{IMessageService}</CodeBlock>
+</details>
+
+## Abstract contract MessageServiceBase.sol
+
+<details>
+  <summary>MessageServiceBase.sol</summary>
+  <CodeBlock language="solidity">{MessageServiceBase}</CodeBlock>
+</details>

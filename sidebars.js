@@ -31,6 +31,7 @@ const sidebars = {
         "get-started/build/network-info",
         "get-started/build/contracts",
         "get-started/build/block-explorers",
+        "get-started/build/dapp-support",
       ],
     },
     {
@@ -352,7 +353,9 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/social-login/arcana",
+            "get-started/tooling/social-login/dynamic",
             "get-started/tooling/social-login/openfort",
+            "get-started/tooling/social-login/privy",
           ],
         },
       ],
@@ -579,7 +582,18 @@ const sidebars = {
     "technology/transaction-lifecycle",
     "technology/network-data",
     "technology/canonical-token-bridge",
-    "technology/message-service",
+    {
+      type: "category",
+      label: "Canonical message service",
+      collapsible: false,
+      link: {
+        type: "doc",
+        id: "technology/message-service/index",
+      },
+      items: [
+        "technology/message-service/reference",
+      ],
+    },
     "technology/coordinator",
     {
       type: "category",

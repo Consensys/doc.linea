@@ -38,7 +38,10 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [{ src: "/js/navbarHighlight.js", defer: true }],
+  scripts: [
+    { src: "/js/navbarHighlight.js", defer: true },
+    { src: "/js/clearSearchOnCollapse.js", async: true },
+  ],
 
   markdown: {
     mermaid: true,
@@ -207,8 +210,16 @@ const config = {
             ],
           },
           {
-            title: "Community",
+            title: "Get involved",
             items: [
+              {
+                label: "Developer Hub",
+                href: "https://linea.build/developers",
+              },
+              {
+                label: "Linea Hub",
+                href: "https://linea.build/apps",
+              },
               {
                 label: "Join our Discord",
                 href: "https://discord.gg/linea",
@@ -227,7 +238,7 @@ const config = {
             title: "Contribute",
             items: [
               {
-                label: "Documentation",
+                label: "GitHub",
                 href: "https://github.com/Consensys/doc.linea",
               },
             ],

@@ -3,7 +3,6 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import HomepageCards from "@site/src/components/HomepageCards";
-import SecondaryCards from "@site/src/components/SecondaryCards";
 import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
 import LineaLogo from "../../static/img/Linea_logo.svg";
 import LineaFooter from "../../static/img/linea_footer.svg";
@@ -61,7 +60,6 @@ export default function Home(): React.ReactNode {
         <HomepageHeader />
         <main style={{ backgroundColor: "var(--banner-background)" }}>
           <HomepageCards />
-          <SecondaryCards />
         </main>
       </Layout>
       <div className={styles.footerImageContainer}>
