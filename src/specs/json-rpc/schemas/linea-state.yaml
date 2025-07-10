@@ -1,0 +1,85 @@
+LineaAccountProof:
+  # Deviates from ethPure by providing more detailed descriptions and removing titles from params
+  description: Account proof.
+  type: object
+  required:
+    - address
+    - accountProof
+    - balanceeth_getBalance
+    - codeHash
+    - nonce
+    - storageHash
+    - storageProof
+  additionalProperties: false
+  properties:
+    address:
+      description: The account address for which the Merkle proof is retrieved. This is an echo of the address passed in the request.
+      $ref: '#/components/schemas/address'
+    accountProof:
+      description: An array of RLP-serialized MerkleTree-Nodes, starting with the `stateRoot`-Node, following the path of the address as key.
+      type: array
+      items:
+        $ref: '#/components/schemas/bytes'
+    balance:
+      description: Hexadecimal of the balance in wei.
+      $ref: '#/components/schemas/uint256'
+    codeHash:
+      description: The 32-byte hash of the account's code. For EOAs, this will be the hash of an empty string. For contract accounts, it represents the hash of the deployed contract code.
+      $ref: '#/components/schemas/hash32'
+    nonce:
+      description: Account nonce; counter for the number of transactions sent from the account.
+      $ref: '#/components/schemas/uint64'
+    storageHash:
+      description: 32-byte SHA3 hash of the storage root. All storage will deliver a Merkle proof starting with this root hash.
+      $ref: '#/components/schemas/hash32'
+    storageProof:
+      description: An array of requested storage-entries.
+      type: array
+      items:
+        $ref: '#/components/schemas/LineaStorageProof'
+LineaStorageProof:
+  # Deviates from ethPure by providing more detailed descriptions and removing titles from params
+  type: object
+  required:
+    - key
+    - value
+    - proof
+  additionalProperties: false
+  properties:
+    key:
+      description: The requested storage key.
+      $ref: '#/components/schemas/bytesMax32'
+    value:
+      description: The storage value.
+      $ref: '#/components/schemas/uint256'
+    proof:
+      type: array
+      description: An array of RLP-serialized MerkleTree-Nodes, starting with the `storageHash` node and following the path of the key.
+      items:
+        $ref: '#/components/schemas/bytes'
+LineaSyncingStatus:
+  # Deviates from ethPure by providing more detailed descriptions and relevant examples to override default
+  # Deviates from Besu lacks pulledStates and knownStates. Is this only relevant to running own node, and not important to Linea:Infura?
+  description: Syncing status.
+  oneOf:
+    - title: Syncing progress
+      type: object
+      properties:
+        startingBlock:
+          description: Block number at which the import started, in hexadecimal. This will only be reset after the sync reaches the head.
+          example: "0x8A9D0"
+          $ref: '#/components/schemas/uint'
+        currentBlock:
+          description: Block number of the current syncing block, in hexadecimal. This is the same as `eth_blockNumber`.
+          example: "0x8FA20"
+          $ref: '#/components/schemas/uint'
+        highestBlock:
+          description: Block number of the highest syncing block, in hexadecimal.
+          example: "0x90B70"
+          $ref: '#/components/schemas/uint'
+    - title: Not syncing
+      description: Should always return `false` if not syncing.
+      properties:
+        result:
+          type: boolean
+          value: false

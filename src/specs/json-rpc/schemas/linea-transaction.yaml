@@ -1,0 +1,266 @@
+LineTraceTransaction:
+  # this is not fully developed nor in use todo decide whether to build out schema for tracer methods. LineaTransactionContext has slight diffs in param names, may not suit reuse.
+  description: An array of [calls to other contracts](https://docs.infura.io/api/networks/ethereum/json-rpc-methods/trace-methods#trace) containing one object per call, in transaction execution order.
+  type: array
+  items:
+    allOf:
+      - title: Call type
+        $ref: '#/components/schemas/LineaCallType'
+      - title: Transaction context
+        $ref: '#/components/schemas/LineaTransactionContext'
+LineaTransactionContext:
+  # Custom schema to allow reference to reduced tx type list in LineaTransactionSigned and supports schema reuse for tracer object
+  type: object
+  allOf:
+    - title: Contextual information
+      required:
+        - blockHash
+        - blockNumber
+        - from
+        - hash
+        - transactionIndex
+      unevaluatedProperties: false
+      properties:
+        blockHash:
+          description: Block hash, 32 byte hex identifier for the block derived from the block header.
+          $ref: '#/components/schemas/hash32'
+        blockNumber:
+          description: Block number as hex-encoded unsigned integer.
+          $ref: '#/components/schemas/uint'
+        from:
+          description: Sender's address.
+          $ref: '#/components/schemas/address'
+        hash:
+          description: 32 byte hex identifier for the transaction hash.
+          $ref: '#/components/schemas/hash32'
+        transactionIndex:
+          description: Transaction position.
+          $ref: '#/components/schemas/uint'
+LineaTransactionExclusion:
+  oneOf:
+    - title: Null response
+      type: 'null'
+    - title: Exclusion details
+      type: object
+      description: Only returned for transactions rejected by the sequencer.
+      properties: 
+        txHash:
+          description: 32 byte hex identifier for the transaction hash.
+          $ref: '#/components/schemas/hash32'
+        from:
+          description: Sender's address.
+          $ref: '#/components/schemas/address'        
+        nonce: 
+          description: Account nonce; counter for the number of transactions sent from the account; for replay protection.
+          $ref: '#/components/schemas/uint'
+        txRejectionStage: 
+          description: |
+            The point at which the transaction was rejected:
+              - SEQUENCER: Rejected by the sequencer
+              - RPC: Rejected by an RPC node
+              - P2P: Rejected by a P2P-connected node
+          type: string 
+          enum:
+            - SEQUENCER
+            - RPC
+            - P2P
+        reasonMessage: 
+          description: The reason the transaction was rejected.
+          type: string
+        blockNumber:
+          description: Block number of the block that the transaction was rejected from, in hexadecimal.
+          $ref: '#/components/schemas/uint'
+        timestamp: 
+          description: Time of rejection, in ISO 8601 format.
+          type: string
+LineaTransactionInfo:
+  # Custom schema to allow reference to reduced tx type list in LineaTransactionSigned
+  type: object
+  allOf:
+    - title: Linea transaction context
+      $ref: '#/components/schemas/LineaTransactionContext'
+    - title: Signed transaction
+      $ref: '#/components/schemas/LineaTransactionSigned'
+LineaTxType:
+  description: |
+    The transaction type as introduced in EIP-2718, in hexadecimal. Use:
+    - 0x00 for LegacyTxType
+    - 0x01 for AccessListTxType (EIP-2930)
+    - 0x02 for DynamicFeeTxType (EIP-1559)
+  type: string
+  enum:
+    - '0x00'
+    - '0x01'
+    - '0x02'
+LineaTransactionSigned:
+  # Linea-specific, removes 4844 and links to custom schemas with no yparity
+  oneOf:
+    - title: Signed 1559 transaction
+      $ref: '#/components/schemas/LineaTransaction1559Signed'
+    - title: Signed 2930 transaction
+      $ref: '#/components/schemas/LineaTransaction2930Signed'
+    - title: Signed legacy transaction
+      $ref: '#/components/schemas/TransactionLegacySigned'
+LineaTransaction2930Signed:
+  # Linea-specific, removes yParity (from required and from properties)
+  type: object
+  allOf:
+    - title: Unsigned 2930 transaction
+      $ref: '#/components/schemas/Transaction2930Unsigned'
+    - title: Signature properties
+      $ref: '#/components/schemas/LineaTransactionSignatureProperties'
+LineaTransactionSignatureProperties:
+  type: object
+  required:
+    - r
+    - s
+  properties:
+    v:
+      description: ECDSA Recovery ID. An alternative to `yParity`.
+      $ref: '#/components/schemas/uint'
+    r:
+      description: ECDSA signature r. 
+      $ref: '#/components/schemas/uint'
+    s:
+      description: ECDSA signature s.
+      $ref: '#/components/schemas/uint'
+LineaTransaction1559Signed:
+  # Linea-specific, removes yParity (from required and from properties)
+  # Besu says that accessList is optional (inherited from Transaction1559Unsigned and EIP-2930 transaction where its required)
+  type: object
+  allOf:
+    - title: Unsigned 1559 transaction
+      $ref: '#/components/schemas/Transaction1559Unsigned'
+    - title: Signature properties
+      $ref: '#/components/schemas/LineaTransactionSignatureProperties'
+LineaReceiptInfo:
+  # Adapted to remove ref to blob data (not relevant to L2 tx): blobGasPrice and blobGasUsed
+  # Need to know Besu config OR test results, may provide revert reason in the response if that config is enabled.
+  type: object
+  description: Receipt information
+  required:
+    - blockHash
+    - blockNumber
+    - from
+    - cumulativeGasUsed
+    - gasUsed
+    - logs
+    - logsBloom
+    - transactionHash
+    - transactionIndex
+    - effectiveGasPrice
+  additionalProperties: false
+  properties:
+    type:
+      $ref: '#/components/schemas/LineaTxType'
+    transactionHash:
+      description: The transaction hash in which the call was made.
+      $ref: '#/components/schemas/hash32'
+    transactionIndex:
+      description: The position in the block, in hexadecimal.
+      $ref: '#/components/schemas/uint'
+    blockHash:
+      description: Block hash; 32 byte hex identifier for the block derived from the block header.
+      $ref: '#/components/schemas/hash32'
+    blockNumber:
+      description: Block number as hex-encoded unsigned integer.
+      $ref: '#/components/schemas/uint'
+    from:
+      description: Address of the sender.
+      $ref: '#/components/schemas/address'
+    to:
+      description: Address of the receiver or null in a contract creation transaction.
+      oneOf:
+        - title: Contract Creation (null)
+          type: 'null'
+        - title: Recipient Address
+          $ref: '#/components/schemas/address'
+    cumulativeGasUsed:
+      description: The sum of gas used by this transaction and all preceding transactions in the same block.
+      $ref: '#/components/schemas/uint'
+    gasUsed:
+      description: The amount of gas used for this specific transaction alone.
+      $ref: '#/components/schemas/uint'
+    contractAddress:
+      description: The contract address created, if the transaction was a contract creation, otherwise null.
+      oneOf:
+        - title: Contract address
+          $ref: '#/components/schemas/address'
+        - title: 'Null'
+          type: 'null'
+    logs:
+      type: array
+      items:
+        $ref: '#/components/schemas/Log'
+    logsBloom:
+      description: Bloom filter for the block logs; `null` when block is pending.
+      $ref: '#/components/schemas/bytes256'
+    root:
+      description: The post-transaction state root. Only specified for transactions included before the Byzantium upgrade.
+      $ref: '#/components/schemas/hash32'
+    status:
+      # todo its likely we can replace uint with integer for the 0/1 --test
+      description: >-
+        Either 0x1 (success) or 0x0 (failure). Only specified for transactions
+        included after the Byzantium upgrade.
+      $ref: '#/components/schemas/uint'
+      enum:
+        - '0x0'
+        - '0x1'
+    effectiveGasPrice:
+      description: The actual value per gas deducted from the sender's account. Before EIP-1559, this is equal to the transaction's gas price. After, it is equal to baseFeePerGas + min(maxFeePerGas - baseFeePerGas, maxPriorityFeePerGas).
+      $ref: '#/components/schemas/uint'
+LineaGenericTransaction:
+  # todo confirm if minimum gas should be set for any of these gas values per 0.134 gwei? https://consensys.slack.com/archives/C05J55YUDUZ/p1720020133563459?thread_ts=1720019669.214109&cid=C05J55YUDUZ
+  # Linea specific to allow removal of blob params maxFeePerBlobGas, blobVersionedHashes, blobs
+  # Adding descriptions per Transaction call object Besu
+  type: object
+  description: Transaction object generic to all Linea-supported transactions. All transaction call object parameters are optional.
+  additionalProperties: false
+  properties:
+    type:
+      $ref: '#/components/schemas/LineaTxType'
+    nonce:
+      description: Account nonce; counter for the number of transactions sent from the account; for replay protection.
+      $ref: '#/components/schemas/uint'
+    to:
+      description: Address of the action receiver.
+      oneOf:
+        - title: Contract Creation (null)
+          type: 'null'
+        - title: Address
+          $ref: '#/components/schemas/address'
+    from:
+      description: Address of the sender.
+      $ref: '#/components/schemas/address'
+    gas:
+      description: Gas provided by the sender. `eth_call` consumes zero gas, but this schema supports other executions that might need this parameter. `eth_estimateGas` ignores this value.
+      $ref: '#/components/schemas/uint'
+    value:
+      description: Value to transfer in wei.
+      $ref: '#/components/schemas/uint'
+    input:
+      description: Input data; alternative term for `data`. 
+      $ref: '#/components/schemas/bytes'
+    gasPrice:
+      description: The gas price the sender is willing to pay in wei. Used only in non-[EIP-1559](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md) transactions. 
+      $ref: '#/components/schemas/uint'
+      default: '0x0'
+    maxPriorityFeePerGas:
+      description: Maximum fee, in wei, the sender is willing to pay per gas above the base fee. Can be used only in [EIP-1559 transactions](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md). If used, must specify `maxFeePerGas`.
+      $ref: '#/components/schemas/uint'
+    maxFeePerGas:
+      description: Maximum total fee (base fee + priority fee), in wei, the sender is willing to pay per gas. Can be used only in [EIP-1559 transactions](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md). If used, must specify `maxPriorityFeePerGas`. 
+      $ref: '#/components/schemas/uint'
+    accessList:
+      description: EIP-2930 access list; a list of addresses and storage keys that the transaction plans to access.
+      $ref: '#/components/schemas/AccessList'
+    chainId:
+      description: Chain ID that this transaction is valid on.
+      $ref: '#/components/schemas/uint'
+    # strict:
+    # # supported by Besu, tested with eth_call and supported by Linea:Besu BUT not needed while Infura doesn't support eth_sendTransaction. Could apply to running your own node for Linea.
+    #   description: Account balance checker. Applies to `eth_sendTransaction` not `eth_call`. Determines if the sender account balance is checked. If `true`, the balance is checked. If `false`, the balance is not checked. If not specified, the balance is checked against the gas parameters if supplied.
+    #   type: boolean
+    #   example: false
+

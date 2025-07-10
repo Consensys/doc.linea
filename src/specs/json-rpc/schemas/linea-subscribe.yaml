@@ -1,0 +1,35 @@
+LineaSubscribe:
+  anyOf:
+    - title: newHeads
+      description: This subscription returns a notification each time a new header is appended to the chain, including chain reorganizations. In a chain reorganization, the subscription emits all new headers for the new chain. Therefore, the subscription can emit multiple headers at the same height.
+      type: string
+      enum: ['newHeads']
+    - title: logs
+      description: This subscription returns logs from newly imported blocks that match the specified filter criteria. If a chain reorganization occurs, logs from the old chain are resent with the removed property set to `true`. Logs from transactions that are included in the new chain are emitted. As a result, the same transaction might emit logs multiple times during a reorganization.
+      type: object
+      properties:
+        logs:
+          type: string
+          enum: ['logs']
+        address:
+          type: array
+          description: Optional filter to only return logs that are created from an array of (one or more) provided addresses.
+          $ref: '#/components/schemas/addresses'
+        topics: 
+          type: array
+          description: |
+            Optionally filter by [topics](https://info.etherscan.com/what-is-event-logs). Topics are made available when contracts are deployed with an indexed keyword added to the parameter declarationFilter.
+                - Topic 0: Is the first topic in the event log. It often represents an event or a primary identifier of an event, for example, the Keccak256 hash of the event signature.
+                - Topic 1: The first indexed parameter (for example, sender address).
+                - Topic 2: The second indexed parameter (for example, recipient address).
+                - Topic 3: The third indexed parameter (for example, additional event-specific data).
+          items:
+            type: string
+            example: "0xEventSignatureHash"
+            default: null
+            maxItems: 4
+    - title: newPendingTransactions
+      description: This subscription returns the hash for all transactions that are added to the pending state and are signed with a key that's available in the node. When a transaction that was previously part of the canonical chain isn't part of the new canonical chain after a reorganization, it's emitted again.
+      type: string
+      enum: ['newPendingTransactions']
+

@@ -1,0 +1,178 @@
+LineaBlock:
+  # As per Ethereum pure with blob-related commented out and richer descriptions from Besu
+  type: object
+  required:
+    - hash
+    - parentHash
+    - sha3Uncles
+    - miner
+    - stateRoot
+    - transactionsRoot
+    - receiptsRoot
+    - logsBloom
+    - number
+    - gasLimit
+    - gasUsed
+    - timestamp
+    - extraData
+    - mixHash
+    - nonce
+    - size
+    - transactions
+    - uncles
+  additionalProperties: false
+  properties:
+    hash:
+      description: Block hash, 32 byte hex identifier for the block derived from the block header; `null` when block is pending. 
+      $ref: '#/components/schemas/hash32'
+    parentHash:
+      description: 32 byte hex value of the hash of the parent block.
+      $ref: '#/components/schemas/hash32'
+    sha3Uncles:
+      description: SHA3 of the uncle's data in the block.
+      $ref: '#/components/schemas/hash32'
+    miner:
+      description: Not relevant to Proof of Stake/Linea. Applied to Proof of Work. Address to pay mining rewards to the coinbase transaction that rewarded the miner for their work.
+      $ref: '#/components/schemas/address'
+    stateRoot:
+      description: Root of the final state trie for the block as 32 byte hex value.
+      $ref: '#/components/schemas/hash32'
+    transactionsRoot:
+      description: Root of the transaction trie for the block.
+      $ref: '#/components/schemas/hash32'
+    receiptsRoot:
+      description: Root of the receipts trie for the block.
+      $ref: '#/components/schemas/hash32'
+    logsBloom:
+      description: Bloom filter for the block logs; `null` when block is pending. 
+      $ref: '#/components/schemas/bytes256'
+    difficulty:
+      description: Not relevant to Proof of Stake/Linea. Difficulty for this block.
+      $ref: '#/components/schemas/uint'
+    number:
+      description: Block number; `null` when block is pending.
+      $ref: '#/components/schemas/uint'
+    gasLimit:
+      description: Maximum gas allowed in this block.
+      $ref: '#/components/schemas/uint'
+    gasUsed:
+      description: Total gas used by all transactions in this block.
+      $ref: '#/components/schemas/uint'
+    timestamp:
+      description: Unix timestamp (milliseconds) for block assembly. 
+      $ref: '#/components/schemas/uint'
+    extraData:
+      description: Extra data field for this block. 
+      # To include this user support todo verify this schema is only used with besu-related calls The [first 32 bytes](https://besu.hyperledger.org/public-networks/reference/api/objects#block-object) is vanity data.
+      $ref: '#/components/schemas/bytes'
+    mixHash:
+      description: Not relevant to Proof of Stake/Linea. Hash used in the Proof of Work process.
+      $ref: '#/components/schemas/hash32'
+    nonce:
+      description: Proof of Work nonce; not relevant to Proof of Stake/Linea. Hash of the generated Proof of Work. 
+      $ref: '#/components/schemas/bytes8'
+    totalDifficulty:
+      description: Not relevant to Proof of Stake/Linea. Total difficulty of the chain until this block. This value will always be `0` for an uncle block. 
+      $ref: '#/components/schemas/uint'
+    baseFeePerGas:
+      description: The block's base fee per gas; empty for blocks created before [EIP-1559](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md).
+      $ref: '#/components/schemas/uint'
+    withdrawalsRoot:
+      description: Root of the trie containing withdrawal receipts in the block.
+      $ref: '#/components/schemas/hash32'
+    # blobGasUsed:
+    #   description: Not relevant to London fork/Linea. Total blob gas used in the block. Relevant to data availability and EIP-4844 (blob transactions).
+    #   $ref: '#/components/schemas/uint'
+    # excessBlobGas:
+    #   description: Not relevant to London fork/Linea. Excess blob gas that's carried over to the next block. Relevant for managing the blob gas market introduced in EIP-4844.
+    #   $ref: '#/components/schemas/uint'
+    parentBeaconBlockRoot:
+      description: Root of the parent Beacon Chain block. This ties the execution layer to the consensus layer in Proof of Stake.
+      $ref: '#/components/schemas/hash32'
+    size:
+      description: Size of block in bytes.
+      $ref: '#/components/schemas/uint'
+    transactions:
+      description: Array of transaction objects, or 32 byte transaction hashes depending on the specified parameter.
+      anyOf:
+        - title: Transaction hashes
+          type: array
+          items:
+            $ref: '#/components/schemas/hash32'
+        - title: Full transactions
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionInfo'
+    withdrawals:
+      type: array
+      items:
+        $ref: '#/components/schemas/Withdrawal'
+    uncles:
+      description: Array of uncle hashes.
+      type: array
+      items:
+        $ref: '#/components/schemas/hash32'
+LineaBlockNumberOrTag:
+  description: Block number or string tag.
+  # Deviates from ethPure by removing tag `safe`
+  oneOf:
+    - title: Block number
+      description: Block number in hexadecimal.
+      $ref: '#/components/schemas/uint'
+    - title: Block tag
+      $ref: '#/components/schemas/LineaBlockTag'
+LineaBlockNumberOrTagNoFinalized:
+  description: Block number or string tag.
+  # Deviates from ethPure by removing tags `safe` and `finalized`
+  oneOf:
+    - title: Block number
+      description: Block number in hexadecimal.
+      $ref: '#/components/schemas/uint'
+    - title: Block tag
+      $ref: '#/components/schemas/LineaBlockTagNoFinalized'
+LineaBlockNumberOrTagOrHash:
+  description: Block number, block hash, or string tag.
+  # Deviates from ethPure by removing tag `safe`
+  anyOf:
+    - title: Block number
+      description: Block number in hexadecimal.
+      $ref: '#/components/schemas/uint'
+    - title: Block tag
+      $ref: '#/components/schemas/LineaBlockTag'
+    - title: Block hash
+      $ref: '#/components/schemas/hash32'
+LineaBlockNumberOrTagOrHashNoFinalized:
+  description: Block number, block hash, or string tag.
+  # Deviates from ethPure by removing tag `safe` and `finalized`
+  anyOf:
+    - title: Block number
+      description: Block number in hexadecimal.
+      $ref: '#/components/schemas/uint'
+    - title: Block tag
+      $ref: '#/components/schemas/LineaBlockTagNoFinalized'
+    - title: Block hash
+      $ref: '#/components/schemas/hash32'
+LineaBlockTag:
+  type: string
+  enum:
+    - earliest
+    - finalized
+    - latest
+    - pending
+  description: |
+    See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block). Note that Linea doesn't support `safe`; use `finalized` instead. Learn more about [Linea's layer 2 finalization](https://docs.linea.build/developers/guides/finalized-block).
+    - `earliest`: The lowest numbered block the client has available.
+    - `finalized`: The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. 
+    - `latest`: The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions. 
+    - `pending`: A sample next block built by the client on top of `latest` and containing the set of transactions usually taken from local mempool. 
+LineaBlockTagNoFinalized:
+  type: string
+  enum:
+    - earliest
+    - latest
+    - pending
+  description: |
+    See the [default block parameter](https://ethereum.org/en/developers/docs/apis/json-rpc/#default-block).
+    - `earliest`: The lowest numbered block the client has available.
+    - `latest`: The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions. 
+    - `pending`: A sample next block built by the client on top of `latest` and containing the set of transactions usually taken from local mempool. 

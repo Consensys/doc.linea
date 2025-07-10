@@ -1,0 +1,172 @@
+Linea4byteTracerConfig:
+  type: object
+  required:
+    - tracerType
+  properties:
+    tracerType:
+      description: The type of tracer; restricted to work with associated config options.
+      type: string
+      enum: ['4byteTracer']
+Linea4byteTracerResponse:
+  type: array
+  description: An array of trace results from the 4byteTracer.
+  items:
+    type: object
+    properties:
+      result:
+        type: object
+        description: A map where the key is a function selector and calldata size, and the value is the number of occurrences.
+        additionalProperties:
+          type: integer
+          description: Number of occurrences of the function call with the specified selector and calldata size.
+      transactionHash:
+        description: The transaction hash that the traces relate to.          
+        $ref: '#/components/schemas/hash32'
+LineaCallTracerConfig:
+  type: object
+  required:
+    - tracerType
+  properties:
+    tracerType:
+      description: The type of tracer; restricted to work with associated config options.
+      type: string
+      enum: ['callTracer']
+    onlyTopCall:
+      description: When `true`, will only trace the primary (top-level) call and not any sub-calls. It eliminates the additional processing for each call frame.
+      type: boolean
+    withLog:
+      description: When  `true`, instructs the tracer to also collect the logs emitted during each call.
+      type: boolean
+LineaCallTracerResponse:
+  description: This returns all the call frames executed during a transaction, including depth 0. The result provides a nested list of call frames. They form a tree with the top-level call at root and sub-calls as children of the higher levels.
+  properties:
+    calls:
+      type: object
+      items:
+        anyOf:
+          - transactionInfo:
+            type: object
+            properties:
+              tracerData:
+                description: Tracer object.
+                $ref: '#/components/schemas/LineaTracerObject' 
+              linkedCalls:
+                type: array
+                description:  A recursive structure that nests additional call frames. Each call frame can, in turn, make sub-calls, and the calls field within each frame captures those sub-calls.
+                items:
+                  $ref: '#/components/schemas/LineaTracerObject' 
+          - calls:
+            description: Next call object.
+            $ref: '#/components/schemas/LineaTracerObject' 
+LineaFlatCallTracerConfig:
+  type: object
+  required:
+    - tracerType
+  properties:
+    tracerType:
+      description: The type of tracer; restricted to work with associated config options.
+      type: string
+      enum:  ['flatCallTracer']
+LineaFlatCallTracerResponse:
+  description: |
+    Returns all the call frames executed during a transaction in a flat structure. Each call frame includes details about the action taken, gas used, and other transaction information. Unlike `callTracer`, this result is not nested.
+  type: object
+  allOf:
+    - title: TracerObject
+      $ref: '#/components/schemas/LineaTracerObject'
+    - title: TraceDetails
+      type: object
+      properties:
+        blockHash:
+          description: 32-byte block hash in which the call was made.
+          $ref: '#/components/schemas/hash32'
+        blockNumber:
+          description: Block number as hex-encoded unsigned integer.
+          $ref: '#/components/schemas/uint'
+        subtraces:
+          type: integer
+          description: The number of subtraces that occurred within the call.
+        traceAddress:
+          type: array
+          items:
+            type: integer
+          description: The trace address showing the nested level of the call.
+        transactionHash:
+          description: The transaction hash in which the call was made.
+          $ref: '#/components/schemas/hash32'
+        transactionPosition:
+          type: integer
+          description: The position of the transaction within the block.
+LineaPrestateTracerConfig:
+  type: object
+  required:
+    - tracerType
+  properties:
+    tracerType:
+      description: The prestate tracer has two modes, `prestate` and `diff`. The prestate mode returns the accounts necessary to execute a given transaction. `diff` mode returns the differences between the transaction's pre- and post-state (what changed *because* the transaction happened). The prestateTracer defaults to `prestate` mode. It reexecutes the given transaction and tracks every part of state that's touched.
+      type: string
+      enum: ['prestateTracer']
+    diffMode:
+      type: boolean
+      default: false
+      description: Setting this to `true` enables `diff` mode. In `diff` mode, the result contains a pre and a post object.
+LineaPrestateTracerResponse:
+  type: array
+  description: Participant account, balance, and transaction count.
+  items:
+    type: object
+    properties:
+      address:
+        description: Participant account.
+        $ref: '#/components/schemas/address'
+      balance:
+        description: Balance.
+        $ref: '#/components/schemas/uint256'
+      nonce:
+        description: Account nonce; counter for the number of transactions sent from the account; for replay protection.
+        $ref: '#/components/schemas/uint64'
+LineaTracerObject:
+  type: object
+  # tested and confirmed
+  properties:
+    from:
+      description: Address of the sender.
+      $ref: '#/components/schemas/address'
+    gas:
+      description: Gas provided by the sender.
+      $ref: '#/components/schemas/uint'
+    gasUsed:
+      description: The amount of gas used for this specific transaction.
+      $ref: '#/components/schemas/uint'
+    input:
+      description: The input data sent to the contract (ABI-encoded).
+      $ref: '#/components/schemas/bytes'
+    output:
+      description: The output data returned by the contract.
+      $ref: '#/components/schemas/bytes'
+    to:
+      description: The contract or address being called.
+      $ref: '#/components/schemas/address'
+    error:
+      description: Error, if any.
+      type: string
+    revertReason:
+      description: Solidity revert reason, if any.
+    type:
+      $ref: '#/components/schemas/LineaCallType'
+    value:
+      description: The amount of ETH in wei transferred in the call.
+      $ref: '#/components/schemas/uint'
+LineaCallType:
+  type: string
+  description: The type of call used in the transaction.
+  enum:
+    - staticcall
+    - call
+    - delegatecall
+    - callcode
+    - create
+    - create2
+    - selfdestruct
+
+

@@ -1,0 +1,195 @@
+# Common types used across Linea JSON-RPC schemas
+uint:
+  type: string
+  pattern: "^0x[a-fA-F0-9]+$"
+  description: Hex-encoded unsigned integer with 0x prefix.
+
+uint64:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{1,16}$"
+  description: Hex-encoded 64-bit unsigned integer with 0x prefix.
+
+uint256:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{1,64}$"
+  description: Hex-encoded 256-bit unsigned integer with 0x prefix.
+
+hash32:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{64}$"
+  description: 32-byte hex string with 0x prefix (e.g., block hash, transaction hash).
+
+address:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{40}$"
+  description: 20-byte hex string with 0x prefix representing an Ethereum address.
+
+bytes:
+  type: string
+  pattern: "^0x[a-fA-F0-9]*$"
+  description: Dynamic-length byte array with 0x prefix.
+
+bytes8:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{16}$"
+  description: 8-byte hex string with 0x prefix.
+
+bytes32:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{64}$"
+  description: 32-byte hex string with 0x prefix.
+
+bytes256:
+  type: string
+  pattern: "^0x[a-fA-F0-9]{512}$"
+  description: 256-byte hex string with 0x prefix (used for logs bloom).
+
+Log:
+  type: object
+  required:
+    - address
+    - topics
+    - data
+    - blockNumber
+    - transactionHash
+    - transactionIndex
+    - blockHash
+    - logIndex
+  properties:
+    address:
+      description: The address from which this log originated.
+      $ref: '#/components/schemas/address'
+    topics:
+      description: Array of 0 to 4 32-byte topics indexed by the contract.
+      type: array
+      items:
+        $ref: '#/components/schemas/hash32'
+      maxItems: 4
+    data:
+      description: Contains non-indexed log parameter values.
+      $ref: '#/components/schemas/bytes'
+    blockNumber:
+      description: The block number in which the log was emitted.
+      $ref: '#/components/schemas/uint'
+    transactionHash:
+      description: Hash of the transaction that created the log.
+      $ref: '#/components/schemas/hash32'
+    transactionIndex:
+      description: Index of the transaction in the block.
+      $ref: '#/components/schemas/uint'
+    blockHash:
+      description: Hash of the block containing the log.
+      $ref: '#/components/schemas/hash32'
+    logIndex:
+      description: Index of the log in the block.
+      $ref: '#/components/schemas/uint'
+
+# Base transaction types
+Transaction2930Unsigned:
+  type: object
+  required:
+    - chainId
+    - nonce
+    - maxFeePerGas
+    - maxPriorityFeePerGas
+    - gas
+    - to
+    - value
+    - data
+    - accessList
+  properties:
+    chainId:
+      description: Chain ID as per EIP-155.
+      $ref: '#/components/schemas/uint'
+    nonce:
+      description: Transaction sequence number.
+      $ref: '#/components/schemas/uint'
+    maxFeePerGas:
+      description: Maximum total fee per gas willing to pay.
+      $ref: '#/components/schemas/uint'
+    maxPriorityFeePerGas:
+      description: Maximum tip per gas willing to pay.
+      $ref: '#/components/schemas/uint'
+    gas:
+      description: Maximum gas provided for transaction execution.
+      $ref: '#/components/schemas/uint'
+    to:
+      description: Recipient address or null for contract creation.
+      oneOf:
+        - $ref: '#/components/schemas/address'
+        - type: 'null'
+    value:
+      description: Amount of ETH to transfer in wei.
+      $ref: '#/components/schemas/uint'
+    data:
+      description: Contract code or encoded function call data.
+      $ref: '#/components/schemas/bytes'
+    accessList:
+      description: List of addresses and storage keys that the transaction plans to access.
+      type: array
+      items:
+        type: object
+        required:
+          - address
+          - storageKeys
+        properties:
+          address:
+            $ref: '#/components/schemas/address'
+          storageKeys:
+            type: array
+            items:
+              $ref: '#/components/schemas/hash32'
+
+Transaction1559Unsigned:
+  type: object
+  required:
+    - chainId
+    - nonce
+    - maxFeePerGas
+    - maxPriorityFeePerGas
+    - gas
+    - to
+    - value
+    - data
+  properties:
+    chainId:
+      description: Chain ID as per EIP-155.
+      $ref: '#/components/schemas/uint'
+    nonce:
+      description: Transaction sequence number.
+      $ref: '#/components/schemas/uint'
+    maxFeePerGas:
+      description: Maximum total fee per gas willing to pay.
+      $ref: '#/components/schemas/uint'
+    maxPriorityFeePerGas:
+      description: Maximum tip per gas willing to pay.
+      $ref: '#/components/schemas/uint'
+    gas:
+      description: Maximum gas provided for transaction execution.
+      $ref: '#/components/schemas/uint'
+    to:
+      description: Recipient address or null for contract creation.
+      oneOf:
+        - $ref: '#/components/schemas/address'
+        - type: 'null'
+    value:
+      description: Amount of ETH to transfer in wei.
+      $ref: '#/components/schemas/uint'
+    data:
+      description: Contract code or encoded function call data.
+      $ref: '#/components/schemas/bytes'
+    accessList:
+      description: Optional list of addresses and storage keys that the transaction plans to access.
+      type: array
+      items:
+        type: object
+        required:
+          - address
+          - storageKeys
+        properties:
+          address:
+            $ref: '#/components/schemas/address'
+          storageKeys:
+            type: array
+            items:
+              $ref: '#/components/schemas/hash32' 

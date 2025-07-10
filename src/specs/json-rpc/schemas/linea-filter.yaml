@@ -1,0 +1,18 @@
+LineaFilter:
+  type: object
+  additionalProperties: false
+  properties:
+    fromBlock:
+      $ref: '#/components/schemas/LineaBlockNumberOrTag'
+    toBlock:
+      $ref: '#/components/schemas/LineaBlockNumberOrTag'
+    address:
+      oneOf:
+        - title: Any address
+          type: 'null'
+        - title: Address
+          $ref: '#/components/schemas/address'
+        - title: Addresses
+          $ref: '#/components/schemas/addresses'
+    topics:
+      $ref: '#/components/schemas/FilterTopics'
