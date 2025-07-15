@@ -101,7 +101,7 @@ towards the new implementation contract addresses.
 
   <summary>What is the `_fee`?</summary>
 
-  **L1 -> L2:**
+  **L1 &rarr; L2:**
   - Automatic claiming: 0 (The postman fee is sponsored by Linea.)
   - Manual claiming: 0
 
@@ -118,10 +118,10 @@ towards the new implementation contract addresses.
 
   :::
 
-  **L2 -> L1:**
+  **L2 &rarr; L1:**
   - Manual claiming: 0.001 ETH (anti-DDOS fee)
 
-  _Automatic claiming is not available for L2 -> L1._
+  _Automatic claiming is not available for L2 &rarr; L1._
 
   See our [main bridge page](../../get-started/how-to/bridge.mdx) for more information on the 
   execution fees that apply.
@@ -192,7 +192,7 @@ the Linea SDK. We recommend you use the SDK, particularly if you're claiming on 
 
 :::note
 
-Since the message service fee is automatically set to 0 for all deposits to Linea (L1 -> L2) using 
+Since the message service fee is automatically set to 0 for all deposits to Linea (L1 &rarr; L2) using 
 less than 250,000 gas, your transaction will be claimed by the postman service automatically in 
 most cases.
 
@@ -222,19 +222,19 @@ Make sure your wallet is connected using the "Connect to Web3" button immediatel
 functions.
 
 The function you need to use to claim your funds depends on the layer you're claiming on:
-- L1 -> L2: use `claimMessage`
-- L2 -> L1: use `claimMessageWithProof`
+- L1 &rarr; L2: use `claimMessage`
+- L2 &rarr; L1: use `claimMessageWithProof`
 
 :::warning
 
-If your L2 -> L1 transfer predates the L2 block `2242568` (Alpha v2, early 2024), use 
+If your L2 &rarr; L1 transfer predates the L2 block `2242568` (Alpha v2, early 2024), use 
 `claimMessage` rather than `claimMessageWithProof`. See the [release notes](../../release-notes.mdx#alpha-v2) 
 for more information. 
 
 :::
 
 <Tabs className="my-tabs">
-  <TabItem value="L1 -> L2">
+  <TabItem value="L1 &rarr; L2">
     Click the `claimMessage` function to see its parameters. You'll need to fill these out to claim 
     your bridged funds:
 
@@ -265,7 +265,7 @@ for more information.
     When ready, click the "Write" button underneath the parameters to prompt the transaction in your
     wallet, and then confirm it to execute the claim.
   </TabItem>
-  <TabItem value="L2 -> L1">
+  <TabItem value="L2 &rarr; L1">
     We don't recommend manually claiming messages on L1 with `claimMessageWithProof`, as gathering
     the parameters is complex and involves querying for various events to reconstruct the proof.
 
