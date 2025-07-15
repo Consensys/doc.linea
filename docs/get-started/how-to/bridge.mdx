@@ -37,6 +37,8 @@ For a guide on using the bridge aggregator and FAQs, see our [support guide](htt
 
 ## Native bridge
 
+### Bridge ETH or other tokens
+
 Head to the [bridge app](https://linea.build/hub/bridge) and select the "Native Bridge" tab.
 
 <div class="center-container">
@@ -334,6 +336,18 @@ Key:
   
   Previously the postman fee was applied to automatic claiming transfers from L1 to L2, but is now 
   free.
+
+### How long do bridge transfers take?
+
+For ETH or ERC-20 tokens:
+- L2 -> L1: 2-16 hours
+- L1 -> L2: ~20 minutes
+
+For USDC:
+- If the app has integrated the Circle [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol), 
+  enabling a faster-than-finality transfer: **~8-20 seconds** for EVM chains
+- Without CCTP (standard transfer, i.e. requires hard finality): ~13-19 minutes for Ethereum and L2 
+  chains  
 
 ## Centralized exchange (CEX)
 
