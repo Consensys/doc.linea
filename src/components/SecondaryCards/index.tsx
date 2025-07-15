@@ -22,7 +22,7 @@ const CardList: CardItem[] = [
   {
     title: "Create your builder profile",
     link: "https://names.linea.build/",
-    description: <>Claim your Linea Name to establish your onchain identity.</>,
+    description: <>Claim your Linea Name to establish your on-chain identity.</>,
     buttonName: (
       <svg
         width="16"
