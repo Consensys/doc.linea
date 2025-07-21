@@ -52,7 +52,7 @@ block with a multiplier applied as a buffer to ensure inclusion.
 Each Linea block's `extraData` field is populated with the following gas price values that are used 
 by `linea_estimateGas` to calculate the cost of a transaction:
 - A `FIXED_COST` of 0.03 Gwei, which reflects infrastructure costs;
-- `VARIABLE_COST`, which is the cost per byte of data submitted to L1, and;
+- `ADJUSTED_VARIABLE_COST`, which is the cost per byte of data submitted to L1, and;
 - `ETH_GAS_PRICE`, used to set a more accurate return value for any `eth_gasPrice` calls. 
 
 :::note
@@ -67,19 +67,38 @@ On Linea, it's used by the sequencer and Linea Besu nodes running the correct pl
 
 Variable cost is calculated with the following formula:
 
-```python
-VARIABLE_COST (4 bytes) = min(max(
-(
-  (
-    ((averageWeightedBaseFee + averageWeightedPriorityFee) * 
-    blob-submission-expected-execution-gas + averageWeightedBlobBaseFee * expected-blob-gas
-  ) / bytes-per-data-submission) * profit-margin
-)
-, min-bound), max-bound)
+```bash
+ADJUSTED_VARIABLE_COST = max(base_variable_cost, previous_variable_cost * ( 1 + delta / CHANGE_DENOMINATOR )
 ```
 
-The `profit-margin` ensures the network is sustainable. `min-bound` and `max-bound` are variable, 
-and guarantee the gas price stays within a reasonable range.
+Where:
+- `base_variable_cost` is calculated with the below formula:
+  ```python
+  variable_cost (4 bytes) = min(max(
+  (
+    (
+      ((averageWeightedBaseFee + averageWeightedPriorityFee) * 
+      blob-submission-expected-execution-gas + averageWeightedBlobBaseFee * expected-blob-gas
+    ) / bytes-per-data-submission) * profit-margin
+  )
+  , min-bound), max-bound)
+  ```
+  The `profit-margin` ensures the network is sustainable. `min-bound` and `max-bound` are variable, 
+  and guarantee the gas price stays within a reasonable range.
+- `previous_variable_cost` is the value of the last `ADJUSTED_VARIABLE_COST` calculation
+- `delta` is a decimal number that fluctuates between `-1.0` and `1.0` and is calculated as:
+  ```bash
+  delta = (sum(block_calldata_size over BLOCK_COUNT) - calldata_target) / calldata_target
+  ```
+  Where:
+  - `BLOCK_COUNT` is a constant at `5`
+  - `block_calldata_size` is the total calldata size of the target block 
+  - `calldata_target`  = `109,000 * BLOCK_COUNT / 2` (given that 109,000 is the maximum calldata 
+    size allowed in each L2 block)
+- `CHANGE_DENOMINATOR` is a constant, currently set to `32`,  designed to control the rate of change
+  of `ADJUSTED_VARIABLE_COST`
+
+### Base variable cost
 
 The variable cost formula enables `linea_estimateGas` to price according to the variable costs of 
 submitting blob data to L1, working out the per-byte cost of that data. The amount of the blob data 
@@ -87,6 +106,26 @@ in each block stays roughly consistent, though the amount _per transaction_ vari
 `linea_estimateGas` API accounts for this, and ensures a gas price is returned for the transaction 
 that reflects the amount of data it contains. In turn, it ensures that the network is sustainable,
 and that the cost to the protocol of L1 data availability is covered. 
+
+### Adjusted variable cost
+
+The overarching adjusted variable cost formula enables the gas price for the end user to 
+automatically adjust to prevent denial-of-service (DoS) attacks where a malicious actor could submit
+a large volume of low-compute, high-data transactions at minimal cost. In theory, such a scenario
+could prevent good-faith users from submitting transactions because all of the block's space for
+data would be taken up by the malicious actor's transactions.
+
+If the calldata space of successive blocks was fully occupied, `ADJUSTED_VARIABLE_COST` would 
+increase exponentially: `1 + 1 / 32` (i.e. `1 + delta / CHANGE_DENOMINATOR`) would cause the 
+variable cost to double every 22 blocks (44 seconds) — 10,000x over 10 minutes. The gas cost for the
+attacker — who needs to fund many transactions — would quickly snowball to a prohibitively high 
+number, while remaining acceptable for regular users who only need to submit a handful of 
+transactions.
+
+This effect also works in the reverse: when calldata space usage falls, the variable cost will
+exponentially decrease and eventually revert to `base_variable_cost`, depending on calldata usage.
+
+### Variable cost and `linea_estimateGas`
 
 To determine the priority fee per gas, `linea_estimateGas` takes the previous block's `VARIABLE_COST` 
 into account:
