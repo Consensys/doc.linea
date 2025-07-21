@@ -85,7 +85,7 @@ Where:
   ```
   The `profit-margin` ensures the network is sustainable. `min-bound` and `max-bound` are variable, 
   and guarantee the gas price stays within a reasonable range.
-- `previous_variable_cost` is the value of the previous block's `ADJUSTED_VARIABLE_COST` calculation
+- `previous_variable_cost` is the value of the last `ADJUSTED_VARIABLE_COST` calculation
 - `delta` is a decimal number that fluctuates between `-1.0` and `1.0` and is calculated as:
   ```bash
   delta = (sum(block_calldata_size over BLOCK_COUNT) - calldata_target) / calldata_target
@@ -121,6 +121,9 @@ variable cost to double every 22 blocks (44 seconds) — 10,000x over 10 minutes
 attacker — who needs to fund many transactions — would quickly snowball to a prohibitively high 
 number, while remaining acceptable for regular users who only need to submit a handful of 
 transactions.
+
+This effect also works in the reverse: when calldata space usage falls, the variable cost will
+exponentially decrease and eventually revert to `base_variable_cost`, depending on calldata usage.
 
 ### Variable cost and `linea_estimateGas`
 
