@@ -348,8 +348,6 @@ const config = {
       });
     `,
   },
-
-  // ✅ Favicon and Structured Data entries start here:
   {
     tagName: "link",
     attributes: {
