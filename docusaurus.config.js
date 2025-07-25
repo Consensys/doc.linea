@@ -321,10 +321,10 @@ const config = {
     "@docusaurus/theme-mermaid",
   ],
   headTags: [
-  {
-    tagName: "script",
-    attributes: {},
-    innerHTML: `
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `
       document.addEventListener('DOMContentLoaded', function() {
         var element = document.getElementById('__cookbook');
         if (!element) {
@@ -347,48 +347,48 @@ const config = {
         }
       });
     `,
-  },
-  {
-    tagName: "link",
-    attributes: {
-      rel: "icon",
-      type: "image/png",
-      sizes: "96x96",
-      href: "/img/favicons/favicon-96x96.png",
     },
-  },
-  {
-    tagName: "link",
-    attributes: {
-      rel: "icon",
-      type: "image/png",
-      sizes: "192x192",
-      href: "/img/favicons/web-app-manifest-192x192.png",
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        href: "/img/favicons/favicon-96x96.png",
+      },
     },
-  },
-  {
-    tagName: "link",
-    attributes: {
-      rel: "icon",
-      type: "image/png",
-      sizes: "512x512",
-      href: "/img/favicons/web-app-manifest-512x512.png",
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: "/img/favicons/web-app-manifest-192x192.png",
+      },
     },
-  },
-  {
-    tagName: "link",
-    attributes: {
-      rel: "apple-touch-icon",
-      sizes: "180x180",
-      href: "/img/favicons/apple-touch-icon.png",
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        href: "/img/favicons/web-app-manifest-512x512.png",
+      },
     },
-  },
-  {
-    tagName: "script",
-    attributes: {
-      type: "application/ld+json",
+    {
+      tagName: "link",
+      attributes: {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/img/favicons/apple-touch-icon.png",
+      },
     },
-    innerHTML: `
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: `
       {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -396,8 +396,8 @@ const config = {
         "logo": "https://docs.linea.build/img/favicons/favicon-96x96.png"
       }
     `,
-  },
-],
+    },
+  ],
 };
 
 module.exports = config;
