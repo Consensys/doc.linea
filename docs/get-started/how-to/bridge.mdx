@@ -6,7 +6,7 @@ image: /img/socialCards/bridge-tokens-to-linea.jpg
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-The Linea bridge app at [bridge.linea.build](https://bridge.linea.build) provides multiple ways to 
+The [Linea bridge app](https://linea.build/hub/bridge) provides multiple ways to 
 get funds onto Linea:
 - **Native bridge**: Built by our team to provide an interface for the [canonical token bridge](../../technology/canonical-token-bridge.mdx). 
 **Best suited for tech operators, protocols, or moving large liquidity**.
@@ -37,7 +37,9 @@ For a guide on using the bridge aggregator and FAQs, see our [support guide](htt
 
 ## Native bridge
 
-Head to the [bridge app](https://bridge.linea.build) and select the "Native Bridge" tab.
+### Bridge ETH or other tokens
+
+Head to the [bridge app](https://linea.build/hub/bridge) and select the "Native Bridge" tab.
 
 <div class="center-container">
   <div class="img-medium">
@@ -48,7 +50,7 @@ Head to the [bridge app](https://bridge.linea.build) and select the "Native Brid
   </div>
 </div>
 
-1. Select the direction of your transfer — either L1 -> L2 or L2 -> L1. 
+1. Select the direction of your transfer — either L1 &rarr; L2 or L2 &rarr; L1. 
 
 <div class="center-container">
   <div class="img-medium">
@@ -67,7 +69,7 @@ based on a shortlist we maintain [here](https://github.com/Consensys/linea-token
 For some combinations of origin and destination chains and assets, you may need to submit an 
 additional transaction on the destination network to claim your funds. This is **manual claiming**,
 and is required for any transfers:
-- From Linea to Ethereum (L2 -> L1)
+- From Linea to Ethereum (L2 &rarr; L1)
 - Involving USDC.
 
 Automatic claiming is selected by default for all transfers where it is possible, and manual
@@ -162,13 +164,14 @@ accessible via the icon next to settings in the top-right of the widget.
 USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.build/blog/lineas-seamless-upgrade-to-native-usdc-a-game-changer-for-onchain-payments), 
 the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol) 
 (CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
-elements that underpin other native bridge transfers.
+that underpins other native bridge transfers.
 
 USDC transfers currently require [manual claiming](#manual-claiming).
 
-CCTP enables faster transfers. USDC transfers in both directions (L1 -> L2 _and_ L2 -> L1) typically 
+CCTP enables faster transfers. USDC transfers in both directions (L1 &rarr; L2 _and_ L2 &rarr; L1) typically 
 complete within 20 minutes, and generally much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
-for a fuller explanation.
+for a fuller explanation, or check [here](https://developers.circle.com/cctp/required-block-confirmations) 
+for information on timescales.
 
 ### Claiming
 
@@ -181,7 +184,7 @@ we call "claiming". To claim, the recipient has to pay a fee on the target layer
 will automatically receive their funds because a "postman" will handle the claiming process for them.
 
 Manual claiming is required for any transfers:
-- From Linea to Ethereum (L2 -> L1)
+- From Linea to Ethereum (L2 &rarr; L1)
 - Involving USDC.
 
 #### Manual claiming
@@ -248,7 +251,7 @@ If you encounter any issues, contact us via our [support site](https://support.l
 
 Automatic claiming is the default option wherever possible, though for the following transfers, 
 manual claiming is required:
-- Linea to Ethereum (L2 -> L1)
+- Linea to Ethereum (L2 &rarr; L1)
 - Any transfer involving USDC.
 
 Although manual claiming is mandatory depending on the context, you can toggle between manual and
@@ -276,9 +279,9 @@ The manual claiming toggle will then be available:
 
 ### Execution fees
 
-:::tip Free postman fees for L1 -> L2
+:::tip Free postman fees for L1 &rarr; L2
 
-The postman fee for L1 -> L2 transfers (i.e. deposits to Linea) is now sponsored for all users for 
+The postman fee for L1 &rarr; L2 transfers (i.e. deposits to Linea) is now sponsored for all users for 
 all transfers using less than 250,000 gas, covering the majority of bridging use cases. 
 
 This means that most automatic claiming transfers from L1 to L2 now have no fees, apart from a few 
@@ -335,10 +338,19 @@ Key:
   Previously the postman fee was applied to automatic claiming transfers from L1 to L2, but is now 
   free.
 
+### How long do bridge transfers take?
+
+For ETH or ERC-20 tokens:
+- L2 &rarr; L1: 2-16 hours
+- L1 &rarr; L2: ~20 minutes
+
+USDC transfers are considerably faster, as they use the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol).
+See the [USDC section](#bridge-usdc) for further information.
+
 ## Centralized exchange (CEX)
 
 Head to the [Layerswap documentation](https://docs.layerswap.io/user-docs/layerswap-app/transfer-from-cex) 
-for guides on tranferring from CEXs.
+for guides on transferring from CEXs.
 
 An integration with Layerswap enables you to withdraw funds to Linea from one of several supported 
 CEXs. This enables you to move funds from a CEX to Linea even if the CEX doesn't support Linea.
@@ -349,7 +361,7 @@ Generally, this process involves these steps:
 3. Go to the CEX and transfer the required funds to the deposit address. 
 4. Layerswap handles the cross-chain transfer to Linea.
 
-The process can differ slightly depending on the CEX. The [Layerswap docs](https://docs.layerswap.io/user-docs/layerswap-app/transfer-from-cex
+The process can differ slightly depending on the CEX. The [Layerswap docs](https://docs.layerswap.io/user-docs/layerswap-app/transfer-from-cex)
 contain guides specific to each CEX.
 
 ## Buy
