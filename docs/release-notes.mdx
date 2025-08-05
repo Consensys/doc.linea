@@ -13,17 +13,54 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+## Beta v4.1
+
+**Linea Mainnet: mid-September 2025** (target)
+
+**Linea Sepolia: early September 2025** (target)
+
+- Boost prover performance to support scaled trading, consumer, and institutional use cases.
+- Activate EIP-7702 support.
+
+## Beta v4
+
+**Linea Mainnet: early September 2025** (target)
+
+**Linea Sepolia: mid/late August 2025** (target)
+
+- Implement Pectra hardfork on Linea (including all EVM upgrades since London), achieving full 
+  EVM-equivalence.
+  - Note: EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
+  - These upgrades will add support for additional opcodes and precompiles, detailed on our [Ethereum
+    differences page](./get-started/build/ethereum-differences.mdx).
+- Add a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer mechanism,
+  Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future transition
+  to decentralized sequencing. Initially only a single Maru node operated by Linea will produce
+  blocks.
+
+## Beta v3.1
+
+**Linea Mainnet: early/mid-August 2025** (target)
+
+**Linea Sepolia: late July 2025** (target)
+
+- Remove sequencer limits. These are no longer required because of the limitless prover introduced in
+  Beta v3.
+- Increase throughput
+
 ## Beta v3
 
-**Linea Mainnet: mid-July 2025** (target)
+**Linea Mainnet: early August 2025** (target)
 
-**Linea Sepolia: late June 2025** (target)
+**Linea Sepolia: late July 2025** (target)
 
-- **Limitless prover**: Eliminates the need for [artificial line counting limits](./technology/prover/prover-limits.mdx), 
-as the prover can handle complex workloads, unlocking:
+- **Limitless prover**: Eliminates the need for the sequencer to enforce module limits, as the prover 
+can handle complex workloads. This unlocks:
   - Higher throughput and TPS
   - Stabler gas fees during high-traffic periods
-  - Faster transaction confirmation during activity peaks
+  - Faster transaction confirmation during activity peaks.
+
+Note that the higher throughput will not enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
 
 ## Beta v2
 
