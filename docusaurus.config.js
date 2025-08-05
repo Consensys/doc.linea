@@ -21,7 +21,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
   // GitHub pages deployment config.
@@ -325,28 +325,77 @@ const config = {
       tagName: "script",
       attributes: {},
       innerHTML: `
-        document.addEventListener('DOMContentLoaded', function() {
-          var element = document.getElementById('__cookbook');
-          if (!element) {
-            element = document.createElement('div');
-            element.id = '__cookbook';
-            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
-            document.body.appendChild(element);
-          }
+      document.addEventListener('DOMContentLoaded', function() {
+        var element = document.getElementById('__cookbook');
+        if (!element) {
+          element = document.createElement('div');
+          element.id = '__cookbook';
+          element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
+          document.body.appendChild(element);
+        }
 
-          var script = document.getElementById('__cookbook-script');
-          if (!script) {
-            script = document.createElement('script');
-            script.crossOrigin = 'anonymous';
-            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
-            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+        var script = document.getElementById('__cookbook-script');
+        if (!script) {
+          script = document.createElement('script');
+          script.crossOrigin = 'anonymous';
+          script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
+          script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
 
-            script.id = '__cookbook-script';
-            script.async = true;
-            document.body.appendChild(script);
-          }
-        });
-      `,
+          script.id = '__cookbook-script';
+          script.async = true;
+          document.body.appendChild(script);
+        }
+      });
+    `,
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        href: "/img/favicons/favicon-96x96.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: "/img/favicons/web-app-manifest-192x192.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        href: "/img/favicons/web-app-manifest-512x512.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/img/favicons/apple-touch-icon.png",
+      },
+    },
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: `
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "https://docs.linea.build",
+        "logo": "https://docs.linea.build/img/favicons/favicon-96x96.png"
+      }
+    `,
     },
   ],
 };
