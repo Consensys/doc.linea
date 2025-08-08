@@ -1,0 +1,44 @@
+.announcementBar {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  background-color: var(--ifm-color-white);
+  color: var(--ifm-color-black);
+  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+}
+
+html[data-announcement-bar-initially-dismissed="true"] .announcementBar {
+  display: none;
+}
+
+.announcementBarPlaceholder {
+  flex: 0 0 10px;
+}
+
+.announcementBarClose {
+  flex: 0 0 30px;
+  align-self: center;
+}
+
+.announcementBarContent {
+  flex: 1 1 auto;
+  line-height: 1.35;
+  padding: 0 12px;
+}
+
+@media print {
+  .announcementBar {
+    display: none;
+  }
+}
+
+@media (min-width: 997px) {
+  .announcementBarPlaceholder,
+  .announcementBarClose {
+    flex-basis: 50px;
+  }
+
+  .announcementBar {
+    padding: 8px 0;
+  }
+}
