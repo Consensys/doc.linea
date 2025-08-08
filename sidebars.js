@@ -85,6 +85,7 @@ const sidebars = {
             id: "get-started/how-to/run-a-node/index",
           },
           items: [
+            "get-started/how-to/run-a-node/beta-v4-migration",
             "get-started/how-to/run-a-node/besu",
             "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
