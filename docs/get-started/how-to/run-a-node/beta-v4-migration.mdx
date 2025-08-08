@@ -1,0 +1,33 @@
+---
+title: Beta v4 migration
+description: >-
+  Notice of impending breaking changes for nodes in Beta v4, and the Maru
+  consensus layer client.
+image: /img/socialCards/beta-v4-migration.jpg
+---
+
+[Linea Beta v4](../../../release-notes.mdx), scheduled to be live on Mainnet in mid-September 2025, 
+introduces breaking changes for existing nodes. 
+
+If you're running a Linea node, you'll need to:
+1. Upgrade your execution layer client to a version compatible with Beta v4, and;
+2. Prepare to run the Maru consensus layer client alongside it.
+
+**We'll share technical guides for both of these processes as soon as possible.**
+
+## Node migration
+
+Beta v4 implements the Pectra upgrade on Linea, and, simultaneously, the EIPs and protocol-level
+changes that have occurred since Ethereum's London upgrade, to which Linea's VM is currently 
+equivalent. (Not all of the EIPs implicated in these period are implemented in Beta v4; some will
+arrive later.)
+
+As these changes bring new opcodes, state formats, and transaction structures, among other features,
+your node(s) _must_ be upgraded to continue functioning. 
+
+## Maru
+
+Maru is the new consensus layer client for Linea, replacing the existing consensus mechanism
+centred around the [coordinator](../../../technology/coordinator.mdx).
+
+With Beta v4, you must run Maru alongside your existing and upgraded execution layer client.

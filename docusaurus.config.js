@@ -102,17 +102,14 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      /*
       announcementBar: {
         id: "announcement_bar",
         content:
-          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="https://docs.linea.build/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
       },
-      */
-
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
