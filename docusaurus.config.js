@@ -105,7 +105,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar_2025_08_v1",
         content:
-          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="https://docs.linea.build/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
+          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
