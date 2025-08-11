@@ -7,23 +7,15 @@ image: /img/socialCards/beta-v4-migration.jpg
 ---
 
 [Linea Beta v4](../../../release-notes.mdx), scheduled to be live on Mainnet in mid-September 2025, 
-introduces breaking changes for existing nodes. 
+introduces breaking changes for existing nodes.
 
 If you're running a Linea node, you'll need to:
 1. Upgrade your execution layer client to a version compatible with Beta v4, and;
 2. Prepare to run the Maru consensus layer client alongside it.
 
+This combined upgrade aligns Linea closely with Ethereum L1’s evolving protocol, ensuring compatibility and interoperability.
+
 **We'll share technical guides for both of these processes as soon as possible.**
-
-## Node migration
-
-Beta v4 implements the Pectra upgrade on Linea, and, simultaneously, the EIPs and protocol-level
-changes that have occurred since Ethereum's London upgrade, to which Linea's VM is currently 
-equivalent. (Not all of the EIPs implicated in these period are implemented in Beta v4; some will
-arrive later.)
-
-As these changes bring new opcodes, state formats, and transaction structures, among other features,
-your node(s) _must_ be upgraded to continue functioning. 
 
 ## Maru
 
@@ -31,3 +23,42 @@ Maru is the new consensus layer client for Linea, replacing the existing consens
 centred around the [coordinator](../../../technology/coordinator.mdx).
 
 With Beta v4, you must run Maru alongside your existing and upgraded execution layer client.
+
+## Key changes introduced in Beta v4 and Maru:
+
+| Feature | Hard fork | Details |
+|---------------|----------|------------------|
+| Maru Consensus Layer | Paris | New consensus client introducing QBFT consensus |
+| EIPs from Paris hardfork | Paris | Adds randomness beacon integration (PREVRANDAO), and EIP-7702 |
+| EIPs from Shanghai hardfork | Shanghai | Warm COINBASE, PUSH0, Limit & Meter initcode |
+| EIPs from Cancun hardfork | Cancun | Transient storage MCOPY. Note that blobs and beacon blob root aren't available atm. |
+| EIPs from Prague hardfork | Prague | BLS12-381 precompiles, block hashes in state, etc. Increase calldata cost. Note that EIP-7702 will not be available until a future minor upgrade (Oct/Nov) |
+
+Some of these updates bring new opcodes, state formats, and transaction structures to Linea.
+The execution layer clients _must be updated_ accordingly in order to handle them correctly.
+
+Additionally, some EIPs, such as EIP-7702 from Prague, will roll out in future, minor, upgrades.
+They will not be available in the initial Beta v4 release.
+
+## Node migration
+
+Beta v4 implements the Pectra upgrade on Linea, and, simultaneously, the EIPs and protocol-level
+changes that have occurred since Ethereum's London upgrade, to which Linea's VM is currently 
+equivalent.
+
+**We will be providing more detailed technical guides for both of these processes as soon as possible.**
+
+This is a brief outline of what the process will involve:
+
+1. **Identify if you run your own Linea node(s);** confirm your setup and versions.
+2. **Plan to upgrade your Execution Layer client** to the Beta v4 compatible version.
+3. **Prepare to run Maru as a required consensus client** alongside your EL node.
+4. Stay tuned for a **step-by-step upgrade guide** to be published soon by the Tech Support team. ([WIP](https://www.notion.so/239fc61a326e80739ab5c1f1a907ccc3?pvs=21))
+5. For any questions, reach out on the NodeRunner channel or support team.
+
+## Timeline
+
+- **Late August 2025:** Beta Testnet upgrade rollout
+- **Mid-September 2025:** Mainnet upgrade rollout (mandatory)
+
+Please prepare to upgrade your EL clients and **deploy Maru alongside your EL nodes** *before these dates* to avoid any disruption.
