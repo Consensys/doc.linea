@@ -1,0 +1,279 @@
+---
+title: Linea Shomei
+description: Run a Linea Shomei node for efficient zk-proof generation.
+image: /img/socialCards/linea-shomei.jpg
+---
+
+# Running a Linea Shomei Node on Mainnet
+
+## Summary
+
+A **Shomei node** is an advanced replica of Linea state used for efficient zk-proof generation, 
+especially tied to the **Sparse Merkle Tree** structure. It does not run standalone; it depends 
+on a fully synced **Linea-Besu** node, connected via a plugin: 
+[besu-shomei-plugin](https://github.com/Consensys/besu-shomei-plugin).
+
+**Why Shomei even exists?**
+
+Before Linea transitions to a Type 1 zkEVM, it still needs a way to:
+
+1. Efficiently generate zk-proofs for state transitions.
+2. Do so without 'bloating' the core execution node (Besu) with heavy, proof-related data logic.
+
+So:
+
+- Besu = execution client, processes blocks and stores state (Bonsai).
+- Shomei = parallel node that mirrors that state and builds an optimized zk-friendly Merkle tree 
+(**Sparse**) for the prover.
+
+**Why not do everything in Besu?**
+
+Because:
+
+- The Bonsai trie uses hash functions that are not SNARK-friendly.
+- zk-proof generation needs linear, historical traces. Shomei keeps that efficiently.
+
+**Why is Shomei going away?**
+
+With the upcoming Type 1 zkEVM, zk-proofs will target Ethereum's canonical state directly. So 
+Shomei (and the sparse trie) becomes obsolete.
+
+## What This Guide Covers (Mode 2: Proofs Only)
+
+This tutorial demonstrates a **minimal working setup** of:
+
+- A **Linea Besu** node (fully synced to mainnet)
+- A **Shomei** node (connected via IPC to Besu)
+- Operating in **Mode 2**: serving `linea_getProof` for finalized blocks only
+    
+    ❄️ No trace generation
+    
+    ❄️ No prover, no L1 connection, no fork choice logic
+
+### Why Mode 2?
+
+In Mode 2, Shomei builds a Sparse Merkle Tree (SMT) from finalized blocks and serves **state 
+proofs**.
+
+You don't need to generate zk-traces or run provers. It's lighter and faster.
+
+### ✅ You Get:
+
+- Efficient `linea_getProof` RPC support
+- Minimal resource usage
+- Fast startup with pre-synced Besu
+
+### ⚠️ You Don't Get:
+
+- `state_sendRawTrieLog`, `rollup_forkChoiceUpdated`, etc.
+- Any zk-trace generation (`-enable-trace-generation` must be `false`)
+
+:::note
+
+Only one mode should be enabled at a time.
+
+:::
+
+### Shomei RPC Methods Coverage in this set up
+
+This setup supports the **core functionality of Shomei**: trace and proof generation for the 
+zkEVM. Here's a breakdown of what works, what's partially supported, and what's not covered.
+
+### Supported RPC Methods
+
+| **Method** | **Status** | **Why it works** |
+| --- | --- | --- |
+| `linea_getProof` | ✅ | Shomei syncs via IPC from Besu and generates per-block zk traces. |
+| `rollup_getZkEVMBlockNumber` | ✅ | Sparse Merkle tree is built and queried through this method. |
+| `rollup_getZkEVMStateMerkleProofV0` | ✅ | Tracks how far Shomei has synced finalized blocks. |
+
+### Not Covered in this setup
+
+| **Feature** | **Reason It's Not Supported** |
+| --- | --- |
+| L1 Coordination / Anchoring | You're not running --profile=advanced-mainnet nor providing L1 RPC flags to Besu. |
+| Fork Choice Update Handling | No coordinator or anchor logic present to handle canonical fork progression. |
+| Prover Infrastructure | This setup only generates data; it doesn't include the consumer (prover or batch submitter). |
+| rollup_forkChoiceUpdated | Responds, but irrelevant without L1 coordination or a fork-choice manager. |
+| rollup_deleteZkEVMStateMerkleProofByRange | Works, but only needed in prover infra doing batch storage / management of proofs. |
+| state_sendRawTrieLog | Dev utility, not relevant to a normal mainnet trace+proof node. |
+
+### What we need to run?
+
+- **Besu Node**: `linea-besu-package` container, fully synced, with Shomei plugins and flags.
+- **Shomei Node**: Separate node container connecting to Besu via IPC or HTTP.
+
+### 🐳 Why Docker?
+
+Docker Compose simplifies the multi-service setup:
+
+- You run both Besu and Shomei in isolated containers.
+- Volumes map local disk to persistent state.
+- No need to install Java or build binaries.
+
+All official Docker images used here are published by ConsenSys:
+
+- Besu: [Docker Hub](https://hub.docker.com/r/consensys/linea-besu-package)
+- Shomei: [Docker Hub](https://hub.docker.com/r/consensys/linea-shomei/tags)
+
+You can also build from source if needed:
+
+- [Besu + plugin](https://github.com/Consensys/besu-shomei-plugin)
+- [Shomei repo](https://github.com/ConsenSys/shomei)
+
+### Docker Compose - Minimal Working Setup (for Shomei Mode 2)
+
+```yaml
+services:
+  linea_besu_node:
+    image: consensys/linea-besu-package:beta-v2.1-rc16.2-20250521134911-f6cb0f2
+    container_name: linea_besu_node
+    restart: unless-stopped
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+    volumes:
+      - ./config.toml:/config/config.toml:ro
+      - ./mainnet-genesis.json:/etc/genesis.json
+      - ./data:/data
+      - ./ipc:/besu/ipc
+    entrypoint:
+      - besu
+      - --config-file=/config/config.toml
+      - --plugins=BesuShomeiRpcPlugin,ZkTrieLogPlugin # This flag is mandatory when starting the Besu node
+
+	# I recommend to first comment out linea_shomei_node and only run besu until it's fully sync, then restart docker compose with linea_shomei_node config
+  linea_shomei_node:
+    image: consensys/linea-shomei:2.3.0
+    container_name: linea_shomei_node
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    depends_on:
+      - linea_besu_node
+    volumes:
+      - ./shomei-data:/data/shomei
+      - ./ipc:/besu/ipc
+    entrypoint:
+      - shomei
+      - --data-path=/data/shomei
+      - --ipc-path=/besu/ipc/besu.ipc
+      - --rpc-http-port=8888
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-host-allow-list=*
+      - --metrics-http-host=0.0.0.0
+      - --metrics-http-port=9888
+      - --enable-trace-generation=fasle # Enables generation of zk-traces for each imported block, set to true for mode 1
+      - --enable-finalized-block-limit=true
+		  - --use-finalized-block-number=1855910
+		  - --use-finalized-block-hash=0xabc0cca83e3eec5a0a30db97dcd4fbbec07361f38c4395c9f79ecf15ee92a07c
+```
+
+**Explanation of Shomei flags**
+
+| Flag | Purpose |
+| --- | --- |
+| `--enable-trace-generation=false` | Disable trace generation. Required for Mode 2 |
+| `--enable-finalized-block-limit=true` | Enables sync pausing at finalized block |
+| `--use-finalized-block-number=...` | Tells Shomei which finalized block to sync up to |
+| `--use-finalized-block-hash=...` | Ensures block correctness (safety) |
+
+### Besu config.toml
+
+:::warning Genesis File Warning
+
+Make sure your mainnet-genesis.json matches **Linea Mainnet's genesis**.
+
+If unsure, you can:
+
+- Download it from [Linea Besu GitHub](https://github.com/Consensys/linea-besu-package)
+- Or copy it from a fully synced Linea Besu node (/data/genesis.json)
+
+:::
+
+```toml
+genesis-file="/etc/genesis.json"
+bootnodes=[
+  "enode://...@3.132.73.210:31002",
+  ...
+]
+data-path = "/data"
+data-storage-format = "BONSAI"
+sync-mode = "FULL" #sync-mode is MANDATORY, can take over 10 days to fully sync.
+rpc-http-enabled = true
+rpc-http-host = "0.0.0.0"
+rpc-http-port = 8545
+rpc-http-api = ["ETH", "NET", "WEB3", "SHOMEI"]
+rpc-ws-enabled = true
+rpc-ws-host = "0.0.0.0"
+rpc-ws-port = 8546
+rpc-ws-api = ["ETH", "NET", "WEB3"]
+host-allowlist = ["*"]
+Xrpc-ipc-enabled = true
+Xrpc-ipc-path = "/besu/ipc/besu.ipc"
+Xrpc-ipc-api = ["ADMIN"]
+plugin-shomei-http-host = "linea_shomei_node"
+plugin-shomei-http-port = 8888
+```
+
+**Volumes and data path**
+
+| **Component** | **Config flag** | **Container path** | **Local folder (EC2)** | **Purpose** |
+| --- | --- | --- | --- | --- |
+| Besu | data-path=/data | /data | ./data | Stores Bonsai state + chain data |
+| Shomei | --data-path=/data/shomei | /data/shomei | ./shomei-data | Stores sparse Merkle state & traces |
+
+Both are **independent**, but they must sync with each other:
+
+- Besu produces finalized blocks and state diffs.
+- Shomei consumes that to build traceable zk state.
+
+### ⚠️ Known Limitations in Mode 2
+
+- Shomei **does not** currently support rollback logic (e.g., self-destructed contracts can't be 
+cleanly reverted).
+    
+    → This may cause `linea_getProof` errors in some edge cases.
+    
+- More info: [PR #68](https://github.com/ConsenSys/shomei/pull/68)
+
+### Curl Examples
+
+**Picking the Finalized Block**
+
+Fetch the block number and hash from Besu:
+
+```bash
+curl -s -X POST localhost:8545 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x1C63E6", false],"id":1}'
+```
+
+```bash
+curl -s -X POST http://localhost:8888 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "linea_getProof",
+    "params": [
+      "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      [],
+      "0x1388"
+    ],
+    "id": 1
+  }'
+```
+
+### Resources
+
+- [Shomei GitHub](https://github.com/ConsenSys/shomei)
+- [Besu Shomei Plugin](https://github.com/ConsenSys/besu-shomei-plugin)
+- [Linea Besu Docker Image](https://hub.docker.com/r/consensys/linea-besu-package)
+- [Postman API Collection](https://documenter.getpostman.com/view/27370530/2s93ebTr7h)
+
+### Final Notes
+
+- ✅ Ensure Besu is fully synced and has the plugin enabled **before** the target Shomei block.
+- ✅ Prefer IPC over HTTP between Besu ↔ Shomei for performance.
+- Shomei will be deprecated once Type 1 zkEVM lands — use public (infura) RPC endpoints.
