@@ -162,16 +162,14 @@ accessible via the icon next to settings in the top-right of the widget.
 ### Bridge USDC
 
 USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.build/blog/lineas-seamless-upgrade-to-native-usdc-a-game-changer-for-onchain-payments), 
-the bridge uses the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol) 
+the bridge uses the [Cross-Chain Transfer Protocol](https://circle.com/cross-chain-transfer-protocol) 
 (CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
 that underpins other native bridge transfers.
 
 USDC transfers currently require [manual claiming](#manual-claiming).
 
-CCTP enables faster transfers. USDC transfers in both directions (L1 &rarr; L2 _and_ L2 &rarr; L1) typically 
-complete within 20 minutes, and generally much faster. See the [CCTP documentation](https://developers.circle.com/stablecoins/cctp-getting-started)
-for a fuller explanation, or check [here](https://developers.circle.com/cctp/required-block-confirmations) 
-for information on timescales.
+While CCTP does allow for "[fast transfers](https://developers.circle.com/stablecoins/cctp-getting-started)", this option is currently not being offered for Linea.
+This is in order to ensure low, transparent pricing to users.
 
 ### Claiming
 
@@ -343,9 +341,6 @@ Key:
 For ETH or ERC-20 tokens:
 - L2 &rarr; L1: 2-16 hours
 - L1 &rarr; L2: ~20 minutes
-
-USDC transfers are considerably faster, as they use the [Cross-Chain Transfer Protocol](https://www.circle.com/cross-chain-transfer-protocol).
-See the [USDC section](#bridge-usdc) for further information.
 
 ## Centralized exchange (CEX)
 
