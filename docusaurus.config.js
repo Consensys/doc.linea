@@ -202,7 +202,7 @@ const config = {
               },
               {
                 label: "Privacy policy",
-                href: "https://consensys.io/privacy-notice",
+                href: "https://linea.build/privacy-policy",
               },
             ],
           },
@@ -210,7 +210,7 @@ const config = {
             title: "Get involved",
             items: [
               {
-                label: "Developer Hub",
+                label: "Builder Hub",
                 href: "https://linea.build/developers",
               },
               {
@@ -218,11 +218,11 @@ const config = {
                 href: "https://linea.build/apps",
               },
               {
-                label: "Join our Discord",
+                label: "Discord",
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get support",
+                label: "User support",
                 to: "https://support.linea.build/",
               },
               {
