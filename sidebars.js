@@ -102,7 +102,10 @@ const sidebars = {
     {
       type: "category",
       label: "Tools",
-      link: null,
+      link: {
+        type: "doc",
+        id: "get-started/tooling/index"
+      },
       collapsible: false,
       items: [
         {
