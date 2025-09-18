@@ -30,8 +30,8 @@ After (post-fork):
 ```
 // Must switch to Maru API
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
+//*returns a list of the current block signature/attestation + previous block signature/attestation.
 ```
-*returns a list of the current block signature/attestation + previous block signature/attestation.
 
 ## Key architecture changes
 
@@ -1195,7 +1195,7 @@ volumes:
 
 **Development**: Maru auto-generates private keys at startup if none exist. (TBC)
 
-**Production**: Generate and backup your validator private key:
+**Production**: Generate and backup your private key (not mandatory):
 
 ```bash
 # Option 1: Let Maru auto-generate, then backup:
@@ -1212,12 +1212,6 @@ Maintaining the same private key preserves node identity across restarts.
 :::
 
 ## Troubleshooting
-
-### Example errors
-
-- **”[qbft] fee-recipient found”** → Remove qbft section (validator config)
-- **“Payload does not exist”** → EL/CL desync
-- **“SyncTargetSelection missing”** → outdated Maru config
 
 ### Debug commands
 
@@ -1236,7 +1230,6 @@ curl http://localhost:8080/eth/v1/beacon/headers/head
 ### Pre-upgrade
 
 - Prepare Docker setup (EL + Maru)
-- Monitor announcements for fork timestamp
 - Plan downtime (if running Geth)
 
 ### During upgrade
@@ -1247,9 +1240,7 @@ curl http://localhost:8080/eth/v1/beacon/headers/head
 
 ### Post-upgrade
 
-- Verify block production in Maru logs
+- Verify block import in Maru logs
 - Check EL `eth_blockNumber`
-- Fetch attestations (signatures) from Maru API, etc
-- Update integrations (no more extraData signatures)
 
 [https://hub.docker.com/r/consensys/maru/tags](https://hub.docker.com/r/consensys/maru/tags)
