@@ -1,63 +1,398 @@
 ---
-title: Beta v4 migration
-description: >-
-  Notice of impending breaking changes for nodes in Beta v4, and the Maru
-  consensus layer client.
+title: Beta v4 migration guide
+description: Details of how to migrate your nodes following Beta v4 upgrade
 image: /img/socialCards/beta-v4-migration.jpg
 ---
 
-[Linea Beta v4](../../../release-notes.mdx), scheduled to be live on Mainnet in mid-September 2025, 
-introduces breaking changes for existing nodes.
+Linea Beta v4 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
 
-If you're running a Linea node, you'll need to:
-1. Upgrade your execution layer client to a version compatible with Beta v4, and;
-2. Prepare to run the Maru consensus layer client alongside it.
+This replaces Clique and aligns Linea with Ethereum's dual-layer design (execution and consensus).
 
-This combined upgrade aligns Linea closely with Ethereum L1’s evolving protocol, ensuring compatibility and interoperability.
+After the fork:
+- You must run **both** an execution layer (EL) client and Maru, a CL client
+- Sequencer signatures move from EL `extraData` to the **Maru attestations API**.
+- EL clients must be upgraded to Beta v4 compatible versions (any EL client that supports Prague 
+  should be compatible).
 
+## Breaking change: sequencer signatures
 
-## Maru
+**Sequencer signatures will no longer be in EL block `extraData` after the upgrade.**
 
-Maru is the new consensus layer client for Linea, replacing the existing consensus mechanism
-centred around the [coordinator](../../../technology/coordinator.mdx).
+Before (pre-fork):
 
-With Beta v4, you must run Maru alongside your existing and upgraded execution layer client.
+```
+// on EL client
+let signatures = block.extra_data;
+```
 
-## Key changes introduced in Beta v4 and Maru
+After (post-fork):
 
-| Feature | Hard fork | Details |
-|---------------|----------|------------------|
-| Maru Consensus Layer | Paris | New consensus client introducing QBFT consensus |
-| EIPs from Paris hardfork | Paris | Adds randomness beacon integration (PREVRANDAO), and EIP-7702 |
-| EIPs from Shanghai hardfork | Shanghai | Warm COINBASE, PUSH0, Limit & Meter initcode |
-| EIPs from Cancun hardfork | Cancun | Transient storage MCOPY. Note that blobs and beacon blob root aren't available atm. |
-| EIPs from Prague hardfork | Prague | BLS12-381 precompiles, block hashes in state, etc. Increase calldata cost. Note that EIP-7702 will not be available until a future minor upgrade (Oct/Nov) |
+```
+// Must switch to Maru API
+let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
+```
 
-Some of these updates bring new opcodes, state formats, and transaction structures to Linea.
-The execution layer clients _must be updated_ accordingly in order to handle them correctly.
+## Key architecture changes
 
-Additionally, some EIPs, such as EIP-7702 from Prague, will roll out in future, minor, upgrades.
-They will not be available in the initial Beta v4 release.
+### Current
 
-## Node migration
+- Single layer: EL client only (Besu with Clique consensus)
+- Sequencer signatures: Stored in EL block `extraData`
+- Block production: Clique handles execution and consensus
 
-Beta v4 implements the Pectra upgrade on Linea, and, simultaneously, the EIPs and protocol-level
-changes that have occurred since Ethereum's London upgrade, to which Linea's VM is currently 
-equivalent.
+### After Beta v4
 
-**We will be providing more detailed technical guides for both of these processes as soon as possible.**
+- Dual layer: EL client + Maru consensus layer
+- Sequencer signatures: Moved to Maru's `SealedBeaconBlock.commitSeals`
+- Block production: Maru (QBFT) coordinates consensus, EL executes transactions
+- API: Signatures and consensus data available via Maru APIs
 
-This is a brief outline of what the process will involve:
+## EL client compatibility
 
-1. **Identify if you run your own Linea node(s);** confirm your setup and versions.
-2. **Plan to upgrade your Execution Layer client** to the Beta v4 compatible version.
-3. **Prepare to run Maru as a required consensus client** alongside your EL node.
-4. Stay tuned for a **step-by-step upgrade guide** to be published soon by the Tech Support team.
-5. For any questions, reach out on the NodeRunner channel or to the support team.
+By design, Linea/Maru will support any client compatible with L1. So any vanilla client compatible 
+with Prague will work.
 
-## Timeline
+Supported EL clients (from [e2e tests](https://github.com/Consensys/maru/tree/main/e2e)):
 
-- **Late August 2025:** Beta Testnet upgrade rollout
-- **Mid-September 2025:** Mainnet upgrade rollout (mandatory)
+- Besu: [25.8.0](https://github.com/hyperledger/besu/releases/tag/25.8.0) or higher
+- Geth: Use the latest release (downtime required)
+- Erigon: 1.15 (TBC)
+- Nethermind: `nethermind/nethermind:1.32.4` or higher
+- Linea-specific: A new `linea-besu-package` release will be provided separately
 
-Please prepare to upgrade your EL clients and **deploy Maru alongside your EL nodes** *before these dates* to avoid any disruption.
+**⚠️ Geth-specific issue:**
+
+- Geth v1.15+ → incompatible with Clique (pre-fork)
+- Geth v1.13 → incompatible with Prague (post-fork)
+- Result: No zero-downtime upgrade path; must plan maintenance window.
+
+## Zero-downtime upgrade strategy
+
+### Besu, Erigon, Nethermind:
+
+1. Start Maru before fork timestamp.
+2. Keep EL client running
+3. Automatic handover at fork timestamp
+4. No downtime required.
+
+### Geth:
+
+1. Downtime unavoidable (version mismatch) (TBC)
+2. Plan maintenance window
+3. Upgrade Geth and start Maru together.
+
+## Technical details
+
+### Example fork schedule
+
+```json
+{
+  "0": {"type": "delegated", "blockTimeSeconds": 1},
+  "1756035235": {"type": "qbft", "elFork": "Shanghai"},
+  "1756035265": {"type": "qbft", "elFork": "Prague"}
+}
+```
+
+## Installation and setup guide
+
+### Prerequisites
+
+- Docker and Docker Compose ([https://hub.docker.com/r/consensys/maru/tags](https://hub.docker.com/r/consensys/maru/tags) or https://github.com/Consensys/maru)
+- 8GB+ RAM (16GB recommended)
+- Open ports: 8545, 8550, 8080, 9090, 9000
+- Synced EL client (for example Besu Sepolia)
+
+### Step 1: Directory structure
+
+```bash
+mkdir -p ~/linea-node/{maru/config,besu/config}
+cd ~/linea-node
+```
+
+### Step 2: Besu configuration (Sepolia)
+
+Create `besu/config/config.toml`:
+
+```toml
+# Sepolia configuration
+data-path="/opt/besu/data"
+genesis-file="/opt/besu/genesis.json"
+
+# Sepolia bootnodes
+bootnodes=[
+  "enode://6f20afbe4397e51b717a7c1ad3095e79aee48c835eebd9237a3e8a16951ade1fe0e66e981e30ea269849fcb6ba03d838da37f524fabd2a557474194a2e2604fa@18.221.100.27:31002",
+  "enode://ce1e0d8e0500cb5c0ac56bdcdafb2d6320c3a2c5125b5ccf12f5dfc9b47ee74acbcafc32559017613136c9c36a0ce74ba4f83b7fb8244f099f3b15708d9d3129@3.23.75.47:31000",
+  "enode://1b026a5eb0ae74300f58987d235ef0e3a550df963345cb3574be3b0b54378bd11f14dfd515a8976f2c2d2826090e9507b8ccc24f896a9ffffffcabcfd996a733@3.129.120.128:31001"
+]
+
+# Sync configuration
+sync-mode="SNAP"
+data-storage-format="BONSAI"
+
+# P2P
+p2p-port=30303
+p2p-host="YOUR_PUBLIC_IP"  # Replace with your machine public IP
+host-allowlist=["*"]
+discovery-enabled=true
+fast-sync-min-peers=1
+
+# Engine API (CRITICAL for Maru connection)
+engine-host-allowlist=["*"]
+engine-rpc-port=8550
+engine-jwt-disabled=true
+engine-rpc-enabled=true # No JWT required for development/testing
+
+# JSON-RPC
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-cors-origins=["*"]
+rpc-http-api=["ADMIN","ENGINE","DEBUG","NET","ETH","WEB3"]
+```
+
+### Step 3: Maru configuration (follower node)
+
+Create `maru/config/maru-config.toml`:
+
+```toml
+# IMPORTANT: No [qbft] section = follower node (not validator)
+
+[persistence]
+data-path = "/data"
+[private-key-path = "/data/private-key"](https://www.notion.so/Linea-Beta-v4-Pectra-Upgrade-Maru-EL-Guide-257fc61a326e80b1a0f7c48708f05ad2?pvs=21)
+
+[p2p]
+port = 9000  # Default port (can be same as discovery)
+ip-address = "0.0.0.0"
+static-peers = ["/ip4/3.129.120.128/tcp/31005/p2p/16Uiu2HAmR33t8RZiAHovuH9iH2UuUrajrbfyYowiYDAQo3D5Y9wg", "/ip4/3.129.120.128/tcp/31006/p2p/16Uiu2HAm9HB5oNmnmj8yY6T7dfhLVidVzYqa8QVDtEthkMr6b8tx"]
+reconnect-delay = "500ms"
+
+[p2p.discovery]
+port = 9000
+bootnodes = []
+refresh-interval = "3s"
+
+[payload-validator]
+engine-api-endpoint = { endpoint = "http://linea-besu:8550" }  # Match Besu port!
+eth-api-endpoint = { endpoint = "http://linea-besu:8545" }
+
+[observability]
+port = 9090
+jvm-metrics-enabled = true
+prometheus-metrics-enabled = true
+
+[api]
+port = 8080
+
+[syncing]
+peer-chain-height-polling-interval = "5s"
+el-sync-status-refresh-interval = "5s"
+sync-target-selection = "Highest"
+desync-tolerance = 5
+
+[syncing.download]
+block-range-request-timeout = "10s"
+blocks-batch-size = 10
+blocks-parallelism = 10
+max-retries = 5
+backoff-delay = "1s"
+use-unconditional-random-download-peer = false
+```
+
+### Step 4: Maru genesis file
+
+Create `maru/config/maru-genesis.json`:
+
+:::note
+
+This genesis configuration may still change.
+
+:::
+
+```yaml
+{
+  "chainId": 59141,
+  "config": {
+    "0": {
+      "type": "delegated",
+      "blockTimeSeconds": 1
+    },
+    "1755165600": {
+      "type": "qbft",
+      "validatorSet": ["0xbfe4ebafa3269c3d52ca59d6eda342af47cb7dde"],
+      "blockTimeSeconds": 2,
+      "elFork": "Shanghai"
+    }
+  }
+}
+```
+
+### Step 5: Docker Compose setup
+
+Create `docker-compose.yml`:
+
+```yaml
+networks:
+  linea: {}
+
+services:
+  besu:
+    image: hyperledger/besu:25.6.0
+    container_name: linea-besu
+    restart: unless-stopped
+    networks: [linea]
+    ports:
+      - "8545:8545"        # JSON-RPC
+      - "8550:8550"        # Engine API
+      - "30303:30303"      # P2P TCP
+      - "30303:30303/udp"  # P2P UDP
+    environment:
+      - JAVA_OPTS=-Xmx4g
+    volumes:
+      - ./besu/data:/opt/besu/data
+      - ./besu/config/config.toml:/opt/besu/config.toml:ro
+      - ./besu/genesis.json:/opt/besu/genesis.json:ro
+    command:
+      - --config-file=/opt/besu/config.toml
+
+  maru:
+    image: consensys/maru:013d64f
+    container_name: linea-maru
+    restart: unless-stopped
+    depends_on:
+      - besu
+    networks: [linea]
+    ports:
+      - "8080:8080"         # Beacon/REST API
+      - "9000:9000/tcp"     # P2P main port
+      - "9000:9000/udp"     # P2P discovery port (UDP only)
+      - "9090:9090"         # Metrics optionnal
+    environment:
+      - JAVA_OPTS=-Xmx2g
+    volumes:
+      - ./maru/config:/opt/consensys/maru/configs:ro
+      - ./maru/data:/data
+    command:
+      - "java"
+      - "-Dlog4j2.configurationFile=/opt/consensys/maru/configs/log4j.xml"
+      - "-jar"
+      - "/opt/consensys/maru/maru.jar"
+      - "--maru-genesis-file"
+      - "/opt/consensys/maru/configs/maru-genesis.json"
+      - "--config"
+      - "/opt/consensys/maru/configs/maru-config.toml"
+```
+
+### Step 6: Launch and verify
+
+```bash
+# Start both services (Besu first then Maru)
+docker-compose up -d
+
+# Check Besu is syncing
+curl -X POST http://localhost:8545 -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# Check Maru health
+curl -X GET "http://localhost:8080/eth/v1/node/health"
+
+# Verify P2P connection
+docker logs linea-maru | grep "Currently connected peers"
+# Should show: peers=[16Uiu2HAmR33t8RZiAHovuH9iH2UuUrajrbfyYowiYDAQo3D5Y9wg]
+```
+
+## JWT Authentication
+
+For production environments, you should enable JWT authentication:
+
+### Generate JWT secret
+
+```bash
+openssl rand -hex 32 > ~/linea-node/jwt/jwt.hex
+```
+
+### Update Besu config
+
+```toml
+# Replace engine-jwt-disabled=true with:
+engine-jwt-enabled=true
+engine-jwt-file="/opt/besu/jwt.hex"
+```
+
+### Update Maru config
+
+```toml
+[payload-validator]
+engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt.hex" }
+```
+
+### Update Docker volumes
+
+```yaml
+# Add to both Besu and Maru:
+volumes:
+  - ./jwt/jwt.hex:/jwt.hex:ro
+```
+
+## Private key management
+
+**Development**: Maru auto-generates private keys at startup if none exist. (TBC)
+
+**Production**: Generate and backup your validator private key:
+
+```bash
+# Option 1: Let Maru auto-generate, then backup:
+docker cp linea-maru:/data/private-key ./backup/
+
+# Option 2: Generate using Maru's key generation tool:
+# https://github.com/Consensys/maru/tree/main/jvm-libs/utils
+```
+
+:::info[Important]
+
+Maintaining the same private key preserves node identity across restarts.
+
+:::
+
+## Troubleshooting
+
+### Example errors
+
+- **”[qbft] fee-recipient found”** → Remove qbft section (validator config)
+- **“Payload does not exist”** → EL/CL desync
+- **“SyncTargetSelection missing”** → outdated Maru config
+
+### Debug commands
+
+```bash
+# EL client block height
+curl -s -X POST http://localhost:8545 -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# Maru health
+curl http://localhost:8080/eth/v1/node/health
+
+# Check block headers
+curl http://localhost:8080/eth/v1/beacon/headers/head
+```
+
+### Pre-upgrade
+
+- Prepare Docker setup (EL + Maru)
+- Monitor announcements for fork timestamp
+- Plan downtime (if running Geth)
+
+### During upgrade
+
+- Upgrade EL client
+- Start Maru before fork (except Geth)
+- Monitor logs for sync and consensus
+
+### Post-upgrade
+
+- Verify block production in Maru logs
+- Check EL `eth_blockNumber`
+- Fetch attestations (signatures) from Maru API, etc
+- Update integrations (no more extraData signatures)
+
+[https://hub.docker.com/r/consensys/maru/tags](https://hub.docker.com/r/consensys/maru/tags)
