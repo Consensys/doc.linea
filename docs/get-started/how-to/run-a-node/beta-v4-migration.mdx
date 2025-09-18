@@ -1095,7 +1095,7 @@ networks:
 
 services:
   besu:
-    image: hyperledger/besu:25.6.0
+    image: hyperledger/besu:25.8.0
     container_name: linea-besu
     restart: unless-stopped
     networks: [linea]
@@ -1114,7 +1114,7 @@ services:
       - --config-file=/opt/besu/config.toml
 
   maru:
-    image: consensys/maru:013d64f
+    image: consensys/maru:2a2eab0
     container_name: linea-maru
     restart: unless-stopped
     depends_on:
