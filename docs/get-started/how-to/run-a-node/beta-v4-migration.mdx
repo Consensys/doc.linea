@@ -30,8 +30,9 @@ After (post-fork):
 ```
 // Must switch to Maru API
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
-//*returns a list of the current block signature/attestation + previous block signature/attestation.
 ```
+*returns a list of the current block signature/attestation + previous block signature/attestation.
+
 
 ## Key architecture changes
 
