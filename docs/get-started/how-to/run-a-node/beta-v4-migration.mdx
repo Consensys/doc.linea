@@ -111,6 +111,8 @@ Depending on your EL client, follow the relevant upgrade path:
 - 8GB+ RAM (16GB recommended)
 - Open ports: 8545, 8550, 8080, 9090, 9000
 - Synced EL client (for example Besu Sepolia)
+- L1 (Sepolia) RPC URL — required for Maru to track zk-proof verification and determine which L2 blocks are finalized
+
 
 ### Step 1: Directory structure
 
@@ -1022,6 +1024,12 @@ Create `maru/config/maru-config.toml`:
 
 ```toml
 # IMPORTANT: No [qbft] section = follower node (not validator)
+
+[linea]
+contract-address = "0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5"
+l1-eth-api = { endpoint = "https://sepolia.infura.io/v3/<your-api-key>" }
+l1-polling-interval = "6 seconds"
+l1-highest-block-tag = "finalized"
 
 [persistence]
 data-path = "/opt/maru/data" 
