@@ -31,7 +31,7 @@ After (post-fork):
 // Must switch to Maru API
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
 ```
-*returns a list of the current block signature/attestation + previous block signature/attestation.
+attestations returns a list of the current block signature/attestation + previous block signature/attestation.
 
 
 ## Key architecture changes
@@ -1049,12 +1049,6 @@ use-unconditional-random-download-peer = false
 ### Step 4: Maru genesis file
 
 Create `maru/config/maru-genesis.json`:
-
-:::note
-
-This genesis configuration may still change.
-
-:::
 
 ```yaml
 {
