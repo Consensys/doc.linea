@@ -31,7 +31,9 @@ After (post-fork):
 // Must switch to Maru API
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
 ```
-attestations returns a list of the current block signature/attestation + previous block signature/attestation.
+
+Attestations returns a list of the current block signature/attestation and the previous block 
+signature/attestation.
 
 
 ## Key architecture changes
@@ -44,7 +46,10 @@ attestations returns a list of the current block signature/attestation + previou
 
 ### After Beta v4
 
-- Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is currently powered by Maru, a consensus client implementing a customized variation of the QBFT algorithm. While Maru is the only supported client today, the architecture is designed to support future client diversity and algorithm evolution).
+- Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is 
+  currently powered by Maru, a consensus client implementing a customized variation of the QBFT 
+  algorithm. While Maru is the only supported client today, the architecture is designed to support 
+  future client diversity and algorithm evolution).
 - Sequencer signatures: Moved to Maru's `SealedBeaconBlock.commitSeals`
 - Block production: Maru (QBFT) coordinates consensus, EL executes transactions
 - API: Signatures and consensus data available via Maru APIs
@@ -71,6 +76,7 @@ Supported EL clients (from [e2e tests](https://github.com/Consensys/maru/tree/ma
 ## Upgrade strategy
 
 Depending on your EL client, follow the relevant upgrade path:
+
 ### Besu, Erigon, Nethermind (zero-downtime)
 
 **Pre-upgrade**
@@ -102,7 +108,6 @@ Depending on your EL client, follow the relevant upgrade path:
 **Post-upgrade**
 - Same verification steps as above
 
-
 ## Installation and setup guide
 
 ### Prerequisites
@@ -111,7 +116,8 @@ Depending on your EL client, follow the relevant upgrade path:
 - 8GB+ RAM (16GB recommended)
 - Open ports: 8545, 8550, 8080, 9090, 9000
 - Synced EL client (for example Besu Sepolia)
-- L1 (Sepolia) RPC URL — required for Maru to track zk-proof verification and determine which L2 blocks are finalized
+- L1 (Sepolia) RPC URL — required for Maru to track zk-proof verification and determine which L2 
+  blocks are finalized
 
 
 ### Step 1: Directory structure
