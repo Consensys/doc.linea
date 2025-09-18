@@ -68,20 +68,39 @@ Supported EL clients (from [e2e tests](https://github.com/Consensys/maru/tree/ma
 - Geth v1.13 → incompatible with Prague (post-fork)
 - Result: No zero-downtime upgrade path; must plan maintenance window.
 
-## Zero-downtime upgrade strategy
+## Upgrade strategy
 
-### Besu, Erigon, Nethermind:
+Depending on your EL client, follow the relevant upgrade path:
+### Besu, Erigon, Nethermind (zero-downtime)
 
-1. Start Maru before fork timestamp.
-2. Keep EL client running
-3. Automatic handover at fork timestamp
-4. No downtime required.
+**Pre-upgrade**
+- Prepare Docker setup (EL + Maru)
+- Upgrade EL client to Prague-compatible version
 
-### Geth:
+**During upgrade**
+- Start Maru before the fork timestamp
+- Keep EL client running
+- Monitor logs for sync and consensus:
+  - `docker logs linea-maru | grep "imported block"`
+  - `curl -s -X POST http://localhost:8545 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'`
 
-1. Downtime unavoidable (version mismatch) (TBC)
-2. Plan maintenance window
-3. Upgrade Geth and start Maru together.
+**Post-upgrade**
+- Verify block import in Maru logs
+- Confirm EL block height with `eth_blockNumber`
+
+### ⚠️ Geth (downtime required):
+
+*Pre-upgrade**
+- Prepare Docker setup (EL + Maru)
+- Plan a short maintenance window after the fork
+
+**During upgrade**
+- Stop Geth after fork timestamp
+- Upgrade to Geth v1.15+ (Prague-compatible)
+- Start both Maru and Geth together
+
+**Post-upgrade**
+- Same verification steps as above
 
 
 ## Installation and setup guide
@@ -1221,19 +1240,3 @@ curl http://localhost:8080/eth/v1/node/health
 # Check block headers
 curl http://localhost:8080/eth/v1/beacon/headers/head
 ```
-
-### Pre-upgrade
-
-- Prepare Docker setup (EL + Maru)
-- Plan downtime (if running Geth)
-
-### During upgrade
-
-- Upgrade EL client in advance
-- Start Maru before the fork
-- Monitor logs for sync and consensus
-
-### Post-upgrade
-
-- Verify block import in Maru logs
-- Check EL `eth_blockNumber`
