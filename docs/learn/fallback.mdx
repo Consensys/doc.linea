@@ -1,0 +1,87 @@
+---
+title: Add a fallback for RPC requests
+description: >-
+  Use Wagmi's `fallback` Transport in your app for contingency in case one RPC
+  endpoint fails.
+image: /img/socialCards/add-a-fallback-for-rpc-requests.jpg
+---
+
+It's best practice to ensure your app can still function if your primary RPC endpoint provider fails,
+enabling JSON-RPC API requests to fall back to an alternative. Wagmi provides a [`fallback`](https://wagmi.sh/core/api/transports/fallback) 
+function that fulfils this need.
+
+It enables you to add multiple [Transports](https://viem.sh/docs/clients/intro#transports) — the 
+element of Viem, and therefore Wagmi, which handles requests — to your app's configuration. If the 
+first fails, the request falls back to the next Transport.
+
+## Prerequisites
+
+Install Wagmi and Viem: 
+
+```bash
+npm install @wagmi/core @wagmi/connectors viem
+```
+
+Viem is required for Wagmi to function. The `@wagmi/connectors` package is not strictly necessary, 
+since `fallback` is included in `@wagmi/core`, but you'll most likely need it for your app anyway. 
+
+## Usage
+
+You can implement the `fallback` transport by adding it to your app's Wagmi configuration:
+
+```typescript
+    export const wagmiConfig = createConfig({
+    chains: [lineaMainnet],
+    transports: {
+        [lineaMainnet.id]: fallback([
+        http('https://rpc.linea.build'),        // primary RPC HTTP endpoint
+        http('https://linea-mainnet.infura.io/v3/{YOUR_API_KEY}'), // fallback HTTP endpoint
+        ]),
+    }
+```
+
+In this example, we define a primary RPC endpoint (`rpc.linea.build`) and fallback (Infura). 
+
+<details>
+    <summary>See full code example</summary>
+    ```typescript title="src/config/wagmiConfig.ts"
+    import { createConfig, http, fallback } from '@wagmi/core';
+    import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc';
+
+    // Define the chain
+    const lineaMainnet = {
+      id: 59144,
+      name: 'Linea Mainnet',
+      network: 'linea',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+      },
+      rpcUrls: {
+        default: {
+          http: ['https://rpc.linea.build'],
+          webSocket: ['wss://rpc.linea.build/ws'],
+        },
+      },
+      blockExplorers: {
+        default: {
+          name: 'LineaScan',
+          url: 'https://lineascan.build',
+        },
+      },
+      testnet: false,
+    };
+
+    // Add the fallback to the config
+    export const wagmiConfig = createConfig({
+      chains: [lineaMainnet],
+      transports: {
+        [lineaMainnet.id]: fallback([
+          http('https://rpc.linea.build'),        // primary RPC HTTP endpoint
+          http('https://another.rpc.endpoint/1'), // fallback HTTP endpoint
+        ]),
+      },
+    });
+    ```
+</details>
