@@ -1112,8 +1112,27 @@ Create `maru/config/maru-genesis.json`:
       }
     }
 ```
+### Step 5: Create log4j.xml file
 
-### Step 5: Docker Compose setup
+Create `maru/config/log4j.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <appender-ref ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+
+### Step 6: Docker Compose setup
 
 Create `docker-compose.yml`:
 
@@ -1169,7 +1188,7 @@ services:
       - "/opt/consensys/maru/configs/maru-config.toml"
 ```
 
-### Step 6: Launch and verify
+### Step 7: Launch and verify
 
 ```bash
 # Start both services (Besu first then Maru)
