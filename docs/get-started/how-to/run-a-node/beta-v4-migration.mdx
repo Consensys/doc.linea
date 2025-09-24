@@ -1,7 +1,7 @@
 ---
 title: Beta v4 migration guide
 description: Details of how to migrate your nodes following Beta v4 upgrade
-image: /img/socialCards/beta-v4-migration.jpg
+image: /img/socialCards/beta-v4-migration-guide.jpg
 ---
 
 Linea Beta v4 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
@@ -171,7 +171,7 @@ rpc-http-api=["ENGINE","DEBUG","NET","ETH","WEB3"]
 
 Update Besu `genesis.json` per the file [here](https://github.com/Consensys/linea-monorepo/tree/main/docker/linea-sepolia):
 
-```
+```json
 {
       "config": {
         "chainId": 59141,
@@ -1027,6 +1027,8 @@ Update Besu `genesis.json` per the file [here](https://github.com/Consensys/line
 
 ### Step 3: Maru configuration (follower node)
 
+Cleanup existing data in `/opt/maru/data` directory that will be used as `data-path` in Maru Configuration
+
 Create `maru/config/maru-config.toml`:
 
 ```toml
@@ -1084,7 +1086,7 @@ use-unconditional-random-download-peer = false
 
 Create `maru/config/maru-genesis.json`:
 
-```yaml
+```json
 {
       "chainId": 59141,
       "config": {
@@ -1092,20 +1094,20 @@ Create `maru/config/maru-genesis.json`:
           "type": "difficultyAwareQbft",
           "blockTimeSeconds": 2,
           "postTtdConfig": {
-            "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+            "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
             "elFork": "Paris"
           },
           "terminalTotalDifficulty": 37331807
         },
         "1759147200": {
           "type": "qbft",
-          "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+          "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
           "blockTimeSeconds": 2,
           "elFork": "Shanghai"
         },
         "1759233600": {
           "type": "qbft",
-          "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+          "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
           "blockTimeSeconds": 2,
           "elFork": "Cancun"
         }
