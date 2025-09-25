@@ -1215,7 +1215,7 @@ For production environments, you should enable JWT authentication:
 ### Generate JWT secret
 
 ```bash
-openssl rand -hex 32 > ~/linea-node/jwt/jwt.hex
+openssl rand -hex 32 > ~/linea-node/jwt/jwtsecret
 ```
 
 ### Update Besu config
@@ -1230,7 +1230,7 @@ engine-jwt-file="/opt/besu/jwt.hex"
 
 ```toml
 [payload-validator]
-engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt.hex" }
+engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt/jwtsecret" }
 ```
 
 ### Update Docker volumes
@@ -1238,7 +1238,7 @@ engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "
 ```yaml
 # Add to both Besu and Maru:
 volumes:
-  - ./jwt/jwt.hex:/jwt.hex:ro
+  - ./jwt:/jwt:ro
 ```
 
 ## Private key management
