@@ -31,53 +31,29 @@ You can implement the `fallback` transport by adding it to your app's Wagmi conf
 
 ```typescript
     export const wagmiConfig = createConfig({
-    chains: [lineaMainnet],
+    chains: [linea],
     transports: {
-        [lineaMainnet.id]: fallback([
-        http('https://rpc.linea.build'),        // primary RPC HTTP endpoint
-        http('https://linea-mainnet.infura.io/v3/{YOUR_API_KEY}'), // fallback HTTP endpoint
+        [linea.id]: fallback([
+        http('https://linea-mainnet.infura.io/v3/{YOUR_API_KEY}'), // Primary RPC provider
+        http('https://rpc.linea.build'),        // Fallback RPC provider
         ]),
     }
 ```
 
-In this example, we define a primary RPC endpoint (`rpc.linea.build`) and fallback (Infura). 
+In this example, we define a primary RPC endpoint (Infura) and a fallback (`rpc.linea.build`). 
 
 <details>
     <summary>See full code example</summary>
     ```typescript title="src/config/wagmiConfig.ts"
     import { createConfig, http, fallback } from '@wagmi/core';
     import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc';
-
-    // Define the chain
-    const lineaMainnet = {
-      id: 59144,
-      name: 'Linea Mainnet',
-      network: 'linea',
-      nativeCurrency: {
-        decimals: 18,
-        name: 'ETH',
-        symbol: 'ETH',
-      },
-      rpcUrls: {
-        default: {
-          http: ['https://rpc.linea.build'],
-          webSocket: ['wss://rpc.linea.build/ws'],
-        },
-      },
-      blockExplorers: {
-        default: {
-          name: 'LineaScan',
-          url: 'https://lineascan.build',
-        },
-      },
-      testnet: false,
-    };
+    import { linea } from 'viem/chains';
 
     // Add the fallback to the config
     export const wagmiConfig = createConfig({
-      chains: [lineaMainnet],
+      chains: [linea],
       transports: {
-        [lineaMainnet.id]: fallback([
+        [linea.id]: fallback([
           http('https://rpc.linea.build'),        // primary RPC HTTP endpoint
           http('https://another.rpc.endpoint/1'), // fallback HTTP endpoint
         ]),
