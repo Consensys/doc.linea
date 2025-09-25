@@ -96,9 +96,10 @@ Depending on your EL client, follow the relevant upgrade path:
 
 ### ⚠️ Geth (downtime required):
 
-*Pre-upgrade**
+**Pre-upgrade**
 - Prepare Docker setup (EL + Maru)
 - Plan a short maintenance window after the fork
+- **Note: the genesis file provided for Besu should be used for Geth as well.**
 
 **During upgrade**
 - Stop Geth after fork timestamp
@@ -170,7 +171,7 @@ rpc-http-api=["ENGINE","DEBUG","NET","ETH","WEB3"]
 
 Update Besu `genesis.json` per the file [here](https://github.com/Consensys/linea-monorepo/tree/main/docker/linea-sepolia):
 
-```
+```json
 {
       "config": {
         "chainId": 59141,
@@ -1026,20 +1027,22 @@ Update Besu `genesis.json` per the file [here](https://github.com/Consensys/line
 
 ### Step 3: Maru configuration (follower node)
 
+Cleanup existing data in `/opt/maru/data` directory that will be used as `data-path` in Maru Configuration
+
 Create `maru/config/maru-config.toml`:
 
 ```toml
 # IMPORTANT: No [qbft] section = follower node (not validator)
 
-[linea]
-contract-address = "0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5"
-l1-eth-api = { endpoint = "<your Sepolia RPC endpoint>" }
-l1-polling-interval = "6 seconds"
-l1-highest-block-tag = "finalized"
+# [linea]
+# contract-address = "0xB218f8A4Bc926cF1cA7b3423c154a0D627Bdb7E5"
+# l1-eth-api = { endpoint = "<your Sepolia RPC endpoint>" }
+# l1-polling-interval = "6 seconds"
+# l1-highest-block-tag = "finalized"
 
 [persistence]
-data-path = "/opt/maru/data" 
-private-key-path = "/opt/maru/private-key"
+data-path = "/data"
+private-key-path = "/data/private-key"
 
 [p2p]
 port = 9000  # Default port (can be same as discovery)
@@ -1083,7 +1086,7 @@ use-unconditional-random-download-peer = false
 
 Create `maru/config/maru-genesis.json`:
 
-```yaml
+```json
 {
       "chainId": 59141,
       "config": {
@@ -1091,28 +1094,47 @@ Create `maru/config/maru-genesis.json`:
           "type": "difficultyAwareQbft",
           "blockTimeSeconds": 2,
           "postTtdConfig": {
-            "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+            "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
             "elFork": "Paris"
           },
           "terminalTotalDifficulty": 37331807
         },
         "1759147200": {
           "type": "qbft",
-          "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+          "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
           "blockTimeSeconds": 2,
           "elFork": "Shanghai"
         },
         "1759233600": {
           "type": "qbft",
-          "validatorSet": ["0xb4323e9d9998990e6333293f8f0d2d09d1619328"],
+          "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
           "blockTimeSeconds": 2,
           "elFork": "Cancun"
         }
       }
     }
 ```
+### Step 5: Create log4j.xml file
 
-### Step 5: Docker Compose setup
+Create `maru/config/log4j.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <appender-ref ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+
+### Step 6: Docker Compose setup
 
 Create `docker-compose.yml`:
 
@@ -1141,7 +1163,7 @@ services:
       - --config-file=/opt/besu/config.toml
 
   maru:
-    image: consensys/maru:2a2eab0
+    image: consensys/maru:dbb6c73
     container_name: linea-maru
     restart: unless-stopped
     depends_on:
@@ -1168,7 +1190,7 @@ services:
       - "/opt/consensys/maru/configs/maru-config.toml"
 ```
 
-### Step 6: Launch and verify
+### Step 7: Launch and verify
 
 ```bash
 # Start both services (Besu first then Maru)
