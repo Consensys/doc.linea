@@ -1056,7 +1056,7 @@ bootnodes = []
 refresh-interval = "3s"
 
 [payload-validator]
-engine-api-endpoint = { endpoint = "http://linea-besu:8550" }  # Match Besu port!
+engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt/jwtsecret" }
 eth-api-endpoint = { endpoint = "http://linea-besu:8545" }
 
 [observability]
