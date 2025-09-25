@@ -8,7 +8,7 @@ image: /img/socialCards/add-a-fallback-for-rpc-requests.jpg
 
 It's best practice to ensure your app can still function if your primary RPC endpoint provider fails,
 enabling JSON-RPC API requests to fall back to an alternative. Wagmi provides a [`fallback`](https://wagmi.sh/core/api/transports/fallback) 
-function that fulfils this need.
+function that fulfils this need, and is based on the [corresponding Viem function](https://v1.viem.sh/docs/clients/transports/fallback.html).
 
 It enables you to add multiple [Transports](https://viem.sh/docs/clients/intro#transports) — the 
 element of Viem, and therefore Wagmi, which handles requests — to your app's configuration. If the 
@@ -61,3 +61,6 @@ In this example, we define a primary RPC endpoint (Infura) and a fallback (`rpc.
     });
     ```
 </details>
+
+Optionally, you can also configure the [`rank` parameter](https://v1.viem.sh/docs/clients/transports/fallback.html#rank-optional)
+to enable your fallback Transport(s) to be used in order of latency and stability.
