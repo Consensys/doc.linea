@@ -32,7 +32,7 @@ After (post-fork):
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
 ```
 
-Attestations returns a list of the current block signature/attestation and the previous block 
+`attestations` returns a list containing the current block signature/attestation and the previous block 
 signature/attestation.
 
 
@@ -40,7 +40,7 @@ signature/attestation.
 
 ### Current
 
-- Single layer: EL client only (Besu with Clique consensus)
+- Single layer: EL client only (Besu with Clique)
 - Sequencer signatures: Stored in EL block `extraData`
 - Block production: Clique handles execution and consensus
 
@@ -56,7 +56,7 @@ signature/attestation.
 
 ## EL client compatibility
 
-By design, Linea/Maru will support any client compatible with L1. So any vanilla client compatible 
+By design, Linea with Maru will support any client compatible with L1. So any vanilla client compatible 
 with Prague will work.
 
 Supported EL clients (from [e2e tests](https://github.com/Consensys/maru/tree/main/e2e)):
