@@ -158,8 +158,8 @@ fast-sync-min-peers=1
 # Engine API (CRITICAL for Maru connection)
 engine-host-allowlist=["*"]
 engine-rpc-port=8550
-engine-jwt-disabled=true
-engine-rpc-enabled=true # No JWT required for development/testing
+engine-jwt-enabled=true
+engine-jwt-file="/jwt/jwtsecret"
 
 # JSON-RPC
 rpc-http-enabled=true
