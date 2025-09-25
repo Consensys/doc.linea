@@ -32,7 +32,7 @@ After (post-fork):
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
 ```
 
-Attestations returns a list containing the current block signature/attestation and the previous block 
+`attestations` returns a list containing the current block signature/attestation and the previous block 
 signature/attestation.
 
 
