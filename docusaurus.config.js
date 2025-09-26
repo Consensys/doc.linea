@@ -211,7 +211,7 @@ const config = {
             items: [
               {
                 label: "Developer Hub",
-                href: "https://developers.linea.build/",
+                href: "https://developer.linea.build/",
               },
               {
                 label: "Linea Hub",
