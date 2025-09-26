@@ -116,7 +116,7 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            
+            "get-started/tooling/account-abstraction/delegation-toolkit",
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
             "get-started/tooling/account-abstraction/noves",
