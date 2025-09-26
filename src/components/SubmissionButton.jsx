@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SubmissionButton = ({ 
-  href = "https://2urwb.share.hsforms.com/2M7Q9cFIWQxyZgLdocN3Smg?submissionGuid=07ed5477-53c1-498a-a5e7-41b12999d66c",
-  text = "Submit your dapp"
+  href = "https://developer.linea.build/configure/app",
+  text = "Submit your app"
 }) => {
   const handleMouseEnter = (e) => {
     e.target.style.backgroundColor = '#fff068';
