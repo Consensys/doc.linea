@@ -210,8 +210,8 @@ const config = {
             title: "Get involved",
             items: [
               {
-                label: "Builder Hub",
-                href: "https://linea.build/developers",
+                label: "Developer Hub",
+                href: "https://developers.linea.build/",
               },
               {
                 label: "Linea Hub",
