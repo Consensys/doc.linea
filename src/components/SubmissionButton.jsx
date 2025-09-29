@@ -2,7 +2,7 @@ import React from 'react';
 
 const SubmissionButton = ({ 
   href = "https://developer.linea.build/configure/app",
-  text = "Submit your app"
+  text = "Visit the Linea Hub"
 }) => {
   const handleMouseEnter = (e) => {
     e.target.style.backgroundColor = '#fff068';
