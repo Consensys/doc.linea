@@ -6,13 +6,15 @@ image: /img/socialCards/beta-v4-migration-guide.jpg
 
 Linea Beta v4 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
 
-This replaces Clique and aligns Linea with Ethereum's dual-layer design (execution and consensus).
+Maru replaces Clique and aligns Linea with Ethereum's dual-layer design (execution and consensus).
 
 After the fork:
 - You must run **both** an execution layer (EL) client and Maru, a CL client
 - Sequencer signatures move from EL `extraData` to the **Maru attestations API**.
 - EL clients must be upgraded to Beta v4 compatible versions (any EL client that supports Prague 
   should be compatible).
+
+See the [Beta v4 release notes](../../../release-notes.mdx#beta-v4) for the scheduled hard fork dates.
 
 ## Breaking change: sequencer signatures
 
