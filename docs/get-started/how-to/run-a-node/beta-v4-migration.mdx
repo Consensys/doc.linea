@@ -160,8 +160,8 @@ fast-sync-min-peers=1
 # Engine API (CRITICAL for Maru connection)
 engine-host-allowlist=["*"]
 engine-rpc-port=8550
-engine-jwt-disabled=true
-engine-rpc-enabled=true # No JWT required for development/testing
+engine-jwt-enabled=true
+engine-jwt-file="/jwt/jwtsecret"
 
 # JSON-RPC
 rpc-http-enabled=true
@@ -1058,7 +1058,7 @@ bootnodes = []
 refresh-interval = "3s"
 
 [payload-validator]
-engine-api-endpoint = { endpoint = "http://linea-besu:8550" }  # Match Besu port!
+engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt/jwtsecret" }
 eth-api-endpoint = { endpoint = "http://linea-besu:8545" }
 
 [observability]
@@ -1210,14 +1210,14 @@ docker logs linea-maru | grep "Currently connected peers"
 # Should show: peers=[16Uiu2HAmR33t8RZiAHovuH9iH2UuUrajrbfyYowiYDAQo3D5Y9wg]
 ```
 
-## JWT Authentication
+## JWT Authentication (Optional)
 
 For production environments, you should enable JWT authentication:
 
 ### Generate JWT secret
 
 ```bash
-openssl rand -hex 32 > ~/linea-node/jwt/jwt.hex
+openssl rand -hex 32 > ~/linea-node/jwt/jwtsecret
 ```
 
 ### Update Besu config
@@ -1225,14 +1225,14 @@ openssl rand -hex 32 > ~/linea-node/jwt/jwt.hex
 ```toml
 # Replace engine-jwt-disabled=true with:
 engine-jwt-enabled=true
-engine-jwt-file="/opt/besu/jwt.hex"
+engine-jwt-file="/jwt/jwtsecret"
 ```
 
 ### Update Maru config
 
 ```toml
 [payload-validator]
-engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt.hex" }
+engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt/jwtsecret" }
 ```
 
 ### Update Docker volumes
@@ -1240,7 +1240,7 @@ engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "
 ```yaml
 # Add to both Besu and Maru:
 volumes:
-  - ./jwt/jwt.hex:/jwt.hex:ro
+  - ./jwt:/jwt:ro
 ```
 
 ## Private key management
