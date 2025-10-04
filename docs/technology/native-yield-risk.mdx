@@ -1,0 +1,130 @@
+---
+title: Native Yield risk disclosures
+description: A transparent risk disclosure covering Linea's Native Yield system
+---
+
+[Native Yield](https://linea.build/blog/introducing-native-yield-sustainable-defi-rewards-from-bridged-eth) 
+is a system that rewards providing liquidity on Linea by automatically staking bridged ETH and 
+redistributing the proceeds to liquidity providers. Rather than a passive asset, ETH bridged to 
+Linea is productive, all while improving the core DeFi experience for users through deeper liquidity. 
+Anyone who bridges ETH to Linea Mainnet from Ethereum Mainnet is a participant in Native Yield.
+
+As with most DeFi protocols and systems, Native Yield is not risk-free. However, it has been designed
+with trust-minimization as a guiding principle, meaning participants don't have to trust Native Yield-affiliated 
+organization such as Linea and Lido; instead, the information and risks are shared transparently so 
+they can verify the system for themselves.
+
+This page is intended to describe Native Yield's risks — and mitigations — in a simple and 
+transparent way, equipping prospective participants with the information they need to make their own, 
+informed decisions.
+
+Please read this page alongside Linea's general [risk disclosures](../risk-disclosures/index.mdx).
+
+## Risk 1: Loss of funds
+
+### Lido governance
+
+Native Yield uses the [stVault](https://v3.lido.fi/) system developed by Lido to stake ETH on Linea.
+There is a fundamental risk that, if something were to interfere with Lido's governance or operations,
+Native Yield participants could lose funds. For example:
+- A privileged entity with access to the stVault could seize funds.
+- Lido smart contracts could be upgraded to change how they function, enabling funds loss.
+
+These risks are mitigated by:
+- **The stVault's non-custodial model**. Node Operators — the automated entities that manage staking —
+  have no access to the staked ETH. Even if compromised or manipulated by a malicious actor, 
+  they cannot take control of ETH staked on Linea.
+- **Lido's Dual Governance model**. Lido is governed by a decentralized autonomous organization (DAO), 
+  but all the decisions it takes to upgrade (alter) its smart contracts can be delayed by holders of 
+  [stETH](https://support.metamask.io/manage-crypto/earn/stake/liquid-staking/what-are-lido-steth-and-stmatic), 
+  the liquid staking token that Lido users receive in exchange for staking ETH. The delays enable
+  stETH holders to exit the protocol before the upgrade, if they choose. This system incentivizes
+  the DAO to make decisions that benefit stakers — in this context, users depositing ETH to Linea —
+  rather than risk losing them. 
+- **"Escape hatch"**. stVaults are designed with an "escape hatch" mechanism that enables the vault
+  owner — in our case, the Linea Security Council — to completely uncouple from the Lido DAO. The 
+  escape hatch can be activated quickly, enabling prompt action in response to DAO voting. 
+- **GateSeal**. Lido also has a [GateSeal](https://docs.lido.fi/contracts/gate-seal/) mechanism that
+  enables a small multisig committee (a wallet where transactions can only be signed by at least half 
+  of the signatories; in this case, 3 of 6) to instantly pause important Lido smart contracts for a
+  defined, 11-day period. In the event of an exploit, this would mitigate funds loss and buy time for
+  Lido's DAO to respond.
+
+### Slashing
+
+Staked ETH is subject to a process called slashing, where some (or all, in extreme cases) of a 
+validator's staked ETH is seized ("slashed") if they operate poorly or maliciously. Slashing 
+incentivizes validators to act in accordance with rules that benefit stakers and the wider network.
+
+Since Native Yield involves staking ETH, there is a risk that validators selected by the Node 
+Operator do not fulfil their duties, and have some of their stake slashed. While a small amount of 
+slashed ETH would be unlikely to affect any single Native Yield participant, and only ~0.04% of 
+Ethereum Mainnet validators have ever been slashed, it's still possible that multiple validators
+could be slashed simultaneously. This would reduce the amount of ETH available to the Native Yield 
+Operator that manages the overall system, and could therefore impact the ability of Native Yield 
+participants to withdraw ETH (bridge back to Ethereum Mainnet). 
+
+These risks are mitigated by:
+- **Node Operator selection process**. Node Operators will only be selected if they have never had 
+  a slashing incident, and otherwise operate their nodes to an extremely high standard.
+- **Slashing insurance fund**. A portion of the Node Operator fees will be temporarily retained to 
+  create an insurance fund that can be used to compensate any Native Yield participants that lose
+  funds as a result of slashing. 
+
+### stETH price risk 
+
+The design of Native Yield means that users do not receive stETH, Lido's liquid staking token, in
+normal circumstances. stETH will only be minted in the rare situation where the Native Yield ETH 
+buffer, which facilitates required withdrawals from Linea, runs out. In this situation, users can 
+choose to withdraw their funds as stETH or wait for the buffer to be refilled.
+
+stETH is redeemable for ETH with the core Lido protocol at a 1:1 rate, meaning it is essentially 
+pegged to the value of ETH (its value is more or less identical). However, if the value of stETH 
+drops below the value of ETH, Lido must rebalance by withdrawing staked ETH to maintain cover the 
+difference, and enable stETH holders to redeem 1:1 for ETH.
+
+The end result is a temporary reduction in the amount of ETH in the vault, and therefore a 
+temporary reduction in rewards that can be distributed to Native Yield participants. There is no 
+risk to the underlying capital in the vault: the staked ETH. Native Yield participants are therefore
+insulated from the price risks of stETH.
+
+## Risk 2: Delayed or censored withdrawals
+
+### Dependence on permissioned roles
+
+It's critical that Native Yield participants can permissionlessly withdraw funds at any time. In 
+other systems similar to Linea Native Yield, such as Blast, require a permissioned administrator
+to approve each step of the withdrawal. 
+
+Native Yield is designed to minimize any withdrawal friction, reducing the risk that user funds are
+temporarily locked into the system. Potentially frozen funds are mitigated by purposely **restricting
+the Native Yield Operator's responsibilities.** The Native Yield Operator manages the liquidity 
+buffer, stakes and unstakes funds, and generally maintains vault solvency. Crucially, the Native 
+Yield Operator does not facilitate withdrawals and cannot move funds in or out of the vault itself. 
+This means participants can withdraw without the approval of any other entity, making the system 
+permissionless.
+
+### Withdrawal delays 
+
+Withdrawing funds from the Native Yield system simply requires participants to bridge them back to
+Ethereum Mainnet. However, this action relies on there being sufficient liquid funds available to 
+absorb withdrawal demand — withdrawing staked ETH takes time (~1 week), and would cause delays if 
+it had to be relied upon. If available liquidity is ever exhausted, such as in an extreme "bank run" 
+scenario, participants would be unable to exit the system when they want, and would need to wait for 
+the buffer to be refilled. 
+
+There is, therefore, a risk that the buffer could be exhausted, and that users are unable to withdraw
+funds from Linea. This is mitigated through: 
+- **Managing the liquidity buffer**. Only a portion of deposited ETH is actually staked; the rest is
+  held in the liquidity buffer and managed according to activity, ensuring enough remains available.
+  The size of the buffer covers expected withdrawal volume plus a significant safety margin, and the 
+  Native Yield Operator dynamically tops up the buffer by unstaking ETH.
+- **stETH withdrawals**. In an extreme scenario where the liqudity buffer is exhausted, users will 
+  not be forced to wait for it to be refilled. Instead, they'll have the option to withdraw their 
+  funds as stETH rather than wait for ETH to be unstaked and added to the liquidity buffer. Because 
+  of this system, there is always an option for immediate liquidity; even in extreme cases, 
+  particpants can withdraw funds. 
+
+Despite these systems, the Ethereum validator unstaking queue is a potential bottleneck that we 
+cannot control. If unstaking demand is high across the Ethereum ecosystem, this may impact 
+participants' ability to withdraw funds from Linea. 
