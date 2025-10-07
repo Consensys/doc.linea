@@ -171,10 +171,12 @@ rpc-http-cors-origins=["*"]
 rpc-http-api=["ENGINE","DEBUG","NET","ETH","WEB3"]
 ```
 
-Update Besu `genesis.json` per the file [here](https://github.com/Consensys/linea-monorepo/tree/main/docker/linea-sepolia):
+Update Besu `genesis.json` per the file [here](https://github.com/Consensys/zk-apps-prod/blob/main/values/operator-linea-besu/config/sepolia/genesis-sepolia.yaml):
 
 ```json
-{
+configMaps:    
+  genesisJson: |
+    {
       "config": {
         "chainId": 59141,
         "homesteadBlock": 0,
@@ -190,6 +192,7 @@ Update Besu `genesis.json` per the file [here](https://github.com/Consensys/line
         "terminalTotalDifficulty": 37331807,
         "shanghaiTime": 1759147200,
         "cancunTime": 1759233600,
+        "pragueTime": 1760004000,
         "depositContractAddress": "0x0bdae9550159eb73559e74d27fbc989641b24c8e",
         "withdrawalRequestContractAddress": "0x0e97F666F1d99A60590F7Ce7fA5A5a7C754Ff714",
         "clique":{
@@ -1090,7 +1093,9 @@ use-unconditional-random-download-peer = false
 Create `maru/config/maru-genesis.json`:
 
 ```json
-{
+configMaps:
+  genesisJson: |-
+    {
       "chainId": 59141,
       "config": {
         "0": {
@@ -1113,6 +1118,12 @@ Create `maru/config/maru-genesis.json`:
           "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
           "blockTimeSeconds": 2,
           "elFork": "Cancun"
+        },
+        "1760004000": {
+          "type": "qbft",
+          "validatorSet": ["0x20e2654209c3f5a7b4728fb228778f1261f1013f"],
+          "blockTimeSeconds": 2,
+          "elFork": "Prague"
         }
       }
     }
