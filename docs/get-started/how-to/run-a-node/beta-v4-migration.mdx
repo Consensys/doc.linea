@@ -11,7 +11,7 @@ Maru replaces Clique and aligns Linea with Ethereum's dual-layer design (executi
 After the fork:
 - You must run **both** an execution layer (EL) client and Maru, a CL client
 - Sequencer signatures move from EL `extraData` to the **Maru attestations API**.
-- EL clients must be upgraded to Beta v4 compatible versions (any EL client that supports Prague 
+- EL clients must be upgraded to Beta v4 compatible versions (any EL client that supports Prague
   should be compatible).
 
 See the [Beta v4 release notes](../../../release-notes.mdx#beta-v4) for the scheduled hard fork dates.
@@ -34,7 +34,7 @@ After (post-fork):
 let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
 ```
 
-`attestations` returns a list containing the current block signature/attestation and the previous block 
+`attestations` returns a list containing the current block signature/attestation and the previous block
 signature/attestation.
 
 
@@ -48,9 +48,9 @@ signature/attestation.
 
 ### After Beta v4
 
-- Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is 
-  currently powered by Maru, a consensus client implementing a customized variation of the QBFT 
-  algorithm. While Maru is the only supported client today, the architecture is designed to support 
+- Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is
+  currently powered by Maru, a consensus client implementing a customized variation of the QBFT
+  algorithm. While Maru is the only supported client today, the architecture is designed to support
   future client diversity and algorithm evolution).
 - Sequencer signatures: Moved to Maru's `SealedBeaconBlock.commitSeals`
 - Block production: Maru (QBFT) coordinates consensus, EL executes transactions
@@ -58,7 +58,7 @@ signature/attestation.
 
 ## EL client compatibility
 
-By design, Linea with Maru will support any client compatible with L1. So any vanilla client compatible 
+By design, Linea with Maru will support any client compatible with L1. So any vanilla client compatible
 with Prague will work.
 
 Supported EL clients (from [e2e tests](https://github.com/Consensys/maru/tree/main/e2e)):
@@ -119,7 +119,7 @@ Depending on your EL client, follow the relevant upgrade path:
 - 8GB+ RAM (16GB recommended)
 - Open ports: 8545, 8550, 8080, 9090, 9000
 - Synced EL client (for example Besu Sepolia)
-- L1 (Sepolia) RPC URL — required for Maru to track zk-proof verification and determine which L2 
+- L1 (Sepolia) RPC URL — required for Maru to track zk-proof verification and determine which L2
   blocks are finalized
 
 
@@ -1060,6 +1060,7 @@ refresh-interval = "3s"
 [payload-validator]
 engine-api-endpoint = { endpoint = "http://linea-besu:8550" }  # Match Besu port!
 eth-api-endpoint = { endpoint = "http://linea-besu:8545" }
+payload-validation-enabled = false
 
 [observability]
 port = 9090
