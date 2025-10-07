@@ -21,6 +21,9 @@ The message service is responsible for cross-chain messages between Ethereum and
   - **push**: auto-execution on target layer if a fee is paid
   - **pull**: users/protocols responsible for triggering the transaction
 
+The L2 message service contract holds ~999M ETH, a value set at genesis. This ETH is distributed to
+addresses on L2 to reflect the deposits (i.e. bridging requests) sent to the L1 message service.
+
 ## Contracts
 
 <Tabs groupId="Mainnet-Testnet" className="my-tabs">

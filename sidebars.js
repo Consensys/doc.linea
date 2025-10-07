@@ -102,7 +102,10 @@ const sidebars = {
     {
       type: "category",
       label: "Tools",
-      link: null,
+      link: {
+        type: "doc",
+        id: "get-started/tooling/index"
+      },
       collapsible: false,
       items: [
         {
@@ -368,6 +371,7 @@ const sidebars = {
     "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
+    "learn/fallback",
     {
       type: "category",
       label: "Ecosystem tutorials",

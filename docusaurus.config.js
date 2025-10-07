@@ -20,7 +20,6 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
@@ -45,6 +44,9 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
@@ -202,7 +204,7 @@ const config = {
               },
               {
                 label: "Privacy policy",
-                href: "https://consensys.io/privacy-notice",
+                href: "https://linea.build/privacy-policy",
               },
             ],
           },
@@ -210,7 +212,7 @@ const config = {
             title: "Get involved",
             items: [
               {
-                label: "Developer Hub",
+                label: "Builder Hub",
                 href: "https://linea.build/developers",
               },
               {
@@ -218,11 +220,11 @@ const config = {
                 href: "https://linea.build/apps",
               },
               {
-                label: "Join our Discord",
+                label: "Discord",
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get support",
+                label: "User support",
                 to: "https://support.linea.build/",
               },
               {
