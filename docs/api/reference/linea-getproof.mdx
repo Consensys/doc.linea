@@ -36,7 +36,7 @@ In the [example response](#response) the account exists but the slot doesn't.
   - `proof`: Object containing the proof data for the account:
     - `proofRelatedNodes`: Array of nodes in the sparse Merkle tree used to construct the proof.
     - `value`: The value stored at the account's leaf node in the sparse Merkle tree.
-- `storageProof`: An array of storage-entries as requested. Each entry is an object with these properties:
+- `storageProofs`: An array of storage-entries as requested. Each entry is an object with these properties:
   - `key`: The requested storage key.
   - `leftLeafIndex`: The index of the left leaf node in the sparse Merkle tree that corresponds to the
       storage slot.
