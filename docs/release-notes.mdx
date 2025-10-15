@@ -24,7 +24,11 @@ import TabItem from "@theme/TabItem";
 
 ## Beta v4
 
-**Linea Mainnet: mid-October 2025** (TBC)
+**Linea Mainnet:**
+- Paris: 21 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
+- Shanghai: 10am, 23 October, 2025 
+- Cancun: TBC
+- Prague: TBC
 
 **Linea Sepolia:**
 - Paris: 24 September, 2025
@@ -32,6 +36,7 @@ import TabItem from "@theme/TabItem";
 - Cancun: 30 September, 2025
 - Prague: 7 October, 2025
 
+Changes:
 - Implement Pectra hardfork on Linea (including all EVM upgrades since London), achieving full 
   EVM-equivalence. The upgrade will occur in stages, progressing through hard forks.
   - Note: EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
@@ -40,7 +45,8 @@ import TabItem from "@theme/TabItem";
 - Add a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer mechanism,
   Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future transition
   to decentralized sequencing. Initially only a single Maru node operated by Linea will produce
-  blocks.
+  blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) 
+  to this system.
 
 ## Beta v3.1
 
