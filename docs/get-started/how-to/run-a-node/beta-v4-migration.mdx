@@ -83,10 +83,13 @@ Supported EL clients include:
 
 Geth clients have a slightly more complex compatability situation:
 
-- Geth v1.15+ → incompatible with Clique (pre-fork)
-- Geth v1.13 → incompatible with Prague (post-fork)
+- Geth v1.15.x → incompatible with Clique (pre-fork)
+- Geth v1.13.x → incompatible with Prague (post-fork)
 
-As a result, there is no zero-downtime upgrade path; you must plan a maintenance window.
+As a result, for a zero-downtime upgrade path, you must upgrade in a specific order:
+1. Start with v1.13.15 (compatible with London hard fork, i.e. pre-Beta v4)
+2. Upgrade to v1.16.x _after_ Linea has updated to Shanghai ([10am CET, 23 October, 2025](../../../release-notes.mdx#beta-v4)) and _before_
+  Linea upgrades to Cancun (time TBC)
 
 :::
 
@@ -101,24 +104,28 @@ See below for the steps you'll need to follow to upgrade, and then refer to the 
 
 **All clients:**
 - Prepare Docker setup (EL + Maru)
-- Upgrade EL client to Prague-compatible version
+- Upgrade EL client to Prague-compatible version. See the guidance on compatibility [above](#el-client-compatibility), 
+especially for Geth nodes.
 
-**Geth only:**
-- Plan a short maintenance window after the fork
+**Geth:**
+- Keep Geth at v1.13.15, the version compatible with the London EVM that pre-Beta v4 Linea uses.
 
 ### During upgrade
 
 **Besu, Erigon, Nethermind:**
-- [Start Maru](#step-2-run-docker-compose) before the fork timestamp
+- [Start Maru](#step-2-run-docker-compose-migrate) before the fork timestamp
 - Keep EL client running
 - Monitor logs for sync and consensus:
   - `docker logs linea-maru | grep "imported block"`
   - `curl -s -X POST http://localhost:8545 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'`
 
 **Geth:**
-- Stop Geth after fork timestamp
-- Upgrade to Geth v1.15+ (Prague-compatible)
-- Start both [Maru and Geth simultaneously](#start-maru-and-el-client-simultaneously)
+The Geth migration process depends on when you are upgrading. Based on the [compatibility notes](#el-client-compatibility
+above, you must:
+- [Start Maru](#step-2-run-docker-compose-migrate) before the fork timestamp
+- Keep Geth at v1.13.15 until Linea has updated to the Shanghai EVM
+- Upgrade to v1.16.x after Shanghai but before Linea upgrades to Cancun
+
 
 ### Post-upgrade
 
@@ -153,7 +160,7 @@ To get the files, choose one of the following methods:
 3. Create corresponding files locally and copy and paste the contents of their counterparts from the 
   monorepo.
 
-### Step 2: Run `docker compose`
+### Step 2: Run `docker compose` {#step-2-run-docker-compose-migrate}
 
 Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `docker/linea-sepolia`), you can run:
 
@@ -161,7 +168,7 @@ Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `d
 docker compose up maru-node
 ```
 
-You must run this to start Maru _before_ the fork timestamps detailed in the [release notes](../../../release-notes.mdx#beta-v4).
+You must run this to start Maru _before_ the first fork timestamp (Paris) detailed in the [release notes](../../../release-notes.mdx#beta-v4).
 
 ### Step 3: Verify
 
@@ -207,7 +214,7 @@ disk space. Cloning the repo is probably the easiest way to get the files.
 2. Download the Linea monorepo as a ZIP from GitHub, then move the `/docker/linea-mainnet` (or `/linea-sepolia`) directory to your preferred location locally. 
 3. Create corresponding files locally and copy them from the monorepo.
 
-### Step 2: Run `docker compose`
+### Step 2: Run `docker compose` {#step-2-run-docker-compose-simultaneous}
 
 Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `docker/linea-sepolia`), you can run:
 
