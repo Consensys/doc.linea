@@ -14,10 +14,15 @@ import LastUpdated from "../../../../src/components/LastUpdated";
 [Geth](https://geth.ethereum.org/) is an open-source Go implementation of Ethereum.
 
 :::info important
-Install and run a Geth node if you want to follow the Linea network by 
-maintaining a local copy of the blockchain. However, if you want to interact with the network and use
-Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
+
+Install and run a Geth node if you want to follow the Linea network by maintaining a local copy of 
+the blockchain. However, if you want to interact with the network and use Linea-specific methods and 
+features, you should [install Linea Besu](./linea-besu.mdx) instead.
+
 :::
+
+Please note that you must run any execution layer client such as Geth alongside Linea's consensus
+layer client, [Maru](./beta-v4-migration.mdx), for the node to function.
 
 You can run Geth from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
 
@@ -29,8 +34,9 @@ You can run Geth from a [binary distribution](#run-using-the-binary-distribution
 
 :::warning
 
-Linea only supports Geth _up to_ v1.13.15 or lower. v1.14.0 and subsequent versions aren't 
-supported. 
+Linea currently only supports Geth _up to_ v1.13.15 or lower. However, with the changes coming with
+Linea [Beta v4](../../../release-notes.mdx#beta-v4), you must update your Geth client. See the 
+[migration guide](./beta-v4-migration.mdx) for more information.
 
 :::
 
@@ -41,12 +47,12 @@ Download the genesis file for the relevant network.
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Mainnet [`genesis.json`](pathname:///files/geth/mainnet/genesis.json) file.
+  Mainnet [`genesis.json`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet/geth) file.
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Sepolia [`genesis.json`](pathname:///files/geth/sepolia/genesis.json) file.
+  Sepolia [`genesis.json`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia/geth) file.
   
   </TabItem>
 </Tabs>
@@ -75,7 +81,7 @@ Bootstrap the node using the following command:
   <TabItem value="mainnet" label="Mainnet">
   
     ```bash
-    geth --datadir ./geth-linea-data init ./genesis.json
+    geth --datadir ./geth-linea-data init ./geth-genesis.json
     ```
   
   </TabItem>
@@ -83,7 +89,7 @@ Bootstrap the node using the following command:
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
   ```bash
-  geth --datadir ./geth-sepolia-data init ./genesis.json
+  geth --datadir ./geth-sepolia-data init ./geth-genesis.json
   ```
   
   </TabItem>
@@ -152,13 +158,7 @@ to your node, **that doesn't mean that the node is not syncing**.
 **If you don't see any incoming blocks**, check and make sure that you have **at least one peer from the bootnodes**;
 otherwise, you might not be connected to the Linea network.
 
-<aside>
-  {/* Is this a Discord channel? */}
-  💡 Please feel free to contact us at the Linea Community Forum <a href="https://community.linea.build/c/developer-support/5">
-    here
-  </a> if you have any issues.
-</aside>
-<br />
+Contact us at the [Linea Discord](https://discord.gg/linea) if you have any issues.
 
 ## Run using Docker
 
@@ -174,8 +174,15 @@ Download the configuration files for the relevant network. Ensure that you downl
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Download the mainnet [`docker-compose.yml`](pathname:///files/geth/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/mainnet/genesis.json)
-  files.
+  Head to the `[/docs/getting-started/linea-mainnet/](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet/)` 
+  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
+  both:
+  - `/docs/getting-started/linea-mainnet`, which contains the `docker-compose.yml` file that you'll 
+    run, and;
+  - `/docs/getting-started/linea-mainnet/geth`, which contains the genesis file.
+  
+  You can choose to manually download each, copy their contents into files of your own, or clone the 
+  Linea monorepo.
 
   :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The Geth `docker-compose.yml`
@@ -187,16 +194,23 @@ Download the configuration files for the relevant network. Ensure that you downl
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Download the Sepolia testnet [`docker-compose.yml`](pathname:///files/geth/sepolia/docker-compose.yml) and [`genesis.json`](pathname:///files/geth/sepolia/genesis.json)
-  files.
+  Head to the `[/docs/getting-started/linea-sepolia/](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia/)` 
+  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
+  both:
+  - `/docs/getting-started/linea-sepolia`, which contains the `docker-compose.yml` file that you'll 
+    run, and;
+  - `/docs/getting-started/linea-sepolia/geth`, which contains the genesis file.
+  
+  You can choose to manually download each, copy their contents into files of your own, or clone the 
+  Linea monorepo.
   
   </TabItem>
 </Tabs>
 
 ### Step 2. Start the Geth node
 
-Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
-and run `docker compose up`
+Open up a terminal where the both `docker-compose.yml` and `geth-genesis.json` are located (they should be in the same directory)
+and run `docker compose up geth-node`.
 
 The node should now be running and looking for peers to sync.
 

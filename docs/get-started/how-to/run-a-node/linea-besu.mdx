@@ -11,6 +11,17 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
+:::note
+
+This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../release-notes.mdx#beta-v4), 
+Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
+client of your choice. 
+
+This section will be updated shortly to reflect this new architecture and is inaccurate for the time
+being.
+
+:::
+
 Linea Besu is an implementation of the Besu client that extends its functionality using plugins
 adapted specifically for Linea, such as the
 [Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
@@ -99,12 +110,12 @@ on L1.
 <Tabs groupId="networks" className="my-tabs">
     <TabItem value="mainnet" label="Mainnet">
     ```bash
-    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=<endpoint> 
+    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
     ```
     </TabItem>
     <TabItem value="Linea Sepolia" label="Linea Sepolia">
     ```bash
-    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=<endpoint> 
+    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
     ```
     </TabItem>
 </Tabs>
@@ -197,7 +208,7 @@ If you only intend to run a `basic` profile, go straight to the next step.
       For example:
 
       ```bash
-      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:latest
+      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:beta-v4.0-rc11-20251004063519-a5c4c31
       ```
 
       Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 

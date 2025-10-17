@@ -20,7 +20,6 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
@@ -45,6 +44,9 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
@@ -210,8 +212,8 @@ const config = {
             title: "Get involved",
             items: [
               {
-                label: "Builder Hub",
-                href: "https://linea.build/developers",
+                label: "Developer Hub",
+                href: "https://developer.linea.build/",
               },
               {
                 label: "Linea Hub",

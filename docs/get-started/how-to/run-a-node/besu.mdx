@@ -15,12 +15,17 @@ import LastUpdated from "../../../../src/components/LastUpdated";
 Apache 2.0 license and written in Java.
 
 :::info important
-Install and run a Besu node if you want to follow the Linea network by 
-maintaining a local copy of the blockchain. However, if you want to interact with the network and use
-Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
+
+Install and run a Besu node if you want to follow the Linea network by maintaining a local copy of 
+the blockchain. However, if you want to interact with the network and use Linea-specific methods and 
+features, you should [install Linea Besu](./linea-besu.mdx) instead.
+
 :::
 
 You can run Besu from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
+
+Please note that you must run any execution layer client such as Besu alongside Linea's consensus
+layer client, [Maru](./beta-v4-migration.mdx), for the node to function.
 
 ## Run using the binary distribution
 
@@ -36,8 +41,7 @@ Download the genesis file and Besu configuration file.
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Mainnet [`genesis-mainnet.json`](pathname:///files/besu/genesis-mainnet.json) file and Besu
-  [`config-mainnet.toml`](pathname:///files/besu/config-mainnet.toml) file.
+  Find the genesis file and configuration file [here](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet/besu).
 
   :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The above configuration file uses 
@@ -49,8 +53,7 @@ Download the genesis file and Besu configuration file.
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Testnet [`genesis-sepolia.json`](pathname:///files/besu/genesis-sepolia.json) file and Besu
-  [`config-sepolia.toml`](pathname:///files/besu/config-sepolia.toml) file.
+  Find the genesis file and configuration file [here](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia/besu).
   
   </TabItem>
 
@@ -76,8 +79,7 @@ Ensure you mount the Besu `data-path` to the custom volume when you start the no
 
 ### Step 4. Configure the Besu configuration file
 
-In your Besu configuration file (`config-mainnet.toml` or `config-sepolia.toml`), configure
-the following options:
+In your Besu configuration file, configure the following options:
 
 - Set `data-path` to the location you want to store your data. 
 - Set `genesis-file` to the path of your downloaded genesis file.
@@ -90,14 +92,14 @@ Run the Besu client with the location of your configuration file. For example:
   <TabItem value="mainnet" label="Mainnet">
   
   ```bash
-  besu --config-file=/Users/myuser/mainnet/config-mainnet.toml
+  besu --config-file=/Users/myuser/mainnet/linea-besu.config.toml
   ```
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
   ```bash
-  besu --config-file=/Users/myuser/sepolia/config-sepolia.toml
+  besu --config-file=/Users/myuser/sepolia/linea-besu.config.toml
   ```
   
   </TabItem>
@@ -126,7 +128,16 @@ files include the network genesis file, Docker Compose file and Besu configurati
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Download the mainnet [`besu-mainnet` ZIP file](pathname:///files/besu/besu-mainnet.zip).
+  Head to the `[/docs/getting-started/linea-mainnet/](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet/)` 
+  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
+  both:
+  - `/docs/getting-started/linea-mainnet`, which contains the `docker-compose.yml` file that you'll 
+    run, and;
+  - `/docs/getting-started/linea-mainnet/besu`, which contains the genesis file and configuration 
+    file.
+  
+  You can choose to manually download each, copy their contents into files of your own, or clone the 
+  Linea monorepo.
 
   :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The Besu `.zip` includes a
@@ -139,14 +150,23 @@ files include the network genesis file, Docker Compose file and Besu configurati
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Download the testnet [`besu-sepolia` ZIP file](pathname:///files/besu/besu-sepolia.zip).
+  Head to the `[/docs/getting-started/linea-sepolia/](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia/)` 
+  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
+  both:
+  - `/docs/getting-started/linea-sepolia`, which contains the `docker-compose.yml` file that you'll 
+    run, and;
+  - `/docs/getting-started/linea-sepolia/besu`, which contains the genesis file and configuration 
+    file.
+  
+  You can choose to manually download each, copy their contents into files of your own, or clone the 
+  Linea monorepo.
   
   </TabItem>
 </Tabs>
 
 ### Step 2. Update the Docker Compose file
 
-In the `docker-compose.yaml` file, update the `--p2p-host` command to include your public IP address. For example:
+In the `docker-compose.yml` file, update the `--p2p-host` command to include your public IP address. For example:
 
 ```yaml
 --p2p-host=103.10.10.10
@@ -158,9 +178,12 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 
 :::
 
+The file also contains `docker compose` commands for other execution layer clients; delete those if 
+you want, or just disregard them. 
+
 ### Step 3. Start the Besu node
 
-Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up`. 
+Open a terminal, in the directory containing the `docker-compose.yml` file, run `docker-compose up besu-node`. 
 
 It can take up to 20 minutes for the node to find peers. If it takes any longer than that, try restarting the node.
 

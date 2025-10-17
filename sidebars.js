@@ -25,7 +25,8 @@ const sidebars = {
             "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/app",
             "get-started/build/quickstart/hub",
-            "get-started/build/quickstart/hub-reviews"
+            "get-started/build/quickstart/hub-reviews",
+            "get-started/build/quickstart/events"
           ],
         },
         "get-started/build/ethereum-differences",
@@ -88,10 +89,10 @@ const sidebars = {
           items: [
             "get-started/how-to/run-a-node/beta-v4-migration",
             "get-started/how-to/run-a-node/besu",
-            "get-started/how-to/run-a-node/erigon",
+            // "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
             "get-started/how-to/run-a-node/linea-besu",
-            "get-started/how-to/run-a-node/nethermind",
+            // "get-started/how-to/run-a-node/nethermind",
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
