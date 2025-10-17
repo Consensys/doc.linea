@@ -108,7 +108,8 @@ See below for the steps you'll need to follow to upgrade, and then refer to the 
 especially for Geth nodes.
 
 **Geth:**
-- Keep Geth at v1.13.15, the version compatible with the London EVM that pre-Beta v4 Linea uses.
+- Keep Geth at v1.13.15, the version compatible with the Clique consensus algorithm that pre-Beta 
+v4 Linea uses.
 
 ### During upgrade
 
@@ -168,7 +169,8 @@ Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `d
 docker compose up maru-node
 ```
 
-You must run this to start Maru _before_ the first fork timestamp (Paris) detailed in the [release notes](../../../release-notes.mdx#beta-v4).
+You must run this to start Maru _before_ the Paris fork block number detailed in the [release notes](../../../release-notes.mdx#beta-v4)
+— block 24787631.
 
 ### Step 3: Verify
 
