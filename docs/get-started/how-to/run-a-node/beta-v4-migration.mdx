@@ -248,7 +248,8 @@ For production environments, you should enable JWT authentication:
 ### Generate JWT secret
 
 ```bash
-openssl rand -hex 32 > ~/linea-node/jwt/jwtsecret
+mkdir -p ./jwt
+openssl rand -hex 32 > ./jwt/jwtsecret
 ```
 
 ### Update Besu config
