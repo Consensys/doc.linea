@@ -96,7 +96,7 @@ const sidebars = {
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
-        "get-started/how-to/poh-api",
+        "get-started/how-to/verify-users-with-proof-of-humanity",
         "get-started/how-to/state-recovery",
       ],
     },
@@ -117,7 +117,7 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            
+
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
             "get-started/tooling/account-abstraction/noves",
@@ -542,8 +542,8 @@ const sidebars = {
             },
           ],
         },
-      ],  
-    },  
+      ],
+    },
     {
       type: "category",
       label: "JSON-RPC API reference",
