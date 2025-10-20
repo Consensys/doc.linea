@@ -8,32 +8,23 @@ This page outlines Ethereum Mainnet functionality that differs on Linea, or is n
 Linea. Absence from this page indicates that the functionality is available on Linea and identical to 
 behavior on Ethereum Mainnet; if you're experiencing otherwise, please get in touch via Discord.
 
-## EVM opcodes
+:::note 
 
-:::info important 
-
-Linea uses the London version of the Ethereum Virtual Machine (EVM). All EVM opcodes are managed 
-identically to Ethereum London unless presented in the following table.
-
-Solidity 8.23 and later compiles newer versions of the EVM by default. Use the `solc --evm-version london` 
-command to ensure compatibility with Linea. 
+With Linea [Beta v4](../../release-notes.mdx#beta-v4), Linea upgraded to the Pectra hard fork. 
 
 :::
 
-Check out [Ethereum's history](https://ethereum.org/en/history/) to learn about
-major milestones, forks, and updates to the blockchain.
+## EVM opcodes
 
 <table>
   <tr>
     <th>Opcode</th>
     <th>Ethereum</th>
-    <th>Linea: current state</th>
-    <th>Linea: Pectra upgrade (Beta v4)</th>
+    <th>Linea</th>
   </tr>
   <tr>
     <td>`BLOBBASEFEE`</td>
     <td>Returns the value of the blob base-fee of the current block.</td>
-    <td>Not supported.</td>
     <td>Will always return the minimum value.</td>
   </tr>
   <tr>
@@ -44,7 +35,6 @@ major milestones, forks, and updates to the blockchain.
       returns the hash of the corresponding blob.
       <br /> <br /> If the index is out of bounds, returns `0`.
     </td>
-    <td>Not supported.</td>
     <td>Will always return `0`.</td>
   </tr>
   <tr>
@@ -52,7 +42,6 @@ major milestones, forks, and updates to the blockchain.
     <td>
       Returns the hash of a requested block from the 256 most recent blocks.
     </td>
-    <td>Not supported.</td>
     <td>Returns the correct value, but the value is not guaranteed by the proof
       (Linea is a [type 2 zkEVM](https://vitalik.eth.limo/general/2022/08/04/zkevm.html), and
       uses/proves an L2-specific state representation).</td>
@@ -62,39 +51,14 @@ major milestones, forks, and updates to the blockchain.
     <td>
       Copies memory areas, allowing the destination and source to overlap.
     </td>
-    <td>Not supported.</td>
     <td>Available on Linea Beta v4.</td>
   </tr>
   <tr>
     <td>`PREVRANDAO`</td>
     <td>Returns the RANDAO value from the previous block.</td>
-    <td>Not supported.</td>
     <td>
-      Use a formula similar to Ethereum, e.g. `L2_prevrandao XOR
-      hash(signed(slot_id))`.
+      Use a formula similar to Ethereum, e.g. `L2_prevrandao XOR hash(signed(slot_id))`.
     </td>
-  </tr>
-  <tr>
-    <td>`PUSH0`</td>
-    <td>Pushes the constant value 0 onto the stack.</td>
-    <td>Not supported.</td>
-    <td>
-      PUSH0 was introduced in the Ethereum Mainnet Shanghai upgrade and became
-      available in Solidity compiler version 0.8.20, which came after the London
-      release. Available on Linea Beta v4.
-    </td>
-  </tr>
-  <tr>
-    <td>`TLOAD`</td>
-    <td>Load word from transient storage.</td>
-    <td>Not supported.</td>
-    <td>Available on Linea Beta v4.</td>
-  </tr>
-  <tr>
-    <td>`TSTORE`</td>
-    <td>Save word to transient storage.</td>
-    <td>Not supported</td>
-    <td>Available on Linea Beta v4.</td>
   </tr>
 </table>
 
@@ -110,8 +74,7 @@ for more._
   <tr>
     <th>Precompile</th>
     <th>Ethereum</th>
-    <th>Linea: current state</th>
-    <th>Linea: Pectra upgrade (Beta v4)</th>
+    <th>Linea</th>
   </tr>
   <tr>
     <td>`BLAKE2f`</td>
@@ -119,41 +82,22 @@ for more._
       Compression function F used in the BLAKE2 cryptographic hashing algorithm.
     </td>
     <td>Not supported.</td>
-    <td>Not supported.</td>
   </tr>
   <tr>
     <td>`MODEXP`</td>
     <td>Arbitrary-precision exponentiation under modulo.</td>
-    <td>
-      Only supports arguments (base, exponent, modulus) that do not exceed
-      512-byte integers.
-    </td>
     <td>Only supports arguments (base, exponent, modulus) that do not exceed
       512-byte integers.</td>
   </tr>
   <tr>
-    <td>Point evaluation</td>
-    <td>
-      Verify that specific points in a polynomial (blobs) match the expected
-      values.
-    </td>
-    <td>Not supported.</td>
-    <td>Available with Linea Beta v4.</td>
-  </tr>
-  <tr>
     <td>Precompiles as transaction recipients</td>
     <td>Applicable to various use cases.</td>
-    <td>
-      Not supported. A transaction `to` address cannot be a precompile, i.e. an
-      address in the range `0x01`-`0x09`.
-    </td>
     <td>Not supported. A transaction `to` address cannot be a precompile, i.e. an
       address in the range `0x01`-`0x09`.</td>
   </tr>
   <tr>
     <td>`RIPEMD-160`</td>
     <td>A hash function.</td>
-    <td>Not supported.</td>
     <td>TBD.</td>
   </tr>
 </table>
