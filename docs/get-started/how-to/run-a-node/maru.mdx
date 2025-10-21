@@ -1,0 +1,25 @@
+---
+title: Maru
+description: How to run Linea's execution layer client, Maru. 
+---
+
+With Beta v4, Linea switched from a single to a dual-layer architecture, with both an execution layer
+and consensus layer client. While node runners have a choice of several execution layer clients 
+(documented in this section), Maru is the only consensus layer client available.
+
+Developed specifically for Linea, Maru replaces the Clique Proof of Authority consensus algorithm 
+and introduces the [Quorum Byzantine Fault Tolerance](https://entethalliance.org/specs/qbft/v1/) (QBFT) consensus algorithm. Eventually, this change will mean Linea will be able to resemble Ethereum's
+decentralized sequencer system, where validators propose and confirm blocks. To start with, however,
+only one Linea-internal Maru node will produce blocks. 
+
+:::warning
+
+You must run Maru alongside an execution layer client like [Besu](./besu.mdx) or [Geth](./geth.mdx).
+
+:::
+
+## Run using Docker
+
+### Prerequisites
+
+
