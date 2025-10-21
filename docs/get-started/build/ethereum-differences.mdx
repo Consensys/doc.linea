@@ -91,7 +91,7 @@ for more._
   <tr>
     <td>`RIPEMD-160`</td>
     <td>A hash function.</td>
-    <td>TBD.</td>
+    <td>Not supported.</td>
   </tr>
 </table>
 
@@ -119,3 +119,8 @@ and include:
 - `linea_getProof`
 - `linea_getTransactionExclusionStatusV1`
 - `eth_sendRawTransaction`
+
+## Type 3 transactions
+
+Linea does not support type 3 (`0x3` or "blob") transactions. This type is used on Ethereum Mainnet 
+primarily for layer 2 rollups to cheaply post data on L1.
