@@ -36,17 +36,31 @@ import TabItem from "@theme/TabItem";
 - Cancun: 30 September, 2025
 - Prague: 7 October, 2025
 
-Changes:
-- Implement Pectra hardfork on Linea (including all EVM upgrades since London), achieving full 
-  EVM-equivalence. The upgrade will occur in stages, progressing through hard forks.
-  - Note: EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
-  - These upgrades will add support for additional opcodes and precompiles, detailed on our [Ethereum
-    differences page](./get-started/build/ethereum-differences.mdx).
-- Add a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer mechanism,
-  Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future transition
-  to decentralized sequencing. Initially only a single Maru node operated by Linea will produce
-  blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) 
-  to this system.
+### Pectra hard fork
+
+This release will see Linea implement approximately four years' of Ethereum protocol upgrades in a 
+matter of weeks: from the London hard fork beforehand this release, all the way through to Prague. 
+As a result, Linea will achieve type 2 EVM-equivalence. Due to the complexity of this process, the 
+upgrade will occur in stages, progressing through hard forks according to the release schedule above.
+
+For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in [Beta v4.1](#beta-v41)), unlocking access to apps that rely on this capability.
+
+For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience 
+more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and 
+precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Linea's [differences with Ethereum](./get-started/build/ethereum-differences.mdx).
+
+:::note
+
+EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
+
+:::
+
+### Maru consensus client
+
+Beta v4 introduces a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer 
+mechanism, Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future 
+transition to decentralized sequencing. Initially only a single Maru node operated by Linea will 
+produce blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) to this system.
 
 ## Beta v3.1.1
 
