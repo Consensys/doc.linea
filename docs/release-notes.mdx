@@ -22,7 +22,7 @@ import TabItem from "@theme/TabItem";
 - Boost prover performance to support scaled trading, consumer, and institutional use cases.
 - Activate EIP-7702 support.
 
-## Beta v4
+## Beta v4.0
 
 **Linea Mainnet:**
 - Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
@@ -36,17 +36,31 @@ import TabItem from "@theme/TabItem";
 - Cancun: 30 September, 2025
 - Prague: 7 October, 2025
 
-Changes:
-- Implement Pectra hardfork on Linea (including all EVM upgrades since London), achieving full 
-  EVM-equivalence. The upgrade will occur in stages, progressing through hard forks.
-  - Note: EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
-  - These upgrades will add support for additional opcodes and precompiles, detailed on our [Ethereum
-    differences page](./get-started/build/ethereum-differences.mdx).
-- Add a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer mechanism,
-  Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future transition
-  to decentralized sequencing. Initially only a single Maru node operated by Linea will produce
-  blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) 
-  to this system.
+### Pectra hard fork
+
+This release will see Linea implement approximately four years' of Ethereum protocol upgrades in a 
+matter of weeks: from the London hard fork beforehand this release, all the way through to Prague. 
+Due to the complexity of this process, the upgrade will occur in stages, progressing through hard 
+forks according to the release schedule above.
+
+For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in [Beta v4.1](#beta-v41)), unlocking access to apps that rely on this capability.
+
+For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience 
+more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and 
+precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Linea's [differences with Ethereum](./get-started/build/ethereum-differences.mdx).
+
+:::note
+
+EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
+
+:::
+
+### Maru consensus client
+
+Beta v4 introduces a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer 
+mechanism, Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future 
+transition to decentralized sequencing. Initially only a single Maru node operated by Linea will 
+produce blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) to this system.
 
 ## Beta v3.1.1
 
@@ -65,7 +79,7 @@ Changes:
   Beta v3.
 - Increase throughput
 
-## Beta v3
+## Beta v3.0
 
 **Linea Mainnet: early August 2025** (target)
 
@@ -79,7 +93,7 @@ can handle complex workloads. This unlocks:
 
 Note that the higher throughput will not enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
 
-## Beta v2
+## Beta v2.0
 
 **Linea Mainnet: June 9, 2025**
 
@@ -95,7 +109,7 @@ reduce instances of transactions reverting due to exceeding limits.
 - Improves Security Council configuration, and onboards the first cohort of members to stage 1, 
 supporting future decentralization and security. 
 
-## Beta v1
+## Beta v1.0
 
 Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove 
 100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
@@ -162,7 +176,7 @@ the hub's consistency arguments.
 - Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
 - Introduces the [Linea Token API](./api/token-api/overview.mdx) at alpha stage.
 
-## Alpha v4
+## Alpha v4.0
 
 **Mainnet: December 16, 2024**
 
@@ -410,7 +424,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 - Adds the [`eth_sendRawTransaction`](../docs/api/reference/eth-sendrawtransaction.mdx) method, 
 available only via Besu endpoints.
 
-## Alpha v3
+## Alpha v3.0
 
 ### Summary
 
