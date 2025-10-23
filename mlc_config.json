@@ -1,57 +1,25 @@
 {
-    "ignorePatterns": [
-      {
-        "pattern": "https://github.com"
-      },
-      {
-        "pattern": "https://x.com"
-      },
-      {
-        "pattern": "https://support.metamask.io"
-      },
-      {
-        "pattern": "https://infura.io/faucet/linea"
-      },
-      {
-        "pattern": "https://www.infura.io/faucet/linea"
-      },
-      {
-        "pattern": "https://infura.io"
-      },
-      {
-        "pattern": "https://rpc.sepolia.linea.build"
-      },
-      {
-        "pattern": "https://help.coinbase.com"
-      },
-      {
-        "pattern": "https://bridge.linea.build"
-      },
-      {
-        "pattern": "https://goerli.etherscan.io"
-      },
-      {
-        "pattern": "https://portfolio.metamask.io"
-      },
-      {
-        "pattern": "https://docs.bitscrunch.com"
-      },
-      {
-        "pattern": "https://docs.unleashnfts.com"
-      },
-      {
-        "pattern": "https://unleashnfts.com"
-      },
-      {
-        "pattern": "https://bitscrunch.com"
-      },
-      {
-        "pattern": "https://app.bitscrunch.com"
-      },
-      {
-        "pattern": "https://www.coingecko.com/en/api"
-      },
-      {
-        "pattern": "https://dune.com/"
-      },
-  }
+  "dirs": ["."],
+  "useGitIgnore": true,
+  "excludedDirs": ["node_modules", ".vercel", "build", ".docusaurus"],
+  "ignorePatterns": [
+    { "pattern": "^https://github\\.com(?:/|$)" },
+    { "pattern": "^https://x\\.com(?:/|$)" },
+    { "pattern": "^https://support\\.metamask\\.io(?:/|$)" },
+    { "pattern": "^https://(www\\.)?infura\\.io/faucet/linea(?:/.*)?$" },
+    { "pattern": "^https://(www\\.)?infura\\.io(?:/|$)" },
+    { "pattern": "^https://rpc\\.sepolia\\.linea\\.build(?:/|$)" },
+    { "pattern": "^https://help\\.coinbase\\.com(?:/|$)" },
+    { "pattern": "^https://bridge\\.linea\\.build(?:/|$)" },
+    { "pattern": "^https://goerli\\.etherscan\\.io(?:/|$)" },
+    { "pattern": "^https://portfolio\\.metamask\\.io(?:/|$)" },
+    { "pattern": "^https://docs\\.bitscrunch\\.com(?:/|$)" },
+    { "pattern": "^https://docs\\.unleashnfts\\.com(?:/|$)" },
+    { "pattern": "^https://unleashnfts\\.com(?:/|$)" },
+    { "pattern": "^https://bitscrunch\\.com(?:/|$)" },
+    { "pattern": "^https://app\\.bitscrunch\\.com(?:/|$)" },
+    { "pattern": "^https://www\\.coingecko\\.com/en/api(?:/|$)" },
+    { "pattern": "^https://dune\\.com(?:/|$)" }
+  ],
+  "aliveStatusCodes": [200, 206, 400, 403]
+}
