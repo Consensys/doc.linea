@@ -1,0 +1,86 @@
+---
+title: Linea Security Council transaction record
+description: >-
+  A record of recent Linea Security Council transactions, provided for
+  transparency.
+image: /img/socialCards/linea-security-council-transaction-record.jpg
+---
+
+This page contains a record of Linea Security Council (LSC) transactions, enabling relevant
+stakeholders and the wider Linea ecosystem to independently verify that onchain actions align with
+stated intentions shared elsewhere, such as blog posts, social media, and other areas of this 
+documentation.
+
+You can view the LSC account history here:
+- [L1 - `0x892bb7EeD71efB060ab90140e7825d8127991DD3`](https://app.safe.global/transactions/history?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)
+- [L2 - `0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD`](https://app.safe.global/transactions/history?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)
+
+Transactions are designated by their nonce, and each entry details the action taken and the steps
+you can take to verify this information. 
+
+### October 21, 2025
+
+#### L1
+
+- **[Nonce 63](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x387e7e211a2b894c778b74d19b924b6b4c0ac1532075c1d1354e16b56909db16)**
+  - Action: Add verifiers for [Paris and Shanghai hard forks](./release-notes.mdx#beta-v40).
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Paris: `VerifierAddressChanged` records the new verifier `0xa3437f9cd578f4848fd3332b9bbc58a0cb3f955a`, at index 3.
+    - Shanghai: `VerifierAddressChanged` records the new verifier `0x8cae7ff138e401384df88a408314e4e9a92f274e`, at index 4.
+
+### September 22, 2025
+
+#### L1
+
+- **[Nonce 62](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xd8df1a8c092db6367d06ef4323cb7c90221caf215dd1b0d5025c8df99921e8ca)**
+  - Action: Increase the rate limit at the exit of the withdrawal tunnel to 30,000 ETH per day.
+  - Verification: Corresponding events were emitted and are viewable in the [transaction logs](https://etherscan.io/tx/0xf40eee2e37a3e163e4aeb8d037536e822db4e1ec55faceddad8a480a8c434217#eventlog).
+
+#### L2
+
+- **[Nonce 50](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0x7423bafced8b2e2eba2b4b7226f0aefaa159095061eb713ffb48e47f00bbb32a)**
+  - Action: Increase the rate limit at the entry of the withdrawal tunnel to 24,000 ETH per day.
+  - Verification: Corresponding events were emitted and are viewable in the [transaction logs](https://lineascan.build/tx/0x7eec6a5e37602b56f5e79c2044cfea34672f0a018269008956d8a39cf968cf9a#eventlog).
+
+### September 19, 2025
+
+#### L1
+
+- **[Nonce 61](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x3a4ce0ce409592d09f6a46cb2c96de57c0fbbf410225d2af9f181572d2d2c5a0)**
+  - Actions: 
+    - Swap a Consensys owner for a non-Consensys owner, decentralizing the Security Council.
+    - Add another signer, and increase the signing threshold to 5 of 9.
+  - Verification: View the [transaction details](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x3a4ce0ce409592d09f6a46cb2c96de57c0fbbf410225d2af9f181572d2d2c5a0) 
+  in the Safe UI. The `swapOwner` function call shows the `oldOwner` and `newOwner` addresses. The
+  `addOwnerWithThreshold` function shows the threshold being set to 5.
+
+#### L2
+
+- **[Nonce 49](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0xab693b8ec43b1fae1ac992e44998241175d2f9e5fa0ed40de7648e8899ea28ac)**
+  - Actions: Parallel transaction to nonce 61 on L1, above.
+    - Swap a Consensys owner for a non-Consensys owner, decentralizing the Security Council.
+    - Add another signer, and increase the signing threshold to 5 of 9.
+  - Verification: Identical to the verification for nonce 61 on L1. View the [transaction details in
+  the Safe UI](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0xab693b8ec43b1fae1ac992e44998241175d2f9e5fa0ed40de7648e8899ea28ac).
+
+### August 25, 2025
+
+#### L1
+
+- **[Nonce 59](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x03d40006169ce14bf9a24c06b1225fd14a881ba7e4b675ad2b744f2927c35b14)**
+  - Action: Add Beta v3.0.0 verifier, remove Beta v1.4.0 verifier.
+  - Verification: Inspect the [transaction logs](https://etherscan.io/tx/0x36d74d86d98138526dfc70651d97f3824ac7eeb2f17c18b1460ea4f5ca845b34#eventlog) 
+  to view two `VerifierAddressChanged` events. The first one configures the new verifier `0x9473c37a9fe76fbbc3fd7d3b59e1b550415bd873` 
+  on index 1, and the second one unsets the old one `0x41a4d93d09f4718fe899d12a4ad2c8a09104bdc7`.
+- **[Nonce 60](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x8cddecc98d567b961472e45e23127546db05a5ee4cf6bbc77de3eddc06db17e8)**
+  - Action: Swap two owners.
+  - Verification: View the transaction details in the [Safe UI](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x8cddecc98d567b961472e45e23127546db05a5ee4cf6bbc77de3eddc06db17e8)
+  and refer to the two `swapOwner` function calls. The `oldOwner` is removed, and the `newOwner` is
+  added.
+
+#### L2
+
+- **[Nonce 48](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0xe8542eeb1abb8687eae6bf10a77aa181f0439d0f8b1e04e8eecd4b334abb9b87)**
+  - Action: Parallel transaction to the nonce 60 transaction on L1 — swaps two owners. 
+  - Verification: View the transaction details in the [Safe UI](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0xe8542eeb1abb8687eae6bf10a77aa181f0439d0f8b1e04e8eecd4b334abb9b87).
