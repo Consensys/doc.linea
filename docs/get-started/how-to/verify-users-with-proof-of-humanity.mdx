@@ -1,8 +1,6 @@
 ---
 title: Verify users with Proof of Humanity
-description: >-
-  Use the Linea Proof of Humanity to verify and check the authenticity of your
-  users.
+description: Use the Linea Proof of Humanity to verify and check the authenticity of your users.
 image: /img/socialCards/verify-users-with-proof-of-humanity.jpg
 ---
 
@@ -122,7 +120,6 @@ Documentation [here](https://poh-api.linea.build/#/PoH/PohController_getOnePOHv2
 Once users have completed verification, you can confirm their Proof of Humanity status through an API call or onchain verification.
 
 The APIs presented below are free to use, without any key or authentication.
-Please check the rate limits and usage guidelines below.
 
 ### Offchain verification
 
@@ -139,38 +136,9 @@ curl https://poh-api.linea.build/poh/v2/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46
 # Content-Type: text/plain;
 # Body: "true" | "false"
 ```
-The response is raw text, not JSON.
-
-**Rate limiting:**
-
-The API is rate-limited to 5 requests per second per IP address.\
-Exceeding this limit will result in a `429` error.
-
-An exponential backoff is recommended for handling rate limits if you expect high traffic or automated batch verification:
-
-```typescript
-async function fetchWithBackoff(url: string, opts?: RequestInit, maxRetries = 5): Promise<Response> {
-  let attempt = 0;
-  while (true) {
-    const res = await fetch(url, opts);
-    if (res.status !== 429 || attempt >= maxRetries) return res;
-
-    const retryAfterHeader = res.headers.get("Retry-After");
-    const retryAfterMs = retryAfterHeader ? Number(retryAfterHeader) * 1000 : undefined;
-
-    const base = 300;
-    const jitter = Math.floor(Math.random() * 200);
-    const backoffMs = retryAfterMs ?? base * 2 ** attempt + jitter;
-
-    await new Promise(r => setTimeout(r, backoffMs));
-    attempt++;
-  }
-}
-
-const res = await fetchWithBackoff(`https://poh-api.linea.build/poh/v2/${address}`);
-```
 
 **Response:**
+The response is raw text, not JSON.
 
 - `false` = address does not have PoH status.
 - `true` = address has PoH status.
