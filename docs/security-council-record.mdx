@@ -18,6 +18,19 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### October 27, 2025
+
+#### L1
+
+- **Nonce 64**
+  - Action: Add verifiers for [Cancun and Prague hard forks](./release-notes.mdx#beta-v40) and 
+  remove Paris verifier.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Cancun: `VerifierAddressChanged` records the new verifier `0x8421D1e3fb9A737A85dC7FF531c39f324FB2aC5d`, at index 1.
+    - Prague: `VerifierAddressChanged` records the new verifier `0xA12E79C375FB0aaddfDA597BBe7b4e9A92e9b3De`, at index 0.
+    - Paris: `VerifierAddressChanged` unset the verifier at index 3.
+
 ### October 21, 2025
 
 #### L1
