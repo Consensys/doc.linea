@@ -1,10 +1,10 @@
 ---
-title: Beta v4 migration guide
+title: Beta v4.0 migration guide
 description: Instructions for running Maru alongside an execution layer client
 image: /img/socialCards/beta-v4-migration-guide.jpg
 ---
 
-Linea Beta v4 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
+Linea Beta v4.0 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
 
 Maru replaces Clique and aligns Linea with Ethereum's dual-layer design (execution and consensus).
 
@@ -13,15 +13,14 @@ After the fork:
 - You must run **both** an execution layer (EL) client of your choice and Maru, a CL client. A 
   standalone EL client will not work.
 - Sequencer signatures move from EL `extraData` to the **Maru attestations API**.
-- EL clients must be upgraded to Beta v4 compatible versions (any EL client that supports Prague 
+- EL clients must be upgraded to Beta v4.0 compatible versions (any EL client that supports Prague 
   should be compatible).
 
-See the [Beta v4 release notes](../../../release-notes.mdx#beta-v40) for the scheduled hard fork 
+See the [Beta v4.0 release notes](../../../release-notes.mdx#beta-v40) for the scheduled hard fork 
 dates.
 
-We have separate instructions below for:
-- [Those running an EL client already](#upgrade-run-maru-with-an-existing-el-client) (e.g. Besu, Geth, Nethermind, etc.).
-- Those looking to [start Maru and a fresh EL client simultaneously](#start-maru-and-el-client-simultaneously).
+This page is intended for those who have already successfully upgraded their nodes to the Shanghai 
+hard fork. 
 
 ## Overview of changes
 
@@ -54,7 +53,7 @@ and the previous block signature/attestation.
 - Sequencer signatures: Stored in EL block `extraData`
 - Block production: Clique handles execution and consensus
 
-#### After Beta v4
+#### After Beta v4.0
 
 - Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is 
   currently powered by Maru, a consensus client implementing a customized variation of the QBFT 
@@ -77,236 +76,76 @@ Supported EL clients include:
   - Post-Shanghai: v1.16.x  
 - Erigon: Latest release
 - Nethermind: Latest release
-- Linea-specific: A new `linea-besu-package` release is available via Docker: `consensys/linea-besu-package:beta-v4.0-rc16-20251017160038-c1fde94`
+- Linea-specific: A new `linea-besu-package` release is available via Docker: `consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b`
 
-:::warning Geth-specific issues
+## Upgrade to Cancun and Prague
 
-Geth clients have a slightly more complex compatability situation:
+After the Paris and Shanghai hard forks on October 22 and 23 respectively, the next step is to 
+update your genesis files for both Maru and your EL client and then reinitialize your node.
 
-- Geth v1.15.x → incompatible with Clique (pre-fork)
-- Geth v1.13.x → incompatible with Prague (post-fork)
+:::warning Geth version
 
-As a result, for a zero-downtime upgrade path, you must upgrade in a specific order:
-1. Start with v1.13.15 (compatible with London hard fork, i.e. pre-Beta v4)
-2. Upgrade to v1.16.x _after_ Linea has updated to Shanghai ([10am UTC, 23 October, 2025](../../../release-notes.mdx#beta-v40)) and _before_
-  Linea upgrades to Cancun (time TBC)
+Ensure your Geth client is using v1.16.x or higher. Older versions will not be compatible after the
+Cancun hard fork.
 
 :::
 
-## Upgrade (run Maru with an existing EL client)
+### Step 1: New genesis files
 
-If you're already running a Linea node using an EL client such as Besu, Nethermind, or Geth, follow
-these steps. Your main task will be to start running Maru alongside your existing client.
+First, find the files here:
+- [Maru](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/maru/maru-genesis.json)
+- [Besu](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/besu-genesis.json)
+- [Geth](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 
-See below for the steps you'll need to follow to upgrade, and then refer to the [guide](#obtain-files-upgrade) for implementation:
+### Step 2: Update `docker-compose.yml`
 
-### Pre-upgrade
+Retrieve the [updated `docker-compose.yml`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
+file from the Linea monorepo. 
 
-**All clients:**
-- Prepare Docker setup (EL + Maru)
-- Upgrade EL client to Prague-compatible version. See the guidance on compatibility [above](#el-client-compatibility), 
-especially for Geth nodes.
-
-**Geth:**
-- Keep Geth at v1.13.15, the version compatible with the Clique consensus algorithm that pre-Beta 
-v4 Linea uses.
-
-### During upgrade
-
-**Besu, Erigon, Nethermind:**
-- [Start Maru](#step-2-run-docker-compose-migrate) before the fork timestamp
-- Keep EL client running
-- Monitor logs for sync and consensus:
-  - `docker logs linea-maru | grep "imported block"`
-  - `curl -s -X POST http://localhost:8545 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'`
-
-**Geth:**
-The Geth migration process depends on when you are upgrading. Based on the [compatibility notes](#el-client-compatibility
-above, you must:
-- [Start Maru](#step-2-run-docker-compose-migrate) before the fork timestamp
-- Keep Geth at v1.13.15 until Linea has updated to the Shanghai EVM
-- Upgrade to v1.16.x after Shanghai but before Linea upgrades to Cancun
-
-
-### Post-upgrade
-
-- Verify block import in Maru logs
-- Confirm EL block height with `eth_blockNumber`
-
-### Prerequisites
-
-- Docker and Docker Compose
-  ([https://hub.docker.com/r/consensys/maru/tags](https://hub.docker.com/r/consensys/maru/tags)
-  or https://github.com/Consensys/maru)
-- At least 8GB RAM (16GB recommended)
-- Open ports: 8545, 8550, 8080, 9090, 9000
-- Synced EL client (for example Besu)
-- L1 RPC URL — required for Maru to track zk-proof verification and determine which L2 blocks are 
-  finalized
-
-### Step 1: Obtain files {#obtain-files-upgrade}
-
-The files you need to run Maru are available in the Linea monorepo at the [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started), in either the `linea-mainnet` or `linea-sepolia` directory:
-- [Mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
-- [Sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia)
-
-To get the files, choose one of the following methods:
-1. Clone the Linea monorepo, potentially shallow cloning with e.g. `git clone --depth 5` to save 
-  disk space. Cloning the repo is probably the easiest way to get the files. For a normal clone, run:
-  ```bash
-  git clone https://github.com/Consensys/linea-monorepo.git
-  ```
-2. Download the Linea monorepo as a ZIP from GitHub, then move the `/docker/linea-mainnet` (or 
-  `/linea-sepolia`) directory to your preferred location locally. 
-3. Create corresponding files locally and copy and paste the contents of their counterparts from the 
-  monorepo.
-
-### Step 2: Run `docker compose` {#step-2-run-docker-compose-migrate}
-
-Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `docker/linea-sepolia`), you can run:
-
-```bash
-docker compose up maru-node
-```
-
-You must run this to start Maru _before_ the Paris fork block number detailed in the [release notes](../../../release-notes.mdx#beta-v40)
-— block 24787631.
-
-### Step 3: Verify
-
-You can check Maru's health:
-
-```bash
-curl -X GET "http://localhost:8080/eth/v1/node/health"
-```
-
-...and verify P2P connection:
-
-```bash
-docker logs linea-maru | grep "Currently connected peers"
-# Should show: peers=[...]
-```
-
-## Start Maru and EL client simultaneously
-
-You can start Maru and an EL client simultaneously, using one `docker compose up` command.
-
-If you are running a Geth node, you will need to start Maru and Geth simultaneously during your 
-maintenance window.
-
-### Prerequisites
-
-- Docker and Docker Compose
-  ([https://hub.docker.com/r/consensys/maru/tags](https://hub.docker.com/r/consensys/maru/tags)
-  or https://github.com/Consensys/maru)
-- At least 8GB RAM (16GB recommended)
-- Open ports: 8545, 8550, 8080, 9090, 9000
-- L1 RPC URL — required for Maru to track zk-proof verification and determine which L2 blocks are 
-  finalized
-
-### Step 1: Obtain files
-
-The files you need to run Maru are available in the Linea monorepo at the [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started), in either the `linea-mainnet` or `linea-sepolia` directory:
-- [Mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
-- [Sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia)
-
-To get the files, choose one of the following methods::
-1. Clone the Linea monorepo, potentially shallow cloning with e.g. `git clone --depth 5` to save 
-disk space. Cloning the repo is probably the easiest way to get the files.
-2. Download the Linea monorepo as a ZIP from GitHub, then move the `/docker/linea-mainnet` (or `/linea-sepolia`) directory to your preferred location locally. 
-3. Create corresponding files locally and copy them from the monorepo.
-
-### Step 2: Run `docker compose` {#step-2-run-docker-compose-simultaneous}
-
-Now that you have the `docker-compose.yml` file in `docker/linea-mainnet` (or `docker/linea-sepolia`), you can run:
-
-```bash
-docker compose up maru-node geth-node
-```
-
-### Step 3: Verify
-
-You can check whether Geth is running correctly by running the following command:
-
-```bash
-curl localhost:8545 \
-        -X POST \
-        -H "Content-Type: application/json" \
-        -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
-```bash
-
-And you can also check Maru's health:
-
-```bash
-curl -X GET "http://localhost:8080/eth/v1/node/health"
-```
-
-## JWT Authentication
-
-For production environments, you should enable JWT authentication:
-
-### Generate JWT secret
-
-```bash
-openssl rand -hex 32 > ~/linea-node/jwt/jwt.hex
-```
-
-### Update Besu config
-
-```toml
-# Replace engine-jwt-disabled=true with:
-engine-jwt-enabled=true
-engine-jwt-file="/opt/besu/jwt.hex"
-```
-
-### Update Maru config
-
-```toml
-[payload-validator]
-engine-api-endpoint = { endpoint = "http://linea-besu:8550", jwt-secret-path = "/jwt.hex" }
-```
-
-### Update Docker volumes
+Alternatively, update your existing `docker-compose.yml` file manually with the new `linea-besu-package` 
+image (`rc17`):
 
 ```yaml
-# Add to both Besu and Maru:
-volumes:
-  - ./jwt/jwt.hex:/jwt.hex:ro
+  besu-node:
+      hostname: el-client
+      container_name: linea-besu
+      image: consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b 
 ```
 
-## Private key management
+### Step 3: Reinitialize your node
 
-**Development**: Maru auto-generates private keys at startup if none exist.
-(TBC)
-
-**Production**: Generate and backup your private key (not mandatory):
+First, stop your existing nodes:
 
 ```bash
-# Option 1: Let Maru auto-generate, then backup:
-docker cp linea-maru:/data/private-key ./backup/
+docker compose down
+```
+Then reinitialize your node:
 
-# Option 2: Generate using Maru's key generation tool:
-# https://github.com/Consensys/maru/tree/main/jvm-libs/utils
+```bash
+docker compose up maru-node besu-node
 ```
 
-:::info[Important]
+### Step 4: Verify 
 
-Maintaining the same private key preserves node identity across restarts.
+After a successful reinitialization, you should see the following in your logs: 
 
-:::
+#### Maru
 
-## Troubleshooting
+```
+LenientForkPeeringManager | forks: [{ts=1761646200 time=2025-10-28T10:10:00Z fork=QBFT_PHASE0/Prague forkDigest=0xae00a891},{ts=1761645600 time=2025-10-28T10:00:00Z fork=QBFT_PHASE0/Cancun forkDigest=0x3aa8d9a0},{ts=1761213600 time=2025-10-23T10:00:00Z fork=QBFT_PHASE0/Shanghai forkDigest=0xfcb4d7c8},{ts=0 time=1970-01-01T00:00:00Z ttd=49575263 fork=QBFT_PHASE0/Paris forkDigest=0x285982f0}]
+```
 
-### Debug commands
+#### Besu
 
-```bash
-# EL client block height
-curl -s -X POST http://localhost:8545 -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+```
+ProtocolScheduleBuilder | Protocol schedule created with milestones: [Paris:0, Shanghai:1761213600, Cancun:1761645600, Prague:1761646200]
+```
 
-# Maru health
-curl http://localhost:8080/eth/v1/node/health
+#### Geth
 
-# Check block headers
-curl http://localhost:8080/eth/v1/beacon/headers/head
+```
+Post-Merge hard forks (timestamp based):
+ - Shanghai:                    @1761213600
+ - Cancun:                      @1761645600 blob: (target: 0, max: 0, fraction: 3338477)
+ - Prague:                      @1761646200 blob: (target: 0, max: 0, fraction: 5007716)
 ```
