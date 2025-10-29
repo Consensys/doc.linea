@@ -63,14 +63,15 @@ There are two methods you can use to run Maru using Docker:
 
     ### Step 1. Clone monorepo
 
-    The files you need to run Maru are available in the Linea monorepo at the [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started), in either the `linea-mainnet` or `linea-sepolia` directory:
-      - [Mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
-      - [Sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia)
+    The files you need to run Maru are available in the Linea monorepo at the [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started), 
+    in either the [linea-mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
+    or [linea-sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia) 
+    directories.
 
     Clone the monorepo with:
     
     ```bash
-    git clone https://github.com/Consensys/linea-monorepo.git
+    git clone --depth 5 https://github.com/Consensys/linea-monorepo.git
     ```
 
     ### Step 2. Run `docker compose`
