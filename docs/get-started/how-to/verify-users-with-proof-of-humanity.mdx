@@ -1,0 +1,243 @@
+---
+title: Verify users with Proof of Humanity
+description: >-
+  Use Linea Proof of Humanity to verify and check the authenticity of your
+  users.
+image: /img/socialCards/verify-users-with-proof-of-humanity.jpg
+---
+
+Proof of Humanity (PoH) lets you verify whether a wallet belongs to a real human on Linea.
+Provides a simple and reliable way for projects to gate access to rewards or features exclusively for verified users.
+
+:::info What’s new in V2
+PoH V2 is powered by a single attestation issued by **Sumsub** through the **Verax Attestation Registry**.
+This version replaces the now-deprecated multi-provider setup, simplifying verification to a single, trusted data source.
+:::
+
+## Verify: how users complete their Proof of Humanity
+
+You can integrate Proof of Humanity in your app to restrict access, rewards or actions to real users only.\
+Use the **Sumsub Proof of Personhood flow** to allow users to verify their humanity directly from your app.
+This flow handles user verification through **Sumsub's Proof of Personhood** flow and issues a **Verax attestation** onchain.
+
+:::tip Before you start
+You’ll need:
+- A frontend app connected to the Linea network
+- A reliable Linea Mainnet RPC provider such as [Infura](https://developer.metamask.io)
+- A way to read the user’s wallet address (e.g. [Wagmi](https://wagmi.sh/react/api/hooks/useAccount))
+:::
+
+### Typical flow
+
+Here’s how the complete user verification process works step-by-step:
+
+1. The user connects their Ethereum wallet.
+2. Your app queries the Linea PoH API to check whether the user is already verified.\
+Endpoint: `https://poh-api.linea.build/poh/v2/{address}`\
+Documentation [here](https://poh-api.linea.build/#/PoH/PohController_getOnePOHv2).
+
+The endpoint returns `true` if the address is verified, or `false` otherwise.
+Use `false` to trigger the Sumsub flow (next step).
+
+3. Your app asks them to sign a message, containing 2 variables:
+  - Their wallet address
+  - A timestamp (ISO date)
+
+The signature is used by Sumsub to confirm wallet ownership and link the verification to the correct address onchain.
+A recommended way to sign the message is to use Wagmi's [`useSignMessage` hook](https://wagmi.sh/react/api/hooks/useSignMessage):
+```tsx
+import {useAccount, useSignMessage} from "wagmi";
+
+function App() {
+  const { address } = useAccount();
+  const { signMessage } = useSignMessage();
+
+  const date = new Date().toISOString();
+
+  return (
+    <button onClick={() => signMessage({
+      message: `in.sumsub.com wants you to sign in with your Ethereum account:\n${address}\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nIssued At: ${date}`,
+    })}>
+      Sign message
+    </button>
+  );
+}
+```
+
+Note: this message contains the Linea Mainnet chain ID (59144).
+
+4. Generate a link including this signed payload and redirect to it, or open it in an iframe.
+You need to encode the JSON payload in base64 to safely include it in the Sumsub verification URL.
+
+Payload to encode:
+```json
+{
+  "signInMessage": "in.sumsub.com wants you to sign in with your Ethereum account:\n<WALLET_ADDRESS>\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nIssued At: <ISO_DATE>",
+  "signature": "<SIGNATURE>"
+}
+```
+
+You then need to generate a base64-encoded JSON from this payload, to be used as the `msg` parameter to append to the URL below:
+
+```typescript
+const msg = btoa(JSON.stringify(payload));
+const url = new URL("https://in.sumsub.com/websdk/p/uni_BKWTkQpZ2EqnGoY7");
+url.search = new URLSearchParams({ msg }).toString();
+```
+
+5. The Sumsub verification process happens on their side.
+6. Once verified, the user is redirected back to your app, or your frontend receives a message event from the iframe wrapper.
+Listening for the event:
+```typescript
+const iframe = document.getElementById("sumsub-frame") as HTMLIFrameElement;
+const ac = new AbortController();
+
+window.addEventListener(
+  "message",
+  (e: MessageEvent) => {
+    if (e.source !== iframe.contentWindow) return;
+    if (e.origin !== "https://in.sumsub.com") return;
+
+    if (e.data.status === "completed") { /* proceed */ }
+
+    ac.abort();
+  },
+  { signal: ac.signal },
+);
+```
+Alternatively, you can redirect users back to your app via a callback URL instead of using an iframe.
+
+7. You can then query the Linea PoH API to confirm that the attestation has been issued onchain.\
+Endpoint: `https://poh-api.linea.build/poh/v2/{address}`\
+Documentation [here](https://poh-api.linea.build/#/PoH/PohController_getOnePOHv2).
+
+### Notes
+
+- The attestation is issued only if none exists for this wallet address.
+- It may take a few seconds before the attestation is visible onchain after verification.
+- Once verification is complete, you can programmatically confirm a user’s PoH status using either an API or an onchain contract (see below).
+
+## Check: how to confirm verification status
+
+Once users have completed verification, you can confirm their Proof of Humanity status through an API call or onchain verification.
+
+The APIs presented below are free to use, without any key or authentication.
+
+### Offchain verification
+
+The API base URL for the service is: `https://poh-api.linea.build/`
+
+**Usage (GET):**
+
+Call the endpoint with the format: `https://poh-api.linea.build/poh/v2/{address}`
+
+**Example:**
+
+```bash
+curl https://poh-api.linea.build/poh/v2/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46C6
+# Content-Type: text/plain;
+# Body: "true" | "false"
+```
+
+**Response:**
+The response is raw text, not JSON.
+
+- `false` = address does not have PoH status.
+- `true` = address has PoH status.
+
+**Example:**
+```typescript
+const res = await fetch(`.../poh/v2/${address}`);
+if (!res.ok) throw new Error(`HTTP ${res.status}`);
+const text = (await res.text()).trim(); // "true" | "false"
+const isHuman = text === "true";
+```
+
+**Reference:**
+
+You can explore all available endpoints and test them directly from the [Swagger UI](https://poh-api.linea.build/#/PoH/PohController_getOnePOH).
+
+### Signed onchain verification V2
+
+If you need fully onchain verification (e.g. from a smart contract), you can use the signed PoH status, and the `PohVerifier` contract.
+The [`PohVerifier.sol` contract](https://lineascan.build/address/0xBf14cFAFD7B83f6de881ae6dc10796ddD7220831) can be used together with a trusted source of PoH status data.
+
+#### 1. Get signed PoH status
+
+The API base URL for the service is: `https://poh-signer-api.linea.build/`
+
+**Usage (GET):**
+
+Call the endpoint with the format: `https://poh-signer-api.linea.build/poh/v2/{address}`
+
+**Example:**
+
+```bash
+curl https://poh-signer-api.linea.build/poh/v2/0xc5fd29cC1a1b76ba52873fF943FEDFDD36cF46C6
+# Content-Type: text/plain; charset=utf-8
+# 0xa11a6c92fa0027d9de2a0c8ab363b1af083497da57f871c93aeb9efcd32ffaeb677fafb2c005e8165181713220b8a1da2f70ed31d7820b8fa086a8e7361dbf121c
+```
+
+This returns a signed message that contains the PoH status of the provided address.
+Response format: plain text (not JSON).
+
+Example response:
+
+```
+0xa11a6c92fa0027d9de2a0c8ab363b1af083497da57f871c93aeb9efcd32ffaeb677fafb2c005e8165181713220b8a1da2f70ed31d7820b8fa086a8e7361dbf121c
+```
+
+Example:
+
+```typescript
+const sig = await (await fetch(`https://poh-signer-api.linea.build/poh/v2/${address}`)).text();
+await pohVerifier.verify(sig, address); // See step 2
+```
+
+#### 2. Call `PohVerifier.sol`
+
+Call the `verify()` function with the signed message and the address of the account being queried.\
+The contract confirms that the signed message was issued by the trusted signer and returns a boolean.
+
+```solidity
+function verify(
+    bytes memory signature,
+    address human
+) external view virtual returns (bool){ ... }
+```
+
+Parameters:
+- `signature`: The signed message from the previous step.
+- `address`: The address of the account being queried.
+
+It returns a boolean:
+- `true`: The account has PoH status.
+- `false`: The account does not have PoH status.
+
+Example:
+
+```solidity
+import { IPohVerifier } from "./interfaces/IPohVerifier.sol";
+
+error PohVerificationFailed(address sender);
+
+/* ... */
+
+if (!pohVerifier.verify(signature, msg.sender)) {
+    revert PohVerificationFailed(msg.sender);
+}
+
+/* ... */
+```
+
+## Summary
+
+| Use case         | Recommended method | Description                                   |
+|------------------|--------------------|-----------------------------------------------|
+| Frontend dapps   | Sumsub web flow    | Best UX for end users, real-time verification |
+| Backend services | Offchain PoH API   | Fast boolean response, easy to integrate      |
+| Smart contracts  | Onchain verifier   | Fully verifiable verification on Linea        |
+
+:::note
+Full flow: **User** (connects)→ **App** (signs message) → **Sumsub** (verifies) → **Verax** (creates attestation) → **API / Smart Contract** (checks PoH)
+:::

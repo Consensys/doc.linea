@@ -38,7 +38,12 @@
             "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
             "/use-mainnet/set-up-your-wallet",
             "/build-on-linea/use-linea-testnet/set-up-your-wallet",
-            "/use-mainnet"
+            "/use-mainnet",
+            "/technology/decentralization",
+            "/use-mainnet/decentralization-roadmap",
+            "/decentralization-roadmap",
+            "/architecture/overview/decentralization-roadmap",
+            "/get-started/concepts/decentralization"
         ]
     },
     {
@@ -125,15 +130,6 @@
         "from": [
             "/developers/tooling/permanent-data/irys/irys-query-package",
             "/developers/tooling/permanent-data/irys/irys-querying"
-        ]
-    },
-    {
-        "to": "/technology/decentralization",
-        "from": [
-            "/use-mainnet/decentralization-roadmap",
-            "/decentralization-roadmap",
-            "/architecture/overview/decentralization-roadmap",
-            "/get-started/concepts/decentralization"
         ]
     },
     {
@@ -733,5 +729,9 @@
     {
         "to": "/api/reference/linea-getproof",
         "from": "/developers/reference/api/linea-getproof"
+    },
+    {
+        "to": "/get-started/how-to/verify-users-with-proof-of-humanity",
+        "from": "/get-started/how-to/poh-api"
     }
 ]

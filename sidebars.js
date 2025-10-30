@@ -25,6 +25,8 @@ const sidebars = {
             "get-started/build/quickstart/deploy",
             "get-started/build/quickstart/app",
             "get-started/build/quickstart/hub",
+            "get-started/build/quickstart/hub-reviews",
+            "get-started/build/quickstart/events"
           ],
         },
         "get-started/build/ethereum-differences",
@@ -85,22 +87,27 @@ const sidebars = {
             id: "get-started/how-to/run-a-node/index",
           },
           items: [
+            "get-started/how-to/run-a-node/beta-v4-migration",
             "get-started/how-to/run-a-node/besu",
-            "get-started/how-to/run-a-node/erigon",
+            // "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
             "get-started/how-to/run-a-node/linea-besu",
-            "get-started/how-to/run-a-node/nethermind",
+            "get-started/how-to/run-a-node/maru",
+            // "get-started/how-to/run-a-node/nethermind",
             "get-started/how-to/run-a-node/bootnodes",
           ],
         },
-        "get-started/how-to/poh-api",
+        "get-started/how-to/verify-users-with-proof-of-humanity",
         "get-started/how-to/state-recovery",
       ],
     },
     {
       type: "category",
       label: "Tools",
-      link: null,
+      link: {
+        type: "doc",
+        id: "get-started/tooling/index"
+      },
       collapsible: false,
       items: [
         {
@@ -111,9 +118,9 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-            "get-started/tooling/account-abstraction/delegation-toolkit",
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
+            "get-started/tooling/account-abstraction/metamask",
             "get-started/tooling/account-abstraction/noves",
             "get-started/tooling/account-abstraction/oklink",
             "get-started/tooling/account-abstraction/openfort",
@@ -366,6 +373,7 @@ const sidebars = {
     "learn/aiagent-quickstart",
     "learn/marketplace-dapp",
     "learn/voting-dapp",
+    "learn/fallback",
     {
       type: "category",
       label: "Ecosystem tutorials",
@@ -535,8 +543,8 @@ const sidebars = {
             },
           ],
         },
-      ],  
-    },  
+      ],
+    },
     {
       type: "category",
       label: "JSON-RPC API reference",
@@ -577,7 +585,7 @@ const sidebars = {
   ],
   technologySidebar: [
     "technology/architecture",
-    "technology/decentralization",
+    "technology/tokenomics",
     "technology/repos",
     "technology/transaction-lifecycle",
     "technology/network-data",

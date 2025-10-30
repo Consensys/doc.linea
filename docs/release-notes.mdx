@@ -13,19 +13,93 @@ import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-## Beta v3
+:::info Linea Security Council transactions
 
-**Linea Mainnet: mid-July 2025** (target)
+We maintain a record and brief explanation of Linea Security Council transactions [here](./security-council-record.mdx).
 
-**Linea Sepolia: late June 2025** (target)
+:::
 
-- **Limitless prover**: Eliminates the need for [artificial line counting limits](./technology/prover/prover-limits.mdx), 
-as the prover can handle complex workloads, unlocking:
+## Beta v4.1
+
+**Linea Mainnet: late October 2025** (target)
+
+**Linea Sepolia: mid-October 2025** (target)
+
+- Boost prover performance to support scaled trading, consumer, and institutional use cases.
+- Activate EIP-7702 support.
+
+## Beta v4.0
+
+**Linea Mainnet:**
+- Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
+- Shanghai: 10am UTC, 23 October, 2025 
+- Cancun: 10am UTC, 28 October, 2025
+- Prague: 10:10am UTC, 28 October, 2025
+
+**Linea Sepolia:**
+- Paris: 24 September, 2025
+- Shanghai: 29 September, 2025
+- Cancun: 30 September, 2025
+- Prague: 7 October, 2025
+
+### Pectra hard fork
+
+This release will see Linea implement approximately four years' of Ethereum protocol upgrades in a 
+matter of weeks: from the London hard fork beforehand this release, all the way through to Prague. 
+Due to the complexity of this process, the upgrade will occur in stages, progressing through hard 
+forks according to the release schedule above.
+
+For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in [Beta v4.1](#beta-v41)), unlocking access to apps that rely on this capability.
+
+For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience 
+more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and 
+precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Linea's [differences with Ethereum](./get-started/build/ethereum-differences.mdx).
+
+:::note
+
+EIP-7702 will only be activated in [Beta v4.1](#beta-v41)
+
+:::
+
+### Maru consensus client
+
+Beta v4 introduces a new consensus client, Maru, replacing the existing Proof-of-Authority sequencer 
+mechanism, Clique. Maru introduces a QBFT consensus mechanism, and will support Linea's future 
+transition to decentralized sequencing. Initially only a single Maru node operated by Linea will 
+produce blocks. See our [guide for node runners on upgrading](./get-started/how-to/run-a-node/beta-v4-migration.mdx) to this system.
+
+## Beta v3.1.1
+
+**Linea Mainnet: 6 October, 2025**
+
+- Made Linea's prover 2x more efficient, reducing the cost of running the Linea infrastructure. In 
+  future, this additional efficiency will increase ETH and LINEA burn
+
+## Beta v3.1
+
+**Linea Mainnet: early/mid-August 2025** (target)
+
+**Linea Sepolia: late July 2025** (target)
+
+- Remove sequencer limits. These are no longer required because of the limitless prover introduced in
+  Beta v3.
+- Increase throughput
+
+## Beta v3.0
+
+**Linea Mainnet: early August 2025** (target)
+
+**Linea Sepolia: late July 2025** (target)
+
+- **Limitless prover**: Eliminates the need for the sequencer to enforce module limits, as the prover 
+can handle complex workloads. This unlocks:
   - Higher throughput and TPS
   - Stabler gas fees during high-traffic periods
-  - Faster transaction confirmation during activity peaks
+  - Faster transaction confirmation during activity peaks.
 
-## Beta v2
+Note that the higher throughput will not enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
+
+## Beta v2.0
 
 **Linea Mainnet: June 9, 2025**
 
@@ -41,7 +115,7 @@ reduce instances of transactions reverting due to exceeding limits.
 - Improves Security Council configuration, and onboards the first cohort of members to stage 1, 
 supporting future decentralization and security. 
 
-## Beta v1
+## Beta v1.0
 
 Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove 
 100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
@@ -92,7 +166,7 @@ the hub's consistency arguments.
 
 - Improvements to the Linea bridge: 
   - New UI for improved user experience 
-  - Update Linea native bridge to use the [Circle CCTP](https://www.circle.com/cross-chain-transfer-protocol) 
+  - Update Linea native bridge to use the [Circle CCTP](https://circle.com/cross-chain-transfer-protocol) 
   for USDC transfers
   - Add new bridging aggregators for faster transfers and greater chain selection
   - Integrate [Onramper](https://onramper.com/) for seamless fiat onramping to Linea only (live on 
@@ -105,10 +179,10 @@ the hub's consistency arguments.
 
 **Linea Sepolia: January 28, 2025**
 
-- Add automatic claiming for L1 -> L2 bridging on the Linea native bridge.
+- Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
 - Introduces the [Linea Token API](./api/token-api/overview.mdx) at alpha stage.
 
-## Alpha v4
+## Alpha v4.0
 
 **Mainnet: December 16, 2024**
 
@@ -214,7 +288,7 @@ the sequencer's trace limits.
 
 **Linea Sepolia: September 18**
 
-Upgrades the [Linea bridge](https://bridge.linea.build/) UI.  
+Upgrades the [Linea bridge](https://linea.build/hub/bridge/) UI.  
 
 ## Alpha v3.5.0
 
@@ -340,7 +414,7 @@ June 4: Fully functional on mainnet.
 
 ::: 
 
-The [Linea bridge](https://bridge.linea.build/) has been upgraded to enable recipient addresses to
+The [Linea bridge](https://linea.build/hub/bridge/) has been upgraded to enable recipient addresses to
 always be able to claim bridged funds. Bridge transfers to alternative recipients (i.e. an address
 that isn't the sender's address) now appear on the recipient's "Recent transactions" list, 
 enabling them to claim.
@@ -356,7 +430,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 - Adds the [`eth_sendRawTransaction`](../docs/api/reference/eth-sendrawtransaction.mdx) method, 
 available only via Besu endpoints.
 
-## Alpha v3
+## Alpha v3.0
 
 ### Summary
 
@@ -556,7 +630,7 @@ The Security Council will first execute the following transactions on L1:
 - Execute Set new Verifier at index 0
 - Schedule LineaRollup upgrade (at L1 block N)
 - Execute LineaRollup upgrade (at L1 block N)
-- Update Zodiac delegate roles from pauseByType(bytes32) -> pauseByType(uint8)
+- Update Zodiac delegate roles from pauseByType(bytes32) &rarr; pauseByType(uint8)
 
 The Security Council will then execute the following transactions on L2:
 - Schedule L2MessageService upgrade

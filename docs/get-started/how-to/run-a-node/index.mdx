@@ -1,11 +1,20 @@
 ---
-description: Run a Linea node.
+title: Run a Linea node
 image: /img/socialCards/run-a-linea-node.jpg
 ---
 
 import DocCardList from "@theme/DocCardList";
 
-# Run a Linea node
+:::note
+
+This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../release-notes.mdx#beta-v40), 
+Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
+client of your choice. 
+
+This section will be updated shortly to reflect this new architecture and is inaccurate for the time
+being.
+
+:::
 
 This section guides you through running a Linea node using various compatible Ethereum clients.
 
@@ -44,21 +53,21 @@ to Linea-specific features.
       <td>Besu client with plugins that implement Linea-specific features, such as [API methods](../../../api/reference/index.mdx) and a [finalized](../finalized-block.mdx) tag.</td>
       <td>✅</td>
     </tr>
-    <tr>
+{/*     <tr>
       <td>[Erigon](./erigon.mdx)</td>
       <td>A client implementation focused on performance and saving disk space, written in Go.</td>
       <td>❌</td>
-    </tr>
+    </tr> */}
     <tr>
       <td>[Geth](./geth.mdx)</td>
       <td>The most widely used open-source Ethereum client, written in Go.</td>
       <td>❌</td>
     </tr>
-    <tr>
+{/*     <tr>
       <td>[Nethermind](./nethermind.mdx)</td>
       <td>A highly configurable .NET-based Ethereum client.</td>
       <td>❌</td>
-    </tr>
+    </tr> */}
   </tbody>
 </table>
 

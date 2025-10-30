@@ -20,8 +20,7 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
   // GitHub pages deployment config.
@@ -45,6 +44,9 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
@@ -102,17 +104,14 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      /*
       announcementBar: {
-        id: "announcement_bar",
+        id: "announcement_bar_2025_08_v1",
         content:
-          '📣 <strong>Linea ENS</strong> is now available! Visit the <a href="https://names.linea.build/" target="blank">app</a>, <a href="https://support.linea.build/general/ens" target="blank">user guide</a>, or our <a href="https://docs.linea.build/get-started/tooling/cross-chain/ccip-read-gateway" target="blank">developer guidance</a> on reusing its architecture.',
+          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
       },
-      */
-
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
@@ -205,7 +204,7 @@ const config = {
               },
               {
                 label: "Privacy policy",
-                href: "https://consensys.io/privacy-notice",
+                href: "https://linea.build/privacy-policy",
               },
             ],
           },
@@ -214,18 +213,18 @@ const config = {
             items: [
               {
                 label: "Developer Hub",
-                href: "https://linea.build/developers",
+                href: "https://developer.linea.build/",
               },
               {
                 label: "Linea Hub",
                 href: "https://linea.build/apps",
               },
               {
-                label: "Join our Discord",
+                label: "Discord",
                 href: "https://discord.gg/linea",
               },
               {
-                label: "Get support",
+                label: "User support",
                 to: "https://support.linea.build/",
               },
               {
@@ -324,34 +323,78 @@ const config = {
     {
       tagName: "script",
       attributes: {},
-      innerHTML: `window.lightningjs||function(n){function e(e,t){var i,r,a,o,d,l;return t&&(t+=(/\\?/.test(t)?"&":"?")+"lv=1"),n[e]||(i=window,r=document,a=e,o=r.location.protocol,d="load",l=0,function(){n[a]=function(){var t=arguments,r=this,o=++l,d=r&&r!=i&&r.id||0;function s(){return s.id=o,n[a].apply(s,arguments)}return(e.s=e.s||[]).push([o,d,t]),s.then=function(n,t,i){var r=e.fh[o]=e.fh[o]||[],a=e.eh[o]=e.eh[o]||[],d=e.ph[o]=e.ph[o]||[];return n&&r.push(n),t&&a.push(t),i&&d.push(i),s},s};var e=n[a]._={};function s(){e.P(d),e.w=1,n[a]("_load")}e.fh={},e.eh={},e.ph={},e.l=t?t.replace(/^\\\/\\\//,("https:"==o?o:"http:")+"//"):t,e.p={0:+new Date},e.P=function(n){e.p[n]=new Date-e.p[0]},e.w&&s(),i.addEventListener?i.addEventListener(d,s,!1):i.attachEvent("onload",s);var c=function(){function n(){return["<!DOCTYPE ",o,"><",o,"><head></head><",t,"><",i,' src="',e.l,'"></',i,"></",t,"></",o,">"].join("")}var t="body",i="script",o="html",d=r[t];if(!d)return setTimeout(c,100);e.P(1);var l,s=r.createElement("div"),h=s.appendChild(r.createElement("div")),u=r.createElement("iframe");s.style.display="none",d.insertBefore(s,d.firstChild).id="lightningjs-"+a,u.frameBorder="0",u.id="lightningjs-frame-"+a,/MSIE[ ]+6/.test(navigator.userAgent)&&(u.src="javascript:false"),u.allowTransparency="true",h.appendChild(u);try{u.contentWindow.document.open()}catch(n){e.domain=r.domain,l="javascript:var d=document.open();d.domain='"+r.domain+"';",u.src=l+"void(0);"}try{var p=u.contentWindow.document;p.write(n()),p.close()}catch(e){u.src=l+'d.write("'+n().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}e.P(2)};e.l&&c()}()),n[e].lv="1",n[e]}var t=window.lightningjs=e("lightningjs");t.require=e,t.modules=n}({}),window.usabilla_live=lightningjs.require("usabilla_live","//w.usabilla.com/28fb46af8693.js");`,
+      innerHTML: `
+      document.addEventListener('DOMContentLoaded', function() {
+        var element = document.getElementById('__cookbook');
+        if (!element) {
+          element = document.createElement('div');
+          element.id = '__cookbook';
+          element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
+          document.body.appendChild(element);
+        }
+
+        var script = document.getElementById('__cookbook-script');
+        if (!script) {
+          script = document.createElement('script');
+          script.crossOrigin = 'anonymous';
+          script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
+          script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+
+          script.id = '__cookbook-script';
+          script.async = true;
+          document.body.appendChild(script);
+        }
+      });
+    `,
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        href: "/img/favicons/favicon-96x96.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: "/img/favicons/web-app-manifest-192x192.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        href: "/img/favicons/web-app-manifest-512x512.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/img/favicons/apple-touch-icon.png",
+      },
     },
     {
       tagName: "script",
-      attributes: {},
+      attributes: {
+        type: "application/ld+json",
+      },
       innerHTML: `
-        document.addEventListener('DOMContentLoaded', function() {
-          var element = document.getElementById('__cookbook');
-          if (!element) {
-            element = document.createElement('div');
-            element.id = '__cookbook';
-            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
-            document.body.appendChild(element);
-          }
-
-          var script = document.getElementById('__cookbook-script');
-          if (!script) {
-            script = document.createElement('script');
-            script.crossOrigin = 'anonymous';
-            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
-            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
-
-            script.id = '__cookbook-script';
-            script.async = true;
-            document.body.appendChild(script);
-          }
-        });
-      `,
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": "https://docs.linea.build",
+        "logo": "https://docs.linea.build/img/favicons/favicon-96x96.png"
+      }
+    `,
     },
   ],
 };
