@@ -1,0 +1,43 @@
+---
+title: Reactive Network
+description: Learn how to use the Reactive Network to create reactive dApps
+image: /img/socialCards/reactive.png
+---
+
+import Reactive from "static/img/get_started/tooling/cross_chain/reactive/reactive.svg";
+
+<div className="img-large">
+  <Reactive />
+</div>
+
+Reactive Network is an EVM-compatible execution layer designed for decentralized automation across blockchains. It introduces reactive contracts, a new type of smart contract that operates using inversion of control, executing based on event logs from other chains rather than direct user interaction.
+
+Unlike traditional contracts that rely on EOAs to initiate function calls, reactive contracts respond to event logs emitted by contracts on other chains. These contracts can independently evaluate conditions and initiate outbound messages or state changes without requiring user transactions.
+
+Reactive Network supports fast and cost-efficient execution through a parallelized EVM implementation, optimized for processing large volumes of event-driven computation.
+
+## Reactive Contracts
+
+Reactive contracts are standard Solidity contracts deployed on the Reactive Network that follow a specific execution pattern. Instead of exposing functions for users to call directly, these contracts are configurable to:
+
+- Monitor specified chains, contracts, and event signatures
+- Receive and process event logs emitted on those chains
+- Execute logic conditionally based on the contents of the received logs
+- Initiate transactions or cross-chain messages in response to valid triggers
+
+Each Reactive contract defines a subscription-like configuration for the event it listens to. When a matching log is detected, the contract is executed with structured input data derived from the event, allowing it to perform actions such as:
+
+- Writing to the internal state
+- Sending data to another chain via Reactive's cross-chain infrastructure
+- Triggering domain-specific workflows (e.g., settlements, governance updates, etc.)
+
+Reactive contracts are compatible with the standard EVM toolchain and can be written in Solidity using custom ABIs defined for event-based execution. Execution is trust-minimized: the logs are verifiable, emitted on origin chains, and the Reactive Network enforces that only matching, authentic events trigger contract logic.
+
+## Resources and Contacts
+
+- [Reactive Docs](https://dev.reactive.network/)
+- [Telegram](https://t.me/reactivedevs)
+- [GitHub](https://github.com/Reactive-Network)
+- [X (Twitter)](https://x.com/0xReactive)
+- [Discord](https://discord.com/invite/SaZAfkgZhj)
+- [Blog](https://blog.reactive.network/)
