@@ -165,18 +165,7 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 
 :::
 
-### Step 3. Configure your L1 RPC endpoint
-
-If you're using an `advanced` profile, insert your preferred L1 RPC endpoint in the 
-`docker-compose.yaml` file:
-
-```yaml
---plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
-```
-
-If you only intend to run a `basic` profile, go straight to the next step.
-
-### Step 4. Start the Linea Besu node
+### Step 3. Start the Linea Besu node
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
@@ -194,7 +183,8 @@ If you only intend to run a `basic` profile, go straight to the next step.
     docker run -e BESU_PROFILE=advanced-mainnet consensys/linea-besu-package:latest
     ```
 
-    Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
+    Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
+    name with a more recent version from the releases page.
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
       In a terminal, navigate to your `.yaml` file's directory. Then start the node by running 
@@ -211,6 +201,7 @@ If you only intend to run a `basic` profile, go straight to the next step.
       docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:beta-v4.0-rc11-20251004063519-a5c4c31
       ```
 
-      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1. 
+      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
+      name with a more recent version from the releases page.
     </TabItem>
 </Tabs>
