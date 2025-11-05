@@ -8,6 +8,8 @@ on:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v4
 
@@ -63,6 +65,8 @@ jobs:
     needs: [update-data]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: none
     steps:
       - name: Slack Notification
         uses: Consensys/github-actions/slack-notify@main
