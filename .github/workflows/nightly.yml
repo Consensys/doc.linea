@@ -40,7 +40,7 @@
       if: ${{ failure() }}
       runs-on: ubuntu-latest
       permissions:
-        contents: read
+        contents: none
       steps:
         - name: Slack Notification
           uses: ConsenSys/github-actions/slack-notify@main
