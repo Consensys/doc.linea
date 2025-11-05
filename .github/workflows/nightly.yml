@@ -39,6 +39,8 @@
       needs: [linkCheckMdx, linkCheckMd]
       if: ${{ failure() }}
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
       steps:
         - name: Slack Notification
           uses: ConsenSys/github-actions/slack-notify@main
