@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: LinkCheck mdx files
-        uses: ConsenSys/github-actions/docs-link-check@main
+        uses: Consensys/github-actions/docs-link-check@main
         with:
           FILE_EXTENSION: mdx
           MODIFIED_FILES_ONLY: no
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: LinkCheck md files
-        uses: ConsenSys/github-actions/docs-link-check@main
+        uses: Consensys/github-actions/docs-link-check@main
         with:
           FILE_EXTENSION: md
           MODIFIED_FILES_ONLY: no
@@ -47,7 +47,7 @@ jobs:
     permissions: {}   # zero scopes
     steps:
       - name: Slack Notification
-        uses: ConsenSys/github-actions/slack-notify@main
+        uses: Consensys/github-actions/slack-notify@main
         with:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
