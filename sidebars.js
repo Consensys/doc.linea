@@ -117,9 +117,9 @@ const sidebars = {
             id: "get-started/tooling/account-abstraction/index",
           },
           items: [
-
             "get-started/tooling/account-abstraction/biconomy",
             "get-started/tooling/account-abstraction/etherspot",
+            "get-started/tooling/account-abstraction/metamask",
             "get-started/tooling/account-abstraction/noves",
             "get-started/tooling/account-abstraction/oklink",
             "get-started/tooling/account-abstraction/openfort",
@@ -189,6 +189,7 @@ const sidebars = {
             "get-started/tooling/cross-chain/ccip",
             "get-started/tooling/cross-chain/ccip-read",
             "get-started/tooling/cross-chain/layerzero",
+            "get-started/tooling/cross-chain/reactive-network",
             "get-started/tooling/cross-chain/shortcuts",
             "get-started/tooling/cross-chain/thirdweb",
           ],
@@ -585,6 +586,7 @@ const sidebars = {
   technologySidebar: [
     "technology/architecture",
     "technology/tokenomics",
+    "technology/burn",
     "technology/repos",
     "technology/transaction-lifecycle",
     "technology/network-data",
