@@ -587,6 +587,7 @@ const sidebars = {
   technologySidebar: [
     "technology/architecture",
     "technology/tokenomics",
+    "technology/burn",
     "technology/repos",
     "technology/transaction-lifecycle",
     "technology/network-data",
