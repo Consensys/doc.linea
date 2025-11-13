@@ -21,6 +21,20 @@ We maintain a record and brief explanation of Linea Security Council transaction
 
 ## Beta v4.3
 
+Removes certain limits previously present on prover throughput. This quite literally means more Transactions Per Second, leading to:
+
+- **Sustained low gas fees, even during peak activity levels** (gas price only rise when we approach the maximum throughput of the chain)
+- **Faster transaction confirmation during peak activity levels** (blocks can contain more transactions, thus reducing the delay to include transactions)
+- **High-traffic dApps can scale more, and faster:** (users will not get hurt by the poor UX related to block congestion described above)
+
+### Bugs solved:
+- While relatively rare, due to the aforementioned limits, there were instances of transactions pending forever. This change eliminates those circumstances.
+
+### Breaking changes:
+
+#### Transaction bundling
+- **Wallets** will need to add support for the Linea `sendBundle` endpoint, as well as [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), in order to enable dapps to create transaction bundles. If a wallet also intends to offer gas sponsorship, they will have to implement that on the wallet side.
+- **Dapps** should ensure that they are, also, supporting [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) in order to *send* transaction bundles, if they are not already doing so in order to be compliant with EIP-7702. Additionally, if the user's wallet does not support the Linea `sendBundle` endpoint, **dapps should implement fallback logic**.
 
 ## Beta v4.2
 
