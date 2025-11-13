@@ -33,7 +33,7 @@ Removes certain limits previously present on prover throughput. This quite liter
 ### Breaking changes:
 
 #### Transaction bundling
-- **Wallets** will need to add support for the Linea `sendBundle` endpoint, as well as [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), in order to enable dapps to create transaction bundles. If a wallet also intends to offer gas sponsorship, they will have to implement that on the wallet side.
+- **Wallets** will need to add support for the Linea `sendBundle` [endpoint](/api/reference/eth-sendbundle), as well as [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), in order to enable dapps to create transaction bundles. If a wallet also intends to offer gas sponsorship, they will have to implement that on the wallet side.
 - **Dapps** should ensure that they are, also, supporting [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) in order to *send* transaction bundles, if they are not already doing so in order to be compliant with EIP-7702. Additionally, if the user's wallet does not support the Linea `sendBundle` endpoint, **dapps should implement fallback logic**.
 
 ## Beta v4.2
