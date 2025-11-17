@@ -6,6 +6,7 @@ excludedDirs:
   - ./.vercel
   - ./build
   - ./.docusaurus
+followRedirects: true
 ignorePatterns:
   - pattern: '^https://github\.com(?:[/?].*)?$'
   - pattern: '^https://x\.com(?:[/?].*)?$'
