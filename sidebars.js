@@ -70,6 +70,7 @@ const sidebars = {
             "get-started/how-to/verify-smart-contract/atlas",
             "get-started/how-to/verify-smart-contract/foundry",
             "get-started/how-to/verify-smart-contract/hardhat",
+            "get-started/how-to/verify-smart-contract/tenderly",
           ],
         },
         "get-started/how-to/migrate-dapp",
@@ -256,6 +257,7 @@ const sidebars = {
           },
           items: [
             "get-started/tooling/gas/blocknative",
+            "get-started/tooling/gas/tenderly",
           ],
         },
         {
@@ -349,6 +351,7 @@ const sidebars = {
             "get-started/tooling/security/hypernative",
             "get-started/tooling/security/scamfari",
             "get-started/tooling/security/spherex",
+            "get-started/tooling/security/tenderly",
           ],
         },
         {
