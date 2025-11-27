@@ -10,10 +10,10 @@ Node runners must update their clients before the upgrade activates (if no downt
 
 ### Upgrade both clients
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
-Besu: consensys/linea-besu-package:[VERSION_TBD]
-Maru: consensys/maru:[VERSION_TBD]
-Geth: 1.16.5 ?
-Other EL clients: Check for Fusaka-compatible versions
+- Besu: consensys/linea-besu-package:[VERSION_TBD]
+- Maru: consensys/maru:[VERSION_TBD]
+- Geth: 1.16.5 VERSION_TBD
+- Other EL clients: Check for Fusaka-compatible versions
 
 ### Verify your upgrade
 After upgrading, validate that your node is running the correct fork by checking the forkId:
@@ -39,9 +39,10 @@ Expected output:
 
 If your output doesn't match, **your node is not properly upgraded.**
 
+
 ### Simplified configuration with named networks:
 
-Starting with these versions (TBD), Maru now supports the `--network` flag, eliminating the need for manually managing genesis files.
+Starting with these versions, both Besu and Maru now support network flags, eliminating the need for manually managing genesis files:
 
 #### Old way:
 command:
@@ -104,8 +105,8 @@ besu-node:
 ```
 
 ##### More details here: 
-[Besu Ethstats setup](https://besu.hyperledger.org/private-networks/how-to/deploy/ethstats)
-[Geth Ethstats setup](https://geth.ethereum.org/docs/monitoring/ethstats)
+- [Besu Ethstats setup](https://besu.hyperledger.org/private-networks/how-to/deploy/ethstats)
+- [Geth Ethstats setup](https://geth.ethereum.org/docs/monitoring/ethstats)
 
 
 ## Beta v4.0 migration guide

@@ -44,9 +44,6 @@ const config = {
 
   markdown: {
     mermaid: true,
-    hooks: {
-      onBrokenMarkdownLinks: "throw",
-    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
