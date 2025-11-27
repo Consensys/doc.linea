@@ -59,7 +59,17 @@ command:
 ```
 
 This simplifies node setup and ensures you're always using the correct network configuration.
-Lastly:
+
+#### Simplified configuration with Besu
+
+This flag also works with Besu, not just Maru. However, the syntax is slightly different. In linea-besu.config.toml, do the following:
+
+```
+network="linea"
+```
+That's it--whereas Maru uses `linea-mainnet`, Besu accepts just `linea`.
+
+And so, lastly:
 
 ### Help us monitor the network! (...it's optional, but greatly appreciated)
 
