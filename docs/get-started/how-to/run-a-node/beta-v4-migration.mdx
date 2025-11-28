@@ -8,16 +8,27 @@ image: /img/socialCards/upgrade-guides.jpg
 Linea will be upgrading to Fusaka (Ethereum's latest EVM upgrade) on December 3-4, 2025 to maintain alignment with Ethereum mainnet.
 Node runners must update their clients before the upgrade activates (if no downtime is desired).
 
+## Timeline
+We're taking a phased approach to ensure a smooth upgrade:
+**Linea Sepolia Testnet**
+Date: Monday, December 2nd at 10:00 UTC
+Action: Sepolia node runners must upgrade by Monday morning
+**Linea Mainnet**
+Date: Wednesday, December 4th (pending successful Sepolia upgrade)
+Condition: Only if Sepolia upgrade completes without issues
+Action: Mainnet node runners must upgrade by Wednesday morning
+Confirmation: We will announce the mainnet go/no-go on Monday evening
+
 ### Upgrade both clients
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
-- Besu: consensys/linea-besu-package:[VERSION_TBD]
-- Maru: consensys/maru:[VERSION_TBD]
-- Geth: 1.16.5 VERSION_TBD
+Sepolia:
+- Besu: consensys/linea-besu-package:beta-v4.4-rc5-20251128003548-a3bfee7
+- Maru: consensys/maru:95cab28
+- Geth: 1.16.5
 - Other EL clients: Check for Fusaka-compatible versions
 
 ### Verify your upgrade
 After upgrading, validate that your node is running the correct fork by checking the forkId:
-
 ```bash
 curl --location http://localhost:8545/ \
 --header 'Content-Type: application/json' \
@@ -26,16 +37,27 @@ curl --location http://localhost:8545/ \
     "method": "eth_config",
     "params":[],
     "id": 1
-}' | jq .result.current.forkId
+}' | jq .result
 ```
-
-Expected output:
-
+**Expected output after activation:**
 ```bash
+
+**Sepolia (Besu):**
 {
-  "hash": "[EXPECTED_HASH_TBD]"
+  "current": { "forkId": "0xd64604e3" },
+  "next": { "forkId": "0x24ef0ae2" }
 }
 ```
+**Sepolia (Geth):**
+```bash
+{
+  "current": { "forkId": null },
+  "next": { "forkId": "0xeb9298ef" },
+  "last": { "forkId": "0x24ef0ae2" }
+}
+```
+
+**Note:** Besu shows Osaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`. Both should show `0x24ef0ae2` for Osaka.
 
 If your output doesn't match, **your node is not properly upgraded.**
 
@@ -66,9 +88,9 @@ This simplifies node setup and ensures you're always using the correct network c
 This flag also works with Besu, not just Maru. However, the syntax is slightly different. In linea-besu.config.toml, do the following:
 
 ```
-network="linea"
+network="linea_sepolia"
 ```
-That's it--whereas Maru uses `linea-mainnet`, Besu accepts just `linea`.
+
 
 And so, lastly:
 
