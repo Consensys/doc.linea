@@ -47,13 +47,11 @@ cd linea-tutorial
 
 ## Deploy a smart contract
 
-To deploy a smart contract we highly recommend using an Infura endpoint, as the public endpoint may 
-experience rate limiting and is not meant for production use.
+:::caution Public endpoints are rate limited and not meant for production systems
 
-[Sign up for an Infura account](https://docs.infura.io/api/getting-started) to get an API key that
-provides access to the Linea endpoints. Assign the Linea endpoints you want to access to your API key.
-
-:::caution
+We recommend using a node provider such as Infura.
+[Sign up for an Infura account](https://docs.metamask.io/developer-tools/dashboard/) to generate
+an API key. In the dashboard, enable the Linea endpoints you want to use with that key.
 
 These instructions use API keys and private keys inline. We highly recommend hiding them
 [in `.env` files](#deploy-a-smart-contract-using-a-env-file)
