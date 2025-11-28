@@ -10,44 +10,26 @@ permissions:
   contents: read
 
 jobs:
-  linkCheckMdx:
-    name: Run link check on .mdx files
+  linkCheck:
+    name: Run link check
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v5
-
-      - name: LinkCheck mdx files
-        uses: Consensys/github-actions/docs-link-check@main
+      - uses: actions/checkout@v4
+      - name: LinkCheck
+        uses: ConsenSys/github-actions/docs-link-check@main
         with:
-          FILE_EXTENSION: mdx
-          MODIFIED_FILES_ONLY: no
-
-  linkCheckMd:
-    needs: linkCheckMdx
-    name: Run link check on .md files
-    if: always()
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v5
-
-      - name: LinkCheck md files
-        uses: Consensys/github-actions/docs-link-check@main
-        with:
-          FILE_EXTENSION: md
-          MODIFIED_FILES_ONLY: no
+          CONFIG_FILE: .linkspector.yml
 
   slackNotification:
-    needs: [linkCheckMdx, linkCheckMd]
+    needs: linkCheck
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     permissions: {}   # zero scopes
     steps:
       - name: Slack Notification
-        uses: Consensys/github-actions/slack-notify@main
+        uses: ConsenSys/github-actions/slack-notify@main
         with:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
