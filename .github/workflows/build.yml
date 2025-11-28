@@ -23,7 +23,7 @@ jobs:
       contents: read  # least-privilege for this job only
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5 # Official GitHub action; intentionally not pinned so we stay on the latest v5.x
+        uses: actions/checkout@v6 # Official GitHub action; intentionally not pinned so we stay on the latest v5.x
 
       - name: Build docs
         uses: Consensys/github-actions/docs-build@main
