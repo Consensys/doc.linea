@@ -75,6 +75,6 @@ jobs:
         env:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
-          sSLACK_TITLE: Linea node size update - Failure
+          SLACK_TITLE: Linea node size update - Failure
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
