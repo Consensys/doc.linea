@@ -3,8 +3,7 @@ name: Check for lint errors
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   lint:
@@ -13,7 +12,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
       - name: Lint code
         uses: Consensys/github-actions/docs-lint-all@main

@@ -3,8 +3,7 @@ name: Check file name case
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
     paths:
       - 'docs/**'
 
@@ -18,7 +17,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
       - name: Case check action
         uses: Consensys/docs-gha/docs-case-check@main

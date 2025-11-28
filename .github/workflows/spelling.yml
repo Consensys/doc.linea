@@ -3,8 +3,7 @@ name: Check for spelling with vale
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   vale:
@@ -13,7 +12,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
       - name: Vale
         uses: Consensys/github-actions/docs-spelling-check@main

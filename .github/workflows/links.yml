@@ -3,8 +3,7 @@ name: Check for broken links
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   linkCheck:
@@ -13,7 +12,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
       - name: LinkCheck
         uses: Consensys/github-actions/docs-link-check@main
