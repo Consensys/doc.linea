@@ -4,8 +4,7 @@ name: Check file name case
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - 'docs/**'
+    paths: ['docs/**']
 
 jobs:
   case:
