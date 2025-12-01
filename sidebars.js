@@ -88,6 +88,7 @@ const sidebars = {
           },
           items: [
             "get-started/how-to/run-a-node/besu",
+            "get-started/how-to/run-a-node/beta-v4-migration",
             // "get-started/how-to/run-a-node/erigon",
             "get-started/how-to/run-a-node/geth",
             "get-started/how-to/run-a-node/linea-besu",
@@ -361,6 +362,7 @@ const sidebars = {
           items: [
             "get-started/tooling/social-login/arcana",
             "get-started/tooling/social-login/dynamic",
+            "get-started/tooling/social-login/metamask",
             "get-started/tooling/social-login/openfort",
             "get-started/tooling/social-login/privy",
           ],
