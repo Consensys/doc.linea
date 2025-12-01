@@ -29,13 +29,17 @@ Create a file named `wagmi.ts` in your in your project directory, and add this c
 ```ts
 import { http, createConfig } from 'wagmi'
 import { linea, lineaSepolia, mainnet } from 'wagmi/chains'
-import { injected } from 'wagmi/connectors'
+import { injected, metaMask } from 'wagmi/connectors'
 
 const projectId = '<WALLETCONNECT_PROJECT_ID>'
 
 export const config = createConfig({
   chains: [lineaSepolia, linea, mainnet],
-  connectors: [injected()],
+  connectors: [
+    injected(),
+    metaMask({
+      infuraAPIKey: process.env.NEXT_PUBLIC_INFURA_API_KEY!,
+    })],
   transports: {
     [lineaSepolia.id]: http(),
     [linea.id]: http(),
@@ -47,6 +51,8 @@ export const config = createConfig({
 This configuration file ensures Wagmi works with Linea, Linea Sepolia, and Ethereum Mainnet, and 
 also defines that we should use the `injected` wallet connector, which works with any wallet that
 uses the common EIP-1193 standard. There are a few wallets that also have [separate connectors](https://wagmi.sh/react/api/connectors).
+
+You can also use the `metaMask` connector, which works with MetaMask Wallet.
 
 ### Add Wagmi and query providers
 
@@ -77,7 +83,7 @@ providers:
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
-import { config } from './wagmi'
+import { config, metaMask } from './wagmi'
 
 const queryClient = new QueryClient()
 
@@ -121,9 +127,14 @@ export function ConnectButton() {
   const { connect } = useConnect()
 
   return (
-    <button onClick={() => connect({ connector: injected() })}>
-      Connect wallet
-    </button>
+    <>
+      <button onClick={() => connect({ connector: injected() })}>
+        Connect wallet
+      </button>
+      <button onClick={() => connect({ connector: metaMask() })}>
+        Connect MetaMask wallet
+      </button>
+    </>
   )
 }
 ```
