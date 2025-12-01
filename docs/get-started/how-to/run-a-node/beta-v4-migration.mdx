@@ -9,6 +9,7 @@ image: /img/socialCards/upgrade-guides.jpg
 ## Fusaka upgrade guide
 Linea will be upgrading to Fusaka (Ethereum's latest EVM upgrade) on December 3, 2025 to maintain alignment with Ethereum mainnet.
 Node runners must update their clients before the upgrade activates (if no downtime is desired).
+For more information on the Fusaka upgrade, see the Ethereum Foundation's [Roadmap entry for it](https://ethereum.org/roadmap/fusaka/).
 
 ## Timeline
 We're taking a phased approach to ensure a smooth upgrade:
@@ -18,7 +19,7 @@ Action: Sepolia node runners must upgrade by Monday morning.
 - **Linea Mainnet**
 Date: Wednesday, December 3rd:
 Action: Mainnet node runners must upgrade by Wednesday morning.
-Confirmation: We will announce the mainnet go/no-go on Monday evening.
+Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday evening.
 
 ### Upgrade both clients
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
@@ -29,13 +30,11 @@ This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Laye
 - Geth: 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
 - Other EL clients: Check for Fusaka-compatible versions
 
-
 #### Mainnet (Available after successful Sepolia upgrade):
 - Besu: **TBD** 
 - Maru: **TBD** 
 - Geth: 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 - Other EL clients: Check for Fusaka-compatible versions
-
 
 ### Verify your upgrade
 After upgrading, validate that your node is running the correct fork by checking the forkId:
@@ -83,7 +82,7 @@ Geth (Mainnet):
 }
 ```
 
-**Note:** Due to some semantic discrepancy Besu shows Fusaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`.
+**Note:** Due to some semantic discrepancies, Besu shows Fusaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`.
 
 If your output doesn't match, **your node is not properly upgraded.**
 
