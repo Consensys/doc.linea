@@ -17,7 +17,7 @@ We're taking a phased approach to ensure a smooth upgrade:
 Date: Monday, December 1st at 10:00 UTC.
 Action: Sepolia node runners must upgrade by Monday morning.
 - **Linea Mainnet**
-Date: Wednesday, December 3rd:
+Date: Wednesday, December 3rd at 9:49pm UTC:
 Action: Mainnet node runners must upgrade by Wednesday morning.
 Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday evening.
 
@@ -31,8 +31,8 @@ This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Laye
 - Other EL clients: Check for Fusaka-compatible versions
 
 #### Mainnet (Available after successful Sepolia upgrade):
-- Besu: **TBD** 
-- Maru: **TBD** 
+- Besu: **consensys/linea-besu-package:beta-v4.4-rc7-20251201181632-1fefac9** 
+- Maru: **consensys/maru:9737a45** 
 - Geth: 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 - Other EL clients: Check for Fusaka-compatible versions
 
@@ -71,14 +71,14 @@ Geth (Sepolia):
 ```bash
 Besu (Mainnet):
 {
-  "current": { "forkId": "TBD" },
-  "next": { "forkId": "TBD" }
+  "current": { "forkId": "0x3f0a66e1" },
+  "next": { "forkId": "0x335bb88e" }
 }
 
 Geth (Mainnet):
 {
-  "next": { "forkId": "TBD" },
-  "last": { "forkId": "TBD" }
+  "next": { "forkId": "0xa28c533c" },
+  "last": { "forkId": "0x335bb88e" }
 }
 ```
 
