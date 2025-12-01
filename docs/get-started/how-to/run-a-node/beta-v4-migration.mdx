@@ -136,32 +136,27 @@ You can opt out at any time.
 
 #### How to Enable Ethstats
 
-Add the following flag to your Execution Layer client, replacing `your-node-name` with a unique identifier for your node (e.g., mycompany-node-1):
+- Step 1: Get your Ethstats key
+Each node runner needs a unique Ethstats key. Contact Linea technical support to request your key (one key per organization).
+- Step 2: Add the flag to your Execution Layer client
+Replace your-node-name with a unique identifier for your node (e.g., mycompany-node-1) and YOUR_ETHSTATS_KEY with the key provided by the Linea technical support team:
 
 ##### Linea Sepolia:
-`--ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.sepolia.linea.build`
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build`
 
 ##### Linea Mainnet:
-`--ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.linea.build`
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build`
 
 ##### Docker Compose example:
 
-**For Sepolia:**
 ```yaml
+For Sepolia:
 besu-node:
   image: consensys/linea-besu-package:beta-v4.4-rc5-20251128003548-a3bfee7
   command:
     - --config-file=/var/lib/besu/linea-besu.config.toml
-    - --ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.sepolia.linea.build
-```
-
-**For Mainnet:**
-```yaml
-besu-node:
-  image: TBD  # Will be announced Monday evening
-  command:
-    - --config-file=/var/lib/besu/linea-besu.config.toml
-    - --ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.linea.build
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # sepolia
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build # mainnet
 ```
 
 ##### More details here: 
