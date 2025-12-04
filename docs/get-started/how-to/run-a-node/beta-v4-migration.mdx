@@ -30,8 +30,8 @@ This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Laye
 - Geth: 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
 - Other EL clients: Check for Fusaka-compatible versions
 
-#### Mainnet (Available after successful Sepolia upgrade):
-- Besu: **consensys/linea-besu-package:beta-v4.4-rc7-20251201181632-1fefac9** 
+#### Mainnet:
+- Besu: **consensys/linea-besu-package:beta-v4.4-rc7-20251202165721-14b8f4c** 
 - Maru: **consensys/maru:9737a45** 
 - Geth: 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 - Other EL clients: Check for Fusaka-compatible versions
@@ -147,7 +147,7 @@ Replace your-node-name with a unique identifier for your node (e.g., mycompany-n
 
 ```yaml
 besu-node:
-  image: consensys/linea-besu-package:beta-v4.4-rc5-20251128003548-a3bfee7
+  image: consensys/linea-besu-package:beta-v4.4-rc7-20251202165721-14b8f4c
   command:
     - --config-file=/var/lib/besu/linea-besu.config.toml
     - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # sepolia
@@ -157,6 +157,7 @@ besu-node:
 ##### More details here: 
 - [Besu Ethstats setup](https://besu.hyperledger.org/private-networks/how-to/deploy/ethstats)
 - [Geth Ethstats setup](https://geth.ethereum.org/docs/monitoring/ethstats)
+
 
 
 ## Beta v4.0 migration guide
