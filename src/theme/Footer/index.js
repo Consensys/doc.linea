@@ -4,7 +4,19 @@ import Footer from "@theme-original/Footer";
 export default function FooterWrapper(props) {
   useEffect(() => {
     const handleManageCookie = () => {
-      window.Osano.cm.showDrawer("osano-cm-dom-info-dialog-open");
+      // Check if Osano API is available before accessing it
+      if (
+        typeof window !== "undefined" &&
+        window.Osano &&
+        window.Osano.cm &&
+        typeof window.Osano.cm.showDrawer === "function"
+      ) {
+        window.Osano.cm.showDrawer("osano-cm-dom-info-dialog-open");
+      } else {
+        console.warn(
+          "Osano cookie management script is not yet loaded. Please try again in a moment.",
+        );
+      }
     };
     const cookieBtn = document.getElementById("manage-cookie-btn");
     if (!cookieBtn) return;
