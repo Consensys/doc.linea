@@ -203,6 +203,9 @@ const config = {
                 label: "Privacy policy",
                 href: "https://linea.build/privacy-policy",
               },
+              {
+                html: "<button id='manage-cookie-btn'>Manage cookie</button>",
+              },
             ],
           },
           {
@@ -317,6 +320,12 @@ const config = {
     "@docusaurus/theme-mermaid",
   ],
   headTags: [
+    {
+      tagName: "script",
+      attributes: {
+        src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js",
+      },
+    },
     {
       tagName: "script",
       attributes: {},
