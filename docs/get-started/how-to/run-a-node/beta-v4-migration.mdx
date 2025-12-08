@@ -25,16 +25,14 @@ Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday e
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
 
 #### Sepolia Testnet:
-- Besu: consensys/linea-besu-package:beta-v4.4-rc7-20251202165721-14b8f4c
-- Maru: consensys/maru:95cab28
-- Geth: >= 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
-- Other EL clients: Check for Fusaka-compatible versions
+- **Besu & Maru versions**: See the latest versions in the [Sepolia docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Geth**: See version and configuration in the [Sepolia Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
 
 #### Mainnet:
-- Besu: **consensys/linea-besu-package:beta-v4.4-rc7-20251202165721-14b8f4c** 
-- Maru: **consensys/maru:9737a45** 
-- Geth: >= 1.16.5 + [updated genesis](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
-- Other EL clients: Check for Fusaka-compatible versions
+- **Besu & Maru versions**: See the latest versions in the [Mainnet docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Geth**: See version and configuration in the [Mainnet Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
 
 ### Verify your upgrade
 After upgrading, validate that your node is running the correct fork by checking the forkId:
@@ -145,13 +143,18 @@ Replace your-node-name with a unique identifier for your node (e.g., mycompany-n
 
 ##### Docker Compose example:
 
+For the latest Docker Compose configurations with current versions, see:
+- **Sepolia**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Mainnet**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+
+To add Ethstats monitoring, add this flag to your Besu service:
 ```yaml
 besu-node:
-  image: consensys/linea-besu-package:beta-v4.4-rc7-20251202165721-14b8f4c
+  # ... other configuration from the docker-compose.yml above
   command:
     - --config-file=/var/lib/besu/linea-besu.config.toml
-    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # sepolia
-    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build # mainnet
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # for sepolia
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build # for mainnet
 ```
 
 ##### More details here: 
