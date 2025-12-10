@@ -1,3 +1,4 @@
+---
 name: Update Node Size Data
 
 on:
@@ -11,55 +12,56 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.9.0'  # or whatever version you're using
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run update script
-      env:
-        LINEA_OBSERVABILITY_USER: ${{ secrets.LINEA_OBSERVABILITY_USER }}
-        LINEA_OBSERVABILITY_PASS: ${{ secrets.LINEA_OBSERVABILITY_PASS }}
-      run: node scripts/fetchNodeSize.js
+      - name: Run update script
+        env:
+          LINEA_OBSERVABILITY_USER: ${{ secrets.LINEA_OBSERVABILITY_USER }}
+          LINEA_OBSERVABILITY_PASS: ${{ secrets.LINEA_OBSERVABILITY_PASS }}
+        run: node scripts/fetchNodeSize.js
 
-    - name: Check for existing PR
-      id: check-pr
-      run: |
-        PR_BRANCH="update-node-size-data"
-        EXISTING_PR=$(gh pr list --head $PR_BRANCH --json number,title,state | jq -r '.[0]')
-        if [ "$EXISTING_PR" != "null" ]; then
-          echo "Found existing PR: $EXISTING_PR"
-          echo "pr_number=$(echo $EXISTING_PR | jq -r '.number')" >> $GITHUB_OUTPUT
-        else
-          echo "No existing PR found"
-        fi
+      - name: Check for existing PR
+        id: check-pr
+        run: |
+          PR_BRANCH="update-node-size-data"
+          EXISTING_PR=$(gh pr list --head $PR_BRANCH --json number,title,state | jq -r '.[0]')
+          if [ "$EXISTING_PR" != "null" ]; then
+            echo "Found existing PR: $EXISTING_PR"
+            echo "pr_number=$(echo $EXISTING_PR | jq -r '.number')" >> $GITHUB_OUTPUT
+          else
+            echo "No existing PR found"
+          fi
 
-    - name: Update existing PR or create new one
-      if: steps.check-pr.outputs.pr_number == ''
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Update node size data
-        title: 'Update Node Size Data'
-        body: |
-          This is an automated PR to update the node size data.
-          Please review the changes and merge if everything looks correct.
-        branch: update-node-size-data
-        delete-branch: true
+      - name: Update existing PR or create new one
+        if: steps.check-pr.outputs.pr_number == ''
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update node size data
+          title: 'Update Node Size Data'
+          body: |
+            This is an automated PR to update the node size data.
+            Please review the changes and merge if everything looks correct.
+          branch: update-node-size-data
+          delete-branch: true
 
-    - name: Update existing PR
-      if: steps.check-pr.outputs.pr_number != ''
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add linea-node-size/data.json
-        git commit -m "Update node size data"
-        git push origin update-node-size-data
+      - name: Update existing PR
+        if: steps.check-pr.outputs.pr_number != ''
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add linea-node-size/data.json
+          git commit -m "Update node size data"
+          git push origin update-node-size-data
 
   slackNotification:
     needs: [update-data]
@@ -73,6 +75,6 @@ jobs:
         env:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
-          sSLACK_TITLE: Linea node size update - Failure
+          SLACK_TITLE: Linea node size update - Failure
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true

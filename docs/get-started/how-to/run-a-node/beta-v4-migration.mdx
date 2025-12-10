@@ -7,27 +7,32 @@ image: /img/socialCards/upgrade-guides.jpg
 ---
 
 ## Fusaka upgrade guide
-Linea will be upgrading to Fusaka (Ethereum's latest EVM upgrade) on December 3-4, 2025 to maintain alignment with Ethereum mainnet.
+Linea will be upgrading to Fusaka (Ethereum's latest EVM upgrade) on December 3, 2025 to maintain alignment with Ethereum mainnet.
 Node runners must update their clients before the upgrade activates (if no downtime is desired).
+For more information on the Fusaka upgrade, see the Ethereum Foundation's [Roadmap entry for it](https://ethereum.org/roadmap/fusaka/).
 
 ## Timeline
 We're taking a phased approach to ensure a smooth upgrade:
-**Linea Sepolia Testnet**
-Date: Monday, December 1st at 10:00 UTC
-Action: Sepolia node runners must upgrade by Monday morning
-**Linea Mainnet**
-Date: Wednesday, December 3rd (pending successful Sepolia upgrade)
-Condition: Only if Sepolia upgrade completes without issues
-Action: Mainnet node runners must upgrade by Wednesday morning
-Confirmation: We will announce the mainnet go/no-go on Monday evening
+- **Linea Sepolia Testnet**
+Date: Monday, December 1st at 10:00 UTC.
+Action: Sepolia node runners must upgrade by Monday morning.
+- **Linea Mainnet**
+Date: Wednesday, December 3rd at 9:49pm UTC:
+Action: Mainnet node runners must upgrade by Wednesday morning.
+Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday evening.
 
 ### Upgrade both clients
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
-Sepolia:
-- Besu: consensys/linea-besu-package:beta-v4.4-rc5-20251128003548-a3bfee7
-- Maru: consensys/maru:95cab28
-- Geth: 1.16.5
-- Other EL clients: Check for Fusaka-compatible versions
+
+#### Sepolia Testnet:
+- **Besu & Maru versions**: See the latest versions in the [Sepolia docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Geth**: See version and configuration in the [Sepolia Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
+
+#### Mainnet:
+- **Besu & Maru versions**: See the latest versions in the [Mainnet docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Geth**: See version and configuration in the [Mainnet Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
 
 ### Verify your upgrade
 After upgrading, validate that your node is running the correct fork by checking the forkId:
@@ -41,25 +46,37 @@ curl --location http://localhost:8545/ \
     "id": 1
 }' | jq .result
 ```
-**Expected output after activation:**
-```bash
+#### Expected output after activation:
 
-**Sepolia (Besu):**
+#### Sepolia Testnet:
+
+```bash
+Besu (Sepolia):
 {
-  "current": { "forkId": "0xd64604e3" },
   "next": { "forkId": "0x24ef0ae2" }
 }
-```
-**Sepolia (Geth):**
-```bash
+
+Geth (Sepolia):
 {
-  "current": { "forkId": null },
-  "next": { "forkId": "0xeb9298ef" },
   "last": { "forkId": "0x24ef0ae2" }
 }
 ```
 
-**Note:** Besu shows Osaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`. Both should show `0x24ef0ae2` for Osaka.
+#### Mainnet:
+
+```bash
+Besu (Mainnet):
+{
+  "next": { "forkId": "0x335bb88e" }
+}
+
+Geth (Mainnet):
+{
+  "last": { "forkId": "0x335bb88e" }
+}
+```
+
+**Note:** Due to some semantic discrepancies, Besu shows Fusaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`.
 
 If your output doesn't match, **your node is not properly upgraded.**
 
@@ -68,30 +85,32 @@ If your output doesn't match, **your node is not properly upgraded.**
 
 Starting with these versions, both Besu and Maru now support network flags, eliminating the need for manually managing genesis files:
 
-#### Old way:
-command:
+#### Maru configuration
 
+**Old way:**
 ```
   - "--maru-genesis-file"
   - "/opt/consensys/maru/configs/maru-genesis.json"
 ```
-#### New way (recommended):
-command:
 
+**New way (recommended):**
 ```
   - "--network"
-  - "linea-mainnet"
+  - "linea-mainnet"  # For mainnet
+  - "--network" 
+  - "linea-sepolia"  # For sepolia
 ```
 
-This simplifies node setup and ensures you're always using the correct network configuration.
+#### Besu configuration
 
-#### Simplified configuration with Besu
-
-This flag also works with Besu, not just Maru. However, the syntax is slightly different. In linea-besu.config.toml, do the following:
+Besu also supports named networks. In `linea-besu.config.toml`, use the appropriate network:
 
 ```
-network="linea_sepolia"
+network="linea_sepolia" # For sepolia
+network="linea_mainnet" # For mainnet
 ```
+
+**Note:** Besu network names are case-insensitive and accept both underscores (`_`) and hyphens (`-`), so `linea_sepolia`, `linea-sepolia`, and `LINEA_SEPOLIA` all work identically.
 
 
 And so, lastly:
@@ -109,28 +128,39 @@ This helps us to:
 
 You can opt out at any time.
 
-#### How to Enable Ethstats:
+#### How to Enable Ethstats
 
-Add the following flag to your Execution Layer client, replacing `your-node-name` with a unique identifier for your node (e.g., mycompany-node-1):
+- Step 1: Get your Ethstats key
+Each node runner needs a unique Ethstats key. Contact Linea technical support to request your key (one key per organization).
+- Step 2: Add the flag to your Execution Layer client
+Replace your-node-name with a unique identifier for your node (e.g., mycompany-node-1) and YOUR_ETHSTATS_KEY with the key provided by the Linea technical support team:
 
 ##### Linea Sepolia:
-`--ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.sepolia.linea.build`
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build`
 
 ##### Linea Mainnet:
-`--ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.linea.build`
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build`
 
 ##### Docker Compose example:
-```
+
+For the latest Docker Compose configurations with current versions, see:
+- **Sepolia**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Mainnet**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+
+To add Ethstats monitoring, add this flag to your Besu service:
+```yaml
 besu-node:
-  image: consensys/linea-besu-package:beta-v4.4-rc5-20251128003548-a3bfee7
+  # ... other configuration from the docker-compose.yml above
   command:
     - --config-file=/var/lib/besu/linea-besu.config.toml
-    - --ethstats=your-node-name:2jus8pGcrJZbyC7E@ethstats.linea.build
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # for sepolia
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build # for mainnet
 ```
 
 ##### More details here: 
 - [Besu Ethstats setup](https://besu.hyperledger.org/private-networks/how-to/deploy/ethstats)
 - [Geth Ethstats setup](https://geth.ethereum.org/docs/monitoring/ethstats)
+
 
 
 ## Beta v4.0 migration guide
