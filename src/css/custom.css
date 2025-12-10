@@ -440,6 +440,9 @@ textarea {
   --search-local-hit-color: #fff;
   --search-local-highlight-color: #6f7da6;
   --search-result-hl: #23282a;
+
+  /* infographics */
+  --container-box-bg: #f5f7fa;
 }
 
 [data-theme="light"] {
@@ -497,6 +500,9 @@ textarea {
   --search-local-hit-color: #161616;
   --search-local-highlight-color: #6119ef;
   --search-result-hl: #fff068;
+
+  /* infographics */
+  --container-box-bg: #c3d7e0;
 }
 
 /* github */
@@ -1494,4 +1500,23 @@ div[aria-label="Expand sidebar"] {
     padding-left: 6vw;
     padding-right: 6vw;
   }
+}
+
+#manage-cookie-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--banner-text);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#manage-cookie-btn:hover {
+  color: var(--ifm-footer-link-hover-color);
+  text-decoration: none;
 }
