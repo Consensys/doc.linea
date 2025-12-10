@@ -7,6 +7,15 @@ image: /img/socialCards/how-to-estimate-linea-gas-costs.jpg
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
+`linea_estimateGas` is the recommended method for estimating gas on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas estimate than the alternatives.
+
+See our [API reference](../../api/reference/linea-estimategas.mdx), or our [technology section](../../technology/gas.mdx) for more information about how gas works on Linea. 
+
+Linea also supports:
+- [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
+- [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice)
+- [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
+
 :::tip
 Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas):
 ```
@@ -15,12 +24,6 @@ total fee = units of gas used * (base fee + priority fee)
 and includes support for type 0, type 1 and type 2 transactions.
 :::
 
-`linea_estimateGas` is the recommended method for estimating gas on Linea. See our [reference page](../../api/reference/linea-estimategas.mdx) for more information, or our [technology section](../../technology/gas.mdx) for more information about how gas works on Linea. 
-
-Linea also supports:
-- [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
-- [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice)
-- [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
 
 
 ## [`linea_estimateGas`](../../api/reference/linea-estimategas.mdx)
