@@ -18,6 +18,32 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### December 03, 2025 (Planned)
+
+#### L1
+
+- **Nonce 66**
+  - Action: Add verifier for Osaka hard forks and remove unused Prague verifiers.
+  
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Osaka: `VerifierAddressChanged` records the new verifier `0x8f8EC9608223C0b8D13238950c03F5D42ceeBb9b`, at index 4.
+    - Prague: `VerifierAddressChanged` unset the verifier at index 0.
+
+### November 17, 2025
+
+#### L1
+
+- **[Nonce 65](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x6a188b2fd845580a6be7fca4acbc878e730f853163265e5e1f4fb73b07a3ec82)**
+  - Action: Add verifier for beta-v4.3 Limitless prover and
+  remove unused Cancun and Shanghai verifiers.
+  
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Limitless prover: `VerifierAddressChanged` records the new verifier `0x814d80782aa8c508ababe9c6956d8f1f90e5177a`, at index 3.
+    - Cancun: `VerifierAddressChanged` unset the verifier at index 1.
+    - Shanghai: `VerifierAddressChanged` unset the verifier at index 4.
+
 ### October 27, 2025
 
 #### L1

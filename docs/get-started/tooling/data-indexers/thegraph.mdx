@@ -38,8 +38,8 @@ the subgraph and chain name, e.g., "MyDapp Subgraph Linea".
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/create-a-subgraph.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_dashboard_create_a_subgraph.png"
+      alt="Subgraph Studio dashboard create a subgraph"
     />
   </div>
 </div>
@@ -50,8 +50,8 @@ be visible on the right side of the page:
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/cli-commands.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_cli_commands.png"
+      alt="Subgraph Studio CLI commands"
     />
   </div>
 </div>
@@ -75,14 +75,79 @@ graph init <SUBGRAPH_SLUG>
 
 You'll be prompted to provide some info on your subgraph like this:
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/tooling/data_indexers/the-graph/cli-example.png"
-      alt="alt text here"
-    />
-  </div>
+<div
+  style={{
+    backgroundColor: '#1e1e1e',
+    color: '#ffffff',
+    padding: '1rem 1.25rem',
+    borderRadius: '0.5rem',
+    fontFamily: 'Menlo, Monaco, "Courier New", monospace',
+    fontSize: '0.85rem',
+    lineHeight: 1.4,
+    whiteSpace: 'pre',
+    overflowX: 'auto',
+  }}
+>
+  <span style={{ color: '#cccccc' }}>user@my-MacBook-Pro GRT-Subgraph % </span><span style={{ color: '#ffffff' }}>graph init</span><br />
+
+  <span style={{ color: '#FFD700' }}>{'  ›  '}</span><span style={{ color: '#ffffff' }}>Warning: In next major version, this flag will be removed. By default we will deploy to the Graph Studio.</span><br />
+  <span style={{ color: '#FFD700' }}>{'  ›  '}</span><span style={{ color: '#ffffff' }}>Learn more about Sunrise of Decentralized Data</span><br />
+  <span style={{ color: '#FFD700' }}>{'  ›  '}</span><span style={{ color: '#ffffff' }}>{'https://thegraph.com/blog/unveiling-updated-sunrise-decentralized-data/'}</span><br />
+  <span style={{ color: '#FFD700' }}>{'  ›  '}</span><span style={{ color: '#ffffff' }}>Warning: In next major version, this flag will be removed. By default we will stop initializing a Git repository.</span><br />
+
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Protocol · <span style={{ color: '#569CD6' }}>ethereum</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Product for which to initialize · <span style={{ color: '#569CD6' }}>subgraph-studio</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Subgraph slug · <span style={{ color: '#6A9955' }}>GRT</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Directory to create the subgraph in · <span style={{ color: '#6A9955' }}>GRT</span></span><br />
+
+  <span style={{ color: '#569CD6' }}>? </span><span style={{ color: '#ffffff' }}>Ethereum network …</span><br />
+  <span style={{ color: '#569CD6' }}>? </span><span style={{ color: '#ffffff' }}>Ethereum network …</span><br />
+  <span style={{ color: '#569CD6' }}>? </span><span style={{ color: '#ffffff' }}>Ethereum network …</span><br />
+
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Ethereum network · <span style={{ color: '#569CD6' }}>arbitrum-one</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Contract address · <span style={{ color: '#6A9955' }}>0x9623063377AD1B27544C965cCd7342f7EA7e88C7</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Fetching ABI from Etherscan</span><br />
+
+  <span style={{ color: '#F44747' }}>✖ </span><span style={{ color: '#ffffff' }}>Failed to fetch Start Block: Failed to fetch contract creation transaction hash</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Do you want to retry? (Y/n) · <span style={{ color: '#6A9955' }}>false</span></span><br />
+  <span style={{ color: '#F44747' }}>✖ </span><span style={{ color: '#ffffff' }}>Failed to fetch Contract Name: Failed to fetch contract source code</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Do you want to retry? (Y/n) · <span style={{ color: '#6A9955' }}>false</span></span><br />
+
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Start Block · <span style={{ color: '#6A9955' }}>42449274</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Contract Name · <span style={{ color: '#6A9955' }}>GRT</span></span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Index contract events as entities (Y/n) · <span style={{ color: '#6A9955' }}>true</span></span><br />
+
+  <span style={{ color: '#858585' }}>{'  Generate subgraph'}</span><br />
+  <span style={{ color: '#858585' }}>{'  Write subgraph to directory'}</span><br />
+
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Create subgraph scaffold</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Initialize networks config</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Initialize subgraph repository</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Install dependencies with yarn</span><br />
+  <span style={{ color: '#6A9955' }}>✔ </span><span style={{ color: '#ffffff' }}>Generate ABI and schema types with yarn codegen</span><br />
+
+  <span style={{ color: '#ffffff' }}>Add another contract? (y/n):</span><br />
+  <span style={{ color: '#ffffff' }}>Subgraph GRT created in GRT</span><br />
+  <br />
+
+  <span style={{ color: '#ffffff' }}>Next steps:</span><br />
+  <br />
+
+  <span style={{ color: '#ffffff' }}>{'  1. Run `graph auth` to authenticate with your deploy key.'}</span><br />
+  <br />
+  <span style={{ color: '#ffffff' }}>{'  2. Type `cd GRT` to enter the subgraph.'}</span><br />
+  <br />
+  <span style={{ color: '#ffffff' }}>{'  3. Run `yarn deploy` to deploy the subgraph.'}</span><br />
+  <br />
+
+  <span style={{ color: '#ffffff' }}>{'Make sure to visit the documentation on '}</span>
+  <span style={{ color: '#ffffff' }}>{'https://thegraph.com' + '/docs/ for further information.'}</span><br />
+  <br />
+
+  <span style={{ color: '#cccccc' }}>user@my-MacBook-Pro GRT-Subgraph % </span><span style={{ color: '#ffffff' }}>cd GRT</span>
 </div>
+
+<br />
 
 Simply verify your contract on the block explorer, and the CLI will
 automatically obtain the ABI and set up your subgraph. The default settings will
@@ -120,8 +185,8 @@ from your dapp.
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/playground.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_playground.png"
+      alt="Subgraph Studio playground"
     />
   </div>
 </div>
@@ -135,8 +200,8 @@ Publish button:
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/publish-button.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_publish_button.png"
+      alt="Subgraph Studio publish button"
     />
   </div>
 </div>
@@ -150,10 +215,10 @@ it is recommended that you curate your own subgraph with at least 3,000 GRT to
 ensure that it is indexed and available for querying as soon as possible.
 
 <div class="center-container">
-  <div class="img-large">
+  <div class="img-medium">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/publish-screen.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_publish_screen.png"
+      alt="Subgraph Studio publish screen"
     />
   </div>
 </div>
@@ -176,8 +241,8 @@ by Messari:
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/query-url.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_query_url.png"
+      alt="Subgraph Studio query url"
     />
   </div>
 </div>
@@ -197,8 +262,8 @@ you can create API Keys.
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/tooling/data_indexers/the-graph/api-keys.png"
-      alt="alt text here"
+      src="/img/get_started/tooling/data_indexers/the-graph/Subgraph_studio_api_keys_tab.png"
+      alt="Subgraph Studio API keys tab"
     />
   </div>
 </div>

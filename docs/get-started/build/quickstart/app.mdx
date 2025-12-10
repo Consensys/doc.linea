@@ -24,111 +24,192 @@ A wallet that can connect to Linea Sepolia. We recommend [MetaMask](https://meta
 
 [Get some Linea Sepolia ETH](../../how-to/get-testnet-eth.mdx).
 
-## Set up a Next.js app using Dynamic
+## Set up a Next.js app
 
 There are many frameworks out there for building web apps. We're going to focus on [Next.js](https://nextjs.org/),
 a React framework.
 
-Conveniently, [Dynamic](https://dynamic.xyz/) have created the `create-dynamic-app` which 
-quickly creates a web3-enabled Next.js app which already has important packages like [Wagmi](../../tooling/libraries/wagmi.mdx) 
-and [Viem](../../tooling/libraries/viem.mdx) (which Wagmi depends on) installed.
-
-Run it like this:
+Create a new Next.js app using the following command:
 
 ```bash
-npx create-dynamic-app@latest 
+npx create-next-app@latest my-linea-app
 ```
 
-You'll also be prompted in the terminal to confirm a few project settings. Select Next.js as the 
-framework, then make sure to enable Viem and Wagmi—libraries that we'll be using later.
+You'll be prompted to configure your project. Select the following options:
+- TypeScript: Yes
+- ESLint: Yes
+- Tailwind CSS: Yes (optional, but recommended for styling)
+- `src/` directory: No
+- App Router: Yes
+- Import alias: No (or customize as preferred)
 
-Once you confirm the configuration, the `create-dynamic-app` package will install the necessary 
-dependencies and your project will be ready to access in the new directory.
+Once the setup is complete, navigate to your project directory:
 
-## Setup
-
-The app needs a few adjustments before it will run.
-
-Head to your `package.json` and adjust `react` and `react-dom` to `^18.0.0`. 
-`create-dynamic-app` automatically installs `react` and `react-dom` `^19.0.0`, which are 
-incompatible with the Dynamic SDK:
-
-```json
-  "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    // other dependencies
-  }
+```bash
+cd my-linea-app
 ```
 
-And also adjust the `devDependencies`: 
+## Install dependencies
 
-```json
-  "devDependencies": {
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    // other dependencies
-  }
+Install the MetaMask Embedded Wallets SDK and other required packages:
+
+```bash
+npm install @web3auth/modal wagmi viem@2.x @tanstack/react-query
 ```
 
-Afterwards, run `npm install` to install the dependencies.
+This installs:
+- `@web3auth/modal`: MetaMask Embedded Wallets SDK
+- `wagmi`: React hooks for Ethereum
+- `viem`: TypeScript interface for Ethereum
+- `@tanstack/react-query`: Required for Wagmi's data fetching
 
-You can now run `npm run dev` to start the app locally. You can already connect your wallet, but 
-you'll be unable to connect on Linea or Linea Sepolia until we configure our Dynamic dashboard, 
-which we'll cover in the next step.
+Once the installation is complete, you can run `npm run dev` to start the app locally.
 
 ### Add a "Connect wallet" button
 
-The first step to making the app usable is enabling visitors to connect their wallet. To do so,
-we're going to use Dynamic's `DynamicWidget` component. Although we're just going to use the 
-conventional "Connect wallet" usage—connecting an externally owned account (EOA)—the component has 
-the advantage of allowing you to enable other sign-in methods and embedded wallet features with a few
-minor changes on the Dynamic dashboard. This isn't something we're going cover here, but it's 
-worth considering for your own app. 
+The first step to making the app usable is enabling visitors to connect their wallet. We'll use 
+MetaMask Embedded Wallets (Web3Auth) SDK, which provides seamless authentication with social logins, external 
+wallets, and more. The SDK works alongside Wagmi to provide a complete web3 authentication and 
+interaction solution.
 
-To set up the widget, you'll need to sign up for a free [Dynamic](https://dynamic.xyz/get-started) 
-account, which enables you to access your own Dynamic dashboard. You can sign in with your wallet, 
-so you don't have to worry about handing over personal information.
+To set up the wallet connection, you'll need to sign up for a free MetaMask Embedded Wallets 
+account at [dashboard.web3auth.io](https://dashboard.web3auth.io), which gives you access to the 
+dashboard for configuration.
 
-#### Get your environment ID
+#### Get your Client ID
 
-Now you've signed up and have access to your Dynamic dashboard, we can access an environment ID,
-and then use the dashboard to configure the `DynamicWidget`.
+After signing up and accessing your MetaMask Embedded Wallets Dashboard, create a new project on `sapphire_devnet`and navigate to 
+**Project Settings** to find your Client ID. Copy this value as you'll need it for 
+configuration.
 
-On the dashboard, copy your `environmentId` from Developers > SDK & API Keys. 
+#### Configure Web3Auth & Wagmi Provider
 
-Back in your project directory, head to `lib/providers` and find the `DynamicContextProvider` 
-component. Insert your `environmentId` into the `settings`:
+Create a configuration file for Web3Auth & Wagmi in your project. This file will be used to wrap your app state with the wallet & blockchain connection providers. In your `components` directory, create a new 
+file called `provider.tsx`:
 
-```tsx
+```tsx filename="components/provider.tsx"
+"use client";
+import React from "react";
+
+// Web3Auth Imports
+import { Web3AuthProvider, type Web3AuthContextConfig } from "@web3auth/modal/react";
+import { IWeb3AuthState, WEB3AUTH_NETWORK } from "@web3auth/modal";
+
+// Wagmi Imports
+import { WagmiProvider } from "@web3auth/modal/react/wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// QueryClient for Wagmi Hooks Configuration
+const queryClient = new QueryClient();
+
+// Web3Auth Configuration
+const web3AuthContextConfig: Web3AuthContextConfig = {
+  web3AuthOptions: {
+    clientId: 'YOUR_WEB3AUTH_CLIENT_ID', // Pass your Web3Auth Client ID, ideally using an environment variable // Get your Client ID from Web3Auth Dashboard
+    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET, // or WEB3AUTH_NETWORK.SAPPHIRE_MAINNET
+  }
+};
+
+// Provider Component
+export default function Provider({ children }: 
+  { children: React.ReactNode }) {
   return (
-    <DynamicContextProvider
-      theme="auto"
-      settings={{
-        environmentId: "YOUR_ENVIRONMENT_ID", // Add your environment ID here
-           walletConnectors: [EthereumWalletConnectors],
-      }}
-    >
-  )
+    <Web3AuthProvider config={web3AuthContextConfig}>
+      <QueryClientProvider client={queryClient}>
+        <WagmiProvider>
+          {children}
+        </WagmiProvider>
+      </QueryClientProvider>
+    </Web3AuthProvider>
+  );
+}
 ```
 
-#### Enable Linea wallet connectors
+#### Setup provider in app
 
-Connecting your local app to the dashboard means you can now configure the behaviour of the 
-`DynamicWidget` component that is used in `app/page.tsx`.
+In your main entry file (typically `app/layout.tsx` for App Router or `pages/_app.tsx` for Pages 
+Router), import the `Provider` and wrap your application:
 
-On the dashboard, go to Chains & Networks in the sidebar. In the code snippet above, you can see 
-that the `EthereumWalletConnectors` are already enabled; this means you should see the EVM button on
-this dashboard page. Click it, then scroll and enable Linea and Linea Sepolia:
+```tsx filename="app/layout.tsx"
+import React from "react";
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/build/quickstart/app/enable_linea_networks.png"
-      alt="Toggles for the Linea and Linea Sepolia networks"
-    />
-  </div>
-</div>
+import Provider from "../components/provider";
+
+import "./globals.css";
+
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "My Linea App",
+  description: "My Linea App",
+};
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <Provider>{children}</Provider>
+      </body>
+    </html>
+  );
+}
+```
+
+#### Enable Linea networks on dashboard
+
+To enable Linea and Linea Sepolia networks:
+
+1. Go to your MetaMask Embedded Wallets Dashboard
+2. Navigate to the **Chains & Networks** tab in the sidebar of your project
+3. Search for "Linea" in the chains list
+4. Enable both **Linea** and **Linea Sepolia** networks
+5. Save your configuration
+
+Once enabled, all MetaMask Embedded Wallets SDKs will automatically connect to these networks—no 
+code updates needed.
+
+#### Add connect button component
+
+Create a simple connect wallet component. In your `app/components` directory, create a new file 
+called `ConnectWallet.tsx`:
+
+```tsx
+// app/components/ConnectWallet.tsx
+import { useWeb3AuthConnect, useWeb3AuthDisconnect, useWeb3AuthUser } from "@web3auth/modal/react";
+
+export default function ConnectWallet() {
+  const { connect, isConnected, loading: connectLoading, error: connectError } = useWeb3AuthConnect();
+  const { disconnect, loading: disconnectLoading, error: disconnectError } = useWeb3AuthDisconnect();
+  const { userInfo } = useWeb3AuthUser();
+
+  return (
+    <div>
+      {!isConnected ? (
+        <button 
+          className="docs-button" 
+          disabled={connectLoading}
+          onClick={connect}
+        >
+          {connectLoading ? 'Connecting...' : 'Connect Wallet'}
+        </button>
+      ) : (
+        <div className="flex gap-2">
+          <span>Connected as: {userInfo?.email || userInfo?.name || 'User'}</span>
+          <button 
+            className="docs-button" 
+            disabled={disconnectLoading}
+            onClick={disconnect}
+          >
+            {disconnectLoading ? 'Disconnecting...' : 'Disconnect'}
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+```
 
 If you now run `npm run dev`, you'll be able to connect your wallet on Linea and Linea Sepolia. 
 We now have the barebones of a web3 app: a frontend web app to which you can connect your wallet.
@@ -151,41 +232,6 @@ contract's `increment()` function, and increase the counter.
 To display the counter value, we'll use the Wagmi `useReadContract` hook to retrieve the value
 from the contract and display it in the app.
 
-#### Configure Wagmi
-
-To enable Wagmi to interact with Linea Sepolia, head to `lib/wagmi.ts` to find the Wagmi 
-configuration file. Here, we need to replace `mainnet` with `lineaSepolia` and `linea` in a few 
-places:
-1. The import statement
-2. The `chains` settings
-3. The `transports` settings
-
-Your Wagmi configuration should look like this:
-
-```ts
-// lib/wagmi.ts
-import { http, createConfig } from "wagmi";
-import { lineaSepolia, linea } from "wagmi/chains"; // Add this
-
-export const config = createConfig({
-  chains: [lineaSepolia, linea], // Add this
-  multiInjectedProviderDiscovery: false,
-  ssr: true,
-  transports: {
-    [lineaSepolia.id]: http(), // Add this
-    [linea.id]: http(), // and this
-  },
-});
-
-declare module "wagmi" {
-  interface Register {
-    config: typeof config;
-  }
-}
-```
-
-With these changes, Wagmi hooks will now be able to interact with Linea Sepolia.
-
 #### Get the ABI
 
 Next, we'll need the smart contract's application binary interface (ABI)—a kind of standardized data 
@@ -198,8 +244,8 @@ Find the "Contract" tab and scroll down to "Contract ABI". Copy the code:
 <div class="center-container">
   <div class="img-large">
     <img
-      src="/img/get_started/build/quickstart/app/abi.png"
-      alt="The ABI of the smart contract"
+      src="/img/get_started/build/quickstart/app/Linea_build_app_contract_abi.png"
+      alt="Linea build app smart contract ABI"
     />
   </div>
 </div>
@@ -240,11 +286,11 @@ Fetching the counter value from the smart contract and displaying it in the app 
 than we could neatly place in `page.tsx`. Instead, we'll create a React component in 
 `app/components` and import it into `page.tsx`.
 
-Head to `app/components` in your project and create a new file, `Counter.js`, and add the below
+Head to `app/components` in your project and create a new file, `Counter.tsx`, and add the below
 code:
 
-```js
-// app/components/Counter.js
+```tsx
+// app/components/Counter.tsx
 import { useReadContract } from "wagmi";
 import { abi } from "@/lib/abi";
 
@@ -255,7 +301,7 @@ export default function Counter() {
     isPending,
     refetch 
   } = useReadContract({
-    address: "YOUR_CONTRACT_ADDRESS", // Add your deployed smart contract address here
+    address: "0x0000000000000000000000000000000000000000" as `0x${string}`, // Replace with your deployed contract address
     abi: abi,
     functionName: "number",
   });
@@ -291,28 +337,22 @@ to click the button to refresh the data.
 
 #### Add counter component your app
 
-Go back to your `page.tsx` and, alongside the existing import statements, add a statement to import 
-the component you just created:
+Go back to your `page.tsx` and, alongside the existing import statements, add statements to import 
+the components you just created:
 
 ```tsx
-import Counter from './components/Counter.js';
+import Counter from './components/Counter';
+import ConnectWallet from './components/ConnectWallet';
 ```
 
-Now we can insert the component into the page:
+Now we can insert the components into the page:
 
 ```tsx
 <div className="modal">
-  <DynamicWidget />
+  <ConnectWallet />
   <Counter />
 </div>
 ```
-
-:::note
-
-The Dynamic template app comes with a `<DynamicMethods />` component. We've removed it so we can
-focus on the counter functionality, but you can leave it if you prefer.
-
-:::
 
 You can test the component works by heading to Lineascan and calling the `increment()` function on 
 the Contract > Write Contract page. Click the "Connect to Web3" button to connect your wallet, and
@@ -324,8 +364,8 @@ Here's how it looks:
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/get_started/build/quickstart/app/counter.png"
-      alt="The counter component"
+      src="/img/get_started/build/quickstart/app/Linea_build_app_counter.png"
+      alt="Linea build app counter"
     />
   </div>
 </div>
@@ -342,10 +382,11 @@ the component.
 
 ### Create increment component
 
-Head to `app/components` and add a new file called `Increment.js`. Paste in this code, making sure
-to replace `YOUR_CONTRACT_ADDRESS` with the address of your deployed smart contract:
+Head to `app/components` and add a new file called `Increment.tsx`. Paste in this code, making sure
+to replace the placeholder address with the address of your deployed smart contract:
 
-```js
+```tsx
+// app/components/Increment.tsx
 import { useWriteContract } from "wagmi";
 import { abi } from "@/lib/abi";
 
@@ -354,7 +395,7 @@ export default function Increment() {
 
   const handleIncrement = () => {
     writeContract({
-      address: "YOUR_CONTRACT_ADDRESS", // Add your deployed smart contract address here
+      address: "0x0000000000000000000000000000000000000000" as `0x${string}`, // Replace with your deployed contract address
       abi: abi,
       functionName: "increment",
     });
@@ -378,14 +419,14 @@ Go back to your `page.tsx` and, alongside the existing import statements, add a 
 the component you just created:
 
 ```tsx
-import Increment from './components/Increment.js';
+import Increment from './components/Increment';
 ```
 
 Now we can insert the component into the page:  
 
 ```tsx
 <div className="modal">
-  <DynamicWidget />
+  <ConnectWallet />
   <Counter />
   <Increment />
 </div>
@@ -404,8 +445,8 @@ ETH, you should be able to click the "Increment Counter" button to add +1 to the
 <div class="center-container">
   <div class="img-small">
     <img
-      src="/img/get_started/build/quickstart/app/increment_button.png"
-      alt="The increment button"
+      src="/img/get_started/build/quickstart/app/Linea_build_app_increment_button.png"
+      alt="Linea build app increment buttonn"
     />
   </div>
 </div>
@@ -422,8 +463,13 @@ production app, so we can go straight ahead.
 
 ### Add your repository to GitHub
 
-The `create-dynamic-app` package we used at the start of this guide automatically created a git
-repository for your project. This means your changes have been tracked. 
+Initialize a git repository for your project if you haven't already:
+
+```bash
+git init
+```
+
+This will allow you to track your changes. 
 
 Firstly, run `npm run build` to build the app. This should surface any errors in your code that 
 may prevent it from being deployed. If you need help resolving any, head to the #developer-chat
@@ -457,8 +503,7 @@ solve real-world problems and attract users. Here are some ideas for taking your
 level:
 
 - Build in [account abstraction](../../tooling/account-abstraction/index.mdx) features to make your
-app more accessible and user-friendly. The Dynamic widget that we used in this guide already 
-enables you to use some of these features, configurable via the Dynamic dashboard.
+app more accessible and user-friendly.
 - Accelerate development by using audited, reliable [contract templates](../../tooling/contracts-templates/index.mdx).
 - Leverage an [oracle](../../tooling/oracles/index.mdx) to fetch data, such as token prices, and
 display it in your app.
@@ -468,7 +513,7 @@ display it in your app.
 If you get stuck at any point in this guide, head to our [Discord](https://discord.gg/linea) and 
 visit the `#developer-chat` channel.
 
-- [Dynamic documentation](https://docs.dynamic.xyz/introduction/welcome)
+- [MetaMask Embedded Wallets React SDK documentation](https://docs.metamask.io/embedded-wallets/sdk/react)
 - [Wagmi documentation](https://wagmi.sh/)
   - [`useReadContract`](https://wagmi.sh/react/api/hooks/useReadContract)
   - [`useWriteContract`](https://wagmi.sh/react/api/hooks/useWriteContract)

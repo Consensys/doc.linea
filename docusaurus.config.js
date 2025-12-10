@@ -44,9 +44,6 @@ const config = {
 
   markdown: {
     mermaid: true,
-    hooks: {
-      onBrokenMarkdownLinks: "throw",
-    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
@@ -104,14 +101,14 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      /*       announcementBar: {
-        id: "announcement_bar_2025_08_v1",
+      announcementBar: {
+        id: "announcement_bar_2025_12_fusaka",
         content:
-          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
+          '📣 <strong>Running a Linea node?</strong> The Fusaka upgrade is coming to Linea Mainnet on December 3, 2025. Learn how to upgrade <a href="/get-started/how-to/run-a-node/beta-v4-migration/#fusaka-upgrade-guide">here</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
-      }, */
+      },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
