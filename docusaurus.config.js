@@ -79,7 +79,7 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
-          remarkPlugins: [remarkEmdash]
+          remarkPlugins: [remarkEmdash],
         },
         blog: false, // Disable blog feature
         theme: {
