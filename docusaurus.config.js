@@ -1,3 +1,4 @@
+import remarkEmdash from "./scripts/remark/remark-emdash.js";
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
@@ -78,6 +79,7 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
+          remarkPlugins: [remarkEmdash],
         },
         blog: false, // Disable blog feature
         theme: {
