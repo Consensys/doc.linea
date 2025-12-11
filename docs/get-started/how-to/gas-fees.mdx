@@ -7,7 +7,7 @@ image: /img/socialCards/how-to-estimate-linea-gas-costs.jpg
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-`linea_estimateGas` is the recommended method for estimating gas on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas estimate than the alternatives.
+`linea_estimateGas` is the recommended method for estimating gas price and gas limit on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas price recommendation than the alternatives.
 
 See our [API reference](../../api/reference/linea-estimategas.mdx), or our [technology section](../../technology/gas.mdx) for more information about how gas works on Linea. 
 
