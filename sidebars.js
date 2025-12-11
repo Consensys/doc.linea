@@ -591,6 +591,7 @@ const sidebars = {
     "technology/burn",
     "technology/repos",
     "technology/transaction-lifecycle",
+    "technology/gas",
     "technology/network-data",
     "technology/canonical-token-bridge",
     {
