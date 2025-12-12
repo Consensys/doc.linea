@@ -29,13 +29,17 @@ Create a file named `wagmi.ts` in your in your project directory, and add this c
 ```ts
 import { http, createConfig } from 'wagmi'
 import { linea, lineaSepolia, mainnet } from 'wagmi/chains'
-import { injected } from 'wagmi/connectors'
+import { injected, metaMask } from 'wagmi/connectors'
 
 const projectId = '<WALLETCONNECT_PROJECT_ID>'
 
 export const config = createConfig({
   chains: [lineaSepolia, linea, mainnet],
-  connectors: [injected()],
+  connectors: [
+    injected(),
+    metaMask({
+      infuraAPIKey: process.env.NEXT_PUBLIC_INFURA_API_KEY!,
+    })],
   transports: {
     [lineaSepolia.id]: http(),
     [linea.id]: http(),
@@ -47,6 +51,8 @@ export const config = createConfig({
 This configuration file ensures Wagmi works with Linea, Linea Sepolia, and Ethereum Mainnet, and 
 also defines that we should use the `injected` wallet connector, which works with any wallet that
 uses the common EIP-1193 standard. There are a few wallets that also have [separate connectors](https://wagmi.sh/react/api/connectors).
+
+You can also use the `metaMask` connector, which works with MetaMask Wallet.
 
 ### Add Wagmi and query providers
 
@@ -77,7 +83,7 @@ providers:
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
-import { config } from './wagmi'
+import { config, metaMask } from './wagmi'
 
 const queryClient = new QueryClient()
 
@@ -121,9 +127,14 @@ export function ConnectButton() {
   const { connect } = useConnect()
 
   return (
-    <button onClick={() => connect({ connector: injected() })}>
-      Connect wallet
-    </button>
+    <>
+      <button onClick={() => connect({ connector: injected() })}>
+        Connect wallet
+      </button>
+      <button onClick={() => connect({ connector: metaMask() })}>
+        Connect MetaMask wallet
+      </button>
+    </>
   )
 }
 ```
@@ -157,6 +168,144 @@ Linea, Linea Sepolia, or Ethereum Mainnet.
 Note that this is a very basic implementation, with no CSS styling and missing a few other necessary
 features, such as displaying the connected wallet's address ([useAccount](https://wagmi.sh/react/api/hooks/useAccount#address)), 
 [connection status](https://wagmi.sh/react/api/hooks/useConnections), and a [disconnect button](https://wagmi.sh/react/api/hooks/useDisconnect). 
+
+## MetaMask Embedded Wallets (Web3Auth)
+
+
+MetaMask Embedded Wallets brings one-click, OAuth-based onboarding to your dApp in every major developer environment, so your dApps, mobile apps, and games can all connect seamlessly to **Linea**.
+
+| Platform | SDK Documentation |
+| ----- | ----- |
+| **React** | [docs.metamask.io/embedded-wallets/sdk/react](https://docs.metamask.io/embedded-wallets/sdk/react) |
+| **Vue** | [docs.metamask.io/embedded-wallets/sdk/vue](https://docs.metamask.io/embedded-wallets/sdk/vue) |
+| **JavaScript** | [docs.metamask.io/embedded-wallets/sdk/js](https://docs.metamask.io/embedded-wallets/sdk/js) |
+| **Node.js** | [docs.metamask.io/embedded-wallets/sdk/node](https://docs.metamask.io/embedded-wallets/sdk/node) |
+| **Android** | [docs.metamask.io/embedded-wallets/sdk/android](https://docs.metamask.io/embedded-wallets/sdk/android) |
+| **iOS** | [docs.metamask.io/embedded-wallets/sdk/ios](https://docs.metamask.io/embedded-wallets/sdk/ios) |
+| **React Native** | [docs.metamask.io/embedded-wallets/sdk/react-native](https://docs.metamask.io/embedded-wallets/sdk/react-native) |
+| **Flutter** | [docs.metamask.io/embedded-wallets/sdk/flutter](https://docs.metamask.io/embedded-wallets/sdk/flutter) |
+| **Unity** | [docs.metamask.io/embedded-wallets/sdk/unity](https://docs.metamask.io/embedded-wallets/sdk/unity) |
+| **Unreal Engine** | [docs.metamask.io/embedded-wallets/sdk/unreal](https://docs.metamask.io/embedded-wallets/sdk/unreal) |
+
+
+Follow the steps below to integrate MetaMask Embedded Wallets into your dapp.
+
+### **Dashboard Configuration**
+
+All setup happens inside the **MetaMask Embedded Wallets Dashboard** — no SDK changes or code edits are required.
+
+#### Get your Client ID
+
+After signing up and accessing your MetaMask Embedded Wallets Dashboard, create a new project on `sapphire_devnet`and navigate to 
+**Project Settings** to find your Client ID. Copy this value as you'll need it for configuration.
+
+#### Enable Linea networks on dashboard
+
+To enable Linea and Linea Sepolia networks:
+
+1. Go to your MetaMask Embedded Wallets Dashboard
+2. Navigate to the **Chains & Networks** tab in the sidebar of your project
+3. Search for "Linea" in the chains list
+4. Enable both **Linea** and **Linea Sepolia** networks
+5. Save your configuration
+
+Once enabled, all MetaMask Embedded Wallets SDKs will automatically connect to these networks, no 
+code updates needed.
+
+### Install dependencies
+
+Install the MetaMask Embedded Wallets SDK and other required packages:
+
+```bash
+npm install @web3auth/modal wagmi viem@2.x @tanstack/react-query
+```
+
+This installs:
+- `@web3auth/modal`: MetaMask Embedded Wallets SDK
+- `wagmi`: React hooks for Ethereum
+- `viem`: TypeScript interface for Ethereum
+- `@tanstack/react-query`: Required for Wagmi's data fetching
+
+### Configure Web3Auth & Wagmi Provider
+
+Create a configuration file for Web3Auth & Wagmi in your project. This file will be used to wrap your app state with the wallet & blockchain connection providers. In your `components` directory, create a new 
+file called `provider.tsx`:
+
+```tsx
+// Web3Auth Imports
+import { Web3AuthProvider, type Web3AuthContextConfig } from "@web3auth/modal/react";
+import { IWeb3AuthState, WEB3AUTH_NETWORK } from "@web3auth/modal";
+
+// Wagmi Imports
+import { WagmiProvider } from "@web3auth/modal/react/wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// QueryClient for Wagmi Hooks Configuration
+const queryClient = new QueryClient();
+
+// Web3Auth Configuration
+const web3AuthContextConfig: Web3AuthContextConfig = {
+  web3AuthOptions: {
+    clientId: 'YOUR_WEB3AUTH_CLIENT_ID', // Pass your Web3Auth Client ID, ideally using an environment variable // Get your Client ID from Web3Auth Dashboard
+    web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET, // or WEB3AUTH_NETWORK.SAPPHIRE_MAINNET
+  }
+};
+
+// Provider Component
+export default function Provider({ children }: 
+  { children: React.ReactNode }) {
+  return (
+    <Web3AuthProvider config={web3AuthContextConfig}>
+      <QueryClientProvider client={queryClient}>
+        <WagmiProvider>
+          {children}
+        </WagmiProvider>
+      </QueryClientProvider>
+    </Web3AuthProvider>
+  );
+}
+```
+
+#### Use the hooks to connect the wallet
+
+The `useWeb3AuthConnect`, `useWeb3AuthDisconnect`, and `useWeb3AuthUser` hooks are used to connect, 
+disconnect, and get user information from the wallet. Similarly, many other hooks are available to 
+interact with the wallet and blockchain.
+
+```tsx
+import { useWeb3AuthConnect, useWeb3AuthDisconnect, useWeb3AuthUser } from "@web3auth/modal/react";
+
+export default function ConnectWallet() {
+  const { connect, isConnected, loading: connectLoading, error: connectError } = useWeb3AuthConnect();
+  const { disconnect, loading: disconnectLoading, error: disconnectError } = useWeb3AuthDisconnect();
+  const { userInfo } = useWeb3AuthUser();
+
+  return (
+    <div>
+      {!isConnected ? (
+        <button 
+          className="docs-button" 
+          disabled={connectLoading}
+          onClick={connect}
+        >
+          {connectLoading ? 'Connecting...' : 'Connect Wallet'}
+        </button>
+      ) : (
+        <div className="flex gap-2">
+          <span>Connected as: {userInfo?.email || userInfo?.name || 'User'}</span>
+          <button 
+            className="docs-button" 
+            disabled={disconnectLoading}
+            onClick={disconnect}
+          >
+            {disconnectLoading ? 'Disconnecting...' : 'Disconnect'}
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+```
 
 ## Dynamic
 
