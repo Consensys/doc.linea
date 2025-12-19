@@ -103,14 +103,14 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      announcementBar: {
-        id: "announcement_bar_2025_12_fusaka",
-        content:
-          '📣 <strong>Running a Linea node?</strong> The Fusaka upgrade is coming to Linea Mainnet on December 3, 2025. Learn how to upgrade <a href="/get-started/how-to/run-a-node/beta-v4-migration/#fusaka-upgrade-guide">here</a>',
-        backgroundColor: "#61dfff",
-        textColor: "#121212",
-        isCloseable: false,
-      },
+      // announcementBar: {
+      //   id: "announcement_bar_2025_12_fusaka",
+      //   content:
+      //     '📣 <strong>Running a Linea node?</strong> The Fusaka upgrade is coming to Linea Mainnet on December 3, 2025. Learn how to upgrade <a href="/get-started/how-to/run-a-node/beta-v4-migration/#fusaka-upgßrade-guide">here</a>',
+      //   backgroundColor: "#61dfff",
+      //   textColor: "#121212",
+      //   isCloseable: false,
+      // },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
