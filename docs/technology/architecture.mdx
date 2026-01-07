@@ -1,10 +1,10 @@
 ---
 title: Architecture
-description: An overview of how Linea works: what is Linea and what is a zkEVM L2?
+description: An overview of how Linea works, what is Linea and what is a zkEVM L2?
 image: /img/socialCards/architecture.jpg
 ---
 
-Linea is designed to be a fully decentralized, permissionless network. The Linea architecture is made up of three main elements:
+Linea is a permissionless blockchain network composed of three main architectural components:
 
 - Sequencer
 - Prover
@@ -12,7 +12,12 @@ Linea is designed to be a fully decentralized, permissionless network. The Linea
 
 ## Current status
 
-Linea Mainnet is in beta status, and the team is working towards full decentralization. 
+Linea Mainnet is in beta status and the team is working toward:
+
+- Reducing proving costs
+- Reducing transaction settlement time
+- Achieving full decentralization
+
 The following represents the main components of Linea, and how they interact:
 
 <div className="responsive-graphic">
@@ -34,20 +39,20 @@ The following represents the main components of Linea, and how they interact:
 
 ## What is Linea?
 
-Linea provides fast (2s block), low-cost transactions that are compressed into batches and submitted to 
+Linea's fast (2s blocks) and low-cost transactions are compressed into batches and submitted to 
 Ethereum for validation. Blockchains that submit their state changes to a finalization layer in this 
 way are classified as layer-2 networks (L2s).
 
-The Ethereum network consists of several functional components:
+The network consists of several functional components:
 
-- _Blocks_: stores state and contracts, keeps track of addresses and which tokens are allocated to 
+- _Blocks_: store state and contracts, keep track of addresses and which tokens are allocated to 
 which addresses.
 - _Consensus_ mechanism: many distributed nodes agree on the validity of state changes, such as the 
 movement of tokens from one address to another.
 - _Execution environment_: the EVM (Ethereum Virtual Machine) where computer programs can be run. The 
 EVM executes smart contracts and computes state transitions. 
 
-While this is an oversimplification, it is helpful when discussing the tradeoffs all networks must make.
+While this is an oversimplification, it is helpful when discussing the tradeoffs all such networks must make.
 
 Ethereum prioritizes security. Its consensus mechanism is designed to ensure that no one can 
 singlehandedly alter the state of the network. This is a very impressive feat of engineering, 
@@ -68,8 +73,8 @@ on Ethereum for its security, people say that it's "built on top of Ethereum": i
 :::note
 
 Layers are an extendible concept. For example, you can run a private Linea instance that rolls up 
-its transactions to the public Linea, which submits its grouped batches to Ethereum. This creates an 
-L3 (the private Linea instance) submitting to the L2 (the public instance) which rolls up to Ethereum, 
+its transactions to the public Linea, which submits its grouped batches to Ethereum. This creates a layer 3 (
+L3, the private Linea instance) submitting to the L2 (the public instance) which rolls up to Ethereum, 
 the L1.
 
 :::

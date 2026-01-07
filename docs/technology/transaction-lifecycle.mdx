@@ -23,11 +23,16 @@ The Linea [sequencer](./sequencer/index.mdx) is responsible for ordering, buildi
 executing blocks. 
 
 The sequencer checks the validity of each transaction added to the mempool, rejecting transactions 
-as necessary. Transaction validity conditions are specific to Linea, and differ slightly from those 
-on other networks, including Ethereum.
+as necessary. 
 
 The sequencer orders transactions, taking into account the [priority fee paid](./gas.mdx#variable-cost-and-linea_estimategas). Valid transactions are placed into blocks in the correct sequence 
 and executed.
+
+:::note[Validity]
+
+While the Linea chain may be followed using any Ethereum-compatible client, transaction validity conditions are specific to Linea, and differ slightly from those of other networks, including Ethereum.
+
+:::
 
 At this point, the execution layer's state changes and the block containing the transaction is 
 added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is 
@@ -90,9 +95,9 @@ Two elements are submitted to the L1:
 - The proof: as [detailed in step 5](#step-5-proof-generation)
 - Blob data: which contains L2 transaction and messaging data
 
-The blob data shared with the L1 can be used to reconstruct Linea's state and verify the contents of the 
+The blob data shared with the L1 can be used to reconstruct Linea's state and verify the data underlying the 
 proof--before it disappears after 4,096 epochs (~18 days). The Linea rollup contract on L1 calls the 
-Ethereum verifier contract using blob data, determining whether or not to accept the batch as valid.
+Ethereum verifier contract which uses the blob data to determine whether or not to accept the batch as valid.
 
 :::note[Calldata]
 
@@ -113,13 +118,9 @@ and reaches **hard finality**. Its lifecycle is complete.
 :::tip[Finality]
 
 Finality has two definitions on Linea:
-- Soft finality: The transaction is confirmed on Linea. This takes two seconds (Linea's block 
-time). See [step 3](#step-3-state-tracking). For simplicity, Linea is 
-guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical 
-one—when there are reorgs on L1. 
-- Hard finality: The proof submitted to L1 has been verified, and two epochs have elapsed. The 
-typical time before hard finality is 6-32 hours, although the six-hour minimum will be reduced to
-zero in future. See [step 6](#step-6-batch-finalization).
+- Soft finality: The [transaction is confirmed on Linea](#step-3-state-tracking). This takes two seconds (Linea's block time). For simplicity, Linea is guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical one—when there are reorgs on L1. 
+- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. The 
+typical time before [hard finality](#step-6-batch-finalization) is 6-32 hours, although the six-hour minimum will be reduced to zero in future.
 
 :::
 
