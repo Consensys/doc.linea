@@ -370,37 +370,6 @@ const sidebars = {
       ],
     },
   ],
-  learnSidebar: [
-    "learn/first-dapp",
-    "learn/aiagent-quickstart",
-    "learn/marketplace-dapp",
-    "learn/voting-dapp",
-    "learn/fallback",
-    {
-      type: "category",
-      label: "Ecosystem tutorials",
-      link: {
-        type: "doc",
-        id: "learn/ecosystem-tutorials/index",
-      },
-      collapsible: false,
-      items: [
-        {
-          type: "category",
-          label: "Irys",
-          link: {
-            type: "doc",
-            id: "learn/ecosystem-tutorials/irys/index",
-          },
-          items: [
-            "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
-            "learn/ecosystem-tutorials/irys/irys-nfts",
-          ],
-        },
-        "learn/ecosystem-tutorials/usdc",
-      ],
-    },
-  ],
   apiSidebar: [
     {
       type: "category",

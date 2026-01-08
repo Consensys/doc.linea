@@ -141,12 +141,6 @@ const config = {
           },
           {
             type: "doc",
-            docId: "learn/first-dapp",
-            position: "left",
-            label: "Learn",
-          },
-          {
-            type: "doc",
             docId: "technology/architecture",
             position: "left",
             label: "Technology",
