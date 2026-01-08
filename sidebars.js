@@ -99,6 +99,7 @@ const sidebars = {
         },
         "get-started/how-to/verify-users-with-proof-of-humanity",
         "get-started/how-to/state-recovery",
+        "get-started/how-to/bundle-transactions",
       ],
     },
     {
