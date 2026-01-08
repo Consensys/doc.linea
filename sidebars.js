@@ -76,7 +76,6 @@ const sidebars = {
         "get-started/how-to/connect-wallet",
         "get-started/how-to/gas-fees",
         "get-started/how-to/bridge",
-        "get-started/how-to/linea-safe",
         "get-started/how-to/deploy-subdomain",
         "get-started/how-to/finalized-block",
         {
@@ -98,7 +97,6 @@ const sidebars = {
           ],
         },
         "get-started/how-to/verify-users-with-proof-of-humanity",
-        "get-started/how-to/state-recovery",
       ],
     },
     {
@@ -620,6 +618,7 @@ const sidebars = {
         "technology/sequencer/traces-generator",
       ],
     },
+    "technology/state-recovery",
     "technology/state-manager",
     {
       type: "category",
