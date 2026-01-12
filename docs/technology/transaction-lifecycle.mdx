@@ -5,6 +5,15 @@ description: >-
 image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
+The public Linea Mainnet transactions described here are finalized on Ethereum, making Ethereum the layer 1 (L1) and Linea the layer 2 (L2). 
+
+
+:::info[Validium]
+
+For custom, validium instances, Linea network operators may configure an alternative finalization layer.
+
+:::
+
 Transactions on Linea proceed through the following steps:
 
 ## Step 1: Submission
@@ -13,7 +22,7 @@ A user signs a transaction and broadcasts it to Linea. These transactions enter
 the mempool as pending.
 
 - **Components:** RPC nodes, full nodes (composed of the execution layer 
-[Besu](../get-started/how-to/run-a-node/linea-besu.mdx) or [Geth](../get-started/how-to/run-a-node/geth.mdx), 
+[Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../get-started/how-to/run-a-node/geth.mdx), 
 and the consensus layer [Maru](../get-started/how-to/run-a-node/maru.mdx))
 - **Finality:** None (pending)
 
@@ -38,7 +47,7 @@ At this point, the execution layer's state changes and the block containing the 
 added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is 
 returned to the user's wallet as confirmation.
 
-- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx) with sequencer plugins
+- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) with sequencer plugins
 - **Finality:** None (executing)
 
 ## Step 3: State tracking
@@ -51,9 +60,9 @@ for batching and proof generation. With the transaction executed and state updat
 has reached **soft finality** and the user sees the transaction reflected and confirmed in their wallet.
 
 From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture.mdx) 
-must still reach hard finality on the L1.
+must still reach hard finality on the finality layer.
 
-- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx) with tracer plugins
+- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
 - **Finality:** Soft finality (Linea)
 
 ## Step 4: Conflation
@@ -107,7 +116,7 @@ blob-carrying transactions made possible by EIP-4844, added in Ethereum's Dencun
 
 :::
 
-You can view finalized batches on [Lineascan](https://lineascan.build/batches).
+You can view finalized batches on [LineaScan](https://lineascan.build/batches).
 
 Once the proof is verified by the L1 and two epochs have passed, the transaction becomes immutable history,
 and reaches **hard finality**. Its lifecycle is complete.
