@@ -379,6 +379,8 @@ textarea {
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-code-border-radius: 15px;
   --doc-sidebar-width: 350px !important;
+  --linea-navbar-items-light: rgba(97, 223, 255, 0.1);
+  --linea-navbar-items-medium: rgba(97, 223, 255, 0.2);
 }
 
 .footer--dark {
@@ -960,11 +962,12 @@ a.navbar__brand {
 }
 
 /* Basic circle icons for navbar items */
-.navbar__link[href="/get-started"]::before,
+.navbar__link[href="/network"]::before,
 .navbar__link[href="/tools"]::before,
 .navbar__link[href="/learn/first-dapp"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
-.navbar__link[href="/technology/architecture"]::before,
+.navbar__link[href="/protocol/architecture"]::before,
+.navbar__link[href="/stack"]::before,
 .navbar__link[href="/release-notes"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
@@ -980,11 +983,12 @@ a.navbar__brand {
 }
 
 /* hover effect for circles */
-.navbar__link[href="/get-started"]:hover::before,
+.navbar__link[href="/network"]:hover::before,
 .navbar__link[href="/tools"]:hover::before,
 .navbar__link[href="/learn/first-dapp"]:hover::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
-.navbar__link[href="/technology/architecture"]:hover::before,
+.navbar__link[href="/protocol/architecture"]:hover::before,
+.navbar__link[href="/stack"]:hover::before,
 .navbar__link[href="/release-notes"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
@@ -999,11 +1003,12 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/get-started"]::before,
+  .navbar__link[href="/network"]::before,
   .navbar__link[href="/tools"]::before,
   .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
-  .navbar__link[href="/technology/architecture"]::before,
+  .navbar__link[href="/protocol/architecture"]::before,
+  .navbar__link[href="/stack"]::before,
   .navbar__link[href="/release-notes"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
@@ -1522,4 +1527,110 @@ div[aria-label="Expand sidebar"] {
 #manage-cookie-btn:hover {
   color: var(--ifm-footer-link-hover-color);
   text-decoration: none;
+}
+
+/* Ensure dropdown trigger matches other navbar items - DESKTOP ONLY */
+@media (min-width: 997px) {
+  .navbar__item.dropdown .navbar__link,
+  .navbar__item.dropdown .navbar__link:hover,
+  .navbar__item.dropdown .navbar__link:focus,
+  .navbar__item--dropdown .navbar__link,
+  .navbar__item--dropdown .navbar__link:hover,
+  .navbar__item--dropdown .navbar__link:focus,
+  .navbar__link.dropdown__link,
+  .navbar__link.dropdown__link:hover,
+  .navbar__link.dropdown__link:focus,
+  .dropdown .navbar__link,
+  .dropdown .navbar__link:hover,
+  .dropdown .navbar__link:focus,
+  .navbar__items--right .navbar__item.dropdown .navbar__link,
+  .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__items--right .dropdown .navbar__link,
+  .navbar__items--right .navbar__link.dropdown__link,
+  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
+    color: var(--linea-navbar-items) !important;
+    font-weight: 400;
+  }
+
+  /* Base circle icon for dropdown trigger */
+  .navbar__item.dropdown .navbar__link::before,
+  .navbar__item--dropdown .navbar__link::before,
+  .navbar__link.dropdown__link::before,
+  .dropdown .navbar__link::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: calc(0.5vw);
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
+    margin-left: 12px;
+  }
+
+  /* Active state for dropdown trigger - filled circle when on notices page */
+  .navbar__item.dropdown .navbar__link--active::before,
+  .navbar__item--dropdown .navbar__link--active::before,
+  .navbar__link.dropdown__link--active::before,
+  .dropdown .navbar__link--active::before,
+  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .navbar__item--dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
+    background-color: var(--linea-navbar-items) !important;
+    border: 1px solid var(--linea-navbar-items) !important;
+  }
+
+  /* Ensure dropdown caret/arrow is also blue */
+  .navbar__item.dropdown .navbar__link::after,
+  .navbar__item--dropdown .navbar__link::after,
+  .navbar__link.dropdown__link::after,
+  .dropdown .navbar__link::after {
+    border-color: var(--linea-navbar-items) transparent transparent !important;
+  }
+}
+
+/* Dropdown menu container and items styling */
+.dropdown__menu {
+  text-align: left;
+  background-color: var(--ifm-background-surface-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
+}
+
+.dropdown__menu .menu__link:hover {
+  background-color: var(--ifm-hover-overlay) !important;
+  color: inherit !important;
+}
+
+.dropdown__menu .menu__link {
+  text-align: left;
+  justify-content: flex-start;
+  color: var(--ifm-menu-color) !important;
+}
+
+.dropdown__menu .menu__link--active {
+  color: var(--ifm-menu-color) !important;
+}
+
+.dropdown__menu .menu__link[href="/notices/release-notes"]::before,
+.dropdown__menu .menu__link[href="/notices/security-council-record"]::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: calc(0.5vw);
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+  margin-left: 12px;
+}
+
+/* Active state for dropdown items - filled circle */
+.dropdown__menu .menu__link--active::before {
+  background-color: currentColor !important;
+  border: 1px solid currentColor !important;
 }

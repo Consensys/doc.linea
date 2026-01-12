@@ -135,9 +135,21 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "get-started/index",
+            docId: "network/index",
             position: "left",
-            label: "Get started",
+            label: "Linea Network",
+          },
+          {
+            type: "doc",
+            docId: "protocol/architecture",
+            position: "left",
+            label: "Linea Protocol",
+          },
+          {
+            type: "doc",
+            docId: "stack/index",
+            position: "left",
+            label: "Linea Stack",
           },
           {
             type: "doc",
@@ -147,21 +159,27 @@ const config = {
           },
           {
             type: "doc",
-            docId: "technology/architecture",
-            position: "left",
-            label: "Technology",
-          },
-          {
-            type: "doc",
             docId: "api/linea-smart-contracts/linearollup",
             position: "left",
             label: "APIs & SDK",
           },
           {
-            type: "doc",
-            docId: "release-notes",
+            type: "dropdown",
+            label: "Notices",
             position: "right",
-            label: "Release notes",
+            activeBaseRegex: "^/notices/",
+            items: [
+              {
+                type: "doc",
+                docId: "notices/release-notes",
+                label: "Release notes",
+              },
+              {
+                type: "doc",
+                docId: "notices/security-council-record",
+                label: "Linea Security Council transaction record",
+              },
+            ],
           },
           {
             href: "https://discord.gg/linea",
