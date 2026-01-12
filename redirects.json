@@ -997,12 +997,6 @@
         ]
     },
     {
-        "to": "/network/tutorials/fallback",
-        "from": [
-            "/learn/fallback"
-        ]
-    },
-    {
         "to": "/network/how-to/finalized-block",
         "from": "/developers/guides/finalized-block"
     },
@@ -1023,8 +1017,19 @@
         "from": "/network/how-to/poh-api"
     },
     {
+        "to": "/network/how-to/fallback",
+        "from": [
+            "/learn/fallback",
+            "/get-started/how-to/fallback"
+        ]
+    },
+    {
         "to": "/network/tools/gas",
-        "from": "/network/tooling/gas"
+        "from": [
+            "/network/tooling/gas",
+            "/get-started/tooling/gas",
+            "/tools/gas"
+        ]
     },
     {
         "to": "/network/tools/gas/blocknative",
