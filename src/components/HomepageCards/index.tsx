@@ -28,7 +28,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Deploy a smart contract",
-    link: "/network/build/quickstart/deploy",
+    link: "/network/quickstart/deploy",
     description: (
       <>
         Learn how to deploy a smart contract on Linea.

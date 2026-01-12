@@ -1102,33 +1102,38 @@
         ]
     },
     {
-        "to": "/network/build/quickstart/deploy",
+        "to": "/network/quickstart/deploy",
         "from": [
-            "/get-started/build/quickstart/deploy"
+            "/get-started/build/quickstart/deploy",
+            "/network/build/quickstart/deploy"
         ]
     },
     {
-        "to": "/network/build/quickstart/app",
+        "to": "/network/quickstart/app",
         "from": [
-            "/get-started/build/quickstart/app"
+            "/get-started/build/quickstart/app",
+            "/network/build/quickstart/app"
         ]
     },
     {
-        "to": "/network/build/quickstart/hub",
+        "to": "/network/quickstart/hub",
         "from": [
-            "/get-started/build/quickstart/hub"
+            "/get-started/build/quickstart/hub",
+            "/network/build/quickstart/hub"
         ]
     },
     {
-        "to": "/network/build/quickstart/hub-reviews",
+        "to": "/network/quickstart/hub-reviews",
         "from": [
-            "/get-started/build/quickstart/hub-reviews"
+            "/get-started/build/quickstart/hub-reviews",
+            "/network/build/quickstart/hub-reviews"
         ]
     },
     {
-        "to": "/network/build/quickstart/events",
+        "to": "/network/quickstart/events",
         "from": [
-            "/get-started/build/quickstart/events"
+            "/get-started/build/quickstart/events",
+            "/network/build/quickstart/events"
         ]
     },
     {
