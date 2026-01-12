@@ -137,25 +137,19 @@ const config = {
             type: "doc",
             docId: "network/index",
             position: "left",
-            label: "Linea Network",
+            label: "Network",
           },
           {
             type: "doc",
             docId: "protocol/architecture",
             position: "left",
-            label: "Linea Protocol",
+            label: "Protocol",
           },
           {
             type: "doc",
             docId: "stack/index",
             position: "left",
-            label: "Linea Stack",
-          },
-          {
-            type: "doc",
-            docId: "tools/index",
-            position: "left",
-            label: "Tools",
+            label: "Stack",
           },
           {
             type: "doc",
@@ -213,7 +207,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "/risk-disclosures",
+                href: "/protocol/risk-disclosures",
               },
               {
                 label: "Terms of service",

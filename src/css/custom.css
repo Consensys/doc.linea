@@ -963,12 +963,10 @@ a.navbar__brand {
 
 /* Basic circle icons for navbar items */
 .navbar__link[href="/network"]::before,
-.navbar__link[href="/tools"]::before,
-.navbar__link[href="/learn/first-dapp"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
 .navbar__link[href="/protocol/architecture"]::before,
 .navbar__link[href="/stack"]::before,
-.navbar__link[href="/release-notes"]::before,
+.navbar__link[href="/notices"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
@@ -984,12 +982,10 @@ a.navbar__brand {
 
 /* hover effect for circles */
 .navbar__link[href="/network"]:hover::before,
-.navbar__link[href="/tools"]:hover::before,
-.navbar__link[href="/learn/first-dapp"]:hover::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
 .navbar__link[href="/protocol/architecture"]:hover::before,
 .navbar__link[href="/stack"]:hover::before,
-.navbar__link[href="/release-notes"]:hover::before,
+.navbar__link[href="/notices"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
@@ -1004,12 +1000,10 @@ a.navbar__brand {
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
   .navbar__link[href="/network"]::before,
-  .navbar__link[href="/tools"]::before,
-  .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
   .navbar__link[href="/protocol/architecture"]::before,
   .navbar__link[href="/stack"]::before,
-  .navbar__link[href="/release-notes"]::before,
+  .navbar__link[href="/notices"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
@@ -1361,13 +1355,73 @@ button[aria-label="Collapse sidebar"] {
   border-radius: 12px;
 }
 
+/* Standardize sidebar menu indentation - reduce and make consistent */
 a.menu__link {
-  padding: 3px 12px;
+  padding: 3px 8px !important;
+  padding-left: 8px !important;
   line-height: 1.25 !important;
+}
+
+/* Remove default indentation from menu containers */
+.menu__list {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menu__list-item {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .menu__list-item-collapsible {
   margin-right: 8px;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Standardized nested indentation - reduced levels */
+.menu__list .menu__list {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__link {
+  padding-left: 12px !important;
+}
+
+.menu__list .menu__list .menu__list {
+  padding-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__list .menu__link {
+  padding-left: 20px !important;
+}
+
+/* Ensure all top-level items (Overview, Connect, Build on Linea, How to, Tools, Tutorials) have same base indentation */
+.menu__list > .menu__list-item > .menu__link {
+  padding-left: 8px !important;
+}
+
+/* Ensure all collapsible categories at top level have consistent indentation */
+.menu__list > .menu__list-item-collapsible {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menu__list > .menu__list-item-collapsible > .menu__link {
+  padding-left: 8px !important;
+  margin-left: 0 !important;
+}
+
+/* Remove any default Docusaurus padding that might affect categories with links */
+.menu__link--sublist {
+  padding-left: 8px !important;
+}
+
+/* Override any Docusaurus default that might add extra spacing to categories with links */
+.menu__list-item-collapsible .menu__link--sublist {
+  padding-left: 8px !important;
+  margin-left: 0 !important;
 }
 
 .menu__link--active {
@@ -1553,6 +1607,16 @@ div[aria-label="Expand sidebar"] {
   .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
     color: var(--linea-navbar-items) !important;
     font-weight: 400;
+    padding-left: calc(0.5vw) !important; /* Match regular navbar items */
+  }
+
+  /* Remove extra padding/margin from dropdown item container */
+  .navbar__item.dropdown,
+  .navbar__item--dropdown,
+  .navbar__items--right .navbar__item.dropdown,
+  .navbar__items--right .navbar__item--dropdown {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
   }
 
   /* Base circle icon for dropdown trigger */
