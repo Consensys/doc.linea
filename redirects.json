@@ -101,6 +101,12 @@
         ]
     },
     {
+        "to": "/api/token-api",
+        "from": [
+            "/api/token-api/overview"
+        ]
+    },
+    {
         "to": "/network/build/ethereum-differences",
         "from": [
             "/build-on-linea/ethereum-differences",
