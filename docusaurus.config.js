@@ -158,10 +158,21 @@ const config = {
             label: "APIs & SDK",
           },
           {
-            type: "doc",
-            docId: "release-notes",
+            type: "dropdown",
+            label: "Notices",
             position: "right",
-            label: "Release notes",
+            items: [
+              {
+                type: "doc",
+                docId: "notices/release-notes",
+                label: "Release notes",
+              },
+              {
+                type: "doc",
+                docId: "notices/security-council-record",
+                label: "Linea Security Council transaction record",
+              },
+            ],
           },
           {
             href: "https://discord.gg/linea",
