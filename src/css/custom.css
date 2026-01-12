@@ -1056,6 +1056,7 @@ a.navbar__brand {
 
 /* Basic circle icons for navbar items */
 .navbar__link[href="/get-started"]::before,
+.navbar__link[href="/tools"]::before,
 .navbar__link[href="/learn/first-dapp"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
 .navbar__link[href="/technology/architecture"]::before,
@@ -1078,6 +1079,7 @@ a.navbar__brand {
 
 /* hover effect for circles */
 .navbar__link[href="/get-started"]:hover::before,
+.navbar__link[href="/tools"]:hover::before,
 .navbar__link[href="/learn/first-dapp"]:hover::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
 .navbar__link[href="/technology/architecture"]:hover::before,
@@ -1099,6 +1101,7 @@ a.navbar__brand {
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
   .navbar__link[href="/get-started"]::before,
+  .navbar__link[href="/tools"]::before,
   .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
   .navbar__link[href="/technology/architecture"]::before,
