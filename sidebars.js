@@ -97,6 +97,7 @@ const sidebars = {
           ],
         },
         "get-started/how-to/verify-users-with-proof-of-humanity",
+        "get-started/how-to/fallback",
       ],
     },
   ],
@@ -361,37 +362,6 @@ const sidebars = {
         "tools/social-login/metamask",
         "tools/social-login/openfort",
         "tools/social-login/privy",
-      ],
-    },
-  ],
-  learnSidebar: [
-    "learn/first-dapp",
-    "learn/aiagent-quickstart",
-    "learn/marketplace-dapp",
-    "learn/voting-dapp",
-    "learn/fallback",
-    {
-      type: "category",
-      label: "Ecosystem tutorials",
-      link: {
-        type: "doc",
-        id: "learn/ecosystem-tutorials/index",
-      },
-      collapsible: false,
-      items: [
-        {
-          type: "category",
-          label: "Irys",
-          link: {
-            type: "doc",
-            id: "learn/ecosystem-tutorials/irys/index",
-          },
-          items: [
-            "learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
-            "learn/ecosystem-tutorials/irys/irys-nfts",
-          ],
-        },
-        "learn/ecosystem-tutorials/usdc",
       ],
     },
   ],
