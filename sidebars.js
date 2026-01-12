@@ -636,6 +636,16 @@ const sidebars = {
       ],
     },
   ],
+  noticesSidebar: [
+    {
+      type: "doc",
+      id: "notices/release-notes",
+    },
+    {
+      type: "doc",
+      id: "notices/security-council-record",
+    },
+  ],
 };
 
 module.exports = sidebars;
