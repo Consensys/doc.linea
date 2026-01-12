@@ -226,7 +226,8 @@
         "to": "/tools",
         "from": [
             "/build-on-linea/tooling",
-            "/developers/tooling"
+            "/developers/tooling",
+            "/get-started/tooling"
         ]
     },
     {
@@ -990,19 +991,19 @@
         "from": "/get-started/tooling/social-login/dynamic"
     },
     {
-        "to": "/get-started/social-login/metamask",
+        "to": "/tools/social-login/metamask",
         "from": "/get-started/tooling/social-login/metamask"
     },
     {
-        "to": "/get-started/social-login/privy",
+        "to": "/tools/social-login/privy",
         "from": "/get-started/tooling/social-login/privy"
     },
     {
-        "to": "/get-started/account-abstraction/metamask",
+        "to": "/tools/account-abstraction/metamask",
         "from": "/get-started/tooling/account-abstraction/metamask"
     },
     {
-        "to": "/get-started/libraries/web3j",
+        "to": "/tools/libraries/web3j",
         "from": "/get-started/tooling/libraries/web3j"
     }
 ]
