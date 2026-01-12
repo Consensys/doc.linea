@@ -141,9 +141,9 @@ const config = {
           },
           {
             type: "doc",
-            docId: "learn/first-dapp",
+            docId: "tools/index",
             position: "left",
-            label: "Learn",
+            label: "Tools",
           },
           {
             type: "doc",
