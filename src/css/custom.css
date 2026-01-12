@@ -961,34 +961,56 @@ a.navbar__brand {
   padding-left: calc(0.5vw);
 }
 
-/* Ensure dropdown links inherit color from parent - DESKTOP ONLY */
-@media (min-width: 997px) {
-  .navbar__item--dropdown .navbar__link {
-    color: inherit !important;
-  }
-}
-
 /* Ensure dropdown trigger matches other navbar items - DESKTOP ONLY */
+/* Target multiple possible DOM patterns: .navbar__item--dropdown, .dropdown, and .dropdown__link */
 @media (min-width: 997px) {
+  /* Pattern 1: li.navbar__item.dropdown > a.navbar__link */
+  .navbar__item.dropdown .navbar__link,
+  .navbar__item.dropdown .navbar__link:hover,
+  .navbar__item.dropdown .navbar__link:focus,
+  .navbar__item.dropdown .navbar__link:visited,
+  /* Pattern 2: .navbar__item--dropdown .navbar__link */
   .navbar__item--dropdown .navbar__link,
   .navbar__item--dropdown .navbar__link:hover,
   .navbar__item--dropdown .navbar__link:focus,
   .navbar__item--dropdown .navbar__link:visited,
+  /* Pattern 3: a.navbar__link.dropdown__link */
+  .navbar__link.dropdown__link,
+  .navbar__link.dropdown__link:hover,
+  .navbar__link.dropdown__link:focus,
+  .navbar__link.dropdown__link:visited,
+  /* Pattern 4: .dropdown .navbar__link */
+  .dropdown .navbar__link,
+  .dropdown .navbar__link:hover,
+  .dropdown .navbar__link:focus,
+  .dropdown .navbar__link:visited,
+  /* Additional specificity for right-side items */
+  .navbar__items--right .navbar__item.dropdown .navbar__link,
   .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__items--right .navbar__item--dropdown .navbar__link:hover,
-  .navbar__items--right .navbar__item--dropdown .navbar__link:focus,
-  .navbar__items--right .navbar__item--dropdown .navbar__link:visited,
+  .navbar__items--right .dropdown .navbar__link,
+  .navbar__items--right .navbar__link.dropdown__link,
+  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
   .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link span,
-  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link *,
-  .navbar__inner .navbar__items .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__inner .navbar__items .navbar__items--right .navbar__item--dropdown .navbar__link * {
+  .navbar__inner .navbar__items--right .dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
     color: var(--linea-navbar-items) !important;
     font-weight: 400;
   }
   
   /* Active state for dropdown trigger - filled circle when on notices page */
-  .navbar__item--dropdown .navbar__link--active::before {
+  /* Direct active state */
+  .navbar__item.dropdown .navbar__link--active::before,
+  .navbar__item--dropdown .navbar__link--active::before,
+  .navbar__link.dropdown__link--active::before,
+  .dropdown .navbar__link--active::before {
+    background-color: var(--linea-navbar-items) !important;
+    border: 1px solid var(--linea-navbar-items) !important;
+  }
+  
+  /* Active state when any child is active (using :has()) */
+  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .navbar__item--dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
     background-color: var(--linea-navbar-items) !important;
     border: 1px solid var(--linea-navbar-items) !important;
   }
@@ -1000,13 +1022,20 @@ a.navbar__brand {
   background-color: var(--linea-navbar-items-light) !important;
 }
 
+/* Remove blue hover effect - keep white in dark mode */
 .dropdown__menu .menu__link:hover {
-  background-color: var(--linea-navbar-items-medium) !important;
+  background-color: var(--ifm-hover-overlay) !important;
+  color: inherit !important;
 }
 
 .dropdown__menu .menu__link {
   text-align: left;
   justify-content: flex-start;
+  color: inherit !important;
+}
+
+.dropdown__menu .menu__link--active {
+  color: inherit !important;
 }
 
 .dropdown__menu .menu__link[href="/notices/release-notes"]::before,
@@ -1016,19 +1045,17 @@ a.navbar__brand {
   width: 7px;
   height: 7px;
   margin-right: calc(0.5vw);
-  border: 1px solid var(--linea-navbar-items);
+  border: 1px solid currentColor;
   border-radius: 50%;
   vertical-align: middle;
   transition: background-color 0.2s ease;
   margin-left: 12px;
 }
 
-/* Active state for dropdown items - filled circle */
-.dropdown__menu .menu__link--active::before,
-.dropdown__menu .menu__link[href="/notices/release-notes"].menu__link--active::before,
-.dropdown__menu .menu__link[href="/notices/security-council-record"].menu__link--active::before {
-  background-color: var(--linea-navbar-items) !important;
-  border: 1px solid var(--linea-navbar-items) !important;
+/* Active state for dropdown items - filled circle (white in dark mode) */
+.dropdown__menu .menu__link--active::before {
+  background-color: currentColor !important;
+  border: 1px solid currentColor !important;
 }
 
 /* Basic circle icons for navbar items */
@@ -1036,7 +1063,10 @@ a.navbar__brand {
 .navbar__link[href="/learn/first-dapp"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
 .navbar__link[href="/technology/architecture"]::before,
+.navbar__item.dropdown .navbar__link::before,
 .navbar__item--dropdown .navbar__link::before,
+.dropdown .navbar__link::before,
+.navbar__link.dropdown__link::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
@@ -1055,7 +1085,10 @@ a.navbar__brand {
 .navbar__link[href="/learn/first-dapp"]:hover::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
 .navbar__link[href="/technology/architecture"]:hover::before,
+.navbar__item.dropdown .navbar__link:hover::before,
 .navbar__item--dropdown .navbar__link:hover::before,
+.dropdown .navbar__link:hover::before,
+.navbar__link.dropdown__link:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
@@ -1067,38 +1100,34 @@ a.navbar__brand {
   border: 1px solid var(--linea-navbar-items);
 }
 
-/* Active state for dropdown trigger - filled circle when on notices page - DESKTOP ONLY */
-@media (min-width: 997px) {
-  .navbar__item--dropdown .navbar__link--active::before {
-    background-color: var(--linea-navbar-items) !important;
-    border: 1px solid var(--linea-navbar-items) !important;
-  }
-}
-
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
   .navbar__link[href="/get-started"]::before,
   .navbar__link[href="/learn"]::before,
   .navbar__link[href="/api"]::before,
   .navbar__link[href="/technology/architecture"]::before,
+  .navbar__item.dropdown .navbar__link::before,
   .navbar__item--dropdown .navbar__link::before,
+  .dropdown .navbar__link::before,
+  .navbar__link.dropdown__link::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
 }
 
-/* Force Notices dropdown color - highest specificity - DESKTOP ONLY */
+/* Override theme variables and ensure dropdown caret/arrow is blue - DESKTOP ONLY */
 @media (min-width: 997px) {
-  .navbar .navbar__items--right > .navbar__item--dropdown .navbar__link,
-  .navbar .navbar__items--right > .navbar__item--dropdown .navbar__link *,
-  .navbar .navbar__items--right > .navbar__item--dropdown .navbar__link span,
-  .navbar__inner .navbar__items .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__inner .navbar__items .navbar__items--right .navbar__item--dropdown .navbar__link * {
-    color: var(--linea-navbar-items) !important;
+  .navbar__item.dropdown,
+  .navbar__item--dropdown,
+  .dropdown {
+    --ifm-navbar-link-color: var(--linea-navbar-items) !important;
   }
 
   /* Ensure dropdown caret/arrow is also blue */
-  .navbar__item--dropdown .navbar__link::after {
+  .navbar__item.dropdown .navbar__link::after,
+  .navbar__item--dropdown .navbar__link::after,
+  .dropdown .navbar__link::after,
+  .navbar__link.dropdown__link::after {
     border-color: var(--linea-navbar-items) transparent transparent !important;
   }
 }
