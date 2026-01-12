@@ -968,22 +968,18 @@ a.navbar__brand {
   .navbar__item.dropdown .navbar__link,
   .navbar__item.dropdown .navbar__link:hover,
   .navbar__item.dropdown .navbar__link:focus,
-  .navbar__item.dropdown .navbar__link:visited,
   /* Pattern 2: .navbar__item--dropdown .navbar__link */
   .navbar__item--dropdown .navbar__link,
   .navbar__item--dropdown .navbar__link:hover,
   .navbar__item--dropdown .navbar__link:focus,
-  .navbar__item--dropdown .navbar__link:visited,
   /* Pattern 3: a.navbar__link.dropdown__link */
   .navbar__link.dropdown__link,
   .navbar__link.dropdown__link:hover,
   .navbar__link.dropdown__link:focus,
-  .navbar__link.dropdown__link:visited,
   /* Pattern 4: .dropdown .navbar__link */
   .dropdown .navbar__link,
   .dropdown .navbar__link:hover,
   .dropdown .navbar__link:focus,
-  .dropdown .navbar__link:visited,
   /* Additional specificity for right-side items */
   .navbar__items--right .navbar__item.dropdown .navbar__link,
   .navbar__items--right .navbar__item--dropdown .navbar__link,
@@ -1016,26 +1012,26 @@ a.navbar__brand {
   }
 }
 
-/* Dropdown items - left align and active state with filled circle */
+/* Dropdown items - left align, use default theme colors (white in dark, black in light) */
 .dropdown__menu {
   text-align: left;
-  background-color: var(--linea-navbar-items-light) !important;
-}
-
-/* Remove blue hover effect - keep white in dark mode */
-.dropdown__menu .menu__link:hover {
-  background-color: var(--ifm-hover-overlay) !important;
-  color: inherit !important;
+  background-color: var(--ifm-background-surface-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
 }
 
 .dropdown__menu .menu__link {
   text-align: left;
   justify-content: flex-start;
-  color: inherit !important;
+  color: var(--ifm-menu-color) !important;
+}
+
+.dropdown__menu .menu__link:hover {
+  background-color: var(--ifm-hover-overlay) !important;
+  color: var(--ifm-menu-color) !important;
 }
 
 .dropdown__menu .menu__link--active {
-  color: inherit !important;
+  color: var(--ifm-menu-color-active) !important;
 }
 
 .dropdown__menu .menu__link[href="/notices/release-notes"]::before,
@@ -1052,7 +1048,7 @@ a.navbar__brand {
   margin-left: 12px;
 }
 
-/* Active state for dropdown items - filled circle (white in dark mode) */
+/* Active state for dropdown items - filled circle using theme color */
 .dropdown__menu .menu__link--active::before {
   background-color: currentColor !important;
   border: 1px solid currentColor !important;
@@ -1115,7 +1111,7 @@ a.navbar__brand {
   }
 }
 
-/* Override theme variables and ensure dropdown caret/arrow is blue - DESKTOP ONLY */
+/* Override theme variables for dropdown trigger only (not menu items) - DESKTOP ONLY */
 @media (min-width: 997px) {
   .navbar__item.dropdown,
   .navbar__item--dropdown,
@@ -1129,6 +1125,19 @@ a.navbar__brand {
   .dropdown .navbar__link::after,
   .navbar__link.dropdown__link::after {
     border-color: var(--linea-navbar-items) transparent transparent !important;
+  }
+  
+  /* Ensure dropdown menu items don't inherit blue - use theme colors */
+  .dropdown__menu {
+    --ifm-menu-color: var(--ifm-font-color-base) !important;
+  }
+  
+  [data-theme='dark'] .dropdown__menu {
+    --ifm-menu-color: #fff !important;
+  }
+  
+  [data-theme='light'] .dropdown__menu {
+    --ifm-menu-color: #000 !important;
   }
 }
 
