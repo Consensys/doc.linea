@@ -119,17 +119,19 @@
         ]
     },
     {
-        "to": "/get-started/how-to/linea-safe",
+        "to": "/get-started",
         "from": [
             "/build-on-linea/tooling/linea-safe",
+            "/get-started/how-to/linea-safe",
             "/developers/guides/linea-safe"
         ]
     },
     {
-        "to": "/get-started/tooling/permanent-data/irys/irys-querying",
+        "to": "/tools/permanent-data/irys/irys-querying",
         "from": [
             "/developers/tooling/permanent-data/irys/irys-query-package",
-            "/developers/tooling/permanent-data/irys/irys-querying"
+            "/developers/tooling/permanent-data/irys/irys-querying",
+            "/get-started/tooling/permanent-data/irys/irys-querying"
         ]
     },
     {
@@ -190,17 +192,19 @@
         ]
     },
     {
-        "to": "/get-started/tooling/cross-chain/shortcuts",
+        "to": "/tools/cross-chain/shortcuts",
         "from": [
             "/build-on-linea/tooling/cross-chain/shortcuts",
-            "/developers/tooling/cross-chain/shortcuts"
+            "/developers/tooling/cross-chain/shortcuts",
+            "/get-started/tooling/cross-chain/shortcuts"
         ]
     },
     {
-        "to": "/get-started/tooling/node-providers",
+        "to": "/tools/node-providers",
         "from": [
             "/build-on-linea/tooling/node-providers",
-            "/developers/tooling/node-providers"
+            "/developers/tooling/node-providers",
+            "/get-started/tooling/node-providers"
         ]
     },
     {
@@ -220,17 +224,19 @@
         ]
     },
     {
-        "to": "/get-started",
+        "to": "/tools",
         "from": [
             "/build-on-linea/tooling",
-            "/developers/tooling"
+            "/developers/tooling",
+            "/get-started/tooling"
         ]
     },
     {
-        "to": "/get-started/tooling/libraries/reown",
+        "to": "/tools/libraries/reown",
         "from": [
             "/get-started/tooling/libraries/walletconnect",
-            "/developers/tooling/libraries/wallet-connect"
+            "/developers/tooling/libraries/wallet-connect",
+            "/get-started/tooling/libraries/reown"
         ]
     },
     {
@@ -290,334 +296,573 @@
         ]
     },
     {
-        "to": "/get-started/tooling/social-login/openfort",
-        "from": "/developers/tooling/social-login/openfort"
+        "to": "/tools/social-login/openfort",
+        "from": [
+            "/developers/tooling/social-login/openfort",
+            "/get-started/tooling/social-login/openfort"
+        ]
     },
     {
-        "to": "/get-started/tooling/social-login/arcana",
-        "from": "/developers/tooling/social-login/arcana"
+        "to": "/tools/social-login/arcana",
+        "from": [
+            "/developers/tooling/social-login/arcana",
+            "/get-started/tooling/social-login/arcana"
+        ]
     },
     {
-        "to": "/get-started/tooling/social-login",
-        "from": "/developers/tooling/social-login"
+        "to": "/tools/social-login",
+        "from": [
+            "/developers/tooling/social-login",
+            "/get-started/tooling/social-login"
+        ]
     },
     {
-        "to": "/get-started/tooling/attestations/verax",
-        "from": "/developers/tooling/attestations/verax"
+        "to": "/tools/attestations/verax",
+        "from": [
+            "/developers/tooling/attestations/verax",
+            "/get-started/tooling/attestations/verax"
+        ]
     },
     {
-        "to": "/get-started/tooling/attestations",
-        "from": "/developers/tooling/attestations"
+        "to": "/tools/attestations",
+        "from": [
+            "/developers/tooling/attestations",
+            "/get-started/tooling/attestations"
+        ]
     },
     {
-        "to": "/get-started/tooling/attestations/primus",
+        "to": "/tools/attestations/primus",
         "from": [
             "/get-started/tooling/attestations/pado",
-            "/developers/tooling/attestations/pado"
+            "/developers/tooling/attestations/pado",
+            "/get-started/tooling/attestations/primus"
         ]
     },
     {
-        "to": "/get-started/tooling/privacy/secret",
-        "from": "/developers/tooling/privacy/secret"
+        "to": "/tools/privacy/secret",
+        "from": [
+            "/developers/tooling/privacy/secret",
+            "/get-started/tooling/privacy/secret"
+        ]
     },
     {
-        "to": "/get-started/tooling/privacy",
-        "from": "/developers/tooling/privacy"
+        "to": "/tools/privacy",
+        "from": [
+            "/developers/tooling/privacy",
+            "/get-started/tooling/privacy"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/umbrella",
-        "from": "/developers/tooling/oracles/umbrella"
+        "to": "/tools/oracles/umbrella",
+        "from": [
+            "/developers/tooling/oracles/umbrella",
+            "/get-started/tooling/oracles/umbrella"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/api3",
-        "from": "/developers/tooling/oracles/api3"
+        "to": "/tools/oracles/api3",
+        "from": [
+            "/developers/tooling/oracles/api3",
+            "/get-started/tooling/oracles/api3"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles",
-        "from": "/developers/tooling/oracles"
+        "to": "/tools/oracles",
+        "from": [
+            "/developers/tooling/oracles",
+            "/get-started/tooling/oracles"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/pyth",
-        "from": "/developers/tooling/oracles/pyth"
+        "to": "/tools/oracles/pyth",
+        "from": [
+            "/developers/tooling/oracles/pyth",
+            "/get-started/tooling/oracles/pyth"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/ora",
-        "from": "/developers/tooling/oracles/ora"
+        "to": "/tools/oracles/ora",
+        "from": [
+            "/developers/tooling/oracles/ora",
+            "/get-started/tooling/oracles/ora"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/tellor",
-        "from": "/developers/tooling/oracles/tellor"
+        "to": "/tools/oracles/tellor",
+        "from": [
+            "/developers/tooling/oracles/tellor",
+            "/get-started/tooling/oracles/tellor"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/supra",
-        "from": "/developers/tooling/oracles/supra"
+        "to": "/tools/oracles/supra",
+        "from": [
+            "/developers/tooling/oracles/supra",
+            "/get-started/tooling/oracles/supra"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/redstone",
-        "from": "/developers/tooling/oracles/redstone"
+        "to": "/tools/oracles/redstone",
+        "from": [
+            "/developers/tooling/oracles/redstone",
+            "/get-started/tooling/oracles/redstone"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/chainlink",
-        "from": "/developers/tooling/oracles/chainlink"
+        "to": "/tools/oracles/chainlink",
+        "from": [
+            "/developers/tooling/oracles/chainlink",
+            "/get-started/tooling/oracles/chainlink"
+        ]
     },
     {
-        "to": "/get-started/tooling/oracles/dia",
-        "from": "/developers/tooling/oracles/dia"
+        "to": "/tools/oracles/dia",
+        "from": [
+            "/developers/tooling/oracles/dia",
+            "/get-started/tooling/oracles/dia"
+        ]
     },
     {
-        "to": "/get-started/tooling/cross-chain/ccip-read",
+        "to": "/tools/cross-chain/ccip-read",
         "from": [
             "/developers/tooling/cross-chain/ccip-read-gateway",
-            "/get-started/tooling/cross-chain/ccip-read-gateway"
+            "/get-started/tooling/cross-chain/ccip-read-gateway",
+            "/get-started/tooling/cross-chain/ccip-read"
         ]
     },
     {
-        "to": "/get-started/tooling/cross-chain",
-        "from": "/developers/tooling/cross-chain"
+        "to": "/tools/cross-chain",
+        "from": [
+            "/developers/tooling/cross-chain",
+            "/get-started/tooling/cross-chain"
+        ]
     },
     {
-        "to": "/get-started/tooling/cross-chain/layerzero",
-        "from": "/developers/tooling/cross-chain/layerzero"
+        "to": "/tools/cross-chain/layerzero",
+        "from": [
+            "/developers/tooling/cross-chain/layerzero",
+            "/get-started/tooling/cross-chain/layerzero"
+        ]
     },
     {
-        "to": "/get-started/tooling/cross-chain/axelar",
-        "from": "/developers/tooling/cross-chain/axelar"
+        "to": "/tools/cross-chain/axelar",
+        "from": [
+            "/developers/tooling/cross-chain/axelar",
+            "/get-started/tooling/cross-chain/axelar"
+        ]
     },
     {
-        "to": "/get-started/tooling/security",
-        "from": "/developers/tooling/security"
+        "to": "/tools/security",
+        "from": [
+            "/developers/tooling/security",
+            "/get-started/tooling/security"
+        ]
     },
     {
-        "to": "/get-started/tooling/security/hypernative",
-        "from": "/developers/tooling/security/hypernative"
+        "to": "/tools/security/hypernative",
+        "from": [
+            "/developers/tooling/security/hypernative",
+            "/get-started/tooling/security/hypernative"
+        ]
     },
     {
-        "to": "/get-started/tooling/security/scamfari",
-        "from": "/developers/tooling/security/scamfari"
+        "to": "/tools/security/scamfari",
+        "from": [
+            "/developers/tooling/security/scamfari",
+            "/get-started/tooling/security/scamfari"
+        ]
     },
     {
-        "to": "/get-started/tooling/security/goplus-security-api",
-        "from": "/developers/tooling/security/goplus-security-api"
+        "to": "/tools/security/goplus-security-api",
+        "from": [
+            "/developers/tooling/security/goplus-security-api",
+            "/get-started/tooling/security/goplus-security-api"
+        ]
     },
     {
-        "to": "/get-started/tooling/security/hexagate",
-        "from": "/developers/tooling/security/hexagate"
+        "to": "/tools/security/hexagate",
+        "from": [
+            "/developers/tooling/security/hexagate",
+            "/get-started/tooling/security/hexagate"
+        ]
     },
     {
-        "to": "/get-started/tooling/security/spherex",
-        "from": "/developers/tooling/security/spherex"
+        "to": "/tools/security/spherex",
+        "from": [
+            "/developers/tooling/security/spherex",
+            "/get-started/tooling/security/spherex"
+        ]
     },
     {
-        "to": "/get-started/tooling/node-providers/erpc",
-        "from": "/developers/tooling/node-providers/erpc"
+        "to": "/tools/node-providers/erpc",
+        "from": [
+            "/developers/tooling/node-providers/erpc",
+            "/get-started/tooling/node-providers/erpc"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction",
-        "from": "/developers/tooling/account-abstraction/account-abstraction"
+        "to": "/tools/account-abstraction",
+        "from": [
+            "/developers/tooling/account-abstraction/account-abstraction",
+            "/get-started/tooling/account-abstraction"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/openfort",
-        "from": "/developers/tooling/account-abstraction/openfort"
+        "to": "/tools/account-abstraction/openfort",
+        "from": [
+            "/developers/tooling/account-abstraction/openfort",
+            "/get-started/tooling/account-abstraction/openfort"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/noves",
-        "from": "/developers/tooling/account-abstraction/noves"
+        "to": "/tools/account-abstraction/noves",
+        "from": [
+            "/developers/tooling/account-abstraction/noves",
+            "/get-started/tooling/account-abstraction/noves"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/station",
-        "from": "/developers/tooling/account-abstraction/station"
+        "to": "/tools/account-abstraction/station",
+        "from": [
+            "/developers/tooling/account-abstraction/station",
+            "/get-started/tooling/account-abstraction/station"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/pimlico",
-        "from": "/developers/tooling/account-abstraction/pimlico"
+        "to": "/tools/account-abstraction/pimlico",
+        "from": [
+            "/developers/tooling/account-abstraction/pimlico",
+            "/get-started/tooling/account-abstraction/pimlico"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/oklink",
-        "from": "/developers/tooling/account-abstraction/oklink"
+        "to": "/tools/account-abstraction/oklink",
+        "from": [
+            "/developers/tooling/account-abstraction/oklink",
+            "/get-started/tooling/account-abstraction/oklink"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/etherspot",
-        "from": "/developers/tooling/account-abstraction/etherspot"
+        "to": "/tools/account-abstraction/etherspot",
+        "from": [
+            "/developers/tooling/account-abstraction/etherspot",
+            "/get-started/tooling/account-abstraction/etherspot"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/smartwallets",
-        "from": "/developers/tooling/account-abstraction/smartwallets"
+        "to": "/tools/account-abstraction/smartwallets",
+        "from": [
+            "/developers/tooling/account-abstraction/smartwallets",
+            "/get-started/tooling/account-abstraction/smartwallets"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/particle-network",
-        "from": "/developers/tooling/account-abstraction/particle-network"
+        "to": "/tools/account-abstraction/particle-network",
+        "from": [
+            "/developers/tooling/account-abstraction/particle-network",
+            "/get-started/tooling/account-abstraction/particle-network"
+        ]
     },
     {
-        "to": "/get-started/tooling/account-abstraction/biconomy",
-        "from": "/developers/tooling/account-abstraction/biconomy"
+        "to": "/tools/account-abstraction/biconomy",
+        "from": [
+            "/developers/tooling/account-abstraction/biconomy",
+            "/get-started/tooling/account-abstraction/biconomy"
+        ]
     },
     {
-        "to": "/get-started/tooling/contracts-templates",
-        "from": "/developers/tooling/contracts-templates"
+        "to": "/tools/contracts-templates",
+        "from": [
+            "/developers/tooling/contracts-templates",
+            "/get-started/tooling/contracts-templates"
+        ]
     },
     {
-        "to": "/get-started/tooling/contracts-templates/thirdweb",
-        "from": "/developers/tooling/contracts-templates/thirdweb"
+        "to": "/tools/contracts-templates/thirdweb",
+        "from": [
+            "/developers/tooling/contracts-templates/thirdweb",
+            "/get-started/tooling/contracts-templates/thirdweb"
+        ]
     },
     {
-        "to": "/get-started/tooling/contracts-templates/cookbook",
-        "from": "/developers/tooling/contracts-templates/cookbook"
+        "to": "/tools/contracts-templates/cookbook",
+        "from": [
+            "/developers/tooling/contracts-templates/cookbook",
+            "/get-started/tooling/contracts-templates/cookbook"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/multicall",
-        "from": "/developers/tooling/libraries/multicall"
+        "to": "/tools/libraries/multicall",
+        "from": [
+            "/developers/tooling/libraries/multicall",
+            "/get-started/tooling/libraries/multicall"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/ethereum-list",
-        "from": "/developers/tooling/libraries/ethereum-list"
+        "to": "/tools/libraries/ethereum-list",
+        "from": [
+            "/developers/tooling/libraries/ethereum-list",
+            "/get-started/tooling/libraries/ethereum-list"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries",
-        "from": "/developers/tooling/libraries"
+        "to": "/tools/libraries",
+        "from": [
+            "/developers/tooling/libraries",
+            "/get-started/tooling/libraries"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/ape",
-        "from": "/developers/tooling/libraries/ape"
+        "to": "/tools/libraries/ape",
+        "from": [
+            "/developers/tooling/libraries/ape",
+            "/get-started/tooling/libraries/ape"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/ethers-js",
-        "from": "/developers/tooling/libraries/ethers-js"
+        "to": "/tools/libraries/ethers-js",
+        "from": [
+            "/developers/tooling/libraries/ethers-js",
+            "/get-started/tooling/libraries/ethers-js"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/viem",
-        "from": "/developers/tooling/libraries/viem"
+        "to": "/tools/libraries/viem",
+        "from": [
+            "/developers/tooling/libraries/viem",
+            "/get-started/tooling/libraries/viem"
+        ]
     },
     {
-        "to": "/get-started/tooling/libraries/wagmi",
-        "from": "/developers/tooling/libraries/wagmi"
+        "to": "/tools/libraries/wagmi",
+        "from": [
+            "/developers/tooling/libraries/wagmi",
+            "/get-started/tooling/libraries/wagmi"
+        ]
     },
     {
-        "to": "/get-started/tooling/permanent-data/irys/overview",
-        "from": "/developers/tooling/permanent-data/irys/overview"
+        "to": "/tools/permanent-data/irys/overview",
+        "from": [
+            "/developers/tooling/permanent-data/irys/overview",
+            "/get-started/tooling/permanent-data/irys/overview"
+        ]
     },
     {
-        "to": "/get-started/tooling/permanent-data/irys/irys-quickstart",
-        "from": "/developers/tooling/permanent-data/irys/irys-quickstart"
+        "to": "/tools/permanent-data/irys/irys-quickstart",
+        "from": [
+            "/developers/tooling/permanent-data/irys/irys-quickstart",
+            "/get-started/tooling/permanent-data/irys/irys-quickstart"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/scopescan",
-        "from": "/developers/tooling/data-indexers/scopescan"
+        "to": "/tools/data-indexers/scopescan",
+        "from": [
+            "/developers/tooling/data-indexers/scopescan",
+            "/get-started/tooling/data-indexers/scopescan"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/thegraph",
-        "from": "/developers/tooling/data-indexers/thegraph"
+        "to": "/tools/data-indexers/thegraph",
+        "from": [
+            "/developers/tooling/data-indexers/thegraph",
+            "/get-started/tooling/data-indexers/thegraph"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/moralis",
-        "from": "/developers/tooling/data-indexers/moralis"
+        "to": "/tools/data-indexers/moralis",
+        "from": [
+            "/developers/tooling/data-indexers/moralis",
+            "/get-started/tooling/data-indexers/moralis"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/subquery",
-        "from": "/developers/tooling/data-indexers/subquery"
+        "to": "/tools/data-indexers/subquery",
+        "from": [
+            "/developers/tooling/data-indexers/subquery",
+            "/get-started/tooling/data-indexers/subquery"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/noves",
-        "from": "/developers/tooling/data-indexers/noves"
+        "to": "/tools/data-indexers/noves",
+        "from": [
+            "/developers/tooling/data-indexers/noves",
+            "/get-started/tooling/data-indexers/noves"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/arkham",
-        "from": "/developers/tooling/data-indexers/arkham"
+        "to": "/tools/data-indexers/arkham",
+        "from": [
+            "/developers/tooling/data-indexers/arkham",
+            "/get-started/tooling/data-indexers/arkham"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/covalent",
-        "from": "/developers/tooling/data-indexers/covalent"
+        "to": "/tools/data-indexers/covalent",
+        "from": [
+            "/developers/tooling/data-indexers/covalent",
+            "/get-started/tooling/data-indexers/covalent"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers",
-        "from": "/developers/tooling/data-indexers"
+        "to": "/tools/data-indexers",
+        "from": [
+            "/developers/tooling/data-indexers",
+            "/get-started/tooling/data-indexers"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/mobula",
-        "from": "/developers/tooling/data-indexers/mobula"
+        "to": "/tools/data-indexers/mobula",
+        "from": [
+            "/developers/tooling/data-indexers/mobula",
+            "/get-started/tooling/data-indexers/mobula"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/envio",
-        "from": "/developers/tooling/data-indexers/envio"
+        "to": "/tools/data-indexers/envio",
+        "from": [
+            "/developers/tooling/data-indexers/envio",
+            "/get-started/tooling/data-indexers/envio"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/subsquid",
-        "from": "/developers/tooling/data-indexers/subsquid"
+        "to": "/tools/data-indexers/subsquid",
+        "from": [
+            "/developers/tooling/data-indexers/subsquid",
+            "/get-started/tooling/data-indexers/subsquid"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/flair",
-        "from": "/developers/tooling/data-indexers/flair"
+        "to": "/tools/data-indexers/flair",
+        "from": [
+            "/developers/tooling/data-indexers/flair",
+            "/get-started/tooling/data-indexers/flair"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/reservoir",
-        "from": "/developers/tooling/data-indexers/reservoir"
+        "to": "/tools/data-indexers/reservoir",
+        "from": [
+            "/developers/tooling/data-indexers/reservoir",
+            "/get-started/tooling/data-indexers/reservoir"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/dune",
-        "from": "/developers/tooling/data-indexers/dune"
+        "to": "/tools/data-indexers/dune",
+        "from": [
+            "/developers/tooling/data-indexers/dune",
+            "/get-started/tooling/data-indexers/dune"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/alchemy",
-        "from": "/developers/tooling/data-indexers/alchemy"
+        "to": "/tools/data-indexers/alchemy",
+        "from": [
+            "/developers/tooling/data-indexers/alchemy",
+            "/get-started/tooling/data-indexers/alchemy"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/etherscan",
-        "from": "/developers/tooling/data-indexers/etherscan"
+        "to": "/tools/data-indexers/etherscan",
+        "from": [
+            "/developers/tooling/data-indexers/etherscan",
+            "/get-started/tooling/data-indexers/etherscan"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/dipdup/overview",
-        "from": "/developers/tooling/data-indexers/dipdup/overview"
+        "to": "/tools/data-indexers/dipdup/overview",
+        "from": [
+            "/developers/tooling/data-indexers/dipdup/overview",
+            "/get-started/tooling/data-indexers/dipdup/overview"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/dipdup/quickstart",
-        "from": "/developers/tooling/data-indexers/dipdup/quickstart"
+        "to": "/tools/data-indexers/dipdup/quickstart",
+        "from": [
+            "/developers/tooling/data-indexers/dipdup/quickstart",
+            "/get-started/tooling/data-indexers/dipdup/quickstart"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/nftscan",
-        "from": "/developers/tooling/data-indexers/nftscan"
+        "to": "/tools/data-indexers/nftscan",
+        "from": [
+            "/developers/tooling/data-indexers/nftscan",
+            "/get-started/tooling/data-indexers/nftscan"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/sentio",
-        "from": "/developers/tooling/data-indexers/sentio"
+        "to": "/tools/data-indexers/sentio",
+        "from": [
+            "/developers/tooling/data-indexers/sentio",
+            "/get-started/tooling/data-indexers/sentio"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/goldsky/overview",
-        "from": "/developers/tooling/data-indexers/goldsky/overview"
+        "to": "/tools/data-indexers/goldsky/overview",
+        "from": [
+            "/developers/tooling/data-indexers/goldsky/overview",
+            "/get-started/tooling/data-indexers/goldsky/overview"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/goldsky/goldsky-mirror",
-        "from": "/developers/tooling/data-indexers/goldsky/goldsky-mirror"
+        "to": "/tools/data-indexers/goldsky/goldsky-mirror",
+        "from": [
+            "/developers/tooling/data-indexers/goldsky/goldsky-mirror",
+            "/get-started/tooling/data-indexers/goldsky/goldsky-mirror"
+        ]
     },
     {
-        "to": "/get-started/tooling/data-indexers/goldsky/goldsky-index",
-        "from": "/developers/tooling/data-indexers/goldsky/goldsky-index"
+        "to": "/tools/data-indexers/goldsky/goldsky-index",
+        "from": [
+            "/developers/tooling/data-indexers/goldsky/goldsky-index",
+            "/get-started/tooling/data-indexers/goldsky/goldsky-index"
+        ]
     },
     {
-        "to": "/get-started/tooling/ai/spheron",
-        "from": "/developers/tooling/cloud-infra/spheron"
+        "to": "/tools/ai/spheron",
+        "from": [
+            "/developers/tooling/cloud-infra/spheron",
+            "/get-started/tooling/ai/spheron"
+        ]
     },
     {
-        "to": "/get-started/tooling/ai",
-        "from": "/developers/tooling/cloud-infra"
+        "to": "/tools/ai",
+        "from": [
+            "/developers/tooling/cloud-infra",
+            "/get-started/tooling/ai"
+        ]
     },
     {
-        "to": "/get-started/tooling/analytics/arkham",
-        "from": "/developers/tooling/analytics/arkham"
+        "to": "/tools/analytics/arkham",
+        "from": [
+            "/developers/tooling/analytics/arkham",
+            "/get-started/tooling/analytics/arkham"
+        ]
     },
     {
-        "to": "/get-started/tooling/analytics",
-        "from": "/developers/tooling/analytics"
+        "to": "/tools/analytics",
+        "from": [
+            "/developers/tooling/analytics",
+            "/get-started/tooling/analytics"
+        ]
     },
     {
-        "to": "/get-started/tooling/analytics/mobula",
-        "from": "/developers/tooling/analytics/mobula"
+        "to": "/tools/analytics/mobula",
+        "from": [
+            "/developers/tooling/analytics/mobula",
+            "/get-started/tooling/analytics/mobula"
+        ]
     },
     {
-        "to": "/get-started/tooling/analytics/dune",
-        "from": "/developers/tooling/analytics/dune"
+        "to": "/tools/analytics/dune",
+        "from": [
+            "/developers/tooling/analytics/dune",
+            "/get-started/tooling/analytics/dune"
+        ]
     },
     {
-        "to": "/get-started/tooling/analytics/cookie3",
-        "from": "/developers/tooling/analytics/cookie3"
+        "to": "/tools/analytics/cookie3",
+        "from": [
+            "/developers/tooling/analytics/cookie3",
+            "/get-started/tooling/analytics/cookie3"
+        ]
     },
     {
         "to": "/get-started/how-to/verify-smart-contract",
@@ -737,5 +982,37 @@
     {
         "to": "/get-started/how-to/fallback",
         "from": "/learn/fallback"
+    },
+    {
+        "to": "/tools/gas",
+        "from": "/get-started/tooling/gas"
+    },
+    {
+        "to": "/tools/gas/blocknative",
+        "from": "/get-started/tooling/gas/blocknative"
+    },
+    {
+        "to": "/tools/social-login/dynamic",
+        "from": "/get-started/tooling/social-login/dynamic"
+    },
+    {
+        "to": "/tools/social-login/metamask",
+        "from": "/get-started/tooling/social-login/metamask"
+    },
+    {
+        "to": "/tools/social-login/privy",
+        "from": "/get-started/tooling/social-login/privy"
+    },
+    {
+        "to": "/tools/account-abstraction/metamask",
+        "from": "/get-started/tooling/account-abstraction/metamask"
+    },
+    {
+        "to": "/tools/libraries/web3j",
+        "from": "/get-started/tooling/libraries/web3j"
+    },
+    {
+        "to": "/technology/state-recovery",
+        "from": "/get-started/how-to/state-recovery"
     }
 ]
