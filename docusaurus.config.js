@@ -161,6 +161,7 @@ const config = {
             type: "dropdown",
             label: "Notices",
             position: "right",
+            activeBaseRegex: "^/notices/",
             items: [
               {
                 type: "doc",

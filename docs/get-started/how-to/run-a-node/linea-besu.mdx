@@ -11,6 +11,16 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
+:::note
+
+This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../notices/release-notes.mdx#beta-v40), 
+Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
+client of your choice. 
+
+This section will be updated shortly to reflect this new architecture and is inaccurate for the time
+being.
+
+:::
 
 Linea Besu is an implementation of the Besu client that extends its functionality using plugins
 adapted specifically for Linea, such as the
@@ -31,6 +41,86 @@ We recommend using Linea Besu over standard Besu if you intend to run a node to 
 with the blockchain, rather than just following it. Use Linea Besu if:
 - You are responsible for operating nodes as a service for others to use.
 - You want to use Linea with a personal, private RPC endpoint.
+
+## Run using the binary distribution
+
+### Step 1. Download the Linea Besu package
+
+[Download the latest version](https://github.com/Consensys/linea-monorepo/releases) of the
+Linea Besu package from the releases page.
+
+:::note
+Find the **Assets** subheading on the latest release and download the file named
+`linea-besu-package-<version>.tar.gz`.
+:::
+
+### Step 2. Extract the package contents
+
+The `linea-besu-package-<version>.tar.gz` is a compressed file; move it to the directory of your choice 
+and extract it.
+
+```bash
+tar -xzvf linea-besu-package-<version>.tar.gz
+```
+
+### Step 3. Define disk space volume (optional) \{#disk-space-besu}
+
+Define a volume size appropriate to your expected usage. Besu nodes use: 
+
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v3-0" />
+
+<LastUpdated />
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the `data-path` to the custom volume when you start the node.
+
+<VolumeCreation />
+
+### Step 4. Select a profile
+
+In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define 
+the parameters for each possible profile you can select for your Linea Besu node. 
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    Select one according to your preferences:
+    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    Select one according to your preferences:
+    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support for
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+</Tabs>
+
+### Step 5. Start the Linea Besu client
+
+In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
+`profiles` etc. directories are. 
+
+Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must 
+only be defined if you are running an `advanced` node, since this is needed to query finalization
+on L1.
+
+<Tabs groupId="networks" className="my-tabs">
+    <TabItem value="mainnet" label="Mainnet">
+    ```bash
+    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
+    ```
+    </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    ```bash
+    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
+    ```
+    </TabItem>
+</Tabs>
+
+The node will attempt to find peers to begin synchronizing and to download the world state.
 
 ## Run using Docker
 
@@ -115,96 +205,3 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
       name with a more recent version from the releases page.
     </TabItem>
 </Tabs>
-
-
-## Run using the binary distribution
-
-:::note
-
-This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../release-notes.mdx#beta-v40), 
-Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
-client of your choice. 
-
-This section will be updated shortly to reflect this new architecture and is inaccurate for the time
-being.
-
-:::
-
-### Step 1. Download the Linea Besu package
-
-[Download the latest version](https://github.com/Consensys/linea-monorepo/releases) of the
-Linea Besu package from the releases page.
-
-:::note
-Find the **Assets** subheading on the latest release and download the file named
-`linea-besu-package-<version>.tar.gz`.
-:::
-
-### Step 2. Extract the package contents
-
-The `linea-besu-package-<version>.tar.gz` is a compressed file; move it to the directory of your choice 
-and extract it.
-
-```bash
-tar -xzvf linea-besu-package-<version>.tar.gz
-```
-
-### Step 3. Define disk space volume (optional) \{#disk-space-besu}
-
-Define a volume size appropriate to your expected usage. Besu nodes use: 
-
-- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
-- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v3-0" />
-
-<LastUpdated />
-
-Use these figures as a basis to determine the extent to which you want to future-proof your node.
-
-Ensure you mount the `data-path` to the custom volume when you start the node.
-
-<VolumeCreation />
-
-### Step 4. Select a profile
-
-In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define 
-the parameters for each possible profile you can select for your Linea Besu node. 
-
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
-    Select one according to your preferences:
-    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
-    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support for
-    `linea_estimateGas` and the `finalized` block parameter tag.
-  </TabItem>
-  <TabItem value="Linea Sepolia" label="Linea Sepolia">
-    Select one according to your preferences:
-    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
-    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support for
-    `linea_estimateGas` and the `finalized` block parameter tag.
-  </TabItem>
-</Tabs>
-
-### Step 5. Start the Linea Besu client
-
-In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`, `genesis`, 
-`profiles` etc. directories are. 
-
-Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must 
-only be defined if you are running an `advanced` node, since this is needed to query finalization
-on L1.
-
-<Tabs groupId="networks" className="my-tabs">
-    <TabItem value="mainnet" label="Mainnet">
-    ```bash
-    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
-    ```
-    </TabItem>
-    <TabItem value="Linea Sepolia" label="Linea Sepolia">
-    ```bash
-    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
-    ```
-    </TabItem>
-</Tabs>
-
-The node will attempt to find peers to begin synchronizing and to download the world state.
-
