@@ -119,9 +119,10 @@
         ]
     },
     {
-        "to": "/get-started/how-to/linea-safe",
+        "to": "/get-started",
         "from": [
             "/build-on-linea/tooling/linea-safe",
+            "/get-started/how-to/linea-safe",
             "/developers/guides/linea-safe"
         ]
     },
@@ -1005,5 +1006,9 @@
     {
         "to": "/tools/libraries/web3j",
         "from": "/get-started/tooling/libraries/web3j"
+    },
+    {
+        "to": "/technology/state-recovery",
+        "from": "/get-started/how-to/state-recovery"
     }
 ]

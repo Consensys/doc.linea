@@ -1,21 +1,16 @@
 ---
 title: Transaction lifecycle
 description: >-
-  An overview of what happens to transactions from the point of submission to
-  finalization
+  An overview of what happens to transactions executed on Linea from submission to finalization
 image: /img/socialCards/transaction-lifecycle.jpg
 ---
 
-:::note[Finality]
+The public Linea Mainnet transactions described here are finalized on Ethereum, making Ethereum the layer 1 (L1) and Linea the layer 2 (L2). 
 
-Finality has two definitions on Linea:
-- Soft finality: The transaction is confirmed on Linea. This takes two seconds, i.e Linea's block 
-time. See [step 3](#step-3-transaction-data-sent-to-the-state-manager). For simplicity, Linea is 
-guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical 
-one—when there are reorgs on L1. 
-- Hard finality: The proof submitted to L1 has been verified, and two epochs have elapsed. The 
-typical time before hard finality is 6-32 hours, although the six-hour minimum will be reduced to
-zero in future. See [step 6](#step-6-batch-finalization).
+
+:::info[Validium]
+
+For custom, validium instances, Linea network operators may configure an alternative finalization layer.
 
 :::
 
@@ -23,91 +18,95 @@ Transactions on Linea proceed through the following steps:
 
 ## Step 1: Submission
 
-This is where every transaction originates: at the wallet level, a user signs a transaction and 
-broadcasts it to Linea. From here, transactions head straight to the **mempool**, similarly to 
-Ethereum, where they become pending transactions.
+A user signs a transaction and broadcasts it to Linea. These transactions enter 
+the mempool as pending.
+
+- **Components:** RPC nodes, full nodes (composed of the execution layer 
+[Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../get-started/how-to/run-a-node/geth.mdx), 
+and the consensus layer [Maru](../get-started/how-to/run-a-node/maru.mdx))
+- **Finality:** None (pending)
 
 ## Step 2: Block building
 
 The Linea [sequencer](./sequencer/index.mdx) is responsible for ordering, building, and 
-executing blocks. For each transaction added to the mempool, the sequencer checks its validity, 
-rejecting transactions as necessary. Transaction validity conditions are specific to Linea, and 
-differ slightly from those on other networks, including Ethereum.
+executing blocks. 
 
-The sequencer orders transactions according to the priority fee paid for each, a method known as
-a priority gas auction. So, having passed the above checks, valid transactions are placed into
-blocks in the correct sequence and executed.
+The sequencer checks the validity of each transaction added to the mempool, rejecting transactions 
+as necessary. 
 
-At this point, the transaction's lifecycle is more or less complete — at least from a user
-perspective. The block containing the transaction has been added to the "head" of the Linea
-blockchain—the most recent block—and a transaction receipt is returned to the user's wallet as
-confirmation.
+The sequencer orders transactions, taking into account the [priority fee paid](./gas.mdx#variable-cost-and-linea_estimategas). Valid transactions are placed into blocks in the correct sequence 
+and executed.
 
-However, the transaction and its associated data will continue to be processed in order to
-generate ZK proofs. Let's press on.
+:::note[Validity]
 
-## Step 3: Transaction data sent to the state manager
+While the Linea chain may be followed using any Ethereum-compatible client, transaction validity conditions are specific to Linea, and differ slightly from those of other networks, including Ethereum.
+
+:::
+
+At this point, the execution layer's state changes and the block containing the transaction is 
+added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is 
+returned to the user's wallet as confirmation.
+
+- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) with sequencer plugins
+- **Finality:** None (executing)
+
+## Step 3: State tracking
 
 Data about the transaction and the state of the network at its time of execution are recorded
 in **traces**, an output of part of the sequencer called the [trace generator](./sequencer/traces-generator.mdx).
 
-Traces are passed to the state manager block-by-block and then used to update the network state.
-Once state is up to date, you'll see the transaction reflected and confirmed in your wallet.
+Traces are passed to the state manager block-by-block and then used to record and track state changes 
+for batching and proof generation. With the transaction executed and state updated, the transaction 
+has reached **soft finality** and the user sees the transaction reflected and confirmed in their wallet.
 
-With the transaction executed and state updated, the transaction has reached **soft finality**:
-as far as the Linea chain is concerned—if considered in isolation—your transaction is complete.
-A L2 like Linea doesn't work in isolation, though, as we know; so there is more work to be done
-before true finality is reached.
+From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture.mdx) 
+must still reach hard finality on the finality layer.
+
+- **Components:** [Besu](../get-started/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
+- **Finality:** Soft finality (Linea)
 
 ## Step 4: Conflation
 
-The transaction's block will then be subject to [conflation](./sequencer/conflation.mdx), which
-combines two or more blocks' transaction data into a single data set (batch) that forms part of
-the package of data passed on to Ethereum. Combining the transaction data of multiple blocks
-means that a single proof can be used to verify a large volume of transactions, minimizing the
-costs of submitting proofs to L1.
+The transaction's block undergoes [conflation](./sequencer/conflation.mdx): multiple consecutive 
+blocks are merged into a single batch that forms part of the package of data posted to Ethereum. 
+
+Combining transaction data lets the system generate one proof for many transactions, 
+reducing the cost of submitting proofs to the finalization layer.
 
 Occasionally, a batch may only consist of one block, with no conflation having taken place.
 This occurs when chain activity levels are particularly high, and the block size is larger
 than normal.
 
-Amongst Ethereum's L2 networks, Linea is the only network that uses batch conflation.
+- **Components:** [Coordinator](./coordinator.mdx)
+- **Finality:** Soft finality (Linea)
 
-## Step 5: Generating a ZK proof using transaction data
+## Step 5: Proof generation
 
-With the block that contains the transaction's trace data conflated into a batch with one or
-more others, the only remaining task on the checklist to achieve **_hard_ finality** is to use
-the transaction's data—as contained in its trace—to generate a proof.
+Next, Linea generates a zk-proof using the transaction data. When prompted by the [coordinator](./coordinator.mdx), 
+Linea's [prover](./prover/trace-expansion.mdx) **expands** the trace, preparing it for inclusion in 
+the proof. The final zk-SNARK attests to the conflated batch (multiple blocks), enabling a single 
+proof to verify many transactions.
 
-When prompted by the [Coordinator](./coordinator.mdx), Linea's [prover](./prover/trace-expansion.mdx)
-will first **expand** the trace, preparing it for inclusion in the proof. Linea's prover employs
-a two-stage method for developing the proofs that eventually get passed to L1, first developing
-an **inner proof** and then an **outer proof**.
+Linea's prover employs a two-stage method for developing the proofs, providing an inner and outer proof. The [inner proof](https://paragraph.com/%40linea/the-linea-prover-for-a-very-smart-high-schooler)
+ uses a combination of tools, including Arcane and Vortex, to recursively reduce the proof size. The outer proof is generated using the Consensys-maintained library 
+[`gnark`](https://docs.gnark.consensys.net/), compressing the proof size even further. The resulting 
+proof is the zk-SNARK: the proof that's submitted to Ethereum.
 
-The inner proof uses a combination of tools, including Arcane and Vortex, to recursively reduce
-the proof size. For a more in-depth look at Linea's inner proof system, see [this article](https://linea.build/blog/the-linea-prover-for-a-very-smart-high-schooler).
-
-Next, the outer proof is generated using the Consensys-maintained library [`gnark`](https://docs.gnark.consensys.net/),
-compressing the proof size even further. The resulting proof is what's known as a zk-SNARK:
-the proofs that are eventually submitted to Ethereum.
-
-Since the trace data of _every_ transaction in _every_ block feeds into producing the final proof,
-the single transaction we started with remains vital to Linea's function, well beyond the point
-at which it achieves soft finality in [step 3](#step-3-transaction-data-sent-to-the-state-manager).
+- **Components:** [Prover](./prover/index.mdx), [tracer](./sequencer/traces-generator.mdx), [Shomei state manager](./repos.mdx#shomei)
+- **Finality:** Soft finality (Linea)
 
 ## Step 6: Batch finalization
 
-The final step in the process is to finalize the batch by submitting it to Ethereum mainnet,
-proving its computational integrity. Since the batch of conflated blocks is comprised of
-transactions, our transaction is involved in this process as well.
+The proof for the batch is submitted to Ethereum Mainnet. This proof attests to the execution of all transactions in the batch, including our user's transaction introduced in [step 1](#step-1-submission). 
 
-Let's break down the two elements submitted to L1:
+Two elements are submitted to the L1:
 
-- The proof, as explained [above](#step-5-generating-a-zk-proof-using-transaction-data), and;
-- Blob data, which contains L2 transaction and messaging data. Once shared to L1, blob data
-can be used to reconstruct Linea's state and verify the contents of the proof, before it disappears
-after 4,096 epochs (~18 days). The Linea rollup contract on L1 calls the Ethereum verifier contract
-using blob data, determining whether or not to accept the batch as valid.
+- Blob data: which contains L2 transaction and messaging data
+- The proof: as [detailed in step 5](#step-5-proof-generation)
+
+The blob data shared with the L1 can be used to reconstruct Linea's state and verify the data underlying the 
+proof--before it disappears from the L1, after 4,096 epochs (~18 days). The Linea rollup contract on L1 calls the 
+Ethereum verifier contract which uses the blob data to determine whether or not to accept the batch as valid.
 
 :::note[Calldata]
 
@@ -117,7 +116,23 @@ blob-carrying transactions made possible by EIP-4844, added in Ethereum's Dencun
 
 :::
 
-You can also view finalized batches on Lineascan, [here](https://lineascan.build/batches).
+You can view finalized batches on [LineaScan](https://lineascan.build/batches).
 
-Once the proof is verified and two epochs have passed, the transaction becomes immutable history,
+Once the proof is verified by the L1 and two epochs have passed, the transaction becomes immutable history,
 and reaches **hard finality**. Its lifecycle is complete.
+
+- **Components:** Coordinator, Ethereum finalization contract
+- **Finality:** Hard finality (Ethereum)
+
+:::tip[Finality]
+
+Finality has two definitions on Linea:
+- Soft finality: The [transaction is confirmed on Linea](#step-3-state-tracking). This takes two seconds (Linea's block time). For simplicity, Linea is guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical one—when there are reorgs on L1. 
+- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. The 
+typical time before [hard finality](#step-6-batch-finalization) is 6-32 hours, although the six-hour minimum will be reduced to zero in future.
+
+:::
+
+## Next steps
+
+For the source code underpinning the Linea tech stack described here, see the [Linea repositories](/technology/repos).
