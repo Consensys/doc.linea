@@ -110,14 +110,6 @@ The blob data shared with the L1 can be used to reconstruct Linea's state and ve
 proof--before it disappears from the L1, after 4,096 epochs (~18 days). The Linea rollup contract on L1 calls the 
 Ethereum verifier contract which uses the blob data to determine whether or not to accept the batch as valid.
 
-:::note[Calldata]
-
-Up until Linea Alpha v3, L2 transaction data was transported to L1 via `calldata` embedded in
-transactions. Although effective, this method was costly, and has now been replaced by
-blob-carrying transactions made possible by EIP-4844, added in Ethereum's Dencun upgrade.
-
-:::
-
 You can view finalized batches on [LineaScan](https://lineascan.build/batches).
 
 Once the proof is verified by the L1 and two epochs have passed, the transaction becomes immutable history,
@@ -130,8 +122,7 @@ and reaches **hard finality**. Its lifecycle is complete.
 
 Finality has two definitions on Linea:
 - Soft finality: The [transaction is confirmed on Linea](#step-3-state-tracking). This takes two seconds (Linea's block time). For simplicity, Linea is guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical one—when there are reorgs on L1. 
-- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. The 
-typical time before [hard finality](#step-6-batch-finalization) is 6-32 hours, although the six-hour minimum will be reduced to zero in future.
+- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. In December 2025, Linea reached a median [hard finality](#step-6-batch-finalization) time of less than 1 hour and 40 mintues. This median time will continue to decrease, and is expected to reach ~30 minutes in the near future. Occasionally, high gas costs and upgrades can cause delays in finalization, but hard finality timing should never exceed 16 hours.
 
 :::
 
