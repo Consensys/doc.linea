@@ -7,51 +7,21 @@ image: /img/socialCards/maru.jpg
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-With Beta v4, Linea switched from a single to a dual-layer architecture, with both an execution layer
-and consensus layer client. While node runners have a choice of several execution layer clients 
-(documented in this section), Maru is the only consensus layer client available.
+With Beta v4, Linea switched from a single to a dual-layer architecture, with both an execution
+layer and consensus layer client. While node runners have a choice of several execution layer
+clients (documented in this section), Maru is the only consensus layer client available.
 
-Developed specifically for Linea, Maru replaces the Clique Proof of Authority consensus algorithm 
-and introduces the [Quorum Byzantine Fault Tolerance](https://entethalliance.org/specs/qbft/v1/) (QBFT) consensus algorithm. Eventually, this change will mean Linea will be able to resemble Ethereum's
-decentralized sequencer system, where validators propose and confirm blocks. To start with, however,
-only one Linea-internal Maru node will produce blocks. 
+Developed specifically for Linea, Maru replaces the Clique Proof of Authority consensus algorithm
+and introduces the [Quorum Byzantine Fault Tolerance](https://entethalliance.org/specs/qbft/v1/)
+(QBFT) consensus algorithm. Eventually, this change will mean Linea will be able to resemble
+Ethereum's decentralized sequencer system, where validators propose and confirm blocks. To start
+with, however, only one Linea-internal Maru node will produce blocks. 
 
-:::warning
+::::warning
 
 You must run Maru alongside an execution layer client like [Besu](./besu.mdx) or [Geth](./geth.mdx).
 
-:::
-
-## Run using the binary distribution
-
-### Prerequisites
-
-- Java 21
-- [Make](https://www.gnu.org/software/make/make.html) 3.81
-
-### Step 1. Clone the Maru repository
-
-```bash
-git clone https://github.com/Consensys/maru.git
-```
-
-### Step 2. Build the Maru binary
-
-Run the following command to build a distribution:
-
-```bash
-./gradlew :app:installDist
-```
-
-### Step 3. Run Maru
-
-Run the distribution with the following command:
-
-```bash
-./app/build/install/app/bin/app --maru-genesis-file=docker/initialization/genesis-maru.json --config=docker/maru/config.dev.toml
-```
-
-The distribution will be created in `app/build/install/app/` with all necessary dependencies included.
+::::
 
 ## Run using Docker
 
@@ -64,9 +34,10 @@ There are two methods you can use to run Maru using Docker:
 
     ### Step 1. Clone monorepo
 
-    The files you need to run Maru are available in the Linea monorepo at the [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started), 
-    in either the [linea-mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
-    or [linea-sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia) 
+    The files you need to run Maru are available in the Linea monorepo at the
+    [`/docs/getting-started` directory](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started),
+    in either the [linea-mainnet](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet)
+    or [linea-sepolia](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia)
     directories.
 
     Clone the monorepo with:
@@ -103,3 +74,35 @@ There are two methods you can use to run Maru using Docker:
     ```
   </TabItem>
 </Tabs>
+
+## Alternative: Run using the binary distribution
+
+### Prerequisites
+
+- Java 21
+- [Make](https://www.gnu.org/software/make/make.html) 3.81
+
+### Step 1. Clone the Maru repository
+
+```bash
+git clone https://github.com/Consensys/maru.git
+```
+
+### Step 2. Build the Maru binary
+
+Run the following command to build a distribution:
+
+```bash
+./gradlew :app:installDist
+```
+
+### Step 3. Run Maru
+
+Run the distribution with the following command:
+
+```bash
+./app/build/install/app/bin/app --maru-genesis-file=docker/initialization/genesis-maru.json --config=docker/maru/config.dev.toml
+```
+
+The distribution will be created in `app/build/install/app/` with all necessary dependencies
+included.
