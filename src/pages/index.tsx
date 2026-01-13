@@ -38,7 +38,7 @@ function HomepageHeader() {
               "button button--secondary button--lg",
               styles.bannerButton,
             )}
-            to="/network/quickstart/deploy">
+            to="/public/quickstart/deploy">
             START BUILDING
             <StopwatchIcon className={styles.icon} />
           </Link>

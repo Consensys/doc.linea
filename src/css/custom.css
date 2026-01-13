@@ -962,10 +962,10 @@ a.navbar__brand {
 }
 
 /* Basic circle icons for navbar items */
-.navbar__link[href="/network"]::before,
+.navbar__link[href="/public"]::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
-.navbar__link[href="/protocol/architecture"]::before,
-.navbar__link[href="/stack"]::before,
+.navbar__link[href="/technology/architecture"]::before,
+.navbar__link[href="/private"]::before,
 .navbar__link[href="/notices"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
@@ -981,10 +981,10 @@ a.navbar__brand {
 }
 
 /* hover effect for circles */
-.navbar__link[href="/network"]:hover::before,
+.navbar__link[href="/public"]:hover::before,
 .navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
-.navbar__link[href="/protocol/architecture"]:hover::before,
-.navbar__link[href="/stack"]:hover::before,
+.navbar__link[href="/technology/architecture"]:hover::before,
+.navbar__link[href="/private"]:hover::before,
 .navbar__link[href="/notices"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
@@ -999,10 +999,10 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/network"]::before,
+  .navbar__link[href="/public"]::before,
   .navbar__link[href="/api"]::before,
-  .navbar__link[href="/protocol/architecture"]::before,
-  .navbar__link[href="/stack"]::before,
+  .navbar__link[href="/technology/architecture"]::before,
+  .navbar__link[href="/private"]::before,
   .navbar__link[href="/notices"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;

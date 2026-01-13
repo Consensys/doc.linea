@@ -8,7 +8,7 @@ import TabItem from "@theme/TabItem";
 
 The [Linea bridge app](https://linea.build/hub/bridge) provides multiple ways to 
 get funds onto Linea:
-- **Native bridge**: Built by our team to provide an interface for the [canonical token bridge](../../protocol/canonical-token-bridge.mdx). 
+- **Native bridge**: Built by our team to provide an interface for the [canonical token bridge](../../technology/canonical-token-bridge.mdx). 
 **Best suited for tech operators, protocols, or moving large liquidity**, but also suitable for 
 users that want to bridge ETH or ERC-20 tokens.
 - **All bridges**: A bridge aggregator powered by Li.Fi, supporting numerous networks (EVM chains and 
@@ -165,7 +165,7 @@ accessible via the icon next to settings in the top-right of the widget.
 
 USDC is handled differently by the native bridge. Since Linea has [native USDC](https://linea.build/blog/lineas-seamless-upgrade-to-native-usdc-a-game-changer-for-onchain-payments), 
 the bridge uses the [Cross-Chain Transfer Protocol](https://circle.com/cross-chain-transfer-protocol) 
-(CCTP) rather than the [canonical token bridge](../../protocol/canonical-token-bridge.mdx) 
+(CCTP) rather than the [canonical token bridge](../../technology/canonical-token-bridge.mdx) 
 that underpins other native bridge transfers.
 
 USDC transfers currently require [manual claiming](#manual-claiming).
@@ -225,7 +225,7 @@ Manual claiming is required for any transfers:
 :::warning
 
 If you have an unclaimed manual claim transaction that is older than 90 days, you'll need to claim
-it manually, as it will no longer be displayed in the native bridge app. See our [message service reference page](../../protocol/message-service/reference.mdx#claim-old-messages) 
+it manually, as it will no longer be displayed in the native bridge app. See our [message service reference page](../../technology/message-service/reference.mdx#claim-old-messages) 
 for guidance. This situation could arise, for example, because the postman failed for some reason,
 such as a network issue.
 

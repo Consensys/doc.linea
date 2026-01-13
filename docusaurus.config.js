@@ -135,21 +135,21 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/index",
+            docId: "public/index",
             position: "left",
-            label: "Network",
+            label: "Public Network",
           },
           {
             type: "doc",
-            docId: "protocol/architecture",
+            docId: "technology/architecture",
             position: "left",
-            label: "Protocol",
+            label: "Technology",
           },
           {
             type: "doc",
-            docId: "stack/index",
+            docId: "private/index",
             position: "left",
-            label: "Stack",
+            label: "Private Network",
           },
           {
             type: "doc",
@@ -207,7 +207,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "/network/risk-disclosures",
+                href: "/public/risk-disclosures",
               },
               {
                 label: "Terms of service",

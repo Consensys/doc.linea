@@ -25,7 +25,7 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
 **Linea Sepolia: 1 December 2025**
 
-- Upgraded Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../network/how-to/run-a-node/beta-v4-migration.mdx).
+- Upgraded Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../public/how-to/run-a-node/beta-v4-migration.mdx).
 
 ## Beta v4.3
 
@@ -42,7 +42,7 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
 **Linea Sepolia: 31 October 2025**
 
-- Updated the burn mechanism to include LINEA tokens. Details and percentage breakdown in the [Burn Mechanism guide](../protocol/burn.mdx).
+- Updated the burn mechanism to include LINEA tokens. Details and percentage breakdown in the [Burn Mechanism guide](../technology/burn.mdx).
 
 ## Fusaka 
 
@@ -82,7 +82,7 @@ For Linea users, the upgrade will enable new use cases and experiences through E
 
 For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience 
 more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and 
-precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Linea's [differences with Ethereum](../network/build/ethereum-differences.mdx).
+precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Linea's [differences with Ethereum](../public/build/ethereum-differences.mdx).
 
 :::note
 
@@ -92,7 +92,7 @@ EIP-7702 will only be activated in Beta v6.0.
 
 ### Maru consensus client
 
-Beta v4.0 introduces a new consensus client, [Maru](../network/how-to/run-a-node/maru.mdx), 
+Beta v4.0 introduces a new consensus client, [Maru](../public/how-to/run-a-node/maru.mdx), 
 replacing the existing Proof-of-Authority sequencer mechanism, Clique. Maru introduces a QBFT 
 consensus mechanism, and will support Linea's future transition to decentralized sequencing. 
 Initially, only a single Maru node operated by Linea will produce blocks.
@@ -137,7 +137,7 @@ Note that the higher throughput will not enabled until the sequencer limits are 
 - **100% proven**: 100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
 the integrity of all onchain data when sequencing is decentralized. Linea is the first zkEVM
 to be completely proven.
-- Reworks [prover limits](../protocol/prover/prover-limits.mdx) to reduce infrastructure costs and 
+- Reworks [prover limits](../technology/prover/prover-limits.mdx) to reduce infrastructure costs and 
 reduce instances of transactions reverting due to exceeding limits.
 - Upgrades the dictionary to improve compression and reduce the costs of L1 data availability by 
 7.5%.
@@ -157,7 +157,7 @@ Beta v1 on Linea introduces new arithmetization. The overall objective of the Li
 
 - Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to 
 protect users against MEV and improve UX in various ways.
-- Introduces [state recovery](../protocol/state-recovery.mdx), enabling anyone to recover 
+- Introduces [state recovery](../technology/state-recovery.mdx), enabling anyone to recover 
 and audit Linea state, reducing the risk of having a centralized sequencer.
 
 ### Beta v1.3
@@ -329,7 +329,7 @@ Upgrades the [Linea bridge](https://linea.build/hub/bridge/) UI.
 
 Adds support for the `finalized` tag to the `blockParameters` strings that can be used in various
 JSON-RPC API calls. The tag enables you to confirm whether or not a block has been finalized on L1.
-See our [guide](../network/how-to/finalized-block.mdx) for more.
+See our [guide](../public/how-to/finalized-block.mdx) for more.
 
 ## Alpha v3.4.1
 
@@ -364,7 +364,7 @@ contracts created by ENS have been adjusted by the Linea team to ensure they wor
 Sparse Merkle Tree system. 
 
 The CCIP Read functionality can be applied to any context where a L1 protocol may benefit from 
-securely querying data on Linea. See our [page on CCIP Read](../network/tools/cross-chain/ccip-read.mdx) 
+securely querying data on Linea. See our [page on CCIP Read](../public/tools/cross-chain/ccip-read.mdx) 
 for more information and guidance on how to use the relevant contracts.
 
 The Linea repository containing the relevant contracts is [here](https://github.com/Consensys/linea-ens).
@@ -1015,7 +1015,7 @@ Contracts audit is in progress. This doesn't reflect final versions.
 
 **Canonical Token Bridge**
 
-Major changes are applied to the Canonical Token Bridge as described in our [documentation](../protocol/canonical-token-bridge.mdx).
+Major changes are applied to the Canonical Token Bridge as described in our [documentation](../technology/canonical-token-bridge.mdx).
 
 - **L1 (Goerli)**
 

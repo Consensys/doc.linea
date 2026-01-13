@@ -24,8 +24,8 @@ A user signs a transaction and broadcasts it to Linea. These transactions enter
 the mempool as pending.
 
 - **Components:** RPC nodes, full nodes (composed of the execution layer 
-[Besu](../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../network/how-to/run-a-node/geth.mdx), 
-and the consensus layer [Maru](../network/how-to/run-a-node/maru.mdx))
+[Besu](../public/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../public/how-to/run-a-node/geth.mdx), 
+and the consensus layer [Maru](../public/how-to/run-a-node/maru.mdx))
 - **Finality:** None (pending)
 
 ## Step 2: Block building
@@ -49,7 +49,7 @@ At this point, the execution layer's state changes and the block containing the 
 added to the "head" of the Linea blockchain—the most recent block—and a transaction receipt is 
 returned to the user's wallet as confirmation.
 
-- **Components:** [Besu](../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) with sequencer plugins
+- **Components:** [Besu](../public/how-to/run-a-node/linea-besu.mdx#run-using-docker) with sequencer plugins
 - **Finality:** None (executing)
 
 ## Step 3: State tracking
@@ -64,7 +64,7 @@ has reached **soft finality** and the user sees the transaction reflected and co
 From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture.mdx) 
 must still reach hard finality on the finality layer.
 
-- **Components:** [Besu](../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
+- **Components:** [Besu](../public/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
 - **Finality:** Soft finality (Linea)
 
 ## Step 4: Conflation
@@ -137,4 +137,4 @@ typical time before [hard finality](#step-6-batch-finalization) is 6-32 hours, a
 
 ## Next steps
 
-For the source code underpinning the Linea tech stack described here, see the [Linea repositories](/protocol/repos).
+For the source code underpinning the Linea tech stack described here, see the [Linea repositories](/technology/repos).
