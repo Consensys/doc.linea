@@ -379,8 +379,8 @@ textarea {
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-code-border-radius: 15px;
   --doc-sidebar-width: 350px !important;
-  --linea-navbar-items-light: rgba(97, 223, 255, 0.1);
-  --linea-navbar-items-medium: rgba(97, 223, 255, 0.2);
+  --linea-navbar-items-light: rgb(97 223 255 / 10%);
+  --linea-navbar-items-medium: rgb(97 223 255 / 20%);
 }
 
 .footer--dark {
@@ -1382,16 +1382,21 @@ a.menu__link {
   margin-left: 0 !important;
 }
 
-.menu__list .menu__list .menu__link {
-  padding-left: 12px !important;
+/* General menu link hover - must come before more specific selectors */
+.menu__link:hover {
+  background: none;
 }
 
-.menu__list .menu__list .menu__list {
-  padding-left: 0 !important;
+/* Dropdown menu items - must come before more specific selectors */
+.dropdown__menu .menu__link {
+  text-align: left;
+  justify-content: flex-start;
+  color: var(--ifm-menu-color) !important;
 }
 
-.menu__list .menu__list .menu__list .menu__link {
-  padding-left: 20px !important;
+.dropdown__menu .menu__link:hover {
+  background-color: var(--ifm-hover-overlay) !important;
+  color: inherit !important;
 }
 
 /* Ensure all top-level items (Overview, Connect, Build on Linea, How to, Tools, Tutorials) have same base indentation */
@@ -1410,6 +1415,18 @@ a.menu__link {
   margin-left: 0 !important;
 }
 
+.menu__list .menu__list .menu__list {
+  padding-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__link {
+  padding-left: 12px !important;
+}
+
+.menu__list .menu__list .menu__list .menu__link {
+  padding-left: 20px !important;
+}
+
 /* Remove any default Docusaurus padding that might affect categories with links */
 .menu__link--sublist {
   padding-left: 8px !important;
@@ -1425,7 +1442,6 @@ a.menu__link {
   color: var(--ifm-link-color) !important;
 }
 
-.menu__link:hover,
 .menu__list-item-collapsible--active,
 .menu__list-item-collapsible--active:hover,
 .menu__link--active:not(.menu__link--sublist),
@@ -1582,30 +1598,32 @@ div[aria-label="Expand sidebar"] {
 
 /* Ensure dropdown trigger matches other navbar items - DESKTOP ONLY */
 @media (min-width: 997px) {
-  .navbar__item.dropdown .navbar__link,
-  .navbar__item.dropdown .navbar__link:hover,
-  .navbar__item.dropdown .navbar__link:focus,
-  .navbar__item--dropdown .navbar__link,
-  .navbar__item--dropdown .navbar__link:hover,
-  .navbar__item--dropdown .navbar__link:focus,
-  .navbar__link.dropdown__link,
-  .navbar__link.dropdown__link:hover,
-  .navbar__link.dropdown__link:focus,
+  /* stylelint-disable no-descending-specificity */
   .dropdown .navbar__link,
-  .dropdown .navbar__link:hover,
+  .navbar__item--dropdown .navbar__link,
+  .navbar__item.dropdown .navbar__link,
+  .navbar__link.dropdown__link,
   .dropdown .navbar__link:focus,
-  .navbar__items--right .navbar__item.dropdown .navbar__link,
-  .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .dropdown .navbar__link:hover,
+  .navbar__item--dropdown .navbar__link:focus,
+  .navbar__item--dropdown .navbar__link:hover,
+  .navbar__item.dropdown .navbar__link:focus,
+  .navbar__item.dropdown .navbar__link:hover,
+  .navbar__link.dropdown__link:focus,
+  .navbar__link.dropdown__link:hover,
   .navbar__items--right .dropdown .navbar__link,
+  .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__items--right .navbar__item.dropdown .navbar__link,
   .navbar__items--right .navbar__link.dropdown__link,
-  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
-  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
   .navbar__inner .navbar__items--right .dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
   .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
     color: var(--linea-navbar-items) !important;
     font-weight: 400;
     padding-left: calc(0.5vw) !important; /* Match regular navbar items */
   }
+  /* stylelint-enable no-descending-specificity */
 
   /* Remove extra padding/margin from dropdown item container */
   .navbar__item.dropdown,
@@ -1617,10 +1635,10 @@ div[aria-label="Expand sidebar"] {
   }
 
   /* Base circle icon for dropdown trigger */
-  .navbar__item.dropdown .navbar__link::before,
+  .dropdown .navbar__link::before,
   .navbar__item--dropdown .navbar__link::before,
-  .navbar__link.dropdown__link::before,
-  .dropdown .navbar__link::before {
+  .navbar__item.dropdown .navbar__link::before,
+  .navbar__link.dropdown__link::before {
     content: "";
     display: inline-block;
     width: 7px;
@@ -1634,22 +1652,22 @@ div[aria-label="Expand sidebar"] {
   }
 
   /* Active state for dropdown trigger - filled circle when on notices page */
-  .navbar__item.dropdown .navbar__link--active::before,
-  .navbar__item--dropdown .navbar__link--active::before,
-  .navbar__link.dropdown__link--active::before,
   .dropdown .navbar__link--active::before,
-  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .navbar__item--dropdown .navbar__link--active::before,
+  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
   .navbar__item--dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
-  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
+  .navbar__item.dropdown .navbar__link--active::before,
+  .navbar__link.dropdown__link--active::before,
+  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
     background-color: var(--linea-navbar-items) !important;
     border: 1px solid var(--linea-navbar-items) !important;
   }
 
   /* Ensure dropdown caret/arrow is also blue */
-  .navbar__item.dropdown .navbar__link::after,
+  .dropdown .navbar__link::after,
   .navbar__item--dropdown .navbar__link::after,
-  .navbar__link.dropdown__link::after,
-  .dropdown .navbar__link::after {
+  .navbar__item.dropdown .navbar__link::after,
+  .navbar__link.dropdown__link::after {
     border-color: var(--linea-navbar-items) transparent transparent !important;
   }
 }
@@ -1659,17 +1677,6 @@ div[aria-label="Expand sidebar"] {
   text-align: left;
   background-color: var(--ifm-background-surface-color) !important;
   border: 1px solid var(--ifm-color-emphasis-200) !important;
-}
-
-.dropdown__menu .menu__link:hover {
-  background-color: var(--ifm-hover-overlay) !important;
-  color: inherit !important;
-}
-
-.dropdown__menu .menu__link {
-  text-align: left;
-  justify-content: flex-start;
-  color: var(--ifm-menu-color) !important;
 }
 
 .dropdown__menu .menu__link--active {
