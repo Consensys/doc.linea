@@ -207,7 +207,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "/protocol/risk-disclosures",
+                href: "/network/risk-disclosures",
               },
               {
                 label: "Terms of service",
