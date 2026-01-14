@@ -1,9 +1,56 @@
 ---
 title: Overview
-description: How It Works overview
+description: How The Linea stack works for operators
 sidebar_position: 1
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/overview.jpg
 ---
 
-# How It Works - Overview
+This section explains how The Linea stack operates from an operator's perspective. It covers the
+architecture, deployment models, and component boundaries you need to understand to run a network
+effectively. For details on how transactions flow through the system, see [Transaction lifecycle](/protocol/transaction-lifecycle).
 
-This section provides an overview of how Linea Stack works.
+## What you'll learn
+
+- **Architecture**: How components interact and their roles in the network
+- **Data availability and finalization**: Understanding L2/L3 relationships and smart contract
+  requirements
+- **Deployment Models**: Differences between Private Validium, Hybrid, and Public deployments
+- **Boundaries & Responsibilities**: What each component is responsible for and failure modes
+
+## Architecture
+
+The Linea stack uses a dual-layer architecture separating consensus (Maru) from execution (Besu/Geth).
+This design enables modular deployment, client diversity, and operational flexibility.
+
+[Learn about the architecture →](/stack/how-it-works/architecture)
+
+## Data availability and finalization
+
+Understanding data availability and finalization is essential for deployment decisions. Learn about
+L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
+model.
+
+[Learn about data availability and finalization →](/stack/how-it-works/data-availability-finalization)
+
+## Deployment models
+
+The Linea stack supports three deployment models, each with different characteristics:
+
+- **Private Validium**: Off-chain data availability, ideal for regulated financial applications
+- **Hybrid**: Selective data availability combining public and private elements
+- **Public**: Fully public network with on-chain data availability
+
+[Learn about deployment models →](/stack/how-it-works/deployment-models)
+
+## Boundaries & responsibilities
+
+Understanding component boundaries helps you:
+
+- Plan deployment and scaling strategies
+- Identify failure modes and recovery procedures
+- Make informed configuration decisions
+- Troubleshoot operational issues
+
+[Learn about boundaries & responsibilities →](/stack/how-it-works/boundaries-responsibilities)

@@ -1,0 +1,168 @@
+---
+title: Data availability and finalization
+description: Understanding data availability and the finalization layer
+sidebar_position: 3
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+  path: docs/protocol/architecture.mdx
+image: /img/socialCards/data-availability-and-finalization.jpg
+---
+
+Understanding data availability and finalization is essential for deploying and operating a Linea
+network. This page explains what operators need to know to make deployment decisions.
+
+## Data availability
+
+Data availability is the guarantee that transaction data is accessible when needed. Your deployment
+model determines where and how data is stored.
+
+### Private Validium
+
+**Data availability:** Off-chain in a private node set
+
+- Transaction data is stored off-chain in a private node set
+- Only state commitments and proofs are posted to the finalization layer
+- Participants must trust that data availability providers will make data available when needed
+- No on-chain data posting (reduces costs but requires trust)
+
+**Your responsibility:**
+
+- Deploy and maintain private node set for data storage
+- Ensure data redundancy and backup procedures
+
+### Public
+
+**Data availability:** On-chain via EIP-4844 blobs
+
+- All transaction data is posted to the finalization layer using EIP-4844 blobs
+- Data is available on-chain for verification and state recovery
+- Blobs expire after 4,096 epochs (~18 days) but state commitments remain
+- Maximum transparency and on-chain data availability guarantees
+
+**Your responsibility:**
+
+- Ensure coordinator can post blobs to finalization layer
+- Monitor blob posting success and gas costs
+
+### Hybrid
+
+**Data availability:** Selective (on-chain or off-chain per transaction)
+
+- Some transactions have on-chain data availability (EIP-4844 blobs)
+- Other transactions remain off-chain (private node set)
+- Choice of data availability per transaction
+
+**Your responsibility:**
+
+- Manage both on-chain and off-chain data availability
+- Configure selective data availability logic
+
+## Finalization layer
+
+The finalization layer is the blockchain where your Linea network submits proofs and state
+commitments for verification and hard finality.
+
+### L2 vs. L3
+
+Your network's layer designation depends on your finalization layer:
+
+- **L2**: If your finalization layer is an L1 (e.g., Ethereum), your network is an L2
+- **L3**: If your finalization layer is an L2 (e.g., Linea Mainnet), your network is an L3
+
+**Example:**
+
+- Private Linea instance finalizing to Linea Mainnet = L3 (L3 → L2 → L1)
+- Private Linea instance finalizing to Ethereum = L2 (L2 → L1)
+- Public Linea Mainnet finalizing to Ethereum = L2 (L2 → L1)
+
+### Finalization layer options
+
+**Ethereum L1:**
+
+- Direct finalization on Ethereum
+- Higher costs and longer finality times
+- Maximum security guarantees
+- Suitable for: High-value applications requiring maximum security
+
+**Linea Mainnet L2:**
+
+- Finalization on Linea Mainnet (which finalizes to Ethereum)
+- Lower costs and faster finality times
+- Inherits security from Ethereum (via Linea Mainnet)
+- Suitable for: Applications that can accept L2 finalization layer
+
+### Smart contract requirements
+
+**You must deploy smart contracts on your finalization layer:**
+
+1. **Rollup contract**: Stores rollup blocks, monitors state updates, and tracks deposits
+2. **Verifier contract**: Verifies zero-knowledge proofs submitted by your coordinator
+
+**How it works:**
+
+1. [Coordinator](/protocol/coordinator) submits proofs and blob data to finalization layer
+2. Rollup contract receives the submission
+3. Rollup contract calls verifier contract to verify the proof
+4. Verifier contract uses blob data to verify proof validity
+5. If verification succeeds, state is finalized on the finalization layer
+
+**Your responsibility:**
+
+- Deploy rollup and verifier contracts on your chosen finalization layer
+- Configure coordinator to connect to these contracts
+- Monitor contract interactions and gas costs
+- Manage contract upgrades and governance
+
+:::important
+
+Without the rollup and verifier contracts on your finalization layer, your coordinator cannot
+finalize batches. These contracts are required for proof verification and state finalization.
+
+:::
+
+## Data availability vs. finalization
+
+**Data availability** and **finalization** are separate concerns:
+
+- **Data availability**: Where transaction data is stored (on-chain vs. off-chain)
+- **Finalization**: Where proofs and state commitments are verified (L1 vs. L2)
+
+**Examples:**
+
+- **Private Validium on Ethereum**: Off-chain data availability, L1 finalization (L2)
+- **Private Validium on Linea Mainnet**: Off-chain data availability, L2 finalization (L3)
+- **Public on Ethereum**: On-chain data availability, L1 finalization (L2)
+- **Public on Linea Mainnet**: On-chain data availability, L2 finalization (L3)
+
+## Operational implications
+
+### For Private Validium
+
+- **Data availability**: You must ensure private node set redundancy and backup
+- **Finalization**: You must deploy contracts on your chosen finalization layer
+- **Trust assumptions**: You trust data availability providers; finalization layer provides security
+
+### For Public
+
+- **Data availability**: Finalization layer provides on-chain data availability
+- **Finalization**: You must deploy contracts on your chosen finalization layer
+- **Trust assumptions**: Finalization layer provides both data availability and security
+
+### Choosing a finalization layer
+
+Consider:
+
+- **Security requirements**: L1 finalization provides maximum security; L2 finalization is sufficient
+  for many use cases
+- **Cost**: L2 finalization is cheaper than L1
+- **Finality time**: L2 finalization may be faster than L1
+- **Contract deployment**: You must deploy contracts on your chosen finalization layer
+
+## Related documentation
+
+- [Deployment Models](/stack/how-it-works/deployment-models): How data availability differs by
+  deployment model
+- [Transaction lifecycle](/protocol/transaction-lifecycle): How finalization works in the
+  transaction lifecycle
+- [Architecture](/protocol/architecture): Protocol-level details on L2/L3 relationships
+- <!-- todo: does this need to be built out [Configure data availability](/stack/guides/configuration-guides/configure-data-availability): Configuration options for data availability -->

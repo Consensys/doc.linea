@@ -1,0 +1,170 @@
+---
+title: Choose a deployment model
+description: Select the deployment model that matches your requirements
+sidebar_position: 1
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+  type: rfp-sources
+image: /img/socialCards/choose-a-deployment-model.jpg
+---
+
+Your first decision is choosing a deployment model. This choice determines data availability, network
+topology, access controls, and operational complexity.
+
+## Decision matrix
+
+| Requirement | Private Validium | Hybrid | Public |
+|------------|------------------|--------|--------|
+| Transaction privacy | ✅ Required | ⚠️ Selective | ❌ Not required |
+| Regulatory compliance (KYC/KYT) | ✅ Required | ⚠️ Partial | ❌ Not required |
+| On-chain data availability | ❌ Not required | ⚠️ Selective | ✅ Required |
+| RBAC on RPC endpoints | ✅ Required | ⚠️ Partial | ❌ Not required |
+| Private network topology | ✅ Required | ⚠️ Partial | ❌ Not required |
+| Operational complexity | High | Very high | Moderate |
+
+## Private Validium
+
+**Choose Private Validium if:**
+
+- You require transaction privacy (regulated financial applications)
+- You need KYC/KYT compliance controls
+- You need selective data disclosure to auditors and regulators
+- You require RBAC on RPC endpoints and APIs
+- You need a private network with controlled membership
+
+**Required components:**
+
+- Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
+- Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream) recommended)
+- [Sequencer](/protocol/sequencer)
+- [Coordinator](/protocol/coordinator) and [prover](/protocol/prover)
+- [State manager](/protocol/state-manager)
+- Private RPC nodes with RBAC
+- API portal (for institution onboarding)
+
+**Trust assumptions:**
+
+- Data availability providers will make data available when needed
+- Validator set follows consensus protocol (QBFT provides fault tolerance)
+- Finalization layer inherits security from Ethereum
+
+**Operational complexity:** High
+
+- Private node set management
+- RBAC configuration and management
+- API portal operations
+- Data availability redundancy
+
+**When not to choose Private Validium:**
+
+- You don't need transaction privacy
+- You don't need regulatory compliance controls
+- You prefer on-chain data availability guarantees
+- You want to minimize operational complexity
+
+## Hybrid
+
+**Choose Hybrid if:**
+
+- You need both public and private transaction types
+- You're transitioning from private to public
+- You need flexibility in data availability strategy
+
+**Required components:**
+
+- All Private Validium components
+- Additional configuration for selective data availability
+
+**Trust assumptions:**
+
+- Same as Private Validium for private transactions
+- On-chain data availability for public transactions
+
+**Operational complexity:** Very high
+
+- All Private Validium complexity
+- Additional complexity managing selective data availability
+- More complex monitoring and troubleshooting
+
+**When not to choose Hybrid:**
+
+- You can satisfy requirements with Private Validium or Public
+- You want to minimize operational complexity
+- You're deploying your first network
+
+:::note
+
+Hybrid deployment model documentation is under development. Configuration and operational procedures
+will be documented as the feature matures.
+
+:::
+
+## Public
+
+**Choose Public if:**
+
+- You require maximum transparency
+- You want on-chain data availability guarantees
+- You don't need transaction privacy
+- You don't need regulatory compliance controls
+- You want to minimize operational complexity
+
+**Required components:**
+
+- Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
+- Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), or [Erigon](/network/how-to/run-a-node/erigon))
+- [Sequencer](/protocol/sequencer)
+- [Coordinator](/protocol/coordinator) and [prover](/protocol/prover)
+- [State manager](/protocol/state-manager)
+- Public RPC nodes (no access controls)
+
+**Trust assumptions:**
+
+- On-chain data availability (EIP-4844 blobs)
+- Validator set follows consensus protocol
+- Finalization layer inherits security from Ethereum
+
+**Operational complexity:** Moderate
+
+- Standard blockchain node operations
+- No RBAC or API portal management
+- Simpler monitoring and troubleshooting
+
+**When not to choose Public:**
+
+- You require transaction privacy
+- You need regulatory compliance controls
+- You need RBAC on RPC endpoints
+
+:::note
+
+Public deployment model documentation is under development. Configuration and operational procedures
+will be documented as the feature matures.
+
+:::
+
+## Recommendation
+
+For most enterprise and regulated financial use cases, **Private Validium** provides the necessary
+privacy, compliance, and access control features.
+
+For public networks requiring maximum transparency, **Public** provides the simplest operational
+model.
+
+**Avoid Hybrid** for your first deployment unless you have a specific requirement that cannot be met
+by Private Validium or Public.
+
+## Next steps
+
+After choosing your deployment model:
+
+1. Review [Prerequisites](/stack/guides/run-your-own-network/prerequisites) for your chosen model
+2. Understand the [Minimal viable network](/stack/guides/run-your-own-network/minimal-viable-network)
+   requirements
+3. Proceed to deployment
+
+## Related documentation
+
+- [Deployment Models](/stack/how-it-works/deployment-models): Detailed comparison of deployment
+  models
+- [Architecture](/stack/how-it-works/architecture): How components differ by deployment model

@@ -1,9 +1,65 @@
 ---
 title: Overview
-description: Overview of Linea Stack
+description: Overview of The Linea stack for network operators
 sidebar_position: 1
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/overview.jpg
 ---
 
-# Overview
+The Linea stack enables you to deploy and operate your own Linea network. Whether you need a private
+Validium for regulated financial applications, a hybrid network with selective data availability, or
+a public network, The Linea stack provides the components and configuration options to meet your
+requirements.
 
-Welcome to Linea Stack documentation.
+## What is the Linea stack?
+
+The Linea stack is the collection of software components, configuration options, and operational procedures
+required to run a Linea network. It includes:
+
+- **Consensus layer client:** ([Maru](/protocol/repos#maru)) Handles block production and consensus
+  using QBFT
+- **Execution layer clients:** ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), [Erigon](/network/how-to/run-a-node/erigon)) Execute transactions and maintain state
+- **[Sequencer](/protocol/sequencer)**: Orders and processes transactions into blocks
+- **[Coordinator](/protocol/coordinator)**: Orchestrates batching, proof generation, and finalization
+- **[Prover](/protocol/prover)**: Generates zero-knowledge proofs for state transitions
+
+For details on how transactions flow through these components, see [Transaction lifecycle](/protocol/transaction-lifecycle).
+- **[State Manager](/protocol/state-manager)**: Maintains L2 state and provides proof generation data
+- **Bridge components:** ([Postman](/protocol/repos#linea-monorepo)) Enable cross-chain interoperability
+
+For repository information, see [Linea repositories](/protocol/repos).
+
+## Deployment models
+
+The Linea stack supports three deployment models:
+
+- **Private Validium**: Transaction data remains off-chain with private data availability. Ideal for
+  regulated financial institutions requiring privacy and compliance controls.
+- **Hybrid**: Combines public and private elements, allowing selective data availability based on
+  transaction requirements.
+- **Public**: Fully public network with on-chain data availability, similar to Linea Mainnet.
+
+For details on each model, see [Deployment Models](/stack/how-it-works/deployment-models).
+
+## What you need to know
+
+To operate a Linea network, you need to understand:
+
+- **Hardware and software requirements**: Resource needs for each component type
+- **Component architecture**: How components interact and their responsibilities
+- **Configuration choices**: Data availability, scaling strategies, and network topology
+- **Operational procedures**: Deployment, monitoring, maintenance, and troubleshooting
+
+## Getting started
+
+1. Review [How It Works](/stack/how-it-works) to understand the architecture and deployment models.
+2. Choose your deployment model based on your requirements.
+3. Follow the [Deployment Guides](/stack/guides/deployment-guides) for step-by-step setup.
+4. Configure your network using the [Configuration Guides](/stack/guides/configuration-guides).
+5. Establish operational procedures using the [Operations Guides](/stack/guides/operations-guides).
+
+## Related documentation
+
+- [Protocol documentation](/protocol/architecture): Understanding how Linea works at the protocol level
+- [Linea Mainnet documentation](/network): Information about the public Linea network

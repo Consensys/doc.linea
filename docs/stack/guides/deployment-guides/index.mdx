@@ -1,9 +1,93 @@
 ---
 title: Deployment Guides
-description: Deployment guides for Linea Stack
+description: Step-by-step guides for deploying The Linea stack networks
 sidebar_position: 1
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/deployment-guides.jpg
 ---
 
-# Deployment Guides
+This section provides detailed, component-specific deployment guides. For an orchestrated,
+step-by-step path to deploy your first network, start with [Run your own network](/stack/guides/run-your-own-network).
 
-Deployment guides for Linea Stack.
+These guides provide detailed procedures for deploying individual components. Use them after
+completing the orchestration guide or when you need component-specific deployment details.
+
+## Prerequisites
+
+Before deploying, ensure you have:
+
+- **Hardware**: Sufficient compute, memory, and storage resources for your component types
+- **Software**: Docker v24 or higher and Docker Compose v2.19+ (recommended for all deployments)
+- **Network**: Proper network configuration for P2P communication
+- **Access**: Required credentials and permissions for your infrastructure
+
+:::tip
+
+All deployment guides use Docker as the primary method. Docker simplifies installation, updates,
+version management, and operational procedures. Binary distributions are available as alternatives
+only when Docker is not available in your environment.
+
+:::
+
+## Deployment guides
+
+### Private Validium
+
+Deploy a private Validium network with off-chain data availability:
+
+- [Deploy Private Validium network](/stack/guides/deployment-guides/deploy-private-validium)
+
+### Common deployment tasks
+
+These guides apply to all deployment models:
+
+- [Deploy consensus layer (Maru)](/stack/guides/deployment-guides/deploy-maru)
+- [Deploy execution layer](/stack/guides/deployment-guides/deploy-execution-layer)
+- <!-- todo: does this need to be built out [Deploy sequencer](/stack/guides/deployment-guides/deploy-sequencer) -->
+- <!-- todo: does this need to be built out [Deploy coordinator](/stack/guides/deployment-guides/deploy-coordinator) -->
+- <!-- todo: does this need to be built out [Deploy prover](/stack/guides/deployment-guides/deploy-prover) -->
+- <!-- todo: does this need to be built out [Deploy state manager](/stack/guides/deployment-guides/deploy-state-manager) -->
+
+## Deployment considerations
+
+### Resource requirements
+
+Component resource requirements vary by role:
+
+- **Consensus layer (Maru)**: Moderate CPU and memory; minimal storage
+- **Execution layer (full node)**: High CPU and memory; significant storage growth
+- **Execution layer (archive node)**: Very high storage requirements
+- **Sequencer**: High CPU and memory; moderate storage
+- **Coordinator**: Moderate CPU and memory; file system for batch data
+- **Prover**: Very high CPU (proof generation is computationally intensive)
+- **State manager**: High memory and storage for state representation
+
+For local development, Docker should have approximately 16 GB memory and 4+ CPUs to run the entire
+stack.
+
+### Network topology
+
+Plan your network topology:
+
+- **P2P networking**: Ensure nodes can communicate via P2P ports
+- **Internal services**: Sequencer, coordinator, and prover should be on private networks
+- **RPC access**: RPC nodes may be behind load balancers and access controls
+- **Minimum nodes**: 4 nodes minimum for QBFT consensus fault tolerance
+
+### Data availability
+
+Choose your data availability strategy:
+
+- **Private Validium**: Private node set for data storage
+- **Hybrid**: Selective on-chain/off-chain data availability
+- **Public**: On-chain data via EIP-4844 blobs
+
+## Next steps
+
+After deployment:
+
+1. Configure your network using [Configuration Guides](/stack/guides/configuration-guides).
+2. Establish operational procedures using [Operations Guides](/stack/guides/operations-guides).
+3. Set up monitoring and alerting.
+4. Test failure scenarios and recovery procedures.

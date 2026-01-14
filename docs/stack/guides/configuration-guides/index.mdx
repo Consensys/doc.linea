@@ -1,9 +1,72 @@
 ---
 title: Configuration Guides
-description: Configuration guides for Linea Stack
+description: Configuration options for The Linea stack components
 sidebar_position: 2
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/configuration-guides.jpg
 ---
 
-# Configuration Guides
+This section covers configuration options for The Linea stack components. Configuration is organized
+into common configurations (applicable to all deployment models) and specialized configurations
+(specific to deployment models).
 
-Configuration guides for Linea Stack.
+## Configuration approach
+
+Following the Besu documentation pattern, common configurations are documented for public networks
+where possible, with specialized configurations documented separately for private networks and
+specific deployment models.
+
+## Common configurations
+
+These configurations apply to all deployment models:
+
+- <!-- todo: does this need to be built out [Configure Maru](/stack/guides/configuration-guides/configure-maru) -->
+- <!-- todo: does this need to be built out [Configure execution layer](/stack/guides/configuration-guides/configure-execution-layer) -->
+- <!-- todo: does this need to be built out [Configure P2P networking](/stack/guides/configuration-guides/configure-p2p) -->
+- <!-- todo: does this need to be built out [Configure RPC endpoints](/stack/guides/configuration-guides/configure-rpc) -->
+
+## Specialized configurations
+
+### Private Validium
+
+- <!-- todo: does this need to be built out [Configure data availability](/stack/guides/configuration-guides/configure-data-availability) -->
+- <!-- todo: does this need to be built out [Configure RBAC](/stack/guides/configuration-guides/configure-rbac) -->
+- <!-- todo: does this need to be built out [Configure API portal](/stack/guides/configuration-guides/configure-api-portal) -->
+
+### Coordinator and prover
+
+- <!-- todo: does this need to be built out [Configure coordinator](/stack/guides/configuration-guides/configure-coordinator) -->
+- <!-- todo: does this need to be built out [Configure prover](/stack/guides/configuration-guides/configure-prover) -->
+- <!-- todo: does this need to be built out [Configure state manager](/stack/guides/configuration-guides/configure-state-manager) -->
+
+## Configuration files
+
+The Linea stack uses TOML configuration files for most components:
+
+- **Maru**: `maru-config.toml`
+- **Linea Besu**: `linea-besu.config.toml`
+- **Coordinator**: `coordinator-config.toml`
+
+Configuration files are typically mounted as read-only volumes in Docker deployments.
+
+## Environment variables
+
+Some configuration can be provided via environment variables:
+
+- JVM options: `JAVA_OPTS`
+- Profile selection: `BESU_PROFILE`
+- Network-specific settings
+
+## Best practices
+
+- Use profiles for common configurations
+- Keep configuration files in version control
+- Document custom configurations
+- Test configuration changes in non-production environments
+- Use configuration validation before deployment
+
+## Related documentation
+
+- [Deployment Guides](/stack/guides/deployment-guides): Initial configuration during deployment
+- [Operations Guides](/stack/guides/operations-guides): Configuration changes during operations

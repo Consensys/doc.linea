@@ -1,0 +1,222 @@
+---
+title: Common mistakes
+description: Common mistakes and how to avoid them when operating a Linea network
+sidebar_position: 0
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+  path: docs/stack/how-it-works/boundaries-responsibilities.mdx
+image: /img/socialCards/common-mistakes.jpg
+---
+
+This page documents common mistakes operators make when deploying and operating Linea networks. Learn
+from these mistakes to avoid outages and security issues.
+
+## Misconfigured data availability
+
+### Mistake
+
+Deploying Private Validium without proper data availability redundancy or backup procedures.
+
+### Impact
+
+- Data loss if data availability providers fail
+- Inability to recover state if nodes fail
+- Compliance violations if data cannot be recovered
+
+### How to avoid
+
+- Deploy multiple data availability nodes with redundancy
+- Implement regular backups of state and data
+- Test data recovery procedures
+- Consider EigenDA integration for enhanced guarantees
+- Document data availability procedures
+
+### Related documentation
+
+- <!-- todo: does this need to be built out [Configure data availability](/stack/guides/configuration-guides/configure-data-availability) -->
+- <!-- todo: does this need to be built out [Backup and recovery](/stack/guides/operations-guides/backup-recovery) -->
+
+## Incorrect trust assumptions
+
+### Mistake
+
+Assuming components provide guarantees they don't, or misunderstanding trust boundaries.
+
+### Impact
+
+- Security vulnerabilities
+- Compliance violations
+- Operational failures
+
+### Common trust assumption mistakes
+
+- **Assuming data availability without redundancy**: Private Validium requires trust in data availability providers
+- **Assuming single component provides all guarantees**: Understanding component boundaries is critical
+- **Misunderstanding finalization guarantees**: Soft finality vs. hard finality
+- **Assuming consensus provides data availability**: Consensus and data availability are separate concerns
+
+### How to avoid
+
+- Review [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities) carefully
+- Understand trust assumptions for your deployment model
+- Document your trust assumptions explicitly
+- Test failure scenarios to validate assumptions
+
+### Related documentation
+
+- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities)
+- [Deployment Models](/stack/how-it-works/deployment-models)
+
+## Skipped monitoring
+
+### Mistake
+
+Deploying to production without comprehensive monitoring and alerting.
+
+### Impact
+
+- Delayed detection of failures
+- Extended downtime
+- Data loss or corruption
+- Compliance violations
+
+### How to avoid
+
+- Set up monitoring before production deployment
+- Monitor all components, not just some
+- Set up alerts for critical failures
+- Create dashboards for network health
+- Test alerting to ensure it works
+
+### Related documentation
+
+- <!-- todo: does this need to be built out [Monitoring](/stack/guides/operations-guides/monitoring) -->
+- [Production hardening](/stack/guides/run-your-own-network/production-hardening)
+
+## Unsafe upgrades
+
+### Mistake
+
+Upgrading components without proper testing, rollback procedures, or coordination.
+
+### Impact
+
+- Network downtime
+- Consensus failures
+- Data corruption
+- Inability to rollback
+
+### How to avoid
+
+- Test upgrades in non-production environments first
+- Review release notes and breaking changes
+- Plan maintenance windows
+- Coordinate upgrades for consensus-critical components
+- Have rollback procedures ready
+- Test rollback procedures
+
+### Related documentation
+
+- <!-- todo: does this need to be built out [Update component versions](/stack/guides/operations-guides/update-versions) -->
+- <!-- todo: does this need to be built out [Maintenance](/stack/guides/operations-guides/maintenance) -->
+
+## Insufficient node count
+
+### Mistake
+
+Deploying fewer than 4 nodes for QBFT consensus.
+
+### Impact
+
+- No fault tolerance (network cannot tolerate any node failures)
+- Consensus failures if any node fails
+- Network instability
+
+### How to avoid
+
+- Deploy minimum 4 nodes for QBFT consensus
+- Understand fault tolerance requirements (3f+1)
+- Plan for node failures in your deployment
+
+### Related documentation
+
+- [Deploy Maru](/stack/guides/deployment-guides/deploy-maru)
+- [Architecture](/stack/how-it-works/architecture)
+
+## Missing access controls
+
+### Mistake
+
+Deploying Private Validium without RBAC or API portal access controls.
+
+### Impact
+
+- Unauthorized access to network
+- Compliance violations
+- Security vulnerabilities
+
+### How to avoid
+
+- Configure RBAC before production deployment
+- Set up API portal for controlled access
+- Test access controls
+- Review access control configuration regularly
+
+### Related documentation
+
+- <!-- todo: does this need to be built out [Configure RBAC](/stack/guides/configuration-guides/configure-rbac) -->
+- <!-- todo: does this need to be built out [Configure API portal](/stack/guides/configuration-guides/configure-api-portal) -->
+
+## Inadequate key management
+
+### Mistake
+
+Using insecure key storage or not having key rotation procedures.
+
+### Impact
+
+- Key compromise
+- Network security breach
+- Inability to rotate compromised keys
+
+### How to avoid
+
+- Use Web3Signer with KMS for key management
+- Implement key rotation procedures
+- Secure backup of keys
+- Never store keys in plain text
+
+### Related documentation
+
+- [Production hardening](/stack/guides/run-your-own-network/production-hardening)
+
+## Missing disaster recovery procedures
+
+### Mistake
+
+Deploying without tested backup and disaster recovery procedures.
+
+### Impact
+
+- Extended downtime after failures
+- Data loss
+- Inability to recover from disasters
+
+### How to avoid
+
+- Implement backup procedures before production
+- Test disaster recovery procedures regularly
+- Document recovery procedures
+- Define RTO/RPO objectives
+
+### Related documentation
+
+- <!-- todo: does this need to be built out [Backup and recovery](/stack/guides/operations-guides/backup-recovery) -->
+- <!-- todo: does this need to be built out [Disaster recovery](/stack/guides/operations-guides/disaster-recovery) -->
+
+## Related documentation
+
+- <!-- todo: does this need to be built out [Troubleshooting](/stack/guides/operations-guides/troubleshooting): Common issues and solutions -->
+- <!-- todo: does this need to be built out [Handle component failures](/stack/guides/operations-guides/handle-failures): Failure handling procedures -->
+- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Understanding
+  component boundaries
