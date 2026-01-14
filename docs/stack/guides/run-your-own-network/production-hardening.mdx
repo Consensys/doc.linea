@@ -9,6 +9,12 @@ mainSource:
 image: /img/socialCards/production-hardening.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 Production hardening applies security, monitoring, and operational best practices before handling
 production workloads. Do not skip these steps.
 
@@ -164,8 +170,4 @@ After production hardening:
 
 ## Related documentation
 
-- <!-- todo: does this need to be built out [Monitoring](/stack/guides/operations-guides/monitoring): Detailed monitoring setup -->
-- <!-- todo: does this need to be built out [Backup and recovery](/stack/guides/operations-guides/backup-recovery): Backup procedures -->
-- <!-- todo: does this need to be built out [Troubleshooting](/stack/guides/operations-guides/troubleshooting): Common issues and solutions -->
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Security
-  considerations
+<DocCardList items={relatedDocs} />

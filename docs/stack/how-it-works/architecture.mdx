@@ -7,16 +7,24 @@ mainSource:
 image: /img/socialCards/architecture.jpg
 ---
 
-The Linea stack uses a dual-layer architecture with separate consensus and execution layers. This design
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/protocol/architecture', label: 'Protocol Architecture'},
+  {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Transaction lifecycle'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
+As an EVM-compatible system, the Linea stack uses a dual-layer architecture with separate consensus and execution layers. This design
 enables modular deployment, client diversity, and operational flexibility.
 
 ## Dual-layer architecture
 
 The Linea stack separates consensus from execution:
 
-- **Consensus layer ([Maru](/protocol/repos#maru))**: Handles block production, consensus, and block
-  validation
-- **Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), or [Erigon](/network/how-to/run-a-node/erigon))**: Executes transactions and maintains state
+- Consensus layer: Handles block production, consensus, and block validation
+- Execution layer: Executes transactions and maintains state
 
 The layers communicate via the Engine API, a standard Ethereum interface that cleanly separates
 consensus from execution.
@@ -25,8 +33,8 @@ consensus from execution.
 
 ### Consensus layer: Maru
 
-[Maru](/protocol/repos#maru) is Linea's consensus layer client implementing the Quorum Byzantine
-Fault Tolerance (QBFT) consensus algorithm. It:
+[Maru](/protocol/repos#maru) is Linea's consensus layer client, implementing the Quorum Byzantine
+Fault Tolerance (QBFT) consensus algorithm, it:
 
 - Coordinates block production with the execution layer
 - Manages validator sets and consensus participation
@@ -38,15 +46,15 @@ number of faulty nodes).
 
 ### Execution layer clients
 
-You can choose from multiple execution layer clients:
+Linea is compatible with several execution layer clients:
 
-- **Linea Besu**: Recommended for operators. Includes Linea-specific plugins enabling features like
+- **[Linea Besu](../../protocol/repos#linea-besu-upstream)**: Is the recommended execution client. Includes Linea-specific plugins enabling features like
   `linea_estimateGas` and sequencer functionality
-- **Geth**: Standard Ethereum client, suitable for following the chain
-- **Erigon**: Optimized for archive nodes and historical data access
+- [Geth](../../network/how-to/run-a-node/geth): Standard Ethereum client, suitable for following the chain
+- [Erigon](../../network/how-to/run-a-node/erigon): Optimized for archive nodes and historical data access
 
 All execution clients maintain the EVM state and execute transactions, but only Linea Besu provides
-full Linea-specific functionality.
+full Linea-specific functionality including speed optimizations.
 
 ### Sequencer
 
@@ -158,7 +166,7 @@ They communicate via internal networks and file systems.
 
 Data availability strategy depends on your deployment model:
 
-- **Private Validium**: Data stored off-chain with private node set; no on-chain data posting
+- **Private Validium**: Data stored offchain with private node set; no onchain data posting
 - **Hybrid**: Selective data availability based on transaction type
 - **Public**: Data posted to finalization layer using EIP-4844 blobs
 
@@ -167,10 +175,4 @@ availability and finalization](/stack/how-it-works/data-availability-finalizatio
 
 ## Related documentation
 
-- [Protocol Architecture](/protocol/architecture): Protocol-level details of how Linea works
-- [Transaction lifecycle](/protocol/transaction-lifecycle): Detailed protocol-level view of how
-  transactions flow through the system
-- [Deployment Models](/stack/how-it-works/deployment-models): How architecture differs by deployment
-  model
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Component
-  responsibilities and failure modes
+<DocCardList items={relatedDocs} />

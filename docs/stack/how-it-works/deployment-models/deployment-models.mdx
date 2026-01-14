@@ -8,19 +8,27 @@ mainSource:
 image: /img/socialCards/deployment-models.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+];
+
 The Linea stack supports three deployment models, each optimized for different use cases and
 requirements. Your choice of deployment model affects data availability, network topology, access
 controls, and operational procedures.
 
 ## Private Validium
 
-Private Validium keeps transaction data off-chain while maintaining cryptographic guarantees through
+Private Validium keeps transaction data offchain while maintaining cryptographic guarantees through
 zero-knowledge proofs. This model is ideal for regulated financial institutions requiring privacy,
 compliance controls, and selective data disclosure.
 
 ### Characteristics
 
-- **Data availability**: Transaction data stored off-chain in a private node set
+- **Data availability**: Transaction data stored offchain in a private node set
 - **Privacy**: Transaction details not visible on the finalization layer
 - **Access control**: RPC endpoints protected by RBAC; only authorized participants can view data
 - **Finalization**: State commitments and proofs posted to finalization layer (Ethereum or Linea
@@ -62,13 +70,13 @@ make data available when needed.
 ## Hybrid
 
 Hybrid deployments combine public and private elements, allowing selective data availability based on
-transaction requirements. Some transactions may have on-chain data availability while others remain
+transaction requirements. Some transactions may have onchain data availability while others remain
 private.
 
 ### Characteristics
 
-- **Selective data availability**: Choice of on-chain or off-chain data per transaction
-- **Flexible privacy**: Public transactions visible on-chain; private transactions off-chain
+- **Selective data availability**: Choice of onchain or offchain data per transaction
+- **Flexible privacy**: Public transactions visible onchain; private transactions offchain
 - **Mixed access**: Public RPC for public transactions; private RPC with RBAC for private
   transactions
 - **Finalization**: All state commitments posted to finalization layer regardless of data
@@ -89,12 +97,12 @@ will be documented as the feature matures.
 
 ## Public
 
-Public deployments are fully public networks with on-chain data availability, similar to Linea
+Public deployments are fully public networks with onchain data availability, similar to Linea
 Mainnet. All transaction data is posted to the finalization layer using EIP-4844 blobs.
 
 ### Characteristics
 
-- **Data availability**: All transaction data posted on-chain via EIP-4844 blobs
+- **Data availability**: All transaction data posted onchain via EIP-4844 blobs
 - **Public access**: Open RPC endpoints; no access controls required
 - **Transparency**: All transactions visible on the finalization layer
 - **Finalization**: State commitments, proofs, and data posted to finalization layer
@@ -102,7 +110,7 @@ Mainnet. All transaction data is posted to the finalization layer using EIP-4844
 ### Use cases
 
 - Public networks requiring maximum transparency
-- Applications benefiting from on-chain data availability guarantees
+- Applications benefiting from onchain data availability guarantees
 - Networks prioritizing decentralization over privacy
 
 :::note
@@ -118,7 +126,7 @@ Consider these factors when choosing a deployment model:
 
 - **Privacy requirements**: Do you need transaction data to remain private?
 - **Regulatory compliance**: Do you need KYC/KYT controls and selective disclosure?
-- **Data availability guarantees**: How important are on-chain data availability guarantees?
+- **Data availability guarantees**: How important are onchain data availability guarantees?
 - **Network topology**: Do you need a private network with controlled membership?
 - **Access control**: Do you need RBAC on RPC endpoints and APIs?
 
@@ -127,7 +135,4 @@ privacy, compliance, and access control features.
 
 ## Related documentation
 
-- [Architecture](/stack/how-it-works/architecture): How components differ by deployment model
-- [Deployment Guides](/stack/guides/deployment-guides): Step-by-step deployment procedures
-- [Configuration Guides](/stack/guides/configuration-guides): Configuration differences between
-  models
+<DocCardList items={relatedDocs} />

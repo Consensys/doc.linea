@@ -7,17 +7,25 @@ mainSource:
 image: /img/socialCards/private-validium.jpg
 ---
 
-Private Validium is a deployment model for The Linea stack that keeps transaction data off-chain while
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
+];
+
+Private Validium is a deployment model for The Linea stack that keeps transaction data offchain while
 maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
 financial institutions and applications requiring privacy, compliance controls, and selective data
 disclosure.
 
 ## Key features
 
-### Off-chain data availability
+### Offchain data availability
 
-Transaction data is stored off-chain in a private node set rather than posted to the finalization
-layer. Only state commitments and zero-knowledge proofs are posted on-chain, ensuring transaction
+Transaction data is stored offchain in a private node set rather than posted to the finalization
+layer. Only state commitments and zero-knowledge proofs are posted onchain, ensuring transaction
 privacy while maintaining cryptographic guarantees.
 
 ### Role-based access control (RBAC)
@@ -117,7 +125,4 @@ To deploy Private Validium:
 
 ## Related documentation
 
-- [Deployment Models](/stack/how-it-works/deployment-models): Comparison of deployment models
-- [Architecture](/stack/how-it-works/architecture): Component architecture
-- [Deploy Private Validium](/stack/guides/deployment-guides/deploy-private-validium): Deployment
-  guide
+<DocCardList items={relatedDocs} />

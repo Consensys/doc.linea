@@ -7,6 +7,13 @@ mainSource:
 image: /img/socialCards/deploy-execution-layer.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+];
+
 The execution layer executes transactions and maintains EVM state. You can choose from multiple
 execution clients: Linea Besu (recommended for operators), Geth, or Erigon.
 
@@ -253,6 +260,4 @@ curl http://localhost:9545/metrics
 
 ## Related documentation
 
-- [Deploy Maru](/stack/guides/deployment-guides/deploy-maru): Connecting to consensus layer
-- <!-- todo: does this need to be built out [Deploy sequencer](/stack/guides/deployment-guides/deploy-sequencer): Running a sequencer node -->
-- [Configuration Guides](/stack/guides/configuration-guides): Advanced execution layer configuration
+<DocCardList items={relatedDocs} />

@@ -7,6 +7,14 @@ mainSource:
 image: /img/socialCards/deploy-maru.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
+];
+
 Maru is Linea's consensus layer client implementing QBFT consensus. This guide covers deploying Maru
 nodes for your Linea stack network.
 
@@ -187,7 +195,4 @@ curl http://localhost:9090/metrics
 
 ## Related documentation
 
-- [Deploy execution layer](/stack/guides/deployment-guides/deploy-execution-layer): Connecting
-  execution layer to Maru
-- [Configuration Guides](/stack/guides/configuration-guides): Advanced Maru configuration
-- [Operations Guides](/stack/guides/operations-guides): Operational procedures for Maru
+<DocCardList items={relatedDocs} />

@@ -7,6 +7,14 @@ mainSource:
 image: /img/socialCards/prerequisites.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+];
+
 Before deploying your Linea network, verify you have the required hardware, software, and access.
 Requirements vary by deployment model and component role.
 
@@ -118,7 +126,4 @@ After verifying prerequisites:
 
 ## Related documentation
 
-- [Deploy Maru](/stack/guides/deployment-guides/deploy-maru): Consensus layer deployment
-- [Deploy execution layer](/stack/guides/deployment-guides/deploy-execution-layer): Execution layer
-  deployment
-- [Architecture](/stack/how-it-works/architecture): Component resource requirements
+<DocCardList items={relatedDocs} />

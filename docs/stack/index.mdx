@@ -1,65 +1,80 @@
 ---
 title: Overview
-description: Overview of The Linea stack for network operators
+description: Overview of the Linea stack for network operators
 sidebar_position: 1
-mainSource:
-  url: 'https://github.com/Consensys/linea-monorepo'
+mainSource: rpc and current docs
 image: /img/socialCards/overview.jpg
 ---
 
-The Linea stack enables you to deploy and operate your own Linea network. Whether you need a private
-Validium for regulated financial applications, a hybrid network with selective data availability, or
-a public network, The Linea stack provides the components and configuration options to meet your
-requirements.
+import DocCardList from '@theme/DocCardList';
 
-## What is the Linea stack?
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works', label: 'How It Works'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
+  {type: 'link', href: '/protocol/architecture', label: 'Protocol documentation'},
+  {type: 'link', href: '/network', label: 'Linea Mainnet documentation'},
+];
 
-The Linea stack is the collection of software components, configuration options, and operational procedures
-required to run a Linea network. It includes:
+The Linea stack provides a shared, extensible foundation for running your own Linea network.
 
-- **Consensus layer client:** ([Maru](/protocol/repos#maru)) Handles block production and consensus
-  using QBFT
-- **Execution layer clients:** ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), [Erigon](/network/how-to/run-a-node/erigon)) Execute transactions and maintain state
-- **[Sequencer](/protocol/sequencer)**: Orders and processes transactions into blocks
-- **[Coordinator](/protocol/coordinator)**: Orchestrates batching, proof generation, and finalization
-- **[Prover](/protocol/prover)**: Generates zero-knowledge proofs for state transitions
+The Linea stack supports operators who need more control than a public network can offer, without sacrificing
+interoperability, security guarantees, or alignment with the EVM protocols. Whether you are deploying
+a private network for regulated environments, a hybrid network with selective data availability, or a
+fully public network, the Linea stack gives you the components and operational model to do so.
 
-For details on how transactions flow through these components, see [Transaction lifecycle](/protocol/transaction-lifecycle).
-- **[State Manager](/protocol/state-manager)**: Maintains L2 state and provides proof generation data
-- **Bridge components:** ([Postman](/protocol/repos#linea-monorepo)) Enable cross-chain interoperability
+## Why the Linea stack exists
 
-For repository information, see [Linea repositories](/protocol/repos).
+As blockchain adoption grows, many organizations encounter a common set of constraints:
 
-## Deployment models
+- Public networks do not offer sufficient privacy or control
+- Bespoke infrastructure is costly to build and difficult to maintain
+- Regulatory, governance, and operational requirements are hard to enforce on open systems
+- Interoperability between private systems and public blockchains remains fragmented
 
-The Linea stack supports three deployment models:
+The Linea stack lets you run a Linea-compatible network tailored to
+your requirements, using open source technology, while remaining anchored to the same protocol foundations as [Linea Mainnet](./network).
 
-- **Private Validium**: Transaction data remains off-chain with private data availability. Ideal for
-  regulated financial institutions requiring privacy and compliance controls.
-- **Hybrid**: Combines public and private elements, allowing selective data availability based on
-  transaction requirements.
-- **Public**: Fully public network with on-chain data availability, similar to Linea Mainnet.
+## What the Linea stack provides
 
-For details on each model, see [Deployment Models](/stack/how-it-works/deployment-models).
+At a high level, the Linea stack provides:
 
-## What you need to know
+- **A Linea-compatible execution environment**  
+  Run an EVM-equivalent network that aligns with the Linea protocol and tooling ecosystem.
 
-To operate a Linea network, you need to understand:
+- **Flexible deployment models**  
+  Deploy private, hybrid, or public networks depending on your privacy, compliance, and availability
+  requirements.
 
-- **Hardware and software requirements**: Resource needs for each component type
-- **Component architecture**: How components interact and their responsibilities
-- **Configuration choices**: Data availability, scaling strategies, and network topology
-- **Operational procedures**: Deployment, monitoring, maintenance, and troubleshooting
+- **Privacy and data availability controls**  
+  Keep transaction data private as required, while still benefiting from trust-minimized finalization.
 
-## Getting started
+- **Operational clarity and control**  
+  Clearly defined components, responsibilities, and failure boundaries so operators can reason about
+  risk, uptime, and compliance.
 
-1. Review [How It Works](/stack/how-it-works) to understand the architecture and deployment models.
-2. Choose your deployment model based on your requirements.
-3. Follow the [Deployment Guides](/stack/guides/deployment-guides) for step-by-step setup.
-4. Configure your network using the [Configuration Guides](/stack/guides/configuration-guides).
-5. Establish operational procedures using the [Operations Guides](/stack/guides/operations-guides).
+- **Interoperability by design**  
+  Enable controlled interaction with other networks and public blockchains through standardized bridge
+  components.
+
+## Who this is for
+
+The Linea stack serves technical operators and infrastructure teams who:
+
+- Need to run and operate their own Linea network
+- Require privacy, governance, or regulatory controls not available on public networks
+- Want production-capable infrastructure rather than experimental prototypes
+- Are responsible for deployment, monitoring, maintenance, and incident response
+
+It assumes familiarity with distributed systems and blockchain infrastructure, but does not require
+deep protocol expertise.
+
+## Next steps
+
+If you are new to the Linea stack, consider:
+- Starting with [How it Works](./how-it-works/index.mdx) to understand the system
+- Then follow the [The Guides](./guides/index.mdx) to bring up your first network.
 
 ## Related documentation
 
-- [Protocol documentation](/protocol/architecture): Understanding how Linea works at the protocol level
-- [Linea Mainnet documentation](/network): Information about the public Linea network
+<DocCardList items={relatedDocs} />

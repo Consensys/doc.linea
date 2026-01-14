@@ -7,6 +7,13 @@ mainSource:
 image: /img/socialCards/run-your-own-network.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works', label: 'How It Works'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 This guide provides an opinionated, step-by-step path to deploy and operate your own Linea network.
 Follow these steps in order to reduce choice paralysis and ensure a successful deployment.
 
@@ -52,6 +59,4 @@ After completing this orchestration guide, use the detailed guides for:
 
 ## Related documentation
 
-- [How It Works](/stack/how-it-works): Understanding architecture and deployment models
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): What Linea
-  provides vs. what you provide
+<DocCardList items={relatedDocs} />

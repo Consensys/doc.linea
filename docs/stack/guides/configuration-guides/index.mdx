@@ -7,6 +7,13 @@ mainSource:
 image: /img/socialCards/configuration-guides.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
+];
+
 This section covers configuration options for The Linea stack components. Configuration is organized
 into common configurations (applicable to all deployment models) and specialized configurations
 (specific to deployment models).
@@ -68,5 +75,4 @@ Some configuration can be provided via environment variables:
 
 ## Related documentation
 
-- [Deployment Guides](/stack/guides/deployment-guides): Initial configuration during deployment
-- [Operations Guides](/stack/guides/operations-guides): Configuration changes during operations
+<DocCardList items={relatedDocs} />

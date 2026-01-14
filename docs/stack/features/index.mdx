@@ -7,6 +7,13 @@ mainSource:
 image: /img/socialCards/features.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+];
+
 The Linea stack provides features and capabilities that enable various deployment models and use cases.
 This section documents the features available in The Linea stack.
 
@@ -16,7 +23,7 @@ This section documents the features available in The Linea stack.
 
 Private Validium provides:
 
-- **Off-chain data availability**: Transaction data stored privately
+- **Offchain data availability**: Transaction data stored privately
 - **RBAC**: Role-based access control for RPC and API endpoints
 - **Privacy**: Transaction details not visible on finalization layer
 - **Compliance**: KYC/KYT controls and selective data disclosure
@@ -28,7 +35,7 @@ Private Validium provides:
 
 Hybrid deployments enable:
 
-- **Selective data availability**: Choose on-chain or off-chain per transaction
+- **Selective data availability**: Choose onchain or offchain per transaction
 - **Flexible privacy**: Mix public and private transactions
 - **Gradual migration**: Transition from private to public
 
@@ -42,7 +49,7 @@ Hybrid deployment features are under development. Documentation will be updated 
 
 Public deployments provide:
 
-- **On-chain data availability**: All data posted via EIP-4844 blobs
+- **Onchain data availability**: All data posted via EIP-4844 blobs
 - **Full transparency**: All transactions visible on finalization layer
 - **Open access**: No access controls required
 
@@ -90,6 +97,4 @@ QBFT consensus enables:
 
 ## Related documentation
 
-- [Deployment Models](/stack/how-it-works/deployment-models): How features differ by deployment
-  model
-- [Architecture](/stack/how-it-works/architecture): How features are implemented
+<DocCardList items={relatedDocs} />

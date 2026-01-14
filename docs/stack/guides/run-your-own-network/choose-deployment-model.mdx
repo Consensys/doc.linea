@@ -8,6 +8,13 @@ mainSource:
 image: /img/socialCards/choose-a-deployment-model.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+];
+
 Your first decision is choosing a deployment model. This choice determines data availability, network
 topology, access controls, and operational complexity.
 
@@ -17,7 +24,7 @@ topology, access controls, and operational complexity.
 |------------|------------------|--------|--------|
 | Transaction privacy | ✅ Required | ⚠️ Selective | ❌ Not required |
 | Regulatory compliance (KYC/KYT) | ✅ Required | ⚠️ Partial | ❌ Not required |
-| On-chain data availability | ❌ Not required | ⚠️ Selective | ✅ Required |
+| Onchain data availability | ❌ Not required | ⚠️ Selective | ✅ Required |
 | RBAC on RPC endpoints | ✅ Required | ⚠️ Partial | ❌ Not required |
 | Private network topology | ✅ Required | ⚠️ Partial | ❌ Not required |
 | Operational complexity | High | Very high | Moderate |
@@ -59,7 +66,7 @@ topology, access controls, and operational complexity.
 
 - You don't need transaction privacy
 - You don't need regulatory compliance controls
-- You prefer on-chain data availability guarantees
+- You prefer onchain data availability guarantees
 - You want to minimize operational complexity
 
 ## Hybrid
@@ -78,7 +85,7 @@ topology, access controls, and operational complexity.
 **Trust assumptions:**
 
 - Same as Private Validium for private transactions
-- On-chain data availability for public transactions
+- Onchain data availability for public transactions
 
 **Operational complexity:** Very high
 
@@ -104,7 +111,7 @@ will be documented as the feature matures.
 **Choose Public if:**
 
 - You require maximum transparency
-- You want on-chain data availability guarantees
+- You want onchain data availability guarantees
 - You don't need transaction privacy
 - You don't need regulatory compliance controls
 - You want to minimize operational complexity
@@ -120,7 +127,7 @@ will be documented as the feature matures.
 
 **Trust assumptions:**
 
-- On-chain data availability (EIP-4844 blobs)
+- Onchain data availability (EIP-4844 blobs)
 - Validator set follows consensus protocol
 - Finalization layer inherits security from Ethereum
 
@@ -165,6 +172,4 @@ After choosing your deployment model:
 
 ## Related documentation
 
-- [Deployment Models](/stack/how-it-works/deployment-models): Detailed comparison of deployment
-  models
-- [Architecture](/stack/how-it-works/architecture): How components differ by deployment model
+<DocCardList items={relatedDocs} />

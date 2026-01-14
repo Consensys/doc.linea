@@ -1,30 +1,21 @@
 ---
-title: Overview
+title: How it Works
 description: How The Linea stack works for operators
 sidebar_position: 1
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
-image: /img/socialCards/overview.jpg
+image: /img/socialCards/how-it-works.jpg
 ---
 
-This section explains how The Linea stack operates from an operator's perspective. It covers the
+This section explains how the Linea stack operates from an operator's perspective. It covers the
 architecture, deployment models, and component boundaries you need to understand to run a network
-effectively. For details on how transactions flow through the system, see [Transaction lifecycle](/protocol/transaction-lifecycle).
-
-## What you'll learn
-
-- **Architecture**: How components interact and their roles in the network
-- **Data availability and finalization**: Understanding L2/L3 relationships and smart contract
-  requirements
-- **Deployment Models**: Differences between Private Validium, Hybrid, and Public deployments
-- **Boundaries & Responsibilities**: What each component is responsible for and failure modes
+effectively. 
 
 ## Architecture
 
-The Linea stack uses a dual-layer architecture separating consensus (Maru) from execution (Besu/Geth).
-This design enables modular deployment, client diversity, and operational flexibility.
+As an EVM-compatible protocol, the Linea stack uses a dual-layer architecture separating consensus (Maru) from execution (Besu/Geth). This design enables modular deployment, client diversity, and operational flexibility.
 
-[Learn about the architecture →](/stack/how-it-works/architecture)
+[Learn about how components interact and their roles in the network →](/stack/how-it-works/architecture)
 
 ## Data availability and finalization
 
@@ -38,9 +29,9 @@ model.
 
 The Linea stack supports three deployment models, each with different characteristics:
 
-- **Private Validium**: Off-chain data availability, ideal for regulated financial applications
+- **Private Validium**: Offchain data availability, ideal for regulated financial applications
 - **Hybrid**: Selective data availability combining public and private elements
-- **Public**: Fully public network with on-chain data availability
+- **Public**: Fully public network with onchain data availability
 
 [Learn about deployment models →](/stack/how-it-works/deployment-models)
 
@@ -53,4 +44,9 @@ Understanding component boundaries helps you:
 - Make informed configuration decisions
 - Troubleshoot operational issues
 
-[Learn about boundaries & responsibilities →](/stack/how-it-works/boundaries-responsibilities)
+[Learn about what each component is responsible for and failure modes →](/stack/how-it-works/boundaries-responsibilities)
+
+## Next steps
+
+- For details on how transactions flow through the system, see the Public Mainnet [transaction lifecycle](/protocol/transaction-lifecycle).
+- Consider getting started by deploying a [minimal viable network](../guides/run-your-own-network/index.mdx).

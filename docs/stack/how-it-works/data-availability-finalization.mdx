@@ -8,6 +8,14 @@ mainSource:
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Transaction lifecycle'},
+  {type: 'link', href: '/protocol/architecture', label: 'Architecture'},
+];
+
 Understanding data availability and finalization is essential for deploying and operating a Linea
 network. This page explains what operators need to know to make deployment decisions.
 
@@ -18,12 +26,12 @@ model determines where and how data is stored.
 
 ### Private Validium
 
-**Data availability:** Off-chain in a private node set
+**Data availability:** Offchain in a private node set
 
-- Transaction data is stored off-chain in a private node set
+- Transaction data is stored offchain in a private node set
 - Only state commitments and proofs are posted to the finalization layer
 - Participants must trust that data availability providers will make data available when needed
-- No on-chain data posting (reduces costs but requires trust)
+- No onchain data posting (reduces costs but requires trust)
 
 **Your responsibility:**
 
@@ -32,12 +40,12 @@ model determines where and how data is stored.
 
 ### Public
 
-**Data availability:** On-chain via EIP-4844 blobs
+**Data availability:** Onchain via EIP-4844 blobs
 
 - All transaction data is posted to the finalization layer using EIP-4844 blobs
-- Data is available on-chain for verification and state recovery
+- Data is available onchain for verification and state recovery
 - Blobs expire after 4,096 epochs (~18 days) but state commitments remain
-- Maximum transparency and on-chain data availability guarantees
+- Maximum transparency and onchain data availability guarantees
 
 **Your responsibility:**
 
@@ -46,15 +54,15 @@ model determines where and how data is stored.
 
 ### Hybrid
 
-**Data availability:** Selective (on-chain or off-chain per transaction)
+**Data availability:** Selective (onchain or offchain per transaction)
 
-- Some transactions have on-chain data availability (EIP-4844 blobs)
-- Other transactions remain off-chain (private node set)
+- Some transactions have onchain data availability (EIP-4844 blobs)
+- Other transactions remain offchain (private node set)
 - Choice of data availability per transaction
 
 **Your responsibility:**
 
-- Manage both on-chain and off-chain data availability
+- Manage both onchain and offchain data availability
 - Configure selective data availability logic
 
 ## Finalization layer
@@ -124,15 +132,15 @@ finalize batches. These contracts are required for proof verification and state 
 
 **Data availability** and **finalization** are separate concerns:
 
-- **Data availability**: Where transaction data is stored (on-chain vs. off-chain)
+- **Data availability**: Where transaction data is stored (onchain vs. offchain)
 - **Finalization**: Where proofs and state commitments are verified (L1 vs. L2)
 
 **Examples:**
 
-- **Private Validium on Ethereum**: Off-chain data availability, L1 finalization (L2)
-- **Private Validium on Linea Mainnet**: Off-chain data availability, L2 finalization (L3)
-- **Public on Ethereum**: On-chain data availability, L1 finalization (L2)
-- **Public on Linea Mainnet**: On-chain data availability, L2 finalization (L3)
+- **Private Validium on Ethereum**: Offchain data availability, L1 finalization (L2)
+- **Private Validium on Linea Mainnet**: Offchain data availability, L2 finalization (L3)
+- **Public on Ethereum**: Onchain data availability, L1 finalization (L2)
+- **Public on Linea Mainnet**: Onchain data availability, L2 finalization (L3)
 
 ## Operational implications
 
@@ -144,7 +152,7 @@ finalize batches. These contracts are required for proof verification and state 
 
 ### For Public
 
-- **Data availability**: Finalization layer provides on-chain data availability
+- **Data availability**: Finalization layer provides onchain data availability
 - **Finalization**: You must deploy contracts on your chosen finalization layer
 - **Trust assumptions**: Finalization layer provides both data availability and security
 
@@ -160,9 +168,4 @@ Consider:
 
 ## Related documentation
 
-- [Deployment Models](/stack/how-it-works/deployment-models): How data availability differs by
-  deployment model
-- [Transaction lifecycle](/protocol/transaction-lifecycle): How finalization works in the
-  transaction lifecycle
-- [Architecture](/protocol/architecture): Protocol-level details on L2/L3 relationships
-- <!-- todo: does this need to be built out [Configure data availability](/stack/guides/configuration-guides/configure-data-availability): Configuration options for data availability -->
+<DocCardList items={relatedDocs} />

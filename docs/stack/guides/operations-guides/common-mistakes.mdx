@@ -8,6 +8,12 @@ mainSource:
 image: /img/socialCards/common-mistakes.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 This page documents common mistakes operators make when deploying and operating Linea networks. Learn
 from these mistakes to avoid outages and security issues.
 
@@ -216,7 +222,4 @@ Deploying without tested backup and disaster recovery procedures.
 
 ## Related documentation
 
-- <!-- todo: does this need to be built out [Troubleshooting](/stack/guides/operations-guides/troubleshooting): Common issues and solutions -->
-- <!-- todo: does this need to be built out [Handle component failures](/stack/guides/operations-guides/handle-failures): Failure handling procedures -->
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Understanding
-  component boundaries
+<DocCardList items={relatedDocs} />

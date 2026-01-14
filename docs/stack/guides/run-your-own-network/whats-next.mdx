@@ -7,6 +7,14 @@ mainSource:
 image: /img/socialCards/whats-next.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 After deploying and hardening your network, establish ongoing operational procedures for scaling,
 maintenance, and troubleshooting.
 
@@ -91,7 +99,4 @@ See <!-- todo: does this need to be built out [Disaster recovery](/stack/guides/
 
 ## Related documentation
 
-- [Operations Guides](/stack/guides/operations-guides): Detailed operational procedures
-- [Configuration Guides](/stack/guides/configuration-guides): Advanced configuration options
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Understanding
-  component responsibilities
+<DocCardList items={relatedDocs} />

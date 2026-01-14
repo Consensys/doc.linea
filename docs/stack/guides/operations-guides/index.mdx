@@ -7,6 +7,14 @@ mainSource:
 image: /img/socialCards/operations-guides.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 This section provides operational procedures, runbooks, and best practices for running and
 maintaining Linea stack networks.
 
@@ -38,7 +46,4 @@ Runbooks for common operational tasks:
 
 ## Related documentation
 
-- [Deployment Guides](/stack/guides/deployment-guides): Initial deployment procedures
-- [Configuration Guides](/stack/guides/configuration-guides): Configuration changes
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Understanding
-  failure modes
+<DocCardList items={relatedDocs} />

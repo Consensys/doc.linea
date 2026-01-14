@@ -1,6 +1,6 @@
 ---
 title: Deploy Private Validium
-description: Deploy a private Validium network with off-chain data availability
+description: Deploy a private Validium network with offchain data availability
 sidebar_position: 1
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
@@ -8,8 +8,16 @@ mainSource:
 image: /img/socialCards/deploy-private-validium.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+];
+
 This guide walks through deploying a Private Validium network. Private Validium keeps transaction
-data off-chain while maintaining cryptographic guarantees through zero-knowledge proofs.
+data offchain while maintaining cryptographic guarantees through zero-knowledge proofs.
 
 ## Prerequisites
 
@@ -119,7 +127,7 @@ See <!-- todo: does this need to be built out [Deploy state manager](/stack/guid
 
 ## Step 7: Configure data availability
 
-For Private Validium, configure off-chain data availability:
+For Private Validium, configure offchain data availability:
 
 - Set up private node set for data storage
 - Configure data availability providers
@@ -168,7 +176,4 @@ After deployment:
 
 ## Related documentation
 
-- [Deployment Models](/stack/how-it-works/deployment-models): Understanding Private Validium
-  characteristics
-- [Architecture](/stack/how-it-works/architecture): Component interactions
-- [Configuration Guides](/stack/guides/configuration-guides): Configuration options
+<DocCardList items={relatedDocs} />

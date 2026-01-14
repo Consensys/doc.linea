@@ -7,6 +7,14 @@ mainSource:
 image: /img/socialCards/minimal-viable-network.jpg
 ---
 
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
 A minimal viable network (MVN) is the smallest supported setup that validates your infrastructure
 and demonstrates component interactions. Use this setup for development, testing, and understanding
 the system before production deployment.
@@ -121,8 +129,4 @@ After validating your minimal viable network:
 
 ## Related documentation
 
-- [Deploy Private Validium](/stack/guides/deployment-guides/deploy-private-validium): Complete
-  deployment guide
-- [Architecture](/stack/how-it-works/architecture): Component interactions
-- [Boundaries & Responsibilities](/stack/how-it-works/boundaries-responsibilities): Component
-  responsibilities and failure modes
+<DocCardList items={relatedDocs} />
