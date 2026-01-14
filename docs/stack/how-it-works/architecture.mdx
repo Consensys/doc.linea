@@ -11,54 +11,115 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/protocol/architecture', label: 'Protocol Architecture'},
-  {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Transaction lifecycle'},
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Public Mainnet transaction lifecycle'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models/options', label: 'Deployment Models'},
   {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
 ];
 
-As an EVM-compatible system, the Linea stack uses a dual-layer architecture with separate consensus and execution layers. This design
-enables modular deployment, client diversity, and operational flexibility.
+As an EVM-compatible system, the Linea stack uses a dual-layer architecture with separate consensus and 
+execution layers. This design enables modular deployment, client diversity, and operational flexibility.
+
+:::tip
+
+This page describes the **operator view** of the Linea stack: what components run where, how they
+connect, and which responsibilities fall on the network operator. For protocol-level mechanics see the 
+[Protocol architecture](../../protocol/architecture.mdx).
+
+::: 
 
 ## Dual-layer architecture
 
 The Linea stack separates consensus from execution:
 
-- Consensus layer: Handles block production, consensus, and block validation
-- Execution layer: Executes transactions and maintains state
+- Consensus layer: Responsible for block production, validator coordination, and block propagation.
+- Execution layer: Responsible for executing transactions, maintaining EVM state, and serving RPC requests.
 
-The layers communicate via the Engine API, a standard Ethereum interface that cleanly separates
-consensus from execution.
+The two layers communicate via the **Engine API**, a standard Ethereum interface that supports the clean 
+separation of consensus from execution. This allows operators to change execution clients or scale 
+components without restructuring the entire network.
+
+## What runs where
+
+From an operational perspective, the Linea stack is composed of three broad classes of components.
+
+### Node roles
+
+In a fully-public network, these components run on externally reachable nodes, other deployment types 
+may [assume different strategies](#network-topology-patterns).
+
+- **Validator nodes**  
+  Participate in QBFT consensus. Validator nodes run a consensus client and an execution client.
+
+- **Full nodes**  
+  Maintain full chain state, verify blocks, and serve RPC requests. Full nodes do not necessarily
+  participate in consensus.
+
+- **RPC nodes**  
+  Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head access or
+  configured as archive nodes for historical queries.
+
+### Internal protocol services
+
+These services are required for proof generation and finalization but are **not** exposed publicly.
+
+- Sequencer
+- Coordinator
+- Prover
+- State manager
+- Tracer
+
+Internal services typically communicate over private networks and shared storage and should be
+protected from direct external access.
 
 ## Core components
 
-### Consensus layer: Maru
+The Linea stack consists of the following core components. Each component has a clear operational
+responsibility and deployment footprint.
 
-[Maru](/protocol/repos#maru) is Linea's consensus layer client, implementing the Quorum Byzantine
-Fault Tolerance (QBFT) consensus algorithm, it:
+### Maru
 
-- Coordinates block production with the execution layer
-- Manages validator sets and consensus participation
-- Provides P2P networking for block propagation
-- Exposes REST API endpoints for monitoring and control
+[Maru](../../protocol/repos.mdx#maru), the consensus client runs on validator nodes and coordinates 
+block production and consensus participation. 
+
+<details>
+<summary>Further details</summary>
+
+Maru:
+  - Coordinates block production with the execution layer
+  - Manages validator sets and consensus participation
+  - Provides P2P networking for block propagation
+  - Exposes API endpoints for monitoring and control
 
 Maru requires a minimum of 4 nodes for QBFT consensus to ensure fault tolerance (3f+1 where f is the
-number of faulty nodes).
+number of faulty nodes). 
 
-### Execution layer clients
+</details>
 
-Linea is compatible with several execution layer clients:
+### Linea Besu
 
-- **[Linea Besu](../../protocol/repos#linea-besu-upstream)**: Is the recommended execution client. Includes Linea-specific plugins enabling features like
-  `linea_estimateGas` and sequencer functionality
-- [Geth](../../network/how-to/run-a-node/geth): Standard Ethereum client, suitable for following the chain
-- [Erigon](../../network/how-to/run-a-node/erigon): Optimized for archive nodes and historical data access
+The execution layer client, [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream) executes 
+transactions and maintains EVM state. 
 
-All execution clients maintain the EVM state and execute transactions, but only Linea Besu provides
-full Linea-specific functionality including speed optimizations.
+<details>
+<summary>Further details</summary>
+
+While all execution clients maintain the EVM state and execute transactions, only Linea Besu provides
+full Linea-specific functionality including sequencer functionality, speed optimizations, and features like
+  `linea_estimateGas`.
+
+[Geth](../../network/how-to/run-a-node/geth.mdx) and [Erigon](../../network/how-to/run-a-node/erigon.mdx) are more suitable for follower or archive roles, respectively.
+
+</details>
 
 ### Sequencer
 
-The [sequencer](/protocol/sequencer) is a specialized execution layer node (Linea Besu with sequencer
+The [sequencer](/protocol/sequencer) orders transactions and builds blocks according to Linea rules. 
+Typically deployed as a protected internal service.  
+
+<details>
+<summary>Further details</summary>
+
+The sequencer is a specialized execution layer node (Linea Besu with sequencer
 plugins) responsible for:
 
 - Receiving transactions from the network
@@ -70,9 +131,17 @@ plugins) responsible for:
 There is typically one sequencer instance per network, though QBFT allows for multiple sequencers
 in a decentralized configuration.
 
+</details>
+
 ### Coordinator
 
-The [coordinator](/protocol/coordinator) orchestrates the proof generation and finalization process:
+The [coordinator](../../protocol/coordinator.mdx) orchestrates batching, proof generation, and 
+submission to the finalization layer.  
+
+<details>
+<summary>Further details</summary>
+
+The coordinator orchestrates the proof generation and finalization process:
 
 - **Batching**: Groups multiple blocks into batches for efficient proof generation
 - **Blob creation**: Combines batches into blobs for submission to the finalization layer
@@ -82,9 +151,17 @@ The [coordinator](/protocol/coordinator) orchestrates the proof generation and f
 The coordinator monitors block production, manages conflation deadlines, and ensures all required
 data is available before requesting proofs.
 
+</details>
+
 ### Prover
 
-The [prover](/protocol/prover) generates zero-knowledge proofs that verify state transitions:
+The [prover](/protocol/prover) generates zero-knowledge proofs for state transitions. Provers may be 
+scaled horizontally to meet throughput requirements.  
+
+<details>
+<summary>Further details</summary>
+
+The prover generates 3 types of zero-knowledge proofs to verify state transitions:
 
 - **Execution proofs**: Prove the correctness of transaction execution within batches
 - **Compression proofs**: Prove that blob compression is valid
@@ -93,9 +170,20 @@ The [prover](/protocol/prover) generates zero-knowledge proofs that verify state
 Proof generation is computationally intensive and may be distributed across multiple prover
 instances for performance.
 
-### State Manager
+</details>
 
-The [state manager](/protocol/state-manager) maintains Linea's state representation optimized for
+### State manager
+
+The [state manager](../../protocol/state-manager.mdx) maintains a state representation optimized for 
+proof generation and recovery.  
+
+<details>
+<summary>Further details</summary>
+
+The state manager consists of a Besu node with [Shomei](/protocol/repos.mdx#shomei) plugin and a Shomei
+node that uses Sparse Merkle trees to represent state.
+
+The state manager maintains Linea's state representation optimized for
 proof generation:
 
 - Tracks state changes block by block
@@ -103,12 +191,16 @@ proof generation:
 - Provides state snapshots for recovery and initialization
 - Serves `linea_getProof` RPC endpoints
 
-The state manager consists of a Besu node with [Shomei](/protocol/repos#shomei) plugin and a Shomei
-node that uses Sparse Merkle trees to represent state.
+</details>
 
-### Tracer
+### Tracer 
 
-The [tracer](/protocol/repos#linea-tracer) is a Linea Besu plugin that:
+The [tracer](../../protocol/repos.mdx#linea-tracer) generates execution traces required for proof generation.  
+
+<details>
+<summary>Further details</summary>
+
+The tracer is a Linea Besu plugin that:
 
 - Generates execution traces during block processing
 - Provides trace counts for batch size calculations
@@ -116,26 +208,40 @@ The [tracer](/protocol/repos#linea-tracer) is a Linea Besu plugin that:
 
 Trace data is essential for proof generation and must be available for all blocks in a batch.
 
+</details>
+
+
 ## Transaction lifecycle
 
-The transaction lifecycle describes how transactions flow through The Linea stack from submission to
-finalization. For detailed protocol-level information, see [Transaction lifecycle](/protocol/transaction-lifecycle).
+These architectural components support transactions from submission to
+finalization. 
 
-1. **Submission**: Transactions enter the mempool via RPC nodes.
+1. **Submission**: Transactions enter the mempool via RPC entrypoint of a [full node](#full-nodes).
 2. **Block building**: [Sequencer](/protocol/sequencer) orders and executes transactions into blocks.
-3. **State tracking**: [State manager](/protocol/state-manager) updates state representation;
-   [tracer](/protocol/repos#linea-tracer) generates traces.
-4. **Conflation**: [Coordinator](/protocol/coordinator) groups blocks into batches.
+3. **State tracking**: [State manager](../../protocol/state-manager.mdx) updates state representation;
+   [tracer](../../protocol/repos.mdx#linea-tracer) generates traces.
+4. **Conflation**: [Coordinator](../../protocol/coordinator.mdx) groups blocks into batches.
 5. **Proof generation**: [Prover](/protocol/prover) generates execution proofs for batches.
-6. **Blob creation**: [Coordinator](/protocol/coordinator) combines batches into blobs; [prover](/protocol/prover) generates compression proofs.
-7. **Finalization**: [Coordinator](/protocol/coordinator) submits proofs to finalization layer; after
-   verification and epoch delay, transactions reach hard finality.
+6. **Blob creation**: [Coordinator](/protocol/coordinator) combines batches into blobs; 
+[prover](/protocol/prover) generates compression proofs.
+7. **Finalization**: [Coordinator](../../protocol/coordinator.mdx) submits proofs to finalization 
+layer; after verification and epoch delay, transactions reach hard finality.
+
+:::info
+
+See the Public Mainnet walkthrough of the [transaction lifecycle](../../protocol/transaction-lifecycle.mdx) 
+for further details.
+
+::: 
 
 ## Network topology
 
 ### Full nodes
 
-Full nodes maintain complete network state and participate in consensus:
+Full nodes are composed of the execution layer client such as
+[Besu](../../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../../network/how-to/run-a-node/geth.mdx), 
+and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). Full nodes maintain complete 
+network state and participate in consensus:
 
 - Verify all blocks and transactions
 - Serve RPC requests
@@ -151,27 +257,33 @@ RPC nodes provide API access to the network:
 
 RPC nodes may be deployed behind load balancers and access controls (RBAC) for private networks.
 
-### Internal protocol services
+### Network topology patterns
 
-These services are not directly accessible from outside the network:
+Network topology varies by deployment model:
 
-- Sequencer (protected from DDoS)
-- Coordinator
-- Prover
-- State Manager
+- **Private networks**  
+  All components run within controlled infrastructure. Data availability and access controls are
+  enforced.
 
-They communicate via internal networks and file systems.
+- **Hybrid networks**  
+  Internal services and private data availability coexist with selective public interaction.
+
+- **Public networks**  
+  Data availability is onchain, and components interact with public infrastructure.
+
+For a full comparison, see [Deployment models](./deployment-models/options.mdx).
 
 ## Data availability
 
-Data availability strategy depends on your deployment model:
+Proofs and associated payloads are submitted to the finalization layer to provide data availability 
+guarantees. Your data availability strategy depends on your deployment model:
 
 - **Private Validium**: Data stored offchain with private node set; no onchain data posting
 - **Hybrid**: Selective data availability based on transaction type
 - **Public**: Data posted to finalization layer using EIP-4844 blobs
 
-For details on data availability, finalization layers, and L2/L3 relationships, see [Data
-availability and finalization](/stack/how-it-works/data-availability-finalization).
+For details on data availability, finalization layers, and L2/L3 relationships, see 
+[Data availability and finalization](./data-availability-finalization.mdx).
 
 ## Related documentation
 
