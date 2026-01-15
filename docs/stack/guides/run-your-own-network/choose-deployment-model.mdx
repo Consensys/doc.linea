@@ -20,95 +20,52 @@ topology, access controls, and operational complexity.
 
 ## Decision matrix
 
-| Requirement | Private Validium | Hybrid | Public |
+| Capability | Private Validium | Hybrid | Public |
 |------------|------------------|--------|--------|
-| Transaction privacy | ✅ Required | ⚠️ Selective | ❌ Not required |
-| Regulatory compliance (KYC/KYT) | ✅ Required | ⚠️ Partial | ❌ Not required |
-| Onchain data availability | ❌ Not required | ⚠️ Selective | ✅ Required |
-| RBAC on RPC endpoints | ✅ Required | ⚠️ Partial | ❌ Not required |
-| Private network topology | ✅ Required | ⚠️ Partial | ❌ Not required |
+| Transaction privacy | ✅ Full compatibility | ⚠️ Selective | ❌ None |
+| Regulatory compliance (KYC/KYT) | ✅ Full compatibility | ⚠️ Partial | ❌ None |
+| Onchain data availability | ❌ Offchain by default | ⚠️ Selective | ✅ Full |
+| RBAC on RPC endpoints | ✅ Full compatibility | ⚠️ Partial | ❌ None |
+| Private network topology | ✅ Full compatibility | ⚠️ Partial | ❌ None |
 | Operational complexity | High | Very high | Moderate |
 
-## Private Validium
+## Use cases
 
-**Choose Private Validium if:**
+### Private Validium
 
-- You require transaction privacy (regulated financial applications)
-- You need KYC/KYT compliance controls
-- You need selective data disclosure to auditors and regulators
-- You require RBAC on RPC endpoints and APIs
-- You need a private network with controlled membership
+Best for **regulated financial applications** requiring transaction privacy, KYC/KYT compliance, 
+selective data disclosure to auditors, and controlled network membership with RBAC.
+
+**Avoid if** you don't need privacy or compliance controls, prefer onchain data availability 
+guarantees, or want to minimize operational complexity.
 
 **Required components:**
 
-- Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
-- Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream) recommended)
+- Consensus layer ([Maru](../../../protocol/repos.mdx#maru)) with QBFT (minimum 4 nodes)
+- Execution layer ([Linea Besu](../../../protocol/repos.mdx#linea-besu-upstream) recommended)
 - [Sequencer](../../../protocol/architecture/sequencer/index.mdx)
-- [Coordinator](../../../protocol/architecture/coordinator.mdx) and [prover](../../../protocol/architecture/prover/index.mdx)
+- [Coordinator](../../../protocol/architecture/coordinator.mdx) and
+  [prover](../../../protocol/architecture/prover/index.mdx)
 - [State manager](../../../protocol/architecture/state-manager.mdx)
 - Private RPC nodes with RBAC
 - API portal (for institution onboarding)
 
-**Trust assumptions:**
+### Hybrid
 
-- Data availability providers will make data available when needed
-- Validator set follows consensus protocol (QBFT provides fault tolerance)
-- Finalization layer inherits security from Ethereum
+Best for networks needing **both public and private transaction types**, or organizations 
+**transitioning from private to public** with flexibility in data availability strategy.
 
-**Operational complexity:** High
-
-- Private node set management
-- RBAC configuration and management
-- API portal operations
-- Data availability redundancy
-
-**When not to choose Private Validium:**
-
-- You don't need transaction privacy
-- You don't need regulatory compliance controls
-- You prefer onchain data availability guarantees
-- You want to minimize operational complexity
-
-## Hybrid
-
-**Choose Hybrid if:**
-
-- You need both public and private transaction types
-- You're transitioning from private to public
-- You need flexibility in data availability strategy
-
-**Required components:**
-
-- All Private Validium components
-- Additional configuration for selective data availability
-
-**Trust assumptions:**
-
-- Same as Private Validium for private transactions
-- Onchain data availability for public transactions
-
-**Operational complexity:** Very high
-
-- All Private Validium complexity
-- Additional complexity managing selective data availability
-- More complex monitoring and troubleshooting
-
-**When not to choose Hybrid:**
-
-- You can satisfy requirements with Private Validium or Public
-- You want to minimize operational complexity
-- You're deploying your first network
+**Avoid if** Private Validium or Public can satisfy your requirements, you want to minimize 
+complexity, or this is your first deployment.
 
 :::note
-
-Hybrid deployment model documentation is under development. Configuration and operational procedures
-will be documented as the feature matures.
-
+Hybrid deployment model documentation is under development.
 :::
 
-## Public
+### Public
 
-**Choose Public if:**
+Best for **maximum transparency** with onchain data availability guarantees, without privacy or 
+compliance requirements.
 
 - You require maximum transparency
 - You want onchain data availability guarantees
@@ -118,8 +75,10 @@ will be documented as the feature matures.
 
 **Required components:**
 
-- Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
-- Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), or [Erigon](/network/how-to/run-a-node/erigon))
+- Consensus layer ([Maru](../../../protocol/repos.mdx#maru)) with QBFT (minimum 4 nodes)
+- Execution layer ([Linea Besu](../../../protocol/repos.mdx#linea-besu-upstream),
+  [Geth](../../../network/how-to/run-a-node/geth.mdx), or
+  [Erigon](../../../network/how-to/run-a-node/erigon.mdx))
 - [Sequencer](../../../protocol/architecture/sequencer/index.mdx)
 - [Coordinator](../../../protocol/architecture/coordinator.mdx) and [prover](../../../protocol/architecture/prover/index.mdx)
 - [State manager](../../../protocol/architecture/state-manager.mdx)
@@ -144,11 +103,44 @@ will be documented as the feature matures.
 - You need RBAC on RPC endpoints
 
 :::note
-
-Public deployment model documentation is under development. Configuration and operational procedures
-will be documented as the feature matures.
-
+Public deployment model documentation is under development.
 :::
+
+## Required components
+
+All deployment models share a common base architecture. The table below highlights the differences.
+
+| Component | Private Validium | Hybrid | Public |
+|-----------|------------------|--------|--------|
+| Consensus layer ([Maru](../../../protocol/repos.mdx#maru) with QBFT) | ✅ Min. 4 nodes | ✅ Min. 4 nodes | ✅ Min. 4 nodes |
+| Execution layer | [Linea Besu](../../../protocol/repos.mdx#linea-besu-upstream) | [Linea Besu](../../../protocol/repos.mdx#linea-besu-upstream) | Linea Besu, [Geth](../../../network/how-to/run-a-node/geth.mdx), or [Erigon](../../../network/how-to/run-a-node/erigon.mdx) |
+| [Sequencer](../../../protocol/architecture/sequencer/index.mdx) | ✅ | ✅ | ✅ |
+| [Coordinator](../../../protocol/architecture/coordinator.mdx) and [prover](../../../protocol/architecture/prover/index.mdx) | ✅ | ✅ | ✅ |
+| [State manager](../../../protocol/architecture/state-manager.mdx) | ✅ | ✅ | ✅ |
+| RPC nodes | Private with RBAC | Private with RBAC | Public (no access controls) |
+| API portal | ✅ For institution onboarding | ✅ | ❌ |
+| Selective DA configuration | ❌ | ✅ | ❌ |
+
+## Trust assumptions
+
+All models inherit security from Ethereum through the finalization layer, and assume the validator 
+set follows the QBFT consensus protocol.
+
+| Aspect | Private Validium | Hybrid | Public |
+|--------|------------------|--------|--------|
+| Data availability | Offchain providers | Selective (offchain or onchain per tx) | Onchain (EIP-4844 blobs) |
+| DA trust model | Providers make data available when needed | Mixed | Ethereum DA guarantees |
+
+## Operational burden
+
+| Task | Private Validium | Hybrid | Public |
+|------|------------------|--------|--------|
+| Private node set management | ✅ | ✅ | ❌ |
+| RBAC configuration | ✅ | ✅ | ❌ |
+| API portal operations | ✅ | ✅ | ❌ |
+| DA redundancy management | ✅ | ✅ | ❌ |
+| Selective DA configuration | ❌ | ✅ | ❌ |
+| **Overall complexity** | High | Very high | Moderate |
 
 ## Recommendation
 
