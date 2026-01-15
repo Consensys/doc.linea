@@ -60,7 +60,7 @@ In a fully-public network, these components run on externally reachable nodes. I
 
 ### Internal protocol services
 
-These services are required for proof generation and finalization but are **not** exposed publicly.
+These services are required for proof generation and finalization but are **not** exposed publicly:
 
 - Sequencer
 - Coordinator
@@ -77,7 +77,7 @@ responsibility and deployment footprint.
 
 ### Maru
 
-[Maru](../../protocol/repos.mdx#maru), the consensus client runs on validator nodes and coordinates 
+[Maru](../../protocol/repos.mdx#maru), the consensus client, runs on validator nodes and coordinates 
 block production and consensus participation. 
 
 <details>
@@ -96,8 +96,8 @@ number of faulty nodes).
 
 ### Linea Besu
 
-The execution layer client, [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream) executes 
-transactions and maintains EVM state. 
+The execution layer client, [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream), executes 
+transactions and maintains the EVM state. 
 
 ### Sequencer
 
@@ -106,7 +106,7 @@ Typically deployed as a protected internal service.
 
 :::info
 
-Because the Besu Execution Layer (EL) client is fully extensible with plugins, this allow operators to extend and apply arbitrary business logic such as enforcing regulatory logic at the block building level, controlling which transactions may be executed by the EVM.
+Because the Besu Execution Layer (EL) client is fully extensible with plugins, operators can extend and apply arbitrary business logic, such as enforcing regulatory logic at the block building level, and controlling which transactions may be executed by the EVM.
 
 :::
 
@@ -136,15 +136,15 @@ The [tracer](../../protocol/architecture/tracer.mdx) generates execution traces 
 These architectural components support transactions from submission to
 finalization. 
 
-1. Submission: Transactions enter the mempool via RPC entrypoint of a [full node](#full-nodes).
-2. Block building: [sequencer](../../protocol/architecture/sequencer/index.mdx) orders and executes transactions into blocks.
-3. State tracking: [state manager](../../protocol/architecture/state-manager.mdx) updates state representation;
-   [tracer](../../protocol/repos.mdx#linea-tracer) generates traces.
-4. Conflation: [coordinator](../../protocol/architecture/coordinator.mdx) groups blocks into batches.
-5. Proof generation: [prover](../../protocol/architecture/prover/index.mdx) generates execution proofs for batches.
-6. Blob creation: [coordinator](../../protocol/architecture/coordinator.mdx) combines batches into blobs; 
-[prover](../../protocol/architecture/prover/index.mdx) generates compression proofs.
-7. Finalization: [coordinator](../../protocol/architecture/coordinator.mdx) submits proofs to finalization 
+1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
+2. Block building: the[sequencer](../../protocol/architecture/sequencer/index.mdx) orders and executes transactions into blocks.
+3. State tracking: the [state manager](../../protocol/architecture/state-manager.mdx) updates the state representation;
+   the [tracer](../../protocol/repos.mdx#linea-tracer) generates traces.
+4. Conflation: the [coordinator](../../protocol/architecture/coordinator.mdx) groups blocks into batches.
+5. Proof generation: the [prover](../../protocol/architecture/prover/index.mdx) generates execution proofs for batches.
+6. Blob creation: the [coordinator](../../protocol/architecture/coordinator.mdx) combines batches into blobs; 
+the [prover](../../protocol/architecture/prover/index.mdx) generates compression proofs.
+7. Finalization: the [coordinator](../../protocol/architecture/coordinator.mdx) submits proofs to the finalization 
 layer; after verification and epoch delay, transactions reach hard finality.
 
 :::info
@@ -160,11 +160,11 @@ Smart contracts execute small programs that rely on the EVM's trustless correctn
 
 The Linea stack includes system contracts deployed in two locations:
 
-- On the finalization layer: The finalization contract validates [zk-SNARK](../../protocol/zero-knowledge-glossary#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge) proofs and records finalized state roots. This contract must be deployed on the [finalization layer](./data-availability-finalization.mdx).
+- **On the finalization layer:** The finalization contract validates [zk-SNARK](../../protocol/zero-knowledge-glossary#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge) proofs and records finalized state roots. This contract must be deployed on the [finalization layer](./data-availability-finalization.mdx).
 
-- On the Linea network itself: Contracts such as `Settlement` and `TokenFactory` are deployed on your Linea network instance to enable token issuance, settlement workflows, and other network-specific functionality.
+- **On the Linea network itself:** Contracts such as `Settlement` and `TokenFactory` are deployed on your Linea network instance to enable token issuance, settlement workflows, and other network-specific functionality.
 
-- On both layers: Bridge contracts are deployed on both the destination chain and the Linea network to enable cross-chain token transfers and message passing.
+- **On both layers:** Bridge contracts are deployed on both the destination chain and the Linea network to enable cross-chain token transfers and message passing.
 
 For details on all system contracts, see [smart contracts](./smart-contracts.mdx).
 
@@ -208,7 +208,7 @@ Full nodes are often run with both clients in the same container. These clients 
   style={{display: 'block', margin: '0 auto', width: 500}}
 />
 
-The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru signs and broadcasts it.
+The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it.
 
 ### RPC nodes
 
@@ -225,7 +225,7 @@ A near-head node maintains a replicated view of the blockchain focused on the ca
 
 #### Archive nodes
 
-An archive node maintains a complete, durable record of the blockchain from genesis, including all blocks and associated state transitions. Unlike a near-head node, it retains full historical state, enabling exact reconstruction of chain state at any past block height. This service is optimized for correctness and completeness of historical data rather than minimal latency, and is provisioned with higher storage capacity and different performance characteristics. Its role in the architecture is to provide a source of truth for historical state, supporting downstream functions such as auditing, forensics, analytics, and historical consistency checks.
+An archive node maintains a complete, durable record of the blockchain from genesis, including all blocks and associated state transitions. Unlike a near-head node, it retains a full historical state, enabling exact reconstruction of the chain state at any past block height. This service is optimized for correctness and completeness of historical data rather than minimal latency, and is provisioned with higher storage capacity and different performance characteristics. Its role in the architecture is to provide a source of truth for the historical state, supporting downstream functions such as auditing, forensics, analytics, and historical consistency checks.
 
 ### Network topology patterns
 
