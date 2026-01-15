@@ -1,0 +1,26 @@
+---
+title: Trace expansion and proving
+sidebar_position: 14
+image: /img/socialCards/trace-expansion-and-proving.jpg
+---
+
+## What is it?
+
+The module responsible for generating the final set of data for a zero-knowledge proof, and producing that proof.
+
+## What does it do?
+
+The prover receives several sets of information from the coordinator and Linea Besu, and produces a succinct, non-interactive argument of knowledge, or zk-SNARK.
+
+The prover generates 3 types of zero-knowledge proofs to verify state transitions:
+
+- Execution proofs: Prove the correctness of transaction execution within batches
+- Compression proofs: Prove that blob compression is valid
+- Aggregation proofs: Combine multiple proofs into a single finalization proof
+
+Proof generation is computationally intensive and may be distributed across multiple prover
+instances for performance.
+
+## How does it do it?
+
+There are multiple operations involved; the first part of this module is Corset. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.

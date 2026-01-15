@@ -78,7 +78,7 @@ Deploy Maru consensus layer nodes:
 3. Configure P2P networking and static peers.
 4. Deploy Maru nodes.
 
-See [Deploy Maru](/stack/guides/deployment-guides/deploy-maru) for detailed steps.
+See [Deploy Maru](./deploy-maru.mdx) for detailed steps.
 
 ## Step 3: Deploy execution layer
 
@@ -89,7 +89,7 @@ Deploy Linea Besu execution layer:
 3. Configure execution layer to connect to Maru via Engine API.
 4. Set up static node configuration for P2P.
 
-See [Deploy execution layer](/stack/guides/deployment-guides/deploy-execution-layer) for detailed
+See [Deploy execution layer](./deploy-execution-layer.mdx) for detailed
 steps.
 
 ## Step 4: Deploy coordinator
@@ -148,7 +148,7 @@ Configure connection to finalization layer:
 
 - Set up connection to Ethereum or Linea Mainnet
 - Deploy smart contracts: Rollup and verifier contracts on finalization layer (required for
-  proof verification; see [Data availability and finalization](/stack/how-it-works/data-availability-finalization))
+  proof verification; see [Data availability and finalization](../../how-it-works/data-availability-finalization.mdx))
 - Configure finalization layer contracts
 - Set up monitoring for finalization submissions
 - Configure gas price management
@@ -159,7 +159,7 @@ Verify your deployment:
 
 1. Check all components are running and healthy.
 2. Verify P2P connectivity between nodes.
-3. Test transaction submission and execution (see [Transaction lifecycle](/protocol/transaction-lifecycle) for
+3. Test transaction submission and execution (see [Transaction lifecycle](../../../protocol/transaction-lifecycle.mdx) for
    expected flow).
 4. Verify proof generation and finalization.
 5. Test RPC endpoints and API access.
@@ -169,7 +169,7 @@ Verify your deployment:
 
 After deployment:
 
-- [Set up operational procedures](/stack/guides/operations-guides)
+- [Set up operational procedures](../operations-guides/index.mdx)
 - Configure monitoring and alerting
 - Test failure scenarios
 

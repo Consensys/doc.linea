@@ -61,7 +61,7 @@ Private Validium can finalize on:
 - Ethereum L1: Direct finalization on Ethereum with higher costs and longer finality times
 - Linea Mainnet: Finalization on Linea Mainnet with lower costs and faster finality
 
-See [Deployment Models](/stack/how-it-works/deployment-models/index.mdx) for a comparison of finalization
+See [Deployment Models](../how-it-works/deployment-models/index.mdx) for a comparison of finalization
 layer options.
 
 ## Use cases
@@ -78,9 +78,9 @@ Private Validium is ideal for:
 
 Private Validium deployments include:
 
-- Consensus layer: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
-- Execution layer: [Linea Besu](/protocol/repos#linea-besu-upstream) with sequencer plugins
-- [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and finalization (see [Transaction lifecycle](/protocol/transaction-lifecycle) for details)
+- Consensus layer: [Maru](../../protocol/repos.mdx#maru) with QBFT consensus (minimum 4 nodes)
+- Execution layer: [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream) with sequencer plugins
+- [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and finalization (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
 - [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs
 - [State manager](../../protocol/architecture/state-manager.mdx): Maintains state for proof generation
 - Private RPC nodes: RBAC-protected RPC endpoints
@@ -115,12 +115,12 @@ availability providers will make data available when needed.
 
 To deploy Private Validium:
 
-1. Review [Deployment Models](/stack/how-it-works/deployment-models/index.mdx) to understand Private Validium
+1. Review [Deployment Models](../how-it-works/deployment-models/index.mdx) to understand Private Validium
    characteristics.
-2. Follow [Deploy Private Validium](/stack/guides/deployment-guides/deploy-private-validium) for
+2. Follow [Deploy Private Validium](../guides/deployment-guides/deploy-private-validium.mdx) for
    step-by-step deployment.
 3. Configure data availability and RBAC as part of your Private Validium deployment.
-4. Set up [Operational procedures](/stack/guides/operations-guides) for monitoring and maintenance.
+4. Set up [Operational procedures](../guides/operations-guides/index.mdx) for monitoring and maintenance.
 
 ## Related documentation
 

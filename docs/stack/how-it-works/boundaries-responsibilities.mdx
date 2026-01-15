@@ -26,8 +26,8 @@ and how to handle failure scenarios.
 
 Linea provides the software components and protocols:
 
-- Consensus layer client ([Maru](/protocol/repos#maru)): QBFT consensus implementation
-- Execution layer clients: [Linea Besu](/protocol/repos#linea-besu-upstream), with support for Geth and Erigon
+- Consensus layer client ([Maru](../../protocol/repos.mdx#maru)): QBFT consensus implementation
+- Execution layer clients: [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream), with support for Geth and Erigon
 - [Sequencer](../../protocol/architecture/sequencer/index.mdx): Transaction ordering and block building
 - [Coordinator](../../protocol/architecture/coordinator.mdx): Proof generation orchestration
 - [Prover](../../protocol/architecture/prover/index.mdx): Zero-knowledge proof generation
@@ -153,7 +153,7 @@ You are responsible for:
 
 ### Bridge failure
 
-**Scenario:** Bridge components ([Postman](/protocol/repos#linea-monorepo)) fail or become unavailable.
+**Scenario:** Bridge components ([Postman](../../protocol/repos.mdx#linea-monorepo)) fail or become unavailable.
 
 **Impact:**
 
@@ -192,7 +192,7 @@ You are responsible for:
 
 ### Consensus layer failure
 
-**Scenario:** Consensus layer ([Maru](/protocol/repos#maru)) fails or network partition occurs.
+**Scenario:** Consensus layer ([Maru](../../protocol/repos.mdx#maru)) fails or network partition occurs.
 
 **Impact:**
 
@@ -286,7 +286,7 @@ You are responsible for:
 
 ## Component boundaries
 
-### Consensus layer ([Maru](/protocol/repos#maru))
+### Consensus layer ([Maru](../../protocol/repos.mdx#maru))
 
 **Responsibilities:**
 
@@ -305,7 +305,7 @@ You are responsible for:
 
 **Responsibilities:**
 
-- Transaction execution in EVM (see [Transaction lifecycle](/protocol/transaction-lifecycle) for details)
+- Transaction execution in EVM (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
 - State maintenance and updates
 - Transaction pool management
 - RPC endpoint serving (when configured as RPC node)
@@ -320,7 +320,7 @@ You are responsible for:
 
 **Responsibilities:**
 
-- Transaction ordering and block building (see [Transaction lifecycle](/protocol/transaction-lifecycle) for details)
+- Transaction ordering and block building (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
 - Transaction validation (trace limits, gas limits, calldata size)
 - Block profitability checks
 - Enforcing Linea-specific block constraints

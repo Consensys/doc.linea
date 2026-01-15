@@ -1,0 +1,27 @@
+---
+title: Coordinator
+sidebar_position: 10
+image: /img/socialCards/coordinator.jpg
+---
+
+## What is it?
+
+The Coordinator is Linea’s coordination module across a number of functions. It is also the channel through which information on the state of Ethereum comes into Linea, and through which information on the state of Linea returns to Ethereum.
+
+## What does it do?
+
+The coordinator monitors block production, manages conflation deadlines, and ensures all required
+data is available before requesting proofs.
+
+The coordinator moves information internally, between different parts of Linea’s execution client, and externally, with other blockchains, Linea’s data availability stack, and the nodes syncing its own network state. 
+
+The coordinator is the orchestrator behind the proof generation and finalization process, responsible fo:
+
+- Batching: Groups multiple blocks into batches for efficient proof generation
+- Blob creation: Combines batches into blobs for submission to the finalization layer
+- Proof orchestration: Coordinates execution proofs, compression proofs, and aggregation proofs
+- L1 submission: Submits proofs and data to the finalization layer (such as Ethereum for public networks)
+
+## How does it do it?
+
+It achieves this through a highly modularized internal architecture. These various systems and requirements are broken out into their own environments, each one receiving input from the coordinator, and returning the corresponding output back to it.
