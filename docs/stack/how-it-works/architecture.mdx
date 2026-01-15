@@ -129,20 +129,8 @@ proof generation and recovery.
 
 ### Tracer 
 
-The [tracer](../../protocol/repos.mdx#linea-tracer) generates execution traces required for proof generation.  
+The [tracer](../../protocol/architecture/tracer.mdx) generates execution traces required for proof generation.  
 
-<details>
-<summary>Further details</summary>
-
-The tracer is a Linea Besu plugin that:
-
-- Generates execution traces during block processing
-- Provides trace counts for batch size calculations
-- Creates conflated trace files for prover input
-
-Trace data is essential for proof generation and must be available for all blocks in a batch.
-
-</details>
 
 ## Transaction lifecycle
 
