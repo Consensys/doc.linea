@@ -22,7 +22,7 @@ controls, and operational procedures.
 
 ## Private Validium
 
-Private Validium keeps transaction data offchain while maintaining cryptographic guarantees through
+A private network instance, a [Validium](./private-validium.mdx) keeps transaction data offchain while maintaining cryptographic guarantees through
 zero-knowledge proofs. This model is ideal for regulated financial institutions requiring privacy,
 compliance controls, and selective data disclosure.
 
@@ -42,18 +42,6 @@ compliance controls, and selective data disclosure.
 - Institutions needing KYC/KYT compliance controls
 - Applications requiring selective data disclosure to auditors and regulators
 - Multi-party workflows where participants should not see all transaction details
-
-### Components
-
-Private Validium deployments include:
-
-- Consensus layer ([Maru](/protocol/repos#maru)) with QBFT consensus (minimum 4 nodes)
-- Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream) recommended)
-- [Sequencer](/protocol/sequencer) with regulatory logic plugins
-- [Coordinator](/protocol/coordinator) and [prover](/protocol/prover) for proof generation
-- [State manager](/protocol/state-manager) for state tracking
-- Private RPC nodes with RBAC
-- API portal for controlled access
 
 ### Data availability
 
@@ -130,7 +118,7 @@ Consider these factors when choosing a deployment model:
 - Network topology: Do you need a private network with controlled membership?
 - Access control: Do you need RBAC on RPC endpoints and APIs?
 
-For most enterprise and regulated financial use cases, Private Validium provides the necessary
+For most enterprise and regulated financial use cases, a [private Validium](./private-validium.mdx) provides the necessary
 privacy, compliance, and access control features.
 
 ## Related documentation

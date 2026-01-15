@@ -69,8 +69,7 @@ These services are required for proof generation and finalization but are **not*
 - State manager
 - Tracer
 
-Internal services typically communicate over private networks and shared storage and should be
-protected from direct external access.
+Internal services typically communicate over operator-controlled interfaces--similar to the Engine API used between consensus and execution clients. Traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks.
 
 ## Core components
 
