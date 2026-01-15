@@ -1,0 +1,29 @@
+---
+title: Handle component failures
+description: Runbook for handling component failures in The Linea stack
+sidebar_position: 9
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+  path: docs/stack/how-it-works/boundaries-responsibilities.mdx
+todo: >-
+  Handle failures runbook needs to be written. Source material should be
+  extracted from boundaries-responsibilities documentation and operational
+  procedures.
+image: /img/socialCards/handle-component-failures.jpg
+---
+
+:::info
+
+This guide is under development. Component failure handling procedures will be documented here.
+
+:::
+
+Component failures require different responses depending on the component:
+
+- Consensus layer failures: Block production stops
+- Execution layer failures: Transaction execution stops
+- Coordinator failures: Finalization delayed
+- Prover failures: Proof generation blocked
+- State manager failures: Proof generation blocked
+
+For information about failure modes, see [Boundaries & Responsibilities](../../how-it-works/boundaries-responsibilities.mdx).

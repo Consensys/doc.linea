@@ -1705,3 +1705,58 @@ div[aria-label="Expand sidebar"] {
   background-color: currentColor !important;
   border: 1px solid currentColor !important;
 }
+
+/* Details element styling - subtle, low contrast */
+details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 0;
+  padding: 0.125rem 0.375rem;
+  margin: 1rem 0;
+}
+
+[data-theme="dark"] details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] details > summary {
+  color: #c0c0c0 !important;
+}
+
+details > summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.0625rem 0;
+  list-style: none;
+  position: relative;
+  color: inherit;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+  margin-right: 0.5rem;
+}
+
+details > div {
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  padding-bottom: 0.5rem;
+}

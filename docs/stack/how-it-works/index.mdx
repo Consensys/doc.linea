@@ -1,9 +1,52 @@
 ---
-title: Overview
-description: How It Works overview
+title: How it Works
+description: How The Linea stack works for operators
 sidebar_position: 1
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/how-it-works.jpg
 ---
 
-# How It Works - Overview
+This section introduces the Linea stack operates from an operator's perspective. It covers the
+architecture, deployment models, and component boundaries you need to understand to run a network
+effectively. 
 
-This section provides an overview of how Linea Stack works.
+## Architecture
+
+As an EVM-compatible network, the Linea stack uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility.
+
+For details on operations guides, see [operations guides](../guides/operations-guides/index.mdx).
+
+## Data availability and finalization
+
+Understanding data availability and finalization is essential for deployment decisions. For details on
+L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
+model, see [data availability and finalization](./data-availability-finalization.mdx).
+
+For details on data availability and finalization, see [data availability and finalization](./data-availability-finalization.mdx).
+
+## Deployment models
+
+The Linea stack supports three deployment models, each with different characteristics:
+
+- Private Validium: Offchain data availability, ideal for regulated financial applications
+- Hybrid: Selective data availability combining public and private elements
+- Public: Fully public network with onchain data availability
+
+For details on deployment models, see [deployment models](./deployment-models/index.mdx).
+
+## Boundaries and responsibilities
+
+Understanding component boundaries helps you:
+
+- Plan deployment and scaling strategies
+- Identify failure modes and recovery procedures
+- Make informed configuration decisions
+- Troubleshoot operational issues
+
+For details on component responsibilities and failure modes, see [boundaries and responsibilities](./boundaries-responsibilities.mdx).
+
+## Next steps
+
+- For details on how transactions flow through the system, see the Public Mainnet [transaction lifecycle](../../protocol/transaction-lifecycle.mdx).
+- Consider getting started by deploying a [minimal viable network](../guides/run-your-own-network/index.mdx).

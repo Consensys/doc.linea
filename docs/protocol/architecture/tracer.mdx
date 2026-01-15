@@ -1,0 +1,20 @@
+---
+title: Tracer
+description: How the tracer works with the Prover
+sidebar_position: 14
+image: /img/socialCards/tracer.jpg
+---
+
+## What is it?
+
+The [tracer](../repos.mdx#linea-tracer) run as a plug-in to Linea Besu. It provides the Traces API that surfaces essential data that's required for proof generation. 
+
+## What does it do?
+
+The tracer ensures that the required data is available for all blocks in a batch:
+
+- Generates execution traces during block processing
+- Provides trace counts for batch size calculations
+- Creates conflated trace files for prover input
+
+This data that represents the operations undertaken in the EVM during the block execution is passed to the prover, allowing it to generate the execution proof. 

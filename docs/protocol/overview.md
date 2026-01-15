@@ -1,44 +1,17 @@
 ---
-title: Architecture
+title: Overview
 description: 'An overview of how Linea works, what is Linea and what is a zkEVM L2?'
-sidebar_position: 1
-image: /img/socialCards/architecture.jpg
+sidebar_position: 0
+image: /img/socialCards/overview.jpg
 ---
+
+## What is Linea?
 
 Linea is a permissionless blockchain network composed of three main architectural components:
 
 - Sequencer
 - Prover
 - Bridge relayer
-
-## Current status
-
-Linea Mainnet is in beta status and the team is working toward:
-
-- Reducing proving costs
-- Reducing transaction settlement time
-- Achieving full decentralization
-
-The following represents the main components of Linea, and how they interact:
-
-<div className="responsive-graphic">
-  <picture>
-    <source
-      srcSet="/img/get_started/concepts/architecture/Linea_architecture_mobile.svg"
-      media="(max-width: 1499px)"
-    />
-    <source
-      srcSet="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
-      media="(min-width: 1500px)"
-    />
-    <img
-      src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
-      alt="Linea architecture diagram"
-    />
-  </picture>
-</div>
-
-## What is Linea?
 
 Linea's fast (2s blocks) and low-cost transactions are compressed into batches and submitted to 
 Ethereum for validation. Blockchains that submit their state changes to a finalization layer in this 
@@ -97,9 +70,18 @@ Together, these properties make Linea a zkEVM L2 network built on Ethereum.
   </div>
 </div>
 
+## Current status
+
+Linea Mainnet is in beta status and the team is working toward:
+
+- Reducing proving costs
+- Reducing transaction settlement time
+- Achieving full decentralization
+
 ## Next steps
 
+- Learn about the [technical stack](./architecture/index.mdx) that supports the protocol.
 - Learn about the [lifecycle of a transaction](./transaction-lifecycle.mdx).
-- Understand the first point of contact for many new L2 users, bridging. Linea has more than one bridge; 
-and that number is likely to continue to grow. The [Linea canonical message service](./message-service/index.mdx) 
+- Understand the first point of contact for many new L2 users, bridging. Linea has more than one bridge;
+and that number is likely to continue to grow. The [Linea canonical message service](./architecture/interoperability/message-service/index.mdx)
 is key to these bridges and how they function.

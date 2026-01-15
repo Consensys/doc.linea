@@ -1,0 +1,125 @@
+---
+title: Deployment Model Options
+description: 'Private Validium, Hybrid, and Public deployment models for The Linea stack'
+sidebar_position: 0
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+  type: rfp-sources
+image: /img/socialCards/deployment-model-options.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+];
+
+The Linea stack supports three deployment models, each optimized for different use cases and
+requirements. Your choice of deployment model affects data availability, network topology, access
+controls, and operational procedures.
+
+## Private Validium
+
+A private network instance, a [Validium](./private-validium.mdx) keeps transaction data offchain while maintaining cryptographic guarantees through
+zero-knowledge proofs. This model is ideal for regulated financial institutions requiring privacy,
+compliance controls, and selective data disclosure.
+
+### Characteristics
+
+- Data availability: Transaction data stored offchain in a private node set
+- Privacy: Transaction details not visible on the finalization layer
+- Access control: RPC endpoints protected by RBAC; only authorized participants can view data
+- Finalization: State commitments and proofs posted to finalization layer (Ethereum or Linea
+  Mainnet); see [Transaction lifecycle](../../../protocol/transaction-lifecycle.mdx) for details on the
+  finalization process
+- Network topology: Private network with controlled node membership
+
+### Use cases
+
+- Regulated financial applications requiring transaction privacy
+- Institutions needing KYC/KYT compliance controls
+- Applications requiring selective data disclosure to auditors and regulators
+- Multi-party workflows where participants should not see all transaction details
+
+### Data availability
+
+Data is stored in a private node set. Participants must trust that data availability providers will
+make data available when needed. 
+
+### Security considerations
+
+- Minimum node count: 4 nodes for QBFT fault tolerance
+- Access controls: RBAC on RPC endpoints and API portal
+- Key management: remote signing backed by a hardware security module (HSM) or key management service (KMS)
+- Network isolation: Private network topology with controlled peering
+
+## Hybrid
+
+Hybrid deployments combine public and private elements, allowing selective data availability based on
+transaction requirements. Some transactions may have onchain data availability while others remain
+private.
+
+### Characteristics
+
+- Selective data availability: Choice of onchain or offchain data per transaction
+- Flexible privacy: Public transactions visible onchain; private transactions offchain
+- Mixed access: Public RPC for public transactions; private RPC with RBAC for private
+  transactions
+- Finalization: All state commitments posted to finalization layer regardless of data
+  availability choice
+
+### Use cases
+
+- Applications needing both public and private transaction types
+- Networks transitioning from private to public
+- Use cases requiring flexibility in data availability strategy
+
+:::note
+
+Hybrid deployment model documentation is under development. Configuration and operational procedures
+will be documented as the feature matures.
+
+:::
+
+## Public
+
+Public deployments are fully public networks with onchain data availability, similar to Linea
+Mainnet. All transaction data is posted to the finalization layer using EIP-4844 blobs.
+
+### Characteristics
+
+- Data availability: All transaction data posted onchain via EIP-4844 blobs
+- Public access: Open RPC endpoints; no access controls required
+- Transparency: All transactions visible on the finalization layer
+- Finalization: State commitments, proofs, and data posted to finalization layer
+
+### Use cases
+
+- Public networks requiring maximum transparency
+- Applications benefiting from onchain data availability guarantees
+- Networks prioritizing decentralization over privacy
+
+:::note
+
+Public deployment model documentation is under development. Configuration and operational procedures
+will be documented as the feature matures.
+
+:::
+
+## Choosing a deployment model
+
+Consider these factors when choosing a deployment model:
+
+- Privacy requirements: Do you need transaction data to remain private?
+- Regulatory compliance: Do you need KYC/KYT controls and selective disclosure?
+- Data availability guarantees: How important are onchain data availability guarantees?
+- Network topology: Do you need a private network with controlled membership?
+- Access control: Do you need RBAC on RPC endpoints and APIs?
+
+For most enterprise and regulated financial use cases, a [private Validium](./private-validium.mdx) provides the necessary
+privacy, compliance, and access control features.
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />

@@ -1,9 +1,46 @@
 ---
 title: Operations Guides
-description: Operations guides for Linea Stack
+description: 'Operational procedures, runbooks, and best practices for The Linea stack'
 sidebar_position: 3
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/operations-guides.jpg
 ---
 
-# Operations Guides
+import DocCardList from '@theme/DocCardList';
 
-Operations guides for Linea Stack.
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+];
+
+This section provides operational procedures, runbooks, and best practices for running and
+maintaining Linea stack networks.
+
+## Operational procedures
+
+- [Common mistakes](./common-mistakes.mdx): Common mistakes and how to avoid
+  them
+
+:::info[Additional operational guides]
+
+The following guides are under development:
+- Monitoring: Set up monitoring and alerting
+- Backup and recovery: Backup procedures and disaster recovery
+- Scaling: Horizontal and vertical scaling strategies
+- Maintenance: Routine maintenance procedures
+- Troubleshooting: Common issues and solutions
+
+:::
+
+## Best practices
+
+- Monitoring: Set up comprehensive monitoring before going to production
+- Backups: Regular backups of state and configuration
+- Testing: Test failure scenarios and recovery procedures
+- Documentation: Keep operational procedures documented and up to date
+- Security: Regular security updates and access control reviews
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />

@@ -1,0 +1,129 @@
+---
+title: Prerequisites
+description: 'Hardware, software, and access requirements for running a Linea network'
+sidebar_position: 2
+mainSource:
+  url: 'https://github.com/Consensys/linea-monorepo'
+image: /img/socialCards/prerequisites.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+];
+
+Before deploying your Linea network, verify you have the required hardware, software, and access.
+Requirements vary by deployment model and component role.
+
+## Hardware requirements
+
+### Minimum viable network
+
+For a minimal viable network (development/testing):
+
+- Docker: v24 or higher with ~16 GB memory and 4+ CPUs
+- Storage: Sufficient for chain data growth (varies by node type)
+- Network: Connectivity for P2P communication between nodes
+
+### Production network
+
+For production deployments, requirements vary by component:
+
+- Consensus layer ([Maru](../../../protocol/repos.mdx#maru)): Moderate CPU and memory per node; minimal storage
+- Execution layer (full node): High CPU and memory; significant storage growth
+- Execution layer (archive node): Very high storage requirements
+- [Sequencer](../../../protocol/architecture/sequencer/index.mdx): High CPU and memory; moderate storage
+- [Coordinator](../../../protocol/architecture/coordinator.mdx): Moderate CPU and memory; file system for batch data
+- [Prover](../../../protocol/architecture/prover/index.mdx): Very high CPU (proof generation is computationally intensive)
+- [State manager](../../../protocol/architecture/state-manager.mdx): High memory and storage for state representation
+
+Plan for redundancy and scaling based on your workload and availability requirements.
+
+## Software requirements
+
+### Required
+
+- Docker: v24 or higher (recommended for all deployments)
+- Docker Compose: v2.19+ (for multi-component deployments)
+- Network configuration: Proper network setup for P2P communication
+
+### Optional
+
+- Binary distributions: Available as alternatives when Docker is not available
+- Kubernetes: For orchestrated deployments (advanced)
+
+:::tip
+
+Docker is the recommended deployment method. Docker simplifies installation, updates, version
+management, and operational procedures.
+
+:::
+
+## Access requirements
+
+### Infrastructure access
+
+- Credentials and permissions for your infrastructure
+- Network configuration access (firewall rules, load balancers)
+- Storage provisioning capabilities
+
+### Finalization layer access
+
+- Connection to finalization layer (Ethereum or Linea Mainnet)
+- Smart contracts: Rollup and verifier contracts deployed on finalization layer (required for
+  proof verification)
+- Gas for finalization submissions
+- Monitoring for finalization submissions
+
+For details on finalization layer requirements, L2/L3 relationships, and smart contract
+deployment, see [data availability and finalization](../../how-it-works/data-availability-finalization.mdx).
+
+### Private Validium additional requirements
+
+- RBAC system: For RPC endpoint and API access controls
+- API portal: For institution onboarding and management
+- Key management: Remote signing backed by a hardware security module (HSM) or key management service (KMS)
+- Data availability infrastructure: Private node set
+
+## Network topology
+
+Plan your network topology:
+
+- P2P networking: Ensure nodes can communicate via P2P ports
+- Internal services: [Sequencer](../../../protocol/architecture/sequencer/index.mdx), [coordinator](../../../protocol/architecture/coordinator.mdx), and [prover](../../../protocol/architecture/prover/index.mdx) should be on private networks
+- RPC access: RPC nodes may be behind load balancers and access controls
+- Minimum nodes: 4 nodes minimum for QBFT consensus fault tolerance
+
+## Validator set requirements
+
+For QBFT consensus:
+
+- Minimum nodes: 4 nodes for fault tolerance (3f+1 where f is the number of faulty nodes)
+- Fault tolerance: Can tolerate up to 1/3 of nodes being faulty
+- Network partitions: Partitions affecting more than 1/3 of nodes can cause consensus failure
+
+## Security considerations
+
+Before production:
+
+- Key management strategy: Remote signing backed by a hardware security module (HSM) or key management service (KMS)
+- Access control configuration (RBAC for Private Validium)
+- Network isolation and firewall rules
+- Monitoring and alerting setup
+- Backup and disaster recovery procedures
+
+## Next steps
+
+After verifying prerequisites:
+
+1. Deploy a [minimal viable network](./minimal-viable-network.mdx) to
+   validate your setup
+2. Review [production hardening](./production-hardening.mdx)
+   requirements
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />

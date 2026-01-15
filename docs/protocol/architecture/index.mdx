@@ -1,0 +1,159 @@
+---
+title: Architecture
+description: Protocol architecture overview and core components of Linea
+image: /img/socialCards/architecture.jpg
+---
+
+As an EVM-compatible protocol, Linea uses a dual-layer architecture that separates consensus from
+execution. This separation enables independent evolution of protocol components while preserving
+deterministic execution, verifiable state transitions, and Ethereum-level security guarantees.
+
+This page describes the protocol view of Linea: the logical components, their responsibilities,
+and how they interact to process transactions and reach finality.
+
+For operational deployment details, see the [the Linea stack](../../stack/index.mdx).
+
+## Dual-layer architecture
+
+The Linea protocol separates consensus from execution:
+
+- Consensus layer: Responsible for block production, validator coordination, and block propagation
+- Execution layer: Responsible for executing transactions, maintaining EVM state, and exposing a
+  standard execution interface
+
+Each block is proposed by the execution layer while the consensus layer signs and broadcasts it.
+
+The two layers communicate via the Engine API, a standard Ethereum interface that cleanly
+separates consensus logic from execution semantics. This separation allows Linea to support client
+diversity and protocol extensibility without coupling execution correctness to consensus mechanics.
+
+## Protocol components
+
+The Linea protocol consists of the following logical components. These components define protocol
+behavior and guarantees. The following represents the main components of Linea, and how they interact:
+
+<div className="responsive-graphic">
+  <picture>
+    <source
+      srcSet="/img/get_started/concepts/architecture/Linea_architecture_mobile.svg"
+      media="(max-width: 1499px)"
+    />
+    <source
+      srcSet="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
+      media="(min-width: 1500px)"
+    />
+    <img
+      src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
+      alt="Linea architecture diagram"
+    />
+  </picture>
+</div>
+
+
+### Consensus layer
+
+[Maru](../repos.mdx#maru) implements the consensus layer of the Linea protocol. It coordinates
+validator participation, block production, and block propagation using the QBFT algorithm.
+
+Maru ensures agreement on block ordering and provides fault tolerance under Byzantine conditions.
+
+### Execution layer
+
+[Linea Besu](../repos.mdx#linea-besu-upstream) is the recommended execution client for the Linea
+protocol. It executes transactions, maintains EVM state, and exposes the execution interface used
+by the consensus layer.
+
+:::info
+
+While all execution clients maintain the EVM state and execute transactions, only Linea Besu provides
+full protocol-specific
+extensions required for sequencing, tracing, and proof generation, including speed optimizations, and features like
+  [`linea_estimateGas`](../../api/reference/linea-estimategas).
+
+[Geth](../../network/how-to/run-a-node/geth.mdx) and [Erigon](../../network/how-to/run-a-node/erigon.mdx) are more suitable for follower or archive roles, respectively.
+
+:::
+
+### Sequencer
+
+The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea
+protocol rules. It enforces constraints on block composition and ensures that execution outputs are
+suitable for downstream proving.
+
+### Coordinator
+
+The [coordinator](./coordinator.mdx) orchestrates batching, proof generation, and submission to the
+finalization layer. It coordinates the interaction between execution outputs, state tracking, and
+proof systems.
+
+### Prover
+
+The [prover](./prover/index.mdx) generates zero-knowledge proofs attesting to correct state
+transitions. These proofs provide cryptographic guarantees that execution followed the protocol
+rules without requiring re-execution on the finalization layer.
+
+### State manager
+
+The [Shomei state manager](./state-manager.mdx) maintains a state representation optimized for
+proof generation and verification. It tracks state transitions and produces the data required to
+construct zk-SNARK proofs.
+
+### Tracer
+
+The [tracer](../repos.mdx#linea-tracer) produces execution traces during transaction processing.
+Trace data is used as input to the proving system and is essential for validating execution
+correctness.
+
+## Onchain system contracts
+
+Smart contracts execute deterministic programs on the EVM and are immutable once deployed. The
+Linea protocol relies on a set of onchain system contracts that define settlement, verification,
+and cross-chain interaction.
+
+These contracts are deployed in the following locations:
+
+### Finalization layer
+
+The finalization contract verifies zk-SNARK proofs and records finalized state roots. It anchors
+Linea state to the security guarantees of the finalization layer.
+
+### Linea execution layer
+
+Protocol contracts deployed on Linea enable settlement workflows, token issuance, and
+network-specific functionality.
+
+### Both layers
+
+Bridge contracts deployed on both Linea and the finalization layer enable cross-chain message
+passing and asset transfers. For protocol-specific bridge mechanics, see the
+[canonical token bridge](./interoperability/canonical-token-bridge.mdx) and the
+[message service](./interoperability/message-service/index.mdx).
+
+For a complete list and descriptions of the smart contracts used on the Public Network, see
+[system smart contracts](../../network/build/contracts.mdx).
+
+## Data availability and finalization
+
+The Linea protocol separates state correctness from data availability. zk-SNARK proofs attest
+to correct execution, while data availability guarantees depend on the chosen deployment model:
+
+- Private Validium deployments
+  Transaction data is retained offchain within a private node set; only proofs and finalized state
+  roots are submitted to the finalization layer.
+
+- Hybrid deployments
+  Data availability varies by transaction type.
+
+- Public deployments
+  Transaction data and associated payloads are posted to the finalization layer, for example via
+  EIP-4844 blobs on Ethereum.
+
+For protocol-level context on batching, finality, and data publication, see
+[transaction lifecycle](../transaction-lifecycle.mdx) and [network data](../network-data.mdx).
+
+## Next steps
+
+- Walk through [transaction lifecycle](../transaction-lifecycle.mdx)
+- Review bridge mechanics in the [message service](./interoperability/message-service/index.mdx)
+- Review cross-chain settlement in the [canonical token bridge](./interoperability/canonical-token-bridge.mdx)
+- Understand protocol fees in [gas](../tokenomics/gas.mdx) and [burn](../tokenomics/burn.mdx)

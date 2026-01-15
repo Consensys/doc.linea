@@ -141,7 +141,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "protocol/architecture",
+            docId: "protocol/architecture/index",
             position: "left",
             label: "Protocol",
           },

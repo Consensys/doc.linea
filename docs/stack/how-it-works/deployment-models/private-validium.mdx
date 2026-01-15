@@ -1,0 +1,157 @@
+---
+title: Private Validium
+description: An overview of how the Linea stack services privacy needs
+sidebar_position: 2
+mainSource: rfp-sources
+image: /img/socialCards/private-validium.jpg
+---
+
+## Validium differentiators
+
+Notice that, to support private transactions, the [operations guides](../../guides/operations-guides/index.mdx) for Validium
+mode leverages:
+
+- Private RPC nodes with RBAC
+- API portal for controlled access
+
+In Validium mode, the Linea network proves state transitions using zk-SNARKs while retaining transaction data within a private data-availability layer. After blocks are produced by the sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state transition is generated and submitted to the finalization layer. 
+
+Unlike public deployments, raw transaction data is not posted onchain. The operator determines where transaction data is stored to suit privacy and security requirments (not shown below).
+
+Operators may also choose how to handle remote signing, opting for alternatives to Web3 signer if they have a preference.
+
+<!-- todo: is it an issue that Mermaid is not yet showing how Transaction data is stored offchain in a private node set rather than posted to the finalization layer. -->
+
+### Private network system setup
+
+```mermaid
+flowchart TB
+  %% =========================
+  %% Styling (Linea-inspired)
+  %% =========================
+  classDef core fill:#0E5E56,color:#ffffff,stroke:#0E5E56,stroke-width:1px;
+  classDef access fill:#ffffff,color:#000000,stroke:#0E5E56,stroke-width:1.5px;
+  classDef control fill:#ffffff,color:#0E5E56,stroke:#0E5E56,stroke-width:1.5px,stroke-dasharray: 6 4;
+  classDef neutral fill:#ffffff,color:#000000,stroke:#000000,stroke-width:1px;
+  classDef invisible fill:transparent,stroke:transparent,color:transparent;
+
+  %% =========================
+  %% External actors + control plane
+  %% =========================
+  TrustedPartners[Trusted partners]:::neutral
+  RBAC[RBAC / access control]:::control
+  TrustedPartners --> RBAC
+
+  %% =========================
+  %% Operator-controlled boundary
+  %% =========================
+  subgraph PrivateNetwork["Linea Private Network"]
+    direction TB
+
+    subgraph AccessTooling["Access and tooling"]
+      direction LR
+      APIPortal[API portal]:::access
+      BlockExplorer[Block explorer]:::access
+    end
+
+    subgraph RPCServices["RPC services"]
+      direction TB
+      NearHead[Near-head RPC nodes]:::access
+      Archive[Archive RPC nodes]:::access
+    end
+
+    subgraph OnchainContracts["Onchain system contracts"]
+      direction LR
+      subgraph ContractsCore["Settlement and messaging"]
+        direction TB
+        SettlementContract[Settlement contract]:::core
+        MessageBridgeContracts[Message bridge contracts]:::core
+      end
+      subgraph ContractsTokens["Token contracts"]
+        direction TB
+        TokenIssuanceContract[Token issuance contract]:::core
+        TokenBridgeContracts[Token bridge contracts]:::core
+      end
+    end
+
+    subgraph InternalServices["Internal protocol services"]
+      direction TB
+
+      subgraph CoreRow["Core services"]
+        direction LR
+        StateManager[State manager]:::core
+        Tracer[Tracer]:::core
+        Prover[Prover]:::core
+      end
+
+      subgraph ExecRow["Execution services"]
+        direction LR
+        Web3Signer[Web3 signer]:::core
+        Sequencer[Sequencer]:::core
+      end
+
+      Coordinator[Coordinator]:::core
+
+      %% Anchor node to force proof flow to exit from the bottom
+      CoordOut(( )):::invisible
+    end
+
+    ValidiumRelayers[Validium message relayers]:::control
+  end
+
+  %% RBAC controls access/tooling
+  RBAC --> APIPortal
+  RBAC --> BlockExplorer
+
+  %% Tooling consumes RPC
+  APIPortal --> RPCServices
+  BlockExplorer --> RPCServices
+
+  %% RPC reads chain state
+  RPCServices --> OnchainContracts
+
+  %% Internal services interact with onchain contracts
+  InternalServices --> OnchainContracts
+
+  %% Proof spine (exit from bottom via anchor)
+  Coordinator --> CoordOut
+  CoordOut --> ZKProofs[zk proofs]:::neutral
+
+  %% =========================
+  %% Bottom row: align finalization layer and external blockchains
+  %% =========================
+  subgraph BottomRow["Settlement and interoperability"]
+    direction LR
+
+    subgraph FinalizationLayer["Finalization layer"]
+      direction LR
+      FinalizationContract[Finalization / message bridge contract]:::core
+      FinalizationTokenBridge[Token bridge contract]:::core
+    end
+
+    subgraph ExternalChains["External blockchains"]
+      direction LR
+      EnterpriseChain[Enterprise blockchain]:::neutral
+      PublicChain[Public blockchain]:::neutral
+    end
+  end
+
+  %% Proof submission to finalization
+  ZKProofs --> FinalizationContract
+
+  %% Relaying path
+  OnchainContracts --> ValidiumRelayers
+  ValidiumRelayers --> EnterpriseChain
+  ValidiumRelayers --> PublicChain
+```
+
+## Getting started
+
+To deploy a private Validium instance:
+
+1. Review [deployment models](./index.mdx) to understand the Validium characteristics.
+2. Follow [deploy private Validium](../../guides/deployment-guides/deploy-private-validium.mdx) for
+   step-by-step deployment.
+3. Configure <!-- todo: does this need to be built out [Data availability](../../guides/configuration-guides/configure-data-availability.mdx) --> data availability
+   and <!-- todo: does this need to be built out [RBAC](../../guides/configuration-guides/configure-rbac.mdx) --> RBAC.
+4. Set up [Operational procedures](../../guides/operations-guides/index.mdx) for monitoring and maintenance.
