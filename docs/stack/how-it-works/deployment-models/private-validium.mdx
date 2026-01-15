@@ -14,9 +14,11 @@ mode leverages:
 - Private RPC nodes with RBAC
 - API portal for controlled access
 
-In Validium mode, the Linea network operates as a zero-knowledge (ZK) rollup, meaning that once the sequencer has generated blocks, the blocks are aggregated and batched, then a ZK-proof ensuring the validity of the state transition induced by those blocks is generated and posted on the finalization layer. This ensures that the blocks are provable without leaking private data. 
+In Validium mode, the Linea network proves state transitions using zk-SNARKs while retaining transaction data within a private data-availability layer. After blocks are produced by the sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state transition is generated and submitted to the finalization layer. 
 
-Furthermore, the operator can also determine where transaction data is stored to suit privacy and security requirments (not shown below).
+Unlike public deployments, raw transaction data is not posted onchain. The operator determines where transaction data is stored to suit privacy and security requirments (not shown below).
+
+Operators may also choose how to handle remote signing, opting for alternatives to Web3 signer if they have a preference.
 
 <!-- todo: is it an issue that Mermaid is not yet showing how Transaction data is stored offchain in a private node set rather than posted to the finalization layer. -->
 

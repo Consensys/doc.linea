@@ -85,7 +85,7 @@ deployment, see [data availability and finalization](../../how-it-works/data-ava
 
 - RBAC system: For RPC endpoint and API access controls
 - API portal: For institution onboarding and management
-- Key management: Web3Signer with KMS for signing operations
+- Key management: Remote signing backed by a hardware security module (HSM) or key management service (KMS)
 - Data availability infrastructure: Private node set
 
 ## Network topology
@@ -109,7 +109,7 @@ For QBFT consensus:
 
 Before production:
 
-- Key management strategy (Web3Signer with KMS recommended)
+- Key management strategy: Remote signing backed by a hardware security module (HSM) or key management service (KMS)
 - Access control configuration (RBAC for Private Validium)
 - Network isolation and firewall rules
 - Monitoring and alerting setup

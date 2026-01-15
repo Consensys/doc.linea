@@ -1752,8 +1752,6 @@ details > summary::before {
 
 details[open] > summary::before {
   transform: rotate(90deg);
-  border-width: 8px 5px 0 5px;
-  border-color: var(--linea-link-highlight-color) transparent transparent transparent;
   margin-right: 0.5rem;
 }
 
