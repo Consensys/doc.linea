@@ -28,13 +28,13 @@ compliance controls, and selective data disclosure.
 
 ### Characteristics
 
-- **Data availability**: Transaction data stored offchain in a private node set
-- **Privacy**: Transaction details not visible on the finalization layer
-- **Access control**: RPC endpoints protected by RBAC; only authorized participants can view data
-- **Finalization**: State commitments and proofs posted to finalization layer (Ethereum or Linea
+- Data availability: Transaction data stored offchain in a private node set
+- Privacy: Transaction details not visible on the finalization layer
+- Access control: RPC endpoints protected by RBAC; only authorized participants can view data
+- Finalization: State commitments and proofs posted to finalization layer (Ethereum or Linea
   Mainnet); see [Transaction lifecycle](/protocol/transaction-lifecycle) for details on the
   finalization process
-- **Network topology**: Private network with controlled node membership
+- Network topology: Private network with controlled node membership
 
 ### Use cases
 
@@ -75,11 +75,11 @@ private.
 
 ### Characteristics
 
-- **Selective data availability**: Choice of onchain or offchain data per transaction
-- **Flexible privacy**: Public transactions visible onchain; private transactions offchain
-- **Mixed access**: Public RPC for public transactions; private RPC with RBAC for private
+- Selective data availability: Choice of onchain or offchain data per transaction
+- Flexible privacy: Public transactions visible onchain; private transactions offchain
+- Mixed access: Public RPC for public transactions; private RPC with RBAC for private
   transactions
-- **Finalization**: All state commitments posted to finalization layer regardless of data
+- Finalization: All state commitments posted to finalization layer regardless of data
   availability choice
 
 ### Use cases
@@ -102,10 +102,10 @@ Mainnet. All transaction data is posted to the finalization layer using EIP-4844
 
 ### Characteristics
 
-- **Data availability**: All transaction data posted onchain via EIP-4844 blobs
-- **Public access**: Open RPC endpoints; no access controls required
-- **Transparency**: All transactions visible on the finalization layer
-- **Finalization**: State commitments, proofs, and data posted to finalization layer
+- Data availability: All transaction data posted onchain via EIP-4844 blobs
+- Public access: Open RPC endpoints; no access controls required
+- Transparency: All transactions visible on the finalization layer
+- Finalization: State commitments, proofs, and data posted to finalization layer
 
 ### Use cases
 
@@ -124,11 +124,11 @@ will be documented as the feature matures.
 
 Consider these factors when choosing a deployment model:
 
-- **Privacy requirements**: Do you need transaction data to remain private?
-- **Regulatory compliance**: Do you need KYC/KYT controls and selective disclosure?
-- **Data availability guarantees**: How important are onchain data availability guarantees?
-- **Network topology**: Do you need a private network with controlled membership?
-- **Access control**: Do you need RBAC on RPC endpoints and APIs?
+- Privacy requirements: Do you need transaction data to remain private?
+- Regulatory compliance: Do you need KYC/KYT controls and selective disclosure?
+- Data availability guarantees: How important are onchain data availability guarantees?
+- Network topology: Do you need a private network with controlled membership?
+- Access control: Do you need RBAC on RPC endpoints and APIs?
 
 For most enterprise and regulated financial use cases, Private Validium provides the necessary
 privacy, compliance, and access control features.

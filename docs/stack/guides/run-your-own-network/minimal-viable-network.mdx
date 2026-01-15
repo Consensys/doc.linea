@@ -23,36 +23,36 @@ the system before production deployment.
 
 A minimal viable network requires these components:
 
-1. **Consensus layer**: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
-2. **Execution layer**: [Linea Besu](/protocol/repos#linea-besu-upstream) nodes (sequencer + at least one full node)
-3. **[Coordinator](/protocol/coordinator)**: Orchestrates proof generation and finalization
-4. **[Prover](/protocol/prover)**: Generates zero-knowledge proofs (at least one instance)
-5. **[State manager](/protocol/state-manager)**: Maintains state for proof generation
+1. Consensus layer: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
+2. Execution layer: [Linea Besu](/protocol/repos#linea-besu-upstream) nodes (sequencer + at least one full node)
+3. [Coordinator](/protocol/coordinator): Orchestrates proof generation and finalization
+4. [Prover](/protocol/prover): Generates zero-knowledge proofs (at least one instance)
+5. [State manager](/protocol/state-manager): Maintains state for proof generation
 
 ### Component roles
 
-- **Consensus layer**: Handles block production and consensus
-- **Execution layer (sequencer)**: Orders and executes transactions into blocks
-- **Execution layer (full nodes)**: Serve RPC requests and maintain state
-- **[Coordinator](/protocol/coordinator)**: Groups blocks into batches and coordinates proof generation
-- **[Prover](/protocol/prover)**: Generates proofs for batches
-- **[State manager](/protocol/state-manager)**: Provides state data for proof generation
+- Consensus layer: Handles block production and consensus
+- Execution layer (sequencer): Orders and executes transactions into blocks
+- Execution layer (full nodes): Serve RPC requests and maintain state
+- [Coordinator](/protocol/coordinator): Groups blocks into batches and coordinates proof generation
+- [Prover](/protocol/prover): Generates proofs for batches
+- [State manager](/protocol/state-manager): Provides state data for proof generation
 
 ## What can be stubbed or deferred
 
 These components can be simplified or deferred in a minimal viable network:
 
-- **RPC nodes**: A single full node can serve RPC requests (no load balancing required)
-- **Archive nodes**: Not required for MVN (only needed for historical data access)
-- **Multiple prover instances**: Single prover instance is sufficient for MVN
-- **RBAC and API portal**: Can be deferred for Private Validium MVN (add before production)
-- **Data availability redundancy**: Single node set is sufficient for MVN testing
-- **Monitoring and alerting**: Basic logging is sufficient for MVN (comprehensive monitoring required
+- RPC nodes: A single full node can serve RPC requests (no load balancing required)
+- Archive nodes: Not required for MVN (only needed for historical data access)
+- Multiple prover instances: Single prover instance is sufficient for MVN
+- RBAC and API portal: Can be deferred for Private Validium MVN (add before production)
+- Data availability redundancy: Single node set is sufficient for MVN testing
+- Monitoring and alerting: Basic logging is sufficient for MVN (comprehensive monitoring required
   for production)
 
 ## Required vs. recommended
 
-### Required for MVN
+### Required for minimal viable network
 
 - All core components listed above
 - Minimum 4 nodes for QBFT consensus
@@ -61,52 +61,52 @@ These components can be simplified or deferred in a minimal viable network:
   finalization](/stack/how-it-works/data-availability-finalization) for details on finalization
   layer requirements)
 
-### Recommended for MVN
+### Recommended for minimal viable network
 
 - Docker Compose for orchestration
 - Basic monitoring (logs, component health)
 - Backup of configuration and keys
 - Test transaction submission and execution
 
-### Required for production (not MVN)
+### Required for production
 
 - RBAC and access controls (Private Validium)
 - Comprehensive monitoring and alerting
 - Backup and disaster recovery procedures
-- Production hardening (see [Production hardening](/stack/guides/run-your-own-network/production-hardening))
+- Production hardening (see [production hardening](./production-hardening.mdx))
 - Data availability redundancy
 - Multiple prover instances for redundancy
 
-## Security guarantees missing in MVN
+## Security guarantees missing in minimal viable network
 
 A minimal viable network does not provide:
 
-- **Production-grade security**: MVN is for development and testing only
-- **High availability**: Single instances of components (no redundancy)
-- **Access controls**: RBAC and API portal deferred (Private Validium)
-- **Comprehensive monitoring**: Basic logging only
-- **Disaster recovery**: No tested backup and recovery procedures
-- **Network isolation**: May use shared networks for simplicity
+- Production-grade security: MVN is for development and testing only
+- High availability: Single instances of components (no redundancy)
+- Access controls: RBAC and API portal deferred (Private Validium)
+- Comprehensive monitoring: Basic logging only
+- Disaster recovery: No tested backup and recovery procedures
+- Network isolation: May use shared networks for simplicity
 
 ## What this setup is not suitable for
 
 Do not use a minimal viable network for:
 
-- **Production workloads**: Missing security, monitoring, and redundancy
-- **Regulated financial applications**: Missing compliance controls and audit trails
-- **High-availability requirements**: No redundancy or failover
-- **Production data**: No tested backup and recovery
-- **Public access**: Missing access controls and security hardening
+- Production workloads: Missing security, monitoring, and redundancy
+- Regulated financial applications: Missing compliance controls and audit trails
+- High-availability requirements: No redundancy or failover
+- Production data: No tested backup and recovery
+- Public access: Missing access controls and security hardening
 
 ## Deployment steps
 
-1. **Deploy consensus layer**: [Deploy Maru](/stack/guides/deployment-guides/deploy-maru) with minimum 4 nodes
-2. **Deploy execution layer**: [Deploy execution layer](/stack/guides/deployment-guides/deploy-execution-layer)
+1. Deploy consensus layer: [Deploy Maru](../deployment-guides/deploy-maru.mdx) with minimum 4 nodes
+2. Deploy execution layer: [Deploy execution layer](../deployment-guides/deploy-execution-layer.mdx)
    with sequencer and at least one full node
-3. **Deploy coordinator**: See coordinator deployment guide (placeholder)
-4. **Deploy prover**: See prover deployment guide (placeholder)
-5. **Deploy state manager**: See state manager deployment guide (placeholder)
-6. **Verify deployment**: Test transaction submission, execution, and finalization
+3. Deploy coordinator: See coordinator deployment guide (placeholder)
+4. Deploy prover: See prover deployment guide (placeholder)
+5. Deploy state manager: See state manager deployment guide (placeholder)
+6. Verify deployment: Test transaction submission, execution, and finalization
 
 ## Validation checklist
 
@@ -123,7 +123,7 @@ After deploying your MVN, verify:
 
 After validating your minimal viable network:
 
-1. Understand what's missing for production (see [Production hardening](/stack/guides/run-your-own-network/production-hardening))
+1. Understand what's missing for production (see [production hardening](./production-hardening.mdx))
 2. Test failure scenarios to understand component dependencies
 3. Plan production deployment with required security, monitoring, and redundancy
 

@@ -111,10 +111,10 @@ bin/besu --profile=advanced-mainnet
 
 Linea Besu supports profiles for different configurations:
 
-- **`basic-mainnet`**: Basic node without Linea-specific features
-- **`advanced-mainnet`**: Full Linea features including `linea_estimateGas`
-- **`basic-sepolia`**: Basic node for Sepolia testnet
-- **`advanced-sepolia`**: Full features for Sepolia testnet
+- `basic-mainnet`: Basic node without Linea-specific features
+- `advanced-mainnet`: Full Linea features including `linea_estimateGas`
+- `basic-sepolia`: Basic node for Sepolia testnet
+- `advanced-sepolia`: Full features for Sepolia testnet
 
 Use `advanced-*` profiles for operator nodes requiring Linea-specific features.
 
@@ -193,8 +193,8 @@ Configure P2P networking:
 
 Plan storage based on node type:
 
-- **Full node**: Moderate storage, grows with network activity
-- **Archive node**: Very high storage requirements for complete history
+- Full node: Moderate storage, grows with network activity
+- Archive node: Very high storage requirements for complete history
 
 Use `data-storage-format="BONSAI"` for efficient storage.
 
@@ -202,11 +202,11 @@ Use `data-storage-format="BONSAI"` for efficient storage.
 
 Execution layer uses these ports:
 
-- **8545**: JSON-RPC HTTP
-- **8546**: JSON-RPC WebSocket
-- **8550**: Engine API (for Maru)
-- **30303**: P2P networking (TCP and UDP)
-- **9545**: Metrics endpoint
+- 8545: JSON-RPC HTTP
+- 8546: JSON-RPC WebSocket
+- 8550: Engine API (for Maru)
+- 30303: P2P networking (TCP and UDP)
+- 9545: Metrics endpoint
 
 ## Connect to Maru
 

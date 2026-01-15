@@ -7,35 +7,35 @@ mainSource:
 image: /img/socialCards/how-it-works.jpg
 ---
 
-This section explains how the Linea stack operates from an operator's perspective. It covers the
+This section introduces the Linea stack operates from an operator's perspective. It covers the
 architecture, deployment models, and component boundaries you need to understand to run a network
 effectively. 
 
 ## Architecture
 
-As an EVM-compatible protocol, the Linea stack uses a dual-layer architecture separating consensus (Maru) from execution (Besu/Geth). This design enables modular deployment, client diversity, and operational flexibility.
+As an EVM-compatible network, the Linea stack uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility.
 
-[Learn about how components interact and their roles in the network →](/stack/how-it-works/architecture)
+For details on component interactions and roles, see the [architecture overview](./architecture.mdx).
 
 ## Data availability and finalization
 
-Understanding data availability and finalization is essential for deployment decisions. Learn about
+Understanding data availability and finalization is essential for deployment decisions. For details on
 L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
-model.
+model, see [data availability and finalization](./data-availability-finalization.mdx).
 
-[Learn about data availability and finalization →](/stack/how-it-works/data-availability-finalization)
+For details on data availability and finalization, see [data availability and finalization](./data-availability-finalization.mdx).
 
 ## Deployment models
 
 The Linea stack supports three deployment models, each with different characteristics:
 
-- **Private Validium**: Offchain data availability, ideal for regulated financial applications
-- **Hybrid**: Selective data availability combining public and private elements
-- **Public**: Fully public network with onchain data availability
+- Private Validium: Offchain data availability, ideal for regulated financial applications
+- Hybrid: Selective data availability combining public and private elements
+- Public: Fully public network with onchain data availability
 
-[Learn about deployment models →](/stack/how-it-works/deployment-models)
+For details on deployment models, see [deployment models](./deployment-models/index.mdx).
 
-## Boundaries & responsibilities
+## Boundaries and responsibilities
 
 Understanding component boundaries helps you:
 
@@ -44,9 +44,9 @@ Understanding component boundaries helps you:
 - Make informed configuration decisions
 - Troubleshoot operational issues
 
-[Learn about what each component is responsible for and failure modes →](/stack/how-it-works/boundaries-responsibilities)
+For details on component responsibilities and failure modes, see [boundaries and responsibilities](./boundaries-responsibilities.mdx).
 
 ## Next steps
 
-- For details on how transactions flow through the system, see the Public Mainnet [transaction lifecycle](/protocol/transaction-lifecycle).
+- For details on how transactions flow through the system, see the Public Mainnet [transaction lifecycle](../../protocol/transaction-lifecycle.mdx).
 - Consider getting started by deploying a [minimal viable network](../guides/run-your-own-network/index.mdx).

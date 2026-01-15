@@ -30,13 +30,13 @@ data offchain while maintaining cryptographic guarantees through zero-knowledge 
 
 A Private Validium deployment includes:
 
-- **Consensus layer**: Maru with QBFT consensus (minimum 4 nodes)
-- **Execution layer**: Linea Besu nodes (sequencer + full nodes)
-- **Coordinator**: Orchestrates proof generation and finalization
-- **Prover**: Generates zero-knowledge proofs
-- **State manager**: Maintains state for proof generation
-- **RPC nodes**: Private RPC endpoints with RBAC
-- **API portal**: Controlled access to network functionality
+- Consensus layer: Maru with QBFT consensus (minimum 4 nodes)
+- Execution layer: Linea Besu nodes (sequencer + full nodes)
+- Coordinator: Orchestrates proof generation and finalization
+- Prover: Generates zero-knowledge proofs
+- State manager: Maintains state for proof generation
+- RPC nodes: Private RPC endpoints with RBAC
+- API portal: Controlled access to network functionality
 
 ## Step 1: Prepare infrastructure
 
@@ -53,12 +53,12 @@ Configure your network for private operation:
 
 Allocate resources for each component type:
 
-- **Consensus nodes (Maru)**: Moderate CPU/memory per node
-- **Execution nodes (Besu)**: High CPU/memory, significant storage
-- **Sequencer**: High CPU/memory
-- **Coordinator**: Moderate CPU/memory, file system for batches
-- **Prover**: Very high CPU (proof generation)
-- **State manager**: High memory/storage
+- Consensus nodes (Maru): Moderate CPU/memory per node
+- Execution nodes (Besu): High CPU/memory, significant storage
+- Sequencer: High CPU/memory
+- Coordinator: Moderate CPU/memory, file system for batches
+- Prover: Very high CPU (proof generation)
+- State manager: High memory/storage
 
 ### Storage
 
@@ -147,7 +147,7 @@ Configure RBAC and access controls:
 Configure connection to finalization layer:
 
 - Set up connection to Ethereum or Linea Mainnet
-- **Deploy smart contracts**: Rollup and verifier contracts on finalization layer (required for
+- Deploy smart contracts: Rollup and verifier contracts on finalization layer (required for
   proof verification; see [Data availability and finalization](/stack/how-it-works/data-availability-finalization))
 - Configure finalization layer contracts
 - Set up monitoring for finalization submissions

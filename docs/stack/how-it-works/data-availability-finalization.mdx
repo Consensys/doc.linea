@@ -74,8 +74,8 @@ commitments for verification and hard finality.
 
 Your network's layer designation depends on your finalization layer:
 
-- **L2**: If your finalization layer is an L1 (e.g., Ethereum), your network is an L2
-- **L3**: If your finalization layer is an L2 (e.g., Linea Mainnet), your network is an L3
+- L2: If your finalization layer is an L1 (e.g., Ethereum), your network is an L2
+- L3: If your finalization layer is an L2 (e.g., Linea Mainnet), your network is an L3
 
 **Example:**
 
@@ -103,8 +103,8 @@ Your network's layer designation depends on your finalization layer:
 
 **You must deploy smart contracts on your finalization layer:**
 
-1. **Rollup contract**: Stores rollup blocks, monitors state updates, and tracks deposits
-2. **Verifier contract**: Verifies zero-knowledge proofs submitted by your coordinator
+1. Rollup contract: Stores rollup blocks, monitors state updates, and tracks deposits
+2. Verifier contract: Verifies zero-knowledge proofs submitted by your coordinator
 
 **How it works:**
 
@@ -132,39 +132,39 @@ finalize batches. These contracts are required for proof verification and state 
 
 **Data availability** and **finalization** are separate concerns:
 
-- **Data availability**: Where transaction data is stored (onchain vs. offchain)
-- **Finalization**: Where proofs and state commitments are verified (L1 vs. L2)
+- Data availability: Where transaction data is stored (onchain vs. offchain)
+- Finalization: Where proofs and state commitments are verified (L1 vs. L2)
 
 **Examples:**
 
-- **Private Validium on Ethereum**: Offchain data availability, L1 finalization (L2)
-- **Private Validium on Linea Mainnet**: Offchain data availability, L2 finalization (L3)
-- **Public on Ethereum**: Onchain data availability, L1 finalization (L2)
-- **Public on Linea Mainnet**: Onchain data availability, L2 finalization (L3)
+- Private Validium on Ethereum: Offchain data availability, L1 finalization (L2)
+- Private Validium on Linea Mainnet: Offchain data availability, L2 finalization (L3)
+- Public on Ethereum: Onchain data availability, L1 finalization (L2)
+- Public on Linea Mainnet: Onchain data availability, L2 finalization (L3)
 
 ## Operational implications
 
 ### For Private Validium
 
-- **Data availability**: You must ensure private node set redundancy and backup
-- **Finalization**: You must deploy contracts on your chosen finalization layer
-- **Trust assumptions**: You trust data availability providers; finalization layer provides security
+- Data availability: You must ensure private node set redundancy and backup
+- Finalization: You must deploy contracts on your chosen finalization layer
+- Trust assumptions: You trust data availability providers; finalization layer provides security
 
 ### For Public
 
-- **Data availability**: Finalization layer provides onchain data availability
-- **Finalization**: You must deploy contracts on your chosen finalization layer
-- **Trust assumptions**: Finalization layer provides both data availability and security
+- Data availability: Finalization layer provides onchain data availability
+- Finalization: You must deploy contracts on your chosen finalization layer
+- Trust assumptions: Finalization layer provides both data availability and security
 
 ### Choosing a finalization layer
 
 Consider:
 
-- **Security requirements**: L1 finalization provides maximum security; L2 finalization is sufficient
+- Security requirements: L1 finalization provides maximum security; L2 finalization is sufficient
   for many use cases
-- **Cost**: L2 finalization is cheaper than L1
-- **Finality time**: L2 finalization may be faster than L1
-- **Contract deployment**: You must deploy contracts on your chosen finalization layer
+- Cost: L2 finalization is cheaper than L1
+- Finality time: L2 finalization may be faster than L1
+- Contract deployment: You must deploy contracts on your chosen finalization layer
 
 ## Related documentation
 

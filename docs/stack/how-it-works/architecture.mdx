@@ -48,14 +48,14 @@ From an operational perspective, the Linea stack is composed of three broad clas
 In a fully-public network, these components run on externally reachable nodes, other deployment types 
 may [assume different strategies](#network-topology-patterns).
 
-- **Validator nodes**  
+- Validator nodes  
   Participate in QBFT consensus. Validator nodes run a consensus client and an execution client.
 
-- **Full nodes**  
+- Full nodes  
   Maintain full chain state, verify blocks, and serve RPC requests. Full nodes do not necessarily
   participate in consensus.
 
-- **RPC nodes**  
+- RPC nodes  
   Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head access or
   configured as archive nodes for historical queries.
 
@@ -144,10 +144,10 @@ submission to the finalization layer.
 
 The coordinator orchestrates the proof generation and finalization process:
 
-- **Batching**: Groups multiple blocks into batches for efficient proof generation
-- **Blob creation**: Combines batches into blobs for submission to the finalization layer
-- **Proof orchestration**: Coordinates execution proofs, compression proofs, and aggregation proofs
-- **L1 submission**: Submits proofs and data to the finalization layer (Ethereum or Linea Mainnet)
+- Batching: Groups multiple blocks into batches for efficient proof generation
+- Blob creation: Combines batches into blobs for submission to the finalization layer
+- Proof orchestration: Coordinates execution proofs, compression proofs, and aggregation proofs
+- L1 submission: Submits proofs and data to the finalization layer (Ethereum or Linea Mainnet)
 
 The coordinator monitors block production, manages conflation deadlines, and ensures all required
 data is available before requesting proofs.
@@ -164,9 +164,9 @@ scaled horizontally to meet throughput requirements.
 
 The prover generates 3 types of zero-knowledge proofs to verify state transitions:
 
-- **Execution proofs**: Prove the correctness of transaction execution within batches
-- **Compression proofs**: Prove that blob compression is valid
-- **Aggregation proofs**: Combine multiple proofs into a single finalization proof
+- Execution proofs: Prove the correctness of transaction execution within batches
+- Compression proofs: Prove that blob compression is valid
+- Aggregation proofs: Combine multiple proofs into a single finalization proof
 
 Proof generation is computationally intensive and may be distributed across multiple prover
 instances for performance.
@@ -216,15 +216,15 @@ Trace data is essential for proof generation and must be available for all block
 These architectural components support transactions from submission to
 finalization. 
 
-1. **Submission**: Transactions enter the mempool via RPC entrypoint of a [full node](#full-nodes).
-2. **Block building**: [sequencer](../../protocol/sequencer/index.mdx) orders and executes transactions into blocks.
-3. **State tracking**: [state manager](../../protocol/state-manager.mdx) updates state representation;
+1. Submission: Transactions enter the mempool via RPC entrypoint of a [full node](#full-nodes).
+2. Block building: [sequencer](../../protocol/sequencer/index.mdx) orders and executes transactions into blocks.
+3. State tracking: [state manager](../../protocol/state-manager.mdx) updates state representation;
    [tracer](../../protocol/repos.mdx#linea-tracer) generates traces.
-4. **Conflation**: [coordinator](../../protocol/coordinator.mdx) groups blocks into batches.
-5. **Proof generation**: [prover](../../protocol/prover/index.mdx) generates execution proofs for batches.
-6. **Blob creation**: [coordinator](../../protocol/coordinator.mdx) combines batches into blobs; 
+4. Conflation: [coordinator](../../protocol/coordinator.mdx) groups blocks into batches.
+5. Proof generation: [prover](../../protocol/prover/index.mdx) generates execution proofs for batches.
+6. Blob creation: [coordinator](../../protocol/coordinator.mdx) combines batches into blobs; 
 [prover](../../protocol/prover/index.mdx) generates compression proofs.
-7. **Finalization**: [coordinator](../../protocol/coordinator.mdx) submits proofs to finalization 
+7. Finalization: [coordinator](../../protocol/coordinator.mdx) submits proofs to finalization 
 layer; after verification and epoch delay, transactions reach hard finality.
 
 :::info
@@ -284,37 +284,35 @@ network state and participate in consensus:
 
 RPC nodes provide API access to the network:
 
-- **Near-head nodes**: Optimized for low-latency access to recent state
-- **Archive nodes**: Maintain complete historical state for auditing and analysis
+- Near-head nodes: Optimized for low-latency access to recent state
+- Archive nodes: Maintain complete historical state for auditing and analysis
 
 RPC nodes may be deployed behind load balancers and access controls (RBAC) for private networks.
 
 ### Network topology patterns
 
-Network topology varies by deployment model:
+Network topology varies by [deployment model](./deployment-models/index.mdx):
 
-- **Private networks**  
+- Private networks  
   All components run within controlled infrastructure. Data availability and access controls are
   enforced.
 
-- **Hybrid networks**  
+- Hybrid networks  
   Internal services and private data availability coexist with selective public interaction.
 
-- **Public networks**  
+- Public networks  
   Data availability is onchain, and components interact with public infrastructure.
-
-For a full comparison, see [deployment models](./deployment-models/index.mdx).
 
 ## Data availability
 
 Proofs and associated payloads are submitted to the finalization layer to provide data availability 
 guarantees. Your data availability strategy depends on your deployment model:
 
-- **Private Validium**: Data stored offchain with private node set; no onchain data posting
-- **Hybrid**: Selective data availability based on transaction type
-- **Public**: Data posted to finalization layer using EIP-4844 blobs
+- Private Validium: Data stored offchain with private node set; no onchain data posting
+- Hybrid: Selective data availability based on transaction type
+- Public: Data posted to finalization layer using EIP-4844 blobs
 
-For details on data availability, finalization layers, and L2/L3 relationships, see 
+For details on data availability and choices around finalization layers, see 
 [data availability and finalization](./data-availability-finalization.mdx).
 
 ## Related documentation

@@ -24,21 +24,21 @@ Requirements vary by deployment model and component role.
 
 For a minimal viable network (development/testing):
 
-- **Docker**: v24 or higher with ~16 GB memory and 4+ CPUs
-- **Storage**: Sufficient for chain data growth (varies by node type)
-- **Network**: Connectivity for P2P communication between nodes
+- Docker: v24 or higher with ~16 GB memory and 4+ CPUs
+- Storage: Sufficient for chain data growth (varies by node type)
+- Network: Connectivity for P2P communication between nodes
 
 ### Production network
 
 For production deployments, requirements vary by component:
 
-- **Consensus layer ([Maru](/protocol/repos#maru))**: Moderate CPU and memory per node; minimal storage
-- **Execution layer (full node)**: High CPU and memory; significant storage growth
-- **Execution layer (archive node)**: Very high storage requirements
-- **[Sequencer](/protocol/sequencer)**: High CPU and memory; moderate storage
-- **[Coordinator](/protocol/coordinator)**: Moderate CPU and memory; file system for batch data
-- **[Prover](/protocol/prover)**: Very high CPU (proof generation is computationally intensive)
-- **[State manager](/protocol/state-manager)**: High memory and storage for state representation
+- Consensus layer ([Maru](/protocol/repos#maru)): Moderate CPU and memory per node; minimal storage
+- Execution layer (full node): High CPU and memory; significant storage growth
+- Execution layer (archive node): Very high storage requirements
+- [Sequencer](/protocol/sequencer): High CPU and memory; moderate storage
+- [Coordinator](/protocol/coordinator): Moderate CPU and memory; file system for batch data
+- [Prover](/protocol/prover): Very high CPU (proof generation is computationally intensive)
+- [State manager](/protocol/state-manager): High memory and storage for state representation
 
 Plan for redundancy and scaling based on your workload and availability requirements.
 
@@ -46,14 +46,14 @@ Plan for redundancy and scaling based on your workload and availability requirem
 
 ### Required
 
-- **Docker**: v24 or higher (recommended for all deployments)
-- **Docker Compose**: v2.19+ (for multi-component deployments)
-- **Network configuration**: Proper network setup for P2P communication
+- Docker: v24 or higher (recommended for all deployments)
+- Docker Compose: v2.19+ (for multi-component deployments)
+- Network configuration: Proper network setup for P2P communication
 
 ### Optional
 
-- **Binary distributions**: Available as alternatives when Docker is not available
-- **Kubernetes**: For orchestrated deployments (advanced)
+- Binary distributions: Available as alternatives when Docker is not available
+- Kubernetes: For orchestrated deployments (advanced)
 
 :::tip
 
@@ -73,37 +73,37 @@ management, and operational procedures.
 ### Finalization layer access
 
 - Connection to finalization layer (Ethereum or Linea Mainnet)
-- **Smart contracts**: Rollup and verifier contracts deployed on finalization layer (required for
+- Smart contracts: Rollup and verifier contracts deployed on finalization layer (required for
   proof verification)
 - Gas for finalization submissions
 - Monitoring for finalization submissions
 
 For details on finalization layer requirements, L2/L3 relationships, and smart contract
-deployment, see [Data availability and finalization](/stack/how-it-works/data-availability-finalization).
+deployment, see [data availability and finalization](../../how-it-works/data-availability-finalization.mdx).
 
 ### Private Validium additional requirements
 
-- **RBAC system**: For RPC endpoint and API access controls
-- **API portal**: For institution onboarding and management
-- **Key management**: Web3Signer with KMS for signing operations
-- **Data availability infrastructure**: Private node set
+- RBAC system: For RPC endpoint and API access controls
+- API portal: For institution onboarding and management
+- Key management: Web3Signer with KMS for signing operations
+- Data availability infrastructure: Private node set
 
 ## Network topology
 
 Plan your network topology:
 
-- **P2P networking**: Ensure nodes can communicate via P2P ports
-- **Internal services**: [Sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), and [prover](/protocol/prover) should be on private networks
-- **RPC access**: RPC nodes may be behind load balancers and access controls
-- **Minimum nodes**: 4 nodes minimum for QBFT consensus fault tolerance
+- P2P networking: Ensure nodes can communicate via P2P ports
+- Internal services: [Sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), and [prover](/protocol/prover) should be on private networks
+- RPC access: RPC nodes may be behind load balancers and access controls
+- Minimum nodes: 4 nodes minimum for QBFT consensus fault tolerance
 
 ## Validator set requirements
 
 For QBFT consensus:
 
-- **Minimum nodes**: 4 nodes for fault tolerance (3f+1 where f is the number of faulty nodes)
-- **Fault tolerance**: Can tolerate up to 1/3 of nodes being faulty
-- **Network partitions**: Partitions affecting more than 1/3 of nodes can cause consensus failure
+- Minimum nodes: 4 nodes for fault tolerance (3f+1 where f is the number of faulty nodes)
+- Fault tolerance: Can tolerate up to 1/3 of nodes being faulty
+- Network partitions: Partitions affecting more than 1/3 of nodes can cause consensus failure
 
 ## Security considerations
 
@@ -119,9 +119,9 @@ Before production:
 
 After verifying prerequisites:
 
-1. Deploy a [Minimal viable network](/stack/guides/run-your-own-network/minimal-viable-network) to
+1. Deploy a [minimal viable network](./minimal-viable-network.mdx) to
    validate your setup
-2. Review [Production hardening](/stack/guides/run-your-own-network/production-hardening)
+2. Review [production hardening](./production-hardening.mdx)
    requirements
 
 ## Related documentation

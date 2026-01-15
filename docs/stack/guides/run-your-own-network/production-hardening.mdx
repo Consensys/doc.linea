@@ -22,33 +22,33 @@ production workloads. Do not skip these steps.
 
 ### Access controls
 
-- **RBAC**: Configure role-based access control on RPC endpoints and APIs (Private Validium)
-- **API portal**: Set up controlled access to network functionality (Private Validium)
-- **Network isolation**: Deploy internal services ([sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), [prover](/protocol/prover)) on private networks
-- **Firewall rules**: Restrict access to required ports only
+- RBAC: Configure role-based access control on RPC endpoints and APIs (Private Validium)
+- API portal: Set up controlled access to network functionality (Private Validium)
+- Network isolation: Deploy internal services ([sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), [prover](/protocol/prover)) on private networks
+- Firewall rules: Restrict access to required ports only
 
 ### Key management
 
-- **Web3Signer with KMS**: Use hardware security modules or cloud KMS for signing operations
-- **Key rotation**: Establish key rotation procedures
-- **Backup**: Secure backup of keys and configuration
+- Web3Signer with KMS: Use hardware security modules or cloud KMS for signing operations
+- Key rotation: Establish key rotation procedures
+- Backup: Secure backup of keys and configuration
 
 ### Network security
 
-- **TLS**: Use TLS for all external communications
-- **VPN**: Use VPN for administrative access
-- **DDoS protection**: Protect RPC endpoints from DDoS attacks
+- TLS: Use TLS for all external communications
+- VPN: Use VPN for administrative access
+- DDoS protection: Protect RPC endpoints from DDoS attacks
 
 ## Monitoring and alerting
 
 ### Required monitoring
 
-- **Component health**: Monitor all components for availability and errors
-- **Block production**: Monitor block production rate and consensus health
-- **Proof generation**: Monitor proof generation latency and success rate
-- **Finalization**: Monitor finalization submission success and timing
-- **Network connectivity**: Monitor P2P connectivity between nodes
-- **Resource usage**: Monitor CPU, memory, and storage usage
+- Component health: Monitor all components for availability and errors
+- Block production: Monitor block production rate and consensus health
+- Proof generation: Monitor proof generation latency and success rate
+- Finalization: Monitor finalization submission success and timing
+- Network connectivity: Monitor P2P connectivity between nodes
+- Resource usage: Monitor CPU, memory, and storage usage
 
 ### Alerting
 
@@ -75,77 +75,77 @@ Create dashboards for:
 
 ### Component redundancy
 
-- **Consensus layer**: Multiple Maru instances (minimum 4 for QBFT)
-- **Execution layer**: Multiple execution client instances behind load balancer
-- **[Prover](/protocol/prover)**: Multiple prover instances for redundancy
-- **RPC nodes**: Multiple RPC nodes behind load balancer
+- Consensus layer: Multiple Maru instances (minimum 4 for QBFT)
+- Execution layer: Multiple execution client instances behind load balancer
+- [Prover](/protocol/prover): Multiple prover instances for redundancy
+- RPC nodes: Multiple RPC nodes behind load balancer
 
 ### High availability
 
-- **Active-passive**: Consider active-passive setup for [sequencer](/protocol/sequencer) and [coordinator](/protocol/coordinator)
-- **Archive nodes**: Deploy archive nodes for historical data access and recovery
-- **Disaster recovery**: Test backup and recovery procedures
+- Active-passive: Consider active-passive setup for [sequencer](/protocol/sequencer) and [coordinator](/protocol/coordinator)
+- Archive nodes: Deploy archive nodes for historical data access and recovery
+- Disaster recovery: Test backup and recovery procedures
 
 ## Backup and disaster recovery
 
 ### Backup requirements
 
-- **State snapshots**: Regular backups of state manager state
-- **Configuration**: Version-controlled configuration files
-- **Keys**: Secure backup of keys (separate from operational keys)
-- **Chain data**: Consider archive node for complete historical data
+- State snapshots: Regular backups of state manager state
+- Configuration: Version-controlled configuration files
+- Keys: Secure backup of keys (separate from operational keys)
+- Chain data: Consider archive node for complete historical data
 
 ### Disaster recovery
 
-- **Recovery procedures**: Documented and tested recovery procedures
-- **RTO/RPO**: Define recovery time objectives and recovery point objectives
-- **Testing**: Regular testing of disaster recovery procedures
+- Recovery procedures: Documented and tested recovery procedures
+- RTO/RPO: Define recovery time objectives and recovery point objectives
+- Testing: Regular testing of disaster recovery procedures
 
 ## Operational procedures
 
 ### Change management
 
-- **Version updates**: Tested procedures for component version updates
-- **Configuration changes**: Change control process for configuration updates
-- **Rollback procedures**: Documented rollback procedures
+- Version updates: Tested procedures for component version updates
+- Configuration changes: Change control process for configuration updates
+- Rollback procedures: Documented rollback procedures
 
 ### Maintenance windows
 
-- **Planned maintenance**: Schedule and communicate maintenance windows
-- **Zero-downtime updates**: Plan for zero-downtime updates where possible
+- Planned maintenance: Schedule and communicate maintenance windows
+- Zero-downtime updates: Plan for zero-downtime updates where possible
 
 ### Documentation
 
-- **Runbooks**: Documented runbooks for common operational tasks
-- **Troubleshooting**: Documented troubleshooting procedures
-- **Escalation**: Defined escalation procedures
+- Runbooks: Documented runbooks for common operational tasks
+- Troubleshooting: Documented troubleshooting procedures
+- Escalation: Defined escalation procedures
 
 ## Compliance and audit
 
 ### Audit trails
 
-- **Logging**: Comprehensive logging of all operations
-- **Access logs**: Log all access to RPC endpoints and APIs
-- **Transaction logs**: Maintain transaction logs for audit purposes
+- Logging: Comprehensive logging of all operations
+- Access logs: Log all access to RPC endpoints and APIs
+- Transaction logs: Maintain transaction logs for audit purposes
 
 ### Compliance
 
-- **KYC/KYT**: Implement KYC/KYT controls (Private Validium)
-- **Data retention**: Define data retention policies
-- **Selective disclosure**: Support selective data disclosure to auditors and regulators (Private Validium)
+- KYC/KYT: Implement KYC/KYT controls (Private Validium)
+- Data retention: Define data retention policies
+- Selective disclosure: Support selective data disclosure to auditors and regulators (Private Validium)
 
 ## Performance optimization
 
 ### Resource allocation
 
-- **CPU**: Allocate sufficient CPU for proof generation ([prover](/protocol/prover))
-- **Memory**: Allocate sufficient memory for state management
-- **Storage**: Plan for storage growth based on network activity
+- CPU: Allocate sufficient CPU for proof generation ([prover](/protocol/prover))
+- Memory: Allocate sufficient memory for state management
+- Storage: Plan for storage growth based on network activity
 
 ### Scaling
 
-- **Horizontal scaling**: Plan for horizontal scaling of RPC nodes and prover instances
-- **Vertical scaling**: Plan for vertical scaling of resource-intensive components
+- Horizontal scaling: Plan for horizontal scaling of RPC nodes and prover instances
+- Vertical scaling: Plan for vertical scaling of resource-intensive components
 
 ## Pre-production checklist
 
@@ -164,8 +164,8 @@ Before going to production, verify:
 
 After production hardening:
 
-1. Review [What's next](/stack/guides/run-your-own-network/whats-next) for ongoing operations
-2. Establish [Operations Guides](/stack/guides/operations-guides) procedures
+1. Review [what's next](./whats-next.mdx) for ongoing operations
+2. Establish [operations guides](../operations-guides/index.mdx) procedures
 3. Set up regular maintenance and review cycles
 
 ## Related documentation

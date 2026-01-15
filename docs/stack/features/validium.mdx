@@ -32,18 +32,18 @@ privacy while maintaining cryptographic guarantees.
 
 RBAC controls access to network functionality:
 
-- **RPC endpoints**: Access controlled by API keys and permissions
-- **API portal**: Institution-level access controls
-- **Transaction visibility**: Participants see only transactions they're authorized to view
+- RPC endpoints: Access controlled by API keys and permissions
+- API portal: Institution-level access controls
+- Transaction visibility: Participants see only transactions they're authorized to view
 
 ### Privacy and compliance
 
 Private Validium supports regulated financial applications:
 
-- **Transaction privacy**: Transaction details not visible on finalization layer
-- **Selective disclosure**: Authorized parties (auditors, regulators) can access transaction data
-- **KYC/KYT controls**: Compliance checks can be enforced at the API and sequencer levels
-- **Audit trails**: Complete audit trails while maintaining privacy
+- Transaction privacy: Transaction details not visible on finalization layer
+- Selective disclosure: Authorized parties (auditors, regulators) can access transaction data
+- KYC/KYT controls: Compliance checks can be enforced at the API and sequencer levels
+- Audit trails: Complete audit trails while maintaining privacy
 
 ### API portal
 
@@ -58,8 +58,8 @@ The API portal provides controlled access to network functionality:
 
 Private Validium can finalize on:
 
-- **Ethereum L1**: Direct finalization on Ethereum with higher costs and longer finality times
-- **Linea Mainnet**: Finalization on Linea Mainnet with lower costs and faster finality
+- Ethereum L1: Direct finalization on Ethereum with higher costs and longer finality times
+- Linea Mainnet: Finalization on Linea Mainnet with lower costs and faster finality
 
 See [Deployment Models](/stack/how-it-works/deployment-models/index.mdx) for a comparison of finalization
 layer options.
@@ -68,24 +68,24 @@ layer options.
 
 Private Validium is ideal for:
 
-- **Regulated financial institutions**: Banks, payment processors, and financial market
+- Regulated financial institutions: Banks, payment processors, and financial market
   infrastructures requiring compliance and privacy
-- **Multi-party workflows**: Applications where participants should not see all transaction details
-- **Tokenized assets**: Issuance and settlement of tokenized securities and cash
-- **Cross-border payments**: Settlement systems requiring privacy and compliance controls
+- Multi-party workflows: Applications where participants should not see all transaction details
+- Tokenized assets: Issuance and settlement of tokenized securities and cash
+- Cross-border payments: Settlement systems requiring privacy and compliance controls
 
 ## Architecture
 
 Private Validium deployments include:
 
-- **Consensus layer**: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
-- **Execution layer**: [Linea Besu](/protocol/repos#linea-besu-upstream) with sequencer plugins
-- **[Coordinator](/protocol/coordinator)**: Orchestrates proof generation and finalization (see [Transaction lifecycle](/protocol/transaction-lifecycle) for details)
-- **[Prover](/protocol/prover)**: Generates zero-knowledge proofs
-- **[State manager](/protocol/state-manager)**: Maintains state for proof generation
-- **Private RPC nodes**: RBAC-protected RPC endpoints
-- **API portal**: Controlled access to network functionality
-- **Data availability**: Private node set for data storage
+- Consensus layer: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
+- Execution layer: [Linea Besu](/protocol/repos#linea-besu-upstream) with sequencer plugins
+- [Coordinator](/protocol/coordinator): Orchestrates proof generation and finalization (see [Transaction lifecycle](/protocol/transaction-lifecycle) for details)
+- [Prover](/protocol/prover): Generates zero-knowledge proofs
+- [State manager](/protocol/state-manager): Maintains state for proof generation
+- Private RPC nodes: RBAC-protected RPC endpoints
+- API portal: Controlled access to network functionality
+- Data availability: Private node set for data storage
 
 ## Security and trust
 
@@ -93,16 +93,16 @@ Private Validium deployments include:
 
 Private Validium requires trust in:
 
-- **Data availability providers**: Must make data available when needed
-- **Validator set**: Must follow consensus protocol (QBFT provides fault tolerance)
-- **Finalization layer**: Inherits security from Ethereum
+- Data availability providers: Must make data available when needed
+- Validator set: Must follow consensus protocol (QBFT provides fault tolerance)
+- Finalization layer: Inherits security from Ethereum
 
 ### Security features
 
-- **Minimum node count**: 4 nodes for QBFT fault tolerance
-- **Access controls**: RBAC on RPC and API endpoints
-- **Key management**: Web3Signer with KMS for signing operations
-- **Network isolation**: Private network topology
+- Minimum node count: 4 nodes for QBFT fault tolerance
+- Access controls: RBAC on RPC and API endpoints
+- Key management: Web3Signer with KMS for signing operations
+- Network isolation: Private network topology
 
 ## Data availability
 
