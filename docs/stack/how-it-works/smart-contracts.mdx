@@ -1,0 +1,192 @@
+---
+title: Smart contracts
+description: Onchain system contracts and auxiliary services for The Linea stack
+sidebar_position: 3
+mainSource:
+  type: rfp-sources
+image: /img/socialCards/smart-contracts.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/how-it-works/data-availability-finalization', label: 'Data availability and finalization'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+];
+
+The Linea stack includes onchain system contracts deployed on the finalization layer and on the
+Linea network itself, as well as auxiliary services that support network operations. Understanding
+these contracts and services is essential for operators managing deployments.
+
+## Onchain system contracts
+
+### Finalization contract (on finalization layer)
+
+**Purpose:** Validates ZK-SNARK proofs for Validium transaction batches and records finalized state
+roots on the finalization layer.
+
+**Functionality:**
+
+- Validates ZK-SNARK proofs for batches of Validium transactions
+- Records finalized state roots on the finalization layer
+- Acts as the canonical message bridge between Linea Validium and the finalization layer
+- Enables secure cross-chain communication with Ethereum-level security
+- Ensures messages execute only when the underlying ZK-SNARK proof attests to correct state
+  transitions
+
+**Reference:** Performs the same function as Linea's [Linea Rollup and L1 Messaging
+service](https://docs.linea.build/get-started/build/contracts).
+
+### Settlement contract
+
+**Purpose:** Executes token exchanges onchain that are agreed upon offchain through cryptographically
+signed messages.
+
+**Functionality:**
+
+- Supports bilateral swaps and unilateral transfers
+- Corresponds to Cross-Border Payment (CBP), Payment-versus-Payment (PvP), and Delivery-versus-Payment
+  (DvP) models
+- Acts as a neutral intermediary that validates signatures and ensures all parties have authorized
+  the exchange
+- Atomically executes token transfers (all legs succeed together or the entire transaction reverts)
+- Eliminates settlement risk through code
+
+**Security features:**
+
+- Replay protection through message-hash tracking
+- Batch execution for efficient processing
+- EIP-712 typed-data signing for human-readable authorization
+- Reentrancy guards and post-transfer balance checks
+- EIP-712 domain separation (chainId, verifyingContract) to prevent cross-chain replay
+
+### TokenFactory contract
+
+**Purpose:** Permissionless factory system for deploying and managing ERC-20 tokens entirely through
+EIP-712 signed messages.
+
+**Functionality:**
+
+- Enables anyone to deploy new tokens, mint/burn supply, and manage token operations by submitting
+  properly signed messages from the token owner
+- Supports direct operations (owners mint to themselves or burn from themselves)
+- Supports request-approval workflow: non-owners can request token issuance or redemption, which must
+  be approved by the owner through a separate signed message
+- Decouples transaction execution from authorization (signature-based rather than requiring
+  msg.sender to be the owner)
+- Enables meta-transaction patterns where executors can submit signed operations on behalf of token
+  owners
+
+**Security features:**
+
+- Replay protection through executed message hashes
+- Reentrancy guards
+- Permissionless execution model (anyone can relay signed messages without compromising security)
+
+### Native message bridge smart contract
+
+**Purpose:** Facilitates secure, proven communication of arbitrary messages and data between the
+finalization layer and the ZK-EVM.
+
+**Functionality:**
+
+- Enables crosschain calls, instructing Linea Validium to perform specific operations (minting,
+  contract interaction, data relay)
+- Sends proofs or withdrawal requests back to the finalization layer
+- Supports functionality beyond token transfers
+
+### Native token bridge smart contract
+
+**Purpose:** Secure gateway for moving ETH and ERC-20 tokens to and from the finalization layer.
+
+**Functionality:**
+
+- Uses non-custodial escrow, event tracking, and ZK-proof validation to guarantee trustlessness
+- Enables Linea Validium to interoperate directly with Ethereum while preserving asset security
+
+**Deposit flow (finalization layer → Validium):**
+
+- Users send ETH or ERC-20 tokens to the Native Token Bridge contract on the finalization layer
+- Contract locks (escrows) these assets and emits an event
+- Once observed by the contract on Linea Validium, an equivalent amount is minted or released to the
+  user's account
+
+**Withdrawal flow (Validium → finalization layer):**
+
+- Users request withdrawal from Linea Validium
+- Withdrawal is processed in a batch and proven valid using ZK-SNARKs
+- Proof and withdrawal claim are submitted to the bridge contract on the finalization layer
+- Upon verification, the bridge contract unlocks and releases the withdrawn assets
+
+**Security:**
+
+- Enforces strict verification rules (only proven withdrawals can be processed)
+- Replay and fraud protection through state roots, proofs, and event tracking across both layers
+- Maintains a registry of supported tokens and tracks total supply to ensure minted amounts never
+  exceed locked amounts
+
+## Auxiliary service
+
+### Block explorer
+
+**Technology:** Linea Validium's block explorer is an instance of Blockscout, an open-source,
+self-hosted blockchain explorer.
+
+**Purpose:** Web-based tool that lets network administrators visualize and interact with data and
+activity on the Linea Validium blockchain. Intended for troubleshooting and auditing by network
+operators. Other network participants should use the API Portal to access their transaction data.
+
+**Key features:**
+
+- **Block and transaction viewing:** Search, browse, and inspect individual blocks and all Layer 2
+  transactions, including deposits, withdrawals, internal contract calls, and batch submissions
+- **Address and balance lookup:** Search for any wallet or contract address to see transaction
+  history, current balance (ETH and ERC-20 tokens), and asset holdings
+- **Smart contract interaction:** Displays deployed contracts, their source code (if verified),
+  method calls, events, and allows users to check contract status or verify contract interactions
+- **Token tracking:** Lists native and bridged tokens, showing total supply, holders, transfer
+  history, and other metadata
+- **Bridge transactions display:** Highlights crosschain transactions, such as deposits from
+  Ethereum and withdrawals to Ethereum, showing bridging status and ZK-rollup verification steps
+- **Batch and proof visualization:** Provides transparency into ZK-rollup mechanics by showing
+  batched transaction details, state roots, and associated ZK-SNARK proofs submitted and verified
+  on the finalization layer
+- **Advanced filtering and search:** Filter transactions by block number, timestamp, sender/recipient,
+  status, or event type
+- **Event and log inspection:** View low-level event logs and emitted data from contract executions
+- **Network health and metrics:** Shows statistics such as TPS (Transactions Per Second), network
+  usage, gas costs, and rollup batch finalization rates
+- **API access:** Can be extended to offer API endpoints for automated and programmatic access to
+  blockchain data
+
+**Architecture:**
+
+- Indexing service connects to the node via JSON-RPC or WebSocket
+- Continuously fetches blocks, transactions, receipts, logs, and (optionally) traces
+- Normalizes this data into a relational schema
+- Applies additional indexing for tokens (ERC-20/721/1155), contract metadata, and verification
+  status
+- Enables decoded views of transfers and contract interactions
+- All indexed data is stored in a PostgreSQL database
+- In proof-of-concept testing, the database is hosted and controlled by Consensys (Postgres
+  container with mounted volume, VM, or managed Postgres service)
+- Behavior is configured via environment variables and config files: endpoints for the underlying
+  node, which indexers are enabled (blocks, internal transactions, logs), batch sizes and concurrency
+  for block fetching, and network metadata (chain ID, symbol, etc.)
+- The Blockscout UI and APIs query the PostgreSQL instance directly
+- Both the indexed data and the underlying chain node data remain entirely within the Consensys
+  infrastructure
+
+**Infrastructure:**
+
+- RDS database for Explorer and Coordinators (Amazon RDS provides built-in high availability
+  features such as Multi-AZ deployments)
+- In a Multi-AZ deployment, Amazon RDS automatically provisions and maintains a synchronous standby
+  replica in a different Availability Zone
+- In case of infrastructure failure, Amazon RDS performs automatic failover to the standby replica,
+  minimizing downtime
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />
