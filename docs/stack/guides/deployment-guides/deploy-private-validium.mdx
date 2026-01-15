@@ -13,7 +13,7 @@ import DocCardList from '@theme/DocCardList';
 export const relatedDocs = [
   {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
   {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
-  {type: 'link', href: '/stack/guides/configuration-guides', label: 'Configuration Guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
 ];
 
 This guide walks through deploying a Private Validium network. Private Validium keeps transaction
@@ -101,7 +101,7 @@ Deploy the coordinator:
 3. Configure connections to sequencer, state manager, and prover.
 4. Deploy coordinator service.
 
-See <!-- todo: does this need to be built out [Deploy coordinator](/stack/guides/deployment-guides/deploy-coordinator) --> coordinator deployment for detailed steps.
+Detailed coordinator deployment guide is under development.
 
 ## Step 5: Deploy prover
 
@@ -112,7 +112,7 @@ Deploy prover instances:
 3. Deploy prover instances (consider multiple for redundancy).
 4. Verify prover can access required data.
 
-See <!-- todo: does this need to be built out [Deploy prover](/stack/guides/deployment-guides/deploy-prover) --> prover deployment for detailed steps.
+Detailed prover deployment guide is under development.
 
 ## Step 6: Deploy state manager
 
@@ -123,7 +123,7 @@ Deploy state manager:
 3. Configure state manager to receive state updates.
 4. Set up state snapshot capabilities.
 
-See <!-- todo: does this need to be built out [Deploy state manager](/stack/guides/deployment-guides/deploy-state-manager) --> state manager deployment for detailed steps.
+Detailed state manager deployment guide is under development.
 
 ## Step 7: Configure data availability
 
@@ -169,10 +169,9 @@ Verify your deployment:
 
 After deployment:
 
-- [Configure your network](/stack/guides/configuration-guides)
 - [Set up operational procedures](/stack/guides/operations-guides)
-- <!-- todo: does this need to be built out [Configure monitoring and alerting](/stack/guides/operations-guides/monitoring) -->
-- <!-- todo: does this need to be built out [Test failure scenarios](/stack/guides/operations-guides/disaster-recovery) -->
+- Configure monitoring and alerting
+- Test failure scenarios
 
 ## Related documentation
 
