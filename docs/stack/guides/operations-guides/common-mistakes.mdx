@@ -152,7 +152,7 @@ Deploying Private Validium without RBAC or API portal access controls.
 
 ### How to avoid
 
-- Configure RBAC before production deployment
+- Configure Role-Based Access Control (RBAC) before production deployment
 - Set up API portal for controlled access
 - Test access controls
 - Review access control configuration regularly
@@ -171,7 +171,8 @@ Using insecure key storage or not having key rotation procedures.
 
 ### How to avoid
 
-- Use Web3Signer with KMS for key management
+- Use remote signing backed by a hardware security module (HSM) or key management
+service (KMS)
 - Implement key rotation procedures
 - Secure backup of keys
 - Never store keys in plain text
