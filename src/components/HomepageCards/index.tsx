@@ -28,7 +28,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Deploy a smart contract",
-    link: "/get-started/build/quickstart/deploy",
+    link: "/network/quickstart/deploy",
     description: (
       <>
         Learn how to deploy a smart contract on Linea.
@@ -42,7 +42,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Get Linea Testnet ETH",
-    link: "/get-started/how-to/get-testnet-eth",
+    link: "/network/how-to/get-testnet-eth",
     description: (
       <>
         Learn how to get Linea Testnet ETH so you can deploy on Linea Sepolia.
@@ -56,7 +56,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Bridge tokens",
-    link: "/get-started/how-to/bridge",
+    link: "/network/how-to/bridge",
     description: (
       <>
         Learn how to bridge your tokens from any chain to Linea.
@@ -70,7 +70,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Run a Linea node",
-    link: "/get-started/how-to/run-a-node",
+    link: "/network/how-to/run-a-node",
     description: (
       <>
         Learn how to deploy and sync a Linea node.
