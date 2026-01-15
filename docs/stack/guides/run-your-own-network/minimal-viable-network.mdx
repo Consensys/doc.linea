@@ -11,7 +11,7 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
   {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
 ];
 
@@ -87,16 +87,6 @@ A minimal viable network does not provide:
 - Comprehensive monitoring: Basic logging only
 - Disaster recovery: No tested backup and recovery procedures
 - Network isolation: May use shared networks for simplicity
-
-## What this setup is not suitable for
-
-Do not use a minimal viable network for:
-
-- Production workloads: Missing security, monitoring, and redundancy
-- Regulated financial applications: Missing compliance controls and audit trails
-- High-availability requirements: No redundancy or failover
-- Production data: No tested backup and recovery
-- Public access: Missing access controls and security hardening
 
 ## Deployment steps
 
