@@ -12,7 +12,7 @@ import DocCardList from '@theme/DocCardList';
 export const relatedDocs = [
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
-  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
 ];
 
 Before deploying your Linea network, verify you have the required hardware, software, and access.
@@ -35,10 +35,10 @@ For production deployments, requirements vary by component:
 - Consensus layer ([Maru](/protocol/repos#maru)): Moderate CPU and memory per node; minimal storage
 - Execution layer (full node): High CPU and memory; significant storage growth
 - Execution layer (archive node): Very high storage requirements
-- [Sequencer](/protocol/sequencer): High CPU and memory; moderate storage
-- [Coordinator](/protocol/coordinator): Moderate CPU and memory; file system for batch data
-- [Prover](/protocol/prover): Very high CPU (proof generation is computationally intensive)
-- [State manager](/protocol/state-manager): High memory and storage for state representation
+- [Sequencer](../../../protocol/architecture/sequencer/index.mdx): High CPU and memory; moderate storage
+- [Coordinator](../../../protocol/architecture/coordinator.mdx): Moderate CPU and memory; file system for batch data
+- [Prover](../../../protocol/architecture/prover/index.mdx): Very high CPU (proof generation is computationally intensive)
+- [State manager](../../../protocol/architecture/state-manager.mdx): High memory and storage for state representation
 
 Plan for redundancy and scaling based on your workload and availability requirements.
 
@@ -93,7 +93,7 @@ deployment, see [data availability and finalization](../../how-it-works/data-ava
 Plan your network topology:
 
 - P2P networking: Ensure nodes can communicate via P2P ports
-- Internal services: [Sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), and [prover](/protocol/prover) should be on private networks
+- Internal services: [Sequencer](../../../protocol/architecture/sequencer/index.mdx), [coordinator](../../../protocol/architecture/coordinator.mdx), and [prover](../../../protocol/architecture/prover/index.mdx) should be on private networks
 - RPC access: RPC nodes may be behind load balancers and access controls
 - Minimum nodes: 4 nodes minimum for QBFT consensus fault tolerance
 

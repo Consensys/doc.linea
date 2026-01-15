@@ -3,17 +3,24 @@ title: Private Validium
 description: An overview of how the Linea stack services privacy needs
 sidebar_position: 2
 mainSource: rfp-sources
+image: /img/socialCards/private-validium.jpg
 ---
 
 ## Validium differentiators
 
-Notice that, to support private transactions, the [architectural stack](../architecture.mdx) in Validium
+Notice that, to support private transactions, the [operations guides](../../guides/operations-guides/index.mdx) for Validium
 mode leverages:
 
 - Private RPC nodes with RBAC
 - API portal for controlled access
 
+In Validium mode, the Linea network operates as a zero-knowledge (ZK) rollup, meaning that once the sequencer has generated blocks, the blocks are aggregated and batched, then a ZK-proof ensuring the validity of the state transition induced by those blocks is generated and posted on the finalization layer. This ensures that the blocks are provable without leaking private data. 
+
+Furthermore, the operator can also determine where transaction data is stored to suit privacy and security requirments (not shown below).
+
 <!-- todo: is it an issue that Mermaid is not yet showing how Transaction data is stored offchain in a private node set rather than posted to the finalization layer. -->
+
+### Private network system setup
 
 ```mermaid
 flowchart TB

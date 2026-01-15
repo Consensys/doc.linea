@@ -1,6 +1,55 @@
 [
     {
-        "to": "/protocol/message-service",
+        "to": "/protocol/architecture",
+        "from": [
+            "/protocol/architecture/architecture",
+            "/protocol/architecture/architecture.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/sequencer",
+        "from": [
+            "/protocol/sequencer.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/prover",
+        "from": [
+            "/protocol/prover.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/coordinator",
+        "from": [
+            "/protocol/coordinator",
+            "/protocol/coordinator.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/state-manager",
+        "from": [
+            "/protocol/state-manager",
+            "/protocol/state-manager.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/interoperability/message-service",
+        "from": [
+            "/protocol/message-service",
+            "/protocol/message-service.mdx",
+            "/protocol/message-service/index",
+            "/protocol/message-service/index.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/interoperability/message-service/reference",
+        "from": [
+            "/protocol/message-service/reference",
+            "/protocol/message-service/reference.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/interoperability/message-service",
         "from": [
             "/developers/bridge-architecture/message-service",
             "/developers/use-message-bridge",
@@ -158,16 +207,18 @@
         ]
     },
     {
-        "to": "/protocol/canonical-token-bridge",
+        "to": "/protocol/architecture/interoperability/canonical-token-bridge",
         "from": [
             "/architecture/bridges",
             "/architecture/stack/bridges",
             "/architecture/stack/bridges/canonical-token-bridge",
-            "/network/concepts/canonical-token-bridge"
+            "/network/concepts/canonical-token-bridge",
+            "/protocol/canonical-token-bridge",
+            "/protocol/canonical-token-bridge.mdx"
         ]
     },
     {
-        "to": "/protocol/coordinator",
+        "to": "/protocol/architecture/coordinator",
         "from": [
             "/architecture/coordinator",
             "/architecture/stack/coordinator",
@@ -175,7 +226,7 @@
         ]
     },
     {
-        "to": "/protocol/state-manager",
+        "to": "/protocol/architecture/state-manager",
         "from": [
             "/architecture/evm-state-manager",
             "/architecture/stack/evm-state-manager",
@@ -183,7 +234,7 @@
         ]
     },
     {
-        "to": "/protocol/sequencer",
+        "to": "/protocol/architecture/sequencer",
         "from": [
             "/architecture/sequencer",
             "/architecture/stack/sequencer",
@@ -191,7 +242,7 @@
         ]
     },
     {
-        "to": "/protocol/prover",
+        "to": "/protocol/architecture/prover",
         "from": [
             "/architecture/trace-expansion-proving",
             "/architecture/stack/trace-expansion-proving",
@@ -263,38 +314,43 @@
         ]
     },
     {
-        "to": "/protocol/sequencer/conflation",
+        "to": "/protocol/architecture/sequencer/conflation",
         "from": [
             "/architecture/stack/sequencer/conflation",
-            "/network/concepts/sequencer/conflation"
+            "/network/concepts/sequencer/conflation",
+            "/protocol/sequencer/conflation.mdx"
         ]
     },
     {
-        "to": "/protocol/sequencer/traces-generator",
+        "to": "/protocol/architecture/sequencer/traces-generator",
         "from": [
             "/architecture/stack/sequencer/traces-generator",
-            "/network/concepts/sequencer/traces-generator"
+            "/network/concepts/sequencer/traces-generator",
+            "/protocol/sequencer/traces-generator.mdx"
         ]
     },
     {
-        "to": "/protocol/prover/prover-limits",
+        "to": "/protocol/architecture/prover/prover-limits",
         "from": [
             "/architecture/stack/trace-expansion-proving/prover-limits",
-            "/network/concepts/prover/prover-limits"
+            "/network/concepts/prover/prover-limits",
+            "/protocol/prover/prover-limits.mdx"
         ]
     },
     {
-        "to": "/protocol/prover/proving",
+        "to": "/protocol/architecture/prover/proving",
         "from": [
             "/architecture/stack/trace-expansion-proving/proving",
-            "/network/concepts/prover/proving"
+            "/network/concepts/prover/proving",
+            "/protocol/prover/proving.mdx"
         ]
     },
     {
-        "to": "/protocol/prover/trace-expansion",
+        "to": "/protocol/architecture/prover/trace-expansion",
         "from": [
             "/architecture/stack/trace-expansion-proving/trace-expansion",
-            "/network/concepts/prover/trace-expansion"
+            "/network/concepts/prover/trace-expansion",
+            "/protocol/prover/trace-expansion.mdx"
         ]
     },
     {
@@ -1332,7 +1388,7 @@
         ]
     },
     {
-        "to": "/protocol/burn",
+        "to": "/protocol/tokenomics/burn",
         "from": [
             "/technology/burn"
         ]
@@ -1350,7 +1406,7 @@
         ]
     },
     {
-        "to": "/protocol/gas",
+        "to": "/protocol/tokenomics/gas",
         "from": [
             "/technology/gas"
         ]
@@ -1362,55 +1418,55 @@
         ]
     },
     {
-        "to": "/protocol/canonical-token-bridge",
+        "to": "/protocol/architecture/interoperability/canonical-token-bridge",
         "from": [
             "/technology/canonical-token-bridge"
         ]
     },
     {
-        "to": "/protocol/message-service",
+        "to": "/protocol/architecture/interoperability/message-service",
         "from": [
             "/technology/message-service"
         ]
     },
     {
-        "to": "/protocol/message-service",
+        "to": "/protocol/architecture/interoperability/message-service",
         "from": [
             "/technology/message-service/index"
         ]
     },
     {
-        "to": "/protocol/message-service/reference",
+        "to": "/protocol/architecture/interoperability/message-service/reference",
         "from": [
             "/technology/message-service/reference"
         ]
     },
     {
-        "to": "/protocol/coordinator",
+        "to": "/protocol/architecture/coordinator",
         "from": [
             "/technology/coordinator"
         ]
     },
     {
-        "to": "/protocol/sequencer",
+        "to": "/protocol/architecture/sequencer",
         "from": [
             "/technology/sequencer"
         ]
     },
     {
-        "to": "/protocol/sequencer",
+        "to": "/protocol/architecture/sequencer",
         "from": [
             "/technology/sequencer/index"
         ]
     },
     {
-        "to": "/protocol/sequencer/conflation",
+        "to": "/protocol/architecture/sequencer/conflation",
         "from": [
             "/technology/sequencer/conflation"
         ]
     },
     {
-        "to": "/protocol/sequencer/traces-generator",
+        "to": "/protocol/architecture/sequencer/traces-generator",
         "from": [
             "/technology/sequencer/traces-generator"
         ]
@@ -1422,37 +1478,37 @@
         ]
     },
     {
-        "to": "/protocol/state-manager",
+        "to": "/protocol/architecture/state-manager",
         "from": [
             "/technology/state-manager"
         ]
     },
     {
-        "to": "/protocol/prover",
+        "to": "/protocol/architecture/prover",
         "from": [
             "/technology/prover"
         ]
     },
     {
-        "to": "/protocol/prover",
+        "to": "/protocol/architecture/prover",
         "from": [
             "/technology/prover/index"
         ]
     },
     {
-        "to": "/protocol/prover/proving",
+        "to": "/protocol/architecture/prover/proving",
         "from": [
             "/technology/prover/proving"
         ]
     },
     {
-        "to": "/protocol/prover/trace-expansion",
+        "to": "/protocol/architecture/prover/trace-expansion",
         "from": [
             "/technology/prover/trace-expansion"
         ]
     },
     {
-        "to": "/protocol/prover/prover-limits",
+        "to": "/protocol/architecture/prover/prover-limits",
         "from": [
             "/technology/prover/prover-limits"
         ]

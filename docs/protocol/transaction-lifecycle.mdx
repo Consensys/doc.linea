@@ -30,13 +30,13 @@ and the consensus layer [Maru](../network/how-to/run-a-node/maru.mdx))
 
 ## Step 2: Block building
 
-The Linea [sequencer](./sequencer/index.mdx) is responsible for ordering, building, and 
+The Linea [sequencer](./architecture/sequencer/index.mdx) is responsible for ordering, building, and 
 executing blocks. 
 
 The sequencer checks the validity of each transaction added to the mempool, rejecting transactions 
 as necessary. 
 
-The sequencer orders transactions, taking into account the [priority fee paid](./gas.mdx#variable-cost-and-linea_estimategas). Valid transactions are placed into blocks in the correct sequence 
+The sequencer orders transactions, taking into account the [priority fee paid](./tokenomics/gas.mdx#variable-cost-and-linea_estimategas). Valid transactions are placed into blocks in the correct sequence 
 and executed.
 
 :::note[Validity]
@@ -55,13 +55,13 @@ returned to the user's wallet as confirmation.
 ## Step 3: State tracking
 
 Data about the transaction and the state of the network at its time of execution are recorded
-in **traces**, an output of part of the sequencer called the [trace generator](./sequencer/traces-generator.mdx).
+in **traces**, an output of part of the sequencer called the [trace generator](./architecture/sequencer/traces-generator.mdx).
 
 Traces are passed to the state manager block-by-block and then used to record and track state changes 
 for batching and proof generation. With the transaction executed and state updated, the transaction 
 has reached **soft finality** and the user sees the transaction reflected and confirmed in their wallet.
 
-From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture.mdx) 
+From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture/index.mdx)
 must still reach hard finality on the finality layer.
 
 - **Components:** [Besu](../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
@@ -69,7 +69,7 @@ must still reach hard finality on the finality layer.
 
 ## Step 4: Conflation
 
-The transaction's block undergoes [conflation](./sequencer/conflation.mdx): multiple consecutive 
+The transaction's block undergoes [conflation](./architecture/sequencer/conflation.mdx): multiple consecutive 
 blocks are merged into a single batch that forms part of the package of data posted to Ethereum. 
 
 Combining transaction data lets the system generate one proof for many transactions, 
@@ -79,13 +79,13 @@ Occasionally, a batch may only consist of one block, with no conflation having t
 This occurs when chain activity levels are particularly high, and the block size is larger
 than normal.
 
-- **Components:** [Coordinator](./coordinator.mdx)
+- **Components:** [Coordinator](./architecture/coordinator.mdx)
 - **Finality:** Soft finality (Linea)
 
 ## Step 5: Proof generation
 
-Next, Linea generates a zk-proof using the transaction data. When prompted by the [coordinator](./coordinator.mdx), 
-Linea's [prover](./prover/trace-expansion.mdx) **expands** the trace, preparing it for inclusion in 
+Next, Linea generates a zk-proof using the transaction data. When prompted by the [coordinator](./architecture/coordinator.mdx), 
+Linea's [prover](./architecture/prover/trace-expansion.mdx) **expands** the trace, preparing it for inclusion in 
 the proof. The final zk-SNARK attests to the conflated batch (multiple blocks), enabling a single 
 proof to verify many transactions.
 
@@ -94,7 +94,7 @@ Linea's prover employs a two-stage method for developing the proofs, providing a
 [`gnark`](https://docs.gnark.consensys.net/), compressing the proof size even further. The resulting 
 proof is the zk-SNARK: the proof that's submitted to Ethereum.
 
-- **Components:** [Prover](./prover/index.mdx), [tracer](./sequencer/traces-generator.mdx), [Shomei state manager](./repos.mdx#shomei)
+- **Components:** [Prover](./architecture/prover/index.mdx), [tracer](./architecture/sequencer/traces-generator.mdx), [Shomei state manager](./repos.mdx#shomei)
 - **Finality:** Soft finality (Linea)
 
 ## Step 6: Batch finalization

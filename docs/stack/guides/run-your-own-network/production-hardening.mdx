@@ -24,7 +24,7 @@ production workloads. Do not skip these steps.
 
 - RBAC: Configure role-based access control on RPC endpoints and APIs (Private Validium)
 - API portal: Set up controlled access to network functionality (Private Validium)
-- Network isolation: Deploy internal services ([sequencer](/protocol/sequencer), [coordinator](/protocol/coordinator), [prover](/protocol/prover)) on private networks
+- Network isolation: Deploy internal services ([sequencer](../../../protocol/architecture/sequencer/index.mdx), [coordinator](../../../protocol/architecture/coordinator.mdx), [prover](../../../protocol/architecture/prover/index.mdx)) on private networks
 - Firewall rules: Restrict access to required ports only
 
 ### Key management
@@ -77,12 +77,12 @@ Create dashboards for:
 
 - Consensus layer: Multiple Maru instances (minimum 4 for QBFT)
 - Execution layer: Multiple execution client instances behind load balancer
-- [Prover](/protocol/prover): Multiple prover instances for redundancy
+- [Prover](../../../protocol/architecture/prover/index.mdx): Multiple prover instances for redundancy
 - RPC nodes: Multiple RPC nodes behind load balancer
 
 ### High availability
 
-- Active-passive: Consider active-passive setup for [sequencer](/protocol/sequencer) and [coordinator](/protocol/coordinator)
+- Active-passive: Consider active-passive setup for [sequencer](../../../protocol/architecture/sequencer/index.mdx) and [coordinator](../../../protocol/architecture/coordinator.mdx)
 - Archive nodes: Deploy archive nodes for historical data access and recovery
 - Disaster recovery: Test backup and recovery procedures
 
@@ -138,7 +138,7 @@ Create dashboards for:
 
 ### Resource allocation
 
-- CPU: Allocate sufficient CPU for proof generation ([prover](/protocol/prover))
+- CPU: Allocate sufficient CPU for proof generation ([prover](../../../protocol/architecture/prover/index.mdx))
 - Memory: Allocate sufficient memory for state management
 - Storage: Plan for storage growth based on network activity
 

@@ -10,7 +10,7 @@ image: /img/socialCards/boundaries--and--responsibilities.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
   {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
   {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
   {type: 'link', href: '/stack/guides/operations-guides/common-mistakes', label: 'Common mistakes'},
@@ -28,10 +28,10 @@ Linea provides the software components and protocols:
 
 - Consensus layer client ([Maru](/protocol/repos#maru)): QBFT consensus implementation
 - Execution layer clients: [Linea Besu](/protocol/repos#linea-besu-upstream), with support for Geth and Erigon
-- [Sequencer](/protocol/sequencer): Transaction ordering and block building
-- [Coordinator](/protocol/coordinator): Proof generation orchestration
-- [Prover](/protocol/prover): Zero-knowledge proof generation
-- [State manager](/protocol/state-manager): State representation for proof generation
+- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Transaction ordering and block building
+- [Coordinator](../../protocol/architecture/coordinator.mdx): Proof generation orchestration
+- [Prover](../../protocol/architecture/prover/index.mdx): Zero-knowledge proof generation
+- [State manager](../../protocol/architecture/state-manager.mdx): State representation for proof generation
 - Protocol specifications: Transaction lifecycle, finalization, and security guarantees
 
 ### You operate
@@ -73,7 +73,7 @@ You are responsible for:
 
 - Cryptographic guarantees through zero-knowledge proofs
 - Consensus protocol security (QBFT fault tolerance)
-- Finalization layer security (inherits from Ethereum)
+- Finalization layer security (inherited from the finalization layer, such as Ethereum)
 - Protocol-level security guarantees
 
 **You provide:**
@@ -134,13 +134,13 @@ You are responsible for:
 
 ### Sequencer failure
 
-**Scenario:** [Sequencer](/protocol/sequencer) fails or becomes unavailable.
+**Scenario:** [Sequencer](../../protocol/architecture/sequencer/index.mdx) fails or becomes unavailable.
 
 **Impact:**
 
 - No new blocks are produced
 - Transactions accumulate in mempool
-- [Coordinator](/protocol/coordinator) cannot create new batches
+- [Coordinator](../../protocol/architecture/coordinator.mdx) cannot create new batches
 - Network continues to serve queries but cannot process new transactions
 
 **Mitigation:**
@@ -211,12 +211,12 @@ You are responsible for:
 
 ### Prover failure
 
-**Scenario:** All [prover](/protocol/prover) instances fail.
+**Scenario:** All [prover](../../protocol/architecture/prover/index.mdx) instances fail.
 
 **Impact:**
 
 - Proofs cannot be generated
-- [Coordinator](/protocol/coordinator) cannot submit to finalization layer
+- [Coordinator](../../protocol/architecture/coordinator.mdx) cannot submit to finalization layer
 - Finalization is blocked
 - Network continues to produce blocks but cannot finalize
 
@@ -316,7 +316,7 @@ You are responsible for:
 - Does not generate proofs or interact with coordinator
 - Does not manage finalization layer submissions
 
-### [Sequencer](/protocol/sequencer)
+### [Sequencer](../../protocol/architecture/sequencer/index.mdx)
 
 **Responsibilities:**
 
@@ -331,7 +331,7 @@ You are responsible for:
 - Does not generate proofs or manage finalization
 - Not directly accessible from outside network (protected from DDoS)
 
-### [Coordinator](/protocol/coordinator)
+### [Coordinator](../../protocol/architecture/coordinator.mdx)
 
 **Responsibilities:**
 
@@ -346,7 +346,7 @@ You are responsible for:
 - Does not generate proofs (delegated to prover)
 - Does not participate in consensus
 
-### [Prover](/protocol/prover)
+### [Prover](../../protocol/architecture/prover/index.mdx)
 
 **Responsibilities:**
 
@@ -360,7 +360,7 @@ You are responsible for:
 - Does not submit to finalization layer
 - Does not execute transactions or maintain state
 
-### [State Manager](/protocol/state-manager)
+### [State Manager](../../protocol/architecture/state-manager.mdx)
 
 **Responsibilities:**
 

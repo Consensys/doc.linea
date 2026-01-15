@@ -12,7 +12,7 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
-  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
 ];
 
 Your first decision is choosing a deployment model. This choice determines data availability, network
@@ -43,9 +43,9 @@ topology, access controls, and operational complexity.
 
 - Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
 - Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream) recommended)
-- [Sequencer](/protocol/sequencer)
-- [Coordinator](/protocol/coordinator) and [prover](/protocol/prover)
-- [State manager](/protocol/state-manager)
+- [Sequencer](../../../protocol/architecture/sequencer/index.mdx)
+- [Coordinator](../../../protocol/architecture/coordinator.mdx) and [prover](../../../protocol/architecture/prover/index.mdx)
+- [State manager](../../../protocol/architecture/state-manager.mdx)
 - Private RPC nodes with RBAC
 - API portal (for institution onboarding)
 
@@ -120,9 +120,9 @@ will be documented as the feature matures.
 
 - Consensus layer ([Maru](/protocol/repos#maru)) with QBFT (minimum 4 nodes)
 - Execution layer ([Linea Besu](/protocol/repos#linea-besu-upstream), [Geth](/network/how-to/run-a-node/geth), or [Erigon](/network/how-to/run-a-node/erigon))
-- [Sequencer](/protocol/sequencer)
-- [Coordinator](/protocol/coordinator) and [prover](/protocol/prover)
-- [State manager](/protocol/state-manager)
+- [Sequencer](../../../protocol/architecture/sequencer/index.mdx)
+- [Coordinator](../../../protocol/architecture/coordinator.mdx) and [prover](../../../protocol/architecture/prover/index.mdx)
+- [State manager](../../../protocol/architecture/state-manager.mdx)
 - Public RPC nodes (no access controls)
 
 **Trust assumptions:**

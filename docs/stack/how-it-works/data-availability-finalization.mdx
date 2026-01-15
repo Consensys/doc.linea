@@ -4,14 +4,14 @@ description: Understanding data availability and the finalization layer
 sidebar_position: 3
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
-  path: docs/protocol/architecture.mdx
+  path: docs/protocol/architecture/index.mdx
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
   {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Transaction lifecycle'},
   {type: 'link', href: '/protocol/architecture', label: 'Architecture'},
 ];
@@ -74,8 +74,8 @@ commitments for verification and hard finality.
 
 Your network's layer designation depends on your finalization layer:
 
-- L2: If your finalization layer is an L1 (e.g., Ethereum), your network is an L2
-- L3: If your finalization layer is an L2 (e.g., Linea Mainnet), your network is an L3
+- L2: If your finalization layer is an L1 (such as, Ethereum), your network is an L2
+- L3: If your finalization layer is an L2 (such as, Linea Mainnet), your network is an L3
 
 **Example:**
 
@@ -108,7 +108,7 @@ Your network's layer designation depends on your finalization layer:
 
 **How it works:**
 
-1. [Coordinator](/protocol/coordinator) submits proofs and blob data to finalization layer
+1. [Coordinator](../../protocol/architecture/coordinator.mdx) submits proofs and blob data to finalization layer
 2. Rollup contract receives the submission
 3. Rollup contract calls verifier contract to verify the proof
 4. Verifier contract uses blob data to verify proof validity

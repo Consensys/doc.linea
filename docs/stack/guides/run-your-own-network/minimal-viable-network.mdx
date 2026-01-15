@@ -11,7 +11,7 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
-  {type: 'link', href: '/stack/how-it-works/architecture', label: 'Architecture'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
   {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
 ];
 
@@ -25,18 +25,18 @@ A minimal viable network requires these components:
 
 1. Consensus layer: [Maru](/protocol/repos#maru) with QBFT consensus (minimum 4 nodes)
 2. Execution layer: [Linea Besu](/protocol/repos#linea-besu-upstream) nodes (sequencer + at least one full node)
-3. [Coordinator](/protocol/coordinator): Orchestrates proof generation and finalization
-4. [Prover](/protocol/prover): Generates zero-knowledge proofs (at least one instance)
-5. [State manager](/protocol/state-manager): Maintains state for proof generation
+3. [Coordinator](../../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and finalization
+4. [Prover](../../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs (at least one instance)
+5. [State manager](../../../protocol/architecture/state-manager.mdx): Maintains state for proof generation
 
 ### Component roles
 
 - Consensus layer: Handles block production and consensus
 - Execution layer (sequencer): Orders and executes transactions into blocks
 - Execution layer (full nodes): Serve RPC requests and maintain state
-- [Coordinator](/protocol/coordinator): Groups blocks into batches and coordinates proof generation
-- [Prover](/protocol/prover): Generates proofs for batches
-- [State manager](/protocol/state-manager): Provides state data for proof generation
+- [Coordinator](../../../protocol/architecture/coordinator.mdx): Groups blocks into batches and coordinates proof generation
+- [Prover](../../../protocol/architecture/prover/index.mdx): Generates proofs for batches
+- [State manager](../../../protocol/architecture/state-manager.mdx): Provides state data for proof generation
 
 ## What can be stubbed or deferred
 
