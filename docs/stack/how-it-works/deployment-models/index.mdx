@@ -11,8 +11,8 @@ image: /img/socialCards/deployment-model-options.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
-  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment Guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment guides'},
 ];
 
 The Linea stack supports three deployment models, each optimized for different use cases and
@@ -21,7 +21,7 @@ controls, and operational procedures.
 
 ## Private Validium
 
-A private network instance, a [Validium](./private-validium.mdx) keeps transaction data offchain while maintaining cryptographic guarantees through
+A private network instance, a [Validium](./private-validium.mdx), keeps transaction data offchain while maintaining cryptographic guarantees through
 zero-knowledge proofs. This model is ideal for regulated financial institutions requiring privacy,
 compliance controls, and selective data disclosure.
 
@@ -30,7 +30,7 @@ compliance controls, and selective data disclosure.
 - Data availability: Transaction data stored offchain in a private node set
 - Privacy: Transaction details not visible on the finalization layer
 - Access control: RPC endpoints protected by RBAC; only authorized participants can view data
-- Finalization: State commitments and proofs posted to finalization layer (Ethereum or Linea
+- Finalization: State commitments and proofs posted to the finalization layer (Ethereum or Linea
   Mainnet); see [Transaction lifecycle](../../../protocol/transaction-lifecycle.mdx) for details on the
   finalization process
 - Network topology: Private network with controlled node membership
@@ -66,7 +66,7 @@ private.
 - Flexible privacy: Public transactions visible onchain; private transactions offchain
 - Mixed access: Public RPC for public transactions; private RPC with RBAC for private
   transactions
-- Finalization: All state commitments posted to finalization layer regardless of data
+- Finalization: All state commitments posted to the finalization layer regardless of data
   availability choice
 
 ### Use cases
@@ -92,7 +92,7 @@ Mainnet. All transaction data is posted to the finalization layer using EIP-4844
 - Data availability: All transaction data posted onchain via EIP-4844 blobs
 - Public access: Open RPC endpoints; no access controls required
 - Transparency: All transactions visible on the finalization layer
-- Finalization: State commitments, proofs, and data posted to finalization layer
+- Finalization: State commitments, proofs, and data posted to the finalization layer
 
 ### Use cases
 

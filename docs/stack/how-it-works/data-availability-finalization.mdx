@@ -17,7 +17,21 @@ export const relatedDocs = [
 ];
 
 Understanding data availability and finalization is essential for deploying and operating a Linea
-network. This page explains what operators need to know to make deployment decisions.
+network.
+
+**Data availability** and **finalization** are separate concerns:
+
+- Data availability: Where transaction data is stored (onchain vs. offchain)
+- Finalization: Where proofs and state commitments are verified (L1 vs. L2)
+
+Together, the two determine how your network is deployed and operated. The following examples show different combinations of data availability and finalization:
+
+- Private Validium on Ethereum: Offchain data availability, L1 finalization (L2)
+- Private Validium on Linea Mainnet: Offchain data availability, L2 finalization (L3)
+- Public on Ethereum: Onchain data availability, L1 finalization (L2)
+- Public on Linea Mainnet: Onchain data availability, L2 finalization (L3)
+
+This guide covers your options and responsibilities for data availability and finalization.
 
 ## Data availability
 
@@ -68,22 +82,20 @@ model determines where and how data is stored.
 ## Finalization layer
 
 The finalization layer is the blockchain where your Linea network submits proofs and state
-commitments for verification and hard finality.
-
-### L2 vs. L3
-
-Your network's layer designation depends on your finalization layer:
+commitments for verification and hard finality. It also determines the layer of your network:
 
 - L2: If your finalization layer is an L1 (such as, Ethereum), your network is an L2
-- L3: If your finalization layer is an L2 (such as, Linea Mainnet), your network is an L3
+- L3: If your finalization layer is an L2 (such as, Linea Mainnet), your network is an L3.
 
-**Example:**
+**Examples:**
 
 - Private Linea instance finalizing to Linea Mainnet = L3 (L3 → L2 → L1)
 - Private Linea instance finalizing to Ethereum = L2 (L2 → L1)
 - Public Linea Mainnet finalizing to Ethereum = L2 (L2 → L1)
 
 ### Finalization layer options
+
+You have two options for your finalization layer.
 
 **Ethereum L1:**
 
@@ -99,27 +111,29 @@ Your network's layer designation depends on your finalization layer:
 - Inherits security from Ethereum (via Linea Mainnet)
 - Suitable for: Applications that can accept L2 finalization layer
 
+#### Operational implications
+
+When choosing a finalization layer, consider the following:
+
+- Security requirements: L1 finalization provides maximum security; L2 finalization is sufficient for many use cases.
+- Cost: L2 finalization is cheaper than L1.
+- Finality time: L2 finalization may be faster than L1.
+- Contract deployment: You must deploy contracts on your chosen finalization layer.
+
 ### Smart contract requirements
 
-**You must deploy smart contracts on your finalization layer:**
+Your finalization layer must deploy the following smart contracts:
 
 1. Rollup contract: Stores rollup blocks, monitors state updates, and tracks deposits
 2. Verifier contract: Verifies zero-knowledge proofs submitted by your coordinator
 
-**How it works:**
+Together, these contracts allow your coordinator to finalize batches and state. The process is as follows:
 
-1. [Coordinator](../../protocol/architecture/coordinator.mdx) submits proofs and blob data to finalization layer
-2. Rollup contract receives the submission
-3. Rollup contract calls verifier contract to verify the proof
-4. Verifier contract uses blob data to verify proof validity
-5. If verification succeeds, state is finalized on the finalization layer
-
-**Your responsibility:**
-
-- Deploy rollup and verifier contracts on your chosen finalization layer
-- Configure coordinator to connect to these contracts
-- Monitor contract interactions and gas costs
-- Manage contract upgrades and governance
+1. The [coordinator](../../protocol/architecture/coordinator.mdx) submits proofs and blob data to the finalization layer.
+2. The rollup contract receives the submission.
+3. The rollup contract calls the verifier contract to verify the proof.
+4. The verifier contract uses blob data to verify proof validity.
+5. If verification succeeds, state is finalized on the finalization layer.
 
 :::important
 
@@ -127,44 +141,6 @@ Without the rollup and verifier contracts on your finalization layer, your coord
 finalize batches. These contracts are required for proof verification and state finalization.
 
 :::
-
-## Data availability vs. finalization
-
-**Data availability** and **finalization** are separate concerns:
-
-- Data availability: Where transaction data is stored (onchain vs. offchain)
-- Finalization: Where proofs and state commitments are verified (L1 vs. L2)
-
-**Examples:**
-
-- Private Validium on Ethereum: Offchain data availability, L1 finalization (L2)
-- Private Validium on Linea Mainnet: Offchain data availability, L2 finalization (L3)
-- Public on Ethereum: Onchain data availability, L1 finalization (L2)
-- Public on Linea Mainnet: Onchain data availability, L2 finalization (L3)
-
-## Operational implications
-
-### For Private Validium
-
-- Data availability: You must ensure private node set redundancy and backup
-- Finalization: You must deploy contracts on your chosen finalization layer
-- Trust assumptions: You trust data availability providers; finalization layer provides security
-
-### For Public
-
-- Data availability: Finalization layer provides onchain data availability
-- Finalization: You must deploy contracts on your chosen finalization layer
-- Trust assumptions: Finalization layer provides both data availability and security
-
-### Choosing a finalization layer
-
-Consider:
-
-- Security requirements: L1 finalization provides maximum security; L2 finalization is sufficient
-  for many use cases
-- Cost: L2 finalization is cheaper than L1
-- Finality time: L2 finalization may be faster than L1
-- Contract deployment: You must deploy contracts on your chosen finalization layer
 
 ## Related documentation
 
