@@ -10,10 +10,10 @@ image: /img/socialCards/architecture.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/protocol/architecture', label: 'Protocol Architecture'},
+  {type: 'link', href: '/protocol/architecture', label: 'Protocol architecture'},
   {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Public Mainnet transaction lifecycle'},
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
-  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
+  {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & responsibilities'},
   {type: 'link', href: '/stack/how-it-works/smart-contracts', label: 'Smart contracts'},
 ];
 
@@ -41,21 +41,20 @@ components without restructuring the entire network.
 
 ## What runs where
 
-From an operational perspective, the Linea stack is composed of three broad classes of components.
+The Linea stack is comprised of three broad classes of components.
 
 ### Node roles
 
-In a fully-public network, these components run on externally reachable nodes, other deployment types 
-may [assume different strategies](#network-topology-patterns).
+In a fully-public network, these components run on externally reachable nodes. In other deployment types, the components may run on different nodes.
 
-- Validator nodes  
+- **Validator nodes**  
   Participate in QBFT consensus. Validator nodes run a consensus client and an execution client.
 
-- Full nodes  
+- **Full nodes**  
   Maintain full chain state, verify blocks, and serve RPC requests. Full nodes do not necessarily
   participate in consensus.
 
-- RPC nodes  
+- **RPC nodes**  
   Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head access or
   configured as archive nodes for historical queries.
 
