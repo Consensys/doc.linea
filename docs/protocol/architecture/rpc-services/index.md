@@ -49,7 +49,7 @@ provisioned with higher storage capacity and different performance characteristi
 the architecture is to provide a source of truth for the historical state, supporting downstream
 functions such as auditing, forensics, analytics, and historical consistency checks.
 
-### Data availability nodes
+#### Data availability
 
 How data availability (DA) is handled depends on the [deployment model](../../stack/how-it-works/deployment-models) of the Network. Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage third-party DA providers.
 
