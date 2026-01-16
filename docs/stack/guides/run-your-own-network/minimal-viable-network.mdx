@@ -10,8 +10,8 @@ image: /img/socialCards/minimal-viable-network.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deploy Private Validium'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
   {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
 ];
 
@@ -88,20 +88,10 @@ A minimal viable network does not provide:
 - Disaster recovery: No tested backup and recovery procedures
 - Network isolation: May use shared networks for simplicity
 
-## What this setup is not suitable for
-
-Do not use a minimal viable network for:
-
-- Production workloads: Missing security, monitoring, and redundancy
-- Regulated financial applications: Missing compliance controls and audit trails
-- High-availability requirements: No redundancy or failover
-- Production data: No tested backup and recovery
-- Public access: Missing access controls and security hardening
-
 ## Deployment steps
 
 1. Deploy consensus layer: [Deploy Maru](../deployment-guides/deploy-maru.mdx) with minimum 4 nodes
-2. Deploy execution layer: [Deploy execution layer](../deployment-guides/deploy-execution-layer.mdx)
+2. Deploy Execution Layer: [Deploy Execution Layer](../deployment-guides/deploy-execution-layer.mdx)
    with sequencer and at least one full node
 3. Deploy coordinator: See coordinator deployment guide (placeholder)
 4. Deploy prover: See prover deployment guide (placeholder)

@@ -8,11 +8,13 @@ image: /img/socialCards/prerequisites.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
-  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy Execution Layer'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
 ];
 
 Before deploying your Linea network, verify you have the required hardware, software, and access.
@@ -30,17 +32,93 @@ For a minimal viable network (development/testing):
 
 ### Production network
 
-For production deployments, requirements vary by component:
+For production deployments, requirements vary by component. Plan for redundancy and scaling based on
+your workload and availability requirements.
 
-- Consensus layer ([Maru](../../../protocol/repos.mdx#maru)): Moderate CPU and memory per node; minimal storage
-- Execution layer (full node): High CPU and memory; significant storage growth
-- Execution layer (archive node): Very high storage requirements
-- [Sequencer](../../../protocol/architecture/sequencer/index.mdx): High CPU and memory; moderate storage
-- [Coordinator](../../../protocol/architecture/coordinator.mdx): Moderate CPU and memory; file system for batch data
-- [Prover](../../../protocol/architecture/prover/index.mdx): Very high CPU (proof generation is computationally intensive)
-- [State manager](../../../protocol/architecture/state-manager.mdx): High memory and storage for state representation
+{/* todo: Fill in actual hardware requirements values from engineering team */}
 
-Plan for redundancy and scaling based on your workload and availability requirements.
+<Tabs>
+  <TabItem value="maru" label="Consensus layer (Maru)" default>
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO |
+| Storage | TODO (minimal) |
+| Network | P2P port access between validators |
+
+See [Maru](/protocol/repos#maru) for more details.
+
+  </TabItem>
+  <TabItem value="execution-full" label="Execution layer (full)">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO |
+| Storage | TODO (significant growth over time) |
+| Network | P2P and RPC ports |
+
+  </TabItem>
+  <TabItem value="execution-archive" label="Execution layer (archive)">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO |
+| Storage | TODO (very high, stores all historical state) |
+| Network | P2P and RPC ports |
+
+  </TabItem>
+  <TabItem value="sequencer" label="Sequencer">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO |
+| Storage | TODO |
+| Network | Internal network access |
+
+See [Sequencer](/protocol/architecture/sequencer) for more details.
+
+  </TabItem>
+  <TabItem value="coordinator" label="Coordinator">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO |
+| Storage | TODO (file system for batch data) |
+| Network | Internal network access |
+
+See [Coordinator](/protocol/architecture/coordinator) for more details.
+
+  </TabItem>
+  <TabItem value="prover" label="Prover">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO (very high, proof generation is computationally intensive) |
+| Memory | TODO |
+| Storage | TODO |
+| Network | Internal network access |
+
+See [Prover](/protocol/architecture/prover) for more details.
+
+  </TabItem>
+  <TabItem value="state-manager" label="State manager">
+
+| Resource | Requirement |
+|----------|-------------|
+| CPU | TODO |
+| Memory | TODO (high, for state representation) |
+| Storage | TODO (high, for state data) |
+| Network | Internal network access |
+
+See [State manager](/protocol/architecture/state-manager) for more details.
+
+  </TabItem>
+</Tabs>
 
 ## Software requirements
 

@@ -1,7 +1,7 @@
 ---
-title: Deploy execution layer
-description: 'Deploy execution layer clients (Linea Besu, Geth, Erigon) for The Linea stack'
-sidebar_position: 3
+title: Deploy Execution Layer
+description: 'Deploy Execution Layer clients (Linea Besu, Geth, Erigon) for The Linea stack'
+sidebar_position: 2
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
 image: /img/socialCards/deploy-execution-layer.jpg
@@ -11,25 +11,13 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/guides/deployment-guides/deploy-maru', label: 'Deploy Maru'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
 ];
 
 The execution layer executes transactions and maintains EVM state. You can choose from multiple
 execution clients: Linea Besu (recommended for operators), Geth, or Erigon.
 
-## Prerequisites
-
-- Docker v24 or higher (recommended)
-- Network connectivity to consensus layer (Maru)
-- Engine API JWT secret for Maru communication
-- Sufficient storage for chain data
-
-:::tip
-
-Docker is the recommended deployment method. It simplifies installation, updates, and management.
-Only use binary distribution if Docker is not available in your environment.
-
-:::
+For general prerequisites, see the [prerequisites guide](../run-your-own-network/prerequisites.mdx).
 
 ## Choose an execution client
 
