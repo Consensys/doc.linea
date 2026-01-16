@@ -159,7 +159,7 @@ const config = {
           },
           {
             type: "dropdown",
-            label: "Notices",
+            label: "Changelog",
             position: "right",
             activeBaseRegex: "^/notices/",
             items: [
