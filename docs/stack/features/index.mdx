@@ -2,8 +2,6 @@
 title: Features
 description: Features and capabilities of the Linea stack
 sidebar_position: 1
-mainSource:
-  url: 'https://github.com/Consensys/linea-monorepo'
 image: /img/socialCards/features.jpg
 ---
 
@@ -11,7 +9,7 @@ import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
   {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  // {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
 ];
 
 The Linea stack provides features and capabilities that enable various deployment models and use cases.
@@ -23,11 +21,11 @@ This section documents the features available in he Linea stack.
 
 Private Validium provides:
 
-- Offchain data availability: Transaction data stored privately
-- RBAC: Role-based access control for RPC and API endpoints
-- Privacy: Transaction details not visible on finalization layer
+- Offchain data availability: transaction data stored privately
+- RBAC: Role-Based Access Control (RBAC) for RPC and API endpoints
+- Privacy: transaction details not visible on finalization layer
 - Compliance: KYC/KYT controls and selective data disclosure
-- API portal: Controlled access to network functionality
+- API portal: controlled access to network functionality
 
 For details on Private Validium, see [Private Validium](./validium.mdx).
 
@@ -35,7 +33,7 @@ For details on Private Validium, see [Private Validium](./validium.mdx).
 
 Hybrid deployments enable:
 
-- Selective data availability: Choose onchain or offchain per transaction
+- Selective data availability: choose onchain or offchain per transaction
 - Flexible privacy: Mix public and private transactions
 - Gradual migration: Transition from private to public
 
@@ -55,7 +53,7 @@ Public deployments provide:
 
 :::note
 
-Public deployment features are under development. Documentation will be updated as features mature.
+Documentation of the public deployment features are under development.
 
 :::
 
@@ -87,9 +85,9 @@ Separation of consensus and execution provides:
 - Modular deployment and scaling
 - Operational flexibility
 
-### QBFT consensus
+### Quorum-Based Byzantine Fault Tolerance consensus
 
-QBFT consensus enables:
+Quorum-Based Byzantine Fault Tolerance (QBFT) consensus enables:
 
 - Fault tolerance (3f+1 nodes)
 - Fast finality
