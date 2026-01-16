@@ -20,7 +20,13 @@ The coordinator is the orchestrator behind the proof generation and finalization
 - Batching: Groups multiple blocks into batches for efficient proof generation
 - Blob creation: Combines batches into blobs for submission to the finalization layer
 - Proof orchestration: Coordinates execution proofs, compression proofs, and aggregation proofs
-- L1 submission: Submits proofs and data to the finalization layer (such as Ethereum for public networks)
+- Finality submission: Submits proofs and data to the finalization layer (such as Ethereum for public networks)
+
+:::info
+
+Currently on Linea Mainnet the finality submission occurs every 2 hours. It’s estimated that this process could be optimized to occur every 30 minutes, with further optimization under investigation.
+
+:::
 
 ## How does it do it?
 

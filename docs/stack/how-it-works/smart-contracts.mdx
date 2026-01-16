@@ -23,17 +23,16 @@ these contracts and services is essential for operators managing deployments.
 
 ### Finalization contract
 
-This contract is deployed to the [finalization layer](./data-availability-finalization.mdx).
+This contract is deployed to the [finalization layer](./data-availability-finalization.mdx). 
 
 **Purpose:**  
-Validates zk-SNARK proofs for transaction batches and records finalized state roots on the
-finalization layer.
+It enables secure interactions between Linea and the finalization layer.
 
 **Functionality:**
 
 - Validates zk-SNARK proofs attesting to correct state transitions for batches of transactions
 - Records finalized state roots on the finalization layer
-- Acts as a canonical protocol contract for message passing between the Linea network and the
+- Acts as a [canonical protocol contract for message passing](../../protocol/architecture/interoperability/message-service) between the Linea network and the
   finalization layer
 - Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
   transitions
@@ -41,9 +40,8 @@ finalization layer.
 
 :::info
 
-In Linea public Mainnet deployments, this contract is commonly referred to as the 
-[Message Bridge](../../network/build/contracts.mdx)
-and provides rollup settlement and messaging functionality. Operators running private or hybrid
+In the Linea Public Mainnet deployment, this contract is referred to as the 
+[Linea Rollup and L1 Message Service](../../network/build/contracts.mdx). It provides rollup settlement and messaging functionality. Operators running private or hybrid
 networks may reuse the same contract pattern or deploy functionally equivalent contracts as part of
 their finalization design.
 

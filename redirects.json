@@ -201,11 +201,12 @@
         ]
     },
     {
-        "to": "/protocol/network-data",
+        "to": "/network/build/network-data",
         "from": [
             "/architecture/network-data",
             "/architecture/overview/network-data",
-            "/network/concepts/network-data"
+            "/network/concepts/network-data",
+            "/protocol/network-data"
         ]
     },
     {
@@ -1586,7 +1587,7 @@
         ]
     },
     {
-        "to": "/protocol/network-data",
+        "to": "/network/build/network-data",
         "from": [
             "/technology/network-data"
         ]
