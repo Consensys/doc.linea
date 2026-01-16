@@ -100,3 +100,4 @@ access patterns and tighter security boundaries.
 ## Next steps
 
 For operational deployment details, see the [Linea Stack architecture](../../../stack/how-it-works/architecture.mdx).
+
