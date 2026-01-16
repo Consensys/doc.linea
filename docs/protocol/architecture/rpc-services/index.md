@@ -51,7 +51,10 @@ functions such as auditing, forensics, analytics, and historical consistency che
 
 #### Data availability
 
-How data availability (DA) is handled depends on the [deployment model](../../../stack/how-it-works/deployment-models/index.mdx) of the Network. Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage third-party DA providers.
+How data availability (DA) is handled depends on the 
+[deployment model](../../../stack/how-it-works/deployment-models/index.mdx) of the Network. 
+Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage 
+third-party DA providers.
 
 DA is crucial in preserving and providing access to transaction data required to reconstruct the 
 state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DA 
@@ -100,4 +103,3 @@ access patterns and tighter security boundaries.
 ## Next steps
 
 For operational deployment details, see the [Linea Stack architecture](../../../stack/how-it-works/architecture.mdx).
-
