@@ -1,7 +1,7 @@
 ---
 title: Deploy Maru
 description: Deploy Maru consensus layer client for the Linea stack
-sidebar_position: 2
+sidebar_position: 1
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
 image: /img/socialCards/deploy-maru.jpg
@@ -10,26 +10,14 @@ image: /img/socialCards/deploy-maru.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy execution layer'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides/deploy-execution-layer', label: 'Deploy Execution Layer'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
 ];
 
 Maru is Linea's consensus layer client implementing QBFT consensus. This guide covers deploying Maru
 nodes for your Linea stack network.
 
-## Prerequisites
-
-- Docker v24 or higher (recommended)
-- Network configuration for P2P communication
-- Minimum 4 nodes for QBFT fault tolerance
-- Engine API JWT secret for communication with execution layer
-
-:::tip
-
-Docker is the recommended deployment method. It simplifies installation, updates, and management.
-Only use binary distribution if Docker is not available in your environment.
-
-:::
+For general prerequisites, see the [prerequisites guide](../run-your-own-network/prerequisites.mdx).
 
 ## Deploy with Docker
 
