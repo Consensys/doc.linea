@@ -1,5 +1,5 @@
 ---
-title: Boundaries & responsibilities
+title: Boundaries and responsibilities
 description: 'Who operates what, trust boundaries, and failure scenarios in the Linea stack'
 sidebar_position: 4
 mainSource:
@@ -10,9 +10,8 @@ image: /img/socialCards/boundaries--and--responsibilities.jpg
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations Guides'},
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
   {type: 'link', href: '/stack/guides/operations-guides/common-mistakes', label: 'Common mistakes'},
 ];
 
@@ -20,13 +19,13 @@ Understanding boundaries and responsibilities is essential for safe network oper
 decisions. This documentation clarifies who operates what, what Linea provides vs. what you provide,
 and how to handle failure scenarios.
 
-## Who operates what
+## Operations
 
-### Linea provides
+Generally speaking, Linea provides the underlying software components and protocols, while you are responsible for top-level network operations and access controls.
 
-Linea provides the software components and protocols:
+**Linea provides the following components and protocols:**
 
-- Consensus layer client ([Maru](../../protocol/repos.mdx#maru)): QBFT consensus implementation
+- Consensus layer client: [Maru](../../protocol/repos.mdx#maru), the QBFT consensus implementation
 - Execution layer clients: [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream), with support for Geth and Erigon
 - [Sequencer](../../protocol/architecture/sequencer/index.mdx): Transaction ordering and block building
 - [Coordinator](../../protocol/architecture/coordinator.mdx): Proof generation orchestration
@@ -34,40 +33,116 @@ Linea provides the software components and protocols:
 - [State manager](../../protocol/architecture/state-manager.mdx): State representation for proof generation
 - Protocol specifications: Transaction lifecycle, finalization, and security guarantees
 
-### You operate
-
-You are responsible for:
+**You provide the following:**
 
 - Infrastructure: Hardware, networking, and cloud resources
 - Deployment: Installing, configuring, and deploying components
-- Node operations: Running consensus and execution layer nodes
-- Data availability: Ensuring data is available when needed (Private Validium)
-- Access controls: RBAC, API portal, and network security (Private Validium)
-- Monitoring and alerting: Observing component health and performance
-- Backup and disaster recovery: State backups and recovery procedures
-- Key management: Secure key storage and rotation
-- Compliance: Meeting regulatory requirements (Private Validium)
+- Node operations: Running consensus and execution layer nodes.
+- Monitoring and alerting: Observing component health and performance.
+- Backup and disaster recovery: State backups and recovery procedures.
+- Key management: Secure key storage and rotation.
 
-### Control plane vs. data plane
+If using the Private Validium deployment model, you also provide:
 
-**Control plane** (you operate):
+- Data availability: Ensuring data is available when needed 
+- Access controls: RBAC, API portal, and network security
+- Compliance: Meeting regulatory requirements.
 
-- Node deployment and configuration
-- Network topology and security
-- Access controls and RBAC
-- Monitoring and alerting
-- Backup and disaster recovery
+### Linea component boundaries
 
-**Data plane** (Linea protocol):
+#### Consensus layer ([Maru](../../protocol/repos.mdx#maru))
 
-- Transaction execution and state transitions
-- Consensus and block production
-- Proof generation and finalization
-- State representation and Merkle proofs
+**Responsibilities:**
 
-## What Linea provides vs. what you provide
+- Block production coordination with execution layer
+- Consensus protocol execution (QBFT)
+- Block validation and propagation via P2P
+- Validator set management
 
-### Security guarantees
+**Boundaries:**
+
+- Does not execute transactions or maintain EVM state
+- Does not generate proofs or interact with finalization layer
+- Communicates with execution layer only via Engine API
+
+#### Execution layer (Besu/Geth/Erigon)
+
+**Responsibilities:**
+
+- Transaction execution in EVM (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
+- State maintenance and updates
+- Transaction pool management
+- RPC endpoint serving (when configured as RPC node)
+
+**Boundaries:**
+
+- Does not participate in consensus (delegated to Maru)
+- Does not generate proofs or interact with coordinator
+- Does not manage finalization layer submissions
+
+#### [Sequencer](../../protocol/architecture/sequencer/index.mdx)
+
+**Responsibilities:**
+
+- Transaction ordering and block building (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
+- Transaction validation (trace limits, gas limits, calldata size)
+- Block profitability checks
+- Enforcing Linea-specific block constraints
+
+**Boundaries:**
+
+- Does not participate in consensus (consensus handled by Maru)
+- Does not generate proofs or manage finalization
+- Not directly accessible from outside network (protected from DDoS)
+
+#### [Coordinator](../../protocol/architecture/coordinator.mdx)
+
+**Responsibilities:**
+
+- Batch creation from blocks
+- Blob creation from batches
+- Proof generation orchestration
+- Finalization layer submission
+
+**Boundaries:**
+
+- Does not execute transactions or maintain state
+- Does not generate proofs (delegated to prover)
+- Does not participate in consensus
+
+#### [Prover](../../protocol/architecture/prover/index.mdx)
+
+**Responsibilities:**
+
+- Execution proof generation for batches
+- Compression proof generation for blobs
+- Aggregation proof generation for finalization
+
+**Boundaries:**
+
+- Does not create batches or blobs
+- Does not submit to finalization layer
+- Does not execute transactions or maintain state
+
+#### [State manager](../../protocol/architecture/state-manager.mdx)
+
+**Responsibilities:**
+
+- State representation for proof generation
+- Merkle proof generation for state transitions
+- State snapshot creation and restoration
+- Serving `linea_getProof` RPC endpoints
+
+**Boundaries:**
+
+- Does not execute transactions (receives state updates from execution layer)
+- Does not participate in consensus
+- Does not generate proofs (provides data to prover)
+
+
+## Security
+
+Security is a shared responsibility. Linea provides cryptographic guarantees and consensus protocol security, while you provide infrastructure security, access control security, key management security, and operational security.
 
 **Linea provides:**
 
@@ -83,7 +158,9 @@ You are responsible for:
 - Key management security (KMS, secure storage)
 - Operational security (monitoring, incident response)
 
-### Data availability
+## Data availability
+
+Linea provides a protocol for data availability, while you provide the data storage infrastructure, redundancy, and backup.
 
 **Linea provides:**
 
@@ -97,22 +174,67 @@ You are responsible for:
 - Data recovery procedures
 - Trust in data availability providers (Private Validium)
 
-### Operational guarantees
+## Compliance and audit considerations
+
+The following outlines various compliance and audit considerations, with Linea's responsibilities and yours.
+
+### Audit trails
 
 **Linea provides:**
 
-- Component software and protocols
-- Failure mode specifications
-- Recovery procedure specifications
+- Protocol-level transaction logs
+- State commitment proofs
+- Finalization records on finalization layer
 
 **You provide:**
 
-- Component redundancy and high availability
-- Monitoring and alerting
-- Backup and disaster recovery
-- Operational procedures and runbooks
+- Comprehensive logging of all operations
+- Access logs for RPC endpoints and APIs
+- Transaction logs for audit purposes
+- Audit trail retention and management
+
+### Compliance controls
+
+**Linea provides:**
+
+- Protocol support for privacy (Private Validium)
+- Selective data disclosure capabilities (Private Validium)
+
+**You provide:**
+
+- KYC/KYT implementation (Private Validium)
+- Access control enforcement (RBAC, API portal)
+- Compliance monitoring and reporting
+- Regulatory reporting procedures
+
+### Data retention
+
+**Linea provides:**
+
+- State commitment retention on finalization layer
+- Protocol-level data retention specifications
+
+**You provide:**
+
+- Data retention policies and procedures
+- Archive node deployment for historical data
+- Data deletion procedures (if required by regulations)
+
+### Selective disclosure
+
+**Linea provides:**
+
+- Protocol support for selective data disclosure (Private Validium)
+
+**You provide:**
+
+- Selective disclosure implementation
+- Auditor and regulator access controls
+- Disclosure audit trails
 
 ## Failure scenarios
+
+The following is a list of failure scenarios and their mitigation plans.
 
 ### Data availability provider failure
 
@@ -227,153 +349,6 @@ You are responsible for:
 - Have recovery procedures ready
 
 **Your responsibility:** Ensure prover redundancy and recovery procedures.
-
-## Compliance and audit considerations
-
-### Audit trails
-
-**Linea provides:**
-
-- Protocol-level transaction logs
-- State commitment proofs
-- Finalization records on finalization layer
-
-**You provide:**
-
-- Comprehensive logging of all operations
-- Access logs for RPC endpoints and APIs
-- Transaction logs for audit purposes
-- Audit trail retention and management
-
-### Compliance controls
-
-**Linea provides:**
-
-- Protocol support for privacy (Private Validium)
-- Selective data disclosure capabilities (Private Validium)
-
-**You provide:**
-
-- KYC/KYT implementation (Private Validium)
-- Access control enforcement (RBAC, API portal)
-- Compliance monitoring and reporting
-- Regulatory reporting procedures
-
-### Data retention
-
-**Linea provides:**
-
-- State commitment retention on finalization layer
-- Protocol-level data retention specifications
-
-**You provide:**
-
-- Data retention policies and procedures
-- Archive node deployment for historical data
-- Data deletion procedures (if required by regulations)
-
-### Selective disclosure
-
-**Linea provides:**
-
-- Protocol support for selective data disclosure (Private Validium)
-
-**You provide:**
-
-- Selective disclosure implementation
-- Auditor and regulator access controls
-- Disclosure audit trails
-
-## Component boundaries
-
-### Consensus layer ([Maru](../../protocol/repos.mdx#maru))
-
-**Responsibilities:**
-
-- Block production coordination with execution layer
-- Consensus protocol execution (QBFT)
-- Block validation and propagation via P2P
-- Validator set management
-
-**Boundaries:**
-
-- Does not execute transactions or maintain EVM state
-- Does not generate proofs or interact with finalization layer
-- Communicates with execution layer only via Engine API
-
-### Execution layer (Besu/Geth/Erigon)
-
-**Responsibilities:**
-
-- Transaction execution in EVM (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
-- State maintenance and updates
-- Transaction pool management
-- RPC endpoint serving (when configured as RPC node)
-
-**Boundaries:**
-
-- Does not participate in consensus (delegated to Maru)
-- Does not generate proofs or interact with coordinator
-- Does not manage finalization layer submissions
-
-### [Sequencer](../../protocol/architecture/sequencer/index.mdx)
-
-**Responsibilities:**
-
-- Transaction ordering and block building (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
-- Transaction validation (trace limits, gas limits, calldata size)
-- Block profitability checks
-- Enforcing Linea-specific block constraints
-
-**Boundaries:**
-
-- Does not participate in consensus (consensus handled by Maru)
-- Does not generate proofs or manage finalization
-- Not directly accessible from outside network (protected from DDoS)
-
-### [Coordinator](../../protocol/architecture/coordinator.mdx)
-
-**Responsibilities:**
-
-- Batch creation from blocks
-- Blob creation from batches
-- Proof generation orchestration
-- Finalization layer submission
-
-**Boundaries:**
-
-- Does not execute transactions or maintain state
-- Does not generate proofs (delegated to prover)
-- Does not participate in consensus
-
-### [Prover](../../protocol/architecture/prover/index.mdx)
-
-**Responsibilities:**
-
-- Execution proof generation for batches
-- Compression proof generation for blobs
-- Aggregation proof generation for finalization
-
-**Boundaries:**
-
-- Does not create batches or blobs
-- Does not submit to finalization layer
-- Does not execute transactions or maintain state
-
-### [State Manager](../../protocol/architecture/state-manager.mdx)
-
-**Responsibilities:**
-
-- State representation for proof generation
-- Merkle proof generation for state transitions
-- State snapshot creation and restoration
-- Serving `linea_getProof` RPC endpoints
-
-**Boundaries:**
-
-- Does not execute transactions (receives state updates from execution layer)
-- Does not participate in consensus
-- Does not generate proofs (provides data to prover)
 
 ## Related documentation
 
