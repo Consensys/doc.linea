@@ -21,7 +21,7 @@ The canonical message service is a combination of smart contracts and other prot
 
 If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The canonical message service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
 
-One of the most important things that the message service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated Merkle tree and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the canonical message service transmits the rollup data.
+One of the most important things that the message service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated [Merkle tree](../../state-manager.mdx#merkle-trees) and a zk-proof from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the canonical message service transmits the rollup data.
 
 However, the service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
 

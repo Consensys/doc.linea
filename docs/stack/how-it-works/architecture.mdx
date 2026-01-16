@@ -54,9 +54,9 @@ In a fully-public network, these components run on externally reachable nodes. I
   Maintain full chain state, verify blocks, and serve RPC requests. Full nodes do not necessarily
   participate in consensus.
 
-- **RPC nodes**  
-  Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head access or
-  configured as archive nodes for historical queries.
+- RPC nodes: Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head
+  access or configured as archive nodes for historical queries. For details, see
+  [RPC services](../../protocol/architecture/rpc-services/index.md).
 
 ### Internal protocol services
 
@@ -128,7 +128,8 @@ proof generation and recovery.
 
 ### Tracer 
 
-The [tracer](../../protocol/architecture/tracer.mdx) generates execution traces required for proof generation.  
+The [traces generator](../../protocol/architecture/sequencer/traces-generator.mdx) generates execution
+traces required for proof generation.  
 
 
 ## Transaction lifecycle
@@ -212,20 +213,12 @@ The block is proposed by the execution layer, Linea Besu, and the consensus laye
 
 ### RPC nodes
 
-RPC nodes provide API access to the network:
+[RPC nodes](../../protocol/architecture/rpc-services/index.md) provide API access to the network:
 
 - Near-head nodes: Optimized for low-latency access to recent state
 - Archive nodes: Maintain complete historical state for auditing and analysis
 
 RPC nodes may be deployed behind load balancers and access controls (RBAC) for [private networks](./deployment-models/private-validium.mdx).
-
-#### Near-head nodes
-
-A near-head node maintains a replicated view of the blockchain focused on the canonical head and its recent history. They continuously ingest new blocks and state updates from the protocol, ensuring that its local state remains closely synchronized with the latest finalized and near-finalized data. The service is optimized for low-latency access to recent blocks and current state, and for high-throughput transaction propagation toward the rest of the system. It is designed to support latency-sensitive operations on near-tip state, rather than long-range historical reconstruction or analysis.
-
-#### Archive nodes
-
-An archive node maintains a complete, durable record of the blockchain from genesis, including all blocks and associated state transitions. Unlike a near-head node, it retains a full historical state, enabling exact reconstruction of the chain state at any past block height. This service is optimized for correctness and completeness of historical data rather than minimal latency, and is provisioned with higher storage capacity and different performance characteristics. Its role in the architecture is to provide a source of truth for the historical state, supporting downstream functions such as auditing, forensics, analytics, and historical consistency checks.
 
 ### Network topology patterns
 

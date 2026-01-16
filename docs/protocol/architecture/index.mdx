@@ -13,20 +13,6 @@ and how they interact to process transactions and reach finality.
 
 For operational deployment details, see the [the Linea stack](../../stack/index.mdx).
 
-## Dual-layer architecture
-
-The Linea protocol separates consensus from execution:
-
-- Consensus layer: Responsible for block production, validator coordination, and block propagation
-- Execution layer: Responsible for executing transactions, maintaining EVM state, and exposing a
-  standard execution interface
-
-Each block is proposed by the execution layer while the consensus layer signs and broadcasts it.
-
-The two layers communicate via the Engine API, a standard Ethereum interface that cleanly
-separates consensus logic from execution semantics. This separation allows Linea to support client
-diversity and protocol extensibility without coupling execution correctness to consensus mechanics.
-
 ## Protocol components
 
 The Linea protocol consists of the following logical components. These components define protocol
@@ -49,15 +35,29 @@ behavior and guarantees. The following represents the main components of Linea, 
   </picture>
 </div>
 
+### Full node
 
-### Consensus layer
+As an EVM-compatible protocol, the Linea protocol requires a full node, which separates consensus from execution and provides a reliable data source for the network:
+
+- Consensus layer: Responsible for block production, validator coordination, and block propagation
+- Execution layer: Responsible for executing transactions, maintaining EVM state, and exposing a
+  standard execution interface
+
+Each block is proposed by the execution layer while the consensus layer signs and broadcasts it. 
+
+A full node maintains the current state of the Linea chain, verifies block headers and consensus signatures, and verifies every transaction and block to ensure network security and integrity. Full nodes also serve as entry points to the network, accepting signed transactions arriving  from the peer-to-peer network or via an RPC service. The full nodes are deployed in a managed environment called the full node cluster.
+
+The consensus and execution layers communicate via the Engine API, a standard Ethereum interface that cleanly separates consensus logic from execution semantics. This separation allows protocols to support client
+diversity and protocol extensibility.
+
+#### Consensus layer
 
 [Maru](../repos.mdx#maru) implements the consensus layer of the Linea protocol. It coordinates
-validator participation, block production, and block propagation using the QBFT algorithm.
+validator participation, block production, and block propagation using the Quorum-Based Byzantine Fault Tolerance (QBFT) algorithm.
 
 Maru ensures agreement on block ordering and provides fault tolerance under Byzantine conditions.
 
-### Execution layer
+#### Execution layer
 
 [Linea Besu](../repos.mdx#linea-besu-upstream) is the recommended execution client for the Linea
 protocol. It executes transactions, maintains EVM state, and exposes the execution interface used
@@ -65,12 +65,11 @@ by the consensus layer.
 
 :::info
 
-While all execution clients maintain the EVM state and execute transactions, only Linea Besu provides
-full protocol-specific
-extensions required for sequencing, tracing, and proof generation, including speed optimizations, and features like
+While all execution clients maintain the EVM state and execute transactions, only Linea Besu currently provides the full protocol-specific extensions required for sequencing, tracing, and proof generation, including speed optimizations, and features like
   [`linea_estimateGas`](../../api/reference/linea-estimategas).
 
-[Geth](../../network/how-to/run-a-node/geth.mdx) and [Erigon](../../network/how-to/run-a-node/erigon.mdx) are more suitable for follower or archive roles, respectively.
+[Geth](../../network/how-to/run-a-node/geth.mdx) and [Erigon](../../network/how-to/run-a-node/erigon.mdx) 
+are more suitable for follower or archive roles, respectively.
 
 :::
 
