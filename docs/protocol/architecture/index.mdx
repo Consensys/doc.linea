@@ -45,10 +45,24 @@ As an EVM-compatible protocol, the Linea protocol requires a full node, which se
 
 Each block is proposed by the execution layer while the consensus layer signs and broadcasts it. 
 
+Full nodes maintain current network state and participate in consensus:
+
+- Verify all blocks and transactions
+- Serve RPC requests
+- Participate in P2P networking
+- May serve as validators in QBFT consensus
+
 A full node maintains the current state of the Linea chain, verifies block headers and consensus signatures, and verifies every transaction and block to ensure network security and integrity. Full nodes also serve as entry points to the network, accepting signed transactions arriving  from the peer-to-peer network or via an RPC service. The full nodes are deployed in a managed environment called the full node cluster.
 
 The consensus and execution layers communicate via the Engine API, a standard Ethereum interface that cleanly separates consensus logic from execution semantics. This separation allows protocols to support client
 diversity and protocol extensibility.
+
+<img
+  src="/img/stack/full-node.png"
+  alt="Full node topology"
+  style={{display: 'block', margin: '0 auto', width: 500}}
+/>
+
 
 #### Consensus layer
 
@@ -133,22 +147,39 @@ For a complete list and descriptions of the smart contracts used on the Public N
 
 ## Data availability and finalization
 
-The Linea protocol separates state correctness from data availability. zk-SNARK proofs attest
-to correct execution, while data availability guarantees depend on the chosen deployment model:
+Data availability (DA) and finalization are separate concerns:
 
-- Private Validium deployments
-  Transaction data is retained offchain within a private node set; only proofs and finalized state
+- DA: Where transaction data is stored (onchain vs. offchain)
+- Finalization: zk-SNARK proofs attest
+to correct execution so finalization refers to where proofs and state commitments are verified (L1 vs. L2)
+
+DA guarantees depend on the chosen [deployment model](../../stack/how-it-works/deployment-models/index.mdx):
+
+- Public deployments: transaction data and associated payloads are posted to the finalization layer, for example via EIP-4844 blobs on Ethereum.
+
+- Private Validium deployments: transaction data is retained offchain within a private data availability
+  node set; only proofs and finalized state
   roots are submitted to the finalization layer.
 
-- Hybrid deployments
-  Data availability varies by transaction type.
+- Hybrid deployments: DA varies by transaction type.
 
-- Public deployments
-  Transaction data and associated payloads are posted to the finalization layer, for example via
-  EIP-4844 blobs on Ethereum.
+:::tip
 
-For protocol-level context on batching, finality, and data publication, see
-[transaction lifecycle](../transaction-lifecycle.mdx) and [network data](../network-data.mdx).
+For Public Mainnet's protocol-level context on batching, finality, and data publication, see
+[transaction lifecycle](../transaction-lifecycle.mdx) and
+[network data](../../network/build/network-data.mdx).
+
+:::
+
+## Signing services
+
+Operators that run this architetural stack typically leverage a signing service that externalizes private key management from the nodes themselves. This allows the clients to obtain signatures on blocks, attestations, and transactions without directly holding the private keys. This allows the components participating in block production and finality to integrate with signing services to sign consensus messages and transactions. 
+
+:::important
+
+Always ensure that private keys are stored and protected using a Key Management Service (KMS) or a secure alternative. It's best practice to ensure that signing operations are centralized, access‑controlled, and auditable.
+
+:::
 
 ## Next steps
 

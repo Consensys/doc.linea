@@ -10,7 +10,7 @@ The module responsible for generating the final set of data for a zero-knowledge
 
 ## What does it do?
 
-The prover receives several sets of information from the coordinator and Linea Besu, and produces a succinct, non-interactive argument of knowledge, or zk-SNARK.
+The prover handles proof-generation requests from the coordinator and Linea Besu, and produces a succinct, non-interactive argument of knowledge, or zk-SNARK.
 
 The prover generates 3 types of zero-knowledge proofs to verify state transitions:
 
@@ -23,4 +23,16 @@ instances for performance.
 
 ## How does it do it?
 
-There are multiple operations involved; the first part of this module is Corset. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
+The prover produces proofs in two stages:
+
+- Inner proof: recursively reduces the trace into a smaller proof object to make aggregation efficient.
+- Outer proof: is generated with the Consensys-maintained [gnark library](../../../protocol/repos#gnark), further compressing the result into a Zero-Knowledge Succinct Non-interactive Argument of Knowledge (zk-SNARK).
+
+There are multiple operations involved:
+
+1. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. 
+2. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
+
+This provides cryptographic guarantees to state correctness without requiring third parties to re-execute transactions. Furthermore, the prover provides immediate correctness for transaction batches upon verification. This process enables Linea to provide secure, efficient, and cost-effective transaction scaling, while ensuring trustless execution.
+
+

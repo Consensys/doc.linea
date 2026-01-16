@@ -191,25 +191,11 @@ or liveliness.
 
 ### Full nodes
 
-Full nodes are composed of the execution layer client such as
+[Full nodes](../../protocol/architecture#full-node) are composed of the execution layer client such as
 [Besu](../../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../../network/how-to/run-a-node/geth.mdx), 
-and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). Full nodes maintain complete 
-network state and participate in consensus:
+and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). 
 
-- Verify all blocks and transactions
-- Serve RPC requests
-- Participate in P2P networking
-- May serve as validators in QBFT consensus
-
-Full nodes are often run with both clients in the same container. These clients communicate via the Engine API, an internal service, as shown in the diagram below.
-
-<img
-  src="/img/stack/full-node.png"
-  alt="Full node topology"
-  style={{display: 'block', margin: '0 auto', width: 500}}
-/>
-
-The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it.
+Full nodes maintain complete network state and participate in consensus. The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it. Full nodes are often run with both clients in the same container. These clients communicate via the Engine API, an internal service.
 
 ### RPC nodes
 

@@ -49,6 +49,12 @@ provisioned with higher storage capacity and different performance characteristi
 the architecture is to provide a source of truth for the historical state, supporting downstream
 functions such as auditing, forensics, analytics, and historical consistency checks.
 
+#### Data availability
+
+How data availability (DA) is handled depends on the [deployment model](../../stack/how-it-works/deployment-models) of the Network. Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage third-party DA providers.
+
+DA is crucial in preserving and providing access to transaction data required to reconstruct the state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DA nodes guarantee that the transaction data underlying these proofs remains accessible to anyone who wants to verify or reconstruct the historical state.
+
 ## Why run your own RPC?
 
 While public RPC endpoints are convenient for development and light usage, running your own RPC node gives operators stronger guarantees and greater control over how they interact with Linea. 
