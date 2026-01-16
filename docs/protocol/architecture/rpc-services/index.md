@@ -51,53 +51,53 @@ functions such as auditing, forensics, analytics, and historical consistency che
 
 #### Data availability
 
-How data availability (DA) is handled depends on the 
-[deployment model](../../../stack/how-it-works/deployment-models/index.mdx) of the Network. 
-Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage 
+How data availability (DA) is handled depends on the
+[deployment model](../../../stack/how-it-works/deployment-models/index.mdx) of the Network.
+Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage
 third-party DA providers.
 
-DA is crucial in preserving and providing access to transaction data required to reconstruct the 
-state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DA 
-nodes guarantee that the transaction data underlying these proofs remains accessible to anyone who 
+DA is crucial in preserving and providing access to transaction data required to reconstruct the
+state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DA
+nodes guarantee that the transaction data underlying these proofs remains accessible to anyone who
 wants to verify or reconstruct the historical state.
 
 ## Why run your own RPC?
 
-While public RPC endpoints are convenient for development and light usage, running your own RPC node 
-gives operators stronger guarantees and greater control over how they interact with Linea. 
+While public RPC endpoints are convenient for development and light usage, running your own RPC node
+gives operators stronger guarantees and greater control over how they interact with Linea.
 
-For quick experimentation, testing, or low-volume usage, public RPC services may be sufficient. As 
-usage grows or requirements around reliability, trust, or data access become stricter, running a 
+For quick experimentation, testing, or low-volume usage, public RPC services may be sufficient. As
+usage grows or requirements around reliability, trust, or data access become stricter, running a
 dedicated RPC node becomes increasingly valuable.
 
 ### Reliability and availability
 
-Public RPC services are shared infrastructure and may enforce rate limits, request prioritization, 
-or maintenance windows outside your control. Operating your own RPC allows you to size resources, 
+Public RPC services are shared infrastructure and may enforce rate limits, request prioritization,
+or maintenance windows outside your control. Operating your own RPC allows you to size resources,
 tune performance, and manage uptime according to your application’s needs.
 
 ### Performance and latency
 
-A self-hosted RPC node can be optimized for your specific workload—whether low-latency access to 
-near-head state or high-throughput historical queries. This avoids contention with other users and 
+A self-hosted RPC node can be optimized for your specific workload—whether low-latency access to
+near-head state or high-throughput historical queries. This avoids contention with other users and
 can significantly reduce response times for latency-sensitive applications.
 
 ### Trust and correctness
 
-When using a public RPC, applications implicitly trust a third party to serve accurate and complete 
-data. Running your own RPC allows you to validate chain data directly from the protocol, reducing 
+When using a public RPC, applications implicitly trust a third party to serve accurate and complete
+data. Running your own RPC allows you to validate chain data directly from the protocol, reducing
 reliance on external operators and improving assurance around data integrity.
 
 ### Access to historical data
 
-Public RPC endpoints often restrict access to archive data due to storage and cost constraints. 
-Operating your own archive node enables unrestricted historical queries, supporting use cases such as 
+Public RPC endpoints often restrict access to archive data due to storage and cost constraints.
+Operating your own archive node enables unrestricted historical queries, supporting use cases such as
 analytics, auditing, and forensics.
 
 ### Operational control and security
 
-Self-hosted RPC nodes can be deployed behind private networks, load balancers, and access controls (RBAC). 
-This is especially important for backend services, indexers, and internal tooling that require predictable 
+Self-hosted RPC nodes can be deployed behind private networks, load balancers, and access controls (RBAC).
+This is especially important for backend services, indexers, and internal tooling that require predictable
 access patterns and tighter security boundaries.
 
 ## Next steps
