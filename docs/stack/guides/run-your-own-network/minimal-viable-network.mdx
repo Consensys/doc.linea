@@ -1,17 +1,17 @@
 ---
-title: Minimal viable network
+title: 3. Minimal viable network
 description: The smallest supported setup for running a Linea network
 sidebar_position: 3
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
-image: /img/socialCards/minimal-viable-network.jpg
+image: /img/socialCards/3-minimal-viable-network.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/deployment-guides/deploy-private-validium', label: 'Deploy Private Validium'},
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deploy Private Validium'},
+  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
   {type: 'link', href: '/stack/how-it-works/boundaries-responsibilities', label: 'Boundaries & Responsibilities'},
 ];
 
@@ -57,9 +57,7 @@ These components can be simplified or deferred in a minimal viable network:
 - All core components listed above
 - Minimum 4 nodes for QBFT consensus
 - Basic network connectivity between components
-- Connection to finalization layer (for finalization testing; see [Data availability and
-  finalization](../../how-it-works/data-availability-finalization.mdx) for details on finalization
-  layer requirements)
+- Connection to finalization layer (for [finalization testing](../../how-it-works/data-availability-finalization.mdx))
 
 ### Recommended for minimal viable network
 
@@ -73,7 +71,7 @@ These components can be simplified or deferred in a minimal viable network:
 - RBAC and access controls (Private Validium)
 - Comprehensive monitoring and alerting
 - Backup and disaster recovery procedures
-- Production hardening (see [production hardening](./production-hardening.mdx))
+- [Production hardening](./production-hardening.mdx)
 - Data availability redundancy
 - Multiple prover instances for redundancy
 
@@ -88,20 +86,10 @@ A minimal viable network does not provide:
 - Disaster recovery: No tested backup and recovery procedures
 - Network isolation: May use shared networks for simplicity
 
-## What this setup is not suitable for
-
-Do not use a minimal viable network for:
-
-- Production workloads: Missing security, monitoring, and redundancy
-- Regulated financial applications: Missing compliance controls and audit trails
-- High-availability requirements: No redundancy or failover
-- Production data: No tested backup and recovery
-- Public access: Missing access controls and security hardening
-
 ## Deployment steps
 
 1. Deploy consensus layer: [Deploy Maru](../deployment-guides/deploy-maru.mdx) with minimum 4 nodes
-2. Deploy execution layer: [Deploy execution layer](../deployment-guides/deploy-execution-layer.mdx)
+2. Deploy Execution Layer: [Deploy Execution Layer](../deployment-guides/deploy-execution-layer.mdx)
    with sequencer and at least one full node
 3. Deploy coordinator: See coordinator deployment guide (placeholder)
 4. Deploy prover: See prover deployment guide (placeholder)
@@ -123,7 +111,7 @@ After deploying your MVN, verify:
 
 After validating your minimal viable network:
 
-1. Understand what's missing for production (see [production hardening](./production-hardening.mdx))
+1. [Understand what's missing for production](./production-hardening.mdx))
 2. Test failure scenarios to understand component dependencies
 3. Plan production deployment with required security, monitoring, and redundancy
 

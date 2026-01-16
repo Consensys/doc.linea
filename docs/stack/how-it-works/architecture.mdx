@@ -54,9 +54,9 @@ In a fully-public network, these components run on externally reachable nodes. I
   Maintain full chain state, verify blocks, and serve RPC requests. Full nodes do not necessarily
   participate in consensus.
 
-- **RPC nodes**  
-  Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head access or
-  configured as archive nodes for historical queries.
+- RPC nodes: Expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for near-head
+  access or configured as archive nodes for historical queries. For details, see
+  [RPC services](../../protocol/architecture/rpc-services/index.md).
 
 ### Internal protocol services
 
@@ -128,7 +128,8 @@ proof generation and recovery.
 
 ### Tracer 
 
-The [tracer](../../protocol/architecture/tracer.mdx) generates execution traces required for proof generation.  
+The [traces generator](../../protocol/architecture/sequencer/traces-generator.mdx) generates execution
+traces required for proof generation.  
 
 
 ## Transaction lifecycle
@@ -169,7 +170,7 @@ The Linea stack includes system contracts deployed in two locations:
 For details on all system contracts, see [smart contracts](./smart-contracts.mdx).
 
 
-## Auxiliary service
+## Auxiliary services
 
 ### Block explorer
 
@@ -186,46 +187,30 @@ Block explorers are not required for network operation and do not participate in
 execution, or finalization. They can be deployed, replaced, or omitted without affecting correctness
 or liveliness.
 
+### Web3Signer
+
+[Web3Signer](https://docs.web3signer.consensys.io/) is a remote signing service for Ethereum and other blockchain clients that externalizes private key management from the nodes themselves. It exposes HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, attestations, and transactions without directly holding the private keys. 
+
+In this architecture, the components participating in block production and finality integrate with Web3Signer to sign consensus messages and transactions, so that signing operations are centralized, access‑controlled, and auditable rather than embedded in each node. 
+
 ## Network topology
 
 ### Full nodes
 
-Full nodes are composed of the execution layer client such as
+[Full nodes](../../protocol/architecture#full-node) are composed of the execution layer client such as
 [Besu](../../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../../network/how-to/run-a-node/geth.mdx), 
-and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). Full nodes maintain complete 
-network state and participate in consensus:
+and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). 
 
-- Verify all blocks and transactions
-- Serve RPC requests
-- Participate in P2P networking
-- May serve as validators in QBFT consensus
-
-Full nodes are often run with both clients in the same container. These clients communicate via the Engine API, an internal service, as shown in the diagram below.
-
-<img
-  src="/img/stack/full-node.png"
-  alt="Full node topology"
-  style={{display: 'block', margin: '0 auto', width: 500}}
-/>
-
-The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it.
+Full nodes maintain complete network state and participate in consensus. The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it. Full nodes are often run with both clients in the same container. These clients communicate via the Engine API, an internal service.
 
 ### RPC nodes
 
-RPC nodes provide API access to the network:
+[RPC nodes](../../protocol/architecture/rpc-services/index.md) provide API access to the network:
 
 - Near-head nodes: Optimized for low-latency access to recent state
-- Archive nodes: Maintain complete historical state for auditing and analysis
+- Archive nodes: Maintain complete historical state for data availability (DA), auditing, and analysis
 
 RPC nodes may be deployed behind load balancers and access controls (RBAC) for [private networks](./deployment-models/private-validium.mdx).
-
-#### Near-head nodes
-
-A near-head node maintains a replicated view of the blockchain focused on the canonical head and its recent history. They continuously ingest new blocks and state updates from the protocol, ensuring that its local state remains closely synchronized with the latest finalized and near-finalized data. The service is optimized for low-latency access to recent blocks and current state, and for high-throughput transaction propagation toward the rest of the system. It is designed to support latency-sensitive operations on near-tip state, rather than long-range historical reconstruction or analysis.
-
-#### Archive nodes
-
-An archive node maintains a complete, durable record of the blockchain from genesis, including all blocks and associated state transitions. Unlike a near-head node, it retains a full historical state, enabling exact reconstruction of the chain state at any past block height. This service is optimized for correctness and completeness of historical data rather than minimal latency, and is provisioned with higher storage capacity and different performance characteristics. Its role in the architecture is to provide a source of truth for the historical state, supporting downstream functions such as auditing, forensics, analytics, and historical consistency checks.
 
 ### Network topology patterns
 

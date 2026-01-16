@@ -1,12 +1,12 @@
 ---
-title: Production hardening
+title: 4. Production hardening
 description: >-
   Security, monitoring, and operational best practices for production
   deployments
 sidebar_position: 4
 mainSource:
   url: 'https://github.com/Consensys/linea-monorepo'
-image: /img/socialCards/production-hardening.jpg
+image: /img/socialCards/4-production-hardening.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
@@ -29,7 +29,7 @@ production workloads. Do not skip these steps.
 
 ### Key management
 
-- Remote signing: Use hardware security modules or cloud key management service key management service (KMS) for signing operations
+- [Remote signing](../../how-it-works/architecture.mdx#web3signer): Use hardware security modules or cloud key management service key management service (KMS) for signing operations
 - Key rotation: Establish key rotation procedures
 - Backup: Secure backup of keys and configuration
 
@@ -162,11 +162,8 @@ Before going to production, verify:
 
 ## Next steps
 
-After production hardening:
-
-1. Review [what's next](./whats-next.mdx) for ongoing operations
-2. Establish [operations guides](../operations-guides/index.mdx) procedures
-3. Set up regular maintenance and review cycles
+After production hardening, proceed to [Operations guides](../operations-guides/index.mdx) for
+ongoing operations, scaling, and maintenance procedures.
 
 ## Related documentation
 

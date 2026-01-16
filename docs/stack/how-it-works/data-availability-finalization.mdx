@@ -16,29 +16,26 @@ export const relatedDocs = [
   {type: 'link', href: '/protocol/architecture', label: 'Architecture'},
 ];
 
-Understanding data availability and finalization is essential for deploying and operating a Linea
+This section covers your options and responsibilities for data availability and finalization. Understanding [data availability and finalization](/protocol/architecture#data-availability-and-finalization) is essential for deploying and operating a Linea
 network.
 
-**Data availability** and **finalization** are separate concerns:
+The following examples show different combinations of data availability and finalization:
 
-- Data availability: Where transaction data is stored (onchain vs. offchain)
-- Finalization: Where proofs and state commitments are verified (L1 vs. L2)
-
-Together, the two determine how your network is deployed and operated. The following examples show different combinations of data availability and finalization:
-
-- Private Validium on Ethereum: Offchain data availability, L1 finalization (L2)
-- Private Validium on Linea Mainnet: Offchain data availability, L2 finalization (L3)
-- Public on Ethereum: Onchain data availability, L1 finalization (L2)
-- Public on Linea Mainnet: Onchain data availability, L2 finalization (L3)
-
-This guide covers your options and responsibilities for data availability and finalization.
+- L2 Private Validium on Ethereum: Offchain data availability, L1 finalization
+- L3 Private Validium on Linea Mainnet: Offchain data availability, L2 finalization
+- L2 Public on Ethereum: Onchain data availability, L1 finalization
+- L3 Public on Linea Mainnet: Onchain data availability, L2 finalization
 
 ## Data availability
+
+Data availability (DA) plays a crucial role in preserving and providing access to transaction data required to reconstruct the state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DAs guarantee that the transaction data underlying these proofs remains accessible to anyone who wants to verify or reconstruct the historical state.
 
 Data availability is the guarantee that transaction data is accessible when needed. Your deployment
 model determines where and how data is stored.
 
 ### Private Validium
+
+In a Validium, DA is typically provided by the Validium’s [archive nodes](../../../protocol/architecture/rpc-services#archive-nodes) rather than an external DA solution. As long as a subset of these nodes remain honest and online, the full transaction history can be reconstructed and independently verified. Because the chain is private, data is not posted to the finalization layer, but is instead retained within the Validium infrastructure under the operational and governance controls of the participating institutions. In this model, assurance of data availability is primarily based on institutional guarantees, node redundancy, and operational SLAs across the consortium of operators.
 
 **Data availability:** Offchain in a private node set
 
@@ -54,9 +51,9 @@ model determines where and how data is stored.
 
 ### Public
 
-**Data availability:** Onchain via EIP-4844 blobs
+**Data availability:** Onchain for example, on Ethereum via EIP-4844 blobs
 
-- All transaction data is posted to the finalization layer using EIP-4844 blobs
+- All transaction data is posted to the Ethereum as the finalization layer using EIP-4844 blobs
 - Data is available onchain for verification and state recovery
 - Blobs expire after 4,096 epochs (~18 days) but state commitments remain
 - Maximum transparency and onchain data availability guarantees

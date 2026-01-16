@@ -12,7 +12,7 @@ import ConflationGraphic from '/img/get_started/concepts/sequencer/conflation/Li
 
 ## What is it?
 
-Conflation is the process of combining two or more blocks’ worth of transactions into one data set. It can then be used to produce a ‘before and after’ map of the network state (a Merkle tree, in technical terms) as well as a zero-knowledge proof, which is published to Ethereum.
+Conflation is the process of combining two or more blocks’ worth of transactions into one data set. It can then be used to produce a ‘before and after’ map of the network state (a [Merkle tree](../state-manager.mdx#merkle-trees), in technical terms) as well as a zero-knowledge proof, which is published to Ethereum.
 
 ## What does it do?
 
@@ -20,7 +20,7 @@ Conflation is not normally seen in mainnet Ethereum environments, where transact
 
 ## How does it do it?
 
-Conflation occurs within the execution client, but through a process of communication with the Coordinator:
+Conflation occurs within the execution client, but through a process of communication with the coordinator:
 
 - The conflator waits for a traces file to appear
 - Marks that blocks' worth of traces as "merged"
@@ -28,4 +28,4 @@ Conflation occurs within the execution client, but through a process of communic
   - If it does, it checks to see if the number of lines in the block and the length of the data would exceed the limit
     - If it's within the limit, the conflator marks it as merged as well
 
-The conflator continues this cycle until the time limit is reached, at which point it passes the conflated trace data back to the Coordinator, for subsequent Merkle tree and proof generation.
+The conflator continues this cycle until the time limit is reached, at which point it passes the conflated trace data back to the coordinator, for subsequent Merkle tree and proof generation.

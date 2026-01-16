@@ -19,7 +19,9 @@ When editing documentation files (.mdx, .md), always follow these formatting sta
 - Bullet lists in full sentences do end in stop
 - Use "dapp" rather than "dApp", and capitalize like any other noun
 - Use "onchain" rather than "on-chain" or on chain and capitalize like any other noun
+- Use "offchain" rather than "of-chain" or off chain and capitalize like any other noun
 - There's no need to include a top-tier heading (with #) generally, unless you want the heading on the rendered page to read differently from the `title` in the metadata. It is the latter which Docusaurus pulls and uses as the sidebar title
 - There's no need to add the social card to the metadata manually, as it's automatically added on build
+- Use relative links: hint ](/ pattern indicates an absolute link while ](./ and ](../ indicate relative links
 
 
