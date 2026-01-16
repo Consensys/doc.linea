@@ -170,7 +170,7 @@ The Linea stack includes system contracts deployed in two locations:
 For details on all system contracts, see [smart contracts](./smart-contracts.mdx).
 
 
-## Auxiliary service
+## Auxiliary services
 
 ### Block explorer
 
@@ -187,6 +187,12 @@ Block explorers are not required for network operation and do not participate in
 execution, or finalization. They can be deployed, replaced, or omitted without affecting correctness
 or liveliness.
 
+### Web3Signer
+
+[Web3Signer](https://docs.web3signer.consensys.io/) is a remote signing service for Ethereum and other blockchain clients that externalizes private key management from the nodes themselves. It exposes HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, attestations, and transactions without directly holding the private keys. 
+
+In this architecture, the components participating in block production and finality integrate with Web3Signer to sign consensus messages and transactions, so that signing operations are centralized, access‑controlled, and auditable rather than embedded in each node. 
+
 ## Network topology
 
 ### Full nodes
@@ -202,7 +208,7 @@ Full nodes maintain complete network state and participate in consensus. The blo
 [RPC nodes](../../protocol/architecture/rpc-services/index.md) provide API access to the network:
 
 - Near-head nodes: Optimized for low-latency access to recent state
-- Archive nodes: Maintain complete historical state for auditing and analysis
+- Archive nodes: Maintain complete historical state for data availability (DA), auditing, and analysis
 
 RPC nodes may be deployed behind load balancers and access controls (RBAC) for [private networks](./deployment-models/private-validium.mdx).
 
