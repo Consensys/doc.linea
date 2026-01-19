@@ -54,7 +54,7 @@ The Linea stack is comprised of several broad classes of components:
 - [Smart contracts](#onchain-system-contracts): Versionable, immutable onchain contracts.
 - [Auxillary services](#auxiliary-services):
   - Block explorer: While theoretically optional, explorer data simplifies transaction building, auditing, and troubleshooting.
-  - Web3 signer: Secure signing service ensuring that nodes may sign without revealing keys.
+  - Web3Signer: Secure signing service ensuring that nodes may sign without revealing keys.
 
 ## Core components
 
@@ -145,7 +145,7 @@ or liveliness.
 
 ### Web3Signer
 
-[Web3Signer](https://docs.web3signer.consensys.io/) is a remote signing service for Ethereum and other 
+[Web3Signer](https://docs.web3signer.consensys.io/) is an open-source, remote signing service for Ethereum and other 
 blockchain clients that externalizes private key management from the nodes themselves. It exposes 
 HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, 
 attestations, and transactions without directly holding the private keys. 
