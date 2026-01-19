@@ -7,22 +7,22 @@ description: >-
 image: /img/socialCards/rpc-services.jpg
 ---
 
-## What is it?
+## What are they?
 
 RPC services expose JSON-RPC APIs to applications and users. RPC nodes can be optimized for near-head
 access or configured as archive nodes for historical queries.
 
-Most end users use their [wallet](../../../network/how-to/connect-wallet.mdx) as a user interface to
+Most end users use their [wallet](../../network/how-to/connect-wallet.mdx) as a user interface to
 interact with the public blockchain through an RPC service.
-Most developers use [public RPC services](../../../network/tools/node-providers/index.mdx), or
-[run their own RPC node](../../../network/how-to/run-a-node/index.mdx).
+Most developers use [public RPC services](../../network/tools/node-providers/index.mdx), or
+[run their own RPC node](../../network/how-to/run-a-node/index.mdx).
 
-## What does it do?
+## What do they do?
 
 RPC services provide the JSON-RPC interfaces that applications and users rely on to access Linea
 data. RPC nodes may be deployed behind load balancers and access controls (RBAC).
 
-## How does it do it?
+## How do they do it?
 
 RPC services are provided by RPC nodes. Operators decide whether to optimize nodes for near-head
 access or for archive queries depending on how the network is intended to be used.
@@ -48,18 +48,6 @@ optimized for correctness and completeness of historical data rather than minima
 provisioned with higher storage capacity and different performance characteristics. Its role in
 the architecture is to provide a source of truth for the historical state, supporting downstream
 functions such as auditing, forensics, analytics, and historical consistency checks.
-
-#### Data availability
-
-How data availability (DA) is handled depends on the
-[deployment model](../../../stack/how-it-works/deployment-models/index.mdx) of the Network.
-Another blockchain may provide DA, operators may run nodes specifically for DA, or they may leverage
-third-party DA providers.
-
-DA is crucial in preserving and providing access to transaction data required to reconstruct the
-state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DA
-nodes guarantee that the transaction data underlying these proofs remains accessible to anyone who
-wants to verify or reconstruct the historical state.
 
 ## Why run your own RPC?
 
@@ -102,4 +90,5 @@ access patterns and tighter security boundaries.
 
 ## Next steps
 
-For operational deployment details, see the [Linea Stack architecture](../../../stack/how-it-works/architecture.mdx).
+For operational deployment details, see the
+[Linea Stack architecture](../../stack/how-it-works/index.mdx).

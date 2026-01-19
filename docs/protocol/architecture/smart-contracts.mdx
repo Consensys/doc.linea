@@ -5,23 +5,13 @@ sidebar_position: 3
 image: /img/socialCards/smart-contracts.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-export const relatedDocs = [
-  // {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
-  {type: 'link', href: '/stack/how-it-works/data-availability-finalization', label: 'Data availability and finalization'},
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
-];
-
 The Linea stack includes onchain system contracts deployed on the finalization layer and on the
 Linea network itself, as well as auxiliary services that support network operations. Understanding
 these contracts and services is essential for operators managing deployments.
 
-## Onchain system contracts
-
 ### Finalization contract
 
-This contract is deployed to the [finalization layer](./data-availability-finalization.mdx). 
+This contract is deployed to the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
 **Purpose:**  
 It enables secure interactions between Linea and the finalization layer.
@@ -30,8 +20,8 @@ It enables secure interactions between Linea and the finalization layer.
 
 - Validates zk-SNARK proofs attesting to correct state transitions for batches of transactions
 - Records finalized state roots on the finalization layer
-- Acts as a [canonical protocol contract for message passing](../../protocol/architecture/interoperability/message-service) between the Linea network and the
-  finalization layer
+- Acts as a [canonical protocol contract for message passing](./interoperability/message-service/index.mdx)
+  between the Linea network and the finalization layer
 - Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
   transitions
 - Anchors Linea state to Ethereum-level security guarantees
@@ -44,52 +34,6 @@ networks may reuse the same contract pattern or deploy functionally equivalent c
 their finalization design.
 
 :::
-
-### Settlement contract
-
-**Purpose:** Executes token exchanges onchain that are agreed upon offchain through cryptographically
-signed messages.
-
-**Functionality:**
-
-- Supports bilateral swaps and unilateral transfers
-- Corresponds to Cross-Border Payment (CBP), Payment-versus-Payment (PvP), and Delivery-versus-Payment
-  (DvP) models
-- Acts as a neutral intermediary that validates signatures and ensures all parties have authorized
-  the exchange
-- Atomically executes token transfers (all legs succeed together or the entire transaction reverts)
-- Eliminates settlement risk through code
-
-**Security features:**
-
-- Replay protection through message-hash tracking
-- Batch execution for efficient processing
-- EIP-712 typed-data signing for human-readable authorization
-- Reentrancy guards and post-transfer balance checks
-- EIP-712 domain separation (chainId, verifyingContract) to prevent cross-chain replay
-
-### TokenFactory contract
-
-**Purpose:** Permissionless factory system for deploying and managing ERC-20 tokens entirely through
-EIP-712 signed messages.
-
-**Functionality:**
-
-- Enables anyone to deploy new tokens, mint/burn supply, and manage token operations by submitting
-  properly signed messages from the token owner
-- Supports direct operations (owners mint to themselves or burn from themselves)
-- Supports request-approval workflow: non-owners can request token issuance or redemption, which must
-  be approved by the owner through a separate signed message
-- Decouples transaction execution from authorization (signature-based rather than requiring
-  msg.sender to be the owner)
-- Enables meta-transaction patterns where executors can submit signed operations on behalf of token
-  owners
-
-**Security features:**
-
-- Replay protection through executed message hashes
-- Reentrancy guards
-- Permissionless execution model (anyone can relay signed messages without compromising security)
 
 ### Native message bridge smart contract
 
@@ -133,6 +77,3 @@ finalization layer and the ZK-EVM.
 - Maintains a registry of supported tokens and tracks total supply to ensure minted amounts never
   exceed locked amounts
 
-## Related documentation
-
-<DocCardList items={relatedDocs} />

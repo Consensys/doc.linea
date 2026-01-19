@@ -17,10 +17,11 @@ export const relatedDocs = [
 
 The Linea stack provides a shared, extensible foundation for running your own Linea network.
 
-The Linea stack supports operators who need more control than a Layer-1 network can offer, without sacrificing
-interoperability, security guarantees, or alignment with the EVM protocols. Whether you are deploying
-a private network for regulated environments, a hybrid network with selective data availability, or a
-fully public network, the Linea stack gives you the components and operational model to do so.
+:::info Configurable
+
+The Linea stack supports operators who need more control than a Layer-1 network can offer, without sacrificing interoperability, security guarantees, or alignment with the EVM protocols. Whether you are deploying a private network for regulated environments, you favor selective data availability, or are operating a fully public network, the Linea stack gives you the components and operational model to do so.
+
+:::
 
 ## Why the Linea stack exists
 
@@ -33,29 +34,34 @@ As blockchain adoption grows, many organizations encounter a common set of const
 - Interoperability between private systems and public blockchains remains fragmented.
 
 The Linea stack lets you run a Linea-compatible network tailored to
-your requirements, using open source technology, while remaining anchored to the same protocol foundations as [Linea Mainnet](./network).
+your requirements, using open source technology, while remaining anchored to the same protocol foundations 
+as [Linea Mainnet](./network).
 
 ## What the Linea stack provides
 
 At a high level, the Linea stack provides:
 
-- **A Linea-compatible execution environment**  
-  Run an EVM-equivalent network that aligns with the Linea protocol and tooling ecosystem.
+- **Low-cost transactions:** 10× cheaper than Ethereum L1 costs.
 
-- **Flexible deployment models**  
-  Deploy private, hybrid, or public networks depending on your privacy, compliance, and availability
-  requirements.
+- **Fast transactions:** Linea's 2s block times supports near-instant [soft finality](/protocol/transaction-lifecycle#step-3-state-tracking).
 
-- **Privacy and data availability controls**  
-  Keep transaction data private as required, while still benefiting from trust-minimized finalization.
+- **Trustless Ethereum interoperability:** Access Ethereum's deep liquidity via Linea's trustless 
+rollup architecture.
 
-- **Operational clarity and control**  
-  Clearly defined components, responsibilities, and failure boundaries so operators can reason about
-  risk, uptime, and compliance.
+- **An EVM-compatible execution environment:** Run an EVM-equivalent network that aligns with the 
+Linea protocol and tooling ecosystem.
 
-- **Interoperability by design**  
-  Enable controlled interaction with other networks and public blockchains through standardized bridge
-  components.
+- **Flexible deployment models:** Deploy rollup networks with customizations to suit your privacy, 
+compliance, and availability requirements.
+
+- **Privacy and data availability controls:** Keep transaction data private as required, while still 
+benefiting from trust-minimized finalization.
+
+- **Operational clarity and control:** Clearly defined components, responsibilities, and failure 
+boundaries so operators can reason about risk, uptime, and compliance.
+
+- **Interoperability by design:** Enable controlled interaction with other networks and public 
+blockchains through standardized bridge components.
 
 ## Who this is for
 
@@ -71,7 +77,8 @@ deep protocol expertise.
 
 ## Next steps
 
-If you are new to the Linea stack, consider starting with [how it works](./how-it-works/index.mdx) to understand the system.
+If you are new to the Linea stack, consider starting with [how it works](./how-it-works/index.mdx) 
+for a high-level overview of the system.
 
 ## Related documentation
 

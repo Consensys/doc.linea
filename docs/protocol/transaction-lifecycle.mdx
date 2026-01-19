@@ -61,7 +61,8 @@ Traces are passed to the state manager block-by-block and then used to record an
 for batching and proof generation. With the transaction executed and state updated, the transaction 
 has reached **soft finality** and the user sees the transaction reflected and confirmed in their wallet.
 
-From Linea's perspective, the transaction is complete, however, an [L2 like Linea](./architecture/index.mdx)
+From Linea's perspective, the transaction is complete, however, an
+[L2 like Linea](./overview.mdx#what-is-linea)
 must still reach hard finality on the finality layer.
 
 - **Components:** [Besu](../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) with tracer plugins
@@ -128,4 +129,5 @@ Finality has two definitions on Linea:
 
 ## Next steps
 
-For the source code underpinning the Linea tech stack described here, see the [Linea repositories](./repos.mdx).
+- Learn more about the [protocol architecture](./architecture/index.mdx)
+- Access the [source code](./repos.mdx) underpinning the Linea tech stack

@@ -5,102 +5,79 @@ sidebar_position: 4
 image: /img/socialCards/boundaries-and-responsibilities.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
+Understanding boundaries and responsibilities is essential for safe network operation and informed
+trust decisions. This page clarifies who operates what, what Linea provides vs. what Operator provides,
+and how responsibility is allocated when failures occur.
 
-export const relatedDocs = [
-  // {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
-  // {type: 'link', href: '/stack/guides/operations-guides/common-mistakes', label: 'Common mistakes'},
-];
+This documentation assumes familiarity with the Linea protocol architecture and focuses on
+operational boundaries, not component behavior.
 
-Understanding boundaries and responsibilities is essential for safe network operation and trust
-decisions. This documentation clarifies who operates what, what Linea provides vs. what you provide,
-and how to handle failure scenarios.
+## Define operations
 
-## Operations
+Linea provides the open source protocol software, specifications, and cryptographic guarantees.
+Operators are responsible for deploying, operating, and securing the infrastructure that runs the
+protocol.
 
-Generally speaking, Linea provides the underlying software components and protocols, while you are responsible for top-level network operations and access controls.
+### Linea provides
 
-**Linea provides the following components and protocols:**
+- Protocol software and specifications
+- Cryptographic correctness guarantees via zero-knowledge proofs
+- Consensus protocol design (QBFT)
+- Finalization mechanics and state commitments
+- Canonical protocol behavior and invariants
 
-- Consensus layer client: [Maru](../../protocol/repos.mdx#maru), the QBFT consensus implementation
-- Execution layer clients: [Linea Besu](../../protocol/repos.mdx#linea-besu-upstream), with support for Geth and Erigon
-- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Transaction ordering and block building
-- [Coordinator](../../protocol/architecture/coordinator.mdx): Proof generation orchestration
-- [Prover](../../protocol/architecture/prover/index.mdx): Zero-knowledge proof generation
-- [State manager](../../protocol/architecture/state-manager.mdx): State representation for proof generation
-- Protocol specifications: Transaction lifecycle, finalization, and security guarantees
+### Operators provide
 
-**You provide the following:**
+- Infrastructure (hardware, networking, cloud resources)
+- Deployment and configuration of components
+- Day-to-day node operations
+- Monitoring, alerting, and incident response
+- Backup and disaster recovery procedures
+- Key management and signing security
 
-- Infrastructure: Hardware, networking, and cloud resources
-- Deployment: Installing, configuring, and deploying components
-- Node operations: Running consensus and execution layer nodes.
-- Monitoring and alerting: Observing component health and performance.
-- Backup and disaster recovery: State backups and recovery procedures.
-- Key management: Secure key storage and rotation.
+For Private Validium deployments, operators also provide:
 
-If using the Private Validium deployment model, you also provide:
+- Data availability infrastructure
+- Access controls (RBAC, API portal, network security)
+- Compliance and governance processes
 
-- Data availability: Ensuring data is available when needed 
-- Access controls: Role-Based Access Control (RBAC), API portal, and network security
-- Compliance: Meeting regulatory requirements.
+## Define Linea component boundaries
 
-### Linea component boundaries
+The following sections describe what each component explicitly does not do, and where
+responsibility shifts to other components or to the operator.
 
-#### Consensus layer ([Maru](../../protocol/repos.mdx#maru))
-
-**Responsibilities:**
-
-- Block production coordination with execution layer
-- Consensus protocol execution (QBFT)
-- Block validation and propagation via P2P
-- Validator set management
+### Consensus layer ([Maru](../../protocol/repos.mdx#maru))
 
 **Boundaries:**
 
 - Does not execute transactions or maintain EVM state
-- Does not generate proofs or interact with finalization layer
-- Communicates with execution layer only via Engine API
+- Does not generate zk-SNARK proofs
+- Does not submit data or proofs to the finalization layer
+- Communicates with execution layer only via the Engine API
 
-#### Execution layer (Besu/Geth/Erigon)
-
-**Responsibilities:**
-
-- Transaction execution in EVM (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
-- State maintenance and updates
-- Transaction pool management
-- RPC endpoint serving (when configured as RPC node)
+### Execution layer ([Linea Besu](../../protocol/repos.mdx#linea-besu-upstream), Geth, Erigon)
 
 **Boundaries:**
 
-- Does not participate in consensus (delegated to Maru)
-- Does not generate proofs or interact with coordinator
-- Does not manage finalization layer submissions
+- Does not participate in consensus (handled by Maru)
+- Does not generate proofs or interact with the coordinator
+- Does not submit data or proofs to the finalization layer
 
-#### [Sequencer](../../protocol/architecture/sequencer/index.mdx)
+For transaction execution flow, see the
+[transaction lifecycle](../../protocol/transaction-lifecycle.mdx).
 
-**Responsibilities:**
-
-- Transaction ordering and block building (see [Transaction lifecycle](../../protocol/transaction-lifecycle.mdx) for details)
-- Transaction validation (trace limits, gas limits, calldata size)
-- Block profitability checks
-- Enforcing Linea-specific block constraints
+### [Sequencer](../../protocol/architecture/sequencer/index.mdx)
 
 **Boundaries:**
 
-- Does not participate in consensus (consensus handled by Maru)
+- Does not participate in consensus (handled by Maru)
 - Does not generate proofs or manage finalization
-- Not directly accessible from outside network (protected from DDoS)
+- Is not directly accessible from outside the network
 
-#### [Coordinator](../../protocol/architecture/coordinator.mdx)
+For sequencing in the transaction flow, see the
+[transaction lifecycle](../../protocol/transaction-lifecycle.mdx).
 
-**Responsibilities:**
-
-- Batch creation from blocks
-- Blob creation from batches
-- Proof generation orchestration
-- Finalization layer submission
+### [Coordinator](../../protocol/architecture/coordinator.mdx)
 
 **Boundaries:**
 
@@ -108,28 +85,15 @@ If using the Private Validium deployment model, you also provide:
 - Does not generate proofs (delegated to prover)
 - Does not participate in consensus
 
-#### [Prover](../../protocol/architecture/prover/index.mdx)
-
-**Responsibilities:**
-
-- Execution proof generation for batches
-- Compression proof generation for blobs
-- Aggregation proof generation for finalization
+### [Prover](../../protocol/architecture/prover/index.mdx)
 
 **Boundaries:**
 
+- Does not execute transactions
 - Does not create batches or blobs
-- Does not submit to finalization layer
-- Does not execute transactions or maintain state
+- Does not submit proofs to the finalization layer
 
-#### [State manager](../../protocol/architecture/state-manager.mdx)
-
-**Responsibilities:**
-
-- State representation for proof generation
-- Merkle proof generation for state transitions
-- State snapshot creation and restoration
-- Serving `linea_getProof` RPC endpoints
+### [State manager](../../protocol/architecture/state-manager.mdx)
 
 **Boundaries:**
 
@@ -137,44 +101,42 @@ If using the Private Validium deployment model, you also provide:
 - Does not participate in consensus
 - Does not generate proofs (provides data to prover)
 
+## Define security
 
-## Security
+Security is a shared responsibility between the Linea protocol and network operators.
 
-Security is a shared responsibility. Linea provides cryptographic guarantees and consensus protocol security, while you provide infrastructure security, access control security, key management security, and operational security.
+### Linea provides
 
-**Linea provides:**
+- Cryptographic correctness guarantees via zk-SNARKs
+- Consensus protocol security: Quorum-Based Byzantine Fault Tolerance (QBFT)
+- Finalization layer security (inherited from the finalization layer)
+- Protocol-level security invariants
 
-- Cryptographic guarantees through zero-knowledge proofs
-- Consensus protocol security (QBFT fault tolerance)
-- Finalization layer security (inherited from the finalization layer, such as Ethereum)
-- Protocol-level security guarantees
-
-**You provide:**
+### Operator provides
 
 - Infrastructure security (network isolation, firewalls)
 - Access control security (RBAC, API portal)
 - Key management security (KMS, secure storage)
 - Operational security (monitoring, incident response)
 
-## Data availability
+## Define data availability
 
-Linea provides a protocol for data availability, while you provide the data storage infrastructure, redundancy, and backup.
+Linea defines protocol-level data availability mechanisms. Operators are responsible for ensuring
+that data remains accessible according to the chosen deployment model.
 
-**Linea provides:**
+### Linea provides
 
-- Protocol for data availability (EIP-4844 blobs for Public)
-- State commitment posting to finalization layer
+- Data availability protocol support (EIP-4844 blobs for Public deployments)
+- State commitment posting to the finalization layer
 
-**You provide:**
+### Operator provides
 
 - Data storage infrastructure (Private Validium)
 - Data redundancy and backup
 - Data recovery procedures
 - Trust in data availability providers (Private Validium)
 
-## Compliance and audit considerations
-
-The following outlines various compliance and audit considerations, with Linea's responsibilities and yours.
+## Define compliance and audit considerations
 
 ### Audit trails
 
@@ -182,13 +144,12 @@ The following outlines various compliance and audit considerations, with Linea's
 
 - Protocol-level transaction logs
 - State commitment proofs
-- Finalization records on finalization layer
+- Finalization records on the finalization layer
 
-**You provide:**
+**Operator provides:**
 
-- Comprehensive logging of all operations
+- Comprehensive operational logging
 - Access logs for RPC endpoints and APIs
-- Transaction logs for audit purposes
 - Audit trail retention and management
 
 ### Compliance controls
@@ -196,9 +157,9 @@ The following outlines various compliance and audit considerations, with Linea's
 **Linea provides:**
 
 - Protocol support for privacy (Private Validium)
-- Selective data disclosure capabilities (Private Validium)
+- Selective data disclosure mechanisms (Private Validium)
 
-**You provide:**
+**Operator provides:**
 
 - KYC/KYT implementation (Private Validium)
 - Access control enforcement (RBAC, API portal)
@@ -209,145 +170,119 @@ The following outlines various compliance and audit considerations, with Linea's
 
 **Linea provides:**
 
-- State commitment retention on finalization layer
-- Protocol-level data retention specifications
+- State commitment retention on the finalization layer
+- Protocol-level data retention rules
 
-**You provide:**
+**Operator provides:**
 
-- Data retention policies and procedures
-- Archive node deployment for historical data
-- Data deletion procedures (if required by regulations)
+- Data retention policies
+- Archive node deployment
+- Data deletion procedures (if required)
 
 ### Selective disclosure
 
 **Linea provides:**
 
-- Protocol support for selective data disclosure (Private Validium)
+- Protocol-level selective disclosure support (Private Validium)
 
-**You provide:**
+**Operator provides:**
 
-- Selective disclosure implementation
+- Disclosure implementation
 - Auditor and regulator access controls
 - Disclosure audit trails
 
-## Failure scenarios
+## Define failure scenarios
 
-The following is a list of failure scenarios and their mitigation plans.
+The following scenarios outline operator-owned risks and mitigation strategies.
 
-### Data availability provider failure
-
-**Scenario:** Data availability providers fail or become unavailable (Private Validium).
+### Data availability provider failure (Private Validium)
 
 **Impact:**
 
-- Inability to recover state if nodes fail
-- Compliance violations if data cannot be recovered
-- Potential data loss
+- Inability to reconstruct historical state
+- Potential compliance violations
+- Risk of permanent data loss
 
 **Mitigation:**
 
-- Deploy multiple data availability nodes with redundancy
-- Implement regular backups of state and data
-- Test data recovery procedures
+- Redundant data availability nodes
+- Regular backups
+- Tested recovery procedures
 
-**Your responsibility:** Ensure data availability through redundancy and backups.
+**Your responsibility:** Ensure redundancy and recoverability.
 
 ### Sequencer failure
 
-**Scenario:** [Sequencer](../../protocol/architecture/sequencer/index.mdx) fails or becomes unavailable.
-
 **Impact:**
 
-- No new blocks are produced
-- Transactions accumulate in mempool
-- [Coordinator](../../protocol/architecture/coordinator.mdx) cannot create new batches
-- Network continues to serve queries but cannot process new transactions
+- No new blocks produced
+- Transactions accumulate
+- Batching and proof generation stall
 
 **Mitigation:**
 
-- Implement high availability for sequencer (active-passive setup)
-- Monitor sequencer health and transaction throughput
-- Have recovery procedures ready
+- High-availability sequencer setups
+- Health monitoring and alerting
+- Recovery runbooks
 
-**Your responsibility:** Ensure sequencer availability and recovery procedures.
+**Your responsibility:** Maintain sequencer availability.
 
 ### Bridge failure
 
-**Scenario:** Bridge components ([Postman](../../protocol/repos.mdx#linea-monorepo)) fail or become unavailable.
-
 **Impact:**
 
-- Cross-chain message execution blocked
-- Bridge transactions cannot be processed
-- User funds may be locked
+- Cross-chain messages blocked
+- Bridge transactions fail
+- Potential fund lockup
 
 **Mitigation:**
 
-- Deploy redundant bridge components
-- Monitor bridge health and message processing
-- Have recovery procedures ready
+- Redundant bridge components, including
+  [Postman](../../protocol/repos.mdx#linea-monorepo)
+- Monitoring and recovery procedures
 
-**Your responsibility:** Ensure bridge availability and recovery procedures.
+**Your responsibility:** Ensure bridge reliability.
 
 ### Upgrade failure
-
-**Scenario:** Component upgrade fails or introduces breaking changes.
 
 **Impact:**
 
 - Network downtime
-- Consensus failures
-- Data corruption
-- Inability to rollback
+- Consensus instability
+- Data corruption risk
 
 **Mitigation:**
 
-- Test upgrades in non-production environments first
-- Review release notes and breaking changes
-- Plan maintenance windows
-- Coordinate upgrades for consensus-critical components
-- Have rollback procedures ready
+- Pre-production testing
+- Coordinated upgrades
+- Rollback plans
 
-**Your responsibility:** Test upgrades and have rollback procedures.
+**Your responsibility:** Test and manage upgrades.
 
 ### Consensus layer failure
 
-**Scenario:** Consensus layer ([Maru](../../protocol/repos.mdx#maru)) fails or network partition occurs.
-
 **Impact:**
 
-- Block production stops
+- Block production halts
 - All downstream processes stop
-- Network cannot produce new blocks until recovery
 
 **Mitigation:**
 
-- Deploy minimum 4 nodes for QBFT fault tolerance
-- Monitor consensus health
-- Ensure network connectivity between nodes
-- Have recovery procedures ready
+- Minimum 4-node QBFT deployment
+- Network health monitoring
 
-**Your responsibility:** Ensure consensus layer redundancy and recovery procedures.
+**Your responsibility:** Ensure consensus redundancy.
 
 ### Prover failure
 
-**Scenario:** All [prover](../../protocol/architecture/prover/index.mdx) instances fail.
-
 **Impact:**
 
-- Proofs cannot be generated
-- [Coordinator](../../protocol/architecture/coordinator.mdx) cannot submit to finalization layer
-- Finalization is blocked
-- Network continues to produce blocks but cannot finalize
+- Proof generation blocked
+- Finalization stalls
 
 **Mitigation:**
 
-- Deploy multiple prover instances for redundancy
-- Monitor prover health and proof generation latency
-- Have recovery procedures ready
+- Multiple prover instances
+- Performance and health monitoring
 
-**Your responsibility:** Ensure prover redundancy and recovery procedures.
-
-## Related documentation
-
-<DocCardList items={relatedDocs} />
+**Your responsibility:** Maintain prover redundancy.

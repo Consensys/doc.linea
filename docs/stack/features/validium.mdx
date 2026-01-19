@@ -5,14 +5,6 @@ sidebar_position: 1
 image: /img/socialCards/private-validium.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-export const relatedDocs = [
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
-  // {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
-  // {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deploy Private Validium'},
-];
-
 Private Validium is a deployment model for the Linea stack that keeps transaction data offchain while
 maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
 financial institutions and applications requiring privacy, compliance controls, and selective data
@@ -59,7 +51,7 @@ Private Validium can finalize on:
 - Ethereum L1: direct finalization on Ethereum with higher costs and longer finality times
 - Linea Mainnet: finalization on Linea Mainnet with lower costs and faster finality
 
-See [Deployment Models](../how-it-works/deployment-models/index.mdx) for a comparison of finalization
+See [deployment models](../how-it-works/deployment-models.mdx) for a comparison of finalization
 layer options.
 
 ## Use cases
@@ -99,7 +91,8 @@ Private Validium requires trust in:
 
 - Minimum node count: 4 nodes for QBFT fault tolerance
 - Access controls: Role-Based Access control (RBAC) on RPC and API endpoints
-- Key management: Supports [Web3Signer's](../how-it-works/architecture.mdx#web3signer) remote signing backed by a hardware security module (HSM) or key management service (KMS)
+- Key management: Supports [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing backed
+  by a hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology
 
 ## Data availability
@@ -109,6 +102,3 @@ Private Validium requires trust in:
 Initial deployments use a private node set for data storage. Participants must trust that data
 availability providers will make data available when needed.
 
-## Related documentation
-
-<DocCardList items={relatedDocs} />

@@ -5,16 +5,13 @@ sidebar_position: 3
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
+This section covers your options and responsibilities for data availability and finalization. 
 
-export const relatedDocs = [
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment models'},
-  {type: 'link', href: '/protocol/transaction-lifecycle', label: 'Transaction lifecycle'},
-  {type: 'link', href: '/protocol/architecture', label: 'Architecture'},
-];
+:::important
 
-This section covers your options and responsibilities for data availability and finalization. Understanding [data availability and finalization](/protocol/architecture#data-availability-and-finalization) is essential for deploying and operating a Linea
-network.
+Understanding the role [data availability and finalization](../../protocol/architecture#data-availability) in the protocol is essential for deploying and operating a Linea network.
+
+:::
 
 The following examples show different combinations of data availability and finalization:
 
@@ -25,14 +22,27 @@ The following examples show different combinations of data availability and fina
 
 ## Data availability
 
-Data availability (DA) plays a crucial role in preserving and providing access to transaction data required to reconstruct the state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, DAs guarantee that the transaction data underlying these proofs remains accessible to anyone who wants to verify or reconstruct the historical state.
+While zk-SNARK proofs ensure the correctness of state transitions, data availability guarantees that
+the transaction data underlying these proofs remains accessible to anyone who wants to verify or
+reconstruct the historical state.
 
 Data availability is the guarantee that transaction data is accessible when needed. Your deployment
 model determines where and how data is stored.
 
+For node roles that support data availability, see
+[full nodes](../../protocol/architecture/index.mdx#full-nodes) and
+[RPC services](../../protocol/architecture/rpc-services.mdx).
+
 ### Private Validium
 
-In a Validium, DA is typically provided by the Validium’s [archive nodes](../../../protocol/architecture/rpc-services#archive-nodes) rather than an external DA solution. As long as a subset of these nodes remain honest and online, the full transaction history can be reconstructed and independently verified. Because the chain is private, data is not posted to the finalization layer, but is instead retained within the Validium infrastructure under the operational and governance controls of the participating institutions. In this model, assurance of data availability is primarily based on institutional guarantees, node redundancy, and operational SLAs across the consortium of operators.
+In a Validium, data availability is typically provided by the Validium’s
+[archive nodes](../../protocol/architecture/rpc-services.mdx#archive-nodes) rather than an external
+data availability solution. As long as a subset of these nodes remain honest and online, the full
+transaction history can be reconstructed and independently verified. Because the chain is private,
+data is not posted to the finalization layer, but is instead retained within the Validium
+infrastructure under the operational and governance controls of the participating institutions. In
+this model, assurance of data availability is primarily based on institutional guarantees, node
+redundancy, and operational SLAs across the consortium of operators.
 
 **Data availability:** Offchain in a private node set
 
@@ -59,19 +69,6 @@ In a Validium, DA is typically provided by the Validium’s [archive nodes](../.
 
 - Ensure coordinator can post blobs to finalization layer
 - Monitor blob posting success and gas costs
-
-### Hybrid
-
-**Data availability:** Selective (onchain or offchain per transaction)
-
-- Some transactions have onchain data availability (EIP-4844 blobs)
-- Other transactions remain offchain (private node set)
-- Choice of data availability per transaction
-
-**Your responsibility:**
-
-- Manage both onchain and offchain data availability
-- Configure selective data availability logic
 
 ## Finalization layer
 
@@ -136,6 +133,3 @@ finalize batches. These contracts are required for proof verification and state 
 
 :::
 
-## Related documentation
-
-<DocCardList items={relatedDocs} />
