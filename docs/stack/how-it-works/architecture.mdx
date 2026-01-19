@@ -2,8 +2,6 @@
 title: Architecture
 description: Architecture of the Linea stack components and their interactions
 sidebar_position: 2
-mainSource:
-  url: 'https://github.com/Consensys/linea-monorepo'
 image: /img/socialCards/architecture.jpg
 ---
 
@@ -210,21 +208,18 @@ Full nodes maintain complete network state and participate in consensus. The blo
 - Near-head nodes: Optimized for low-latency access to recent state
 - Archive nodes: Maintain complete historical state for data availability (DA), auditing, and analysis
 
-RPC nodes may be deployed behind load balancers and access controls (RBAC) for [private networks](./deployment-models/private-validium.mdx).
+RPC nodes may be deployed behind load balancers and access controls (Role-Based Access control (RBAC)) for [private networks](./deployment-models/private-validium.mdx).
 
 ### Network topology patterns
 
 Network topology varies by [deployment model](./deployment-models/index.mdx):
 
-- [Private networks](./deployment-models/private-validium.mdx)  
-  All components run within controlled infrastructure. Data availability and access controls are
+- [Private networks](./deployment-models/private-validium.mdx): All components run within controlled infrastructure. Data availability and access controls are
   enforced.
 
-- [Hybrid networks](./deployment-models#hybrid)  
-  Internal services and private data availability coexist with selective public interaction.
+- [Hybrid networks](./deployment-models#hybrid): Internal services and private data availability coexist with selective public interaction.
 
-- [Public networks](deployment-models#public)  
-  Data availability is onchain, and components interact with public infrastructure.
+- [Public networks](deployment-models#public): Data availability is onchain, and components interact with public infrastructure.
 
 ## Data availability
 

@@ -2,17 +2,14 @@
 title: Deployment Model Options
 description: 'Private Validium, Hybrid, and Public deployment models for the Linea stack'
 sidebar_position: 0
-mainSource:
-  url: 'https://github.com/Consensys/linea-monorepo'
-  type: rfp-sources
 image: /img/socialCards/deployment-model-options.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
-  {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment guides'},
+  // {type: 'link', href: '/stack/guides/operations-guides', label: 'Operations guides'},
+  // {type: 'link', href: '/stack/guides/deployment-guides', label: 'Deployment guides'},
 ];
 
 The Linea stack supports three deployment models, each optimized for different use cases and
@@ -29,7 +26,7 @@ compliance controls, and selective data disclosure.
 
 - Data availability: Transaction data stored offchain in a private node set
 - Privacy: Transaction details not visible on the finalization layer
-- Access control: RPC endpoints protected by RBAC; only authorized participants can view data
+- Access control: RPC endpoints protected by Role-Based Access Control (RBAC); only authorized participants can view data
 - Finalization: State commitments and proofs posted to the finalization layer (Ethereum or Linea
   Mainnet); see [Transaction lifecycle](../../../protocol/transaction-lifecycle.mdx) for details on the
   finalization process
@@ -117,7 +114,7 @@ Consider these factors when choosing a deployment model:
 - Network topology: Do you need a private network with controlled membership?
 - Access control: Do you need RBAC on RPC endpoints and APIs?
 
-For most enterprise and regulated financial use cases, a [private Validium](./private-validium.mdx) provides the necessary
+For most enterprise and regulated financial use cases, a [Private Validium](./private-validium.mdx) provides the necessary
 privacy, compliance, and access control features.
 
 ## Related documentation
