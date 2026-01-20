@@ -1,0 +1,62 @@
+---
+title: Estimate gas costs
+description: How to estimate gas costs on Linea
+sidebar_position: 6
+image: /img/socialCards/estimate-gas-costs.jpg
+---
+
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+
+`linea_estimateGas` is the recommended method for estimating gas price and gas limit on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas price recommendation than the alternatives.
+
+See our [API reference](../../api/reference/linea-estimategas.mdx), or our [technology section](../../protocol/gas.mdx) for more information about how gas works on Linea. 
+
+Linea also supports:
+- [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
+- [`eth_gasPrice`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_gasprice)
+- [`eth_feeHistory`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_feehistory).
+
+:::tip
+Linea supports the [Ethereum EIP-1559 gas price model](https://ethereum.org/developers/docs/gas):
+```
+total fee = units of gas used * (base fee + priority fee)
+```
+and includes support for type 0, type 1 and type 2 transactions.
+:::
+
+
+
+## [`linea_estimateGas`](../../api/reference/linea-estimategas.mdx)
+
+`linea_estimateGas` returns `gasLimit`, 
+`baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise recommended gas price than 
+the alternatives.
+
+It can also help prevent transactions from being rejected due to exceeding [module limits](../../protocol/prover/prover-limits.mdx).
+
+### Example
+
+#### Request
+
+```bash
+curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
+```
+
+#### Response
+
+```JSON
+{
+  "jsonrpc": "2.0",
+  "id": 53,
+  "result": {
+    "baseFeePerGas": "0x7",
+    "gasLimit": "0xcf08",
+    "priorityFeePerGas": "0x43a82a4"
+  }
+}
+```
+
+See the [reference page](../../api/reference/linea-estimategas.mdx) for full usage.
