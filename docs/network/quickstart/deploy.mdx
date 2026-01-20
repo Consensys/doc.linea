@@ -72,7 +72,7 @@ going to need something with a bit more functionality. You probably already have
 you want your app to do, and you might have the skills to write your own contract from scratch. 
 
 For simplicity, we're going to stick with `Counter.sol`, but you can use any template you want, or 
-refer to our [contract templates section](../tools/contracts-templates/index.mdx) for more inspiration. 
+refer to our [contract templates section](../build/tools/contracts-templates/index.mdx) for more inspiration. 
 
 We'll use the `forge create` command to deploy the contract. First, we must get an RPC endpoint and
 ensure we have a secure method for using a private key.
@@ -81,7 +81,7 @@ ensure we have a secure method for using a private key.
 
 #### Get your RPC endpoint
 
-To deploy a contract, you need to interact with the blockchain, which means you need an [RPC  endpoint](../tools/node-providers/index.mdx) 
+To deploy a contract, you need to interact with the blockchain, which means you need an [RPC  endpoint](../build/tools/node-providers/index.mdx) 
 to send those calls to. 
 
 To keep things simple, we're going to use the default public RPC endpoint for Linea Sepolia: 
@@ -91,7 +91,7 @@ Public endpoints such as this one are rate limited, and if you intend to deploy 
 use, you'll need an endpoint better equipped to handle the load. We recommend heading to the 
 MetaMask Developer Dashboard to get a private RPC endpoint ([instructions](https://docs.metamask.io/developer-tools/dashboard/get-started/create-api/)).
 
-You can also find alternative public and private RPC endpoints on our [node providers page](../tools/node-providers/index.mdx).
+You can also find alternative public and private RPC endpoints on our [node providers page](../build/tools/node-providers/index.mdx).
 
 #### Update `foundry.toml`
 
@@ -276,4 +276,4 @@ visit the `#developer-chat` channel.
   - [Foundry CLI](https://book.getfoundry.sh/forge/)
   - [Foundry Cast](https://book.getfoundry.sh/cast/)
 - [Linea Sepolia block explorer](https://sepolia.lineascan.build/)
-- [Node providers](../tools/node-providers/index.mdx)
+- [Node providers](../build/tools/node-providers/index.mdx)
