@@ -6,7 +6,7 @@ image: /img/socialCards/architecture.jpg
 
 Linea's architecture supports a configurable protocol that delivers a developer-ready layer 2 network, scaling Ethereum by providing an Ethereum-equivalent execution environment. 
 
-Operators and network designers configure their stack to alter shape what the protocol guarantees, for example:
+Operators and network designers configure their stack to shape what the protocol guarantees, for example:
 
   - Finalization layer: alters security guarantees
   - Data availability later: alters privacy guarantees
@@ -35,7 +35,7 @@ The following represents one of many possible configurations for a Linea Network
 
 :::tip[Mainnet]
 
-The example configuration reflects [Linea's Public Mainnet](/network/index.mdx). While this zero-knowledge rollup protocol is agnostic to the finalization layer (it's unopinionated on where proofs are written), this configuration finalizes transactions by submitting proofs to Ethereum Mainnet and temporarily making data available there.
+The example configuration matches that of [Linea's Public Mainnet](/network/index.mdx). While this zero-knowledge rollup protocol is agnostic to the finalization layer (it's unopinionated on where proofs are written), this configuration finalizes transactions by submitting proofs to Ethereum Mainnet and temporarily making data available there.
 
 :::
 
@@ -45,12 +45,6 @@ The Linea stack is comprised of several broad classes of components:
 
 - [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/how-it-works/deployment-models), node services may be configured to be private or semi-private.
 - [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks. 
-  - Sequencer
-  - Coordinator
-  - Prover
-  - State manager
-  - Tracer
-> With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
 - [Smart contracts](#onchain-system-contracts): Versionable, immutable onchain contracts.
 - [Auxillary services](#auxiliary-services):
   - Block explorer: While theoretically optional, explorer data simplifies transaction building, auditing, and troubleshooting.
@@ -83,8 +77,9 @@ Internal protocol services are required for proof generation and finalization.
 
 #### Sequencer
 
-The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea rules. 
-Typically deployed as a protected internal service.  
+The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea rules. Typically deployed as a protected internal service. 
+
+> With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
 
 :::info
 
@@ -232,6 +227,7 @@ See the [walkthrough of a transaction lifecycle](../../protocol/transaction-life
 
 ## Next steps
 
+- To understand the trust boundaries, and upgrade paths of this stack, see [protocol components](../../stack/how-it-works/core-components).
 - Walk through a Public Mainnet [transaction lifecycle](../transaction-lifecycle.mdx)
 - Review bridge mechanics in the [message service](./interoperability/message-service/index.mdx)
 - Review cross-chain settlement in the [canonical token bridge](./interoperability/canonical-token-bridge.mdx)
