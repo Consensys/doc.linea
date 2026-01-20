@@ -71,6 +71,13 @@
         ]
     },
     {
+        "to": "/stack/guides/state-recovery",
+        "from": [
+            "/protocol/state-recovery",
+            "/protocol/state-recovery.mdx"
+        ]
+    },
+    {
         "to": "/network/how-to/deploy-smart-contract",
         "from": [
             "/developers/deploy-smart-contract",
@@ -78,11 +85,25 @@
         ]
     },
     {
-        "to": "/protocol/zero-knowledge-glossary",
+        "to": "/protocol/reference/zero-knowledge-glossary",
         "from": [
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
             "/zero-knowledge-glossary"
+        ]
+    },
+    {
+        "to": "/protocol/reference/repos",
+        "from": [
+            "/protocol/repos",
+            "/protocol/repos.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/reference/zero-knowledge-glossary",
+        "from": [
+            "/protocol/zero-knowledge-glossary",
+            "/protocol/zero-knowledge-glossary.mdx"
         ]
     },
     {
@@ -329,7 +350,7 @@
         ]
     },
     {
-        "to": "/protocol/repos",
+        "to": "/protocol/reference/repos",
         "from": [
             "/architecture/stack",
             "/network/build/repos"
@@ -1299,7 +1320,7 @@
         ]
     },
     {
-        "to": "/protocol/state-recovery",
+        "to": "/stack/guides/state-recovery",
         "from": [
             "/network/how-to/state-recovery"
         ]
@@ -1581,7 +1602,7 @@
         ]
     },
     {
-        "to": "/protocol/repos",
+        "to": "/protocol/reference/repos",
         "from": [
             "/technology/repos"
         ]
@@ -1659,7 +1680,7 @@
         ]
     },
     {
-        "to": "/protocol/state-recovery",
+        "to": "/stack/guides/state-recovery",
         "from": [
             "/technology/state-recovery"
         ]

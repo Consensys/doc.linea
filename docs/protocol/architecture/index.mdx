@@ -59,7 +59,7 @@ As an EVM-compatible system, the Linea stack uses a dual-layer architecture with
 
 ### Consensus client: Maru
 
-[Maru](../repos.mdx#maru), the consensus client, runs on validator nodes to:
+[Maru](../reference/repos.mdx#maru), the consensus client, runs on validator nodes to:
 
   - Coordinate block production with the execution layer
   - Manage validator sets and consensus participation
@@ -68,7 +68,7 @@ As an EVM-compatible system, the Linea stack uses a dual-layer architecture with
 
 ### Execution client: Linea Besu
 
-The execution layer client, [Linea Besu](../repos.mdx#linea-besu-upstream), executes 
+The execution layer client, [Linea Besu](../reference/repos.mdx#linea-besu-upstream), executes 
 transactions and maintains the EVM state. It works in coordination with Maru, making a [full node](#full-nodes).
 
 ### Internal protocol services
@@ -111,7 +111,10 @@ Smart contracts execute small programs that rely on the EVM's trustless correctn
 
 The Linea stack includes system contracts deployed in two locations:
 
-- **On the finalization layer:** The finalization contract validates [zk-SNARK](../../protocol/zero-knowledge-glossary#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge) proofs and records finalized state roots. This contract must be deployed on the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
+- **On the finalization layer:** The finalization contract validates
+  [zk-SNARK](../../protocol/reference/zero-knowledge-glossary.mdx#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge)
+  proofs and records finalized state roots. This contract must be deployed on the
+  [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
 - **On the Linea network itself:** Application-specific contracts are deployed on the Linea network
   instance to enable token issuance, workflow automation, and other network-specific functionality.
