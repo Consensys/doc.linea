@@ -33,7 +33,7 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/protocol/message-service",
             "/protocol/message-service.mdx",
@@ -42,14 +42,25 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service/reference",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
+            "/protocol/architecture/interoperability/message-service",
+            "/protocol/architecture/interoperability/message-service.mdx",
+            "/protocol/architecture/interoperability/message-service/index",
+            "/protocol/architecture/interoperability/message-service/index.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/send-receive-messages",
+        "from": [
+            "/protocol/architecture/interoperability/message-service/reference",
+            "/protocol/architecture/interoperability/message-service/reference.mdx",
             "/protocol/message-service/reference",
             "/protocol/message-service/reference.mdx"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/architecture/canonical-msg-service",
             "/architecture/stack/canonical-msg-service",
@@ -201,12 +212,13 @@
         ]
     },
     {
-        "to": "/network/build/network-data",
+        "to": "/network/build/network-info",
         "from": [
             "/architecture/network-data",
             "/architecture/overview/network-data",
             "/network/concepts/network-data",
-            "/protocol/network-data"
+            "/protocol/network-data",
+            "/network/build/network-data"
         ]
     },
     {
@@ -1587,7 +1599,7 @@
         ]
     },
     {
-        "to": "/network/build/network-data",
+        "to": "/network/build/network-info",
         "from": [
             "/technology/network-data"
         ]
@@ -1599,19 +1611,19 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/technology/message-service"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/technology/message-service/index"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service/reference",
+        "to": "/network/build/send-receive-messages",
         "from": [
             "/technology/message-service/reference"
         ]
