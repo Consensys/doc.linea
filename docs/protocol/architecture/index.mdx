@@ -196,13 +196,9 @@ Full nodes may maintain complete network state and can be configured to particip
 #### RPC nodes
 
 RPC expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for
-[near-head](./rpc-services.mdx#near-head-nodes) access or configured as
+[near-head](./rpc-services.mdx#near-head-nodes) access, that is for low-latency access to
+  recent state or configured as
 [archive nodes](./rpc-services.mdx#archive-nodes) for historical queries.
-
-- [Near-head nodes](./rpc-services.mdx#near-head-nodes): Optimized for low-latency access to
-  recent state
-- [Archive nodes](./rpc-services.mdx#archive-nodes): Maintain complete historical state for data
-  availability, auditing, and analysis
 
 RPC nodes may be deployed behind load balancers and access controls (Role-Based Access control (RBAC))
 for [private networks](../../stack/how-it-works/deployment-models.mdx#private-validium).
@@ -223,14 +219,15 @@ layer; after verification and epoch delay, transactions reach hard finality.
 
 :::info
 
-See the [walkthrough of a transaction lifecycle](../../protocol/transaction-lifecycle.mdx) on Public Mainnet for more on soft vs. hard finality.
+See the more about [finality](../../network/features/known-finality-state.mdx#transaction-finality)
+on the Linea public network.
 
 ::: 
 
 ## Next steps
 
 - To understand the trust boundaries, and upgrade paths of this stack, see [protocol components](../../stack/how-it-works/core-components).
-- Walk through a Public Mainnet [transaction lifecycle](../transaction-lifecycle.mdx)
-- Review bridge mechanics in the [message service](./interoperability/canonical-message-service.mdx)
-- Review cross-chain settlement in the [canonical token bridge](./interoperability/canonical-token-bridge.mdx)
-- Understand protocol fees in [gas](../tokenomics/gas.mdx) and [burn](../tokenomics/burn.mdx)
+- Review bridge mechanics in the [message service](./interoperability/canonical-message-service.mdx).
+- Review cross-chain settlement in the [canonical token bridge](./interoperability/canonical-token-bridge.mdx).
+- Understand protocol fees in [predictable pricing](../../network/features/predictable-pricing.mdx) and
+  [burn](../tokenomics/burn.mdx).

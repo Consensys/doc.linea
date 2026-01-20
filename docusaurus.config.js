@@ -137,7 +137,7 @@ const config = {
             type: "doc",
             docId: "network/index",
             position: "left",
-            label: "Network",
+            label: "Public network",
           },
           {
             type: "doc",

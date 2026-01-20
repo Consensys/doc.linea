@@ -1,8 +1,8 @@
 ---
-title: Recover state
+title: Recoverable state
 description: How to reconstruct Linea's state as it was at a given block number.
 sidebar_position: 6
-image: /img/socialCards/recover-state.jpg
+image: /img/socialCards/recoverable-state.jpg
 ---
 
 ## Recover state from a finalized block
@@ -17,7 +17,9 @@ Since this system can be used by any independent actor to validate state roots a
 data, it also reduces the need for trust in the Linea
 [sequencer and coordinator](../../protocol/architecture/index.mdx).
 
-To this end, the Linea Besu execution client has a state recovery plugin that:
+## There's a plugin for that
+
+To support state recovery, the Linea Besu execution client has a recovery plugin that:
 
 1. Retrieves finalized blobs from L1; 
 2. Decompresses the blob data;
@@ -27,7 +29,7 @@ To this end, the Linea Besu execution client has a state recovery plugin that:
 Linea Besu executes the fetched transactions in the blob, while the state management plugin, Shomei, 
 rebuilds state.
 
-## Recover state from Public Linea 
+## Need to recover state from Public Linea?
 
 This guide provides details on how to recover state from the Public Linea network.
 

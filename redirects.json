@@ -7,6 +7,34 @@
         ]
     },
     {
+        "to": "/network/features/predictable-pricing",
+        "from": [
+            "/network/features/explicit-pricing",
+            "/network/features/explicit-pricing.mdx"
+        ]
+    },
+    {
+        "to": "/network/features/known-finality-state",
+        "from": [
+            "/protocol/transaction-lifecycle",
+            "/protocol/transaction-lifecycle.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/release-notes",
+        "from": [
+            "/notices/release-notes",
+            "/notices/release-notes.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/security-council-record",
+        "from": [
+            "/notices/security-council-record",
+            "/notices/security-council-record.mdx"
+        ]
+    },
+    {
         "to": "/protocol/architecture/sequencer",
         "from": [
             "/protocol/sequencer.mdx"
@@ -71,10 +99,17 @@
         ]
     },
     {
-        "to": "/stack/guides/state-recovery",
+        "to": "/network/features/recoverable-state",
         "from": [
             "/protocol/state-recovery",
             "/protocol/state-recovery.mdx"
+        ]
+    },
+    {
+        "to": "/network/features/recoverable-state",
+        "from": [
+            "/stack/guides/state-recovery",
+            "/stack/guides/state-recovery.mdx"
         ]
     },
     {
@@ -225,7 +260,7 @@
         ]
     },
     {
-        "to": "/protocol/transaction-lifecycle",
+        "to": "/network/features/known-finality-state",
         "from": [
             "/architecture/overview/transaction-lifecycle",
             "/architecture/transaction-lifecycle",
@@ -1320,7 +1355,7 @@
         ]
     },
     {
-        "to": "/stack/guides/state-recovery",
+        "to": "/network/features/recoverable-state",
         "from": [
             "/network/how-to/state-recovery"
         ]
@@ -1608,7 +1643,7 @@
         ]
     },
     {
-        "to": "/protocol/transaction-lifecycle",
+        "to": "/network/features/known-finality-state",
         "from": [
             "/technology/transaction-lifecycle"
         ]
@@ -1680,7 +1715,7 @@
         ]
     },
     {
-        "to": "/stack/guides/state-recovery",
+        "to": "/network/features/recoverable-state",
         "from": [
             "/technology/state-recovery"
         ]

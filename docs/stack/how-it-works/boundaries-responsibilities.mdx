@@ -43,87 +43,6 @@ Reach out to [support.linea.build](https://support.linea.build/) to enquire abou
 - Access controls (RBAC, API portal, network security)
 - Optional: Compliance, governance, and audit processes
 
-## Security responsibilities
-
-Security is explicitly shared between the Linea protocol and network operators.
-
-### Linea provides
-
-- Cryptographic correctness guarantees via zk-SNARKs
-- Consensus security via QBFT
-- Finalization layer security (inherited)
-- Protocol-level security invariants
-
-### Operator provides
-
-- Infrastructure security (network isolation, firewalls)
-- Access control security (RBAC, API portal)
-- Key management (KMS, secure storage) integration with Web3Signer
-- Operational security (monitoring, incident response)
-
-## Data availability responsibilities
-
-### Linea provides
-
-- Protocol-level data availability mechanisms
-  - EIP-4844 blobs (Public deployments)
-- State commitment posting to the finalization layer
-
-### Operator provides
-
-- Redundancy and backups
-- Recovery procedures
-
-#### Private Validium
-
-- Trust in data availability providers
-- Data storage infrastructure
-
-## Compliance and audit responsibilities
-
-### Audit trails
-
-**Linea**
-
-- Protocol-level transaction logs
-- State commitment proofs
-- Finalization records
-
-**Operator**
-
-- Operational logs
-- RPC and API access logs
-- Log retention and management
-
-### Compliance controls
-
-**Linea**
-
-- Protocol support for privacy (Private Validium)
-- Selective disclosure primitives
-
-**Operator**
-
-- KYC/KYT implementation
-- Access enforcement (RBAC, API portal)
-- Compliance monitoring and reporting
-- Regulatory reporting processes
-
-### Data retention and selective disclosure
-
-**Linea**
-
-- State commitment retention rules
-- Protocol-level selective disclosure support (Private Validium)
-
-**Operator**
-
-- Retention policies
-- Archive nodes
-- Data deletion (if required)
-- Auditor and regulator access controls
-- Disclosure audit trails
-
 ## Failure scenarios and ownership
 
 The following failures are **operator-owned risks** with recommended mitigations.
@@ -160,67 +79,10 @@ The following failures are **operator-owned risks** with recommended mitigations
 
 **Responsibility:** Operator
 
-See the [state recovery guide](../guides/state-recovery) for a walkthrough on recovering state from the finalization layer.
+#### Disaster recovery
 
-### Bridge failure
-
-**Impact**
-
-- Cross-chain messaging blocked
-- Bridge transactions fail
-- Potential fund lockup
-
-**Mitigation**
-
-- Redundant bridge components, including Postman
-- Monitoring and recovery procedures
-
-**Responsibility:** Operator
-
-### Upgrade failure
-
-**Impact**
-
-- Network downtime
-- Consensus instability
-- Data corruption risk
-
-**Mitigation**
-
-- Pre-production testing
-- Coordinated upgrades
-- Rollback plans
-
-**Responsibility:** Operator
-
-### Consensus layer failure
-
-**Impact**
-
-- Block production halts
-- All downstream systems stall
-
-**Mitigation**
-
-- Minimum 4-node QBFT deployment
-- Network health monitoring
-
-**Responsibility:** Operator
-
-### Prover failure
-
-**Impact**
-
-- Proof generation blocked
-- Finalization stalls
-
-**Mitigation**
-
-- Multiple prover instances
-- Performance and health monitoring
-
-**Responsibility:** Operator
+See the [state recovery feature](../../network/features/recoverable-state.mdx).
 
 ## Next steps
 
-For the execution flow, see the [transaction lifecycle](../../protocol/transaction-lifecycle.mdx).
+- Learn about [transaction finality](../../network/features/known-finality-state.mdx).
