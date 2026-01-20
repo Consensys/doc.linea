@@ -213,10 +213,9 @@ These architectural components support transactions from submission to finalizat
 3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
    the [tracer](./sequencer/traces-generator.mdx) generates traces.
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
-5. Proof generation: the [prover](./prover/index.mdx) generates execution proofs for batches.
-6. Blob creation: the [coordinator](./coordinator.mdx) combines batches into blobs; 
+5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs; 
 the [prover](./prover/index.mdx) generates compression proofs.
-7. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization 
+6. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization 
 layer; after verification and epoch delay, transactions reach hard finality.
 
 :::info

@@ -1,0 +1,50 @@
+---
+title: Bridge
+sidebar_position: 3
+image: /img/socialCards/canonical-token-bridge.jpg
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import TokenBridge from "!!raw-loader!/files/testnet/ITokenBridge.sol";
+import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
+import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+The Linea team operates a UI for the [official Linea bridge](https://linea.build/hub/bridge/).
+
+The canonical token bridge is optimized for technical partners who are deploying on Linea. 
+We recommend that everyday users of Linea seeking to bridge their personal tokens between 
+networks leverage one of the many bridges deployed to the network.
+
+Linea seeks to foster a permissionless, resilient, decentralized environment — not to have our 
+bridge be a centralized arbiter and point of failure.
+
+## How to bridge
+
+### Workflow
+
+1. Triggering the transfer
+
+- **Without Permit**
+  - User should first allow the bridge to transfer tokens on their behalf
+  - This is done by calling `allowance()` on the TokenBridge.
+  - Then, the user should call the `bridgeToken()` method.
+- **With Permit**
+  - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction
+
+2. Triggering the delivery
+
+- See the
+  [message service workflow](../../protocol/architecture/interoperability/message-service/reference.mdx#usage).
+
+## Interface TokenBridge.sol
+
+<details>
+  <summary>ITokenBridge.sol</summary>
+  <CodeBlock language="solidity">{TokenBridge}</CodeBlock>
+</details>
+
+## Next steps
+
+- Discover the [public Linea contracts](./contracts.mdx)

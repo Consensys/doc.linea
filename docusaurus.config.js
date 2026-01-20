@@ -161,16 +161,16 @@ const config = {
             type: "dropdown",
             label: "Changelog",
             position: "right",
-            activeBaseRegex: "^/notices/",
+            activeBaseRegex: "^/changelog/",
             items: [
               {
                 type: "doc",
-                docId: "notices/release-notes",
+                docId: "changelog/release-notes",
                 label: "Release notes",
               },
               {
                 type: "doc",
-                docId: "notices/security-council-record",
+                docId: "changelog/security-council-record",
                 label: "Linea Security Council transaction record",
               },
             ],
