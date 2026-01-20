@@ -7,14 +7,10 @@ image: /img/socialCards/overview.jpg
 
 ## What is Linea?
 
-Linea is a permissionless blockchain network composed of three main architectural components:
+Linea is a permissionless blockchain network that scales Ethereum. Linea's fast (2s blocks) and low-cost transactions are compressed into batches and submitted to 
+Ethereum for validation. 
 
-- Sequencer
-- Prover
-- Bridge relayer
-
-Linea's fast (2s blocks) and low-cost transactions are compressed into batches and submitted to 
-Ethereum for validation. Blockchains that submit their state changes to a finalization layer in this 
+Blockchains that submit their state changes to a finalization layer in this 
 way are classified as layer-2 networks (L2s).
 
 The network consists of several functional components:
@@ -26,7 +22,7 @@ movement of tokens from one address to another.
 - _Execution environment_: the EVM (Ethereum Virtual Machine) where computer programs can be run. The 
 EVM executes smart contracts and computes state transitions. 
 
-While this is an oversimplification, it is helpful when discussing the tradeoffs all such networks must make.
+While this is an oversimplification, it is helpful for the fullowing discussion of the tradeoffs all such networks must make.
 
 Ethereum prioritizes security. Its consensus mechanism is designed to ensure that no one can 
 singlehandedly alter the state of the network. This is a very impressive feat of engineering, 
@@ -39,8 +35,8 @@ while relying on Ethereum's consensus to provide final and censorship-resistant 
 state changes. By sending regular reports of activity on Linea to Ethereum, the network can optimize for 
 execution without being as limited by security.
 
-Submitting the summaries of activity to the finalization layer, the layer-1 (L1), is known as 
-"rolling up": we can say that Linea "rolls up its transactions to Ethereum". Given that Linea relies 
+Submitting the summaries of activity to the finalization layer, the layer 1 (L1), is known as 
+"rolling up": we say that Linea "rolls up its transactions to Ethereum". Given that Linea relies 
 on Ethereum for its security, people say that it's "built on top of Ethereum": it's a 
 "second-layer network", an L2. 
 
