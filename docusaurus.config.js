@@ -118,7 +118,7 @@ const config = {
       },
       tableOfContents: {
         minHeadingLevel: 2,
-        maxHeadingLevel: 5,
+        maxHeadingLevel: 3,
       },
       docs: {
         sidebar: {
@@ -135,9 +135,10 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/index",
+            docId: "network/overview/index",
             position: "left",
-            label: "Network",
+            label: "Public network",
+            activeBaseRegex: "^/network/",
           },
           {
             type: "doc",
@@ -161,16 +162,16 @@ const config = {
             type: "dropdown",
             label: "Changelog",
             position: "right",
-            activeBaseRegex: "^/notices/",
+            activeBaseRegex: "^/changelog/",
             items: [
               {
                 type: "doc",
-                docId: "notices/release-notes",
+                docId: "changelog/release-notes",
                 label: "Release notes",
               },
               {
                 type: "doc",
-                docId: "notices/security-council-record",
+                docId: "changelog/security-council-record",
                 label: "Linea Security Council transaction record",
               },
             ],

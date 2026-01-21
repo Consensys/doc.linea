@@ -5,40 +5,46 @@ sidebar_position: 1
 image: /img/socialCards/how-it-works.jpg
 ---
 
-This section introduces how the Linea stack works, from an operator's perspective. It covers the
+This section introduces how the Linea stack works from an operator's perspective. It surfaces the
 architecture, deployment models, and component boundaries you need to understand to run a network
 effectively. 
 
 ## Architecture
 
-As an EVM-compatible network, the Linea stack uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility.
+As an EVM-compatible network, the Linea stack uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility. 
 
-For details on the technical stack, see the [architectural overview](./architecture.mdx).
-
-## Data availability and finalization
-
-Understanding data availability and finalization is essential for deployment decisions. For details on
-L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
-model, see [data availability and finalization](./data-availability-finalization.mdx)..
+- Understand the core [components](./core-components.mdx) that make up the stack
+- Learn more about the [protocol architecture](../../protocol/architecture/index.mdx)
 
 ## Deployment models
 
-The Linea stack supports three deployment models, each with different characteristics:
+The Linea stack allows operators to tweak the deployment model according to their business case, for example, Linea can be operated as:
 
 - Private Validium: Offchain data availability, ideal for regulated financial applications
-- Hybrid: Selective data availability combining public and private elements
 - Public: Fully public network with onchain data availability
 
-For more details on the three deployment options, see [deployment models](./deployment-models/index.mdx).
+See more on the [deployment options](deployment-models.mdx).
+
+## Data availability and finalization
+
+For details on
+L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
+model, see [data availability and finalization](./data-availability-finalization.mdx).
+
+:::important
+
+Understanding data availability and finalization is key to good deployment decisions. 
+
+:::
 
 ## Boundaries and responsibilities
 
-Understanding component boundaries helps you:
+Understand component boundaries to:
 
 - Plan deployment and scaling strategies
 - Identify failure modes and recovery procedures
 - Make informed configuration decisions
 - Troubleshoot operational issues
 
-For details on component responsibilities and failure modes, see [boundaries and responsibilities](./boundaries-responsibilities.mdx).
+See more on [boundaries and responsibilities](./boundaries-responsibilities.mdx).
 

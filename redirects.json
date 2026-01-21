@@ -1,9 +1,113 @@
 [
     {
+        "to": "/network/quickstart/get-testnet-eth",
+        "from": [
+            "/network/build/get-testnet-eth",
+            "/network/build/get-testnet-eth.mdx"
+        ]
+    },
+
+    {
+        "to": "/network/overview",
+        "from": [
+            "/network",
+            "/network/index",
+            "/network/index.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/dapp-support",
+        "from": [
+            "/network/build/dapp-support",
+            "/network/build/dapp-support.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/app",
+        "from": [
+            "/network/quickstart/app",
+            "/network/quickstart/app.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/deploy",
+        "from": [
+            "/network/quickstart/deploy",
+            "/network/quickstart/deploy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/events",
+        "from": [
+            "/network/quickstart/events",
+            "/network/quickstart/events.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub-reviews",
+        "from": [
+            "/network/quickstart/hub-reviews",
+            "/network/quickstart/hub-reviews.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub",
+        "from": [
+            "/network/quickstart/hub",
+            "/network/quickstart/hub.mdx"
+        ]
+    },
+    {
         "to": "/protocol/architecture",
         "from": [
             "/protocol/architecture/architecture",
             "/protocol/architecture/architecture.mdx"
+        ]
+    },
+    {
+        "to": "/network/quickstart/get-testnet-eth",
+        "from": [
+            "/network/how-to/get-testnet-eth",
+            "/network/how-to/get-testnet-eth.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/ethereum-differences",
+        "from": [
+            "/network/build/ethereum-differences",
+            "/network/build/ethereum-differences.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/predictable-pricing",
+        "from": [
+            "/network/features/explicit-pricing",
+            "/network/features/explicit-pricing.mdx",
+            "/network/features/predictable-pricing",
+            "/network/features/predictable-pricing.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/known-finality-state",
+        "from": [
+            "/protocol/transaction-lifecycle",
+            "/protocol/transaction-lifecycle.mdx",
+            "/network/features/known-finality-state",
+            "/network/features/known-finality-state.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/release-notes",
+        "from": [
+            "/notices/release-notes",
+            "/notices/release-notes.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/security-council-record",
+        "from": [
+            "/notices/security-council-record",
+            "/notices/security-council-record.mdx"
         ]
     },
     {
@@ -33,7 +137,7 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/protocol/message-service",
             "/protocol/message-service.mdx",
@@ -42,14 +146,25 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service/reference",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
+            "/protocol/architecture/interoperability/message-service",
+            "/protocol/architecture/interoperability/message-service.mdx",
+            "/protocol/architecture/interoperability/message-service/index",
+            "/protocol/architecture/interoperability/message-service/index.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/send-receive-messages",
+        "from": [
+            "/protocol/architecture/interoperability/message-service/reference",
+            "/protocol/architecture/interoperability/message-service/reference.mdx",
             "/protocol/message-service/reference",
             "/protocol/message-service/reference.mdx"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/architecture/canonical-msg-service",
             "/architecture/stack/canonical-msg-service",
@@ -60,6 +175,22 @@
         ]
     },
     {
+        "to": "/network/overview/recoverable-state",
+        "from": [
+            "/protocol/state-recovery",
+            "/protocol/state-recovery.mdx",
+            "/network/features/recoverable-state",
+            "/network/features/recoverable-state.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/recoverable-state",
+        "from": [
+            "/stack/guides/state-recovery",
+            "/stack/guides/state-recovery.mdx"
+        ]
+    },
+    {
         "to": "/network/how-to/deploy-smart-contract",
         "from": [
             "/developers/deploy-smart-contract",
@@ -67,11 +198,25 @@
         ]
     },
     {
-        "to": "/protocol/zero-knowledge-glossary",
+        "to": "/protocol/reference/zero-knowledge-glossary",
         "from": [
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
             "/zero-knowledge-glossary"
+        ]
+    },
+    {
+        "to": "/protocol/reference/repos",
+        "from": [
+            "/protocol/repos",
+            "/protocol/repos.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/reference/zero-knowledge-glossary",
+        "from": [
+            "/protocol/zero-knowledge-glossary",
+            "/protocol/zero-knowledge-glossary.mdx"
         ]
     },
     {
@@ -94,7 +239,6 @@
             "/network/concepts/decentralization",
             "/network/configure-metamask",
             "/network/fund",
-            "/network/quickstart",
             "/protocol/decentralization",
             "/use-linea/index.md",
             "/use-mainnet",
@@ -105,7 +249,7 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/build-on-linea/use-linea-testnet/info-contracts",
             "/developers/quickstart/info-contracts",
@@ -158,7 +302,7 @@
         ]
     },
     {
-        "to": "/network/build/ethereum-differences",
+        "to": "/network/overview/ethereum-differences",
         "from": [
             "/build-on-linea/ethereum-differences",
             "/developers/quickstart/ethereum-differences"
@@ -176,7 +320,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/build-on-linea/tooling/linea-safe",
             "/developers/guides/linea-safe",
@@ -184,7 +328,7 @@
         ]
     },
     {
-        "to": "/network/tools/permanent-data/irys/irys-querying",
+        "to": "/network/build/tools/permanent-data/irys/irys-querying",
         "from": [
             "/developers/tooling/permanent-data/irys/irys-query-package",
             "/developers/tooling/permanent-data/irys/irys-querying",
@@ -193,7 +337,7 @@
         ]
     },
     {
-        "to": "/protocol/transaction-lifecycle",
+        "to": "/network/overview/known-finality-state",
         "from": [
             "/architecture/overview/transaction-lifecycle",
             "/architecture/transaction-lifecycle",
@@ -201,12 +345,13 @@
         ]
     },
     {
-        "to": "/network/build/network-data",
+        "to": "/network/quickstart/connect",
         "from": [
             "/architecture/network-data",
             "/architecture/overview/network-data",
             "/network/concepts/network-data",
-            "/protocol/network-data"
+            "/protocol/network-data",
+            "/network/build/network-data"
         ]
     },
     {
@@ -253,7 +398,7 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain/shortcuts",
+        "to": "/network/build/tools/cross-chain/shortcuts",
         "from": [
             "/build-on-linea/tooling/cross-chain/shortcuts",
             "/developers/tooling/cross-chain/shortcuts",
@@ -262,7 +407,7 @@
         ]
     },
     {
-        "to": "/network/tools/node-providers",
+        "to": "/network/build/tools/node-providers",
         "from": [
             "/build-on-linea/tooling/node-providers",
             "/developers/tooling/node-providers",
@@ -273,7 +418,7 @@
         ]
     },
     {
-        "to": "/notices/release-notes",
+        "to": "/changelog/release-notes",
         "from": [
             "/build-on-linea/linea-version",
             "/developers/linea-version",
@@ -281,7 +426,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/build-on-linea",
             "/build-on-linea/quickstart",
@@ -290,7 +435,7 @@
         ]
     },
     {
-        "to": "/network/tools",
+        "to": "/network/build/tools",
         "from": [
             "/build-on-linea/tooling",
             "/developers/tooling",
@@ -301,7 +446,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/reown",
+        "to": "/network/build/tools/libraries/reown",
         "from": [
             "/developers/tooling/libraries/wallet-connect",
             "/get-started/tools/libraries/reown",
@@ -317,7 +462,7 @@
         ]
     },
     {
-        "to": "/protocol/repos",
+        "to": "/protocol/reference/repos",
         "from": [
             "/architecture/stack",
             "/network/build/repos"
@@ -371,7 +516,7 @@
         ]
     },
     {
-        "to": "/network/tools/social-login/openfort",
+        "to": "/network/build/tools/social-login/openfort",
         "from": [
             "/developers/tooling/social-login/openfort",
             "/get-started/tools/social-login/openfort",
@@ -379,7 +524,7 @@
         ]
     },
     {
-        "to": "/network/tools/social-login/arcana",
+        "to": "/network/build/tools/social-login/arcana",
         "from": [
             "/developers/tooling/social-login/arcana",
             "/get-started/tools/social-login/arcana",
@@ -387,7 +532,7 @@
         ]
     },
     {
-        "to": "/network/tools/social-login",
+        "to": "/network/build/tools/social-login",
         "from": [
             "/developers/tooling/social-login",
             "/get-started/tools/social-login",
@@ -395,7 +540,7 @@
         ]
     },
     {
-        "to": "/network/tools/attestations/verax",
+        "to": "/network/build/tools/attestations/verax",
         "from": [
             "/developers/tooling/attestations/verax",
             "/get-started/tools/attestations/verax",
@@ -403,7 +548,7 @@
         ]
     },
     {
-        "to": "/network/tools/attestations",
+        "to": "/network/build/tools/attestations",
         "from": [
             "/developers/tooling/attestations",
             "/get-started/tools/attestations",
@@ -411,7 +556,7 @@
         ]
     },
     {
-        "to": "/network/tools/attestations/primus",
+        "to": "/network/build/tools/attestations/primus",
         "from": [
             "/developers/tooling/attestations/pado",
             "/get-started/tools/attestations/primus",
@@ -420,7 +565,7 @@
         ]
     },
     {
-        "to": "/network/tools/privacy/secret",
+        "to": "/network/build/tools/privacy/secret",
         "from": [
             "/developers/tooling/privacy/secret",
             "/get-started/tools/privacy/secret",
@@ -428,7 +573,7 @@
         ]
     },
     {
-        "to": "/network/tools/privacy",
+        "to": "/network/build/tools/privacy",
         "from": [
             "/developers/tooling/privacy",
             "/get-started/tools/privacy",
@@ -436,7 +581,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/umbrella",
+        "to": "/network/build/tools/oracles/umbrella",
         "from": [
             "/developers/tooling/oracles/umbrella",
             "/get-started/tools/oracles/umbrella",
@@ -444,7 +589,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/api3",
+        "to": "/network/build/tools/oracles/api3",
         "from": [
             "/developers/tooling/oracles/api3",
             "/get-started/tools/oracles/api3",
@@ -452,7 +597,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles",
+        "to": "/network/build/tools/oracles",
         "from": [
             "/developers/tooling/oracles",
             "/get-started/tools/oracles",
@@ -460,7 +605,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/pyth",
+        "to": "/network/build/tools/oracles/pyth",
         "from": [
             "/developers/tooling/oracles/pyth",
             "/get-started/tools/oracles/pyth",
@@ -468,7 +613,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/ora",
+        "to": "/network/build/tools/oracles/ora",
         "from": [
             "/developers/tooling/oracles/ora",
             "/get-started/tools/oracles/ora",
@@ -476,7 +621,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/tellor",
+        "to": "/network/build/tools/oracles/tellor",
         "from": [
             "/developers/tooling/oracles/tellor",
             "/get-started/tools/oracles/tellor",
@@ -484,7 +629,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/supra",
+        "to": "/network/build/tools/oracles/supra",
         "from": [
             "/developers/tooling/oracles/supra",
             "/get-started/tools/oracles/supra",
@@ -492,7 +637,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/redstone",
+        "to": "/network/build/tools/oracles/redstone",
         "from": [
             "/developers/tooling/oracles/redstone",
             "/get-started/tools/oracles/redstone",
@@ -500,7 +645,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/chainlink",
+        "to": "/network/build/tools/oracles/chainlink",
         "from": [
             "/developers/tooling/oracles/chainlink",
             "/get-started/tools/oracles/chainlink",
@@ -508,7 +653,7 @@
         ]
     },
     {
-        "to": "/network/tools/oracles/dia",
+        "to": "/network/build/tools/oracles/dia",
         "from": [
             "/developers/tooling/oracles/dia",
             "/get-started/tools/oracles/dia",
@@ -516,7 +661,7 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain/ccip-read",
+        "to": "/network/build/tools/cross-chain/ccip-read",
         "from": [
             "/developers/tooling/cross-chain/ccip-read-gateway",
             "/get-started/tools/cross-chain/ccip-read",
@@ -525,7 +670,7 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain",
+        "to": "/network/build/tools/cross-chain",
         "from": [
             "/developers/tooling/cross-chain",
             "/get-started/tools/cross-chain",
@@ -533,7 +678,7 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain/layerzero",
+        "to": "/network/build/tools/cross-chain/layerzero",
         "from": [
             "/developers/tooling/cross-chain/layerzero",
             "/get-started/tools/cross-chain/layerzero",
@@ -541,7 +686,7 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain/axelar",
+        "to": "/network/build/tools/cross-chain/axelar",
         "from": [
             "/developers/tooling/cross-chain/axelar",
             "/get-started/tools/cross-chain/axelar",
@@ -549,7 +694,7 @@
         ]
     },
     {
-        "to": "/network/tools/security",
+        "to": "/network/build/tools/security",
         "from": [
             "/developers/tooling/security",
             "/get-started/tools/security",
@@ -557,7 +702,7 @@
         ]
     },
     {
-        "to": "/network/tools/security/hypernative",
+        "to": "/network/build/tools/security/hypernative",
         "from": [
             "/developers/tooling/security/hypernative",
             "/get-started/tools/security/hypernative",
@@ -565,7 +710,7 @@
         ]
     },
     {
-        "to": "/network/tools/security/scamfari",
+        "to": "/network/build/tools/security/scamfari",
         "from": [
             "/developers/tooling/security/scamfari",
             "/get-started/tools/security/scamfari",
@@ -573,7 +718,7 @@
         ]
     },
     {
-        "to": "/network/tools/security/goplus-security-api",
+        "to": "/network/build/tools/security/goplus-security-api",
         "from": [
             "/developers/tooling/security/goplus-security-api",
             "/get-started/tools/security/goplus-security-api",
@@ -581,7 +726,7 @@
         ]
     },
     {
-        "to": "/network/tools/security/hexagate",
+        "to": "/network/build/tools/security/hexagate",
         "from": [
             "/developers/tooling/security/hexagate",
             "/get-started/tools/security/hexagate",
@@ -589,7 +734,7 @@
         ]
     },
     {
-        "to": "/network/tools/security/spherex",
+        "to": "/network/build/tools/security/spherex",
         "from": [
             "/developers/tooling/security/spherex",
             "/get-started/tools/security/spherex",
@@ -597,7 +742,7 @@
         ]
     },
     {
-        "to": "/network/tools/node-providers/erpc",
+        "to": "/network/build/tools/node-providers/erpc",
         "from": [
             "/developers/tooling/node-providers/erpc",
             "/get-started/tooling/node-providers/erpc",
@@ -606,7 +751,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction",
+        "to": "/network/build/tools/account-abstraction",
         "from": [
             "/developers/tooling/account-abstraction/account-abstraction",
             "/get-started/tools/account-abstraction",
@@ -614,7 +759,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/openfort",
+        "to": "/network/build/tools/account-abstraction/openfort",
         "from": [
             "/developers/tooling/account-abstraction/openfort",
             "/get-started/tools/account-abstraction/openfort",
@@ -622,7 +767,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/noves",
+        "to": "/network/build/tools/account-abstraction/noves",
         "from": [
             "/developers/tooling/account-abstraction/noves",
             "/get-started/tools/account-abstraction/noves",
@@ -630,7 +775,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/station",
+        "to": "/network/build/tools/account-abstraction/station",
         "from": [
             "/developers/tooling/account-abstraction/station",
             "/get-started/tools/account-abstraction/station",
@@ -638,7 +783,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/pimlico",
+        "to": "/network/build/tools/account-abstraction/pimlico",
         "from": [
             "/developers/tooling/account-abstraction/pimlico",
             "/get-started/tools/account-abstraction/pimlico",
@@ -646,7 +791,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/oklink",
+        "to": "/network/build/tools/account-abstraction/oklink",
         "from": [
             "/developers/tooling/account-abstraction/oklink",
             "/get-started/tools/account-abstraction/oklink",
@@ -654,7 +799,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/etherspot",
+        "to": "/network/build/tools/account-abstraction/etherspot",
         "from": [
             "/developers/tooling/account-abstraction/etherspot",
             "/get-started/tools/account-abstraction/etherspot",
@@ -662,7 +807,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/smartwallets",
+        "to": "/network/build/tools/account-abstraction/smartwallets",
         "from": [
             "/developers/tooling/account-abstraction/smartwallets",
             "/get-started/tools/account-abstraction/smartwallets",
@@ -670,7 +815,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/particle-network",
+        "to": "/network/build/tools/account-abstraction/particle-network",
         "from": [
             "/developers/tooling/account-abstraction/particle-network",
             "/get-started/tools/account-abstraction/particle-network",
@@ -678,7 +823,7 @@
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/biconomy",
+        "to": "/network/build/tools/account-abstraction/biconomy",
         "from": [
             "/developers/tooling/account-abstraction/biconomy",
             "/get-started/tools/account-abstraction/biconomy",
@@ -686,7 +831,7 @@
         ]
     },
     {
-        "to": "/network/tools/contracts-templates",
+        "to": "/network/build/tools/contracts-templates",
         "from": [
             "/developers/tooling/contracts-templates",
             "/get-started/tools/contracts-templates",
@@ -694,7 +839,7 @@
         ]
     },
     {
-        "to": "/network/tools/contracts-templates/thirdweb",
+        "to": "/network/build/tools/contracts-templates/thirdweb",
         "from": [
             "/developers/tooling/contracts-templates/thirdweb",
             "/get-started/tools/contracts-templates/thirdweb",
@@ -702,7 +847,7 @@
         ]
     },
     {
-        "to": "/network/tools/contracts-templates/cookbook",
+        "to": "/network/build/tools/contracts-templates/cookbook",
         "from": [
             "/developers/tooling/contracts-templates/cookbook",
             "/get-started/tools/contracts-templates/cookbook",
@@ -710,7 +855,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/multicall",
+        "to": "/network/build/tools/libraries/multicall",
         "from": [
             "/developers/tooling/libraries/multicall",
             "/get-started/tools/libraries/multicall",
@@ -718,7 +863,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/ethereum-list",
+        "to": "/network/build/tools/libraries/ethereum-list",
         "from": [
             "/developers/tooling/libraries/ethereum-list",
             "/get-started/tools/libraries/ethereum-list",
@@ -726,7 +871,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries",
+        "to": "/network/build/tools/libraries",
         "from": [
             "/developers/tooling/libraries",
             "/get-started/tools/libraries",
@@ -734,7 +879,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/ape",
+        "to": "/network/build/tools/libraries/ape",
         "from": [
             "/developers/tooling/libraries/ape",
             "/get-started/tools/libraries/ape",
@@ -742,7 +887,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/ethers-js",
+        "to": "/network/build/tools/libraries/ethers-js",
         "from": [
             "/developers/tooling/libraries/ethers-js",
             "/get-started/tools/libraries/ethers-js",
@@ -750,7 +895,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/viem",
+        "to": "/network/build/tools/libraries/viem",
         "from": [
             "/developers/tooling/libraries/viem",
             "/get-started/tools/libraries/viem",
@@ -758,7 +903,7 @@
         ]
     },
     {
-        "to": "/network/tools/libraries/wagmi",
+        "to": "/network/build/tools/libraries/wagmi",
         "from": [
             "/developers/tooling/libraries/wagmi",
             "/get-started/tools/libraries/wagmi",
@@ -766,7 +911,7 @@
         ]
     },
     {
-        "to": "/network/tools/permanent-data/irys/overview",
+        "to": "/network/build/tools/permanent-data/irys/overview",
         "from": [
             "/developers/tooling/permanent-data/irys/overview",
             "/get-started/tools/permanent-data/irys/overview",
@@ -774,7 +919,7 @@
         ]
     },
     {
-        "to": "/network/tools/permanent-data/irys/irys-quickstart",
+        "to": "/network/build/tools/permanent-data/irys/irys-quickstart",
         "from": [
             "/developers/tooling/permanent-data/irys/irys-quickstart",
             "/get-started/tools/permanent-data/irys/irys-quickstart",
@@ -782,7 +927,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/scopescan",
+        "to": "/network/build/tools/data-indexers/scopescan",
         "from": [
             "/developers/tooling/data-indexers/scopescan",
             "/get-started/tools/data-indexers/scopescan",
@@ -790,7 +935,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/thegraph",
+        "to": "/network/build/tools/data-indexers/thegraph",
         "from": [
             "/developers/tooling/data-indexers/thegraph",
             "/get-started/tools/data-indexers/thegraph",
@@ -798,7 +943,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/moralis",
+        "to": "/network/build/tools/data-indexers/moralis",
         "from": [
             "/developers/tooling/data-indexers/moralis",
             "/get-started/tools/data-indexers/moralis",
@@ -806,7 +951,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/subquery",
+        "to": "/network/build/tools/data-indexers/subquery",
         "from": [
             "/developers/tooling/data-indexers/subquery",
             "/get-started/tools/data-indexers/subquery",
@@ -814,7 +959,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/noves",
+        "to": "/network/build/tools/data-indexers/noves",
         "from": [
             "/developers/tooling/data-indexers/noves",
             "/get-started/tools/data-indexers/noves",
@@ -822,7 +967,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/arkham",
+        "to": "/network/build/tools/data-indexers/arkham",
         "from": [
             "/developers/tooling/data-indexers/arkham",
             "/get-started/tools/data-indexers/arkham",
@@ -830,7 +975,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/covalent",
+        "to": "/network/build/tools/data-indexers/covalent",
         "from": [
             "/developers/tooling/data-indexers/covalent",
             "/get-started/tools/data-indexers/covalent",
@@ -838,7 +983,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers",
+        "to": "/network/build/tools/data-indexers",
         "from": [
             "/developers/tooling/data-indexers",
             "/get-started/tools/data-indexers",
@@ -846,7 +991,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/mobula",
+        "to": "/network/build/tools/data-indexers/mobula",
         "from": [
             "/developers/tooling/data-indexers/mobula",
             "/get-started/tools/data-indexers/mobula",
@@ -854,7 +999,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/envio",
+        "to": "/network/build/tools/data-indexers/envio",
         "from": [
             "/developers/tooling/data-indexers/envio",
             "/get-started/tools/data-indexers/envio",
@@ -862,7 +1007,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/subsquid",
+        "to": "/network/build/tools/data-indexers/subsquid",
         "from": [
             "/developers/tooling/data-indexers/subsquid",
             "/get-started/tools/data-indexers/subsquid",
@@ -870,7 +1015,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/flair",
+        "to": "/network/build/tools/data-indexers/flair",
         "from": [
             "/developers/tooling/data-indexers/flair",
             "/get-started/tools/data-indexers/flair",
@@ -878,7 +1023,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/reservoir",
+        "to": "/network/build/tools/data-indexers/reservoir",
         "from": [
             "/developers/tooling/data-indexers/reservoir",
             "/get-started/tools/data-indexers/reservoir",
@@ -886,7 +1031,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/dune",
+        "to": "/network/build/tools/data-indexers/dune",
         "from": [
             "/developers/tooling/data-indexers/dune",
             "/get-started/tools/data-indexers/dune",
@@ -894,7 +1039,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/alchemy",
+        "to": "/network/build/tools/data-indexers/alchemy",
         "from": [
             "/developers/tooling/data-indexers/alchemy",
             "/get-started/tools/data-indexers/alchemy",
@@ -902,7 +1047,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/etherscan",
+        "to": "/network/build/tools/data-indexers/etherscan",
         "from": [
             "/developers/tooling/data-indexers/etherscan",
             "/get-started/tools/data-indexers/etherscan",
@@ -910,7 +1055,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/dipdup/overview",
+        "to": "/network/build/tools/data-indexers/dipdup/overview",
         "from": [
             "/developers/tooling/data-indexers/dipdup/overview",
             "/get-started/tools/data-indexers/dipdup/overview",
@@ -918,7 +1063,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/dipdup/quickstart",
+        "to": "/network/build/tools/data-indexers/dipdup/quickstart",
         "from": [
             "/developers/tooling/data-indexers/dipdup/quickstart",
             "/get-started/tools/data-indexers/dipdup/quickstart",
@@ -926,7 +1071,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/nftscan",
+        "to": "/network/build/tools/data-indexers/nftscan",
         "from": [
             "/developers/tooling/data-indexers/nftscan",
             "/get-started/tools/data-indexers/nftscan",
@@ -934,7 +1079,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/sentio",
+        "to": "/network/build/tools/data-indexers/sentio",
         "from": [
             "/developers/tooling/data-indexers/sentio",
             "/get-started/tools/data-indexers/sentio",
@@ -942,7 +1087,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/goldsky/overview",
+        "to": "/network/build/tools/data-indexers/goldsky/overview",
         "from": [
             "/developers/tooling/data-indexers/goldsky/overview",
             "/get-started/tools/data-indexers/goldsky/overview",
@@ -950,7 +1095,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/goldsky/goldsky-mirror",
+        "to": "/network/build/tools/data-indexers/goldsky/goldsky-mirror",
         "from": [
             "/developers/tooling/data-indexers/goldsky/goldsky-mirror",
             "/get-started/tools/data-indexers/goldsky/goldsky-mirror",
@@ -958,7 +1103,7 @@
         ]
     },
     {
-        "to": "/network/tools/data-indexers/goldsky/goldsky-index",
+        "to": "/network/build/tools/data-indexers/goldsky/goldsky-index",
         "from": [
             "/developers/tooling/data-indexers/goldsky/goldsky-index",
             "/get-started/tools/data-indexers/goldsky/goldsky-index",
@@ -966,7 +1111,7 @@
         ]
     },
     {
-        "to": "/network/tools/ai/spheron",
+        "to": "/network/build/tools/ai/spheron",
         "from": [
             "/developers/tooling/cloud-infra/spheron",
             "/get-started/tools/ai/spheron",
@@ -974,7 +1119,7 @@
         ]
     },
     {
-        "to": "/network/tools/ai",
+        "to": "/network/build/tools/ai",
         "from": [
             "/developers/tooling/cloud-infra",
             "/get-started/tools/ai",
@@ -982,7 +1127,7 @@
         ]
     },
     {
-        "to": "/network/tools/analytics/arkham",
+        "to": "/network/build/tools/analytics/arkham",
         "from": [
             "/developers/tooling/analytics/arkham",
             "/get-started/tools/analytics/arkham",
@@ -990,7 +1135,7 @@
         ]
     },
     {
-        "to": "/network/tools/analytics",
+        "to": "/network/build/tools/analytics",
         "from": [
             "/developers/tooling/analytics",
             "/get-started/tools/analytics",
@@ -998,7 +1143,7 @@
         ]
     },
     {
-        "to": "/network/tools/analytics/mobula",
+        "to": "/network/build/tools/analytics/mobula",
         "from": [
             "/developers/tooling/analytics/mobula",
             "/get-started/tools/analytics/mobula",
@@ -1006,7 +1151,7 @@
         ]
     },
     {
-        "to": "/network/tools/analytics/dune",
+        "to": "/network/build/tools/analytics/dune",
         "from": [
             "/developers/tooling/analytics/dune",
             "/get-started/tools/analytics/dune",
@@ -1014,7 +1159,7 @@
         ]
     },
     {
-        "to": "/network/tools/analytics/cookie3",
+        "to": "/network/build/tools/analytics/cookie3",
         "from": [
             "/developers/tooling/analytics/cookie3",
             "/get-started/tools/analytics/cookie3",
@@ -1094,7 +1239,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/developers/guides"
         ]
@@ -1236,7 +1381,7 @@
         ]
     },
     {
-        "to": "/network/tools/gas",
+        "to": "/network/build/tools/gas",
         "from": [
             "/get-started/tooling/gas",
             "/get-started/tools/gas",
@@ -1245,55 +1390,55 @@
         ]
     },
     {
-        "to": "/network/tools/gas/blocknative",
+        "to": "/network/build/tools/gas/blocknative",
         "from": [
             "/get-started/tools/gas/blocknative",
             "/network/tooling/gas/blocknative"
         ]
     },
     {
-        "to": "/network/tools/social-login/dynamic",
+        "to": "/network/build/tools/social-login/dynamic",
         "from": [
             "/get-started/tools/social-login/dynamic",
             "/network/tooling/social-login/dynamic"
         ]
     },
     {
-        "to": "/network/tools/social-login/metamask",
+        "to": "/network/build/tools/social-login/metamask",
         "from": [
             "/get-started/tools/social-login/metamask",
             "/network/tooling/social-login/metamask"
         ]
     },
     {
-        "to": "/network/tools/social-login/privy",
+        "to": "/network/build/tools/social-login/privy",
         "from": [
             "/get-started/tools/social-login/privy",
             "/network/tooling/social-login/privy"
         ]
     },
     {
-        "to": "/network/tools/account-abstraction/metamask",
+        "to": "/network/build/tools/account-abstraction/metamask",
         "from": [
             "/get-started/tools/account-abstraction/metamask",
             "/network/tooling/account-abstraction/metamask"
         ]
     },
     {
-        "to": "/network/tools/libraries/web3j",
+        "to": "/network/build/tools/libraries/web3j",
         "from": [
             "/get-started/tools/libraries/web3j",
             "/network/tooling/libraries/web3j"
         ]
     },
     {
-        "to": "/protocol/state-recovery",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/network/how-to/state-recovery"
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/get-started"
         ]
@@ -1306,13 +1451,13 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/get-started/build/network-info"
         ]
     },
     {
-        "to": "/network/build/ethereum-differences",
+        "to": "/network/overview/ethereum-differences",
         "from": [
             "/get-started/build/ethereum-differences"
         ]
@@ -1330,13 +1475,13 @@
         ]
     },
     {
-        "to": "/network/build/dapp-support",
+        "to": "/network/build/launch-an-app/dapp-support",
         "from": [
             "/get-started/build/dapp-support"
         ]
     },
     {
-        "to": "/network/quickstart/deploy",
+        "to": "/network/build/launch-an-app/deploy",
         "from": [
             "/get-started/build/quickstart/deploy",
             "/get-started/quickstart/deploy",
@@ -1345,7 +1490,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/app",
+        "to": "/network/build/launch-an-app/app",
         "from": [
             "/get-started/build/quickstart/app",
             "/get-started/quickstart/app",
@@ -1353,7 +1498,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/hub",
+        "to": "/network/build/launch-an-app/hub",
         "from": [
             "/get-started/build/quickstart/hub",
             "/get-started/quickstart/hub",
@@ -1361,7 +1506,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/hub-reviews",
+        "to": "/network/build/launch-an-app/hub-reviews",
         "from": [
             "/get-started/build/quickstart/hub-reviews",
             "/get-started/quickstart/hub-reviews",
@@ -1369,7 +1514,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/events",
+        "to": "/network/build/launch-an-app/events",
         "from": [
             "/get-started/build/quickstart/events",
             "/get-started/quickstart/events",
@@ -1377,7 +1522,7 @@
         ]
     },
     {
-        "to": "/network/how-to/get-testnet-eth",
+        "to": "/network/quickstart/get-testnet-eth",
         "from": [
             "/get-started/how-to/get-testnet-eth"
         ]
@@ -1563,31 +1708,47 @@
         ]
     },
     {
-        "to": "/protocol/tokenomics/burn",
+        "to": "/protocol/tokenomics",
         "from": [
             "/technology/burn"
         ]
     },
     {
-        "to": "/protocol/repos",
+        "to": "/protocol/reference/repos",
         "from": [
             "/technology/repos"
         ]
     },
     {
-        "to": "/protocol/transaction-lifecycle",
+        "to": "/network/overview/known-finality-state",
         "from": [
             "/technology/transaction-lifecycle"
         ]
     },
     {
-        "to": "/protocol/tokenomics/gas",
+        "to": "/network/overview/predictable-pricing",
         "from": [
-            "/technology/gas"
+            "/technology/gas",
+            "/protocol/tokenomics/gas",
+            "/protocol/tokenomics/gas.mdx"
         ]
     },
     {
-        "to": "/network/build/network-data",
+        "to": "/protocol/tokenomics",
+        "from": [
+            "/protocol/tokenomics/burn",
+            "/protocol/tokenomics/burn.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/tokenomics",
+        "from": [
+            "/protocol/tokenomics/tokenomics",
+            "/protocol/tokenomics/tokenomics.mdx"
+        ]
+    },
+    {
+        "to": "/network/quickstart/connect",
         "from": [
             "/technology/network-data"
         ]
@@ -1599,19 +1760,19 @@
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/technology/message-service"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service",
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from": [
             "/technology/message-service/index"
         ]
     },
     {
-        "to": "/protocol/architecture/interoperability/message-service/reference",
+        "to": "/network/build/send-receive-messages",
         "from": [
             "/technology/message-service/reference"
         ]
@@ -1647,7 +1808,7 @@
         ]
     },
     {
-        "to": "/protocol/state-recovery",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/technology/state-recovery"
         ]
@@ -1689,37 +1850,37 @@
         ]
     },
     {
-        "to": "/network/tools/cross-chain/arcana",
+        "to": "/network/build/tools/cross-chain/arcana",
         "from": [
             "/get-started/tools/cross-chain/arcana"
         ]
     },
     {
-        "to": "/network/tools/cross-chain/thirdweb",
+        "to": "/network/build/tools/cross-chain/thirdweb",
         "from": [
             "/get-started/tools/cross-chain/thirdweb"
         ]
     },
     {
-        "to": "/network/tools/cross-chain/ccip",
+        "to": "/network/build/tools/cross-chain/ccip",
         "from": [
             "/get-started/tools/cross-chain/ccip"
         ]
     },
     {
-        "to": "/network/tools/cross-chain/reactive-network",
+        "to": "/network/build/tools/cross-chain/reactive-network",
         "from": [
             "/get-started/tools/cross-chain/reactive-network"
         ]
     },
     {
-        "to": "/network/tools/permanent-data",
+        "to": "/network/build/tools/permanent-data",
         "from": [
             "/get-started/tools/permanent-data"
         ]
     },
     {
-        "to": "/network/tools/data-indexers/bitscrunch",
+        "to": "/network/build/tools/data-indexers/bitscrunch",
         "from": [
             "/get-started/tools/data-indexers/bitscrunch"
         ]

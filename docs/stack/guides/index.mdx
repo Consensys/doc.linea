@@ -1,0 +1,83 @@
+---
+title: Features
+description: Features and capabilities of the Linea stack
+sidebar_position: 1
+image: /img/socialCards/features.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
+  // {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+];
+
+The Linea stack provides features and capabilities that enable various deployment models and use cases.
+This section documents the features available in he Linea stack.
+
+## Deployment model features
+
+### Private validium
+
+Private Validium provides:
+
+- Offchain data availability: transaction data stored privately
+- RBAC: Role-Based Access Control (RBAC) for RPC and API endpoints
+- Privacy: transaction details not visible on finalization layer
+- Compliance: KYC/KYT controls and selective data disclosure
+- API portal: controlled access to network functionality
+
+See more on [private validiums](./validium.mdx).
+
+### Public
+
+Public deployments provide:
+
+- Onchain data availability: Public Mainnet posts all data via EIP-4844 blobs to Ethereum
+- Full transparency: All transactions visible on finalization layer
+- Open access: No access controls required
+
+## Core features
+
+### Zero-knowledge proofs
+
+The Linea stack uses zero-knowledge proofs to:
+
+- Verify state transitions without revealing transaction details
+- Provide cryptographic guarantees of correctness
+- Enable efficient finalization on the finalization layer
+
+
+### EVM equivalence
+
+Full EVM compatibility enables:
+
+- Deploy existing Ethereum smart contracts without modification
+- Use standard Ethereum tooling and libraries
+- Maintain compatibility with Ethereum ecosystem
+
+### Dual-layer architecture
+
+Separation of consensus and execution provides:
+
+- Client diversity and network resilience
+- Modular deployment and scaling
+- Operational flexibility
+
+### Quorum-Based Byzantine Fault Tolerance consensus
+
+Quorum-Based Byzantine Fault Tolerance (QBFT) consensus enables:
+
+- Fault tolerance (3f+1 nodes)
+- Fast finality
+- Decentralized block production (with sufficient validators)
+
+## Review security, data availability, and compliance
+
+- Understand [security features](./security.mdx)
+- Review [data availability features](./data-availability.mdx)
+- Explore [compliance and audit features](./compliance.mdx)
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />
