@@ -1,35 +1,12 @@
 ---
 title: Run a Linea node
 image: /img/socialCards/run-a-linea-node.jpg
+sidebar_position: 1
 ---
 
-import DocCardList from "@theme/DocCardList";
-
-:::note
-
-This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../notices/release-notes.mdx#beta-v40), 
-Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
-client of your choice. 
-
-This section will be updated shortly to reflect this new architecture and is inaccurate for the time
-being.
-
-:::
-
-This section guides you through running a Linea node using various compatible Ethereum clients.
-
-:::info important
-While Linea supports multiple clients, only Linea Besu currently allows you to access Linea-specific
-features, such as using [Linea methods](../../../api/reference/index.mdx) (for example, `linea_estimateGas`)
-or calling methods using the `finalized` tag.
-
-Linea Besu is recommended for infrastructure providers and operators who intend to run a Linea
-node, whether for offering node services to others or for using Linea with a personal, private RPC endpoint.
-:::
-
-The vanilla Ethereum clients such as Besu, Geth, and Erigon are recommended if you only want to follow the
-Linea chain. They allow you to have a local copy of the Linea blockchain. This view of the state is
-"trusted" until the transaction, or the block that transaction is in, has been finalized on L1.
+Linea follows Ethereum’s dual-layer design. Every Linea node runs:
+- Maru for consensus
+- An execution layer client of your choice
 
 The following table lists the clients covered in this guide, and whether they provide direct access
 to Linea-specific features.
@@ -53,28 +30,48 @@ to Linea-specific features.
       <td>Besu client with plugins that implement Linea-specific features, such as [API methods](../../../api/reference/index.mdx) and a [finalized](../finalized-block.mdx) tag.</td>
       <td>✅</td>
     </tr>
-{/*     <tr>
-      <td>[Erigon](./erigon.mdx)</td>
-      <td>A client implementation focused on performance and saving disk space, written in Go.</td>
-      <td>❌</td>
-    </tr> */}
     <tr>
       <td>[Geth](./geth.mdx)</td>
       <td>The most widely used open-source Ethereum client, written in Go.</td>
       <td>❌</td>
     </tr>
-{/*     <tr>
-      <td>[Nethermind](./nethermind.mdx)</td>
-      <td>A highly configurable .NET-based Ethereum client.</td>
-      <td>❌</td>
-    </tr> */}
   </tbody>
 </table>
 
+## Docker Compose quickstart
 
-There are no financial incentives for running a Linea node, and there is currently no option to
-vote on blocks as part of the consensus mechanism or
+Docker Compose is the recommended method to run a node. For binaries or build-from-source and client-specific instructions, see the
+individual guides, or keep reading for a general guide.
+
+Use Docker Compose as the default path. The canonical compose files live in the Linea monorepo:
+- Mainnet: [`/docs/getting-started/linea-mainnet/docker-compose.yml`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- Linea Sepolia: [`/docs/getting-started/linea-sepolia/docker-compose.yml`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+
+Quick steps:
+1. Pick your network (mainnet or Linea Sepolia) and download the compose file above.
+2. From that directory, run Docker Compose to start Maru plus your execution client.
+3. For Linea-specific APIs such as `linea_estimateGas` and the `finalized` tag, use the Linea Besu
+   compose example.
+
+Next actions:
+- Default compose examples: [Linea Besu](./linea-besu.mdx) and [Maru](./maru.mdx).
+- Alternative EL clients: [Besu](./besu.mdx) or [Geth](./geth.mdx) to follow the chain.
+- Upgrades: see [upgrade guides](./beta-v4-migration.mdx).
+- Bootnodes: see [bootnodes](./bootnodes.mdx) if you need to override defaults.
+
+## Canonical sources
+
+- Compose files in the Linea monorepo (paths above) are the source of truth for images and versions.
+- Linea Besu package compose profiles (`linea-besu-package/docker`) are for enabling Linea plugins;
+  otherwise use the monorepo compose files.
+- Local `/files` copies for other clients are historical; prefer the monorepo compose for current
+  configuration.
+
+## Alternative paths
+
+Binaries or build-from-source are supported. Each client page documents its binary path as an
+alternative if Docker Compose does not fit your environment.
+
+There are no financial incentives for running a Linea node, and there is currently no option to vote
+on blocks as part of the consensus mechanism or
 [fork-choice](https://eth2book.info/capella/part3/forkchoice/#whats-a-fork-choice) like on Ethereum.
-
-
-<DocCardList />
