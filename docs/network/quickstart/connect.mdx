@@ -1,69 +1,143 @@
 ---
-title: Connect to Linea
-description: Learn how to connect wallets to Linea.
+title: Connect
+description: >-
+  Learn how to connect to rpc providers Linea Mainnet and Linea Sepolia and
+  learn how to connect wallets to Linea.
 sidebar_position: 1
-image: /img/socialCards/connect-to-linea.jpg
+image: /img/socialCards/connect.jpg
 ---
+
+:::tip
+
+Use the Wallet tab for a walkthrough on how to add Linea to your wallet.
+
+:::  
+<Tabs groupId="connect-rpc-wallet" className="my-tabs">
+  <TabItem value="rpc" label="RPC" default>
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## MetaMask
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem 
+  value="Mainnet" label="Mainnet" default>
+  <table>
+      <tr>
+          <td align="left"><b>Network Name</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.linea.build or via <a href="https://docs.metamask.io/services/get-started/endpoints#linea">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59144</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Currency Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block Explorer URL</b></td>
+          <td align="left"> <a href="https://lineascan.build/">Lineascan</a>  </td>
+      </tr>
+  </table>
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  <table>
+      <tr>
+          <td align="left"><b>Network</b></td>
+          <td align="left">Linea</td>
+      </tr>
+      <tr>
+          <td align="left"><b>RPC URL</b></td>
+          <td align="left">https://rpc.sepolia.linea.build or via <a href="https://docs.metamask.io/services/get-started/endpoints#linea">Infura</a> (recommended)</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Chain ID</b></td>
+          <td align="left">59141</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Symbol</b></td>
+          <td align="left">ETH</td>
+      </tr>
+      <tr>
+          <td align="left"><b>Block explorer</b></td>
+          <td align="left"> <a href="https://sepolia.lineascan.build">Lineascan</a> </td>
+      </tr>
+  </table>
+  </TabItem> 
+</Tabs>
 
-MetaMask automatically displays all your crypto assets across enabled networks, which includes Linea by default. If you want to filter out other networks to specifically view your Linea activity, you can easily do so on both extension and mobile.
+## Connect with node providers
 
-<Tabs className="my-tabs">
-    <TabItem value="extension" label="MetaMask Extension">
+If your dapp is using public endpoints, it may encounter rate limiting. You can find private RPC Linea node providers
+[here](../build/tools/node-providers/index.mdx). 
 
-        **Linea Mainnet**
+Alternatively, consider running your [own RPC](../../protocol/architecture/rpc-services#why-run-your-own-rpc).
 
-        In the top-right dropdown menu, click here to see your available networks.
+</TabItem>
+  <TabItem value="wallet" label="Wallet">
+
+        ## Connect your wallet
+
+        ### MetaMask
+
+        MetaMask automatically displays all your crypto assets across enabled networks, which includes Linea by default. If you want to filter out other networks to specifically view your Linea activity, you can easily do so on both extension and mobile.
+
+        <Tabs className="my-tabs">
+            <TabItem value="extension" label="MetaMask Extension">
+
+                **Linea Mainnet**
+
+                In the top-right dropdown menu, click here to see your available networks.
         
-        <div class="center-container">
-          <div class="img-small">
-            <img
-              src="/img/get_started/connect/MetaMask_extension_locate_networks_menu_dropdown.png"
-              alt="MetaMask extension locate networks menu dropdown"
-            />
-          </div>
-        </div>
+                <div class="center-container">
+                  <div class="img-small">
+                    <img
+                      src="/img/get_started/connect/MetaMask_extension_locate_networks_menu_dropdown.png"
+                      alt="MetaMask extension locate networks menu dropdown"
+                    />
+                  </div>
+                </div>
 
-        Select "Linea" to switch to Linea Mainnet.
+                Select "Linea" to switch to Linea Mainnet.
 
-        <div class="center-container">
-          <div class="img-small">
-            <img
-              src="/img/get_started/connect/MetaMask_extension_locate_networks_list_linea.png"
-              alt="MetaMask extension locate networks list Linea"
-            />
-          </div>
-        </div>
+                <div class="center-container">
+                  <div class="img-small">
+                    <img
+                      src="/img/get_started/connect/MetaMask_extension_locate_networks_list_linea.png"
+                      alt="MetaMask extension locate networks list Linea"
+                    />
+                  </div>
+                </div>
 
-        If you don't see Linea Mainnet in the "Enabled networks" list, scroll to the "Additional
-        networks" section, and click "Add".
+                If you don't see Linea Mainnet in the "Enabled networks" list, scroll to the "Additional
+                networks" section, and click "Add".
 
-        <div class="center-container">
-          <div class="img-small">
-            <img
-              src="/img/get_started/connect/MetaMask_extension_networks_list_additional_networks_add_linea.png"
-              alt="MetaMask extension networks list additional networks add Linea"
-            />
-          </div>
-        </div>
+                <div class="center-container">
+                  <div class="img-small">
+                    <img
+                      src="/img/get_started/connect/MetaMask_extension_networks_list_additional_networks_add_linea.png"
+                      alt="MetaMask extension networks list additional networks add Linea"
+                    />
+                  </div>
+                </div>
 
-        **Linea Sepolia**
+                **Linea Sepolia**
 
-        In the networks menu, scroll until you see the "Show test networks" toggle. If it's off,
-        switch it on; you should see Linea Sepolia in the list. Select it to get started.
+                In the networks menu, scroll until you see the "Show test networks" toggle. If it's off,
+                switch it on; you should see Linea Sepolia in the list. Select it to get started.
 
-        <div class="center-container">
-          <div class="img-small">
-            <img
-              src="/img/get_started/connect/MetaMask_extension_networks_list_show_test_networks_add_linea_sepolia.png"
-              alt="MetaMask extension networks list show test networks add Linea Sepolia"
-            />
-          </div>
-        </div>
+                <div class="center-container">
+                  <div class="img-small">
+                    <img
+                      src="/img/get_started/connect/MetaMask_extension_networks_list_show_test_networks_add_linea_sepolia.png"
+                      alt="MetaMask extension networks list show test networks add Linea Sepolia"
+                    />
+                  </div>
+                </div>
 
     </TabItem>
     <TabItem value="mobile" label="MetaMask Mobile">
@@ -115,16 +189,27 @@ for further information.
 
 :::
 
-### Custom RPC endpoint
+#### Custom RPC endpoint
 
 You can configure MetaMask to connect to Linea Mainnet or Linea Sepolia with any RPC endpoint. 
 
 Refer to the [MetaMask Support site](https://support.metamask.io/networks-and-sidechains/managing-networks/how-to-add-a-custom-network-rpc/#adding-or-editing-rpc-urls) 
 for instructions on how to add RPC endpoints. You can find most networks and add them easily on [Chainlist](https://chainlist.org/).
 
-## Other wallets
+### Other wallets
 
 - [Coinbase Wallet](https://help.coinbase.com/en/wallet/layer2-networks/layer2-networks-and-sidechains)
 - [Ledger](https://support.ledger.com/article/17822826153757-zd)
 - [Trust Wallet](https://community.trustwallet.com/t/how-to-add-a-custom-network-on-the-trust-wallet-mobile-app/626781)
 - [Rainbow](https://rainbow.me/support/extension/custom-networks-on-the-browser-extension)
+
+</TabItem>
+</Tabs>
+
+## Status page
+
+:::important[Status]
+
+[linea.statuspage.io](https://linea.statuspage.io/)
+
+:::

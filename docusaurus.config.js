@@ -135,9 +135,10 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/index",
+            docId: "network/overview/index",
             position: "left",
             label: "Public network",
+            activeBaseRegex: "^/network/",
           },
           {
             type: "doc",

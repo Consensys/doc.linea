@@ -1,35 +1,9 @@
 ---
-title: State recovery
+title: Recover state
 description: How to reconstruct Linea's state as it was at a given block number.
-sidebar_position: 6
-image: /img/socialCards/state-recovery.jpg
+sidebar_position: 3
+image: /img/socialCards/recover-state.jpg
 ---
-
-Use this feature page to understand how to reconstruct Linea's state.
-
-## Recover state from a finalized block
-
-In the highly unlikely event that Linea's sequencer fails, it must be possible to reconstruct
-Linea's state as it was at the last point in time data was finalized, using the finality data. Conceivably,
-any entity could then resume transaction sequencing, confident that state was resuming from the 
-correct point. 
-
-State recovery insures against the risks of a single point of failure that could cripple the network.
-Since this system can be used by any independent actor to validate state roots against L1-published
-data, it also reduces the need for trust in the Linea
-[sequencer and coordinator](../../protocol/architecture/index.mdx).
-
-## There's a plugin for that
-
-To support state recovery, the Linea Besu execution client has a recovery plugin that:
-
-1. Retrieves finalized blobs from L1; 
-2. Decompresses the blob data;
-3. Replays the transactions in the execution client, and, finally,
-4. Checks that the resulting `stateRootHash` matches the one finalized on L1. 
-
-Linea Besu executes the fetched transactions in the blob, while the state management plugin, Shomei, 
-rebuilds state.
 
 ## Need to recover state from Public Linea?
 
@@ -152,3 +126,7 @@ And then ensure that you configure Shomei to be aware of where the Linea Besu no
 --besu-rpc-http-host=... // Replace with your Linea Besu node's host
 --besu-rpc-http-port=... // Replace with your Linea Besu node's port
 ```
+
+## Next steps
+
+- Understand [finality progression](../overview/known-finality-state.mdx) through Linea

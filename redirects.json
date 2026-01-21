@@ -1,5 +1,63 @@
 [
     {
+        "to": "/network/quickstart/get-testnet-eth",
+        "from": [
+            "/network/build/get-testnet-eth",
+            "/network/build/get-testnet-eth.mdx"
+        ]
+    },
+
+    {
+        "to": "/network/overview",
+        "from": [
+            "/network",
+            "/network/index",
+            "/network/index.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/dapp-support",
+        "from": [
+            "/network/build/dapp-support",
+            "/network/build/dapp-support.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/app",
+        "from": [
+            "/network/quickstart/app",
+            "/network/quickstart/app.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/deploy",
+        "from": [
+            "/network/quickstart/deploy",
+            "/network/quickstart/deploy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/events",
+        "from": [
+            "/network/quickstart/events",
+            "/network/quickstart/events.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub-reviews",
+        "from": [
+            "/network/quickstart/hub-reviews",
+            "/network/quickstart/hub-reviews.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub",
+        "from": [
+            "/network/quickstart/hub",
+            "/network/quickstart/hub.mdx"
+        ]
+    },
+    {
         "to": "/protocol/architecture",
         "from": [
             "/protocol/architecture/architecture",
@@ -7,7 +65,21 @@
         ]
     },
     {
-        "to": "/network/guides/predictable-pricing",
+        "to": "/network/quickstart/get-testnet-eth",
+        "from": [
+            "/network/how-to/get-testnet-eth",
+            "/network/how-to/get-testnet-eth.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/ethereum-differences",
+        "from": [
+            "/network/build/ethereum-differences",
+            "/network/build/ethereum-differences.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/predictable-pricing",
         "from": [
             "/network/features/explicit-pricing",
             "/network/features/explicit-pricing.mdx",
@@ -16,7 +88,7 @@
         ]
     },
     {
-        "to": "/network/guides/known-finality-state",
+        "to": "/network/overview/known-finality-state",
         "from": [
             "/protocol/transaction-lifecycle",
             "/protocol/transaction-lifecycle.mdx",
@@ -103,7 +175,7 @@
         ]
     },
     {
-        "to": "/network/guides/recoverable-state",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/protocol/state-recovery",
             "/protocol/state-recovery.mdx",
@@ -112,7 +184,7 @@
         ]
     },
     {
-        "to": "/network/guides/recoverable-state",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/stack/guides/state-recovery",
             "/stack/guides/state-recovery.mdx"
@@ -167,7 +239,6 @@
             "/network/concepts/decentralization",
             "/network/configure-metamask",
             "/network/fund",
-            "/network/quickstart",
             "/protocol/decentralization",
             "/use-linea/index.md",
             "/use-mainnet",
@@ -178,7 +249,7 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/build-on-linea/use-linea-testnet/info-contracts",
             "/developers/quickstart/info-contracts",
@@ -231,7 +302,7 @@
         ]
     },
     {
-        "to": "/network/build/ethereum-differences",
+        "to": "/network/overview/ethereum-differences",
         "from": [
             "/build-on-linea/ethereum-differences",
             "/developers/quickstart/ethereum-differences"
@@ -249,7 +320,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/build-on-linea/tooling/linea-safe",
             "/developers/guides/linea-safe",
@@ -266,7 +337,7 @@
         ]
     },
     {
-        "to": "/network/guides/known-finality-state",
+        "to": "/network/overview/known-finality-state",
         "from": [
             "/architecture/overview/transaction-lifecycle",
             "/architecture/transaction-lifecycle",
@@ -274,7 +345,7 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/architecture/network-data",
             "/architecture/overview/network-data",
@@ -355,7 +426,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/build-on-linea",
             "/build-on-linea/quickstart",
@@ -1168,7 +1239,7 @@
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/developers/guides"
         ]
@@ -1361,13 +1432,13 @@
         ]
     },
     {
-        "to": "/network/guides/recoverable-state",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/network/how-to/state-recovery"
         ]
     },
     {
-        "to": "/network",
+        "to": "/network/overview",
         "from": [
             "/get-started"
         ]
@@ -1380,13 +1451,13 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/get-started/build/network-info"
         ]
     },
     {
-        "to": "/network/build/ethereum-differences",
+        "to": "/network/overview/ethereum-differences",
         "from": [
             "/get-started/build/ethereum-differences"
         ]
@@ -1404,13 +1475,13 @@
         ]
     },
     {
-        "to": "/network/build/dapp-support",
+        "to": "/network/build/launch-an-app/dapp-support",
         "from": [
             "/get-started/build/dapp-support"
         ]
     },
     {
-        "to": "/network/quickstart/deploy",
+        "to": "/network/build/launch-an-app/deploy",
         "from": [
             "/get-started/build/quickstart/deploy",
             "/get-started/quickstart/deploy",
@@ -1419,7 +1490,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/app",
+        "to": "/network/build/launch-an-app/app",
         "from": [
             "/get-started/build/quickstart/app",
             "/get-started/quickstart/app",
@@ -1427,7 +1498,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/hub",
+        "to": "/network/build/launch-an-app/hub",
         "from": [
             "/get-started/build/quickstart/hub",
             "/get-started/quickstart/hub",
@@ -1435,7 +1506,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/hub-reviews",
+        "to": "/network/build/launch-an-app/hub-reviews",
         "from": [
             "/get-started/build/quickstart/hub-reviews",
             "/get-started/quickstart/hub-reviews",
@@ -1443,7 +1514,7 @@
         ]
     },
     {
-        "to": "/network/quickstart/events",
+        "to": "/network/build/launch-an-app/events",
         "from": [
             "/get-started/build/quickstart/events",
             "/get-started/quickstart/events",
@@ -1451,7 +1522,7 @@
         ]
     },
     {
-        "to": "/network/how-to/get-testnet-eth",
+        "to": "/network/quickstart/get-testnet-eth",
         "from": [
             "/get-started/how-to/get-testnet-eth"
         ]
@@ -1649,13 +1720,13 @@
         ]
     },
     {
-        "to": "/network/guides/known-finality-state",
+        "to": "/network/overview/known-finality-state",
         "from": [
             "/technology/transaction-lifecycle"
         ]
     },
     {
-        "to": "/network/guides/predictable-pricing",
+        "to": "/network/overview/predictable-pricing",
         "from": [
             "/technology/gas",
             "/protocol/tokenomics/gas",
@@ -1677,7 +1748,7 @@
         ]
     },
     {
-        "to": "/network/build/network-info",
+        "to": "/network/quickstart/connect",
         "from": [
             "/technology/network-data"
         ]
@@ -1737,7 +1808,7 @@
         ]
     },
     {
-        "to": "/network/guides/recoverable-state",
+        "to": "/network/overview/recoverable-state",
         "from": [
             "/technology/state-recovery"
         ]
