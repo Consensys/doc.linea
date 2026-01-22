@@ -1,5 +1,15 @@
 [
     {
+        "to": "/network/risk-disclosures",
+        "from":
+        [
+            "/get-started/risk-disclosures",
+            "/risk-disclosures",
+            "/risk-disclosures/index",
+            "/risk-disclosures.mdx"
+        ]
+    },
+    {
         "to": "/network/quickstart/get-testnet-eth",
         "from":
         [
@@ -260,7 +270,8 @@
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
             "/zero-knowledge-glossary",
-            "/zero-knowledge-glossary.mdx"
+            "/zero-knowledge-glossary.mdx",
+            "/zero-knowledge-glossary/index.mdx"
         ]
     },
     {
@@ -287,15 +298,6 @@
         ]
     },
     {
-        "to": "/network/risk-disclosures",
-        "from":
-        [
-            "/get-started/risk-disclosures",
-            "/risk-disclosures",
-            "/risk-disclosures.mdx"
-        ]
-    },
-    {
         "to": "/",
         "from":
         [
@@ -304,6 +306,7 @@
             "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
             "/build-on-linea/use-linea-testnet/fund",
             "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+            "/get-started/how-to/linea-inscriptions.mdx",
             "/decentralization-roadmap",
             "/network/concepts/decentralization",
             "/network/configure-metamask",

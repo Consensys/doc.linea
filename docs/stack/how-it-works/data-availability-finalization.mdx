@@ -1,11 +1,13 @@
 ---
 title: Data availability and finalization
-description: Understanding data availability and the finalization layer
+description: >-
+  Understanding data availability and the finalization layer choices for
+  enterprise Linea
 sidebar_position: 3
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
-This section covers the considerations operators must take into account when configuring data availability and finalization.
+This section covers the considerations enterprise Linea operators must take into account when configuring data availability and finalization.
 
 :::important
 
@@ -29,7 +31,7 @@ While zk-SNARK proofs ensure the correctness of state transitions, data availabi
 the transaction data underlying these proofs remains accessible to anyone who wants to verify or
 reconstruct the historical state.
 
-Data availability is the guarantee that transaction data is accessible when needed. Your deployment
+Data availability is the guarantee that transaction data is accessible when needed. The deployment
 model determines where and how data is stored.
 
 For node roles that support data availability, see
@@ -54,7 +56,7 @@ redundancy, and operational SLAs across the consortium of operators.
 - Participants must trust that data availability providers will make data available when needed
 - No onchain data posting (reduces costs but requires trust)
 
-**Your responsibility:**
+**Operator responsibility:**
 
 - Deploy and maintain private node set for data storage
 - Ensure data redundancy and backup procedures
@@ -68,7 +70,7 @@ redundancy, and operational SLAs across the consortium of operators.
 - Blobs expire after 4,096 epochs (~18 days) but state commitments remain
 - Maximum transparency and onchain data availability guarantees
 
-**Your responsibility:**
+**Operator responsibility:**
 
 - Ensure coordinator can post blobs to finalization layer
 - Monitor blob posting success and gas costs
@@ -89,7 +91,7 @@ commitments for verification and hard finality. It also determines the layer of 
 
 ### Finalization layer options
 
-You have two options for your finalization layer.
+Enterprise operators typically select between two options for the finalization layer.
 
 **Ethereum L1:**
 
@@ -103,7 +105,7 @@ You have two options for your finalization layer.
 - Finalization on Linea Mainnet (which finalizes to Ethereum)
 - Lower costs and faster finality times
 - Inherits security from Ethereum (via Linea Mainnet)
-- Suitable for: Applications that can accept L2 finalization layer
+- Suitable for: Applications that can accept L2 finalization
 
 #### Operational implications
 
@@ -116,7 +118,7 @@ When choosing a finalization layer, consider the following:
 
 ### Smart contract requirements
 
-Your finalization layer must deploy the following smart contracts:
+The finalization layer must deploy the following smart contracts:
 
 1. Rollup contract: Stores rollup blocks, monitors state updates, and tracks deposits
 2. Verifier contract: Verifies zero-knowledge proofs submitted by your coordinator
