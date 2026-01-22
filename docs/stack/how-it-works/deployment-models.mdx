@@ -29,7 +29,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 ### Characteristics
 
 - Data availability: In Linea Mainnet, transaction data is posted onchain via EIP-4844 blobs
-- Public access: RBAC on RPC endpoints served by Infura, no RBAC on public Linea RPC endpoint
+- Public access: Public Linea RPC endpoint
 - Transparency: All transactions visible on the finalization layer
 - Finalization: State commitments, proofs, and data posted to the finalization layer
 
@@ -79,19 +79,6 @@ privacy, compliance, and access control features:
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a
   hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology with controlled peering
-
-### Privacy
-
-Within a private validium, onchain privacy methods are implemented to introduce anonymity and confidentiality to the processing of sensitive transactions at the network level. 
-
-Rather than publish transaction data to the public finalization layer, only the ZK-proofs that attest to state transitions are published publicly. Such an architecture enables selective disclosure: ZK techniques and Fully Homomorphic Encryption (FHE), ensure that the network can process and validate in public, while keeping all data provably private. 
-
-For private onchain enterprise operations, data is typically stored in a private node set, while API metadata including all Personally Identifiable Information (PII) and ISO 20022 metadata may be passed through a gateway node for cleansing prior to transacting--ensuring that the nature of the transaction data stored on the network is minimized. Indexes can be used to link onchain data to secure offchain datastores for auditing and compliance.
-
-Access to the network can be permissioned via a Role Based Access Control (RBAC) control system to ensure that network participants have access to the data and transactions for which they have permission.
-
-Furthermore, onchain privacy can also be embedded at the transaction level when wallet management is performed by the operator, for example through the use of [MetaMask Embedded Wallets](https://docs.metamask.io/embedded-wallets) and [MetaMask Smart Accounts](https://docs.metamask.io/smart-accounts-kit).
-
 
 ### Example validium system setup
 
