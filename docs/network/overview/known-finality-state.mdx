@@ -1,8 +1,8 @@
 ---
-title: Finality
+title: Fast finality
 description: Understand how transactions reach soft and hard finality on Linea
 sidebar_position: 1
-image: /img/socialCards/finality.jpg
+image: /img/socialCards/fast-finality.jpg
 ---
 
 Linea transactions progress from submission to soft, and then to hard finality.
@@ -15,13 +15,64 @@ Linea the layer 2 (L2).
 Finality switches between three states, pending, soft, and hard:
 
 - Pending: A transaction is submitted and various compatibility and logic checks are underway.
-- Soft finality: The transaction is confirmed on Linea. This takes two seconds (Linea's block time). For simplicity, Linea is guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical one—when there are, however, reorgs on L1.
-- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. In December 2025, Linea reached a median hard finality time of less than 1 hour and 40 mintues. This median time will continue to decrease, and is expected to reach ~30 minutes in the near future. Occasionally, high gas costs and upgrades can cause delays in finalization, but hard finality timing should never exceed 16 hours.
+- Soft finality: The transaction is confirmed on Linea. This takes two seconds (Linea's block time). 
+  > For simplicity, Linea is guaranteed to not reorg—remove competing versions of blockchain history in favor of a canonical one—the L1, however, may reorg.
+- Hard finality: The proof submitted to L1 has been verified and two epochs have elapsed. 
 
+:::info
+
+In December 2025, Linea reached a median hard finality time of less than 1 hour and 40 mintues. This median time will continue to decrease, and is expected to reach ~30 minutes in the near future. Occasionally, high gas costs and upgrades can cause delays in finalization, but hard finality timing should never exceed 16 hours.
+
+:::
+
+The following sequence diagram matches the 6 steps described below to detail the finality state of a 
+transaction.
+
+```mermaid
+sequenceDiagram
+    participant User as User / Client
+    participant Node as RPC / Full node
+    participant Builder as Block builder
+    participant Sequencer as Sequencer
+    participant Stack as Linea stack
+    participant L1 as Finalization layer (Ethereum)
+
+    %% ======================
+    %% L2 phase (soft finality)
+    %% ======================
+    rect rgb(64, 69, 76)
+        User->>Node: Step 1: Submit transaction
+        Node->>Builder: Step 1: Enter mempool
+
+        Builder->>Builder: Step 2a: Add tx to block (assemble block)
+        Builder->>Sequencer: Step 2b: Propose block
+
+        Sequencer->>Sequencer: Step 2b: Validate and commit block (Linea Mainnet)
+
+        Sequencer->>Stack: Step 3: Soft finality achieved
+    end
+
+    %% ======================
+    %% L2 batching and proving
+    %% ======================
+    rect rgb(64, 69, 76)
+        Stack->>Stack: Step 4: Conflation
+        Stack->>Stack: Step 5: Expand traces and generate proofs
+    end
+
+    %% ======================
+    %% L1 phase (hard finality)
+    %% ======================
+    rect rgb(64, 69, 76)
+        Stack->>L1: Step 6: Submit proof and blob data
+        L1->>L1: Step 6: Hard finality after L1 verification
+    end
+
+```
 ::::info
 
-For [custom deployments](../../stack/how-it-works/deployment-models.mdx), Linea network operators
-may configure an alternative finalization layer.
+For [custom deployments](../../stack/how-it-works/deployment-models.mdx), Linea network operators may select an [alternative finalization layer](/stack/how-it-works/data-availability-finalization#finalization-layer-options), and select [validator logic](/stack/how-it-works/data-availability-finalization#finality-design-options)
+thereby determining how and where transactions reach hard finality.
 
 ::::
 
@@ -105,13 +156,17 @@ occurs when chain activity levels are particularly high, and the block size is l
 
 > **Finality:** Soft finality (Linea)
 
-Next, Linea generates a zk-proof using the transaction data. When prompted by the
+This prover uses the transaction data, when prompted by the
 [coordinator](../../protocol/architecture/coordinator.mdx), Linea's
 [prover](../../protocol/architecture/prover/trace-expansion.mdx) **expands** the trace, preparing it
-for inclusion in the proof. The coordinator combines batches into blobs for data availability.
+for inclusion in the proof. 
 
-The final zk-SNARK attests to the conflated batch (multiple blocks), enabling a single proof to
-verify many transactions. The prover generates compression proofs to reduce the final proof size.
+The prover generates proofs that the original and conflated--compressed--versions are computationally 
+equivalent; after collecting several such proofs, the prover then compresses the proofs themselves, reducing the
+proof size by generating a single succinct proof which can be posted to the Layer 1. 
+
+This final zk-SNARK attests to the conflated batch (multiple blocks), enabling a single proof to
+verify many transactions. The coordinator combines batches into blobs for data availability.
 
 ::::info[Proving]
 
@@ -153,6 +208,14 @@ Once the proof is verified by the L1 and two epochs have passed, the transaction
 history, and reaches **hard finality**. Its lifecycle is complete.
 
 - **Components:** Coordinator, Ethereum finalization contract
+
+## Hard finality when?
+
+The time to hard finality depends on:
+
+- The proof generation time and other elements unrelated to network stress but linked to the prover configuration.
+- The network conditions of the finality layer, which determine the inclusion time of the committed L2 state.
+- The the time it takes for a block to be finalized once it has been included. For example, Ethereum requires 64 slots, approximately 13 minutes, to finalize.
 
 ## Next steps
 

@@ -15,23 +15,21 @@ This page defines the **Linea protocol surface**. Use this page as the canonical
 
 ## Core protocol components
 
-The following components are **required for protocol correctness**, **within the trust boundary**,
-and **not optional**.
+The following components are **required for protocol correctness**, and **not optional**.
 
 **Replaceability:** Versioned via protocol upgrade.
 
-- [Maru](../../protocol/architecture/index.mdx#consensus-client-maru) (consensus)
-- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu) (execution)
-- [Sequencer](../../protocol/architecture/sequencer/index.mdx)
-- [Coordinator](../../protocol/architecture/coordinator.mdx)
-- [Prover](../../protocol/architecture/prover/index.mdx)
-- [State manager](../../protocol/architecture/state-manager.mdx)
-- [Tracer](../../protocol/architecture/sequencer/traces-generator.mdx)
+- [Maru](../../protocol/architecture/index.mdx#consensus-client-maru): Consensus layer client
+- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu): Execution layer client
+- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Orders transactions and builds blocks
+- [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates batching, proof generation, and submissions
+- [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs of state transitions
+- [State manager](../../protocol/architecture/state-manager.mdx): Maintains a state representation for proof generation
+- [Tracer](../../protocol/architecture/sequencer/traces-generator.mdx): Generates execution traces required for proofs
 
 ## Onchain system contracts
 
-The following [smart contracts](../../protocol/architecture/smart-contracts.mdx) are **required for correctness**, **within the trust boundary**,
-and **not optional**.
+The following [smart contracts](../../protocol/architecture/smart-contracts.mdx) are **required for correctness**, and **not optional**.
 
 **Replaceability:** Versioned via redeployment.
 
@@ -68,8 +66,8 @@ See more on [data availability considerations](./data-availability-finalization.
 
 ## Auxiliary services
 
-Auxiliary services are **not required for protocol correctness** and are generally **outside the trust
-boundary**. They are typically **optional** and **replaceable**.
+Auxiliary services are **not required for protocol correctness**. They are typically **optional** 
+and **replaceable**.
 
 Common examples include:
 
@@ -82,12 +80,9 @@ Common examples include:
 
 **Special cases**
 
-- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): remote signing
+- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): remote signing with integration with a large number of Key Management Solutions (KMS):
   - Not required for correctness
   - *In* trust boundary (signing path)
   - Not replaceable: currently, Web3Signer is integral
   - Optional
 
-## Next steps
-
-Understand further the [boundaries and responsibilities](./boundaries-responsibilities.mdx) of the operator and the protocol.

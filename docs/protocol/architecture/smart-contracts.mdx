@@ -5,6 +5,8 @@ sidebar_position: 3
 image: /img/socialCards/smart-contracts.jpg
 ---
 
+As an EVM-equivalent environment, Linea smart contracts can be written in any language that compiles to EVM bytecode.
+
 The Linea stack includes onchain system contracts deployed on the finalization layer and on the
 Linea network itself, as well as auxiliary services that support network operations. Understanding
 these contracts and services is essential for operators managing deployments.
@@ -77,6 +79,24 @@ finalization layer and the ZK-EVM.
 - Maintains a registry of supported tokens and tracks total supply to ensure minted amounts never
   exceed locked amounts
 
+## Linea public network smart contract release
+
+Before each Linea Smart Contract release that targets the [public network](../../network/overview/index.mdx), the new version is prepared and tested. Testing includes static code analysis, formal verification is conducted where applicable, and documentation is updated. 
+
+Linea developers write in [Solidity](https://www.soliditylang.org/). Each Smart Contract is audited by 2-3 external auditors. Smart Contracts are deployed on target environments using production deployment keys and the auditors confirm the correct deployment of the contracts.
+
+The Linea Operational Safe multisignature account and the Linea Security Council Safe multisignature account must both sign to upgrade the system.
+
+### Contract versioning
+
+For upgradeable contracts, the Linea adopts the [OpenZeppelin Transparent Upgradeable Proxy](https://docs.openzeppelin.com/contracts/5.x/api/proxy#TransparentUpgradeableProxy) pattern (v4.x). This pattern is used consistently across the platform’s core components, including but not limited to:
+
+- Core protocol contracts
+- Token Bridge contracts deployed on both Linea and Ethereum
+- Layer 2 Message Service
+
+
 ## Next steps
 
 - Discover the Public Linea network's [smart contracts](../../network/build/contracts)
+

@@ -1,30 +1,43 @@
 ---
 title: Features
 description: Features and capabilities of the Linea stack
-sidebar_position: 1
+sidebar_position: 0
 image: /img/socialCards/features.jpg
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 export const relatedDocs = [
-  {type: 'link', href: '/stack/how-it-works/deployment-models', label: 'Deployment Models'},
-  // {type: 'link', href: '/stack/guides/operations-guides', label: 'operations guides'},
+  {
+    type: 'link',
+    href: '/stack/how-it-works/deployment-models',
+    label: 'Deployment Models',
+    description: 'Private validium and public enterprise deployment models for the Linea stack.',
+  },
+  // {type: 'link', href: '/stack/features/operations-guides', label: 'operations guides'},
 ];
 
 The Linea stack provides features and capabilities that enable various deployment models and use cases.
-This section documents the features available in the Linea stack.
+This section highlights just some of the features available in the Linea stack.
+
+:::tip
+
+Reach out to [support.linea.build](https://support.linea.build/) for assistance in designing your
+enterprise deployment. From transaction ordering, to data availability, to block times, Linea's rich
+extensible architecture supports concise ledger configurations to match your enterprise needs.
+
+:::
 
 ## Deployment model features
 
 ### Private validium
 
-Private Validium provides:
+A private validium configuration provides:
 
 - Offchain data availability: transaction data stored privately
 - RBAC: Role-Based Access Control (RBAC) for RPC and API endpoints
 - Privacy: transaction details not visible on finalization layer
-- Compliance: KYC/KYT controls and selective data disclosure
+- Compliance: Selective data disclosure
 - API portal: controlled access to network functionality
 
 See more on [private validiums](./validium.mdx).
@@ -33,7 +46,7 @@ See more on [private validiums](./validium.mdx).
 
 Public deployments provide:
 
-- Onchain data availability: Public Mainnet posts all data via EIP-4844 blobs to Ethereum
+- Onchain data availability: the Linea Mainnet posts all data via EIP-4844 blobs to Ethereum
 - Full transparency: All transactions visible on finalization layer
 - Open access: No access controls required
 
@@ -46,7 +59,6 @@ The Linea stack uses zero-knowledge proofs to:
 - Verify state transitions without revealing transaction details
 - Provide cryptographic guarantees of correctness
 - Enable efficient finalization on the finalization layer
-
 
 ### EVM equivalence
 

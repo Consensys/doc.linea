@@ -1,14 +1,27 @@
 ---
-title: Private Validium
+title: Privacy
 description: Private Validium deployment model features and capabilities
-sidebar_position: 1
-image: /img/socialCards/private-validium.jpg
+sidebar_position: 5
+image: /img/socialCards/privacy.jpg
 ---
 
 Private Validium is a deployment model for the Linea stack that keeps transaction data offchain while
 maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
 financial institutions and applications requiring privacy, compliance controls, and selective data
 disclosure.
+
+:::important
+
+Reach out to [support.linea.build](https://support.linea.build/) to enquire about rollup-as-a-service, wherein all or part of the operations are supported by Linea and her partners.
+
+:::
+
+### Validium differentiators
+
+In validium mode, the Linea network proves state transitions using zk-SNARKs while retaining
+transaction data within a private data availability layer. After blocks are produced by the
+sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state
+transition is generated and submitted to the finalization layer.
 
 ## Key features
 
@@ -32,7 +45,7 @@ Private Validium supports regulated financial applications:
 
 - Transaction privacy: Transaction details not visible on finalization layer
 - Selective disclosure: Authorized parties (auditors, regulators) can access transaction data
-- KYC/KYT controls: Compliance checks can be enforced at the API and sequencer levels
+- Compliance controls: Compliance checks can be enforced at the API and sequencer levels
 - Audit trails: Complete audit trails while maintaining privacy
 
 ### API portal
@@ -68,7 +81,7 @@ Private Validium is ideal for:
 
 Private Validium deployments include:
 
-- Consensus layer: [Maru](../../protocol/reference/repos.mdx#maru) with QBFT consensus (minimum 4 nodes)
+- Consensus layer: [Maru](../../protocol/reference/repos.mdx#maru) with Quorum-Based Byzantine Fault Tolerance (QBFT) consensus (minimum 4 nodes)
 - Execution layer: [Linea Besu](../../protocol/reference/repos.mdx#linea-besu-upstream) with sequencer plugins
 - [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and
   [finalization](../../network/overview/known-finality-state.mdx)
