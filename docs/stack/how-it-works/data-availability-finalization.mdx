@@ -11,7 +11,7 @@ This section covers the considerations enterprise Linea operators must take into
 
 :::important
 
-Understanding the role [data availability and finalization](../../protocol/architecture#data-availability) in the protocol is essential for deploying and operating a Linea network.
+Understanding the role [data availability](../../protocol/architecture#data-availability) and [finalization](#finality-design-options) in the protocol is essential for deploying and operating a Linea network.
 
 :::
 
@@ -27,7 +27,8 @@ The following examples show different combinations of data availability and fina
 Linea enables flexible data retention and disclosure policies depending on deployment
 requirements.
 
-While zk-SNARK proofs ensure the correctness of state transitions, data availability guarantees that
+While zk-SNARK proofs ensure the correctness of state transitions, data availability--the accessibility of 
+transaction data from a blockchain network--guarantees that
 the transaction data underlying these proofs remains accessible to anyone who wants to verify or
 reconstruct the historical state.
 
@@ -113,8 +114,17 @@ When choosing a finalization layer, consider the following:
 
 - Security requirements: L1 finalization provides maximum security; L2 finalization is sufficient for many use cases.
 - Cost: L2 finalization is cheaper than L1.
-- Finality time: L2 finalization may be faster than L1.
+- Finality design: L2 finalization may be faster than L1.
 - Contract deployment: You must deploy contracts on your chosen finalization layer.
+
+### Finality design options
+
+| Configuration | Description | Summary | Indications |
+|--------------|-------------|---------|-------------|
+| **Standalone Linea Enterprise – Single validator** | In a single-validator standalone deployment, transaction finality is immediate and deterministic. The single authorized validator produces blocks and executes transactions. Once a block is produced and committed by the validator, all transactions in that block are final. No forks or reorganizations are possible by design. | Immediate, deterministic finality with a single trusted validator. | Prioritizes simplicity and low latency. Suitable for private or highly controlled environments where validator trust is explicit. |
+| **Standalone Linea Enterprise – Multiple validators (QBFT)** | In a multivalidator standalone deployment, Linea Enterprise uses a Byzantine Fault Tolerant consensus protocol (QBFT) to achieve finality. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized. Once finalized, blocks are irreversible and no chain reorganizations are possible without violating safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
+| **Layer 2 Linea Enterprise – Single validator** | When deployed as an Ethereum Layer 2 with a single validator (sequencer), Linea Enterprise combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, all transactions in that block are final at the L2 level.<br/>No forks or reorganizations are possible by design.<br/>L2 state is periodically committed to Ethereum Layer 1.<br/>When the commitment is finalized, the L2 state becomes irreversible. | Balances fast performance with a trusted (non-Byzantine) operator, and slower but maximum-security finality from Ethereum Layer 1. |
+| **Layer 2 Linea Enterprise – Multiple validators (QBFT)** | When deployed as an Ethereum Layer 2 with multiple validators, Linea Enterprise combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality for maximum security. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides global finality at regular checkpoints. | Suitable for regulated or high-assurance environments that require fast application-level finality under normal conditions, and slower but maximum-strength finality to ensure global settlement under extraordinary circumstances. |
 
 ### Smart contract requirements
 

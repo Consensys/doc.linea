@@ -10,11 +10,11 @@ This glossary is open source and consistently being updated. If you'd like a ter
 
 ## A
 
-### arithmetization
+### Arithmetization
 
 Arithmetization is the process of turning computational problems into equations. It can be summarized as turning computer programs into "math," so that they can be analyzed using cryptographic algebraic techniques.
 
-### appchain
+### Appchain
 
 A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus.
 
@@ -24,7 +24,7 @@ See also: "blockchain trilemma", "modular blockchain", "Layer 2", "Layer 3".
 
 ## B
 
-### blockchain trilemma
+### Blockchain trilemma
 
 Blockchain network builders face a tradeoff between three factors: decentralization, security, and scalability (or speed). Often, designing a system that optimizes for one compromises another.
 
@@ -36,25 +36,25 @@ Brakedown doesn't require a trusted setup and is plausibly post-quantum secure.
 
 ## C
 
-### circuit
+### Circuit
 
 A circuit uses logic gates to depict the flow of data and the sequence of operations performed on that data in a given computational task. Circuits are used at many levels to create processing capability, including virtual machines like the Ethereum Virtual Machine, and Linea's implementation of a zkEVM.
 
-### constraint
+### Constraint
 
 A constraint refers to a condition imposed on mathematical operations or computation to ensure the correctness, efficiency, or security of an algorithm.
 
 ## D
 
-### data availability
+### Data availability
 
-Data availability is the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid.
+Data availability refers to the accessibility of transaction data in a blockchain network. It's the guarantee that the block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid.
 
 Data availability is one of the ways in which a [L2](#layer-2) differs from a [sidechain](#sidechain).
 
 ## E
 
-### elliptic curve cryptography
+### Elliptic curve cryptography
 
 A method of encrypting information used in many applications, including in public blockchain networks. It is commonly used to create "public-private key pairs": a pair of cryptographic elements. The public key can be used to encrypt things which can then only be decrypted by the private key.
 
@@ -64,7 +64,7 @@ ECC uses mathematical theories surrounding elliptic curves to render the encrypt
 
 A stack-based virtual machine that executes bytecode. In Ethereum, the execution model specifies how the system state is altered given a series of bytecode instructions and a small tuple of environmental data. This is specified through a formal model of a virtual state machine.
 
-### execution trace
+### Execution trace
 
 This is a record of what happened during the execution of a transaction. This is usually represented as a list, in which each item is the state of the machine at a specific clock time, which includes information such as:
 
@@ -98,7 +98,7 @@ On the downside, Groth16 needs a circuit-specific trusted setup for its preproce
 
 ## H
 
-### hash function
+### Hash function
 
 A mathematical function that converts a data input of any chosen length and size into an output that is encrypted and has a fixed length and size. Once converted, the hash cannot be reverse-engineered to reveal the original input of data. This makes the data input more secure against decryption.
 
@@ -108,7 +108,7 @@ A mathematical function that converts a data input of any chosen length and size
 
 ## K
 
-### keccak
+### Keccak
 
 Keccak (pronounced "ketchak") is a versatile cryptographic function best known for its uses in hashing. It provides increased levels of security when compared to older hash algorithms.
 
@@ -152,6 +152,17 @@ An Interactive Oracle Proof (IOP) is a protocol in which the verifier is not req
 
 ## R
 
+### Reorgs
+
+A “reorg” is a chain reorganization. This occurs when the blockchain discards one recent branch of blocks and switches to a different, competing branch that the protocol now considers the canonical 
+chain.
+
+Ethereum’s Layer 1 uses the [Gasper](https://ethereum.org/developers/docs/consensus-mechanisms/pos/gasper/) proof-of-stake consensus algorithm which is designed to minimize trust assumptions and maximize security. Gasper allows for global decentralized settlement, but finality takes 64 slots, or 12.8 minutes.
+
+While Ethereum may reorg, Linea does not. The zero knowledge validity proof created by Linea attests to a specific and correct L2 chain state, and any attempt to reorganize the L2 would invalidate the ZK proof and the state it testifies to on that's recorded on Ethereum. Therefore, L1 finality provides the firmest security guarantees against block reorganization by Linea. 
+
+Furthermore, Linea takes action to ensure that interoperability between the public network and the Layer 1 preserves the property of preventing block reorganizations. Before any interoperating transaction anchored to Layer 1 state (for example, a deposit of a token into the bridge), Linea will wait for the Layer 1 state to be finalized before committing the appropriate action on the Layer 2. This ensures that even a reorganization of Ethereum, which is an expected and normal part of operations, does not result in a reorganization of the Linea L2.
+
 ### Rollup
 
 A type of [L2](#layer-2) scaling solution that batches multiple transactions and submits them to the Ethereum main chain in a single transaction. This allows for reductions in gas costs and increases in transaction throughput. There are optimistic and zero-knowledge rollups, which use different security methods to offer these scalability gains.
@@ -177,7 +188,24 @@ A scaling solution that uses a separate chain with different, often faster, cons
 
 ### Transaction fee
 
-A fee you need to pay whenever you use the Ethereum network. Examples include: sending funds from your wallet, or a dapp interaction, like swapping tokens or buying a collectible. You can think of this like a service charge. This fee will change based on how busy the network is. This is because miners or sequencers, the people responsible for processing your transaction depending on the network, are likely to prioritize transactions with higher fees – so congestion forces the price up.
+A fee you need to pay whenever you use the Ethereum network. Examples include: sending funds from your wallet, 
+or a dapp interaction, like swapping tokens or buying a collectible. You can think of this like a service charge. 
+This fee will change based on how busy the network is. This is because miners or sequencers, the people responsible 
+for processing your transaction depending on the network, are likely to prioritize transactions with higher fees--
+so congestion forces the price up.
+
+### Transaction order
+
+Transaction ordering is implemented by the [Linea Besu Sequencer](../architecture#sequencer) plugin. The 
+plugin employs a first-come, first-served (FCFS) policy across blocks, with gas price prioritization within 
+each block, and operates on a uniform 2 second block time. This provides predictable, transparent ordering.
+
+- Inter-block (across blocks): Transactions are processed strictly in the order produced by the validator, 
+ensuring fairness between blocks without look-ahead bias or MEV extraction.
+- Intra-block (within a block): Within the 2-second block window, transactions are prioritized by total gas 
+price (legacy transactions) / priority fee (for [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) 
+transactions)--highest first, allowing users to pay more for inclusion priority while maintaining 
+FCFS discipline between blocks.
 
 ## U
 
@@ -185,11 +213,17 @@ A fee you need to pay whenever you use the Ethereum network. Examples include: s
 
 ### Validity proof
 
-A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use [fraud proofs](#fraud-proof).
+A security model for certain [L2](#layer-2) solutions where, to increase speed, transactions are 
+rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation 
+is done off-chain and then supplied to the main chain with a proof of their validity. This method 
+increases the amount of transactions possible while maintaining security. Some rollups use 
+[fraud proofs](#fraud-proof).
 
 ### Verifiable computation
 
-Verifiable computation allows a "weak computer" (Ethereum L1) to offload computation to a potentially untrusted, but "powerful computer" (Linea L2). The "powerful computer" must return a validity proof of the correctness of its results. Verifying the proof is cheaper than performing the computation from scratch.
+Verifiable computation allows a "weak computer" (Ethereum L1) to offload computation to a potentially 
+untrusted, but "powerful computer" (Linea L2). The "powerful computer" must return a validity proof of 
+the correctness of its results. Verifying the proof is cheaper than performing the computation from scratch.
 
 ## W
 
@@ -201,16 +235,31 @@ Verifiable computation allows a "weak computer" (Ethereum L1) to offload computa
 
 ### Zero-knowledge proof
 
-A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is commonly associated with privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers. This is the [validity proof](#validity-proof) that the "powerful computer" must provide for [verifiable computation](#verifiable-computation).
+A zero-knowledge proof, or zk-proof, is a cryptographic method that allows an individual to prove that 
+a statement is true without conveying any additional information. This is commonly associated with 
+privacy, but is great for _scaling_ blockchain networks through rollups, because it reduces the amount 
+of information you have to provide to lower layers. This is the [validity proof](#validity-proof) that 
+the "powerful computer" must provide for [verifiable computation](#verifiable-computation).
 
 ### Zero-knowledge rollup
 
-This is a [L2 scaling solution](#layer-2) that uses a [zero-knowledge proof](#zero-knowledge-proof) as its [validity proof](#validity-proof) to post data back to Ethereum L1. As compared to [optimistic rollups](#optimistic-rollup), this validity proof allows for a more secure trust assumption and removes the need for a challenge period.
+This is a [L2 scaling solution](#layer-2) that uses a [zero-knowledge proof](#zero-knowledge-proof) as 
+its [validity proof](#validity-proof) to post data back to Ethereum L1. As compared to 
+[optimistic rollups](#optimistic-rollup), this validity proof allows for a more secure trust assumption 
+and removes the need for a challenge period.
 
 ### zkEVM
 
-A zkEVM is a virtual machine that executes smart contracts and proves the correctness of execution using zero-knowledge proofs. ZkEVMs recreate aspects of Ethereum's design, which provides an "Ethereum-like" experience for developers and users. For Ethereum developers, this means you can write in Solidity, but leverage the zkEVM to perform off-chain computations to offload execution from Ethereum, enabling the scalability provided by zk-rollups!
+A zkEVM is a virtual machine that executes smart contracts and proves the correctness of execution 
+using zero-knowledge proofs. ZkEVMs recreate aspects of Ethereum's design, which provides an "Ethereum-like" 
+experience for developers and users. For Ethereum developers, this means you can write in Solidity, 
+but leverage the zkEVM to perform off-chain computations to offload execution from Ethereum, enabling 
+the scalability provided by zk-rollups!
 
 ### zk-SNARK (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge)
 
-This is a type of zk-proof where the prover and verifier don't have to interact. With zk-SNARKs, you can verify 1 transaction or 1 billion transactions in the same amount of time, which is great for scaling. You can read more about zk-SNARKs [here](https://consensys.net/blog/blockchain-explained/zero-knowledge-proofs-starks-vs-snarks/) and [here](https://docs.gnark.consensys.net/Concepts/zkp).
+This is a type of zk-proof where the prover and verifier don't have to interact. With zk-SNARKs, you 
+can verify 1 transaction or 1 billion transactions in the same amount of time, which is great for scaling. 
+You can read more about zk-SNARKs 
+[here](https://consensys.net/blog/blockchain-explained/zero-knowledge-proofs-starks-vs-snarks/) and 
+[here](https://docs.gnark.consensys.net/Concepts/zkp).

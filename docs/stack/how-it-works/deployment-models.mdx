@@ -20,7 +20,7 @@ Consider these factors when configuring your deployment model design:
 
 ## Compare deployment models
 
-This page compares two model types, public vs. private. 
+This following section compares two model types, public vs. private. 
 
 ## Public
 
@@ -54,7 +54,7 @@ financial institutions requiring privacy.
 
 ### Characteristics
 
-- Data availability: Transaction data stored offchain in a private node set
+- Data availability: Transaction data can be stored offchain in a private node set
 - Privacy: Transaction details not visible on the finalization layer
 - Access control: RPC endpoints protected by Role-Based Access Control (RBAC); only authorized
   participants can view data
@@ -72,11 +72,6 @@ privacy, compliance, and access control features:
 - Applications requiring selective data disclosure to auditors and regulators
 - Multi-party workflows where participants should not see all transaction details
 
-### Data availability
-
-Data is stored in a private node set. Participants must trust that data availability providers will
-make data available when needed.
-
 ### Security considerations
 
 - Minimum node count: 4 Maru nodes for QBFT fault tolerance
@@ -85,21 +80,26 @@ make data available when needed.
   hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology with controlled peering
 
-### Validium differentiators
+### Privacy
 
-In validium mode, the Linea network proves state transitions using zk-SNARKs while retaining
-transaction data within a private data availability layer. After blocks are produced by the
-sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state
-transition is generated and submitted to the finalization layer.
+Within a private validium, onchain privacy methods are implemented to introduce anonymity and confidentiality to the processing of sensitive transactions at the network level. 
 
-Unlike public deployments, raw transaction data is not posted onchain. The operator determines
-where transaction data is stored to suit privacy and security requirements (not shown below).
+Rather than publish transaction data to the public finalization layer, only the ZK-proofs that attest to state transitions are published publicly. Such an architecture enables selective disclosure: ZK techniques and Fully Homomorphic Encryption (FHE), ensure that the network can process and validate in public, while keeping all data provably private. 
+
+For private onchain enterprise operations, data is typically stored in a private node set, while API metadata including all Personally Identifiable Information (PII) and ISO 20022 metadata may be passed through a gateway node for cleansing prior to transacting--ensuring that the nature of the transaction data stored on the network is minimized. Indexes can be used to link onchain data to secure offchain datastores for auditing and compliance.
+
+Access to the network can be permissioned via a Role Based Access Control (RBAC) control system to ensure that network participants have access to the data and transactions for which they have permission.
+
+Furthermore, onchain privacy can also be embedded at the transaction level when wallet management is performed by the operator, for example through the use of [MetaMask Embedded Wallets](https://docs.metamask.io/embedded-wallets) and [MetaMask Smart Accounts](https://docs.metamask.io/smart-accounts-kit).
+
 
 ### Example validium system setup
 
 The following network setup presents how an enterprise validium instance of Linea may be configured
 to serve as an interoperable payment system with KYC and KYT (know your customer and know your trade
-respectively) auditing capabilities:
+respectively) auditing capabilities. 
+
+The operator determines where transaction data is stored to suit privacy and security requirements (not shown below).
 
 ```mermaid
 flowchart TB
@@ -222,3 +222,6 @@ flowchart TB
   ValidiumRelayers --> PublicChain
 ```
 
+## Next steps
+
+Consider also, the design decisions required to determine the [finality mechanism](./data-availability-finalization.mdx#finality-design-options).

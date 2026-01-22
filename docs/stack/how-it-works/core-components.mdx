@@ -30,8 +30,7 @@ and **not optional**.
 
 ## Onchain system contracts
 
-The following [smart contracts](../../protocol/architecture/smart-contracts.mdx) are **required for correctness**, **within the trust boundary**,
-and **not optional**.
+The following [smart contracts](../../protocol/architecture/smart-contracts.mdx) are **required for correctness**, **within the trust boundary**, and **not optional**.
 
 **Replaceability:** Versioned via redeployment.
 
@@ -82,7 +81,7 @@ Common examples include:
 
 **Special cases**
 
-- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): remote signing
+- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): remote signing with integration with a large number of Key Management Solutions (KMS):
   - Not required for correctness
   - *In* trust boundary (signing path)
   - Not replaceable: currently, Web3Signer is integral

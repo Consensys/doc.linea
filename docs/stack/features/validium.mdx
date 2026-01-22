@@ -1,7 +1,7 @@
 ---
 title: Privacy
 description: Private Validium deployment model features and capabilities
-sidebar_position: 4
+sidebar_position: 5
 image: /img/socialCards/privacy.jpg
 ---
 
@@ -9,6 +9,19 @@ Private Validium is a deployment model for the Linea stack that keeps transactio
 maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
 financial institutions and applications requiring privacy, compliance controls, and selective data
 disclosure.
+
+:::important
+
+Reach out to [support.linea.build](https://support.linea.build/) to enquire about rollup-as-a-service, wherein all or part of the operations are supported by Linea and her partners.
+
+:::
+
+### Validium differentiators
+
+In validium mode, the Linea network proves state transitions using zk-SNARKs while retaining
+transaction data within a private data availability layer. After blocks are produced by the
+sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state
+transition is generated and submitted to the finalization layer.
 
 ## Key features
 
