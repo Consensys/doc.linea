@@ -1,14 +1,29 @@
 ---
 title: Deployment models
 description: >-
-  Compare enterprise Private validium and public deployment models for the Linea
-  stack
+  Learn how to choose and configure Linea deployment models for enterprise use
+  cases
 sidebar_position: 2
 image: /img/socialCards/deployment-models.jpg
 ---
 
-The Linea stack supports enterprise operators to fine tune the deployment model to optimize for different use cases and
-requirements.
+A deployment model describes how a Linea network is configured. Different deployment models allow operators to balance privacy, regulatory requirements, and security guarantees according to their use case. 
+
+The Linea stack is designed to support detailed customizations for factors including, but not restricted to:
+
+- Access control: Who may access the memepool, the ledger, and transaction data all impact the nature of
+the system
+- Data availability: Asset recovery by users ties directly to data availability guarantees
+- Finalization speed: Block size on the ledger impacts the soft finality speed of transactions
+- Finalization layer: Where finalization occurs impacts the security assumptions and hard finality speeds
+- Transaction ordering: custom rulesets can be applied for bespoke ordering logic
+
+The Linea stack supports two primary deployment models:
+
+- Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
+availability.
+- Private Validium deployments, which retain transaction data offchain while using
+zero-knowledge proofs to preserve correctness and finality guarantees.
 
 Consider these factors when configuring your deployment model design:
 
@@ -20,7 +35,7 @@ Consider these factors when configuring your deployment model design:
 
 ## Compare deployment models
 
-This following section compares two model types, public vs. private. 
+This following section presents two model types, public and private. 
 
 ## Public
 
