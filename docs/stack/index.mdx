@@ -5,9 +5,21 @@ sidebar_position: 1
 image: /img/socialCards/overview.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
+import DocCard from '@theme/DocCard';
 
 export const relatedDocs = [
+  {
+    type: 'link',
+    href: '/stack/features',
+    label: 'Features',
+    description: 'Features and capabilities of the Linea stack.',
+  },
+  {
+    type: 'link',
+    href: '/stack/how-it-works/data-availability-finalization',
+    label: 'Data availability and finalization',
+    description: 'Data availability and finalization choices for enterprise Linea.',
+  },
   {
     type: 'link',
     href: '/protocol/architecture',
@@ -22,7 +34,7 @@ export const relatedDocs = [
   },
 ];
 
-The Linea stack provides a shared, extensible foundation for running your own Linea network.
+The Linea stack provides a shared, extensible foundation for running your own EVM-equivalent Linea network.
 
 :::info Configurable
 
@@ -40,8 +52,8 @@ As blockchain adoption grows, many organizations encounter a common set of const
 - Regulatory, governance, and operational requirements are hard to enforce on open systems
 - Interoperability between private systems and public blockchains remains fragmented.
 
-The Linea stack lets you run an EVM-compatible network tailored to
-enterprise requirements, using open source technology, while remaining anchored to the same protocol foundations 
+The Linea stack lets you run an EVM-equivalent network tailored to
+enterprise requirements, using [open source technology](../protocol/reference/repos.mdx), while remaining anchored to the same protocol foundations 
 as [Linea Mainnet](../network/overview/index.mdx).
 
 ## What the Linea stack provides
@@ -92,4 +104,10 @@ or to access our dedicated design team who will configure the stack to your busi
 
 ## Related documentation
 
-<DocCardList items={relatedDocs} />
+<div className="row">
+  {relatedDocs.map((item) => (
+    <div className="col col--6 margin-bottom--lg" key={item.href}>
+      <DocCard item={item} />
+    </div>
+  ))}
+</div>
