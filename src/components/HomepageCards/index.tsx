@@ -28,7 +28,7 @@ type CardItem = {
 const CardList: CardItem[] = [
   {
     title: "Deploy a smart contract",
-    link: "/network/quickstart/deploy",
+    link: "/network/build/launch-an-app/deploy",
     description: (
       <>
         Learn how to deploy a smart contract on Linea.
@@ -42,7 +42,7 @@ const CardList: CardItem[] = [
   },
   {
     title: "Get Linea Testnet ETH",
-    link: "/network/how-to/get-testnet-eth",
+    link: "/network/build/get-testnet-eth",
     description: (
       <>
         Learn how to get Linea Testnet ETH so you can deploy on Linea Sepolia.

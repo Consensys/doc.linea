@@ -118,7 +118,7 @@ const config = {
       },
       tableOfContents: {
         minHeadingLevel: 2,
-        maxHeadingLevel: 5,
+        maxHeadingLevel: 3,
       },
       docs: {
         sidebar: {
@@ -135,36 +135,43 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/index",
+            docId: "network/quickstart/index",
             position: "left",
-            label: "Network",
+            label: "Public network",
+            activeBaseRegex: "^/network/",
           },
           {
             type: "doc",
-            docId: "protocol/architecture",
+            docId: "protocol/overview",
             position: "left",
             label: "Protocol",
           },
           {
             type: "doc",
-            docId: "api/linea-smart-contracts/linearollup",
+            docId: "stack/index",
+            position: "left",
+            label: "Stack",
+          },
+          {
+            type: "doc",
+            docId: "api/reference/index",
             position: "left",
             label: "APIs & SDK",
           },
           {
             type: "dropdown",
-            label: "Notices",
+            label: "Changelog",
             position: "right",
-            activeBaseRegex: "^/notices/",
+            activeBaseRegex: "^/changelog/",
             items: [
               {
                 type: "doc",
-                docId: "notices/release-notes",
+                docId: "changelog/release-notes",
                 label: "Release notes",
               },
               {
                 type: "doc",
-                docId: "notices/security-council-record",
+                docId: "changelog/security-council-record",
                 label: "Linea Security Council transaction record",
               },
             ],

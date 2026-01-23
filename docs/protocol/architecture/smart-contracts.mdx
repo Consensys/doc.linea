@@ -1,0 +1,102 @@
+---
+title: Smart contracts
+description: Onchain system contracts and auxiliary services for the Linea stack
+sidebar_position: 3
+image: /img/socialCards/smart-contracts.jpg
+---
+
+As an EVM-equivalent environment, Linea smart contracts can be written in any language that compiles to EVM bytecode.
+
+The Linea stack includes onchain system contracts deployed on the finalization layer and on the
+Linea network itself, as well as auxiliary services that support network operations. Understanding
+these contracts and services is essential for operators managing deployments.
+
+### Finalization contract
+
+This contract is deployed to the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
+
+**Purpose:**  
+It enables secure interactions between Linea and the finalization layer.
+
+**Functionality:**
+
+- Validates zk-SNARK proofs attesting to correct state transitions for batches of transactions
+- Records finalized state roots on the finalization layer
+- Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
+  between the Linea network and the finalization layer
+- Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
+  transitions
+- Anchors Linea state to Ethereum-level security guarantees
+
+:::info
+
+In the Linea Public Mainnet deployment, this contract is referred to as the 
+[Linea Rollup and L1 Message Service](../../network/build/contracts.mdx). It provides rollup settlement and messaging functionality. Operators running private or hybrid
+networks may reuse the same contract pattern or deploy functionally equivalent contracts as part of
+their finalization design.
+
+:::
+
+### Native message bridge smart contract
+
+**Purpose:** Facilitates secure, proven communication of arbitrary messages and data between the
+finalization layer and the ZK-EVM.
+
+**Functionality:**
+
+- Enables crosschain calls, instructing Linea to perform specific operations (minting,
+  contract interaction, data relay)
+- Sends proofs or withdrawal requests back to the finalization layer
+- Supports functionality beyond token transfers
+
+### Native token bridge smart contract
+
+**Purpose:** Secure gateway for moving ETH and ERC-20 tokens to and from the finalization layer.
+
+**Functionality:**
+
+- Uses non-custodial escrow, event tracking, and ZK-proof validation to guarantee trustlessness
+- Enables Linea to interoperate directly with Ethereum while preserving asset security
+
+**Deposit flow (finalization layer → Linea network):**
+
+- Users send ETH or ERC-20 tokens to the Native Token Bridge contract on the finalization layer
+- Contract locks (escrows) these assets and emits an event
+- Once observed by the contract on the Linea network, an equivalent amount is minted or released to the
+  user's account
+
+**Withdrawal flow (Linea network → finalization layer):**
+
+- Users request withdrawal from the Linea network
+- Withdrawal is processed in a batch and proven valid using zk-SNARKs
+- Proof and withdrawal claim are submitted to the bridge contract on the finalization layer
+- Upon verification, the bridge contract unlocks and releases the withdrawn assets
+
+**Security:**
+
+- Enforces strict verification rules (only proven withdrawals can be processed)
+- Replay and fraud protection through state roots, proofs, and event tracking across both layers
+- Maintains a registry of supported tokens and tracks total supply to ensure minted amounts never
+  exceed locked amounts
+
+## Linea public network smart contract release
+
+Before each Linea Smart Contract release that targets the [public network](../../network/overview/index.mdx), the new version is prepared and tested. Testing includes static code analysis, formal verification is conducted where applicable, and documentation is updated. 
+
+Linea developers write in [Solidity](https://www.soliditylang.org/). Each Smart Contract is audited by 2-3 external auditors. Smart Contracts are deployed on target environments using production deployment keys and the auditors confirm the correct deployment of the contracts.
+
+The Linea Operational Safe multisignature account and the Linea Security Council Safe multisignature account must both sign to upgrade the system.
+
+### Contract versioning
+
+For upgradeable contracts, the Linea adopts the [OpenZeppelin Transparent Upgradeable Proxy](https://docs.openzeppelin.com/contracts/5.x/api/proxy#TransparentUpgradeableProxy) pattern (v4.x). This pattern is used consistently across the platform’s core components, including but not limited to:
+
+- Core protocol contracts
+- Token Bridge contracts deployed on both Linea and Ethereum
+- Layer 2 Message Service
+
+
+## Next steps
+
+- Discover the Public Linea network's [smart contracts](../../network/build/contracts)
+

@@ -1,0 +1,150 @@
+---
+title: Data availability and finalization
+description: >-
+  Understanding data availability and the finalization layer choices for
+  enterprise Linea
+sidebar_position: 3
+image: /img/socialCards/data-availability-and-finalization.jpg
+---
+
+This section covers the considerations enterprise Linea operators must take into account when configuring data availability and finalization.
+
+:::important
+
+Understanding the role [data availability](../../protocol/architecture#data-availability) and [finalization](#finality-design-options) in the protocol is essential for deploying and operating a Linea network.
+
+:::
+
+The following examples show different combinations of data availability and finalization:
+
+- L2 Private Validium on Ethereum: Offchain data availability, L1 finalization
+- L3 Private Validium on Linea Mainnet: Offchain data availability, L2 finalization
+- L2 Public on Ethereum: Onchain data availability, L1 finalization
+- L3 Public on Linea Mainnet: Onchain data availability, L2 finalization
+
+## Data availability
+
+Linea enables flexible data retention and disclosure policies depending on deployment
+requirements.
+
+While zk-SNARK proofs ensure the correctness of state transitions, data availability--the accessibility of 
+transaction data from a blockchain network--guarantees that
+the transaction data underlying these proofs remains accessible to anyone who wants to verify or
+reconstruct the historical state.
+
+Data availability is the guarantee that transaction data is accessible when needed. The deployment
+model determines where and how data is stored.
+
+For node roles that support data availability, see
+[full nodes](../../protocol/architecture/index.mdx#full-nodes) and
+[RPC services](../../protocol/architecture/rpc-services.mdx).
+
+### Private Validium
+
+In a Validium, data availability is typically provided by the Validium’s
+[archive nodes](../../protocol/architecture/rpc-services.mdx#archive-nodes) rather than an external
+data availability solution. As long as a subset of these nodes remain honest and online, the full
+transaction history can be reconstructed and independently verified. Because the chain is private,
+data is not posted to the finalization layer, but is instead retained within the Validium
+infrastructure under the operational and governance controls of the participating institutions. In
+this model, assurance of data availability is primarily based on institutional guarantees, node
+redundancy, and operational SLAs across the consortium of operators.
+
+**Data availability:** Offchain in a private node set
+
+- Transaction data is stored offchain in a private node set
+- Only state commitments and proofs are posted to the finalization layer
+- Participants must trust that data availability providers will make data available when needed
+- No onchain data posting (reduces costs but requires trust)
+
+**Operator responsibility:**
+
+- Deploy and maintain private node set for data storage
+- Ensure data redundancy and backup procedures
+
+### Public
+
+**Data availability:** Onchain (e.g., on Ethereum via EIP-4844 blobs)
+
+- All transaction data is posted to the Ethereum as the finalization layer using EIP-4844 blobs
+- Data is available onchain for verification and state recovery
+- Blobs expire after 4,096 epochs (~18 days) but state commitments remain
+- Maximum transparency and onchain data availability guarantees
+
+**Operator responsibility:**
+
+- Ensure coordinator can post blobs to finalization layer
+- Monitor blob posting success and gas costs
+
+## Finalization layer
+
+The finalization layer is the blockchain where your Linea network submits proofs and state
+commitments for verification and hard finality. It also determines the layer of your network:
+
+- L2: If your finalization layer is an L1 (such as, Ethereum), your network is an L2
+- L3: If your finalization layer is an L2 (such as, Linea Mainnet), your network is an L3.
+
+**Examples:**
+
+- Private Linea instance finalizing to Linea Mainnet = L3 (L3 → L2 → L1)
+- Private Linea instance finalizing to Ethereum = L2 (L2 → L1)
+- Public Linea Mainnet finalizing to Ethereum = L2 (L2 → L1)
+
+### Finalization layer options
+
+Enterprise operators typically select between two options for the finalization layer.
+
+**Ethereum L1:**
+
+- Direct finalization on Ethereum
+- Higher costs and longer finality times
+- Maximum security guarantees
+- Suitable for: High-value applications requiring maximum security
+
+**Linea Mainnet L2:**
+
+- Finalization on Linea Mainnet (which finalizes to Ethereum)
+- Lower costs and faster finality times
+- Inherits security from Ethereum (via Linea Mainnet)
+- Suitable for: Applications that can accept L2 finalization
+
+#### Operational implications
+
+When choosing a finalization layer, consider the following:
+
+- Security requirements: L1 finalization provides maximum security; L2 finalization is sufficient for many use cases.
+- Cost: L2 finalization is cheaper than L1.
+- Finality design: L2 finalization may be faster than L1.
+- Contract deployment: You must deploy contracts on your chosen finalization layer.
+
+### Finality design options
+
+| Configuration | Description | Summary | Indications |
+|--------------|-------------|---------|-------------|
+| **Standalone Linea Enterprise – Single validator** | In a single-validator standalone deployment, transaction finality is immediate and deterministic. The single authorized validator produces blocks and executes transactions. Once a block is produced and committed by the validator, all transactions in that block are final. No forks or reorganizations are possible by design. | Immediate, deterministic finality with a single trusted validator. | Prioritizes simplicity and low latency. Suitable for private or highly controlled environments where validator trust is explicit. |
+| **Standalone Linea Enterprise – Multiple validators (QBFT)** | In a multivalidator standalone deployment, Linea Enterprise uses a Byzantine Fault Tolerant consensus protocol (QBFT) to achieve finality. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized. Once finalized, blocks are irreversible and no chain reorganizations are possible without violating safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
+| **Layer 2 Linea Enterprise – Single validator** | When deployed as an Ethereum Layer 2 with a single validator (sequencer), Linea Enterprise combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, all transactions in that block are final at the L2 level.<br/>No forks or reorganizations are possible by design.<br/>L2 state is periodically committed to Ethereum Layer 1.<br/>When the commitment is finalized, the L2 state becomes irreversible. | Balances fast performance with a trusted (non-Byzantine) operator, and slower but maximum-security finality from Ethereum Layer 1. |
+| **Layer 2 Linea Enterprise – Multiple validators (QBFT)** | When deployed as an Ethereum Layer 2 with multiple validators, Linea Enterprise combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality for maximum security. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides global finality at regular checkpoints. | Suitable for regulated or high-assurance environments that require fast application-level finality under normal conditions, and slower but maximum-strength finality to ensure global settlement under extraordinary circumstances. |
+
+### Smart contract requirements
+
+The finalization layer must deploy the following smart contracts:
+
+1. Rollup contract: Stores rollup blocks, monitors state updates, and tracks deposits
+2. Verifier contract: Verifies zero-knowledge proofs submitted by your coordinator
+
+Together, these contracts allow your coordinator to finalize batches and state. The process is as follows:
+
+1. The [coordinator](../../protocol/architecture/coordinator.mdx) submits proofs and blob data to the finalization layer.
+2. The rollup contract receives the submission.
+3. The rollup contract calls the verifier contract to verify the proof.
+4. The verifier contract uses blob data to verify proof validity.
+5. If verification succeeds, state is finalized on the finalization layer.
+
+:::important
+
+Without the rollup and verifier contracts on your finalization layer, your coordinator cannot
+finalize batches. These contracts are required for proof verification and state finalization.
+
+:::
+

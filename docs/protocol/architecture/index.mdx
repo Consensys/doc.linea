@@ -1,0 +1,231 @@
+---
+title: Architecture
+description: Protocol architecture overview and core components of Linea
+image: /img/socialCards/architecture.jpg
+---
+
+Linea's architecture supports a configurable protocol that delivers a developer-ready layer 2 network, scaling Ethereum by providing an Ethereum-equivalent execution environment. 
+
+Operators and network designers configure their stack to shape what the protocol guarantees, for example:
+
+  - Finalization layer: alters security guarantees
+  - Data availability layer: alters privacy guarantees
+
+The following represents one of many possible configurations for a Linea Network: 
+
+<div className="responsive-graphic">
+  <picture>
+    <source
+      srcSet="/img/get_started/concepts/architecture/Linea_architecture_mobile.svg"
+      media="(max-width: 1499px)"
+    />
+    <source
+      srcSet="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
+      media="(min-width: 1500px)"
+    />
+    <img
+      src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
+      alt={
+        "Linea protocol architecture diagram showing validator and full nodes, RPC services, " +
+        "internal protocol services, and finalization to Ethereum. This section details those components shown in this image and how they define the protocol's behavior and guarantees: What runs where, Core components, Maru, Linea Besu, Internal protocol services, Sequencer, Coordinator, Prover, State manager, Tracer, Transaction lifecycle, Onchain system contracts, Auxiliary services, Block explorer, Web3Signer, Data availability, Network topology, Full nodes, RPC nodes, Next steps"
+      }
+    />
+  </picture>
+</div>
+
+:::tip[Mainnet]
+
+The example configuration matches that of [Linea's Public Mainnet](/network/overview). While this
+zero-knowledge rollup protocol is agnostic to the finalization layer (it's unopinionated on where
+proofs are written), this configuration finalizes transactions by submitting proofs to Ethereum
+Mainnet and temporarily making data available there.
+
+:::
+
+## What runs where in Linea?
+
+The Linea stack is comprised of several broad classes of components:
+
+- [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/how-it-works/deployment-models), node services may be configured to be private or semi-private.
+- [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks. 
+- [Smart contracts](#onchain-system-contracts): Versionable, immutable onchain contracts.
+- [Auxillary services](#auxiliary-services):
+  - Block explorer: While theoretically optional, explorer data simplifies transaction building, auditing, and troubleshooting.
+  - Web3Signer: Secure signing service ensuring that nodes may sign without revealing keys.
+
+## Core components
+
+The Linea stack consists of the following core components. Each component has a clear operational
+responsibility and deployment footprint.
+
+As an EVM-compatible system, the Linea stack uses a dual-layer architecture with separate consensus and execution layers. 
+
+### Consensus client: Maru
+
+[Maru](../reference/repos.mdx#maru), the consensus client, runs on validator nodes to:
+
+  - Coordinate block production with the execution layer
+  - Manage validator sets and consensus participation
+  - Provide P2P networking for block propagation
+  - Expose API endpoints for monitoring and control
+
+### Execution client: Linea Besu
+
+The execution layer client, [Linea Besu](../reference/repos.mdx#linea-besu-upstream), executes 
+transactions and maintains the EVM state. It works in coordination with Maru, making a [full node](#full-nodes).
+
+### Internal protocol services
+
+Internal protocol services are required for proof generation and finalization. 
+
+#### Sequencer
+
+The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea rules. Typically deployed as a protected internal service. 
+
+> With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
+
+:::info
+
+Because the Besu Execution Layer (EL) client is fully extensible with plugins, operators can extend and apply arbitrary business logic, such as enforcing regulatory logic at the block building level, and controlling which transactions may be executed by the EVM.
+
+:::
+
+#### Coordinator
+
+The [coordinator](./coordinator.mdx) orchestrates batching, proof generation, and 
+submission to the finalization layer.  
+
+#### Prover
+
+The [prover](./prover/index.mdx) generates zero-knowledge proofs for state transitions. Provers may be 
+scaled horizontally to meet throughput requirements.  
+
+#### State manager
+
+The [state manager](./state-manager.mdx) maintains a state representation optimized for proof generation and recovery.  
+
+#### Tracer 
+
+The [traces generator](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.  
+
+## Onchain system contracts
+
+Smart contracts execute small programs that rely on the EVM's trustless correctness guarantees. Once deployed, they are immutable.
+
+The Linea stack includes system contracts deployed in two locations:
+
+- **On the finalization layer:** The finalization contract validates
+  [zk-SNARK](../../protocol/reference/zero-knowledge-glossary.mdx#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge)
+  proofs and records finalized state roots. This contract must be deployed on the
+  [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
+
+- **On the Linea network itself:** Application-specific contracts are deployed on the Linea network
+  instance to enable token issuance, workflow automation, and other network-specific functionality.
+
+- **On both layers:** Bridge contracts are deployed on both the destination chain and the Linea network to enable cross-chain token transfers and message passing.
+
+See more about the system contracts: [smart contracts](./smart-contracts.mdx).
+
+## Auxiliary services
+
+### Block explorer
+
+The block explorer is an optional, operator-facing service used for inspection, troubleshooting, and
+auditing. Linea Mainnet uses [Blockscout](https://github.com/blockscout/blockscout), an 
+open-source, self-hosted explorer that indexes chain data from execution nodes and presents it via a 
+web interface.
+
+The explorer connects to the network via JSON-RPC or WebSocket, continuously indexes blocks,
+transactions, logs, and token data, and stores this information in a relational database. It allows
+operators to inspect blocks and transactions, review contract activity, track bridge operations, and
+monitor network health.
+
+Block explorers are not required for network operation and do not participate in consensus,
+execution, or finalization. They can be deployed, replaced, or omitted without affecting correctness
+or liveliness.
+
+### Web3Signer
+
+[Web3Signer](https://docs.web3signer.consensys.io/) is an open-source, remote signing service that externalizes private key management from the nodes themselves. Web3Signer integrates with enterprise-grade key stores, exposing HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, attestations, and transactions without directly holding the private keys. 
+
+Web3Signer ensures that signing operations are access‑controlled, and auditable rather than embedded in each node. This tooling simplifies key revocation and rotation workflows, and ensures that private keys never leave the secure boundary of the key store.
+
+## Data availability
+
+Data availability is crucial in preserving and providing access to transaction data required to reconstruct the
+state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
+wants to verify or reconstruct the historical state.
+
+:::info Data availability
+
+How data availability is handled depends on the
+[deployment model](../../stack/how-it-works/deployment-models.mdx) of the network.
+Another blockchain may provide data availability, operators may run nodes specifically for data
+availability, or they may leverage third-party data availability providers.
+
+- Private Validium: Data stored offchain with private node set; no onchain data posting
+- Public Mainnet: Data posted to finalization layer using EIP-4844 blobs
+
+For details on data availability and choices around finalization layers, see 
+[data availability and finalization](../../stack/how-it-works/data-availability-finalization.mdx).
+
+::: 
+
+## Network topology
+
+Network topology can be customized to suit the [deployment model](../../stack/how-it-works/deployment-models.mdx), for
+example:
+
+- [Public networks](../../stack/how-it-works/deployment-models#public): Data availability is onchain, and components interact with public infrastructure.
+
+- [Private networks](../../stack/how-it-works/deployment-models#private-validium): Components are run within controlled infrastructure. Data availability and access controls are enforced.
+
+### Full nodes
+
+Full nodes are composed of the execution layer client such as
+[Besu](../../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../../network/how-to/run-a-node/geth.mdx), 
+and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). The block is proposed by the execution layer, Linea Besu, and the consensus layer, Maru, signs and broadcasts it. Full nodes are often run with both clients in the same container. These clients communicate via the Engine API, an internal service.
+
+Full nodes may maintain complete network state and can be configured to participate in consensus, in which case they are referred to as validator nodes:
+
+- **Validator nodes:** Participate in Quorum-Based Byzantine Fault Tolerance (QBFT) consensus. 
+- **Full nodes:** Maintain full chain state, verify blocks, and serve [RPC requests](#rpc-nodes). Full nodes do not necessarily participate in consensus.
+
+#### RPC nodes
+
+RPC expose JSON-RPC APIs to applications and users. RPC nodes may be optimized for
+[near-head](./rpc-services.mdx#near-head-nodes) access, that is for low-latency access to
+  recent state or configured as
+[archive nodes](./rpc-services.mdx#archive-nodes) for historical queries.
+
+RPC nodes may be deployed behind load balancers and access controls (Role-Based Access control (RBAC))
+for [private networks](../../stack/how-it-works/deployment-models.mdx#private-validium).
+
+## Transaction lifecycle
+
+These architectural components support transactions from submission to finalization. 
+
+1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
+2. Block building: the [sequencer](./sequencer/index.mdx) orders and executes transactions into blocks.
+3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
+   the [tracer](./sequencer/traces-generator.mdx) generates traces.
+4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
+5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs; 
+the [prover](./prover/index.mdx) generates compression proofs.
+6. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization 
+layer; after verification and epoch delay, transactions reach hard finality.
+
+:::info
+
+See the more about [the transaction lifecycle and finality](../../network/overview/known-finality-state.mdx#transaction-finality)
+on the Linea public network.
+
+::: 
+
+## Next steps
+
+- To understand the trust boundaries, and upgrade paths of this stack, see [protocol components](../../stack/how-it-works/core-components).
+- Review bridge mechanics in the [message service](./interoperability/canonical-message-service.mdx).
+- Review cross-chain settlement in the [canonical token bridge](./interoperability/canonical-token-bridge.mdx).
+- Understand protocol fees in [predictable pricing](../../network/overview/predictable-pricing.mdx) and
+  [burn](../tokenomics.mdx#burning-mechanism).
