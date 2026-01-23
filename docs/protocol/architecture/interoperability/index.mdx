@@ -11,8 +11,7 @@ Interoperability in Linea is enabled by:
   finalization guarantees.
 - [Message service](./canonical-message-service.mdx): a generalized cross-chain messaging primitive for application data.
 
-
-The Linea Public Network leverages the [Linea Rollup and L1 Message Service](../../../network/build/contracts.mdx) to support these functions. This smart contract provides a trustless mechanism for passing messages across the two domains—-such as token transfers, contract calls, or state synchronization—-ensuring they are executed only when the underlying zk-SNARK proof attests to the correctness of the state transitions that produced those messages.
+The [Linea public network](../../../network/overview/index.mdx) leverages the [Linea Rollup and L1 Message Service](../../../network/build/contracts.mdx) to support these functions. This smart contract provides a trustless mechanism for passing messages across the two domains—-such as token transfers, contract calls, or state synchronization—-ensuring they are executed only when the underlying zk-SNARK proof attests to the correctness of the state transitions that produced those messages.
 
 By anchoring messages to verified state roots, the contract facilitates cross-chain communication, ensuring Ethereum-level security, full transparency, and interoperability while preserving the scalability benefits of Linea.The following sections cover in detail the protocol-level mechanisms that enable secure cross-chain communication,
 value transfer, and message verification between Linea and other chains.

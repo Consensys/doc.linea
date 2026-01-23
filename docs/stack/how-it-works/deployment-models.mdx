@@ -1,12 +1,29 @@
 ---
 title: Deployment models
-description: Private Validium and Public deployment models for the Linea stack
+description: >-
+  Learn how to choose and configure Linea deployment models for enterprise use
+  cases
 sidebar_position: 2
 image: /img/socialCards/deployment-models.jpg
 ---
 
-The Linea stack supports operators to fine tune the deployment model to optimize for different use cases and
-requirements.
+A deployment model describes how a Linea network is configured. Different deployment models allow operators to balance privacy, regulatory requirements, and security guarantees according to their use case. 
+
+The Linea stack is designed to support detailed customizations for factors including, but not restricted to:
+
+- Access control: Who may access the memepool, the ledger, and transaction data all impact the nature of
+the system
+- Data availability: Asset recovery by users ties directly to data availability guarantees
+- Finalization speed: Block size on the ledger impacts the soft finality speed of transactions
+- Finalization layer: Where finalization occurs impacts the security assumptions and hard finality speeds
+- Transaction ordering: custom rulesets can be applied for bespoke ordering logic
+
+The Linea stack supports two primary deployment models:
+
+- Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
+availability.
+- Private Validium deployments, which retain transaction data offchain while using
+zero-knowledge proofs to preserve correctness and finality guarantees.
 
 Consider these factors when configuring your deployment model design:
 
@@ -18,6 +35,8 @@ Consider these factors when configuring your deployment model design:
 
 ## Compare deployment models
 
+This following section presents two model types, public and private. 
+
 ## Public
 
 Public deployments such as Linea Mainnet are fully public networks with onchain data availability.
@@ -25,7 +44,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 ### Characteristics
 
 - Data availability: In Linea Mainnet, transaction data is posted onchain via EIP-4844 blobs
-- Public access: RBAC on RPC endpoints served by Infura, no RBAC on public Linea RPC endpoint
+- Public access: Public Linea RPC endpoint
 - Transparency: All transactions visible on the finalization layer
 - Finalization: State commitments, proofs, and data posted to the finalization layer
 
@@ -37,7 +56,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 
 ### Security considerations
 
-- Minimum node count: 4 nodes for QBFT fault tolerance
+- Minimum node count: 4 nodes for Quorum-Based Byzantine Fault Tolerance (QBFT) fault tolerance
 - Access controls: Whether or not to implement RBAC on RPC endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a hardware
   security module (HSM) or key management service (KMS)
@@ -50,7 +69,7 @@ financial institutions requiring privacy.
 
 ### Characteristics
 
-- Data availability: Transaction data stored offchain in a private node set
+- Data availability: Transaction data can be stored offchain in a private node set
 - Privacy: Transaction details not visible on the finalization layer
 - Access control: RPC endpoints protected by Role-Based Access Control (RBAC); only authorized
   participants can view data
@@ -68,11 +87,6 @@ privacy, compliance, and access control features:
 - Applications requiring selective data disclosure to auditors and regulators
 - Multi-party workflows where participants should not see all transaction details
 
-### Data availability
-
-Data is stored in a private node set. Participants must trust that data availability providers will
-make data available when needed.
-
 ### Security considerations
 
 - Minimum node count: 4 Maru nodes for QBFT fault tolerance
@@ -81,21 +95,13 @@ make data available when needed.
   hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology with controlled peering
 
-### Validium differentiators
-
-In validium mode, the Linea network proves state transitions using zk-SNARKs while retaining
-transaction data within a private data availability layer. After blocks are produced by the
-sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state
-transition is generated and submitted to the finalization layer.
-
-Unlike public deployments, raw transaction data is not posted onchain. The operator determines
-where transaction data is stored to suit privacy and security requirements (not shown below).
-
 ### Example validium system setup
 
 The following network setup presents how an enterprise validium instance of Linea may be configured
 to serve as an interoperable payment system with KYC and KYT (know your customer and know your trade
-respectively) auditing capabilities:
+respectively) auditing capabilities. 
+
+The operator determines where transaction data is stored to suit privacy and security requirements (not shown below).
 
 ```mermaid
 flowchart TB
@@ -218,3 +224,6 @@ flowchart TB
   ValidiumRelayers --> PublicChain
 ```
 
+## Next steps
+
+Consider also, the design decisions required to determine the [finality mechanism](./data-availability-finalization.mdx#finality-design-options).

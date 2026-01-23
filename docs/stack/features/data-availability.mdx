@@ -3,33 +3,37 @@ title: Data availability
 description: >-
   Data availability capabilities supported by the Linea protocol and operator
   stack
-sidebar_position: 3
+sidebar_position: 2
 image: /img/socialCards/data-availability.jpg
 ---
 
-The Linea protocol and operator stack offers certain data availability capabilities. Such capabilities are provided through both protocol guarantees and operator-controlled integrations.
+The Linea protocol and operator stack offers control over data availability. Such capabilities are provided through both protocol guarantees and operator-controlled integrations.
 
 Data availability is a correctness-critical requirement. For deployment design, see
 [data availability and finalization](../how-it-works/data-availability-finalization.mdx).
 
 ## Define data availability capabilities
 
-### Protocol support (Linea)
+### Protocol support 
 
-- Native support for EIP-4844 blobs (Public deployments with Ethereum finalization)
+Linea enables:
+
+- Native support for EIP-4844 blobs (public deployments with Ethereum finalization)
 - State commitment posting to the finalization layer
 - Deterministic state reconstruction given available data
 
-### Deployment-provided implementations (Operator)
+### Deployment-provided implementations
+
+Operators have full control over:
 
 - Redundant data storage and backup strategies
 - Recovery and reconstruction procedures
 
-### Private validium requirements
+And for an enterprise private validium deployment, operators:
 
-- Operator-selected data availability providers
-- Operator-managed data storage infrastructure
+- Select data availability providers, or
+- Manage data storage infrastructure
 
 ## Next steps
 
-See more on [deployment models](../how-it-works/deployment-models.mdx).
+See more on [deployment models](../how-it-works/deployment-models).

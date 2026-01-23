@@ -146,14 +146,9 @@ or liveliness.
 
 ### Web3Signer
 
-[Web3Signer](https://docs.web3signer.consensys.io/) is an open-source, remote signing service for Ethereum and other 
-blockchain clients that externalizes private key management from the nodes themselves. It exposes 
-HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, 
-attestations, and transactions without directly holding the private keys. 
+[Web3Signer](https://docs.web3signer.consensys.io/) is an open-source, remote signing service that externalizes private key management from the nodes themselves. Web3Signer integrates with enterprise-grade key stores, exposing HTTP‑based signing APIs that allow consensus and execution clients to obtain signatures on blocks, attestations, and transactions without directly holding the private keys. 
 
-In this architecture, the components participating in block production and finality integrate with 
-Web3Signer to sign consensus messages and transactions, so that signing operations are centralized, 
-access‑controlled, and auditable rather than embedded in each node. 
+Web3Signer ensures that signing operations are access‑controlled, and auditable rather than embedded in each node. This tooling simplifies key revocation and rotation workflows, and ensures that private keys never leave the secure boundary of the key store.
 
 ## Data availability
 
@@ -222,7 +217,7 @@ layer; after verification and epoch delay, transactions reach hard finality.
 
 :::info
 
-See the more about [finality](../../network/overview/known-finality-state.mdx#transaction-finality)
+See the more about [the transaction lifecycle and finality](../../network/overview/known-finality-state.mdx#transaction-finality)
 on the Linea public network.
 
 ::: 
