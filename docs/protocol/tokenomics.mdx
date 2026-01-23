@@ -1,7 +1,7 @@
 ---
 title: Tokenomics
 description: 'The utility, distribution, and numbers behind the token, LINEA.'
-sidebar_position: 2
+sidebar_position: 3
 image: /img/socialCards/tokenomics.jpg
 ---
 
@@ -106,6 +106,13 @@ be locked for five years and is non-transferrable until a vesting schedule is co
 
 ## Burning mechanism
 
+After covering infrastructure costs, 100% of surplus revenue gets burned:
+
+- **20% burned as ETH**
+- **80% converted to LINEA and burned**
+
+### How burning works on Linea
+
 Linea and the LINEA token are designed specifically to reinforce the strength of Ethereum and ETH, 
 achieved through an automatic, dual-burn mechanism:
 - All gas fees on Linea are paid in ETH
@@ -114,3 +121,75 @@ achieved through an automatic, dual-burn mechanism:
 - 80% of net ETH profits are used to burn LINEA, reducing LINEA supply.
 
 As a result, network activity on Linea directly supports both the value of ETH and LINEA. 
+
+Every transaction on Linea generates gas fees paid in ETH. Instead of keeping these fees, Linea's 
+burn mechanism permanently removes ETH and LINEA tokens from circulation. This creates deflationary 
+pressure on both tokens, directly benefiting holders and the broader ecosystem.
+
+This means Linea becomes a perpetual buyer of its own token while simultaneously reducing ETH supply.
+
+#### Step 1: Revenue collection
+
+All gas fees from transactions on Linea are paid in ETH and automatically collected into a revenue 
+vault contract. This happens continuously as users interact with the network—every swap, transfer, 
+NFT mint, or smart contract interaction contributes to this pool.
+
+#### Step 2: Covering infrastructure costs
+
+Running a high-performance layer 2 network has real costs:
+- **Onchain costs**: Submitting transaction data to Ethereum L1, finalizing proofs, bridge 
+  transactions (anchoring and claiming)
+- **Offchain costs**: Running the mainnet infrastructure (servers, databases, monitoring systems)
+
+Once calculated, an invoice is submitted to the revenue vault. The vault automatically pays what it 
+can from available funds. If there's not enough balance, it tracks the outstanding amount (called 
+"arrears") and pays it off when more revenue comes in.
+
+Infrastructure costs are always paid first. Burns only happen when there's surplus revenue.
+
+#### Step 3: The burn operation
+
+Once costs are covered and there's surplus revenue available, the burn operation is triggered by a 
+service operated by the Linea Consortium on a regular basis:
+
+##### ETH Burn (20%)
+
+The vault takes 20% of the available surplus and sends it directly to the zero address (0x0000000000000000000000000000000000000000). 
+This ETH is permanently removed from circulation; it can never be recovered or used again.
+
+##### LINEA Burn (80%)
+
+The remaining 80% goes through a more complex process:
+1. **Swap**: The ETH is swapped for LINEA tokens using a decentralized exchange (DEX) on Linea. 
+  This creates buying pressure on LINEA and happens at the current market rate with slippage 
+  protection to prevent unfavorable trades.
+2. **Bridge**: The LINEA tokens are then bridged from Linea (L2) to Ethereum (L1) using Linea's 
+  native token bridge. They're sent to a special burner contract on L1.
+3. **Burn**: On Ethereum L1, the LINEA tokens are permanently burned. This is important because 
+  LINEA's total supply is tracked on L1, so burning must happen there to properly reduce the 
+  circulating supply.
+
+The bridging and burning on L1 is designed to be permissionless: anyone can trigger the final burn 
+step, ensuring the process can't be blocked or censored.
+
+#### Step 4: Transparency
+
+Every step of this process is recorded onchain:
+- Invoice submissions with exact cost amounts and time periods
+- Burn operations with precise amounts of ETH and LINEA destroyed
+- Bridge transactions showing LINEA moving from L2 to L1
+- Final burn transactions on Ethereum L1
+
+You can verify everything yourself by checking the blockchain. The [**live dashboard**](https://dune.com/linea/burn-metrics) 
+makes it easy to track:
+- Total gas fees collected
+- Total ETH burned since September 11, 2024
+- Total LINEA burned since September 11, 2024
+- Daily burn amounts for both tokens
+- Historical trends and charts
+
+## Smart contract addresses
+
+- L1LineaTokenBurner: [0x5Ad9369254F29b724d98F6ce98Cb7bAD729969F3](https://etherscan.io/address/0x5Ad9369254F29b724d98F6ce98Cb7bAD729969F3) (L1)
+- RollupRevenueVault: [0xFD5FB23e06e46347d8724486cDb681507592e237](https://lineascan.build/address/0xFD5FB23e06e46347d8724486cDb681507592e237) (L2)
+- V3DexSwapAdapter: [0x30A20a3a9991c939290f4329cb52daac8e97F353](https://lineascan.build/address/0x30A20a3a9991c939290f4329cb52daac8e97F353) (L2)

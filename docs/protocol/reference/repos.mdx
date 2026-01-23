@@ -1,0 +1,70 @@
+---
+title: Linea repositories
+sidebar_position: 7
+image: /img/socialCards/linea-repositories.jpg
+---
+
+import DocCardList from "@theme/DocCardList";
+
+Linea is open source, meaning you can inspect the code yourself. 
+
+This page describes each repository that hosts the Linea software and its purpose.
+
+## [`linea-monorepo`](https://github.com/Consensys/linea-monorepo)
+
+The principal Linea repository. This includes the:
+
+- Coordinator: responsible for multiple orchestrations
+- Linea-Besu plugins: to support the sequencer, tracer, and RPC nodes
+- Postman: for executing cross-chain messages
+- Prover: in charge of generating ZK proofs
+- Sequencer: responsible for ordering, building, and executing blocks
+- Smart contracts: covering Linea's core functions
+
+## [`linea-specification`](https://github.com/Consensys/linea-specification)
+
+Specification of the constraint system underlying Linea's zkEVM.
+
+Constraints are mathematical equations and a constraint system is a collection of such equations. 
+Linea's constraint system aims to capture the logic of valid EVM executions.
+
+The constraints specified here are implemented in the `linea-constraints` repo.
+
+## [`linea-constraints`](https://github.com/Consensys/linea-constraints)
+
+Implementation of the constraint system specified in the `linea-specification` repo.
+
+Linea's constraint system applies to so-called "traces", which are large matrices of fixed width 
+(that is, a fixed number of columns or "registries") and variable depth (correlating with the complexity 
+of the EVM execution). The production of such traces is the job of the `linea-tracer` repo.
+
+Constraints and traces are two of the inputs to the prover.
+
+## [`linea-tracer`](https://github.com/Consensys/linea-tracer)
+
+Linea-Besu plugin which produces the traces that the constraint system applies and that serve as inputs to the prover.
+
+Tracing refers to the process of extracting data from the execution of an EVM client in order to 
+construct large matrices known as execution traces. Execution traces are subject to the constraint 
+system specified in the `linea-specification` repo and implemented in the `linea-constraints` repo.
+
+## [`linea-besu-upstream`](https://github.com/Consensys/linea-besu-upstream)
+
+A Besu build configured for Linea.
+
+[Besu](https://besu.hyperledger.org/) is an Ethereum client that supports [Linea as a named network](https://besu.hyperledger.org/public-networks/reference/cli/options#network), with optional plugins for additional functionality.
+
+As Linea is EVM-equivalent, it is compatible with
+[standard Ethereum clients](../../network/how-to/run-a-node/index.mdx). 
+
+## [`gnark`](https://github.com/Consensys/gnark)
+
+Linea's zk-SNARK with a high-level API to design circuits and efficient cryptographic primitives.
+
+## [`shomei`](https://github.com/Consensys/shomei)
+
+A plugin that extends Besu's functionality by maintaining and updating Linea's state. 
+
+## [`maru`](https://github.com/Consensys/maru)
+
+Linea's consensus layer client, implementing the QBFT consensus algorithm.

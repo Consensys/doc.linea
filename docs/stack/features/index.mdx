@@ -1,0 +1,111 @@
+---
+title: Features
+description: Features and capabilities of the Linea stack
+sidebar_position: 0
+image: /img/socialCards/features.jpg
+---
+
+import DocCardList from '@theme/DocCardList';
+
+export const relatedDocs = [
+  {
+    type: 'link',
+    href: '/stack/how-it-works/deployment-models',
+    label: 'Deployment Models',
+    description: 'Discover more about the different deployment models for the Linea stack.',
+  },
+    {
+    type: 'link',
+    href: '/stack/how-it-works/data-availability-finalization',
+    label: 'Data availability and finalization',
+    description: 'Configue data availability and finalization options to suit your business logic.',
+  },
+];
+
+The Linea stack provides features and capabilities that enable various deployment models and use cases.
+This section highlights just some of the features available in the Linea stack.
+
+The stack is designed to support enterprises with an extensible and configurable ledger solution to suit
+ different operational, regulatory, and performance requirements.
+
+:::tip
+
+Reach out to [support.linea.build](https://support.linea.build/) for assistance in designing your
+enterprise deployment. From transaction ordering, to data availability, to block times, Linea's rich
+extensible architecture supports concise ledger configurations to match your enterprise needs.
+
+:::
+
+## Deployment model features
+
+Using the Linea stack, you can deploy:
+
+- Public networks, such as Linea Mainnet
+- Private validium networks, with offchain data availability and controlled access
+- Custom L2 or L3 networks
+
+### Private validium
+
+A private validium configuration provides:
+
+- Offchain data availability: transaction data stored privately
+- RBAC: Role-Based Access Control (RBAC) for RPC and API endpoints
+- Privacy: transaction details not visible on finalization layer
+- Compliance: Selective data disclosure
+- API portal: controlled access to network functionality
+
+See more on [private validiums](./validium.mdx).
+
+### Public
+
+Public deployments provide:
+
+- Onchain data availability: the Linea Mainnet posts all data via EIP-4844 blobs to Ethereum
+- Full transparency: All transactions visible on finalization layer
+- Open access: No access controls required
+
+## Core features
+
+### Zero-knowledge proofs
+
+The Linea stack uses zero-knowledge proofs to:
+
+- Verify state transitions without revealing transaction details
+- Provide cryptographic guarantees of correctness
+- Enable efficient finalization on the finalization layer
+
+### EVM equivalence
+
+Full EVM compatibility enables:
+
+- Deploy existing Ethereum smart contracts without modification
+- Use standard Ethereum tooling and libraries
+- Maintain compatibility with Ethereum ecosystem
+
+Learn about the differences between [Linea and Ethereum](../../network/overview/ethereum-differences)
+
+### Dual-layer architecture
+
+Separation of consensus and execution provides:
+
+- Client diversity and network resilience
+- Modular deployment and scaling
+- Operational flexibility
+
+### Quorum-Based Byzantine Fault Tolerance consensus
+
+Quorum-Based Byzantine Fault Tolerance (QBFT) consensus enables:
+
+- Fault tolerance (3f+1 nodes)
+- Fast finality
+- Decentralized block production (with sufficient validators)
+
+## Review security, data availability, and compliance
+
+- Understand [security features](./security.mdx)
+- Review [data availability features](./data-availability.mdx)
+- Explore [compliance and audit features](./compliance.mdx)
+
+## Related documentation
+
+<DocCardList items={relatedDocs} />

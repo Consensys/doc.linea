@@ -962,10 +962,11 @@ a.navbar__brand {
 }
 
 /* Basic circle icons for navbar items */
-.navbar__link[href="/network"]::before,
-.navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
-.navbar__link[href="/protocol/architecture"]::before,
-.navbar__link[href="/notices"]::before,
+.navbar__link[href="/network/quickstart"]::before,
+.navbar__link[href^="/stack"]::before,
+.navbar__link[href="/api/reference"]::before,
+.navbar__link[href="/protocol/overview"]::before,
+.navbar__link[href="/changelog"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
@@ -980,10 +981,11 @@ a.navbar__brand {
 }
 
 /* hover effect for circles */
-.navbar__link[href="/network"]:hover::before,
-.navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
-.navbar__link[href="/protocol/architecture"]:hover::before,
-.navbar__link[href="/notices"]:hover::before,
+.navbar__link[href="/network/quickstart"]:hover::before,
+.navbar__link[href^="/stack"]:hover::before,
+.navbar__link[href="/api/reference"]:hover::before,
+.navbar__link[href="/protocol/overview"]:hover::before,
+.navbar__link[href="/changelog"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
@@ -997,10 +999,11 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/network"]::before,
+  .navbar__link[href="/network/quickstart"]::before,
+  .navbar__link[href^="/stack"]::before,
   .navbar__link[href="/api"]::before,
-  .navbar__link[href="/protocol/architecture"]::before,
-  .navbar__link[href="/notices"]::before,
+  .navbar__link[href="/protocol/overview"]::before,
+  .navbar__link[href="/changelog"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
@@ -1683,8 +1686,8 @@ div[aria-label="Expand sidebar"] {
   color: var(--ifm-menu-color) !important;
 }
 
-.dropdown__menu .menu__link[href="/notices/release-notes"]::before,
-.dropdown__menu .menu__link[href="/notices/security-council-record"]::before {
+.dropdown__menu .menu__link[href="/changelog/release-notes"]::before,
+.dropdown__menu .menu__link[href="/changelog/security-council-record"]::before {
   content: "";
   display: inline-block;
   width: 7px;
@@ -1701,4 +1704,59 @@ div[aria-label="Expand sidebar"] {
 .dropdown__menu .menu__link--active::before {
   background-color: currentColor !important;
   border: 1px solid currentColor !important;
+}
+
+/* Details element styling - subtle, low contrast */
+details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgb(0 0 0 / 8%) !important;
+  border-radius: 0;
+  padding: 0.125rem 0.375rem;
+  margin: 1rem 0;
+}
+
+[data-theme="dark"] details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgb(255 255 255 / 10%) !important;
+}
+
+details > summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.0625rem 0;
+  list-style: none;
+  position: relative;
+  color: inherit;
+}
+
+html[data-theme="dark"] details > summary {
+  color: #c0c0c0 !important;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+  margin-right: 0.5rem;
+}
+
+details > div {
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  padding-bottom: 0.5rem;
 }

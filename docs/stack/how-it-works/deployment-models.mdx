@@ -1,0 +1,229 @@
+---
+title: Deployment models
+description: >-
+  Learn how to choose and configure Linea deployment models for enterprise use
+  cases
+sidebar_position: 2
+image: /img/socialCards/deployment-models.jpg
+---
+
+A deployment model describes how a Linea network is configured. Different deployment models allow operators to balance privacy, regulatory requirements, and security guarantees according to their use case. 
+
+The Linea stack is designed to support detailed customizations for factors including, but not restricted to:
+
+- Access control: Who may access the memepool, the ledger, and transaction data all impact the nature of
+the system
+- Data availability: Asset recovery by users ties directly to data availability guarantees
+- Finalization speed: Block size on the ledger impacts the soft finality speed of transactions
+- Finalization layer: Where finalization occurs impacts the security assumptions and hard finality speeds
+- Transaction ordering: custom rulesets can be applied for bespoke ordering logic
+
+The Linea stack supports two primary deployment models:
+
+- Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
+availability.
+- Private Validium deployments, which retain transaction data offchain while using
+zero-knowledge proofs to preserve correctness and finality guarantees.
+
+Consider these factors when configuring your deployment model design:
+
+- Privacy requirements: Do you need transaction data to remain private?
+- Regulatory compliance: Do you need KYC/KYT controls and selective disclosure?
+- Data availability guarantees: How important are onchain data availability guarantees?
+- Network topology: Do you need a private network with controlled membership?
+- Access control: Do you need RBAC on RPC endpoints and APIs?
+
+## Compare deployment models
+
+This following section presents two model types, public and private. 
+
+## Public
+
+Public deployments such as Linea Mainnet are fully public networks with onchain data availability.
+
+### Characteristics
+
+- Data availability: In Linea Mainnet, transaction data is posted onchain via EIP-4844 blobs
+- Public access: Public Linea RPC endpoint
+- Transparency: All transactions visible on the finalization layer
+- Finalization: State commitments, proofs, and data posted to the finalization layer
+
+### Use cases
+
+- Public networks requiring maximum transparency
+- Applications benefiting from onchain data availability guarantees
+- Networks prioritizing decentralization over privacy
+
+### Security considerations
+
+- Minimum node count: 4 nodes for Quorum-Based Byzantine Fault Tolerance (QBFT) fault tolerance
+- Access controls: Whether or not to implement RBAC on RPC endpoints
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a hardware
+  security module (HSM) or key management service (KMS)
+
+## Private validium
+
+A private network instance, a validium, keeps transaction data offchain while maintaining
+cryptographic guarantees through zero-knowledge (zk) proofs. This model is ideal for regulated
+financial institutions requiring privacy.
+
+### Characteristics
+
+- Data availability: Transaction data can be stored offchain in a private node set
+- Privacy: Transaction details not visible on the finalization layer
+- Access control: RPC endpoints protected by Role-Based Access Control (RBAC); only authorized
+  participants can view data
+- [Finalization](../../network/overview/known-finality-state.mdx): State commitments and proofs
+  posted to the finalization layer
+- Network topology: Private network with controlled node membership
+
+### Use cases
+
+For most enterprise and regulated financial use cases, a Private Validium provides the necessary
+privacy, compliance, and access control features:
+
+- Regulated financial applications requiring transaction privacy
+- Institutions needing KYC/KYT compliance controls
+- Applications requiring selective data disclosure to auditors and regulators
+- Multi-party workflows where participants should not see all transaction details
+
+### Security considerations
+
+- Minimum node count: 4 Maru nodes for QBFT fault tolerance
+- Access controls: RBAC on RPC endpoints and API portal
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a
+  hardware security module (HSM) or key management service (KMS)
+- Network isolation: Private network topology with controlled peering
+
+### Example validium system setup
+
+The following network setup presents how an enterprise validium instance of Linea may be configured
+to serve as an interoperable payment system with KYC and KYT (know your customer and know your trade
+respectively) auditing capabilities. 
+
+The operator determines where transaction data is stored to suit privacy and security requirements (not shown below).
+
+```mermaid
+flowchart TB
+  %% =========================
+  %% Styling (Linea-inspired)
+  %% =========================
+  classDef core fill:#0E5E56,color:#ffffff,stroke:#0E5E56,stroke-width:1px;
+  classDef access fill:#ffffff,color:#000000,stroke:#0E5E56,stroke-width:1.5px;
+  classDef control fill:#ffffff,color:#0E5E56,stroke:#0E5E56,stroke-width:1.5px,stroke-dasharray: 6 4;
+  classDef neutral fill:#ffffff,color:#000000,stroke:#000000,stroke-width:1px;
+  classDef invisible fill:transparent,stroke:transparent,color:transparent;
+
+  %% =========================
+  %% External actors + control plane
+  %% =========================
+  TrustedPartners[Trusted partners]:::neutral
+  RBAC[RBAC / access control]:::control
+  TrustedPartners --> RBAC
+
+  %% =========================
+  %% Operator-controlled boundary
+  %% =========================
+  subgraph PrivateNetwork["Linea Private Network"]
+    direction TB
+
+    subgraph AccessTooling["Access and tooling"]
+      direction LR
+      APIPortal[API portal]:::access
+      BlockExplorer[Block explorer]:::access
+    end
+
+    subgraph RPCServices["RPC services"]
+      direction TB
+      NearHead[Near-head RPC nodes]:::access
+      Archive[Archive RPC nodes]:::access
+    end
+
+    subgraph OnchainContracts["Onchain system contracts"]
+      direction LR
+      subgraph ContractsCore["Messaging and application contracts"]
+        direction TB
+        ApplicationContract[Application contract]:::core
+        MessageBridgeContracts[Message bridge contracts]:::core
+      end
+      subgraph ContractsTokens["Token contracts"]
+        direction TB
+        TokenManagementContract[Token management contract]:::core
+        TokenBridgeContracts[Token bridge contracts]:::core
+      end
+    end
+
+    subgraph InternalServices["Internal protocol services"]
+      direction TB
+
+      subgraph CoreRow["Core services"]
+        direction LR
+        StateManager[State manager]:::core
+        Tracer[Tracer]:::core
+        Prover[Prover]:::core
+      end
+
+      subgraph ExecRow["Execution services"]
+        direction LR
+        Web3Signer[Web3 signer]:::core
+        Sequencer[Sequencer]:::core
+      end
+
+      Coordinator[Coordinator]:::core
+
+      %% Anchor node to force proof flow to exit from the bottom
+      CoordOut(( )):::invisible
+    end
+
+    ValidiumRelayers[Validium message relayers]:::control
+  end
+
+  %% RBAC controls access/tooling
+  RBAC --> APIPortal
+  RBAC --> BlockExplorer
+
+  %% Tooling consumes RPC
+  APIPortal --> RPCServices
+  BlockExplorer --> RPCServices
+
+  %% RPC reads chain state
+  RPCServices --> OnchainContracts
+
+  %% Internal services interact with onchain contracts
+  InternalServices --> OnchainContracts
+
+  %% Proof spine (exit from bottom via anchor)
+  Coordinator --> CoordOut
+  CoordOut --> ZKProofs[zk proofs]:::neutral
+
+  %% =========================
+  %% Bottom row: align finalization layer and external blockchains
+  %% =========================
+  subgraph BottomRow["Finalization and interoperability"]
+    direction LR
+
+    subgraph FinalizationLayer["Finalization layer"]
+      direction LR
+      FinalizationContract[Finalization / message bridge contract]:::core
+      FinalizationTokenBridge[Token bridge contract]:::core
+    end
+
+    subgraph ExternalChains["External blockchains"]
+      direction LR
+      EnterpriseChain[Enterprise blockchain]:::neutral
+      PublicChain[Public blockchain]:::neutral
+    end
+  end
+
+  %% Proof submission to finalization
+  ZKProofs --> FinalizationContract
+
+  %% Relaying path
+  OnchainContracts --> ValidiumRelayers
+  ValidiumRelayers --> EnterpriseChain
+  ValidiumRelayers --> PublicChain
+```
+
+## Next steps
+
+Consider also, the design decisions required to determine the [finality mechanism](./data-availability-finalization.mdx#finality-design-options).
