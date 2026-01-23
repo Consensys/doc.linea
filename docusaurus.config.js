@@ -135,14 +135,14 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/overview/index",
+            docId: "network/quickstart/index",
             position: "left",
             label: "Public network",
             activeBaseRegex: "^/network/",
           },
           {
             type: "doc",
-            docId: "protocol/architecture/index",
+            docId: "protocol/overview",
             position: "left",
             label: "Protocol",
           },
@@ -154,7 +154,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "api/linea-smart-contracts/linearollup",
+            docId: "api/reference/index",
             position: "left",
             label: "APIs & SDK",
           },
