@@ -217,6 +217,7 @@
         "to": "/protocol/architecture/interoperability/canonical-message-service",
         "from":
         [
+            "/protocol/architecture/interoperability/message-service",
             "/protocol/message-service",
             "/protocol/message-service.mdx",
             "/protocol/message-service/index",
@@ -235,6 +236,7 @@
         "to": "/network/build/send-receive-messages",
         "from":
         [
+            "/protocol/architecture/interoperability/message-service/reference",
             "/protocol/message-service/reference",
             "/protocol/message-service/reference.mdx",
             "/technology/message-service/reference",
@@ -267,6 +269,7 @@
         "to": "/protocol/reference/zero-knowledge-glossary",
         "from":
         [
+            "/protocol/zero-knowledge-glossary",
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
             "/zero-knowledge-glossary",
@@ -324,6 +327,7 @@
         "to": "/protocol/architecture/smart-contracts",
         "from":
         [
+            "/stack/how-it-works/smart-contracts",
             "/build-on-linea/use-linea-testnet/info-contracts",
             "/developers/quickstart/info-contracts",
             "/use-mainnet/info-contracts"
@@ -462,6 +466,7 @@
         "to": "/network/build/tools/node-providers",
         "from":
         [
+            "/network/tools/node-providers",
             "/build-on-linea/tooling/node-providers",
             "/developers/tooling/node-providers",
             "/get-started/tooling/node-providers",
@@ -481,6 +486,7 @@
             "/get-started/tooling",
             "/get-started/tools",
             "/network/tooling",
+            "/network/tools",
             "/tools",
             "/tools.mdx"
         ]
@@ -1428,6 +1434,7 @@
         "to": "/network/build/tools/analytics/dune",
         "from":
         [
+            "/network/tools/analytics/dune",
             "/developers/tooling/analytics/dune",
             "/get-started/tools/analytics/dune",
             "/network/tooling/analytics/dune",
@@ -1786,6 +1793,7 @@
         "to": "/network/build/tools/account-abstraction/metamask",
         "from":
         [
+            "/network/tools/account-abstraction/metamask",
             "/get-started/tools/account-abstraction/metamask",
             "/network/tooling/account-abstraction/metamask",
             "/tools/account-abstraction/metamask",
@@ -1869,6 +1877,8 @@
         "to": "/protocol/tokenomics",
         "from":
         [
+            "/protocol/tokenomics/tokenomics",
+            "/protocol/tokenomics/tokenomics.mdx",
             "/technology/tokenomics",
             "/technology/tokenomics.mdx",
             "/protocol/tokenomics/burn",
