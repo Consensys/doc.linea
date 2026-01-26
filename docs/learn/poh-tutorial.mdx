@@ -1,0 +1,138 @@
+---
+title: Proof of Humanity tutorial
+description: Learn how to verify users with Proof of Humanity V2 on Linea.
+image: /img/socialCards/verify-users-with-proof-of-humanity.jpg
+---
+
+Proof of Humanity (PoH) lets you verify whether a wallet belongs to a real human on Linea. It
+provides a simple and reliable way for projects to gate access to rewards or features exclusively for
+verified users.
+
+PoH V2 is powered by a single attestation issued by Sumsub through the Verax Attestation Registry.
+This version replaces the complex multi-provider setup that was used for PoH V1, simplifying
+verification to a single, trusted data source.
+
+## The Sybil problem
+
+In web3, identity is fluid, meaning users can create as many wallets as they want. This openness
+fuels innovation but also creates opportunities for abuse. A Sybil attack occurs when one actor
+generates multiple fake identities to exploit a system designed for fair participation.
+
+Common examples include:
+
+- Airdrop farming, where a single individual controls thousands of wallets to claim rewards.
+- Fake voting in DAOs or community governance, undermining collective decisions.
+- Spam campaigns that flood onchain communities or social apps.
+- Automated account creation to game loyalty programs or incentive systems.
+
+Recent data shows how widespread this problem has become. Nansen and other web3 analytics firms
+have revealed that a significant share of wallet activity in certain programs comes from non-human
+or clustered entities. For instance, several major projects recently had to filter tens of millions
+of wallets to preserve fairness in their distributions (e.g. Linea had to filter more than half a
+million wallets to protect our TGE from farmers).
+
+The takeaway is clear: without human verification, decentralized systems remain vulnerable. Linea's
+Proof of Humanity V2 addresses this by providing developers a reliable way to ensure "one human,
+one action."
+
+## Why verifying users matters
+
+Verifying users isn't about restricting access - it's about building integrity into digital
+communities and economies.
+
+For developers, it means:
+
+- Preventing fraud and abuse by excluding automated or duplicate accounts. Bots inflate all your
+  metrics, giving you misleading data about your app growth and you end up optimizing for noise, not
+  real adoption.
+- Protecting incentive systems like governance tokens, loyalty points, or rewards programs. Bots can
+  quickly drain incentives systems without adding value, PoH helps you target your spending to real
+  users only.
+- Reducing moderation costs by ensuring real humans drive community engagement.
+
+For users, it builds:
+
+- Trust and fairness, knowing that everyone participates on equal footing.
+- Safety, by reducing exposure to spam, scams, or bots.
+- Reputation portability, since a verified identity can be reused across multiple dapps within the
+  Linea ecosystem.
+
+Verification also enables new categories of applications — from proof-of-personhood voting to
+verified social reputation, identity-based access control, or even credit scoring.
+
+## Unlocking growth through verification
+
+Human verification isn't just a security measure — it's a growth accelerator.
+
+When users trust that interactions are genuine, engagement and retention improve. Developers can
+focus on building features instead of moderating spam or chasing fraudulent claims. Communities
+become healthier, and token incentives circulate among real participants.
+
+With PoH V2, Linea dapps can:
+
+- Simplify onboarding with a single verification flow across the ecosystem.
+- Enhance brand credibility by signaling transparency and integrity.
+- Foster sustainable ecosystems, where every wallet represents a verified human being. This will
+  fuel every human-to-human interaction, knowing bots won't have a seat at the table.
+
+Trust, in this context, becomes a competitive advantage, and a key differentiator for web3
+applications aiming to scale responsibly.
+
+## Verify: how users complete their Proof of Humanity
+
+You can integrate Proof of Humanity in your app to restrict access, rewards or actions to real users
+only. Use the **Sumsub Proof of Personhood flow** to allow users to verify their humanity directly
+from your app. This flow handles user verification through **Sumsub's Proof of Personhood** flow and
+issues a **Verax attestation** onchain.
+
+:::tip Before you start
+You'll need:
+
+- A frontend app connected to the Linea network
+- A reliable Linea Mainnet RPC provider such as [Infura](https://developer.metamask.io)
+- A way to read the user's wallet address (e.g. [Wagmi](https://wagmi.sh/react/api/hooks/useAccount))
+:::
+
+### Implementation
+
+For the implementation, visit [this Proof of Humanity guide](https://docs.linea.build/get-started/how-to/verify-users-with-proof-of-humanity)
+
+## Ensuring security and reliability
+
+Proof of Humanity V2 is built with robust security, privacy, and transparency in mind.
+
+- Trusted verification: All attestations are issued by Sumsub, a regulated KYC provider with
+  industry-standard compliance.
+- Onchain transparency: Every verification is recorded through the Verax Attestation Registry,
+  ensuring public verifiability.
+- User privacy: Only the attestation (not personal data) is stored onchain — maintaining a balance
+  between identity assurance and privacy.
+- System reliability: The PoH API handles rate limits, temporary downtimes, and blockchain
+  propagation gracefully, ensuring developers always receive accurate verification states.
+
+Developers can confidently integrate PoH knowing it provides a secure, composable, and future-proof
+foundation for identity-driven experiences.
+
+### A note on privacy
+
+When users complete the verification flow, Sumsub processes a face-video and biometric images to
+check for liveness and identity-document match, but they only stores a hash, they do not store the
+full image.
+
+Sumsub adheres to the General Data Protection Regulation (GDPR) principles (lawful, transparent,
+purpose-limited, minimal, secure), and implements ISO/IEC 27001/27017/27018, SOC 2 Type 2 and
+PCI-DSS security frameworks, giving users the best standards for data protection and privacy.
+
+For our most privacy savvy users, we're working on a privacy-preserving verification alternative that
+will give you further control while still ensuring "one-human-one-wallet" trust.
+
+## Conclusion
+
+Proof of Humanity V2 is a true enable of growth for all builders and dapps on the Linea ecosystem.
+By giving dapps the ability to verify real humans, easily, securely, and onchain, it helps transform
+the way web3 applications grow and interact with their communities.
+
+If you're building on Linea, PoH V2 is now live and available through our developer documentation.
+
+Start verifying your users today, and build experiences meant for real humans.
+
