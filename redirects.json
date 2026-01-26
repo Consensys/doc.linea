@@ -121,6 +121,7 @@
     {
         "to": "/protocol/architecture/sequencer",
         "from": [
+            "/protocol/sequencer",
             "/architecture/sequencer",
             "/architecture/stack/sequencer",
             "/network/concepts/sequencer",
@@ -204,7 +205,8 @@
             "/protocol/zero-knowledge-glossary",
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
-            "/zero-knowledge-glossary"
+            "/zero-knowledge-glossary",
+            "/zero-knowledge-glossary/index"
         ]
     },
     {
@@ -233,6 +235,7 @@
             "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
             "/build-on-linea/use-linea-testnet/fund",
             "/build-on-linea/use-linea-testnet/set-up-your-wallet",
+            "/get-started/how-to/linea-inscriptions",
             "/decentralization-roadmap",
             "/network/concepts/decentralization",
             "/network/configure-metamask",
@@ -402,6 +405,7 @@
         "from": [
             "/architecture/stack/sequencer/conflation",
             "/network/concepts/sequencer/conflation",
+            "/protocol/sequencer/conflation",
             "/technology/sequencer/conflation"
         ]
     },
@@ -410,6 +414,7 @@
         "from": [
             "/architecture/stack/sequencer/traces-generator",
             "/network/concepts/sequencer/traces-generator",
+            "/protocol/sequencer/traces-generator",
             "/technology/sequencer/traces-generator"
         ]
     },
@@ -418,6 +423,7 @@
         "from": [
             "/architecture/stack/trace-expansion-proving/prover-limits",
             "/network/concepts/prover/prover-limits",
+            "/protocol/prover/prover-limits",
             "/technology/prover/prover-limits"
         ]
     },
@@ -426,6 +432,7 @@
         "from": [
             "/architecture/stack/trace-expansion-proving/proving",
             "/network/concepts/prover/proving",
+            "/protocol/prover/proving",
             "/technology/prover/proving"
         ]
     },
@@ -434,6 +441,7 @@
         "from": [
             "/architecture/stack/trace-expansion-proving/trace-expansion",
             "/network/concepts/prover/trace-expansion",
+            "/protocol/prover/trace-expansion",
             "/technology/prover/trace-expansion"
         ]
     },
