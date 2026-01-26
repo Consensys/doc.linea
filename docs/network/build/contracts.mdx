@@ -1,12 +1,15 @@
 ---
 title: Contracts
 description: Important contracts on Linea Mainnet and Linea Sepolia.
-sidebar_position: 3
+sidebar_position: 4
 image: /img/socialCards/contracts.jpg
 ---
 
+import CodeBlock from "@theme/CodeBlock";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import TokenBridgeL1 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL1.abi";
+import TokenBridgeL2 from "!!raw-loader!/files/testnet/canonical-token-bridge/TokenBridgeL2.abi";
 
 ## Deployed contracts
 
@@ -137,6 +140,61 @@ to access the various options.
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
     Sepolia token contract addresses are available in the [official token list repository](https://github.com/Consensys/linea-token-list/blob/main/json/linea-sepolia-token-shortlist.json).
   </TabItem>
+</Tabs>
+
+To find out which bridges are currently operating on Linea, head to the [ecosystem portal](https://linea.build/hub/apps) 
+and click on the **Bridge** button to show all that are available.
+
+## Token Bridge contracts
+
+<Tabs className="my-tabs">
+
+<TabItem value="Mainnet" label="Mainnet">
+
+- **Ethereum Mainnet**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://etherscan.io/address/0x051F1D88f0aF5763fB888eC4378b4D8B29ea3319)
+
+- **Linea Mainnet**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://lineascan.build/address/0x353012dc4a9a6cf55c941badc267f82004a8ceb9)
+
+</TabItem>
+<TabItem value="Linea Sepolia" label="Linea Sepolia">
+
+- **Ethereum Sepolia**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://sepolia.etherscan.io/address/0x5A0a48389BB0f12E5e017116c1105da97E129142)
+
+- **Linea Sepolia**
+
+  <details>
+    <summary>TokenBridge.abi</summary>
+    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
+  </details>
+
+  - Contracts:
+    - [Canonical token bridge](https://sepolia.lineascan.build/address/0x93DcAdf238932e6e6a85852caC89cBd71798F463)
+
+</TabItem>
 </Tabs>
 
 ## Important contracts

@@ -1,101 +1,378 @@
 [
     {
-        "to": "/protocol/message-service",
-        "from": [
+        "to": "/network/risk-disclosures",
+        "from":
+        [
+            "/get-started/risk-disclosures",
+            "/risk-disclosures",
+            "/risk-disclosures/index",
+            "/risk-disclosures.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/get-testnet-eth",
+        "from":
+        [
+            "/get-started/how-to/get-testnet-eth",
+            "/get-started/how-to/get-testnet-eth.mdx",
+            "/network/how-to/get-testnet-eth",
+            "/network/how-to/get-testnet-eth.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview",
+        "from":
+        [
+            "/network",
+            "/network/index",
+            "/network/index.mdx",
+            "/network/concepts",
+            "/build-on-linea/tooling/linea-safe",
+            "/developers/guides/linea-safe",
+            "/network/how-to/linea-safe"
+        ]
+    },
+    {
+        "to": "/network/quickstart",
+        "from":
+        [
+            "/build-on-linea",
+            "/get-started",
+            "/get-started.mdx",
+            "/build-on-linea/quickstart",
+            "/developers/quickstart",
+            "/developers/guides",
+            "/developers/quickstart/goerli-to-sepolia"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/dapp-support",
+        "from":
+        [
+            "/network/build/dapp-support",
+            "/network/build/dapp-support.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/app",
+        "from":
+        [
+            "/network/quickstart/app",
+            "/network/quickstart/app.mdx",
+            "/get-started/build/quickstart/app",
+            "/get-started/build/quickstart/app.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/deploy",
+        "from":
+        [
+            "/network/quickstart/deploy",
+            "/network/quickstart/deploy.mdx",
+            "/network/build/quickstart",
+            "/network/build/quickstart/deploy",
+            "/get-started/build/quickstart/deploy",
+            "/get-started/build/quickstart/deploy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/events",
+        "from":
+        [
+            "/network/quickstart/events",
+            "/network/quickstart/events.mdx",
+            "/network/build/quickstart/events",
+            "/network/build/quickstart/events.mdx",
+            "/get-started/build/quickstart/events",
+            "/get-started/build/quickstart/events.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub-reviews",
+        "from":
+        [
+            "/network/quickstart/hub-reviews",
+            "/network/quickstart/hub-reviews.mdx",
+            "/get-started/quickstart/hub-reviews",
+            "/network/build/quickstart/hub-reviews",
+            "/get-started/quickstart/hub-reviews.mdx",
+            "/network/build/quickstart/hub-reviews.mdx",
+            "/get-started/build/quickstart/hub-reviews",
+            "/get-started/build/quickstart/hub-reviews.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/launch-an-app/hub",
+        "from":
+        [
+            "/network/quickstart/hub",
+            "/network/quickstart/hub.mdx",
+            "/network/build/quickstart/hub",
+            "/network/build/quickstart/hub.mdx",
+            "/get-started/build/quickstart/hub",
+            "/get-started/build/quickstart/hub.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/ethereum-differences",
+        "from":
+        [
+            "/network/build/ethereum-differences",
+            "/network/build/ethereum-differences.mdx",
+            "/get-started/build/ethereum-differences",
+            "/build-on-linea/ethereum-differences",
+            "/get-started/build/ethereum-differences.mdx",
+            "/developers/quickstart/ethereum-differences"
+        ]
+    },
+    {
+        "to": "/network/overview/known-finality-state",
+        "from":
+        [
+            "/protocol/transaction-lifecycle",
+            "/protocol/transaction-lifecycle.mdx",
+            "/architecture/overview/transaction-lifecycle",
+            "/architecture/transaction-lifecycle",
+            "/network/concepts/transaction-lifecycle",
+            "/technology/transaction-lifecycle",
+            "/technology/transaction-lifecycle.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/release-notes",
+        "from":
+        [
+            "/notices/release-notes",
+            "/notices/release-notes.mdx",
+            "/build-on-linea/linea-version",
+            "/developers/linea-version",
+            "/release-notes",
+            "/release-notes.mdx"
+        ]
+    },
+    {
+        "to": "/changelog/security-council-record",
+        "from":
+        [
+            "/notices/security-council-record",
+            "/notices/security-council-record.mdx",
+            "/security-council-record",
+            "/security-council-record.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/sequencer",
+        "from":
+        [
+            "/protocol/sequencer.mdx",
+            "/architecture/sequencer",
+            "/architecture/stack/sequencer",
+            "/network/concepts/sequencer",
+            "/technology/sequencer/index",
+            "/technology/sequencer",
+            "/technology/sequencer.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/prover",
+        "from":
+        [
+            "/architecture/stack/trace-expansion-proving",
+            "/architecture/trace-expansion-proving",
+            "/network/concepts/prover",
+            "/protocol/prover.mdx",
+            "/protocol/prover",
+            "/technology/prover/index",
+            "/technology/prover",
+            "/technology/prover.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/coordinator",
+        "from":
+        [
+            "/protocol/coordinator",
+            "/protocol/coordinator.mdx",
+            "/architecture/coordinator",
+            "/architecture/stack/coordinator",
+            "/network/concepts/coordinator",
+            "/technology/coordinator",
+            "/technology/coordinator.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/state-manager",
+        "from":
+        [
+            "/protocol/state-manager",
+            "/protocol/state-manager.mdx",
+            "/architecture/evm-state-manager",
+            "/architecture/stack/evm-state-manager",
+            "/network/concepts/state-manager",
+            "/technology/state-manager",
+            "/technology/state-manager.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/interoperability/canonical-message-service",
+        "from":
+        [
+            "/protocol/message-service",
+            "/protocol/message-service.mdx",
+            "/protocol/message-service/index",
+            "/protocol/message-service/index.mdx",
+            "/technology/message-service",
+            "/technology/message-service.mdx",
+            "/architecture/canonical-msg-service",
+            "/architecture/stack/canonical-msg-service",
+            "/architecture/stack/canonical-msg-service/message-service",
             "/developers/bridge-architecture/message-service",
             "/developers/use-message-bridge",
-            "/architecture/stack/canonical-msg-service/message-service",
-            "/architecture/stack/canonical-msg-service",
-            "/architecture/canonical-msg-service",
             "/network/concepts/message-service"
         ]
     },
     {
-        "to": "/network/how-to/deploy-smart-contract",
-        "from": [
-            "/developers/deploy-smart-contract",
-            "/developers/quickstart/deploy-smart-contract"
+        "to": "/network/build/send-receive-messages",
+        "from":
+        [
+            "/protocol/message-service/reference",
+            "/protocol/message-service/reference.mdx",
+            "/technology/message-service/reference",
+            "/technology/message-service/reference.mdx"
         ]
     },
     {
-        "to": "/protocol/zero-knowledge-glossary",
-        "from": [
+        "to": "/network/overview/recoverable-state",
+        "from":
+        [
+            "/protocol/state-recovery",
+            "/protocol/state-recovery.mdx",
+            "/technology/state-recovery",
+            "/technology/state-recovery.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract",
+        "from":
+        [
+            "/developers/deploy-smart-contract",
+            "/developers/quickstart/deploy-smart-contract",
+            "/get-started/how-to/deploy-smart-contract",
+            "/get-started/how-to/deploy-smart-contract.mdx",
+            "/get-started/how-to/deploy-smart-contract/index",
+            "/get-started/how-to/deploy-smart-contract/index.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/reference/zero-knowledge-glossary",
+        "from":
+        [
             "/reference/glossary",
             "/users/zero-knowledge-glossary",
-            "/zero-knowledge-glossary"
+            "/zero-knowledge-glossary",
+            "/zero-knowledge-glossary.mdx",
+            "/zero-knowledge-glossary/index.mdx"
         ]
     },
     {
-        "to": "/network/risk-disclosures",
-        "from": [
-            "/risk-disclosures",
-            "/protocol/risk-disclosures"
+        "to": "/protocol/reference/repos",
+        "from":
+        [
+            "/protocol/repos",
+            "/protocol/repos.mdx",
+            "/technology/repos",
+            "/technology/repos.mdx",
+            "/network/build/repos"
+        ]
+    },
+    {
+        "to": "/protocol/architecture",
+        "from":
+        [
+            "/architecture/stack",
+            "/architecture",
+            "/network/concepts/architecture",
+            "/technology/architecture",
+            "/technology/architecture.mdx",
+            "/architecture/overview"
         ]
     },
     {
         "to": "/",
-        "from": [
-            "/network/fund",
-            "/network/configure-metamask",
-            "/network/quickstart",
-            "/use-zkevm",
-            "/use-linea/index.md",
-            "/build-on-linea/use-linea-testnet/fund",
-            "/use-mainnet/fund",
+        "from":
+        [
+            "/architecture/overview/decentralization-roadmap",
             "/build-on-linea/use-linea-testnet/bridge-funds/usdc-bridge",
             "/build-on-linea/use-linea-testnet/bridge-funds/use-etherscan",
-            "/use-mainnet/set-up-your-wallet",
+            "/build-on-linea/use-linea-testnet/fund",
             "/build-on-linea/use-linea-testnet/set-up-your-wallet",
-            "/use-mainnet",
-            "/protocol/decentralization",
-            "/use-mainnet/decentralization-roadmap",
+            "/get-started/how-to/linea-inscriptions.mdx",
             "/decentralization-roadmap",
-            "/architecture/overview/decentralization-roadmap",
-            "/network/concepts/decentralization"
+            "/network/concepts/decentralization",
+            "/network/configure-metamask",
+            "/network/fund",
+            "/protocol/decentralization",
+            "/use-linea/index.md",
+            "/use-mainnet",
+            "/use-mainnet/decentralization-roadmap",
+            "/use-mainnet/fund",
+            "/use-mainnet/set-up-your-wallet",
+            "/use-zkevm"
         ]
     },
     {
-        "to": "/network/build/network-info",
-        "from": [
+        "to": "/protocol/architecture/smart-contracts",
+        "from":
+        [
             "/build-on-linea/use-linea-testnet/info-contracts",
             "/developers/quickstart/info-contracts",
             "/use-mainnet/info-contracts"
         ]
     },
     {
-        "to": "/network/how-to/bridge",
-        "from": [
+        "to": "/network/build/bridge",
+        "from":
+        [
             "/build-on-linea/use-linea-testnet/bridge-funds",
             "/developers/guides/bridge",
-            "/use-mainnet/bridges-of-linea",
-            "/network/how-to/bridge/how-to-bridge-eth",
-            "/use-mainnet/bridges-of-linea/how-to-bridge-eth",
-            "/developers/guides/bridge/how-to-bridge-eth",
             "/developers/guides/bridge/how-to-bridge-erc20-tokens",
-            "/network/how-to/bridge/how-to-bridge-erc20-tokens"
+            "/developers/guides/bridge/how-to-bridge-eth",
+            "/network/how-to/bridge/how-to-bridge-erc20-tokens",
+            "/network/how-to/bridge/how-to-bridge-eth",
+            "/use-mainnet/bridges-of-linea",
+            "/use-mainnet/bridges-of-linea/how-to-bridge-eth"
         ]
     },
     {
         "to": "/network/how-to/gas-fees",
-        "from": [
-            "/use-mainnet/gas-import",
+        "from":
+        [
             "/build-on-linea/gas-fees",
+            "/developers/guides/gas-fees",
             "/developers/guides/gas/gas-fees",
-            "/use-mainnet/gas-on-linea",
             "/developers/guides/gas/gas-on-linea",
-            "/developers/guides/gas-fees"
+            "/use-mainnet/gas-import",
+            "/use-mainnet/gas-on-linea",
+            "/get-started/how-to/gas-fees",
+            "/get-started/how-to/gas-fees.mdx",
+            "/technology/gas",
+            "/technology/gas.mdx",
+            "/how-to/gas-fees",
+            "/how-to/gas-fees.mdx"
         ]
     },
     {
         "to": "/api/reference/linea-estimategas",
-        "from": [
-            "/reference/api/linea-estimategas",
-            "/developers/reference/api/linea-estimategas"
+        "from":
+        [
+            "/developers/reference/api/linea-estimategas",
+            "/reference/api/linea-estimategas"
         ]
     },
     {
         "to": "/api/reference",
-        "from": [
+        "from":
+        [
             "/build-on-linea/quickstart/rpc",
             "/developers/guides/linea-api",
             "/developers/reference/api"
@@ -103,1358 +380,1586 @@
     },
     {
         "to": "/api/token-api",
-        "from": [
+        "from":
+        [
             "/api/token-api/overview"
         ]
     },
     {
-        "to": "/network/build/ethereum-differences",
-        "from": [
-            "/build-on-linea/ethereum-differences",
-            "/developers/quickstart/ethereum-differences"
-        ]
-    },
-    {
         "to": "/network/how-to/run-a-node",
-        "from": [
+        "from":
+        [
             "/build-on-linea/run-a-node",
             "/build-on-linea/run-a-node/use-binary",
             "/build-on-linea/run-a-node/use-docker",
-            "/developers/guides/run-a-node/use-docker",
+            "/developers/guides/run-a-node",
             "/developers/guides/run-a-node/use-binary",
-            "/developers/guides/run-a-node"
-        ]
-    },
-    {
-        "to": "/network",
-        "from": [
-            "/build-on-linea/tooling/linea-safe",
-            "/network/how-to/linea-safe",
-            "/developers/guides/linea-safe"
-        ]
-    },
-    {
-        "to": "/network/tools/permanent-data/irys/irys-querying",
-        "from": [
-            "/developers/tooling/permanent-data/irys/irys-query-package",
-            "/developers/tooling/permanent-data/irys/irys-querying",
-            "/network/tooling/permanent-data/irys/irys-querying"
-        ]
-    },
-    {
-        "to": "/protocol/transaction-lifecycle",
-        "from": [
-            "/architecture/transaction-lifecycle",
-            "/architecture/overview/transaction-lifecycle",
-            "/network/concepts/transaction-lifecycle"
-        ]
-    },
-    {
-        "to": "/protocol/network-data",
-        "from": [
-            "/architecture/network-data",
-            "/architecture/overview/network-data",
-            "/network/concepts/network-data"
-        ]
-    },
-    {
-        "to": "/protocol/canonical-token-bridge",
-        "from": [
-            "/architecture/bridges",
-            "/architecture/stack/bridges",
-            "/architecture/stack/bridges/canonical-token-bridge",
-            "/network/concepts/canonical-token-bridge"
-        ]
-    },
-    {
-        "to": "/protocol/coordinator",
-        "from": [
-            "/architecture/coordinator",
-            "/architecture/stack/coordinator",
-            "/network/concepts/coordinator"
-        ]
-    },
-    {
-        "to": "/protocol/state-manager",
-        "from": [
-            "/architecture/evm-state-manager",
-            "/architecture/stack/evm-state-manager",
-            "/network/concepts/state-manager"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer",
-        "from": [
-            "/architecture/sequencer",
-            "/architecture/stack/sequencer",
-            "/network/concepts/sequencer"
-        ]
-    },
-    {
-        "to": "/protocol/prover",
-        "from": [
-            "/architecture/trace-expansion-proving",
-            "/architecture/stack/trace-expansion-proving",
-            "/network/concepts/prover"
-        ]
-    },
-    {
-        "to": "/network/tools/cross-chain/shortcuts",
-        "from": [
-            "/build-on-linea/tooling/cross-chain/shortcuts",
-            "/developers/tooling/cross-chain/shortcuts",
-            "/network/tooling/cross-chain/shortcuts"
-        ]
-    },
-    {
-        "to": "/network/tools/node-providers",
-        "from": [
-            "/build-on-linea/tooling/node-providers",
-            "/developers/tooling/node-providers",
-            "/network/tooling/node-providers"
-        ]
-    },
-    {
-        "to": "/notices/release-notes",
-        "from": [
-            "/build-on-linea/linea-version",
-            "/developers/linea-version",
-            "/release-notes"
-        ]
-    },
-    {
-        "to": "/network",
-        "from": [
-            "/build-on-linea/quickstart",
-            "/developers/quickstart",
-            "/developers/quickstart/goerli-to-sepolia",
-            "/build-on-linea"
-        ]
-    },
-    {
-        "to": "/network/tools",
-        "from": [
-            "/build-on-linea/tooling",
-            "/developers/tooling",
-            "/network/tooling",
-            "/tools"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/reown",
-        "from": [
-            "/network/tooling/libraries/walletconnect",
-            "/developers/tooling/libraries/wallet-connect",
-            "/network/tooling/libraries/reown"
-        ]
-    },
-    {
-        "to": "/protocol/architecture",
-        "from": [
-            "/architecture",
-            "/network/concepts/architecture"
-        ]
-    },
-    {
-        "to": "/protocol/repos",
-        "from": [
-            "/architecture/stack",
-            "/network/build/repos"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer/conflation",
-        "from": [
-            "/architecture/stack/sequencer/conflation",
-            "/network/concepts/sequencer/conflation"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer/traces-generator",
-        "from": [
-            "/architecture/stack/sequencer/traces-generator",
-            "/network/concepts/sequencer/traces-generator"
-        ]
-    },
-    {
-        "to": "/protocol/prover/prover-limits",
-        "from": [
-            "/architecture/stack/trace-expansion-proving/prover-limits",
-            "/network/concepts/prover/prover-limits"
-        ]
-    },
-    {
-        "to": "/protocol/prover/proving",
-        "from": [
-            "/architecture/stack/trace-expansion-proving/proving",
-            "/network/concepts/prover/proving"
-        ]
-    },
-    {
-        "to": "/protocol/prover/trace-expansion",
-        "from": [
-            "/architecture/stack/trace-expansion-proving/trace-expansion",
-            "/network/concepts/prover/trace-expansion"
-        ]
-    },
-    {
-        "to": "/protocol/architecture",
-        "from": [
-            "/architecture/overview",
-            "/network/concepts"
-        ]
-    },
-    {
-        "to": "/network/tools/social-login/openfort",
-        "from": [
-            "/developers/tooling/social-login/openfort",
-            "/network/tooling/social-login/openfort"
-        ]
-    },
-    {
-        "to": "/network/tools/social-login/arcana",
-        "from": [
-            "/developers/tooling/social-login/arcana",
-            "/network/tooling/social-login/arcana"
-        ]
-    },
-    {
-        "to": "/network/tools/social-login",
-        "from": [
-            "/developers/tooling/social-login",
-            "/network/tooling/social-login"
-        ]
-    },
-    {
-        "to": "/network/tools/attestations/verax",
-        "from": [
-            "/developers/tooling/attestations/verax",
-            "/network/tooling/attestations/verax"
-        ]
-    },
-    {
-        "to": "/network/tools/attestations",
-        "from": [
-            "/developers/tooling/attestations",
-            "/network/tooling/attestations"
-        ]
-    },
-    {
-        "to": "/network/tools/attestations/primus",
-        "from": [
-            "/network/tooling/attestations/pado",
-            "/developers/tooling/attestations/pado",
-            "/network/tooling/attestations/primus"
-        ]
-    },
-    {
-        "to": "/network/tools/privacy/secret",
-        "from": [
-            "/developers/tooling/privacy/secret",
-            "/network/tooling/privacy/secret"
-        ]
-    },
-    {
-        "to": "/network/tools/privacy",
-        "from": [
-            "/developers/tooling/privacy",
-            "/network/tooling/privacy"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/umbrella",
-        "from": [
-            "/developers/tooling/oracles/umbrella",
-            "/network/tooling/oracles/umbrella"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/api3",
-        "from": [
-            "/developers/tooling/oracles/api3",
-            "/network/tooling/oracles/api3"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles",
-        "from": [
-            "/developers/tooling/oracles",
-            "/network/tooling/oracles"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/pyth",
-        "from": [
-            "/developers/tooling/oracles/pyth",
-            "/network/tooling/oracles/pyth"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/ora",
-        "from": [
-            "/developers/tooling/oracles/ora",
-            "/network/tooling/oracles/ora"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/tellor",
-        "from": [
-            "/developers/tooling/oracles/tellor",
-            "/network/tooling/oracles/tellor"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/supra",
-        "from": [
-            "/developers/tooling/oracles/supra",
-            "/network/tooling/oracles/supra"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/redstone",
-        "from": [
-            "/developers/tooling/oracles/redstone",
-            "/network/tooling/oracles/redstone"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/chainlink",
-        "from": [
-            "/developers/tooling/oracles/chainlink",
-            "/network/tooling/oracles/chainlink"
-        ]
-    },
-    {
-        "to": "/network/tools/oracles/dia",
-        "from": [
-            "/developers/tooling/oracles/dia",
-            "/network/tooling/oracles/dia"
-        ]
-    },
-    {
-        "to": "/network/tools/cross-chain/ccip-read",
-        "from": [
-            "/developers/tooling/cross-chain/ccip-read-gateway",
-            "/network/tooling/cross-chain/ccip-read-gateway",
-            "/network/tooling/cross-chain/ccip-read"
-        ]
-    },
-    {
-        "to": "/network/tools/cross-chain",
-        "from": [
-            "/developers/tooling/cross-chain",
-            "/network/tooling/cross-chain"
-        ]
-    },
-    {
-        "to": "/network/tools/cross-chain/layerzero",
-        "from": [
-            "/developers/tooling/cross-chain/layerzero",
-            "/network/tooling/cross-chain/layerzero"
-        ]
-    },
-    {
-        "to": "/network/tools/cross-chain/axelar",
-        "from": [
-            "/developers/tooling/cross-chain/axelar",
-            "/network/tooling/cross-chain/axelar"
-        ]
-    },
-    {
-        "to": "/network/tools/security",
-        "from": [
-            "/developers/tooling/security",
-            "/network/tooling/security"
-        ]
-    },
-    {
-        "to": "/network/tools/security/hypernative",
-        "from": [
-            "/developers/tooling/security/hypernative",
-            "/network/tooling/security/hypernative"
-        ]
-    },
-    {
-        "to": "/network/tools/security/scamfari",
-        "from": [
-            "/developers/tooling/security/scamfari",
-            "/network/tooling/security/scamfari"
-        ]
-    },
-    {
-        "to": "/network/tools/security/goplus-security-api",
-        "from": [
-            "/developers/tooling/security/goplus-security-api",
-            "/network/tooling/security/goplus-security-api"
-        ]
-    },
-    {
-        "to": "/network/tools/security/hexagate",
-        "from": [
-            "/developers/tooling/security/hexagate",
-            "/network/tooling/security/hexagate"
-        ]
-    },
-    {
-        "to": "/network/tools/security/spherex",
-        "from": [
-            "/developers/tooling/security/spherex",
-            "/network/tooling/security/spherex"
-        ]
-    },
-    {
-        "to": "/network/tools/node-providers/erpc",
-        "from": [
-            "/developers/tooling/node-providers/erpc",
-            "/network/tooling/node-providers/erpc"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction",
-        "from": [
-            "/developers/tooling/account-abstraction/account-abstraction",
-            "/network/tooling/account-abstraction"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/openfort",
-        "from": [
-            "/developers/tooling/account-abstraction/openfort",
-            "/network/tooling/account-abstraction/openfort"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/noves",
-        "from": [
-            "/developers/tooling/account-abstraction/noves",
-            "/network/tooling/account-abstraction/noves"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/station",
-        "from": [
-            "/developers/tooling/account-abstraction/station",
-            "/network/tooling/account-abstraction/station"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/pimlico",
-        "from": [
-            "/developers/tooling/account-abstraction/pimlico",
-            "/network/tooling/account-abstraction/pimlico"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/oklink",
-        "from": [
-            "/developers/tooling/account-abstraction/oklink",
-            "/network/tooling/account-abstraction/oklink"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/etherspot",
-        "from": [
-            "/developers/tooling/account-abstraction/etherspot",
-            "/network/tooling/account-abstraction/etherspot"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/smartwallets",
-        "from": [
-            "/developers/tooling/account-abstraction/smartwallets",
-            "/network/tooling/account-abstraction/smartwallets"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/particle-network",
-        "from": [
-            "/developers/tooling/account-abstraction/particle-network",
-            "/network/tooling/account-abstraction/particle-network"
-        ]
-    },
-    {
-        "to": "/network/tools/account-abstraction/biconomy",
-        "from": [
-            "/developers/tooling/account-abstraction/biconomy",
-            "/network/tooling/account-abstraction/biconomy"
-        ]
-    },
-    {
-        "to": "/network/tools/contracts-templates",
-        "from": [
-            "/developers/tooling/contracts-templates",
-            "/network/tooling/contracts-templates"
-        ]
-    },
-    {
-        "to": "/network/tools/contracts-templates/thirdweb",
-        "from": [
-            "/developers/tooling/contracts-templates/thirdweb",
-            "/network/tooling/contracts-templates/thirdweb"
-        ]
-    },
-    {
-        "to": "/network/tools/contracts-templates/cookbook",
-        "from": [
-            "/developers/tooling/contracts-templates/cookbook",
-            "/network/tooling/contracts-templates/cookbook"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/multicall",
-        "from": [
-            "/developers/tooling/libraries/multicall",
-            "/network/tooling/libraries/multicall"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/ethereum-list",
-        "from": [
-            "/developers/tooling/libraries/ethereum-list",
-            "/network/tooling/libraries/ethereum-list"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries",
-        "from": [
-            "/developers/tooling/libraries",
-            "/network/tooling/libraries"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/ape",
-        "from": [
-            "/developers/tooling/libraries/ape",
-            "/network/tooling/libraries/ape"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/ethers-js",
-        "from": [
-            "/developers/tooling/libraries/ethers-js",
-            "/network/tooling/libraries/ethers-js"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/viem",
-        "from": [
-            "/developers/tooling/libraries/viem",
-            "/network/tooling/libraries/viem"
-        ]
-    },
-    {
-        "to": "/network/tools/libraries/wagmi",
-        "from": [
-            "/developers/tooling/libraries/wagmi",
-            "/network/tooling/libraries/wagmi"
-        ]
-    },
-    {
-        "to": "/network/tools/permanent-data/irys/overview",
-        "from": [
-            "/developers/tooling/permanent-data/irys/overview",
-            "/network/tooling/permanent-data/irys/overview"
-        ]
-    },
-    {
-        "to": "/network/tools/permanent-data/irys/irys-quickstart",
-        "from": [
-            "/developers/tooling/permanent-data/irys/irys-quickstart",
-            "/network/tooling/permanent-data/irys/irys-quickstart"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/scopescan",
-        "from": [
-            "/developers/tooling/data-indexers/scopescan",
-            "/network/tooling/data-indexers/scopescan"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/thegraph",
-        "from": [
-            "/developers/tooling/data-indexers/thegraph",
-            "/network/tooling/data-indexers/thegraph"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/moralis",
-        "from": [
-            "/developers/tooling/data-indexers/moralis",
-            "/network/tooling/data-indexers/moralis"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/subquery",
-        "from": [
-            "/developers/tooling/data-indexers/subquery",
-            "/network/tooling/data-indexers/subquery"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/noves",
-        "from": [
-            "/developers/tooling/data-indexers/noves",
-            "/network/tooling/data-indexers/noves"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/arkham",
-        "from": [
-            "/developers/tooling/data-indexers/arkham",
-            "/network/tooling/data-indexers/arkham"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/covalent",
-        "from": [
-            "/developers/tooling/data-indexers/covalent",
-            "/network/tooling/data-indexers/covalent"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers",
-        "from": [
-            "/developers/tooling/data-indexers",
-            "/network/tooling/data-indexers"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/mobula",
-        "from": [
-            "/developers/tooling/data-indexers/mobula",
-            "/network/tooling/data-indexers/mobula"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/envio",
-        "from": [
-            "/developers/tooling/data-indexers/envio",
-            "/network/tooling/data-indexers/envio"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/subsquid",
-        "from": [
-            "/developers/tooling/data-indexers/subsquid",
-            "/network/tooling/data-indexers/subsquid"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/flair",
-        "from": [
-            "/developers/tooling/data-indexers/flair",
-            "/network/tooling/data-indexers/flair"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/reservoir",
-        "from": [
-            "/developers/tooling/data-indexers/reservoir",
-            "/network/tooling/data-indexers/reservoir"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/dune",
-        "from": [
-            "/developers/tooling/data-indexers/dune",
-            "/network/tooling/data-indexers/dune"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/alchemy",
-        "from": [
-            "/developers/tooling/data-indexers/alchemy",
-            "/network/tooling/data-indexers/alchemy"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/etherscan",
-        "from": [
-            "/developers/tooling/data-indexers/etherscan",
-            "/network/tooling/data-indexers/etherscan"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/dipdup/overview",
-        "from": [
-            "/developers/tooling/data-indexers/dipdup/overview",
-            "/network/tooling/data-indexers/dipdup/overview"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/dipdup/quickstart",
-        "from": [
-            "/developers/tooling/data-indexers/dipdup/quickstart",
-            "/network/tooling/data-indexers/dipdup/quickstart"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/nftscan",
-        "from": [
-            "/developers/tooling/data-indexers/nftscan",
-            "/network/tooling/data-indexers/nftscan"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/sentio",
-        "from": [
-            "/developers/tooling/data-indexers/sentio",
-            "/network/tooling/data-indexers/sentio"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/goldsky/overview",
-        "from": [
-            "/developers/tooling/data-indexers/goldsky/overview",
-            "/network/tooling/data-indexers/goldsky/overview"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/goldsky/goldsky-mirror",
-        "from": [
-            "/developers/tooling/data-indexers/goldsky/goldsky-mirror",
-            "/network/tooling/data-indexers/goldsky/goldsky-mirror"
-        ]
-    },
-    {
-        "to": "/network/tools/data-indexers/goldsky/goldsky-index",
-        "from": [
-            "/developers/tooling/data-indexers/goldsky/goldsky-index",
-            "/network/tooling/data-indexers/goldsky/goldsky-index"
-        ]
-    },
-    {
-        "to": "/network/tools/ai/spheron",
-        "from": [
-            "/developers/tooling/cloud-infra/spheron",
-            "/network/tooling/ai/spheron"
-        ]
-    },
-    {
-        "to": "/network/tools/ai",
-        "from": [
-            "/developers/tooling/cloud-infra",
-            "/network/tooling/ai"
-        ]
-    },
-    {
-        "to": "/network/tools/analytics/arkham",
-        "from": [
-            "/developers/tooling/analytics/arkham",
-            "/network/tooling/analytics/arkham"
-        ]
-    },
-    {
-        "to": "/network/tools/analytics",
-        "from": [
-            "/developers/tooling/analytics",
-            "/network/tooling/analytics"
-        ]
-    },
-    {
-        "to": "/network/tools/analytics/mobula",
-        "from": [
-            "/developers/tooling/analytics/mobula",
-            "/network/tooling/analytics/mobula"
-        ]
-    },
-    {
-        "to": "/network/tools/analytics/dune",
-        "from": [
-            "/developers/tooling/analytics/dune",
-            "/network/tooling/analytics/dune"
-        ]
-    },
-    {
-        "to": "/network/tools/analytics/cookie3",
-        "from": [
-            "/developers/tooling/analytics/cookie3",
-            "/network/tooling/analytics/cookie3"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract",
-        "from": "/developers/quickstart/verify-smart-contract"
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/foundry",
-        "from": "/developers/quickstart/verify-smart-contract/foundry"
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/atlas",
-        "from": "/developers/quickstart/verify-smart-contract/atlas"
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/hardhat",
-        "from": "/developers/quickstart/verify-smart-contract/hardhat"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/foundry",
-        "from": "/developers/quickstart/deploy-smart-contract/foundry"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/thirdweb",
-        "from": "/developers/quickstart/deploy-smart-contract/thirdweb"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/cookbook",
-        "from": "/developers/quickstart/deploy-smart-contract/cookbook"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/remix",
-        "from": "/developers/quickstart/deploy-smart-contract/remix"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/atlas",
-        "from": "/developers/quickstart/deploy-smart-contract/atlas"
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/hardhat",
-        "from": "/developers/quickstart/deploy-smart-contract/hardhat"
-    },
-    {
-        "to": "/api/linea-sdk",
-        "from": "/developers/guides/linea-sdk"
-    },
-    {
-        "to": "/network/how-to/deploy-subdomain",
-        "from": "/developers/guides/deploy-subdomain"
-    },
-    {
-        "to": "/network",
-        "from": "/developers/guides"
-    },
-    {
-        "to": "/network/how-to/run-a-node/erigon",
-        "from": "/developers/guides/run-a-node/erigon"
-    },
-    {
-        "to": "/network/how-to/run-a-node/geth",
-        "from": "/developers/guides/run-a-node/geth"
-    },
-    {
-        "to": "/network/how-to/run-a-node/bootnodes",
-        "from": [
-            "/developers/guides/run-a-node/bootnodes",
-            "/developers/guides/run-a-node/enodes"
-        ]
-    },
-    {
-        "to": "/network/how-to/run-a-node/linea-besu",
-        "from": "/developers/guides/run-a-node/linea-besu"
-    },
-    {
-        "to": "/network/how-to/run-a-node/besu",
-        "from": "/developers/guides/run-a-node/besu"
-    },
-    {
-        "to": "/network/how-to/run-a-node/volume-creation",
-        "from": "/developers/guides/run-a-node/volume-creation"
-    },
-    {
-        "to": "/network/tutorials/ecosystem-tutorials",
-        "from": [
-            "/developers/guides/community",
-            "/learn/ecosystem-tutorials"
-        ]
-    },
-    {
-        "to": "/network/tutorials/ecosystem-tutorials/irys",
-        "from": [
-            "/developers/guides/community/irys",
-            "/learn/ecosystem-tutorials/irys"
-        ]
-    },
-    {
-        "to": "/network/tutorials/ecosystem-tutorials/irys/irys-nfts",
-        "from": [
-            "/developers/guides/community/irys/irys-nfts",
-            "/learn/ecosystem-tutorials/irys/irys-nfts"
-        ]
-    },
-    {
-        "to": "/network/tutorials/ecosystem-tutorials/irys/irys-dynamic-nfts",
-        "from": [
-            "/developers/guides/community/irys/irys-dynamic-nfts",
-            "/learn/ecosystem-tutorials/irys/irys-dynamic-nfts"
-        ]
-    },
-    {
-        "to": "/network/tutorials/first-dapp",
-        "from": [
-            "/learn/first-dapp"
-        ]
-    },
-    {
-        "to": "/network/tutorials/aiagent-quickstart",
-        "from": [
-            "/learn/aiagent-quickstart"
-        ]
-    },
-    {
-        "to": "/network/tutorials/marketplace-dapp",
-        "from": [
-            "/learn/marketplace-dapp"
-        ]
-    },
-    {
-        "to": "/network/tutorials/voting-dapp",
-        "from": [
-            "/learn/voting-dapp"
-        ]
-    },
-    {
-        "to": "/network/how-to/finalized-block",
-        "from": "/developers/guides/finalized-block"
-    },
-    {
-        "to": "/api/reference/eth-sendrawtransaction",
-        "from": "/developers/reference/api/eth-sendrawtransaction"
-    },
-    {
-        "to": "/api/reference/linea-gettransactionexclusionstatusv1",
-        "from": "/developers/reference/api/linea-gettransactionexclusionstatusv1"
-    },
-    {
-        "to": "/api/reference/linea-getproof",
-        "from": "/developers/reference/api/linea-getproof"
-    },
-    {
-        "to": "/network/how-to/verify-users-with-proof-of-humanity",
-        "from": "/network/how-to/poh-api"
-    },
-    {
-        "to": "/network/how-to/fallback",
-        "from": [
-            "/learn/fallback",
-            "/get-started/how-to/fallback"
-        ]
-    },
-    {
-        "to": "/network/tools/gas",
-        "from": [
-            "/network/tooling/gas",
-            "/get-started/tooling/gas",
-            "/tools/gas"
-        ]
-    },
-    {
-        "to": "/network/tools/gas/blocknative",
-        "from": "/network/tooling/gas/blocknative"
-    },
-    {
-        "to": "/network/tools/social-login/dynamic",
-        "from": "/network/tooling/social-login/dynamic"
-    },
-    {
-        "to": "/network/tools/social-login/metamask",
-        "from": "/network/tooling/social-login/metamask"
-    },
-    {
-        "to": "/network/tools/social-login/privy",
-        "from": "/network/tooling/social-login/privy"
-    },
-    {
-        "to": "/network/tools/account-abstraction/metamask",
-        "from": "/network/tooling/account-abstraction/metamask"
-    },
-    {
-        "to": "/network/tools/libraries/web3j",
-        "from": "/network/tooling/libraries/web3j"
-    },
-    {
-        "to": "/protocol/state-recovery",
-        "from": "/network/how-to/state-recovery"
-    },
-    {
-        "to": "/network",
-        "from": [
-            "/get-started"
-        ]
-    },
-    {
-        "to": "/network/quickstart/connect",
-        "from": [
-            "/get-started/connect"
-        ]
-    },
-    {
-        "to": "/network/build/network-info",
-        "from": [
-            "/get-started/build/network-info"
-        ]
-    },
-    {
-        "to": "/network/build/ethereum-differences",
-        "from": [
-            "/get-started/build/ethereum-differences"
-        ]
-    },
-    {
-        "to": "/network/build/contracts",
-        "from": [
-            "/get-started/build/contracts"
-        ]
-    },
-    {
-        "to": "/network/build/block-explorers",
-        "from": [
-            "/get-started/build/block-explorers"
-        ]
-    },
-    {
-        "to": "/network/build/dapp-support",
-        "from": [
-            "/get-started/build/dapp-support"
-        ]
-    },
-    {
-        "to": "/network/quickstart/deploy",
-        "from": [
-            "/get-started/build/quickstart/deploy",
-            "/network/build/quickstart/deploy",
-            "/network/build/quickstart"
-        ]
-    },
-    {
-        "to": "/network/quickstart/app",
-        "from": [
-            "/get-started/build/quickstart/app",
-            "/network/build/quickstart/app"
-        ]
-    },
-    {
-        "to": "/network/quickstart/hub",
-        "from": [
-            "/get-started/build/quickstart/hub",
-            "/network/build/quickstart/hub"
-        ]
-    },
-    {
-        "to": "/network/quickstart/hub-reviews",
-        "from": [
-            "/get-started/build/quickstart/hub-reviews",
-            "/network/build/quickstart/hub-reviews"
-        ]
-    },
-    {
-        "to": "/network/quickstart/events",
-        "from": [
-            "/get-started/build/quickstart/events",
-            "/network/build/quickstart/events"
-        ]
-    },
-    {
-        "to": "/network/how-to/get-testnet-eth",
-        "from": [
-            "/get-started/how-to/get-testnet-eth"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/index"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/atlas",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/atlas"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/cookbook",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/cookbook"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/foundry",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/foundry"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/hardhat",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/hardhat"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/remix",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/remix"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-smart-contract/thirdweb",
-        "from": [
-            "/get-started/how-to/deploy-smart-contract/thirdweb"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract",
-        "from": [
-            "/get-started/how-to/verify-smart-contract"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract",
-        "from": [
-            "/get-started/how-to/verify-smart-contract/index"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/atlas",
-        "from": [
-            "/get-started/how-to/verify-smart-contract/atlas"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/foundry",
-        "from": [
-            "/get-started/how-to/verify-smart-contract/foundry"
-        ]
-    },
-    {
-        "to": "/network/how-to/verify-smart-contract/hardhat",
-        "from": [
-            "/get-started/how-to/verify-smart-contract/hardhat"
-        ]
-    },
-    {
-        "to": "/network/how-to/migrate-dapp",
-        "from": [
-            "/get-started/how-to/migrate-dapp"
-        ]
-    },
-    {
-        "to": "/network/how-to/connect-wallet",
-        "from": [
-            "/get-started/how-to/connect-wallet"
-        ]
-    },
-    {
-        "to": "/network/how-to/gas-fees",
-        "from": [
-            "/get-started/how-to/gas-fees"
-        ]
-    },
-    {
-        "to": "/network/how-to/bridge",
-        "from": [
-            "/get-started/how-to/bridge"
-        ]
-    },
-    {
-        "to": "/network/how-to/deploy-subdomain",
-        "from": [
-            "/get-started/how-to/deploy-subdomain"
-        ]
-    },
-    {
-        "to": "/network/how-to/finalized-block",
-        "from": [
-            "/get-started/how-to/finalized-block"
-        ]
-    },
-    {
-        "to": "/network/how-to/run-a-node",
-        "from": [
-            "/get-started/how-to/run-a-node"
-        ]
-    },
-    {
-        "to": "/network/how-to/run-a-node",
-        "from": [
+            "/developers/guides/run-a-node/use-docker",
+            "/get-started/how-to/run-a-node",
+            "/get-started/how-to/run-a-node.mdx",
             "/get-started/how-to/run-a-node/index"
         ]
     },
     {
-        "to": "/network/how-to/run-a-node/besu",
-        "from": [
-            "/get-started/how-to/run-a-node/besu"
+        "to": "/network/build/tools/permanent-data/irys/irys-querying",
+        "from":
+        [
+            "/developers/tooling/permanent-data/irys/irys-query-package",
+            "/developers/tooling/permanent-data/irys/irys-querying",
+            "/get-started/tools/permanent-data/irys/irys-querying",
+            "/network/tooling/permanent-data/irys/irys-querying",
+            "/tools/permanent-data/irys/irys-querying",
+            "/tools/permanent-data/irys/irys-querying.mdx"
         ]
     },
     {
-        "to": "/network/how-to/run-a-node/beta-v4-migration",
-        "from": [
-            "/get-started/how-to/run-a-node/beta-v4-migration"
+        "to": "/network/build/connect",
+        "from":
+        [
+            "/architecture/network-data",
+            "/architecture/overview/network-data",
+            "/network/concepts/network-data",
+            "/protocol/network-data",
+            "/network/build/network-data",
+            "/get-started/build/network-info",
+            "/get-started/build/network-info.mdx",
+            "/get-started/connect",
+            "/get-started/connect.mdx",
+            "/get-started/quickstart/connect",
+            "/technology/network-data",
+            "/technology/network-data.mdx",
+            "/network/build/network-info",
+            "/network/build/network-info.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/interoperability/canonical-token-bridge",
+        "from":
+        [
+            "/architecture/bridges",
+            "/architecture/stack/bridges",
+            "/architecture/stack/bridges/canonical-token-bridge",
+            "/network/concepts/canonical-token-bridge",
+            "/protocol/canonical-token-bridge",
+            "/protocol/canonical-token-bridge.mdx",
+            "/technology/canonical-token-bridge",
+            "/technology/canonical-token-bridge.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/cross-chain/shortcuts",
+        "from":
+        [
+            "/build-on-linea/tooling/cross-chain/shortcuts",
+            "/developers/tooling/cross-chain/shortcuts",
+            "/get-started/tools/cross-chain/shortcuts",
+            "/network/tooling/cross-chain/shortcuts",
+            "/tools/cross-chain/shortcuts",
+            "/tools/cross-chain/shortcuts.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/node-providers",
+        "from":
+        [
+            "/build-on-linea/tooling/node-providers",
+            "/developers/tooling/node-providers",
+            "/get-started/tooling/node-providers",
+            "/get-started/tooling/node-providers/index",
+            "/get-started/tools/node-providers",
+            "/network/tooling/node-providers",
+            "/tools/node-providers",
+            "/tools/node-providers.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools",
+        "from":
+        [
+            "/build-on-linea/tooling",
+            "/developers/tooling",
+            "/get-started/tooling",
+            "/get-started/tools",
+            "/network/tooling",
+            "/tools",
+            "/tools.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/reown",
+        "from":
+        [
+            "/developers/tooling/libraries/wallet-connect",
+            "/get-started/tools/libraries/reown",
+            "/network/tooling/libraries/reown",
+            "/network/tooling/libraries/walletconnect",
+            "/tools/libraries/reown",
+            "/tools/libraries/reown.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/sequencer/conflation",
+        "from":
+        [
+            "/architecture/stack/sequencer/conflation",
+            "/network/concepts/sequencer/conflation",
+            "/protocol/sequencer/conflation.mdx",
+            "/technology/sequencer/conflation",
+            "/technology/sequencer/conflation.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/sequencer/traces-generator",
+        "from":
+        [
+            "/architecture/stack/sequencer/traces-generator",
+            "/network/concepts/sequencer/traces-generator",
+            "/protocol/sequencer/traces-generator.mdx",
+            "/technology/sequencer/traces-generator",
+            "/technology/sequencer/traces-generator.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/prover/prover-limits",
+        "from":
+        [
+            "/architecture/stack/trace-expansion-proving/prover-limits",
+            "/network/concepts/prover/prover-limits",
+            "/protocol/prover/prover-limits.mdx",
+            "/technology/prover/prover-limits",
+            "/technology/prover/prover-limits.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/prover/proving",
+        "from":
+        [
+            "/architecture/stack/trace-expansion-proving/proving",
+            "/network/concepts/prover/proving",
+            "/protocol/prover/proving.mdx",
+            "/technology/prover/proving",
+            "/technology/prover/proving.mdx"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/prover/trace-expansion",
+        "from":
+        [
+            "/architecture/stack/trace-expansion-proving/trace-expansion",
+            "/network/concepts/prover/trace-expansion",
+            "/protocol/prover/trace-expansion.mdx",
+            "/technology/prover/trace-expansion",
+            "/technology/prover/trace-expansion.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login/openfort",
+        "from":
+        [
+            "/developers/tooling/social-login/openfort",
+            "/get-started/tools/social-login/openfort",
+            "/network/tooling/social-login/openfort",
+            "/tools/social-login/openfort",
+            "/tools/social-login/openfort.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login/arcana",
+        "from":
+        [
+            "/developers/tooling/social-login/arcana",
+            "/get-started/tools/social-login/arcana",
+            "/network/tooling/social-login/arcana",
+            "/tools/social-login/arcana",
+            "/tools/social-login/arcana.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login",
+        "from":
+        [
+            "/developers/tooling/social-login",
+            "/get-started/tools/social-login",
+            "/network/tooling/social-login",
+            "/tools/social-login",
+            "/tools/social-login.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/attestations/verax",
+        "from":
+        [
+            "/developers/tooling/attestations/verax",
+            "/get-started/tools/attestations/verax",
+            "/network/tooling/attestations/verax",
+            "/tools/attestations/verax",
+            "/tools/attestations/verax.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/attestations",
+        "from":
+        [
+            "/developers/tooling/attestations",
+            "/get-started/tools/attestations",
+            "/network/tooling/attestations",
+            "/tools/attestations",
+            "/tools/attestations.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/attestations/primus",
+        "from":
+        [
+            "/developers/tooling/attestations/pado",
+            "/get-started/tools/attestations/primus",
+            "/network/tooling/attestations/pado",
+            "/network/tooling/attestations/primus",
+            "/tools/attestations/primus",
+            "/tools/attestations/primus.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/privacy/secret",
+        "from":
+        [
+            "/developers/tooling/privacy/secret",
+            "/get-started/tools/privacy/secret",
+            "/network/tooling/privacy/secret",
+            "/tools/privacy/secret",
+            "/tools/privacy/secret.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/privacy",
+        "from":
+        [
+            "/developers/tooling/privacy",
+            "/get-started/tools/privacy",
+            "/network/tooling/privacy",
+            "/tools/privacy",
+            "/tools/privacy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/umbrella",
+        "from":
+        [
+            "/developers/tooling/oracles/umbrella",
+            "/get-started/tools/oracles/umbrella",
+            "/network/tooling/oracles/umbrella",
+            "/tools/oracles/umbrella",
+            "/tools/oracles/umbrella.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/api3",
+        "from":
+        [
+            "/developers/tooling/oracles/api3",
+            "/get-started/tools/oracles/api3",
+            "/network/tooling/oracles/api3",
+            "/tools/oracles/api3",
+            "/tools/oracles/api3.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles",
+        "from":
+        [
+            "/developers/tooling/oracles",
+            "/get-started/tools/oracles",
+            "/network/tooling/oracles",
+            "/tools/oracles",
+            "/tools/oracles.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/pyth",
+        "from":
+        [
+            "/developers/tooling/oracles/pyth",
+            "/get-started/tools/oracles/pyth",
+            "/network/tooling/oracles/pyth",
+            "/tools/oracles/pyth",
+            "/tools/oracles/pyth.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/ora",
+        "from":
+        [
+            "/developers/tooling/oracles/ora",
+            "/get-started/tools/oracles/ora",
+            "/network/tooling/oracles/ora",
+            "/tools/oracles/ora",
+            "/tools/oracles/ora.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/tellor",
+        "from":
+        [
+            "/developers/tooling/oracles/tellor",
+            "/get-started/tools/oracles/tellor",
+            "/network/tooling/oracles/tellor",
+            "/tools/oracles/tellor",
+            "/tools/oracles/tellor.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/supra",
+        "from":
+        [
+            "/developers/tooling/oracles/supra",
+            "/get-started/tools/oracles/supra",
+            "/network/tooling/oracles/supra",
+            "/tools/oracles/supra",
+            "/tools/oracles/supra.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/redstone",
+        "from":
+        [
+            "/developers/tooling/oracles/redstone",
+            "/get-started/tools/oracles/redstone",
+            "/network/tooling/oracles/redstone",
+            "/tools/oracles/redstone",
+            "/tools/oracles/redstone.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/chainlink",
+        "from":
+        [
+            "/developers/tooling/oracles/chainlink",
+            "/get-started/tools/oracles/chainlink",
+            "/network/tooling/oracles/chainlink",
+            "/tools/oracles/chainlink",
+            "/tools/oracles/chainlink.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/oracles/dia",
+        "from":
+        [
+            "/developers/tooling/oracles/dia",
+            "/get-started/tools/oracles/dia",
+            "/network/tooling/oracles/dia",
+            "/tools/oracles/dia",
+            "/tools/oracles/dia.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/cross-chain/ccip-read",
+        "from":
+        [
+            "/developers/tooling/cross-chain/ccip-read-gateway",
+            "/get-started/tools/cross-chain/ccip-read",
+            "/network/tooling/cross-chain/ccip-read",
+            "/network/tooling/cross-chain/ccip-read-gateway",
+            "/tools/cross-chain/ccip-read",
+            "/tools/cross-chain/ccip-read.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/cross-chain",
+        "from":
+        [
+            "/developers/tooling/cross-chain",
+            "/get-started/tools/cross-chain",
+            "/network/tooling/cross-chain",
+            "/tools/cross-chain",
+            "/tools/cross-chain.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/cross-chain/layerzero",
+        "from":
+        [
+            "/developers/tooling/cross-chain/layerzero",
+            "/get-started/tools/cross-chain/layerzero",
+            "/network/tooling/cross-chain/layerzero",
+            "/tools/cross-chain/layerzero",
+            "/tools/cross-chain/layerzero.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/cross-chain/axelar",
+        "from":
+        [
+            "/developers/tooling/cross-chain/axelar",
+            "/get-started/tools/cross-chain/axelar",
+            "/network/tooling/cross-chain/axelar",
+            "/tools/cross-chain/axelar",
+            "/tools/cross-chain/axelar.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security",
+        "from":
+        [
+            "/developers/tooling/security",
+            "/get-started/tools/security",
+            "/network/tooling/security",
+            "/tools/security",
+            "/tools/security.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security/hypernative",
+        "from":
+        [
+            "/developers/tooling/security/hypernative",
+            "/get-started/tools/security/hypernative",
+            "/network/tooling/security/hypernative",
+            "/tools/security/hypernative",
+            "/tools/security/hypernative.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security/scamfari",
+        "from":
+        [
+            "/developers/tooling/security/scamfari",
+            "/get-started/tools/security/scamfari",
+            "/network/tooling/security/scamfari",
+            "/tools/security/scamfari",
+            "/tools/security/scamfari.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security/goplus-security-api",
+        "from":
+        [
+            "/developers/tooling/security/goplus-security-api",
+            "/get-started/tools/security/goplus-security-api",
+            "/network/tooling/security/goplus-security-api",
+            "/tools/security/goplus-security-api",
+            "/tools/security/goplus-security-api.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security/hexagate",
+        "from":
+        [
+            "/developers/tooling/security/hexagate",
+            "/get-started/tools/security/hexagate",
+            "/network/tooling/security/hexagate",
+            "/tools/security/hexagate",
+            "/tools/security/hexagate.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/security/spherex",
+        "from":
+        [
+            "/developers/tooling/security/spherex",
+            "/get-started/tools/security/spherex",
+            "/network/tooling/security/spherex",
+            "/tools/security/spherex",
+            "/tools/security/spherex.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/node-providers/erpc",
+        "from":
+        [
+            "/developers/tooling/node-providers/erpc",
+            "/get-started/tooling/node-providers/erpc",
+            "/get-started/tools/node-providers/erpc",
+            "/network/tooling/node-providers/erpc",
+            "/tools/node-providers/erpc",
+            "/tools/node-providers/erpc.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/account-abstraction",
+            "/get-started/tools/account-abstraction",
+            "/network/tooling/account-abstraction",
+            "/tools/account-abstraction",
+            "/tools/account-abstraction.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/openfort",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/openfort",
+            "/get-started/tools/account-abstraction/openfort",
+            "/network/tooling/account-abstraction/openfort",
+            "/tools/account-abstraction/openfort",
+            "/tools/account-abstraction/openfort.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/noves",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/noves",
+            "/get-started/tools/account-abstraction/noves",
+            "/network/tooling/account-abstraction/noves",
+            "/tools/account-abstraction/noves",
+            "/tools/account-abstraction/noves.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/station",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/station",
+            "/get-started/tools/account-abstraction/station",
+            "/network/tooling/account-abstraction/station",
+            "/tools/account-abstraction/station",
+            "/tools/account-abstraction/station.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/pimlico",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/pimlico",
+            "/get-started/tools/account-abstraction/pimlico",
+            "/network/tooling/account-abstraction/pimlico",
+            "/tools/account-abstraction/pimlico",
+            "/tools/account-abstraction/pimlico.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/oklink",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/oklink",
+            "/get-started/tools/account-abstraction/oklink",
+            "/network/tooling/account-abstraction/oklink",
+            "/tools/account-abstraction/oklink",
+            "/tools/account-abstraction/oklink.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/etherspot",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/etherspot",
+            "/get-started/tools/account-abstraction/etherspot",
+            "/network/tooling/account-abstraction/etherspot",
+            "/tools/account-abstraction/etherspot",
+            "/tools/account-abstraction/etherspot.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/smartwallets",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/smartwallets",
+            "/get-started/tools/account-abstraction/smartwallets",
+            "/network/tooling/account-abstraction/smartwallets",
+            "/tools/account-abstraction/smartwallets",
+            "/tools/account-abstraction/smartwallets.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/particle-network",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/particle-network",
+            "/get-started/tools/account-abstraction/particle-network",
+            "/network/tooling/account-abstraction/particle-network",
+            "/tools/account-abstraction/particle-network",
+            "/tools/account-abstraction/particle-network.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/biconomy",
+        "from":
+        [
+            "/developers/tooling/account-abstraction/biconomy",
+            "/get-started/tools/account-abstraction/biconomy",
+            "/network/tooling/account-abstraction/biconomy",
+            "/tools/account-abstraction/biconomy",
+            "/tools/account-abstraction/biconomy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/contracts-templates",
+        "from":
+        [
+            "/developers/tooling/contracts-templates",
+            "/get-started/tools/contracts-templates",
+            "/network/tooling/contracts-templates",
+            "/tools/contracts-templates",
+            "/tools/contracts-templates.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/contracts-templates/thirdweb",
+        "from":
+        [
+            "/developers/tooling/contracts-templates/thirdweb",
+            "/get-started/tools/contracts-templates/thirdweb",
+            "/network/tooling/contracts-templates/thirdweb",
+            "/tools/contracts-templates/thirdweb",
+            "/tools/contracts-templates/thirdweb.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/contracts-templates/cookbook",
+        "from":
+        [
+            "/developers/tooling/contracts-templates/cookbook",
+            "/get-started/tools/contracts-templates/cookbook",
+            "/network/tooling/contracts-templates/cookbook",
+            "/tools/contracts-templates/cookbook",
+            "/tools/contracts-templates/cookbook.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/multicall",
+        "from":
+        [
+            "/developers/tooling/libraries/multicall",
+            "/get-started/tools/libraries/multicall",
+            "/network/tooling/libraries/multicall",
+            "/tools/libraries/multicall",
+            "/tools/libraries/multicall.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/ethereum-list",
+        "from":
+        [
+            "/developers/tooling/libraries/ethereum-list",
+            "/get-started/tools/libraries/ethereum-list",
+            "/network/tooling/libraries/ethereum-list",
+            "/tools/libraries/ethereum-list",
+            "/tools/libraries/ethereum-list.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries",
+        "from":
+        [
+            "/developers/tooling/libraries",
+            "/get-started/tools/libraries",
+            "/network/tooling/libraries",
+            "/tools/libraries",
+            "/tools/libraries.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/ape",
+        "from":
+        [
+            "/developers/tooling/libraries/ape",
+            "/get-started/tools/libraries/ape",
+            "/network/tooling/libraries/ape",
+            "/tools/libraries/ape",
+            "/tools/libraries/ape.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/ethers-js",
+        "from":
+        [
+            "/developers/tooling/libraries/ethers-js",
+            "/get-started/tools/libraries/ethers-js",
+            "/network/tooling/libraries/ethers-js",
+            "/tools/libraries/ethers-js",
+            "/tools/libraries/ethers-js.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/viem",
+        "from":
+        [
+            "/developers/tooling/libraries/viem",
+            "/get-started/tools/libraries/viem",
+            "/network/tooling/libraries/viem",
+            "/tools/libraries/viem",
+            "/tools/libraries/viem.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/wagmi",
+        "from":
+        [
+            "/developers/tooling/libraries/wagmi",
+            "/get-started/tools/libraries/wagmi",
+            "/network/tooling/libraries/wagmi",
+            "/tools/libraries/wagmi",
+            "/tools/libraries/wagmi.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/permanent-data/irys/overview",
+        "from":
+        [
+            "/developers/tooling/permanent-data/irys/overview",
+            "/get-started/tools/permanent-data/irys/overview",
+            "/network/tooling/permanent-data/irys/overview",
+            "/tools/permanent-data/irys/overview",
+            "/tools/permanent-data/irys/overview.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/permanent-data/irys/irys-quickstart",
+        "from":
+        [
+            "/developers/tooling/permanent-data/irys/irys-quickstart",
+            "/get-started/tools/permanent-data/irys/irys-quickstart",
+            "/network/tooling/permanent-data/irys/irys-quickstart",
+            "/tools/permanent-data/irys/irys-quickstart",
+            "/tools/permanent-data/irys/irys-quickstart.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/scopescan",
+        "from":
+        [
+            "/developers/tooling/data-indexers/scopescan",
+            "/get-started/tools/data-indexers/scopescan",
+            "/network/tooling/data-indexers/scopescan",
+            "/tools/data-indexers/scopescan",
+            "/tools/data-indexers/scopescan.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/thegraph",
+        "from":
+        [
+            "/developers/tooling/data-indexers/thegraph",
+            "/get-started/tools/data-indexers/thegraph",
+            "/network/tooling/data-indexers/thegraph",
+            "/tools/data-indexers/thegraph",
+            "/tools/data-indexers/thegraph.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/moralis",
+        "from":
+        [
+            "/developers/tooling/data-indexers/moralis",
+            "/get-started/tools/data-indexers/moralis",
+            "/network/tooling/data-indexers/moralis",
+            "/tools/data-indexers/moralis",
+            "/tools/data-indexers/moralis.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/subquery",
+        "from":
+        [
+            "/developers/tooling/data-indexers/subquery",
+            "/get-started/tools/data-indexers/subquery",
+            "/network/tooling/data-indexers/subquery",
+            "/tools/data-indexers/subquery",
+            "/tools/data-indexers/subquery.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/noves",
+        "from":
+        [
+            "/developers/tooling/data-indexers/noves",
+            "/get-started/tools/data-indexers/noves",
+            "/network/tooling/data-indexers/noves",
+            "/tools/data-indexers/noves",
+            "/tools/data-indexers/noves.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/arkham",
+        "from":
+        [
+            "/developers/tooling/data-indexers/arkham",
+            "/get-started/tools/data-indexers/arkham",
+            "/network/tooling/data-indexers/arkham",
+            "/tools/data-indexers/arkham",
+            "/tools/data-indexers/arkham.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/covalent",
+        "from":
+        [
+            "/developers/tooling/data-indexers/covalent",
+            "/get-started/tools/data-indexers/covalent",
+            "/network/tooling/data-indexers/covalent",
+            "/tools/data-indexers/covalent",
+            "/tools/data-indexers/covalent.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers",
+        "from":
+        [
+            "/developers/tooling/data-indexers",
+            "/get-started/tools/data-indexers",
+            "/network/tooling/data-indexers",
+            "/tools/data-indexers",
+            "/tools/data-indexers.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/mobula",
+        "from":
+        [
+            "/developers/tooling/data-indexers/mobula",
+            "/get-started/tools/data-indexers/mobula",
+            "/network/tooling/data-indexers/mobula",
+            "/tools/data-indexers/mobula",
+            "/tools/data-indexers/mobula.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/envio",
+        "from":
+        [
+            "/developers/tooling/data-indexers/envio",
+            "/get-started/tools/data-indexers/envio",
+            "/network/tooling/data-indexers/envio",
+            "/tools/data-indexers/envio",
+            "/tools/data-indexers/envio.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/subsquid",
+        "from":
+        [
+            "/developers/tooling/data-indexers/subsquid",
+            "/get-started/tools/data-indexers/subsquid",
+            "/network/tooling/data-indexers/subsquid",
+            "/tools/data-indexers/subsquid",
+            "/tools/data-indexers/subsquid.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/flair",
+        "from":
+        [
+            "/developers/tooling/data-indexers/flair",
+            "/get-started/tools/data-indexers/flair",
+            "/network/tooling/data-indexers/flair",
+            "/tools/data-indexers/flair",
+            "/tools/data-indexers/flair.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/reservoir",
+        "from":
+        [
+            "/developers/tooling/data-indexers/reservoir",
+            "/get-started/tools/data-indexers/reservoir",
+            "/network/tooling/data-indexers/reservoir",
+            "/tools/data-indexers/reservoir",
+            "/tools/data-indexers/reservoir.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/dune",
+        "from":
+        [
+            "/developers/tooling/data-indexers/dune",
+            "/get-started/tools/data-indexers/dune",
+            "/network/tooling/data-indexers/dune",
+            "/tools/data-indexers/dune",
+            "/tools/data-indexers/dune.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/alchemy",
+        "from":
+        [
+            "/developers/tooling/data-indexers/alchemy",
+            "/get-started/tools/data-indexers/alchemy",
+            "/network/tooling/data-indexers/alchemy",
+            "/tools/data-indexers/alchemy",
+            "/tools/data-indexers/alchemy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/etherscan",
+        "from":
+        [
+            "/developers/tooling/data-indexers/etherscan",
+            "/get-started/tools/data-indexers/etherscan",
+            "/network/tooling/data-indexers/etherscan",
+            "/tools/data-indexers/etherscan",
+            "/tools/data-indexers/etherscan.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/dipdup/overview",
+        "from":
+        [
+            "/developers/tooling/data-indexers/dipdup/overview",
+            "/get-started/tools/data-indexers/dipdup/overview",
+            "/network/tooling/data-indexers/dipdup/overview",
+            "/tools/data-indexers/dipdup/overview",
+            "/tools/data-indexers/dipdup/overview.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/dipdup/quickstart",
+        "from":
+        [
+            "/developers/tooling/data-indexers/dipdup/quickstart",
+            "/get-started/tools/data-indexers/dipdup/quickstart",
+            "/network/tooling/data-indexers/dipdup/quickstart",
+            "/tools/data-indexers/dipdup/quickstart",
+            "/tools/data-indexers/dipdup/quickstart.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/nftscan",
+        "from":
+        [
+            "/developers/tooling/data-indexers/nftscan",
+            "/get-started/tools/data-indexers/nftscan",
+            "/network/tooling/data-indexers/nftscan",
+            "/tools/data-indexers/nftscan",
+            "/tools/data-indexers/nftscan.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/sentio",
+        "from":
+        [
+            "/developers/tooling/data-indexers/sentio",
+            "/get-started/tools/data-indexers/sentio",
+            "/network/tooling/data-indexers/sentio",
+            "/tools/data-indexers/sentio",
+            "/tools/data-indexers/sentio.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/goldsky/overview",
+        "from":
+        [
+            "/developers/tooling/data-indexers/goldsky/overview",
+            "/get-started/tools/data-indexers/goldsky/overview",
+            "/network/tooling/data-indexers/goldsky/overview",
+            "/tools/data-indexers/goldsky/overview",
+            "/tools/data-indexers/goldsky/overview.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/goldsky/goldsky-mirror",
+        "from":
+        [
+            "/developers/tooling/data-indexers/goldsky/goldsky-mirror",
+            "/get-started/tools/data-indexers/goldsky/goldsky-mirror",
+            "/network/tooling/data-indexers/goldsky/goldsky-mirror",
+            "/tools/data-indexers/goldsky/goldsky-mirror",
+            "/tools/data-indexers/goldsky/goldsky-mirror.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/data-indexers/goldsky/goldsky-index",
+        "from":
+        [
+            "/developers/tooling/data-indexers/goldsky/goldsky-index",
+            "/get-started/tools/data-indexers/goldsky/goldsky-index",
+            "/network/tooling/data-indexers/goldsky/goldsky-index",
+            "/tools/data-indexers/goldsky/goldsky-index",
+            "/tools/data-indexers/goldsky/goldsky-index.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/ai/spheron",
+        "from":
+        [
+            "/developers/tooling/cloud-infra/spheron",
+            "/get-started/tools/ai/spheron",
+            "/network/tooling/ai/spheron",
+            "/tools/ai/spheron",
+            "/tools/ai/spheron.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/ai",
+        "from":
+        [
+            "/developers/tooling/cloud-infra",
+            "/get-started/tools/ai",
+            "/network/tooling/ai",
+            "/tools/ai",
+            "/tools/ai.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/analytics/arkham",
+        "from":
+        [
+            "/developers/tooling/analytics/arkham",
+            "/get-started/tools/analytics/arkham",
+            "/network/tooling/analytics/arkham",
+            "/tools/analytics/arkham",
+            "/tools/analytics/arkham.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/analytics",
+        "from":
+        [
+            "/developers/tooling/analytics",
+            "/get-started/tools/analytics",
+            "/network/tooling/analytics",
+            "/tools/analytics",
+            "/tools/analytics.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/analytics/mobula",
+        "from":
+        [
+            "/developers/tooling/analytics/mobula",
+            "/get-started/tools/analytics/mobula",
+            "/network/tooling/analytics/mobula",
+            "/tools/analytics/mobula",
+            "/tools/analytics/mobula.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/analytics/dune",
+        "from":
+        [
+            "/developers/tooling/analytics/dune",
+            "/get-started/tools/analytics/dune",
+            "/network/tooling/analytics/dune",
+            "/tools/analytics/dune",
+            "/tools/analytics/dune.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/analytics/cookie3",
+        "from":
+        [
+            "/developers/tooling/analytics/cookie3",
+            "/get-started/tools/analytics/cookie3",
+            "/network/tooling/analytics/cookie3",
+            "/tools/analytics/cookie3",
+            "/tools/analytics/cookie3.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/verify-smart-contract/foundry",
+        "from":
+        [
+            "/developers/quickstart/verify-smart-contract/foundry",
+            "/get-started/how-to/verify-smart-contract/foundry",
+            "/get-started/how-to/verify-smart-contract/foundry.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/verify-smart-contract/atlas",
+        "from":
+        [
+            "/developers/quickstart/verify-smart-contract/atlas",
+            "/get-started/how-to/verify-smart-contract/atlas",
+            "/get-started/how-to/verify-smart-contract/atlas.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/verify-smart-contract",
+        "from":
+        [
+            "/developers/quickstart/verify-smart-contract",
+            "/get-started/how-to/verify-smart-contract",
+            "/get-started/how-to/verify-smart-contract.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/verify-smart-contract/hardhat",
+        "from":
+        [
+            "/developers/quickstart/verify-smart-contract/hardhat",
+            "/get-started/how-to/verify-smart-contract/hardhat",
+            "/get-started/how-to/verify-smart-contract/hardhat.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/foundry",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/foundry",
+            "/get-started/how-to/deploy-smart-contract/foundry",
+            "/get-started/how-to/deploy-smart-contract/foundry.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/thirdweb",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/thirdweb",
+            "/get-started/how-to/deploy-smart-contract/thirdweb",
+            "/get-started/how-to/deploy-smart-contract/thirdweb.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/cookbook",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/cookbook",
+            "/get-started/how-to/deploy-smart-contract/cookbook",
+            "/get-started/how-to/deploy-smart-contract/cookbook.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/remix",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/remix",
+            "/get-started/how-to/deploy-smart-contract/remix",
+            "/get-started/how-to/deploy-smart-contract/remix.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/atlas",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/atlas",
+            "/get-started/how-to/deploy-smart-contract/atlas",
+            "/get-started/how-to/deploy-smart-contract/atlas.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-smart-contract/hardhat",
+        "from":
+        [
+            "/developers/quickstart/deploy-smart-contract/hardhat",
+            "/get-started/how-to/deploy-smart-contract/hardhat",
+            "/get-started/how-to/deploy-smart-contract/hardhat.mdx"
+        ]
+    },
+    {
+        "to": "/api/linea-sdk",
+        "from":
+        [
+            "/developers/guides/linea-sdk"
+        ]
+    },
+    {
+        "to": "/network/how-to/deploy-subdomain",
+        "from":
+        [
+            "/developers/guides/deploy-subdomain",
+            "/get-started/how-to/deploy-subdomain",
+            "/get-started/how-to/deploy-subdomain.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/erigon",
+        "from":
+        [
+            "/developers/guides/run-a-node/erigon",
+            "/get-started/how-to/run-a-node/erigon",
+            "/get-started/how-to/run-a-node/erigon.mdx"
         ]
     },
     {
         "to": "/network/how-to/run-a-node/geth",
-        "from": [
-            "/get-started/how-to/run-a-node/geth"
-        ]
-    },
-    {
-        "to": "/network/how-to/run-a-node/linea-besu",
-        "from": [
-            "/get-started/how-to/run-a-node/linea-besu"
-        ]
-    },
-    {
-        "to": "/network/how-to/run-a-node/maru",
-        "from": [
-            "/get-started/how-to/run-a-node/maru"
+        "from":
+        [
+            "/developers/guides/run-a-node/geth",
+            "/get-started/how-to/run-a-node/geth",
+            "/get-started/how-to/run-a-node/geth.mdx"
         ]
     },
     {
         "to": "/network/how-to/run-a-node/bootnodes",
-        "from": [
-            "/get-started/how-to/run-a-node/bootnodes"
+        "from":
+        [
+            "/developers/guides/run-a-node/bootnodes",
+            "/developers/guides/run-a-node/enodes",
+            "/get-started/how-to/run-a-node/bootnodes",
+            "/get-started/how-to/run-a-node/bootnodes.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/linea-besu",
+        "from":
+        [
+            "/developers/guides/run-a-node/linea-besu",
+            "/get-started/how-to/run-a-node/linea-besu",
+            "/get-started/how-to/run-a-node/linea-besu.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/besu",
+        "from":
+        [
+            "/developers/guides/run-a-node/besu",
+            "/get-started/how-to/run-a-node/besu",
+            "/get-started/how-to/run-a-node/besu.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/volume-creation",
+        "from":
+        [
+            "/developers/guides/run-a-node/volume-creation",
+            "/get-started/how-to/run-a-node/volume-creation",
+            "/get-started/how-to/run-a-node/volume-creation.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/ecosystem-tutorials",
+        "from":
+        [
+            "/developers/guides/community",
+            "/get-started/tutorials/ecosystem-tutorials",
+            "/learn/ecosystem-tutorials",
+            "/learn/ecosystem-tutorials.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/ecosystem-tutorials/irys",
+        "from":
+        [
+            "/developers/guides/community/irys",
+            "/get-started/tutorials/ecosystem-tutorials/irys",
+            "/learn/ecosystem-tutorials/irys",
+            "/learn/ecosystem-tutorials/irys.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/ecosystem-tutorials/irys/irys-nfts",
+        "from":
+        [
+            "/developers/guides/community/irys/irys-nfts",
+            "/get-started/tutorials/ecosystem-tutorials/irys/irys-nfts",
+            "/learn/ecosystem-tutorials/irys/irys-nfts",
+            "/learn/ecosystem-tutorials/irys/irys-nfts.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/ecosystem-tutorials/irys/irys-dynamic-nfts",
+        "from":
+        [
+            "/developers/guides/community/irys/irys-dynamic-nfts",
+            "/get-started/tutorials/ecosystem-tutorials/irys/irys-dynamic-nfts",
+            "/learn/ecosystem-tutorials/irys/irys-dynamic-nfts",
+            "/learn/ecosystem-tutorials/irys/irys-dynamic-nfts.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/first-dapp",
+        "from":
+        [
+            "/get-started/tutorials/first-dapp",
+            "/learn/first-dapp",
+            "/learn/first-dapp.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/aiagent-quickstart",
+        "from":
+        [
+            "/get-started/tutorials/aiagent-quickstart",
+            "/learn/aiagent-quickstart",
+            "/learn/aiagent-quickstart.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/marketplace-dapp",
+        "from":
+        [
+            "/get-started/tutorials/marketplace-dapp",
+            "/learn/marketplace-dapp",
+            "/learn/marketplace-dapp.mdx"
+        ]
+    },
+    {
+        "to": "/network/tutorials/voting-dapp",
+        "from":
+        [
+            "/get-started/tutorials/voting-dapp",
+            "/learn/voting-dapp",
+            "/learn/voting-dapp.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/finalized-block",
+        "from":
+        [
+            "/developers/guides/finalized-block",
+            "/get-started/how-to/finalized-block",
+            "/get-started/how-to/finalized-block.mdx"
+        ]
+    },
+    {
+        "to": "/api/reference/eth-sendrawtransaction",
+        "from":
+        [
+            "/developers/reference/api/eth-sendrawtransaction"
+        ]
+    },
+    {
+        "to": "/api/reference/linea-gettransactionexclusionstatusv1",
+        "from":
+        [
+            "/developers/reference/api/linea-gettransactionexclusionstatusv1"
+        ]
+    },
+    {
+        "to": "/api/reference/linea-getproof",
+        "from":
+        [
+            "/developers/reference/api/linea-getproof"
         ]
     },
     {
         "to": "/network/how-to/verify-users-with-proof-of-humanity",
-        "from": [
-            "/get-started/how-to/verify-users-with-proof-of-humanity"
+        "from":
+        [
+            "/network/how-to/poh-api",
+            "/get-started/how-to/verify-users-with-proof-of-humanity",
+            "/get-started/how-to/verify-users-with-proof-of-humanity.mdx"
         ]
     },
     {
-        "to": "/protocol/architecture",
-        "from": [
-            "/technology/architecture"
+        "to": "/network/how-to/fallback",
+        "from":
+        [
+            "/get-started/how-to/fallback",
+            "/learn/fallback",
+            "/get-started/how-to/fallback.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/gas",
+        "from":
+        [
+            "/get-started/tooling/gas",
+            "/get-started/tools/gas",
+            "/network/tooling/gas",
+            "/tools/gas",
+            "/tools/gas.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/gas/blocknative",
+        "from":
+        [
+            "/get-started/tools/gas/blocknative",
+            "/network/tooling/gas/blocknative",
+            "/tools/gas/blocknative",
+            "/tools/gas/blocknative.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login/dynamic",
+        "from":
+        [
+            "/get-started/tools/social-login/dynamic",
+            "/network/tooling/social-login/dynamic",
+            "/tools/social-login/dynamic",
+            "/tools/social-login/dynamic.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login/metamask",
+        "from":
+        [
+            "/get-started/tools/social-login/metamask",
+            "/network/tooling/social-login/metamask",
+            "/tools/social-login/metamask",
+            "/tools/social-login/metamask.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/social-login/privy",
+        "from":
+        [
+            "/get-started/tools/social-login/privy",
+            "/network/tooling/social-login/privy",
+            "/tools/social-login/privy",
+            "/tools/social-login/privy.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/account-abstraction/metamask",
+        "from":
+        [
+            "/get-started/tools/account-abstraction/metamask",
+            "/network/tooling/account-abstraction/metamask",
+            "/tools/account-abstraction/metamask",
+            "/tools/account-abstraction/metamask.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/tools/libraries/web3j",
+        "from":
+        [
+            "/get-started/tools/libraries/web3j",
+            "/network/tooling/libraries/web3j",
+            "/tools/libraries/web3j",
+            "/tools/libraries/web3j.mdx"
+        ]
+    },
+    {
+        "to": "/network/overview/recoverable-state",
+        "from":
+        [
+            "/network/how-to/state-recovery"
+        ]
+    },
+    {
+        "to": "/network/build/contracts",
+        "from":
+        [
+            "/get-started/build/contracts",
+            "/get-started/build/contracts.mdx"
+        ]
+    },
+    {
+        "to": "/network/build/block-explorers",
+        "from":
+        [
+            "/get-started/build/block-explorers",
+            "/get-started/build/block-explorers.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/migrate-dapp",
+        "from":
+        [
+            "/get-started/how-to/migrate-dapp",
+            "/get-started/how-to/migrate-dapp.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/connect-wallet",
+        "from":
+        [
+            "/get-started/how-to/connect-wallet",
+            "/get-started/how-to/connect-wallet.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/bridge",
+        "from":
+        [
+            "/get-started/how-to/bridge",
+            "/get-started/how-to/bridge.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/beta-v4-migration",
+        "from":
+        [
+            "/get-started/how-to/run-a-node/beta-v4-migration",
+            "/get-started/how-to/run-a-node/beta-v4-migration.mdx"
+        ]
+    },
+    {
+        "to": "/network/how-to/run-a-node/maru",
+        "from":
+        [
+            "/get-started/how-to/run-a-node/maru",
+            "/get-started/how-to/run-a-node/maru.mdx"
         ]
     },
     {
         "to": "/protocol/tokenomics",
-        "from": [
-            "/technology/tokenomics"
+        "from":
+        [
+            "/technology/tokenomics",
+            "/technology/tokenomics.mdx",
+            "/protocol/tokenomics/burn",
+            "/protocol/tokenomics/burn.mdx"
         ]
     },
     {
-        "to": "/protocol/burn",
-        "from": [
-            "/technology/burn"
+        "to": "/network/build/tools/cross-chain/arcana",
+        "from":
+        [
+            "/get-started/tools/cross-chain/arcana",
+            "/tools/cross-chain/arcana",
+            "/tools/cross-chain/arcana.mdx"
         ]
     },
     {
-        "to": "/protocol/repos",
-        "from": [
-            "/technology/repos"
+        "to": "/network/build/tools/cross-chain/thirdweb",
+        "from":
+        [
+            "/get-started/tools/cross-chain/thirdweb",
+            "/tools/cross-chain/thirdweb",
+            "/tools/cross-chain/thirdweb.mdx"
         ]
     },
     {
-        "to": "/protocol/transaction-lifecycle",
-        "from": [
-            "/technology/transaction-lifecycle"
+        "to": "/network/build/tools/cross-chain/ccip",
+        "from":
+        [
+            "/get-started/tools/cross-chain/ccip",
+            "/tools/cross-chain/ccip",
+            "/tools/cross-chain/ccip.mdx"
         ]
     },
     {
-        "to": "/protocol/gas",
-        "from": [
-            "/technology/gas"
+        "to": "/network/build/tools/cross-chain/reactive-network",
+        "from":
+        [
+            "/get-started/tools/cross-chain/reactive-network",
+            "/tools/cross-chain/reactive-network",
+            "/tools/cross-chain/reactive-network.mdx"
         ]
     },
     {
-        "to": "/protocol/network-data",
-        "from": [
-            "/technology/network-data"
+        "to": "/network/build/tools/permanent-data",
+        "from":
+        [
+            "/get-started/tools/permanent-data",
+            "/tools/permanent-data",
+            "/tools/permanent-data.mdx"
         ]
     },
     {
-        "to": "/protocol/canonical-token-bridge",
-        "from": [
-            "/technology/canonical-token-bridge"
+        "to": "/network/build/tools/data-indexers/bitscrunch",
+        "from":
+        [
+            "/get-started/tools/data-indexers/bitscrunch",
+            "/tools/data-indexers/bitscrunch",
+            "/tools/data-indexers/bitscrunch.mdx"
         ]
     },
     {
-        "to": "/protocol/message-service",
-        "from": [
-            "/technology/message-service"
+        "to": "/network/how-to/run-a-node/nethermind",
+        "from":
+        [
+            "/get-started/how-to/run-a-node/nethermind",
+            "/get-started/how-to/run-a-node/nethermind.mdx"
         ]
     },
     {
-        "to": "/protocol/message-service",
-        "from": [
-            "/technology/message-service/index"
+        "to": "/network/tutorials/ecosystem-tutorials/usdc",
+        "from":
+        [
+            "/get-started/tutorials/ecosystem-tutorials/usdc",
+            "/learn/ecosystem-tutorials/usdc",
+            "/learn/ecosystem-tutorials/usdc.mdx"
         ]
     },
     {
-        "to": "/protocol/message-service/reference",
-        "from": [
-            "/technology/message-service/reference"
+        "to": "/network/build/launch-an-app",
+        "from":
+        [
+            "/get-started/build/dapp-support",
+            "/get-started/build/dapp-support.mdx"
         ]
     },
     {
-        "to": "/protocol/coordinator",
-        "from": [
-            "/technology/coordinator"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer",
-        "from": [
-            "/technology/sequencer"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer",
-        "from": [
-            "/technology/sequencer/index"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer/conflation",
-        "from": [
-            "/technology/sequencer/conflation"
-        ]
-    },
-    {
-        "to": "/protocol/sequencer/traces-generator",
-        "from": [
-            "/technology/sequencer/traces-generator"
-        ]
-    },
-    {
-        "to": "/protocol/state-recovery",
-        "from": [
-            "/technology/state-recovery"
-        ]
-    },
-    {
-        "to": "/protocol/state-manager",
-        "from": [
-            "/technology/state-manager"
-        ]
-    },
-    {
-        "to": "/protocol/prover",
-        "from": [
-            "/technology/prover"
-        ]
-    },
-    {
-        "to": "/protocol/prover",
-        "from": [
-            "/technology/prover/index"
-        ]
-    },
-    {
-        "to": "/protocol/prover/proving",
-        "from": [
-            "/technology/prover/proving"
-        ]
-    },
-    {
-        "to": "/protocol/prover/trace-expansion",
-        "from": [
-            "/technology/prover/trace-expansion"
-        ]
-    },
-    {
-        "to": "/protocol/prover/prover-limits",
-        "from": [
-            "/technology/prover/prover-limits"
+        "to": "/protocol/tokenomics",
+        "from":
+        [
+            "/technology/burn",
+            "/technology/burn.mdx"
         ]
     }
 ]
