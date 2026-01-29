@@ -1,0 +1,247 @@
+---
+title: Write and deploy assertions
+description: A guide to developing Credible Layer assertions
+sidebar_position: 4
+---
+
+The Credible Layer is security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart
+contracts and enforce them at the network level. When a transaction violates your rules, it's
+dropped *before* it can execute—preventing exploits rather than detecting them after the damage is
+done.
+
+You write rules in Solidity (called [assertions](https://docs.phylax.systems/credible/assertions-overview)),
+and no contract modifications are required. This means you can add protection to any contract,
+including immutable ones.
+
+## How the Credible Layer works
+
+The Credible Layer runs as a sidecar alongside the network's sequencer. When you deploy assertions,
+they're registered on-chain and the sidecar validates every transaction against them during block
+production.
+
+**The flow:**
+
+1. User submits a transaction to the network
+2. The sequencer passes it to the Assertion Enforcer (sidecar) for validation
+3. The sidecar simulates the transaction and runs all relevant assertions
+4. If assertions pass → transaction is included in the block
+5. If any assertion fails → transaction is dropped and never executes.
+
+This flow adds no new trust assumptions: if you trust the network to include your transactions, you
+can trust it to enforce your assertions.
+
+For full architecture details, see [Architecture Overview](https://docs.phylax.systems/credible/architecture-overview).
+
+### What assertions can do
+
+Assertions have capabilities that regular Solidity contracts don't, including:
+
+- **Compare before/after states** — Use `ph.forkPreTx()` and `ph.forkPostTx()` to check how a
+  transaction changes state
+- **Protect immutable contracts** — Add security rules without modifying or redeploying contracts
+- **Inspect nested calls** — Use `ph.forkPreCall()` and `ph.forkPostCall()` to examine state around
+  specific function calls within a transaction
+- **Run complex validation** — Execute assertions off-chain with higher gas limits than typical
+  on-chain operations.
+
+### Use cases
+
+Assertions can protect against a wide range of issues:
+
+- **Parameter protection** — Prevent unauthorized changes to owner addresses, implementation
+  contracts, or protocol settings
+- **Price manipulation** — Ensure prices don't move beyond specified thresholds in a single
+  transaction
+- **Lending safety** — Guarantee positions maintain required collateralization ratios
+- **Balance invariants** — Verify that token balances remain consistent (e.g., sum of positions
+  equals total supply)
+- **Oracle validation** — Detect suspicious oracle price deviations.
+
+For real-world examples, see the [Assertions Book](https://docs.phylax.systems/assertions-book/assertions-book-intro)
+and [Previous Hacks](https://docs.phylax.systems/assertions-book/previous-hacks/prev-hacks-index)
+that assertions would have prevented.
+
+## Quick start
+
+The following guide walks you through creating a project and deploying assertions with the Credible
+Layer.
+
+### Prerequisites
+
+Before you begin, make sure you have:
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) installed
+- The `pcl` CLI installed (see below)
+- A way to sign transactions in your browser (MetaMask or similar).
+
+### Install pcl
+
+```bash
+brew tap phylaxsystems/pcl
+brew install phylax
+```
+
+Verify installation:
+
+```bash
+pcl --version
+```
+
+For other installation methods, see the [Installation Guide](https://docs.phylax.systems/credible/credible-install).
+
+### Clone the starter project
+
+To get started, clone the starter project:
+
+```bash
+git clone --recurse-submodules https://github.com/phylaxsystems/credible-layer-starter
+cd credible-layer-starter
+```
+
+This includes example contracts and assertions you can deploy immediately.
+
+### Understand the ownable assertion contract
+
+The starter project includes an assertion that prevents unauthorized ownership changes. Here's what
+it looks like:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import {Assertion} from "credible-std/Assertion.sol";
+import {Ownable} from "../../src/Ownable.sol";
+
+contract OwnableAssertion is Assertion {
+    function triggers() external view override {
+        registerCallTrigger(this.assertionOwnershipChange.selector, Ownable.transferOwnership.selector);
+    }
+
+    function assertionOwnershipChange() external {
+        Ownable ownable = Ownable(ph.getAssertionAdopter());
+
+        ph.forkPreTx();
+        address preOwner = ownable.owner();
+
+        ph.forkPostTx();
+        address postOwner = ownable.owner();
+
+        require(postOwner == preOwner, "Ownership has changed");
+    }
+}
+```
+
+**How it works:**
+
+- `triggers()` registers when the assertion runs—here, whenever `transferOwnership` is called
+- `ph.forkPreTx()` switches to the state before the transaction
+- `ph.forkPostTx()` switches to the state after the transaction
+- If the owner changed, the `require` fails and the transaction is dropped.
+
+For a detailed walkthrough, see [Write Your First Assertion](https://docs.phylax.systems/credible/write-first-assertion).
+
+To test this assertion run the following:
+
+```bash
+pcl test
+```
+
+You should see output like:
+
+```bash
+[PASS] test_assertionOwnershipChanged() (gas: 806650)
+[PASS] test_assertionOwnershipNotChanged() (gas: 804708)
+Suite result: ok. 2 passed; 0 failed; 0 skipped
+```
+
+For more on testing, see [Testing Assertions](https://docs.phylax.systems/credible/testing-assertions).
+
+### Deploy your contract
+
+Deploy the Ownable contract to the network:
+
+```bash
+forge script script/DeployOwnable.s.sol \
+  --rpc-url <RPC_URL> \
+  --sender <DEPLOYER_ADDRESS> \
+  --private-key <PRIVATE_KEY> \
+  --broadcast
+```
+
+Note the `Deployed to:` address, you'll need it later.
+
+### Authenticate and create a project
+
+To authenticate with the Credible Layer, run:
+
+```bash
+pcl auth login
+```
+
+This opens a browser window. Sign in and create a new project, then link your deployed contract
+address to it.
+
+### Store and submit your assertion
+
+To deploy an assertion, you first need to store the assertion in the Assertion Data Availability
+layer:
+
+```bash
+pcl store OwnableAssertion
+```
+
+Then, submit it to your project:
+
+```bash
+pcl submit -a 'OwnableAssertion' -p <project_name>
+```
+
+Replace `<project_name>` with the name of the project you created.
+
+### Deploy the assertion
+
+Return to the browser window from `pcl auth login` and navigate to your project. You'll see the
+assertion ready for deployment. Review and deploy it to activate protection.
+
+After a timelock period, your assertion becomes enforced and will actively protect your contract.
+
+For the full deployment process, see [Deploy Assertions](https://docs.phylax.systems/credible/deploy-assertions-dapp).
+
+### Verify it works
+
+Once the assertion is enforced, test that it's protecting your contract:
+
+```bash
+# Check current owner
+cast call <CONTRACT_ADDRESS> "owner()" --rpc-url <RPC_URL>
+
+# Attempt to transfer ownership (this should timeout/fail)
+cast send <CONTRACT_ADDRESS> "transferOwnership(address)" <NEW_ADDRESS> \
+  --rpc-url <RPC_URL> \
+  --private-key <OWNER_PRIVATE_KEY>
+```
+
+The ownership transfer should timeout, confirming the assertion blocked it.
+
+## Learn more
+
+- [Quickstart Guide](https://docs.phylax.systems/credible/pcl-quickstart) — Full walkthrough of the
+  development process
+- [High-Level Overview](https://docs.phylax.systems/credible/credible-layer-overview) — How the
+  Credible Layer prevents exploits
+- [Architecture Overview](https://docs.phylax.systems/credible/architecture-overview) — Technical
+  deep dive into system design and transaction flow
+- [Assertions Book](https://docs.phylax.systems/assertions-book/assertions-book-intro) — Real-world
+  assertion examples
+- [Previous Hacks](https://docs.phylax.systems/assertions-book/previous-hacks/prev-hacks-index) —
+  See how assertions would have prevented major exploits
+- [CLI Reference](https://docs.phylax.systems/credible/cli-reference) — Full `pcl` command reference
+- [Cheatcodes Reference](https://docs.phylax.systems/credible/cheatcodes-reference) — All available
+  assertion cheatcodes
+
+## Phylax community & support
+
+- [Telegram](https://t.me/phylax_credible_layer)
+- [X/Twitter](https://x.com/phylaxsystems)
+- [GitHub](https://github.com/phylaxsystems)
+- [Phylax Website](https://phylax.systems)
