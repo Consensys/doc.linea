@@ -106,7 +106,7 @@ const config = {
       announcementBar: {
         id: "announcement_bar_2026_01_ens_resolver",
         content:
-          '📣 <strong>Attention builders</strong>: ENS resolver deprecating soon; get ready to update your configuration. Learn more <a href="/network/how-to/deploy-subdomain#use-ens-contracts">here.</a>',
+          '📣 <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. Learn more <a href="/network/how-to/deploy-subdomain#use-ens-contracts">here.</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
