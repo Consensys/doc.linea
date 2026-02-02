@@ -173,7 +173,12 @@ Ensure you mount the Besu `data-path` to the custom volume when you start the no
 In your Besu configuration file, configure the following options:
 
 - Set `data-path` to the location you want to store your data. 
-- Set `genesis-file` to the path of your downloaded genesis file.
+- Set `network` to `linea_mainnet` or `linea_sepolia` to select the Linea network.
+
+:::note
+Besu does not allow `--network` and `--genesis-file` together. Use the named network approach for
+Linea.
+:::
 
 ### Step 5. Start the Besu client
 

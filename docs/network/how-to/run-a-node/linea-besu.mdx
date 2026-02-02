@@ -12,16 +12,7 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-:::::note
 
-This section is undergoing maintenance. Similarly to Ethereum, and as of Linea
-[Beta v4](../../../changelog/release-notes.mdx#beta-v40), Linea uses a dual-layer architecture, with a
-consensus layer client, Maru, and an execution layer client of your choice.
-
-This section will be updated shortly to reflect this new architecture and is inaccurate for the time
-being.
-
-:::::
 
 Linea Besu is an implementation of the Besu client that extends its functionality using plugins
 adapted specifically for Linea, such as the
@@ -205,3 +196,8 @@ L1.
 </Tabs>
 
 The node will attempt to find peers to begin synchronizing and to download the world state.
+
+## Note on profiles and genesis
+
+Profiles already embed the Linea network and do not require a genesis file. See the
+[linea-besu-package README](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/README.md).
