@@ -17,14 +17,11 @@ Apache 2.0 license and written in Java.
 
 ::::info important
 
-Install and run a Besu node if you want to follow the Linea network by maintaining a local copy of
-the blockchain. However, if you want to interact with the network and use Linea-specific methods and
-features, you should [install Linea Besu](./linea-besu.mdx) instead.
+Install and run a Besu node if you only want to follow the Linea network by maintaining a local copy of
+the blockchain. To interact with the network and use Linea-specific methods and
+features, [install Linea Besu](./linea-besu.mdx).
 
 ::::
-
-You can run Besu using Docker or from a binary distribution. Docker is the default path; the binary
-distribution is an alternative.
 
 Please note that you must run any execution layer client such as Besu alongside Linea's consensus
 layer client, [Maru](./maru.mdx), for the node to function.
@@ -33,13 +30,13 @@ layer client, [Maru](./maru.mdx), for the node to function.
 
 ::::warning Important
 
-The Besu Docker image doesn't run on Windows.
+The Besu Docker image doesn't run on Windows. For Windows machines, [run using the binary distribution](#alternative-run-using-the-binary-distribution).
 
 ::::
 
 ### Prerequisites
 
-Download and install [Docker](https://docker.com/products/docker-desktop/) and ensure it is running.
+- [Docker](https://docker.com/products/docker-desktop/)
 
 ### Step 1. Download configuration files
 
@@ -48,16 +45,10 @@ Download the configuration files for the relevant network from the Linea monorep
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Head to the [`/docs/getting-started/linea-mainnet/`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet)
-  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
-  both:
-  - `/docs/getting-started/linea-mainnet`, which contains the `docker-compose.yml` file that you'll
-    run, and;
-  - `/docs/getting-started/linea-mainnet/besu`, which contains the configuration
-    file.
-  
-  You can choose to manually download each, copy their contents into files of your own, or clone the
-  Linea monorepo.
+  To follow Linea Mainnet with Besu, download:
+
+  - The [Docker Compose file ](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml) 
+  - The [configuration file](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/linea-besu.config.toml)
 
   :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The Besu `.zip` includes a
@@ -70,21 +61,15 @@ Download the configuration files for the relevant network from the Linea monorep
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Head to the [`/docs/getting-started/linea-sepolia`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia/)
-  directory in the Linea monorepo for all the files you need. Make sure you download the contents of
-  both:
-  - `/docs/getting-started/linea-sepolia`, which contains the `docker-compose.yml` file that you'll
-    run, and;
-  - `/docs/getting-started/linea-sepolia/besu`, which contains the configuration
-    file.
-  
-  You can choose to manually download each, copy their contents into files of your own, or clone the
-  Linea monorepo.
+  To follow Linea Sepolia with Besu, download:
+
+  - The [Docker Compose file](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+  - The [configuration file](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/besu/linea-besu.config.toml)
   
   </TabItem>
 </Tabs>
 
-### Step 2. Update the Docker Compose file
+### Step 2. Update IP address
 
 In the `docker-compose.yml` file, update the `--p2p-host` command to include your public IP address.
 For example:

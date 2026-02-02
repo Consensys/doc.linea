@@ -12,8 +12,6 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-
-
 Linea Besu is an implementation of the Besu client that extends its functionality using plugins
 adapted specifically for Linea, such as the
 [Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
@@ -38,27 +36,31 @@ blockchain, rather than just following it. Use Linea Besu if:
 
 ### Prerequisites
 
-Download and install [Docker](https://docker.com/products/docker-desktop/) and ensure it is running.
+- [Docker](https://docker.com/products/docker-desktop/)
+- Linux/ARM or Windows/X86_64
 
 ### Step 1. Download the relevant `docker-compose.yaml` file
 
-Access the [`/docker` directory](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package/docker)
+To run a Linea Besu node, access the [`/docker` directory](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package/docker)
 in the Linea Besu repository. This directory is the source of truth for Linea Besu compose profiles.
-There are several `.yaml` files here corresponding to Besu profiles. Each profile enables you to run
-a node with different Linea Besu plugin configurations depending on your use case.
+Each profile supports different Linea Besu plugin configurations depending on your use case.
 
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
+
     Download the appropriate `.yaml` file for your use case:
-    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
-    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support
+    - [`basic-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-mainnet.yaml): Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - [`advanced-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-mainnet.yaml): Creates an advanced node on Linea Mainnet with plugins that enable support
     for `linea_estimateGas` and the `finalized` block parameter tag.
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
+
     Download the appropriate `.yaml` file for your use case:
-    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
-    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support
+    - [`basic-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-sepolia.yaml): Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - [`advanced-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-sepolia.yaml): Creates an advanced node on Linea Sepolia with plugins that enable support
     for `linea_estimateGas` and the `finalized` block parameter tag.
+
   </TabItem>
 </Tabs>
 
@@ -96,8 +98,10 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 
     Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
     name with a more recent version from the releases page.
+
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
+
       In a terminal, navigate to your `.yaml` file's directory. Then start the node by running
       `docker compose`:
 
@@ -114,6 +118,7 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 
       Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
       name with a more recent version from the releases page.
+
     </TabItem>
 </Tabs>
 
@@ -125,8 +130,10 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 Besu package from the releases page.
 
 :::::note
+
 Find the **Assets** subheading on the latest release and download the file named
 `linea-besu-package-<version>.tar.gz`.
+
 :::::
 
 ### Step 2. Extract the package contents
