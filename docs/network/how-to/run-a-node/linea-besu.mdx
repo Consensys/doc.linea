@@ -12,13 +12,9 @@ import VolumeCreation from "./volume-creation.mdx";
 import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
-Linea Besu is an implementation of the Besu client that extends its functionality using plugins
-adapted specifically for Linea, such as the
-[Linea Sequencer plugin](https://github.com/Consensys/linea-sequencer).
-
-Plugins enable full functionality for the node. For example, Linea-specific API endpoints like
-`linea_estimateGas` require the `linea-sequencer` plugin. Plugins are installed with the `advanced`
-profile during the configuration steps.
+Linea Besu is a Besu distribution with Linea-specific plugins bundled and configured through
+profiles in the [linea-besu-package](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package).
+Advanced profiles enable extra Linea features such as `linea_estimateGas`.
 
 :::::warning
 
