@@ -102,8 +102,12 @@ Run the following command to build a distribution:
 Run the distribution with the following command:
 
 ```bash
-./app/build/install/app/bin/app --maru-genesis-file=docker/initialization/genesis-maru.json --config=docker/maru/config.dev.toml
+./app/build/install/app/bin/app --network linea-mainnet --config=docker/maru/config.dev.toml
 ```
 
 The distribution will be created in `app/build/install/app/` with all necessary dependencies
 included.
+
+:::note
+Maru supports named networks. Do not use `--network` and `--maru-genesis-file` together.
+:::
