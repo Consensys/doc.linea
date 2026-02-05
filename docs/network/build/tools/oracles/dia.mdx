@@ -58,17 +58,17 @@ contract DIAOracleSample {
     view
     returns (
         uint128 latestPrice,
-        uint128 timestampOflatestPrice
+        uint128 timestampOfLatestPrice
     ) {
-        (latestPrice, timestampOflatestPrice) =
+        (latestPrice, timestampOfLatestPrice) =
                  IDIAOracleV2(diaOracle).getValue(key);
     }
 }
 ```
 
 Please refer to
-[DIA's documentation](https://www.diadata.org/docs/guides/chain-specific-guide/linea)for
-the list of available price feeds.
+[DIA's documentation](https://www.diadata.org/docs/guides/chain-specific-guide/linea)
+for the list of available price feeds.
 
 ## Request a Custom Oracle
 
