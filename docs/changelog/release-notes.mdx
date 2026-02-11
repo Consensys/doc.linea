@@ -19,11 +19,28 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
 :::
 
+## Beta v6.0
+
+**Linea Mainnet: 3 March 2026**
+
+**Linea Sepolia: 21 January 2026**
+
+- Switches prover to small fields, enabling faster proof generation. **This change deprecates the ENS resolver contract; you will need to update your configuration to point to the new contract address.** More information [here](../network/how-to/deploy-subdomain.mdx). 
+- Increases throughput to 200 Mgas/s.
+
+## Beta v5.0
+
+**Linea Mainnet: 23 February 2026**
+
+**Linea Sepolia: 21 December 2025**
+
+- Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+
 ## Assertions
 
-Implemented the Credible Layer, a security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart contracts and enforce them at the network level. To learn more about writing and deploying assertions, see the [guide](../network/how-to/write-and-deploy-assertions.mdx).
-
 **Linea Mainnet: 28 January 2026**
+
+- Implements the Credible Layer, a security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart contracts and enforce them at the network level. To learn more about writing and deploying assertions, see the [guide](../network/how-to/write-and-deploy-assertions.mdx).
 
 ## Beta v4.4
 
@@ -31,7 +48,7 @@ Implemented the Credible Layer, a security infrastructure built by [Phylax Syste
 
 **Linea Sepolia: 1 December 2025**
 
-- Upgraded Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../network/how-to/run-a-node/beta-v4-migration.mdx).
+- Upgrades Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../network/how-to/run-a-node/beta-v4-migration.mdx).
 
 ## Beta v4.3
 
@@ -39,8 +56,8 @@ Implemented the Credible Layer, a security infrastructure built by [Phylax Syste
 
 **Linea Sepolia: 10 November 2025**
 
-- Upgraded to limitless prover, enabling higher throughput and lower gas fees.
-- Increased throughput to 100 Mgas/s.
+- Upgrades to limitless prover, enabling higher throughput and lower gas fees.
+- Increases throughput to 100 Mgas/s.
 
 ## Beta v4.2
 
@@ -48,7 +65,7 @@ Implemented the Credible Layer, a security infrastructure built by [Phylax Syste
 
 **Linea Sepolia: 31 October 2025**
 
-- Updated the burn mechanism to include LINEA tokens. Details and percentage breakdown in the
+- Updates the burn mechanism to include LINEA tokens. Details and percentage breakdown in the
   [burn mechanism guide](../protocol/tokenomics.mdx#burning-mechanism).
 
 ## Fusaka 
