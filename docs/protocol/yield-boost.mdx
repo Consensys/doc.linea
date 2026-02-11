@@ -13,9 +13,21 @@ Yield Boost is not yet live. This documentation describes the intended design.
 
 ## Overview
 
-The Linea Yield Boost system stakes LineaRollup funds on Ethereum L1 via Lido V3 stVaults to generate beacon chain rewards, which are reported to L2 for distribution. This document maps **where ETH flows** and **which roles control each movement**.
+Yield Boost earns staking rewards on user-bridged ETH and distributes those rewards back to users on L2. This page maps where ETH flows and which roles control each movement.
 
 ## High-level architecture
+
+Bridge deposits on Ethereum L1 are staked via Lido V3 stVaults to generate beacon chain rewards, which are reported to L2 for distribution.
+
+**Key entities:**
+
+- **YieldManager** - Core L1 contract that routes ETH between the bridge and external staking strategies, and calculates reportable yield after deducting obligations.
+- **Dashboard** - Lido V3 utility contract that wraps the StakingVault with operator fee handling and convenience functions for deposits and LST minting.
+- **StakingVault** - Lido V3 vault that holds ETH for beacon chain staking. The vault owner controls deposits and withdrawals; withdrawal credentials point to the vault.
+- **Node Operator** - Runs beacon chain validators on behalf of Linea. Has sole authority over when and how much ETH to deposit from the StakingVault into validators.
+- **Automation Service** - Off-chain service that executes routine yield operations: reporting, reserve rebalancing, and obligation settlement.
+- **L2MessageService** - L2 contract that receives yield messages from L1 and releases corresponding L2 ETH into circulation.
+- **L2YieldDistributor** - Distributes newly circulated L2 ETH (backed by L1 staking rewards) to eligible recipients.
 
 ### L1 ETH flow
 
@@ -216,7 +228,7 @@ sequenceDiagram
 
 ### 5. LST withdrawal - last resort
 
-When LineaRollup lacks sufficient ETH for a user withdrawal, stETH is minted against StakingVault collateral and sent directly to the user.
+If the bridge lacks ETH for a user withdrawal, stETH is minted against StakingVault collateral and sent directly to the user as a last resort.
 
 ```mermaid
 sequenceDiagram
@@ -237,7 +249,7 @@ This creates an LST liability that accrues interest; the system prioritizes repa
 
 ### 6. Ossification withdrawal
 
-Security Council initiates vault ossification; Automation Service progressively withdraws all funds.
+Ossification permanently freezes the StakingVault implementation, opting out of future upgrades. The Security Council initiates it; the Automation Service then progressively withdraws all staked funds back to the bridge.
 
 ```mermaid
 sequenceDiagram
