@@ -108,6 +108,13 @@ flowchart LR
 
 Each scenario below traces a specific ETH movement end-to-end, showing the contracts involved and the role that triggers it.
 
+1. **Staking** - routine: surplus ETH is moved from LineaRollup into validators.
+2. **Reserve replenishment** - routine: the Automation Service pulls funds back from validators when the withdrawal reserve runs low.
+3. **Yield reporting** - routine: earned rewards are calculated, obligations settled, and net yield relayed to L2.
+4. **Permissionless flows** - fallback: anyone can trigger unstaking and replenishment when the reserve drops below minimum.
+5. **LST withdrawal** - last resort: stETH is minted for users when LineaRollup has insufficient ETH.
+6. **Ossification withdrawal** - terminal: all staked funds are progressively withdrawn after the Security Council ossifies the vault.
+
 ### 1. Staking
 
 Surplus ETH in LineaRollup (above minimum reserve) is routed to the StakingVault for beacon chain staking.
@@ -131,7 +138,36 @@ sequenceDiagram
     SV-->>BC: stake ETH
 ```
 
-### 2. Yield reporting
+### 2. Reserve replenishment
+
+Two-phase process: first trigger beacon chain withdrawal, then route funds to LineaRollup once they arrive in the vault.
+
+```mermaid
+sequenceDiagram
+    actor Auto as Automation Service
+    participant LR as LineaRollup
+    participant YM as YieldManager
+    participant SV as StakingVault
+    participant BC as Beacon Chain
+
+    rect rgba(230, 240, 255, 0.6)
+        Note over Auto: Phase 1 - Unstake
+        Auto->>YM: unstake()
+        YM-->>SV: triggerValidatorWithdrawals()
+        SV-->>BC: request withdrawal
+        Note over BC: Withdrawal delay
+        BC->>SV: automatic withdrawal
+    end
+
+    rect rgba(240, 255, 230, 0.6)
+        Note over Auto: Phase 2 - Replenish reserve
+        Auto->>YM: safeAddToWithdrawalReserve()
+        YM-->>SV: withdraw()
+        SV-->>LR: send ETH
+    end
+```
+
+### 3. Yield reporting
 
 The Automation Service triggers yield reporting. Before the net surplus is relayed to L2, the YieldManager settles outstanding obligations.
 
@@ -165,35 +201,6 @@ sequenceDiagram
 ```
 
 No L1 ETH moves for the yield report itself - obligation payments (solid arrows) are the only L1 ETH transfers. The `MessageSent` event is synthetic: it relays the net surplus to L2 for distribution without bridging ETH.
-
-### 3. Reserve replenishment - operator
-
-Two-phase process: first trigger beacon chain withdrawal, then route funds to LineaRollup once they arrive in the vault.
-
-```mermaid
-sequenceDiagram
-    actor Auto as Automation Service
-    participant LR as LineaRollup
-    participant YM as YieldManager
-    participant SV as StakingVault
-    participant BC as Beacon Chain
-
-    rect rgba(230, 240, 255, 0.6)
-        Note over Auto: Phase 1 - Unstake
-        Auto->>YM: unstake()
-        YM-->>SV: triggerValidatorWithdrawals()
-        SV-->>BC: request withdrawal
-        Note over BC: Withdrawal delay
-        BC->>SV: automatic withdrawal
-    end
-
-    rect rgba(240, 255, 230, 0.6)
-        Note over Auto: Phase 2 - Replenish reserve
-        Auto->>YM: safeAddToWithdrawalReserve()
-        YM-->>SV: withdraw()
-        SV-->>LR: send ETH
-    end
-```
 
 ### 4. Permissionless flows
 
@@ -251,7 +258,7 @@ This creates an LST liability that accrues interest; the system prioritizes repa
 
 ### 6. Ossification withdrawal
 
-Ossification permanently freezes the StakingVault implementation, opting out of future upgrades. The Security Council initiates it; the Automation Service then progressively withdraws all staked funds back to LineaRollup.
+Ossification permanently locks the StakingVault implementation, opting out of future upgrades. The Security Council initiates it; the Automation Service then progressively withdraws all staked funds back to LineaRollup.
 
 ```mermaid
 sequenceDiagram
