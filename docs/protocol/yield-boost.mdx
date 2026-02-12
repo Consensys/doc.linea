@@ -122,12 +122,12 @@ flowchart LR
 
 Each scenario below traces a specific ETH movement end-to-end, showing the contracts involved and the role that triggers it.
 
-1. **Staking** - routine: surplus ETH is moved from LineaRollup into validators.
-2. **Reserve replenishment** - routine: the Automation Service pulls funds back from validators when the withdrawal reserve runs low.
-3. **Yield reporting** - routine: earned rewards are calculated, obligations settled, and net yield relayed to L2.
-4. **Permissionless flows** - fallback: anyone can trigger unstaking and replenishment when the reserve drops below minimum.
-5. **LST withdrawal** - last resort: stETH is minted for users when LineaRollup has insufficient ETH.
-6. **Ossification withdrawal** - terminal: all staked funds are progressively withdrawn after the Security Council ossifies the vault.
+1. **Staking** (routine) - the Automation Service rebalances surplus ETH from LineaRollup into the StakingVault for validator staking.
+2. **Reserve replenishment** (routine) - the Automation Service rebalances ETH back from validators into LineaRollup when the withdrawal reserve runs low.
+3. **Yield reporting** (routine) - earned rewards are calculated, obligations settled, and net yield relayed to L2.
+4. **Permissionless flows** (fallback) - anyone can trigger unstaking and replenishment when the reserve drops below minimum.
+5. **LST withdrawal** (last resort) - if LineaRollup does not hold enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
+6. **Ossification withdrawal** (terminal) - all staked funds are progressively withdrawn after the Security Council ossifies the vault.
 
 ### 1. Staking
 
