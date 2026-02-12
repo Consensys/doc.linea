@@ -216,9 +216,9 @@ sequenceDiagram
     L2MS->>L2YD: distribute yield
 ```
 
-No L1 ETH moves for the yield report itself - obligation payments (solid arrows) are the only L1 ETH transfers. The `MessageSent` event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
+> No ETH is bridged during yield reporting. The MessageSent event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
 
-This works because the staked ETH on L1 already backs the ETH circulating on L2. When validators earn rewards, the total L1 collateral grows while the L2 supply stays the same. The yield report simply lets L2 mint the difference - the amount by which L1 collateral now exceeds the existing L2 supply. The system stays fully collateralized because the newly minted L2 ETH is matched by real rewards sitting in the StakingVault on L1.
+> This is safe because staking rewards grow L1 collateral by the same amount that L2 mints, so the system stays fully collateralized.
 
 ### 4. Permissionless flows
 
@@ -308,12 +308,12 @@ sequenceDiagram
 
 | Fund Movement | Source | Destination | Trigger | Role Required |
 |--------------|--------|-------------|---------|---------------|
-| Stake excess reserve | LineaRollup | StakingVault | Automation | `YIELD_PROVIDER_STAKING_ROLE` |
+| Stake excess reserve | LineaRollup | StakingVault | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
 | Beacon chain deposit | StakingVault | Validators | Node Operator decision | Node Operator |
-| Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation | `YIELD_REPORTER_ROLE` |
+| Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
 | Operator replenish reserve | StakingVault | LineaRollup | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | StakingVault | Reserve below minimum | Permissionless |
 | Permissionless replenish reserve | StakingVault | LineaRollup | Reserve below minimum | Permissionless |
-| LST withdrawal | Lido Protocol (minted against StakingVault collateral) | User | Insufficient ETH | Permissionless (user) |
+| LST withdrawal | Lido Protocol (minted against StakingVault collateral) | User | Insufficient ETH for user withdrawal | Permissionless (user) |
 | Ossification withdrawal | StakingVault | LineaRollup | Security Council initiates | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
 | Donation | External | LineaRollup / StakingVault | Voluntary | Permissionless |
