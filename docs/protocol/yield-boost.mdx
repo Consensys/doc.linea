@@ -39,28 +39,27 @@ LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVaults to generate 
 ```mermaid
 flowchart TD
     User([User])
+    Auto([Automation Service])
+    NO([Node Operator])
     LR[LineaRollup]
     YM[YieldManager]
-    DB[Dashboard]
     SV[StakingVault]
-    NO([Node Operator])
     BC{{Beacon Chain}}
 
     User -->|deposit ETH| LR
-    LR -->|excess ETH| YM
-    YM -->|fund| DB
-    DB -->|fund| SV
-    NO -.->|decides when to trigger deposits| SV
-    SV -->|stake| BC
-    BC -->|withdrawal| SV
-    SV -->|withdraw| DB
-    DB -->|withdraw ETH| LR
     LR -->|withdraw ETH| User
+    Auto -.->|automatically rebalances ETH between LineaRollup and StakingVault, and requests unstaking| YM
+    LR -->|rebalance extra ETH to earn rewards| YM
+    YM -->|move ETH to staking vault| SV
+    NO -.->|decides when to trigger staking| SV
+    SV -->|stake| BC
+    BC -->|unstake| SV
+    SV -->|withdraw ETH| LR
 
     classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
     classDef permissionless fill:#cce5ff,stroke:#004085,stroke-width:1px,color:#004085
 
-    class NO admin
+    class NO,Auto admin
     class User permissionless
 ```
 
