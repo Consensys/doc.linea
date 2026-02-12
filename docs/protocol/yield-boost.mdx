@@ -21,17 +21,18 @@ LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVaults to generate 
 
 **Key entities:**
 
-- **LineaRollup** - L1 LineaRollup contract that holds user deposits and receives ETH back from staking flows.
-- **YieldManager** - Core L1 contract that routes ETH between LineaRollup and external staking strategies, and calculates reportable yield after deducting obligations.
-- **Dashboard** - Lido V3 utility contract that wraps the StakingVault with operator fee handling and convenience functions for deposits and LST minting.
-- **StakingVault** - Lido V3 vault that holds ETH for beacon chain staking. The vault owner controls deposits and withdrawals; withdrawal credentials point to the vault.
-- **Lido** - Broader Lido protocol (not a single contract).
-- **Node Operator** - Runs beacon chain validators on behalf of Linea. Has sole authority over when and how much ETH to deposit from the StakingVault into validators.
-- **Fee Recipient** - Address that receives fees on behalf of the node operator.
-- **Automation Service** - Off-chain service that executes routine yield operations: reporting, reserve rebalancing, and obligation settlement.
-- **Security Council** - Linea Security Council Multisig.
-- **L2MessageService** - L2 contract that receives yield messages from L1 and releases corresponding L2 ETH into circulation.
-- **L2YieldDistributor** - Distributes newly circulated L2 ETH (backed by L1 staking rewards) to eligible recipients.
+- **LineaRollup** - Main Linea bridge contract on L1; holds user-deposited ETH and receives it back after staking.
+- **YieldManager** - L1 contract that moves ETH between LineaRollup and the staking vault, and calculates net yield after fees and liabilities.
+- **Dashboard** - Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
+- **StakingVault** - Lido V3 vault that holds ETH awaiting beacon chain staking; all validator withdrawals return here.
+- **Beacon Chain** - Ethereum's proof-of-stake consensus layer where validators lock ETH to secure the network and earn staking rewards.
+- **Lido** - Third-party staking protocol that provides the StakingVault and Dashboard infrastructure used by Yield Boost.
+- **Node Operator** - Runs beacon chain validators on behalf of Linea and decides when to deposit ETH from the StakingVault into validators.
+- **Fee Recipient** - Address that collects the node operator's share of staking rewards.
+- **Automation Service** - Off-chain bot that triggers routine operations: moving ETH to/from staking, topping up reserves, and reporting yield.
+- **Security Council** - Linea's multi-signature governance body; can pause staking or initiate full withdrawal of staked funds.
+- **L2MessageService** - L2 contract that receives yield reports from L1 and unlocks the corresponding ETH on L2.
+- **L2YieldDistributor** - Distributes L2 ETH unlocked from staking rewards to designated recipients.
 
 ### L1 ETH flow
 
