@@ -198,7 +198,9 @@ sequenceDiagram
     participant L2YD as L2YieldDistributor
 
     Auto-->>YM: reportYield()
-    YM-->>DB: query yield + obligations
+    YM-->>DB: read totalValue
+    Note over DB: totalValue = beacon chain stake + vault balance<br/>(updated daily by Lido Oracle Committee)
+    Note over YM: yield = current totalValue - last checkpoint<br/>then subtract obligations
 
     alt StakingVault funds available
         Note over DB: Settle obligations
