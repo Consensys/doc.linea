@@ -21,11 +21,15 @@ LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVaults to generate 
 
 **Key entities:**
 
+- **LineaRollup** - L1 LineaRollup contract that holds user deposits and receives ETH back from staking flows.
 - **YieldManager** - Core L1 contract that routes ETH between LineaRollup and external staking strategies, and calculates reportable yield after deducting obligations.
 - **Dashboard** - Lido V3 utility contract that wraps the StakingVault with operator fee handling and convenience functions for deposits and LST minting.
 - **StakingVault** - Lido V3 vault that holds ETH for beacon chain staking. The vault owner controls deposits and withdrawals; withdrawal credentials point to the vault.
+- **Lido** - Broader Lido protocol (not a single contract).
 - **Node Operator** - Runs beacon chain validators on behalf of Linea. Has sole authority over when and how much ETH to deposit from the StakingVault into validators.
+- **Fee Recipient** - Address that receives fees on behalf of the node operator.
 - **Automation Service** - Off-chain service that executes routine yield operations: reporting, reserve rebalancing, and obligation settlement.
+- **Security Council** - Linea Security Council Multisig.
 - **L2MessageService** - L2 contract that receives yield messages from L1 and releases corresponding L2 ETH into circulation.
 - **L2YieldDistributor** - Distributes newly circulated L2 ETH (backed by L1 staking rewards) to eligible recipients.
 
