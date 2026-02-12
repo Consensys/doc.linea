@@ -67,6 +67,13 @@ flowchart TD
 
 ### Yield reporting and L2 distribution
 
+1. The Automation Service triggers a yield report on the YieldManager.
+2. The YieldManager reads the StakingVault's current balance via the Dashboard and compares it to a stored checkpoint to determine how much reward has accrued.
+3. Before any yield reaches L2, outstanding obligations are paid: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient.
+4. The YieldManager reports the remaining net yield to the LineaRollup contract.
+5. LineaRollup emits a synthetic MessageSent event that the L2MessageService picks up, unlocking the corresponding ETH on L2.
+6. The L2YieldDistributor sends the unlocked ETH to designated recipients.
+
 ```mermaid
 flowchart LR
     subgraph L2["L2"]
@@ -74,13 +81,13 @@ flowchart LR
       L2MS[L2MessageService]
       L2YD[L2YieldDistributor]
     end
-    Auto([Automation Service]) -.->|reportYield| YM[YieldManager]
-    YM -.->|query yield + obligations| DB[Dashboard]
+    Auto([Automation Service]) -.->|trigger yield report| YM[YieldManager]
+    YM -.->|compute yield from vault balance| DB[Dashboard]
     DB -->|stETH borrow liability| Lido[Lido]
     DB -->|protocol fees| Lido
     DB -->|node operator fees| FeeRecipient([Node Op Fee Recipient])
-    YM -.->|reportNativeYield| LR[LineaRollup]
-    LR -.->|MessageSent| L2MS[L2MessageService]
+    YM -.->|report net yield| LR[LineaRollup]
+    LR -.->|emits synthetic MessageSent message| L2MS[L2MessageService]
     L2MS -->|distribute yield| L2YD[L2YieldDistributor]
 
     classDef l2 fill:#d4edda,stroke:#155724,stroke-width:1px,color:#155724
@@ -89,6 +96,8 @@ flowchart LR
     class L2MS,L2YD l2
     class FeeRecipient admin
 ```
+
+> The Automation Service only triggers the yield report - it does not determine the amount. The YieldManager computes net yield on-chain by comparing the StakingVault's current value to a stored checkpoint, then subtracting outstanding obligations (Lido protocol fees, stETH borrow liabilities, and node operator fees). Only the remaining surplus is reported to L2 for distribution.
 
 **Legend**
 - **Solid line** - actual fund movement (ETH/stETH transfer)
