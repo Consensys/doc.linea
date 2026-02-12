@@ -98,8 +98,6 @@ flowchart LR
     class FeeRecipient admin
 ```
 
-> The Automation Service only triggers the yield report - it does not determine the amount. The YieldManager computes net yield on-chain by comparing the StakingVault's current value to a stored checkpoint, then subtracting outstanding obligations (Lido protocol fees, stETH borrow liabilities, and node operator fees). Only the remaining surplus is reported to L2 for distribution.
-
 **Legend**
 - **Solid line** - actual fund movement (ETH/stETH transfer)
 - **Dashed line** - function call or event (no funds move)
