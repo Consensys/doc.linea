@@ -19,10 +19,10 @@ Linea Yield Boost is a protocol-level mechanism that automatically stakes some o
 
 LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVaults to generate beacon chain rewards, which are reported to L2 for distribution.
 
-**Key entities:**
+### Key entities:
 
 - **LineaRollup** - Main Linea bridge contract on L1; holds user-deposited ETH and receives it back after staking.
-- **YieldManager** - L1 contract that moves ETH between LineaRollup and the staking vault, and calculates net yield after fees and liabilities.
+- **YieldManager** - L1 contract that moves ETH between LineaRollup and the StakingVault, and calculates net yield after fees and liabilities.
 - **Dashboard** - Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
 - **StakingVault** - Lido V3 vault that holds ETH awaiting beacon chain staking; all validator withdrawals return here.
 - **Beacon Chain** - Ethereum's proof-of-stake consensus layer where validators lock ETH to secure the network and earn staking rewards.
@@ -30,7 +30,7 @@ LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVaults to generate 
 - **Node Operator** - Runs beacon chain validators on behalf of Linea and decides when to deposit ETH from the StakingVault into validators.
 - **Fee Recipient** - Address that collects the node operator's share of staking rewards.
 - **Automation Service** - Off-chain bot that triggers routine operations: moving ETH to/from staking, topping up reserves, and reporting yield.
-- **Security Council** - Linea's multi-signature governance body; can pause staking or initiate full withdrawal of staked funds.
+- **Security Council** - The Linea Security Council multisig.
 - **L2MessageService** - L2 contract that receives yield reports from L1 and unlocks the corresponding ETH on L2.
 - **L2YieldDistributor** - Distributes L2 ETH unlocked from staking rewards to designated recipients.
 
@@ -63,16 +63,17 @@ flowchart TD
     class User permissionless
 ```
 
-> The Node Operator's deposit trigger is part of an automated process whose logic is agreed beforehand with the node operator. The recommended approach is for the Node Operator to greedily stake newly deposited funds in the vault, minus pending withdrawals.
+> The Node Operator's deposit trigger is part of an automated process whose logic is agreed beforehand with the node operator. The recommended approach is for the Node Operator to greedily stake newly deposited funds in the vault.
 
 ### Yield reporting and L2 distribution
 
 1. The Automation Service triggers a yield report on the YieldManager.
-2. The YieldManager reads the StakingVault's current balance via the Dashboard and compares it to a stored checkpoint to determine how much reward has accrued.
-3. Before any yield reaches L2, outstanding obligations are paid: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient.
-4. The YieldManager reports the remaining net yield to the LineaRollup contract.
-5. LineaRollup emits a synthetic MessageSent event that the L2MessageService picks up, unlocking the corresponding ETH on L2.
-6. The L2YieldDistributor sends the unlocked ETH to designated recipients.
+2. The YieldManager reads the vault's `totalValue` from the Dashboard. This value - the sum of beacon chain stake and vault balance - is updated daily by the Lido Oracle Committee.
+3. Yield is the difference between the current `totalValue` and the last stored checkpoint, minus outstanding obligations.
+4. If the StakingVault has sufficient funds, the YieldManager settles obligations: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient. If funds are insufficient, settlement is skipped and obligations carry forward.
+5. The YieldManager reports the remaining net yield to LineaRollup.
+6. LineaRollup emits a synthetic `MessageSent` event (no ETH is bridged). The L2MessageService picks it up and unlocks the corresponding ETH on L2.
+7. The L2YieldDistributor sends the unlocked ETH to designated recipients.
 
 ```mermaid
 flowchart LR
