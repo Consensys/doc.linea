@@ -109,9 +109,9 @@ flowchart LR
 
 | Role | Held By | What This Role Can Do |
 |------|---------|----------------------|
-| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Move excess ETH from the bridge into the staking vault |
-| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Pull ETH back from validators into the bridge |
-| `YIELD_REPORTER_ROLE` | Automation Service | Pay fees and liabilities from staking rewards|
+| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Rebalance excess ETH from the bridge into the StakingVault |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from validators into the bridge |
+| `YIELD_REPORTER_ROLE` | Automation Service | Trigger yield reporting, which may involve payment of fees and liabilities from staking rewards |
 | `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council | Pause or resume validator deposits (no ETH movement) |
 | `OSSIFICATION_INITIATOR_ROLE` | Security Council | Begin permanent shutdown of the staking vault; Lido may require fee settlement before proceeding |
 | `OSSIFICATION_PROCESSOR_ROLE` | Automation Service | Finalize vault ossification; Lido may require fee settlement before proceeding |
