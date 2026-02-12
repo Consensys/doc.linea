@@ -217,7 +217,9 @@ sequenceDiagram
     L2MS->>L2YD: distribute yield
 ```
 
-No L1 ETH moves for the yield report itself - obligation payments (solid arrows) are the only L1 ETH transfers. The `MessageSent` event is synthetic: it relays the net surplus to L2 for distribution without bridging ETH.
+No L1 ETH moves for the yield report itself - obligation payments (solid arrows) are the only L1 ETH transfers. The `MessageSent` event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
+
+This works because the staked ETH on L1 already backs the ETH circulating on L2. When validators earn rewards, the total L1 collateral grows while the L2 supply stays the same. The yield report simply lets L2 mint the difference - the amount by which L1 collateral now exceeds the existing L2 supply. The system stays fully collateralized because the newly minted L2 ETH is matched by real rewards sitting in the StakingVault on L1.
 
 ### 4. Permissionless flows
 
