@@ -18,4 +18,4 @@ jobs:
       - name: Vale
         uses: Consensys/github-actions/docs-spelling-check@spelling-on-changes
         with:
-          FILEPATHS: "docs"
+          FILEPATHS: "docs/**"
