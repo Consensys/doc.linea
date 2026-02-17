@@ -1,0 +1,139 @@
+---
+title: Token API
+image: /img/socialCards/token-api.jpg
+---
+
+The Token API provides comprehensive programmatic access to token data on the Linea network. This
+API is designed for developers, builders and analysts who need detailed information about ERC-20
+tokens and their activity on Linea.
+
+:::tip API Reference
+
+View the complete [API reference documentation](/api/token-api/reference) for detailed endpoint
+specifications, request/response examples, and authentication details.
+
+:::
+
+## Key features
+
+### Token data
+- Complete list of available tokens on Linea
+- Detailed token metadata (name, symbol, decimals, logo)
+- Current and historical prices
+- Trading statistics (buy/sell counts)
+- Fairly diluted valuation
+
+### Market analytics
+- Most traded tokens in the last 24h
+- Top movers, gainers and losers (price variation)
+- Price movement tracking
+
+### Use cases
+- Token monitoring dashboards
+- Onchain data analysis
+- DeFi application integration
+- Wallet and transaction tracking
+- Filter by secure tokens
+- Automated trading bots
+
+## Data sources
+
+Data is collected and updated from multiple sources:
+
+### Primary sources
+- Onchain data (smart contract states)
+- [CoinGecko](https://coingecko.com/en/api)
+- MetaMask Token & Price API
+- [Dune Analytics](https://dune.com/)
+- [Nile](https://nile.build/)
+- [Moralis](https://moralis.com/)
+
+Please see the [Linea terms of use](https://linea.build/terms-of-service) about third party
+information.
+
+### Update frequencies
+- Token detection and metadata: every two hours
+- Historical prices: hourly
+- Current prices: every five minutes
+
+## Usage examples
+
+### Filter tokens by security
+
+Getting a raw list of tokens is good, but getting a list of tokens that are secure is even better.
+You can filter tokens according to their security status using the `isSecure` query parameter.
+
+For a token to be considered as secure,
+it must have a Moralis security score greater than 70 and a market capitalization greater than $50k.
+
+```typescript
+async function getSecureTokens() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?isSecure=true`).then(r => r.json());
+  console.log('Secure tokens:', tokens);
+}
+```
+
+### Get new gems
+
+New gems are tokens that were recently deployed and may be the next big thing.
+Adding an `isSecure` filter might be a good idea to avoid scams.
+
+```typescript
+async function getNewGems() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?order=createdAt&sort=desc`).then(r => r.json());
+  console.log('Recent tokens:', tokens);
+}
+```
+
+### Get most-swapped tokens
+
+You can get the most-swapped tokens in the last 24 hours using the `swaps` ordering parameter.
+
+
+```typescript
+async function getMostSwapped() {
+  const BASE_URL = "https://token-api.linea.build";
+  const tokens = await fetch(`${BASE_URL}/tokens?order=swaps&sort=desc`).then(r => r.json());
+  console.log('Most swapped tokens:', tokens);
+}
+```
+
+### Simple token price bot
+
+```typescript
+async function monitorPriceChange(contractAddress: string, threshold: number) {
+  const BASE_URL = "https://token-api.linea.build";
+  const { currentPrice: initialPrice } = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+
+  setInterval(async () => {
+    const { currentPrice } = await fetch(`${BASE_URL}/tokens/${contractAddress}`).then(r => r.json());
+    const priceChange = (currentPrice - initialPrice) / initialPrice;
+
+    if (Math.abs(priceChange) > threshold) {
+      // Execute something, e.g. send a notification or trigger a trade
+      console.log(`Price changed by ${priceChange}% - Trading signal`);
+    }
+  }, 60000); // Check every minute
+}
+```
+
+## Best practices
+
+1. **Rate limiting**
+- This API has strict rate limits per IP:
+  - Two requests per second
+  - 60 requests per minute
+- Cache static data
+- Implement backoff strategies
+
+2. **Error handling**
+- Check HTTP status codes
+- Implement retry with exponential backoff
+- Validate token addresses
+
+3. **Performance and security**
+- Use pagination for large lists
+- Use local caching when appropriate
+- Validate and sanitize all inputs

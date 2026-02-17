@@ -1,0 +1,200 @@
+---
+title: Linea Besu
+description: Install the Besu client to run a Linea node.
+image: /img/socialCards/linea-besu.jpg
+sidebar_position: 2
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import VolumeCreation from "./volume-creation.mdx";
+import NodeSize from "../../../../src/components/NodeSize";
+import LastUpdated from "../../../../src/components/LastUpdated";
+
+Linea Besu is a Besu distribution with Linea-specific plugins bundled and configured through
+profiles in the [linea-besu-package](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package).
+Advanced profiles enable extra Linea features such as `linea_estimateGas`.
+
+:::warning
+The `advanced` profile option doesn't currently support macOS/ARM. Please use Linux/ARM or
+Windows/X86_64.
+:::
+
+We recommend using Linea Besu over standard Besu if you intend to run a node to interact with the
+blockchain, rather than just following it. Use Linea Besu if:
+- You are responsible for operating nodes as a service for others to use.
+- You want to use Linea with a personal, private RPC endpoint.
+
+## Run using Docker
+
+### Prerequisites
+
+- [Docker](https://docker.com/products/docker-desktop/)
+- Linux/ARM or Windows/X86_64
+
+### Step 1. Download the relevant `docker-compose.yaml` file
+
+To run a Linea Besu node, access the [`/docker` directory](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package/docker)
+in the Linea Besu repository. This directory is the source of truth for Linea Besu compose profiles.
+Each profile supports different Linea Besu plugin configurations depending on your use case.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+
+    Download the appropriate `.yaml` file for your use case:
+    - [`basic-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-mainnet.yaml): Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - [`advanced-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-mainnet.yaml): Creates an advanced node on Linea Mainnet with plugins that enable support
+    for `linea_estimateGas` and the `finalized` block parameter tag.
+
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+
+    Download the appropriate `.yaml` file for your use case:
+    - [`basic-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-sepolia.yaml): Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - [`advanced-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-sepolia.yaml): Creates an advanced node on Linea Sepolia with plugins that enable support
+    for `linea_estimateGas` and the `finalized` block parameter tag.
+
+  </TabItem>
+</Tabs>
+
+### Step 2. Update IP address
+
+In the `.yaml` file you downloaded, adjust the `--p2p-host` command with your public IP address:
+
+```yaml
+--p2p-host=103.10.10.10
+```
+
+:::tip
+You can use [this page](https://whatismyip.com/) to find your public IP address.
+:::
+
+### Step 3. Start the Linea Besu node
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    In a terminal, navigate to your `.yaml` file's directory. Then start the node by running
+    `docker compose`:
+
+    ```bash
+    docker compose -f ./your-file-path/docker-compose-advanced-mainnet.yaml up
+    ```
+
+    Alternatively, you can run a node without downloading a `.yaml` file with a `docker run`
+    command. For example:
+
+    ```bash
+    docker run -e BESU_PROFILE=advanced-mainnet consensys/linea-besu-package:latest
+    ```
+
+    Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
+    name with a more recent version from the releases page.
+
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+
+      In a terminal, navigate to your `.yaml` file's directory. Then start the node by running
+      `docker compose`:
+
+      ```bash
+      docker compose -f ./your-file-path/docker-compose-advanced-sepolia.yaml up
+      ```
+
+      Alternatively, you can run a node without downloading a `.yaml` file with a `docker run`
+      command. For example:
+
+      ```bash
+      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:beta-v4.0-rc11-20251004063519-a5c4c31
+      ```
+
+      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
+      name with a more recent version from the releases page.
+
+    </TabItem>
+</Tabs>
+
+## Alternative: Run using the binary distribution
+
+### Step 1. Download the Linea Besu package
+
+[Download the latest version](https://github.com/Consensys/linea-monorepo/releases) of the Linea
+Besu package from the releases page.
+
+:::note
+Find the **Assets** subheading on the latest release and download the file named
+`linea-besu-package-<version>.tar.gz`.
+:::
+
+### Step 2. Extract the package contents
+
+The `linea-besu-package-<version>.tar.gz` is a compressed file; move it to the directory of your
+choice and extract it.
+
+```bash
+tar -xzvf linea-besu-package-<version>.tar.gz
+```
+
+### Step 3. Define disk space volume (optional) {#disk-space-besu}
+
+Define a volume size appropriate to your expected usage. Besu nodes use:
+
+- Full node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-full-0" />
+- Archive node: <NodeSize network="mainnet" cluster="linea-prod-eks" pvc="data-linea-besu-archive-v3-0" />
+
+<LastUpdated />
+
+Use these figures as a basis to determine the extent to which you want to future-proof your node.
+
+Ensure you mount the `data-path` to the custom volume when you start the node.
+
+<VolumeCreation />
+
+### Step 4. Select a profile
+
+In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define
+the parameters for each possible profile you can select for your Linea Besu node.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+    Select one according to your preferences:
+    - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    Select one according to your preferences:
+    - `basic-sepolia`: Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - `advanced-sepolia`: Creates an advanced node on Linea Sepolia with plugins that enable support
+    `linea_estimateGas` and the `finalized` block parameter tag.
+  </TabItem>
+</Tabs>
+
+### Step 5. Start the Linea Besu client
+
+In a terminal, navigate to the `linea-besu-package-<version>` directory, where the `bin`,
+`profiles` etc. directories are.
+
+Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rpc-endpoint` must
+only be defined if you are running an `advanced` node, since this is needed to query finalization on
+L1.
+
+<Tabs groupId="networks" className="my-tabs">
+    <TabItem value="mainnet" label="Mainnet">
+    ```bash
+    bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
+    ```
+    </TabItem>
+    <TabItem value="Linea Sepolia" label="Linea Sepolia">
+    ```bash
+    bin/besu --profile=advanced-sepolia --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
+    ```
+    </TabItem>
+</Tabs>
+
+The node will attempt to find peers to begin synchronizing and to download the world state.
+
+## Note on profiles and genesis
+
+Profiles already embed the Linea network and do not require a genesis file. See the
+[linea-besu-package README](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/README.md).

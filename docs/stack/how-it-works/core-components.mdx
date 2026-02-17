@@ -1,0 +1,88 @@
+---
+title: Protocol components
+description: >-
+  Trusted protocol surface and correctness-critical components in the Linea
+  stack
+sidebar_position: 1
+image: /img/socialCards/protocol-components.jpg
+---
+
+This page defines the Linea protocol components. Each component has a clear operational responsibility 
+and deployment footprint. Use this page as the canonical reference for:
+
+- What must be operated as part of the protocol
+- How protocol-critical elements are versioned and replaced
+
+## Core protocol components
+
+The following components are **required**.
+
+**Replaceability:** Versioned via protocol upgrade.
+
+- [Maru](../../protocol/architecture/index.mdx#consensus-client-maru): Consensus layer client
+- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu): Execution layer client
+- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Orders transactions and builds blocks
+- [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates batching, proof generation, and submissions
+- [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs of state transitions
+- [State manager](../../protocol/architecture/state-manager.mdx): Maintains a state representation for proof generation
+- [Tracer](../../protocol/architecture/sequencer/traces-generator.mdx): Generates execution traces required for proofs
+
+## Onchain system contracts
+
+The following [smart contracts](../../protocol/architecture/smart-contracts.mdx) are **required**.
+
+**Replaceability:** Versioned via redeployment.
+
+- Finalization verifier
+- Token bridge contracts
+- Message bridge contracts
+- Canonical token bridge
+
+## Data availability
+
+In addition to concrete components, the Linea protocol depends on correctness-critical requirements, which may be satisfied by different implementations depending on the [deployment model](./deployment-models.mdx).
+
+**Purpose**
+
+- Ensure transaction data and state transitions remain accessible
+- Enable reconstruction and verification of historical state
+
+**Correctness requirement**
+
+- Without data availability, the protocol cannot be independently verified
+- Loss of data availability breaks state reconstructability
+
+**Example implementations**
+
+- **Linea Public Mainnet deployment:** EIP-4844 blobs on Ethereum
+- **Private Validium deployments:** Operator-provided or outsourced data availability infrastructure
+
+**Trust model**
+
+- Data availability is within the trust boundary
+- Responsibility for data availability implementation depends on deployment model
+
+See more on [data availability considerations](./data-availability-finalization.mdx).
+
+## Auxiliary services
+
+Auxiliary services are **not required for protocol correctness**. They are typically **optional** 
+and **replaceable**.
+
+Common examples include:
+
+- [Block explorer](../../protocol/architecture/index.mdx#block-explorer)
+- [Archive node service](../../protocol/architecture/rpc-services.mdx#archive-nodes)
+- [RPC load balancers](../../protocol/architecture/rpc-services.mdx#what-do-they-do)
+- Monitoring and metrics
+- Indexer
+- API portal
+
+**Special cases**
+
+- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): remote signing with integration with a large number of Key Management Solutions (KMS):
+  - Not required for correctness
+  - *In* trust boundary (signing path)
+  - Not replaceable: currently, Web3Signer is integral
+  - Optional
+

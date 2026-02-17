@@ -379,6 +379,8 @@ textarea {
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-code-border-radius: 15px;
   --doc-sidebar-width: 350px !important;
+  --linea-navbar-items-light: rgb(97 223 255 / 10%);
+  --linea-navbar-items-medium: rgb(97 223 255 / 20%);
 }
 
 .footer--dark {
@@ -440,6 +442,9 @@ textarea {
   --search-local-hit-color: #fff;
   --search-local-highlight-color: #6f7da6;
   --search-result-hl: #23282a;
+
+  /* infographics */
+  --container-box-bg: #f5f7fa;
 }
 
 [data-theme="light"] {
@@ -497,6 +502,9 @@ textarea {
   --search-local-hit-color: #161616;
   --search-local-highlight-color: #6119ef;
   --search-result-hl: #fff068;
+
+  /* infographics */
+  --container-box-bg: #c3d7e0;
 }
 
 /* github */
@@ -954,11 +962,11 @@ a.navbar__brand {
 }
 
 /* Basic circle icons for navbar items */
-.navbar__link[href="/get-started"]::before,
-.navbar__link[href="/learn/first-dapp"]::before,
-.navbar__link[href="/api/linea-smart-contracts/linearollup"]::before,
-.navbar__link[href="/technology/architecture"]::before,
-.navbar__link[href="/release-notes"]::before,
+.navbar__link[href="/network/quickstart"]::before,
+.navbar__link[href^="/stack"]::before,
+.navbar__link[href="/api/reference"]::before,
+.navbar__link[href="/protocol/overview"]::before,
+.navbar__link[href="/changelog"]::before,
 .support-link[href="https://discord.gg/linea"]::before {
   content: "";
   display: inline-block;
@@ -973,11 +981,11 @@ a.navbar__brand {
 }
 
 /* hover effect for circles */
-.navbar__link[href="/get-started"]:hover::before,
-.navbar__link[href="/learn/first-dapp"]:hover::before,
-.navbar__link[href="/api/linea-smart-contracts/linearollup"]:hover::before,
-.navbar__link[href="/technology/architecture"]:hover::before,
-.navbar__link[href="/release-notes"]:hover::before,
+.navbar__link[href="/network/quickstart"]:hover::before,
+.navbar__link[href^="/stack"]:hover::before,
+.navbar__link[href="/api/reference"]:hover::before,
+.navbar__link[href="/protocol/overview"]:hover::before,
+.navbar__link[href="/changelog"]:hover::before,
 .support-link[href="https://discord.gg/linea"]:hover::before {
   background-color: var(--linea-navbar-items);
   border: 1px solid var(--linea-navbar-items);
@@ -991,11 +999,11 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/get-started"]::before,
-  .navbar__link[href="/learn"]::before,
+  .navbar__link[href="/network/quickstart"]::before,
+  .navbar__link[href^="/stack"]::before,
   .navbar__link[href="/api"]::before,
-  .navbar__link[href="/technology/architecture"]::before,
-  .navbar__link[href="/release-notes"]::before,
+  .navbar__link[href="/protocol/overview"]::before,
+  .navbar__link[href="/changelog"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
@@ -1347,20 +1355,96 @@ button[aria-label="Collapse sidebar"] {
   border-radius: 12px;
 }
 
+/* Standardize sidebar menu indentation - reduce and make consistent */
 a.menu__link {
-  padding: 3px 12px;
+  padding: 3px 8px !important;
+  padding-left: 8px !important;
   line-height: 1.25 !important;
+}
+
+/* Remove default indentation from menu containers */
+.menu__list {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menu__list-item {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .menu__list-item-collapsible {
   margin-right: 8px;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Standardized nested indentation - reduced levels */
+.menu__list .menu__list {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* General menu link hover - must come before more specific selectors */
+.menu__link:hover {
+  background: none;
+}
+
+/* Dropdown menu items - must come before more specific selectors */
+.dropdown__menu .menu__link {
+  text-align: left;
+  justify-content: flex-start;
+  color: var(--ifm-menu-color) !important;
+}
+
+.dropdown__menu .menu__link:hover {
+  background-color: var(--ifm-hover-overlay) !important;
+  color: inherit !important;
+}
+
+/* Ensure all top-level items (Overview, Connect, Build on Linea, How to, Tools, Tutorials) have same base indentation */
+.menu__list > .menu__list-item > .menu__link {
+  padding-left: 8px !important;
+}
+
+/* Ensure all collapsible categories at top level have consistent indentation */
+.menu__list > .menu__list-item-collapsible {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.menu__list > .menu__list-item-collapsible > .menu__link {
+  padding-left: 8px !important;
+  margin-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__list {
+  padding-left: 0 !important;
+}
+
+.menu__list .menu__list .menu__link {
+  padding-left: 12px !important;
+}
+
+.menu__list .menu__list .menu__list .menu__link {
+  padding-left: 20px !important;
+}
+
+/* Remove any default Docusaurus padding that might affect categories with links */
+.menu__link--sublist {
+  padding-left: 8px !important;
+}
+
+/* Override any Docusaurus default that might add extra spacing to categories with links */
+.menu__list-item-collapsible .menu__link--sublist {
+  padding-left: 8px !important;
+  margin-left: 0 !important;
 }
 
 .menu__link--active {
   color: var(--ifm-link-color) !important;
 }
 
-.menu__link:hover,
 .menu__list-item-collapsible--active,
 .menu__list-item-collapsible--active:hover,
 .menu__link--active:not(.menu__link--sublist),
@@ -1494,4 +1578,185 @@ div[aria-label="Expand sidebar"] {
     padding-left: 6vw;
     padding-right: 6vw;
   }
+}
+
+#manage-cookie-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--banner-text);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#manage-cookie-btn:hover {
+  color: var(--ifm-footer-link-hover-color);
+  text-decoration: none;
+}
+
+/* Ensure dropdown trigger matches other navbar items - DESKTOP ONLY */
+@media (min-width: 997px) {
+  /* stylelint-disable no-descending-specificity */
+  .dropdown .navbar__link,
+  .navbar__item--dropdown .navbar__link,
+  .navbar__item.dropdown .navbar__link,
+  .navbar__link.dropdown__link,
+  .dropdown .navbar__link:focus,
+  .dropdown .navbar__link:hover,
+  .navbar__item--dropdown .navbar__link:focus,
+  .navbar__item--dropdown .navbar__link:hover,
+  .navbar__item.dropdown .navbar__link:focus,
+  .navbar__item.dropdown .navbar__link:hover,
+  .navbar__link.dropdown__link:focus,
+  .navbar__link.dropdown__link:hover,
+  .navbar__items--right .dropdown .navbar__link,
+  .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__items--right .navbar__item.dropdown .navbar__link,
+  .navbar__items--right .navbar__link.dropdown__link,
+  .navbar__inner .navbar__items--right .dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
+  .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
+    color: var(--linea-navbar-items) !important;
+    font-weight: 400;
+    padding-left: calc(0.5vw) !important; /* Match regular navbar items */
+  }
+  /* stylelint-enable no-descending-specificity */
+
+  /* Remove extra padding/margin from dropdown item container */
+  .navbar__item.dropdown,
+  .navbar__item--dropdown,
+  .navbar__items--right .navbar__item.dropdown,
+  .navbar__items--right .navbar__item--dropdown {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Base circle icon for dropdown trigger */
+  .dropdown .navbar__link::before,
+  .navbar__item--dropdown .navbar__link::before,
+  .navbar__item.dropdown .navbar__link::before,
+  .navbar__link.dropdown__link::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: calc(0.5vw);
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
+    margin-left: 12px;
+  }
+
+  /* Active state for dropdown trigger - filled circle when on notices page */
+  .dropdown .navbar__link--active::before,
+  .navbar__item--dropdown .navbar__link--active::before,
+  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .navbar__item--dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
+  .navbar__item.dropdown .navbar__link--active::before,
+  .navbar__link.dropdown__link--active::before,
+  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
+    background-color: var(--linea-navbar-items) !important;
+    border: 1px solid var(--linea-navbar-items) !important;
+  }
+
+  /* Ensure dropdown caret/arrow is also blue */
+  .dropdown .navbar__link::after,
+  .navbar__item--dropdown .navbar__link::after,
+  .navbar__item.dropdown .navbar__link::after,
+  .navbar__link.dropdown__link::after {
+    border-color: var(--linea-navbar-items) transparent transparent !important;
+  }
+}
+
+/* Dropdown menu container and items styling */
+.dropdown__menu {
+  text-align: left;
+  background-color: var(--ifm-background-surface-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
+}
+
+.dropdown__menu .menu__link--active {
+  color: var(--ifm-menu-color) !important;
+}
+
+.dropdown__menu .menu__link[href="/changelog/release-notes"]::before,
+.dropdown__menu .menu__link[href="/changelog/security-council-record"]::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: calc(0.5vw);
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+  margin-left: 12px;
+}
+
+/* Active state for dropdown items - filled circle */
+.dropdown__menu .menu__link--active::before {
+  background-color: currentColor !important;
+  border: 1px solid currentColor !important;
+}
+
+/* Details element styling - subtle, low contrast */
+details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgb(0 0 0 / 8%) !important;
+  border-radius: 0;
+  padding: 0.125rem 0.375rem;
+  margin: 1rem 0;
+}
+
+[data-theme="dark"] details {
+  background-color: var(--page-background) !important;
+  border: 1px solid rgb(255 255 255 / 10%) !important;
+}
+
+details > summary {
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.0625rem 0;
+  list-style: none;
+  position: relative;
+  color: inherit;
+}
+
+html[data-theme="dark"] details > summary {
+  color: #c0c0c0 !important;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+  margin-right: 0.5rem;
+}
+
+details > div {
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  padding-bottom: 0.5rem;
 }

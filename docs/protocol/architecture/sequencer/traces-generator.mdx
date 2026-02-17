@@ -1,0 +1,28 @@
+---
+title: Traces generation
+description: How the tracer works with the sequencer and prover
+sidebar_position: 1
+image: /img/socialCards/traces-generation.jpg
+---
+
+## What is it?
+
+The [tracer](../../reference/repos.mdx#linea-tracer) run as a plug-in to Linea Besu. It's part of
+Linea’s sequencer responsible for generating the data used by the [prover](../prover/index.mdx) to
+create ZK proofs. 
+
+## What does it do?
+
+Tracer provides the Traces API that surfaces essential data that's required for proof generation, and for making proofs as compact as possible. The trace generator executes blocks that have been built by the [sequencer](./index.mdx), and preserves data relating to the traces of each transaction. The tracer ensures that this data is available for all blocks in a batch, it:
+
+- Generates execution traces during block processing
+- Provides trace counts for batch size calculations
+- Creates conflated trace files for prover input
+
+This data--representing the operations undertaken in the EVM during the block execution--is then passed to the [prover](../prover/index.mdx), allowing it to generate the execution proof. 
+
+## How does it do it?
+
+Once the sequencer has built its blocks, they are executed; and in the process, the EVM produces data known as _traces_. These traces specify the state of the network, and the state of the accounts involved in the transaction, at each granular step of each transaction’s execution.
+
+Linea's sequencer then puts these traces through [trace conflation](./conflation.mdx).

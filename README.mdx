@@ -1,16 +1,13 @@
-> [!NOTE]
-> While we welcome meaningful contributions to the documentation, please note that contributions
-> will not affect your eligibility for a potential Linea token generation event (TGE) in any way.
-
 # Linea documentation
 
 ## Quick links
-- [Documentation website](https://docs.linea.build/)
+- [Documentation for builders](https://docs.linea.build/) 
+- [Documentation for Linea infrastructure runners](https://github.com/Consensys/linea-monorepo/tree/main/docs)
 - [Community forum](https://community.linea.build/)
 - [Discord](https://discord.gg/linea)
 - [X](https://x.com/LineaBuild)
 - [Create an issue](https://github.com/Consensys/doc.linea/issues)
-- [Fork repository](https://github.com/ConsenSys/doc.linea/fork)
+- [Fork repository](https://github.com/Consensys/doc.linea/fork)
 
 ## What is Linea?
 
@@ -23,20 +20,20 @@ itself is published at [`docs.linea.build`](https://docs.linea.build/).
 
 ## Contribute
 
-See something missing? Error in our documentation? Create an issue [here](https://github.com/Consensys/doc.linea/issues).
+See something missing? Error in our documentation? [Create an issue](https://github.com/Consensys/doc.linea/issues).
 
-Alternatively, help us improve our documentation! [Fork our repo](https://github.com/ConsenSys/doc.linea/fork),
+Alternatively, help us improve our documentation! [Fork our repo](https://github.com/Consensys/doc.linea/fork),
 create a pull request, and tag us for review.
 
 Alternatively, get in touch via the [community forum](https://community.linea.build/) or the 
 [Linea Discord](https://discord.gg/linea) if you have an issue or question.
 
 Please follow these steps if you wish to contribute:
-1. Please make an issue describing the change you wish to make _before_ you start working on it, and
+1. Make an issue describing the change you wish to make _before_ you start working on it, and
 [link to it in your pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
-This is particularly important if you are an ecosystem contributor — submitting your details in an 
-issue first will make it much easier for our docs team to process your contributions.
-2. [Fork our repo](https://github.com/ConsenSys/doc.linea/fork) so that you're able to work on it. 
+> This is particularly important if you are an ecosystem contributor — submitting your details in an 
+> issue first will make it much easier for our docs team to process your contributions.
+2. [Fork our repo](https://github.com/Consensys/doc.linea/fork) so that you're able to work on it. 
 3. Make your changes, paying attention to our [contribution guidelines](#contribution-guidelines).
 4. Review your changes locally. See our [guide](#running-locally) on previewing your 
 changes locally.
@@ -50,8 +47,19 @@ consider creating an issue instead.
 
 ### Contribution guidelines
 
-The style of the documentation is based on the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
+This documentation applies the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
 other than for images and other media, for which we have [specific guidelines](#adding-images-to-articles).
+
+#### Information architecture
+
+Rule of thumb:
+- If a page answers “how does Linea work?” → Protocol
+> Content primarily explains cryptographic primitives, zk proofs, or protocol mechanics.
+- If it answers “how do I run Linea?” → Stack
+> Can I do X?” → belongs in Features
+> “How do I do X?” → belongs in Guides
+> “What is X?” → belongs in How It Works
+- If it answers "how do I work with Mainnet" → Network
 
 #### Orthography
 
@@ -115,7 +123,7 @@ open source Zero-Knowledge glossary to define some common terms you might encoun
 into the L2 landscape.
 
 [Fork our repo](https://github.com/Consensys/doc.linea/fork), and add a term in alphabetical
-order to `docs/zero-knowledge-glossary/index.mdx`. Then, make a pull request and tag us for review!
+order to `docs/protocol/zero-knowledge-glossary.mdx`. Then, make a pull request and tag us for review!
 
 ### Additional resources
 

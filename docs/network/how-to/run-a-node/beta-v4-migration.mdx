@@ -1,0 +1,315 @@
+---
+title: Network upgrades
+description: >-
+  Detailed walkthroughs and how-tos for upgrading your Linea node to the latest
+  hard fork or other upgrade
+image: /img/socialCards/network-upgrades.jpg
+sidebar_position: 7
+---
+
+## Fusaka upgrade guide
+Linea will be upgrading to Fusaka (Ethereum's latest EVM upgrade) on December 3, 2025 to maintain alignment with Ethereum mainnet.
+Node runners must update their clients before the upgrade activates (if no downtime is desired).
+For more information on the Fusaka upgrade, see the Ethereum Foundation's [Roadmap entry for it](https://ethereum.org/roadmap/fusaka/).
+
+## Timeline
+We're taking a phased approach to ensure a smooth upgrade:
+- **Linea Sepolia Testnet**
+Date: Monday, December 1st at 10:00 UTC.
+Action: Sepolia node runners must upgrade by Monday morning.
+- **Linea Mainnet**
+Date: Wednesday, December 3rd at 9:49pm UTC:
+Action: Mainnet node runners must upgrade by Wednesday morning.
+Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday evening.
+
+### Upgrade both clients
+This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
+
+#### Sepolia Testnet:
+- **Besu & Maru versions**: See the latest versions in the [Sepolia docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Geth**: See version and configuration in the [Sepolia Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
+
+#### Mainnet:
+- **Besu & Maru versions**: See the latest versions in the [Mainnet docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Geth**: See version and configuration in the [Mainnet Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Other EL clients**: Check for Fusaka-compatible versions
+
+### Verify your upgrade
+After upgrading, validate that your node is running the correct fork by checking the forkId:
+```bash
+curl --location http://localhost:8545/ \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "method": "eth_config",
+    "params":[],
+    "id": 1
+}' | jq .result
+```
+#### Expected output after activation:
+
+#### Sepolia Testnet:
+
+```bash
+Besu (Sepolia):
+{
+  "next": { "forkId": "0x24ef0ae2" }
+}
+
+Geth (Sepolia):
+{
+  "last": { "forkId": "0x24ef0ae2" }
+}
+```
+
+#### Mainnet:
+
+```bash
+Besu (Mainnet):
+{
+  "next": { "forkId": "0x335bb88e" }
+}
+
+Geth (Mainnet):
+{
+  "last": { "forkId": "0x335bb88e" }
+}
+```
+
+**Note:** Due to some semantic discrepancies, Besu shows Fusaka in `.result.next.forkId`, while Geth shows it in `.result.last.forkId`.
+
+If your output doesn't match, **your node is not properly upgraded.**
+
+
+### Simplified configuration with named networks:
+
+Starting with these versions, both Besu and Maru now support network flags, eliminating the need for manually managing genesis files:
+
+#### Maru configuration
+
+**Old way:**
+```
+  - "--maru-genesis-file"
+  - "/opt/consensys/maru/configs/maru-genesis.json"
+```
+
+**New way (recommended):**
+```
+  - "--network"
+  - "linea-mainnet"  # For mainnet
+  - "--network" 
+  - "linea-sepolia"  # For sepolia
+```
+
+#### Besu configuration
+
+Besu also supports named networks. In `linea-besu.config.toml`, use the appropriate network:
+
+```
+network="linea_sepolia" # For sepolia
+network="linea_mainnet" # For mainnet
+```
+
+**Note:** Besu network names are case-insensitive and accept both underscores (`_`) and hyphens (`-`), so `linea_sepolia`, `linea-sepolia`, and `LINEA_SEPOLIA` all work identically.
+
+
+And so, lastly:
+
+### Help us monitor the network! (...it's optional, but greatly appreciated)
+
+We kindly ask node runners to **enable Ethstats monitoring for your Sepolia or Mainnet nodes.**
+
+This helps us to:
+
+- Proactively spot upgrade issues
+- Monitor block propagation across the network
+- Track EL client versions and network health
+- Provide better support during the Fusaka upgrade and future upgrades
+
+You can opt out at any time.
+
+#### How to Enable Ethstats
+
+- Step 1: Get your Ethstats key
+Each node runner needs a unique Ethstats key. Contact Linea technical support to request your key (one key per organization).
+- Step 2: Add the flag to your Execution Layer client
+Replace your-node-name with a unique identifier for your node (e.g., mycompany-node-1) and YOUR_ETHSTATS_KEY with the key provided by the Linea technical support team:
+
+##### Linea Sepolia:
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build`
+
+##### Linea Mainnet:
+`--ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build`
+
+##### Docker Compose example:
+
+For the latest Docker Compose configurations with current versions, see:
+- **Sepolia**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Mainnet**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+
+To add Ethstats monitoring, add this flag to your Besu service:
+```yaml
+besu-node:
+  # ... other configuration from the docker-compose.yml above
+  command:
+    - --config-file=/var/lib/besu/linea-besu.config.toml
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.sepolia.linea.build # for sepolia
+    - --ethstats=your-node-name:YOUR_ETHSTATS_KEY@ethstats.linea.build # for mainnet
+```
+
+##### More details here: 
+- [Besu Ethstats setup](https://besu.hyperledger.org/private-networks/how-to/deploy/ethstats)
+- [Geth Ethstats setup](https://geth.ethereum.org/docs/monitoring/ethstats)
+
+
+
+## Beta v4.0 migration guide
+
+**Instructions for running Maru alongside an execution layer client**
+
+Linea Beta v4.0 is a **mandatory hard fork** introducing **Maru**, the new consensus layer (CL).
+
+Maru replaces Clique and aligns Linea with Ethereum's dual-layer design (execution and consensus).
+
+After the fork:
+
+- You must run **both** an execution layer (EL) client of your choice and Maru, a CL client. A 
+  standalone EL client will not work.
+- Sequencer signatures move from EL `extraData` to the **Maru attestations API**.
+- EL clients must be upgraded to Beta v4.0 compatible versions (any EL client that supports Prague 
+  should be compatible).
+
+See the [Beta v4.0 release notes](../../../changelog/release-notes.mdx#beta-v40) for the scheduled hard fork 
+dates.
+
+This page is intended for those who have already successfully upgraded their nodes to the Shanghai 
+hard fork. 
+
+## Overview of changes
+
+### Breaking change: sequencer signatures
+
+**Sequencer signatures will no longer be in EL block `extraData` after the upgrade.**
+
+Before (pre-fork):
+
+```
+// on EL client
+let signatures = block.extra_data;
+```
+
+After (post-fork):
+
+```
+// Must switch to Maru API
+let signatures = maru_api.get("/eth/v2/beacon/blocks/{block_id}").data.message.body.attestations;
+```
+
+`attestations` returns a list containing the current block signature/attestation
+and the previous block signature/attestation.
+
+### Key architecture changes
+
+#### Current
+
+- Single layer: EL client only (Besu with Clique)
+- Sequencer signatures: Stored in EL block `extraData`
+- Block production: Clique handles execution and consensus
+
+#### After Beta v4.0
+
+- Dual-layer architecture: Execution Layer (EL) client + Consensus Layer (CL) client (The CL is 
+  currently powered by Maru, a consensus client implementing a customized variation of the QBFT 
+  algorithm. While Maru is the only supported client today, the architecture is designed to support 
+  future client diversity and algorithm evolution).
+- Sequencer signatures: Moved to Maru's `SealedBeaconBlock.commitSeals`
+- Block production: Maru (QBFT) coordinates consensus, EL executes transactions
+- API: Signatures and consensus data available via Maru APIs
+
+### EL client compatibility
+
+By design, Linea with Maru will support any client compatible with L1; vanilla client compatible 
+with Prague will work.
+
+Supported EL clients include:
+
+- Besu: [25.8.0](https://github.com/hyperledger/besu/releases/tag/25.8.0) or higher
+- Geth: 
+  - Pre-Shanghai: v1.13.15
+  - Post-Shanghai: v1.16.x  
+- Erigon: Latest release
+- Nethermind: Latest release
+- Linea-specific: A new `linea-besu-package` release is available via Docker: `consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b`
+
+## Upgrade to Cancun and Prague
+
+After the Paris and Shanghai hard forks on October 22 and 23 respectively, the next step is to 
+update your genesis files for both Maru and your EL client and then reinitialize your node.
+
+:::warning Geth version
+
+Ensure your Geth client is using v1.16.x or higher. Older versions will not be compatible after the
+Cancun hard fork.
+
+:::
+
+### Step 1: New genesis files
+
+First, find the files here:
+- [Maru](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/maru/maru-genesis.json)
+- [Besu](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/besu-genesis.json)
+- [Geth](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
+
+### Step 2: Update `docker-compose.yml`
+
+Retrieve the [updated `docker-compose.yml`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
+file from the Linea monorepo. 
+
+Alternatively, update your existing `docker-compose.yml` file manually with the new `linea-besu-package` 
+image (`rc17`):
+
+```yaml
+  besu-node:
+      hostname: el-client
+      container_name: linea-besu
+      image: consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b 
+```
+
+### Step 3: Reinitialize your node
+
+First, stop your existing nodes:
+
+```bash
+docker compose down
+```
+Then reinitialize your node:
+
+```bash
+docker compose up maru-node besu-node
+```
+
+### Step 4: Verify 
+
+After a successful reinitialization, you should see the following in your logs: 
+
+#### Maru
+
+```
+LenientForkPeeringManager | forks: [{ts=1761646200 time=2025-10-28T10:10:00Z fork=QBFT_PHASE0/Prague forkDigest=0xae00a891},{ts=1761645600 time=2025-10-28T10:00:00Z fork=QBFT_PHASE0/Cancun forkDigest=0x3aa8d9a0},{ts=1761213600 time=2025-10-23T10:00:00Z fork=QBFT_PHASE0/Shanghai forkDigest=0xfcb4d7c8},{ts=0 time=1970-01-01T00:00:00Z ttd=49575263 fork=QBFT_PHASE0/Paris forkDigest=0x285982f0}]
+```
+
+#### Besu
+
+```
+ProtocolScheduleBuilder | Protocol schedule created with milestones: [Paris:0, Shanghai:1761213600, Cancun:1761645600, Prague:1761646200]
+```
+
+#### Geth
+
+```
+Post-Merge hard forks (timestamp based):
+ - Shanghai:                    @1761213600
+ - Cancun:                      @1761645600 blob: (target: 0, max: 0, fraction: 3338477)
+ - Prague:                      @1761646200 blob: (target: 0, max: 0, fraction: 5007716)
+```

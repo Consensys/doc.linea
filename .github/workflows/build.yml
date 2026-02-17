@@ -3,17 +3,26 @@ name: Build
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+# Cancel older runs on the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions: {} # lock everything by default (least-privilege)
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: read  # least-privilege for this job only
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v6
 
-      - name: Build
+      - name: Build docs
         uses: Consensys/github-actions/docs-build@main

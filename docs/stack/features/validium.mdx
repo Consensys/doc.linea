@@ -1,0 +1,118 @@
+---
+title: Privacy
+description: Private Validium deployment model features and capabilities
+sidebar_position: 5
+image: /img/socialCards/privacy.jpg
+---
+
+Private Validium is a deployment model for the Linea stack that keeps transaction data offchain while
+maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
+financial institutions and applications requiring privacy, compliance controls, and selective data
+disclosure.
+
+:::important
+
+Reach out to [support.linea.build](https://support.linea.build/) to enquire about rollup-as-a-service, wherein all or part of the operations are supported by Linea and her partners.
+
+:::
+
+### Validium differentiators
+
+In validium mode, the Linea network proves state transitions using zk-SNARKs while retaining
+transaction data within a private data availability layer. After blocks are produced by the
+sequencer, they are aggregated and batched, and a zk-SNARK proof attesting to the resulting state
+transition is generated and submitted to the finalization layer.
+
+## Key features
+
+### Offchain data availability
+
+Transaction data is stored offchain in a private node set rather than posted to the finalization
+layer. Only state commitments and zero-knowledge proofs are posted onchain, ensuring transaction
+privacy while maintaining cryptographic guarantees.
+
+### Role-based access control
+
+Role-Based Access Control (RBAC) controls access to network functionality:
+
+- RPC endpoints: Access controlled by API keys and permissions
+- API portal: Institution-level access controls
+- Transaction visibility: Participants see only transactions they're authorized to view
+
+### Privacy and compliance
+
+Private Validium supports regulated financial applications:
+
+- Transaction privacy: Transaction details not visible on finalization layer
+- Selective disclosure: Authorized parties (auditors, regulators) can access transaction data
+- Compliance controls: Compliance checks can be enforced at the API and sequencer levels
+- Audit trails: Complete audit trails while maintaining privacy
+
+### API portal
+
+The API portal provides controlled access to network functionality:
+
+- Institution onboarding and management
+- Token issuance and management
+- Settlement workflows (CBP, PVP, DVP)
+- Balance queries and reporting
+
+### Finalization layer options
+
+Private Validium can finalize on:
+
+- Ethereum L1: direct finalization on Ethereum with higher costs and longer finality times
+- Linea Mainnet: finalization on Linea Mainnet with lower costs and faster finality
+
+See [a comparison of finalization layer options](../how-it-works/data-availability-finalization#finalization-layer).
+
+## Use cases
+
+Private Validium is ideal for:
+
+- Regulated financial institutions: Banks, payment processors, and financial market
+  infrastructures requiring compliance and privacy
+- Multi-party workflows: Applications where participants should not see all transaction details
+- Tokenized assets: Issuance and settlement of tokenized securities and cash
+- Cross-border payments: Settlement systems requiring privacy and compliance controls
+
+## Architecture
+
+Private Validium deployments include:
+
+- Consensus layer: [Maru](../../protocol/reference/repos.mdx#maru) with Quorum-Based Byzantine Fault Tolerance (QBFT) consensus (minimum 4 nodes)
+- Execution layer: [Linea Besu](../../protocol/reference/repos.mdx#linea-besu-upstream) with sequencer plugins
+- [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and
+  [finalization](../../network/overview/known-finality-state.mdx)
+- [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs
+- [State manager](../../protocol/architecture/state-manager.mdx): Maintains state for proof generation
+- Private RPC nodes: RBAC-protected RPC endpoints
+- API portal: Controlled access to network functionality
+- Data availability: Private node set for data storage
+
+## Security and trust
+
+### Trust assumptions
+
+Private Validium requires trust in:
+
+- Data availability providers: Must make data available when needed
+- Validator set: Must follow consensus protocol (QBFT provides fault tolerance)
+- Finalization layer: Inherits security from Ethereum
+
+### Security features
+
+- Minimum node count: 4 nodes for QBFT fault tolerance
+- Access controls: Role-Based Access control (RBAC) on RPC and API endpoints
+- Key management: Supports [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing backed
+  by a hardware security module (HSM) or key management service (KMS)
+- Network isolation: Private network topology
+
+### Data availability
+
+Where deployments use a private node set for data storage, participants must trust that data
+availability providers will make data available when needed.
+
+## Next steps
+
+- Learn more about selecting a [deployment model](../how-it-works/deployment-models.mdx)

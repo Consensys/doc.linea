@@ -1,3 +1,4 @@
+import remarkEmdash from "./scripts/remark/remark-emdash.js";
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
@@ -44,9 +45,6 @@ const config = {
 
   markdown: {
     mermaid: true,
-    hooks: {
-      onBrokenMarkdownLinks: "throw",
-    },
   },
 
   // Enable experimental infrastructure for Docusaurus Faster project
@@ -81,6 +79,7 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
+          remarkPlugins: [remarkEmdash],
         },
         blog: false, // Disable blog feature
         theme: {
@@ -105,9 +104,9 @@ const config = {
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
       announcementBar: {
-        id: "announcement_bar_2025_08_v1",
+        id: "announcement_bar_2026_01_ens_resolver",
         content:
-          '📣 <strong>Running a Linea node?</strong> Linea Beta v4 implements the Pectra upgrade, and, with it, a breaking change for your execution layer node client. You will also need to start running the consensus layer client, Maru, alongside it. Read more <a href="/get-started/how-to/run-a-node/beta-v4-migration">here</a>',
+          '📣 <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. Learn more <a href="/network/how-to/deploy-subdomain#use-ens-contracts">here.</a>',
         backgroundColor: "#61dfff",
         textColor: "#121212",
         isCloseable: false,
@@ -119,7 +118,7 @@ const config = {
       },
       tableOfContents: {
         minHeadingLevel: 2,
-        maxHeadingLevel: 5,
+        maxHeadingLevel: 3,
       },
       docs: {
         sidebar: {
@@ -136,33 +135,46 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "get-started/index",
+            docId: "network/quickstart/index",
             position: "left",
-            label: "Get started",
+            label: "Public network",
+            activeBaseRegex: "^/network/",
           },
           {
             type: "doc",
-            docId: "learn/first-dapp",
+            docId: "protocol/overview",
             position: "left",
-            label: "Learn",
+            label: "Protocol",
           },
           {
             type: "doc",
-            docId: "technology/architecture",
+            docId: "stack/index",
             position: "left",
-            label: "Technology",
+            label: "Stack",
           },
           {
             type: "doc",
-            docId: "api/linea-smart-contracts/linearollup",
+            docId: "api/reference/index",
             position: "left",
             label: "APIs & SDK",
           },
           {
-            type: "doc",
-            docId: "release-notes",
+            type: "dropdown",
+            label: "Changelog",
             position: "right",
-            label: "Release notes",
+            activeBaseRegex: "^/changelog/",
+            items: [
+              {
+                type: "doc",
+                docId: "changelog/release-notes",
+                label: "Release notes",
+              },
+              {
+                type: "doc",
+                docId: "changelog/security-council-record",
+                label: "Linea Security Council transaction record",
+              },
+            ],
           },
           {
             href: "https://discord.gg/linea",
@@ -196,7 +208,7 @@ const config = {
               },
               {
                 label: "Risk disclosures",
-                href: "/risk-disclosures",
+                href: "/network/risk-disclosures",
               },
               {
                 label: "Terms of service",
@@ -205,6 +217,9 @@ const config = {
               {
                 label: "Privacy policy",
                 href: "https://linea.build/privacy-policy",
+              },
+              {
+                html: "<button id='manage-cookie-btn'>Manage cookie</button>",
               },
             ],
           },
@@ -320,6 +335,12 @@ const config = {
     "@docusaurus/theme-mermaid",
   ],
   headTags: [
+    {
+      tagName: "script",
+      attributes: {
+        src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js",
+      },
+    },
     {
       tagName: "script",
       attributes: {},
