@@ -3,102 +3,85 @@ title: DIA
 image: /img/socialCards/dia.jpg
 ---
 
-## Request a custom oracle
+## Overview
 
-[DIA](https://diadata.org/) offers customizable oracles tailored to each
-dapp's needs. Each oracle can be customized in several ways, including data
-sources, data cleansing filters, pricing and computational methodologies, update
-mechanisms and more. This ensures that the data and oracle remain robust and
-resilient to the market conditions and provide a global market price as well as
-specific individual or cross-chain market prices.
+[DIA](https://www.diadata.org/) is a cross-chain, trustless oracle network
+delivering verifiable price feeds for Linea. DIA sources raw trade data directly
+from primary markets and computes it onchain, ensuring complete transparency and
+data integrity.
 
-By collecting billions of raw trades directly from over 90 sources, including
-CEXs, DEXs, and NFT marketplaces, DIA enables full transparency, customization,
-and control throughout the entire value stack. DIA's data and oracle suite
-comprise price feeds for 20,000+ assets including cryptocurrencies, NFT
-collections, and liquid-staked tokens, as well as random number generation and
-other data feed types.
+Key features:
 
-[Request a custom oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle).
+- Complete verifiability from source to destination smart contract.
+- Direct data sourcing from 100+ primary markets eliminating intermediary risk.
+- Support for 20,000+ assets across all major asset classes.
+- Custom oracle configuration with tailored sources and methodologies.
 
-## Token price feeds
+Data products:
 
-DIA token price feeds provide smart contracts with real-time price information
-for [3,000+ cryptocurrencies](https://diadata.org/app/price), sourced
-transparently from [90+ trusted, high-volume DEXs and CEXs](https://diadata.org/app/source/defi).
+- **Token Price Feeds**: Real-time market prices for assets across CEXs and DEXs.
+- **Fundamental Feeds**: Fair value pricing and backing data (NAV, Proof of Reserve, and more).
+- **Real-World Asset (RWA) Feeds**: Traditional financial data including Equities, FX rates,
+  commodities, and ETFs.
+- **Randomness**: Verifiable random number generation for gaming, lotteries, and more.
 
-## Access DIA oracles
-
-Here is an example of how to access a price value on DIA oracles:
-
-1. Access your custom oracle smart contract on Linea.
-2. Use the "Read" section on the explorer to execute the `getValue(pair_name)`
-call, where `pair_name` is the full pair name such as `BTC/USD`.
-3. The response of the call contains two values:
-    - The current asset price in USD with a fix-comma notation of 8 decimals.
-    - The UNIX timestamp of the last oracle update.
-
-[Access DIA's oracle integration samples in Solidity and Vyper languages](https://docs.diadata.org/products/token-price-feeds/access-the-oracle).
-
-## Linea demo price oracles
-
-We have deployed the following demo oracles for the Linea community. They
-provide a limited selection of cryptocurrency price feeds with predefined
-configuration settings.
+## Querying DIA price feeds
 
 :::note
-DIA demo oracles are not intended for use in production environments. For a
-dedicated, production-ready oracle with custom price feeds and configuration
-settings, [request a custom oracle](https://docs.diadata.org/introduction/intro-to-dia-oracles/request-an-oracle).
+This is a demo oracle which is not intended for use in production
+environments. Interested in a production-ready oracle?
+[Contact the DIA team](https://t.me/DIAOracles_Support_Bot). 
 :::
 
-### Demo oracle smart contracts
+Call the `getValue(string memory key)` function on the oracle contract with the
+Query Symbol (e.g., "BTC/USD"). The function returns the asset price with 8
+decimal precision and the timestamp of the last update. We'll use this address
+on Linea Sepolia:
+[`0x533d3c1df8d238374065fb3341c34754e4bfce8e`](https://sepolia.lineascan.build/address/0x533d3c1df8d238374065fb3341c34754e4bfce8e).
 
-<table>
-  <thead>
-    <tr>
-      <th>Network</th>
-      <th>Contract address</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Linea Mainnet</td>
-      <td><a href="https://lineascan.build/address/0xbb5a4708302ee9d959abc417ca1280abb106ba6a">0xbb5a4708302ee9d959abc417ca1280abb106ba6a</a></td>
-    </tr>
-  </tbody>
-</table>
+```solidity
+pragma solidity ^0.8.13;
+interface IDIAOracleV2 {
+    function getValue(string memory) external view returns (uint128,
+             uint128);
+}
+contract DIAOracleSample {
+    /**
+    * @notice The DIA oracle to read from.
+    * Oracle Address: 0x533d3c1df8d238374065fb3341c34754e4bfce8e
+    * Network: Linea Sepolia
+    */
+    address constant diaOracle = "0x...";
+    function getPrice(string memory key)
+    external
+    view
+    returns (
+        uint128 latestPrice,
+        uint128 timestampOfLatestPrice
+    ) {
+        (latestPrice, timestampOfLatestPrice) =
+                 IDIAOracleV2(diaOracle).getValue(key);
+    }
+}
+```
 
-### Included price feeds
+Please refer to
+[DIA's documentation](https://www.diadata.org/docs/guides/chain-specific-guide/linea)
+for the list of available price feeds.
 
-- [DIA/USD](https://diadata.org/app/price/asset/Ethereum/0x84cA8bc7997272c7CfB4D0Cd3D55cd942B3c9419/)
-- [BTC/USD](https://diadata.org/app/price/asset/Bitcoin/0x0000000000000000000000000000000000000000/)
-- [USDC/USD](https://diadata.org/app/price/asset/Ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/)
+## Request a custom oracle
 
-## Supported token API endpoints
+For dapps requiring specific configurations, DIA deploys production-grade custom
+oracles tailored to your requirements with configurable data sources, pricing
+methodologies, update triggers, and coverage for any of 20,000+ supported
+assets.
 
-DIA also supports API and GraphQL endpoints to return cryptocurrency price data.
+→
+[Request a custom oracle](https://www.diadata.org/docs/guides/how-to-guides/request-a-custom-oracle)
 
-[See all API endpoints in our documentation](https://docs.diadata.org/products/token-price-feeds/access-api-endpoints).
+## Resources
 
-# 🎨 NFT floor price feeds
-
-DIA NFT floor price feeds provide smart contracts with real-time price
-information of [18,000+ NFT collections](https://diadata.org/app/floor-price), 
-sourced on-chain with 100% transparency from [multiple, cross-chain NFT 
-marketplaces](https://diadata.org/app/source/nft).
-
-## Supported NFT API endpoints
-
-DIA also supports API endpoints to return cryptocurrency price data. Developers
-can directly access the example endpoints listed below or [visit the DIA
-Documentation](https://docs.diadata.org/products/nft-floor-price-feeds/access-api-endpoints)
-to see all API endpoints.
-
-# Learn more
-
-- [Twitter](https://x.com/DIAdata_org)
-- [Discord](https://go.diadata.org/discord-menu)
-- [Website](https://diadata.org/)
-- [Docs](https://docs.diadata.org/)
-- [Explore data](https://diadata.org/app/)
+- Developer support: [Discord](https://discord.com/invite/ZvGjVY5uvs) |
+  [Telegram](https://t.me/diadata_org)
+- [Linea integration guide](https://www.diadata.org/docs/guides/chain-specific-guide/linea)
+- [DIA documentation](https://www.diadata.org/docs)
