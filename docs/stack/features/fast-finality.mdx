@@ -11,7 +11,7 @@ Linea provides options to deploy networks that provide instant finality.
 
 Finality is the point at which a transaction becomes immutable and you can’t reverse or change it under the protocol’s security assumptions. Instant finality means a block becomes final before the next block is produced.
 
-Layer 2 (L2) blockchains bundle and submit transactions to the Layer 1 (L1) blockchain. Soft finality is reached when a block is confirmed and committed to the L2. Hard finality is reached when the transaction is confirmed and committed to the L1. On Linea, sequencers confirm the state of the chain during block production, so soft finality is conisdered a final state, allowing for instant finality before reaching the L1.
+Layer 2 (L2) blockchains bundle transactions and submit them to the layer 1 (L1) blockchain. Soft finality occurs when a block is confirmed and committed on the L2. Hard finality occurs when the L2 state that includes the transactions is confirmed and committed on the L1. On Linea, sequencers confirm the chain state during block production, so soft finality represents a final state for the L2 and enables instant finality before L1 confirmation.
 
 ## Standalone Linea Enterprise
 
