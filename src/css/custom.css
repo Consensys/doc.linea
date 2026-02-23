@@ -4,9 +4,47 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/*
+ * BREAKPOINTS (reference)
+ * 1499px — responsive graphic
+ * 1380px — navbar inner width
+ * 1320px — search input desktop max
+ * 1200px — hide TOC column
+ * 1080px — release notes link hide / search expand
+ *  996px — Docusaurus mobile (navbar/sidebar collapse) [PRINCIPAL]
+ *  768px — compact layout
+ *  700px — responsive graphic small
+ *  600px — search input mobile
+ *  525px — menu labels
+ *  400px — homepage layout smallest
+ *  320px — smallest screens
+ */
 
-/* Custom styling made by CSCT */
+/* ============================================================
+   SECTION INDEX
+   1.  UTILITY CLASSES (video, images, mermaid)
+   2.  FONTS (@font-face)
+   3.  TYPOGRAPHY
+   4.  TABLES
+   5.  CSS VARIABLES — ROOT TOKENS
+   6.  CSS VARIABLES — DARK THEME
+   7.  CSS VARIABLES — LIGHT THEME
+   8.  SOCIAL ICONS (GitHub, Discord, Twitter, DockerHub)
+   9.  NAVBAR
+   10. SEARCH BAR
+   11. SIDEBAR MENU
+   12. ALGOLIA SEARCH
+   13. MISC COMPONENTS (tabs, footer, breadcrumbs)
+   14. SIDEBAR LAYOUT
+   15. TOC
+   16. CONTENT AREA
+   17. ADMONITIONS
+   18. CODE BLOCKS
+   ============================================================ */
+
+/* ============================================================
+   1. UTILITY CLASSES (video, images, mermaid)
+   ============================================================ */
 
 .video-container {
   position: relative;
@@ -143,13 +181,14 @@
   }
 }
 
-/* Atyp font */
+/* ============================================================
+   2. FONTS (@font-face)
+   ============================================================ */
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-Regular.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-Regular.woff") format("woff");
+  src: url("/fonts/AtypDisplay-Regular.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: fallback;
@@ -157,9 +196,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-Medium.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-Medium.woff") format("woff");
+  src: url("/fonts/AtypDisplay-Medium.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: fallback;
@@ -167,9 +205,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-Semibold.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-Semibold.woff") format("woff");
+  src: url("/fonts/AtypDisplay-Semibold.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-Semibold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: fallback;
@@ -177,9 +214,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-Bold.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-Bold.woff") format("woff");
+  src: url("/fonts/AtypDisplay-Bold.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: fallback;
@@ -187,9 +223,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-Light.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-Light.woff") format("woff");
+  src: url("/fonts/AtypDisplay-Light.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: fallback;
@@ -197,9 +232,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-BoldItalic.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-BoldItalic.woff") format("woff");
+  src: url("/fonts/AtypDisplay-BoldItalic.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-BoldItalic.woff") format("woff");
   font-weight: bold;
   font-style: italic;
   font-display: fallback;
@@ -207,9 +241,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-MediumItalic.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-MediumItalic.woff") format("woff");
+  src: url("/fonts/AtypDisplay-MediumItalic.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-MediumItalic.woff") format("woff");
   font-weight: 500;
   font-style: italic;
   font-display: fallback;
@@ -217,9 +250,8 @@
 
 @font-face {
   font-family: AtypDisplay;
-  src:
-    url("/fonts/AtypDisplay-SemiboldItalic.woff2") format("woff2"),
-    url("/fonts/AtypDisplay-SemiboldItalic.woff") format("woff");
+  src: url("/fonts/AtypDisplay-SemiboldItalic.woff2") format("woff2"),
+  url("/fonts/AtypDisplay-SemiboldItalic.woff") format("woff");
   font-weight: 600;
   font-style: italic;
   font-display: fallback;
@@ -227,9 +259,8 @@
 
 @font-face {
   font-family: AtypText;
-  src:
-    url("/fonts/AtypText-Regular.woff2") format("woff2"),
-    url("/fonts/AtypText-Regular.woff") format("woff");
+  src: url("/fonts/AtypText-Regular.woff2") format("woff2"),
+  url("/fonts/AtypText-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: fallback;
@@ -237,9 +268,8 @@
 
 @font-face {
   font-family: AtypText;
-  src:
-    url("/fonts/AtypText-Semibold.woff2") format("woff2"),
-    url("/fonts/AtypText-Semibold.woff") format("woff");
+  src: url("/fonts/AtypText-Semibold.woff2") format("woff2"),
+  url("/fonts/AtypText-Semibold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: fallback;
@@ -247,9 +277,8 @@
 
 @font-face {
   font-family: AtypText;
-  src:
-    url("/fonts/AtypText-Medium.woff2") format("woff2"),
-    url("/fonts/AtypText-Medium.woff") format("woff");
+  src: url("/fonts/AtypText-Medium.woff2") format("woff2"),
+  url("/fonts/AtypText-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: fallback;
@@ -257,13 +286,16 @@
 
 @font-face {
   font-family: AtypText;
-  src:
-    url("/fonts/AtypText-Bold.woff2") format("woff2"),
-    url("/fonts/AtypText-Bold.woff") format("woff");
+  src: url("/fonts/AtypText-Bold.woff2") format("woff2"),
+  url("/fonts/AtypText-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: fallback;
 }
+
+/* ============================================================
+   3. TYPOGRAPHY
+   ============================================================ */
 
 body {
   font-family: AtypText, sans-serif;
@@ -271,22 +303,22 @@ body {
 
 h1 {
   font-family: AtypDisplay, sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h2 {
   font-family: AtypDisplay, sans-serif;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h3 {
   font-family: AtypDisplay, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h4 {
   font-family: AtypDisplay, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 em {
@@ -312,7 +344,7 @@ abbr:where([title]) {
   text-decoration: underline dotted;
 }
 
-a {
+a:not(.navbar__link, .footer__link-item, .menu__link, .support-link) {
   font-family: inherit;
   color: var(--linea-link-highlight-color);
   text-decoration: inherit;
@@ -353,11 +385,93 @@ sup {
   top: -0.5em;
 }
 
+/* ============================================================
+   4. TABLES
+   ============================================================ */
+
+/* Tables styling per Figma */
 table {
-  font-family: inherit;
+  font-family: AtypText, sans-serif;
   text-indent: 0;
-  border-color: inherit;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+[data-theme="dark"] table {
+  border-color: #333;
+}
+
+table thead {
+  background-color: #efefeb;
+}
+
+[data-theme="dark"] table thead {
+  background-color: #2f2f2f;
+}
+
+table thead th {
+  font-family: AtypText, sans-serif;
+  font-weight: 500;
+  padding: 12px;
+  text-align: left;
+  color: #121212;
+  font-size: 16px;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+table thead th:last-child {
+  border-right: none;
+}
+
+[data-theme="dark"] table thead th {
+  color: #fff;
+  border-bottom-color: #333;
+  border-right-color: #333;
+}
+
+table tbody tr {
+  background-color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #efefeb;
+}
+
+[data-theme="dark"] table tbody tr {
+  background-color: #1c1c1c;
+}
+
+[data-theme="dark"] table tbody tr:nth-child(even) {
+  background-color: #2f2f2f;
+}
+
+table tbody td {
+  padding: 12px;
+  color: #121212;
+  font-size: 16px;
+  line-height: 1.4;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+table tbody td:last-child {
+  border-right: none;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+[data-theme="dark"] table tbody td {
+  color: #fff;
+  border-bottom-color: #333;
+  border-right-color: #333;
 }
 
 button,
@@ -374,11 +488,15 @@ textarea {
   padding: 0;
 }
 
+/* ============================================================
+   5. CSS VARIABLES — ROOT TOKENS
+   ============================================================ */
+
 :root {
   font-family: AtypDisplay, serif;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
   --ifm-code-border-radius: 15px;
-  --doc-sidebar-width: 350px !important;
+  --doc-sidebar-width: 350px;
   --linea-navbar-items-light: rgb(97 223 255 / 10%);
   --linea-navbar-items-medium: rgb(97 223 255 / 20%);
 }
@@ -387,10 +505,13 @@ textarea {
   --ifm-footer-background-color: var(--footer-background);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ============================================================
+   6. CSS VARIABLES — DARK THEME
+   ============================================================ */
+
 [data-theme="dark"] {
-  --page-background: #121212;
-  --search-background: #121212;
+  --page-background: #1C1C1C;
+  --search-background: #1C1C1C;
   --ifm-color-primary-lightest: #fff;
   --ifm-color-primary-lighter: #fff;
   --ifm-color-primary-light: #bfe8ff;
@@ -405,21 +526,21 @@ textarea {
   --ifm-link-color: #61dfff;
   --ifm-menu-color-active: #61dfff;
   --ifm-footer-background-color: #000;
-  --ifm-background-color: #121212;
+  --ifm-background-color: #1C1C1C;
   --ifm-navbar-link-hover-color: #61dfff;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
-  --banner-background: #1d1d1d;
+  --banner-background: #121212;
   --banner-text: #fff;
-  --banner-text-shadow: #121212;
+  --banner-text-shadow: #1C1C1C;
   --banner-button-hover: #fff;
-  --banner-button-text-hover: #121212;
-  --homepage-card-background: #1d1d1d;
+  --banner-button-text-hover: #1C1C1C;
+  --homepage-card-background: #121212;
   --homepage-card-text: #fff;
   --homepage-card-border-color: #505050;
   --homepage-card-border-color-hover: #61dfff;
   --homepage-card-dot-hover: #fff;
   --homepage-card-icon: #fff;
-  --footer-background: #121212;
+  --footer-background: #1C1C1C;
   --linea-highlight-color-1: #fff068;
   --linea-highlight-color-2: #6119ef;
   --linea-navbar-background: #190066;
@@ -443,12 +564,55 @@ textarea {
   --search-local-highlight-color: #6f7da6;
   --search-result-hl: #23282a;
 
+  /* Admonitions (dark theme) - EXACT Figma colors */
+  --admonition-tip-bg: #190066;
+  --admonition-tip-heading: #e8e6f0;
+  --admonition-tip-text: #e8e6f0;
+  --admonition-tip-link: #e8e6f0;
+  --admonition-info-bg: #004166;
+  --admonition-info-heading: #e6faff;
+  --admonition-info-text: #e6faff;
+  --admonition-info-link: #e6faff;
+  --admonition-note-bg: #2d2d2d;
+  --admonition-note-heading: #fff;
+  --admonition-note-text: #fff;
+  --admonition-note-link: #a78bfa;
+  --admonition-warning-bg: #3b0f40;
+  --admonition-warning-heading: #fcd6ff;
+  --admonition-warning-text: #fcd6ff;
+  --admonition-warning-link: #fcd6ff;
+  --admonition-danger-bg: #5c1f00;
+  --admonition-danger-heading: #ffc29e;
+  --admonition-danger-text: #ffc29e;
+  --admonition-danger-link: #ffc29e;
+
+  /* Typography scale */
+  --font-display-lg: 40px;
+  --font-display-md: 32px;
+  --font-heading-lg: 24px;
+  --font-heading-md: 18px;
+  --font-body-md: 16px;
+  --font-body-sm: 14px;
+  --font-body-xs: 12px;
+  --line-height-default: 1.4;
+  --letter-spacing-button: 2px;
+
   /* infographics */
   --container-box-bg: #f5f7fa;
+
+  /* Brand tokens */
+  --linea-text-primary: #f8f7f2;
+  --linea-arrow-btn-bg: #3a3a3a;
+  --linea-purple-light: #a78bfa;
+  --linea-gray-mid: #808080;
 }
 
+/* ============================================================
+   7. CSS VARIABLES — LIGHT THEME
+   ============================================================ */
+
 [data-theme="light"] {
-  --page-background: #f8f7f2;
+  --page-background: #fff;
   --search-background: #ebeae5;
   --ifm-color-primary-lightest: #eaf0ff;
   --ifm-color-primary-lighter: #a5e5ff;
@@ -469,17 +633,17 @@ textarea {
   --ifm-background-color: #fff;
   --ifm-navbar-link-hover-color: #61dfff;
   --banner-background: #fff;
-  --banner-text: #121212;
+  --banner-text: #1C1C1C;
   --banner-text-shadow: #fff;
-  --banner-button-hover: #121212;
+  --banner-button-hover: #1C1C1C;
   --banner-button-text-hover: #fff;
-  --homepage-card-background: #fff;
+  --homepage-card-background: #f8f7f2;
   --homepage-card-text: #fff;
   --homepage-card-border-color: #c0c0c0;
   --homepage-card-border-color-hover: #505050;
   --homepage-card-dot-hover: #61dfff;
   --homepage-card-icon: #c0c0c0;
-  --footer-background: #f8f7f2;
+  --footer-background: #fff;
   --linea-highlight-color-1: #fff068;
   --linea-highlight-color-2: #6119ef;
   --linea-text-color-1: #190066;
@@ -503,9 +667,52 @@ textarea {
   --search-local-highlight-color: #6119ef;
   --search-result-hl: #fff068;
 
+  /* Admonitions (light theme) - EXACT Figma colors */
+  --admonition-tip-bg: #190066;
+  --admonition-tip-heading: #e8e6f0;
+  --admonition-tip-text: #e8e6f0;
+  --admonition-tip-link: #e8e6f0;
+  --admonition-info-bg: #c2f2ff;
+  --admonition-info-heading: #004166;
+  --admonition-info-text: #121212;
+  --admonition-info-link: #004166;
+  --admonition-note-bg: #efefeb;
+  --admonition-note-heading: #121212;
+  --admonition-note-text: #121212;
+  --admonition-note-link: #121212;
+  --admonition-warning-bg: #fcd6ff;
+  --admonition-warning-heading: #611c69;
+  --admonition-warning-text: #121212;
+  --admonition-warning-link: #611c69;
+  --admonition-danger-bg: #ffa775;
+  --admonition-danger-heading: #5c1f00;
+  --admonition-danger-text: #121212;
+  --admonition-danger-link: #5c1f00;
+
+  /* Typography scale (same as dark) */
+  --font-display-lg: 40px;
+  --font-display-md: 32px;
+  --font-heading-lg: 24px;
+  --font-heading-md: 18px;
+  --font-body-md: 16px;
+  --font-body-sm: 14px;
+  --font-body-xs: 12px;
+  --line-height-default: 1.4;
+  --letter-spacing-button: 2px;
+
   /* infographics */
   --container-box-bg: #c3d7e0;
+
+  /* Brand tokens */
+  --linea-text-primary: #121212;
+  --linea-arrow-btn-bg: #e5e5e5;
+  --linea-purple-light: #a78bfa;
+  --linea-gray-mid: #808080;
 }
+
+/* ============================================================
+   8. SOCIAL ICONS (GitHub, Discord, Twitter, DockerHub)
+   ============================================================ */
 
 /* github */
 .header-github-link:hover {
@@ -517,13 +724,11 @@ textarea {
   width: 28px;
   height: 28px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E") no-repeat;
 }
 
 html[data-theme="dark"] .header-github-link::before {
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E") no-repeat;
 }
 
 /* discord */
@@ -536,8 +741,7 @@ html[data-theme="dark"] .header-github-link::before {
   width: 28px;
   height: 28px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23190066'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23190066'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -547,8 +751,7 @@ html[data-theme="dark"] .header-discord-link::before {
   width: 28px;
   height: 28px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -557,28 +760,7 @@ html[data-theme="dark"] .header-discord-link::before {
   .header-discord-link {
     padding-left: 12px;
   }
-
-  .header-discord-link::before {
-    content: "";
-    width: 28px;
-    height: 28px;
-    display: flex;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23190066'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
-      no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
-
-  html[data-theme="dark"] .header-discord-link::before {
-    content: "";
-    width: 28px;
-    height: 28px;
-    display: flex;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='Discord_Logos' data-name='Discord Logos'%3E%3Cg id='Discord_Logo_-_Large_-_White'%3E%3Cpath d='M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z' fill='%23fff'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
-      no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
+  /* SVG icons inherit desktop rules; only padding differs at this breakpoint */
 }
 
 /* twitter */
@@ -592,8 +774,7 @@ html[data-theme="dark"] .header-discord-link::before {
   height: 28px;
   margin-top: 8px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23190066'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23190066'/%3E%3C/svg%3E") no-repeat;
   background-size: 20px 20px;
 }
 
@@ -603,33 +784,16 @@ html[data-theme="dark"] .header-twitter-link::before {
   height: 28px;
   margin-top: 8px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23fff'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23fff'/%3E%3C/svg%3E") no-repeat;
   background-size: 20px 20px;
 }
 
 @media (max-width: 996px) {
-  .header-twitter-link::before {
-    content: "";
-    width: 28px;
-    height: 28px;
-    margin-top: 0;
-    margin-left: 2px;
-    display: flex;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23190066'/%3E%3C/svg%3E")
-      no-repeat;
-    background-size: 24px 24px;
-  }
-
+  /* Override only the properties that differ from desktop */
+  .header-twitter-link::before,
   html[data-theme="dark"] .header-twitter-link::before {
-    content: "";
-    width: 28px;
-    height: 28px;
     margin-top: 0;
     margin-left: 2px;
-    display: flex;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300.25'%3E%3Cpath d='M178.57 127.15L290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66' fill='%23fff'/%3E%3C/svg%3E")
-      no-repeat;
     background-size: 24px 24px;
   }
 }
@@ -641,8 +805,7 @@ html[data-theme="dark"] .header-twitter-link::before {
   display: inline-block;
   width: 23px;
   height: 23px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_1' version='1.1' viewBox='0 0 109.9 125.9'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23190066%3Bstroke-width%3A0px%3B%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M74.6%2C34.8h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.7s2.1%2C4.6%2C4.6%2C4.6h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.6s-2.1-4.7-4.6-4.7Z'/%3E%3Cpath class='cls-1' d='M74.6%2C57.1h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.6s2.1%2C4.7%2C4.6%2C4.7h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-2.1-4.6-4.6-4.6Z'/%3E%3Cpath class='cls-1' d='M49.8%2C116.8v-.3H9.3V9.3h89.1v49.7c0%2C2.6%2C2.1%2C4.6%2C4.7%2C4.6s4.6-2.1%2C4.6-4.6V8.8c0-2.4-.9-4.6-2.6-6.2-1.7-1.7-3.9-2.6-6.2-2.6H8.8c-2.4%2C0-4.6.9-6.2%2C2.6C.9%2C4.3%2C0%2C6.5%2C0%2C8.8v108.2c0%2C2.4.9%2C4.6%2C2.6%2C6.2%2C1.7%2C1.7%2C3.9%2C2.6%2C6.2%2C2.6h39.4c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-1.3-3.8-3.1-4.4Z'/%3E%3Cpath class='cls-1' d='M53.5%2C79.4h-20.5c-2.6%2C0-4.7%2C2.1-4.7%2C4.7s2.1%2C4.7%2C4.7%2C4.7h20.5c2.6%2C0%2C4.7-2.1%2C4.7-4.7s-2.1-4.7-4.7-4.7Z'/%3E%3Cpath class='cls-1' d='M108.7%2C81.9l-7.4-7.1c-.8-.8-1.8-1.1-2.8-1.1-1.1%2C0-2%2C.4-2.8%2C1.2l-4.9%2C5.1l13.1%2C12.7l5-5.2c.7-.7%2C1.1-1.7%2C1.1-2.9%2C0-1.1-.4-2.1-1.2-2.8Z'/%3E%3Cpath class='cls-1' d='M67.7%2C103.9l-.3.3-2.8%2C10.8c-1.2%2C4.6-1.2%2C5.5-.4%2C6.2.3.3.7.4%2C1.1.4s.3%2C0%2C.4%2C0c.4-.1%2C2-.6%2C5.8-1.9l1.8-.6c.8-.3%2C1.7-.6%2C2.5-.8l1.4-.4c1-.3%2C2-.6%2C3-1h.4c0-.1%2C21.8-22.9%2C21.8-22.9l-13.1-12.6-21.6%2C22.5Z'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_1' version='1.1' viewBox='0 0 109.9 125.9'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23190066%3Bstroke-width%3A0px%3B%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M74.6%2C34.8h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.7s2.1%2C4.6%2C4.6%2C4.6h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.6s-2.1-4.7-4.6-4.7Z'/%3E%3Cpath class='cls-1' d='M74.6%2C57.1h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.6s2.1%2C4.7%2C4.6%2C4.7h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-2.1-4.6-4.6-4.6Z'/%3E%3Cpath class='cls-1' d='M49.8%2C116.8v-.3H9.3V9.3h89.1v49.7c0%2C2.6%2C2.1%2C4.6%2C4.7%2C4.6s4.6-2.1%2C4.6-4.6V8.8c0-2.4-.9-4.6-2.6-6.2-1.7-1.7-3.9-2.6-6.2-2.6H8.8c-2.4%2C0-4.6.9-6.2%2C2.6C.9%2C4.3%2C0%2C6.5%2C0%2C8.8v108.2c0%2C2.4.9%2C4.6%2C2.6%2C6.2%2C1.7%2C1.7%2C3.9%2C2.6%2C6.2%2C2.6h39.4c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-1.3-3.8-3.1-4.4Z'/%3E%3Cpath class='cls-1' d='M53.5%2C79.4h-20.5c-2.6%2C0-4.7%2C2.1-4.7%2C4.7s2.1%2C4.7%2C4.7%2C4.7h20.5c2.6%2C0%2C4.7-2.1%2C4.7-4.7s-2.1-4.7-4.7-4.7Z'/%3E%3Cpath class='cls-1' d='M108.7%2C81.9l-7.4-7.1c-.8-.8-1.8-1.1-2.8-1.1-1.1%2C0-2%2C.4-2.8%2C1.2l-4.9%2C5.1l13.1%2C12.7l5-5.2c.7-.7%2C1.1-1.7%2C1.1-2.9%2C0-1.1-.4-2.1-1.2-2.8Z'/%3E%3Cpath class='cls-1' d='M67.7%2C103.9l-.3.3-2.8%2C10.8c-1.2%2C4.6-1.2%2C5.5-.4%2C6.2.3.3.7.4%2C1.1.4s.3%2C0%2C.4%2C0c.4-.1%2C2-.6%2C5.8-1.9l1.8-.6c.8-.3%2C1.7-.6%2C2.5-.8l1.4-.4c1-.3%2C2-.6%2C3-1h.4c0-.1%2C21.8-22.9%2C21.8-22.9l-13.1-12.6-21.6%2C22.5Z'/%3E%3C/svg%3E") no-repeat;
   background-size: contain;
   margin-top: 9px;
   position: relative;
@@ -655,8 +818,7 @@ html[data-theme="dark"] .header-twitter-link::before {
 
 /* Dark mode */
 html[data-theme='dark'] .header-release-notes-link::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_1' version='1.1' viewBox='0 0 109.9 125.9'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3Bstroke-width%3A0px%3B%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M74.6%2C34.8h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.7s2.1%2C4.6%2C4.6%2C4.6h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.6s-2.1-4.7-4.6-4.7Z'/%3E%3Cpath class='cls-1' d='M74.6%2C57.1h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.6s2.1%2C4.7%2C4.6%2C4.7h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-2.1-4.6-4.6-4.6Z'/%3E%3Cpath class='cls-1' d='M49.8%2C116.8v-.3H9.3V9.3h89.1v49.7c0%2C2.6%2C2.1%2C4.6%2C4.7%2C4.6s4.6-2.1%2C4.6-4.6V8.8c0-2.4-.9-4.6-2.6-6.2-1.7-1.7-3.9-2.6-6.2-2.6H8.8c-2.4%2C0-4.6.9-6.2%2C2.6C.9%2C4.3%2C0%2C6.5%2C0%2C8.8v108.2c0%2C2.4.9%2C4.6%2C2.6%2C6.2%2C1.7%2C1.7%2C3.9%2C2.6%2C6.2%2C2.6h39.4c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-1.3-3.8-3.1-4.4Z'/%3E%3Cpath class='cls-1' d='M53.5%2C79.4h-20.5c-2.6%2C0-4.7%2C2.1-4.7%2C4.7s2.1%2C4.7%2C4.7%2C4.7h20.5c2.6%2C0%2C4.7-2.1%2C4.7-4.7s-2.1-4.7-4.7-4.7Z'/%3E%3Cpath class='cls-1' d='M108.7%2C81.9l-7.4-7.1c-.8-.8-1.8-1.1-2.8-1.1-1.1%2C0-2%2C.4-2.8%2C1.2l-4.9%2C5.1l13.1%2C12.7l5-5.2c.7-.7%2C1.1-1.7%2C1.1-2.9%2C0-1.1-.4-2.1-1.2-2.8Z'/%3E%3Cpath class='cls-1' d='M67.7%2C103.9l-.3.3-2.8%2C10.8c-1.2%2C4.6-1.2%2C5.5-.4%2C6.2.3.3.7.4%2C1.1.4s.3%2C0%2C.4%2C0c.4-.1%2C2-.6%2C5.8-1.9l1.8-.6c.8-.3%2C1.7-.6%2C2.5-.8l1.4-.4c1-.3%2C2-.6%2C3-1h.4c0-.1%2C21.8-22.9%2C21.8-22.9l-13.1-12.6-21.6%2C22.5Z'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' id='Layer_1' version='1.1' viewBox='0 0 109.9 125.9'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3Bstroke-width%3A0px%3B%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M74.6%2C34.8h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.7s2.1%2C4.6%2C4.6%2C4.6h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.6s-2.1-4.7-4.6-4.7Z'/%3E%3Cpath class='cls-1' d='M74.6%2C57.1h-41.5c-2.6%2C0-4.6%2C2.1-4.6%2C4.6s2.1%2C4.7%2C4.6%2C4.7h41.5c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-2.1-4.6-4.6-4.6Z'/%3E%3Cpath class='cls-1' d='M49.8%2C116.8v-.3H9.3V9.3h89.1v49.7c0%2C2.6%2C2.1%2C4.6%2C4.7%2C4.6s4.6-2.1%2C4.6-4.6V8.8c0-2.4-.9-4.6-2.6-6.2-1.7-1.7-3.9-2.6-6.2-2.6H8.8c-2.4%2C0-4.6.9-6.2%2C2.6C.9%2C4.3%2C0%2C6.5%2C0%2C8.8v108.2c0%2C2.4.9%2C4.6%2C2.6%2C6.2%2C1.7%2C1.7%2C3.9%2C2.6%2C6.2%2C2.6h39.4c2.6%2C0%2C4.6-2.1%2C4.6-4.7s-1.3-3.8-3.1-4.4Z'/%3E%3Cpath class='cls-1' d='M53.5%2C79.4h-20.5c-2.6%2C0-4.7%2C2.1-4.7%2C4.7s2.1%2C4.7%2C4.7%2C4.7h20.5c2.6%2C0%2C4.7-2.1%2C4.7-4.7s-2.1-4.7-4.7-4.7Z'/%3E%3Cpath class='cls-1' d='M108.7%2C81.9l-7.4-7.1c-.8-.8-1.8-1.1-2.8-1.1-1.1%2C0-2%2C.4-2.8%2C1.2l-4.9%2C5.1l13.1%2C12.7l5-5.2c.7-.7%2C1.1-1.7%2C1.1-2.9%2C0-1.1-.4-2.1-1.2-2.8Z'/%3E%3Cpath class='cls-1' d='M67.7%2C103.9l-.3.3-2.8%2C10.8c-1.2%2C4.6-1.2%2C5.5-.4%2C6.2.3.3.7.4%2C1.1.4s.3%2C0%2C.4%2C0c.4-.1%2C2-.6%2C5.8-1.9l1.8-.6c.8-.3%2C1.7-.6%2C2.5-.8l1.4-.4c1-.3%2C2-.6%2C3-1h.4c0-.1%2C21.8-22.9%2C21.8-22.9l-13.1-12.6-21.6%2C22.5Z'/%3E%3C/svg%3E") no-repeat;
   background-size: contain;
 }
 
@@ -682,9 +844,8 @@ html[data-theme='dark'] .header-release-notes-link::before {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition:
-    opacity 0.25s ease,
-    visibility 0.3s ease;
+  transition: opacity 0.25s ease,
+  visibility 0.3s ease;
 }
 
 .header-release-notes-link:hover::after {
@@ -754,21 +915,33 @@ html[data-theme='dark'] .header-release-notes-link::before {
   background: var(--linea-navbar-background);
 }
 
-/* light/dark toggle colour */
+/* Mobile navbar: show abbreviated mark logo instead of full text logo */
+@media (max-width: 996px) {
+  .navbar__logo img {
+    content: url('/img/Linea_mark_light.svg');
+    height: 22px;
+    width: auto;
+  }
+
+  [data-theme="dark"] .navbar__logo img {
+    content: url('/img/Linea_mark_dark.svg');
+  }
+}
+
+/* light/dark toggle colour - Figma specs */
 .navbar .clean-btn {
   scale: 0.9;
-  color: var(--linea-navbar-items);
-  background-color: var(--linea-navbar-background);
-  transition: color 0.1s ease-in-out;
-}
-
-html[data-theme="light"] .navbar .clean-btn:hover {
-  color: #fff068;
+  color: #190066;
   background: none;
+  transition: opacity 0.2s ease;
 }
 
-html[data-theme="dark"] .navbar .clean-btn:hover {
-  color: #6119ef;
+[data-theme="dark"] .navbar .clean-btn {
+  color: white;
+}
+
+.navbar .clean-btn:hover {
+  opacity: 0.8;
   background: none;
 }
 
@@ -777,12 +950,15 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
     background: none;
     border-radius: 5px;
     padding: 0 3px;
-    color: var(--linea-navbar-items);
+    color: #190066;
+  }
+
+  [data-theme="dark"] .navbar .clean-btn {
+    color: white;
   }
 
   .navbar .clean-btn:hover {
-    color: var(--linea-navbar-items);
-    background-color: var(--linea-navbar-background);
+    opacity: 0.8;
   }
 }
 
@@ -791,21 +967,40 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
   margin-top: 10px;
 }
 
-.support-link svg {
-  /* removing external link icon from navbar item */
-  display: none;
+.support-link {
+  font-size: 16px;
+  font-family: AtypText, sans-serif;
+  font-weight: 400;
+  margin-right: 20px;
+  color: #190066;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.support-link {
-  font-size: clamp(12px, 0.95vw, 15px);
-  margin-right: 20px;
-  color: #61dfff;
+.support-link svg {
+  color: #808080;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .support-link {
+  color: white;
+}
+
+[data-theme="dark"] .support-link svg {
+  color: rgb(255 255 255 / 50%);
 }
 
 .support-link:hover {
-  /* turns off underline on hover, fixes colour */
   text-decoration: none;
-  color: #61dfff;
+  color: #190066 !important;
+  opacity: 1;
+}
+
+[data-theme="dark"] .support-link:hover {
+  color: white !important;
 }
 
 @media (max-width: 996px) {
@@ -818,7 +1013,7 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
     border-radius: 0.25rem;
     display: flex;
   }
-  
+
   .navbar__items .support-link {
     display: none;
   }
@@ -838,8 +1033,7 @@ html[data-theme="dark"] .navbar .clean-btn:hover {
   width: 28px;
   height: 28px;
   display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M507 211.16c-1.42-1.19-14.25-10.94-41.79-10.94a132.55 132.55 0 0 0-21.61 1.9c-5.22-36.4-35.38-54-36.57-55l-7.36-4.28-4.75 6.9a101.65 101.65 0 0 0-13.06 30.45c-5 20.7-1.9 40.2 8.55 56.85-12.59 7.14-33 8.8-37.28 9H15.94A15.93 15.93 0 0 0 0 262.07 241.25 241.25 0 0 0 14.75 348.9C26.39 379.35 43.72 402 66 415.74 91.22 431.2 132.3 440 178.6 440a344.23 344.23 0 0 0 62.45-5.71 257.44 257.44 0 0 0 81.69-29.73 223.55 223.55 0 0 0 55.57-45.67c26.83-30.21 42.74-64 54.38-94h4.75c29.21 0 47.26-11.66 57.23-21.65a63.31 63.31 0 0 0 15.2-22.36l2.14-6.18Z'/%3E%3Cpath d='M47.29 236.37H92.4a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H47.29a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4h0'/%3E%3Cpath d='M109.5 236.37h45.12a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H109.5a4 4 0 0 0-4 4v40.44a4.16 4.16 0 0 0 4 4'/%3E%3Cpath d='M172.9 236.37H218a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H172.9a4 4 0 0 0-4 4h0v40.44a3.87 3.87 0 0 0 4 4h0'/%3E%3Cpath d='M235.36 236.37h45.12a4 4 0 0 0 4-4V191.89a4 4 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4 4 0 0 0 4 4h0'/%3E%3Cpath d='M109.5 178.57h45.12a4.16 4.16 0 0 0 4-4V134.09a4 4 0 0 0-4-4H109.5a4 4 0 0 0-4 4v40.44a4.34 4.34 0 0 0 4 4'/%3E%3Cpath d='M172.9 178.57H218a4.16 4.16 0 0 0 4-4V134.09a4 4 0 0 0-4-4H172.9a4 4 0 0 0-4 4h0v40.44a4 4 0 0 0 4 4'/%3E%3Cpath d='M235.36 178.57h45.12a4.16 4.16 0 0 0 4-4V134.09a4.16 4.16 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4'/%3E%3Cpath d='M235.36 120.53h45.12a4 4 0 0 0 4-4V76a4.16 4.16 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4.17 4.17 0 0 0 4 4'/%3E%3Cpath d='M298.28 236.37H343.4a4 4 0 0 0 4-4V191.89a4 4 0 0 0-4-4H298.28a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4'/%3E%3C/svg%3E")
-    no-repeat;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M507 211.16c-1.42-1.19-14.25-10.94-41.79-10.94a132.55 132.55 0 0 0-21.61 1.9c-5.22-36.4-35.38-54-36.57-55l-7.36-4.28-4.75 6.9a101.65 101.65 0 0 0-13.06 30.45c-5 20.7-1.9 40.2 8.55 56.85-12.59 7.14-33 8.8-37.28 9H15.94A15.93 15.93 0 0 0 0 262.07 241.25 241.25 0 0 0 14.75 348.9C26.39 379.35 43.72 402 66 415.74 91.22 431.2 132.3 440 178.6 440a344.23 344.23 0 0 0 62.45-5.71 257.44 257.44 0 0 0 81.69-29.73 223.55 223.55 0 0 0 55.57-45.67c26.83-30.21 42.74-64 54.38-94h4.75c29.21 0 47.26-11.66 57.23-21.65a63.31 63.31 0 0 0 15.2-22.36l2.14-6.18Z'/%3E%3Cpath d='M47.29 236.37H92.4a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H47.29a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4h0'/%3E%3Cpath d='M109.5 236.37h45.12a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H109.5a4 4 0 0 0-4 4v40.44a4.16 4.16 0 0 0 4 4'/%3E%3Cpath d='M172.9 236.37H218a4 4 0 0 0 4-4h0V191.89a4 4 0 0 0-4-4H172.9a4 4 0 0 0-4 4h0v40.44a3.87 3.87 0 0 0 4 4h0'/%3E%3Cpath d='M235.36 236.37h45.12a4 4 0 0 0 4-4V191.89a4 4 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4 4 0 0 0 4 4h0'/%3E%3Cpath d='M109.5 178.57h45.12a4.16 4.16 0 0 0 4-4V134.09a4 4 0 0 0-4-4H109.5a4 4 0 0 0-4 4v40.44a4.34 4.34 0 0 0 4 4'/%3E%3Cpath d='M172.9 178.57H218a4.16 4.16 0 0 0 4-4V134.09a4 4 0 0 0-4-4H172.9a4 4 0 0 0-4 4h0v40.44a4 4 0 0 0 4 4'/%3E%3Cpath d='M235.36 178.57h45.12a4.16 4.16 0 0 0 4-4V134.09a4.16 4.16 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4'/%3E%3Cpath d='M235.36 120.53h45.12a4 4 0 0 0 4-4V76a4.16 4.16 0 0 0-4-4H235.36a4 4 0 0 0-4 4h0v40.44a4.17 4.17 0 0 0 4 4'/%3E%3Cpath d='M298.28 236.37H343.4a4 4 0 0 0 4-4V191.89a4 4 0 0 0-4-4H298.28a4 4 0 0 0-4 4h0v40.44a4.16 4.16 0 0 0 4 4'/%3E%3C/svg%3E") no-repeat;
 }
 
 html[data-theme="dark"] .header-dockerhub-link::before {
@@ -874,23 +1068,26 @@ html[data-theme="dark"] .header-dockerhub-link::before {
   }
 }
 
+/* ============================================================
+   9. NAVBAR
+   ============================================================ */
+
 /* Navbar formatting */
 .navbar--fixed-top {
   margin-top: 5px;
 }
 
 .navbar {
-  min-height: 68px;
+  min-height: 78px;
   box-shadow: none;
   border: none !important;
-  background: var(--page-background) !important;
+  background: transparent !important;
 }
 
 .navbar__inner {
-  /* adds yellow rounded rectangle to navbar items */
-  background-color: var(--linea-navbar-background);
-  border: 1px solid var(--page-background);
-  border-radius: 14px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   width: calc(100vw - 2.5rem) !important;
   margin: 0 auto;
 }
@@ -900,7 +1097,6 @@ a.navbar__brand {
 }
 
 .navbar__logo {
-  color: var(--linea-text-color-1);
   height: 25px;
   width: auto;
   padding: 3px 10px 0 calc(1.5vw);
@@ -932,10 +1128,34 @@ a.navbar__brand {
     padding: 0 15px;
     width: 100%;
   }
+
+  /* Hamburger menu icon */
+  .navbar__toggle {
+    color: #190066;
+  }
+
+  .navbar__toggle svg {
+    color: #190066;
+  }
+
+  [data-theme="dark"] .navbar__toggle {
+    color: white;
+  }
+
+  [data-theme="dark"] .navbar__toggle svg {
+    color: white;
+  }
 }
 
 .navbar__title {
-  display: none;
+  color: #190066;
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .navbar__title {
+  color: white;
 }
 
 @media (max-width: 996px) {
@@ -950,77 +1170,147 @@ a.navbar__brand {
 }
 
 .navbar__item {
-  color: var(--linea-navbar-items);
+  color: #190066;
   font-weight: 400;
   text-align: center;
 }
 
-.navbar__link {
-  font-size: clamp(12px, 0.95vw, 15px);
-  padding: calc(5px + (12 - 5) * ((100vw - 996px) / (1920 - 996)));
-  padding-left: calc(0.5vw);
+[data-theme="dark"] .navbar__item {
+  color: white;
 }
 
-/* Basic circle icons for navbar items */
+.navbar__link {
+  color: #190066 !important;
+  font-family: AtypText, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 8px 12px;
+}
+
+[data-theme="dark"] .navbar__link {
+  color: white !important;
+}
+
+/* Dot indicators for navbar items - EXACT Figma specs */
+/* Use href-based selectors since Docusaurus doesn't pass through custom data attributes */
 .navbar__link[href="/network/quickstart"]::before,
-.navbar__link[href^="/stack"]::before,
-.navbar__link[href="/api/reference"]::before,
-.navbar__link[href="/protocol/overview"]::before,
-.navbar__link[href="/changelog"]::before,
-.support-link[href="https://discord.gg/linea"]::before {
+.navbar__link[href="/protocol/quickstart"]::before,
+.navbar__link[href="/stack/quickstart"]::before,
+.navbar__link[href="/api/quickstart"]::before,
+.navbar__link[href="/changelog/release-notes"]::before {
   content: "";
   display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: calc(0.5vw);
-  border: 1px solid currentColor;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
   border-radius: 50%;
   vertical-align: middle;
-  transition: background-color 0.2s ease;
-  margin-left: 12px;
+  transition: all 0.2s ease;
+  border: 1px solid #190066;
+  background-color: transparent;
 }
 
-/* hover effect for circles */
+[data-theme="dark"] .navbar__link[href="/network/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/stack/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/api/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before {
+  border-color: white;
+}
+
+/* ONLY when active, fill the dot */
+.navbar__link[href="/network/quickstart"].navbar__link--active::before,
+.navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+.navbar__link[href="/stack/quickstart"].navbar__link--active::before,
+.navbar__link[href="/api/quickstart"].navbar__link--active::before,
+.navbar__link[href="/changelog/release-notes"].navbar__link--active::before {
+  background-color: #190066;
+}
+
+[data-theme="dark"] .navbar__link[href="/network/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/api/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before {
+  background-color: white;
+}
+
+/* hover effect for indicators - fill dot, keep text full opacity */
+.navbar__link:hover {
+  color: #190066 !important;
+  opacity: 1;
+}
+
+[data-theme="dark"] .navbar__link:hover {
+  color: white !important;
+}
+
 .navbar__link[href="/network/quickstart"]:hover::before,
-.navbar__link[href^="/stack"]:hover::before,
-.navbar__link[href="/api/reference"]:hover::before,
-.navbar__link[href="/protocol/overview"]:hover::before,
-.navbar__link[href="/changelog"]:hover::before,
-.support-link[href="https://discord.gg/linea"]:hover::before {
-  background-color: var(--linea-navbar-items);
-  border: 1px solid var(--linea-navbar-items);
+.navbar__link[href="/protocol/quickstart"]:hover::before,
+.navbar__link[href="/stack/quickstart"]:hover::before,
+.navbar__link[href="/api/quickstart"]:hover::before,
+.navbar__link[href="/changelog/release-notes"]:hover::before {
+  background-color: #190066;
 }
 
-/* highlight the dot for the current page using active class state */
-.navbar__link--active::before {
-  background-color: var(--linea-navbar-items);
-  border: 1px solid var(--linea-navbar-items);
+[data-theme="dark"] .navbar__link[href="/network/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/stack/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/api/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before {
+  background-color: white;
 }
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
   .navbar__link[href="/network/quickstart"]::before,
-  .navbar__link[href^="/stack"]::before,
-  .navbar__link[href="/api"]::before,
-  .navbar__link[href="/protocol/overview"]::before,
-  .navbar__link[href="/changelog"]::before,
+  .navbar__link[href="/protocol/quickstart"]::before,
+  .navbar__link[href="/stack/quickstart"]::before,
+  .navbar__link[href="/api/quickstart"]::before,
+  .navbar__link[href="/changelog/release-notes"]::before,
   .support-link[href="https://discord.gg/linea"]::before {
     display: none;
   }
 }
 
-/* search bar */
+/* ============================================================
+   10. SEARCH BAR
+   ============================================================ */
+
+/* search bar - EXACT Figma specs */
 .navbar__search input {
-  border-radius: 8px;
-  background-color: var(--banner-background);
-  width: 95%;
+  border-radius: 10px;
+  background-color: #f8f7f2 !important;
+  border: none !important;
+  padding: 8px 12px 8px 36px;
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  color: #1C1C1C;
+  width: 219px;
+  height: 38px;
   transition: width 0.25s ease;
-  right: -1px;
+  box-shadow: none !important;
+}
+
+.navbar__search input::placeholder {
+  color: #808080;
+}
+
+[data-theme="dark"] .navbar__search input {
+  background-color: #121212 !important;
+  border: none !important;
+  color: #f8f7f2;
+}
+
+[data-theme="dark"] .navbar__search input::placeholder {
+  color: #808080;
 }
 
 /* changes searchbar border colour when active */
 .navbar__search input:focus-visible {
-  outline: 2px solid #61dfff !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px #61dfff !important;
 }
 
 @media (max-width: 1320px) {
@@ -1080,17 +1370,19 @@ div[class*="navbar__search"] kbd {
 }
 
 html[data-theme="light"] .navbar {
-  background-color: #fff;
+  background: white !important;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 html[data-theme="dark"] .navbar {
-  background-color: #121212;
+  background: #1C1C1C !important;
+  border-bottom: 1px solid #2d2d2d;
 }
 
 [class*="searchClearButton"] {
   /* aligning X button */
   padding-right: 5px !important;
-  padding-top: 1.5px !important; 
+  padding-top: 1.5px !important;
 }
 
 @media (max-width: 996px) {
@@ -1118,9 +1410,21 @@ html[data-theme="dark"] .navbar {
   }
 }
 
+/* ============================================================
+   11. SIDEBAR MENU
+   ============================================================ */
+
 .menu__link {
   margin-right: 8px;
-  color: var(--linea-sidebar-text-color);
+  color: #525252;
+  font-family: AtypText, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .menu__link {
+  color: #d1d1d1;
 }
 
 /* Sidebar Method labels */
@@ -1193,6 +1497,10 @@ html[data-theme="dark"] .navbar {
   border-color: var(--ifm-color-secondary-dark);
 }
 
+/* ============================================================
+   12. ALGOLIA SEARCH
+   ============================================================ */
+
 /* Algolia Search Styling */
 .DocSearch-Logo {
   display: none !important;
@@ -1242,6 +1550,10 @@ html[data-theme="dark"] .navbar {
   );
 }
 
+/* ============================================================
+   13. MISC COMPONENTS (tabs, footer, breadcrumbs)
+   ============================================================ */
+
 /* This was originally in /docs/stylesheets/snippets.css */
 
 :root > * {
@@ -1254,7 +1566,7 @@ html[data-theme="dark"] .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #121212;
+  color: #1C1C1C;
 }
 
 .my-tabs {
@@ -1264,7 +1576,7 @@ html[data-theme="dark"] .navbar {
   border-radius: 4px;
   overflow: hidden;
   background-color: #b3ccfb;
-  color: #121212;
+  color: #1C1C1C;
 }
 
 .my-tabs .tab-item {
@@ -1277,7 +1589,7 @@ html[data-theme="dark"] .navbar {
   background-color: #b3ccfb;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
-  color: #121212;
+  color: #1C1C1C;
 }
 
 .my-tabs .tab-item:hover {
@@ -1290,76 +1602,131 @@ html[data-theme="dark"] .navbar {
   color: #007bff;
 }
 
-.all-mode-tabs {
-  color: #121212;
-  background-color: #b3ccfb;
-}
-
-/* Styling for callouts */
-.callout {
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px;
-}
-
-.callout-info {
-  border-left-color: #2980b9;
-}
-
-.callout-warning {
-  border-left-color: #f39c12;
-}
+/* .all-mode-tabs — removed (dead CSS, 0 usages in codebase) */
+/* .callout-info, .callout-warning — removed (dead CSS, 0 usages in codebase) */
 
 .footer__title {
   color: var(--banner-text);
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 14px;
+  text-transform: none;
+  font-family: AtypText, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.footer__item {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footer__item + .footer__item {
+  margin-top: 16px;
 }
 
 .footer__link-item {
   color: var(--banner-text);
-  text-transform: uppercase;
+  text-transform: none;
   font-size: 14px;
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0.28px;
 }
 
 .footer__copyright {
   padding-top: 10px;
   text-align: left;
   color: var(--banner-text);
-  text-transform: uppercase;
-  font-weight: 600;
+  text-transform: none;
+  font-family: AtypText, sans-serif;
+  font-weight: 400;
   font-size: 14px;
 }
 
+/* Breadcrumbs styling per Figma */
+nav[aria-label="Breadcrumbs"] {
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+nav[aria-label="Breadcrumbs"] a {
+  color: #808080;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+nav[aria-label="Breadcrumbs"] a:hover {
+  color: #6119ef;
+  background-color: rgb(97 25 239 / 5%);
+}
+
+nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
+  color: #121212;
+}
+
+[data-theme="dark"] nav[aria-label="Breadcrumbs"] a {
+  color: #808080;
+}
+
+[data-theme="dark"] nav[aria-label="Breadcrumbs"] a:hover {
+  color: #a78bfa;
+}
+
+[data-theme="dark"] nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
+  color: #f8f7f2;
+}
+
+/* Hide non-collapsible section header items (Introduction, Features, etc.)
+   They render as <span> not <a>, and are not the active item */
+.breadcrumbs__item:not(.breadcrumbs__item--active):has(> span.breadcrumbs__link) {
+  display: none;
+}
+
+/* ============================================================
+   14. SIDEBAR LAYOUT
+   ============================================================ */
+
 /* sidebar/docs page layout */
 .theme-doc-sidebar-container {
-  border-right: none !important;
-  font-size: 0.85rem;
+  border-right: 1px solid #e5e5e5 !important;
+  font-size: 16px;
   margin-bottom: 0;
 }
 
+[data-theme="dark"] .theme-doc-sidebar-container {
+  border-right: 1px solid #333 !important;
+}
+
+/* External links in sidebar (Status, Bridge) - NO arrows per Figma */
+.sidebar-external-link {
+  /* Simple text links, no special styling */
+}
+
 .thin-scrollbar {
-  background-color: var(--banner-background);
-  margin: 5px 22px 0;
-  border-radius: 12px;
+  background-color: var(--page-background);
+  margin: 5px 0 0;
+  padding: 10px 16px;
+  border-radius: 0;
   max-height: 80vh;
 }
 
 button[aria-label="Collapse sidebar"] {
   border: none !important;
-  background-color: var(--banner-background);
-  margin: 10px 22px 35px;
+  background-color: var(--page-background);
+  margin: 10px 16px 35px;
   border-radius: 12px;
 }
 
 /* Standardize sidebar menu indentation - reduce and make consistent */
 a.menu__link {
-  padding: 3px 8px !important;
-  padding-left: 8px !important;
-  line-height: 1.25 !important;
+  padding: 6px 10px !important;
+  border-radius: 10px;
+  line-height: 1.4 !important;
 }
 
 /* Remove default indentation from menu containers */
@@ -1377,6 +1744,8 @@ a.menu__link {
   margin-right: 8px;
   padding-left: 0 !important;
   margin-left: 0 !important;
+  display: flex;
+  align-items: center;
 }
 
 /* Standardized nested indentation - reduced levels */
@@ -1387,7 +1756,13 @@ a.menu__link {
 
 /* General menu link hover - must come before more specific selectors */
 .menu__link:hover {
-  background: none;
+  color: #121212 !important;
+  background-color: #EFEFEB !important;
+}
+
+[data-theme="dark"] .menu__link:hover {
+  color: #fff !important;
+  background-color: rgb(255 255 255 / 8%) !important;
 }
 
 /* Dropdown menu items - must come before more specific selectors */
@@ -1433,6 +1808,8 @@ a.menu__link {
 /* Remove any default Docusaurus padding that might affect categories with links */
 .menu__link--sublist {
   padding-left: 8px !important;
+  font-family: AtypText, sans-serif;
+  line-height: 1.4;
 }
 
 /* Override any Docusaurus default that might add extra spacing to categories with links */
@@ -1441,13 +1818,19 @@ a.menu__link {
   margin-left: 0 !important;
 }
 
-.menu__link--active {
-  color: var(--ifm-link-color) !important;
+.menu__link--active:not(.menu__link--sublist) {
+  color: #6119ef !important;
+  background: rgb(97 25 239 / 10%) !important;
+  border-radius: 10px;
+}
+
+[data-theme="dark"] .menu__link--active:not(.menu__link--sublist) {
+  color: #a78bfa !important;
+  background: rgb(161 107 250 / 15%) !important;
 }
 
 .menu__list-item-collapsible--active,
 .menu__list-item-collapsible--active:hover,
-.menu__link--active:not(.menu__link--sublist),
 .menu__list-item-collapsible:hover,
 .menu__caret:hover {
   background: none;
@@ -1459,8 +1842,14 @@ a.menu__link {
 }
 
 .menu__link--sublist-caret {
-  color: inherit;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #525252 !important;
   background: none;
+}
+
+[data-theme="dark"] .menu__link--sublist-caret {
+  color: #d1d1d1 !important;
 }
 
 .expandButton {
@@ -1483,23 +1872,12 @@ a.menu__link {
   }
 }
 
+/* ============================================================
+   15. TOC (Table of Contents)
+   ============================================================ */
+
 .table-of-contents {
   border: none;
-}
-
-.col[class*='col--'] .table-of-contents {
-  right: 0;
-  padding: 10px;
-  margin-right: 0;
-}
-
-.table-of-contents__link {
-  color: var(--linea-sidebar-text-color);
-}
-
-.table-of-contents__link--active {
-  color: var(--linea-link-highlight-color);
-  font-weight: 700;
 }
 
 .theme-doc-toc-desktop {
@@ -1507,8 +1885,138 @@ a.menu__link {
   transform: translateY(-16px);
 }
 
+/* "On this page" heading above the TOC list */
+.theme-doc-toc-desktop::before {
+  content: 'On this page';
+  display: block;
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #121212;
+  line-height: 1.4;
+  padding: 10px 10px 0;
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .theme-doc-toc-desktop::before {
+  color: #fff;
+}
+
+/* TOC list: purple left bar + spacing */
+.col[class*='col--'] .table-of-contents {
+  right: 0;
+  padding: 0 10px;
+  margin-right: 0;
+  font-family: 'Atyp Text', sans-serif;
+  border-left: 2px solid #6119ef;
+}
+
+/* TOC links: 12px, grey by default */
+.table-of-contents__link {
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 12px !important;
+  font-weight: 400;
+  color: #808080 !important;
+  line-height: 1.4;
+  text-decoration: none;
+  padding: 4px 0;
+  display: block;
+}
+
+[data-theme="dark"] .table-of-contents__link {
+  color: #808080 !important;
+}
+
+.table-of-contents__link:hover {
+  color: #6119ef !important;
+}
+
+[data-theme="dark"] .table-of-contents__link:hover {
+  color: #a78bfa !important;
+}
+
+/* Active TOC item: dark text (light) or white (dark) */
+.table-of-contents__link--active {
+  color: #121212 !important;
+  font-weight: 400;
+}
+
+[data-theme="dark"] .table-of-contents__link--active {
+  color: #fff !important;
+}
+
 button.clean-btn.menu__caret {
-  padding: 3px 12px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* All collapsible categories now use "link": {"type": "generated-index"},
+   so they all render with the button variant — no ::after workarounds needed. */
+
+/* Status and Bridge: className is on <li>, so selectors target the <a> via descendant combinator */
+
+/* Hide the auto-injected external link SVG icon */
+.sidebar-status-link .menu__link svg,
+.sidebar-bridge-link .menu__link svg {
+  display: none !important;
+}
+
+/* Custom icon before the label text via ::before on the <a> */
+.sidebar-status-link .menu__link,
+.sidebar-bridge-link .menu__link {
+  gap: 8px;
+}
+
+.sidebar-status-link .menu__link::before,
+.sidebar-bridge-link .menu__link::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+}
+
+.sidebar-status-link .menu__link::before {
+  mask-image: url('/img/icon_sidebar_status.svg');
+}
+
+.sidebar-bridge-link .menu__link::before {
+  mask-image: url('/img/icon_sidebar_bridge.svg');
+}
+
+/* Separator lines between main sidebar sections */
+.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1,
+.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(.sidebar-status-link, .sidebar-bridge-link) {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1,
+[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(.sidebar-status-link, .sidebar-bridge-link) {
+  border-top: 1px solid #333;
+}
+
+/* Non-collapsible top-level section header labels (Introduction, Features, etc.) */
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: AtypText, sans-serif !important;
+  line-height: 1.4 !important;
+  color: #121212 !important;
+  background: transparent !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+[data-theme="dark"] .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  color: #fff !important;
 }
 
 @media (max-width: 1200px) {
@@ -1549,6 +2057,10 @@ div[aria-label="Expand sidebar"] {
   }
 }
 
+/* ============================================================
+   16. CONTENT AREA
+   ============================================================ */
+
 .theme-doc-markdown .markdown {
   margin-right: 10px !important;
 }
@@ -1573,7 +2085,7 @@ div[aria-label="Expand sidebar"] {
   }
 }
 
-@media (max-width:700px) {
+@media (max-width: 700px) {
   .responsive-graphic picture {
     padding-left: 6vw;
     padding-right: 6vw;
@@ -1586,12 +2098,15 @@ div[aria-label="Expand sidebar"] {
   padding: 0;
   margin: 0;
   color: var(--banner-text);
-  text-transform: uppercase;
   font-size: 14px;
   font-family: inherit;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s ease;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.28px;
 }
 
 #manage-cookie-btn:hover {
@@ -1599,112 +2114,6 @@ div[aria-label="Expand sidebar"] {
   text-decoration: none;
 }
 
-/* Ensure dropdown trigger matches other navbar items - DESKTOP ONLY */
-@media (min-width: 997px) {
-  /* stylelint-disable no-descending-specificity */
-  .dropdown .navbar__link,
-  .navbar__item--dropdown .navbar__link,
-  .navbar__item.dropdown .navbar__link,
-  .navbar__link.dropdown__link,
-  .dropdown .navbar__link:focus,
-  .dropdown .navbar__link:hover,
-  .navbar__item--dropdown .navbar__link:focus,
-  .navbar__item--dropdown .navbar__link:hover,
-  .navbar__item.dropdown .navbar__link:focus,
-  .navbar__item.dropdown .navbar__link:hover,
-  .navbar__link.dropdown__link:focus,
-  .navbar__link.dropdown__link:hover,
-  .navbar__items--right .dropdown .navbar__link,
-  .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__items--right .navbar__item.dropdown .navbar__link,
-  .navbar__items--right .navbar__link.dropdown__link,
-  .navbar__inner .navbar__items--right .dropdown .navbar__link,
-  .navbar__inner .navbar__items--right .navbar__item--dropdown .navbar__link,
-  .navbar__inner .navbar__items--right .navbar__item.dropdown .navbar__link,
-  .navbar__inner .navbar__items--right .navbar__link.dropdown__link {
-    color: var(--linea-navbar-items) !important;
-    font-weight: 400;
-    padding-left: calc(0.5vw) !important; /* Match regular navbar items */
-  }
-  /* stylelint-enable no-descending-specificity */
-
-  /* Remove extra padding/margin from dropdown item container */
-  .navbar__item.dropdown,
-  .navbar__item--dropdown,
-  .navbar__items--right .navbar__item.dropdown,
-  .navbar__items--right .navbar__item--dropdown {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-  }
-
-  /* Base circle icon for dropdown trigger */
-  .dropdown .navbar__link::before,
-  .navbar__item--dropdown .navbar__link::before,
-  .navbar__item.dropdown .navbar__link::before,
-  .navbar__link.dropdown__link::before {
-    content: "";
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    margin-right: calc(0.5vw);
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    vertical-align: middle;
-    transition: background-color 0.2s ease;
-    margin-left: 12px;
-  }
-
-  /* Active state for dropdown trigger - filled circle when on notices page */
-  .dropdown .navbar__link--active::before,
-  .navbar__item--dropdown .navbar__link--active::before,
-  .dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
-  .navbar__item--dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before,
-  .navbar__item.dropdown .navbar__link--active::before,
-  .navbar__link.dropdown__link--active::before,
-  .navbar__item.dropdown:has(.dropdown__menu a[aria-current="page"]) .navbar__link::before {
-    background-color: var(--linea-navbar-items) !important;
-    border: 1px solid var(--linea-navbar-items) !important;
-  }
-
-  /* Ensure dropdown caret/arrow is also blue */
-  .dropdown .navbar__link::after,
-  .navbar__item--dropdown .navbar__link::after,
-  .navbar__item.dropdown .navbar__link::after,
-  .navbar__link.dropdown__link::after {
-    border-color: var(--linea-navbar-items) transparent transparent !important;
-  }
-}
-
-/* Dropdown menu container and items styling */
-.dropdown__menu {
-  text-align: left;
-  background-color: var(--ifm-background-surface-color) !important;
-  border: 1px solid var(--ifm-color-emphasis-200) !important;
-}
-
-.dropdown__menu .menu__link--active {
-  color: var(--ifm-menu-color) !important;
-}
-
-.dropdown__menu .menu__link[href="/changelog/release-notes"]::before,
-.dropdown__menu .menu__link[href="/changelog/security-council-record"]::before {
-  content: "";
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: calc(0.5vw);
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  vertical-align: middle;
-  transition: background-color 0.2s ease;
-  margin-left: 12px;
-}
-
-/* Active state for dropdown items - filled circle */
-.dropdown__menu .menu__link--active::before {
-  background-color: currentColor !important;
-  border: 1px solid currentColor !important;
-}
 
 /* Details element styling - subtle, low contrast */
 details {
@@ -1760,3 +2169,553 @@ details > div {
   padding-left: 1.5rem;
   padding-bottom: 0.5rem;
 }
+
+/* ============================================================
+   17. ADMONITIONS
+   ============================================================ */
+
+/* Admonitions styling */
+.theme-admonition {
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+/* TIP admonition */
+.theme-admonition-tip {
+  background-color: var(--admonition-tip-bg) !important;
+  color: var(--admonition-tip-text) !important;
+}
+
+.theme-admonition-tip .admonitionHeading_Gvgb,
+.theme-admonition-tip .theme-admonition-heading {
+  color: var(--admonition-tip-heading) !important;
+}
+
+.theme-admonition-tip .admonitionContent_BuS1,
+.theme-admonition-tip .admonitionContent_BuS1 p,
+.theme-admonition-tip .admonitionContent_BuS1 *,
+.theme-admonition-tip .theme-admonition-content,
+.theme-admonition-tip .theme-admonition-content p,
+.theme-admonition-tip .theme-admonition-content * {
+  color: var(--admonition-tip-text) !important;
+}
+
+.theme-admonition-tip a {
+  color: var(--admonition-tip-link) !important;
+}
+
+/* INFO admonition */
+.theme-admonition-info {
+  background-color: var(--admonition-info-bg) !important;
+  color: var(--admonition-info-text) !important;
+}
+
+.theme-admonition-info .admonitionHeading_Gvgb,
+.theme-admonition-info .theme-admonition-heading {
+  color: var(--admonition-info-heading) !important;
+}
+
+.theme-admonition-info .admonitionContent_BuS1,
+.theme-admonition-info .admonitionContent_BuS1 p,
+.theme-admonition-info .admonitionContent_BuS1 *,
+.theme-admonition-info .theme-admonition-content,
+.theme-admonition-info .theme-admonition-content p,
+.theme-admonition-info .theme-admonition-content * {
+  color: var(--admonition-info-text) !important;
+}
+
+.theme-admonition-info a {
+  color: var(--admonition-info-link) !important;
+}
+
+/* NOTE admonition */
+.theme-admonition-note {
+  background-color: var(--admonition-note-bg) !important;
+  color: var(--admonition-note-text) !important;
+}
+
+.theme-admonition-note .admonitionHeading_Gvgb,
+.theme-admonition-note .theme-admonition-heading {
+  color: var(--admonition-note-heading) !important;
+}
+
+.theme-admonition-note .admonitionContent_BuS1,
+.theme-admonition-note .admonitionContent_BuS1 p,
+.theme-admonition-note .admonitionContent_BuS1 *,
+.theme-admonition-note .theme-admonition-content,
+.theme-admonition-note .theme-admonition-content p,
+.theme-admonition-note .theme-admonition-content * {
+  color: var(--admonition-note-text) !important;
+}
+
+.theme-admonition-note a {
+  color: var(--admonition-note-link) !important;
+}
+
+/* WARNING admonition */
+.theme-admonition-warning {
+  background-color: var(--admonition-warning-bg) !important;
+  color: var(--admonition-warning-text) !important;
+}
+
+.theme-admonition-warning .admonitionHeading_Gvgb,
+.theme-admonition-warning .theme-admonition-heading {
+  color: var(--admonition-warning-heading) !important;
+}
+
+.theme-admonition-warning .admonitionContent_BuS1,
+.theme-admonition-warning .admonitionContent_BuS1 p,
+.theme-admonition-warning .admonitionContent_BuS1 *,
+.theme-admonition-warning .theme-admonition-content,
+.theme-admonition-warning .theme-admonition-content p,
+.theme-admonition-warning .theme-admonition-content * {
+  color: var(--admonition-warning-text) !important;
+}
+
+.theme-admonition-warning a {
+  color: var(--admonition-warning-link) !important;
+}
+
+/* DANGER admonition */
+.theme-admonition-danger {
+  background-color: var(--admonition-danger-bg) !important;
+  color: var(--admonition-danger-text) !important;
+}
+
+.theme-admonition-danger .admonitionHeading_Gvgb,
+.theme-admonition-danger .theme-admonition-heading {
+  color: var(--admonition-danger-heading) !important;
+}
+
+.theme-admonition-danger .admonitionContent_BuS1,
+.theme-admonition-danger .admonitionContent_BuS1 p,
+.theme-admonition-danger .admonitionContent_BuS1 *,
+.theme-admonition-danger .theme-admonition-content,
+.theme-admonition-danger .theme-admonition-content p,
+.theme-admonition-danger .theme-admonition-content * {
+  color: var(--admonition-danger-text) !important;
+}
+
+.theme-admonition-danger a {
+  color: var(--admonition-danger-link) !important;
+}
+
+.theme-admonition-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.theme-admonition-heading svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-admonition-content {
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 400;
+  line-height: var(--line-height-default);
+}
+
+.theme-admonition-content p {
+  margin: 0;
+}
+
+.theme-admonition-content a {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.theme-admonition-content a:hover {
+  text-decoration: underline;
+}
+
+/* Admonition inline code per Figma */
+.theme-admonition-tip code {
+  background-color: rgb(255 255 255 / 15%);
+  color: #e8e6f0;
+}
+
+.theme-admonition-info code {
+  background-color: rgb(0 65 102 / 10%);
+  color: #004166;
+}
+
+[data-theme="dark"] .theme-admonition-info code {
+  background-color: rgb(255 255 255 / 15%);
+  color: #e6faff;
+}
+
+.theme-admonition-note code {
+  background-color: rgb(18 18 18 / 8%);
+  color: #121212;
+}
+
+[data-theme="dark"] .theme-admonition-note code {
+  background-color: rgb(255 255 255 / 10%);
+  color: #fff;
+}
+
+.theme-admonition-warning code {
+  background-color: rgb(59 15 64 / 10%);
+  color: #611c69;
+}
+
+[data-theme="dark"] .theme-admonition-warning code {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fcd6ff;
+}
+
+.theme-admonition-danger code {
+  background-color: rgb(92 31 0 / 10%);
+  color: #5c1f00;
+}
+
+[data-theme="dark"] .theme-admonition-danger code {
+  background-color: rgb(255 255 255 / 15%);
+  color: #ffc29e;
+}
+
+/* Pagination styling per Figma */
+.pagination-nav {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.pagination-nav__link {
+  border: 1px solid var(--homepage-card-border-color);
+  border-radius: 10px;
+  padding: 16px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pagination-nav__link:hover {
+  border-color: #6119ef;
+  background-color: transparent;
+}
+
+[data-theme="dark"] .pagination-nav__link:hover {
+  border-color: #a78bfa;
+}
+
+.pagination-nav__link:hover .pagination-nav__sublabel {
+  color: #6119ef;
+}
+
+[data-theme="dark"] .pagination-nav__link:hover .pagination-nav__sublabel {
+  color: #a78bfa;
+}
+
+.pagination-nav__label {
+  font-family: AtypText, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #808080;
+  line-height: 1.4;
+}
+
+.pagination-nav__sublabel {
+  font-family: AtypText, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #121212;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .pagination-nav__sublabel {
+  color: #f8f7f2;
+}
+
+/* Tabs styling per Figma */
+.tabs {
+  border-bottom: none;
+  margin-bottom: 24px;
+}
+
+.tabs__item {
+  font-family: AtypText, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 16px;
+  border-bottom: 1px solid transparent;
+  color: #808080;
+  transition: all 0.2s ease;
+}
+
+.tabs__item:hover {
+  color: #121212;
+}
+
+[data-theme="dark"] .tabs__item:hover {
+  color: #f8f7f2;
+}
+
+.tabs__item--active {
+  border-bottom-color: #6119ef;
+  color: #121212;
+}
+
+[data-theme="dark"] .tabs__item--active {
+  color: #f8f7f2;
+}
+
+/* Pills/badges styling per Figma */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: var(--linea-highlight-color-1);
+  color: #1C1C1C;
+}
+
+article a,
+.theme-doc-markdown a {
+  color: #121212 !important;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  font-family: 'Atyp Text', sans-serif;
+  font-weight: 500;
+  font-size: inherit;
+  transition: color 0.2s ease;
+}
+
+article a:hover,
+.theme-doc-markdown a:hover {
+  color: #6119ef !important;
+  opacity: 1;
+}
+
+[data-theme="dark"] article a,
+[data-theme="dark"] .theme-doc-markdown a {
+  color: #f8f7f2 !important;
+  text-decoration: underline;
+}
+
+[data-theme="dark"] article a:hover,
+[data-theme="dark"] .theme-doc-markdown a:hover {
+  color: #8e5dff !important;
+}
+
+/* Headings styling per Figma - EXACT specs */
+article h1 {
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: #1C1C1C;
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] article h1 {
+  color: #f8f7f2;
+}
+
+article h2 {
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #1C1C1C;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] article h2 {
+  color: #f8f7f2;
+}
+
+article h3 {
+  font-family: AtypDisplay, sans-serif;
+  font-size: var(--font-heading-lg);
+  font-weight: 500;
+  color: var(--banner-text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: var(--line-height-default);
+}
+
+article h4,
+article h5,
+article h6 {
+  font-family: AtypDisplay, sans-serif;
+  font-size: var(--font-heading-md);
+  font-weight: 500;
+  color: var(--banner-text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: var(--line-height-default);
+}
+
+article p {
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 400;
+  color: var(--banner-text);
+  line-height: var(--line-height-default);
+  margin-bottom: 1rem;
+}
+
+/* Lists styling */
+article ul,
+article ol {
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  color: var(--banner-text);
+  line-height: var(--line-height-default);
+  margin-bottom: 1rem;
+}
+
+article li {
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   18. CODE BLOCKS / SYNTAX HIGHLIGHTING
+   ============================================================ */
+
+/* Code blocks styling per Figma - EXACT specs */
+/* Main container - only this should have padding */
+div[class*="codeBlockContainer"] {
+  background-color: #121212 !important;
+  border-radius: 10px !important;
+  padding: 20px !important;
+  margin: 1.5rem 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove ALL padding from inner content wrapper */
+div[class*="codeBlockContent"] {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Remove any border and extra padding from pre elements */
+div[class*="codeBlock"] pre,
+pre[class*="prism-code"],
+pre[class*="language-"] {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Code styling */
+div[class*="codeBlock"] code,
+code[class*="codeBlockLines"] {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  font-family: 'Andale Mono', Monaco, 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.28px !important;
+  color: #d1d1d1 !important;
+}
+
+/* Ensure pre elements have no border or outline */
+pre {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+code {
+  font-family: 'Andale Mono', Monaco, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.28px;
+}
+
+/* Inline code (pills) per Figma */
+:not(pre) > code {
+  font-size: 12px;
+  letter-spacing: 0.24px;
+  background-color: #efefeb;
+  color: #121212;
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] :not(pre) > code {
+  background-color: rgb(255 255 255 / 15%);
+  color: #e8e6f0;
+}
+
+/* Prism syntax highlighting - EXACT Figma colors with high contrast */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #a0a0a0 !important;
+}
+
+.token.keyword,
+.token.operator,
+.token.boolean,
+.token.important {
+  color: #8e5dff !important;
+  font-weight: normal !important;
+}
+
+.token.string,
+.token.attr-value,
+.token.char {
+  color: #d46edf !important;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.attr-name {
+  color: #61dfff !important;
+}
+
+.token.punctuation,
+.token.plain {
+  color: #d1d1d1 !important;
+}
+
+.token.function,
+.token.class-name,
+.token.selector {
+  color: #d1d1d1 !important;
+}
+
+.token.number {
+  color: #d1d1d1 !important;
+}
+
+/* Ensure code block text is always visible with high contrast */
+div[class*="codeBlock"] .token-line {
+  color: #d1d1d1 !important;
+}
+
+/* Code blocks always dark per Figma - syntax colors are same in both themes */

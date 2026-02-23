@@ -1,0 +1,122 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+@media (max-width: 996px) {
+  .wrapper {
+    display: none;
+  }
+}
+
+.trigger {
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--linea-text-primary);
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.trigger:hover {
+  background-color: rgb(97 25 239 / 5%);
+}
+
+.chevron {
+  width: 9px;
+  height: 13px;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  width: 9px;
+  height: 13px;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 256px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px 0 rgb(18 18 18 / 11%);
+  overflow: hidden;
+  z-index: 100;
+}
+
+[data-theme="dark"] .dropdown {
+  background-color: #1c1c1c;
+  border-color: #333;
+}
+
+.dropdownItem {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:last-child {
+  border-bottom: none;
+}
+
+.dropdownItem:hover {
+  background-color: #efefeb;
+}
+
+[data-theme="dark"] .dropdownItem {
+  border-bottom-color: #333;
+}
+
+[data-theme="dark"] .dropdownItem:hover {
+  background-color: #2f2f2f;
+}
+
+.itemTitle {
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--linea-text-primary);
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .itemTitle {
+  color: #fff;
+}
+
+.itemSubtitle {
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--linea-gray-mid);
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .itemSubtitle {
+  color: #a0a0a0;
+}

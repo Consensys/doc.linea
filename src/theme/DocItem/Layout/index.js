@@ -1,7 +1,10 @@
 import React from "react";
 import clsx from "clsx";
 import { useWindowSize } from "@docusaurus/theme-common";
-import { useDoc } from "@docusaurus/plugin-content-docs/client";
+import {
+  useDoc,
+  useSidebarBreadcrumbs,
+} from "@docusaurus/plugin-content-docs/client";
 import DocItemPaginator from "@theme/DocItem/Paginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
 import DocVersionBadge from "@theme/DocVersionBadge";
@@ -14,6 +17,7 @@ import ContentVisibility from "@theme/ContentVisibility";
 import styles from "./styles.module.css";
 import ToolingCTA from "../../../components/ToolingCTA";
 import ContractsWarning from "../../../components/ContractsWarning";
+import CopyPageButton from "../../../components/CopyPageButton";
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -37,6 +41,17 @@ function useDocTOC() {
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
   const { metadata } = useDoc();
+  const breadcrumbs = useSidebarBreadcrumbs();
+
+  // Get parent category label from breadcrumbs
+  // Find the last category-type breadcrumb (parent category)
+  const categoryLabel = breadcrumbs
+    ?.slice()
+    .reverse()
+    .find((item) => item.type === "category")?.label;
+
+  const hideCopyButton = metadata.frontMatter?.hide_copy_button;
+
   return (
     <div className="row">
       <div className={clsx("col", !docTOC.hidden && styles.docItemCol)}>
@@ -45,11 +60,20 @@ export default function DocItemLayout({ children }) {
         <div className={styles.docItemContainer}>
           <article>
             <DocBreadcrumbs />
-            <DocVersionBadge />
+            <div className={styles.titleRow}>
+              {categoryLabel && (
+                <span className={styles.categoryLabel}>{categoryLabel}</span>
+              )}
+              <div className={styles.titleRowRight}>
+                <DocVersionBadge />
+                {!hideCopyButton && <CopyPageButton />}
+              </div>
+            </div>
             {docTOC.mobile}
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
+            {/* TODO: implement "Was this page helpful?" click behavior (Yes/No feedback submission) */}
             <DocItemFooter />
           </article>
           <DocItemPaginator />

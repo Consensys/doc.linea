@@ -5,12 +5,7 @@ sidebar_position: 0
 image: /img/socialCards/overview.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-export const metamaskDocs = [
-  {type: 'link', href: '/network/build/tools/account-abstraction/metamask', label: 'MetaMask Smart Accounts'},
-  {type: 'link', href: '/network/tutorials/voting-dapp', label: 'Use the MetaMask SDK'},
-];
+import ActionCards from '@site/src/components/ActionCards';
 
 Linea is a secure, low-cost, and Ethereum-equivalent layer 2 blockchain built to bring the world 
 onchain without compromising on security and decentralization. 
@@ -66,4 +61,15 @@ Linea is the best way for application developers to leverage MetaMask's products
 Seamlessly integrate Linea through the MetaMask Developer portal, unlock easy on-ramping, bridging 
 and swaps for your users, and access millions of the most engaged onchain users worldwide.
 
-<DocCardList items={metamaskDocs} />
+<ActionCards
+  cards={[
+    {
+      text: "MetaMask smart accounts",
+      href: "/network/build/tools/account-abstraction/metamask",
+    },
+    {
+      text: "Use the MetaMask SDK",
+      href: "/network/tutorials/voting-dapp",
+    },
+  ]}
+/>
