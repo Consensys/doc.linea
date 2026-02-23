@@ -5,11 +5,9 @@ sidebar_position: 6
 image: /img/socialCards/estimate-gas-costs.jpg
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
-
 :::tip
 
-See our [predictable pricing feature](../overview/predictable-pricing.mdx) for a high-level overview about how gas works on Linea. 
+See our [predictable pricing feature](../overview/predictable-pricing.mdx) for a high-level overview about how gas works on Linea.
 
 :::
 
@@ -28,8 +26,8 @@ total fee = units of gas used * (base fee + priority fee)
 and includes support for type 0, type 1 and type 2 transactions.
 :::
 
-`linea_estimateGas` returns `gasLimit`, 
-`baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise recommended gas price than 
+`linea_estimateGas` returns `gasLimit`,
+`baseFeePerGas`, and `priorityFeePerGas`, and therefore provides a more precise recommended gas price than
 the alternatives.
 
 It can also help prevent transactions from being rejected due to exceeding [module limits](../../protocol/architecture/prover/prover-limits.mdx).

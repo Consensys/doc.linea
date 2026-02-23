@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import Footer from "@theme-original/Footer";
+import LineaFooter from "@site/static/img/linea_footer.svg";
+import styles from "./styles.module.css";
 
 export default function FooterWrapper(props) {
   useEffect(() => {
@@ -29,6 +31,9 @@ export default function FooterWrapper(props) {
   return (
     <>
       <Footer {...props} />
+      <div className={styles.lineaFooterContainer}>
+        <LineaFooter className={styles.lineaFooter} />
+      </div>
     </>
   );
 }

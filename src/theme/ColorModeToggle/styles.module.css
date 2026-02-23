@@ -1,0 +1,29 @@
+.toggle {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  color: #190066;
+  appearance: none;
+  outline: none;
+}
+
+[data-theme="dark"] .toggle {
+  color: white;
+}
+
+.toggle:hover {
+  opacity: 0.8;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: inherit;
+  display: block;
+  flex-shrink: 0;
+}

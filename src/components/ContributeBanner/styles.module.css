@@ -1,0 +1,188 @@
+.bannerContainer {
+  padding: 0 67px 60px;
+  margin: 0 auto;
+  max-width: 1444px;
+}
+
+.banner {
+  background: linear-gradient(135deg, #6119ef 0%, #4a0fbd 100%);
+  border-radius: 20px;
+  padding: 86px;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 450px;
+}
+
+.title {
+  font-family: AtypDisplay, sans-serif;
+  font-size: var(--font-display-md);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 8px;
+  line-height: var(--line-height-default);
+}
+
+.description {
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 20px;
+  line-height: var(--line-height-default);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  color: #121212 !important;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: AtypDisplay, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.button:hover {
+  background-color: #61dfff;
+  transform: scale(1.05);
+  text-decoration: none;
+  color: #121212 !important;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+}
+
+.illustration {
+  position: absolute;
+  right: -17px;
+  bottom: 0;
+  width: 394px;
+  height: 423px;
+  z-index: 1;
+}
+
+.illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: rotate(18.47deg);
+}
+
+.decorativeDot1,
+.decorativeDot2,
+.decorativeDot3 {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--linea-highlight-color-1);
+  animation: float-dot 6s ease-in-out infinite;
+}
+
+.decorativeDot1 {
+  width: 16px;
+  height: 16px;
+  top: 20%;
+  right: 25%;
+  animation-delay: 0s;
+}
+
+.decorativeDot2 {
+  width: 12px;
+  height: 12px;
+  bottom: 30%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+.decorativeDot3 {
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes float-dot {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 996px) {
+  .bannerContainer {
+    padding: 0 24px 40px;
+  }
+
+  .banner {
+    padding: 48px 32px;
+    min-height: 300px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .illustration {
+    width: 250px;
+    height: 270px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .bannerContainer {
+    padding: 40px 16px 20px;
+  }
+
+  .banner {
+    padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .illustration {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 24px;
+    width: 200px;
+    height: 220px;
+    align-self: center;
+  }
+}

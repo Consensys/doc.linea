@@ -1,0 +1,147 @@
+/* main background handled globally in custom.css */
+
+.cardContainer {
+  padding: 60px 67px;
+  margin: 0 auto;
+  max-width: 1444px;
+}
+
+.heading {
+  text-align: left;
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--linea-text-primary);
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.cardLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  background-color: var(--homepage-card-background);
+  border: none;
+  border-radius: 10px;
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 284px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+}
+
+.cardHeader {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.cardBody {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.cardTitle {
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--linea-text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.description {
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--linea-text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding: 20px 0 0;
+}
+
+.arrowButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--linea-arrow-btn-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--linea-text-primary);
+  transition: all 0.3s ease;
+}
+
+.card:hover .arrowButton {
+  background-color: var(--linea-highlight-color-2);
+  color: white;
+}
+
+@media (max-width: 996px) {
+  .cardContainer {
+    padding: 40px 24px;
+  }
+
+  .heading {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .cardContainer {
+    padding: 20px 24px 0;
+  }
+
+  .heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+}

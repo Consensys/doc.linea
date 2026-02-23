@@ -14,5 +14,6 @@ export default {
     "comment-empty-line-before": null,
     "value-keyword-case": ["lower", { camelCaseSvgKeywords: true }],
     "media-feature-range-notation": "prefix",
+    "no-descending-specificity": null,
   },
 };

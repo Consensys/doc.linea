@@ -10,43 +10,54 @@
 }
 
 .bannerButton {
-  background-color: var(--linea-navbar-background);
-  color: #61dfff !important;
   border: none;
-  padding: 20px 60px 20px 70px;
+  padding: 12px 14px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-family: AtypDisplay, sans-serif;
-  font-size: 20px;
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 15px;
   font-weight: 500;
-  margin: 4px 2px;
+  margin: 0 8px;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 30px;
   transition: all 0.3s ease;
+}
+
+.bannerButtonPrimary {
+  background-color: white;
+  color: #121212 !important;
+}
+
+.bannerButtonPrimary:hover {
+  background-color: #61dfff;
+}
+
+.bannerButtonSecondary {
+  background-color: white;
+  color: #121212 !important;
+  border: none;
+}
+
+.bannerButtonSecondary:hover {
+  background-color: #61dfff;
 }
 
 @media (max-width: 320px) {
   .bannerButton {
-    font-size: 16px;
-    padding: 15px 25px;
+    font-size: 14px;
+    padding: 12px 24px;
+    margin: 4px;
   }
-}
-
-.bannerButton:hover {
-  background-color: var(--linea-highlight-color-1);
-  color: #121212 !important;
-  transform: scale(1.05);
-}
-
-.bannerButton:hover .icon {
-  color: #121212;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 0;
 }
 
 .logo {
@@ -66,15 +77,18 @@
 }
 
 .title {
-  color: var(--linea-banner-logo);
-  font-size: 55px;
+  color: #f8f7f2;
+  font-size: 80px;
   font-weight: 400;
-  padding-bottom: 10px;
+  line-height: 1.2;
+  letter-spacing: -1.6px;
+  padding-bottom: 16px;
+  font-family: 'Atyp Display', sans-serif;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .title {
-    margin-top: 60px;
     padding-left: 60px;
     padding-right: 60px;
   }
@@ -82,7 +96,6 @@
 
 @media (max-width: 530px) {
   .title {
-    margin-top: 60px;
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -96,11 +109,14 @@
 }
 
 .subtitle {
-  color: var(--linea-banner-logo);
-  font-size: 32px;
+  color: #f8f7f2;
+  font-size: 18px;
   font-weight: 400;
-  padding: 0 9rem 10px;
-  margin-bottom: 25px;
+  line-height: 1.4;
+  padding: 0 2rem;
+  margin-bottom: 40px;
+  font-family: 'Atyp Text', sans-serif;
+  text-align: center;
 }
 
 @media (max-width: 1250px) {
@@ -132,7 +148,6 @@
 
 @media (max-width: 350px) {
   .subtitle {
-    padding: 0 0 20px;
     padding: 0;
   }
 }
@@ -145,7 +160,7 @@
 
 @media (max-width: 350px) {
   .title {
-    font-size: 38px;
+    font-size: 30px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -160,22 +175,25 @@
 
 /* banner background images */
 .introductionBlock {
-  background-color: var(--banner-background);
-  /* adjust banner background svgs independently */
-  background-image: url("/img/linea_globe.svg"), url("/img/linea_globe.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-position:
-    right -170% top 100%,
-    left -165% top -20%;
-  background-size: 70%, 70%;
+  background: var(--linea-text-color-1) url('/img/hero_pattern.svg') no-repeat center;
+  background-size: cover;
   padding: 6rem;
   text-align: center;
-  height: 60vh;
-  min-height: 575px;
+  height: 50vh;
+  min-height: 450px;
   width: calc(100vw - 2.5rem) !important;
   border-radius: 14px;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.introductionBlock > .container {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 1380px) {
@@ -186,22 +204,45 @@
 
 @media (max-width: 768px) {
   .introductionBlock {
-    padding: 2rem;
-    height: 75vh;
-    background-position:
-    right -285% top 150%,
-    left -295% top -80%;
-    background-size: 80%, 80%;
+    padding: 3rem 2rem;
+    height: auto;
+    min-height: 384px;
+    background-position: left center;
+  }
+
+  .title {
+    font-size: 40px;
+    margin-bottom: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0;
+    width: 248px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bannerButton {
+    width: 100%;
+    padding: 12px 20px;
   }
 }
 
 @media (max-width: 530px) {
   .introductionBlock {
-    background-image: url("/img/Linea_mob_banner_1.svg"), url("/img/Linea_mob_banner_2.svg");
-    background-repeat: no-repeat, no-repeat;
-    background-size: 40%, 40%;
-    background-position: bottom left, top right;
-    height: auto;
+    padding: 2rem 1rem;
+    min-height: 384px;
+  }
+
+  .title {
+    font-size: 36px;
   }
 }
 
@@ -214,79 +255,15 @@
 
 .footerImageContainer {
   position: relative;
-  text-align: center;
+  overflow: visible;
   padding-top: 20px;
   margin: 30px 0 0;
+  width: 100%;
 }
 
 .footerImage {
-  max-width: 80vw;
+  width: 100%;
   height: auto;
-  display: inline-block;
-  margin: 0 20px;
-  transform: translateY(10px);
-}
-
-/* search bar */
-.searchBarContainer {
-  display: flex;
-  justify-content: center;
-  padding-top: 80px;
-  padding-right: 16px;
-}
-
-.searchBarContainer input {
-  font-size: 1.3rem;
-  font-weight: 600;
-  width: 40vw;
-  height: 65px;
-  border-radius: 12px;
-  border: 2px solid var(--navbar-background);
-  background: var(--search-background);
-  margin-right: 0;
-}
-
-.navbar__search-input:focus-visible {
-  outline-color: #61dfff !important;
-}
-
-.searchBarContainer .navbar__search {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-@media (max-width: 700px) {
-  .searchBarContainer .navbar__search {
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-}
-
-/* search results dropdown, somewhat workaroundy but swizzle-free way to target and center */
-[role="listbox"][id^="searchBar_"] {
-  position: absolute;
-  margin: 0;
-  right: 50%;
-  left: 50%;
-  margin-top: 10px;
-  width: var(--search-local-modal-width, 39.8vw); 
-  z-index: 100;
   display: block;
-}
-
-@media (max-width: 996px) {
-  [role="listbox"][id^="searchBar_"] {
-    width: var(--search-local-modal-width, 450px); 
-  }
-}
-
-@media (max-width: 550px) {
-  [role="listbox"][id^="searchBar_"] {
-    width: var(--search-local-modal-width, 80vw); 
-  }
+  transform: translateY(10px);
 }

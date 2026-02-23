@@ -29,3 +29,30 @@
 nav[aria-label="Breadcrumbs"] {
   margin-top: 0 !important;
 }
+
+/* Title row: category label left, copy button right */
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.categoryLabel {
+  color: var(--linea-highlight-color-2);
+  font-family: 'Atyp Text', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .categoryLabel {
+  color: var(--linea-purple-light);
+}
+
+.titleRowRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
