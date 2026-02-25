@@ -1003,6 +1003,10 @@ html[data-theme='dark'] .header-release-notes-link::before {
   color: white !important;
 }
 
+[data-theme="dark"] .support-link:hover {
+  color: white !important;
+}
+
 @media (max-width: 996px) {
   .support-link {
     line-height: 1.25;
