@@ -1739,12 +1739,7 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   max-height: 80vh;
 }
 
-button[aria-label="Collapse sidebar"] {
-  border: none !important;
-  background-color: var(--page-background);
-  margin: 10px 16px 35px;
-  border-radius: 12px;
-}
+/* Collapse sidebar button fully managed in section 14b below */
 
 /* Standardize sidebar menu indentation - reduce and make consistent */
 a.menu__link {
@@ -1889,7 +1884,7 @@ a.menu__link {
 [aria-label="Collapse sidebar"] {
   position: absolute !important;
   top: 16px !important;
-  right: 8px !important;
+  right: 1px !important;
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
@@ -1905,15 +1900,19 @@ a.menu__link {
 }
 
 /* ── EXPAND button (sidebar collapsed) ── */
+/* Full height so entire collapsed strip is clickable; icon sits at top */
 [aria-label="Expand sidebar"] {
-  top: 16px !important;
+  position: absolute !important;
+  top: 0 !important;
   left: 0 !important;
-  right: auto !important;
+  right: 0 !important;
   width: 100% !important;
-  height: 16px !important;
+  height: 100% !important;
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
+  padding-top: 10px !important;
   background: transparent !important;
   background-color: transparent !important;
   margin: 0 !important;
