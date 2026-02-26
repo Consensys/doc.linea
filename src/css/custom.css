@@ -1895,73 +1895,73 @@ a.menu__link {
    15. TOC (Table of Contents)
    ============================================================ */
 
-.table-of-contents {
-  border: none;
-}
-
-.theme-doc-toc-desktop {
-  margin-right: 5px;
-  transform: translateY(-16px);
-}
-
-/* "On this page" heading above the TOC list */
+/* "On this page" heading */
 .theme-doc-toc-desktop::before {
-  content: 'On this page';
+  content: "On this page";
   display: block;
-  font-family: 'Atyp Text', sans-serif;
+  font-family: AtypText, sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: #121212;
-  line-height: 1.4;
-  padding: 10px 10px 0;
   margin-bottom: 8px;
 }
 
 [data-theme="dark"] .theme-doc-toc-desktop::before {
-  color: #fff;
+  color: #f8f7f2;
 }
 
-/* TOC list: purple left bar + spacing */
-.col[class*='col--'] .table-of-contents {
-  right: 0;
-  padding: 0 10px;
-  margin-right: 0;
-  font-family: 'Atyp Text', sans-serif;
-  border-left: 2px solid #6119ef;
+.table-of-contents {
+  padding: 0;
+  margin: 0;
 }
 
-/* TOC links: 12px, grey by default */
+/* Left border - 2px solid purple */
+.table-of-contents__left-border {
+  border-left: 2px solid #6119ef !important;
+  padding-left: 10px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+}
+
+/* Inactive links - grey */
 .table-of-contents__link {
-  font-family: 'Atyp Text', sans-serif;
-  font-size: 12px !important;
+  font-family: AtypText, sans-serif;
+  font-size: 12px;
   font-weight: 400;
-  color: #808080 !important;
+  color: #808080;
   line-height: 1.4;
   text-decoration: none;
-  padding: 4px 0;
   display: block;
+  padding: 0;
 }
 
 [data-theme="dark"] .table-of-contents__link {
-  color: #808080 !important;
+  color: #808080;
 }
 
 .table-of-contents__link:hover {
-  color: #6119ef !important;
+  color: #121212;
 }
 
 [data-theme="dark"] .table-of-contents__link:hover {
-  color: #a78bfa !important;
+  color: #f8f7f2;
 }
 
-/* Active TOC item: dark text (light) or white (dark) */
+/* Active link - dark, not purple */
 .table-of-contents__link--active {
   color: #121212 !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 [data-theme="dark"] .table-of-contents__link--active {
-  color: #fff !important;
+  color: #f8f7f2 !important;
+}
+
+.theme-doc-toc-desktop {
+  margin-right: 5px;
 }
 
 button.clean-btn.menu__caret {
