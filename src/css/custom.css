@@ -1685,6 +1685,11 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
   color: #f8f7f2;
 }
 
+/* Remove background from active breadcrumb item */
+nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
+  background-color: transparent !important;
+}
+
 /* Hide non-collapsible section header items (Introduction, Features, etc.)
    They render as <span> not <a>, and are not the active item */
 .breadcrumbs__item:not(.breadcrumbs__item--active):has(> span.breadcrumbs__link) {
