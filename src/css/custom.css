@@ -1661,12 +1661,12 @@ nav[aria-label="Breadcrumbs"] a {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 100px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 nav[aria-label="Breadcrumbs"] a:hover {
-  color: #6119ef;
-  background-color: rgb(97 25 239 / 5%);
+  color: #6119ef !important;
+  background-color: transparent !important;
 }
 
 nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
@@ -1678,7 +1678,8 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
 }
 
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] a:hover {
-  color: #a78bfa;
+  color: #6119ef !important;
+  background-color: transparent !important;
 }
 
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
