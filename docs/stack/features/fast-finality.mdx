@@ -1,27 +1,33 @@
 ---
-title: Fast finality
-description: Fast finality for enterprise needs from the Linea protocol and operator stack
+title: Instant finality
+description: Instant finality for enterprise needs from the Linea protocol and operator stack
 sidebar_position: 3
 image: /img/socialCards/fast-finality.jpg
 ---
 
-Linea supports enterprises with options to deploy networks that provide instant finality.
+Linea provides options to deploy networks that provide instant finality.
+
+## What is instant finality?
+
+Finality is the point at which a transaction becomes immutable and you can’t reverse or change it under the protocol’s security assumptions. Instant finality means a block becomes final before the next block is produced.
+
+Layer 2 (L2) blockchains bundle transactions and submit them to the layer 1 (L1) blockchain. Soft finality occurs when a block is confirmed and committed on the L2. Hard finality occurs when the L2 state that includes the transactions is confirmed and committed on the L1. On Linea, sequencers confirm the chain state during block production, so soft finality represents a final state for the L2 and enables instant finality before L1 confirmation.
 
 ## Standalone Linea Enterprise
 
-As a Standalone or Layer 2 blockchain, instant finality is guaranteed by Linea’s block production 
+As a standalone or L2 blockchain, instant finality is guaranteed by Linea’s block production 
 protocol both when running a single validator (sequencer) or when running multiple validators with 
 Quorum-Based Byzantine Fault Tolerance (QBFT) consensus.
 
-## Layer 2 Linea Enterprise
+## L2 Linea Enterprise
 
-As a Layer 2 (L2) blockchain, zero knowledge validity proofs supplied by the prover provide instant 
+As a L2 blockchain, zero knowledge validity proofs supplied by the prover provide instant 
 L1 finality for the entire L2 state being committed, as soon as the block on which they are posted 
 is finalized, without the need for challenge windows.
 
-## Finality time as a operator decision
+## Finality time as an operator decision
 
-Enterprise Linea L2 network soft finality is reached instantaneously at the block boundary. The [Public network](../../network/overview/index.mdx) operators set this block boundary to once every 2 seconds, however, operators may choose 1 second, or lower. 
+Soft finality is reached instantaneously at the block boundary. The [Public network](../../network/overview/index.mdx) operators set this block boundary to once every 2 seconds; however, operators may choose 1 second, or lower. 
 
 When running a single validator, block production is not impacted by network conditions. When running a set of validators, congestion on the validator network may lead to accrued block validation time, however consensus always guarantees that a validated block is final.
 
