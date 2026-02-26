@@ -1881,9 +1881,11 @@ a.menu__link {
 }
 
 /* ── COLLAPSE button (sidebar open) ── */
+/* top = navbar-height + 16px: sidebar div starts behind the navbar,
+   so we must skip past the navbar to reach the visible sidebar area */
 [aria-label="Collapse sidebar"] {
   position: absolute !important;
-  top: 16px !important;
+  top: calc(var(--ifm-navbar-height) + 16px) !important;
   right: 1px !important;
   width: 16px !important;
   height: 16px !important;
@@ -1900,7 +1902,8 @@ a.menu__link {
 }
 
 /* ── EXPAND button (sidebar collapsed) ── */
-/* Full height so entire collapsed strip is clickable; icon sits at top */
+/* Full height so entire collapsed strip is clickable; icon sits at top.
+   padding-top = navbar-height + 10px to appear below the navbar. */
 [aria-label="Expand sidebar"] {
   position: absolute !important;
   top: 0 !important;
@@ -1912,7 +1915,7 @@ a.menu__link {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  padding-top: 10px !important;
+  padding-top: calc(var(--ifm-navbar-height) + 10px) !important;
   background: transparent !important;
   background-color: transparent !important;
   margin: 0 !important;
