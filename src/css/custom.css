@@ -1882,11 +1882,13 @@ a.menu__link {
 
 /* ── COLLAPSE button (sidebar open) ── */
 /* top = navbar-height + 16px: sidebar div starts behind the navbar,
-   so we must skip past the navbar to reach the visible sidebar area */
+   so we must skip past the navbar to reach the visible sidebar area.
+   right = scrollbar-size + 1px: keeps the icon inside the content area,
+   clear of the 7px thin-scrollbar track. */
 [aria-label="Collapse sidebar"] {
   position: absolute !important;
   top: calc(var(--ifm-navbar-height) + 16px) !important;
-  right: 1px !important;
+  right: calc(var(--ifm-scrollbar-size) + 1px) !important;
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
