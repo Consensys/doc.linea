@@ -15,8 +15,9 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Introduction",
+      label: "Public Network",
       collapsible: false,
+      link: { type: "doc", id: "network/quickstart/index" },
       items: [
         "network/quickstart/index",
         "network/overview/index",
@@ -126,8 +127,9 @@ const sidebars = {
   apiSidebar: [
     {
       type: "category",
-      label: "Introduction",
+      label: "APIs & SDK",
       collapsible: false,
+      link: { type: "doc", id: "api/quickstart" },
       items: ["api/quickstart"],
     },
     {
@@ -190,8 +192,9 @@ const sidebars = {
   protocolSidebar: [
     {
       type: "category",
-      label: "Introduction",
+      label: "Protocol",
       collapsible: false,
+      link: { type: "doc", id: "protocol/quickstart" },
       items: [
         "protocol/quickstart",
         "protocol/overview",
@@ -244,8 +247,9 @@ const sidebars = {
   stackSidebar: [
     {
       type: "category",
-      label: "Introduction",
+      label: "Stack",
       collapsible: false,
+      link: { type: "doc", id: "stack/quickstart" },
       items: [
         "stack/quickstart",
         "stack/index",
