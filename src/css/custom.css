@@ -1926,6 +1926,11 @@ a.menu__link {
   margin: 0;
 }
 
+/* Remove default li margins so only the gap controls spacing */
+.table-of-contents__left-border li {
+  margin: 0 !important;
+}
+
 /* Inactive links - grey */
 .table-of-contents__link {
   font-family: AtypText, sans-serif;
