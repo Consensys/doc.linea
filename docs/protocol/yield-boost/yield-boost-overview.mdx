@@ -1,7 +1,7 @@
 ---
 title: Technical overview
 description: ETH fund flow and role permissions in the Linea Yield Boost staking system.
-image: /img/socialCards/yield-boost.jpg
+image: /img/socialCards/yield-boost-overview.jpg
 ---
 
 # Yield Boost technical overview
@@ -16,7 +16,7 @@ Linea Yield Boost is a protocol-level mechanism that automatically stakes some o
 
 The user experiences no change in their ETH balance or typical user interface on Linea. The staking process occurs in the background on L1 within the canonical bridge contracts. To ensure users can always withdraw and transact with their funds, the system maintains a Liquidity Buffer of unstaked ETH specifically to service withdrawals. This amount targets around 40% of the total value staked, and the system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity.
 
-This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. For a more general overview of Yield Boost, see the [Yield Boost overview](/protocol/yield-boost/index) page.
+This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. For a more general overview of Yield Boost, see the [Yield Boost overview](/protocol/yield-boost/) page.
 
 ## High-level architecture
 
@@ -31,7 +31,7 @@ For ETH to flow from the user to the beacon chain, and back to the user, the fol
 - **StakingVault** - Lido V3 vault that holds ETH awaiting beacon chain staking; all validator withdrawals return here.
 - **Beacon Chain** - Ethereum's proof-of-stake consensus layer where validators lock ETH to secure the network and earn staking rewards.
 - **Node operator** - Runs beacon chain validators on behalf of Linea and decides when to deposit ETH from the StakingVault into the beacon chain.
-- **Automation service** - Off-chain bot that triggers routine operations: moving ETH to/from staking, topping up reserves, and reporting yield.
+- **Automation service** - Offchain bot that triggers routine operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
 The follow diagram details the flow:
 
