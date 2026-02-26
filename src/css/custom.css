@@ -1003,10 +1003,6 @@ html[data-theme='dark'] .header-release-notes-link::before {
   color: white !important;
 }
 
-[data-theme="dark"] .support-link:hover {
-  color: white !important;
-}
-
 @media (max-width: 996px) {
   .support-link {
     line-height: 1.25;
@@ -1944,10 +1940,6 @@ a.menu__link {
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
-  -webkit-mask-image: url('/img/icon_sidebar_collapse.svg');
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
 }
 
 /* Expand button icon rotated 180° (arrow now points right = open/expand) */
@@ -2141,7 +2133,7 @@ button.clean-btn.menu__caret {
 }
 
 [data-theme="dark"] .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: rgb(255 255 255 / 45%) !important;
 }
 
 @media (max-width: 1200px) {
