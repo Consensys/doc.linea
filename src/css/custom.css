@@ -1658,7 +1658,7 @@ nav[aria-label="Breadcrumbs"] {
 
 nav[aria-label="Breadcrumbs"] a {
   color: #808080;
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 5px 10px;
   border-radius: 100px;
   transition: color 0.2s ease;
@@ -1667,6 +1667,7 @@ nav[aria-label="Breadcrumbs"] a {
 nav[aria-label="Breadcrumbs"] a:hover {
   color: #6119ef !important;
   background-color: transparent !important;
+  text-decoration: none !important;
 }
 
 nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
@@ -1674,12 +1675,14 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
 }
 
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] a {
-  color: #808080;
+  color: #a0a0a0 !important;
+  text-decoration: none !important;
 }
 
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] a:hover {
-  color: #6119ef !important;
+  color: #8e5dff !important;
   background-color: transparent !important;
+  text-decoration: none !important;
 }
 
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
