@@ -1695,6 +1695,21 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
    14. SIDEBAR LAYOUT
    ============================================================ */
 
+/* Doc content area spacing - match Figma (50px left, 35px top) */
+.main-wrapper main > .container {
+  padding-left: 50px !important;
+  padding-right: 40px !important;
+  padding-top: 35px !important;
+}
+
+@media (max-width: 996px) {
+  .main-wrapper main > .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 16px !important;
+  }
+}
+
 /* sidebar/docs page layout */
 .theme-doc-sidebar-container {
   border-right: 1px solid #e5e5e5 !important;
