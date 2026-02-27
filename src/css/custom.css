@@ -1034,6 +1034,42 @@ html[data-theme='dark'] .header-release-notes-link::before {
   border-color: currentColor;
 }
 
+/* Support link in mobile primary nav — same treatment as .menu__link items */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .support-link {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  padding: 14px 16px 14px 44px !important;
+  position: relative !important;
+  color: #190066 !important;
+  background: none !important;
+  border-radius: 0 !important;
+  line-height: 1.4 !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .support-link {
+  color: #f8f7f2 !important;
+}
+
+/* Inherit nav item color for the external link icon */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .support-link svg {
+  color: currentColor !important;
+}
+
+/* Empty circle dot for Support link */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .support-link::before {
+  display: block !important;
+  content: '' !important;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background: transparent;
+}
+
 .support-link {
   font-size: 16px;
   font-family: AtypText, sans-serif;
