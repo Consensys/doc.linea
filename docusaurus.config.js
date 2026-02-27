@@ -39,10 +39,7 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    { src: "/js/navbarHighlight.js", defer: true },
-    { src: "/js/clearSearchOnCollapse.js", async: true },
-  ],
+  scripts: [{ src: "/js/clearSearchOnCollapse.js", async: true }],
 
   markdown: {
     mermaid: true,
@@ -329,8 +326,26 @@ const config = {
       innerHTML: `
         (function() {
           var nativeFetch = window.fetch;
-          var NativeWorker = window.Worker;
+          var nativeWorker = window.Worker;
           var origin = location.origin;
+
+          function getInputUrl(input) {
+            if (typeof input === 'string') return input;
+            if (typeof URL !== 'undefined' && input instanceof URL) return input.href;
+            if (input && typeof input.url === 'string') return input.url;
+            return null;
+          }
+
+          function isSameOriginRequest(input) {
+            var inputUrl = getInputUrl(input);
+            if (!inputUrl) return false;
+
+            try {
+              return new URL(inputUrl, origin).origin === origin;
+            } catch (e) {
+              return false;
+            }
+          }
 
           var s = document.createElement('script');
           s.src = 'https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js';
@@ -339,16 +354,15 @@ const config = {
           s.onload = function() {
             if (window.fetch !== nativeFetch) {
               var blockedFetch = window.fetch;
-              window.fetch = function(url, opts) {
-                try {
-                  var u = new URL(url, origin);
-                  if (u.origin === origin) return nativeFetch.call(window, url, opts);
-                } catch(e) {}
-                return blockedFetch.call(window, url, opts);
+              window.fetch = function(input, init) {
+                if (isSameOriginRequest(input)) {
+                  return nativeFetch.call(window, input, init);
+                }
+                return blockedFetch.call(window, input, init);
               };
             }
-            if (window.Worker !== NativeWorker) {
-              window.Worker = NativeWorker;
+            if (window.Worker !== nativeWorker) {
+              window.Worker = nativeWorker;
             }
           };
           window.addEventListener('load', function() { document.head.appendChild(s); });
@@ -359,27 +373,52 @@ const config = {
       tagName: "script",
       attributes: {},
       innerHTML: `
-      document.addEventListener('DOMContentLoaded', function() {
-        var element = document.getElementById('__cookbook');
-        if (!element) {
-          element = document.createElement('div');
-          element.id = '__cookbook';
-          element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
-          document.body.appendChild(element);
+      (function() {
+        var hasScheduled = false;
+
+        function mountCookbook() {
+          var element = document.getElementById('__cookbook');
+          if (!element) {
+            element = document.createElement('div');
+            element.id = '__cookbook';
+            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
+            document.body.appendChild(element);
+          }
+
+          var script = document.getElementById('__cookbook-script');
+          if (!script) {
+            script = document.createElement('script');
+            script.crossOrigin = 'anonymous';
+            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
+            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+
+            script.id = '__cookbook-script';
+            script.async = true;
+            document.body.appendChild(script);
+          }
         }
 
-        var script = document.getElementById('__cookbook-script');
-        if (!script) {
-          script = document.createElement('script');
-          script.crossOrigin = 'anonymous';
-          script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
-          script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+        function scheduleCookbook() {
+          if (hasScheduled) return;
+          hasScheduled = true;
 
-          script.id = '__cookbook-script';
-          script.async = true;
-          document.body.appendChild(script);
+          if (window.requestIdleCallback) {
+            window.requestIdleCallback(mountCookbook, { timeout: 4000 });
+          } else {
+            setTimeout(mountCookbook, 2000);
+          }
         }
-      });
+
+        function scheduleOnInteraction() {
+          scheduleCookbook();
+        }
+
+        window.addEventListener('pointerdown', scheduleOnInteraction, { once: true, capture: true });
+        window.addEventListener('keydown', scheduleOnInteraction, { once: true, capture: true });
+        window.addEventListener('load', function() {
+          setTimeout(scheduleCookbook, 500);
+        }, { once: true });
+      })();
     `,
     },
     {
