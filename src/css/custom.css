@@ -3105,3 +3105,167 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 /* Code blocks always dark per Figma - syntax colors are same in both themes */
+
+/* ============================================================
+   XX. CHANGELOG PAGE
+   ============================================================ */
+
+/* Page subtitle */
+.changelog-subtitle {
+  font-family: AtypText, sans-serif;
+  font-size: 18px;
+  color: #555;
+  margin-top: -1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .changelog-subtitle {
+  color: #aaa;
+}
+
+/* Date rows */
+.changelog-dates {
+  margin: 0.5rem 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.changelog-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: AtypText, sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .changelog-date {
+  color: #999;
+}
+
+.changelog-date__arrow {
+  color: #6119EF;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Entry wrapper */
+.changelog-entry {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.changelog-entry:last-of-type {
+  border-bottom: none;
+}
+
+[data-theme="dark"] .changelog-entry {
+  border-bottom-color: #333;
+}
+
+.changelog-entry__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.changelog-entry__title {
+  font-family: AtypText, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #121212;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .changelog-entry__title {
+  color: #f8f7f2;
+}
+
+.changelog-entry__body > *:first-child {
+  margin-top: 0;
+}
+
+.changelog-entry__body > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Tag badges */
+.changelog-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 100px;
+  font-family: AtypText, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.changelog-tag--feature {
+  background: #E6F4EA;
+  color: #1A7F34;
+}
+
+.changelog-tag--upgrade {
+  background: #E0ECFF;
+  color: #0052CC;
+}
+
+.changelog-tag--performance {
+  background: #F0F0EB;
+  color: #555555;
+}
+
+.changelog-tag--announcement {
+  background: #EDE5FF;
+  color: #6119EF;
+}
+
+.changelog-tag--action-required {
+  background: #FDECEA;
+  color: #C0392B;
+}
+
+.changelog-tag--deprecation {
+  background: #FFF3E0;
+  color: #C07800;
+}
+
+/* Dark mode tags */
+[data-theme="dark"] .changelog-tag--feature {
+  background: rgba(34, 139, 34, 0.2);
+  color: #5CB85C;
+}
+
+[data-theme="dark"] .changelog-tag--upgrade {
+  background: rgba(0, 82, 204, 0.2);
+  color: #6B9FE0;
+}
+
+[data-theme="dark"] .changelog-tag--performance {
+  background: rgba(120, 120, 120, 0.25);
+  color: #B0B0B0;
+}
+
+[data-theme="dark"] .changelog-tag--announcement {
+  background: rgba(97, 25, 239, 0.2);
+  color: #A87EFF;
+}
+
+[data-theme="dark"] .changelog-tag--action-required {
+  background: rgba(192, 57, 43, 0.2);
+  color: #E57368;
+}
+
+[data-theme="dark"] .changelog-tag--deprecation {
+  background: rgba(192, 120, 0, 0.2);
+  color: #FFB74D;
+}
