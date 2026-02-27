@@ -2323,6 +2323,11 @@ details > div {
   color: var(--admonition-tip-heading) !important;
 }
 
+.theme-admonition-tip [class*="admonitionIcon"] svg,
+.theme-admonition-tip .theme-admonition-icon svg {
+  fill: var(--admonition-tip-heading) !important;
+}
+
 .theme-admonition-tip .admonitionContent_BuS1,
 .theme-admonition-tip .admonitionContent_BuS1 p,
 .theme-admonition-tip .admonitionContent_BuS1 *,
