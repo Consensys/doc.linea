@@ -396,8 +396,10 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid #e5e5e5;
+  display: block;
   width: 100%;
   margin: 1.5rem 0;
 }
@@ -2950,6 +2952,8 @@ pre[class*="language-"] {
   background-color: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
 }
 
 /* Code styling */
@@ -3045,6 +3049,58 @@ code {
 /* Ensure code block text is always visible with high contrast */
 div[class*="codeBlock"] .token-line {
   color: #d1d1d1 !important;
+}
+
+/* Custom scrollbar for code blocks - thin, dark, rounded */
+div[class*="codeBlockContainer"] pre::-webkit-scrollbar {
+  height: 6px;
+  width: 0;
+}
+
+div[class*="codeBlockContainer"] pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+}
+
+div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Custom scrollbar for tables - thin, rounded, themed */
+table::-webkit-scrollbar {
+  height: 6px;
+  width: 0;
+}
+
+table::-webkit-scrollbar-track {
+  background: #efefeb;
+  border-radius: 3px;
+}
+
+table::-webkit-scrollbar-thumb {
+  background: #c5c5bd;
+  border-radius: 3px;
+}
+
+table::-webkit-scrollbar-thumb:hover {
+  background: #a0a098;
+}
+
+[data-theme="dark"] table::-webkit-scrollbar-track {
+  background: #2f2f2f;
+}
+
+[data-theme="dark"] table::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+[data-theme="dark"] table::-webkit-scrollbar-thumb:hover {
+  background: #777;
 }
 
 /* Code blocks always dark per Figma - syntax colors are same in both themes */
