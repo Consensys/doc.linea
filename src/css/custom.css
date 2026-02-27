@@ -2195,14 +2195,16 @@ button.clean-btn.menu__caret {
 
 /* Separator lines between main sidebar sections (skip first item to avoid top line) */
 .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1:not(:first-child),
-.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link) {
+.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link),
+.theme-doc-sidebar-menu > li.sidebar-section-divider:not(:first-child) {
   border-top: 1px solid #e5e5e5;
   margin-top: 8px;
   padding-top: 8px;
 }
 
 [data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1:not(:first-child),
-[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link) {
+[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link),
+[data-theme="dark"] .theme-doc-sidebar-menu > li.sidebar-section-divider:not(:first-child) {
   border-top: 1px solid #333;
 }
 
@@ -2220,6 +2222,21 @@ button.clean-btn.menu__caret {
 
 [data-theme="dark"] .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
   color: rgb(255 255 255 / 45%) !important;
+}
+
+/* HTML-type "Introduction" divider — matches category label styling */
+.sidebar-section-divider {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: AtypText, sans-serif;
+  line-height: 1.4;
+  color: #121212;
+  padding: 8px 8px 4px;
+  list-style: none;
+}
+
+[data-theme="dark"] .sidebar-section-divider {
+  color: rgb(255 255 255 / 45%);
 }
 
 @media (max-width: 1200px) {
