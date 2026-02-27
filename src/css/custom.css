@@ -2536,34 +2536,36 @@ details > div {
   border-color: #a78bfa;
 }
 
-.pagination-nav__link:hover .pagination-nav__sublabel {
-  color: #6119ef;
-}
-
-[data-theme="dark"] .pagination-nav__link:hover .pagination-nav__sublabel {
-  color: #a78bfa;
-}
-
-.pagination-nav__label {
+/* "Previous" / "Next" direction indicator — small and subdued, sits on top */
+.pagination-nav__sublabel {
   font-family: AtypText, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
   color: #808080;
   line-height: 1.4;
 }
 
-.pagination-nav__sublabel {
+/* Page name — prominent, sits on bottom */
+.pagination-nav__label {
   font-family: AtypText, sans-serif;
   font-size: 16px;
   font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
   color: #121212;
   line-height: 1.4;
 }
 
-[data-theme="dark"] .pagination-nav__sublabel {
+[data-theme="dark"] .pagination-nav__label {
   color: #f8f7f2;
+}
+
+.pagination-nav__link:hover .pagination-nav__label {
+  color: #6119ef;
+}
+
+[data-theme="dark"] .pagination-nav__link:hover .pagination-nav__label {
+  color: #a78bfa;
 }
 
 /* Tabs styling per Figma */
