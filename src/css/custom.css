@@ -1587,33 +1587,6 @@ html[data-theme="dark"] .navbar {
   display: inline-flex;
   justify-content: normal;
   align-items: center;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #b3ccfb;
-  color: #1C1C1C;
-}
-
-.my-tabs .tab-item {
-  flex-grow: 1;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-  cursor: pointer;
-  background-color: #b3ccfb;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-  color: #1C1C1C;
-}
-
-.my-tabs .tab-item:hover {
-  background-color: #b3ccfb;
-}
-
-.my-tabs .tab-item.active {
-  background-color: #b3ccfb;
-  border-bottom-color: #007bff;
-  color: #007bff;
 }
 
 /* .all-mode-tabs — removed (dead CSS, 0 usages in codebase) */
