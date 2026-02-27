@@ -526,6 +526,7 @@ textarea {
   --ifm-link-color: #61dfff;
   --ifm-menu-color-active: #61dfff;
   --ifm-footer-background-color: #000;
+  --ifm-footer-link-hover-color: #6119EF;
   --ifm-background-color: #1C1C1C;
   --ifm-navbar-link-hover-color: #61dfff;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
@@ -636,7 +637,7 @@ textarea {
   --ifm-color-info: #c0c0c0;
   --ifm-color-info-dark: #989898;
   --ifm-footer-background-color: #000;
-  --ifm-footer-link-hover-color: #c0c0c0;
+  --ifm-footer-link-hover-color: #6119EF;
   --ifm-background-color: #fff;
   --ifm-navbar-link-hover-color: #61dfff;
   --banner-background: #fff;
@@ -1707,6 +1708,10 @@ html[data-theme="dark"] .navbar {
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: 0.28px;
+}
+
+.footer__link-item:hover {
+  color: #6119EF !important;
 }
 
 .footer__copyright {
