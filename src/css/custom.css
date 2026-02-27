@@ -2517,6 +2517,16 @@ details > div {
   gap: 4px;
 }
 
+/* Single pagination item: occupy only the right/left half */
+.pagination-nav__link--next:only-child {
+  flex: 0 0 50%;
+  margin-left: auto;
+}
+
+.pagination-nav__link--prev:only-child {
+  flex: 0 0 50%;
+}
+
 .pagination-nav__link:hover {
   border-color: #6119ef;
   background-color: transparent;
