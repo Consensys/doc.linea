@@ -123,12 +123,11 @@ const sidebars = {
   ],
   apiSidebar: [
     {
-      type: "category",
-      label: "APIs & SDK",
-      collapsible: false,
-      link: { type: "doc", id: "api/quickstart" },
-      items: [],
+      type: "html",
+      value: "Introduction",
+      className: "sidebar-section-divider",
     },
+    { type: "doc", id: "api/quickstart", className: "intro-section-item" },
     {
       type: "category",
       label: "Reference",
@@ -188,14 +187,12 @@ const sidebars = {
   ],
   protocolSidebar: [
     {
-      type: "category",
-      label: "Protocol",
-      collapsible: false,
-      link: { type: "doc", id: "protocol/quickstart" },
-      items: [
-        "protocol/overview",
-      ],
+      type: "html",
+      value: "Introduction",
+      className: "sidebar-section-divider",
     },
+    { type: "doc", id: "protocol/quickstart", className: "intro-section-item" },
+    { type: "doc", id: "protocol/overview", className: "intro-section-item" },
     {
       type: "category",
       label: "Core Stack",
@@ -242,14 +239,12 @@ const sidebars = {
   ],
   stackSidebar: [
     {
-      type: "category",
-      label: "Stack",
-      collapsible: false,
-      link: { type: "doc", id: "stack/quickstart" },
-      items: [
-        "stack/index",
-      ],
+      type: "html",
+      value: "Introduction",
+      className: "sidebar-section-divider",
     },
+    { type: "doc", id: "stack/quickstart", className: "intro-section-item" },
+    { type: "doc", id: "stack/index", className: "intro-section-item" },
     {
       type: "category",
       label: "Architecture and Operations",
