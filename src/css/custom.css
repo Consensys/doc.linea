@@ -3155,7 +3155,7 @@ table::-webkit-scrollbar-thumb:hover {
 /* Entry — two-column grid: tag | title + body */
 .changelog-entry {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: auto 1fr;
   gap: 0 16px;
   align-items: start;
   margin-bottom: 1.75rem;
