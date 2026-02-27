@@ -924,9 +924,16 @@ html[data-theme='dark'] .header-release-notes-link::before {
   }
 }
 
-/* broader styling for sidebar items colors */
+/* Mobile sidebar brand header — white bg with gray divider */
 .navbar-sidebar__brand {
-  background: var(--linea-navbar-background);
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 16px;
+}
+
+[data-theme="dark"] .navbar-sidebar__brand {
+  background: #121212 !important;
+  border-bottom: 1px solid #333333;
 }
 
 /* Mobile navbar: show abbreviated mark logo instead of full text logo */
@@ -979,6 +986,52 @@ html[data-theme='dark'] .header-release-notes-link::before {
 .navbar-sidebar__back {
   color: var(--banner-text) !important;
   margin-top: 10px;
+}
+
+/* ── Mobile primary nav items: dot indicators, no pill background ── */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  padding: 14px 16px 14px 44px !important;
+  position: relative !important;
+  color: #190066 !important;
+  background: none !important;
+  border-radius: 0 !important;
+  line-height: 1.4 !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link {
+  color: #f8f7f2 !important;
+}
+
+/* Empty circle for inactive items */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background: transparent;
+}
+
+/* Filled circle for active item */
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link.menu__link--active {
+  color: #190066 !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link.menu__link--active {
+  color: #f8f7f2 !important;
+  background: none !important;
+}
+
+.navbar-sidebar__items > .navbar-sidebar__item:first-child .menu__list > .menu__list-item > .menu__link.menu__link--active::before {
+  background: currentColor;
+  border-color: currentColor;
 }
 
 .support-link {
