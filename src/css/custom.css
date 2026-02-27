@@ -689,6 +689,13 @@ textarea {
   --admonition-danger-text: #121212;
   --admonition-danger-link: #5c1f00;
 
+  /* Link hover colors per admonition type (light theme) */
+  --admonition-tip-link-hover: #ffffff;
+  --admonition-info-link-hover: #005988;
+  --admonition-note-link-hover: #6119ef;
+  --admonition-warning-link-hover: #8a1894;
+  --admonition-danger-link-hover: #9a3100;
+
   /* Typography scale (same as dark) */
   --font-display-lg: 40px;
   --font-display-md: 32px;
@@ -2318,8 +2325,13 @@ details > div {
   color: var(--admonition-tip-text) !important;
 }
 
-.theme-admonition-tip a {
+.theme-admonition-tip .admonitionContent_BuS1 a,
+.theme-admonition-tip .theme-admonition-content a {
   color: var(--admonition-tip-link) !important;
+}
+.theme-admonition-tip .admonitionContent_BuS1 a:hover,
+.theme-admonition-tip .theme-admonition-content a:hover {
+  color: var(--admonition-tip-link-hover) !important;
 }
 
 /* INFO admonition */
@@ -2342,8 +2354,13 @@ details > div {
   color: var(--admonition-info-text) !important;
 }
 
-.theme-admonition-info a {
+.theme-admonition-info .admonitionContent_BuS1 a,
+.theme-admonition-info .theme-admonition-content a {
   color: var(--admonition-info-link) !important;
+}
+.theme-admonition-info .admonitionContent_BuS1 a:hover,
+.theme-admonition-info .theme-admonition-content a:hover {
+  color: var(--admonition-info-link-hover) !important;
 }
 
 /* NOTE admonition */
@@ -2366,8 +2383,13 @@ details > div {
   color: var(--admonition-note-text) !important;
 }
 
-.theme-admonition-note a {
+.theme-admonition-note .admonitionContent_BuS1 a,
+.theme-admonition-note .theme-admonition-content a {
   color: var(--admonition-note-link) !important;
+}
+.theme-admonition-note .admonitionContent_BuS1 a:hover,
+.theme-admonition-note .theme-admonition-content a:hover {
+  color: var(--admonition-note-link-hover) !important;
 }
 
 /* WARNING admonition */
@@ -2390,8 +2412,13 @@ details > div {
   color: var(--admonition-warning-text) !important;
 }
 
-.theme-admonition-warning a {
+.theme-admonition-warning .admonitionContent_BuS1 a,
+.theme-admonition-warning .theme-admonition-content a {
   color: var(--admonition-warning-link) !important;
+}
+.theme-admonition-warning .admonitionContent_BuS1 a:hover,
+.theme-admonition-warning .theme-admonition-content a:hover {
+  color: var(--admonition-warning-link-hover) !important;
 }
 
 /* DANGER admonition */
@@ -2414,8 +2441,13 @@ details > div {
   color: var(--admonition-danger-text) !important;
 }
 
-.theme-admonition-danger a {
+.theme-admonition-danger .admonitionContent_BuS1 a,
+.theme-admonition-danger .theme-admonition-content a {
   color: var(--admonition-danger-link) !important;
+}
+.theme-admonition-danger .admonitionContent_BuS1 a:hover,
+.theme-admonition-danger .theme-admonition-content a:hover {
+  color: var(--admonition-danger-link-hover) !important;
 }
 
 .theme-admonition-heading {
