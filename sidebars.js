@@ -19,7 +19,6 @@ const sidebars = {
       collapsible: false,
       link: { type: "doc", id: "network/quickstart/index" },
       items: [
-        "network/quickstart/index",
         "network/overview/index",
       ],
     },
@@ -130,7 +129,7 @@ const sidebars = {
       label: "APIs & SDK",
       collapsible: false,
       link: { type: "doc", id: "api/quickstart" },
-      items: ["api/quickstart"],
+      items: [],
     },
     {
       type: "category",
@@ -196,7 +195,6 @@ const sidebars = {
       collapsible: false,
       link: { type: "doc", id: "protocol/quickstart" },
       items: [
-        "protocol/quickstart",
         "protocol/overview",
       ],
     },
@@ -251,7 +249,6 @@ const sidebars = {
       collapsible: false,
       link: { type: "doc", id: "stack/quickstart" },
       items: [
-        "stack/quickstart",
         "stack/index",
       ],
     },
