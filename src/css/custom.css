@@ -2827,6 +2827,12 @@ article h1 {
   color: #f8f7f2;
 }
 
+/* Reference page titles: code inside h1 should match the h1 font size */
+article h1 code {
+  font-size: inherit;
+  font-family: inherit;
+}
+
 article h2 {
   font-family: 'Atyp Display', sans-serif;
   font-size: 32px;
