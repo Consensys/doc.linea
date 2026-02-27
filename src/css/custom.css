@@ -3152,8 +3152,12 @@ table::-webkit-scrollbar-thumb:hover {
   flex-shrink: 0;
 }
 
-/* Entry wrapper */
+/* Entry — two-column grid: tag | title + body */
 .changelog-entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0 20px;
+  align-items: start;
   margin-bottom: 1.75rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid #e5e5e5;
@@ -3167,24 +3171,16 @@ table::-webkit-scrollbar-thumb:hover {
   border-bottom-color: #333;
 }
 
-.changelog-entry__header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+.changelog-entry__tag-col {
+  padding-top: 2px;
 }
 
-.changelog-entry__title {
-  font-family: AtypText, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: #121212;
-  line-height: 1.4;
+.changelog-entry__content-col > *:first-child {
+  margin-top: 0;
 }
 
-[data-theme="dark"] .changelog-entry__title {
-  color: #f8f7f2;
+.changelog-entry__content-col > *:last-child {
+  margin-bottom: 0;
 }
 
 .changelog-entry__body > *:first-child {
@@ -3195,77 +3191,91 @@ table::-webkit-scrollbar-thumb:hover {
   margin-bottom: 0;
 }
 
+.changelog-entry__title {
+  font-family: AtypText, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #121212;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .changelog-entry__title {
+  color: #f8f7f2;
+}
+
 /* Tag badges */
 .changelog-tag {
   display: inline-flex;
   align-items: center;
-  padding: 3px 12px;
+  justify-content: center;
+  padding: 5px 14px;
   border-radius: 100px;
   font-family: AtypText, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.4;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
+/* Light mode tag colors */
 .changelog-tag--feature {
-  background: #E6F4EA;
-  color: #1A7F34;
+  background: #D8F0E5;
+  color: #1B6E40;
 }
 
 .changelog-tag--upgrade {
-  background: #E0ECFF;
-  color: #0052CC;
+  background: #C8EDEC;
+  color: #0A7070;
 }
 
 .changelog-tag--performance {
-  background: #F0F0EB;
-  color: #555555;
+  background: #EBEBEB;
+  color: #1A1A1A;
 }
 
 .changelog-tag--announcement {
-  background: #EDE5FF;
-  color: #6119EF;
+  background: #E8DEFF;
+  color: #5A28B8;
 }
 
 .changelog-tag--action-required {
-  background: #FDECEA;
-  color: #C0392B;
+  background: #F0DEFF;
+  color: #7228C0;
 }
 
 .changelog-tag--deprecation {
-  background: #FFF3E0;
-  color: #C07800;
+  background: #F5DDD2;
+  color: #B83C18;
 }
 
-/* Dark mode tags */
+/* Dark mode tag colors */
 [data-theme="dark"] .changelog-tag--feature {
-  background: rgba(34, 139, 34, 0.2);
-  color: #5CB85C;
+  background: #163328;
+  color: #60B890;
 }
 
 [data-theme="dark"] .changelog-tag--upgrade {
-  background: rgba(0, 82, 204, 0.2);
-  color: #6B9FE0;
+  background: #0B2E2E;
+  color: #38A8A8;
 }
 
 [data-theme="dark"] .changelog-tag--performance {
-  background: rgba(120, 120, 120, 0.25);
-  color: #B0B0B0;
+  background: #242424;
+  color: #F0F0F0;
 }
 
 [data-theme="dark"] .changelog-tag--announcement {
-  background: rgba(97, 25, 239, 0.2);
-  color: #A87EFF;
+  background: #221250;
+  color: #7848C0;
 }
 
 [data-theme="dark"] .changelog-tag--action-required {
-  background: rgba(192, 57, 43, 0.2);
-  color: #E57368;
+  background: #2C1050;
+  color: #8C48C8;
 }
 
 [data-theme="dark"] .changelog-tag--deprecation {
-  background: rgba(192, 120, 0, 0.2);
-  color: #FFB74D;
+  background: #32140A;
+  color: #C85A20;
 }
