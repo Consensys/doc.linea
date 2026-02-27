@@ -39,7 +39,13 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [{ src: "/js/clearSearchOnCollapse.js", async: true }],
+  scripts: [
+    {
+      src: "/js/clearSearchOnCollapse.js",
+      async: true,
+      "data-osano": "ESSENTIAL",
+    },
+  ],
 
   markdown: {
     mermaid: true,
@@ -320,6 +326,62 @@ const config = {
     "@docusaurus/theme-mermaid",
   ],
   headTags: [
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `
+        (function() {
+          var origin = location.origin;
+          var osanoEssentialValue = 'ESSENTIAL';
+
+          function isFirstPartyRuntimeScript(src) {
+            if (!src) return false;
+            try {
+              var url = new URL(src, origin);
+              if (url.origin !== origin) return false;
+              return url.pathname.indexOf('/assets/js/') === 0 || url.pathname.indexOf('/js/') === 0;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function markEssentialScript(node) {
+            if (!node || node.tagName !== 'SCRIPT') return;
+            if (node.getAttribute && node.getAttribute('data-osano')) return;
+
+            var src = node.getAttribute ? node.getAttribute('src') : null;
+            if (isFirstPartyRuntimeScript(src || node.src)) {
+              node.setAttribute('data-osano', osanoEssentialValue);
+            }
+          }
+
+          function patchMethod(target, methodName) {
+            if (!target || typeof target[methodName] !== 'function') return;
+            var original = target[methodName];
+            if (original.__lineaOsanoPatchApplied) return;
+
+            var wrapped = function() {
+              var node = arguments[0];
+              markEssentialScript(node);
+              return original.apply(this, arguments);
+            };
+
+            wrapped.__lineaOsanoPatchApplied = true;
+            target[methodName] = wrapped;
+          }
+
+          var existingScripts = document.querySelectorAll('script[src]');
+          for (var i = 0; i < existingScripts.length; i += 1) {
+            markEssentialScript(existingScripts[i]);
+          }
+
+          patchMethod(document.head, 'appendChild');
+          patchMethod(document.head, 'insertBefore');
+          patchMethod(document.body, 'appendChild');
+          patchMethod(document.body, 'insertBefore');
+        })();
+      `,
+    },
     {
       tagName: "script",
       attributes: {},
