@@ -5,35 +5,6 @@ sidebar_position: 1
 image: /img/socialCards/overview.jpg
 ---
 
-import DocCard from '@theme/DocCard';
-
-export const relatedDocs = [
-  {
-    type: 'link',
-    href: '/stack/features',
-    label: 'Features',
-    description: 'Features and capabilities of the Linea stack.',
-  },
-  {
-    type: 'link',
-    href: '/stack/how-it-works/data-availability-finalization',
-    label: 'Data availability and finalization',
-    description: 'Data availability and finalization choices for enterprise Linea.',
-  },
-  {
-    type: 'link',
-    href: '/protocol/architecture',
-    label: 'Protocol architecture',
-    description: 'Protocol architecture overview and core components of Linea.',
-  },
-  {
-    type: 'link',
-    href: '/network/overview',
-    label: 'Linea Mainnet',
-    description: 'Your starting point for building on the Linea public network.',
-  },
-];
-
 ## The Linea stack
 
 The Linea stack is the collection of protocol components, onchain contracts, and operational
@@ -46,7 +17,7 @@ Ethereum DeFi ecosystem.
 
 :::info Configurable
 
-The Linea stack supports operators who need more control than a layer 1 network can offer, without sacrificing interoperability, security guarantees, or alignment with the EVM protocols. Whether you are deploying a private network for regulated environments, you favor selective data availability, or are operating a fully public network, the Linea stack gives you the components and operational model to do so.
+The Linea stack supports operators who need more control than a Layer 1 network can offer, without sacrificing interoperability, security guarantees, or alignment with the EVM protocols. Whether you are deploying a private network for regulated environments, you favor selective data availability, or are operating a fully public network, the Linea stack gives you the components and operational model to do so.
 
 :::
 
@@ -58,9 +29,9 @@ As blockchain adoption grows, many organizations encounter a common set of const
 - Regulatory, governance, and operational requirements are hard to enforce on open systems
 - Interoperability between private systems and public blockchains remains fragmented.
 
-The Linea stack lets you run an EVM-equivalent network tailored to
+The Linea stack lets you run an Ethereum-equivalent network tailored to
 enterprise requirements, using [open source technology](../protocol/reference/repos.mdx), while remaining anchored to the same protocol foundations 
-as [Linea Mainnet](../network/overview/index.mdx).
+as [Linea Mainnet](../network/overview/index.mdx). The interoperability between Linea and Ethereum allows Linea stack networks to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
 
 ## What the Linea stack provides
 
@@ -74,7 +45,7 @@ At a high level, the Linea stack provides:
 - **Trustless Ethereum interoperability:** Access Ethereum's deep liquidity via Linea's trustless 
 rollup architecture.
 
-- **An EVM-compatible execution environment:** Run an EVM-equivalent network.
+- **An Ethereum-compatible execution environment:** Run an Ethereum-equivalent network.
 
 - **Composability:** Leverage a trustless bridge for with Ethereum to interact with digital assets and compose with the largest open, modular DeFi ecosystem.
 
@@ -106,14 +77,3 @@ deep protocol expertise.
 
 Ready to build? Reach out to [support.linea.build](https://support.linea.build/) to enquire about our rollup-as-a-service
 or to access our dedicated design team who will configure the stack to your business needs.
-
-
-## Related documentation
-
-<div className="row">
-  {relatedDocs.map((item) => (
-    <div className="col col--6 margin-bottom--lg" key={item.href}>
-      <DocCard item={item} />
-    </div>
-  ))}
-</div>

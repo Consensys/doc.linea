@@ -17,10 +17,10 @@ Understanding the role [data availability](../../protocol/architecture#data-avai
 
 The following examples show different combinations of data availability and finalization:
 
-- L2 Private Validium on Ethereum: Offchain data availability, L1 finalization
-- L3 Private Validium on Linea Mainnet: Offchain data availability, L2 finalization
-- L2 Public on Ethereum: Onchain data availability, L1 finalization
-- L3 Public on Linea Mainnet: Onchain data availability, L2 finalization
+- **L2 Private Validium on Ethereum:** Offchain data availability, L1 finalization
+- **L3 Private Validium on Linea Mainnet:** Offchain data availability, L2 finalization
+- **L2 Public on Ethereum:** Onchain data availability, L1 finalization
+- **L3 Public on Linea Mainnet:** Onchain data availability, L2 finalization
 
 ## Data availability
 
@@ -54,15 +54,18 @@ redundancy, and operational SLAs across the consortium of operators.
 
 - Transaction data is stored offchain in a private node set
 - Only state commitments and proofs are posted to the finalization layer
-- Participants must trust that data availability providers will make data available when needed
 - No onchain data posting (reduces costs but requires trust)
+- The network cannot be replicated by a third party, so the participant must trust the operator to continue operating the network and providing services to users.
 
 **Operator responsibility:**
 
 - Deploy and maintain private node set for data storage
 - Ensure data redundancy and backup procedures
+- Continue operating the network and providing services to users. If the network needs to be shut down, wind down the network to ensure participants can make exit transactions.
 
 ### Public
+
+In a public network, transaction data is posted to the finalization layer, allowing third parties to reconstruct the state of the network and submit exit transactions without the need for the operator if needed. This allows for maximum transparency and onchain data availability guarantees.
 
 **Data availability:** Onchain (e.g., on Ethereum via EIP-4844 blobs)
 

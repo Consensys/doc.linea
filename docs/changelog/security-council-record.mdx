@@ -19,6 +19,33 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### February 26, 2026
+#### L1
+- **[Nonce 67](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xa1c97a648c46f47e3c9e377c7a372294d9fa4eacb464e7e32932ac1c91cd819c)**
+  - Actions: 
+    - Remove Zodiac Roles Modifier Module
+    - Upgrade LineaRollup to V7.0 with Yield Boost functionality not enabled.
+  - Verification: Events confirming the changes were emitted and are viewable in the transaction logs:
+    - Module removal: `DisabledModule` removed with the roles modifier address `0xf24f1dc519d88246809b660eb56d94048575d083`.
+    - Audits: [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#yield-boost-smart-contract-audits)
+      - Deployment addresses
+        - `0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94` Yield manager uses audited implementation address.
+        - `0x04728BF704a716C26F9EF4085013b760AC885631` Linea Rollup will use the audited implementation address.
+    - Linea Rollup: 
+      - `RoleGranted` 4 roles granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
+        - `SET_YIELD_MANAGER_ROLE` (0x76ef52a5344b10ed112c1d48c7c06f51e919518ea6fb005f9b25b359b955e3be)
+        - `YIELD_PROVIDER_STAKING_ROLE` (0x220bd22ef7c53d75fe3eac0a09e90815a0c5ba4f9e8da8b039542cd3db347258)
+        - `PAUSE_NATIVE_YIELD_STAKING_ROLE`(0xcc10d6eec3c757d645e27b3f3001a3ba52f692da0bce25fabf58c6ecaf376450)
+        - `UNPAUSE_NATIVE_YIELD_STAKING_ROLE` (0x4b4665d8754e6ea0608430ef3e91c1b45c72aafe8800e289cd35f38d85361858)
+      - `RoleGranted` 1 roles granted to the automation service `0xcee1f08bcae342e950e88c209f7e6327abb6d448`.
+        - `YIELD_PROVIDER_STAKING_ROLE` (0x220bd22ef7c53d75fe3eac0a09e90815a0c5ba4f9e8da8b039542cd3db347258)
+      - `(Un)pauseTypeRoleSet` for index 9 (`NATIVE_YIELD_STAKING`)
+        - To pause the type `PAUSE_NATIVE_YIELD_STAKING_ROLE` is required.
+        - To remove the pause the type `UNPAUSE_NATIVE_YIELD_STAKING_ROLE` is required.
+      - `YieldManagerChanged` Yield manager set at address `0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94`
+      - `LineaRollupVersionChanged` "6.0" to "7.0" (hex encoded)
+      - `Initialized` - reinitialized to 7
+
 ### December 03, 2025
 
 #### L1
