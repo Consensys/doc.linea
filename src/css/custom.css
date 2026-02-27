@@ -2195,7 +2195,7 @@ button.clean-btn.menu__caret {
 
 /* Separator lines between main sidebar sections (skip first item to avoid top line) */
 .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1:not(:first-child),
-.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link),
+.theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link, .intro-section-item),
 .theme-doc-sidebar-menu > li.sidebar-section-divider:not(:first-child) {
   border-top: 1px solid #e5e5e5;
   margin-top: 8px;
@@ -2203,9 +2203,15 @@ button.clean-btn.menu__caret {
 }
 
 [data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-category-level-1:not(:first-child),
-[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link),
+[data-theme="dark"] .theme-doc-sidebar-menu > li.theme-doc-sidebar-item-link-level-1:not(:first-child, .sidebar-status-link, .sidebar-bridge-link, .intro-section-item),
 [data-theme="dark"] .theme-doc-sidebar-menu > li.sidebar-section-divider:not(:first-child) {
   border-top: 1px solid #333;
+}
+
+/* Intro section items (Get started, Overview) sit flush under the Introduction label */
+.theme-doc-sidebar-menu > li.intro-section-item {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Non-collapsible top-level section header labels (Introduction, Features, etc.) */

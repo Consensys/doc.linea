@@ -18,8 +18,8 @@ const sidebars = {
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    "network/quickstart/index",
-    "network/overview/index",
+    { type: "doc", id: "network/quickstart/index", className: "intro-section-item" },
+    { type: "doc", id: "network/overview/index", className: "intro-section-item" },
     {
       type: "category",
       label: "Features",
