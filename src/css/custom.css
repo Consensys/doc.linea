@@ -2410,6 +2410,11 @@ details > div {
   color: var(--admonition-warning-heading) !important;
 }
 
+.theme-admonition-warning [class*="admonitionIcon"] svg,
+.theme-admonition-warning .theme-admonition-icon svg {
+  fill: var(--admonition-warning-heading) !important;
+}
+
 .theme-admonition-warning .admonitionContent_BuS1,
 .theme-admonition-warning .admonitionContent_BuS1 p,
 .theme-admonition-warning .admonitionContent_BuS1 *,
@@ -2437,6 +2442,11 @@ details > div {
 .theme-admonition-danger .admonitionHeading_Gvgb,
 .theme-admonition-danger .theme-admonition-heading {
   color: var(--admonition-danger-heading) !important;
+}
+
+.theme-admonition-danger [class*="admonitionIcon"] svg,
+.theme-admonition-danger .theme-admonition-icon svg {
+  fill: var(--admonition-danger-heading) !important;
 }
 
 .theme-admonition-danger .admonitionContent_BuS1,
