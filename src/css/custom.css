@@ -3058,17 +3058,18 @@ div[class*="codeBlockContainer"] pre::-webkit-scrollbar {
 }
 
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.08);
+  background: #1C1C1C;
   border-radius: 3px;
+  border: 1px solid #333333;
 }
 
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.35);
+  background: #4D4D4D;
   border-radius: 3px;
 }
 
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.55);
+  background: #666666;
 }
 
 /* Custom scrollbar for tables - thin, rounded, themed */
