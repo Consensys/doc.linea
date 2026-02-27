@@ -39,9 +39,10 @@ Documentation [here](https://poh-api.linea.build/#/PoH/PohController_getOnePOHv2
 The endpoint returns `true` if the address is verified, or `false` otherwise.
 Use `false` to trigger the Sumsub flow (next step).
 
-3. Your app asks them to sign a message, containing 2 variables:
+3. Your app asks them to sign a message, containing these variables:
   - Their wallet address
   - A timestamp (ISO date)
+  - A nonce (random string for replay protection)
 
 The signature is used by Sumsub to confirm wallet ownership and link the verification to the correct address onchain.
 A recommended way to sign the message is to use Wagmi's [`useSignMessage` hook](https://wagmi.sh/react/api/hooks/useSignMessage):
@@ -52,11 +53,12 @@ function App() {
   const { address } = useAccount();
   const { signMessage } = useSignMessage();
 
-  const date = new Date().toISOString();
+  const nonce = Math.random().toString(36).slice(2);
+  const issuedAt = new Date().toISOString();
 
   return (
     <button onClick={() => signMessage({
-      message: `in.sumsub.com wants you to sign in with your Ethereum account:\n${address}\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nIssued At: ${date}`,
+      message: `${window.location.host} wants you to sign in with your Ethereum account:\n${address}\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nNonce: ${nonce}\nIssued At: ${issuedAt}`,
     })}>
       Sign message
     </button>
@@ -64,7 +66,7 @@ function App() {
 }
 ```
 
-Note: this message contains the Linea Mainnet chain ID (59144).
+Note: this message contains the Linea Mainnet chain ID (59144). The nonce provides replay protection, and `window.location.host` dynamically uses your app's domain.
 
 4. Generate a link including this signed payload and redirect to it, or open it in an iframe.
 You need to encode the JSON payload in base64 to safely include it in the Sumsub verification URL.
@@ -72,17 +74,20 @@ You need to encode the JSON payload in base64 to safely include it in the Sumsub
 Payload to encode:
 ```json
 {
-  "signInMessage": "in.sumsub.com wants you to sign in with your Ethereum account:\n<WALLET_ADDRESS>\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nIssued At: <ISO_DATE>",
+  "signInMessage": "<YOUR_DOMAIN> wants you to sign in with your Ethereum account:\n<WALLET_ADDRESS>\n\nI confirm that I am the owner of this wallet and consent to performing a risk assessment and issuing a Verax attestation to this address.\n\nURI: https://in.sumsub.com\nVersion: 1\nChain ID: 59144\nNonce: <RANDOM_NONCE>\nIssued At: <ISO_DATE>",
   "signature": "<SIGNATURE>"
 }
 ```
 
-You then need to generate a base64-encoded JSON from this payload, to be used as the `msg` parameter to append to the URL below:
+You then need to generate a base64-encoded JSON from this payload, to be used as the `authMsg` parameter to append to the URL below:
 
 ```typescript
-const msg = btoa(JSON.stringify(payload));
+const authMsg = btoa(JSON.stringify(payload));
 const url = new URL("https://in.sumsub.com/websdk/p/uni_BKWTkQpZ2EqnGoY7");
-url.search = new URLSearchParams({ msg }).toString();
+url.search = new URLSearchParams({
+  authMsg,
+  utm_source: 'your-app-name', // Optional: for tracking purposes
+}).toString();
 ```
 
 5. The Sumsub verification process happens on their side.
