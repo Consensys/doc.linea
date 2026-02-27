@@ -15,7 +15,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Public Network",
+      label: "Introduction",
       collapsible: false,
       link: { type: "doc", id: "network/quickstart/index" },
       items: [
