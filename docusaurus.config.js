@@ -39,13 +39,7 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    {
-      src: "/js/clearSearchOnCollapse.js",
-      async: true,
-      "data-osano": "ESSENTIAL",
-    },
-  ],
+  scripts: [{ src: "/js/clearSearchOnCollapse.js", async: true }],
 
   markdown: {
     mermaid: true,
@@ -331,71 +325,44 @@ const config = {
       attributes: {},
       innerHTML: `
         (function() {
-          var origin = location.origin;
-          var osanoEssentialValue = 'ESSENTIAL';
-
-          function isFirstPartyRuntimeScript(src) {
-            if (!src) return false;
-            try {
-              var url = new URL(src, origin);
-              if (url.origin !== origin) return false;
-              return url.pathname.indexOf('/assets/js/') === 0 || url.pathname.indexOf('/js/') === 0;
-            } catch (e) {
-              return false;
-            }
-          }
-
-          function markEssentialScript(node) {
-            if (!node || node.tagName !== 'SCRIPT') return;
-            if (node.getAttribute && node.getAttribute('data-osano')) return;
-
-            var src = node.getAttribute ? node.getAttribute('src') : null;
-            if (isFirstPartyRuntimeScript(src || node.src)) {
-              node.setAttribute('data-osano', osanoEssentialValue);
-            }
-          }
-
-          function patchMethod(target, methodName) {
-            if (!target || typeof target[methodName] !== 'function') return;
-            var original = target[methodName];
-            if (original.__lineaOsanoPatchApplied) return;
-
-            var wrapped = function() {
-              var node = arguments[0];
-              markEssentialScript(node);
-              return original.apply(this, arguments);
-            };
-
-            wrapped.__lineaOsanoPatchApplied = true;
-            target[methodName] = wrapped;
-          }
-
-          var existingScripts = document.querySelectorAll('script[src]');
-          for (var i = 0; i < existingScripts.length; i += 1) {
-            markEssentialScript(existingScripts[i]);
-          }
-
-          patchMethod(document.head, 'appendChild');
-          patchMethod(document.head, 'insertBefore');
-          patchMethod(document.body, 'appendChild');
-          patchMethod(document.body, 'insertBefore');
-        })();
-      `,
-    },
-    {
-      tagName: "script",
-      attributes: {},
-      innerHTML: `
-        (function() {
           var nativeFetch = window.fetch;
           var nativeWorker = window.Worker;
           var origin = location.origin;
+          var recoveredScripts = Object.create(null);
+
+          window.Osano = window.Osano || function() {
+            (window.Osano.data = window.Osano.data || []).push(arguments);
+          };
 
           function getInputUrl(input) {
             if (typeof input === 'string') return input;
             if (typeof URL !== 'undefined' && input instanceof URL) return input.href;
             if (input && typeof input.url === 'string') return input.url;
             return null;
+          }
+
+          function normalizeUrl(input) {
+            var inputUrl = getInputUrl(input);
+            if (!inputUrl) return null;
+
+            try {
+              return new URL(inputUrl, origin).href;
+            } catch (e) {
+              return null;
+            }
+          }
+
+          function isFirstPartyRuntimeScriptUrl(input) {
+            var normalizedUrl = normalizeUrl(input);
+            if (!normalizedUrl) return false;
+
+            try {
+              var url = new URL(normalizedUrl);
+              if (url.origin !== origin) return false;
+              return url.pathname.indexOf('/assets/js/') === 0 || url.pathname.indexOf('/js/') === 0;
+            } catch (e) {
+              return false;
+            }
           }
 
           function isSameOriginRequest(input) {
@@ -409,11 +376,40 @@ const config = {
             }
           }
 
-          var s = document.createElement('script');
-          s.src = 'https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js';
-          s.async = true;
-          s.defer = true;
-          s.onload = function() {
+          function evaluateScriptSource(code, src) {
+            // Evaluate in global scope so Rspack chunk payload can register itself.
+            (0, eval)(code + '\\n//# sourceURL=' + src);
+          }
+
+          function recoverBlockedScript(src) {
+            var scriptUrl = normalizeUrl(src);
+            if (!scriptUrl || !isFirstPartyRuntimeScriptUrl(scriptUrl)) return;
+            if (recoveredScripts[scriptUrl] === 'loading' || recoveredScripts[scriptUrl] === 'loaded') return;
+
+            var fetchFn = nativeFetch || window.fetch;
+            if (typeof fetchFn !== 'function') return;
+
+            recoveredScripts[scriptUrl] = 'loading';
+            fetchFn
+              .call(window, scriptUrl, { credentials: 'same-origin' })
+              .then(function(response) {
+                if (!response || !response.ok) throw new Error('Unable to recover blocked script');
+                return response.text();
+              })
+              .then(function(source) {
+                evaluateScriptSource(source, scriptUrl);
+                recoveredScripts[scriptUrl] = 'loaded';
+              })
+              .catch(function() {
+                recoveredScripts[scriptUrl] = 'failed';
+              });
+          }
+
+          window.Osano('onScriptBlocked', function(src) {
+            recoverBlockedScript(src);
+          });
+
+          function restoreEssentialRuntimeApis() {
             if (window.fetch !== nativeFetch) {
               var blockedFetch = window.fetch;
               window.fetch = function(input, init) {
@@ -426,10 +422,16 @@ const config = {
             if (window.Worker !== nativeWorker) {
               window.Worker = nativeWorker;
             }
-          };
-          window.addEventListener('load', function() { document.head.appendChild(s); });
+          }
+          window.Osano('onInitialized', restoreEssentialRuntimeApis);
         })();
       `,
+    },
+    {
+      tagName: "script",
+      attributes: {
+        src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js",
+      },
     },
     {
       tagName: "script",
