@@ -14,14 +14,12 @@ const sidebars = {
       className: "sidebar-bridge-link",
     },
     {
-      type: "category",
-      label: "Introduction",
-      collapsible: false,
-      link: { type: "doc", id: "network/quickstart/index" },
-      items: [
-        "network/overview/index",
-      ],
+      type: "html",
+      value: "Introduction",
+      className: "sidebar-section-divider",
     },
+    "network/quickstart/index",
+    "network/overview/index",
     {
       type: "category",
       label: "Features",
