@@ -586,6 +586,13 @@ textarea {
   --admonition-danger-text: #ffc29e;
   --admonition-danger-link: #ffc29e;
 
+  /* Link hover colors per admonition type (dark theme) */
+  --admonition-tip-link-hover: #ffffff;
+  --admonition-info-link-hover: #c2f2ff;
+  --admonition-note-link-hover: #c4b5fd;
+  --admonition-warning-link-hover: #f5d0fe;
+  --admonition-danger-link-hover: #fed7aa;
+
   /* Typography scale */
   --font-display-lg: 40px;
   --font-display-md: 32px;
@@ -2529,6 +2536,53 @@ details > div {
 [data-theme="dark"] .theme-admonition-danger code {
   background-color: rgb(255 255 255 / 15%);
   color: #ffc29e;
+}
+
+/* Dark mode admonition link overrides — [data-theme] prefix raises specificity to (0,3,1)
+   so these win over the [data-theme="dark"] .theme-doc-markdown a rule in section 16 */
+[data-theme="dark"] .theme-admonition-tip .admonitionContent_BuS1 a,
+[data-theme="dark"] .theme-admonition-tip .theme-admonition-content a {
+  color: var(--admonition-tip-link) !important;
+}
+[data-theme="dark"] .theme-admonition-tip .admonitionContent_BuS1 a:hover,
+[data-theme="dark"] .theme-admonition-tip .theme-admonition-content a:hover {
+  color: var(--admonition-tip-link-hover) !important;
+}
+
+[data-theme="dark"] .theme-admonition-info .admonitionContent_BuS1 a,
+[data-theme="dark"] .theme-admonition-info .theme-admonition-content a {
+  color: var(--admonition-info-link) !important;
+}
+[data-theme="dark"] .theme-admonition-info .admonitionContent_BuS1 a:hover,
+[data-theme="dark"] .theme-admonition-info .theme-admonition-content a:hover {
+  color: var(--admonition-info-link-hover) !important;
+}
+
+[data-theme="dark"] .theme-admonition-note .admonitionContent_BuS1 a,
+[data-theme="dark"] .theme-admonition-note .theme-admonition-content a {
+  color: var(--admonition-note-link) !important;
+}
+[data-theme="dark"] .theme-admonition-note .admonitionContent_BuS1 a:hover,
+[data-theme="dark"] .theme-admonition-note .theme-admonition-content a:hover {
+  color: var(--admonition-note-link-hover) !important;
+}
+
+[data-theme="dark"] .theme-admonition-warning .admonitionContent_BuS1 a,
+[data-theme="dark"] .theme-admonition-warning .theme-admonition-content a {
+  color: var(--admonition-warning-link) !important;
+}
+[data-theme="dark"] .theme-admonition-warning .admonitionContent_BuS1 a:hover,
+[data-theme="dark"] .theme-admonition-warning .theme-admonition-content a:hover {
+  color: var(--admonition-warning-link-hover) !important;
+}
+
+[data-theme="dark"] .theme-admonition-danger .admonitionContent_BuS1 a,
+[data-theme="dark"] .theme-admonition-danger .theme-admonition-content a {
+  color: var(--admonition-danger-link) !important;
+}
+[data-theme="dark"] .theme-admonition-danger .admonitionContent_BuS1 a:hover,
+[data-theme="dark"] .theme-admonition-danger .theme-admonition-content a:hover {
+  color: var(--admonition-danger-link-hover) !important;
 }
 
 /* Pagination styling per Figma */
