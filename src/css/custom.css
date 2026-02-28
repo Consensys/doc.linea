@@ -2870,6 +2870,19 @@ article a,
   transition: color 0.2s ease;
 }
 
+/* SubmissionButton overrides the article a rule above */
+article a.submission-button,
+.theme-doc-markdown a.submission-button {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+article a.submission-button:hover,
+.theme-doc-markdown a.submission-button:hover {
+  color: #121212 !important;
+  text-decoration: none !important;
+}
+
 article a:hover,
 .theme-doc-markdown a:hover {
   color: #6119ef !important;
