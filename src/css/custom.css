@@ -2277,7 +2277,7 @@ button.clean-btn.menu__caret {
   }
 
   .theme-doc-toc-mobile [class*="tocCollapsibleButton"] {
-    padding: 14px 16px !important;
+    padding: 10px 16px !important;
     font-family: AtypText, sans-serif !important;
     font-size: 14px !important;
     font-weight: 500 !important;
@@ -2297,6 +2297,10 @@ button.clean-btn.menu__caret {
   .theme-doc-toc-mobile .table-of-contents__left-border {
     border-left: none !important;
     padding-left: 0 !important;
+  }
+
+  .theme-doc-toc-mobile .table-of-contents__link {
+    font-size: 14px !important;
   }
 }
 
