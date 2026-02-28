@@ -71,7 +71,8 @@
 .illustration {
   position: absolute;
   right: -17px;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 558.294px;
   height: 644.649px;
   z-index: 1;
