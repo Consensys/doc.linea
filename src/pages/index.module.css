@@ -212,8 +212,9 @@
   .introductionBlock {
     padding: 3rem 2rem;
     height: auto;
-    min-height: 384px;
-    background-position: left center;
+    min-height: 480px;
+    background-size: 100% auto;
+    background-position: left top;
   }
 
   .title {
@@ -244,7 +245,7 @@
 @media (max-width: 530px) {
   .introductionBlock {
     padding: 2rem 1rem;
-    min-height: 384px;
+    min-height: 480px;
   }
 
   .title {

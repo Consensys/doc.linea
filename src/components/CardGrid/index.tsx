@@ -46,15 +46,17 @@ function Card({ title, link, description, iconSrc }: CardItem) {
 type Props = {
   heading: string;
   cards: CardItem[];
+  equalizeHeights?: boolean;
 };
 
-export default function CardGrid({ heading, cards }: Props): React.ReactNode {
+export default function CardGrid({ heading, cards, equalizeHeights = true }: Props): React.ReactNode {
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const setEqualHeight = () => {
       const row = rowRef.current;
       if (!row) return;
+      if (!equalizeHeights) return;
 
       const cardElements = Array.from(
         row.getElementsByClassName("card") as HTMLCollectionOf<HTMLElement>,
