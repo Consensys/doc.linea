@@ -613,7 +613,7 @@ textarea {
 
   /* Brand tokens */
   --linea-text-primary: #f8f7f2;
-  --linea-arrow-btn-bg: #3a3a3a;
+  --linea-arrow-btn-bg: #ffffff;
   --linea-purple-light: #a78bfa;
   --linea-gray-mid: #808080;
 }
@@ -1808,6 +1808,19 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
 
 [data-theme="dark"] .theme-doc-sidebar-container {
   border-right: 1px solid #333 !important;
+}
+
+/* Left border on sidebar — Protocol, Stack, APIs & SDK sections only */
+html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
+html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
+html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
+  border-left: 1px solid #E5E5E5 !important;
+}
+
+[data-theme="dark"] html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
+[data-theme="dark"] html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
+[data-theme="dark"] html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
+  border-left: 1px solid #333 !important;
 }
 
 /* External links in sidebar (Status, Bridge) - NO arrows per Figma */
