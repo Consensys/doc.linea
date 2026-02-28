@@ -3229,8 +3229,8 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 .changelog-tag--upgrade {
-  background: #C8EDEC;
-  color: #0A7070;
+  background: rgba(97, 223, 255, 0.15);
+  color: #0B668C;
 }
 
 .changelog-tag--performance {
@@ -3244,8 +3244,8 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 .changelog-tag--action-required {
-  background: #F0DEFF;
-  color: #7228C0;
+  background: rgba(212, 110, 223, 0.15);
+  color: #611C69;
 }
 
 .changelog-tag--deprecation {
@@ -3260,8 +3260,8 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 [data-theme="dark"] .changelog-tag--upgrade {
-  background: #0B2E2E;
-  color: #38A8A8;
+  background: rgba(97, 223, 255, 0.15);
+  color: #61DFFF;
 }
 
 [data-theme="dark"] .changelog-tag--performance {
@@ -3275,8 +3275,8 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 [data-theme="dark"] .changelog-tag--action-required {
-  background: #2C1050;
-  color: #8C48C8;
+  background: rgba(212, 110, 223, 0.15);
+  color: #D46EDF;
 }
 
 [data-theme="dark"] .changelog-tag--deprecation {
