@@ -6,14 +6,12 @@ const SubmissionButton = ({
 }) => {
   const handleMouseEnter = (e) => {
     e.target.style.backgroundColor = '#FFF068';
-    e.target.style.color = '#121212';
     e.target.style.transform = 'scale(1.05)';
     e.target.style.boxShadow = '0 6px 20px rgba(255, 240, 104, 0.3)';
   };
 
   const handleMouseLeave = (e) => {
     e.target.style.backgroundColor = '#6119EF';
-    e.target.style.color = '#ffffff';
     e.target.style.transform = 'scale(1)';
     e.target.style.boxShadow = 'none';
   };
@@ -24,10 +22,11 @@ const SubmissionButton = ({
       justifyContent: 'center',
       margin: '20px 0'
     }}>
-      <a 
+      <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        className="submission-button"
         style={{
           backgroundColor: '#6119EF',
           color: '#ffffff',
