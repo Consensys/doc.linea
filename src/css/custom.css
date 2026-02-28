@@ -2268,6 +2268,18 @@ button.clean-btn.menu__caret {
 
 /* Mobile TOC ("On this page") - collapsed and expanded states */
 @media (max-width: 996px) {
+  /* Reorder: TOC above the purple category title */
+  article {
+    display: flex;
+    flex-direction: column;
+  }
+
+  article > nav.theme-doc-breadcrumbs { order: 1; }
+  article > .theme-doc-toc-mobile     { order: 2; }
+  article > [class*="titleRow"]        { order: 3; }
+  article > .theme-doc-markdown        { order: 4; }
+  article > footer.theme-doc-footer    { order: 5; }
+
   .theme-doc-toc-mobile {
     background: var(--ifm-background-color) !important;
     border: 1px solid var(--homepage-card-border-color) !important;
