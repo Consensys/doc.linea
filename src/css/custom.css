@@ -2266,6 +2266,40 @@ button.clean-btn.menu__caret {
   }
 }
 
+/* Mobile TOC ("On this page") - collapsed and expanded states */
+@media (max-width: 996px) {
+  .theme-doc-toc-mobile {
+    background: var(--ifm-background-color) !important;
+    border: 1px solid var(--homepage-card-border-color) !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+
+  .theme-doc-toc-mobile [class*="tocCollapsibleButton"] {
+    padding: 14px 16px !important;
+    font-family: AtypText, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--linea-text-primary) !important;
+    width: 100%;
+    background: transparent !important;
+  }
+
+  .theme-doc-toc-mobile [class*="tocCollapsibleButton"][aria-expanded="true"] {
+    border-bottom: 1px solid var(--homepage-card-border-color) !important;
+  }
+
+  .theme-doc-toc-mobile [class*="tocCollapsibleContent"] {
+    padding: 12px 16px 16px !important;
+  }
+
+  .theme-doc-toc-mobile .table-of-contents__left-border {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+}
+
 /* Expand sidebar button styles are in section 14b above */
 
 @media (max-width: 1200px) {
