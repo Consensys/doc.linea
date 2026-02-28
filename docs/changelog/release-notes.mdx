@@ -30,11 +30,7 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
   Switches prover to small fields, enabling faster proof generation.
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="action-required">
-
-  **This change deprecates the ENS resolver contract; you will need to update your configuration to point to the new contract address.** More information [here](../network/how-to/deploy-subdomain.mdx).
+**This change deprecates the ENS resolver contract; you will need to update your configuration to point to the new contract address.** More information [here](../network/how-to/deploy-subdomain.mdx).
 
 </ChangelogEntry>
 
@@ -85,10 +81,6 @@ Upgrades Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgra
 <ChangelogEntry tag="performance">
 
 Upgrades to limitless prover, enabling higher throughput and lower gas fees.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
 
 Increases throughput to 100 Mgas/s.
 
@@ -162,9 +154,7 @@ EIP-7702 will only be activated in Beta v6.0.
 
 :::
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature" title="Maru consensus client">
+**Maru consensus client**
 
 Beta v4.0 introduces a new consensus client, [Maru](../network/how-to/run-a-node/maru.mdx),
 replacing the existing Proof-of-Authority sequencer mechanism, Clique. Maru introduces a QBFT
@@ -192,10 +182,6 @@ future, this additional efficiency will increase ETH and LINEA burn.
 
 Remove sequencer limits. These are no longer required because of the limitless prover introduced in
 Beta v3.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
 
 Increase throughput.
 
@@ -227,23 +213,11 @@ Note that the higher throughput will not enabled until the sequencer limits are 
 the integrity of all onchain data when sequencing is decentralized. Linea is the first zkEVM
 to be completely proven.
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
-
 Reworks [prover limits](../protocol/architecture/prover/prover-limits.mdx) to reduce infrastructure costs and
 reduce instances of transactions reverting due to exceeding limits.
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
-
 Upgrades the dictionary to improve compression and reduce the costs of L1 data availability by
 7.5%.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="upgrade">
 
 Improves Security Council configuration, and onboards the first cohort of members to stage 1,
 supporting future decentralization and security.
@@ -263,10 +237,6 @@ Beta v1 on Linea introduces new arithmetization. The overall objective of the Li
 
 Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to
 protect users against MEV and improve UX in various ways.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature">
 
 Introduces [state recovery](../network/overview/recoverable-state.mdx), enabling anyone to recover
 and audit Linea state, reducing the risk of having a centralized sequencer.
@@ -292,10 +262,6 @@ Raises the block gas limit to 2B.
 Full implementation of new arithmetization, with all modules from the Linea specification except
 the hub's consistency arguments.
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="upgrade">
-
 Proof of all the activated modules (i.e. excluding the hub consistency arguments).
 
 </ChangelogEntry>
@@ -307,10 +273,6 @@ Proof of all the activated modules (i.e. excluding the hub consistency arguments
 <ChangelogEntry tag="upgrade">
 
 New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="upgrade">
 
 The transition to generating traces with Besu.
 
@@ -329,10 +291,6 @@ The transition to generating traces with Besu.
 - Integrate [Onramper](https://onramper.com/) for seamless fiat onramping to Linea only (live on
   April 3)
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="announcement">
-
 Transition to native USDC, seamless for Linea users.
 
 </ChangelogEntry>
@@ -344,10 +302,6 @@ Transition to native USDC, seamless for Linea users.
 <ChangelogEntry tag="feature">
 
 Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature">
 
 Introduces the [Linea Token API](../api/token-api/) at alpha stage.
 
@@ -500,9 +454,7 @@ through an offchain gateway, Linea Names domains resolve on L1.
 
 Read more about ENS in the user guide [here](https://support.linea.build/general/ens).
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature" title="CCIP Read">
+**CCIP Read**
 
 One of the building blocks of ENS on Linea is a custom implementation of CCIP Read, which uses the
 gateway system introduced in EIP-3668 to enable Linea Names domains to resolve on L1. The key
@@ -517,9 +469,7 @@ The Linea repository containing the relevant contracts is [here](https://github.
 
 Consensys Diligence carried out an audit on Linea Names, available [here](https://consensys.io/diligence/audits/2024/06/linea-ens/).
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="upgrade" title="linea_estimateGas mainnet activation">
+**`linea_estimateGas` mainnet activation**
 
 :::note
 
@@ -568,7 +518,7 @@ In the `besu-sequencer` plugin, adjust:
 
 <ChangelogDate mainnet="June 4" sepolia="May 28" />
 
-<ChangelogEntry tag="performance" title="Smart contract gas optimization">
+<ChangelogEntry tag="upgrade" title="Smart contract gas optimization">
 
 Upgraded smart contracts to achieve gas optimizations in several areas:
 - Major gas optimizations in blob submission, primarily in [`LineaRollup.sol`](https://github.com/Consensys/linea-contracts/blob/main/contracts/LineaRollup.sol)
@@ -581,9 +531,7 @@ Code in the upgrade has been audited by:
 - OpenZeppelin, whose report is available [here](https://blog.openzeppelin.com/linea-gas-optimizations-audit), and;
 - Cyfrin, whose report is [here](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf).
 
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature" title="Bridge to a different recipient">
+**Bridge to a different recipient**
 
 :::note
 
@@ -607,13 +555,9 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 
 <ChangelogDate mainnet="May 14" />
 
-<ChangelogEntry tag="performance">
+<ChangelogEntry tag="feature">
 
 Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="feature">
 
 Adds the [`eth_sendRawTransaction`](../api/reference/eth-sendrawtransaction.mdx) method,
 available only via Besu endpoints.
@@ -622,14 +566,10 @@ available only via Besu endpoints.
 
 ## Alpha v3.0
 
-<ChangelogEntry tag="announcement">
+<ChangelogEntry tag="upgrade" title="EIP-4844">
 
 The main objective of Alpha v3 is to implement EIP-4844 on Linea, following its introduction to
 Ethereum mainnet with the Dencun upgrade on March 13.
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="upgrade" title="EIP-4844">
 
 **March 26:** Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
 costs. Blobs represent a transient data storage mechanism and an alternative to `calldata`, and
@@ -675,10 +615,6 @@ Smart contract updates will be executed by the Linea Security Council using the 
 procedure.
 
 Additionally, all contracts have been audited by OpenZeppelin. You can find the report [here](https://blog.openzeppelin.com/linea-blob-submission-audit).
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
 
 **March 27:**
 - Block time reduced to 3 seconds. This change increases the throughput of the network to avoid
