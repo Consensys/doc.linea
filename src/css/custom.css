@@ -3146,8 +3146,12 @@ table::-webkit-scrollbar-thumb:hover {
   color: #999;
 }
 
+[data-theme="dark"] .changelog-date__arrow {
+  color: #ffffff;
+}
+
 .changelog-date__arrow {
-  color: #6119EF;
+  color: #000000;
   font-size: 14px;
   flex-shrink: 0;
 }
