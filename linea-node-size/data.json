@@ -1320,5 +1320,33 @@
         "timestamp": "2025-11-03T00:04:33.608Z"
       }
     ]
+  },
+  "2026": {
+    "10": [
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-full-0",
+        "totalSize": 564762529792,
+        "dailyIncrease": 1245061120,
+        "timestamp": "2026-03-02T00:06:38.092Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-besu-archive-v3-0",
+        "totalSize": 4126307807232,
+        "dailyIncrease": 2234785792,
+        "timestamp": "2026-03-02T00:06:38.376Z"
+      },
+      {
+        "network": "mainnet",
+        "cluster": "linea-prod-eks",
+        "pvc": "data-linea-geth-archive-v2-0",
+        "totalSize": 4226644271104,
+        "dailyIncrease": 1443315712,
+        "timestamp": "2026-03-02T00:06:38.533Z"
+      }
+    ]
   }
 }
