@@ -508,6 +508,10 @@ textarea {
   border-top: 1px solid #E5E5E5;
 }
 
+[data-theme="dark"] .footer--dark {
+  border-top: 1px solid #333;
+}
+
 /* ============================================================
    6. CSS VARIABLES — DARK THEME
    ============================================================ */
@@ -1817,9 +1821,9 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   border-left: 1px solid #E5E5E5 !important;
 }
 
-[data-theme="dark"] html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
-[data-theme="dark"] html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
-[data-theme="dark"] html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
+html[data-theme="dark"][class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
+html[data-theme="dark"][class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
+html[data-theme="dark"][class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   border-left: 1px solid #333 !important;
 }
 
@@ -1828,13 +1832,58 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   /* Simple text links, no special styling */
 }
 
+/* Make sidebarViewport a flex column so thin-scrollbar fills all available height */
+[class*="sidebarViewport"] {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
 .thin-scrollbar {
   background-color: var(--page-background);
   margin: 0;
   padding: 10px 16px;
   border-radius: 0;
-  max-height: 80vh;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
   overflow-y: scroll !important;
+  /* Override Infima's scrollbar-width:thin which disables ::-webkit-scrollbar
+     pseudo-elements in Chrome 121+. Setting to auto lets webkit styles take over. */
+  scrollbar-width: auto !important;
+}
+
+/* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
+.thin-scrollbar::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: #ededed;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 4px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
+}
+
+[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #4d4d4d;
+}
+
+[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
 
 /* Collapse sidebar button fully managed in section 14b below */
