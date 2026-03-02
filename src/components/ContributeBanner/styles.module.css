@@ -166,6 +166,7 @@
     padding: 32px 24px;
     flex-direction: column;
     align-items: flex-start;
+    min-height: unset;
   }
 
   .content {
@@ -177,12 +178,6 @@
   }
 
   .illustration {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: 24px;
-    width: 320px;
-    height: 360px;
-    align-self: center;
+    display: none;
   }
 }
