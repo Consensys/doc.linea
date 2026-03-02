@@ -1,7 +1,8 @@
 ---
-title: Technical overview
+title: Yield Boost
 description: ETH fund flow and role permissions in the Linea Yield Boost staking system.
 image: /img/socialCards/yield-boost-overview.jpg
+sidebar_position: 4
 ---
 
 # Yield Boost technical overview
@@ -14,21 +15,21 @@ Yield Boost is not yet live. This documentation describes the intended design.
 
 Linea Yield Boost is a protocol-level mechanism that automatically stakes some of the ETH held in the Linea bridge, or LineaRollup, and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into a dedicated Lido v3 stVault on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
-This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. For a more general overview of Yield Boost, see the [Yield Boost overview](/protocol/yield-boost/) page.
+This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. For a more general overview of Yield Boost, see the [Yield Boost overview](/network/overview/yield-boost/) page.
 
 ## High-level architecture
 
-LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVault to generate Beacon chain rewards, which are reported to L2 for distribution. The following is a breakdown of the major components and flows of the Yield Boost system.
+LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVault to generate Beacon Chain rewards, which are reported to L2 for distribution. The following is a breakdown of the major components and flows of the Yield Boost system.
 
 ### L1 ETH flow
 
-When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use it on Linea (L2), that ETH remains on L1 and may be staked on Ethereum’s Beacon chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
+When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use it on Linea (L2), that ETH remains on L1 and may be staked on Ethereum’s Beacon Chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
 
-- **LineaRollup:** Main Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
+- **LineaRollup:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
 - **YieldManager:** L1 contract that moves ETH between the LineaRollup and the StakingVault, and calculates net yield after fees and liabilities.
-- **StakingVault:** Lido V3 stvault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the LineaRollup.
+- **StakingVault:** Lido V3 stvault that holds ETH awaiting Beacon Chain staking; all validator withdrawals return here before moving back to the LineaRollup.
 - **Beacon Chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
-- **Node operator:** Runs beacon chain validators on behalf of Linea and decides when to deposit ETH from the StakingVault into the beacon chain.
+- **Node operator:** Runs Beacon Chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
 The follow diagram details the flow:
@@ -64,7 +65,7 @@ flowchart TD
 
 ### Yield reporting and L2 distribution
 
-The yield earned from the beacon chain is transferred to L2 for distribution. The following components are involved:
+The yield earned from the Beacon Chain is transferred to L2 for distribution. The following components are involved:
 
 - **Dashboard:** Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
 - **Lido:** Third-party staking protocol that provides the StakingVault and dashboard infrastructure used by Yield Boost.
@@ -76,7 +77,7 @@ The yield earned from the beacon chain is transferred to L2 for distribution. Th
 The following steps and diagram detail the flow:
 
 1. The automation service triggers a yield report on the YieldManager.
-2. The YieldManager reads the vault's `totalValue` from the Dashboard. This value - the sum of beacon chain stake and vault balance - is updated daily by the Lido Oracle Committee.
+2. The YieldManager reads the vault's `totalValue` from the Dashboard. This value - the sum of Beacon Chain stake and vault balance - is updated daily by the Lido Oracle Committee.
 3. Yield is the difference between the current `totalValue` and the last stored checkpoint, minus outstanding obligations.
 4. If the StakingVault has sufficient funds, the YieldManager settles obligations: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient. If funds are insufficient, settlement is skipped and obligations carry forward.
 5. The YieldManager reports the remaining net yield to LineaRollup.
@@ -141,7 +142,7 @@ Each scenario below traces a specific ETH movement end-to-end, showing the contr
 
 ### 1. Staking
 
-Surplus ETH in the LineaRollup (above minimum reserve) is routed to the StakingVault for beacon chain staking.
+Surplus ETH in the LineaRollup (above minimum reserve) is routed to the StakingVault for Beacon Chain staking.
 
 ```mermaid
 sequenceDiagram
@@ -164,7 +165,7 @@ sequenceDiagram
 
 ### 2. Reserve replenishment
 
-Replenishing the withdrawal reserve is a two-phase process: first trigger beacon chain withdrawal, then route funds to the LineaRollup once they arrive in the vault.
+Replenishing the withdrawal reserve is a two-phase process: first trigger Beacon Chain withdrawal, then route funds to the LineaRollup once they arrive in the vault.
 
 ```mermaid
 sequenceDiagram
@@ -208,7 +209,7 @@ sequenceDiagram
 
     Auto-->>YM: reportYield()
     YM-->>DB: read totalValue
-    Note over DB: totalValue = beacon chain stake + vault balance<br/>(updated daily by Lido Oracle Committee)
+    Note over DB: totalValue = Beacon Chain stake + vault balance<br/>(updated daily by Lido Oracle Committee)
     Note over YM: yield = current totalValue - last checkpoint<br/>then subtract obligations
 
     alt StakingVault funds available
@@ -246,7 +247,7 @@ sequenceDiagram
     rect rgba(230, 240, 255, 0.6)
         Note over LR: Phase 1 - Unstake
         U->>YM: unstakePermissionless()
-        Note over YM: Validate request against <br/> EIP-4788 beacon root
+        Note over YM: Validate request against <br/> EIP-4788 Beacon root
         YM-->>SV: triggerValidatorWithdrawals()
         SV-->>BC: request withdrawal
         Note over BC: Withdrawal delay
@@ -279,7 +280,7 @@ sequenceDiagram
     LR->>YM: withdrawLST()
     YM->>DB: mintStETH()
     DB-->>U: send stETH
-    Note over YM: Pauses beacon deposits,<br/>creates interest-bearing liability
+    Note over YM: Pauses Beacon deposits,<br/>creates interest-bearing liability
 ```
 
 This creates an LST liability that accrues interest; the system prioritizes repaying it from subsequent fund flows and yield.
@@ -307,7 +308,7 @@ sequenceDiagram
 
     loop Until all funds withdrawn
         Auto->>YM: unstake()
-        Note over SV: Beacon chain withdrawal
+        Note over SV: Beacon Chain withdrawal
         Auto->>YM: safeAddToWithdrawalReserve()
         YM-->>SV: withdraw()
         SV-->>LR: send ETH
@@ -319,7 +320,7 @@ sequenceDiagram
 | Fund Movement | Source | Destination | Trigger | Role Required |
 |--------------|--------|-------------|---------|---------------|
 | Stake excess reserve | LineaRollup | StakingVault | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
-| Beacon chain deposit | StakingVault | Validators | Node Operator decision | Node Operator |
+| Beacon Chain deposit | StakingVault | Validators | Node Operator decision | Node Operator |
 | Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
 | Operator replenish reserve | StakingVault | LineaRollup | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | StakingVault | Reserve below minimum | Permissionless |
@@ -327,3 +328,10 @@ sequenceDiagram
 | LST withdrawal | Lido Protocol (minted against StakingVault collateral) | User | Insufficient ETH for user withdrawal | Permissionless (user) |
 | Ossification withdrawal | StakingVault | LineaRollup | Security Council initiates | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
 | Donation | External | LineaRollup / StakingVault | Voluntary | Permissionless |
+
+
+## Next steps
+
+See the [Yield Boost overview](/network/overview/yield-boost/) page for a more general overview of Yield Boost, including the user experience and withdrawal resilience strategy.
+
+See the [Security Council record](/changelog/security-council-record/) page for a record of Security Council transactions.
