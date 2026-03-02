@@ -41,6 +41,8 @@ const config = {
 
   scripts: [{ src: "/js/clearSearchOnCollapse.js", async: true }],
 
+  clientModules: [require.resolve("./src/clientModules/codeBlockClassifier.js")],
+
   markdown: {
     mermaid: true,
   },

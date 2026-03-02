@@ -3060,13 +3060,46 @@ div[class*="codeBlockContainer"] {
   margin: 1.5rem 0 !important;
   border: none !important;
   box-shadow: none !important;
+  /* Make the container the positioning context for the copy button */
+  position: relative !important;
+  /* Clip the button so it never falls outside the block */
+  overflow: hidden !important;
 }
 
 /* Remove ALL padding from inner content wrapper */
+/* position: static so the copy button anchors to the container, not here */
 div[class*="codeBlockContent"] {
   background-color: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
+  position: static !important;
+}
+
+/* Copy button: default = vertically centered (small / single-line blocks) */
+div[class*="buttonGroup"] {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 8px !important;
+}
+
+/* Copy button: top-right corner for large / multi-line blocks */
+div[class*="codeBlockContainer"][data-large-block] div[class*="buttonGroup"] {
+  top: 8px !important;
+  transform: none !important;
+}
+
+/* Copy button icon — consistent colour in both light and dark mode.
+   The code block background is always #121212 so we always use light tones. */
+div[class*="codeBlockContainer"] div[class*="buttonGroup"] button {
+  color: #a0a0a0 !important;
+  background: transparent !important;
+  transition: color 0.2s ease, background 0.2s ease !important;
+}
+
+div[class*="codeBlockContainer"] div[class*="buttonGroup"] button:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Remove any border and extra padding from pre elements */
