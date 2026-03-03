@@ -8,18 +8,29 @@ sidebar_position: 4
 # Yield Boost technical overview
 
 :::caution
+
 Yield Boost is not yet live. This documentation describes the intended design.
+
 :::
 
 ## Overview
 
-Linea Yield Boost is a protocol-level mechanism that automatically stakes some of the ETH held in the Linea bridge, or LineaRollup, and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into a dedicated Lido v3 stVault on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
+[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism that automatically stakes some of the ETH held in the Linea bridge, or LineaRollup, and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into a dedicated Lido v3 stVault on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
-This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. For a more general overview of Yield Boost, see the [Yield Boost overview](/network/overview/yield-boost/) page.
+This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
 
 ## High-level architecture
 
-LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVault to generate Beacon Chain rewards, which are reported to L2 for distribution. The following is a breakdown of the major components and flows of the Yield Boost system.
+LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVault to generate Beacon Chain rewards, which are [distributed on Linea L2](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+
+### Key participants
+
+- User: Interacts with the system by bridging ETH to and from Linea via the `L1MessageService`.
+- Security Council: A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
+- Lido Oracle Committee: A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
+- Node operator: The entity responsible for performing actions through the Lido V3 stVault.
+- `NativeYieldAutomationService`: An offchain service that executes onchain routine operations, including yield reporting, rebalancing the liquidity buffer, and settling system obligations. It operates in a default `YIELD_REPORTING` mode and switches to an `OSSIFICATION_PROCESSOR` mode if the Security Council initiates the ossification process.
+- `LidoUpgradeMonitor`: An offchain service that monitors Lido's onchain governance for contract upgrade proposals and alerts the Security Council.
 
 ### L1 ETH flow
 
