@@ -19,6 +19,15 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### March TBD, 2026
+#### L2
+- **Nonce 51 - Link TBD**
+  - Actions: Account rotation.
+    - Grant `L1_L2_MESSAGE_SETTER_ROLE` ( `0x4705265620026983c754c5288b65446d794a03174326ec6d7c0b5c7f1fd67415` ) to the new address ( `0x2b0f9c76970975aec03784efd763623757ef7652` )
+    - Revoke `L1_L2_MESSAGE_SETTER_ROLE` ( `0x4705265620026983c754c5288b65446d794a03174326ec6d7c0b5c7f1fd67415` ) from the existing address ( `0xc1c6b09d1eb6fca0ff3ca11027e5bc4aedb47f67` )
+Verification
+    - Corresponding `RoleGranted` and `RoleRevoked` events emitted matching the addresses and `L1_L2_MESSAGE_SETTER_ROLE` hash value.
+
 ### February 26, 2026
 #### L1
 - **[Nonce 67](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xa1c97a648c46f47e3c9e377c7a372294d9fa4eacb464e7e32932ac1c91cd819c)**
