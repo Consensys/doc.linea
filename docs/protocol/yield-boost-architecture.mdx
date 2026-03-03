@@ -13,32 +13,32 @@ Yield Boost is not yet live. This documentation describes the intended design.
 
 :::
 
-## Overview
+## What is it?
 
-[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism that automatically stakes some of the ETH held in the Linea bridge, or LineaRollup, and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into a dedicated Lido v3 stVault on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
+[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism that automatically stakes a proportion of the ETH held in the Linea bridge, or LineaRollup, and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
 This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
 
 ## High-level architecture
 
-LineaRollup deposits on Ethereum L1 are staked via Lido V3 stVault to generate Beacon Chain rewards, which are [distributed on Linea L2](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+LineaRollup deposits on Ethereum L1 are staked via a Lido V3 stVault to generate Beacon Chain rewards, which are [distributed on Linea L2](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
 
 ### Key participants
 
-- User: Interacts with the system by bridging ETH to and from Linea via the `L1MessageService`.
-- Security Council: A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
-- Lido Oracle Committee: A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
-- Node operator: The entity responsible for performing actions through the Lido V3 stVault.
-- `NativeYieldAutomationService`: An offchain service that executes onchain routine operations, including yield reporting, rebalancing the liquidity buffer, and settling system obligations. It operates in a default `YIELD_REPORTING` mode and switches to an `OSSIFICATION_PROCESSOR` mode if the Security Council initiates the ossification process.
+- User: Interacts with the system by bridging ETH to and from Linea via the [`L1MessageService`](../network/build/contracts#deployed-contracts).
+- [Security Council](../changelog/security-council-record): A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
+- [Lido Oracle Committee](https://docs.lido.fi/token-guides/steth-superuser-functions/#oracle-and-accounting-flow): A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
+- Node operator: The Linea-assigned validator bound to the agreed deposit trigger to stake ETH from the stVault, and validate the Beacon Chain to earn rewards.
+- `NativeYieldAutomationService`: An offchain service that executes onchain routine operations, including yield reporting, rebalancing the liquidity buffer, and settling system obligations. It operates in a default `YIELD_REPORTING` mode and switches to an `OSSIFICATION_PROCESSOR` mode if the Security Council initiates the [ossification process](#6-ossification-withdrawal).
 - `LidoUpgradeMonitor`: An offchain service that monitors Lido's onchain governance for contract upgrade proposals and alerts the Security Council.
 
 ### L1 ETH flow
 
 When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use it on Linea (L2), that ETH remains on L1 and may be staked on Ethereum’s Beacon Chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
 
-- **LineaRollup:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
-- **YieldManager:** L1 contract that moves ETH between the LineaRollup and the StakingVault, and calculates net yield after fees and liabilities.
-- **StakingVault:** Lido V3 stvault that holds ETH awaiting Beacon Chain staking; all validator withdrawals return here before moving back to the LineaRollup.
+- **Native token bridge:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
+- **YieldManager:** L1 contract that moves ETH between the Linea bridge and the StakingVault, and calculates net yield after fees and liabilities.
+- **StakingVault:** Lido V3 stvault that holds ETH awaiting Beacon Chain staking; all validator withdrawals return here before moving back to the Linea bridge.
 - **Beacon Chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
 - **Node operator:** Runs Beacon Chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
@@ -50,20 +50,20 @@ flowchart TD
     User([User])
     Auto([Automation Service])
     NO([Node Operator])
-    LR[LineaRollup]
+    BR[Linea bridge]
     YM[YieldManager]
     SV[StakingVault]
     BC{{Beacon Chain}}
 
-    User -->|deposit ETH| LR
-    LR -->|withdraw ETH| User
-    Auto -.->|automatically rebalances ETH between LineaRollup and StakingVault, and requests unstaking| YM
-    LR -->|rebalance extra ETH to earn rewards| YM
-    YM -->|move ETH to staking vault| SV
-    NO -.->|decides when to trigger staking| SV
-    SV -->|stake| BC
-    BC -->|unstake| SV
-    SV -->|withdraw ETH| LR
+    User -->|Deposit ETH| BR
+    BR -->|Withdraw ETH| User
+    Auto -.->|Automatically rebalances ETH between Linea bridge and StakingVault, and requests unstaking| YM
+    BR -->|Rebalance extra ETH to earn rewards| YM
+    YM -->|Move ETH to staking vault| SV
+    NO -.->|Triggers staking| SV
+    SV -->|Stake| BC
+    BC -->|Unstake| SV
+    SV -->|Withdraw ETH| BR
 
     classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
     classDef permissionless fill:#cce5ff,stroke:#004085,stroke-width:1px,color:#004085
@@ -78,12 +78,12 @@ flowchart TD
 
 The yield earned from the Beacon Chain is transferred to L2 for distribution. The following components are involved:
 
-- **Dashboard:** Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
-- **Lido:** Third-party staking protocol that provides the StakingVault and dashboard infrastructure used by Yield Boost.
+- **[Dashboard](https://docs.lido.fi/contracts/dashboard#what-is-dashboard):** Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
+- **[Lido](https://docs.lido.fi/):** Third-party staking protocol that provides the StakingVault and dashboard infrastructure used by Yield Boost.
 - **Fee recipient:** Address that collects the node operator's share of staking rewards.
-- **Security Council:** The Linea Security Council multisig.
-- **L2MessageService:** L2 contract that receives messages from L1 and unlocks the corresponding ETH on L2.
-- **L2YieldDistributor:** Distributes L2 ETH unlocked from staking rewards to designated recipients.
+- **[Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md):** The Linea Security Council multisig.
+- **[L2MessageService](..//network/build/contracts):** L2 contract that receives messages from L1 and unlocks the corresponding ETH on L2.
+- **L2YieldDistributor:** Distributes L2 unlocked ETH staking rewards to designated recipients.
 
 The following steps and diagram detail the flow:
 
@@ -275,7 +275,7 @@ sequenceDiagram
 
 `unstakePermissionless()` is capped to the remaining deficit minus available liquidity in the YieldManager and provider. `replenishWithdrawalReserve()` is similarly capped to the current deficit.
 
-### 5. LST withdrawal - last resort
+### 5. LST withdrawal -- last resort
 
 If the LineaRollup lacks ETH for a user withdrawal, stETH is minted against the StakingVault collateral and sent directly to the user as a last resort.
 
