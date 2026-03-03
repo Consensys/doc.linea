@@ -11,7 +11,7 @@ Yield Boost is not yet live. This documentation describes the intended design.
 
 :::
 
-Linea Yield Boost is a protocol-level mechanism that converts idle bridged ETH into sustainable source of ecosystem incentives.
+Linea Yield Boost is a protocol-level mechanism that converts idle bridged ETH into a sustainable source of ecosystem incentives.
 
 By programmatically staking a portion of ETH held in Linea’s canonical bridge using Lido v3 stVaults on Ethereum, Yield Boost generates a continuous stream of rewards. These staking rewards are redirected to strengthen the Linea ecosystem, creating a long-term, self-sustaining economic engine aligned with Ethereum mainnet security.
 
@@ -42,7 +42,7 @@ This process is automatic and applies to all bridged ETH until the final target 
 
 3. **Ecosystem-centric yield distribution**: The harvested yield is funneled back into the Linea ecosystem as ETH minted on the L2. Critically, these rewards are not distributed to individual wallets via a rebase or direct payment. Instead, they are directed to a distributor contract on the L2, which uses the funds to incentivize liquidity providers and key DeFi protocols. This creates deeper liquidity, better trade execution, and more competitive yields across the network.
 
-Linea Yield Boost’s security model prioritizes capital protection, withdrawal availability, and operational resilience that integrates onchain smart contracts, offchain automation services, and defined participant roles. This multi-component system works in concert to manage funds, report yield, and mitigate risks in a transparent and resilient manner.
+Linea Yield Boost’s security model prioritizes capital protection, withdrawal availability, and operational resilience. It integrates onchain smart contracts, offchain automation services, and defined participant roles. This multi-component system works in concert to manage funds, report yield, and mitigate risks in a transparent and resilient manner.
 
 :::info
 
@@ -81,7 +81,7 @@ Beyond its individual components, the integrity of the Linea Yield Boost system 
 
 * **Valid yield reporting**: Reported yield sent to the L2 for distribution must be net of all system obligations (such as, LST liabilities and protocol fees).
 * **User principal protection**: A user's principal deposit can never be used to settle system obligations; these must be paid exclusively from unreported, newly generated yield.
-* **Beacon Chain deposit restriction**: New ETH deposits to stVault are automatically paused if the withdrawal reserve is in deficit, if there are outstanding stETH liabilities, or if the ossification process has been initiated or completed.
+* **Beacon Chain deposit restriction**: Deposits to the stVault are automatically paused if the withdrawal reserve is in deficit, if there are outstanding stETH liabilities, or if the ossification process has been initiated or completed.
 
 ### Liveness properties
 
@@ -113,7 +113,7 @@ Once the round-trip is validated, Linea will increase the staked percentage ever
 
 ## Ecosystem-wide benefits
 
-Linea Yield Boost is designed as a positive-sum economic engine designed to create compounding value for all ecosystem participants. By transforming a passive asset into a productive one, it fosters a more liquid, efficient, and sustainable environment for end-users, protocols, and builders.
+Linea Yield Boost is designed as a positive-sum economic engine that creates compounding value for all ecosystem participants. By transforming a passive asset into a productive one, it fosters a more liquid, efficient, and sustainable environment for end-users, protocols, and builders.
 
 This system creates a powerful economic flywheel. Deeper liquidity funded by Yield Boost leads to better trade execution (lower slippage), which attracts more trading volume to the network. More volume generates higher trading fees, which increases the APY for liquidity providers, in turn attracting even more liquidity. This self-reinforcing loop creates a sustainable foundation for growth, benefiting the entire ecosystem.
 
@@ -132,7 +132,7 @@ This section addresses some of the most common questions regarding the functiona
 
 **Do I receive stETH on Linea?**
 
-- No. Users retain standard, fungible 1:1 ETH on Linea. The staking process occurs in the background on the L1 within the canonical bridge contracts. You do not hold a wrapped or rebasing token, and your ETH balance on Linea reflect the value deposited. The system earns yield to subsidize and improve the ecosystem you are using.
+- No. Users retain standard, fungible 1:1 ETH on Linea. The staking process occurs in the background on the L1 within the canonical bridge contracts. You do not hold a wrapped or rebasing token, and your ETH balance on Linea reflects the value deposited. The system earns yield to subsidize and improve the ecosystem you are using.
 
 **Do I ever lose access to my ETH on L1 or L2?**
 
