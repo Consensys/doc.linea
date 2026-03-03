@@ -68,7 +68,7 @@ struct Eip1559Transaction {
 }
 ```
 
-After submitting the transaction, the gateway will validate the transaction details.
+When submitting the transaction, the gateway will validate the last finalized state matches, validate the  transaction details are within limits, the appropriate fee has been paid, and will then send it to the LineaRollup for storage.
 
 ## Technical components
 
