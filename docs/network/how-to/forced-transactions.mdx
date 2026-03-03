@@ -30,12 +30,17 @@ Some examples of ideal forced transaction use cases include:
 
 - Withdrawal requests and claims
 - Liquidation and risk-management actions
-- Governance operations with strict timing
+- Guaranteed governance transaction processing
 - Emergency controls and safety operations
 
 ## Enable the forced path
 
-Forced transactions is not enabled by default. To enable forced transactions on your smart contract,...
+Forced transactions is not enabled by default. To enable forced transactions on your smart contract, you need to:
+
+1. Deploy an `AddressFilter` contract 
+2. Deploy a `ForcedTransactionGateway` contract
+
+Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
 
 ## Submit forced transactions
 
@@ -81,15 +86,13 @@ When a user submits a forced transaction, the following components validate and 
 - Prover: Generates a proof of the transaction and submits it to the finalization layer.
 
 
-When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, sets the maximum gas allowance, and submits the transaction to the `LineaRollup`.
+When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the transaction to the `LineaRollup`.
 
-The Linea rollup validates the current state of the chain, and stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline, and calculates the required fee for the forced transaction. At this stage, the transaction is also checked by the `AddressFilter` to ensure it is an allowed transaction type.
+The Linea rollup stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline. At this stage, the transaction is also checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
 
-The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing.
+The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing. The sequencer receives the transaction and must process it before the deadline.
 
-The sequencer receives the transaction and must process it before the deadline. If the transaction is not processed before the deadline, the transaction is reverted and the user's funds are returned.
-
-Once processed, the prover generates a proof of the transaction, computes the rolling hash, and submits the proof to the finalization layer.
+Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the proof to the finalization layer.
 
 The complete lifecycle of a forced transaction is as follows:
 
