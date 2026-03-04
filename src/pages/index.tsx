@@ -116,7 +116,11 @@ export default function Home(): React.ReactNode {
         <HomepageHeader />
         <main>
           <CardGrid heading="Start building" cards={startBuildingCards} />
-          <CardGrid heading="Join the community" cards={communityCards} equalizeHeights={false} />
+          <CardGrid
+            heading="Join the community"
+            cards={communityCards}
+            equalizeHeights={false}
+          />
           <ContributeBanner />
         </main>
       </Layout>

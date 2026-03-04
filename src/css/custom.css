@@ -396,8 +396,7 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   border: 1px solid #e5e5e5;
   display: block;
   width: 100%;
@@ -595,7 +594,7 @@ textarea {
   --admonition-danger-link: #ffc29e;
 
   /* Link hover colors per admonition type (dark theme) */
-  --admonition-tip-link-hover: #ffffff;
+  --admonition-tip-link-hover: #fff;
   --admonition-info-link-hover: #c2f2ff;
   --admonition-note-link-hover: #c4b5fd;
   --admonition-warning-link-hover: #f5d0fe;
@@ -617,7 +616,7 @@ textarea {
 
   /* Brand tokens */
   --linea-text-primary: #f8f7f2;
-  --linea-arrow-btn-bg: #ffffff;
+  --linea-arrow-btn-bg: #fff;
   --linea-purple-light: #a78bfa;
   --linea-gray-mid: #808080;
 }
@@ -705,7 +704,7 @@ textarea {
   --admonition-danger-link: #5c1f00;
 
   /* Link hover colors per admonition type (light theme) */
-  --admonition-tip-link-hover: #ffffff;
+  --admonition-tip-link-hover: #fff;
   --admonition-info-link-hover: #005988;
   --admonition-note-link-hover: #6119ef;
   --admonition-warning-link-hover: #8a1894;
@@ -727,7 +726,7 @@ textarea {
 
   /* Brand tokens */
   --linea-text-primary: #121212;
-  --linea-arrow-btn-bg: #ffffff;
+  --linea-arrow-btn-bg: #fff;
   --linea-purple-light: #a78bfa;
   --linea-gray-mid: #808080;
 }
@@ -934,14 +933,14 @@ html[data-theme='dark'] .header-release-notes-link::before {
 
 /* Mobile sidebar brand header — white bg with gray divider */
 .navbar-sidebar__brand {
-  background: #ffffff !important;
+  background: #fff !important;
   border-bottom: 1px solid #e5e5e5;
   padding: 0 16px;
 }
 
 [data-theme="dark"] .navbar-sidebar__brand {
   background: #121212 !important;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #333;
 }
 
 /* Mobile navbar: show abbreviated mark logo instead of full text logo */
@@ -1854,7 +1853,7 @@ html[data-theme="dark"][class*="docs-doc-id-api"] .theme-doc-sidebar-container {
 
 /* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
 .thin-scrollbar::-webkit-scrollbar {
-  -webkit-appearance: none;
+  appearance: none;
   width: 7px;
   background: transparent;
 }
@@ -2546,6 +2545,7 @@ details > div {
 .theme-admonition-tip .theme-admonition-content a {
   color: var(--admonition-tip-link) !important;
 }
+
 .theme-admonition-tip .admonitionContent_BuS1 a:hover,
 .theme-admonition-tip .theme-admonition-content a:hover {
   color: var(--admonition-tip-link-hover) !important;
@@ -2575,6 +2575,7 @@ details > div {
 .theme-admonition-info .theme-admonition-content a {
   color: var(--admonition-info-link) !important;
 }
+
 .theme-admonition-info .admonitionContent_BuS1 a:hover,
 .theme-admonition-info .theme-admonition-content a:hover {
   color: var(--admonition-info-link-hover) !important;
@@ -2604,6 +2605,7 @@ details > div {
 .theme-admonition-note .theme-admonition-content a {
   color: var(--admonition-note-link) !important;
 }
+
 .theme-admonition-note .admonitionContent_BuS1 a:hover,
 .theme-admonition-note .theme-admonition-content a:hover {
   color: var(--admonition-note-link-hover) !important;
@@ -2638,6 +2640,7 @@ details > div {
 .theme-admonition-warning .theme-admonition-content a {
   color: var(--admonition-warning-link) !important;
 }
+
 .theme-admonition-warning .admonitionContent_BuS1 a:hover,
 .theme-admonition-warning .theme-admonition-content a:hover {
   color: var(--admonition-warning-link-hover) !important;
@@ -2672,6 +2675,7 @@ details > div {
 .theme-admonition-danger .theme-admonition-content a {
   color: var(--admonition-danger-link) !important;
 }
+
 .theme-admonition-danger .admonitionContent_BuS1 a:hover,
 .theme-admonition-danger .theme-admonition-content a:hover {
   color: var(--admonition-danger-link-hover) !important;
@@ -2764,6 +2768,7 @@ details > div {
 [data-theme="dark"] .theme-admonition-tip .theme-admonition-content a {
   color: var(--admonition-tip-link) !important;
 }
+
 [data-theme="dark"] .theme-admonition-tip .admonitionContent_BuS1 a:hover,
 [data-theme="dark"] .theme-admonition-tip .theme-admonition-content a:hover {
   color: var(--admonition-tip-link-hover) !important;
@@ -2773,6 +2778,7 @@ details > div {
 [data-theme="dark"] .theme-admonition-info .theme-admonition-content a {
   color: var(--admonition-info-link) !important;
 }
+
 [data-theme="dark"] .theme-admonition-info .admonitionContent_BuS1 a:hover,
 [data-theme="dark"] .theme-admonition-info .theme-admonition-content a:hover {
   color: var(--admonition-info-link-hover) !important;
@@ -2782,6 +2788,7 @@ details > div {
 [data-theme="dark"] .theme-admonition-note .theme-admonition-content a {
   color: var(--admonition-note-link) !important;
 }
+
 [data-theme="dark"] .theme-admonition-note .admonitionContent_BuS1 a:hover,
 [data-theme="dark"] .theme-admonition-note .theme-admonition-content a:hover {
   color: var(--admonition-note-link-hover) !important;
@@ -2791,6 +2798,7 @@ details > div {
 [data-theme="dark"] .theme-admonition-warning .theme-admonition-content a {
   color: var(--admonition-warning-link) !important;
 }
+
 [data-theme="dark"] .theme-admonition-warning .admonitionContent_BuS1 a:hover,
 [data-theme="dark"] .theme-admonition-warning .theme-admonition-content a:hover {
   color: var(--admonition-warning-link-hover) !important;
@@ -2800,6 +2808,7 @@ details > div {
 [data-theme="dark"] .theme-admonition-danger .theme-admonition-content a {
   color: var(--admonition-danger-link) !important;
 }
+
 [data-theme="dark"] .theme-admonition-danger .admonitionContent_BuS1 a:hover,
 [data-theme="dark"] .theme-admonition-danger .theme-admonition-content a:hover {
   color: var(--admonition-danger-link-hover) !important;
@@ -2936,7 +2945,7 @@ article a,
 /* SubmissionButton overrides the article a rule above */
 article a.submission-button,
 .theme-doc-markdown a.submission-button {
-  color: #ffffff !important;
+  color: #fff !important;
   text-decoration: none !important;
 }
 
@@ -3098,8 +3107,8 @@ div[class*="codeBlockContainer"] div[class*="buttonGroup"] button {
 }
 
 div[class*="codeBlockContainer"] div[class*="buttonGroup"] button:hover {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  background: rgb(255 255 255 / 10%) !important;
 }
 
 /* Remove any border and extra padding from pre elements */
@@ -3111,8 +3120,7 @@ pre[class*="language-"] {
   background-color: transparent !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
+  overflow: auto hidden !important;
 }
 
 /* Code styling */
@@ -3219,7 +3227,7 @@ div[class*="codeBlockContainer"] pre::-webkit-scrollbar {
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-track {
   background: #1C1C1C;
   border-radius: 3px;
-  border: 1px solid #333333;
+  border: 1px solid #333;
 }
 
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb {
@@ -3228,7 +3236,7 @@ div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb {
 }
 
 div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb:hover {
-  background: #666666;
+  background: #666;
 }
 
 /* Custom scrollbar for tables - thin, rounded, themed */
@@ -3306,11 +3314,11 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 [data-theme="dark"] .changelog-date__arrow {
-  color: #ffffff;
+  color: #fff;
 }
 
 .changelog-date__arrow {
-  color: #000000;
+  color: #000;
   font-size: 14px;
   flex-shrink: 0;
 }
@@ -3392,7 +3400,7 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 .changelog-tag--upgrade {
-  background: rgba(97, 223, 255, 0.15);
+  background: rgb(97 223 255 / 15%);
   color: #0B668C;
 }
 
@@ -3407,7 +3415,7 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 .changelog-tag--action-required {
-  background: rgba(212, 110, 223, 0.15);
+  background: rgb(212 110 223 / 15%);
   color: #611C69;
 }
 
@@ -3423,7 +3431,7 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 [data-theme="dark"] .changelog-tag--upgrade {
-  background: rgba(97, 223, 255, 0.15);
+  background: rgb(97 223 255 / 15%);
   color: #61DFFF;
 }
 
@@ -3438,7 +3446,7 @@ table::-webkit-scrollbar-thumb:hover {
 }
 
 [data-theme="dark"] .changelog-tag--action-required {
-  background: rgba(212, 110, 223, 0.15);
+  background: rgb(212 110 223 / 15%);
   color: #D46EDF;
 }
 
