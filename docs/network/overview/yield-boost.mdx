@@ -56,13 +56,13 @@ Importantly, the Yield Boost design ensures that ETH withdrawals are always avai
 
 **To ensure that ETH withdrawals from Linea back to the L1 are always supported, the system incorporates a multi-layered withdrawal resilience strategy, including the liquidity buffer, permissionless withdrawals, and a last-resort stETH withdrawal process.**
 
-### Withdrawl guarantees
+### Withdrawal guarantees
 
 To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the TVS. In the default flow, when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
 
 The system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 
-- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#2-reserve-replenishment) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Permissionless mechanisms allow any user to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
+- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Permissionless mechanisms allow any user to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
 
 - As a last-resort mechanism, withdrawals will be fulfilled by [minting stETH against the StakingVault collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) and sending it directly to the user. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
 
@@ -134,7 +134,7 @@ This section addresses some of the most common questions regarding the functiona
 
 **Do I ever lose access to my ETH on L1 or L2?**
 
-- No. You can bridge your ETH back to Ethereum Mainnet at any time. The system maintains a Liquidity Buffer of unstaked ETH specifically to service withdrawals. Under normal operating conditions, this ensures that funds are available immediately, without the standard lock-up periods associated with staking. In addition to this main flow, two permissionless fallback flows exist to ensure that you can [always withdraw your funds](#withdrawl-guarantees).
+- No. You can bridge your ETH back to Ethereum Mainnet at any time. The system maintains a Liquidity Buffer of unstaked ETH specifically to service withdrawals. Under normal operating conditions, this ensures that funds are available immediately, without the standard lock-up periods associated with staking. In addition to this main flow, two permissionless fallback flows exist to ensure that you can [always withdraw your funds](#withdrawal-guarantees).
 
 **Why can't users choose to opt-out?**
 
