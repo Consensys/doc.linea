@@ -1,48 +1,54 @@
 ---
-title: Enable forced transactions
-description: Product-focused guidance for enabling forced transactions in Linea apps.
+title: Submit forced transactions
+description: Enable and submit forced transactions on Linea.
 sidebar_position: 6
+image: /img/socialCards/forced-transactions.jpg
 ---
 
-Forced transactions allow users to submit transactions directly to the Layer 1 (L1), Ethereum, that must be processed by the sequencer by a specific deadline. This system allows a processing guarantee that is enforced at finality. 
+Forced transactions allow users to submit transactions directly to Ethereum (L1) with a guaranteed processing deadline. This manual submission mechanism helps users submit transactions even when the normal L2 path is blocked or delayed.
 
-## Understand forced transactions
+## What are forced transactions?
 
-Forced transactions are an anti-censorhip mechanism that helps users submit transactions even when the normal L2 submission path is blocked or delayed.
-
-When a user submits a forced transaction, they submit a signed L2 transaction to the L1, with a requirement that the sequencer processes it by a specified block deadline. 
+Forced transactions are an anti-censorship mechanism that bypasses the normal L2 submission path and submits transactions directly to the L1. When a user submits a forced transaction, they submit a signed L2 transaction to the L1, with a requirement that the sequencer processes the transaction by a specified block deadline. 
 
 Typically, the sequencer will process the transaction well before the deadline -- the deadline is the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization will revert.
 
-Forced transactions are chained using a MiMC-based rolling hash. The rolling hash commits to the complete ordered sequence of forced transactions, ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, and reordering attacks.
+Forced transactions are chained using an MiMC-based rolling hash. The rolling hash commits to the complete ordered sequence of forced transactions, ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, and reordering attacks.
 
-:::warning Transaction processing
-A forced transaction can be processed by the sequencer, but still fail on the L2 for reasons such as an invalid nonce, insufficient balance, low gas limit, or contract revert.
-:::
+### Processing vs. execution
 
-For more information about how forced transactions work, see [below](#technical-components).
+A forced transaction can be processed by the sequencer, but still fail on the L2. The sequencer only processes the transaction; it does not attempt to execute it. After a forced transaction is processed by the sequencer, it will be attempted by the L2 prover. 
+
+At this stage, the transaction may fail to execute on the L2. Reasons for failure include: 
+
+| Failure Reason | Description |
+|----------------|-------------|
+| **Invalid Nonce** | The signer's nonce on L2 has changed since the transaction was signed. Another transaction may have executed first. |
+| **Insufficient Gas** | The `gasLimit` specified is too low for the transaction to complete. |
+| **Insufficient Balance** | The signer doesn't have enough ETH on L2 to cover `value + (gasLimit * maxFeePerGas)`. |
+| **Contract Revert** | The target contract's logic reverted the call (require failed, custom error, etc.). |
+| **Out of Gas During Execution** | Complex computation exhausted the gas limit mid-execution. |
+| **Invalid Signature** | Edge cases where the signature is technically valid but doesn't match L2 state. |
 
 ### Use cases
 
-Forced transactions support strong delivery guarantees and user trust for critical actions.
-
-Some examples of ideal forced transaction use cases include:
+Ideal forced transaction use cases include transactions that need strong delivery guarantees, such as:
 
 - Withdrawal requests and claims
 - Liquidation and risk-management actions
 - Guaranteed governance transaction processing
-- Emergency controls and safety operations
+- Emergency controls and safety operations.
 
 ## Enable the forced path
 
-Forced transactions is not enabled by default. To enable forced transactions on your smart contract, you need to:
+Forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
 
-1. Deploy an `AddressFilter` contract 
-2. Deploy a `ForcedTransactionGateway` contract
+1. Deploy the `AddressFilter` contract 
+2. Deploy the `ForcedTransactionGateway` contract
 
 Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
 
-## Submit forced transactions
+## Submit a forced transaction
 
 To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1.
 
@@ -73,7 +79,15 @@ struct Eip1559Transaction {
 }
 ```
 
-When submitting the transaction, the gateway will validate the last finalized state matches, validate the  transaction details are within limits, the appropriate fee has been paid, and will then send it to the LineaRollup for storage.
+When submitting the transaction, the gateway will validate that:
+
+- the last finalized state matches
+- the transaction details are within limits
+- the appropriate fee has been paid.
+
+At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
+
+The gateway will then send the transaction to the LineaRollup for storage.
 
 ## Technical components
 
