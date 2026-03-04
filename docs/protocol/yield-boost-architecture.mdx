@@ -21,7 +21,7 @@ This page maps the high-level architecture of Yield Boost, including where ETH f
 
 ## High-level architecture
 
-Linea bridge deposits on Ethereum L1 are staked via a Lido V3 stVault to generate Beacon Chain rewards, which are [distributed on Linea L2](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+Linea bridge deposits on Ethereum (L1) are staked via a Lido V3 stVault to generate Beacon Chain rewards, which are [distributed on Linea (L2)](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
 
 ### Key participants
 
@@ -34,7 +34,7 @@ Linea bridge deposits on Ethereum L1 are staked via a Lido V3 stVault to generat
 
 ### L1 ETH flow
 
-When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use it on Linea (L2), that ETH remains on L1 and may be staked on Ethereum’s Beacon Chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
+When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s Beacon Chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
 
 - **Native token bridge:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
 - **YieldManager:** L1 contract that moves ETH between the Linea bridge and the StakingVault, and calculates net yield after fees and liabilities.
@@ -76,7 +76,7 @@ flowchart TD
 
 ### Yield reporting and L2 distribution
 
-The yield earned from the Beacon Chain is transferred to L2 for distribution. The following components are involved:
+The yield earned from the Beacon Chain is transferred to the L2 for distribution. The following components are involved:
 
 - **YieldManager:** L1 accounting and settlement contract (see [L1 Eth flow](#l1-eth-flow)).
 - **[Dashboard](https://docs.lido.fi/contracts/dashboard#what-is-dashboard):** Lido V3 management layer around the StakingVault; handles fee accounting and deposit/withdrawal operations.
@@ -141,20 +141,20 @@ The Yield Boost system is governed by a set of roles and permissions that contro
 | `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which YieldManager contract the bridge uses (no ETH movement) |
 | Permissionless | Anyone | Donate ETH to the bridge or vault; trigger unstaking and reserve top-up when the bridge balance is too low |
 
-## Fund flow scenarios
+## Fund flows
 
 Each scenario below traces a specific ETH movement end-to-end, showing the contracts involved and the role that triggers it.
 
 1. **Staking** (routine) -- the Automation Service rebalances surplus ETH from the Linea bridge into the StakingVault for validator staking.
-2. **Reserve replenishment** (routine) -- the Automation Service rebalances ETH back from validators into Linea bridge when the withdrawal reserve runs low.
+2. **Reserve replenishment** (routine) -- the Automation Service rebalances ETH back from validators into the Linea bridge when the withdrawal reserve runs low.
 3. **Yield reporting** (routine) -- earned rewards are calculated, obligations settled, and net yield relayed to L2.
 4. **Permissionless flows** (fallback) -- anyone can trigger unstaking and replenishment when the reserve drops below minimum.
-5. **LST withdrawal** (last resort) -- if Linea bridge does not hold enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
+5. **LST withdrawal** (last resort) -- if the Linea bridge does not hold enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
 6. **Ossification withdrawal** (terminal) -- all staked funds are progressively withdrawn after the Security Council ossifies the vault.
 
 ### 1. Staking
 
-Surplus ETH in the Linea bridge (above minimum reserve) is routed to the StakingVault for Beacon Chain staking.
+Surplus ETH in the Linea bridge (above the minimum reserve) is routed to the StakingVault for Beacon Chain staking.
 
 ```mermaid
 sequenceDiagram
@@ -177,7 +177,7 @@ sequenceDiagram
 
 ### 2. Reserve replenishment
 
-Replenishing the withdrawal reserve is a two-phase process: first trigger Beacon Chain withdrawal, then route funds to the Linea bridge once they arrive in the vault.
+Replenishing the withdrawal reserve is a two-phase process: first the Beacon Chain withdrawal is triggered, then funds are routed back to the Linea bridge once they arrive in the vault.
 
 ```mermaid
 sequenceDiagram
@@ -239,9 +239,9 @@ sequenceDiagram
     L2MS->>L2YD: distribute yield
 ```
 
-No ETH is bridged during yield reporting. The MessageSent event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
+No ETH is bridged during yield reporting. The `MessageSent` event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
 
-This is safe because staking rewards grow L1 collateral by the same amount that L2 mints, so the system stays fully collateralized.
+Staking rewards grow the L1 collateral by the same amount that the L2 mints, so the system stays fully collateralized.
 
 ### 4. Permissionless flows
 
@@ -276,9 +276,9 @@ sequenceDiagram
 
 `unstakePermissionless()` is capped to the remaining deficit minus available liquidity in the YieldManager and provider. `replenishWithdrawalReserve()` is similarly capped to the current deficit.
 
-### 5. LST withdrawal -- last resort
+### 5. LST withdrawal
 
-If the Linea bridge lacks ETH for a user withdrawal, stETH is minted against the StakingVault collateral and sent directly to the user as a last resort.
+If the Linea bridge lacks ETH for a user withdrawal, stETH is minted against the StakingVault collateral and sent directly to the user as a last-resort mechanism.
 
 ```mermaid
 sequenceDiagram
@@ -326,6 +326,35 @@ sequenceDiagram
         SV-->>LR: send ETH
     end
 ```
+
+## Risk mitigation
+
+The Yield Boost system is designed to be resilient to various risks, including:
+
+- Slashing
+- Withdrawal delay
+
+### Slashing
+
+If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with staking. 
+
+The risk of slashing is rare: only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH.
+
+Even with this low risk, the Yield Boost system has the following mitigations in place:
+
+- Node operators will only be selected for participation in the Yield Boost system if they have never been slashed. Selected node operators must also have a diverse infrastructure with more than 99.9% uptime, safeguards to prevent double-signing, and world-class security practices.
+- 20% of node operator fees will be retained for a year to create an insurance fund to cover slashing events. Any user in the Yield Boost system impacted by a slashing event will be eligible for this fund.
+
+### Withdrawal delay
+
+In certain market conditions, such as a sharp increase in the demand for bridging ETH to Ethereum, the withdrawal reserve may be depleted. This can cause a delay in the withdrawal of ETH from Linea back to Ethereum.
+
+The Yield Boost system has the following mitigations in place:
+
+- The withdrawal reserve is maintained at a minimum of 40% of the Total Value Staked (TVS).
+- The Automation Service will trigger a rebalancing of funds to replenish the withdrawal reserve after a withdrawal transaction is initiated.
+- In the unlikely event that the withdrawal reserve is depleted, users can [trigger unstaking](/protocol/yield-boost-architecture#4-permissionless-flows) to replenish the withdrawal reserve.
+- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal----last-resort) rather than ETH.
 
 ## Quick reference
 
