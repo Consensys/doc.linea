@@ -5,9 +5,9 @@ sidebar_position: 4
 image: /img/socialCards/yield-boost.jpg
 ---
 
-:::caution
+:::caution[Status]
 
-Yield Boost is not yet live. This documentation describes the intended design.
+🚧 Yield Boost is not yet live. This documentation describes the intended design.
 
 :::
 
@@ -34,7 +34,7 @@ The Yield Boost mechanism transforms bridging into an active contribution to the
 
 1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into Linea's Lido v3 stVault on Ethereum Mainnet. 
 
-This process is automatic and applies to all bridged ETH until the final target of 60% of the Total Value Staked (TVS) is reached. 
+	This process is automatic and applies to all bridged ETH until the final target of 60% of the Total Value Staked (TVS) is reached. 
 
 2. **Reward generation and harvesting**: ETH in the stVault is staked and participates in Ethereum's [Proof-of-Stake](https://ethereum.org/developers/docs/consensus-mechanisms/pos/) consensus mechanism, generating rewards. These staking rewards accrue and are periodically harvested by an automated offchain service.
 
@@ -58,7 +58,7 @@ Importantly, the Yield Boost design ensures that ETH withdrawals are always avai
 
 #### Resilient exit design
 
-To support withdrawls of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the TVS. In the default flow, when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
+To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the TVS. In the default flow, when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
 
 The system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 

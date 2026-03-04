@@ -7,15 +7,15 @@ sidebar_position: 4
 
 # Yield Boost technical overview
 
-:::caution
+:::caution[status]
 
-Yield Boost is not yet live. This documentation describes the intended design.
+🚧 Yield Boost is not yet live. This documentation describes the intended design.
 
 :::
 
 ## What is it?
 
-[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism that automatically stakes a proportion of the ETH held in the Linea bridge and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
+[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism implemented on the [Public network](../network/quickstart) that automatically stakes a proportion of the ETH held in the Linea bridge and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
 This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
 
@@ -38,7 +38,7 @@ When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use
 
 - **Native token bridge:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
 - **YieldManager:** L1 contract that moves ETH between the Linea bridge and the StakingVault, and calculates net yield after fees and liabilities.
-- **StakingVault:** Lido V3 stvault that holds ETH awaiting Beacon Chain staking; all validator withdrawals return here before moving back to the Linea bridge.
+- **StakingVault:** Lido V3 stVault that holds ETH awaiting Beacon Chain staking; all validator withdrawals return here before moving back to the Linea bridge.
 - **Beacon Chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
 - **Node operator:** Runs Beacon Chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
@@ -344,6 +344,6 @@ sequenceDiagram
 
 ## Next steps
 
-See the [Yield Boost overview](/network/overview/yield-boost/) page for a more general overview of Yield Boost, including the user experience and withdrawal resilience strategy.
+See the [Yield Boost overview](../network/overview/yield-boost/) page for a more general overview of Yield Boost, including the user experience and withdrawal resilience strategy.
 
-See the [Security Council record](/changelog/security-council-record/) page for a record of Security Council transactions.
+See the [Security Council record](../changelog/security-council-record#february-26-2026) page for a record of Security Council transactions.
