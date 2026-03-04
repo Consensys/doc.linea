@@ -43,7 +43,7 @@ When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use
 - **Node operator:** Runs Beacon Chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
-The follow diagram details the flow:
+The following diagram details the flow:
 
 ```mermaid
 flowchart TD
@@ -133,9 +133,9 @@ The Yield Boost system is governed by a set of roles and permissions that contro
 | Role | Held by | Permissions |
 |------|---------|----------------------|
 | `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Rebalance excess ETH from the bridge into the StakingVault |
-| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from validators into the bridge |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from node operators into the bridge |
 | `YIELD_REPORTER_ROLE` | Automation Service | Trigger yield reporting, which may involve payment of fees and liabilities from staking rewards |
-| `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council | Pause or resume validator deposits (no ETH movement) |
+| `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council | Pause or resume node operator deposits (no ETH movement) |
 | `OSSIFICATION_INITIATOR_ROLE` | Security Council | Begin permanent shutdown of the staking vault; Lido may require fee settlement before proceeding |
 | `OSSIFICATION_PROCESSOR_ROLE` | Automation Service | Finalize vault ossification; Lido may require fee settlement before proceeding |
 | `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which YieldManager contract the bridge uses (no ETH movement) |
@@ -206,7 +206,7 @@ sequenceDiagram
 
 ### 3. Yield reporting
 
-The Automation Service triggers yield reporting. Before the net surplus is relayed to L2, the YieldManager settles outstanding obligations.
+The Automation Service triggers yield reporting. Before the net surplus is relayed to Linea, the YieldManager settles outstanding obligations.
 
 ```mermaid
 sequenceDiagram
@@ -239,13 +239,13 @@ sequenceDiagram
     L2MS->>L2YD: distribute yield
 ```
 
-No ETH is bridged during yield reporting. The `MessageSent` event is synthetic: it tells L2 how much new yield is available without actually bridging any ETH.
+No ETH is bridged during yield reporting. The `MessageSent` event is synthetic: it tells Linea how much new yield is available without actually bridging any ETH.
 
 Staking rewards grow the L1 collateral by the same amount that the L2 mints, so the system stays fully collateralized.
 
 ### 4. Permissionless flows
 
-When the Linea bridge balance drops below the minimum reserve, anyone can trigger unstaking and reserve replenishment.
+When the Linea bridge balance drops below the minimum reserve, anyone can trigger the YieldManager to initiate unstaking and reserve replenishment.
 
 ```mermaid
 sequenceDiagram
@@ -299,7 +299,7 @@ This creates an LST liability that accrues interest; the system prioritizes repa
 
 ### 6. Ossification withdrawal
 
-Ossification permanently locks the StakingVault implementation, opting out of future upgrades. The Security Council initiates it; the Automation Service then progressively withdraws all staked funds back to the Linea bridge.
+Ossification permanently locks the StakingVault implementation, opting out of future Lido upgrades. Ossification is initiated by the Security Council; the Automation Service then progressively withdraws all staked funds back to the Linea bridge.
 
 ```mermaid
 sequenceDiagram
@@ -336,14 +336,12 @@ The Yield Boost system is designed to be resilient to various risks, including:
 
 ### Slashing
 
-If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with staking. 
+If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with the validator role. 
 
-The risk of slashing is rare: only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH.
-
-Even with this low risk, the Yield Boost system has the following mitigations in place:
+While the risk of slashing is rare (only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH), the Yield Boost system has the following mitigations in place:
 
 - Node operators will only be selected for participation in the Yield Boost system if they have never been slashed. Selected node operators must also have a diverse infrastructure with more than 99.9% uptime, safeguards to prevent double-signing, and world-class security practices.
-- 20% of node operator fees will be retained for a year to create an insurance fund to cover slashing events. Any user in the Yield Boost system impacted by a slashing event will be eligible for this fund.
+- 20% of node operator validator rewards will be retained for a year to create an insurance fund to cover slashing events. Any user in the Yield Boost system impacted by a slashing event will be eligible to access this fund.
 
 ### Withdrawal delay
 
@@ -354,14 +352,14 @@ The Yield Boost system has the following mitigations in place:
 - The withdrawal reserve is maintained at a minimum of 40% of the Total Value Staked (TVS).
 - The Automation Service will trigger a rebalancing of funds to replenish the withdrawal reserve after a withdrawal transaction is initiated.
 - In the unlikely event that the withdrawal reserve is depleted, users can [trigger unstaking](/protocol/yield-boost-architecture#4-permissionless-flows) to replenish the withdrawal reserve.
-- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal----last-resort) rather than ETH.
+- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal) rather than ETH.
 
 ## Quick reference
 
 | Fund Movement | Source | Destination | Trigger | Role Required |
 |--------------|--------|-------------|---------|---------------|
 | Stake excess reserve | Linea bridge | StakingVault | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
-| Beacon Chain deposit | StakingVault | Validators | Node Operator decision | Node Operator |
+| Beacon Chain deposit | StakingVault | Node operators | Node Operator decision | Node Operator |
 | Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
 | Operator replenish reserve | StakingVault | Linea bridge | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | StakingVault | Reserve below minimum | Permissionless |
@@ -375,4 +373,4 @@ The Yield Boost system has the following mitigations in place:
 
 See the [Yield Boost overview](../network/overview/yield-boost/) page for a more general overview of Yield Boost, including the user experience and withdrawal resilience strategy.
 
-See the [Security Council record](../changelog/security-council-record#february-26-2026) page for a record of Security Council transactions.
+See the [Security Council record](../changelog/security-council-record#february-26-2026) page for a record of the Security Council transaction implementing this protocol.
