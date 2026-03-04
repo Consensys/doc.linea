@@ -43,7 +43,7 @@ When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use
 - **Node operator:** Runs Beacon Chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
-The follow diagram details the flow:
+The following diagram details the flow:
 
 ```mermaid
 flowchart TD
@@ -352,7 +352,7 @@ The Yield Boost system has the following mitigations in place:
 - The withdrawal reserve is maintained at a minimum of 40% of the Total Value Staked (TVS).
 - The Automation Service will trigger a rebalancing of funds to replenish the withdrawal reserve after a withdrawal transaction is initiated.
 - In the unlikely event that the withdrawal reserve is depleted, users can [trigger unstaking](/protocol/yield-boost-architecture#4-permissionless-flows) to replenish the withdrawal reserve.
-- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal----last-resort) rather than ETH.
+- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal) rather than ETH.
 
 ## Quick reference
 
