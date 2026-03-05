@@ -9,7 +9,7 @@ Forced transactions allow users to submit transactions directly to Ethereum (L1)
 
 ## What are forced transactions?
 
-Forced transactions are an anti-censorship mechanism that bypasses the normal L2 submission path and submits transactions directly to the L1. When a user submits a forced transaction, they submit a signed L2 transaction to the L1, with a requirement that the sequencer processes the transaction by a specified block deadline. 
+Forced transactions are an anti-censorship mechanism that bypasses the normal L2 submission path and submits transactions directly to the L1. When a user submits a forced transaction, they submit a signed L2 transaction to the L1. Forced transactions are guaranteed to be processed by the sequencer by a specified block deadline. 
 
 Typically, the sequencer will process the transaction well before the deadline -- the deadline is the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization will revert.
 
@@ -37,7 +37,7 @@ Ideal forced transaction use cases include transactions that need strong deliver
 - Withdrawal requests and claims
 - Liquidation and risk-management actions
 - Guaranteed governance transaction processing
-- Emergency controls and safety operations.
+- Emergency controls and safety operations
 
 ## Enable the forced path
 
@@ -46,20 +46,66 @@ Forced transaction submission is not enabled by default. To enable forced transa
 1. Deploy the `AddressFilter` contract 
 2. Deploy the `ForcedTransactionGateway` contract
 
+Note that the `AddressFilter` contract is also required to initiate your rollup, so you should already have it deployed.
+
 Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
 
 ## Submit a forced transaction
 
-To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1.
+To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1:
 
-Once you have the latest finalized state and rolling hashes, you can construct an L1 forced transaction submission with the following fields:
+```typescript
+// 1. Get the latest FinalizedStateUpdated event
+const events = await lineaRollup.queryFilter(
+    lineaRollup.filters.FinalizedStateUpdated()
+);
+const latestEvent = events[events.length - 1];
 
-LastFinalizedState:
-- `timestamp`
-- `messageNumber`
-- `forcedTxNumber`
-- `messageRollingHash`
-- `forcedTxRollingHash`
+// 2. Extract values from the event
+const { 
+    blockNumber,              // L2 block number (indexed)
+    timestamp,                // Finalization timestamp
+    messageNumber,            // L1->L2 message number
+    forcedTransactionNumber   // Last finalized forced tx number
+} = latestEvent.args;
+
+// 3. Query rolling hashes from contract state
+const messageRollingHash = await lineaRollup.rollingHashes(messageNumber);
+const forcedTransactionRollingHash = await lineaRollup
+    .forcedTransactionRollingHashes(forcedTransactionNumber);
+
+// 4. Construct the LastFinalizedState
+const lastFinalizedState = {
+    timestamp,
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash
+};
+
+// 5. OPTIONAL: Verify it matches the contract's stored hash
+const expectedHash = keccak256(abi.encode(
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash,
+    timestamp
+));
+const storedHash = await lineaRollup.currentFinalizedState();
+assert(expectedHash === storedHash, "State mismatch - data may be stale");
+```
+
+Once you have the correct values, you can construct a forced transaction submission with the following fields:
+
+```bash
+struct LastFinalizedState {
+    uint256 timestamp;                    // Last finalized L2 block timestamp
+    uint256 messageNumber;                // L1→L2 message number at finalization
+    bytes32 messageRollingHash;           // Rolling hash of L1→L2 messages
+    uint256 forcedTransactionNumber;      // Last finalized forced tx number
+    bytes32 forcedTransactionRollingHash; // Rolling hash of forced transactions
+}
+```
 
 Then, sign an EIP-1559 transaction destined for the L2:
 
@@ -102,7 +148,7 @@ When a user submits a forced transaction, the following components validate and 
 
 When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the transaction to the `LineaRollup`.
 
-The Linea rollup stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline. At this stage, the transaction is also checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
+The Linea rollup stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline.
 
 The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing. The sequencer receives the transaction and must process it before the deadline.
 
