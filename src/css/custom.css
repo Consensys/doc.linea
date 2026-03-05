@@ -1983,6 +1983,28 @@ a.menu__link {
   margin-left: 0 !important;
 }
 
+/* Sidebar depth indentation — using Docusaurus level classes to reliably target each depth.
+   Specificity of each rule is (0,4,0), placed after all generic rules so they always win. */
+
+/* Level 3 items (e.g. "Sequencer", "Prover" inside "Architecture") */
+.menu__list > .theme-doc-sidebar-item-category-level-3 > .menu__list-item-collapsible > .menu__link,
+.menu__list > .theme-doc-sidebar-item-link-level-3 > .menu__link {
+  padding-left: 20px !important;
+}
+
+/* Level 4 items (e.g. "Traces generation", "Conflation" inside "Sequencer")
+   Two .menu__list ancestors give specificity (0,4,0), beating all generic (0,3,0) rules */
+.menu__list .menu__list > .theme-doc-sidebar-item-link-level-4 > .menu__link,
+.menu__list .menu__list > .theme-doc-sidebar-item-category-level-4 > .menu__list-item-collapsible > .menu__link {
+  padding-left: 32px !important;
+}
+
+/* Level 5 items (if any) */
+.menu__list .menu__list > .theme-doc-sidebar-item-link-level-5 > .menu__link,
+.menu__list .menu__list > .theme-doc-sidebar-item-category-level-5 > .menu__list-item-collapsible > .menu__link {
+  padding-left: 44px !important;
+}
+
 .menu__link--active:not(.menu__link--sublist) {
   color: #6119ef !important;
   background: rgb(97 25 239 / 10%) !important;
@@ -2140,7 +2162,7 @@ a.menu__link {
   content: "On this page";
   display: block;
   font-family: AtypText, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #121212;
   margin-bottom: 8px;
@@ -2174,7 +2196,7 @@ a.menu__link {
 /* Inactive links - grey */
 .table-of-contents__link {
   font-family: AtypText, sans-serif !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-weight: 400 !important;
   color: #808080 !important;
   line-height: 1.4;

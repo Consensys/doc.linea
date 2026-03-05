@@ -73,7 +73,7 @@ export default function Home(): React.ReactNode {
       iconSrc: "/img/card_icon_launch.png",
     },
     {
-      title: "Build and launch on Linea",
+      title: "Build and deploy on Linea",
       link: "/network/quickstart",
       description: (
         <>
