@@ -1,0 +1,51 @@
+---
+title: Phylax
+image: /img/socialCards/phylax.jpg
+---
+
+[Phylax Systems](https://phylax.systems) provides the **Credible Layer**, security infrastructure
+that enables developers to prevent exploits before they execute by linking security rules directly 
+to smart contracts on-chain.
+
+## How the Credible Layer works
+
+The Credible Layer allows developers to define **assertions** — security rules written in Solidity 
+that specify states a protocol should never reach. These assertions are validated against every 
+transaction that interacts with protected smart contracts, and any transaction that violates the 
+rules is dropped before inclusion in a block.
+
+The workflow consists of three steps:
+
+1. **Define rules in Solidity**: Write assertions that define invalid states for your protocol. No
+   modifications to your existing smart contracts are required.
+2. **Network validates every transaction**: The network checks each transaction against your 
+   assertions before it is included in a block.
+3. **Invalid transactions are dropped**: Transactions violating your rules are dropped by the 
+   network and never executed.
+
+## Key features
+
+- **Pre-execution prevention**: Exploits are blocked before they execute, not detected after the
+  fact.
+- **No contract changes**: Add protection to any contract, including immutable ones.
+- **Transparent and verifiable**: All rules are public Solidity, auditable by anyone.
+- **No external execution services**: Enforcement runs within the network's block-building flow.
+- **Zero false positives**: Binary enforcement based on defined rules with no probabilistic
+  detection.
+
+## Get started
+
+- [Quickstart guide](https://docs.phylax.systems/credible/pcl-quickstart) — Write and deploy your
+  first assertion.
+- [Architecture overview](https://docs.phylax.systems/credible/architecture-overview) — Technical
+  deep dive into system design and transaction flow.
+- [Assertions book](https://docs.phylax.systems/assertions-book/assertions-book-intro) — Explore
+  assertion patterns and real-world exploit prevention examples.
+- [Phylax documentation](https://docs.phylax.systems/) — Full developer documentation.
+
+## Resources
+
+- [Website](https://phylax.systems)
+- [GitHub](https://github.com/phylaxsystems)
+- [Telegram](https://t.me/phylax_credible_layer)
+- [X/Twitter](https://x.com/phylaxsystems)
