@@ -86,7 +86,7 @@ export default function CardGrid({
     return () => {
       window.removeEventListener("resize", setEqualHeight);
     };
-  }, []);
+  }, [equalizeHeights]);
 
   return (
     <section

@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   gap: 42px;
-  padding: 112px 74px;
+  padding: 100px 70px;
   background: var(--footer-background);
   border-top: 1px solid #e5e5e5;
 }
@@ -22,6 +22,7 @@
   height: 22px;
   width: 132px;
   display: block;
+  transform: translateY(-5px);
 }
 
 .navLinks {
