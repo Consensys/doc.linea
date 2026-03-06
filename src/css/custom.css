@@ -1833,45 +1833,37 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   margin-bottom: 0;
 }
 
-/* Fix sidebar positioning - use fixed position.
-   --sidebar-top is set dynamically by sidebarOffset.js to track the actual
-   navbar bottom edge, so the sidebar accounts for the announcement bar too. */
+/* Fix sidebar positioning - use sticky viewport so the sidebar stays in the
+   document flow (respects the footer) while tracking the navbar bottom edge.
+   --sidebar-top is set dynamically by sidebarOffset.js. */
 @media (min-width: 997px) {
-  /* Make sidebar fixed to viewport */
   .theme-doc-sidebar-container {
-    position: fixed !important;
-    top: var(--sidebar-top, 83px) !important;
-    left: 0 !important;
-    height: calc(100vh - var(--sidebar-top, 83px)) !important;
-    width: var(--doc-sidebar-width) !important;
     margin-top: 0 !important;
     clip-path: none !important;
     z-index: 50 !important;
     background: var(--ifm-background-color) !important;
-    overflow-y: auto !important;
   }
 
-  /* Hidden state for collapsed sidebar */
   .theme-doc-sidebar-container[class*="Hidden"] {
     width: var(--doc-sidebar-hidden-width) !important;
   }
 
-  /* The viewport inside should fill the container */
+  /* Sticky viewport: tracks the navbar and fills the remaining viewport height,
+     but because the container is in the document flow the sidebar naturally
+     stops where the content area ends (before the footer).
+     padding-top: 0 overrides the native Docusaurus navbar-height padding that
+     would otherwise double-offset below our sticky top. */
   [class*="sidebarViewport"] {
-    position: relative !important;
-    top: 0 !important;
-    height: 100% !important;
-    max-height: 100% !important;
-  }
-
-  /* Remove padding-top that was meant to compensate for negative margin */
-  [class*="sidebar_"] {
+    position: sticky !important;
+    top: var(--sidebar-top, 83px) !important;
+    height: calc(100vh - var(--sidebar-top, 83px)) !important;
+    max-height: calc(100vh - var(--sidebar-top, 83px)) !important;
+    overflow: hidden !important;
     padding-top: 0 !important;
   }
 
-  /* Add left margin to main content to account for fixed sidebar */
-  [class*="docMainContainer"] {
-    margin-left: var(--doc-sidebar-width) !important;
+  [class*="sidebar_"] {
+    padding-top: 0 !important;
   }
 }
 
