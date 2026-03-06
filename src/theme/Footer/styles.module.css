@@ -22,7 +22,7 @@
   height: 22px;
   width: 132px;
   display: block;
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .navLinks {
@@ -40,18 +40,18 @@
   font-weight: 500;
   letter-spacing: 0.28px;
   line-height: 1;
-  color: #121212;
+  color: #121212 !important;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
 }
 
 [data-theme="dark"] .footer .navLink {
-  color: #f8f7f2;
+  color: #f8f7f2 !important;
 }
 
 .footer .navLink:hover {
-  color: #6119ef;
+  color: #6119ef !important;
   text-decoration: none;
 }
 
@@ -71,11 +71,11 @@
 }
 
 [data-theme="dark"] .footer .cookieBtn {
-  color: #f8f7f2;
+  color: #f8f7f2 !important;
 }
 
 .footer .cookieBtn:hover {
-  color: #6119ef;
+  color: #6119ef !important;
 }
 
 .socialIcons {
@@ -91,23 +91,23 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: #121212;
+  color: #121212 !important;
   text-decoration: none;
   transition: color 0.2s ease;
-}
-
-[data-theme="dark"] .footer .socialLink {
-  color: #f8f7f2;
-}
-
-.footer .socialLink:hover {
-  color: #6119ef;
-  text-decoration: none;
 }
 
 .footer .socialLink svg {
   width: 20px;
   height: 20px;
+  fill: #121212 !important;
+}
+
+[data-theme="dark"] .footer .socialLink svg {
+  fill: #f8f7f2 !important;
+}
+
+.footer .socialLink svg:hover {
+  fill: #6119ef !important;
 }
 
 /* ── Mobile ────────────────────────────────────────── */
