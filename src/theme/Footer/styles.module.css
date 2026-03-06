@@ -1,14 +1,139 @@
-.lineaFooterContainer {
-  position: relative;
-  overflow: hidden;
-  margin: 0 48px;
-  max-width: 100%;
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 42px;
+  padding: 112px 74px;
+  background: var(--footer-background);
+  border-top: 1px solid #e5e5e5;
 }
 
-.lineaFooter {
-  width: 100%;
-  overflow: hidden;
-  height: auto;
+[data-theme="dark"] .footer {
+  border-top: 1px solid #333;
+}
+
+.logoLink {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 22px;
+  width: 132px;
   display: block;
-  color: var(--banner-text);
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  flex: 1;
+}
+
+/* Use .footer prefix for higher specificity to beat global a:not(...) rule */
+.footer .navLink {
+  font-family: AtypDisplay, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  line-height: 1;
+  color: #121212;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer .navLink {
+  color: #f8f7f2;
+}
+
+.footer .navLink:hover {
+  color: #6119ef;
+  text-decoration: none;
+}
+
+.footer .cookieBtn {
+  font-family: AtypDisplay, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  line-height: 1;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer .cookieBtn {
+  color: #f8f7f2;
+}
+
+.footer .cookieBtn:hover {
+  color: #6119ef;
+}
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.footer .socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #121212;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer .socialLink {
+  color: #f8f7f2;
+}
+
+.footer .socialLink:hover {
+  color: #6119ef;
+  text-decoration: none;
+}
+
+.footer .socialLink svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+    padding: 64px 24px;
+  }
+
+  .logoLink {
+    flex: 1;
+    order: 1;
+  }
+
+  .socialIcons {
+    order: 2;
+  }
+
+  .navLinks {
+    order: 3;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
 }

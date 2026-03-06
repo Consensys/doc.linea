@@ -512,6 +512,30 @@ textarea {
   border-top: 1px solid #333;
 }
 
+/* On doc pages (desktop), contain footer within the content column (right of sidebar) */
+@media (min-width: 997px) {
+  html:has(.theme-doc-sidebar-container) footer:not(.theme-doc-footer) {
+    margin-left: var(--doc-sidebar-width, 0px);
+    position: relative;
+  }
+
+  /* Extend the sidebar border-right visually through the footer height */
+  html:has(.theme-doc-sidebar-container) footer:not(.theme-doc-footer)::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--doc-sidebar-width, 0px));
+    top: 0;
+    bottom: 0;
+    width: var(--doc-sidebar-width, 0px);
+    border-right: 1px solid #e5e5e5;
+    pointer-events: none;
+  }
+
+  html[data-theme="dark"]:has(.theme-doc-sidebar-container) footer:not(.theme-doc-footer)::before {
+    border-right-color: #333;
+  }
+}
+
 /* ============================================================
    6. CSS VARIABLES — DARK THEME
    ============================================================ */
@@ -2427,27 +2451,6 @@ button.clean-btn.menu__caret {
   }
 }
 
-#manage-cookie-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: var(--banner-text);
-  font-size: 14px;
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 0.28px;
-}
-
-#manage-cookie-btn:hover {
-  color: var(--ifm-footer-link-hover-color);
-  text-decoration: none;
-}
 
 
 /* Details element styling - subtle, low contrast */
