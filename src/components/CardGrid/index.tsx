@@ -49,7 +49,11 @@ type Props = {
   equalizeHeights?: boolean;
 };
 
-export default function CardGrid({ heading, cards, equalizeHeights = true }: Props): React.ReactNode {
+export default function CardGrid({
+  heading,
+  cards,
+  equalizeHeights = true,
+}: Props): React.ReactNode {
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

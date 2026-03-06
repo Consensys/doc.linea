@@ -73,7 +73,7 @@ export default function Home(): React.ReactNode {
       iconSrc: "/img/card_icon_launch.png",
     },
     {
-      title: "Build and launch on Linea",
+      title: "Build and deploy on Linea",
       link: "/network/quickstart",
       description: (
         <>
@@ -116,7 +116,11 @@ export default function Home(): React.ReactNode {
         <HomepageHeader />
         <main>
           <CardGrid heading="Start building" cards={startBuildingCards} />
-          <CardGrid heading="Join the community" cards={communityCards} equalizeHeights={false} />
+          <CardGrid
+            heading="Join the community"
+            cards={communityCards}
+            equalizeHeights={false}
+          />
           <ContributeBanner />
         </main>
       </Layout>
