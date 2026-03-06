@@ -204,6 +204,9 @@ for [private networks](../../stack/how-it-works/deployment-models.mdx#private-va
 
 These architectural components support transactions from submission to finalization. 
 
+For the L1-backed transaction path that enforces processing-by-deadline guarantees, see
+[forced transactions](/network/how-to/forced-transactions).
+
 1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
 2. Block building: the [sequencer](./sequencer/index.mdx) orders and executes transactions into blocks.
 3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;

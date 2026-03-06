@@ -1,0 +1,174 @@
+---
+title: Submit forced transactions
+description: Enable and submit forced transactions on Linea.
+sidebar_position: 6
+image: /img/socialCards/forced-transactions.jpg
+---
+
+Forced transactions allow users to submit transactions directly to Ethereum (L1) with a guaranteed processing deadline. This manual submission mechanism helps users submit transactions even when the normal L2 path is blocked or delayed.
+
+## What are forced transactions?
+
+Forced transactions are an anti-censorship mechanism that bypasses the normal L2 submission path and submits transactions directly to the L1. When a user submits a forced transaction, they submit a signed L2 transaction to the L1. Forced transactions are guaranteed to be processed by the sequencer by a specified block deadline. 
+
+Typically, the sequencer will process the transaction well before the deadline -- the deadline is the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization will revert.
+
+Forced transactions are chained using an MiMC-based rolling hash. The rolling hash commits to the complete ordered sequence of forced transactions, ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, and reordering attacks.
+
+### Processing vs. execution
+
+A forced transaction can be processed by the sequencer, but still fail on the L2. The sequencer only processes the transaction; it does not attempt to execute it. After a forced transaction is processed by the sequencer, it will be attempted by the L2 prover. 
+
+At this stage, the transaction may fail to execute on the L2. Reasons for failure include: 
+
+| Failure Reason | Description |
+|----------------|-------------|
+| **Invalid Nonce** | The signer's nonce on L2 has changed since the transaction was signed. Another transaction may have executed first. |
+| **Insufficient Gas** | The `gasLimit` specified is too low for the transaction to complete. |
+| **Insufficient Balance** | The signer doesn't have enough ETH on L2 to cover `value + (gasLimit * maxFeePerGas)`. |
+| **Contract Revert** | The target contract's logic reverted the call (require failed, custom error, etc.). |
+| **Out of Gas During Execution** | Complex computation exhausted the gas limit mid-execution. |
+| **Invalid Signature** | Edge cases where the signature is technically valid but doesn't match L2 state. |
+
+### Use cases
+
+Ideal forced transaction use cases include transactions that need strong delivery guarantees, such as:
+
+- Withdrawal requests and claims
+- Liquidation and risk-management actions
+- Guaranteed governance transaction processing
+- Emergency controls and safety operations
+
+## Enable the forced path
+
+Forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
+
+1. Deploy the `AddressFilter` contract 
+2. Deploy the `ForcedTransactionGateway` contract
+
+Note that the `AddressFilter` contract is also required to initiate your rollup, so you should already have it deployed.
+
+Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
+
+## Submit a forced transaction
+
+To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1:
+
+```typescript
+// 1. Get the latest FinalizedStateUpdated event
+const events = await lineaRollup.queryFilter(
+    lineaRollup.filters.FinalizedStateUpdated()
+);
+const latestEvent = events[events.length - 1];
+
+// 2. Extract values from the event
+const { 
+    blockNumber,              // L2 block number (indexed)
+    timestamp,                // Finalization timestamp
+    messageNumber,            // L1->L2 message number
+    forcedTransactionNumber   // Last finalized forced tx number
+} = latestEvent.args;
+
+// 3. Query rolling hashes from contract state
+const messageRollingHash = await lineaRollup.rollingHashes(messageNumber);
+const forcedTransactionRollingHash = await lineaRollup
+    .forcedTransactionRollingHashes(forcedTransactionNumber);
+
+// 4. Construct the LastFinalizedState
+const lastFinalizedState = {
+    timestamp,
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash
+};
+
+// 5. OPTIONAL: Verify it matches the contract's stored hash
+const expectedHash = keccak256(abi.encode(
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash,
+    timestamp
+));
+const storedHash = await lineaRollup.currentFinalizedState();
+assert(expectedHash === storedHash, "State mismatch - data may be stale");
+```
+
+Once you have the correct values, you can construct a forced transaction submission with the following fields:
+
+```bash
+struct LastFinalizedState {
+    uint256 timestamp;                    // Last finalized L2 block timestamp
+    uint256 messageNumber;                // L1→L2 message number at finalization
+    bytes32 messageRollingHash;           // Rolling hash of L1→L2 messages
+    uint256 forcedTransactionNumber;      // Last finalized forced tx number
+    bytes32 forcedTransactionRollingHash; // Rolling hash of forced transactions
+}
+```
+
+Then, sign an EIP-1559 transaction destined for the L2:
+
+```bash
+struct Eip1559Transaction {
+    uint256 nonce;
+    uint256 maxPriorityFeePerGas;
+    uint256 maxFeePerGas;
+    uint256 gasLimit;
+    address to;
+    uint256 value;
+    bytes input;
+    AccessList[] accessList;
+    uint8 yParity;
+    uint256 r;
+    uint256 s;
+}
+```
+
+When submitting the transaction, the gateway will validate that:
+
+- the last finalized state matches
+- the transaction details are within limits
+- the appropriate fee has been paid.
+
+At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
+
+The gateway will then send the transaction to the LineaRollup for storage.
+
+## Technical components
+
+When a user submits a forced transaction, the following components validate and process the transaction:
+
+- `ForcedTransactionGateway`: Validates and submits the transaction to the Linea rollup.
+- `LineaRollup`: Stores the transaction in the rollup and generates a rolling hash.
+- Coordinator: Forwards the transaction to the sequencer for processing.
+- Sequencer: Processes the transaction before the deadline.
+- Prover: Generates a proof of the transaction and submits it to the finalization layer.
+
+
+When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the transaction to the `LineaRollup`.
+
+The Linea rollup stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline.
+
+The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing. The sequencer receives the transaction and must process it before the deadline.
+
+Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the proof to the finalization layer.
+
+The complete lifecycle of a forced transaction is as follows:
+
+```mermaid
+sequenceDiagram
+    participant App as dapp backend
+    participant Gateway as ForcedTransactionGateway (L1)
+    participant Rollup as LineaRollup (L1)
+    participant Coordinator as Coordinator (offchain)
+    participant Sequencer as Sequencer (L2)
+
+    App->>Rollup: Read latest finalized state + rolling hashes
+    App->>Gateway: submitForcedTransaction(lastFinalizedState, signedTx) + fee
+    Gateway->>Rollup: storeForcedTransaction(...)
+    Rollup-->>Coordinator: ForcedTransactionAdded
+    Coordinator->>Sequencer: Forward transaction for processing
+    Sequencer->>Sequencer: Attempt execution before deadline
+```
+
