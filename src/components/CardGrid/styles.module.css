@@ -31,7 +31,7 @@
 .card {
   background-color: var(--homepage-card-background);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--linea-radius-md);
   padding: 24px;
   height: 100%;
   display: flex;
@@ -96,7 +96,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #121212;
+  color: var(--linea-black);
   transition: all 0.3s ease;
 }
 

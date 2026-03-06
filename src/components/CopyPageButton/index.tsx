@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDoc } from "@docusaurus/plugin-content-docs/client";
+import { CopyIcon, ChevronIcon } from "@site/src/components/icons";
 import styles from "./styles.module.css";
 import { getGitHubRawUrl } from "./utils";
 
@@ -63,44 +64,12 @@ export default function CopyPageButton(): React.ReactNode {
         aria-label="Copy page options"
         aria-expanded={isOpen}
         aria-haspopup="true">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true">
-          <rect
-            x="5"
-            y="5"
-            width="9"
-            height="9"
-            rx="1"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M3 11V3C3 2.44772 3.44772 2 4 2H10"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <CopyIcon aria-hidden="true" />
         <span>{copied ? "Copied" : "Copy page"}</span>
-        <svg
-          width="9"
-          height="13"
-          viewBox="0 0 9 13"
-          fill="none"
+        <ChevronIcon
           aria-hidden="true"
-          className={isOpen ? styles.chevronOpen : styles.chevron}>
-          <path
-            d="M1 1L7 6.5L1 12"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+          className={isOpen ? styles.chevronOpen : styles.chevron}
+        />
       </button>
 
       {isOpen && (

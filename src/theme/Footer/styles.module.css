@@ -5,11 +5,7 @@
   gap: 42px;
   padding: 100px 70px;
   background: var(--footer-background);
-  border-top: 1px solid #e5e5e5;
-}
-
-[data-theme="dark"] .footer {
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--linea-border);
 }
 
 .logoLink {
@@ -40,18 +36,14 @@
   font-weight: 500;
   letter-spacing: 0.28px;
   line-height: 1;
-  color: #121212 !important;
+  color: var(--linea-text-primary) !important;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
 }
 
-[data-theme="dark"] .footer .navLink {
-  color: #f8f7f2 !important;
-}
-
 .footer .navLink:hover {
-  color: #6119ef !important;
+  color: var(--linea-brand-purple) !important;
   text-decoration: none;
 }
 
@@ -61,7 +53,7 @@
   font-weight: 500;
   letter-spacing: 0.28px;
   line-height: 1;
-  color: #121212;
+  color: var(--linea-text-primary);
   background: none;
   border: none;
   cursor: pointer;
@@ -70,12 +62,8 @@
   transition: color 0.2s ease;
 }
 
-[data-theme="dark"] .footer .cookieBtn {
-  color: #f8f7f2 !important;
-}
-
 .footer .cookieBtn:hover {
-  color: #6119ef !important;
+  color: var(--linea-brand-purple) !important;
 }
 
 .socialIcons {
@@ -91,7 +79,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: #121212 !important;
+  color: var(--linea-text-primary) !important;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -99,15 +87,11 @@
 .footer .socialLink svg {
   width: 20px;
   height: 20px;
-  fill: #121212 !important;
-}
-
-[data-theme="dark"] .footer .socialLink svg {
-  fill: #f8f7f2 !important;
+  fill: var(--linea-text-primary) !important;
 }
 
 .footer .socialLink svg:hover {
-  fill: #6119ef !important;
+  fill: var(--linea-brand-purple) !important;
 }
 
 /* ── Mobile ────────────────────────────────────────── */

@@ -1,24 +1,35 @@
 import React from 'react';
+import styles from './styles.module.css';
 
-const TAG_CONFIG = {
-  feature: { label: 'Feature' },
-  upgrade: { label: 'Upgrade' },
-  performance: { label: 'Performance' },
-  announcement: { label: 'Announcement' },
-  'action-required': { label: 'Action required' },
-  deprecation: { label: 'Deprecation' },
+const TAG_STYLE_MAP = {
+  feature: styles.tagFeature,
+  upgrade: styles.tagUpgrade,
+  performance: styles.tagPerformance,
+  announcement: styles.tagAnnouncement,
+  'action-required': styles.tagActionRequired,
+  deprecation: styles.tagDeprecation,
+};
+
+const TAG_LABEL = {
+  feature: 'Feature',
+  upgrade: 'Upgrade',
+  performance: 'Performance',
+  announcement: 'Announcement',
+  'action-required': 'Action required',
+  deprecation: 'Deprecation',
 };
 
 export function ChangelogEntry({ tag, title, children }) {
-  const config = TAG_CONFIG[tag] || { label: tag };
+  const tagClass = TAG_STYLE_MAP[tag] || styles.tag;
+  const label = TAG_LABEL[tag] || tag;
   return (
-    <div className="changelog-entry">
-      <div className="changelog-entry__tag-col">
-        <span className={`changelog-tag changelog-tag--${tag}`}>{config.label}</span>
+    <div className={styles.entry}>
+      <div className={styles.tagCol}>
+        <span className={tagClass}>{label}</span>
       </div>
-      <div className="changelog-entry__content-col">
-        {title && <div className="changelog-entry__title">{title}</div>}
-        <div className="changelog-entry__body">{children}</div>
+      <div className={styles.contentCol}>
+        {title && <div className={styles.title}>{title}</div>}
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   );
@@ -26,22 +37,26 @@ export function ChangelogEntry({ tag, title, children }) {
 
 export function ChangelogDate({ mainnet, sepolia, children }) {
   if (children) {
-    return <div className="changelog-dates">{children}</div>;
+    return <div className={styles.dates}>{children}</div>;
   }
   return (
-    <div className="changelog-dates">
+    <div className={styles.dates}>
       {mainnet && (
-        <div className="changelog-date">
-          <span className="changelog-date__arrow">→</span>
+        <div className={styles.date}>
+          <span className={styles.dateArrow}>→</span>
           <span>Linea Mainnet: {mainnet}</span>
         </div>
       )}
       {sepolia && (
-        <div className="changelog-date">
-          <span className="changelog-date__arrow">→</span>
+        <div className={styles.date}>
+          <span className={styles.dateArrow}>→</span>
           <span>Linea Sepolia: {sepolia}</span>
         </div>
       )}
     </div>
   );
+}
+
+export function ChangelogSubtitle({ children }) {
+  return <p className={styles.subtitle}>{children}</p>;
 }
