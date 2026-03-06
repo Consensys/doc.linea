@@ -1809,6 +1809,48 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   margin-bottom: 0;
 }
 
+/* Fix sidebar positioning - use fixed position.
+   --sidebar-top is set dynamically by sidebarOffset.js to track the actual
+   navbar bottom edge, so the sidebar accounts for the announcement bar too. */
+@media (min-width: 997px) {
+  /* Make sidebar fixed to viewport */
+  .theme-doc-sidebar-container {
+    position: fixed !important;
+    top: var(--sidebar-top, 83px) !important;
+    left: 0 !important;
+    height: calc(100vh - var(--sidebar-top, 83px)) !important;
+    width: var(--doc-sidebar-width) !important;
+    margin-top: 0 !important;
+    clip-path: none !important;
+    z-index: 50 !important;
+    background: var(--ifm-background-color) !important;
+    overflow-y: auto !important;
+  }
+
+  /* Hidden state for collapsed sidebar */
+  .theme-doc-sidebar-container[class*="Hidden"] {
+    width: var(--doc-sidebar-hidden-width) !important;
+  }
+
+  /* The viewport inside should fill the container */
+  [class*="sidebarViewport"] {
+    position: relative !important;
+    top: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Remove padding-top that was meant to compensate for negative margin */
+  [class*="sidebar_"] {
+    padding-top: 0 !important;
+  }
+
+  /* Add left margin to main content to account for fixed sidebar */
+  [class*="docMainContainer"] {
+    margin-left: var(--doc-sidebar-width) !important;
+  }
+}
+
 [data-theme="dark"] .theme-doc-sidebar-container {
   border-right: 1px solid #333 !important;
 }
@@ -2049,14 +2091,13 @@ a.menu__link {
 }
 
 /* ── COLLAPSE button (sidebar open) ── */
-/* top = navbar-height + 16px: sidebar div starts behind the navbar,
-   so we must skip past the navbar to reach the visible sidebar area.
-   right = scrollbar-size + 1px: keeps the icon inside the content area,
-   clear of the 7px thin-scrollbar track. */
+/* Positioned absolute within .theme-doc-sidebar-container (which is fixed),
+   so it automatically tracks the sidebar's top offset. */
 [aria-label="Collapse sidebar"] {
   position: absolute !important;
-  top: calc(var(--ifm-navbar-height) + 16px) !important;
-  right: calc(var(--ifm-scrollbar-size) + 1px) !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
@@ -2069,28 +2110,27 @@ a.menu__link {
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer;
+  z-index: 100 !important;
 }
 
 /* ── EXPAND button (sidebar collapsed) ── */
-/* Full height so entire collapsed strip is clickable; icon sits at top.
-   padding-top = navbar-height + 10px to appear below the navbar. */
+/* Positioned absolute within the collapsed sidebar container. */
 [aria-label="Expand sidebar"] {
   position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  top: 10px !important;
+  left: 7px !important;
+  width: 16px !important;
+  height: 16px !important;
   display: flex !important;
-  flex-direction: column !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  padding-top: calc(var(--ifm-navbar-height) + 10px) !important;
+  justify-content: center !important;
+  padding: 0 !important;
   background: transparent !important;
   background-color: transparent !important;
   margin: 0 !important;
   border-radius: 0 !important;
-  max-height: none !important;
+  z-index: 100 !important;
+  cursor: pointer;
 }
 
 /* Hide the default «/» SVG icons */

@@ -43,6 +43,7 @@ const config = {
 
   clientModules: [
     require.resolve("./src/clientModules/codeBlockClassifier.js"),
+    require.resolve("./src/clientModules/sidebarOffset.js"),
   ],
 
   markdown: {
