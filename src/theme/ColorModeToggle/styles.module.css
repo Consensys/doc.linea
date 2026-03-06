@@ -7,13 +7,13 @@
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease;
-  color: #190066;
+  color: var(--linea-brand-navy);
   appearance: none;
   outline: none;
 }
 
 [data-theme="dark"] .toggle {
-  color: white;
+  color: var(--linea-white);
 }
 
 .toggle:hover {

@@ -2,7 +2,7 @@
   position: relative;
   display: block;
   background-color: var(--homepage-card-background);
-  border-radius: 10px;
+  border-radius: var(--linea-radius-md);
   padding: 24px;
   min-height: 148px;
   overflow: hidden;
@@ -38,7 +38,7 @@
 }
 
 [data-theme="dark"] .text {
-  color: #fff;
+  color: var(--linea-text-primary);
 }
 
 .arrowButton {
@@ -48,23 +48,23 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--linea-arrow-btn-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #121212;
+  color: var(--linea-black);
   transition: background-color 0.2s ease;
   flex-shrink: 0;
 }
 
 [data-theme="dark"] .arrowButton {
-  background-color: #fff;
-  color: #121212;
+  background-color: var(--linea-arrow-btn-bg);
+  color: var(--linea-black);
 }
 
 .card:hover .arrowButton {
   background-color: var(--linea-highlight-color-2);
-  color: #fff;
+  color: var(--linea-white);
 }
 
 .decorativeImage {

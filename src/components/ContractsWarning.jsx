@@ -11,7 +11,7 @@ export default function ContractsWarning() {
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div className="margin-top--lg">
       <Admonition type="warning" title="Contributions not accepted">
         These reference pages are automatically generated based on Linea&apos;s{" "}
         <a href="https://github.com/Consensys/linea-monorepo/tree/main/contracts/src">

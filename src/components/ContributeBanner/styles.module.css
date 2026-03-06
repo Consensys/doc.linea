@@ -5,7 +5,7 @@
 }
 
 .banner {
-  background: linear-gradient(135deg, #6119ef 0%, #4a0fbd 100%);
+  background: linear-gradient(135deg, var(--linea-brand-purple) 0%, #4a0fbd 100%);
   border-radius: 20px;
   padding: 86px;
   position: relative;
@@ -45,7 +45,7 @@
   align-items: center;
   gap: 10px;
   background-color: #fff;
-  color: #121212 !important;
+  color: var(--linea-black) !important;
   padding: 12px 24px;
   border-radius: 30px;
   font-family: AtypDisplay, sans-serif;
@@ -57,9 +57,9 @@
 }
 
 .button:hover {
-  background-color: #61dfff;
+  background-color: var(--linea-brand-cyan);
   text-decoration: none;
-  color: #121212 !important;
+  color: var(--linea-black) !important;
 }
 
 .icon {

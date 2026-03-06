@@ -1,0 +1,263 @@
+/* ============================================================
+   CSS DESIGN TOKENS
+   ============================================================ */
+
+/* ── Root tokens (theme-independent) ── */
+:root {
+  font-family: AtypDisplay, serif;
+  --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
+  --ifm-code-border-radius: 15px;
+  --doc-sidebar-width: 350px;
+  --linea-navbar-items-light: rgb(97 223 255 / 10%);
+  --linea-navbar-items-medium: rgb(97 223 255 / 20%);
+
+  /* Typography scale (identical in both themes) */
+  --font-display-lg: 40px;
+  --font-display-md: 32px;
+  --font-heading-lg: 24px;
+  --font-heading-md: 18px;
+  --font-body-md: 16px;
+  --font-body-sm: 14px;
+  --font-body-xs: 12px;
+  --line-height-default: 1.4;
+  --letter-spacing-button: 2px;
+
+  /* Brand palette (constant across themes) */
+  --linea-brand-navy: #190066;
+  --linea-brand-purple: #6119ef;
+  --linea-brand-cyan: #61dfff;
+  --linea-brand-pink: #fcd6ff;
+  --linea-brand-yellow: #fff068;
+  --linea-purple-hover: #8e5dff;
+
+  /* Neutral palette (constant values, used via theme-aware aliases below) */
+  --linea-black: #121212;
+  --linea-white: #f8f7f2;
+  --linea-surface-code: #121212;
+
+  /* Border radii */
+  --linea-radius-sm: 4px;
+  --linea-radius-md: 10px;
+  --linea-radius-lg: 15px;
+  --linea-radius-pill: 50px;
+  --linea-radius-round: 100px;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--footer-background);
+  border-top: 1px solid var(--linea-border);
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  --page-background: #1C1C1C;
+  --search-background: #1C1C1C;
+  --ifm-color-primary-lightest: #fff;
+  --ifm-color-primary-lighter: #fff;
+  --ifm-color-primary-light: #bfe8ff;
+  --ifm-color-primary: #fff;
+  --ifm-color-primary-dark: #dcf1fd;
+  --ifm-color-primary-darker: #61dfff;
+  --ifm-color-primary-darkest: #58cbe8;
+  --ifm-color-success: #61dfff;
+  --ifm-color-success-dark: #58cbe8;
+  --ifm-color-info: #c0c0c0;
+  --ifm-color-info-dark: #989898;
+  --ifm-link-color: #61dfff;
+  --ifm-menu-color-active: #61dfff;
+  --ifm-footer-background-color: #000;
+  --ifm-footer-link-hover-color: var(--linea-brand-purple);
+  --ifm-background-color: #1C1C1C;
+  --ifm-navbar-link-hover-color: #61dfff;
+  --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
+  --banner-background: #121212;
+  --banner-text: #fff;
+  --banner-text-shadow: #1C1C1C;
+  --banner-button-hover: #fff;
+  --banner-button-text-hover: #1C1C1C;
+  --homepage-card-background: #121212;
+  --homepage-card-text: #fff;
+  --homepage-card-border-color: #505050;
+  --homepage-card-border-color-hover: #61dfff;
+  --homepage-card-dot-hover: #fff;
+  --homepage-card-icon: #fff;
+  --footer-background: #1C1C1C;
+  --linea-highlight-color-1: var(--linea-brand-yellow);
+  --linea-highlight-color-2: var(--linea-brand-purple);
+  --linea-navbar-background: var(--linea-brand-navy);
+  --linea-navbar-items: #61dfff;
+  --linea-navbar-items-highlight: #61dfff;
+  --linea-banner-logo: #fff;
+  --linea-text-color-1: var(--linea-brand-navy);
+  --linea-sidebar-text-color: #fff;
+  --linea-link-highlight-color: #61dfff;
+  --search-bar-background: #fff;
+  --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg fill='%23505050' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16px' width='16px'%3E%3Cpath d='M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z'/%3E%3C/svg%3E") !important;
+  --searchbar-background: #50505d;
+  --searchbar-background-hover: #1e1f24;
+  --search-local-modal-background: #24292e;
+  --search-local-hit-background: #161616;
+  --search-local-hit-shadow: none;
+  --search-local-hit-active-color: #fff;
+  --search-local-modal-shadow: none;
+  --search-local-muted-color: #61dfff;
+  --search-local-hit-color: #fff;
+  --search-local-highlight-color: #6f7da6;
+  --search-result-hl: #23282a;
+
+  /* Admonitions (dark theme) - EXACT Figma colors */
+  --admonition-tip-bg: var(--linea-brand-navy);
+  --admonition-tip-heading: #e8e6f0;
+  --admonition-tip-text: #e8e6f0;
+  --admonition-tip-link: #e8e6f0;
+  --admonition-info-bg: #004166;
+  --admonition-info-heading: #e6faff;
+  --admonition-info-text: #e6faff;
+  --admonition-info-link: #e6faff;
+  --admonition-note-bg: #2d2d2d;
+  --admonition-note-heading: #fff;
+  --admonition-note-text: #fff;
+  --admonition-note-link: #a78bfa;
+  --admonition-warning-bg: #3b0f40;
+  --admonition-warning-heading: #fcd6ff;
+  --admonition-warning-text: #fcd6ff;
+  --admonition-warning-link: #fcd6ff;
+  --admonition-danger-bg: #5c1f00;
+  --admonition-danger-heading: #ffc29e;
+  --admonition-danger-text: #ffc29e;
+  --admonition-danger-link: #ffc29e;
+
+  /* Link hover colors per admonition type (dark theme) */
+  --admonition-tip-link-hover: #fff;
+  --admonition-info-link-hover: #c2f2ff;
+  --admonition-note-link-hover: #c4b5fd;
+  --admonition-warning-link-hover: #f5d0fe;
+  --admonition-danger-link-hover: #fed7aa;
+
+  /* infographics */
+  --container-box-bg: #f5f7fa;
+
+  /* Theme-aware semantic tokens */
+  --linea-text-primary: #f8f7f2;
+  --linea-arrow-btn-bg: #fff;
+  --linea-purple-light: #a78bfa;
+  --linea-gray-mid: #808080;
+  --linea-border: #333;
+  --linea-border-subtle: #2d2d2d;
+  --linea-surface-elevated: #2f2f2f;
+  --linea-surface-muted: #efefeb;
+  --linea-text-secondary: #d1d1d1;
+  --linea-text-muted: #808080;
+  --linea-text-subtle: #a0a0a0;
+  --linea-active-color: #a78bfa;
+  --linea-active-bg: rgb(161 107 250 / 15%);
+  --linea-hover-bg: rgb(255 255 255 / 8%);
+  --linea-code-text: #d1d1d1;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --page-background: #fff;
+  --search-background: #ebeae5;
+  --ifm-color-primary-lightest: #eaf0ff;
+  --ifm-color-primary-lighter: #a5e5ff;
+  --ifm-color-primary-light: #61dfff;
+  --ifm-color-primary: #000;
+  --ifm-color-primary-dark: #313131;
+  --ifm-color-primary-darker: #545454;
+  --ifm-color-primary-darkest: #818181;
+  --ifm-color-success: #61dfff;
+  --ifm-color-success-dark: #58cbe8;
+  --ifm-link-color: #2eb9dc;
+  --ifm-link-hover-color: #61dfff;
+  --ifm-menu-color-active: #2eb9dc;
+  --ifm-color-info: #c0c0c0;
+  --ifm-color-info-dark: #989898;
+  --ifm-footer-background-color: #000;
+  --ifm-footer-link-hover-color: var(--linea-brand-purple);
+  --ifm-background-color: #fff;
+  --ifm-navbar-link-hover-color: #61dfff;
+  --banner-background: #fff;
+  --banner-text: #1C1C1C;
+  --banner-text-shadow: #fff;
+  --banner-button-hover: #1C1C1C;
+  --banner-button-text-hover: #fff;
+  --homepage-card-background: #f8f7f2;
+  --homepage-card-text: #fff;
+  --homepage-card-border-color: #c0c0c0;
+  --homepage-card-border-color-hover: #505050;
+  --homepage-card-dot-hover: #61dfff;
+  --homepage-card-icon: #c0c0c0;
+  --footer-background: #fff;
+  --linea-highlight-color-1: var(--linea-brand-yellow);
+  --linea-highlight-color-2: var(--linea-brand-purple);
+  --linea-text-color-1: var(--linea-brand-navy);
+  --linea-navbar-background: var(--linea-brand-navy);
+  --linea-navbar-items: #61dfff;
+  --linea-navbar-items-highlight: #61dfff;
+  --linea-banner-logo: var(--linea-brand-navy);
+  --linea-sidebar-text-color: var(--linea-brand-navy);
+  --linea-link-highlight-color: var(--linea-brand-purple);
+  --search-bar-background: #fff;
+  --ifm-navbar-search-input-icon: url("data:image/svg+xml,%3Csvg fill='%23190066' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' height='16px' width='16px'%3E%3Cpath d='M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z'/%3E%3C/svg%3E") !important;
+  --searchbar-background: #e9ebee;
+  --searchbar-background-hover: #efefef;
+  --search-local-modal-background: #e9ebee;
+  --search-local-hit-background: #fff;
+  --search-local-hit-shadow: none;
+  --search-local-hit-active-color: #fff;
+  --search-local-modal-shadow: none;
+  --search-local-muted-color: var(--linea-brand-navy);
+  --search-local-hit-color: #161616;
+  --search-local-highlight-color: var(--linea-brand-purple);
+  --search-result-hl: var(--linea-brand-yellow);
+
+  /* Admonitions (light theme) - EXACT Figma colors */
+  --admonition-tip-bg: var(--linea-brand-navy);
+  --admonition-tip-heading: #e8e6f0;
+  --admonition-tip-text: #e8e6f0;
+  --admonition-tip-link: #e8e6f0;
+  --admonition-info-bg: #c2f2ff;
+  --admonition-info-heading: #004166;
+  --admonition-info-text: #121212;
+  --admonition-info-link: #004166;
+  --admonition-note-bg: #efefeb;
+  --admonition-note-heading: #121212;
+  --admonition-note-text: #121212;
+  --admonition-note-link: #121212;
+  --admonition-warning-bg: #fcd6ff;
+  --admonition-warning-heading: #611c69;
+  --admonition-warning-text: #121212;
+  --admonition-warning-link: #611c69;
+  --admonition-danger-bg: #ffa775;
+  --admonition-danger-heading: #5c1f00;
+  --admonition-danger-text: #121212;
+  --admonition-danger-link: #5c1f00;
+
+  /* Link hover colors per admonition type (light theme) */
+  --admonition-tip-link-hover: #fff;
+  --admonition-info-link-hover: #005988;
+  --admonition-note-link-hover: var(--linea-brand-purple);
+  --admonition-warning-link-hover: #8a1894;
+  --admonition-danger-link-hover: #9a3100;
+
+  /* infographics */
+  --container-box-bg: #c3d7e0;
+
+  /* Theme-aware semantic tokens */
+  --linea-text-primary: #121212;
+  --linea-arrow-btn-bg: #fff;
+  --linea-purple-light: #a78bfa;
+  --linea-gray-mid: #808080;
+  --linea-border: #e5e5e5;
+  --linea-border-subtle: #e5e5e5;
+  --linea-surface-elevated: #efefeb;
+  --linea-surface-muted: #efefeb;
+  --linea-text-secondary: #525252;
+  --linea-text-muted: #808080;
+  --linea-text-subtle: #a0a0a0;
+  --linea-active-color: #6119ef;
+  --linea-active-bg: rgb(97 25 239 / 10%);
+  --linea-hover-bg: #EFEFEB;
+  --linea-code-text: #d1d1d1;
+}
