@@ -1,10 +1,13 @@
 .announcementBar {
   display: flex;
   align-items: center;
-  padding: 4px 0;
-  background-color: var(--ifm-color-white);
-  color: var(--ifm-color-black);
-  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+  padding: 12px 0;
+  background-color: #6119ef;
+  color: #fff;
+  border: none;
+  font-family: AtypText, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 html[data-announcement-bar-initially-dismissed="true"] .announcementBar {
@@ -22,8 +25,20 @@ html[data-announcement-bar-initially-dismissed="true"] .announcementBar {
 
 .announcementBarContent {
   flex: 1 1 auto;
-  line-height: 1.35;
+  line-height: var(--line-height-default);
   padding: 0 12px;
+  text-align: center;
+}
+
+.announcementBarContent a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.announcementBarContent a:hover {
+  color: #fff;
+  opacity: 0.8;
 }
 
 @media print {
@@ -39,6 +54,6 @@ html[data-announcement-bar-initially-dismissed="true"] .announcementBar {
   }
 
   .announcementBar {
-    padding: 8px 0;
+    padding: 10px 0;
   }
 }

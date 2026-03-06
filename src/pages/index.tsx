@@ -1,13 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import HomepageCards from "@site/src/components/HomepageCards";
-import StopwatchIcon from "../../static/img/icon_stopwatch.svg";
-import LineaLogo from "../../static/img/Linea_logo.svg";
-import LineaFooter from "../../static/img/linea_footer.svg";
-// @ts-ignore: suppressing type declarations error for the SearchBar.
-import SearchBar from "@theme/SearchBar";
+import CardGrid from "@site/src/components/CardGrid";
+import ContributeBanner from "@site/src/components/ContributeBanner";
 
 import styles from "./index.module.css";
 
@@ -21,30 +16,32 @@ type LayoutProps = {
 const Layout: React.FC<LayoutProps> = require("@theme/Layout").default;
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx(styles.introductionBlock)}>
       <div className="container">
-        <h1 className={clsx("hero__title", styles.title)}>
-          <LineaLogo className={styles.logo} />
-          <span className={styles.visuallyHidden}>Developer Center</span>
-        </h1>
+        <h1 className={clsx("hero__title", styles.title)}>Linea Docs</h1>
         <p className={clsx("hero__subtitle", styles.subtitle)}>
-          {siteConfig.tagline}
+          Everything you need to build onchain.
         </p>
         <div className={styles.buttons}>
           <Link
             className={clsx(
               "button button--secondary button--lg",
               styles.bannerButton,
+              styles.bannerButtonPrimary,
             )}
-            to="/network/build/launch-an-app/deploy">
-            START BUILDING
-            <StopwatchIcon className={styles.icon} />
+            to="/stack/quickstart">
+            Launch your chain
           </Link>
-        </div>
-        <div className={clsx(styles.searchBarContainer, "banner-searchbar")}>
-          <SearchBar />
+          <Link
+            className={clsx(
+              "button button--secondary button--lg",
+              styles.bannerButton,
+              styles.bannerButtonSecondary,
+            )}
+            to="/network/quickstart">
+            Launch your app
+          </Link>
         </div>
       </div>
     </header>
@@ -52,22 +49,81 @@ function HomepageHeader() {
 }
 
 export default function Home(): React.ReactNode {
+  const startBuildingCards = [
+    {
+      title: "Understand how Linea works",
+      link: "/stack/how-it-works",
+      description: (
+        <>
+          Learn how the Linea Protocol executes, proves, and finalizes
+          transactions.
+        </>
+      ),
+      iconSrc: "/img/card_icon_understand.png",
+    },
+    {
+      title: "Launch your own Linea chain",
+      link: "/stack",
+      description: (
+        <>
+          Deploy and operate your own Ethereum-compatible network using the
+          Linea Stack.
+        </>
+      ),
+      iconSrc: "/img/card_icon_launch.png",
+    },
+    {
+      title: "Build and deploy on Linea",
+      link: "/network/quickstart",
+      description: (
+        <>
+          Build, launch, and grow your application on the Linea Public Network.
+        </>
+      ),
+      iconSrc: "/img/card_icon_build.png",
+    },
+  ];
+
+  const communityCards = [
+    {
+      title: "Connect with builders",
+      link: "https://discord.com/invite/linea",
+      description: (
+        <>Connect with fellow builders and community members on Discord.</>
+      ),
+    },
+    {
+      title: "Join the Linea ecosystem",
+      link: "https://linea.build/apps",
+      description: (
+        <>Explore and join the growing Linea ecosystem of dapps and services.</>
+      ),
+    },
+    {
+      title: "Give feedback",
+      link: "https://community.linea.build/c/feedback",
+      description: (
+        <>Share your feedback and help us improve the Linea platform.</>
+      ),
+    },
+  ];
+
   return (
     <>
       <Layout
         title={`Welcome`}
         description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
         <HomepageHeader />
-        <main style={{ backgroundColor: "var(--banner-background)" }}>
-          <HomepageCards />
+        <main>
+          <CardGrid heading="Start building" cards={startBuildingCards} />
+          <CardGrid
+            heading="Join the community"
+            cards={communityCards}
+            equalizeHeights={false}
+          />
+          <ContributeBanner />
         </main>
       </Layout>
-      <div className={styles.footerImageContainer}>
-        <LineaFooter
-          className={styles.footerImage}
-          style={{ color: "var(--banner-text)" }}
-        />
-      </div>
     </>
   );
 }
