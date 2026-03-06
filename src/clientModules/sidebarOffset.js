@@ -1,10 +1,13 @@
 let rafId = null;
 
 function updateSidebarOffset() {
-  const navbar = document.querySelector('.navbar');
+  const navbar = document.querySelector(".navbar");
   if (!navbar) return;
   const bottom = navbar.getBoundingClientRect().bottom;
-  document.documentElement.style.setProperty('--sidebar-top', `${Math.max(bottom, 0)}px`);
+  document.documentElement.style.setProperty(
+    "--sidebar-top",
+    `${Math.max(bottom, 0)}px`,
+  );
 }
 
 function scheduleUpdate() {
@@ -15,14 +18,14 @@ function scheduleUpdate() {
   });
 }
 
-if (typeof window !== 'undefined') {
-  window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  window.addEventListener('resize', scheduleUpdate, { passive: true });
+if (typeof window !== "undefined") {
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate, { passive: true });
 
   const observer = new MutationObserver(scheduleUpdate);
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ['data-announcement-bar-initially-dismissed'],
+    attributeFilter: ["data-announcement-bar-initially-dismissed"],
   });
 
   const init = () => {
@@ -31,8 +34,8 @@ if (typeof window !== 'undefined') {
     scheduleUpdate();
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }

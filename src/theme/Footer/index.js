@@ -77,8 +77,7 @@ export default function FooterWrapper() {
       <a
         href="https://linea.build/"
         className={styles.logoLink}
-        aria-label="Linea homepage"
-      >
+        aria-label="Linea homepage">
         <ThemedImage
           sources={{
             light: "/img/Linea_docs_logo.svg",
@@ -108,8 +107,7 @@ export default function FooterWrapper() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
-            aria-label={label}
-          >
+            aria-label={label}>
             {icon}
           </a>
         ))}

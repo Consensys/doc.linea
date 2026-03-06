@@ -514,7 +514,7 @@ textarea {
 /* On doc pages (desktop), contain footer within the content column (right of sidebar) */
 @media (min-width: 997px) {
   html:has(.theme-doc-sidebar-container) footer:not(.theme-doc-footer) {
-    margin-left: var(--doc-sidebar-width, 0px);
+    margin-left: var(--doc-sidebar-width, 0);
     position: relative;
   }
 
@@ -525,7 +525,7 @@ textarea {
     left: calc(-1 * var(--doc-sidebar-width, 0px));
     top: 0;
     bottom: 0;
-    width: var(--doc-sidebar-width, 0px);
+    width: var(--doc-sidebar-width, 0);
     border-right: 1px solid #e5e5e5;
     pointer-events: none;
   }

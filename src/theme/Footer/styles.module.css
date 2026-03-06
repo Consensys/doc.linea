@@ -26,9 +26,8 @@
 
 .navLinks {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
-  flex-wrap: wrap;
   gap: 32px;
   flex: 1;
 }
@@ -131,9 +130,8 @@
   .navLinks {
     order: 3;
     flex: 0 0 100%;
-    flex-direction: column;
+    flex-flow: column nowrap;
     align-items: flex-start;
-    flex-wrap: nowrap;
     gap: 16px;
   }
 }
