@@ -102,11 +102,27 @@ The sequencer orders transactions, taking into account the
 [priority fee paid](../how-to/gas-fees.mdx#understand-the-gas-price-calculation). Valid
 transactions are placed into blocks in the correct sequence and executed.
 
-::::note[Validity]
+::::note[Transaction validity conditions]
 
 While the Linea chain may be followed using any Ethereum-compatible client, transaction validity
 conditions are specific to Linea, and differ slightly from those of other networks, including
 Ethereum.
+
+Linea enforces the following validity conditions before a transaction can be included in a block:
+
+- **Standard EVM checks**: Valid signature, correct nonce, sufficient balance to cover
+  `value + (gasLimit × gasPrice)`, and gas limit within block gas limits.
+- **Profitability threshold**: Each transaction must meet a minimum profitability threshold for
+  the sequencer. This means the fee paid by the transaction must be sufficient to cover the
+  cost of processing and proving the transaction. Transactions that do not meet this threshold
+  are rejected from the mempool.
+- **EIP-1559 gas pricing**: Linea uses the same EIP-1559 fee mechanism as Ethereum, with a
+  base fee that adjusts based on block utilization. See
+  [predictable pricing](./predictable-pricing.mdx) for details on how the base fee stabilizes
+  on Linea.
+
+For more information on how Linea differs from Ethereum, see
+[Ethereum differences](./ethereum-differences.mdx).
 
 ::::
 
