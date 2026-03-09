@@ -35,7 +35,7 @@ At this stage, the transaction may fail to execute on the L2. Reasons for failur
 When a user submits a forced transaction, the following components validate and process the transaction:
 
 - `ForcedTransactionGateway`: Validates and submits the transaction to the Linea rollup.
-- `LineaRollup`: Stores the transaction in the rollup and generates a rolling hash.
+- `LineaRollup`: The Linea Rollup and L1 Message Service stores the transaction in the rollup and generates a rolling hash.
 - Coordinator: Forwards the transaction to the sequencer for processing.
 - Sequencer: Processes the transaction before the deadline.
 - Prover: Generates a proof of the transaction and submits it to the finalization layer.
