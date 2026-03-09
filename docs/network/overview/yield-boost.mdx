@@ -32,7 +32,7 @@ The following sections detail the specific mechanics, architecture, and security
 
 From a user perspective, Yield Boost happens behind-the-scenes. Though the user interface will transparently inform users that their bridged ETH is being staked, their transaction flow and user experience is unaltered. Users will see the expected ETH balance on Linea after bridging, and at any time, users can transact with their ETH on Linea as normal.
 
-Importantly, the Yield Boost design ensures that user withdrawals are always available. The user deposit remains redeemable at all times through layered, permissionless withdrawal mechanisms designed to withstand periods of elevated exit demand.
+Importantly, the Yield Boost design ensures that user withdrawals are always supported. The user deposit remains redeemable at all times through layered, permissionless withdrawal mechanisms designed to withstand periods of elevated exit demand.
 
 ### Withdrawal guarantees
 
@@ -42,7 +42,7 @@ To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer,
 
 The system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 
-- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Permissionless mechanisms allow any user to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
+- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
 
 - As a last-resort mechanism, withdrawals will be fulfilled by [minting stETH against the StakingVault collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) and sending it directly to the user. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
 
@@ -115,10 +115,6 @@ Once the round-trip is validated, Linea will increase the staked percentage peri
 | Stage 10 | TBD                   | increase staking allowance (~10%)                                       | ~10%   | $12,000,000
 | Stage 11 | Entry Queue Dependent | multiple steps ramping up to 60% staking                                                | 60%   | $72,000,000
 
-
-
-
-
 ## Ecosystem-wide benefits
 
 Linea Yield Boost is designed as a positive-sum economic engine that creates compounding value for all ecosystem participants. By transforming a passive asset into a productive one, it fosters a more liquid, efficient, and sustainable environment for end-users, protocols, and builders.
@@ -126,8 +122,8 @@ Linea Yield Boost is designed as a positive-sum economic engine that creates com
 This system creates an economic flywheel whereby deeper liquidity funded by Yield Boost leads to better trade execution (lower slippage), which attracts more trading volume to the network. More volume generates higher trading fees, which increases the APY for liquidity providers, in turn attracting even more liquidity. This self-reinforcing loop creates a sustainable foundation for growth, benefiting the entire ecosystem.
 
 - For end-users: Although users do not receive direct staking rewards, they benefit from a healthier DeFi ecosystem. Deeper liquidity leads to better trade execution with lower slippage, access to cheaper borrowing rates, and more reliable asset prices across the network.
-- For liquidity providers: Selected liquidity providers will receive competitive and sustainable yields funded by real, Ethereum-native rewards. This supports a "set it and forget it" model that will reduce the turnover of providers chasing incentives across different protocols.
-- For DeFi protocols: Protocols can attract and retain sticky, long-term liquidity, providing a stable foundation for growth. This leads to a better user experience, which in turn attracts more users and generates more revenue, creating a sustainable growth model.
+- For liquidity providers: liquidity providers in specific pools on Linea will receive competitive, sustainable yields. This enables a "set it and forget it" model, reducing provider turnover driven by chasing short-term incentives across protocols, more details to come soon.
+- For DeFi protocols: Protocols benefit from long-term liquidity, providing a stable foundation for growth. This leads to a better user experience, which in turn attracts more users and generates more revenue, creating a sustainable growth model.
 
 ### Alignment with Ethereum
 
