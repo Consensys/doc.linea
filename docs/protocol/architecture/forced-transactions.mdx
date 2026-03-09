@@ -21,7 +21,7 @@ A forced transaction can be processed by the sequencer, but still fail on the L2
 
 At this stage, the transaction may fail to execute on the L2. Reasons for failure include:
 
-| Failure Reason | Description |
+| Failure reason | Description |
 |----------------|-------------|
 | **Invalid Nonce** | The signer's nonce on L2 has changed since the transaction was signed. Another transaction may have executed first. |
 | **Insufficient Gas** | The `gasLimit` specified is too low for the transaction to complete. |
@@ -67,3 +67,7 @@ sequenceDiagram
     Coordinator->>Sequencer: Forward transaction for processing
     Sequencer->>Sequencer: Attempt execution before deadline
 ```
+
+## Next steps
+
+Linea made forced transactions available in 2026 as [detailed in the changelog]().
