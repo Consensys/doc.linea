@@ -32,7 +32,7 @@ The following sections detail the specific mechanics, architecture, and security
 
 From a user perspective, Yield Boost happens behind-the-scenes. Though the user interface will transparently inform users that their bridged ETH is being staked, their transaction flow and user experience is unaltered. Users will see the expected ETH balance on Linea after bridging, and at any time, users can transact with their ETH on Linea as normal.
 
-Importantly, the Yield Boost design ensures that ETH withdrawals are always available. The user deposit remains redeemable at all times through layered, permissionless withdrawal mechanisms designed to withstand periods of elevated exit demand.
+Importantly, the Yield Boost design ensures that user withdrawals are always available. The user deposit remains redeemable at all times through layered, permissionless withdrawal mechanisms designed to withstand periods of elevated exit demand.
 
 ### Withdrawal guarantees
 
@@ -95,18 +95,29 @@ The 7-week progressive rollout plan is designed to ensure the stability of the b
 
 **Step 1. The "full round-trip" validation**:
 - Objective: Test the end-to-end lifecycle (Deposit → Stake → Earn → Exit → Withdraw).
-- Action: Stake 96 ETH (~$300k). 
+- Action: Stake 96 ETH (~$192k). 
 - Duration: ~3 weeks (accounting for Ethereum’s entry and exit queues).
 
 **Step 2. The main ramp-up**:
-Once the round-trip is validated, Linea will increase the staked percentage every 10 days, pending successful "staking activation" at each stage.
+Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
 
-| Stage | Timeline | Target Stake (% of TVS) | Indicated Value (at $250M TVS) |
-|-------|----------|-------------------------|------------------------------- |
-| Stage 1 | D+21 | 10% | $25M |
-| Stage 2 | D+31 | 20% | $50M |
-| Stage 3 | D+41 | 40% | $100M |
-| Stage 4 | D+51 | 60% (Final) | $150M |
+| Stage | Timeline | Action | Target Stake (% of TVS) | Indicated Value (at $120M TVS) |
+|-------|----------|--|-------------------------|------------------------------- |
+| Stage 1  | D                     |  vault creation | 0% | $0     |
+| Stage 2  | D+2                   |  assign roles; set fee recipient | 0%  | -          |
+| Stage 3  | D+2                   |  non-PDG flow activated, 96 ETH transferred, 3 validators initiated | 0.15% |                         | $192,000   |
+| Stage 4  | D+7                   |  500 ETH transferred; 15 validators initiated |  ~1%       | $1,200,000 |
+| Stage 5  | D+7                   |  staking paused                             |  ~1%                             | $1,200,000          |
+| Stage 6  | ~D+55                 |  validators activated and proven            | ~1%                    | $1,200,000          |
+| Stage 7  | TBD                   |  switch to PDG flow; remove permissions; single validator exit | ~0.95%                       | $1,136,000          |
+| Stage 8  | Exit Queue Dependent  | validators exit; funds returned to LR |  ~0.95%                       | $1,136,000          |
+| Stage 9  | TBD                   | start top-ups, Unpause staking                                  | 2%   | $2,400,000
+| Stage 10 | TBD                   | increase staking allowance (~10%)                                       | ~10%   | $12,000,000
+| Stage 11 | Entry Queue Dependent | multiple steps ramping up to 60% staking                                                | 60%   | $72,000,000
+
+
+
+
 
 ## Ecosystem-wide benefits
 
