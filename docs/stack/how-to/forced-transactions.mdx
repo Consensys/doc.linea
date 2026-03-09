@@ -1,0 +1,103 @@
+---
+title: Submit forced transactions
+description: Enable and submit forced transactions on Linea.
+sidebar_position: 1
+image: /img/socialCards/forced-transactions.jpg
+---
+
+## Enable the forced path
+
+Forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
+
+1. Deploy the `AddressFilter` contract
+2. Deploy the `ForcedTransactionGateway` contract
+
+Note that the `AddressFilter` contract is also required to initiate your rollup, so you should already have it deployed.
+
+Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
+
+## Submit a forced transaction
+
+To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1:
+
+```typescript
+// 1. Get the latest FinalizedStateUpdated event
+const events = await lineaRollup.queryFilter(
+    lineaRollup.filters.FinalizedStateUpdated()
+);
+const latestEvent = events[events.length - 1];
+
+// 2. Extract values from the event
+const {
+    blockNumber,              // L2 block number (indexed)
+    timestamp,                // Finalization timestamp
+    messageNumber,            // L1->L2 message number
+    forcedTransactionNumber   // Last finalized forced tx number
+} = latestEvent.args;
+
+// 3. Query rolling hashes from contract state
+const messageRollingHash = await lineaRollup.rollingHashes(messageNumber);
+const forcedTransactionRollingHash = await lineaRollup
+    .forcedTransactionRollingHashes(forcedTransactionNumber);
+
+// 4. Construct the LastFinalizedState
+const lastFinalizedState = {
+    timestamp,
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash
+};
+
+// 5. OPTIONAL: Verify it matches the contract's stored hash
+const expectedHash = keccak256(abi.encode(
+    messageNumber,
+    messageRollingHash,
+    forcedTransactionNumber,
+    forcedTransactionRollingHash,
+    timestamp
+));
+const storedHash = await lineaRollup.currentFinalizedState();
+assert(expectedHash === storedHash, "State mismatch - data may be stale");
+```
+
+Once you have the correct values, you can construct a forced transaction submission with the following fields:
+
+```bash
+struct LastFinalizedState {
+    uint256 timestamp;                    // Last finalized L2 block timestamp
+    uint256 messageNumber;                // L1→L2 message number at finalization
+    bytes32 messageRollingHash;           // Rolling hash of L1→L2 messages
+    uint256 forcedTransactionNumber;      // Last finalized forced tx number
+    bytes32 forcedTransactionRollingHash; // Rolling hash of forced transactions
+}
+```
+
+Then, sign an EIP-1559 transaction destined for the L2:
+
+```bash
+struct Eip1559Transaction {
+    uint256 nonce;
+    uint256 maxPriorityFeePerGas;
+    uint256 maxFeePerGas;
+    uint256 gasLimit;
+    address to;
+    uint256 value;
+    bytes input;
+    AccessList[] accessList;
+    uint8 yParity;
+    uint256 r;
+    uint256 s;
+}
+```
+
+When submitting the transaction, the gateway will validate that:
+
+- the last finalized state matches
+- the transaction details are within limits
+- the appropriate fee has been paid.
+
+At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
+
+The gateway will then send the transaction to the LineaRollup for storage.
+
