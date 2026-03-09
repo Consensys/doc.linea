@@ -43,7 +43,7 @@ When a user submits a forced transaction, the following components validate and 
 
 When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the transaction to the `LineaRollup`.
 
-The Linea rollup stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline.
+The Linea Rollup and L1 Message Service stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline.
 
 The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing. The sequencer receives the transaction and must process it before the deadline.
 
