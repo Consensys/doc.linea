@@ -7,7 +7,8 @@ image: /img/socialCards/forced-transactions.jpg
 
 ## Enable forced transactions
 
-Support for forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
+Support for forced transaction submission is not enabled by default. To enable forced transaction submission for your smart 
+contract, you need to:
 
 1. Deploy the `AddressFilter` contract.
 2. Deploy the `ForcedTransactionGateway` contract.
@@ -18,11 +19,13 @@ Note that the `AddressFilter` contract is required to [initiate your Linea insta
 
 :::
 
-Once both contracts are deployed, Linea Rollup and L1 Message Service admin must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing contracts to submit forced transactions.
+Once both contracts are deployed, the user who has the `DEFAULT_ADMIN_ROLE` on the smart contract that performs the Linea Rollup 
+and L1 Message Service must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` 
+contract, allowing contracts to submit forced transactions.
 
 :::info[Support]
 
-To get a contract on Linea Public Mainnet enabled reach out to ***.
+For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the [Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md).
 
 :::
 
