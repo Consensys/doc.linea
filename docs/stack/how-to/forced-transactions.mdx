@@ -5,16 +5,26 @@ sidebar_position: 1
 image: /img/socialCards/forced-transactions.jpg
 ---
 
-## Enable the forced path
+## Enable forced transactions
 
-Forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
+Support for forced transaction submission is not enabled by default. To enable forced transaction submission for your smart contract, you need to:
 
 1. Deploy the `AddressFilter` contract.
 2. Deploy the `ForcedTransactionGateway` contract.
 
-Note that the `AddressFilter` contract is also required to initiate your rollup, so you should already have it deployed.
+:::tip
 
-Once both contracts are deployed, a LineaRollup admin will grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing your contract to submit forced transactions.
+Note that the `AddressFilter` contract is required to [initiate your Linea instance](../how-it-works/core-components.mdx#onchain-system-contracts), so this dependency should already be met.
+
+:::
+
+Once both contracts are deployed, Linea Rollup and L1 Message Service admin must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` contract, allowing contracts to submit forced transactions.
+
+:::info[Support]
+
+To get a contract on Linea Public Mainnet enabled reach out to ***.
+
+:::
 
 ## Submit a forced transaction
 
@@ -99,5 +109,8 @@ When submitting the transaction, the gateway will validate that:
 
 At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
 
-The gateway will then send the transaction to the LineaRollup for storage.
+The gateway will then send the transaction to the Message bridge contracts for storage.
 
+## Next steps
+
+- Learn more about [forced transactions](../../protocol/forced-transactions.mdx).

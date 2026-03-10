@@ -1,7 +1,7 @@
 ---
 title: Forced transactions
 description: Forced transactions on Linea.
-sidebar_position: 4
+sidebar_position: 3
 image: /img/socialCards/forced-transactions.jpg
 ---
 
@@ -41,12 +41,12 @@ that include:
 
 | Failure reason | Description |
 |----------------|-------------|
-| **Invalid Nonce** | The signer's nonce on L2 has changed since the transaction was signed. Another transaction may have executed first. |
-| **Insufficient Gas** | The `gasLimit` specified is too low for the transaction to complete. |
-| **Insufficient Balance** | The signer doesn't have enough ETH on L2 to cover `value + (gasLimit * maxFeePerGas)`. |
-| **Contract Revert** | The target contract's logic reverted the call (require failed, custom error, etc.). |
-| **Out of Gas During Execution** | Complex computation exhausted the gas limit mid-execution. |
-| **Invalid Signature** | Edge cases where the signature is technically valid but doesn't match L2 state. |
+| **Invalid nonce** | The signer's nonce on L2 has changed since the transaction was signed. Another transaction may have executed first. |
+| **Insufficient gas** | The `gasLimit` specified is too low for the transaction to complete. |
+| **Insufficient balance** | The signer doesn't have enough ETH on L2 to cover `value + (gasLimit * maxFeePerGas)`. |
+| **Contract revert** | The target contract's logic reverted the call (require failed, custom error, etc.). |
+| **Out of gas during execution** | Complex computation exhausted the gas limit mid-execution. |
+| **Invalid signature** | Edge cases where the signature is technically valid but doesn't match L2 state. |
 
 ## Forced transaction lifecycle
 
@@ -101,5 +101,6 @@ by the deadline.
 
 ## Next steps
 
+- Learn how to [enable forced transactions](../stack/how-to/forced-transactions.mdx)
 - Consider the normal [transaction lifecycle](./architecture/index.mdx#transaction-lifecycle).
 - See the [changelog](../changelog/release-notes.mdx#beta-v60) detailing when Linea made forced transactions available.
