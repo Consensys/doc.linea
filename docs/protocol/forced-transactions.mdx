@@ -22,8 +22,7 @@ directly to the L1. To undertake a forced transaction, the user submits a signed
 
 Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the 
 sequencer will process the transaction well before this deadline -- the deadline is
-the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization reverts 
-for that batch. The potential batch failure effectively forces the sequencer to include the transaction.
+the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces the sequencer to include the transaction else the rollup cannot make forward progress.
 
 Forced transactions are chained using rolling hash that commits to the complete ordered sequence of forced transactions, 
 ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, 
@@ -87,17 +86,44 @@ sequenceDiagram
     participant Rollup as LineaRollup (L1)
     participant Coordinator as Coordinator (offchain)
     participant Sequencer as Sequencer (L2)
+    participant Stack as Linea stack
+    participant L1 as Finalization layer (Ethereum)
 
-    App->>Rollup: Read latest finalized state + rolling hashes
-    App->>Gateway: submitForcedTransaction(lastFinalizedState, signedTx) + fee
-    Gateway->>Rollup: storeForcedTransaction(...)
-    Rollup-->>Coordinator: ForcedTransactionAdded
-    Coordinator->>Sequencer: Forward transaction for processing
-    Sequencer->>Sequencer: Attempt execution before deadline
+    %% ======================
+    %% Step 1: Submission (L1)
+    %% ======================
+    rect rgb(64, 69, 76)
+        App->>Rollup: Step 1a: Read latest finalized state + rolling hashes
+        App->>Gateway: Step 1b: submitForcedTransaction(...) + fee
+        Gateway->>Rollup: Step 1c: Store forced transaction
+    end
+
+    %% ======================
+    %% Step 2: Ordering (L1 enforced)
+    %% ======================
+    rect rgb(64, 69, 76)
+        Rollup-->>Coordinator: Step 2a: Emit ForcedTransactionAdded
+        Coordinator->>Sequencer: Step 2b: Forward in canonical order
+    end
+
+    %% ======================
+    %% Step 3: Processing (L2 → L1 finalization)
+    %% ======================
+    rect rgb(64, 69, 76)
+        Sequencer->>Sequencer: Step 3a: Process before deadline
+        Sequencer->>Stack: Step 3b: Include in batch
+        Stack->>Stack: Step 3c: Generate zk proof
+        Stack->>L1: Step 3d: Submit proof + state root
+        L1->>L1: Step 3e: Verify and finalize batch
+    end
 ```
 
-It is the responsibility of the Linea Rollup and L1 Message Service contract to enforce the processing of the transaction 
-by the deadline.
+<small>
+
+> LineaRollup (L1): Refers to the Linea Rollup and L1 Message Service contracts deployed on Ethereum. This contract 
+> stores forced transactions, maintains rolling hashes, enforces deadlines, and verifies zk proofs.
+
+</small>
 
 ## Next steps
 

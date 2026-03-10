@@ -5,13 +5,23 @@ sidebar_position: 1
 image: /img/socialCards/forced-transactions.jpg
 ---
 
-## Enable forced transactions
+As a Linea operator you will need specific contracts in place, or alternatives that perform the same function. If you 
+wish to work with forced transactions on Linea Public Mainnet, skip to [step 2](#step-2-submit-a-forced-transaction).
 
-Support for forced transaction submission is not enabled by default. To enable forced transaction submission for your smart 
-contract, you need to:
+## Step 1: Enable forced transactions
+
+Support for forced transaction submission is not enabled by default. To enable forced transaction submission for smart 
+contracts on your Linea instance, you need to:
 
 1. Deploy the `AddressFilter` contract.
 2. Deploy the `ForcedTransactionGateway` contract.
+3. Have the `DEFAULT_ADMIN_ROLE` or access to that administrator.
+
+:::info[Mainnet]
+
+For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the [Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md), and this role [has been granted](../changelog/release-notes.mdx#beta-v60).
+
+:::
 
 :::tip
 
@@ -19,64 +29,97 @@ Note that the `AddressFilter` contract is required to [initiate your Linea insta
 
 :::
 
-Once both contracts are deployed, the user who has the `DEFAULT_ADMIN_ROLE` on the smart contract that performs the Linea Rollup 
-and L1 Message Service must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` 
+Once both contracts are deployed, the user who has the `DEFAULT_ADMIN_ROLE` on the smart contract that performs the Linea 
+Rollup and L1 Message Service must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` 
 contract, allowing contracts to submit forced transactions.
 
-:::info[Mainnet]
+## Step 2: Submit a forced transaction
 
-For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the [Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md).
+To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1.
+
+:::note
+
+The following example uses ethers v6 and is provided for illustration only.  
+You must supply the correct Linea RPC endpoint, contract address, and ABI for `LineaRollup`.  
+See the Linea contract addresses and ABIs in the monorepo for production integration.
 
 :::
 
-## Submit a forced transaction
-
-To submit a forced transaction, you first need to query the latest finalized state and rolling hashes from the L1:
-
 ```typescript
+// Pseudocode example (ethers v6)
+import {
+  AbiCoder,
+  keccak256,
+  Contract,
+  BrowserProvider
+} from "ethers";
+
+// assume provider + contract already initialized
+// const provider = new BrowserProvider(window.ethereum);
+// const lineaRollup = new Contract(address, abi, provider);
+
 // 1. Get the latest FinalizedStateUpdated event
 const events = await lineaRollup.queryFilter(
-    lineaRollup.filters.FinalizedStateUpdated()
+  lineaRollup.filters.FinalizedStateUpdated()
 );
+
+if (events.length === 0) {
+  throw new Error("No FinalizedStateUpdated events found");
+}
+
 const latestEvent = events[events.length - 1];
 
 // 2. Extract values from the event
 const {
-    blockNumber,              // L2 block number (indexed)
-    timestamp,                // Finalization timestamp
-    messageNumber,            // L1->L2 message number
-    forcedTransactionNumber   // Last finalized forced tx number
+  blockNumber,              // L2 block number (indexed)
+  timestamp,                // Finalization timestamp
+  messageNumber,            // L1->L2 message number
+  forcedTransactionNumber   // Last finalized forced tx number
 } = latestEvent.args;
 
 // 3. Query rolling hashes from contract state
 const messageRollingHash = await lineaRollup.rollingHashes(messageNumber);
-const forcedTransactionRollingHash = await lineaRollup
-    .forcedTransactionRollingHashes(forcedTransactionNumber);
 
-// 4. Construct the LastFinalizedState
+const forcedTransactionRollingHash =
+  await lineaRollup.forcedTransactionRollingHashes(
+    forcedTransactionNumber
+  );
+
+// 4. Construct the LastFinalizedState object
 const lastFinalizedState = {
-    timestamp,
-    messageNumber,
-    messageRollingHash,
-    forcedTransactionNumber,
-    forcedTransactionRollingHash
+  timestamp,
+  messageNumber,
+  messageRollingHash,
+  forcedTransactionNumber,
+  forcedTransactionRollingHash
 };
 
 // 5. OPTIONAL: Verify it matches the contract's stored hash
-const expectedHash = keccak256(abi.encode(
+const abiCoder = AbiCoder.defaultAbiCoder();
+
+const encoded = abiCoder.encode(
+  ["uint256", "bytes32", "uint256", "bytes32", "uint256"],
+  [
     messageNumber,
     messageRollingHash,
     forcedTransactionNumber,
     forcedTransactionRollingHash,
     timestamp
-));
+  ]
+);
+
+const expectedHash = keccak256(encoded);
+
 const storedHash = await lineaRollup.currentFinalizedState();
-assert(expectedHash === storedHash, "State mismatch - data may be stale");
+
+if (expectedHash !== storedHash) {
+  throw new Error("State mismatch - data may be stale");
+}
 ```
 
 Once you have the correct values, you can construct a forced transaction submission with the following fields:
 
-```bash
+```solidity
 struct LastFinalizedState {
     uint256 timestamp;                    // Last finalized L2 block timestamp
     uint256 messageNumber;                // L1→L2 message number at finalization
@@ -88,7 +131,7 @@ struct LastFinalizedState {
 
 Then, sign an EIP-1559 transaction destined for the L2:
 
-```bash
+```solidity
 struct Eip1559Transaction {
     uint256 nonce;
     uint256 maxPriorityFeePerGas;
@@ -110,7 +153,8 @@ When submitting the transaction, the gateway will validate that:
 - the transaction details are within limits
 - the appropriate fee has been paid.
 
-At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as precompiles, are not called directly.
+At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as 
+precompiles, are not called directly.
 
 The gateway will then send the transaction to the Message bridge contracts for storage.
 
