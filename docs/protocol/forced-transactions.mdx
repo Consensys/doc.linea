@@ -5,24 +5,39 @@ sidebar_position: 4
 image: /img/socialCards/forced-transactions.jpg
 ---
 
-Forced transactions allow users to submit transactions directly to Ethereum (L1) with a guaranteed processing deadline. This manual submission mechanism helps users submit transactions even when the normal L2 path is blocked or delayed.
+Forced transactions allow users to submit transactions directly to the L1 to be guaranteed a processing deadline on the L2. 
+This manual submission mechanism ensures that users can submit transactions even when the normal L2 path is blocked or delayed.
+
+:::info
+
+In the case of the Linea public network, the L1 is Ethereum which serves as the 
+[finality layer](../network/overview/known-finality-state#transaction-finality).
+
+:::
 
 ## What are forced transactions?
 
-Forced transactions are an anti-censorship mechanism that bypasses the normal L2 submission path to submit transactions directly to the L1. When a user submits a forced transaction, they submit a signed L2 transaction to the L1. Forced transactions are guaranteed to be processed by the sequencer by a specified block deadline.
+Forced transactions are an anti-censorship mechanism that bypass the normal L2 submission path to submit transactions 
+directly to the L1. To undertake a forced transaction, the user submits a signed L2 transaction to the L1. 
 
-Typically, the sequencer will process the transaction well before the deadline -- the deadline is
-the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization reverts for that batch. The potential batch failure effectively forces the sequencer to include your transaction.
+Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the 
+sequencer will process the transaction well before this deadline -- the deadline is
+the **latest acceptable block, not the target block**. If the sequencer fails to meet the deadline, finalization reverts 
+for that batch. The potential batch failure effectively forces the sequencer to include the transaction.
 
-Forced transactions are chained using an MiMC-based rolling hash. The rolling hash commits to the complete ordered sequence of forced transactions, ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, and reordering attacks.
+Forced transactions are chained using rolling hash that commits to the complete ordered sequence of forced transactions, 
+ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, 
+and reordering attacks.
 
 ### Processing vs. execution
 
-A forced transaction can be processed by the sequencer, but still fail on the L2. The sequencer only
-processes the transaction; it does not attempt to execute it. After a forced transaction is
-processed by the sequencer, the [prover](./architecture/prover/index.mdx) will attempt to generate a zero-knowledge proof attesting to the validity of the state transition for that batch.
+Note that forced transactions guarantee *inclusion* not success. For example, while sequencer's role is to process the 
+transaction; it does not attempt to execute it. This means that a forced transaction successfully processed by the sequencer 
+can still fail on the L2. 
 
-At this stage, the transaction may fail to execute on the L2. Reasons for failure include:
+After a forced transaction is processed by the sequencer, the prover attempts to generate a zero-knowledge  proof attesting 
+to the validity of the state transition for that batch. At this stage, the transaction may fail to execute on the L2 for reasons
+that include:
 
 | Failure reason | Description |
 |----------------|-------------|
@@ -33,25 +48,35 @@ At this stage, the transaction may fail to execute on the L2. Reasons for failur
 | **Out of Gas During Execution** | Complex computation exhausted the gas limit mid-execution. |
 | **Invalid Signature** | Edge cases where the signature is technically valid but doesn't match L2 state. |
 
-## Technical components
+## Forced transaction lifecycle
 
 When a user submits a forced transaction, the following components validate and process the transaction:
 
-- `ForcedTransactionGateway`: Validates and submits the transaction to the Linea rollup.
-- `LineaRollup`: The Linea Rollup and L1 Message Service stores the transaction in the rollup and generates a rolling hash.
+- `ForcedTransactionGateway`: Validates and submits the transaction to the Linea Rollup and L1 Message Service.
+- [`LineaRollup`](../network/build/contracts): The Linea Rollup and L1 Message Service stores the transaction in the 
+rollup and generates a rolling hash.
 - [Coordinator](./architecture/coordinator.mdx): Forwards the transaction to the sequencer for processing.
 - [Sequencer](./architecture/sequencer/index.mdx): Processes the transaction before the deadline.
 - [Prover](./architecture/prover/index.mdx): Generates a proof of the transaction and submits it to the finalization layer.
 
+### Step 1: Submission
 
-When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the transaction to the `LineaRollup`.
+When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with 
+a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the 
+transaction to the `LineaRollup` contract; the Linea Rollup and L1 Message Service.
 
-The Linea Rollup and L1 Message Service stores the transaction in a queue of forced transactions, generating a rolling hash. The rollup also enforces processing by the deadline.
+### Step 2: Ordering
 
-The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer for processing. The sequencer receives the transaction and must process it before the deadline.
+The Linea Rollup and L1 Message Service stores the transaction in a queue of forced transactions, generating a Minimal 
+Multiplicative Complexity (MiMC)-based rolling hash.
 
+### Step 3: Processing
 
-Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the proof to the finalization layer.
+The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer 
+for processing. The sequencer receives the transaction and must process it before the deadline.
+
+Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the 
+proof to the finalization layer.
 
 The complete lifecycle of a forced transaction is as follows:
 
@@ -71,7 +96,10 @@ sequenceDiagram
     Sequencer->>Sequencer: Attempt execution before deadline
 ```
 
+It is the responsibility of the Linea Rollup and L1 Message Service contract to enforce the processing of the transaction 
+by the deadline.
+
 ## Next steps
 
-Linea made forced transactions available in 2026 as [detailed in the
-changelog](../changelog/release-notes.mdx#beta-v60).
+- Consider the normal [transaction lifecycle](./architecture/index.mdx#transaction-lifecycle).
+- See the [changelog](../changelog/release-notes.mdx#beta-v60) detailing when Linea made forced transactions available.
