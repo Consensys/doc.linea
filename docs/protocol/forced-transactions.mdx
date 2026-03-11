@@ -22,7 +22,7 @@ directly to the L1. To undertake a forced transaction, the user submits a signed
 
 Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the 
 sequencer will process the transaction well before this deadline -- the deadline is
-the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces the sequencer to include the transaction else the rollup cannot make forward progress.
+the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces the sequencer to process the transaction else the rollup cannot make forward progress.
 
 Forced transactions are chained using rolling hash that commits to the complete ordered sequence of forced transactions, 
 ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, 
