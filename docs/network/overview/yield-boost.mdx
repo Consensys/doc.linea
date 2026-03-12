@@ -44,7 +44,7 @@ The system automatically rebalances funds between the stVault and the buffer to 
 
 - Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user is able to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
 
-- As a last-resort mechanism, withdrawals will be fulfilled by [minting stETH against the StakingVault collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) and sending it directly to the user. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
+- As a last-resort mechanism, the user can opt to [mint stETH against the `StakingVault` collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) rather than wait for the ETH balance to be sufficient. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
 
 ## Core mechanism
 
@@ -94,20 +94,27 @@ These granular safety and liveness properties are not abstract; they are the dir
 The 7-week progressive rollout plan is designed to ensure the stability of the bridge and the automation logic. The ramp-up follows a strict phased approach.
 
 **Step 1. The "full round-trip" validation**:
-- Objective: Test the end-to-end lifecycle (Deposit → Stake → Earn → Exit → Withdraw).
+- Objective: Validate the staged activation and transition of the staking system under real conditions.
 - Action: Stake 96 ETH (~$192k). 
-- Duration: ~3 weeks (accounting for Ethereum’s entry and exit queues).
+- Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
+
+  1. Start with 3 initial validators (96 ETH) and confirm deposits and validator activation behave as expected.
+  2. Add the remaining ETH up to 500 ETH to bring additional validators online.
+  3. Once all validators are active, switch to the Protocol-Defined Guardrails (PDG)/strict flow.
+  4. Exit one validator to validate the exit path and fund return.
+  5. On successful exit, switch the system to top-up mode.
+  6. Resume ramp-up by topping up existing validators after unpausing.
 
 **Step 2. The main ramp-up**:
 Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
 
 | Phase | Key Actions | Target Stake (% TVS) | Indicated Value (at $120M TVS) |
 |-------|------------|----------------------|--------------------------------|
-| 1 — Setup | Vault creation; roles assigned; rollout validators up to +500 ETH (15 validators); staking paused | ~1% | ~$1.2M |
-| 2 — Activation & Hardening | Validators activated and proven (~D+55); switch to PDG flow; remove permissions; single validator exit | ~0.95% | ~$1.14M |
-| 3 — Resume & Scale to 2% | Exit queue completes; unpause staking; begin top-ups | 2% | $2.4M |
-| 4 — Scale to 10% | Increase staking allowance | ~10% | $12M |
-| 5 — Scale to 60% | Multi-step ramp (entry queue dependent) | 60% | $72M |
+| 1. Setup | Vault creation; roles assigned; rollout validators up to 500 ETH/15 validators; staking paused | ~1% | ~$1.2M |
+| 2. Activation & Hardening | Validators activated and proven (~D+55); switch to PDG flow; remove permissions; single validator exit | ~0.95% | ~$1.14M |
+| 3. Resume & Scale to 2% | Exit queue completes; unpause staking; begin top-ups | 2% | $2.4M |
+| 4. Scale to 10% | Increase staking allowance | ~10% | $12M |
+| 5. Scale to 60% | Multi-step ramp (entry queue dependent) | 60% | $72M |
 
 ## Ecosystem-wide benefits
 
@@ -115,9 +122,9 @@ Linea Yield Boost is designed as a positive-sum economic engine that creates com
 
 This system creates an economic flywheel whereby deeper liquidity funded by Yield Boost leads to better trade execution (lower slippage), which attracts more trading volume to the network. More volume generates higher trading fees, which increases the APY for liquidity providers, in turn attracting even more liquidity. This self-reinforcing loop creates a sustainable foundation for growth, benefiting the entire ecosystem.
 
-- For end-users: Although users do not receive direct staking rewards, they benefit from a healthier DeFi ecosystem. Deeper liquidity leads to better trade execution with lower slippage, access to cheaper borrowing rates, and more reliable asset prices across the network.
-- For liquidity providers: liquidity providers in specific pools on Linea will receive competitive, sustainable yields. This enables a "set it and forget it" model, reducing provider turnover driven by chasing short-term incentives across protocols, more details to come soon.
-- For DeFi protocols: Protocols benefit from long-term liquidity, providing a stable foundation for growth. This leads to a better user experience, which in turn attracts more users and generates more revenue, creating a sustainable growth model.
+- **End-users:** Benefit indirectly through improved market quality--tighter spreads, lower slippage, and stronger price stability across the supported DeFi applications.
+- **Liquidity providers:** Specific pools on Linea will receive competitive, sustainable yields. This enables a "set it and forget it" model, reducing provider turnover driven by chasing short-term incentives across protocols (more details to come soon).
+- **DeFi protocols:** Protocols benefit from long-term liquidity, providing a stable foundation for growth. This leads to a better user experience, which in turn attracts more users and generates more revenue, creating a sustainable growth model.
 
 ### Alignment with Ethereum
 
