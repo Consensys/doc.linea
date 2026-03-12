@@ -359,7 +359,7 @@ The Yield Boost system has the following mitigations in place:
 | Fund Movement | Source | Destination | Trigger | Role Required |
 |--------------|--------|-------------|---------|---------------|
 | Stake excess reserve | Linea bridge | StakingVault | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
-| beacon chain deposit | StakingVault | Node operators | Node Operator decision | Node Operator |
+| Beacon chain deposit | StakingVault | Node operators | Node Operator decision | Node Operator |
 | Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
 | Operator replenish reserve | StakingVault | Linea bridge | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | StakingVault | Reserve below minimum | Permissionless |
