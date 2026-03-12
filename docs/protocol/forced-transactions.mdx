@@ -61,9 +61,9 @@ reasons that include:
 
 When a user submits a forced transaction, the following components validate and process the transaction:
 
-- `ForcedTransactionGateway`: Validates and submits the transaction to the `LineaRollup`.
-- [`LineaRollup`](../network/build/contracts): The Linea rollup and message service contract stores the transaction and 
+- `ForcedTransactionGateway`: Validates and submits the transaction to the `LineaRollup`,  and 
 generates a rolling hash.
+- [`LineaRollup`](../network/build/contracts): The Linea rollup and message service contract stores the transaction.
 - [Coordinator](./architecture/coordinator.mdx): Forwards the transaction to the sequencer for processing.
 - [Sequencer](./architecture/sequencer/index.mdx): Processes the transaction before the deadline.
 - [Prover](./architecture/prover/index.mdx): Generates a proof of the transaction and includes it in the finalization proof.
