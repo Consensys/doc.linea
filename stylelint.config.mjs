@@ -15,5 +15,25 @@ export default {
     "value-keyword-case": ["lower", { camelCaseSvgKeywords: true }],
     "media-feature-range-notation": "prefix",
     "no-descending-specificity": null,
+    "property-no-unknown": [
+      true,
+      {
+        ignoreProperties: ["composes"],
+      },
+    ],
+    "selector-max-id": [
+      0,
+      {
+        message: "ID selectors are forbidden — use classes instead",
+        severity: "warning",
+      },
+    ],
+    "max-nesting-depth": [
+      4,
+      {
+        message: "Nesting depth > 4 — simplify selector or use a class",
+        severity: "warning",
+      },
+    ],
   },
 };

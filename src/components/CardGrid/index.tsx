@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import { ArrowIcon } from "@site/src/components/icons";
 import styles from "./styles.module.css";
 
 type CardItem = {
@@ -26,15 +27,7 @@ function Card({ title, link, description, iconSrc }: CardItem) {
           </div>
           <div className={styles.cardFooter}>
             <div className={styles.arrowButton}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M3 8H13M13 8L9 4M13 8L9 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowIcon />
             </div>
           </div>
         </div>

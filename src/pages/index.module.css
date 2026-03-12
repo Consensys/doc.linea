@@ -1,5 +1,5 @@
 .icon {
-  color: #61dfff;
+  color: var(--linea-brand-cyan);
   height: 30px;
   width: 30px;
   margin-left: 20px;
@@ -26,21 +26,21 @@
 
 .bannerButtonPrimary {
   background-color: white;
-  color: #121212 !important;
+  color: var(--linea-black) !important;
 }
 
 .bannerButtonPrimary:hover {
-  background-color: #61dfff;
+  background-color: var(--linea-brand-cyan);
 }
 
 .bannerButtonSecondary {
   background-color: white;
-  color: #121212 !important;
+  color: var(--linea-black) !important;
   border: none;
 }
 
 .bannerButtonSecondary:hover {
-  background-color: #61dfff;
+  background-color: var(--linea-brand-cyan);
 }
 
 @media (max-width: 320px) {
