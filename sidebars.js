@@ -30,6 +30,7 @@ const sidebars = {
         "network/overview/public-data",
         "network/overview/recoverable-state",
         "network/overview/ethereum-differences",
+        "network/overview/yield-boost",
       ],
     },
     {
@@ -328,7 +329,15 @@ const sidebars = {
         "protocol/architecture/rpc-services",
       ],
     },
-    "protocol/tokenomics",
+    {
+      type: "category",
+      label: "Mechanisms",
+      collapsible: false,
+      items: [
+        "protocol/tokenomics",
+        "protocol/yield-boost-architecture",
+      ],
+    },
     {
       type: "category",
       label: "Reference",
