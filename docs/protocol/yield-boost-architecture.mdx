@@ -39,7 +39,7 @@ When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use
 - **Native token bridge:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
 - **YieldManager:** L1 contract that moves ETH between the Linea bridge and the StakingVault, and calculates net yield after fees and liabilities.
 - **StakingVault:** Lido V3 stVault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the Linea bridge.
-- **beacon chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
+- **Beacon chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
 - **Node operator:** Runs beacon chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
