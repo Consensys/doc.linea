@@ -5,6 +5,12 @@ sidebar_position: 1
 image: /img/socialCards/forced-transactions.jpg
 ---
 
+:::caution[Status]
+
+🚧 Forced transactions are not yet live. This documentation describes the intended design.
+
+:::
+
 As a Linea operator you will need specific contracts in place, or alternatives that perform the same function. If you 
 wish to work with forced transactions on Linea Public Mainnet, skip to [step 2](#step-2-submit-a-forced-transaction).
 
@@ -19,7 +25,9 @@ contracts on your Linea instance, you need to:
 
 :::info[Mainnet]
 
-For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the [Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md), and this role [has been granted](../../changelog/release-notes.mdx#beta-v60).
+For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the 
+[Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md), 
+and this role [has been granted](../../changelog/release-notes.mdx#beta-v60).
 
 :::
 
@@ -30,8 +38,8 @@ Note that the `AddressFilter` contract is required to [initiate your Linea insta
 :::
 
 Once both contracts are deployed, the user who has the `DEFAULT_ADMIN_ROLE` on the smart contract that performs the Linea 
-Rollup and L1 Message Service access control operations must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the `ForcedTransactionGateway` 
-contract, allowing the submission of forced transactions.
+Rollup and L1 Message Service access control operations must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the 
+`ForcedTransactionGateway` contract, allowing the submission of forced transactions.
 
 ## Step 2: Submit a forced transaction
 
@@ -39,7 +47,7 @@ To submit a forced transaction, you first need to query the latest finalized sta
 
 :::note
 
-The following example uses ethers v6 and is provided for illustration only.  
+The following example uses Ethers v6 and is provided for illustration only.  
 You must supply the correct Linea RPC endpoint, contract address, and ABI for `LineaRollup`.  
 See the Linea contract addresses and ABIs in the monorepo for production integration.
 
@@ -149,14 +157,30 @@ struct Eip1559Transaction {
 
 When submitting the transaction, the gateway will validate that:
 
-- the last finalized state matches
-- the transaction details are within limits
-- the appropriate fee has been paid.
+- The last finalized state matches
+- The transaction details are within limits
+- The appropriate fee has been paid
+
+:::info
+
+The transaction fee is fixed, you may query the `forcedTransactionFeeInWei` on the `LineaRollup`contract:
+
+```typescript
+// Pseudocode
+
+const forcedTransactionFeeInWei = await lineaRollup.forcedTransactionFeeInWei();
+
+await forcedTransactionGateway.submitForcedTransaction(forcedTransactionStruct, lastFinalizedStateStruct, {
+  value: forcedTransactionFeeInWei
+});
+```
+
+:::
 
 At this stage, the transaction will also be checked by the `AddressFilter` to ensure that certain addresses, such as 
 precompiles, are not called directly.
 
-The gateway will then send the transaction to the Message bridge contracts for storage.
+The gateway will then send the transaction to the `LineaRollup` for storage.
 
 ## Next steps
 

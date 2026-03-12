@@ -5,6 +5,13 @@ sidebar_position: 3
 image: /img/socialCards/forced-transactions.jpg
 ---
 
+:::caution[Status]
+
+🚧 Forced transactions are not yet live. This documentation describes the intended design.
+
+:::
+
+
 Forced transactions allow users to submit transactions directly to the L1 to be guaranteed a processing deadline on the L2. 
 This manual submission mechanism ensures that users can submit transactions even when the normal L2 path is blocked or delayed.
 
@@ -51,7 +58,7 @@ that include:
 
 When a user submits a forced transaction, the following components validate and process the transaction:
 
-- `ForcedTransactionGateway`: Validates and submits the transaction to the Linea Rollup and L1 Message Service.
+- `ForcedTransactionGateway`: Validates and submits the transaction to the `LineaRollup`.
 - [`LineaRollup`](../network/build/contracts): The Linea Rollup and L1 Message Service stores the transaction in the 
 rollup and generates a rolling hash.
 - [Coordinator](./architecture/coordinator.mdx): Forwards the transaction to the sequencer for processing.
@@ -62,17 +69,17 @@ rollup and generates a rolling hash.
 
 When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with 
 a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the 
-transaction to the `LineaRollup` contract; the Linea Rollup and L1 Message Service.
+transaction to the `LineaRollup` contract.
 
 ### Step 2: Ordering
 
-The Linea Rollup and L1 Message Service stores the transaction in a queue of forced transactions, generating a Minimal 
+The `LineaRollup` stores the transaction in a queue of forced transactions, generating a Minimal 
 Multiplicative Complexity (MiMC)-based rolling hash.
 
 ### Step 3: Processing
 
-The transaction is then sent to the coordinator, an offchain component that forwards the transaction to the sequencer 
-for processing. The sequencer receives the transaction and must process it before the deadline.
+The coordinator listens for when the `LineaRollup` contract emits a `ForcedTransactionAdded` event and retrieves the 
+corresponding forced transaction. It then forwards the transaction to the sequencer for processing before the deadline.
 
 Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the 
 proof to the finalization layer.
@@ -120,8 +127,9 @@ sequenceDiagram
 
 <small>
 
-> LineaRollup (L1): Refers to the Linea Rollup and L1 Message Service contracts deployed on Ethereum. This contract 
-> stores forced transactions, maintains rolling hashes, enforces deadlines, and verifies zk proofs.
+> `LineaRollup` (L1): Refers to the smart contract that provides the [Linea rollup and L1 message 
+> service](../network/build/contracts). This contract is deployed on Ethereum and stores forced 
+> transactions, maintains rolling hashes, enforces deadlines, and verifies zk proofs.
 
 </small>
 
