@@ -1,0 +1,86 @@
+.card {
+  position: relative;
+  display: block;
+  background-color: var(--homepage-card-background);
+  border-radius: 10px;
+  padding: 24px;
+  min-height: 148px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="light"] .card {
+  text-decoration: none !important;
+}
+
+[data-theme="dark"] .card {
+  text-decoration: none !important;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+  text-decoration: none;
+  color: inherit !important;
+  opacity: 1;
+}
+
+.text {
+  font-family: 'Atyp Display', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--linea-text-primary);
+  margin: 0;
+  max-width: 72%;
+}
+
+[data-theme="dark"] .text {
+  color: #fff;
+}
+
+.arrowButton {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #121212;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .arrowButton {
+  background-color: #fff;
+  color: #121212;
+}
+
+.card:hover .arrowButton {
+  background-color: var(--linea-highlight-color-2);
+  color: #fff;
+}
+
+.decorativeImage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 41px;
+  height: 41px;
+  pointer-events: none;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .text {
+    max-width: 80%;
+    font-size: 16px;
+  }
+}

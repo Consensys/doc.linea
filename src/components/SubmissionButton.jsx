@@ -5,15 +5,15 @@ const SubmissionButton = ({
   text = "Visit the Developer Hub"
 }) => {
   const handleMouseEnter = (e) => {
-    e.target.style.backgroundColor = '#fff068';
+    e.target.style.backgroundColor = '#FFF068';
     e.target.style.transform = 'scale(1.05)';
     e.target.style.boxShadow = '0 6px 20px rgba(255, 240, 104, 0.3)';
   };
 
   const handleMouseLeave = (e) => {
-    e.target.style.backgroundColor = '#61dfff';
+    e.target.style.backgroundColor = '#6119EF';
     e.target.style.transform = 'scale(1)';
-    e.target.style.boxShadow = '0 4px 12px rgba(97, 223, 255, 0.2)';
+    e.target.style.boxShadow = 'none';
   };
 
   return (
@@ -22,13 +22,14 @@ const SubmissionButton = ({
       justifyContent: 'center',
       margin: '20px 0'
     }}>
-      <a 
+      <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        className="submission-button"
         style={{
-          backgroundColor: '#61dfff',
-          color: '#121212',
+          backgroundColor: '#6119EF',
+          color: '#ffffff',
           border: 'none',
           padding: '16px 32px',
           textAlign: 'center',
@@ -43,7 +44,7 @@ const SubmissionButton = ({
           cursor: 'pointer',
           borderRadius: '50px',
           transition: 'all 0.3s ease',
-          boxShadow: '0 4px 12px rgba(97, 223, 255, 0.2)',
+          boxShadow: 'none',
           minHeight: '52px'
         }}
         onMouseEnter={handleMouseEnter}

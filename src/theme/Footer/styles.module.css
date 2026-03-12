@@ -1,0 +1,138 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 42px;
+  padding: 100px 70px;
+  background: var(--footer-background);
+  border-top: 1px solid #e5e5e5;
+}
+
+[data-theme="dark"] .footer {
+  border-top: 1px solid #333;
+}
+
+.logoLink {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 22px;
+  width: 132px;
+  display: block;
+  transform: translateY(-3px);
+}
+
+.navLinks {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 32px;
+  flex: 1;
+}
+
+/* Use .footer prefix for higher specificity to beat global a:not(...) rule */
+.footer .navLink {
+  font-family: AtypDisplay, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  line-height: 1;
+  color: #121212 !important;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer .navLink {
+  color: #f8f7f2 !important;
+}
+
+.footer .navLink:hover {
+  color: #6119ef !important;
+  text-decoration: none;
+}
+
+.footer .cookieBtn {
+  font-family: AtypDisplay, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+  line-height: 1;
+  color: #121212;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .footer .cookieBtn {
+  color: #f8f7f2 !important;
+}
+
+.footer .cookieBtn:hover {
+  color: #6119ef !important;
+}
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.footer .socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #121212 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer .socialLink svg {
+  width: 20px;
+  height: 20px;
+  fill: #121212 !important;
+}
+
+[data-theme="dark"] .footer .socialLink svg {
+  fill: #f8f7f2 !important;
+}
+
+.footer .socialLink svg:hover {
+  fill: #6119ef !important;
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+    padding: 64px 24px;
+  }
+
+  .logoLink {
+    flex: 1;
+    order: 1;
+  }
+
+  .socialIcons {
+    order: 2;
+  }
+
+  .navLinks {
+    order: 3;
+    flex: 0 0 100%;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

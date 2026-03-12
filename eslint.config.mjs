@@ -28,6 +28,7 @@ export default [
       "**/build/",
       "**/.eslintrc.js",
       "docs/test-api",
+      ".claude/",
       "./node_modules/*",
       "**/*.md",
       "**/*.mdx",
