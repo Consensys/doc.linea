@@ -1,0 +1,171 @@
+/* ============================================================
+   3. TYPOGRAPHY
+   ============================================================ */
+
+body {
+  font-family: AtypText, sans-serif;
+}
+
+h1 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 400;
+}
+
+h3 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 500;
+}
+
+h4 {
+  font-family: AtypDisplay, sans-serif;
+  font-weight: 500;
+}
+
+em {
+  font-style: italic;
+}
+
+html {
+  line-height: 1.5;
+  tab-size: 4;
+  font-family: inherit;
+  font-feature-settings: normal;
+  background: var(--page-background) !important;
+}
+
+hr {
+  font-family: inherit;
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+a:not(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-contents__link) {
+  font-family: inherit;
+  color: var(--linea-link-highlight-color);
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-family: inherit;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: var(--ifm-code-font-size);
+}
+
+small {
+  font-family: inherit;
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-family: inherit;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* ============================================================
+   4. TABLES
+   ============================================================ */
+
+/* Tables styling per Figma */
+table {
+  font-family: AtypText, sans-serif;
+  text-indent: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--linea-radius-md);
+  overflow: auto hidden;
+  border: 1px solid var(--linea-border);
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+table thead {
+  background-color: var(--linea-surface-elevated);
+}
+
+table thead th {
+  font-family: AtypText, sans-serif;
+  font-weight: 500;
+  padding: 12px;
+  text-align: left;
+  color: var(--linea-text-primary);
+  font-size: var(--font-body-md);
+  border-bottom: 1px solid var(--linea-border);
+  border-right: 1px solid var(--linea-border);
+}
+
+table thead th:last-child {
+  border-right: none;
+}
+
+table tbody tr {
+  background-color: var(--page-background);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: var(--linea-surface-elevated);
+}
+
+table tbody td {
+  padding: 12px;
+  color: var(--linea-text-primary);
+  font-size: var(--font-body-md);
+  line-height: 1.4;
+  border-bottom: 1px solid var(--linea-border);
+  border-right: 1px solid var(--linea-border);
+}
+
+table tbody td:last-child {
+  border-right: none;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root > * {
+  --md-code-hl-comment-color: #b3ccfb;
+}

@@ -12,6 +12,9 @@ import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenB
 import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import { ChangelogEntry, ChangelogDate, ChangelogSubtitle } from "@site/src/components/changelog/ChangelogEntry";
+
+<ChangelogSubtitle>Latest network, protocol, and tooling updates for builders.</ChangelogSubtitle>
 
 :::info Linea Security Council transactions
 
@@ -21,9 +24,9 @@ This page maintains a record and brief explanation of [Linea Security Council tr
 
 ## Beta v6.0
 
-**Linea Mainnet: March 2026**
+<ChangelogDate mainnet="March 2026" sepolia="March 2026" />
 
-**Linea Sepolia: March 2026**
+<ChangelogEntry tag="upgrade">
 
 - Switches prover to small fields, enabling faster proof generation. **This change deprecates the
   ENS resolver contract; you will need to update your configuration to point to the new contract
@@ -32,74 +35,101 @@ This page maintains a record and brief explanation of [Linea Security Council tr
 - Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism that allows users to submit transactions directly to the L1.
 - Introduces EIP-7702, enabling gassless transactions, batch transactions, and session keys. No user action or migration required.
 
+</ChangelogEntry>
+
 ## Beta v5.0
+
+<ChangelogDate mainnet="30 March 2026" sepolia="21 December 2025" />
 
 **Linea Mainnet: 30 March 2026**
 
-**Linea Sepolia: 21 December 2025**
+<ChangelogEntry tag="feature">
 
-- Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+
+</ChangelogEntry>
 
 ## Assertions
 
-**Linea Mainnet: 28 January 2026**
+<ChangelogDate mainnet="28 January 2026" />
 
-- Deploys the Credible Layer, a security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart contracts and enforce them at the network level. To learn more about writing and deploying assertions, see the [guide](../network/how-to/write-and-deploy-assertions.mdx).
+<ChangelogEntry tag="feature">
+
+Deploys the Credible Layer, a security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart contracts and enforce them at the network level. To learn more about writing and deploying assertions, see the [guide](../network/how-to/write-and-deploy-assertions.mdx).
+
+</ChangelogEntry>
 
 ## Beta v4.4
 
-**Linea Mainnet: 3 December 2025**
+<ChangelogDate mainnet="3 December 2025" sepolia="1 December 2025" />
 
-**Linea Sepolia: 1 December 2025**
+<ChangelogEntry tag="upgrade">
 
-- Upgrades Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../network/how-to/run-a-node/beta-v4-migration.mdx).
+Upgrades Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgrade guide](../network/how-to/run-a-node/beta-v4-migration.mdx).
+
+</ChangelogEntry>
 
 ## Beta v4.3
 
-**Linea Mainnet: 17 November 2025**
+<ChangelogDate mainnet="17 November 2025" sepolia="10 November 2025" />
 
-**Linea Sepolia: 10 November 2025**
+<ChangelogEntry tag="performance">
 
-- Upgrades to limitless prover, enabling higher throughput and lower gas fees.
-- Increases throughput to 100 Mgas/s.
+Upgrades to limitless prover, enabling higher throughput and lower gas fees.
+
+Increases throughput to 100 Mgas/s.
+
+</ChangelogEntry>
 
 ## Beta v4.2
 
-**Linea Mainnet: 5 November 2025**
+<ChangelogDate mainnet="5 November 2025" sepolia="31 October 2025" />
 
-**Linea Sepolia: 31 October 2025**
+<ChangelogEntry tag="upgrade">
 
-- Updates the burn mechanism to include LINEA tokens. Details and percentage breakdown in the
-  [burn mechanism guide](../protocol/tokenomics.mdx#burning-mechanism).
+Updates the burn mechanism to include LINEA tokens. Details and percentage breakdown in the
+[burn mechanism guide](../protocol/tokenomics.mdx#burning-mechanism).
+
+</ChangelogEntry>
 
 ## Fusaka
 
+<ChangelogEntry tag="announcement">
+
 Linea will be implementing upgrades to bring the network into line with the latest updates to the Ethereum network, referred to as [the Fusaka upgrade](https://ethereum.org/roadmap/fusaka/).
+
+</ChangelogEntry>
 
 ## Beta v4.1
 
-**Linea Mainnet: 30 October 2025**
+<ChangelogDate mainnet="30 October 2025" sepolia="30 October 2025" />
 
-**Linea Sepolia: 30 October 2025**
+<ChangelogEntry tag="performance">
 
 - Boost prover performance by reducing proving time by 33%, supporting scaled trading, consumer, and
 institutional use cases.
 
+</ChangelogEntry>
+
 ## Beta v4.0
 
-**Linea Mainnet:**
+<ChangelogDate>
+<div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Mainnet:</span></div>
+
 - Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
 - Shanghai: 10am UTC, 23 October, 2025
 - Cancun: 10am UTC, 28 October, 2025
 - Prague: 10:10am UTC, 28 October, 2025
 
-**Linea Sepolia:**
+<div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Sepolia:</span></div>
+
 - Paris: 24 September, 2025
 - Shanghai: 29 September, 2025
 - Cancun: 30 September, 2025
 - Prague: 7 October, 2025
+</ChangelogDate>
 
-### Pectra hard fork
+<ChangelogEntry tag="upgrade" title="Pectra hard fork">
 
 This release will see Linea implement approximately four years' of Ethereum protocol upgrades in a
 matter of weeks: from the London hard fork beforehand this release, all the way through to Prague.
@@ -119,51 +149,62 @@ EIP-7702 will only be activated in Beta v6.0.
 
 :::
 
-### Maru consensus client
+**Maru consensus client**
 
 Beta v4.0 introduces a new consensus client, [Maru](../network/how-to/run-a-node/maru.mdx),
 replacing the existing Proof-of-Authority sequencer mechanism, Clique. Maru introduces a QBFT
 consensus mechanism, and will support Linea's future transition to decentralized sequencing.
 Initially, only a single Maru node operated by Linea will produce blocks.
 
+</ChangelogEntry>
+
 ## Beta v3.1.1
 
-**Linea Mainnet: 6 October, 2025**
+<ChangelogDate mainnet="6 October, 2025" />
+
+<ChangelogEntry tag="performance">
 
 - Made Linea's prover 2x more efficient, reducing the cost of running the Linea infrastructure. In
   future, this additional efficiency will increase ETH and LINEA burn
 
+</ChangelogEntry>
+
 ## Beta v3.1
 
-**Linea Mainnet: early/mid-August 2025** (target)
+<ChangelogDate mainnet="early/mid-August 2025 (target)" sepolia="late July 2025 (target)" />
 
-**Linea Sepolia: late July 2025** (target)
+<ChangelogEntry tag="upgrade">
 
-- Remove sequencer limits. These are no longer required because of the limitless prover introduced in
-  Beta v3.
-- Increase throughput
+Remove sequencer limits. These are no longer required because of the limitless prover introduced in
+Beta v3.
+
+Increase throughput.
+
+</ChangelogEntry>
 
 ## Beta v3.0
 
-**Linea Mainnet: early August 2025** (target)
+<ChangelogDate mainnet="early August 2025 (target)" sepolia="late July 2025 (target)" />
 
-**Linea Sepolia: late July 2025** (target)
+<ChangelogEntry tag="upgrade" title="Limitless prover">
 
 - **Limitless prover**: Eliminates the need for the sequencer to enforce module limits, as the prover
 can handle complex workloads. This unlocks:
-  - Higher throughput and TPS
-  - Stabler gas fees during high-traffic periods
-  - Faster transaction confirmation during activity peaks.
+- Higher throughput and TPS
+- Stabler gas fees during high-traffic periods
+- Faster transaction confirmation during activity peaks.
 
 Note that the higher throughput will not enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
 
+</ChangelogEntry>
+
 ## Beta v2.0
 
-**Linea Mainnet: June 9, 2025**
+<ChangelogDate mainnet="June 9, 2025" sepolia="mid/late May 2025" />
 
-**Linea Sepolia: mid/late May 2025**
+<ChangelogEntry tag="feature" title="100% proven">
 
-- **100% proven**: 100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
+100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
 the integrity of all onchain data when sequencing is decentralized. Linea is the first zkEVM
 to be completely proven.
 - Reworks [prover limits](../protocol/architecture/prover/prover-limits.mdx) to reduce infrastructure costs and
@@ -172,6 +213,8 @@ reduce instances of transactions reverting due to exceeding limits.
 7.5%.
 - Improves Security Council configuration, and onboards the first cohort of members to stage 1,
 supporting future decentralization and security.
+
+</ChangelogEntry>
 
 ## Beta v1.0
 
@@ -182,45 +225,54 @@ Beta v1 on Linea introduces new arithmetization. The overall objective of the Li
 
 **Linea Mainnet: April 28, 2025**
 
-**Linea Sepolia: April 7, 2025**
+<ChangelogEntry tag="feature">
 
 - Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to
 protect users against MEV and improve UX in various ways.
-- Introduces [state recovery](../network/overview/recoverable-state.mdx), enabling anyone to recover
+
+Introduces [state recovery](../network/overview/recoverable-state.mdx), enabling anyone to recover
 and audit Linea state, reducing the risk of having a centralized sequencer.
+
+</ChangelogEntry>
 
 ### Beta v1.3
 
-**Linea Mainnet: March 3, 2025**
+<ChangelogDate mainnet="March 3, 2025" sepolia="February 18, 2025" />
 
-**Linea Sepolia: February 18, 2025**
+<ChangelogEntry tag="performance">
 
-- Raises the block gas limit to 2B.
+Raises the block gas limit to 2B.
+
+</ChangelogEntry>
 
 ### Beta v1.2
 
-**Linea Mainnet: with Beta v2**
+<ChangelogDate mainnet="with Beta v2" sepolia="February 4, 2025" />
 
-**Linea Sepolia: February 4, 2025**
+<ChangelogEntry tag="upgrade">
 
 - Full implementation of new arithmetization, with all modules from the Linea specification except
 the hub's consistency arguments.
 - Proof of all the activated modules (i.e. excluding the hub consistency arguments).
 
+</ChangelogEntry>
+
 ### Beta v1.1
 
-**Linea Mainnet: with Beta v2**
+<ChangelogDate mainnet="with Beta v2" sepolia="September 26, 2024" />
 
-**Linea Sepolia: September 26, 2024**
+<ChangelogEntry tag="upgrade">
 
 - New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
 - The transition to generating traces with Besu.
 
+</ChangelogEntry>
+
 ## Alpha v4.2
 
-**Mainnet: March 26, 2025**
+<ChangelogDate mainnet="March 26, 2025" sepolia="March 18, 2025" />
 
-**Linea Sepolia: March 18, 2025**
+<ChangelogEntry tag="upgrade" title="Linea bridge improvements">
 
 - Improvements to the Linea bridge:
   - New UI for improved user experience
@@ -231,20 +283,25 @@ the hub's consistency arguments.
   April 3)
 - Transition to native USDC, seamless for Linea users
 
+</ChangelogEntry>
+
 ## Alpha v4.1
 
-**Mainnet: February 4, 2025**
+<ChangelogDate mainnet="February 4, 2025" sepolia="January 28, 2025" />
 
-**Linea Sepolia: January 28, 2025**
+<ChangelogEntry tag="feature">
 
-- Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
-- Introduces the [Linea Token API](../api/token-api/) at alpha stage.
+Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
+
+Introduces the [Linea Token API](../api/token-api/) at alpha stage.
+
+</ChangelogEntry>
 
 ## Alpha v4.0
 
-**Mainnet: December 16, 2024**
+<ChangelogDate mainnet="December 16, 2024" sepolia="November 27, 2024" />
 
-**Linea Sepolia: November 27, 2024**
+<ChangelogEntry tag="upgrade">
 
 This update upgrades several key contracts. Some updates prepare the protocol for the ability to
 reconstruct the Linea state, while others add granularity to available roles, better preparing them
@@ -316,66 +373,68 @@ messages.
 - Address non-critical findings from previous audit rounds
 - Generally clean up error management and interfaces.
 
+</ChangelogEntry>
+
 ## Alpha v3.6
 
-### Block size changes
+<ChangelogDate mainnet="September 25" sepolia="September 25" />
 
-**Mainnet: September 25**
-
-**Linea Sepolia: September 25**
+<ChangelogEntry tag="performance" title="Block size changes">
 
 Increase block limit to 30M units of gas. The transaction limit remains at 24M. Block time also
 remains the same, at 2 seconds.
 
+</ChangelogEntry>
+
 ## Alpha v3.5.2
 
-### Transaction exclusion API
+<ChangelogDate mainnet="September 23" sepolia="September 18" />
 
-**Mainnet: September 23**
-
-**Linea Sepolia: September 18**
+<ChangelogEntry tag="feature" title="Transaction exclusion API">
 
 Introduces an API that can be used to check whether a transaction was rejected because it exceeded
 the sequencer's trace limits.
+
+</ChangelogEntry>
 
 ## Alpha v3.5.1
 
 ### Linea native bridge UI v2
 
-**Mainnet: September 18**
-
-**Linea Sepolia: September 18**
+<ChangelogEntry tag="upgrade" title="Linea native bridge UI v2">
 
 Upgrades the [Linea bridge](https://linea.build/hub/bridge/) UI.
 
+</ChangelogEntry>
+
 ## Alpha v3.5.0
 
-### `finalized` tag
+<ChangelogDate mainnet="October 9" sepolia="September 17" />
 
-**Mainnet: October 9**
-
-**Linea Sepolia: September 17**
+<ChangelogEntry tag="feature" title="finalized tag">
 
 Adds support for the `finalized` tag to the `blockParameters` strings that can be used in various
 JSON-RPC API calls. The tag enables you to confirm whether or not a block has been finalized on L1.
 See our [guide](../network/how-to/finalized-block.mdx) for more.
 
+</ChangelogEntry>
+
 ## Alpha v3.4.1
 
-### Reactivate `linea_estimateGas`
+<ChangelogDate mainnet="September 30" sepolia="September 9" />
 
-**Mainnet: September 30**
-
-**Linea Sepolia: September 9**
+<ChangelogEntry tag="upgrade" title="Reactivate linea_estimateGas">
 
 Reactivates [`linea_estimateGas`](../api/reference/linea-estimategas.mdx), disabling compatibility
 mode.
 
+</ChangelogEntry>
+
 ## Alpha v3.4
 
-**Mainnet and Testnet: July 30**
+<ChangelogDate mainnet="July 30" sepolia="July 30" />
 
-### ENS on Linea
+<ChangelogEntry tag="feature" title="ENS on Linea">
 
 Adds support for Linea Names domains, including a frontend app for users to register and manage their
 domains. The Linea Names system is comparable to ENS on Ethereum Mainnet, except that domains are
@@ -385,7 +444,7 @@ through an offchain gateway, Linea Names domains resolve on L1.
 
 Read more about ENS in the user guide [here](https://support.linea.build/general/ens).
 
-### CCIP Read
+**CCIP Read**
 
 One of the building blocks of ENS on Linea is a custom implementation of CCIP Read, which uses the
 gateway system introduced in EIP-3668 to enable Linea Names domains to resolve on L1. The key
@@ -400,7 +459,7 @@ The Linea repository containing the relevant contracts is [here](https://github.
 
 Consensys Diligence carried out an audit on Linea Names, available [here](https://consensys.io/diligence/audits/2024/06/linea-ens/).
 
-### `linea_estimateGas` mainnet activation
+**`linea_estimateGas` mainnet activation**
 
 :::note
 
@@ -412,13 +471,13 @@ Activates the `linea_estimateGas` endpoint for use on Mainnet in compatibility m
 
 See our [reference page](../api/reference/linea-estimategas.mdx) for more information and usage.
 
+</ChangelogEntry>
+
 ## Alpha v3.3
 
-**Testnet: June 3**
+<ChangelogDate mainnet="June 11, 10:00 UTC" sepolia="June 3" />
 
-**Mainnet: June 11, 10:00 UTC**
-
-### Breaking change: block time and block size reduction
+<ChangelogEntry tag="action-required" title="Breaking change: block time and block size reduction">
 
 Reducing block time to 2 seconds, with a target block size of 24M gas.
 
@@ -443,13 +502,13 @@ In the `besu-sequencer` plugin, adjust:
 
 :::
 
+</ChangelogEntry>
+
 ## Alpha v3.2
 
-**Testnet: May 28**
+<ChangelogDate mainnet="June 4" sepolia="May 28" />
 
-**Mainnet: June 4**
-
-### Smart contract gas optimization
+<ChangelogEntry tag="upgrade" title="Smart contract gas optimization">
 
 Upgraded smart contracts to achieve gas optimizations in several areas:
 - Major gas optimizations in blob submission, primarily in [`LineaRollup.sol`](https://github.com/Consensys/linea-contracts/blob/main/contracts/LineaRollup.sol)
@@ -462,7 +521,7 @@ Code in the upgrade has been audited by:
 - OpenZeppelin, whose report is available [here](https://blog.openzeppelin.com/linea-gas-optimizations-audit), and;
 - Cyfrin, whose report is [here](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf).
 
-### Bridge to a different recipient
+**Bridge to a different recipient**
 
 :::note
 
@@ -480,26 +539,28 @@ enabling them to claim.
 These changes have been audited by [OpenZeppelin](https://blog.openzeppelin.com/linea-gas-optimizations-audit)
 and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/2024-05-24-cyfrin-linea-v2.0.pdf).
 
+</ChangelogEntry>
+
 ## Alpha v3.1
 
-**Mainnet: May 14**
+<ChangelogDate mainnet="May 14" />
+
+<ChangelogEntry tag="feature">
 
 - Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
 - Adds the [`eth_sendRawTransaction`](../api/reference/eth-sendrawtransaction.mdx) method,
 available only via Besu endpoints.
 
+</ChangelogEntry>
+
 ## Alpha v3.0
 
-### Summary
+<ChangelogEntry tag="upgrade" title="EIP-4844">
 
 The main objective of Alpha v3 is to implement EIP-4844 on Linea, following its introduction to
 Ethereum mainnet with the Dencun upgrade on March 13.
 
-### Features
-
-**March 26: EIP-4844**
-
-Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
+**March 26:** Begin using blobs to post compressed L2 data to L1, with the aim of reducing data availability
 costs. Blobs represent a transient data storage mechanism and an alternative to `calldata`, and
 can be significantly cheaper in L1 ETH costs depending on market demand.
 
@@ -544,16 +605,13 @@ procedure.
 
 Additionally, all contracts have been audited by OpenZeppelin. You can find the report [here](https://blog.openzeppelin.com/linea-blob-submission-audit).
 
-**March 27**
-
+**March 27:**
 - Block time reduced to 3 seconds. This change increases the throughput of the network to avoid
 any potential L2 execution bottlenecks from increased Linea activity.
 - Gas fee reductions. After EIP-4844 was implemented on March 26, we monitored data for 24 hours
 before reducing gas fees for all users on March 27.
 
-### Breaking changes
-
-None.
+</ChangelogEntry>
 
 ## February 2024
 
@@ -902,7 +960,7 @@ to a push model. It also improves EVM prover coverage, and provides batch confla
 
 - Add Batch Conflation feature to the sequencer to minimize L1 transaction cost.
   - With Batch Conflation, L2 blocks' proofs that should have been independent are instead merged together.
-      Therefore, L1 costs for these blocks’ proofs are divided by the number of merged blocks.
+      Therefore, L1 costs for these blocks' proofs are divided by the number of merged blocks.
 - Improve the following smart contracts:
   - Rollup zkEVM: Upgrade the rollup main contract with support for
     - Conflation
@@ -916,13 +974,13 @@ to a push model. It also improves EVM prover coverage, and provides batch confla
   - Canonical Token Bridge: Upgrade from 1-1 ERC-20 basic token bridge to N-N ERC-20 canonical token bridge
       with reservation and token registry
 - Add Postman Service for message execution
-  - The Postman Service is Linea’s off-chain message delivery service. It’s decentralized, permissionless, and
+  - The Postman Service is Linea's off-chain message delivery service. It's decentralized, permissionless, and
       used to claim messages once the protocol has anchored the message hashes. The first release will only
       contain the following scenarios:
     - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas
       - The protocol can filter messages based on origin or destination smart-contracts
-    - Linea operating the SDK for dApps/Protocols that aren’t yet integrated
-  - If messages don’t get delivered by the postman, the message can be manually claimed by calling
+    - Linea operating the SDK for dApps/Protocols that aren't yet integrated
+  - If messages don't get delivered by the postman, the message can be manually claimed by calling
       `claimMessage` with the `MessageSent` event parameters or by using the SDK.
 - Update prover to integrate with the new architecture and support Batch Conflation
 

@@ -11,7 +11,7 @@ export default function ToolingCTA() {
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div className="margin-top--lg">
       <Admonition type="info" title="Want to be featured here?">
         Have you built a tool for Linea? Contribute to the docs to add it here!
         See our{" "}

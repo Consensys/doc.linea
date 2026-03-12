@@ -3,31 +3,32 @@ title: Overview
 description: Your starting point for building on Linea.
 sidebar_position: 0
 image: /img/socialCards/overview.jpg
+hide_copy_button: true
 ---
 
-import DocCardList from '@theme/DocCardList';
+import ActionCards from '@site/src/components/ActionCards';
+import CopyPageButton from '@site/src/components/CopyPageButton';
 
-export const metamaskDocs = [
-  {type: 'link', href: '/network/build/tools/account-abstraction/metamask', label: 'MetaMask Smart Accounts'},
-  {type: 'link', href: '/network/tutorials/voting-dapp', label: 'Use the MetaMask SDK'},
-];
+<div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '-30px' }}>
+  <div style={{ flex: 1 }} />
+  <CopyPageButton />
+</div>
+Linea is a secure, low-cost, and Ethereum-equivalent layer 2 blockchain built to bring the world
+onchain without compromising on security and decentralization.
 
-Linea is a secure, low-cost, and Ethereum-equivalent layer 2 blockchain built to bring the world 
-onchain without compromising on security and decentralization. 
-
-Linea has been incubated within Consensys. Our mission is to empower developers to build the next generation of decentralized applications and onboard the next billion users to web3. 
+Linea has been incubated within Consensys. Our mission is to empower developers to build the next generation of decentralized applications and onboard the next billion users to web3.
 
 ## Security for all
 
-Built as a layer above Ethereum, Linea inherits the robust security and decentralization of the 
-Ethereum network while significantly increasing throughput and reducing transaction fees to 
-negligible amounts. 
+Built as a layer above Ethereum, Linea inherits the robust security and decentralization of the
+Ethereum network while significantly increasing throughput and reducing transaction fees to
+negligible amounts.
 
 → Learn about [Linea's architecture](../../protocol/architecture/index.mdx)
 
 ## Advanced zero-knowledge proof technology
 
-By leveraging zero-knowledge (zk) proofs, Linea removes the seven-day lockup period associated with 
+By leveraging zero-knowledge (zk) proofs, Linea removes the seven-day lockup period associated with
 fraud proofs in other layer 2 solutions built according to the optimistic rollup model. Using zk
 proofs ensures user funds are always available and can be withdrawn instantly and at no cost.
 
@@ -35,10 +36,10 @@ proofs ensures user funds are always available and can be withdrawn instantly an
 
 ## True Ethereum equivalence
 
-Linea supports all the features that Ethereum supports. It's the only zero-knowledge layer 2 network 
-fully compatible with the Ethereum Virtual Machine (EVM). This means that any Ethereum-based 
-projects and assets can be seamlessly deployed on and bridged to Linea without any code base 
-changes. 
+Linea supports all the features that Ethereum supports. It's the only zero-knowledge layer 2 network
+fully compatible with the Ethereum Virtual Machine (EVM). This means that any Ethereum-based
+projects and assets can be seamlessly deployed on and bridged to Linea without any code base
+changes.
 
 → Learn about the small differences between building on [Ethereum and Linea](./ethereum-differences.mdx)
 
@@ -60,10 +61,21 @@ Dedicated plugin to reconstruct Linea's state as it was at the last point in tim
 
 → Learn about [recovering state](./recoverable-state.mdx)
 
-## Scale with MetaMask 
+## Scale with MetaMask
 
-Linea is the best way for application developers to leverage MetaMask's products and distribution. 
-Seamlessly integrate Linea through the MetaMask Developer portal, unlock easy on-ramping, bridging 
+Linea is the best way for application developers to leverage MetaMask's products and distribution.
+Seamlessly integrate Linea through the MetaMask Developer portal, unlock easy on-ramping, bridging
 and swaps for your users, and access millions of the most engaged onchain users worldwide.
 
-<DocCardList items={metamaskDocs} />
+<ActionCards
+  cards={[
+    {
+      text: "MetaMask smart accounts",
+      href: "/network/build/tools/account-abstraction/metamask",
+    },
+    {
+      text: "Use the MetaMask SDK",
+      href: "/network/tutorials/voting-dapp",
+    },
+  ]}
+/>
