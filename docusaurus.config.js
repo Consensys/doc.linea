@@ -1,4 +1,5 @@
 import remarkEmdash from "./scripts/remark/remark-emdash.js";
+
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
@@ -14,7 +15,7 @@ const COOKBOOK_PUBLIC_API_KEY =
 // const organizationName = "Consensys";
 // const projectName = "doc.linea";
 
-/** @type {import('@docusaurus/types').Config} */
+/** @type {import("@docusaurus/types").Config} */
 const config = {
   title: "Linea",
   tagline: "Everything you need to build onchain.",
@@ -38,9 +39,11 @@ const config = {
     locales: ["en"],
   },
 
-  scripts: [
-    { src: "/js/navbarHighlight.js", defer: true },
-    { src: "/js/clearSearchOnCollapse.js", async: true },
+  scripts: [{ src: "/js/clearSearchOnCollapse.js", async: true }],
+
+  clientModules: [
+    require.resolve("./src/clientModules/codeBlockClassifier.js"),
+    require.resolve("./src/clientModules/sidebarOffset.js"),
   ],
 
   markdown: {
@@ -106,10 +109,10 @@ const config = {
       announcementBar: {
         id: "announcement_bar_2026_01_ens_resolver",
         content:
-          '📣 <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. Learn more <a href="/network/how-to/deploy-subdomain#use-ens-contracts">here.</a>',
-        backgroundColor: "#61dfff",
-        textColor: "#121212",
-        isCloseable: false,
+          '⚠️ <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">Learn more →</a>',
+        backgroundColor: "#6119ef",
+        textColor: "#ffffff",
+        isCloseable: true,
       },
       colorMode: {
         defaultMode: "dark",
@@ -127,10 +130,10 @@ const config = {
         },
       },
       navbar: {
-        title: "Docs",
         logo: {
           alt: "Linea",
           src: "img/Linea_docs_logo.svg",
+          srcDark: "img/Linea_docs_logo_dark.svg",
         },
         items: [
           {
@@ -142,39 +145,27 @@ const config = {
           },
           {
             type: "doc",
-            docId: "protocol/overview",
+            docId: "protocol/quickstart",
             position: "left",
             label: "Protocol",
           },
           {
             type: "doc",
-            docId: "stack/index",
+            docId: "stack/quickstart",
             position: "left",
             label: "Stack",
           },
           {
             type: "doc",
-            docId: "api/reference/index",
+            docId: "api/quickstart",
             position: "left",
             label: "APIs & SDK",
           },
           {
-            type: "dropdown",
-            label: "Changelog",
+            type: "doc",
+            docId: "changelog/release-notes",
             position: "right",
-            activeBaseRegex: "^/changelog/",
-            items: [
-              {
-                type: "doc",
-                docId: "changelog/release-notes",
-                label: "Release notes",
-              },
-              {
-                type: "doc",
-                docId: "changelog/security-council-record",
-                label: "Linea Security Council transaction record",
-              },
-            ],
+            label: "Changelog",
           },
           {
             href: "https://discord.gg/linea",
@@ -258,7 +249,6 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Consensys, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
@@ -337,6 +327,113 @@ const config = {
   headTags: [
     {
       tagName: "script",
+      attributes: {},
+      innerHTML: `
+        (function() {
+          var nativeFetch = window.fetch;
+          var nativeWorker = window.Worker;
+          var origin = location.origin;
+          var recoveredScripts = Object.create(null);
+
+          window.Osano = window.Osano || function() {
+            (window.Osano.data = window.Osano.data || []).push(arguments);
+          };
+
+          function getInputUrl(input) {
+            if (typeof input === 'string') return input;
+            if (typeof URL !== 'undefined' && input instanceof URL) return input.href;
+            if (input && typeof input.url === 'string') return input.url;
+            return null;
+          }
+
+          function normalizeUrl(input) {
+            var inputUrl = getInputUrl(input);
+            if (!inputUrl) return null;
+
+            try {
+              return new URL(inputUrl, origin).href;
+            } catch (e) {
+              return null;
+            }
+          }
+
+          function isFirstPartyRuntimeScriptUrl(input) {
+            var normalizedUrl = normalizeUrl(input);
+            if (!normalizedUrl) return false;
+
+            try {
+              var url = new URL(normalizedUrl);
+              if (url.origin !== origin) return false;
+              return url.pathname.indexOf('/assets/js/') === 0 || url.pathname.indexOf('/js/') === 0;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function isSameOriginRequest(input) {
+            var inputUrl = getInputUrl(input);
+            if (!inputUrl) return false;
+
+            try {
+              return new URL(inputUrl, origin).origin === origin;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function evaluateScriptSource(code, src) {
+            // Evaluate in global scope so Rspack chunk payload can register itself.
+            (0, eval)(code + '\\n//# sourceURL=' + src);
+          }
+
+          function recoverBlockedScript(src) {
+            var scriptUrl = normalizeUrl(src);
+            if (!scriptUrl || !isFirstPartyRuntimeScriptUrl(scriptUrl)) return;
+            if (recoveredScripts[scriptUrl] === 'loading' || recoveredScripts[scriptUrl] === 'loaded') return;
+
+            var fetchFn = nativeFetch || window.fetch;
+            if (typeof fetchFn !== 'function') return;
+
+            recoveredScripts[scriptUrl] = 'loading';
+            fetchFn
+              .call(window, scriptUrl, { credentials: 'same-origin' })
+              .then(function(response) {
+                if (!response || !response.ok) throw new Error('Unable to recover blocked script');
+                return response.text();
+              })
+              .then(function(source) {
+                evaluateScriptSource(source, scriptUrl);
+                recoveredScripts[scriptUrl] = 'loaded';
+              })
+              .catch(function() {
+                recoveredScripts[scriptUrl] = 'failed';
+              });
+          }
+
+          window.Osano('onScriptBlocked', function(src) {
+            recoverBlockedScript(src);
+          });
+
+          function restoreEssentialRuntimeApis() {
+            if (window.fetch !== nativeFetch) {
+              var blockedFetch = window.fetch;
+              window.fetch = function(input, init) {
+                if (isSameOriginRequest(input)) {
+                  return nativeFetch.call(window, input, init);
+                }
+                return blockedFetch.call(window, input, init);
+              };
+            }
+            if (window.Worker !== nativeWorker) {
+              window.Worker = nativeWorker;
+            }
+          }
+          window.Osano('onInitialized', restoreEssentialRuntimeApis);
+        })();
+      `,
+    },
+    {
+      tagName: "script",
       attributes: {
         src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js",
       },
@@ -345,27 +442,52 @@ const config = {
       tagName: "script",
       attributes: {},
       innerHTML: `
-      document.addEventListener('DOMContentLoaded', function() {
-        var element = document.getElementById('__cookbook');
-        if (!element) {
-          element = document.createElement('div');
-          element.id = '__cookbook';
-          element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
-          document.body.appendChild(element);
+      (function() {
+        var hasScheduled = false;
+
+        function mountCookbook() {
+          var element = document.getElementById('__cookbook');
+          if (!element) {
+            element = document.createElement('div');
+            element.id = '__cookbook';
+            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
+            document.body.appendChild(element);
+          }
+
+          var script = document.getElementById('__cookbook-script');
+          if (!script) {
+            script = document.createElement('script');
+            script.crossOrigin = 'anonymous';
+            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
+            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+
+            script.id = '__cookbook-script';
+            script.async = true;
+            document.body.appendChild(script);
+          }
         }
 
-        var script = document.getElementById('__cookbook-script');
-        if (!script) {
-          script = document.createElement('script');
-          script.crossOrigin = 'anonymous';
-          script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
-          script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
+        function scheduleCookbook() {
+          if (hasScheduled) return;
+          hasScheduled = true;
 
-          script.id = '__cookbook-script';
-          script.async = true;
-          document.body.appendChild(script);
+          if (window.requestIdleCallback) {
+            window.requestIdleCallback(mountCookbook, { timeout: 4000 });
+          } else {
+            setTimeout(mountCookbook, 2000);
+          }
         }
-      });
+
+        function scheduleOnInteraction() {
+          scheduleCookbook();
+        }
+
+        window.addEventListener('pointerdown', scheduleOnInteraction, { once: true, capture: true });
+        window.addEventListener('keydown', scheduleOnInteraction, { once: true, capture: true });
+        window.addEventListener('load', function() {
+          setTimeout(scheduleCookbook, 500);
+        }, { once: true });
+      })();
     `,
     },
     {
