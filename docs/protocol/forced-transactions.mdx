@@ -29,7 +29,10 @@ directly to the L1. To undertake a forced transaction, the user submits a signed
 
 Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the 
 sequencer will process the transaction well before this deadline -- the deadline is
-the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces the sequencer to process the transaction else the rollup cannot make forward progress.
+the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before 
+its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized 
+on Ethereum. This potential for batch failure effectively forces the sequencer to process the transaction else the rollup 
+cannot make forward progress.
 
 Forced transactions are chained using a rolling hash that commits to the complete ordered sequence of forced transactions, 
 ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions, 
@@ -38,12 +41,12 @@ and reordering attacks.
 ### Processing vs. execution
 
 Note that forced transactions guarantee *inclusion* not success. For example, while sequencer's role is to process the 
-transaction; it does not attempt to execute it. This means that a forced transaction successfully processed by the sequencer 
-can still fail on the L2. 
+transaction, the transaction may still execute and revert. This means that a forced transaction successfully processed by 
+the sequencer can still fail on the L2. 
 
-After a forced transaction is processed by the sequencer, the prover attempts to generate a zero-knowledge  proof attesting 
-to the validity of the state transition for that batch. At this stage, the transaction may fail to execute on the L2 for reasons
-that include:
+After a forced transaction is processed by the sequencer, the prover attempts to generate a zero-knowledge proof attesting 
+to the validity of the state transition for that batch. At this stage, the transaction may fail to execute on the L2 for 
+reasons that include:
 
 | Failure reason | Description |
 |----------------|-------------|
@@ -59,16 +62,16 @@ that include:
 When a user submits a forced transaction, the following components validate and process the transaction:
 
 - `ForcedTransactionGateway`: Validates and submits the transaction to the `LineaRollup`.
-- [`LineaRollup`](../network/build/contracts): The Linea Rollup and L1 Message Service stores the transaction in the 
-rollup and generates a rolling hash.
+- [`LineaRollup`](../network/build/contracts): The Linea rollup and message service contract stores the transaction and 
+generates a rolling hash.
 - [Coordinator](./architecture/coordinator.mdx): Forwards the transaction to the sequencer for processing.
 - [Sequencer](./architecture/sequencer/index.mdx): Processes the transaction before the deadline.
-- [Prover](./architecture/prover/index.mdx): Generates a proof of the transaction and submits it to the finalization layer.
+- [Prover](./architecture/prover/index.mdx): Generates a proof of the transaction and includes it in the finalization proof.
 
 ### Step 1: Submission
 
 When a user submits a forced transaction to the `ForcedTransactionGateway`, the gateway calculates the deadline with 
-a buffer, validates that the gas limit is within the allowed range, validates the current state, and submits the 
+a buffer, validates that the gas limit is within the allowed range, validates the `currentFinalizedState`, and submits the 
 transaction to the `LineaRollup` contract.
 
 ### Step 2: Ordering
@@ -81,8 +84,8 @@ Multiplicative Complexity (MiMC)-based rolling hash.
 The coordinator listens for when the `LineaRollup` contract emits a `ForcedTransactionAdded` event and retrieves the 
 corresponding forced transaction. It then forwards the transaction to the sequencer for processing before the deadline.
 
-Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and submits the 
-proof to the finalization layer.
+Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and 
+[submits the proof to the finalization layer](../../network/overview/known-finality-state#step-6-batch-finalization).
 
 The complete lifecycle of a forced transaction is as follows:
 
@@ -129,7 +132,7 @@ sequenceDiagram
 
 > `LineaRollup` (L1): Refers to the smart contract that provides the [Linea rollup and L1 message 
 > service](../network/build/contracts). This contract is deployed on Ethereum and stores forced 
-> transactions, maintains rolling hashes, enforces deadlines, and verifies zk proofs.
+> transactions, maintains rolling hashes, enforces deadlines, and verifies zero-knowledge proofs.
 
 </small>
 
