@@ -39,7 +39,7 @@ When a user deposits ETH from Ethereum Mainnet (L1) into the Linea bridge to use
 - **Native token bridge:** Linea bridge contract on L1; holds user-deposited ETH and receives staking yield.
 - **YieldManager:** L1 contract that moves ETH between the Linea bridge and the StakingVault, and calculates net yield after fees and liabilities.
 - **StakingVault:** Lido V3 stVault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the Linea bridge.
-- **beacon chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
+- **Beacon chain:** Ethereum's proof-of-stake consensus layer where validators lock/stake ETH to secure the network and earn staking rewards.
 - **Node operator:** Runs beacon chain validators on behalf of Linea and decides when to trigger staking and unstaking.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
 
@@ -92,7 +92,7 @@ The following steps and diagram detail the flow:
 2. The YieldManager reads the vault's `totalValue` from the Dashboard. This value--the sum of beacon chain stake and vault balance--is updated daily by the Lido Oracle Committee.
 3. Yield is the difference between the current `totalValue` and the last stored checkpoint, minus outstanding obligations.
 4. If the StakingVault has sufficient funds, the YieldManager settles obligations: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient. If funds are insufficient, settlement is skipped and obligations carry forward.
-5. The YieldManager reports the remaining net yield to the Linea Bridge.
+5. The YieldManager reports the remaining net yield to the Linea bridge.
 6. The Linea bridge emits a synthetic `MessageSent` event (no ETH is bridged). The L2MessageService picks it up and unlocks the corresponding ETH on L2.
 7. The L2YieldDistributor sends the unlocked ETH to designated recipients.
 
@@ -359,7 +359,7 @@ The Yield Boost system has the following mitigations in place:
 | Fund Movement | Source | Destination | Trigger | Role Required |
 |--------------|--------|-------------|---------|---------------|
 | Stake excess reserve | Linea bridge | StakingVault | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
-| beacon chain deposit | StakingVault | Node operators | Node Operator decision | Node Operator |
+| Beacon chain deposit | StakingVault | Node operators | Node Operator decision | Node Operator |
 | Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
 | Operator replenish reserve | StakingVault | Linea bridge | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | StakingVault | Reserve below minimum | Permissionless |
