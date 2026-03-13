@@ -1634,9 +1634,8 @@ button.clean-btn.menu__caret {
   margin-right: 10px !important;
 }
 
-/* Mermaid: override inline max-width, allow scroll for wide diagrams, prevent text clipping in nodes.
-   overflow-y not set: with overflow-x: auto, spec computes overflow-y to auto (visible would be ignored). */
 .theme-doc-markdown .docusaurus-mermaid-container {
+  min-height: fit-content;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
