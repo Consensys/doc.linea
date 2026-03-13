@@ -1634,6 +1634,24 @@ button.clean-btn.menu__caret {
   margin-right: 10px !important;
 }
 
+/* Mermaid: override inline max-width, allow scroll for wide diagrams, prevent text clipping in nodes */
+.theme-doc-markdown .docusaurus-mermaid-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.theme-doc-markdown .docusaurus-mermaid-container svg {
+  max-width: none !important;
+}
+
+/* Prevent clipping of text inside node boxes (svg/foreignObject) */
+.theme-doc-markdown .docusaurus-mermaid-container svg,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject * {
+  overflow: visible !important;
+}
+
 /* responsive classes for architecture diagram */
 .responsive-graphic {
   text-align: center;

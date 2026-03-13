@@ -85,7 +85,7 @@ export default function FooterWrapper() {
           </a>
         ))}
         <button id="manage-cookie-btn" className={styles.cookieBtn}>
-          Manage Cookie
+          Manage Cookies
         </button>
       </nav>
 
