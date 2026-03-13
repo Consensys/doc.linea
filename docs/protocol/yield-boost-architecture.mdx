@@ -15,17 +15,17 @@ sidebar_position: 4
 
 ## What is it?
 
-[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism implemented on the [Public network](../network/quickstart) that automatically stakes a proportion of the ETH held in the [canonical token bridge](../network/build/contracts.mdx#token-bridge-contracts) and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical token bridge, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
+[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism implemented on the [Public network](../network/quickstart) that automatically stakes a proportion of the ETH held in the [`LineaRollup`](../network/build/contracts#deployed-contracts) and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
 This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
 
 ## High-level architecture
 
-Canonical token bridge deposits on the L1 are staked via a Lido V3 stVault to generate beacon chain rewards, which are [distributed on Linea (L2)](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+`LineaRollup` deposits on the L1 are staked via a Lido V3 stVault to generate beacon chain rewards, which are [distributed on Linea (L2)](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
 
 ### Key participants
 
-- **User:** Interacts with the system by bridging ETH to and from Linea via the [`L1MessageService`](../network/build/contracts#deployed-contracts).
+- **User:** Interacts with the system by bridging ETH to and from Linea via the [`LineaRollup`](../network/build/contracts#deployed-contracts).
 - **[Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md):** A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
 - **[Lido Oracle Committee](https://docs.lido.fi/token-guides/steth-superuser-functions/#oracle-and-accounting-flow):** A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
 - **Node operator:** The Linea-assigned entity bound to the agreed deposit trigger to stake ETH from the stVault, and validate the beacon chain to earn rewards.
@@ -34,11 +34,11 @@ Canonical token bridge deposits on the L1 are staked via a Lido V3 stVault to ge
 
 ### L1 ETH flow
 
-When a user deposits ETH from Ethereum Mainnet (L1) into the canonical token bridge contract to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s beacon chain to earn rewards. The following components manage how that ETH moves from the bridge contract into staking, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
+When a user deposits ETH from Ethereum Mainnet (L1) into the `LineaRollup` contract to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s beacon chain to earn rewards. The following components manage how that ETH moves from the `LineaRollup` into the staking vault, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
 
-- [**Canonical token bridge:**](../network/build/contracts.mdx#token-bridge-contracts) L1 bridge contract that holds user-deposited ETH collateral and serves as the accounting anchor for Yield Boost.
-- **`YieldManager`:** L1 contract that moves ETH between the canonical token bridge and the `StakingVault`, and calculates net yield after fees and liabilities.
-- **`StakingVault`:** Lido V3 stVault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the canonical token bridge.
+- [**`LineaRollup`:**](../network/build/contracts#deployed-contracts) L1 bridge contract and message service that holds user-deposited ETH collateral and serves as the accounting anchor for Yield Boost.
+- **`YieldManager`:** L1 contract that moves ETH between the `LineaRollup` and the `StakingVault`, and calculates net yield after fees and liabilities.
+- **`StakingVault`:** Lido V3 stVault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the `LineaRollup`.
 - **Beacon chain:** Ethereum's proof-of-stake consensus layer where node operators lock/stake ETH to secure the network and earn staking rewards.
 - **Node operator:** Selected operators run beacon chain validators on behalf of Linea.
 - **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
@@ -50,14 +50,14 @@ flowchart TD
     User([User])
     Auto([Automation Service])
     NO([Node Operator])
-    BR[Canonical token bridge]
+    BR[LineaRollup]
     YM[YieldManager]
     SV[StakingVault]
     BC{{beacon chain}}
 
     User -->|Deposit ETH| BR
     BR -->|Withdraw ETH| User
-    Auto -.->|Automatically rebalances ETH between canonical token bridge and StakingVault, and requests unstaking| YM
+    Auto -.->|Automatically rebalances ETH between LineaRollup and StakingVault, and requests unstaking| YM
     BR -->|Rebalance extra ETH to earn rewards| YM
     YM -->|Move ETH to staking vault| SV
     NO -.->|Triggers staking| SV
@@ -85,7 +85,7 @@ The yield earned from the beacon chain is transferred to the L2 for distribution
 - **Security Council:** Linea governance multisig (see [Key participants](#key-participants)).
 - **[L2MessageService](../network/build/contracts):** L2 contract that receives messages from L1 and unlocks the corresponding ETH on L2.
 - **L2YieldDistributor:** Distributes L2 unlocked ETH staking rewards to designated recipients.
-- **`LineaRollup`:** L1 rollup and message service contract that emits synthetic `MessageSent` events to relay net yield to the L2.
+- **`LineaRollup`:** see above.
 
 The following steps and diagram detail the flow:
 
@@ -133,34 +133,34 @@ The Yield Boost system is governed by a set of roles and permissions that contro
 
 | Role | Held by | Permissions |
 |------|---------|----------------------|
-| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Rebalance excess ETH from the bridge into the `StakingVault` |
-| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from node operators into the bridge |
+| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Rebalance excess ETH from the `LineaRollup` into the `StakingVault` |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from node operators into the `LineaRollup` |
 | `YIELD_REPORTER_ROLE` | Automation Service | Trigger yield reporting, which may involve payment of fees and liabilities from staking rewards |
 | `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council | Pause or resume node operator deposits (no ETH movement) |
 | `OSSIFICATION_INITIATOR_ROLE` | Security Council | Begin permanent shutdown of the staking vault; Lido may require fee settlement before proceeding |
 | `OSSIFICATION_PROCESSOR_ROLE` | Automation Service | Finalize vault ossification; Lido may require fee settlement before proceeding |
-| `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which `YieldManager` contract the bridge uses (no ETH movement) |
-| Permissionless | Anyone | Donate ETH to the bridge or vault; trigger unstaking and reserve top-up when the bridge balance is too low |
+| `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which `YieldManager` contract the `LineaRollup` uses (no ETH movement) |
+| Permissionless | Anyone | Donate ETH to the `LineaRollup` or vault; trigger unstaking and reserve top-up when the `LineaRollup` balance is too low |
 
 ## Fund flows
 
 Each scenario below traces a specific ETH movement end-to-end, showing the contracts involved and the role that triggers it.
 
-1. **Staking** (routine) -- the Automation Service rebalances surplus ETH from the canonical token bridge into the `StakingVault` for validator staking.
-2. **Reserve replenishment** (routine) -- the Automation Service rebalances ETH back from validators into the canonical token bridge when the withdrawal reserve runs low.
+1. **Staking** (routine) -- the Automation Service rebalances surplus ETH from the `LineaRollup` into the `StakingVault` for validator staking.
+2. **Reserve replenishment** (routine) -- the Automation Service rebalances ETH back from validators into the `LineaRollup` when the withdrawal reserve runs low.
 3. **Yield reporting** (routine) -- earned rewards are calculated, obligations settled, and net yield relayed to L2.
 4. **Permissionless flows** (fallback) -- anyone can trigger unstaking and replenishment when the reserve drops below minimum.
-5. **LST withdrawal** (last resort) -- if the canonical token bridge does not control enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
+5. **LST withdrawal** (last resort) -- if the `LineaRollup` does not control enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
 6. **Ossification withdrawal** (terminal) -- all staked funds are progressively withdrawn after the Security Council ossifies the vault.
 
 ### 1. Staking
 
-Surplus ETH in the canonical token bridge (above the minimum reserve) is routed to the `StakingVault` for beacon chain staking.
+Surplus ETH in the `LineaRollup` (above the minimum reserve) is routed to the `StakingVault` for beacon chain staking.
 
 ```mermaid
 sequenceDiagram
     actor Auto as Automation Service
-    participant BR as Canonical token bridge
+    participant BR as LineaRollup
     participant YM as YieldManager
     participant DB as Dashboard
     participant SV as StakingVault
@@ -178,12 +178,12 @@ sequenceDiagram
 
 ### 2. Reserve replenishment
 
-Replenishing the withdrawal reserve is a two-phase process: first the beacon chain withdrawal is triggered, then funds are routed back to the canonical token bridge once they arrive in the vault.
+Replenishing the withdrawal reserve is a two-phase process: first the beacon chain withdrawal is triggered, then funds are routed back to the `LineaRollup` once they arrive in the vault.
 
 ```mermaid
 sequenceDiagram
     actor Auto as Automation Service
-    participant BR as Canonical token bridge
+    participant BR as LineaRollup
     participant YM as YieldManager
     participant SV as StakingVault
     participant BC as Beacon chain
@@ -246,12 +246,12 @@ Staking rewards grow the L1 collateral by the same amount that the L2 mints, so 
 
 ### 4. Permissionless flows
 
-When the canonical token bridge balance drops below the minimum reserve, anyone can trigger the `YieldManager` to initiate unstaking and reserve replenishment.
+When the `LineaRollup` balance drops below the minimum reserve, anyone can trigger the `YieldManager` to initiate unstaking and reserve replenishment.
 
 ```mermaid
 sequenceDiagram
     actor U as Anyone
-    participant BR as Canonical token bridge
+    participant BR as LineaRollup
     participant YM as YieldManager
     participant SV as StakingVault
     participant BC as Beacon chain
@@ -279,12 +279,12 @@ sequenceDiagram
 
 ### 5. LST withdrawal
 
-If the canonical token bridge lacks sufficient ETH to fulfill a withdrawal, the withdrawal recipient can explicitly request an LST withdrawal. In this case, stETH is minted against the `StakingVault` collateral and sent to the same address designated to receive the withdrawal. This provides a last-resort mechanism.
+If the `LineaRollup` lacks sufficient ETH to fulfill a withdrawal, the withdrawal recipient can explicitly request an LST withdrawal. In this case, stETH is minted against the `StakingVault` collateral and sent to the same address designated to receive the withdrawal. This provides a last-resort mechanism.
 
 ```mermaid
 sequenceDiagram
     actor U as User
-    participant BR as Canonical token bridge
+    participant BR as LineaRollup
     participant YM as YieldManager
     participant DB as Dashboard
 
@@ -300,7 +300,7 @@ This creates an LST liability that accrues interest; the system prioritizes repa
 
 ### 6. Ossification withdrawal
 
-Ossification permanently locks the `StakingVault` implementation, opting out of future Lido upgrades. Ossification is initiated by the Security Council; the Automation Service then progressively withdraws all staked funds back to the canonical token bridge.
+Ossification permanently locks the `StakingVault` implementation, opting out of future Lido upgrades. Ossification is initiated by the Security Council; the Automation Service then progressively withdraws all staked funds back to the `LineaRollup`.
 
 ```mermaid
 sequenceDiagram
@@ -309,7 +309,7 @@ sequenceDiagram
     participant YM as YieldManager
     participant DB as Dashboard
     participant SV as StakingVault
-    participant BR as Canonical token bridge
+    participant BR as LineaRollup
 
     SC->>YM: initiateOssification()
     YM-->>DB: voluntaryDisconnect()
@@ -342,7 +342,7 @@ If a validator makes conflicting attestations or block proposals, they may have 
 While the risk of slashing is rare (only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH), the Yield Boost system has the following mitigations in place:
 
 - Node operators will only be selected for participation in the Yield Boost system if they have never been slashed. Selected node operators must also have a diverse infrastructure with more than 99.9% uptime, safeguards to prevent double-signing, and world-class security practices.
-- 20% of node operator validator rewards will be retained for a year to create an insurance fund to cover slashing events. Any user in the Yield Boost system impacted by a slashing event will be eligible to access this fund.
+- 20% of node operator validator rewards will be retained for a year to create an insurance fund to cover slashing events. If the Yield Boost system is impacted by a slashing event it will be eligible to access this fund.
 
 ### Withdrawal delay
 
@@ -359,15 +359,15 @@ The Yield Boost system has the following mitigations in place:
 
 | Fund movement | Source | Destination | Trigger | Role required |
 |--------------|--------|-------------|---------|---------------|
-| Stake excess reserve | Canonical token bridge | `StakingVault` | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
+| Stake excess reserve | `LineaRollup` | `StakingVault` | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
 | Beacon chain deposit | `StakingVault` | Node operators | Node Operator decision | Node Operator |
 | Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
-| Operator replenish reserve | `StakingVault` | Canonical token bridge | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
+| Operator replenish reserve | `StakingVault` | `LineaRollup` | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
 | Permissionless unstake | Validators | `StakingVault` | Reserve below minimum | Permissionless |
-| Permissionless replenish reserve | `StakingVault` | Canonical token bridge | Reserve below minimum | Permissionless |
+| Permissionless replenish reserve | `StakingVault` | `LineaRollup` | Reserve below minimum | Permissionless |
 | LST withdrawal | Lido Protocol (minted against `StakingVault` collateral) | User | Insufficient ETH for user withdrawal | Permissionless (user) |
-| Ossification withdrawal | `StakingVault` | Canonical token bridge | Security Council initiates | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
-| Donation | External | Canonical token bridge / `StakingVault` | Voluntary | Permissionless |
+| Ossification withdrawal | `StakingVault` | `LineaRollup` | Security Council initiates | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
+| Donation | External | `LineaRollup` / `StakingVault` | Voluntary | Permissionless |
 
 
 ## Next steps

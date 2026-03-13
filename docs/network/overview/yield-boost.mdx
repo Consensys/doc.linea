@@ -13,7 +13,7 @@ image: /img/socialCards/yield-boost.jpg
 
 Linea Yield Boost is a protocol-level mechanism that converts idle bridged ETH into a sustainable source of ecosystem incentives.
 
-By programmatically staking a portion of ETH held in Linea’s canonical bridge using Lido v3 stVaults on Ethereum, Yield Boost generates a continuous stream of rewards. These staking rewards are redirected to strengthen the Linea ecosystem, creating a long-term, self-sustaining economic engine aligned with Ethereum mainnet security.
+By programmatically staking a portion of ETH held in Linea’s `LineaRollup` using Lido v3 stVaults on Ethereum, Yield Boost generates a continuous stream of rewards. These staking rewards are redirected to strengthen the Linea ecosystem, creating a long-term, self-sustaining economic engine aligned with Ethereum mainnet security.
 
 ## Why Yield Boost exists
 
@@ -50,7 +50,7 @@ The system automatically rebalances funds between the stVault and the buffer to 
 
 The Yield Boost mechanism transforms bridging into an active contribution to the ecosystem's health and liquidity, without requiring any change in user behavior. Yield Boost operates in three stages:
 
-1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the canonical bridge, a portion of these assets is programmatically deposited into Linea's Lido v3 stVault on Ethereum Mainnet. 
+1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, a portion of these assets is programmatically deposited into Linea's Lido v3 stVault on Ethereum Mainnet. 
 
 	This process is automatic and applies to all bridged ETH until the final target of 60% of the TVS is reached. 
 
@@ -91,24 +91,7 @@ These granular safety and liveness properties are not abstract; they are the dir
 
 ## Progressive rollout plan
 
-The 7-week progressive rollout plan is designed to ensure the stability of the bridge and the automation logic. The ramp-up follows a strict phased approach.
-
-**Step 1. The "full round-trip" validation**:
-
-- Objective: Validate the staged activation and transition of the staking system under real conditions.
-- Action: Stake 96 ETH (~$192k). 
-- Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
-
-  1. Start with 3 initial validators (96 ETH) and confirm deposits and validator activation behave as expected.
-  2. Add the remaining ETH up to 500 ETH to bring additional validators online.
-  3. Once all validators are active, switch to the Pre-Deposit Guarantee (PDG)/strict flow.
-  4. Exit one validator to validate the exit path and fund return.
-  5. On successful exit, switch the system to top-up mode.
-  6. Resume ramp-up by topping up existing validators after unpausing.
-
-**Step 2. The main ramp-up**:
-
-Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
+The progressive rollout plan is designed to ensure the stability of the bridge funds and the automation logic. 
 
 | Phase | Key Actions | Target Stake (% TVS) | Indicated Value (at $120M TVS) |
 |-------|------------|----------------------|--------------------------------|
@@ -117,6 +100,24 @@ Once the round-trip is validated, Linea will increase the staked percentage peri
 | 3. Resume & Scale to 2% | Exit queue completes; unpause staking; begin top-ups | 2% | $2.4M |
 | 4. Scale to 10% | Increase staking allowance | ~10% | $12M |
 | 5. Scale to 60% | Multi-step ramp (entry queue dependent) | 60% | $72M |
+
+The ramp-up follows a strict phased approach described in the following steps:
+
+**Setup:**
+- Objective: Validate the staged activation and transition of the staking system under real conditions.
+- Action: Stake 96 ETH (~$192k). 
+- Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
+  1. Start with 3 initial validators (96 ETH) in non Pre-Deposit Guarantee (PDG) mode and confirm deposits and validator activation behave as expected.
+  1. Add the remaining ETH up to 500 ETH to bring additional validators online; then pause staking post validator activation.
+
+**Activation & Hardening:**
+  1. Switch to PDG mode on the `StakingVault`.
+  1. Exit one validator to validate the exit path and fund return.
+
+**Scale:**
+Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
+  1. On successful exit, switch the system to top-up mode.
+  1. Unpause and resume ramp-up by topping up existing validators.
 
 ## Ecosystem-wide benefits
 
@@ -138,7 +139,7 @@ This section addresses some of the most common questions regarding the functiona
 
 **Do I receive stETH on Linea?**
 
-- No. Users retain standard, fungible 1:1 ETH on Linea. The staking process occurs in the background on the L1 within the canonical bridge contracts. You do not hold a wrapped or rebasing token, and your ETH balance on Linea reflects the value deposited. The system earns yield to reinforce and improve the ecosystem you are using.
+- No. Users retain standard, fungible 1:1 ETH on Linea. The staking process occurs in the background on the L1 within the `LineaRollup` contracts. You do not hold a wrapped or rebasing token, and your ETH balance on Linea reflects the value deposited. The system earns yield to reinforce and improve the ecosystem you are using.
 
 **Do I ever lose access to my ETH on the L1 or the L2?**
 
