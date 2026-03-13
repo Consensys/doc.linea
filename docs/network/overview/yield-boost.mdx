@@ -94,18 +94,20 @@ These granular safety and liveness properties are not abstract; they are the dir
 The 7-week progressive rollout plan is designed to ensure the stability of the bridge and the automation logic. The ramp-up follows a strict phased approach.
 
 **Step 1. The "full round-trip" validation**:
+
 - Objective: Validate the staged activation and transition of the staking system under real conditions.
 - Action: Stake 96 ETH (~$192k). 
 - Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
 
   1. Start with 3 initial validators (96 ETH) and confirm deposits and validator activation behave as expected.
   2. Add the remaining ETH up to 500 ETH to bring additional validators online.
-  3. Once all validators are active, switch to the Protocol-Defined Guardrails (PDG)/strict flow.
+  3. Once all validators are active, switch to the Pre-Deposit Guarantee (PDG)/strict flow.
   4. Exit one validator to validate the exit path and fund return.
   5. On successful exit, switch the system to top-up mode.
   6. Resume ramp-up by topping up existing validators after unpausing.
 
 **Step 2. The main ramp-up**:
+
 Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
 
 | Phase | Key Actions | Target Stake (% TVS) | Indicated Value (at $120M TVS) |
