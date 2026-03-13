@@ -119,6 +119,15 @@ const config = {
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
+      mermaid: {
+        options: {
+          useMaxWidth: false,
+          flowchart: {
+            useMaxWidth: false,
+            wrappingWidth: 280,
+          },
+        },
+      },
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 3,
