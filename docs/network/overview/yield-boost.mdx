@@ -1,0 +1,163 @@
+---
+title: Yield Boost
+description: Yield Boost in the Linea protocol
+sidebar_position: 4
+image: /img/socialCards/yield-boost.jpg
+---
+
+:::caution[Status]
+
+🚧 Yield Boost is not yet live. This documentation describes the intended design.
+
+:::
+
+Linea Yield Boost is a protocol-level mechanism that converts idle bridged ETH into a sustainable source of ecosystem incentives.
+
+By programmatically staking a portion of ETH held in Linea’s `LineaRollup` using Lido v3 stVaults on Ethereum, Yield Boost generates a continuous stream of rewards. These staking rewards are redirected to strengthen the Linea ecosystem, creating a long-term, self-sustaining economic engine aligned with Ethereum mainnet security.
+
+## Why Yield Boost exists
+
+Yield Boost represents a strategic shift away from temporary, emission-based rewards toward a self-sustaining economic engine. Yield Boost:
+
+- Replaces short-lived emission incentives
+- Reduces reliance on mercenary liquidity
+- Builds sustainable, Ethereum-native yield
+- Deepens economic alignment with Ethereum
+
+Yield Boost is designed to solve the persistent problem of the "DeFi liquidity cycle." Many new chains and protocols rely on unsustainable incentives, such as finite treasury funds or inflationary token emissions. Such incentives often attract short-term liquidity that migrates when rewards decline, creating instability and poor user experience. This hinders the progress toward mass adoption by failing to build a stable, long-term foundation for growth. By transforming idle assets in the bridge into a productive mechanism, Yield Boost contributes to deeper and more resilient liquidity conditions over time.
+
+The following sections detail the specific mechanics, architecture, and security principles that enable this innovative approach. 
+
+## User experience
+
+From a user perspective, Yield Boost happens behind-the-scenes. Though the user interface will transparently inform users that their bridged ETH is being staked, their transaction flow and user experience is unaltered. Users will see the expected ETH balance on Linea after bridging, and at any time, users can transact with their ETH on Linea as normal.
+
+Importantly, the Yield Boost design ensures that user withdrawals are always supported. The user deposit remains redeemable at all times through layered, permissionless withdrawal mechanisms designed to withstand periods of elevated exit demand.
+
+### Withdrawal guarantees
+
+**To ensure that ETH withdrawals from Linea back to the L1 are always supported, the system incorporates a multi-layered withdrawal resilience strategy, including the liquidity buffer, permissionless withdrawals, and a last-resort stETH withdrawal process.**
+
+To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
+
+The system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
+
+- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user is able to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
+
+- As a last-resort mechanism, the user can opt to [mint stETH against the `StakingVault` collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) rather than wait for the ETH balance to be sufficient. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
+
+## Core mechanism
+
+The Yield Boost mechanism transforms bridging into an active contribution to the ecosystem's health and liquidity, without requiring any change in user behavior. Yield Boost operates in three stages:
+
+1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, a portion of these assets is programmatically deposited into Linea's Lido v3 stVault on Ethereum Mainnet. 
+
+	This process is automatic and applies to all bridged ETH until the final target of 60% of the TVS is reached. 
+
+2. **Reward generation and harvesting**: ETH in the stVault is staked and participates in Ethereum's [Proof-of-Stake](https://ethereum.org/developers/docs/consensus-mechanisms/pos/) consensus mechanism, generating rewards. These staking rewards accrue and are periodically harvested by an automated offchain service.
+
+3. **Ecosystem-centric yield distribution**: The harvested yield is funneled back into the Linea ecosystem as ETH minted on the L2. Critically, these rewards are not distributed to individual wallets via a rebase or direct payment. Instead, they are directed to a distributor contract on the L2, which uses the funds to incentivize liquidity providers and key DeFi protocols. This creates deeper liquidity, better trade execution, and more competitive yields across the network.
+
+Linea Yield Boost’s security model prioritizes capital protection, withdrawal availability, and operational resilience. It integrates onchain smart contracts, offchain automation services, and defined participant roles. This multi-component system works in concert to manage funds, report yield, and mitigate risks in a transparent and resilient manner.
+
+:::info
+
+- Learn about the [technical implementation](/protocol/yield-boost-architecture) of Linea Yield Boost.
+
+:::
+
+## Core design principles
+
+Beyond its individual components, the integrity of the Linea Yield Boost system is guaranteed by a set of non-negotiable design goals and system properties. These principles ensure security, preserve user control, and provide operational reliability under all conditions:
+
+1. **Censorship-resistant withdrawals**: The highest priority is ensuring that users can always withdraw their funds. Even if operators become unresponsive or malicious, permissionless mechanisms exist to allow any user to force rebalancing and unstaking to retrieve their assets. Withdrawals may be delayed, but they can never be permanently blocked.
+2. **Non-custodial asset management**: The system is designed so that no privileged role or operator can extract user funds or divert value from the staked ETH. All assets remain under the programmatic control of the smart contracts, with validator withdrawal credentials pointing directly to the stVault.
+3. **Governance attack protection**: To mitigate dependency risk, the Linea Security Council has the authority to opt out of any Lido governance upgrade applied to the stVault. This provides a critical safeguard against malicious proposals that could compromise the system's integrity.
+4. **Seamless user experience and backward compatibility**: The bridging process remains unchanged for the end-user, unless they are withdrawing stETH. They bridge ETH and receive ETH on Linea, with no new tokens or complex steps. The user interface will transparently inform users that their bridged ETH is being staked, but their interaction flow remains identical.
+
+### Safety properties
+
+* **Valid yield reporting**: Reported yield sent to the L2 for distribution must be net of all system obligations (such as, LST liabilities and protocol fees).
+* **User principal protection**: A user's principal deposit can never be used to settle system obligations; these must be paid exclusively from unreported, newly generated yield.
+* **Beacon chain deposit restriction**: Deposits to the stVault are automatically paused if the withdrawal reserve is in deficit, if there are outstanding stETH liabilities, or if the [ossification process](../../protocol/yield-boost-architecture#6-ossification-withdrawal) has been initiated or completed.
+
+### Liveness properties
+
+* **Sustained positive net yield**: The system is designed to maintain a positive net yield over time. If this is violated, new staking deposits will be paused.
+* **Censorship-resistant withdrawals**: At least one withdrawal path must always be available to users, with permissionless mechanisms activating during reserve deficits. This serves as the technical enforcement of the high-level design goal, ensuring it is a guaranteed property and not just a philosophical aim.
+* **Accounting report freshness**: Lido vault reports are updated at least every 48 hours to prevent stale data from blocking withdrawals or other key operations.
+
+These granular safety and liveness properties are not abstract; they are the direct, onchain enforcement of the foundational design goals, ensuring that principles like censorship-resistant withdrawals are upheld by verifiable system behavior.
+
+## Progressive rollout plan
+
+The progressive rollout plan is designed to ensure the stability of the bridge funds and the automation logic. 
+
+| Phase | Key Actions | Target Stake (% TVS) | Indicated Value (at $120M TVS) |
+|-------|------------|----------------------|--------------------------------|
+| 1. Setup | Vault creation; roles assigned; rollout validators up to 600 ETH/18 validators; staking paused | ~1% | ~$1.2M |
+| 2. Activation & Hardening | Validators activated and proven (~D+55); switch to PDG flow; remove permissions; single validator exit | ~0.95% | ~$1.14M |
+| 3. Resume & Scale to 2% | Exit queue completes; unpause staking; begin top-ups | 2% | $2.4M |
+| 4. Scale to 10% | Increase staking allowance | ~10% | $12M |
+| 5. Scale to 60% | Multi-step ramp (entry queue dependent) | 60% | $72M |
+
+The ramp-up follows a strict phased approach described in the following steps:
+
+**Setup:**
+- Objective: Validate the staged activation and transition of the staking system under real conditions.
+- Action: Stake 96 ETH (~$192k). 
+- Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
+  1. Start with 3 initial validators (96 ETH) in non Pre-Deposit Guarantee (PDG) mode and confirm deposits and validator activation behave as expected.
+  1. Add the remaining ETH up to 600 ETH to bring additional 15 validators online; then pause staking post validator activation.
+
+**Activation & Hardening:**
+  1. Switch to PDG mode on the `StakingVault`.
+  1. Exit one validator to validate the exit path and fund return.
+
+**Scale:**
+Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
+  1. On successful exit, switch the system to top-up mode.
+  1. Unpause and resume ramp-up by topping up existing validators.
+
+## Ecosystem-wide benefits
+
+Linea Yield Boost is designed as a positive-sum economic engine that creates compounding value for all ecosystem participants. By transforming a passive asset into a productive one, it fosters a more liquid, efficient, and sustainable environment for end-users, protocols, and builders.
+
+This system creates an economic flywheel whereby deeper liquidity funded by Yield Boost leads to better trade execution (lower slippage), which attracts more trading volume to the network. More volume generates higher trading fees, which increases the APY for liquidity providers, in turn attracting even more liquidity. This self-reinforcing loop creates a sustainable foundation for growth, benefiting the entire ecosystem.
+
+- **End-users:** Benefit indirectly through improved market quality--tighter spreads, lower slippage, and stronger price stability across the supported DeFi applications.
+- **Liquidity providers:** Specific pools on Linea will receive competitive, sustainable yields. This enables a "set it and forget it" model, reducing provider turnover driven by chasing short-term incentives across protocols (more details to come soon).
+- **DeFi protocols:** Protocols benefit from long-term liquidity, providing a stable foundation for growth. This leads to a better user experience, which in turn attracts more users and generates more revenue, creating a sustainable growth model.
+
+### Alignment with Ethereum
+
+This mechanism establishes a powerful economic symbiosis between Linea and Ethereum. By staking bridged ETH directly on Ethereum mainnet, Linea actively contributes to the economic security of the L1. This model directly counters the narrative of L2s being "parasitic" to L1 security. Instead of letting hundreds of millions of dollars of ETH sit idle in a bridge contract, Linea puts that capital to work securing the foundational layer it is built upon.
+
+## FAQs
+
+This section addresses some of the most common questions regarding the functionality and design of Linea Yield Boost.
+
+**Do I receive stETH on Linea?**
+
+- No. Users retain standard, fungible 1:1 ETH on Linea. The staking process occurs in the background on the L1 within the `LineaRollup` contracts. You do not hold a wrapped or rebasing token, and your ETH balance on Linea reflects the value deposited. The system earns yield to reinforce and improve the ecosystem you are using.
+
+**Do I ever lose access to my ETH on the L1 or the L2?**
+
+- No. You can bridge your ETH back to Ethereum Mainnet at any time. The system maintains a Liquidity Buffer of unstaked ETH specifically to service withdrawals. Under normal operating conditions, this ensures that funds are available immediately, without the standard lock-up periods associated with staking. In addition to this main flow, two permissionless fallback flows exist to ensure that you can [always withdraw your funds](#withdrawal-guarantees).
+
+**Why can't users choose to opt-out?**
+
+- Users cannot opt-out of Yield Boost. Implementing an opt-out feature is technically complex, especially when funds are transferred to new addresses. More importantly, it would create a "free-rider" effect, where some users could opt-out of contributing to the yield generation while still benefiting from the improved liquidity and better execution that the system provides for everyone.
+
+**Why not just bridge Liquid Staking Tokens (LSTs) directly?**
+
+- While users are free to bridge LSTs, making it the default would be counterproductive. LSTs cannot be used as the native gas token on Linea and would introduce the same liquidity fragmentation issues as a separate staked ETH token. Furthermore, using native ETH allows the protocol to directly funnel the generated yield to liquidity providers in a targeted and efficient manner.
+
+**Why not use the Ecosystem Fund to fund liquidity provider incentives?**
+
+- Relying on the Ecosystem Fund creates unsustainable, short-lived incentives that attract mercenary liquidity. This approach also creates direct sell pressure on the native token, which is not a viable long-term strategy for ecosystem growth.
+
+**Can I earn the rewards generated by Yield Boost?**
+
+Yield Boost rewards are not paid directly to individuals. Rewards are allocated to ecosystem incentive mechanisms determined through governance processes. Users who actively provide liquidity may receive incentives funded by these rewards, depending on the rules of the relevant protocol.
+

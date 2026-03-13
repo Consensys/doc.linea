@@ -1,0 +1,377 @@
+---
+title: Yield Boost
+description: ETH fund flow and role permissions in the Linea Yield Boost staking system.
+image: /img/socialCards/yield-boost-overview.jpg
+sidebar_position: 4
+---
+
+# Yield Boost technical overview
+
+:::caution[status]
+
+🚧 Yield Boost is not yet live. This documentation describes the intended design.
+
+:::
+
+## What is it?
+
+[Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism implemented on the [Public network](../network/quickstart) that automatically stakes a proportion of the ETH held in the [`LineaRollup`](../network/build/contracts#deployed-contracts) and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
+
+This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
+
+## High-level architecture
+
+`LineaRollup` deposits on the L1 are staked via a Lido V3 stVault to generate beacon chain rewards, which are [distributed on Linea (L2)](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+
+### Key participants
+
+- **User:** Interacts with the system by bridging ETH to and from Linea via the [`LineaRollup`](../network/build/contracts#deployed-contracts).
+- **[Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md):** A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
+- **[Lido Oracle Committee](https://docs.lido.fi/token-guides/steth-superuser-functions/#oracle-and-accounting-flow):** A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
+- **Node operator:** The Linea-assigned entity bound to the agreed deposit trigger to stake ETH from the stVault, and validate the beacon chain to earn rewards.
+- **`NativeYieldAutomationService`:** An offchain service that executes onchain routine operations, including yield reporting, rebalancing the liquidity buffer, and settling system obligations. It operates in a default `YIELD_REPORTING` mode and switches to an `OSSIFICATION_PROCESSOR` mode if the Security Council initiates the [ossification process](#6-ossification-withdrawal).
+- **`LidoUpgradeMonitor`:** An offchain service that monitors Lido's onchain governance for contract upgrade proposals and alerts the Security Council.
+
+### L1 ETH flow
+
+When a user deposits ETH from Ethereum Mainnet (L1) into the `LineaRollup` contract to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s beacon chain to earn rewards. The following components manage how that ETH moves from the `LineaRollup` into the staking vault, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
+
+- [**`LineaRollup`:**](../network/build/contracts#deployed-contracts) L1 bridge contract and message service that holds user-deposited ETH collateral and serves as the accounting anchor for Yield Boost.
+- **`YieldManager`:** L1 contract that moves ETH between the `LineaRollup` and the `StakingVault`, and calculates net yield after fees and liabilities.
+- **`StakingVault`:** Lido V3 stVault that holds ETH awaiting beacon chain staking; all validator withdrawals return here before moving back to the `LineaRollup`.
+- **Beacon chain:** Ethereum's proof-of-stake consensus layer where node operators lock/stake ETH to secure the network and earn staking rewards.
+- **Node operator:** Selected operators run beacon chain validators on behalf of Linea.
+- **Automation service:** Offchain service that triggers routine onchain operations: moving ETH to/from staking, topping up reserves, and reporting yield.
+
+The following diagram details the flow:
+
+```mermaid
+flowchart TD
+    User([User])
+    Auto([Automation Service])
+    NO([Node Operator])
+    BR[LineaRollup]
+    YM[YieldManager]
+    SV[StakingVault]
+    BC{{beacon chain}}
+
+    User -->|Deposit ETH| BR
+    BR -->|Withdraw ETH| User
+    Auto -.->|Automatically rebalances ETH between LineaRollup and StakingVault, and requests unstaking| YM
+    BR -->|Rebalance extra ETH to earn rewards| YM
+    YM -->|Move ETH to staking vault| SV
+    NO -.->|Triggers staking| SV
+    SV -->|Stake| BC
+    BC -->|Unstake| SV
+    SV -->|Withdraw ETH| BR
+
+    classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
+    classDef permissionless fill:#cce5ff,stroke:#004085,stroke-width:1px,color:#004085
+
+    class NO,Auto admin
+    class User permissionless
+```
+
+> The node operator's deposit trigger is part of an automated process whose logic is agreed beforehand. The node operator is only responsible for running the validator infrastructure.
+
+### Yield reporting and L2 distribution
+
+The yield earned from the beacon chain is transferred to the L2 for distribution. The following components are involved:
+
+- **`YieldManager`:** L1 accounting and settlement contract (see [L1 Eth flow](#l1-eth-flow)).
+- **[Dashboard](https://docs.lido.fi/contracts/dashboard#what-is-dashboard):** Lido V3 management layer around the `StakingVault`; handles fee accounting and deposit/withdrawal operations.
+- **[Lido](https://docs.lido.fi/):** Third-party staking protocol that provides the `StakingVault` and dashboard infrastructure used by Yield Boost.
+- **Fee recipient:** Address that collects the staking rewards earned by the node operator.
+- **Security Council:** Linea governance multisig (see [Key participants](#key-participants)).
+- **[L2MessageService](../network/build/contracts):** L2 contract that receives messages from L1 and unlocks the corresponding ETH on L2.
+- **L2YieldDistributor:** Distributes L2 unlocked ETH staking rewards to designated recipients.
+- **`LineaRollup`:** see above.
+
+The following steps and diagram detail the flow:
+
+1. The automation service triggers a yield report on the `YieldManager`.
+2. The `YieldManager` reads the vault's `totalValue` from the dashboard. This value--the sum of beacon chain stake and vault balance--is updated daily by the Lido Oracle Committee.
+3. Yield is the difference between the current `totalValue` and the last stored checkpoint, minus outstanding obligations.
+4. If the `StakingVault` has sufficient funds, the `YieldManager` settles obligations: stETH borrow liabilities and protocol fees go to Lido, and operator fees go to the node operator's fee recipient. If funds are insufficient, settlement is skipped and obligations carry forward.
+5. The `YieldManager` reports the remaining net yield to the `LineaRollup`.
+6. The `LineaRollup` emits a synthetic `MessageSent` event. The `L2MessageService` picks it up and unlocks the corresponding ETH on L2.
+7. The `L2YieldDistributor` sends the unlocked ETH to designated recipients.
+
+```mermaid
+flowchart TB
+    subgraph L2["L2"]
+      direction TB
+      L2MS[L2MessageService]
+      L2YD[L2YieldDistributor]
+    end
+    Auto([Automation Service]) -.->|Trigger yield report| YM[YieldManager]
+    YM -.->|Compute yield from vault balance| DB[Dashboard]
+    DB -->|stETH borrow liability| Lido[Lido]
+    DB -->|Protocol fees| Lido
+    DB -->|Node operator fees| FeeRecipient([Node op fee recipient])
+    YM -.->|Report net yield| LR[LineaRollup]
+    LR -.->|Emit synthetic MessageSent message| L2MS[L2MessageService]
+    L2MS -->|Distribute yield| L2YD[L2YieldDistributor]
+
+    classDef l2 fill:#d4edda,stroke:#155724,stroke-width:1px,color:#155724
+    classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
+
+    class L2MS,L2YD l2
+    class FeeRecipient admin
+```
+
+**Legend**
+- **Solid line:** Fund movement (ETH/stETH transfer)
+- **Dashed line:** Function call or event (no funds move)
+- **Red:** Privileged operator
+- **Blue:** Permissionless
+- **Green:** L2
+
+## Roles and permissions
+
+The Yield Boost system is governed by a set of roles and permissions that control the flow of funds and the operations of the system. The following roles and permissions are defined:
+
+| Role | Held by | Permissions |
+|------|---------|----------------------|
+| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service | Rebalance excess ETH from the `LineaRollup` into the `StakingVault` |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service | Rebalance ETH back from node operators into the `LineaRollup` |
+| `YIELD_REPORTER_ROLE` | Automation Service | Trigger yield reporting, which may involve payment of fees and liabilities from staking rewards |
+| `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council | Pause or resume node operator deposits (no ETH movement) |
+| `OSSIFICATION_INITIATOR_ROLE` | Security Council | Begin permanent shutdown of the staking vault; Lido may require fee settlement before proceeding |
+| `OSSIFICATION_PROCESSOR_ROLE` | Automation Service | Finalize vault ossification; Lido may require fee settlement before proceeding |
+| `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which `YieldManager` contract the `LineaRollup` uses (no ETH movement) |
+| Permissionless | Anyone | Donate ETH to the `LineaRollup` or vault; trigger unstaking and reserve top-up when the `LineaRollup` balance is too low |
+
+## Fund flows
+
+Each scenario below traces a specific ETH movement end-to-end, showing the contracts involved and the role that triggers it.
+
+1. **Staking** (routine) -- the Automation Service rebalances surplus ETH from the `LineaRollup` into the `StakingVault` for validator staking.
+2. **Reserve replenishment** (routine) -- the Automation Service rebalances ETH back from validators into the `LineaRollup` when the withdrawal reserve runs low.
+3. **Yield reporting** (routine) -- earned rewards are calculated, obligations settled, and net yield relayed to L2.
+4. **Permissionless flows** (fallback) -- anyone can trigger unstaking and replenishment when the reserve drops below minimum.
+5. **LST withdrawal** (last resort) -- if the `LineaRollup` does not control enough ETH to fulfill a user's withdrawal, the user can claim stETH instead.
+6. **Ossification withdrawal** (terminal) -- all staked funds are progressively withdrawn after the Security Council ossifies the vault.
+
+### 1. Staking
+
+Surplus ETH in the `LineaRollup` (above the minimum reserve) is routed to the `StakingVault` for beacon chain staking.
+
+```mermaid
+sequenceDiagram
+    actor Auto as Automation Service
+    participant BR as LineaRollup
+    participant YM as YieldManager
+    participant DB as Dashboard
+    participant SV as StakingVault
+    actor NO as Node Operator
+    participant BC as Beacon chain
+
+    Auto->>BR: transferFundsForNativeYield()
+    BR-->>YM: send ETH
+    Auto->>YM: fundYieldProvider()
+    YM-->>DB: fund()
+    DB-->>SV: fund()
+    Note over NO: Decides when/how much to deposit
+    SV-->>BC: stake ETH
+```
+
+### 2. Reserve replenishment
+
+Replenishing the withdrawal reserve is a two-phase process: first the beacon chain withdrawal is triggered, then funds are routed back to the `LineaRollup` once they arrive in the vault.
+
+```mermaid
+sequenceDiagram
+    actor Auto as Automation Service
+    participant BR as LineaRollup
+    participant YM as YieldManager
+    participant SV as StakingVault
+    participant BC as Beacon chain
+
+    rect rgba(230, 240, 255, 0.6)
+        Note over Auto: Phase 1 - Unstake
+        Auto->>YM: unstake()
+        YM-->>SV: triggerValidatorWithdrawals()
+        SV-->>BC: request withdrawal
+        Note over BC: Withdrawal delay
+        BC->>SV: automatic withdrawal
+    end
+
+    rect rgba(240, 255, 230, 0.6)
+        Note over Auto: Phase 2 - Replenish reserve
+        Auto->>YM: safeAddToWithdrawalReserve()
+        YM-->>SV: withdraw()
+        SV-->>BR: send ETH
+    end
+```
+
+### 3. Yield reporting
+
+The Automation Service triggers yield reporting. Before the net surplus is relayed to Linea, the `YieldManager` settles outstanding obligations.
+
+```mermaid
+sequenceDiagram
+    actor Auto as Automation Service
+    participant YM as YieldManager
+    participant DB as Dashboard
+    participant Lido as Lido
+    participant Fee as Fee Recipient
+    participant LR as LineaRollup
+    participant L2MS as L2MessageService
+    participant L2YD as L2YieldDistributor
+
+    Auto-->>YM: reportYield()
+    YM-->>DB: read totalValue
+    Note over DB: totalValue = beacon chain stake + vault balance<br/>(updated daily by Lido Oracle Committee)
+    Note over YM: yield = current totalValue - last checkpoint<br/>then subtract obligations
+
+    alt StakingVault funds available
+        Note over DB: Settle obligations
+        YM->>Lido: rebalanceVaultWithShares()<br/>(stETH borrow liability)
+        YM->>Lido: settleLidoFees()<br/>(protocol fees)
+        YM->>DB: disburseFee()<br/>(node operator fees)
+        DB->>Fee: send node operator fees
+    else Insufficient funds
+        Note over DB: Skip settlement<br/>carry forward obligations
+    end
+
+    YM-->>LR: reportNativeYield()
+    LR-->>L2MS: emit MessageSent (synthetic)
+    L2MS->>L2YD: distribute yield
+```
+
+No ETH is bridged during yield reporting. The `MessageSent` event is synthetic: it tells Linea how much new yield is available without actually bridging any ETH.
+
+Staking rewards grow the L1 collateral by the same amount that the L2 mints, so the system stays fully collateralized.
+
+### 4. Permissionless flows
+
+When the `LineaRollup` balance drops below the minimum reserve, anyone can trigger the `YieldManager` to initiate unstaking and reserve replenishment.
+
+```mermaid
+sequenceDiagram
+    actor U as Anyone
+    participant BR as LineaRollup
+    participant YM as YieldManager
+    participant SV as StakingVault
+    participant BC as Beacon chain
+    Note over BR: Reserve in deficit
+
+    rect rgba(230, 240, 255, 0.6)
+        Note over BR: Phase 1 - Unstake
+        U->>YM: unstakePermissionless()
+        Note over YM: Validate request against <br/> EIP-4788 Beacon root
+        YM-->>SV: triggerValidatorWithdrawals()
+        SV-->>BC: request withdrawal
+        Note over BC: Withdrawal delay
+        BC->>SV: automatic withdrawal
+    end
+
+    rect rgba(240, 255, 230, 0.6)
+        Note over BR: Phase 2 - Replenish withdrawal reserve
+        U->>YM: replenishWithdrawalReserve()
+        YM-->>SV: withdraw()
+        SV-->>BR: send ETH
+    end
+```
+
+`unstakePermissionless()` is capped to the remaining deficit minus available liquidity in the `YieldManager` and provider. `replenishWithdrawalReserve()` is similarly capped to the current deficit.
+
+### 5. LST withdrawal
+
+If the `LineaRollup` lacks sufficient ETH to fulfill a withdrawal, the withdrawal recipient can explicitly request an LST withdrawal. In this case, stETH is minted against the `StakingVault` collateral and sent to the same address designated to receive the withdrawal. This provides a last-resort mechanism.
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant BR as LineaRollup
+    participant YM as YieldManager
+    participant DB as Dashboard
+
+    Note over BR: Insufficient ETH for withdrawal
+    U->>BR: claimMessageWithProofAndWithdrawLST()
+    BR->>YM: withdrawLST()
+    YM->>DB: mintStETH()
+    DB-->>U: send stETH
+    Note over YM: Pauses Beacon deposits,<br/>creates interest-bearing liability
+```
+
+This creates an LST liability that accrues interest; the system prioritizes repaying it from subsequent fund flows and yield.
+
+### 6. Ossification withdrawal
+
+Ossification permanently locks the `StakingVault` implementation, opting out of future Lido upgrades. Ossification is initiated by the Security Council; the Automation Service then progressively withdraws all staked funds back to the `LineaRollup`.
+
+```mermaid
+sequenceDiagram
+    actor SC as Security Council
+    actor Auto as Automation Service
+    participant YM as YieldManager
+    participant DB as Dashboard
+    participant SV as StakingVault
+    participant BR as LineaRollup
+
+    SC->>YM: initiateOssification()
+    YM-->>DB: voluntaryDisconnect()
+    Note over DB: Pending disconnection
+
+    Auto->>YM: progressPendingOssification()
+    YM-->>SV: ossify()
+    Note over SV: Vault ossified
+
+    loop Until all funds withdrawn
+        Auto->>YM: unstake()
+        Note over SV: Beacon chain withdrawal
+        Auto->>YM: safeAddToWithdrawalReserve()
+        YM-->>SV: withdraw()
+        SV-->>BR: send ETH
+    end
+```
+
+## Risk mitigation
+
+The Yield Boost system is designed to be resilient to various risks, including:
+
+- Slashing
+- Withdrawal delay
+
+### Slashing
+
+If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with the validator role. 
+
+While the risk of slashing is rare (only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH), the Yield Boost system has the following mitigations in place:
+
+- Node operators will only be selected for participation in the Yield Boost system if they have never been slashed. Selected node operators must also have a diverse infrastructure with more than 99.9% uptime, safeguards to prevent double-signing, and world-class security practices.
+- 20% of node operator validator rewards will be retained for a year to create an insurance fund to cover slashing events. If the Yield Boost system is impacted by a slashing event it will be eligible to access this fund.
+
+### Withdrawal delay
+
+In certain market conditions, such as a sharp increase in the demand for bridging ETH to Ethereum, the withdrawal reserve may be depleted. This can cause a delay in the withdrawal of ETH from Linea back to Ethereum.
+
+The Yield Boost system has the following mitigations in place:
+
+- The withdrawal reserve is maintained at a minimum of 40% of the Total Value Staked (TVS).
+- The Automation Service will trigger a rebalancing of funds to replenish the withdrawal reserve after a withdrawal transaction is initiated.
+- In the unlikely event that the withdrawal reserve is depleted, users can [trigger unstaking](/protocol/yield-boost-architecture#4-permissionless-flows) to replenish the withdrawal reserve.
+- As a last resort, users can [withdraw their funds as stETH](/protocol/yield-boost-architecture#5-lst-withdrawal) rather than ETH.
+
+## Quick reference
+
+| Fund movement | Source | Destination | Trigger | Role required |
+|--------------|--------|-------------|---------|---------------|
+| Stake excess reserve | `LineaRollup` | `StakingVault` | Automation Service | `YIELD_PROVIDER_STAKING_ROLE` |
+| Beacon chain deposit | `StakingVault` | Node operators | Node Operator decision | Node Operator |
+| Report yield to L2 | synthetic MessageSent event | L2YieldDistributor | Automation Service | `YIELD_REPORTER_ROLE` |
+| Operator replenish reserve | `StakingVault` | `LineaRollup` | Reserve below target | `YIELD_PROVIDER_UNSTAKER_ROLE` |
+| Permissionless unstake | Validators | `StakingVault` | Reserve below minimum | Permissionless |
+| Permissionless replenish reserve | `StakingVault` | `LineaRollup` | Reserve below minimum | Permissionless |
+| LST withdrawal | Lido Protocol (minted against `StakingVault` collateral) | User | Insufficient ETH for user withdrawal | Permissionless (user) |
+| Ossification withdrawal | `StakingVault` | `LineaRollup` | Security Council initiates | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
+| Donation | External | `LineaRollup` / `StakingVault` | Voluntary | Permissionless |
+
+
+## Next steps
+
+See the [Yield Boost overview](../network/overview/yield-boost/) page for a more general overview of Yield Boost, including the user experience and withdrawal resilience strategy.
+
+See the [Security Council record](../changelog/security-council-record#february-26-2026) page for a record of the Security Council transaction implementing this protocol.
