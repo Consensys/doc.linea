@@ -1,0 +1,43 @@
+---
+title: JAW.id
+
+---
+
+## Identity-first smart accounts
+
+[JAW.id](https://jaw.id) is a TypeScript SDK for building identity-first smart accounts on EVM
+chains. It provides passkey-authenticated, programmable, and extensible accounts through delegated
+permissions, replacing seed phrases and passwords with biometric authentication.
+
+JAW.id is compatible with Linea, enabling developers to onboard users into smart accounts with a
+seamless, web2-adjacent experience.
+
+### Key features
+
+- [**Passkey authentication**](https://docs.jaw.id/concepts/passkeys): Users authenticate with
+  Face ID, fingerprint, or device PIN via WebAuthn. Passkeys sync across devices through iCloud or
+  Google accounts, providing phishing-resistant security without seed phrases.
+- [**Gas sponsoring**](https://docs.jaw.id/configuration/paymasters): Sponsor gas fees for your
+  users through configurable paymasters, eliminating the need for users to hold ETH.
+- [**Batch operations**](https://docs.jaw.id/api-reference/wallet_sendCalls): Execute multiple
+  onchain actions atomically in a single transaction.
+- [**Programmable permissions**](https://docs.jaw.id/concepts/permissions): Grant controlled,
+  scoped access to third parties through a delegated permission layer.
+
+### Integration
+
+JAW.id offers multiple integration paths:
+
+- [**Wagmi connector**](https://docs.jaw.id/wagmi) (`@jaw.id/wagmi`): Drop-in connector for React
+  applications, with custom hooks for connection management and transactions.
+- [**EIP-1193 provider**](https://docs.jaw.id/api-reference): For non-React or framework-agnostic
+  use cases.
+- [**Server-side accounts**](https://docs.jaw.id/account): Use `Account.fromLocalAccount` to wrap
+  any viem `LocalAccount` (from Turnkey, a private key, or another KMS) into a JAW smart account
+  for server-side workflows.
+
+### Getting started
+
+To start building with JAW.id on Linea, get your API key at the
+[JAW.id Dashboard](https://dashboard.jaw.id) and visit the
+[JAW.id documentation](https://docs.jaw.id).
