@@ -28,7 +28,7 @@ This page maps the high-level architecture of Yield Boost, including where ETH f
 - **User:** Interacts with the system by bridging ETH to and from Linea via the [`LineaRollup`](../network/build/contracts#deployed-contracts).
 - **[Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md):** A multisig composed of Linea and external industry members responsible for safeguarding the network, managing incidents, and mitigating operational risks.
 - **[Lido Oracle Committee](https://docs.lido.fi/token-guides/steth-superuser-functions/#oracle-and-accounting-flow):** A 5-of-9 committee of independent operators who monitor validator states and submit regular, audited reports to Lido's smart contracts.
-- **Node operator:** The Linea-assigned entity bound to the agreed deposit trigger to stake ETH from the stVault, and validate the beacon chain to earn rewards.
+- **Node operator:** The Linea-assigned entity bound to the agreed deposit trigger to stake ETH from the `StakingVault`, and validate the beacon chain to earn rewards.
 - **`NativeYieldAutomationService`:** An offchain service that executes onchain routine operations, including yield reporting, rebalancing the liquidity buffer, and settling system obligations. It operates in a default `YIELD_REPORTING` mode and switches to an `OSSIFICATION_PROCESSOR` mode if the Security Council initiates the [ossification process](#6-ossification-withdrawal).
 - **`LidoUpgradeMonitor`:** An offchain service that monitors Lido's onchain governance for contract upgrade proposals and alerts the Security Council.
 
