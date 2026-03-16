@@ -34,7 +34,7 @@ This page maps the high-level architecture of Yield Boost, including where ETH f
 
 ### L1 ETH flow
 
-When a user deposits ETH from Ethereum Mainnet (L1) into the `LineaRollup` contract to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s beacon chain to earn rewards. The following components manage how that ETH moves from the `LineaRollup` into the staking vault, how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
+When a user deposits ETH from Ethereum Mainnet (L1) into the `LineaRollup` contract to use it on Linea (L2), that ETH remains on the L1 and may be staked on Ethereum’s beacon chain to earn rewards. The following components manage how that ETH moves from the `LineaRollup` into the `StakingVault` how rewards are handled, and how the ETH is returned to the user on the L1 when they withdraw it from Linea.
 
 - [**`LineaRollup`:**](../network/build/contracts#deployed-contracts) L1 bridge contract and message service that holds user-deposited ETH collateral and serves as the accounting anchor for Yield Boost.
 - **`YieldManager`:** L1 contract that moves ETH between the `LineaRollup` and the `StakingVault`, and calculates net yield after fees and liabilities.
