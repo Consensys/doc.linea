@@ -40,7 +40,7 @@ Importantly, the Yield Boost design ensures that user withdrawals are always sup
 
 To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
 
-The system automatically rebalances funds between the stVault and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
+The system automatically rebalances funds between the Lido v3 stVault , referred to as the `StakingVault`, and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 
 - Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user is able to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
 
