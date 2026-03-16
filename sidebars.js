@@ -339,6 +339,14 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "How to",
+      collapsible: false,
+      items: [
+        "protocol/how-to/forced-transactions",
+      ],
+    },
+    {
+      type: "category",
       label: "Reference",
       collapsible: false,
       items: [
