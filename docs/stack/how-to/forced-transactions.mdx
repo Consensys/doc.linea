@@ -11,25 +11,14 @@ image: /img/socialCards/enable-forced-transactions.jpg
 
 :::
 
-As a Linea operator you will need specific contracts in place, or alternatives that perform the same function.
-
 ## Enable forced transactions
 
 Support for [forced transaction](../../protocol/forced-transactions.mdx) submission is not enabled by default. To enable forced transaction submission for smart
 contracts on your Linea instance, you need to:
 
 1. Deploy the `AddressFilter` contract.
-2a. Deploy the `ForcedTransactionGateway` contract.
-2b. Have the `DEFAULT_ADMIN_ROLE` or access to that administrator.
-
-:::info[Mainnet]
-
-For Linea Public Mainnet the DEFAULT_ADMIN_ROLE is held by the
-[Linea Security Council](https://github.com/Consensys/linea-monorepo/blob/main/contracts/docs/security-council-charter.md),
-and this role [has been granted](../../changelog/release-notes.mdx#beta-v60).
-
-:::
-
+2. Deploy the `ForcedTransactionGateway` contract.
+3. Have the `DEFAULT_ADMIN_ROLE` or access to that administrator.
 
 :::tip
 
