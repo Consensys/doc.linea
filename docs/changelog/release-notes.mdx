@@ -18,7 +18,7 @@ import { ChangelogEntry, ChangelogDate, ChangelogSubtitle } from "@site/src/comp
 
 :::info Linea Security Council transactions
 
-We maintain a record and brief explanation of [Linea Security Council transactions](./security-council-record.mdx).
+This page maintains a record and brief explanation of [Linea Security Council transactions](./security-council-record.mdx).
 
 :::
 
@@ -28,16 +28,11 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
 <ChangelogEntry tag="upgrade">
 
-  Switches prover to small fields, enabling faster proof generation.
-
-**This change deprecates the ENS resolver contract; you will need to update your configuration to point to the new contract address.** More information [here](../network/how-to/deploy-subdomain.mdx).
-
-</ChangelogEntry>
-
-<ChangelogEntry tag="performance">
-
-- Switches prover to small fields, enabling faster proof generation. **This change deprecates the ENS resolver contract; you will need to update your configuration to point to the new contract address.** More information [here](../network/how-to/deploy-subdomain.mdx).
+- Switches prover to small fields, enabling faster proof generation. **This change deprecates the
+  ENS resolver contract; you will need to update your configuration to point to the new contract
+  address.** More information [on deploying a Linea subdomain](../network/how-to/deploy-subdomain.mdx).
 - Increases throughput to 200 Mgas/s.
+- Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism that allows users to submit L2 transactions directly to the L1.
 - Introduces EIP-7702, enabling gassless transactions, batch transactions, and session keys. No user action or migration required.
 
 </ChangelogEntry>
@@ -50,7 +45,7 @@ We maintain a record and brief explanation of [Linea Security Council transactio
 
 <ChangelogEntry tag="feature">
 
-Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge the `LineaRollup` contract, and distribute rewards to the L2 ecosystem. More documentation coming soon.
 
 </ChangelogEntry>
 
@@ -111,7 +106,7 @@ Linea will be implementing upgrades to bring the network into line with the late
 
 <ChangelogEntry tag="performance">
 
-Boost prover performance by reducing proving time by 33%, supporting scaled trading, consumer, and
+- Boost prover performance by reducing proving time by 33%, supporting scaled trading, consumer, and
 institutional use cases.
 
 </ChangelogEntry>
@@ -169,8 +164,8 @@ Initially, only a single Maru node operated by Linea will produce blocks.
 
 <ChangelogEntry tag="performance">
 
-Made Linea's prover 2x more efficient, reducing the cost of running the Linea infrastructure. In
-future, this additional efficiency will increase ETH and LINEA burn.
+- Made Linea's prover 2x more efficient, reducing the cost of running the Linea infrastructure. In
+  future, this additional efficiency will increase ETH and LINEA burn
 
 </ChangelogEntry>
 
@@ -193,7 +188,7 @@ Increase throughput.
 
 <ChangelogEntry tag="upgrade" title="Limitless prover">
 
-Eliminates the need for the sequencer to enforce module limits, as the prover
+- **Limitless prover**: Eliminates the need for the sequencer to enforce module limits, as the prover
 can handle complex workloads. This unlocks:
 - Higher throughput and TPS
 - Stabler gas fees during high-traffic periods
@@ -212,14 +207,11 @@ Note that the higher throughput will not enabled until the sequencer limits are 
 100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
 the integrity of all onchain data when sequencing is decentralized. Linea is the first zkEVM
 to be completely proven.
-
-Reworks [prover limits](../protocol/architecture/prover/prover-limits.mdx) to reduce infrastructure costs and
+- Reworks [prover limits](../protocol/architecture/prover/prover-limits.mdx) to reduce infrastructure costs and
 reduce instances of transactions reverting due to exceeding limits.
-
-Upgrades the dictionary to improve compression and reduce the costs of L1 data availability by
+- Upgrades the dictionary to improve compression and reduce the costs of L1 data availability by
 7.5%.
-
-Improves Security Council configuration, and onboards the first cohort of members to stage 1,
+- Improves Security Council configuration, and onboards the first cohort of members to stage 1,
 supporting future decentralization and security.
 
 </ChangelogEntry>
@@ -231,11 +223,11 @@ Beta v1 on Linea introduces new arithmetization. The overall objective of the Li
 
 ### Beta v1.4
 
-<ChangelogDate mainnet="April 28, 2025" sepolia="April 7, 2025" />
+**Linea Mainnet: April 28, 2025**
 
 <ChangelogEntry tag="feature">
 
-Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to
+- Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to
 protect users against MEV and improve UX in various ways.
 
 Introduces [state recovery](../network/overview/recoverable-state.mdx), enabling anyone to recover
@@ -259,10 +251,9 @@ Raises the block gas limit to 2B.
 
 <ChangelogEntry tag="upgrade">
 
-Full implementation of new arithmetization, with all modules from the Linea specification except
+- Full implementation of new arithmetization, with all modules from the Linea specification except
 the hub's consistency arguments.
-
-Proof of all the activated modules (i.e. excluding the hub consistency arguments).
+- Proof of all the activated modules (i.e. excluding the hub consistency arguments).
 
 </ChangelogEntry>
 
@@ -272,9 +263,8 @@ Proof of all the activated modules (i.e. excluding the hub consistency arguments
 
 <ChangelogEntry tag="upgrade">
 
-New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
-
-The transition to generating traces with Besu.
+- New arithmetization, with selected modules activated from the [Linea specification](https://github.com/Consensys/linea-specification).
+- The transition to generating traces with Besu.
 
 </ChangelogEntry>
 
@@ -284,14 +274,14 @@ The transition to generating traces with Besu.
 
 <ChangelogEntry tag="upgrade" title="Linea bridge improvements">
 
-- New UI for improved user experience
-- Update Linea native bridge to use the [Circle CCTP](https://circle.com/cross-chain-transfer-protocol)
+- Improvements to the Linea bridge:
+  - New UI for improved user experience
+  - Update Linea native bridge to use the [Circle CCTP](https://circle.com/cross-chain-transfer-protocol)
   for USDC transfers
-- Add new bridging aggregators for faster transfers and greater chain selection
-- Integrate [Onramper](https://onramper.com/) for seamless fiat onramping to Linea only (live on
+  - Add new bridging aggregators for faster transfers and greater chain selection
+  - Integrate [Onramper](https://onramper.com/) for seamless fiat onramping to Linea only (live on
   April 3)
-
-Transition to native USDC, seamless for Linea users.
+- Transition to native USDC, seamless for Linea users
 
 </ChangelogEntry>
 
@@ -409,7 +399,7 @@ the sequencer's trace limits.
 
 ## Alpha v3.5.1
 
-<ChangelogDate mainnet="September 18" sepolia="September 18" />
+### Linea native bridge UI v2
 
 <ChangelogEntry tag="upgrade" title="Linea native bridge UI v2">
 
@@ -542,7 +532,7 @@ June 4: Fully functional on mainnet.
 :::
 
 The [Linea bridge](https://linea.build/hub/bridge/) has been upgraded to enable recipient addresses to
-always be able to claim bridged funds. Bridge transfers to alternative recipients (i.e. an address
+always be able to claim bridged funds. Bridge transfers to alternative recipients (that is, an address
 that isn't the sender's address) now appear on the recipient's "Recent transactions" list,
 enabling them to claim.
 
@@ -557,9 +547,8 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 
 <ChangelogEntry tag="feature">
 
-Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
-
-Adds the [`eth_sendRawTransaction`](../api/reference/eth-sendrawtransaction.mdx) method,
+- Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
+- Adds the [`eth_sendRawTransaction`](../api/reference/eth-sendrawtransaction.mdx) method,
 available only via Besu endpoints.
 
 </ChangelogEntry>
