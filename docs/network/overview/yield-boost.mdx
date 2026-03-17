@@ -26,7 +26,7 @@ Yield Boost represents a strategic shift away from temporary, emission-based rew
 
 Yield Boost is designed to solve the persistent problem of the "DeFi liquidity cycle." Many new chains and protocols rely on unsustainable incentives, such as finite treasury funds or inflationary token emissions. Such incentives often attract short-term liquidity that migrates when rewards decline, creating instability and poor user experience. This hinders the progress toward mass adoption by failing to build a stable, long-term foundation for growth. By transforming idle assets in the bridge into a productive mechanism, Yield Boost contributes to deeper and more resilient liquidity conditions over time.
 
-The following sections detail the specific mechanics, architecture, and security principles that enable this innovative approach. 
+The following sections detail the specific mechanics, architecture, and security principles that enable this innovative approach.
 
 ## User experience
 
@@ -38,7 +38,7 @@ Importantly, the Yield Boost design ensures that user withdrawals are always sup
 
 **To ensure that ETH withdrawals from Linea back to the L1 are always supported, the system incorporates a multi-layered withdrawal resilience strategy, including the liquidity buffer, permissionless withdrawals, and a last-resort stETH withdrawal process.**
 
-To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer. 
+To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer.
 
 The system automatically rebalances funds between the Lido v3 stVault , referred to as the `StakingVault`, and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 
@@ -50,9 +50,9 @@ The system automatically rebalances funds between the Lido v3 stVault , referred
 
 The Yield Boost mechanism transforms bridging into an active contribution to the ecosystem's health and liquidity, without requiring any change in user behavior. Yield Boost operates in three stages:
 
-1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, a portion of these assets is programmatically deposited into the `StakingVault` on Ethereum Mainnet. 
+1. **Bridging and staking**: When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, a portion of these assets is programmatically deposited into the `StakingVault` on Ethereum Mainnet.
 
-	This process is automatic and applies to all bridged ETH until the final target of 60% of the TVS is reached. 
+	This process is automatic and applies to all bridged ETH until the final target of 60% of the TVS is reached.
 
 2. **Reward generation and harvesting**: ETH in the `StakingVault` is staked and participates in Ethereum's [Proof-of-Stake](https://ethereum.org/developers/docs/consensus-mechanisms/pos/) consensus mechanism, generating rewards. These staking rewards accrue and are periodically harvested by an automated offchain service.
 
@@ -91,7 +91,7 @@ These granular safety and liveness properties are not abstract; they are the dir
 
 ## Progressive rollout plan
 
-The progressive rollout plan is designed to ensure the stability of the bridge funds and the automation logic. 
+The progressive rollout plan is designed to ensure the stability of the bridge funds and the automation logic.
 
 | Phase | Key Actions | Target Stake (% TVS) | Indicated Value (at $120M TVS) |
 |-------|------------|----------------------|--------------------------------|
@@ -101,23 +101,7 @@ The progressive rollout plan is designed to ensure the stability of the bridge f
 | 4. Scale to 10% | Increase staking allowance | ~10% | $12M |
 | 5. Scale to 60% | Multi-step ramp (entry queue dependent) | 60% | $72M |
 
-The ramp-up follows a strict phased approach described in the following steps:
-
-**Setup:**
-- Objective: Validate the staged activation and transition of the staking system under real conditions.
-- Action: Stake 96 ETH (~$192k). 
-- Duration: ~6 weeks (accounting for Ethereum’s entry and exit queues).
-  1. Start with 3 initial validators (96 ETH) in non Pre-Deposit Guarantee (PDG) mode and confirm deposits and validator activation behave as expected.
-  1. Add the remaining ETH up to 600 ETH to bring additional 15 validators online; then pause staking post validator activation.
-
-**Activation & Hardening:**
-  1. Switch to PDG mode on the `StakingVault`.
-  1. Exit one validator to validate the exit path and fund return.
-
-**Scale:**
-Once the round-trip is validated, Linea will increase the staked percentage periodically, pending successful "staking activation" at each stage.
-  1. On successful exit, switch the system to top-up mode.
-  1. Unpause and resume ramp-up by topping up existing validators.
+The ramp-up follows a strict phased approach that has been designed conservatively to prioritize safety of funds through progressive exposure.
 
 ## Ecosystem-wide benefits
 
