@@ -24,8 +24,10 @@ In the case of the Linea public network, the L1 is Ethereum which serves as the
 
 ## What are forced transactions?
 
-Forced transactions are an anti-censorship mechanism that bypass the normal L2 submission path to submit transactions
-directly to the L1. To undertake a forced transaction, the user submits a signed L2 transaction to the L1.
+Forced transactions protect users against sequencer censorship or failure. If the sequencer is down or becomes
+uncooperative, users retain the ability to send transactions and withdraw assets at any time by submitting them
+directly to L1, bypassing the sequencer entirely. To undertake a forced transaction, the user submits a signed
+L2 transaction directly to L1.
 
 Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the
 sequencer will process the transaction well before this deadline -- the deadline is
