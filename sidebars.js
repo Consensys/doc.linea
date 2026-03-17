@@ -328,7 +328,23 @@ const sidebars = {
         "protocol/architecture/rpc-services",
       ],
     },
-    "protocol/tokenomics",
+    {
+      type: "category",
+      label: "Mechanisms",
+      collapsible: false,
+      items: [
+        "protocol/forced-transactions",
+        "protocol/tokenomics",
+      ],
+    },
+    {
+      type: "category",
+      label: "How to",
+      collapsible: false,
+      items: [
+        "protocol/how-to/forced-transactions",
+      ],
+    },
     {
       type: "category",
       label: "Reference",
@@ -357,21 +373,6 @@ const sidebars = {
     { type: "doc", id: "stack/index", className: "intro-section-item" },
     {
       type: "category",
-      label: "How it works",
-      collapsible: false,
-      items: [
-        "stack/how-it-works/index",
-        {
-          type: "doc",
-          id: "stack/how-it-works/core-components",
-          label: "Protocol components",
-        },
-        "stack/how-it-works/deployment-models",
-        "stack/how-it-works/data-availability-finalization",
-      ],
-    },
-    {
-      type: "category",
       label: "Features",
       collapsible: false,
       items: [
@@ -389,6 +390,29 @@ const sidebars = {
           id: "stack/features/validium",
           label: "Privacy",
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "How it works",
+      collapsible: false,
+      items: [
+        "stack/how-it-works/index",
+        {
+          type: "doc",
+          id: "stack/how-it-works/core-components",
+          label: "Protocol components",
+        },
+        "stack/how-it-works/deployment-models",
+        "stack/how-it-works/data-availability-finalization",
+      ],
+    },
+    {
+      type: "category",
+      label: "How to",
+      collapsible: false,
+      items: [
+        "stack/how-to/forced-transactions",
       ],
     },
   ],
