@@ -30,7 +30,7 @@ const sidebars = {
         "network/overview/public-data",
         "network/overview/recoverable-state",
         "network/overview/ethereum-differences",
-        "network/overview/yield-boost",
+        "network/overview/yield-boost/index",
       ],
     },
     {

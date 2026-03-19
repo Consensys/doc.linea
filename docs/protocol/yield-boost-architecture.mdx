@@ -1,7 +1,7 @@
 ---
 title: Yield Boost
 description: ETH fund flow and role permissions in the Linea Yield Boost staking system.
-image: /img/socialCards/yield-boost-overview.jpg
+image: /img/socialCards/yield-boost.jpg
 sidebar_position: 4
 ---
 
@@ -17,11 +17,13 @@ sidebar_position: 4
 
 [Linea Yield Boost](../network/overview/yield-boost/) is a protocol-level mechanism implemented on the [Public network](../network/quickstart) that automatically stakes a proportion of the ETH held in the [`LineaRollup`](../network/build/contracts#deployed-contracts) and distributes the staking rewards back into the Linea ecosystem. When a user bridges ETH from Ethereum (L1) to Linea (L2) via the `LineaRollup`, these assets may be programmatically deposited into a dedicated [Lido v3 stVault](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum Mainnet. The resulting staking rewards are distributed back into the Linea ecosystem to incentivize liquidity providers (LPs) and support DeFi protocols.
 
-This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement. 
+This page maps the high-level architecture of Yield Boost, including where ETH flows and which roles control each movement.
 
 ## High-level architecture
 
-`LineaRollup` deposits on the L1 are staked via a Lido V3 stVault, known as the `StakingVault, to generate beacon chain rewards, which are [distributed on Linea (L2)](../network/overview/yield-boost.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
+`LineaRollup` deposits on the L1 are staked via a Lido V3 stVault, known as the `StakingVault, to
+generate beacon chain rewards, which are [distributed on Linea
+(L2)](../network/overview/yield-boost/index.mdx#why-yield-boost-exists). The following is a breakdown of the major components and flows of the Yield Boost system.
 
 ### Key participants
 
@@ -337,7 +339,7 @@ The Yield Boost system is designed to be resilient to various risks, including:
 
 ### Slashing
 
-If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with the validator role. 
+If a validator makes conflicting attestations or block proposals, they may have their staked ETH confiscated, and the staking rewards lost. This is known as slashing, and is a general risk associated with the validator role.
 
 While the risk of slashing is rare (only 0.04% of all Ethereum validators have ever been slashed, and the slashed amounts are on average less than .001% of that validator's staked ETH), the Yield Boost system has the following mitigations in place:
 
