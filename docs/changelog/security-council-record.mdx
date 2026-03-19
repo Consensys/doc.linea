@@ -19,6 +19,18 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### March 23, 2026
+#### L1
+
+- ** Nonce 68 (LINK TBD)**
+  - Actions: 
+    - Add verifier at index 0 supporting EIP-7702 Type-4 transactions.
+    - Unset no longer used verifier at index 3.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Set EIP-7702: `VerifierAddressChanged` records the new verifier `0xC83ed08E2262fBa264D528C749c051f8fC526897`, at index 0.
+    - Unset: `VerifierAddressChanged` unset the verifier at index 3.
+
 ### March 04, 2026
 #### L2
 - **[Nonce 51](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0x16c878b15579d7418f6df9ed006fa6c35294422df86691c273821b48fe7bc627)**
