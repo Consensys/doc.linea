@@ -30,7 +30,16 @@ const sidebars = {
         "network/overview/public-data",
         "network/overview/recoverable-state",
         "network/overview/ethereum-differences",
-        "network/overview/yield-boost/index",
+        {
+          type: "category",
+          label: "Yield Boost",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "network/overview/yield-boost/index" },
+          items: [
+            "network/overview/yield-boost/risk-disclosures",
+          ],
+        },
       ],
     },
     {
