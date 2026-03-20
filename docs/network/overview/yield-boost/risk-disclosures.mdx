@@ -1,0 +1,45 @@
+---
+title: Risk disclosures
+description: Risks relating to Linea Bridge Yield Boost
+sidebar_position: 2
+image: /img/socialCards/risk-disclosures.jpg
+---
+
+ETH bridged to Linea using the native bridge may be staked on Ethereum Mainnet as part of Linea’s Yield Boost system. Staking allows bridged ETH to earn rewards that are redistributed to certain Linea users. While this design improves capital efficiency and liquidity across Linea’s ecosystem, it also introduces additional risks compared to the bridge contracts simply locking unstaked ETH.
+
+Below, we outline the key risks and potential impact associated with Yield Boost, and some steps taken to mitigate those risks. Users should read these disclosures carefully and consider them alongside Linea’s general risk disclosures before using the Linea bridge.
+
+## Risk of ETH Being Slashed While Staked
+
+ETH staked on Ethereum Mainnet can be forfeited to the protocol, or “slashed”, if a validator behaves incorrectly, such as making conflicting attestations or block proposals. If one or more validators used by Yield Boost are slashed, a portion of the ETH backing the system could be lost. In extreme scenarios—such as correlated validator failures caused by a widespread software bug—larger losses across multiple validators could occur.
+
+Slashing is rare (historically affecting a very small fraction of Ethereum validators), and slashed amounts are typically minimal and often offset by staking rewards. However, it is still possible that more significant losses could occur under extreme network-wide conditions.
+If slashing occurs, a portion of users’ ETH may be lost. Additionally, affected validators must exit staking, which could reduce future rewards distributed through Yield Boost.  This risk is mitigated including by retaining 70% of infrastructure fees for one year to form an insurance buffer that may be used to compensate losses caused by slashing.
+
+
+## Delays When Withdrawing ETH from Linea
+
+ETH that is actively staked is not immediately withdrawable. Linea Bridge maintains a liquidity buffer of unstaked ETH to support normal withdrawals, but under certain market conditions—such as high withdrawal demand or congestion in Ethereum’s validator exit queue—the buffer could be exhausted.  When this happens, withdrawals may be delayed until staked ETH becomes available again.
+
+There is no loss of funds in this scenario—only the possibility of withdrawal delays. Users may be temporarily unable to withdraw ETH at a time of their choosing and may need to wait for staking exits to complete. The risk of this delay is mitigated through the use of a liquidity buffer, sized based on recent activity plus a safety margin, monitoring withdrawals and proactively unstaking ETH to maintain liquidity, and permitting the withdrawal of stETH in place of ETH which can then be swapped for ETH on Ethereum mainnet.
+
+
+## Withdrawal Censorship Due to Lido Oracle Failures
+
+Yield Boost relies on Lido v3 for liquid staking. Lido requires a fresh accounting report from its decentralized oracle committee at least every 48 hours. If this report is not produced, critical operations—including withdrawals—may be temporarily halted. Such failures could result from technical issues, coordination problems, or other unforeseen disruptions affecting the oracle committee.
+
+If oracle reporting is disrupted for an extended period, users could temporarily be unable to withdraw funds. In an extreme and unlikely scenario where Oracle reporting permanently ceases and no governance solution is implemented, users could lose access to their assets for an indefinite period.
+
+## Risk of Lido Protocol Governance or Contract Failure
+
+Lido is an external protocol governed by LDO token holders. Governance decisions or smart contract upgrades—whether well-intentioned or malicious—could negatively affect Yield Boost users. In the worst case, a harmful upgrade could put all funds at risk.
+
+In this unlikely scenario where all safeguards fail and a malicious or catastrophic upgrade occurs, all funds backing Yield Boost could be permanently lost, and Linea would not be able to reverse or reimburse those losses.  To mitigate this risk, Linea’s Security Council can permanently uncouple Yield Boost from Lido before a harmful upgrade is executed.
+
+## Smart Contract Exploits or Hacks
+
+Yield Boost relies on a combination of smart contracts deployed on Ethereum Mainnet and Linea, as well as supporting infrastructure that coordinates staking, liquidity management, and reward distribution. As with any complex DeFi system, these smart contracts may contain undiscovered vulnerabilities. A bug, design flaw, or exploit in any Yield Boost–related contract, or in an external dependency it interacts with (including the Lido staking, vault, or bridging components), could be exploited by an attacker or could result in funds being unrecoverable. In such a scenario, some or all of the ETH backing Yield Boost could be stolen, lost, or irreversibly locked. Security audits and reviews reduce risk but do not eliminate it. Even well-audited protocols can be exploited due to unknown vulnerabilities, novel attack techniques, or unforeseen interactions between contracts and protocols. Additionally, some attack vectors may involve economic exploits or cross-protocol interactions that are difficult to anticipate in advance.
+
+In the event of a successful exploit or hack, users could lose some or all of the ETH backing Yield Boost. Such losses could be permanent, and Linea may not be able to recover or reimburse affected funds. To mitigate these threats, Yield Boost smart contracts undergo security reviews and audits, critical operations are restricted or rate-limited where possible to reduce the impact of potential exploits, and Linea maintains incident response processes and monitoring intended to detect abnormal activity and enable rapid response.
+
+Neither Consensys nor Linea take possession, custody, or control of any digital asset on Linea or bridged to Linea unless expressly stated in a written contract signed by the respective party.  As a result, no one can execute a transaction on your behalf, and Linea cannot reverse any transaction that has been finalized onchain. Users should carefully consider these risks and only participate if they are comfortable with the potential outcomes described above.
