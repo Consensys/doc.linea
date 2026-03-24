@@ -197,7 +197,7 @@ const sidebars = {
         {
           type: "doc",
           id: "network/tutorials/eip-7702",
-          label: "Upgrade your EOA account to smart account",
+          label: "Upgrade your EOA account to a smart account",
         },
       ],
     },
