@@ -1,10 +1,10 @@
 ---
-title: Upgrade your EOA to smart account.
-description: A step-by-step guide to upgrade your EOA to smart account.
+title: Upgrade your EOA to a smart account
+description: A step-by-step guide to upgrade your EOA to a smart account.
 ---
 
 This tutorial demonstrates how to upgrade your externally owned account (EOA) to support 
-Smart Account functionality using an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your EOA 
+smart account functionality using an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your EOA 
 to leverage the benefits of account abstraction, such as batch transactions, 
 gas sponsorship, and programmable capabilities.
 
@@ -28,7 +28,7 @@ Once you've created the AppProvider, wrap it at the root of your application so 
 application has access to the Wagmi's and TanStack's context. This will allow every component inside
 the provider to use the Wagmi hooks.
 
-We are using config that supports Linea Mainnet, and Linea Sepolia Testnet. For the advance 
+This config supports Linea Mainnet and Linea Sepolia Testnet. For the advanced 
 configuration, see [Wagmi's createConfig API reference](https://wagmi.sh/react/api/createConfig).
 
 <Tabs>
@@ -72,7 +72,7 @@ export const config = createConfig({
 </TabItem>
 </Tabs>
 
-### 3. Check capabilities
+### 3. Check wallet capabilities
 
 Once the user is connected, check whether their wallet supports EIP-7702 for Linea. Since EIP-7702 doesn't 
 define an RPC method for account upgrades, wallets use [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) to upgrade EOAs when batch transactions requests are sent.
@@ -99,10 +99,10 @@ const is7702Supported = capabilities?.[linea.id.toString()]?.atomic?.status === 
 
 ### 4. Upgrade the EOA
 
-Use the [`useSendCalls`](https://wagmi.sh/react/api/hooks/useSendCalls) hook to upgrade the account when the wallet supports EIP-7702. 
+Use the [`useSendCalls`](https://wagmi.sh/react/api/hooks/useSendCalls) hook to upgrade the account if the wallet supports EIP-7702. 
 
 On MetaMask, single transactions using `useSendCalls` execute normally without triggering an account upgrade. 
-Only Batch transactions using `useSendCalls` trigger the account upgrade.
+Only batch transactions using `useSendCalls` trigger the account upgrade.
 
 ```ts
 import { useSendCalls } from 'wagmi'
