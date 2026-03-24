@@ -3,10 +3,10 @@ title: Upgrade your EOA to a smart account
 description: A step-by-step guide to upgrade your EOA to a smart account.
 ---
 
-This tutorial demonstrates how to upgrade your externally owned account (EOA) to support 
-smart account functionality using an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your EOA 
-to leverage the benefits of account abstraction, such as batch transactions, 
-gas sponsorship, and programmable capabilities.
+In this tutorial, you'll add a flow in your dapp to upgrade an externally owned account (EOA) to a smart account using
+an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your dapp to
+support account abstraction features like batch transactions, gas sponsorship, and
+programmable logic for your users.
 
 ## Prerequisites
 - Install Node.js v18 or later.
@@ -24,9 +24,8 @@ npm install wagmi viem@2.x @tanstack/react-query
 
 ### 2. Create the App provider
 
-Once you've created the AppProvider, wrap it at the root of your application so that the rest of your
-application has access to the Wagmi's and TanStack's context. This will allow every component inside
-the provider to use the Wagmi hooks.
+Create an `AppProvider` component that wraps `WagmiProvider`, and `QueryClientProvider` to provide
+Wagmi and TanStack Query context to your application. 
 
 This config supports Linea Mainnet and Linea Sepolia Testnet. For the advanced 
 configuration, see [Wagmi's createConfig API reference](https://wagmi.sh/react/api/createConfig).
@@ -72,21 +71,29 @@ export const config = createConfig({
 </TabItem>
 </Tabs>
 
+Once you've created the AppProvider, wrap it at the root of your application so that the rest of your
+application has access to the Wagmi's and TanStack's context. This will allow every component inside
+the provider to use the Wagmi hooks.
+
 ### 3. Check wallet capabilities
 
-Once the user is connected, check whether their wallet supports EIP-7702 for Linea. Since EIP-7702 doesn't 
+Once the user is connected to your application, check whether their wallet supports EIP-7702 for Linea. Since EIP-7702 doesn't 
 define an RPC method for account upgrades, wallets use [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) to upgrade EOAs when batch transactions requests are sent.
 
 Use the [`useCapabilities`](https://wagmi.sh/react/api/hooks/useCapabilities) hook from Wagmi to check wallet capabilities. The atomic capability indicates whether 
 the wallet supports batch transactions. Possible values are `supported`, `ready`, and `unsupported`.
 
-When the atomic capability is `ready`, the wallet supports EIP-7702 account upgrades. 
+When the atomic capability is `ready`, the wallet supports EIP-7702 account upgrades.
+
+:::note
+If the atomic capability is `unsupported`, provide a fallback for the standard transaction flow.
+::: 
 
 ```ts
 import { useConnection, useCapabilities } from 'wagmi'
 
- const { isConnected, account } = useConnection()
- const { data: capabilities } = useCapabilities()
+const { isConnected, account } = useConnection()
+const { data: capabilities } = useCapabilities()
 
 // Additional check to make sure the EOA wallet is connected
 // and values are available.
@@ -117,7 +124,7 @@ sendCalls.mutate({
     },
     {
         to: zeroAddress,
-        value: parseEther('0.00001)
+        value: parseEther('0.00001')
     }]
 })
 ```
