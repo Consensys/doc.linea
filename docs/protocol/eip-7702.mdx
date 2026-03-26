@@ -1,15 +1,14 @@
 ---
 title: EIP-7702 support
 description: >-
-  EIP-7702 lets EOAs temporarily delegate to smart contract logic. Linea Mainnet
+  EIP-7702 lets EOAs delegate to smart contract logic, persisting until revoked. Linea Mainnet
   support is live as of March 23, 2026.
 sidebar_position: 4
-image: /img/socialCards/eip-7702-support.jpg
 ---
 
 EIP-7702 is an Ethereum upgrade introduced in the **Prague hardfork** that allows a regular wallet
-(EOA — Externally Owned Account) to temporarily behave like a smart contract wallet — without
-changing address, migrating funds, or creating a new seed phrase.
+(EOA — Externally Owned Account) to behave like a smart contract wallet — without changing address,
+migrating funds, or creating a new seed phrase. The delegation persists until explicitly revoked.
 
 ## What it enables
 
@@ -34,9 +33,8 @@ EIP-7702 introduces a new transaction type **`0x04`**. This transaction includes
 field — a signed list of tuples `(chain_id, contract_address, nonce)` — where each entry authorizes
 the EOA to delegate to a specific smart contract.
 
-When the EVM processes a type `0x04` transaction, it temporarily sets the EOA's bytecode to point
-to the delegated contract and executes the transaction in the context of that account. The delegation
-can persist after the transaction or be cleared.
+When the EVM processes a type `0x04` transaction, it permanently sets the EOA's bytecode to point
+to the delegated contract. The delegation persists after the transaction until explicitly revoked.
 
 ### Revoking a delegation
 
