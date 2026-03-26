@@ -106,6 +106,14 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
+      announcementBar: {
+        id: "announcement_bar_2026_01_ens_resolver",
+        content:
+          '🔔 <strong>ENS resolver contracts updated</strong>: New contract addresses are live as part of the Small Fields upgrade. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">See new addresses →</a>',
+        backgroundColor: "#6119ef",
+        textColor: "#ffffff",
+        isCloseable: true,
+      },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
