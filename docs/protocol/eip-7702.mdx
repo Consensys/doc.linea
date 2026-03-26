@@ -47,19 +47,6 @@ transactions (where users pay fees in ERC-20 tokens).
 As of March 2026, some hardware wallets cannot sign `authorizationList` entries. Gas sponsorship
 and smart account activation may not be available for all hardware wallet users.
 
-## Linea-specific implementation
-
-EIP-7702 required a new **Arithmetization Version** and new constraints in Linea's zkASM (also
-referred to as zkC)—the assembly language used to define the constraints of Linea's zk-EVM
-circuits. The upgrade involved:
-
-- Stopping Coordinator conflation at a specific block
-- Waiting for L1 finalization
-- Deploying a new prover (v6.1.5) and a new verifier contract
-- Resuming conflation
-
-All Besu node types (sequencer, full, archive, trace, edge) were updated as part of this upgrade.
-
 ## Related
 
 - [Forced transactions](./forced-transactions)
