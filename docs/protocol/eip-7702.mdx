@@ -7,7 +7,8 @@ sidebar_position: 4
 image: /img/socialCards/eip-7702-support.jpg
 ---
 
-EIP-7702 is an Ethereum upgrade introduced in the **Prague hardfork** that allows a regular wallet
+[EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) is an Ethereum upgrade introduced in the
+[**Prague hardfork**](https://eips.ethereum.org/EIPS/eip-7600) that allows a regular wallet
 (EOA—Externally Owned Account) to behave like a smart contract wallet—without changing address,
 migrating funds, or creating a new seed phrase. The delegation persists until explicitly revoked.
 
@@ -44,7 +45,20 @@ transactions (where users pay fees in ERC-20 tokens).
 ### Hardware wallet limitation
 
 As of March 2026, some hardware wallets cannot sign `authorizationList` entries. Gas sponsorship
-and smart account activation may not be available for hardware wallet users.
+and smart account activation may not be available for all hardware wallet users.
+
+## Linea-specific implementation
+
+EIP-7702 required a new **Arithmetization Version** and new constraints in Linea's zkASM (also
+referred to as zkC)—the assembly language used to define the constraints of Linea's zk-EVM
+circuits. The upgrade involved:
+
+- Stopping Coordinator conflation at a specific block
+- Waiting for L1 finalization
+- Deploying a new prover (v6.1.5) and a new verifier contract
+- Resuming conflation
+
+All Besu node types (sequencer, full, archive, trace, edge) were updated as part of this upgrade.
 
 ## Related
 
