@@ -94,11 +94,6 @@ sup {
    4. TABLES
    ============================================================ */
 
-/* Tables styling per Figma.
-   display:block enables overflow scrolling on narrow viewports;
-   the inner table-layout needs width:100% in its own table context,
-   so we wrap it via a ::before trick — instead, we set display:table
-   and use an outer overflow wrapper via the docusaurus-overrides. */
 table {
   font-family: AtypText, sans-serif;
   text-indent: 0;
@@ -106,10 +101,11 @@ table {
   border-spacing: 0;
   border-radius: var(--linea-radius-md);
   border: 1px solid var(--linea-border);
-  display: table;
+  display: block;
   width: 100%;
   margin: 1.5rem 0;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table thead {
