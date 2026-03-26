@@ -344,6 +344,7 @@ const sidebars = {
       collapsible: false,
       items: [
         "protocol/forced-transactions",
+        "protocol/eip-7702",
         "protocol/tokenomics",
       ],
     },

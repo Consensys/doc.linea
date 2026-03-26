@@ -1,0 +1,79 @@
+---
+title: EIP-7702 support
+description: >-
+  EIP-7702 lets EOAs temporarily delegate to smart contract logic. Linea Mainnet
+  support is live as of March 23, 2026.
+sidebar_position: 4
+image: /img/socialCards/eip-7702-support.jpg
+---
+
+EIP-7702 is an Ethereum upgrade introduced in the **Prague hardfork** that allows a regular wallet
+(EOA — Externally Owned Account) to temporarily behave like a smart contract wallet — without
+changing address, migrating funds, or creating a new seed phrase.
+
+## What it enables
+
+| Capability | What it means in practice |
+|---|---|
+| **Transaction batching** | Approve + swap + deposit in a single transaction |
+| **Gas sponsorship** | A third party pays the gas fee — users need no ETH to transact |
+| **Pay gas in ERC-20** | Users pay gas in USDC, DAI, or any ERC-20 token |
+| **Session keys** | Grant a dApp time-limited, scoped permissions without exposing your main key |
+| **Social recovery** | Set up guardian-based recovery or multisig on your existing address |
+
+## Linea support
+
+| Network | Date | Status |
+|---|---|---|
+| Linea Sepolia | March 2, 2026 | Live |
+| Linea Mainnet | March 23, 2026 | Live |
+
+## How it works
+
+EIP-7702 introduces a new transaction type **`0x04`**. This transaction includes an `authorizationList`
+field — a signed list of tuples `(chain_id, contract_address, nonce)` — where each entry authorizes
+the EOA to delegate to a specific smart contract.
+
+When the EVM processes a type `0x04` transaction, it temporarily sets the EOA's bytecode to point
+to the delegated contract and executes the transaction in the context of that account. The delegation
+can persist after the transaction or be cleared.
+
+### Revoking a delegation
+
+Send a new type `0x04` transaction pointing the delegation to `address(0)`. This removes the
+bytecode and returns the account to a normal EOA.
+
+## Key concepts
+
+### Gas sponsorship vs. gasless transactions
+
+These are distinct — don't conflate them:
+
+| Term | Who pays gas | How |
+|---|---|---|
+| **Gas sponsorship** | A sponsor (e.g. MetaMask/Sentinel) pays entirely | User pays nothing |
+| **Gasless / pay-with-ERC-20** | User pays, but in an ERC-20 token | No native ETH needed |
+
+Both use 7702 delegation under the hood.
+
+### Hardware wallet limitation
+
+Ledger and Trezor devices cannot sign `authorizationList` entries. Gas sponsorship and smart
+account activation are not available for hardware wallet users.
+
+## Linea-specific implementation
+
+EIP-7702 required a new **Arithmetization Version** and new constraints in Linea's zkASM. The
+upgrade involved:
+
+- Stopping coordinator conflation at a specific block
+- Waiting for L1 finalization
+- Deploying a new prover (v6.1.5) and a new verifier contract
+- Resuming conflation
+
+All Besu node types (sequencer, full, archive, trace, edge) were updated as part of this upgrade.
+
+## Related
+
+- [Forced transactions](./forced-transactions)
+- [Changelog](../../changelog/release-notes)
