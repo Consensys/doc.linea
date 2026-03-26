@@ -82,7 +82,10 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
-          remarkPlugins: [remarkEmdash],
+          remarkPlugins: [
+            remarkEmdash,
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+          ],
         },
         blog: false, // Disable blog feature
         theme: {
@@ -104,202 +107,202 @@ const config = {
   ],
 
   themeConfig:
-    /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    {
-      announcementBar: {
-        id: "announcement_bar_2026_01_ens_resolver",
-        content:
-          '⚠️ <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">Learn more →</a>',
-        backgroundColor: "#6119ef",
-        textColor: "#ffffff",
-        isCloseable: true,
-      },
-      colorMode: {
-        defaultMode: "dark",
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
-      },
-      mermaid: {
-        options: {
+  /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
+  {
+    announcementBar: {
+      id: "announcement_bar_2026_01_ens_resolver",
+      content:
+        '⚠️ <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">Learn more →</a>',
+      backgroundColor: "#6119ef",
+      textColor: "#ffffff",
+      isCloseable: true,
+    },
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    mermaid: {
+      options: {
+        useMaxWidth: false,
+        flowchart: {
           useMaxWidth: false,
-          flowchart: {
-            useMaxWidth: false,
-            wrappingWidth: 280,
-          },
+          wrappingWidth: 280,
         },
       },
-      tableOfContents: {
-        minHeadingLevel: 2,
-        maxHeadingLevel: 3,
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 3,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: false,
       },
-      docs: {
-        sidebar: {
-          hideable: true,
-          autoCollapseCategories: false,
-        },
+    },
+    navbar: {
+      logo: {
+        alt: "Linea",
+        src: "img/Linea_docs_logo.svg",
+        srcDark: "img/Linea_docs_logo_dark.svg",
       },
-      navbar: {
-        logo: {
-          alt: "Linea",
-          src: "img/Linea_docs_logo.svg",
-          srcDark: "img/Linea_docs_logo_dark.svg",
-        },
-        items: [
-          {
-            type: "doc",
-            docId: "network/quickstart/index",
-            position: "left",
-            label: "Public network",
-            activeBaseRegex: "^/network/",
-          },
-          {
-            type: "doc",
-            docId: "protocol/quickstart",
-            position: "left",
-            label: "Protocol",
-          },
-          {
-            type: "doc",
-            docId: "stack/quickstart",
-            position: "left",
-            label: "Stack",
-          },
-          {
-            type: "doc",
-            docId: "api/quickstart",
-            position: "left",
-            label: "APIs & SDK",
-          },
-          {
-            type: "doc",
-            docId: "changelog/release-notes",
-            position: "right",
-            label: "Changelog",
-          },
-          {
-            href: "https://discord.gg/linea",
-            label: "Support",
-            position: "right",
-            class: "support-link",
-          },
-        ],
-      },
-      footer: {
-        style: "dark",
-        links: [
-          {
-            title: "Links",
-            items: [
-              {
-                label: "Home",
-                href: "https://linea.build/",
-              },
-              {
-                label: "Blog",
-                href: "https://linea.build/blog",
-              },
-              {
-                label: "Status",
-                href: "https://linea.statuspage.io/",
-              },
-              {
-                label: "Mainnet block explorer",
-                href: "https://lineascan.build",
-              },
-              {
-                label: "Risk disclosures",
-                href: "/network/risk-disclosures",
-              },
-              {
-                label: "Terms of service",
-                href: "https://linea.build/terms-of-service",
-              },
-              {
-                label: "Privacy policy",
-                href: "https://linea.build/privacy-policy",
-              },
-              {
-                html: "<button id='manage-cookie-btn'>Manage cookie</button>",
-              },
-            ],
-          },
-          {
-            title: "Get involved",
-            items: [
-              {
-                label: "Developer Hub",
-                href: "https://developer.linea.build/",
-              },
-              {
-                label: "Linea Hub",
-                href: "https://linea.build/apps",
-              },
-              {
-                label: "Discord",
-                href: "https://discord.gg/linea",
-              },
-              {
-                label: "User support",
-                to: "https://support.linea.build/",
-              },
-              {
-                label: "Give feedback",
-                to: "https://community.linea.build/c/feedback",
-              },
-            ],
-          },
-          {
-            title: "Contribute",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/Consensys/doc.linea",
-              },
-            ],
-          },
-        ],
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-        additionalLanguages: [
-          "solidity",
-          "toml",
-          "bash",
-          "json",
-          "typescript",
-          "javascript",
-          "python",
-        ],
-      },
-      metadata: [
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
-        { property: "og:image", content: "/img/Linea_social_card_docs.png" },
-      ],
-      languageTabs: [
+      items: [
         {
-          highlight: "bash",
-          language: "curl",
-          logoClass: "bash",
+          type: "doc",
+          docId: "network/quickstart/index",
+          position: "left",
+          label: "Public network",
+          activeBaseRegex: "^/network/",
         },
         {
-          highlight: "python",
-          language: "python",
-          logoClass: "python",
+          type: "doc",
+          docId: "protocol/quickstart",
+          position: "left",
+          label: "Protocol",
         },
         {
-          highlight: "go",
-          language: "go",
-          logoClass: "go",
+          type: "doc",
+          docId: "stack/quickstart",
+          position: "left",
+          label: "Stack",
         },
         {
-          highlight: "javascript",
-          language: "nodejs",
-          logoClass: "nodejs",
+          type: "doc",
+          docId: "api/quickstart",
+          position: "left",
+          label: "APIs & SDK",
+        },
+        {
+          type: "doc",
+          docId: "changelog/release-notes",
+          position: "right",
+          label: "Changelog",
+        },
+        {
+          href: "https://discord.gg/linea",
+          label: "Support",
+          position: "right",
+          class: "support-link",
         },
       ],
     },
+    footer: {
+      style: "dark",
+      links: [
+        {
+          title: "Links",
+          items: [
+            {
+              label: "Home",
+              href: "https://linea.build/",
+            },
+            {
+              label: "Blog",
+              href: "https://linea.build/blog",
+            },
+            {
+              label: "Status",
+              href: "https://linea.statuspage.io/",
+            },
+            {
+              label: "Mainnet block explorer",
+              href: "https://lineascan.build",
+            },
+            {
+              label: "Risk disclosures",
+              href: "/network/risk-disclosures",
+            },
+            {
+              label: "Terms of service",
+              href: "https://linea.build/terms-of-service",
+            },
+            {
+              label: "Privacy policy",
+              href: "https://linea.build/privacy-policy",
+            },
+            {
+              html: "<button id='manage-cookie-btn'>Manage cookie</button>",
+            },
+          ],
+        },
+        {
+          title: "Get involved",
+          items: [
+            {
+              label: "Developer Hub",
+              href: "https://developer.linea.build/",
+            },
+            {
+              label: "Linea Hub",
+              href: "https://linea.build/apps",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.gg/linea",
+            },
+            {
+              label: "User support",
+              to: "https://support.linea.build/",
+            },
+            {
+              label: "Give feedback",
+              to: "https://community.linea.build/c/feedback",
+            },
+          ],
+        },
+        {
+          title: "Contribute",
+          items: [
+            {
+              label: "GitHub",
+              href: "https://github.com/Consensys/doc.linea",
+            },
+          ],
+        },
+      ],
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+      additionalLanguages: [
+        "solidity",
+        "toml",
+        "bash",
+        "json",
+        "typescript",
+        "javascript",
+        "python",
+      ],
+    },
+    metadata: [
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/img/Linea_social_card_docs.png" },
+      { property: "og:image", content: "/img/Linea_social_card_docs.png" },
+    ],
+    languageTabs: [
+      {
+        highlight: "bash",
+        language: "curl",
+        logoClass: "bash",
+      },
+      {
+        highlight: "python",
+        language: "python",
+        logoClass: "python",
+      },
+      {
+        highlight: "go",
+        language: "go",
+        logoClass: "go",
+      },
+      {
+        highlight: "javascript",
+        language: "nodejs",
+        logoClass: "nodejs",
+      },
+    ],
+  },
   plugins: [
     [
       "@docusaurus/plugin-google-tag-manager",

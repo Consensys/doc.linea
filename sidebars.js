@@ -204,6 +204,11 @@ const sidebars = {
           id: "network/tutorials/voting-dapp",
           label: "Build a voting dapp",
         },
+        {
+          type: "doc",
+          id: "network/tutorials/eip-7702",
+          label: "Upgrade your EOA account to a smart account",
+        },
       ],
     },
     "network/risk-disclosures",

@@ -1,0 +1,137 @@
+---
+title: Upgrade your EOA to a smart account
+description: A step-by-step guide to upgrade your EOA to a smart account.
+---
+
+In this tutorial, you'll add a flow in your dapp to upgrade an externally owned account (EOA) to a smart account using
+an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your dapp to
+support account abstraction features like batch transactions, gas sponsorship, and
+programmable logic for your users.
+
+## Prerequisites
+- Install Node.js v18 or later.
+- Install Yarn, npm, or another package manager.
+
+## Steps
+
+### 1. Install the dependencies
+
+This tutorial uses Wagmi for wallet connection. Install the following dependencies in your project:
+
+```bash npm2yarn
+npm install wagmi viem@2.x @tanstack/react-query
+```
+
+### 2. Create the App provider
+
+Create an `AppProvider` component that wraps `WagmiProvider`, and `QueryClientProvider` to provide
+Wagmi and TanStack Query context to your application. 
+
+This config supports Linea Mainnet and Linea Sepolia Testnet. For the advanced 
+configuration, see [Wagmi's createConfig API reference](https://wagmi.sh/react/api/createConfig).
+
+<Tabs>
+<TabItem value = "provider.ts">
+
+```ts
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactNode } from 'react'
+import { WagmiProvider } from 'wagmi'
+import { config } from './config.ts'
+
+const queryClient = new QueryClient();
+
+export function AppProvider({ children }: { children: ReactNode }) {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+</TabItem>
+<TabItem value = "config.ts">
+
+```ts
+import { createConfig, http } from 'wagmi'
+import { linea, lineaSepolia } from 'wagmi/chains'
+
+export const config = createConfig({
+  chains: [linea, lineaSepolia],
+  transports: {
+    [linea.id]: http(),
+    [lineaSepolia.id]: http(),
+  },
+})
+```
+
+</TabItem>
+</Tabs>
+
+Once you've created the AppProvider, wrap it at the root of your application so that the rest of your
+application has access to the Wagmi's and TanStack's context. This will allow every component inside
+the provider to use the Wagmi hooks.
+
+### 3. Check wallet capabilities
+
+Once the user is connected to your application, check whether their wallet supports EIP-7702 for Linea. Since EIP-7702 doesn't 
+define an RPC method for account upgrades, wallets use [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) to upgrade EOAs when batch transactions requests are sent.
+
+Use the [`useCapabilities`](https://wagmi.sh/react/api/hooks/useCapabilities) hook from Wagmi to check wallet capabilities. The atomic capability indicates whether 
+the wallet supports batch transactions. Possible values are `supported`, `ready`, and `unsupported`.
+
+When the atomic capability is `ready`, the wallet supports EIP-7702 account upgrades.
+
+:::note
+If the atomic capability is `unsupported`, provide a fallback for the standard transaction flow.
+::: 
+
+```ts
+import { useConnection, useCapabilities } from 'wagmi'
+
+const { isConnected, account } = useConnection()
+const { data: capabilities } = useCapabilities()
+
+// Additional check to make sure the EOA wallet is connected
+// and values are available.
+if (!isConnected ) {
+  // Handle the case
+}
+
+const is7702Supported = capabilities?.[linea.id.toString()]?.atomic?.status === 'ready'
+```
+
+### 4. Upgrade the EOA
+
+Use the [`useSendCalls`](https://wagmi.sh/react/api/hooks/useSendCalls) hook to upgrade the account if the wallet supports EIP-7702. 
+
+On MetaMask, single transactions using `useSendCalls` execute normally without triggering an account upgrade. 
+Only batch transactions using `useSendCalls` trigger the account upgrade.
+
+```ts
+import { useSendCalls } from 'wagmi'
+import { zeroAddress } from 'viem'
+
+const sendCalls = useSendCalls()
+
+sendCalls.mutate({
+    calls: [{
+        to: '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
+        value: parseEther('0.01')
+    },
+    {
+        to: zeroAddress,
+        value: parseEther('0.00001')
+    }]
+})
+```
+
+## Resources
+
+- [Learn more about EIP-7702](https://eips.ethereum.org/EIPS/eip-7702).
+- [Learn more about EIP-5792](https://eips.ethereum.org/EIPS/eip-5792).
+- See [MetaMask Smart Accounts Kit EIP-7702 quickstart](https://docs.metamask.io/smart-accounts-kit/get-started/smart-account-quickstart/eip7702/) to upgrade embedded EOAs to smart account.
+
