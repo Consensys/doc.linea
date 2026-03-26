@@ -55,6 +55,14 @@ a:not(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-c
   text-decoration: inherit;
 }
 
+/* Announcement bar link — override inherited white from inline textColor.
+   Both themes: cyan on purple bg = high contrast.
+   Light mode also uses cyan since background is always purple (#6119ef). */
+.theme-announcement-bar a {
+  color: var(--linea-brand-cyan) !important;
+  text-decoration: underline;
+}
+
 b,
 strong {
   font-family: inherit;
