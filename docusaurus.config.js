@@ -106,14 +106,6 @@ const config = {
   themeConfig:
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
-      announcementBar: {
-        id: "announcement_bar_2026_01_ens_resolver",
-        content:
-          '⚠️ <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">Learn more →</a>',
-        backgroundColor: "#6119ef",
-        textColor: "#ffffff",
-        isCloseable: true,
-      },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
