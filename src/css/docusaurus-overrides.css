@@ -1917,6 +1917,11 @@ details > div {
 
 /* Admonition inline code per Figma */
 .theme-admonition-tip code {
+  background-color: rgb(0 0 0 / 8%);
+  color: var(--admonition-tip-text);
+}
+
+[data-theme="dark"] .theme-admonition-tip code {
   background-color: rgb(255 255 255 / 15%);
   color: #e8e6f0;
 }
