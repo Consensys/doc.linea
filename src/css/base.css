@@ -111,8 +111,9 @@ table {
   border-radius: var(--linea-radius-md);
   overflow: auto hidden;
   border: 1px solid var(--linea-border);
-  display: block;
+  display: table;
   width: 100%;
+  table-layout: fixed;
   margin: 1.5rem 0;
 }
 
@@ -150,6 +151,10 @@ table tbody td {
   line-height: 1.4;
   border-bottom: 1px solid var(--linea-border);
   border-right: 1px solid var(--linea-border);
+}
+
+table tbody td code {
+  word-break: break-all;
 }
 
 table tbody td:last-child {
