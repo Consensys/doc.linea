@@ -10,8 +10,8 @@ A Linea transaction moves through two finality states before it is permanently s
 
 ## Soft finality
 
-When your transaction is included in a Linea block and state is updated, it has reached **soft
-finality**. This happens within approximately 2 seconds—Linea's block time.
+When the sequencer commits the block containing your transaction to the canonical L2 chain, it has
+reached **soft finality**. This happens within approximately 2 seconds—Linea's block time.
 
 At soft finality:
 
@@ -25,7 +25,8 @@ For most application use cases—swaps, transfers, in-app interactions—soft fi
 ## Hard finality
 
 Hard finality is reached when the ZK proof covering your transaction's batch has been verified by
-the Linea rollup contract on Ethereum, and two epochs have elapsed.
+the Linea rollup contract on Ethereum, and two Ethereum epochs (~13 minutes) have elapsed for the
+L1 block containing the proof to be finalized.
 
 At hard finality:
 
@@ -33,6 +34,7 @@ At hard finality:
 - It is anchored to Ethereum's security guarantees
 - The current median time to hard finality is under 1 hour 40 minutes, and is expected to reach
   approximately 30 minutes as proving performance improves
+- Hard finality should never exceed 16 hours under normal operating conditions
 
 Hard finality is required for cross-layer withdrawals, CEX deposit confirmations, and any use case
 where Ethereum-level security guarantees are needed.
