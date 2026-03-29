@@ -1,0 +1,115 @@
+---
+title: Transaction finality
+description: >-
+  How Linea transactions progress from soft to hard finality, what that means
+  for developers and users, and how to check finality programmatically.
+image: /img/socialCards/transaction-finality.jpg
+---
+
+A Linea transaction moves through two finality states before it is permanently settled on Ethereum.
+
+## Soft finality
+
+When your transaction is included in a Linea block and state is updated, it has reached **soft
+finality**. This happens within approximately 2 seconds—Linea's block time.
+
+At soft finality:
+
+- The transaction is confirmed on Linea and visible in your wallet
+- Linea **does not reorg**—once a transaction reaches soft finality on Linea, it will not be
+  removed or reordered by Linea
+- Ethereum (L1) may still reorg, but this does not affect Linea's confirmed state
+
+For most application use cases—swaps, transfers, in-app interactions—soft finality is sufficient.
+
+## Hard finality
+
+Hard finality is reached when the ZK proof covering your transaction's batch has been verified by
+the Linea rollup contract on Ethereum, and two epochs have elapsed.
+
+At hard finality:
+
+- The transaction is immutable—it cannot be reversed by any party
+- It is anchored to Ethereum's security guarantees
+- The current median time to hard finality is under 1 hour 40 minutes, and is expected to reach
+  approximately 30 minutes as proving performance improves
+
+Hard finality is required for cross-layer withdrawals, CEX deposit confirmations, and any use case
+where Ethereum-level security guarantees are needed.
+
+## What you should care about
+
+| Use case | Finality needed | Why |
+|---|---|---|
+| In-app transactions, swaps | Soft | Linea does not reorg—confirmed is confirmed |
+| Bridge withdrawals to L1 | Hard | Funds must be provably settled on Ethereum |
+| CEX deposits | Hard | Exchanges require irreversibility |
+| On-chain gaming, NFT mints | Soft | Speed matters, reorg risk is zero on Linea |
+
+## How to check finality
+
+### Use the `finalized` tag
+
+Use the `finalized` tag in JSON-RPC calls to target the latest hard-finalized block:
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["finalized",false],"id":1}'
+```
+
+The `finalized` tag is supported by all applicable JSON-RPC methods on Linea Mainnet and Linea
+Sepolia, with the exception of `eth_call`.
+
+### Query the rollup contract
+
+As an alternative to the `finalized` tag, you can query the
+[Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract)
+to retrieve the value of the current finalized L2 block number stored in the `currentL2BlockNumber`
+variable.
+
+**Prerequisites:** [Node.js](https://nodejs.org/en) installed.
+
+1. Initialize the project and install the `web3` package:
+
+   ```bash
+   npm init -y && npm install web3
+   ```
+
+1. Create a JavaScript file (for example `index.js`) and copy the following code:
+
+   :::info
+   Update the Infura endpoint with your API key, or add a different RPC provider.
+   :::
+
+   ```javascript title="index.js"
+   const { Web3 } = require("web3")
+   const web3 = new Web3(new Web3.providers.HttpProvider(`https://mainnet.infura.io/v3/<YOUR-API-KEY>`))
+   const lineaRollupAbi = [{"constant":true,"inputs":[],"name":"currentL2BlockNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
+   const lineaRollupAddress = '0xd19d4b5d358258f05d7b411e21a1460d11b0876f';
+   const lineaRollupContract = new web3.eth.Contract(lineaRollupAbi, lineaRollupAddress);
+   async function getFinalizedL2BlockNumber() {
+     try {
+       const currentL2BlockNumber = await lineaRollupContract.methods.currentL2BlockNumber().call();
+       const blockNumberHex = '0x' + BigInt(currentL2BlockNumber).toString(16);
+       console.log('Finalized L2 Block Number:', currentL2BlockNumber.toString());
+       console.log('Finalized L2 Block Number (Hex):', blockNumberHex);
+       return { blockNumber: currentL2BlockNumber, blockNumberHex };
+     } catch (error) {
+       console.error('Error fetching L2 block number:', error);
+     }
+   }
+   getFinalizedL2BlockNumber();
+   ```
+
+1. Run the script:
+
+   ```bash
+   node index.js
+   ```
+
+## Next steps
+
+- Learn more about the [protocol architecture](../../protocol/architecture/index.mdx)
+- Learn how to [submit forced transactions](../../protocol/how-to/forced-transactions.mdx)

@@ -18,7 +18,7 @@ blocked or delayed.
 :::info
 
 In the case of the Linea public network, the L1 is Ethereum which serves as the
-[finality layer](../network/overview/known-finality-state#transaction-finality).
+[finality layer](../network/overview/transaction-finality.mdx).
 
 :::
 
@@ -87,7 +87,7 @@ The coordinator listens for when the `LineaRollup` contract emits a `ForcedTrans
 corresponding forced transaction. It then forwards the transaction to the sequencer for processing before the deadline.
 
 Once processed, the prover generates a proof of the transaction and the corresponding rolling hash and
-[submits the proof to the finalization layer](../../network/overview/known-finality-state#step-6-batch-finalization).
+[submits the proof to the finalization layer](../network/overview/transaction-finality.mdx#hard-finality).
 
 The complete lifecycle of a forced transaction is as follows:
 
