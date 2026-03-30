@@ -23,6 +23,7 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
+  onBrokenAnchors: "throw",
   favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
