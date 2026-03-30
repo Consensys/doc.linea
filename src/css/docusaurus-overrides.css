@@ -1434,7 +1434,7 @@ a.menu__link {
 }
 
 [data-theme="dark"] .table-of-contents__link {
-  color: #808080 !important;
+  color: var(--linea-text-secondary) !important;
 }
 
 .table-of-contents__link:hover {
@@ -2086,7 +2086,7 @@ details > div {
   font-weight: 400;
   padding: 10px 16px;
   border-bottom: 1px solid transparent;
-  color: #808080;
+  color: var(--linea-text-secondary);
   transition: all 0.2s ease;
 }
 
