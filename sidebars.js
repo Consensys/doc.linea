@@ -60,6 +60,7 @@ const sidebars = {
             "network/build/launch-an-app/hub",
             "network/build/launch-an-app/hub-reviews",
             "network/build/launch-an-app/events",
+            "network/build/launch-an-app/get-featured",
             "network/build/launch-an-app/dapp-support",
           ],
         },
