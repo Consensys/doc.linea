@@ -19,6 +19,83 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### March 31, 2026
+#### L1
+
+- **[Nonce 70](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Add verifier at index 1 supporting Small Fields, Pause Cooldown and Dynamic Chain Configuration.
+    - Upgrade the LineaRollup to support Pause Cooldown and Dynamic Chain Configuration.
+    - Upgrade the TokenBridge to support Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the TokenBridge as part of the Pause Cooldown.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the LineaRollup.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge.
+    - Cancel proposal to set verifier with address `0xe1eb4fa40bef91727c1b28915d9262aad10ae5b3` at index 1.
+    - Set linea.eth target on the L1Resolver contract for name resolution.
+    - Set the linea.eth ENS record to point to the new L1Resolver of `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
+
+  - Verification: - Audits: 
+    - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
+      - Deployment addresses
+      - `0xe68697690e8ff196a6abb3e1385156d87df85332` Linea Rollup will use the audited implementation address.
+      - `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff` TokenBridge will use the audited implementation address.
+    - Set verifier: `VerifierAddressChanged` records the new verifier `0x1442833180e253844897339aFb5800c797547987`, at index 1.
+    - Linea Rollup events: 
+      - `RoleGranted` 3 roles granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+        - `PAUSE_STATE_DATA_SUBMISSION_ROLE` (0x21aba2dd4535739d4ca4cddb3c024036bfcc88cfce067cb0847e7ad0f9cfaa55).
+        - `UNPAUSE_STATE_DATA_SUBMISSION_ROLE`(0x4df33217c89b6f12af38ba46035cb312b5e88de78d22279286830fe079b642cd).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `(Un)pauseTypeRoleSet` for index 13 (`STATE_DATA_SUBMISSION_PAUSE_TYPE`).
+        - To pause the type `PAUSE_STATE_DATA_SUBMISSION_ROLE` is required.
+        - To remove the pause the type `UNPAUSE_STATE_DATA_SUBMISSION_ROLE` is required.
+      - `LineaRollupVersionChanged` "7.0" to "7.1" (hex encoded)
+      - `Upgraded Event` containing the audited implementation address `0xe68697690e8ff196a6abb3e1385156d87df85332`.
+      - `Initialized` - reinitialized to 8.
+    - TokenBridge events: 
+      - `RoleGranted` 1 role granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff`.
+      - `Initialized` - reinitialized to 3.
+    - Cancel event:
+      - `Cancelled` Event with ID=`0x899614cfc5a477e3272042f2e6eb576aec8b7c41a97cf09f404c4835947dba89`. [Proposal transaction](https://etherscan.io/tx/0x0aab939e1ad1f3f3bdef61add591c35b7e3f2e791700fe3d6e3a3729f0bc97e2/advanced#eventlog#596)
+    - TargetSet event: Contains function call parameters.
+    - Resolver changed event:
+      - `NewResolver` should be emitted with the node and the new L1Resolver `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
+
+#### L2
+
+- **[Nonce 52](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Upgrade the L2 Message Service to support Pause Cooldown.
+    - Upgrade the TokenBridge to support Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the L2 Message Service as part of the Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the TokenBridge as part of the Pause Cooldown.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the L2 Message Service
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge
+ - Verification: - Audits: 
+    - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
+      - Deployment addresses
+      - `0x9976fd7eddb78156a002de74c9158e884702273d` L2 Message Service will use the audited implementation address.
+      - `0x4a496167f187a97379e763f693a499ce1182848b` TokenBridge will use the audited implementation address.
+    - L2 Message Service events: 
+      - `RoleGranted` 1 role granted to the security council `0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0x9976fd7eddb78156a002de74c9158e884702273d`
+      - `Initialized` - reinitialized to 3      
+    - TokenBridge events: 
+      - `RoleGranted` 1 role granted to the security council `0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0x4a496167f187a97379e763f693a499ce1182848b`
+      - `Initialized` - reinitialized to 3
+
 ### March 24, 2026
 #### L1
 
