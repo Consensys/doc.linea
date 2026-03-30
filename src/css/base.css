@@ -109,12 +109,13 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: var(--linea-radius-md);
-  overflow: auto hidden;
   border: 1px solid var(--linea-border);
-  display: table;
   width: 100%;
-  table-layout: fixed;
+  min-width: 100%;
   margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table thead {
@@ -154,7 +155,7 @@ table tbody td {
 }
 
 table tbody td code {
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 table tbody td:last-child {
