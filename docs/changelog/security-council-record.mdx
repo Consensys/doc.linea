@@ -31,6 +31,8 @@ you can take to verify this information.
     - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the LineaRollup.
     - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge.
     - Cancel proposal to set verifier with address `0xe1eb4fa40bef91727c1b28915d9262aad10ae5b3` at index 1.
+    - Set linea.eth target on the L1Resolver contract to use the new Poseidon2 state hashing.
+    - Set the linea.eth ENS record to point to the new L1Resolver of `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
 
   - Verification: - Audits: 
     - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
@@ -60,6 +62,9 @@ you can take to verify this information.
       - `Initialized` - reinitialized to 3.
     - Cancel event:
       - `Cancelled` Event with ID=`0x899614cfc5a477e3272042f2e6eb576aec8b7c41a97cf09f404c4835947dba89`. [Proposal transaction](https://etherscan.io/tx/0x0aab939e1ad1f3f3bdef61add591c35b7e3f2e791700fe3d6e3a3729f0bc97e2/advanced#eventlog#596)
+    - TargetSet event: Contains function call parameters.
+    - Resolver changed event:
+      - `NewResolver` should be emitted with the node and the new L1Resolver `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
 
 #### L2
 
