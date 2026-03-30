@@ -1,7 +1,8 @@
 import remarkEmdash from "./scripts/remark/remark-emdash.js";
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { themes: prismThemes } = require("prism-react-renderer");
+const lightCodeTheme = prismThemes.github;
+const darkCodeTheme = prismThemes.dracula;
 
 const redirectsData = require("./redirects.json");
 
@@ -22,6 +23,7 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
+  onBrokenAnchors: "throw",
   favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 

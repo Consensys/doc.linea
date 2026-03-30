@@ -3,9 +3,8 @@ import react from "eslint-plugin-react";
 import jsxA11Y from "eslint-plugin-jsx-a11y";
 import _import from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import typescriptEslint from "typescript-eslint";
 import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
@@ -56,14 +55,14 @@ export default [
       "jsx-a11y": jsxA11Y,
       import: fixupPluginRules(_import),
       prettier: fixupPluginRules(prettier),
-      "@typescript-eslint": typescriptEslint,
+      "@typescript-eslint": typescriptEslint.plugin,
     },
 
     languageOptions: {
       globals: {
         ...globals.browser,
       },
-      parser: tsParser,
+      parser: typescriptEslint.parser,
       ecmaVersion: 2020,
       sourceType: "module",
       parserOptions: {
