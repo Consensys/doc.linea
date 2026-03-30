@@ -28,15 +28,16 @@ you can take to verify this information.
     - Upgrade the LineaRollup to support Pause Cooldown and Dynamic Chain Configuration.
     - Upgrade the TokenBridge to support Pause Cooldown.
     - Grant the `SECURITY_COUNCIL_ROLE` to the TokenBridge as part of the Pause Cooldown.
-    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the LineaRollup
-    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the LineaRollup.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge.
+    - Cancel proposal to set verifier with address `0xe1eb4fa40bef91727c1b28915d9262aad10ae5b3` at index 1.
 
   - Verification: - Audits: 
     - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
       - Deployment addresses
       - `0xe68697690e8ff196a6abb3e1385156d87df85332` Linea Rollup will use the audited implementation address.
       - `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff` TokenBridge will use the audited implementation address.
-    - Set verifier: `VerifierAddressChanged` records the new verifier `0xe1eb4fa40bef91727c1b28915d9262aad10ae5b3`, at index 1.
+    - Set verifier: `VerifierAddressChanged` records the new verifier `0x1442833180e253844897339aFb5800c797547987`, at index 1.
     - Linea Rollup events: 
       - `RoleGranted` 3 roles granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
         - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
@@ -57,6 +58,8 @@ you can take to verify this information.
         - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
       - `Upgraded Event` containing the audited implementation address `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff`.
       - `Initialized` - reinitialized to 3.
+    - Cancel event:
+      - `Cancelled` Event with ID=`0x899614cfc5a477e3272042f2e6eb576aec8b7c41a97cf09f404c4835947dba89`. [Proposal transaction](https://etherscan.io/tx/0x0aab939e1ad1f3f3bdef61add591c35b7e3f2e791700fe3d6e3a3729f0bc97e2/advanced#eventlog#596)
 
 #### L2
 
