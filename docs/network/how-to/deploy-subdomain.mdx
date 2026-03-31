@@ -48,12 +48,22 @@ to gain ownership of an L1 domain on Linea. This solution allows you to deploy o
 
 ### Use ENS contracts 
 
-:::info[ENS resolver deprecating soon]
-
-The ENS resolver contract will soon be redeployed with a new contract address. You will need to update your configuration to point to the new L1Resolver address. Information about the redeployment date and the new contract address will be provided here soon.
-
-For any questions, contact [Linea Support](https://support.linea.build/).
+:::note ENS resolver contracts updated
+The ENS resolver contracts were redeployed as part of the [Small Fields upgrade](/changelog/release-notes#beta-v60)
+(March 2026). If you configured ENS resolution before this date, you must update 
+your setup to use the new contract addresses below.
 :::
+
+The following contract addresses are live on Mainnet:
+
+| Contract | Address |
+| --- | --- |
+| `Poseidon2` | `0x8f65FC8C9103e35967D5E8CEb0829E4df96D2c5D` |
+| `SparseMerkleProof` | `0x3dB97Ff4c9D1A2485B1DBe9c9e843359462A1661` |
+| `LineaSparseProofVerifier` | `0x9a4b070A5A6C09C2d0f00309aC1613109A3F6b41` |
+| `L1Resolver` | `0x1507cE9421232FDBd302f5EbE4590F8D77FeBBFF` |
+
+For Sepolia, contact [Linea Support](https://support.linea.build/) for testnet addresses.
 
 Modify the [original ENS contracts deployed on Ethereum Mainnet](https://github.com/ensdomains/ens-contracts).
 You must modify the node managed by the Registrar contract to match your domain's node. 
@@ -144,7 +154,7 @@ Set the Linea target resolution on the L1 ENS domain:
 
     Keep the DNS encoded name result, for example `0x056c696e65610365746800`.
 
-1. Go to the [Linea Custom Resolver contract on Etherscan](https://etherscan.io/address/0xde16ee87B0C019499cEBDde29c9F7686560f679a#writeContract).
+1. Go to the [L1Resolver contract on Etherscan](https://etherscan.io/address/0x1507cE9421232FDBd302f5EbE4590F8D77FeBBFF#writeContract).
 
 1. In the **Write Contract** tab, connect your wallet using the **Connect with web3** button.
     Make sure to connect with the wallet containing the account that owns your L1 ENS domain.
@@ -161,7 +171,7 @@ Set the Linea target resolution on the L1 ENS domain:
 
 1. Select the **More** tab, and in the **Resolver** section select **Edit**.
 
-1. Select **Custom Resolver** and add the address `0xde16ee87B0C019499cEBDde29c9F7686560f679a`.
+1. Select **Custom Resolver** and add the address `0x1507cE9421232FDBd302f5EbE4590F8D77FeBBFF`.
 
 1. Select **Update** and approve the transaction.
 
