@@ -12,7 +12,7 @@ A Linea transaction moves through two finality states before it is permanently s
 
 When you submit a transaction on Linea, it follows this path: the
 [sequencer](/protocol/architecture/sequencer) includes it in an L2 block (soft finality, ~2
-seconds), then the [coordinator](/protocol/architecture/coordinator) groups blocks into a batch
+seconds), then the [Coordinator](/protocol/architecture/coordinator) groups blocks into a batch
 and submits it to Ethereum. The [prover](/protocol/architecture/prover) generates a
 [ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) for the batch, which
 is verified by the [Linea rollup contract](/protocol/architecture/smart-contracts) on L1. Once the
