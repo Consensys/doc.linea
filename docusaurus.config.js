@@ -177,7 +177,7 @@ const config = {
             label: "Changelog",
           },
           {
-            href: "https://discord.gg/linea",
+            href: "https://support.linea.build/",
             label: "Support",
             position: "right",
             class: "support-link",
