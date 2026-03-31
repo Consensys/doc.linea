@@ -313,6 +313,23 @@ const config = {
         redirects: redirectsData,
       },
     ],
+    function excludeApiPlugin() {
+      return {
+        name: "exclude-api-directory",
+        configureWebpack() {
+          return {
+            module: {
+              rules: [
+                {
+                  test: /api\/.*\.ts$/,
+                  use: "null-loader",
+                },
+              ],
+            },
+          };
+        },
+      };
+    },
   ],
   stylesheets: [
     {
