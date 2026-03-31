@@ -235,10 +235,6 @@ const config = {
                 href: "https://linea.build/apps",
               },
               {
-                label: "Discord",
-                href: "https://discord.gg/linea",
-              },
-              {
                 label: "User support",
                 to: "https://support.linea.build/",
               },
