@@ -8,25 +8,45 @@ image: /img/socialCards/transaction-finality.jpg
 
 A Linea transaction moves through two finality states before it is permanently settled on Ethereum.
 
+## Transaction lifecycle
+
+When you submit a transaction on Linea, it follows this path: the
+[sequencer](/protocol/architecture/sequencer) includes it in an L2 block (soft finality, ~2
+seconds), then the [coordinator](/protocol/architecture/coordinator) groups blocks into a batch
+and submits it to Ethereum. The [prover](/protocol/architecture/prover) generates a
+[ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) for the batch, which
+is verified by the [Linea rollup contract](/protocol/architecture/smart-contracts) on L1. Once the
+L1 block containing the proof is
+[finalized by Ethereum's consensus](https://ethereum.org/developers/docs/consensus-mechanisms/pos#finality),
+the transaction reaches hard finality.
+
+For the full protocol-level breakdown, see
+[Architecture: Transaction lifecycle](/protocol/architecture#transaction-lifecycle).
+
 ## Soft finality
 
-When the sequencer commits the block containing your transaction to the canonical L2 chain, it has
-reached **soft finality**. This happens within approximately 2 seconds—Linea's block time.
+When the [sequencer](/protocol/architecture/sequencer) orders, executes, and seals your
+transaction into an L2 block, it has reached **soft finality**. This happens within approximately
+2 seconds—Linea's block time.
 
 At soft finality:
 
 - The transaction is confirmed on Linea and visible in your wallet
-- Linea **does not reorg**—once a transaction reaches soft finality on Linea, it will not be
-  removed or reordered by Linea
+- Linea [**does not reorg**](/protocol/reference/zero-knowledge-glossary#reorgs)—once a
+  transaction reaches soft finality on Linea, it will not be removed or reordered by Linea
 - Ethereum (L1) may still reorg, but this does not affect Linea's confirmed state
 
 For most application use cases—swaps, transfers, in-app interactions—soft finality is sufficient.
 
 ## Hard finality
 
-Hard finality is reached when the ZK proof covering your transaction's batch has been verified by
-the Linea rollup contract on Ethereum, and two Ethereum epochs (~13 minutes) have elapsed for the
-L1 block containing the proof to be finalized.
+Hard finality is reached when the
+[ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) covering your
+transaction's batch has been verified by the
+[Linea rollup contract](/protocol/architecture/smart-contracts) on Ethereum, and the L1 block
+containing that verification transaction is itself
+[finalized by Ethereum's consensus](https://ethereum.org/developers/docs/consensus-mechanisms/pos#finality)
+(two epochs / ~12.8 minutes).
 
 At hard finality:
 
@@ -43,10 +63,10 @@ where Ethereum-level security guarantees are needed.
 
 | Use case | Finality needed | Why |
 |---|---|---|
-| In-app transactions, swaps | Soft | Once confirmed on Linea, the transaction is in the canonical chain and will not be reversed by the L2 |
+| In-app transactions, swaps | Soft | Once confirmed on Linea, the transaction is in the canonical chain and [will not be reversed](/protocol/reference/zero-knowledge-glossary#reorgs) by the L2 |
 | Bridge withdrawals to L1 | Hard | Funds must be provably settled on Ethereum |
 | CEX deposits | Hard | Exchanges require irreversibility |
-| Onchain gaming, NFT mints | Soft | Speed matters, reorg risk is zero on Linea |
+| Onchain gaming, NFT mints | Soft | Speed matters, because Linea does not reorg after soft finality |
 
 ## How to check finality
 
@@ -62,7 +82,8 @@ curl https://rpc.linea.build \
 ```
 
 The `finalized` tag is supported by all applicable JSON-RPC methods on Linea Mainnet and Linea
-Sepolia, with the exception of `eth_call`.
+Sepolia, with the exception of `eth_call`. On Linea, `eth_call` does not currently support the
+`finalized` block tag.
 
 ### Query the rollup contract
 
@@ -82,7 +103,8 @@ variable.
 1. Create a JavaScript file (for example `index.js`) and copy the following code:
 
    :::info
-   Update the Infura endpoint with your API key, or add a different RPC provider.
+   Replace the Infura endpoint with your preferred Ethereum L1 RPC provider. Any L1 endpoint
+   works—Infura, Alchemy, a self-hosted node, etc.
    :::
 
    ```javascript title="index.js"
@@ -113,5 +135,8 @@ variable.
 
 ## Next steps
 
-- Learn more about the [protocol architecture](../../protocol/architecture/index.mdx)
-- Learn how to [submit forced transactions](../../protocol/how-to/forced-transactions.mdx)
+- Understand how the [protocol architecture](/protocol/architecture) supports finality, including
+  the full [transaction lifecycle](/protocol/architecture#transaction-lifecycle)
+- Learn about [predictable pricing](/network/overview/predictable-pricing) on Linea
+- [Run a node](/network/how-to/run-a-node) to query finality state yourself
+- Learn how to [submit forced transactions](/protocol/how-to/forced-transactions) directly to L1
