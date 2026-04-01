@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import ThemedImage from "@theme/ThemedImage";
-import {
-  XIcon,
-  GitHubIcon,
-  DiscordIcon,
-  LinkedInIcon,
-} from "@site/src/components/icons";
+import { XIcon, GitHubIcon, LinkedInIcon } from "@site/src/components/icons";
 import styles from "./styles.module.css";
 
 const NAV_LINKS = [
@@ -25,11 +20,6 @@ const SOCIAL_LINKS = [
     label: "GitHub",
     href: "https://github.com/Consensys/doc.linea",
     icon: <GitHubIcon aria-hidden="true" />,
-  },
-  {
-    label: "Discord",
-    href: "https://discord.gg/linea",
-    icon: <DiscordIcon aria-hidden="true" />,
   },
   {
     label: "LinkedIn",

@@ -86,10 +86,10 @@ export default function Home(): React.ReactNode {
 
   const communityCards = [
     {
-      title: "Connect with builders",
-      link: "https://discord.com/invite/linea",
+      title: "Get support",
+      link: "https://support.linea.build/",
       description: (
-        <>Connect with fellow builders and community members on Discord.</>
+        <>Find help through the Linea support site and builder resources.</>
       ),
     },
     {

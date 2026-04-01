@@ -179,7 +179,7 @@ const config = {
             label: "Changelog",
           },
           {
-            href: "https://discord.gg/linea",
+            href: "https://support.linea.build/",
             label: "Support",
             position: "right",
             class: "support-link",
@@ -235,10 +235,6 @@ const config = {
               {
                 label: "Linea Hub",
                 href: "https://linea.build/apps",
-              },
-              {
-                label: "Discord",
-                href: "https://discord.gg/linea",
               },
               {
                 label: "User support",
