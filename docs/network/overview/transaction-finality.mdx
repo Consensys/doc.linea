@@ -50,7 +50,7 @@ containing that verification transaction is itself
 
 At hard finality:
 
-- The transaction is immutable—it cannot be reversed by any party
+- The transaction is cryptographically proven on Ethereum and inherits its security guarantees
 - It is anchored to Ethereum's security guarantees
 - The current median time to hard finality is under 1 hour 40 minutes, and is expected to reach
   approximately 30 minutes as proving performance improves
@@ -91,6 +91,12 @@ As an alternative to the `finalized` tag, you can query the
 [Linea L1 rollup contract](https://etherscan.io/address/0xd19d4b5d358258f05d7b411e21a1460d11b0876f#readProxyContract)
 to retrieve the value of the current finalized L2 block number stored in the `currentL2BlockNumber`
 variable.
+
+:::note
+Etherscan reads contract state from the **latest** L1 block, not the **finalized** one. The value
+shown may therefore be slightly ahead of the actual hard-finalized L2 block number. For exact
+finalized state, use the `finalized` JSON-RPC tag described above.
+:::
 
 **Prerequisites:** [Node.js](https://nodejs.org/en) installed.
 
