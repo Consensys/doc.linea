@@ -142,13 +142,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Negative + reason → GitHub issue + Slack
-  // TODO: uncomment GitHub + Slack calls once GITHUB_TOKEN and SLACK_WEBHOOK_URL are set
-  // if (rating === "no" && cleanReason) {
-  //   await Promise.allSettled([
-  //     createGitHubIssue(page_url, cleanReason),
-  //     notifySlack(page_url, cleanReason),
-  //   ]);
-  // }
+  if (rating === "no" && cleanReason) {
+    await Promise.allSettled([
+      createGitHubIssue(page_url, cleanReason),
+      notifySlack(page_url, cleanReason),
+    ]);
+  }
 
   return res.status(200).json({ ok: true });
 }
