@@ -31,8 +31,21 @@ function isRateLimited(ip: string): boolean {
 function sanitize(text: string): string {
   return text
     .replace(/<[^>]*>/g, "") // strip HTML tags
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown links
     .slice(0, 1000)
     .trim();
+}
+
+const ALLOWED_ORIGIN = "https://docs.linea.build/";
+
+function isValidPageUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return parsed.href.startsWith(ALLOWED_ORIGIN);
+  } catch {
+    return false;
+  }
 }
 
 // ---------- Google Sheets ----------
@@ -126,6 +139,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: "page_url and rating (yes/no) are required" });
   }
 
+  if (!isValidPageUrl(page_url)) {
+    return res.status(400).json({ error: "invalid page_url" });
+  }
+
   if (rating === "no" && (!reason || !reason.trim())) {
     return res.status(400).json({ error: "reason is required for negative feedback" });
   }
@@ -143,10 +160,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Negative + reason → GitHub issue + Slack
   if (rating === "no" && cleanReason) {
-    await Promise.allSettled([
-      createGitHubIssue(page_url, cleanReason),
-      notifySlack(page_url, cleanReason),
-    ]);
+    try {
+      await Promise.allSettled([
+        createGitHubIssue(page_url, cleanReason),
+        notifySlack(page_url, cleanReason),
+      ]);
+    } catch (err) {
+      console.error("GitHub/Slack notification failed:", err);
+    }
   }
 
   return res.status(200).json({ ok: true });
