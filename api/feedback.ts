@@ -66,7 +66,7 @@ async function appendToSheet(row: string[]) {
   await sheetsClient.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
     range: "Sheet1!A:F",
-    valueInputOption: "USER_ENTERED",
+    valueInputOption: "RAW",
     requestBody: { values: [row] },
   });
 }
