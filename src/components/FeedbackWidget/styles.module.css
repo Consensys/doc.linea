@@ -1,11 +1,11 @@
 .widget {
+  font-family: 'Atyp Text', sans-serif;
   margin-top: 32px;
   padding: 24px 0;
   border-top: 1px solid var(--linea-border);
 }
 
 .prompt {
-  font-family: 'Atyp Text', sans-serif;
   font-size: var(--font-body-md);
   font-weight: 500;
   color: var(--linea-text-primary);
@@ -13,7 +13,6 @@
 }
 
 .thanks {
-  font-family: 'Atyp Text', sans-serif;
   font-size: var(--font-body-sm);
   color: var(--linea-text-secondary);
   margin: 0;
@@ -25,7 +24,7 @@
 }
 
 .ratingBtn {
-  font-family: 'Atyp Text', sans-serif;
+  font-family: inherit;
   font-size: var(--font-body-sm);
   font-weight: 500;
   padding: 6px 16px;
@@ -59,7 +58,6 @@
 
 .label {
   display: block;
-  font-family: 'Atyp Text', sans-serif;
   font-size: var(--font-body-sm);
   color: var(--linea-text-secondary);
   margin-bottom: 8px;
@@ -70,12 +68,12 @@
   width: 100%;
   max-width: 480px;
   padding: 10px 12px;
-  font-family: 'Atyp Text', sans-serif;
   font-size: var(--font-body-sm);
   color: var(--linea-text-primary);
   background: var(--linea-surface-elevated);
   border: 1px solid var(--linea-border);
   border-radius: var(--linea-radius-md);
+  font-family: inherit;
   resize: vertical;
   line-height: var(--line-height-default);
 }
@@ -96,7 +94,7 @@
 }
 
 .submitBtn {
-  font-family: 'Atyp Text', sans-serif;
+  font-family: inherit;
   font-size: var(--font-body-sm);
   font-weight: 500;
   padding: 6px 20px;
@@ -118,7 +116,7 @@
 }
 
 .skipBtn {
-  font-family: 'Atyp Text', sans-serif;
+  font-family: inherit;
   font-size: var(--font-body-sm);
   padding: 6px 16px;
   border-radius: var(--linea-radius-md);
@@ -131,4 +129,10 @@
 
 .skipBtn:hover {
   background: var(--linea-hover-bg);
+}
+
+.error {
+  font-size: var(--font-body-sm);
+  color: var(--linea-text-muted);
+  margin: 0;
 }

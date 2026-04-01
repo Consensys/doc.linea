@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 
 type Rating = "yes" | "no" | null;
-type Phase = "initial" | "comment" | "submitted";
+type Phase = "initial" | "comment" | "submitted" | "error";
 
 declare global {
   interface Window {
@@ -37,7 +37,7 @@ export default function FeedbackWidget(): React.ReactNode {
     fireAnalyticsEvent(rating, reason.trim());
 
     try {
-      await fetch("/api/feedback", {
+      const res = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -47,8 +47,11 @@ export default function FeedbackWidget(): React.ReactNode {
           timestamp: new Date().toISOString(),
         }),
       });
+      if (!res.ok) throw new Error(String(res.status));
     } catch {
-      // Don't block UX on backend errors
+      setPhase("error");
+      setSubmitting(false);
+      return;
     }
 
     setPhase("submitted");
@@ -64,6 +67,16 @@ export default function FeedbackWidget(): React.ReactNode {
     return (
       <div className={styles.widget}>
         <p className={styles.thanks}>Thanks for your feedback!</p>
+      </div>
+    );
+  }
+
+  if (phase === "error") {
+    return (
+      <div className={styles.widget}>
+        <p className={styles.error}>
+          Something went wrong. Please try again later.
+        </p>
       </div>
     );
   }

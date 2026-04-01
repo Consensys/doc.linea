@@ -58,20 +58,20 @@ function isValidPageUrl(url: string): boolean {
   }
 }
 
-// ---------- Google Sheets ----------
+// ---------- Google Sheets (module-scoped for reuse across warm invocations) ----------
+
+const credentials = JSON.parse(
+  Buffer.from(process.env.GOOGLE_SHEETS_CREDENTIALS!, "base64").toString(),
+);
+
+const auth = new GoogleAuth({
+  credentials,
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+});
+
+const sheetsClient = sheets({ version: "v4", auth });
 
 async function appendToSheet(row: string[]) {
-  const credentials = JSON.parse(
-    Buffer.from(process.env.GOOGLE_SHEETS_CREDENTIALS!, "base64").toString(),
-  );
-
-  const auth = new GoogleAuth({
-    credentials,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  const sheetsClient = sheets({ version: "v4", auth });
-
   await sheetsClient.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
     range: "Sheet1!A:F",
