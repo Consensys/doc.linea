@@ -27,6 +27,8 @@ function sanitize(text: string): string {
   return stripHtml(text)
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown images
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown links
+    .replace(/@/g, "@\u200B") // break GitHub @mentions
+    .replace(/#(\d)/g, "#\u200B$1") // break GitHub #issue references
     .slice(0, 1000)
     .trim();
 }
@@ -143,13 +145,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: "invalid page_url" });
   }
 
-  if (rating === "no" && (!reason || !reason.trim())) {
+  const cleanReason = reason ? sanitize(reason) : "";
+
+  if (rating === "no" && !cleanReason) {
     return res
       .status(400)
       .json({ error: "reason is required for negative feedback" });
   }
-
-  const cleanReason = reason ? sanitize(reason) : "";
   const ts = timestamp ?? new Date().toISOString();
 
   // Google Sheet — every submission

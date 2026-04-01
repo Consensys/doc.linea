@@ -1575,7 +1575,8 @@ button.clean-btn.menu__caret {
   article > .theme-doc-toc-mobile     { order: 2; }
   article > [class*="titleRow"]        { order: 3; }
   article > .theme-doc-markdown        { order: 4; }
-  article > footer.theme-doc-footer    { order: 5; }
+  article > *                          { order: 5; }
+  article > footer.theme-doc-footer    { order: 6; }
 
   .theme-doc-toc-mobile {
     background: var(--ifm-background-color) !important;

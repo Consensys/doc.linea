@@ -74,7 +74,7 @@ export default function DocItemLayout({ children }) {
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
-            <FeedbackWidget />
+            <FeedbackWidget key={metadata.permalink} />
             <DocItemFooter />
           </article>
           <DocItemPaginator />
