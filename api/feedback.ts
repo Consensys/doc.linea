@@ -11,21 +11,6 @@ interface FeedbackBody {
   timestamp?: string;
 }
 
-// ---------- Rate limiting (in-memory, per instance) ----------
-
-const hits = new Map<string, number[]>();
-const RATE_LIMIT = 5;
-const WINDOW_MS = 60_000;
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const timestamps = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
-  if (timestamps.length >= RATE_LIMIT) return true;
-  timestamps.push(now);
-  hits.set(ip, timestamps);
-  return false;
-}
-
 // ---------- Sanitize ----------
 
 function stripHtml(text: string): string {
@@ -133,15 +118,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // Rate limit
+  // Rate limiting is handled by Vercel Firewall (project dashboard)
+
   const ip =
     (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ??
     req.socket.remoteAddress ??
     "unknown";
-
-  if (isRateLimited(ip)) {
-    return res.status(429).json({ error: "Too many requests" });
-  }
 
   // Validate
   const {
