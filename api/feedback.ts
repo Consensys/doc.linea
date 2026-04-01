@@ -161,14 +161,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Negative + reason → GitHub issue + Slack
   if (rating === "no" && cleanReason) {
-    try {
-      await Promise.allSettled([
-        createGitHubIssue(page_url, cleanReason),
-        notifySlack(page_url, cleanReason),
-      ]);
-    } catch (err) {
-      console.error("GitHub/Slack notification failed:", err);
-    }
+    const results = await Promise.allSettled([
+      createGitHubIssue(page_url, cleanReason),
+      notifySlack(page_url, cleanReason),
+    ]);
+    const labels = ["GitHub issue", "Slack notification"];
+    results.forEach((r, i) => {
+      if (r.status === "rejected") {
+        console.error(`${labels[i]} failed:`, r.reason);
+      }
+    });
   }
 
   return res.status(200).json({ ok: true });
