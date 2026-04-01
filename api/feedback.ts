@@ -37,12 +37,13 @@ function sanitize(text: string): string {
     .trim();
 }
 
-const ALLOWED_ORIGIN = "https://docs.linea.build/";
-
 function isValidPageUrl(url: string): boolean {
+  // Accept relative paths (e.g. /developers/guides/bridge)
+  if (url.startsWith("/")) return /^\/[\w\-./]*$/.test(url);
+  // Accept full URLs from the docs site
   try {
     const parsed = new URL(url);
-    return parsed.href.startsWith(ALLOWED_ORIGIN);
+    return parsed.origin === "https://docs.linea.build";
   } catch {
     return false;
   }
