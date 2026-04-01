@@ -1,7 +1,8 @@
 import remarkEmdash from "./scripts/remark/remark-emdash.js";
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { themes: prismThemes } = require("prism-react-renderer");
+const lightCodeTheme = prismThemes.github;
+const darkCodeTheme = prismThemes.dracula;
 
 const redirectsData = require("./redirects.json");
 
@@ -22,6 +23,7 @@ const config = {
   url: "https://docs.linea.build",
   baseUrl: "/",
   onBrokenLinks: "throw",
+  onBrokenAnchors: "throw",
   favicon: "img/favicons/favicon-96x96.png",
   trailingSlash: false,
 
@@ -107,9 +109,9 @@ const config = {
     /* @type {import('@docusaurus/preset-classic').ThemeConfig} */
     {
       announcementBar: {
-        id: "announcement_bar_2026_01_ens_resolver",
+        id: "announcement_bar_2026_03_ens_resolver_updated",
         content:
-          '⚠️ <strong>Attention builders</strong>: ENS resolver contract deprecating soon; get ready to update your configuration. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">Learn more →</a>',
+          '🔔 <strong>ENS resolver contracts updated</strong>: New contract addresses are live as part of the Small Fields upgrade. <a href="/network/how-to/deploy-subdomain#use-ens-contracts">See new addresses →</a>',
         backgroundColor: "#6119ef",
         textColor: "#ffffff",
         isCloseable: true,

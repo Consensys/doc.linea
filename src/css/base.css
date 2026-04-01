@@ -55,6 +55,14 @@ a:not(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-c
   text-decoration: inherit;
 }
 
+/* Announcement bar link — override inherited white from inline textColor.
+   Both themes: cyan on purple bg = high contrast.
+   Light mode also uses cyan since background is always purple (#6119ef). */
+.theme-announcement-bar a {
+  color: var(--linea-brand-cyan) !important;
+  text-decoration: underline;
+}
+
 b,
 strong {
   font-family: inherit;
@@ -101,11 +109,13 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   border-radius: var(--linea-radius-md);
-  overflow: auto hidden;
   border: 1px solid var(--linea-border);
-  display: block;
   width: 100%;
+  min-width: 100%;
   margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table thead {
@@ -142,6 +152,10 @@ table tbody td {
   line-height: 1.4;
   border-bottom: 1px solid var(--linea-border);
   border-right: 1px solid var(--linea-border);
+}
+
+table tbody td code {
+  overflow-wrap: anywhere;
 }
 
 table tbody td:last-child {
