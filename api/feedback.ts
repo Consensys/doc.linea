@@ -144,7 +144,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Validate
-  const { page_url: pageUrl, rating, reason, timestamp } = req.body as FeedbackBody;
+  const {
+    page_url: pageUrl,
+    rating,
+    reason,
+    timestamp,
+  } = req.body as FeedbackBody;
 
   if (!pageUrl || !rating || !["yes", "no"].includes(rating)) {
     return res
