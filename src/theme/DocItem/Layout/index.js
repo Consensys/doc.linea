@@ -18,6 +18,7 @@ import styles from "./styles.module.css";
 import ToolingCTA from "../../../components/ToolingCTA";
 import ContractsWarning from "../../../components/ContractsWarning";
 import CopyPageButton from "../../../components/CopyPageButton";
+import FeedbackWidget from "../../../components/FeedbackWidget";
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -73,7 +74,7 @@ export default function DocItemLayout({ children }) {
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
-            {/* TODO: implement "Was this page helpful?" click behavior (Yes/No feedback submission) */}
+            <FeedbackWidget key={metadata.permalink} />
             <DocItemFooter />
           </article>
           <DocItemPaginator />
