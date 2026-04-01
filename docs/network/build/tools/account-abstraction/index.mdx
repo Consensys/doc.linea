@@ -24,7 +24,22 @@ That second point may seem small, but it enables things like:
 
 and a *lot more*.
 
-As a network, Linea is heavily invested in innovating in the account abstraction space; consult 
+### ERC-4337 vs. EIP-7702
+
+There are two main approaches to account abstraction on Linea:
+
+- **[ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)** uses a separate mempool and bundler
+  infrastructure to route transactions through smart contract accounts. It works today with any EOA,
+  but requires users to interact through a new smart account address.
+- **[EIP-7702](/protocol/eip-7702)** lets an existing EOA delegate to smart contract logic directly—no
+  new address, no fund migration. It introduces a new transaction type (`0x04`) and enables
+  capabilities like transaction batching, gas sponsorship, session keys, and social recovery on the
+  account you already have.
+
+Many of the tooling providers listed below support one or both approaches. If you're starting a new
+project, consider which model best fits your use case—or combine them.
+
+As a network, Linea is heavily invested in innovating in the account abstraction space; consult
 the resources here to see how you can implement the tools we already have... and then build your own.
 
 import DocCardList from '@theme/DocCardList';

@@ -37,6 +37,23 @@ to the delegated contract. The delegation persists after the transaction until e
 Send a new type `0x04` transaction pointing the delegation to `address(0)`. This removes the
 bytecode and returns the account to a normal EOA.
 
+:::warning[Delegation is persistent]
+The delegation does not expire after one transaction. It remains active for all future interactions
+with your account until you explicitly revoke it by sending a new type `0x04` transaction pointing
+to `address(0)`.
+:::
+
+## Important considerations
+
+### Receiving ETH after delegation
+
+Once your EOA delegates to a contract, it effectively has code. If that contract does not implement
+a `receive()` or `fallback()` function, plain ETH transfers to your address will revert. Make sure
+the contract you delegate to can handle incoming ETH if you expect to receive it.
+
+EIP-7702 enables both gas sponsorship (where a third party covers transaction fees) and gasless
+transactions (where users pay fees in ERC-20 tokens).
+
 ### Hardware wallet limitation
 
 As of March 2026, some hardware wallets cannot sign `authorizationList` entries. Gas sponsorship

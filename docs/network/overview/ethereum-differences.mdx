@@ -128,6 +128,13 @@ and include:
 Linea does not support type 3 (`0x3` or "blob") transactions. This type is used on Ethereum Mainnet 
 primarily for layer 2 rollups to cheaply post data on L1.
 
+## EIP-7702 (type 4 transactions)
+
+Linea supports [EIP-7702](/protocol/eip-7702) type `0x04` transactions as of the Pectra upgrade
+(Beta v4). This allows EOAs to delegate to smart contract logic, enabling features like transaction
+batching, gas sponsorship, and session keys. See the [EIP-7702 support](/protocol/eip-7702) page
+for details.
+
 ## Next steps
 
 - Learn how [pricing is calculated](./predictable-pricing.mdx) on Linea
