@@ -28,9 +28,19 @@ function isRateLimited(ip: string): boolean {
 
 // ---------- Sanitize ----------
 
+function stripHtml(text: string): string {
+  let prev = text;
+  // Loop to handle nested tags like <<script>script>
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const next = prev.replace(/<[^>]*>/g, "");
+    if (next === prev) return next;
+    prev = next;
+  }
+}
+
 function sanitize(text: string): string {
-  return text
-    .replace(/<[^>]*>/g, "") // strip HTML tags
+  return stripHtml(text)
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown images
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown links
     .slice(0, 1000)
