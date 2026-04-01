@@ -104,7 +104,7 @@ async function notifySlack(pageUrl: string, reason: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      text: `:warning: Negative docs feedback on *${pageUrl}*\n>${reason}`,
+      text: `:warning: Negative docs feedback on *${pageUrl}*\n>${reason.replace(/\n/g, "\n>")}`,
     }),
   });
 
