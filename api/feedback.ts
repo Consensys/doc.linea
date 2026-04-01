@@ -31,7 +31,6 @@ function isRateLimited(ip: string): boolean {
 function stripHtml(text: string): string {
   let prev = text;
   // Loop to handle nested tags like <<script>script>
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     const next = prev.replace(/<[^>]*>/g, "");
     if (next === prev) return next;
@@ -85,25 +84,26 @@ async function appendToSheet(row: string[]) {
 
 async function createGitHubIssue(pageUrl: string, reason: string) {
   const repo = process.env.GITHUB_REPO!; // "Consensys/doc.linea"
-  const res = await fetch(
-    `https://api.github.com/repos/${repo}/issues`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: `Docs feedback: ${pageUrl}`,
-        body: `**Page:** ${pageUrl}\n\n**Feedback:**\n${reason}`,
-        labels: ["user-feedback"],
-      }),
+  const res = await fetch(`https://api.github.com/repos/${repo}/issues`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({
+      title: `Docs feedback: ${pageUrl}`,
+      body: `**Page:** ${pageUrl}\n\n**Feedback:**\n${reason}`,
+      labels: ["user-feedback"],
+    }),
+  });
 
   if (!res.ok) {
-    console.error("GitHub issue creation failed:", res.status, await res.text());
+    console.error(
+      "GitHub issue creation failed:",
+      res.status,
+      await res.text(),
+    );
   }
 }
 
@@ -144,18 +144,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Validate
-  const { page_url, rating, reason, timestamp } = req.body as FeedbackBody;
+  const { page_url: pageUrl, rating, reason, timestamp } = req.body as FeedbackBody;
 
-  if (!page_url || !rating || !["yes", "no"].includes(rating)) {
-    return res.status(400).json({ error: "page_url and rating (yes/no) are required" });
+  if (!pageUrl || !rating || !["yes", "no"].includes(rating)) {
+    return res
+      .status(400)
+      .json({ error: "page_url and rating (yes/no) are required" });
   }
 
-  if (!isValidPageUrl(page_url)) {
+  if (!isValidPageUrl(pageUrl)) {
     return res.status(400).json({ error: "invalid page_url" });
   }
 
   if (rating === "no" && (!reason || !reason.trim())) {
-    return res.status(400).json({ error: "reason is required for negative feedback" });
+    return res
+      .status(400)
+      .json({ error: "reason is required for negative feedback" });
   }
 
   const cleanReason = reason ? sanitize(reason) : "";
@@ -163,7 +167,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Google Sheet — every submission
   try {
-    await appendToSheet([ts, page_url, rating, cleanReason, ip, req.headers["user-agent"] ?? ""]);
+    await appendToSheet([
+      ts,
+      pageUrl,
+      rating,
+      cleanReason,
+      ip,
+      req.headers["user-agent"] ?? "",
+    ]);
   } catch (err) {
     console.error("Google Sheets append failed:", err);
     // Don't block the response
@@ -172,8 +183,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Negative + reason → GitHub issue + Slack
   if (rating === "no" && cleanReason) {
     const results = await Promise.allSettled([
-      createGitHubIssue(page_url, cleanReason),
-      notifySlack(page_url, cleanReason),
+      createGitHubIssue(pageUrl, cleanReason),
+      notifySlack(pageUrl, cleanReason),
     ]);
     const labels = ["GitHub issue", "Slack notification"];
     results.forEach((r, i) => {
