@@ -58,11 +58,6 @@ export default function FeedbackWidget(): React.ReactNode {
     setSubmitting(false);
   };
 
-  const handleSkip = () => {
-    fireAnalyticsEvent(rating, "");
-    setPhase("submitted");
-  };
-
   if (phase === "submitted") {
     return (
       <div className={styles.widget}>
@@ -83,33 +78,32 @@ export default function FeedbackWidget(): React.ReactNode {
 
   return (
     <div className={styles.widget}>
-      <p className={styles.prompt}>Was this page helpful?</p>
-
-      <div className={styles.buttons}>
-        <button
-          type="button"
-          className={`${styles.ratingBtn} ${rating === "yes" ? styles.selected : ""}`}
-          onClick={() => handleRating("yes")}
-          disabled={phase === "comment"}
-          aria-pressed={rating === "yes"}>
-          Yes
-        </button>
-        <button
-          type="button"
-          className={`${styles.ratingBtn} ${rating === "no" ? styles.selected : ""}`}
-          onClick={() => handleRating("no")}
-          disabled={phase === "comment"}
-          aria-pressed={rating === "no"}>
-          No
-        </button>
-      </div>
+      {phase === "initial" && (
+        <>
+          <p className={styles.prompt}>Was this page helpful?</p>
+          <div className={styles.buttons}>
+            <button
+              type="button"
+              className={styles.ratingBtn}
+              onClick={() => handleRating("yes")}>
+              Yes
+            </button>
+            <button
+              type="button"
+              className={styles.ratingBtn}
+              onClick={() => handleRating("no")}>
+              No
+            </button>
+          </div>
+        </>
+      )}
 
       {phase === "comment" && (
         <div className={styles.commentSection}>
           <label htmlFor="feedback-reason" className={styles.label}>
             {rating === "yes"
               ? "What worked well? (optional)"
-              : "How can we improve this page?"}
+              : "What went wrong?"}
           </label>
           <textarea
             id="feedback-reason"
@@ -133,14 +127,6 @@ export default function FeedbackWidget(): React.ReactNode {
               disabled={submitting || (rating === "no" && !reason.trim())}>
               {submitting ? "Sending..." : "Submit"}
             </button>
-            {rating === "yes" && (
-              <button
-                type="button"
-                className={styles.skipBtn}
-                onClick={handleSkip}>
-                Skip
-              </button>
-            )}
           </div>
         </div>
       )}
