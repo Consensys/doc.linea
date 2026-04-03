@@ -24,16 +24,39 @@ This page maintains a record and brief explanation of [Linea Security Council tr
 
 ## Beta v6.0
 
-<ChangelogDate mainnet="March 2026" sepolia="March 2026" />
+Beta v6.0 is a phased release comprising several upgrades to the Linea protocol.
+
+### EIP-7702
+
+<ChangelogDate mainnet="23 March 2026" sepolia="6 March 2026" />
 
 <ChangelogEntry tag="upgrade">
+
+Introduces [EIP-7702](/protocol/eip-7702), enabling gasless transactions, batch transactions, and session keys. No user action or migration required.
+
+</ChangelogEntry>
+
+### Small fields
+
+<ChangelogDate mainnet="1 April 2026" sepolia="24 March 2026" />
+
+<ChangelogEntry tag="performance">
 
 - Switches prover to small fields, enabling faster proof generation. **This change deprecates the
   ENS resolver contract; you will need to update your configuration to point to the new contract
   address.** More information [on deploying a Linea subdomain](../network/how-to/deploy-subdomain.mdx).
 - Increases throughput to 200 Mgas/s.
-- Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism that allows users to submit L2 transactions directly to the L1.
-- Introduces EIP-7702, enabling gassless transactions, batch transactions, and session keys. No user action or migration required.
+
+</ChangelogEntry>
+
+### Forced transactions
+
+<ChangelogDate mainnet="13 April 2026 (target)" sepolia="6 April 2026 (target)" />
+
+<ChangelogEntry tag="feature">
+
+Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism
+that allows users to submit L2 transactions directly to the L1.
 
 </ChangelogEntry>
 
