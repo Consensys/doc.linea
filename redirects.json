@@ -93,13 +93,14 @@
         ]
     },
     {
-        "to": "/network/overview/known-finality-state",
+        "to": "/network/overview/transaction-finality",
         "from": [
             "/protocol/transaction-lifecycle",
             "/architecture/overview/transaction-lifecycle",
             "/architecture/transaction-lifecycle",
             "/network/concepts/transaction-lifecycle",
-            "/technology/transaction-lifecycle"
+            "/technology/transaction-lifecycle",
+            "/network/overview/known-finality-state"
         ]
     },
     {
@@ -1365,10 +1366,11 @@
         ]
     },
     {
-        "to": "/network/how-to/finalized-block",
+        "to": "/network/overview/transaction-finality",
         "from": [
             "/developers/guides/finalized-block",
-            "/get-started/how-to/finalized-block"
+            "/get-started/how-to/finalized-block",
+            "/network/how-to/finalized-block"
         ]
     },
     {

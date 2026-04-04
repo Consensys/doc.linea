@@ -25,7 +25,7 @@ const sidebars = {
       label: "Features",
       collapsible: false,
       items: [
-        "network/overview/known-finality-state",
+        "network/overview/transaction-finality",
         "network/overview/predictable-pricing",
         "network/overview/public-data",
         "network/overview/recoverable-state",
@@ -122,11 +122,6 @@ const sidebars = {
           type: "doc",
           id: "network/how-to/fallback",
           label: "Add a fallback for RPC requests",
-        },
-        {
-          type: "doc",
-          id: "network/how-to/finalized-block",
-          label: "Retrieve finalized L2 blocks",
         },
         {
           type: "doc",
