@@ -205,7 +205,7 @@ for [private networks](../../stack/how-it-works/deployment-models.mdx#private-va
 These architectural components support transactions from submission to finalization.
 
 1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
-2. Block building: the [sequencer](./sequencer/index.mdx) orders and executes transactions into blocks.
+2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks. Linea enforces specific [transaction validity conditions](../../network/overview/known-finality-state.mdx#step-2-block-building), including a profitability threshold, that differ from Ethereum.
 3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
    the [tracer](./sequencer/traces-generator.mdx) generates traces.
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
