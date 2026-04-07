@@ -45,6 +45,12 @@ function isValidPageUrl(url: string): boolean {
   }
 }
 
+// ---------- Device type ----------
+
+function getDeviceType(ua: string): "mobile" | "desktop" {
+  return /Mobile|Android|iPhone|iPad/i.test(ua) ? "mobile" : "desktop";
+}
+
 // ---------- Google Sheets (module-scoped for reuse across warm invocations) ----------
 
 const credentials = JSON.parse(
@@ -61,7 +67,7 @@ const sheetsClient = sheets({ version: "v4", auth });
 async function appendToSheet(row: string[]) {
   await sheetsClient.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-    range: "Sheet1!A:F",
+    range: "Sheet1!A:E",
     valueInputOption: "RAW",
     requestBody: { values: [row] },
   });
@@ -136,11 +142,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Rate limiting is handled by Vercel Firewall (project dashboard)
 
-  const ip =
-    (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ??
-    req.socket.remoteAddress ??
-    "unknown";
-
   // Validate
   const {
     page_url: pageUrl,
@@ -175,8 +176,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       pageUrl,
       rating,
       cleanReason,
-      ip,
-      req.headers["user-agent"] ?? "",
+      getDeviceType((req.headers["user-agent"] as string) ?? ""),
     ]);
   } catch (err) {
     console.error("Google Sheets append failed:", err);
