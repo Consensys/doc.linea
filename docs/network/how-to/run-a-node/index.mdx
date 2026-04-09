@@ -61,10 +61,9 @@ Next actions:
 ## Canonical sources
 
 - Compose files in the Linea monorepo (paths above) are the source of truth for images and versions.
-- Linea Besu package compose profiles (`linea-besu-package/docker`) are for enabling Linea plugins;
-  otherwise use the monorepo compose files.
-- Local `/files` copies for other clients are historical; prefer the monorepo compose for current
-  configuration.
+- **Linea Besu** (with Linea plugins): use the [`linea-besu-package/docker`](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package/docker) compose profiles.
+- **All other EL clients** (Besu, Geth, etc.): use the compose files under [`docs/getting-started/`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started).
+
 
 ## Alternative paths
 
