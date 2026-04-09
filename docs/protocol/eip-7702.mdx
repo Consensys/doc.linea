@@ -1,0 +1,65 @@
+---
+title: EIP-7702 support
+description: >-
+  EIP-7702 lets EOAs delegate to smart contract logic, persisting until revoked.
+sidebar_position: 4
+image: /img/socialCards/eip-7702-support.jpg
+---
+
+[EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) is an Ethereum upgrade introduced in the
+[**Prague hardfork**](https://eips.ethereum.org/EIPS/eip-7600) that allows a regular wallet
+(EOA—Externally Owned Account) to behave like a smart contract wallet without changing address,
+migrating funds, or creating a new seed phrase. The delegation persists until explicitly revoked.
+EIP-7702 is supported on Linea as of [Beta v6.0](../changelog/release-notes#beta-v60).
+
+## What it enables
+
+| Capability | What it means in practice |
+|---|---|
+| **Transaction batching** | Approve + swap + deposit in a single transaction |
+| **Gas sponsorship** | A third party pays the gas fee—users need no ETH to transact |
+| **Pay gas in ERC-20** | Users pay gas in USDC, DAI, or any ERC-20 token |
+| **Session keys** | Grant a dapp time-limited, scoped permissions without exposing your main key |
+| **Social recovery** | Set up guardian-based recovery or multisig on your existing address |
+| **And more** | Spending limits, recurring payments, alternative authentication (passkeys, multisig), and other programmable account behaviors |
+
+## How it works
+
+EIP-7702 introduces a new transaction type **`0x04`**. This transaction includes an `authorizationList`
+field—a signed list of tuples `(chain_id, contract_address, nonce)`—where each entry authorizes
+the EOA to delegate to a specific smart contract.
+
+When the EVM processes a type `0x04` transaction, it permanently sets the account's bytecode to point
+to the delegated contract. The delegation persists after the transaction until explicitly revoked.
+
+### Revoking a delegation
+
+Send a new type `0x04` transaction pointing the delegation to `address(0)`. This removes the
+bytecode and returns the account to a normal EOA.
+
+:::warning[Delegation is persistent]
+The delegation does not expire after one transaction. It remains active for all future interactions
+with your account until you explicitly revoke it by sending a new type `0x04` transaction pointing
+to `address(0)`.
+:::
+
+## Important considerations
+
+### Receiving ETH after delegation
+
+Once your EOA delegates to a contract, it effectively has code. If that contract does not implement
+a `receive()` or `fallback()` function, plain ETH transfers to your address will revert. Make sure
+the contract you delegate to can handle incoming ETH if you expect to receive it.
+
+EIP-7702 enables both gas sponsorship (where a third party covers transaction fees) and gasless
+transactions (where users pay fees in ERC-20 tokens).
+
+### Hardware wallet limitation
+
+As of March 2026, some hardware wallets cannot sign `authorizationList` entries. Gas sponsorship
+and smart account activation may not be available for all hardware wallet users.
+
+## Related
+
+- [Forced transactions](./forced-transactions)
+- [Changelog](../changelog/release-notes)

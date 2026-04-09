@@ -1,0 +1,40 @@
+---
+title: Get started
+sidebar_label: Get started
+description: >-
+  Get started building on Linea. From overviews to step-by-step guides, the
+  following articles will walk you through deploying and managing your apps and
+  smart contracts on Linea.
+category: Quickstart
+image: /img/socialCards/get-started.jpg
+hide_copy_button: true
+---
+
+import ActionCards from '@site/src/components/ActionCards';
+import CopyPageButton from '@site/src/components/CopyPageButton';
+
+<div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
+  <p style={{margin: 0, flex: 1}}>Get started building on Linea. From overviews to step-by-step guides, the following articles will walk you through deploying and managing your apps and smart contracts on Linea.</p>
+  <CopyPageButton />
+</div>
+
+<ActionCards
+  cards={[
+    {
+      text: "Deploy a smart contract to Linea",
+      href: "/network/build/launch-an-app/deploy",
+    },
+    {
+      text: "Bridge tokens to Linea",
+      href: "/network/how-to/bridge",
+    },
+    {
+      text: "Run a node",
+      href: "/network/how-to/run-a-node",
+    },
+    {
+      text: "Recover state from the public network",
+      href: "/network/how-to/recover-state",
+    },
+  ]}
+/>

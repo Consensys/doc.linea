@@ -1,0 +1,156 @@
+/* ============================================================
+   1. UTILITY CLASSES (video, images, mermaid)
+   ============================================================ */
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin: 0 auto 20px;
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    width: 100%;
+  }
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Intro row with copy button (e.g. API quickstart) */
+.intro-with-copy {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.intro-with-copy > p {
+  margin: 0;
+  flex: 1;
+}
+
+.img-xsmall {
+  width: 200px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-small {
+  width: 350px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-medium {
+  max-width: 60%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.img-large {
+  max-width: 90%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .img-xsmall {
+    width: 50%;
+    flex-shrink: 0;
+  }
+
+  .img-small {
+    width: 80%;
+    flex-shrink: 0;
+  }
+
+  .img-medium {
+    max-width: none;
+    width: 90%;
+    flex-shrink: 0;
+  }
+
+  .img-large {
+    max-width: none;
+    width: 90%;
+    flex-shrink: 0;
+  }
+}
+
+.mermaid-xsmall {
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-small {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-medium {
+  max-width: 60%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-large {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+
+.mermaid-xsmall svg,
+.mermaid-small svg,
+.mermaid-medium svg,
+.mermaid-large svg {
+  display: block;
+  width: 100% !important;
+  max-width: inherit !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .mermaid-xsmall {
+    width: 50%;
+  }
+
+  .mermaid-small {
+    width: 80%;
+  }
+
+  .mermaid-medium {
+    width: 90%;
+  }
+
+  .mermaid-large {
+    width: 100%;
+  }
+}
+
+.my-tabs {
+  display: inline-flex;
+  justify-content: normal;
+  align-items: center;
+}

@@ -344,7 +344,7 @@ function bridgeTokenWithPermit(address _token, uint256 _amount, address _recipie
 ```
 
 Similar to `bridgeToken` function but allows to pass additional
-  permit data to do the ERC20 approval in a single transaction.
+  permit data to do the ERC-20 approval in a single transaction.
 
 #### Parameters
 
@@ -473,7 +473,7 @@ _Removes a token from the reserved list._
 function setCustomContract(address _nativeToken, address _targetContract) external
 ```
 
-_Linea can set a custom ERC20 contract for specific ERC20.
+_Linea can set a custom ERC-20 contract for specific ERC-20.
   For security purpose, Linea can only call this function if the token has
   not been bridged yet._
 

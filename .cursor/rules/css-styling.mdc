@@ -1,0 +1,139 @@
+---
+description: CSS architecture, tokens, and styling rules for this Docusaurus site. Apply when creating or modifying components, styles, layouts, or any UI-facing code.
+globs: src/**/*.{css,tsx,jsx,ts,js}
+alwaysApply: false
+---
+
+# CSS and styling rules
+
+This is a Docusaurus v3 site using Infima. The CSS is split into layers. Follow these rules for every UI change.
+
+## File structure
+
+```
+src/css/
+  custom.css              ← Entry point (imports only, never add rules here)
+  tokens.css              ← Design tokens, theme variables
+  fonts.css               ← @font-face declarations
+  base.css                ← Element resets (body, headings, tables)
+  utilities.css           ← Utility classes used from MDX (.video-container, .img-*)
+  docusaurus-overrides.css ← Navbar, sidebar, TOC, breadcrumbs, admonitions, code blocks
+  vendor-overrides.css    ← Algolia DocSearch overrides
+```
+
+Component styles live in co-located CSS Modules (`styles.module.css`).
+
+## Where to put new styles
+
+| What you're styling | Where it goes |
+|---|---|
+| A React component | `src/components/MyComponent/styles.module.css` |
+| A swizzled theme component | `src/theme/ComponentName/styles.module.css` |
+| A new design token | `src/css/tokens.css` under `:root` or `[data-theme]` |
+| A Docusaurus theme override (navbar, sidebar, TOC) | `src/css/docusaurus-overrides.css` |
+| A global utility class used in MDX | `src/css/utilities.css` |
+| A third-party plugin override | `src/css/vendor-overrides.css` |
+
+**Never add rules directly to `custom.css`.** It is an import-only entry point.
+
+## Mandatory: use tokens, not hardcoded values
+
+### Brand colors (constant — use everywhere)
+
+```css
+var(--linea-brand-navy)    /* #190066 */
+var(--linea-brand-purple)  /* #6119ef */
+var(--linea-brand-cyan)    /* #61dfff */
+var(--linea-brand-yellow)  /* #fff068 */
+var(--linea-purple-hover)  /* #8e5dff */
+```
+
+### Theme-aware tokens (switch automatically between light/dark)
+
+```css
+var(--linea-text-primary)    /* #121212 | #f8f7f2 */
+var(--linea-text-secondary)  /* #525252 | #d1d1d1 */
+var(--linea-text-muted)      /* #808080 | #808080 */
+var(--linea-text-subtle)     /* #a0a0a0 | #a0a0a0 */
+var(--linea-border)          /* #e5e5e5 | #333    */
+var(--linea-border-subtle)   /* #e5e5e5 | #2d2d2d */
+var(--linea-surface-elevated)/* #efefeb | #2f2f2f */
+var(--linea-hover-bg)        /* #EFEFEB | rgba     */
+var(--linea-active-color)    /* #6119ef | #a78bfa  */
+var(--linea-active-bg)       /* rgba    | rgba     */
+```
+
+### Border radii
+
+```css
+var(--linea-radius-sm)    /* 4px   */
+var(--linea-radius-md)    /* 10px  */
+var(--linea-radius-lg)    /* 15px  */
+var(--linea-radius-pill)  /* 50px  */
+var(--linea-radius-round) /* 100px */
+```
+
+### Typography scale
+
+```css
+var(--font-display-lg)  /* 40px */ var(--font-display-md) /* 32px */
+var(--font-heading-lg)  /* 24px */ var(--font-heading-md) /* 18px */
+var(--font-body-md)     /* 16px */ var(--font-body-sm)    /* 14px */
+var(--font-body-xs)     /* 12px */
+```
+
+Fonts: `AtypDisplay` for headings, `AtypText` for body. Always include `sans-serif` fallback.
+
+## Forbidden patterns
+
+- **No `!important` without a comment** explaining why it's needed (usually overriding Infima)
+- **No build-hash selectors** like `.admonitionContent_BuS1` — use stable `.theme-admonition-content`
+- **No inline `style={{}}`** — use a CSS Module
+- **No DOM `style` mutations** (e.g., `e.target.style.color`) — use `clsx` + class toggling
+- **No ID selectors** — use classes
+- **No new global class names in `docusaurus-overrides.css`** for component-specific styles
+- **No hardcoded `#190066`, `#6119ef`, `#8e5dff`, `#e5e5e5`, `#333`** — use the tokens above
+
+## Dark mode
+
+- Use theme-aware tokens (`--linea-border`, `--linea-text-primary`, etc.) so a single rule covers both themes
+- If you need a theme-specific override, use `[data-theme="dark"]` prefix
+- Add new theme-aware tokens in `tokens.css` under both `[data-theme="dark"]` and `[data-theme="light"]` blocks
+- Prefer extending the token system over writing paired light/dark rules
+
+## Component pattern
+
+```tsx
+import styles from './styles.module.css';
+import clsx from 'clsx';
+
+export default function MyComponent({ active }) {
+  return <div className={clsx(styles.root, active && styles.active)} />;
+}
+```
+
+The CSS Module:
+```css
+.root {
+  border: 1px solid var(--linea-border);
+  border-radius: var(--linea-radius-md);
+  color: var(--linea-text-primary);
+}
+
+.active {
+  color: var(--linea-active-color);
+  background: var(--linea-active-bg);
+}
+```
+
+## Docusaurus selector guidelines
+
+- Prefer `.theme-*` stable class names over `[class*="..."]`
+- When `[class*="..."]` is unavoidable (hashed Docusaurus classes), comment why
+- Keep selector depth under 4 levels
+- Reuse `--ifm-*` variables when Infima already provides what you need
+
+## Visual verification
+
+After any CSS change, visually inspect the affected pages in both light and dark mode,
+at desktop (1440px) and mobile (390px) viewports, to confirm zero regressions.
