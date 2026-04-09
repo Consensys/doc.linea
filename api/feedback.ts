@@ -45,6 +45,12 @@ function isValidPageUrl(url: string): boolean {
   }
 }
 
+// ---------- Device type ----------
+
+function getDeviceType(ua: string): "mobile" | "desktop" {
+  return /Mobile|Android|iPhone|iPad/i.test(ua) ? "mobile" : "desktop";
+}
+
 // ---------- Google Sheets (module-scoped for reuse across warm invocations) ----------
 
 const credentials = JSON.parse(
@@ -61,7 +67,7 @@ const sheetsClient = sheets({ version: "v4", auth });
 async function appendToSheet(row: string[]) {
   await sheetsClient.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-    range: "Sheet1!A:F",
+    range: "Sheet1!A:E",
     valueInputOption: "RAW",
     requestBody: { values: [row] },
   });
@@ -69,7 +75,10 @@ async function appendToSheet(row: string[]) {
 
 // ---------- GitHub Issue ----------
 
-async function createGitHubIssue(pageUrl: string, reason: string) {
+async function createGitHubIssue(
+  pageUrl: string,
+  reason: string,
+): Promise<string | null> {
   const repo = process.env.GITHUB_REPO!; // "Consensys/doc.linea"
   const res = await fetch(`https://api.github.com/repos/${repo}/issues`, {
     method: "POST",
@@ -91,21 +100,32 @@ async function createGitHubIssue(pageUrl: string, reason: string) {
       res.status,
       await res.text(),
     );
+    return null;
   }
+
+  const data = await res.json();
+  return data.html_url;
 }
 
 // ---------- Slack Webhook ----------
 
-async function notifySlack(pageUrl: string, reason: string) {
+async function notifySlack(
+  pageUrl: string,
+  reason: string,
+  issueUrl: string | null,
+) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return;
+
+  let text = `:warning: Negative docs feedback on *${pageUrl}*\n>${reason.replace(/\n/g, "\n>")}`;
+  if (issueUrl) {
+    text += `\n<${issueUrl}|View GitHub issue>`;
+  }
 
   const res = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text: `:warning: Negative docs feedback on *${pageUrl}*\n>${reason.replace(/\n/g, "\n>")}`,
-    }),
+    body: JSON.stringify({ text }),
   });
 
   if (!res.ok) {
@@ -121,11 +141,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Rate limiting is handled by Vercel Firewall (project dashboard)
-
-  const ip =
-    (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ??
-    req.socket.remoteAddress ??
-    "unknown";
 
   // Validate
   const {
@@ -161,26 +176,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       pageUrl,
       rating,
       cleanReason,
-      ip,
-      req.headers["user-agent"] ?? "",
+      getDeviceType((req.headers["user-agent"] as string) ?? ""),
     ]);
   } catch (err) {
     console.error("Google Sheets append failed:", err);
     // Don't block the response
   }
 
-  // Negative + reason → GitHub issue + Slack
+  // Negative + reason → GitHub issue, then Slack with issue link
   if (rating === "no" && cleanReason) {
-    const results = await Promise.allSettled([
-      createGitHubIssue(pageUrl, cleanReason),
-      notifySlack(pageUrl, cleanReason),
-    ]);
-    const labels = ["GitHub issue", "Slack notification"];
-    results.forEach((r, i) => {
-      if (r.status === "rejected") {
-        console.error(`${labels[i]} failed:`, r.reason);
-      }
-    });
+    let issueUrl: string | null = null;
+    try {
+      issueUrl = await createGitHubIssue(pageUrl, cleanReason);
+    } catch (err) {
+      console.error("GitHub issue failed:", err);
+    }
+
+    try {
+      await notifySlack(pageUrl, cleanReason, issueUrl);
+    } catch (err) {
+      console.error("Slack notification failed:", err);
+    }
   }
 
   return res.status(200).json({ ok: true });
