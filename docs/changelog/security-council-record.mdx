@@ -19,6 +19,101 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### April 13, 2026 (TBD)
+
+- **[Nonce 72](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+
+The following addresses are setup-time generated addresses and should be treated as placeholders in review:
+- `Dynamic Vault`: `0x14a022ef11a41770757652aa6607ef9d7e270b72`
+- `Dynamic Dashboard`: `0x93e37c24e4c58db1fbb53e6247e4441e021c0123`
+- `VaultHub OssifiableProxy`: `0x1d201be093d847f6446530efb0e8fb426d176709`
+- `Bootstrap Admin`: `0x02ca7772ff14a9f6c1a08af385aa96bb1b34175a`
+
+- Actions:
+  - Transfer `1 ETH` of reserve funds into `YieldManager`.
+  - Create a new Lido StVault vault/dashboard pair via the vendor initialization flow.
+  - Initialize `Dynamic Vault`, set its beacon, depositor, node operator, and fund it with `1 ETH`.
+  - Initialize `Dynamic Dashboard` and configure:
+    - confirm expiry = `86400`
+    - fee rate = `990`
+    - fee recipient = `Governance Safe`
+  - Grant dashboard roles during setup:
+    - grant `DEFAULT_ADMIN_ROLE` to `Bootstrap Admin`
+    - grant `NODE_OPERATOR_MANAGER_ROLE` (`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`) to `Governance Safe`
+    - grant `DEFAULT_ADMIN_ROLE` to `Governance Safe`
+    - grant the following dashboard operational roles to `0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94`:
+      - `FUND_ROLE`
+      - `WITHDRAW_ROLE`
+      - `MINT_ROLE`
+      - `REBALANCE_ROLE`
+      - `PAUSE_BEACON_CHAIN_DEPOSITS_ROLE`
+      - `REQUEST_VALIDATOR_EXIT_ROLE`
+      - `RESUME_BEACON_CHAIN_DEPOSITS_ROLE`
+      - `TRIGGER_VALIDATOR_WITHDRAWAL_ROLE`
+      - `VOLUNTARY_DISCONNECT_ROLE`
+  - Reconfigure dashboard role administration so several node-operator roles are now administered by `NODE_OPERATOR_MANAGER_ROLE`.
+  - Revoke `DEFAULT_ADMIN_ROLE` from `Bootstrap Admin`, leaving the governance Safe as the remaining default admin.
+  - Transfer `Dynamic Vault` ownership from `Dynamic Dashboard` to `VaultHub OssifiableProxy`.
+  - Connect `Dynamic Vault` on `VaultHub OssifiableProxy` with configured share limit, reserve ratio, and fee parameters.
+  - Register `Yield Provider` in `YieldManager` as vendor `1` (`LIDO_STVAULT`).
+  - Set the yield provider's `primaryEntrypoint` to `Dynamic Dashboard`.
+  - Set the yield provider's `ossifiedEntrypoint` to `Dynamic Vault`.
+  - Account for an initial `usersFundsIncrement` of `1000000000000000000` wei (`1 ETH`) in `YieldManager`.
+  - Add L2 yield recipient `Linea Consortium Multisig` via `YieldManager.addL2YieldRecipient`.
+
+- Verification:
+  - Event order:
+    - Reserve funding:
+      - `ReserveFundsReceived(amount = 1000000000000000000)` on `Yield Manager`.
+    - Vault bootstrap:
+      - `BeaconUpgraded(beacon = `StakingVault Beacon`)`.
+      - ``OwnershipTransferred(previousOwner = 0x0000000000000000000000000000000000000000, newOwner = `Dynamic Dashboard`)``.
+      - ``DepositorSet(previousDepositor = 0x0000000000000000000000000000000000000000, newDepositor = `Predeposit Guarantee`)``.
+      - ``NodeOperatorSet(nodeOperator = `Node Operator`)``.
+      - `Initialized(version = 1)` on `Dynamic Vault`.
+    - Dashboard bootstrap and configuration:
+      - ``RoleGranted(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Bootstrap Admin`, sender = `Bootstrap Admin`)``.
+      - ``ConfirmExpirySet(sender = `Bootstrap Admin`, oldConfirmExpiry = 0, newConfirmExpiry = 86400)``.
+      - `Initialized()` on `Dynamic Dashboard`.
+      - ``FeeRateSet(sender = `Bootstrap Admin`, oldFeeRate = 0, newFeeRate = 990)``.
+      - ``FeeRecipientSet(sender = `Bootstrap Admin`, oldFeeRecipient = 0x0000000000000000000000000000000000000000, newFeeRecipient = `Governance Safe`)``.
+    - Dashboard role administration:
+      - ``RoleGranted(role = `NODE_OPERATOR_MANAGER_ROLE` [`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`], account = `Governance Safe`, sender = `Bootstrap Admin`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_MANAGER_ROLE` [`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_FEE_EXEMPT_ROLE` [`0xcceeef0309e9a678ed7f11f20499aeb00a9a4b0d50e53daa428f8591debc583a`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` [`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` [`0x7b564705f4e61596c4a9469b6884980f89e475befabdb849d69719f0791628be`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+    - Dashboard funding and vault connection:
+      - ``Approval(owner = `Dynamic Dashboard`, spender = `wstETH`, value = type(uint256).max)`` on `stETH`.
+      - `EtherFunded(amount = 1000000000000000000)`.
+      - ``OwnershipTransferStarted(previousOwner = `Dynamic Dashboard`, newOwner = `VaultHub OssifiableProxy`)``.
+      - ``OwnershipTransferred(previousOwner = `Dynamic Dashboard`, newOwner = `VaultHub OssifiableProxy`)``.
+      - ``VaultConnected(vault = `Dynamic Vault`, shareLimit = 4071000000000000000000, reserveRatioBP = 5000, forcedRebalanceThresholdBP = 4975, infraFeeBP = 100, liquidityFeeBP = 650, reservationFeeBP = 0)`` on `VaultHub OssifiableProxy`.
+        - The values above are defaults from vault construction.
+    - YieldManager dashboard permissions:
+      - ``RoleGranted(role = `FUND_ROLE` [`0x933b7d5c112a4d05b489cea0b2ced98acb27d3d0fc9827c92cdacb2d6c5559c2`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `WITHDRAW_ROLE` [`0x355caf1c2580ed8185acb5ea3573b71f85186b41bdf69e3eb8f1fcd122a562df`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `MINT_ROLE` [`0xe996ac9b332538bb1fa3cd6743aa47011623cdb94bd964a494ee9d371e4a27d3`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `REBALANCE_ROLE` [`0x3f82ecf462ddac43fc17ba11472c35f18b7760b4f5a5fc50b9625f9b5a22cf62`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `PAUSE_BEACON_CHAIN_DEPOSITS_ROLE` [`0xa90c7030a27f389f9fc8ed21a0556f40c88130cc14a80db936bed68261819b2c`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `REQUEST_VALIDATOR_EXIT_ROLE` [`0x32d0d6546e21c13ff633616141dc9daad87d248d1d37c56bf493d06d627ecb7b`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `RESUME_BEACON_CHAIN_DEPOSITS_ROLE` [`0x59d005e32db662b94335d6bedfeb453fd2202b9f0cc7a6ed498d9098171744b0`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `TRIGGER_VALIDATOR_WITHDRAWAL_ROLE` [`0xea19d3b23bd90fdd52445ad672f2b6fb1fef7230d49c6a827c1cd288d02994d5`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `VOLUNTARY_DISCONNECT_ROLE` [`0x9586321ac05f110e4b4a0a42aba899709345af0ca78910e8832ddfd71fed2bf4`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+    - Final dashboard admin handoff and factory events:
+      - ``RoleGranted(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Governance Safe`, sender = `Bootstrap Admin`)``.
+      - ``RoleRevoked(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Bootstrap Admin`, sender = `Bootstrap Admin`)``.
+      - ``VaultCreated(vault = `Dynamic Vault`)``.
+      - ``DashboardCreated(dashboard = `Dynamic Dashboard`, vault = `Dynamic Vault`, admin = `Governance Safe`)``.
+    - YieldManager registration and recipient allowlist:
+      - The address `Yield Manager` emits `ReserveFundsReceived`, `YieldProviderAdded`, and `L2YieldRecipientAdded`.
+      - `YieldProviderVendor = 1` maps to `LIDO_STVAULT`.
+      - ``YieldProviderAdded(yieldProvider = `Yield Provider`, yieldProviderVendor = 1 [`LIDO_STVAULT`], primaryEntrypoint = `Dynamic Dashboard`, ossifiedEntrypoint = `Dynamic Vault`, usersFundsIncrement = 1000000000000000000)``.
+      - ``L2YieldRecipientAdded(l2YieldRecipient = `Linea Consortium Multisig`)``.
+    - Safe execution:
+      - `ExecutionSuccess(txHash = 0x53c3eef9e10234fa62c0263866d74f9e91387fea309d487bd0933ec5e77db521, payment = 0)`.
+
+
 ### March 31, 2026
 #### L1
 
