@@ -62,10 +62,11 @@ const GENERIC_CHILD_LABELS = new Set([
 ]);
 
 function toPlainText(value) {
-  return value
-    .replace(/<[^>]+>/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  let text = value;
+  while (/<[^>]+>/.test(text)) {
+    text = text.replace(/<[^>]+>/g, "");
+  }
+  return text.replace(/\s+/g, " ").trim();
 }
 
 function getDisplayLabel(item, parentLabel) {
