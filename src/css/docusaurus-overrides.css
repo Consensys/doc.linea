@@ -1009,9 +1009,9 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
      would otherwise double-offset below our sticky top. */
   [class*="sidebarViewport"] {
     position: sticky !important;
-    top: var(--sidebar-top, 83px) !important;
-    height: calc(100vh - var(--sidebar-top, 83px)) !important;
-    max-height: calc(100vh - var(--sidebar-top, 83px)) !important;
+    top: var(--sidebar-top, var(--linea-sticky-header-offset)) !important;
+    height: calc(100vh - var(--sidebar-top, var(--linea-sticky-header-offset))) !important;
+    max-height: calc(100vh - var(--sidebar-top, var(--linea-sticky-header-offset))) !important;
     overflow: hidden !important;
     padding-top: 0 !important;
   }
@@ -1416,6 +1416,10 @@ a.menu__link {
   margin-right: 5px;
 }
 
+.release-notes-toc.theme-doc-toc-desktop::before {
+  display: none;
+}
+
 button.clean-btn.menu__caret {
   padding: 4px 8px;
   display: flex;
@@ -1516,6 +1520,7 @@ button.clean-btn.menu__caret {
   .theme-doc-toc-desktop {
     background-color: var(--page-background);
     width: 0;
+    overflow: hidden;
   }
 }
 
