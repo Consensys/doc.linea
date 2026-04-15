@@ -22,13 +22,11 @@ This page maintains a record and brief explanation of [Linea Security Council tr
 
 :::
 
-## Beta v6.0
+<a id="beta-v60" /><a id="forced-transactions" />
 
-Beta v6.0 is a phased release comprising several upgrades to the Linea protocol.
+## v1.0
 
-### Forced transactions
-
-<ChangelogDate mainnet="13 April 2026 (target)" sepolia="6 April 2026 (target)" />
+<ChangelogDate mainnet="27 April 2026 (target)" sepolia="20 April 2026 (target)" />
 
 <ChangelogEntry tag="feature">
 
@@ -37,7 +35,17 @@ that allows users to submit L2 transactions directly to the L1.
 
 </ChangelogEntry>
 
-### Small fields
+## Beta v5.3
+
+<ChangelogEntry tag="performance">
+
+Prover performance optimizations. Proof generation time ~40% faster.
+
+</ChangelogEntry>
+
+<a id="small-fields" />
+
+## Beta v5.2
 
 <ChangelogDate mainnet="1 April 2026" sepolia="24 March 2026" />
 
@@ -50,7 +58,19 @@ that allows users to submit L2 transactions directly to the L1.
 
 </ChangelogEntry>
 
-### EIP-7702
+## Beta v5.1
+
+<ChangelogDate mainnet="30 March 2026" sepolia="21 December 2025" />
+
+<ChangelogEntry tag="feature">
+
+Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge the `LineaRollup` contract, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+
+</ChangelogEntry>
+
+<a id="eip-7702" />
+
+## Beta v5.0
 
 <ChangelogDate mainnet="23 March 2026" sepolia="6 March 2026" />
 
@@ -60,19 +80,9 @@ Introduces [EIP-7702](/protocol/eip-7702), enabling gasless transactions, batch 
 
 </ChangelogEntry>
 
-## Beta v5.0
+<a id="assertions" />
 
-<ChangelogDate mainnet="30 March 2026" sepolia="21 December 2025" />
-
-**Linea Mainnet: 30 March 2026**
-
-<ChangelogEntry tag="feature">
-
-Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge the `LineaRollup` contract, and distribute rewards to the L2 ecosystem. More documentation coming soon.
-
-</ChangelogEntry>
-
-## Assertions
+## Beta v4.5
 
 <ChangelogDate mainnet="28 January 2026" />
 
@@ -81,6 +91,8 @@ Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonic
 Deploys the Credible Layer, a security infrastructure built by [Phylax Systems](https://phylax.systems) that lets you define security rules for your smart contracts and enforce them at the network level. To learn more about writing and deploying assertions, see the [guide](../network/how-to/write-and-deploy-assertions.mdx).
 
 </ChangelogEntry>
+
+<a id="fusaka" />
 
 ## Beta v4.4
 
@@ -112,14 +124,6 @@ Increases throughput to 100 Mgas/s.
 
 Updates the burn mechanism to include LINEA tokens. Details and percentage breakdown in the
 [burn mechanism guide](../protocol/tokenomics.mdx#burning-mechanism).
-
-</ChangelogEntry>
-
-## Fusaka
-
-<ChangelogEntry tag="announcement">
-
-Linea will be implementing upgrades to bring the network into line with the latest updates to the Ethereum network, referred to as [the Fusaka upgrade](https://ethereum.org/roadmap/fusaka/).
 
 </ChangelogEntry>
 
@@ -159,7 +163,7 @@ matter of weeks: from the London hard fork beforehand this release, all the way 
 Due to the complexity of this process, the upgrade will occur in stages, progressing through hard
 forks according to the release schedule above.
 
-For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in Beta v6.0), unlocking access to apps that rely on this capability.
+For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in Beta v5.0), unlocking access to apps that rely on this capability.
 
 For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience
 more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and
@@ -168,7 +172,7 @@ precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Li
 
 :::note
 
-EIP-7702 will only be activated in Beta v6.0.
+EIP-7702 will only be activated in Beta v5.0.
 
 :::
 
@@ -194,7 +198,7 @@ Initially, only a single Maru node operated by Linea will produce blocks.
 
 ## Beta v3.1
 
-<ChangelogDate mainnet="early/mid-August 2025 (target)" sepolia="late July 2025 (target)" />
+<ChangelogDate mainnet="early/mid-August 2025" sepolia="late July 2025" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -207,7 +211,7 @@ Increase throughput.
 
 ## Beta v3.0
 
-<ChangelogDate mainnet="early August 2025 (target)" sepolia="late July 2025 (target)" />
+<ChangelogDate mainnet="early August 2025" sepolia="late July 2025" />
 
 <ChangelogEntry tag="upgrade" title="Limitless prover">
 

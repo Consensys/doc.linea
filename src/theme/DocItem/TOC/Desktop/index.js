@@ -14,16 +14,15 @@ const LINK_CLASS_NAME = "table-of-contents__link toc-highlight";
 const LINK_ACTIVE_CLASS_NAME = "table-of-contents__link--active";
 
 const RELEASE_TOC_META = {
-  "beta-v60": { phase: "Phased release" },
-  "forced-transactions": { date: "13 Apr 2026 target" },
-  "small-fields": { date: "1 Apr 2026" },
-  "eip-7702": { date: "23 Mar 2026" },
-  "beta-v50": { date: "30 Mar 2026" },
-  assertions: { date: "28 Jan 2026" },
-  "beta-v44": { date: "3 Dec 2025" },
+  v10: { date: "Forced transactions - 27 Apr 2026 target" },
+  "beta-v53": { date: "Prover performance optimizations - 27 Apr 2026 target" },
+  "beta-v52": { date: "Small fields - 1 Apr 2026" },
+  "beta-v51": { date: "Yield Boost - 30 Mar 2026" },
+  "beta-v50": { date: "EIP-7702 - 23 Mar 2026" },
+  "beta-v45": { date: "Assertions - 28 Jan 2026" },
+  "beta-v44": { date: "Fusaka - 3 Dec 2025" },
   "beta-v43": { date: "17 Nov 2025" },
   "beta-v42": { date: "5 Nov 2025" },
-  fusaka: { phase: "Announcement" },
   "beta-v41": { date: "30 Oct 2025" },
   "beta-v40": { date: "22-28 Oct 2025" },
   "beta-v311": { date: "6 Oct 2025" },
@@ -149,7 +148,7 @@ function ReleaseNotesTOC({
 
   return (
     <div className={clsx(styles.root, "release-notes-toc", className)}>
-      <div className={styles.heading}>Release chronology</div>
+      <div className={styles.heading}>Release history</div>
       <div className={clsx(styles.scrollArea, "thin-scrollbar")}>
         <ReleaseNotesTOCItems items={tocTree} />
       </div>
