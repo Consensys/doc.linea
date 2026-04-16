@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDoc } from "@docusaurus/plugin-content-docs/client";
 import styles from './styles.module.css';
 
 const TAG_STYLE_MAP = {
@@ -35,22 +36,33 @@ export function ChangelogEntry({ tag, title, children }) {
   );
 }
 
-export function ChangelogDate({ mainnet, sepolia, children }) {
+export function ChangelogDate({ sectionId, mainnet, sepolia, children }) {
+  const { frontMatter } = useDoc();
+  const meta = sectionId ? frontMatter?.release_toc?.[sectionId] : null;
+
   if (children) {
     return <div className={styles.dates}>{children}</div>;
   }
+
+  const effectiveMainnet = mainnet || meta?.mainnet;
+  const effectiveSepolia = sepolia || meta?.sepolia;
+
+  if (!effectiveMainnet && !effectiveSepolia && meta?.date) {
+    return <div className={styles.dates}>{meta.date}</div>;
+  }
+
   return (
     <div className={styles.dates}>
-      {mainnet && (
+      {effectiveMainnet && (
         <div className={styles.date}>
           <span className={styles.dateArrow}>→</span>
-          <span>Linea Mainnet: {mainnet}</span>
+          <span>Linea Mainnet: {effectiveMainnet}</span>
         </div>
       )}
-      {sepolia && (
+      {effectiveSepolia && (
         <div className={styles.date}>
           <span className={styles.dateArrow}>→</span>
-          <span>Linea Sepolia: {sepolia}</span>
+          <span>Linea Sepolia: {effectiveSepolia}</span>
         </div>
       )}
     </div>

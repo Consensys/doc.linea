@@ -13,48 +13,6 @@ import styles from "./styles.module.css";
 const LINK_CLASS_NAME = "table-of-contents__link toc-highlight";
 const LINK_ACTIVE_CLASS_NAME = "table-of-contents__link--active";
 
-const RELEASE_TOC_META = {
-  v10: { date: "Forced transactions - 27 Apr 2026 target" },
-  "beta-v53": { date: "Prover performance optimizations - 27 Apr 2026 target" },
-  "beta-v52": { date: "Small fields - 1 Apr 2026" },
-  "beta-v51": { date: "Yield Boost - 30 Mar 2026" },
-  "beta-v50": { date: "EIP-7702 - 23 Mar 2026" },
-  "beta-v45": { date: "Assertions - 28 Jan 2026" },
-  "beta-v44": { date: "Fusaka - 3 Dec 2025" },
-  "beta-v43": { date: "17 Nov 2025" },
-  "beta-v42": { date: "5 Nov 2025" },
-  "beta-v41": { date: "30 Oct 2025" },
-  "beta-v40": { date: "22-28 Oct 2025" },
-  "beta-v311": { date: "6 Oct 2025" },
-  "beta-v31": { date: "Aug 2025 target" },
-  "beta-v30": { date: "Early Aug 2025 target" },
-  "beta-v20": { date: "9 Jun 2025" },
-  "beta-v10": { phase: "Phased release" },
-  "beta-v14": { date: "28 Apr 2025" },
-  "beta-v13": { date: "3 Mar 2025" },
-  "beta-v12": { date: "With Beta v2" },
-  "beta-v11": { date: "With Beta v2" },
-  "alpha-v42": { date: "26 Mar 2025" },
-  "alpha-v41": { date: "4 Feb 2025" },
-  "alpha-v40": { date: "16 Dec 2024" },
-  "alpha-v350": { date: "9 Oct 2024" },
-  "alpha-v341": { date: "30 Sep 2024" },
-  "alpha-v36": { date: "25 Sep 2024" },
-  "alpha-v352": { date: "23 Sep 2024" },
-  "alpha-v351": { phase: "Date not listed" },
-  "alpha-v34": { date: "30 Jul 2024" },
-  "alpha-v33": { date: "11 Jun 2024" },
-  "alpha-v32": { date: "4 Jun 2024" },
-  "alpha-v31": { date: "14 May 2024" },
-  "alpha-v30": { date: "26 Mar 2024" },
-  "february-2024": { phase: "Monthly release notes" },
-  "alpha-v2": { phase: "Grouped release notes" },
-  "december-2023": { phase: "Monthly release notes" },
-  "november-2023": { phase: "Monthly release notes" },
-  "october-2023": { phase: "Monthly release notes" },
-  "summary-release-notes-june---october": { phase: "Historical summary" },
-};
-
 const GENERIC_CHILD_LABELS = new Set([
   "summary",
   "features",
@@ -77,7 +35,15 @@ function getDisplayLabel(item, parentLabel) {
   return plainLabel;
 }
 
-function ReleaseNotesTOCItems({ items, parentLabel }) {
+function getMetaText(meta) {
+  if (!meta) return null;
+  const date = meta.date || meta.mainnet;
+  const parts = [meta.label, date].filter(Boolean);
+  if (parts.length) return parts.join(" · ");
+  return meta.phase || null;
+}
+
+function ReleaseNotesTOCItems({ items, parentLabel, releaseMeta }) {
   if (!items.length) {
     return null;
   }
@@ -85,9 +51,11 @@ function ReleaseNotesTOCItems({ items, parentLabel }) {
   return (
     <ul className={clsx(styles.list, parentLabel && styles.childList)}>
       {items.map((item) => {
-        const meta = RELEASE_TOC_META[item.id];
         const displayLabel = getDisplayLabel(item, parentLabel);
         const plainLabel = toPlainText(item.value);
+        const metaText = !parentLabel
+          ? getMetaText(releaseMeta?.[item.id])
+          : null;
 
         return (
           <li
@@ -101,14 +69,12 @@ function ReleaseNotesTOCItems({ items, parentLabel }) {
                 !parentLabel ? styles.releaseLink : styles.childLink,
               )}>
               <span className={styles.label}>{displayLabel}</span>
-              {meta?.date && <span className={styles.meta}>{meta.date}</span>}
-              {!meta?.date && meta?.phase && (
-                <span className={styles.meta}>{meta.phase}</span>
-              )}
+              {metaText && <span className={styles.meta}>{metaText}</span>}
             </Link>
             <ReleaseNotesTOCItems
               items={item.children}
               parentLabel={plainLabel}
+              releaseMeta={releaseMeta}
             />
           </li>
         );
@@ -119,6 +85,7 @@ function ReleaseNotesTOCItems({ items, parentLabel }) {
 
 function ReleaseNotesTOC({
   toc,
+  releaseMeta,
   className,
   minHeadingLevel: minHeadingLevelOption,
   maxHeadingLevel: maxHeadingLevelOption,
@@ -151,7 +118,7 @@ function ReleaseNotesTOC({
     <div className={clsx(styles.root, "release-notes-toc", className)}>
       <div className={styles.heading}>Release history</div>
       <div className={clsx(styles.scrollArea, "thin-scrollbar")}>
-        <ReleaseNotesTOCItems items={tocTree} />
+        <ReleaseNotesTOCItems items={tocTree} releaseMeta={releaseMeta} />
       </div>
     </div>
   );
@@ -175,6 +142,7 @@ export default function DocItemTOCDesktop() {
   return (
     <ReleaseNotesTOC
       toc={toc}
+      releaseMeta={frontMatter.release_toc}
       minHeadingLevel={frontMatter.toc_min_heading_level}
       maxHeadingLevel={frontMatter.toc_max_heading_level}
       className={ThemeClassNames.docs.docTocDesktop}
