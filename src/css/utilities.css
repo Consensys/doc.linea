@@ -149,6 +149,11 @@
   }
 }
 
+/* Backward-compatible deep-link anchors that inherit sticky-navbar offset */
+.legacy-anchor {
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
+}
+
 .my-tabs {
   display: inline-flex;
   justify-content: normal;

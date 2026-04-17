@@ -43,6 +43,13 @@
   --linea-radius-round: 100px;
 }
 
+@media (min-width: 997px) {
+  :root {
+    --linea-sticky-header-offset: 83px;
+    --ifm-navbar-height: var(--linea-sticky-header-offset);
+  }
+}
+
 .footer--dark {
   --ifm-footer-background-color: var(--footer-background);
   border-top: 1px solid var(--linea-border);

@@ -156,6 +156,21 @@ export default function MyComponent({ active }) {
 
 ---
 
+## Release notes data model
+
+`docs/changelog/release-notes.mdx` uses a `release_toc` front matter map as the
+single source of truth for both page dates and TOC metadata. When adding or
+editing a release entry:
+
+1. Add/update the entry in `release_toc` front matter (one inline YAML line per
+   release: `id: { label, mainnet, sepolia }` or `{ label, date }` or `{ phase }`).
+2. Use `<ChangelogDate sectionId="<id>" />` in the body. It reads dates from
+   front matter. Do not pass `mainnet`/`sepolia` as inline props.
+3. The custom TOC (`src/theme/DocItem/TOC/Desktop/index.js`) reads from the same
+   front matter map. No separate JS metadata.
+
+---
+
 ## Visual verification
 
 After any CSS change, visually inspect the affected pages in both light and dark

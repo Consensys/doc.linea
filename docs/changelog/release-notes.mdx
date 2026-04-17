@@ -3,6 +3,46 @@ title: Release notes
 description: Find out all you need to know about the latest Linea versions.
 displayed_sidebar: changelogSidebar
 image: /img/socialCards/release-notes.jpg
+release_toc:
+  # v10: { label: "Forced transactions", mainnet: "27 April 2026 (target)", sepolia: "20 April 2026 (target)" }
+  beta-v53: { label: "Prover performance optimizations", mainnet: "27 April 2026", sepolia: "20 March 2026" }
+  beta-v52: { label: "Small fields", mainnet: "1 April 2026", sepolia: "24 March 2026" }
+  beta-v51: { label: "Yield Boost", mainnet: "30 March 2026", sepolia: "21 December 2025" }
+  beta-v50: { label: "EIP-7702", mainnet: "23 March 2026", sepolia: "6 March 2026" }
+  beta-v45: { label: "Assertions", mainnet: "28 January 2026" }
+  beta-v44: { label: "Fusaka", mainnet: "3 December 2025", sepolia: "1 December 2025" }
+  beta-v43: { mainnet: "17 November 2025", sepolia: "10 November 2025" }
+  beta-v42: { mainnet: "5 November 2025", sepolia: "31 October 2025" }
+  beta-v41: { mainnet: "30 October 2025", sepolia: "30 October 2025" }
+  beta-v40: { label: "Pectra hard fork", date: "22-28 Oct 2025" }
+  beta-v311: { mainnet: "6 October, 2025" }
+  beta-v31: { mainnet: "early/mid-August 2025", sepolia: "late July 2025" }
+  beta-v30: { label: "Limitless prover", mainnet: "early August 2025", sepolia: "late July 2025" }
+  beta-v20: { label: "100% proven", mainnet: "June 9, 2025", sepolia: "mid/late May 2025" }
+  beta-v14: { date: "April 28, 2025" }
+  beta-v13: { mainnet: "March 3, 2025", sepolia: "February 18, 2025" }
+  beta-v12: { mainnet: "with Beta v2", sepolia: "February 4, 2025" }
+  beta-v11: { mainnet: "with Beta v2", sepolia: "September 26, 2024" }
+  beta-v10: { phase: "Phased release" }
+  alpha-v42: { label: "Linea bridge improvements", mainnet: "March 26, 2025", sepolia: "March 18, 2025" }
+  alpha-v41: { mainnet: "February 4, 2025", sepolia: "January 28, 2025" }
+  alpha-v40: { mainnet: "December 16, 2024", sepolia: "November 27, 2024" }
+  alpha-v36: { label: "Block size changes", mainnet: "September 25", sepolia: "September 25" }
+  alpha-v352: { label: "Transaction exclusion API", mainnet: "September 23", sepolia: "September 18" }
+  alpha-v351: { phase: "Date not listed" }
+  alpha-v350: { label: "finalized tag", mainnet: "October 9", sepolia: "September 17" }
+  alpha-v341: { label: "Reactivate linea_estimateGas", mainnet: "September 30", sepolia: "September 9" }
+  alpha-v34: { label: "ENS on Linea", mainnet: "July 30", sepolia: "July 30" }
+  alpha-v33: { label: "Block time reduction", mainnet: "June 11, 10:00 UTC", sepolia: "June 3" }
+  alpha-v32: { label: "Gas optimization", mainnet: "June 4", sepolia: "May 28" }
+  alpha-v31: { mainnet: "May 14" }
+  alpha-v30: { label: "EIP-4844", date: "March 26, 2024" }
+  february-2024: { phase: "Monthly release notes" }
+  alpha-v2: { phase: "Grouped release notes" }
+  december-2023: { phase: "Monthly release notes" }
+  november-2023: { phase: "Monthly release notes" }
+  october-2023: { phase: "Monthly release notes" }
+  summary-release-notes-june---october: { phase: "Historical summary" }
 ---
 
 import CodeBlock from "@theme/CodeBlock";
@@ -22,23 +62,38 @@ This page maintains a record and brief explanation of [Linea Security Council tr
 
 :::
 
-## Beta v6.0
+<div id="v10" className="legacy-anchor" /><div id="beta-v60" className="legacy-anchor" /><div id="forced-transactions" className="legacy-anchor" />
 
-Beta v6.0 is a phased release comprising several upgrades to the Linea protocol.
+{/* Version 1.0: hidden until launch. To restore, uncomment this block and the v10 front matter entry.
 
-### EIP-7702
+## Version 1.0 {#v10}
 
-<ChangelogDate mainnet="23 March 2026" sepolia="6 March 2026" />
+<ChangelogDate sectionId="v10" />
 
-<ChangelogEntry tag="upgrade">
+<ChangelogEntry tag="feature">
 
-Introduces [EIP-7702](/protocol/eip-7702), enabling gasless transactions, batch transactions, and session keys. No user action or migration required.
+Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism
+that allows users to submit L2 transactions directly to the L1.
 
 </ChangelogEntry>
 
-### Small fields
+*/}
 
-<ChangelogDate mainnet="1 April 2026" sepolia="24 March 2026" />
+## Beta v5.3
+
+<ChangelogDate sectionId="beta-v53" />
+
+<ChangelogEntry tag="performance">
+
+Prover performance optimizations. Proof generation time ~40% faster.
+
+</ChangelogEntry>
+
+<div id="small-fields" className="legacy-anchor" />
+
+## Beta v5.2
+
+<ChangelogDate sectionId="beta-v52" />
 
 <ChangelogEntry tag="performance">
 
@@ -49,22 +104,9 @@ Introduces [EIP-7702](/protocol/eip-7702), enabling gasless transactions, batch 
 
 </ChangelogEntry>
 
-### Forced transactions
+## Beta v5.1
 
-<ChangelogDate mainnet="13 April 2026 (target)" sepolia="6 April 2026 (target)" />
-
-<ChangelogEntry tag="feature">
-
-Introduces [forced transactions](../protocol/forced-transactions.mdx), a manual submission mechanism
-that allows users to submit L2 transactions directly to the L1.
-
-</ChangelogEntry>
-
-## Beta v5.0
-
-<ChangelogDate mainnet="30 March 2026" sepolia="21 December 2025" />
-
-**Linea Mainnet: 30 March 2026**
+<ChangelogDate sectionId="beta-v51" />
 
 <ChangelogEntry tag="feature">
 
@@ -72,9 +114,23 @@ Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonic
 
 </ChangelogEntry>
 
-## Assertions
+<div id="eip-7702" className="legacy-anchor" />
 
-<ChangelogDate mainnet="28 January 2026" />
+## Beta v5.0
+
+<ChangelogDate sectionId="beta-v50" />
+
+<ChangelogEntry tag="upgrade">
+
+Introduces [EIP-7702](/protocol/eip-7702), enabling gasless transactions, batch transactions, and session keys. No user action or migration required.
+
+</ChangelogEntry>
+
+<div id="assertions" className="legacy-anchor" />
+
+## Beta v4.5
+
+<ChangelogDate sectionId="beta-v45" />
 
 <ChangelogEntry tag="feature">
 
@@ -82,9 +138,11 @@ Deploys the Credible Layer, a security infrastructure built by [Phylax Systems](
 
 </ChangelogEntry>
 
+<div id="fusaka" className="legacy-anchor" />
+
 ## Beta v4.4
 
-<ChangelogDate mainnet="3 December 2025" sepolia="1 December 2025" />
+<ChangelogDate sectionId="beta-v44" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -94,7 +152,7 @@ Upgrades Linea to Fusaka (Ethereum's latest EVM upgrade), detailed in the [upgra
 
 ## Beta v4.3
 
-<ChangelogDate mainnet="17 November 2025" sepolia="10 November 2025" />
+<ChangelogDate sectionId="beta-v43" />
 
 <ChangelogEntry tag="performance">
 
@@ -106,7 +164,7 @@ Increases throughput to 100 Mgas/s.
 
 ## Beta v4.2
 
-<ChangelogDate mainnet="5 November 2025" sepolia="31 October 2025" />
+<ChangelogDate sectionId="beta-v42" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -115,17 +173,9 @@ Updates the burn mechanism to include LINEA tokens. Details and percentage break
 
 </ChangelogEntry>
 
-## Fusaka
-
-<ChangelogEntry tag="announcement">
-
-Linea will be implementing upgrades to bring the network into line with the latest updates to the Ethereum network, referred to as [the Fusaka upgrade](https://ethereum.org/roadmap/fusaka/).
-
-</ChangelogEntry>
-
 ## Beta v4.1
 
-<ChangelogDate mainnet="30 October 2025" sepolia="30 October 2025" />
+<ChangelogDate sectionId="beta-v41" />
 
 <ChangelogEntry tag="performance">
 
@@ -159,7 +209,7 @@ matter of weeks: from the London hard fork beforehand this release, all the way 
 Due to the complexity of this process, the upgrade will occur in stages, progressing through hard
 forks according to the release schedule above.
 
-For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in Beta v6.0), unlocking access to apps that rely on this capability.
+For Linea users, the upgrade will enable new use cases and experiences through EIP-7702 (coming in Beta v5.0), unlocking access to apps that rely on this capability.
 
 For builders, Linea becoming even more strongly Ethereum-aligned will make the developer experience
 more streamlined and closely resemble Ethereum. The upgrade adds support for several opcodes and
@@ -168,7 +218,7 @@ precompiles, such as `PUSH0` and `MCOPY`, considerably shortening the list of Li
 
 :::note
 
-EIP-7702 will only be activated in Beta v6.0.
+EIP-7702 will only be activated in Beta v5.0.
 
 :::
 
@@ -183,7 +233,7 @@ Initially, only a single Maru node operated by Linea will produce blocks.
 
 ## Beta v3.1.1
 
-<ChangelogDate mainnet="6 October, 2025" />
+<ChangelogDate sectionId="beta-v311" />
 
 <ChangelogEntry tag="performance">
 
@@ -194,7 +244,7 @@ Initially, only a single Maru node operated by Linea will produce blocks.
 
 ## Beta v3.1
 
-<ChangelogDate mainnet="early/mid-August 2025 (target)" sepolia="late July 2025 (target)" />
+<ChangelogDate sectionId="beta-v31" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -207,7 +257,7 @@ Increase throughput.
 
 ## Beta v3.0
 
-<ChangelogDate mainnet="early August 2025 (target)" sepolia="late July 2025 (target)" />
+<ChangelogDate sectionId="beta-v30" />
 
 <ChangelogEntry tag="upgrade" title="Limitless prover">
 
@@ -223,7 +273,7 @@ Note that the higher throughput will not enabled until the sequencer limits are 
 
 ## Beta v2.0
 
-<ChangelogDate mainnet="June 9, 2025" sepolia="mid/late May 2025" />
+<ChangelogDate sectionId="beta-v20" />
 
 <ChangelogEntry tag="feature" title="100% proven">
 
@@ -239,12 +289,8 @@ supporting future decentralization and security.
 
 </ChangelogEntry>
 
-## Beta v1.0
 
-Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove
-100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
-
-### Beta v1.4
+## Beta v1.4
 
 **Linea Mainnet: April 28, 2025**
 
@@ -258,9 +304,9 @@ and audit Linea state, reducing the risk of having a centralized sequencer.
 
 </ChangelogEntry>
 
-### Beta v1.3
+## Beta v1.3
 
-<ChangelogDate mainnet="March 3, 2025" sepolia="February 18, 2025" />
+<ChangelogDate sectionId="beta-v13" />
 
 <ChangelogEntry tag="performance">
 
@@ -268,9 +314,9 @@ Raises the block gas limit to 2B.
 
 </ChangelogEntry>
 
-### Beta v1.2
+## Beta v1.2
 
-<ChangelogDate mainnet="with Beta v2" sepolia="February 4, 2025" />
+<ChangelogDate sectionId="beta-v12" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -280,9 +326,9 @@ the hub's consistency arguments.
 
 </ChangelogEntry>
 
-### Beta v1.1
+## Beta v1.1
 
-<ChangelogDate mainnet="with Beta v2" sepolia="September 26, 2024" />
+<ChangelogDate sectionId="beta-v11" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -291,9 +337,18 @@ the hub's consistency arguments.
 
 </ChangelogEntry>
 
+## Beta v1.0
+
+<ChangelogEntry tag="announcement">
+
+Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove
+100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
+
+</ChangelogEntry>
+
 ## Alpha v4.2
 
-<ChangelogDate mainnet="March 26, 2025" sepolia="March 18, 2025" />
+<ChangelogDate sectionId="alpha-v42" />
 
 <ChangelogEntry tag="upgrade" title="Linea bridge improvements">
 
@@ -310,7 +365,7 @@ the hub's consistency arguments.
 
 ## Alpha v4.1
 
-<ChangelogDate mainnet="February 4, 2025" sepolia="January 28, 2025" />
+<ChangelogDate sectionId="alpha-v41" />
 
 <ChangelogEntry tag="feature">
 
@@ -322,7 +377,7 @@ Introduces the [Linea Token API](../api/token-api/) at alpha stage.
 
 ## Alpha v4.0
 
-<ChangelogDate mainnet="December 16, 2024" sepolia="November 27, 2024" />
+<ChangelogDate sectionId="alpha-v40" />
 
 <ChangelogEntry tag="upgrade">
 
@@ -400,7 +455,7 @@ messages.
 
 ## Alpha v3.6
 
-<ChangelogDate mainnet="September 25" sepolia="September 25" />
+<ChangelogDate sectionId="alpha-v36" />
 
 <ChangelogEntry tag="performance" title="Block size changes">
 
@@ -411,7 +466,7 @@ remains the same, at 2 seconds.
 
 ## Alpha v3.5.2
 
-<ChangelogDate mainnet="September 23" sepolia="September 18" />
+<ChangelogDate sectionId="alpha-v352" />
 
 <ChangelogEntry tag="feature" title="Transaction exclusion API">
 
@@ -432,7 +487,7 @@ Upgrades the [Linea bridge](https://linea.build/hub/bridge/) UI.
 
 ## Alpha v3.5.0
 
-<ChangelogDate mainnet="October 9" sepolia="September 17" />
+<ChangelogDate sectionId="alpha-v350" />
 
 <ChangelogEntry tag="feature" title="finalized tag">
 
@@ -444,7 +499,7 @@ See our [guide](../network/overview/transaction-finality.mdx#how-to-check-finali
 
 ## Alpha v3.4.1
 
-<ChangelogDate mainnet="September 30" sepolia="September 9" />
+<ChangelogDate sectionId="alpha-v341" />
 
 <ChangelogEntry tag="upgrade" title="Reactivate linea_estimateGas">
 
@@ -455,7 +510,7 @@ mode.
 
 ## Alpha v3.4
 
-<ChangelogDate mainnet="July 30" sepolia="July 30" />
+<ChangelogDate sectionId="alpha-v34" />
 
 <ChangelogEntry tag="feature" title="ENS on Linea">
 
@@ -498,7 +553,7 @@ See our [reference page](../api/reference/linea-estimategas.mdx) for more inform
 
 ## Alpha v3.3
 
-<ChangelogDate mainnet="June 11, 10:00 UTC" sepolia="June 3" />
+<ChangelogDate sectionId="alpha-v33" />
 
 <ChangelogEntry tag="action-required" title="Breaking change: block time and block size reduction">
 
@@ -529,7 +584,7 @@ In the `besu-sequencer` plugin, adjust:
 
 ## Alpha v3.2
 
-<ChangelogDate mainnet="June 4" sepolia="May 28" />
+<ChangelogDate sectionId="alpha-v32" />
 
 <ChangelogEntry tag="upgrade" title="Smart contract gas optimization">
 
@@ -566,7 +621,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 
 ## Alpha v3.1
 
-<ChangelogDate mainnet="May 14" />
+<ChangelogDate sectionId="alpha-v31" />
 
 <ChangelogEntry tag="feature">
 
