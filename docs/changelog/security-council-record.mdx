@@ -19,8 +19,68 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
-### April 13, 2026 (TBD)
+### April 21, 2026
 
+#### L1
+- **[Nonce 74](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Safe upgrade to version 1.4.1
+  - Verification
+    - `ChangedMasterCopy` event emitted with `0x41675c099f32341bf84bfc5382af534df5c7461a` as the singleton.
+    - `ChangedFallbackHandler`event emitted with `0xfd0732dc9e303f09fcef3a7388ad10a83459ec99` as the handler.
+
+- **[Nonce 73](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Rotation of two Security Council Addresses.
+  - Verification:
+    - Two addresses are removed and replaced with two new ones ( TBD )
+    - Thresholds at the end of the transaction remain unchanged.
+
+- **[Nonce 72](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Add verifier at index 0 fixing 2 correctness issues preventing the generation of proofs in some cases.
+    - Set Predeposit Guarantee Policy to non-strict on the vault dashboard.
+    - Grant Two Node Operation roles for non-strict flow on the vault dashboard.
+    - Set the FeeRecipient on the vault dashboard to the Payment Splitter.
+    - Adjust yield parameters to allow 20 BPS worth of ETH to be sent to the vault.
+    - Decrease the rate limit at the exit of the withdrawal tunnel to 10,000 ETH per day.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the transaction logs:
+    - `VerifierAddressChanged` records the new verifier `0x218c3339ff3fea595c02ac31ca8a782f5028c4dc`, at index 0.
+    - `PDGPolicyEnacted` event emitted with `pdgPolicy` having value `2`.
+    - `RoleGranted` 1 role granted to the node operator depositor `0xbe315a487bf2839a6d07ee91acfdf189af8bcf9d`.
+      - `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` (`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`).
+    - `RoleGranted` 1 role granted to the node operator depositor `0xcf9a8acbedbf57f9ee2f0c9cd0991277dbfb5da1`.
+      - `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` (`0x7b564705f4e61596c4a9469b6884980f89e475befabdb849d69719f0791628be`).
+    - `FeeRecipientSet` set to the payment splitter address `0x4d2504c498bb7e63bcc7bc11f781d30d99b6febb`.
+    - `WithdrawalReserveParametersSet`
+      - `newTargetWithdrawalReservePercentageBps` should change to `9980`from the old value of `9985`.
+      - All other parameters old and new remain unchanged.
+
+    - `LimitAmountChanged` contains the security council address, the new limit in Wei `10000000000000000000000`. The other two parameters will have one `false` and one `true` depending on execution timing.
+
+#### L2
+- **[Nonce 55](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Safe upgrade to version 1.4.1
+  - Verification
+    - `ChangedMasterCopy` event emitted with `0x29fcb43b46531bca003ddc8fcb67ffe91900c762` as the singleton.
+    - `ChangedFallbackHandler`event emitted with `0xfd0732dc9e303f09fcef3a7388ad10a83459ec99` as the handler.
+
+- **[Nonce 54](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Rotation of two Security Council Addresses.
+  - Verification:
+    - Two addresses are removed and replaced with two new ones ( TBD )
+    - Thresholds at the end of the transaction remain unchanged.
+
+- **[Nonce 53](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Decrease the rate limit at the entrance of the withdrawal tunnel to 8,000 ETH per day.
+  - Verification:
+    - `LimitAmountChanged` contains the security council address, the new limit in Wei `8000000000000000000000`. The other two parameters will have one `false` and one `true` depending on execution timing.
+
+### April 17, 2026
+#### L1
 - **[Nonce 72](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xf2df9a80b654c181f9930b3a152192216d79d6e1f3821d5e3232662512b3c0bf)**
 
 The following addresses are setup-time generated addresses and should be treated as placeholders in review:
