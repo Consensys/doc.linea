@@ -1,0 +1,38 @@
+---
+title: eth_blockNumber
+description: Returns the number of the most recent block on Linea.
+image: /img/socialCards/ethblocknumber.jpg
+---
+
+# `eth_blockNumber`
+
+Returns the number of the most recent block.
+
+## Parameters
+
+None.
+
+## Returns
+
+Hexadecimal integer of the current block number.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1ce5452"
+}
+```

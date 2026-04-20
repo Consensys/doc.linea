@@ -1,0 +1,38 @@
+---
+title: eth_gasPrice
+description: 'Returns the current gas price on Linea, in wei.'
+image: /img/socialCards/ethgasprice.jpg
+---
+
+# `eth_gasPrice`
+
+Returns the current gas price in wei.
+
+## Parameters
+
+None.
+
+## Returns
+
+Hexadecimal value of the current gas price in wei.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x27f6780"
+}
+```

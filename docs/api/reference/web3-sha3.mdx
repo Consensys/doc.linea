@@ -1,0 +1,47 @@
+---
+title: web3_sha3
+description: Returns the Keccak-256 hash of the given data.
+image: /img/socialCards/web3sha3.jpg
+---
+
+# `web3_sha3`
+
+Returns the Keccak-256 hash of the given data. Note: despite the name, this method returns
+Keccak-256 (as used throughout Ethereum for function selectors, event topics, and address
+derivation), not the standardised SHA-3 (FIPS-202).
+
+## Parameters
+
+- `data`: _\[required]_ Hexadecimal string to hash.
+
+## Returns
+
+32-byte Keccak-256 hash of the input.
+
+## Example
+
+This example hashes the ASCII bytes of `"hello world"` (`0x68656c6c6f20776f726c64`).
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "web3_sha3",
+    "params": ["0x68656c6c6f20776f726c64"],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad"
+}
+```

@@ -1,0 +1,39 @@
+---
+title: net_version
+description: Returns the network ID of the connected Linea network as a decimal string.
+image: /img/socialCards/netversion.jpg
+---
+
+# `net_version`
+
+Returns the network ID as a decimal string. On Linea Mainnet this is `59144`. On Linea Sepolia it
+is `59141`.
+
+## Parameters
+
+None.
+
+## Returns
+
+Decimal string of the network ID.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"net_version","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "59144"
+}
+```

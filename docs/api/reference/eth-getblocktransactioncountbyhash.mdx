@@ -1,0 +1,45 @@
+---
+title: eth_getBlockTransactionCountByHash
+description: 'Returns the number of transactions in a Linea block, given the block hash.'
+image: /img/socialCards/ethgetblocktransactioncountbyhash.jpg
+---
+
+# `eth_getBlockTransactionCountByHash`
+
+Returns the number of transactions in a block, given the block hash.
+
+## Parameters
+
+- `blockHash`: _\[required]_ 32-byte hash of a block.
+
+## Returns
+
+Hexadecimal integer of the transaction count, or `null` if no block is found.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByHash",
+    "params": [
+      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550"
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1"
+}
+```

@@ -1,0 +1,47 @@
+---
+title: eth_getBalance
+description: Returns the ETH balance of an address on Linea.
+image: /img/socialCards/ethgetbalance.jpg
+---
+
+# `eth_getBalance`
+
+Returns the ETH balance of an address at a given block.
+
+## Parameters
+
+- `address`: _\[required]_ 20-byte address.
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Hexadecimal value of the balance in wei.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBalance",
+    "params": [
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "latest"
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1805af891ff10a"
+}
+```

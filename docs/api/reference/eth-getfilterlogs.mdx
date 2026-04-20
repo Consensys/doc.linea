@@ -1,0 +1,58 @@
+---
+title: eth_getFilterLogs
+description: Returns all logs matching a Linea filter's criteria since it was created.
+image: /img/socialCards/ethgetfilterlogs.jpg
+---
+
+# `eth_getFilterLogs`
+
+Returns all logs matching the filter criteria since the filter was created. Only works with log
+filters created by [`eth_newFilter`](eth-newfilter) — not block filters.
+
+## Parameters
+
+- `filterId`: _\[required]_ The filter ID returned by [`eth_newFilter`](eth-newfilter).
+
+## Returns
+
+Array of log objects with the same shape as the response from [`eth_getLogs`](eth-getlogs).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getFilterLogs",
+    "params": ["0x10ff687202f305efab..."],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000...",
+        "0x000000000000000000000000..."
+      ],
+      "data": "0x...",
+      "blockNumber": "0x1ce3105",
+      "transactionHash": "0x...",
+      "logIndex": "0x0",
+      "removed": false
+    }
+  ]
+}
+```

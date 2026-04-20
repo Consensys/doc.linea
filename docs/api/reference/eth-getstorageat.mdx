@@ -1,0 +1,51 @@
+---
+title: eth_getStorageAt
+description: Returns the value stored at a given storage slot of a contract on Linea.
+image: /img/socialCards/ethgetstorageat.jpg
+---
+
+# `eth_getStorageAt`
+
+Returns the value stored at a given storage slot of a contract address.
+
+## Parameters
+
+- `address`: _\[required]_ 20-byte address of the contract.
+- `position`: _\[required]_ Hexadecimal integer of the storage slot position.
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+The 32-byte value at the given storage position, as a hex string.
+
+## Example
+
+This example reads the 32-byte value at storage position `0x0` of the USDC contract.
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getStorageAt",
+    "params": [
+      "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+      "0x0",
+      "latest"
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x00000000000000000000000085e54b6659b11b09ece200728bb775332ebcea65"
+}
+```

@@ -1,0 +1,58 @@
+---
+title: eth_feeHistory
+description: Returns historical gas and priority fee data across a range of Linea blocks.
+image: /img/socialCards/ethfeehistory.jpg
+---
+
+# `eth_feeHistory`
+
+Returns historical gas information across a range of blocks, useful for tracking fee trends.
+
+## Parameters
+
+- `blockCount`: _\[required]_ Hexadecimal number of blocks in the requested range.
+- `newestBlock`: _\[required]_ Hexadecimal block number or `latest`.
+- `rewardPercentiles`: _\[optional]_ Array of percentile values (e.g. `[25, 50, 75]`) to sample from each block's effective priority fees.
+
+## Returns
+
+- `oldestBlock`: Hexadecimal block number of the oldest block in the range.
+- `baseFeePerGas`: Array of base fees per gas for each block (includes the next block after the range).
+- `gasUsedRatio`: Array of gas used ratios for each block.
+- `reward`: Array of effective priority fee arrays at the requested percentiles (present when `rewardPercentiles` is supplied).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_feeHistory",
+    "params": ["0x4", "latest", [25, 50, 75]],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "oldestBlock": "0x1ce5452",
+    "baseFeePerGas": ["0x7", "0x7", "0x7", "0x7", "0x7"],
+    "gasUsedRatio": [0.000026867, 0.0000930045, 0.0000379375, 0.0000485935],
+    "reward": [
+      ["0x27f6779", "0x27f6779", "0x27f6779"],
+      ["0x27f6779", "0x27f6779", "0x27f6779"],
+      ["0x27f6779", "0x27f6779", "0x27f6779"],
+      ["0x27f6779", "0x27f6779", "0x27f6779"]
+    ]
+  }
+}
+```

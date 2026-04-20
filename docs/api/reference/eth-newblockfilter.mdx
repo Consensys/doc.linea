@@ -1,0 +1,44 @@
+---
+title: eth_newBlockFilter
+description: Creates a filter to receive notifications when new Linea blocks arrive.
+image: /img/socialCards/ethnewblockfilter.jpg
+---
+
+# `eth_newBlockFilter`
+
+Creates a filter to receive notifications when new blocks are produced. Poll the filter with
+[`eth_getFilterChanges`](eth-getfilterchanges) to retrieve new block hashes since the last poll.
+
+## Parameters
+
+None.
+
+## Returns
+
+A filter ID (hexadecimal string).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_newBlockFilter",
+    "params": [],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x81445bcfd35c9b777a..."
+}
+```

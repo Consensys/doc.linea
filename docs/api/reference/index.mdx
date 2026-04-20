@@ -13,7 +13,12 @@ identical to building on Ethereum itself. However, some methods differ to Ethere
 in this section.
 
 :::info
-View the full list of Linea methods in the
+The following pages document every JSON-RPC method available on the Linea public RPC endpoint
+(`https://rpc.linea.build`). Methods with Linea-specific behavior are documented in detail.
+Standard Ethereum methods include `curl` examples you can run directly against the public endpoint —
+no API key required.
+
+For private endpoints with higher rate limits and WebSocket support, see the
 [MetaMask services documentation](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
 :::
 
@@ -31,22 +36,15 @@ following options:
 
 ## Make calls
 
-The following examples call the Linea API methods using an Infura endpoint, however you can substitute
-the endpoint with whichever endpoint you prefer.
-
-In the examples, replace `<YOUR-API-KEY>` with your actual Infura API key.
-
-:::info
-View the [list of node providers](../../network/build/tools/node-providers/index.mdx) if you require an endpoint.
-:::
-
+The following examples call the Linea API methods using the public endpoint `https://rpc.linea.build`.
+You can substitute the endpoint with whichever endpoint you prefer.
 
 ### curl
 
 Run the [`curl`](https://curl.se/) command in a terminal:
 
 ```bash
-curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
+curl https://rpc.linea.build \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}'
@@ -101,7 +99,7 @@ folder, initialise your new project:
     ```javascript title="index.js"
     const fetch = require("node-fetch");
 
-    fetch("https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>", {
+    fetch("https://rpc.linea.build", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -153,7 +151,7 @@ folder, initialise your new project:
     const axios = require("axios")
 
     axios
-      .post("https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>", {
+      .post("https://rpc.linea.build", {
         jsonrpc: "2.0",
         method: "eth_blockNumber",
         params: [],
@@ -198,7 +196,7 @@ folder, initialise your new project:
     const { createClient, http } = require('viem');
 
     const client = createClient({
-      transport: http('https://linea-mainnet.infura.io/v3/<YOUR-API-KEY>')
+      transport: http('https://rpc.linea.build')
     });
 
     client.request({
@@ -218,3 +216,14 @@ folder, initialise your new project:
     ```bash
     node index.js
     ```
+
+These examples use the public endpoint which is rate-limited. For production use, connect to a
+[node provider](../../network/build/tools/node-providers/index.mdx) for higher rate limits and
+WebSocket support.
+
+:::note
+Response values shown in these reference pages are real examples captured from `rpc.linea.build` at
+a point in time. Values for chain-state methods (block numbers, balances, gas prices, fee history,
+peer counts, client versions) will differ when you run the same calls — this is expected behavior,
+not an error.
+:::

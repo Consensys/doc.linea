@@ -1,0 +1,44 @@
+---
+title: eth_uninstallFilter
+description: Removes a filter from the Linea RPC node.
+image: /img/socialCards/ethuninstallfilter.jpg
+---
+
+# `eth_uninstallFilter`
+
+Removes a filter. Call this when you no longer need the filter to free resources on the node.
+Filters also expire automatically after a period of inactivity.
+
+## Parameters
+
+- `filterId`: _\[required]_ The filter ID to remove.
+
+## Returns
+
+`true` if the filter was found and removed, `false` otherwise.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_uninstallFilter",
+    "params": ["0x10ff687202f305efab..."],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": true
+}
+```

@@ -1,0 +1,90 @@
+---
+title: debug_traceCall
+description: >-
+  Simulates a call on Linea and returns a structured trace without broadcasting
+  a transaction.
+image: /img/socialCards/debugtracecall.jpg
+---
+
+# `debug_traceCall`
+
+:::warning Tracer is required
+
+On `rpc.linea.build`, the default tracer is **not supported**. You must specify a tracer in the
+options object. Supported tracers are `callTracer` and `prestateTracer`. `flatCallTracer` is not
+supported.
+
+:::
+
+Simulates a call at a given block and returns the trace — without submitting a transaction. Useful
+for debugging contract interactions before sending them.
+
+## Parameters
+
+- `transaction`: _\[required]_ Transaction call object (same fields as [`eth_call`](eth-call)).
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+- `options`: _\[required]_ Object specifying the tracer:
+  - `tracer`: _\[required]_ `"callTracer"` or `"prestateTracer"`.
+
+## Returns
+
+Same trace output as [`debug_traceTransaction`](debug-tracetransaction), but for a simulated call.
+
+## Example — `callTracer`
+
+This example simulates `balanceOf(address)` on the USDC contract.
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "debug_traceCall",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      "latest",
+      {"tracer": "callTracer"}
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0x0000000000000000000000000000000000000000",
+    "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+    "gas": "0x2faf080",
+    "gasUsed": "0x79b6",
+    "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+    "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+    "calls": [
+      {
+        "from": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "to": "0xab838fe7d492c621a5b1b23952af99cc37a2e0d3",
+        "gas": "0x2ee96d1",
+        "gasUsed": "0x9e1",
+        "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+        "value": "0x0",
+        "type": "DELEGATECALL"
+      }
+    ],
+    "value": "0x0",
+    "type": "CALL"
+  }
+}
+```
+
+`prestateTracer` is also supported and returns the pre-execution state of every account the call
+would touch, identical in shape to the [`debug_traceTransaction` `prestateTracer` response](debug-tracetransaction#example--prestatetracer).

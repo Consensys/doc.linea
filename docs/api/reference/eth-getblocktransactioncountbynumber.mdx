@@ -1,0 +1,43 @@
+---
+title: eth_getBlockTransactionCountByNumber
+description: 'Returns the number of transactions in a Linea block, given the block number.'
+image: /img/socialCards/ethgetblocktransactioncountbynumber.jpg
+---
+
+# `eth_getBlockTransactionCountByNumber`
+
+Returns the number of transactions in a block, given the block number.
+
+## Parameters
+
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Hexadecimal integer of the transaction count.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByNumber",
+    "params": ["0x1ce53dd"],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x1"
+}
+```
