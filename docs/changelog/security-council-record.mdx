@@ -38,13 +38,14 @@ you can take to verify this information.
 
 - **[Nonce 72](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
   - Actions: 
+    - Add verifier at index 0 fixing 2 correctness issues preventing the generation of proofs in some cases.
     - Set Predeposit Guarantee Policy to non-strict on the vault dashboard.
     - Grant Two Node Operation roles for non-strict flow on the vault dashboard.
     - Set the FeeRecipient on the vault dashboard to the Payment Splitter.
     - Adjust yield parameters to allow 20 BPS worth of ETH to be sent to the vault.
-    - Add verifier at index 0 fixing 2 correctness issues preventing the generation of proofs in some cases.
     - Decrease the rate limit at the exit of the withdrawal tunnel to 10,000 ETH per day.
   - Verification: Events confirming the verifier changes were emitted and are viewable in the transaction logs:
+    - `VerifierAddressChanged` records the new verifier `0x218c3339ff3fea595c02ac31ca8a782f5028c4dc`, at index 0.
     - `PDGPolicyEnacted` event emitted with `pdgPolicy` having value `2`.
     - `RoleGranted` 1 role granted to the node operator depositor `0xbe315a487bf2839a6d07ee91acfdf189af8bcf9d`.
       - `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` (`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`).
@@ -54,7 +55,7 @@ you can take to verify this information.
     - `WithdrawalReserveParametersSet`
       - `newTargetWithdrawalReservePercentageBps` should change to `9980`from the old value of `9985`.
       - All other parameters old and new remain unchanged.
-    - `VerifierAddressChanged` records the new verifier `0x218c3339ff3fea595c02ac31ca8a782f5028c4dc`, at index 0.
+
     - `LimitAmountChanged` contains the security council address, the new limit in Wei `10000000000000000000000`. The other two parameters will have one `false` and one `true` depending on execution timing.
 
 #### L2
