@@ -4,45 +4,128 @@ description: Find out all you need to know about the latest Linea versions.
 displayed_sidebar: changelogSidebar
 image: /img/socialCards/release-notes.jpg
 release_toc:
-  # v10: { label: "Forced transactions", mainnet: "27 April 2026 (target)", sepolia: "20 April 2026 (target)" }
-  beta-v53: { label: "Prover performance optimizations", mainnet: "27 April 2026", sepolia: "20 March 2026" }
-  beta-v52: { label: "Small fields", mainnet: "1 April 2026", sepolia: "24 March 2026" }
-  beta-v51: { label: "Yield Boost", mainnet: "30 March 2026", sepolia: "21 December 2025" }
-  beta-v50: { label: "EIP-7702", mainnet: "23 March 2026", sepolia: "6 March 2026" }
-  beta-v45: { label: "Assertions", mainnet: "28 January 2026" }
-  beta-v44: { label: "Fusaka", mainnet: "3 December 2025", sepolia: "1 December 2025" }
-  beta-v43: { mainnet: "17 November 2025", sepolia: "10 November 2025" }
-  beta-v42: { mainnet: "5 November 2025", sepolia: "31 October 2025" }
-  beta-v41: { mainnet: "30 October 2025", sepolia: "30 October 2025" }
-  beta-v40: { label: "Pectra hard fork", date: "22-28 Oct 2025" }
-  beta-v311: { mainnet: "6 October, 2025" }
-  beta-v31: { mainnet: "early/mid-August 2025", sepolia: "late July 2025" }
-  beta-v30: { label: "Limitless prover", mainnet: "early August 2025", sepolia: "late July 2025" }
-  beta-v20: { label: "100% proven", mainnet: "June 9, 2025", sepolia: "mid/late May 2025" }
-  beta-v14: { date: "April 28, 2025" }
-  beta-v13: { mainnet: "March 3, 2025", sepolia: "February 18, 2025" }
-  beta-v12: { mainnet: "with Beta v2", sepolia: "February 4, 2025" }
-  beta-v11: { mainnet: "with Beta v2", sepolia: "September 26, 2024" }
-  beta-v10: { phase: "Phased release" }
-  alpha-v42: { label: "Linea bridge improvements", mainnet: "March 26, 2025", sepolia: "March 18, 2025" }
-  alpha-v41: { mainnet: "February 4, 2025", sepolia: "January 28, 2025" }
-  alpha-v40: { mainnet: "December 16, 2024", sepolia: "November 27, 2024" }
-  alpha-v36: { label: "Block size changes", mainnet: "September 25", sepolia: "September 25" }
-  alpha-v352: { label: "Transaction exclusion API", mainnet: "September 23", sepolia: "September 18" }
-  alpha-v351: { phase: "Date not listed" }
-  alpha-v350: { label: "finalized tag", mainnet: "October 9", sepolia: "September 17" }
-  alpha-v341: { label: "Reactivate linea_estimateGas", mainnet: "September 30", sepolia: "September 9" }
-  alpha-v34: { label: "ENS on Linea", mainnet: "July 30", sepolia: "July 30" }
-  alpha-v33: { label: "Block time reduction", mainnet: "June 11, 10:00 UTC", sepolia: "June 3" }
-  alpha-v32: { label: "Gas optimization", mainnet: "June 4", sepolia: "May 28" }
-  alpha-v31: { mainnet: "May 14" }
-  alpha-v30: { label: "EIP-4844", date: "March 26, 2024" }
-  february-2024: { phase: "Monthly release notes" }
-  alpha-v2: { phase: "Grouped release notes" }
-  december-2023: { phase: "Monthly release notes" }
-  november-2023: { phase: "Monthly release notes" }
-  october-2023: { phase: "Monthly release notes" }
-  summary-release-notes-june---october: { phase: "Historical summary" }
+  beta-v54:
+    label: Finality under 30min
+    mainnet: 5 May 2026 (target)
+    sepolia: 29 April 2026
+  beta-v53:
+    label: Prover performance optimizations
+    mainnet: 29 April 2026
+    sepolia: 20 March 2026
+  beta-v52:
+    label: Small fields
+    mainnet: 1 April 2026
+    sepolia: 24 March 2026
+  beta-v51:
+    label: Yield Boost
+    mainnet: 30 March 2026
+    sepolia: 21 December 2025
+  beta-v50:
+    label: EIP-7702
+    mainnet: 23 March 2026
+    sepolia: 6 March 2026
+  beta-v45:
+    label: Assertions
+    mainnet: 28 January 2026
+  beta-v44:
+    label: Fusaka
+    mainnet: 3 December 2025
+    sepolia: 1 December 2025
+  beta-v43:
+    mainnet: 17 November 2025
+    sepolia: 10 November 2025
+  beta-v42:
+    mainnet: 5 November 2025
+    sepolia: 31 October 2025
+  beta-v41:
+    mainnet: 30 October 2025
+    sepolia: 30 October 2025
+  beta-v40:
+    label: Pectra hard fork
+    date: 22-28 Oct 2025
+  beta-v311:
+    mainnet: '6 October, 2025'
+  beta-v31:
+    mainnet: early/mid-August 2025
+    sepolia: late July 2025
+  beta-v30:
+    label: Limitless prover
+    mainnet: early August 2025
+    sepolia: late July 2025
+  beta-v20:
+    label: 100% proven
+    mainnet: 'June 9, 2025'
+    sepolia: mid/late May 2025
+  beta-v14:
+    date: 'April 28, 2025'
+  beta-v13:
+    mainnet: 'March 3, 2025'
+    sepolia: 'February 18, 2025'
+  beta-v12:
+    mainnet: with Beta v2
+    sepolia: 'February 4, 2025'
+  beta-v11:
+    mainnet: with Beta v2
+    sepolia: 'September 26, 2024'
+  beta-v10:
+    phase: Phased release
+  alpha-v42:
+    label: Linea bridge improvements
+    mainnet: 'March 26, 2025'
+    sepolia: 'March 18, 2025'
+  alpha-v41:
+    mainnet: 'February 4, 2025'
+    sepolia: 'January 28, 2025'
+  alpha-v40:
+    mainnet: 'December 16, 2024'
+    sepolia: 'November 27, 2024'
+  alpha-v36:
+    label: Block size changes
+    mainnet: September 25
+    sepolia: September 25
+  alpha-v352:
+    label: Transaction exclusion API
+    mainnet: September 23
+    sepolia: September 18
+  alpha-v351:
+    phase: Date not listed
+  alpha-v350:
+    label: finalized tag
+    mainnet: October 9
+    sepolia: September 17
+  alpha-v341:
+    label: Reactivate linea_estimateGas
+    mainnet: September 30
+    sepolia: September 9
+  alpha-v34:
+    label: ENS on Linea
+    mainnet: July 30
+    sepolia: July 30
+  alpha-v33:
+    label: Block time reduction
+    mainnet: 'June 11, 10:00 UTC'
+    sepolia: June 3
+  alpha-v32:
+    label: Gas optimization
+    mainnet: June 4
+    sepolia: May 28
+  alpha-v31:
+    mainnet: May 14
+  alpha-v30:
+    label: EIP-4844
+    date: 'March 26, 2024'
+  february-2024:
+    phase: Monthly release notes
+  alpha-v2:
+    phase: Grouped release notes
+  december-2023:
+    phase: Monthly release notes
+  november-2023:
+    phase: Monthly release notes
+  october-2023:
+    phase: Monthly release notes
+  summary-release-notes-june---october:
+    phase: Historical summary
 ---
 
 import CodeBlock from "@theme/CodeBlock";
@@ -79,6 +162,16 @@ that allows users to submit L2 transactions directly to the L1.
 
 */}
 
+## Beta v5.4
+
+<ChangelogDate sectionId="beta-v54" />
+
+<ChangelogEntry tag="performance">
+
+Finality under 30min: Reduce Linea's [hard finality](../network/overview/transaction-finality#hard-finality), the point at which a ZK proof is verified on Ethereum L1, from the current ~2 hours to under 30 minutes. Thanks to prover performance improvements (including the switch to [small fields](../changelog/release-notes#beta-v52)), proof generation becomes fast enough that proofs can be submitted to L1 continuously rather than in infrequent large batches, bringing hard finality from a multi-hour wait to an on-demand experience.
+
+</ChangelogEntry>
+
 ## Beta v5.3
 
 <ChangelogDate sectionId="beta-v53" />
@@ -110,7 +203,7 @@ Prover performance optimizations. Proof generation time ~40% faster.
 
 <ChangelogEntry tag="feature">
 
-Implements Yield Boost, a protocol-level mechanism to stake ETH from the canonical Linea Bridge the `LineaRollup` contract, and distribute rewards to the L2 ecosystem. More documentation coming soon.
+Implements [Yield Boost](../network/overview/yield-boost), a protocol-level mechanism to stake ETH held in the canonical Linea Bridge (`LineaRollup`) contract and distribute rewards to the L2 ecosystem.
 
 </ChangelogEntry>
 
