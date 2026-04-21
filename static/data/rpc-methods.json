@@ -1,0 +1,1259 @@
+{
+  "debug_traceBlockByHash": {
+    "method": "debug_traceBlockByHash",
+    "description": "Replays all transactions in a block by block hash and returns traces for each.",
+    "params": [
+      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+      { "tracer": "callTracer" }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "txHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "result": {
+            "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+            "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+            "gasUsed": "0x1458e",
+            "calls": ["..."],
+            "type": "CALL"
+          }
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "blockHash", "type": "string", "required": true, "description": "32-byte block hash." },
+      {
+        "name": "options",
+        "type": "object",
+        "required": true,
+        "description": "Object specifying the tracer.",
+        "children": [
+          { "name": "tracer", "type": "string", "required": true, "description": "\"callTracer\" or \"prestateTracer\"." }
+        ]
+      }
+    ],
+    "returns": "Array of trace results, one per transaction in the block, with the same shape as debug_traceBlockByNumber.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "debug"
+  },
+  "debug_traceBlockByNumber": {
+    "method": "debug_traceBlockByNumber",
+    "description": "Replays all transactions in a block by block number and returns traces for each.",
+    "params": [
+      "0x1ce53dd",
+      { "tracer": "callTracer" }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "txHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "result": {
+            "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+            "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+            "gas": "0x2635a",
+            "gasUsed": "0x1458e",
+            "input": "0x455ee4aa...",
+            "output": "0x",
+            "calls": ["..."],
+            "type": "CALL"
+          }
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." },
+      {
+        "name": "options",
+        "type": "object",
+        "required": true,
+        "description": "Object specifying the tracer.",
+        "children": [
+          { "name": "tracer", "type": "string", "required": true, "description": "\"callTracer\" or \"prestateTracer\"." }
+        ]
+      }
+    ],
+    "returns": "Array of trace results, one per transaction in the block, each with a result field containing the trace output (same structure as debug_traceTransaction).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "debug"
+  },
+  "debug_traceCall": {
+    "method": "debug_traceCall",
+    "description": "Simulates a call at a given block and returns the trace—without submitting a transaction. Useful for debugging contract interactions before sending them.",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      "latest",
+      { "tracer": "callTracer" }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "from": "0x0000000000000000000000000000000000000000",
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "gas": "0x2faf080",
+        "gasUsed": "0x79b6",
+        "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+        "calls": [
+          {
+            "from": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+            "to": "0xab838fe7d492c621a5b1b23952af99cc37a2e0d3",
+            "gas": "0x2ee96d1",
+            "gasUsed": "0x9e1",
+            "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+            "value": "0x0",
+            "type": "DELEGATECALL"
+          }
+        ],
+        "value": "0x0",
+        "type": "CALL"
+      }
+    },
+    "paramsDocs": [
+      { "name": "transaction", "type": "object", "required": true, "description": "Transaction call object (same fields as eth_call)." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." },
+      {
+        "name": "options",
+        "type": "object",
+        "required": true,
+        "description": "Object specifying the tracer.",
+        "children": [
+          { "name": "tracer", "type": "string", "required": true, "description": "\"callTracer\" or \"prestateTracer\"." }
+        ]
+      }
+    ],
+    "returns": "Same trace output as debug_traceTransaction, but for a simulated call.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "debug"
+  },
+  "debug_traceTransaction": {
+    "method": "debug_traceTransaction",
+    "description": "Replays a transaction and returns the execution trace. Useful for debugging failed transactions, analyzing internal calls, and inspecting state changes.",
+    "params": [
+      "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      { "tracer": "callTracer" }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "gas": "0x2635a",
+        "gasUsed": "0x1458e",
+        "input": "0x455ee4aa...",
+        "output": "0x",
+        "calls": [
+          {
+            "from": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+            "to": "0xc76cabfb0d247b4dc0b38b00b2ca92f8e8c9d32b",
+            "gas": "0x1ee7d",
+            "gasUsed": "0x12364",
+            "type": "DELEGATECALL"
+          }
+        ],
+        "type": "CALL"
+      }
+    },
+    "paramsDocs": [
+      { "name": "transactionHash", "type": "string", "required": true, "description": "32-byte hash of the transaction to trace." },
+      {
+        "name": "options",
+        "type": "object",
+        "required": true,
+        "description": "Object specifying the tracer.",
+        "children": [
+          { "name": "tracer", "type": "string", "required": true, "description": "\"callTracer\" or \"prestateTracer\"." }
+        ]
+      }
+    ],
+    "returns": "Trace object whose shape depends on the selected tracer (callTracer returns a call tree with nested CALL/DELEGATECALL/STATICCALL frames, prestateTracer returns the pre-execution state of every account touched by the transaction).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "debug"
+  },
+  "eth_accounts": {
+    "method": "eth_accounts",
+    "description": "Returns a list of addresses owned by the node. On the public Linea RPC endpoint the node does not manage any accounts, so this method always returns an empty array.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": []
+    },
+    "paramsDocs": [],
+    "returns": "Array of 20-byte addresses owned by the node; always [] on rpc.linea.build.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_blockNumber": {
+    "method": "eth_blockNumber",
+    "description": "Returns the number of the most recent block.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x1ce5452"
+    },
+    "paramsDocs": [],
+    "returns": "Hexadecimal integer of the current block number.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_call": {
+    "method": "eth_call",
+    "description": "Executes a call message without creating a transaction on the blockchain. Commonly used to read data from smart contracts.",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      "latest"
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x000000000000000000000000000000000000000000000000000000000026009c"
+    },
+    "paramsDocs": [
+      {
+        "name": "transaction",
+        "type": "object",
+        "required": true,
+        "description": "Transaction call object.",
+        "children": [
+          { "name": "from", "type": "string", "required": false, "description": "20-byte sender address." },
+          { "name": "to", "type": "string", "required": true, "description": "20-byte contract address." },
+          { "name": "gas", "type": "string", "required": false, "description": "Hexadecimal gas provided." },
+          { "name": "gasPrice", "type": "string", "required": false, "description": "Hexadecimal gas price." },
+          { "name": "value", "type": "string", "required": false, "description": "Hexadecimal value in wei." },
+          { "name": "data", "type": "string", "required": false, "description": "Hash of the method signature and encoded parameters." }
+        ]
+      },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Hexadecimal return data from the executed contract call.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_chainId": {
+    "method": "eth_chainId",
+    "description": "Returns the chain ID of the connected network. Linea Mainnet is `0xe708` (59144). Linea Sepolia is `0xe705` (59141).",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0xe708"
+    },
+    "paramsDocs": [],
+    "returns": "Hexadecimal value of the chain ID.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_estimateGas": {
+    "method": "eth_estimateGas",
+    "description": "Returns an estimate of gas needed to execute a transaction. The transaction is not sent.",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x7b17"
+    },
+    "paramsDocs": [
+      { "name": "transaction", "type": "object", "required": true, "description": "Transaction call object (same fields as eth_call)." },
+      { "name": "blockParameter", "type": "string", "required": false, "description": "Hexadecimal block number, or latest." }
+    ],
+    "returns": "Hexadecimal value of the estimated gas.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_feeHistory": {
+    "method": "eth_feeHistory",
+    "description": "Returns historical gas information across a range of blocks, useful for tracking fee trends.",
+    "params": ["0x4", "latest", [25, 50, 75]],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "oldestBlock": "0x1ce5452",
+        "baseFeePerGas": ["0x7", "0x7", "0x7", "0x7", "0x7"],
+        "gasUsedRatio": [0.000026867, 0.0000930045, 0.0000379375, 0.0000485935],
+        "reward": [
+          ["0x27f6779", "0x27f6779", "0x27f6779"],
+          ["0x27f6779", "0x27f6779", "0x27f6779"],
+          ["0x27f6779", "0x27f6779", "0x27f6779"],
+          ["0x27f6779", "0x27f6779", "0x27f6779"]
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "blockCount", "type": "string", "required": true, "description": "Hexadecimal number of blocks in the requested range." },
+      { "name": "newestBlock", "type": "string", "required": true, "description": "Hexadecimal block number or latest." },
+      { "name": "rewardPercentiles", "type": "array", "required": false, "description": "Array of percentile values (for example, [25, 50, 75]) to sample from each block's effective priority fees." }
+    ],
+    "returns": "Object containing oldestBlock, baseFeePerGas array, gasUsedRatio array, and (when rewardPercentiles is supplied) a reward array of effective priority fees at the requested percentiles.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_gasPrice": {
+    "method": "eth_gasPrice",
+    "description": "Returns the current gas price in wei.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x27f6780"
+    },
+    "paramsDocs": [],
+    "returns": "Hexadecimal value of the current gas price in wei.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBalance": {
+    "method": "eth_getBalance",
+    "description": "Returns the ETH balance of an address at a given block.",
+    "params": ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x1805af891ff10a"
+    },
+    "paramsDocs": [
+      { "name": "address", "type": "string", "required": true, "description": "20-byte address." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Hexadecimal value of the balance in wei.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBlockByHash": {
+    "method": "eth_getBlockByHash",
+    "description": "Returns block information by block hash.",
+    "params": [
+      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+      false
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "number": "0x1ce53dd",
+        "hash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+        "parentHash": "0x23498a882e8897c7e936846951d66744ba0da6052e23a76c23b8c7d98bc30d14",
+        "timestamp": "0x69e5bc55",
+        "gasUsed": "0x1458e",
+        "gasLimit": "0x77359400",
+        "baseFeePerGas": "0x7",
+        "transactions": [
+          "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "blockHash", "type": "string", "required": true, "description": "32-byte hash of a block." },
+      { "name": "fullTransactions", "type": "boolean", "required": true, "description": "If true, returns full transaction objects. If false, returns only transaction hashes." }
+    ],
+    "returns": "A block object with the same shape as eth_getBlockByNumber, or null if no block is found.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBlockByNumber": {
+    "method": "eth_getBlockByNumber",
+    "description": "Returns block information by block number.",
+    "params": ["0x1ce53dd", false],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "number": "0x1ce53dd",
+        "hash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+        "parentHash": "0x23498a882e8897c7e936846951d66744ba0da6052e23a76c23b8c7d98bc30d14",
+        "timestamp": "0x69e5bc55",
+        "gasUsed": "0x1458e",
+        "gasLimit": "0x77359400",
+        "baseFeePerGas": "0x7",
+        "miner": "0x8f81e2e3f8b46467523463835f965ffe476e1c9e",
+        "transactions": [
+          "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." },
+      { "name": "fullTransactions", "type": "boolean", "required": true, "description": "If true, returns full transaction objects. If false, returns only transaction hashes." }
+    ],
+    "returns": "A block object, or null if no block is found. Key fields include number, hash, parentHash, timestamp, gasUsed, gasLimit, baseFeePerGas, and transactions.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBlockReceipts": {
+    "method": "eth_getBlockReceipts",
+    "description": "Returns all transaction receipts for a given block.",
+    "params": ["0x1ce53dd"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "transactionIndex": "0x0",
+          "blockHash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+          "blockNumber": "0x1ce53dd",
+          "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+          "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+          "gasUsed": "0x1458e",
+          "cumulativeGasUsed": "0x1458e",
+          "effectiveGasPrice": "0x257e36f",
+          "status": "0x1",
+          "type": "0x2",
+          "contractAddress": null,
+          "logs": [
+            {
+              "address": "0xdb3a3929269281f157a58d91289185f21e30a1e0",
+              "topics": [
+                "0x3e393433c9275f1194d1ed44cea161cd2d35166f1906855d6119da515057537d",
+                "0x00000000000000000000000008ede5c20c6cb3b5f84f918322126ab207ac6cd0"
+              ],
+              "data": "0x",
+              "blockNumber": "0x1ce53dd",
+              "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+              "logIndex": "0x0",
+              "removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Array of transaction receipt objects for the block, each with the same shape as eth_getTransactionReceipt.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBlockTransactionCountByHash": {
+    "method": "eth_getBlockTransactionCountByHash",
+    "description": "Returns the number of transactions in a block, given the block hash.",
+    "params": ["0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x1"
+    },
+    "paramsDocs": [
+      { "name": "blockHash", "type": "string", "required": true, "description": "32-byte hash of a block." }
+    ],
+    "returns": "Hexadecimal integer of the transaction count, or null if no block is found.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getBlockTransactionCountByNumber": {
+    "method": "eth_getBlockTransactionCountByNumber",
+    "description": "Returns the number of transactions in a block, given the block number.",
+    "params": ["0x1ce53dd"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x1"
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Hexadecimal integer of the transaction count.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getCode": {
+    "method": "eth_getCode",
+    "description": "Returns the bytecode at a given contract address. Returns `0x` if the address is not a contract.",
+    "params": ["0x176211869ca2b568f2a7d4ee941e073a821ee1ff", "latest"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x60806040526004361061005a5760003560e01c80635c60da1b116100435780635c60da1b146101315780638f2839701461016f578063f851a440146101af5761005a565b80633659cfe6146100645780634f1ef286146100a4575b6100626101c4565b..."
+    },
+    "paramsDocs": [
+      { "name": "address", "type": "string", "required": true, "description": "20-byte address of the contract." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "The bytecode at the given address, as a hex string.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getFilterChanges": {
+    "method": "eth_getFilterChanges",
+    "description": "Polls a filter for new data since the last poll. For log filters, returns new logs. For block filters, returns new block hashes.",
+    "params": ["0x10ff687202f305efab..."],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": []
+    },
+    "paramsDocs": [
+      { "name": "filterId", "type": "string", "required": true, "description": "The filter ID returned by eth_newFilter or eth_newBlockFilter." }
+    ],
+    "returns": "Array of log objects (for log filters) or block hashes (for block filters); empty array if nothing has changed since the last poll.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getFilterLogs": {
+    "method": "eth_getFilterLogs",
+    "description": "Returns all logs matching the filter criteria since the filter was created. Only works with log filters created by `eth_newFilter`, not block filters.",
+    "params": ["0x10ff687202f305efab..."],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+          "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x000000000000000000000000...",
+            "0x000000000000000000000000..."
+          ],
+          "data": "0x...",
+          "blockNumber": "0x1ce3105",
+          "transactionHash": "0x...",
+          "logIndex": "0x0",
+          "removed": false
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "filterId", "type": "string", "required": true, "description": "The filter ID returned by eth_newFilter." }
+    ],
+    "returns": "Array of log objects with the same shape as the response from eth_getLogs.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getLogs": {
+    "method": "eth_getLogs",
+    "description": "Returns logs matching a given filter object.",
+    "params": [
+      {
+        "fromBlock": "0x1ce3100",
+        "toBlock": "0x1ce3110",
+        "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        ]
+      }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+          "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            "0x000000000000000000000000...",
+            "0x000000000000000000000000..."
+          ],
+          "data": "0x...",
+          "blockNumber": "0x1ce3105",
+          "transactionHash": "0x...",
+          "logIndex": "0x0",
+          "removed": false
+        }
+      ]
+    },
+    "paramsDocs": [
+      {
+        "name": "filter",
+        "type": "object",
+        "required": true,
+        "description": "Filter object.",
+        "children": [
+          { "name": "fromBlock", "type": "string", "required": false, "description": "Hexadecimal block number, or latest, earliest." },
+          { "name": "toBlock", "type": "string", "required": false, "description": "Hexadecimal block number, or latest, earliest." },
+          { "name": "address", "type": "string|array", "required": false, "description": "20-byte contract address or array of addresses." },
+          { "name": "topics", "type": "array", "required": false, "description": "Array of 32-byte topic values; each position can be a single value, an array of values (OR), or null (wildcard)." },
+          { "name": "blockHash", "type": "string", "required": false, "description": "32-byte block hash. If set, fromBlock and toBlock are ignored." }
+        ]
+      }
+    ],
+    "returns": "Array of log objects. Each log includes address, topics, data, blockNumber, transactionHash, transactionIndex, blockHash, logIndex, and removed.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getStorageAt": {
+    "method": "eth_getStorageAt",
+    "description": "Returns the value stored at a given storage slot of a contract address.",
+    "params": ["0x176211869ca2b568f2a7d4ee941e073a821ee1ff", "0x0", "latest"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x00000000000000000000000085e54b6659b11b09ece200728bb775332ebcea65"
+    },
+    "paramsDocs": [
+      { "name": "address", "type": "string", "required": true, "description": "20-byte address of the contract." },
+      { "name": "position", "type": "string", "required": true, "description": "Hexadecimal integer of the storage slot position." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "The 32-byte value at the given storage position, as a hex string.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getTransactionByBlockHashAndIndex": {
+    "method": "eth_getTransactionByBlockHashAndIndex",
+    "description": "Returns transaction data by block hash and transaction index position.",
+    "params": [
+      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+      "0x0"
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "hash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+        "blockNumber": "0x1ce53dd",
+        "transactionIndex": "0x0",
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "value": "0x0",
+        "gas": "0x2635a",
+        "gasPrice": "0x257e36f",
+        "nonce": "0xc824c",
+        "type": "0x2"
+      }
+    },
+    "paramsDocs": [
+      { "name": "blockHash", "type": "string", "required": true, "description": "32-byte hash of a block." },
+      { "name": "transactionIndex", "type": "string", "required": true, "description": "Hexadecimal integer of the transaction index position within the block." }
+    ],
+    "returns": "A transaction object with the same shape as eth_getTransactionByHash, or null if no transaction is found at the given index.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getTransactionByBlockNumberAndIndex": {
+    "method": "eth_getTransactionByBlockNumberAndIndex",
+    "description": "Returns transaction data by block number and transaction index position.",
+    "params": ["0x1ce53dd", "0x0"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "hash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+        "blockNumber": "0x1ce53dd",
+        "transactionIndex": "0x0",
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "value": "0x0",
+        "gas": "0x2635a",
+        "gasPrice": "0x257e36f",
+        "nonce": "0xc824c",
+        "type": "0x2"
+      }
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." },
+      { "name": "transactionIndex", "type": "string", "required": true, "description": "Hexadecimal integer of the transaction index position within the block." }
+    ],
+    "returns": "A transaction object with the same shape as eth_getTransactionByHash, or null if no transaction is found at the given index.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getTransactionByHash": {
+    "method": "eth_getTransactionByHash",
+    "description": "Returns transaction data for a given transaction hash.",
+    "params": ["0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "hash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+        "blockHash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+        "blockNumber": "0x1ce53dd",
+        "transactionIndex": "0x0",
+        "chainId": "0xe708",
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "value": "0x0",
+        "gas": "0x2635a",
+        "gasPrice": "0x257e36f",
+        "maxFeePerGas": "0x257e371",
+        "maxPriorityFeePerGas": "0x257e368",
+        "nonce": "0xc824c",
+        "type": "0x2",
+        "input": "0x455ee4aa..."
+      }
+    },
+    "paramsDocs": [
+      { "name": "transactionHash", "type": "string", "required": true, "description": "32-byte transaction hash." }
+    ],
+    "returns": "A transaction object, or null if no transaction is found.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getTransactionCount": {
+    "method": "eth_getTransactionCount",
+    "description": "Returns the number of transactions sent from an address (the account nonce).",
+    "params": ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x0"
+    },
+    "paramsDocs": [
+      { "name": "address", "type": "string", "required": true, "description": "20-byte address." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Hexadecimal integer of the number of transactions sent from the address.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_getTransactionReceipt": {
+    "method": "eth_getTransactionReceipt",
+    "description": "Returns the receipt of a transaction by transaction hash. Receipts are only available for transactions that have been included in a block.",
+    "params": ["0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+        "transactionIndex": "0x0",
+        "blockHash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+        "blockNumber": "0x1ce53dd",
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "gasUsed": "0x1458e",
+        "cumulativeGasUsed": "0x1458e",
+        "effectiveGasPrice": "0x257e36f",
+        "status": "0x1",
+        "type": "0x2",
+        "contractAddress": null,
+        "logs": [
+          {
+            "address": "0xdb3a3929269281f157a58d91289185f21e30a1e0",
+            "topics": [
+              "0x3e393433c9275f1194d1ed44cea161cd2d35166f1906855d6119da515057537d",
+              "0x00000000000000000000000008ede5c20c6cb3b5f84f918322126ab207ac6cd0"
+            ],
+            "data": "0x",
+            "logIndex": "0x0",
+            "removed": false
+          }
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "transactionHash", "type": "string", "required": true, "description": "32-byte transaction hash." }
+    ],
+    "returns": "A transaction receipt object, or null if the transaction is pending or not found. Key fields include status (0x1 success, 0x0 failure), gasUsed, logs, and contractAddress (if a contract was created).",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_maxPriorityFeePerGas": {
+    "method": "eth_maxPriorityFeePerGas",
+    "description": "Returns the current priority fee per gas in wei. This is the tip paid to validators above the base fee.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x396c8ee"
+    },
+    "paramsDocs": [],
+    "returns": "Hexadecimal value of the current max priority fee per gas in wei.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_newBlockFilter": {
+    "method": "eth_newBlockFilter",
+    "description": "Creates a filter to receive notifications when new blocks are produced. Poll the filter with `eth_getFilterChanges` to retrieve new block hashes since the last poll.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x81445bcfd35c9b777a..."
+    },
+    "paramsDocs": [],
+    "returns": "A filter ID (hexadecimal string).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_newFilter": {
+    "method": "eth_newFilter",
+    "description": "Creates a log filter and returns a filter ID. Use the ID with `eth_getFilterChanges` to poll for new logs, or `eth_getFilterLogs` to read all matching logs at once.",
+    "params": [
+      {
+        "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        ]
+      }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x10ff687202f305efab..."
+    },
+    "paramsDocs": [
+      {
+        "name": "filter",
+        "type": "object",
+        "required": true,
+        "description": "Filter object (same shape as eth_getLogs).",
+        "children": [
+          { "name": "fromBlock", "type": "string", "required": false, "description": "Hexadecimal block number, or latest, earliest. Defaults to latest." },
+          { "name": "toBlock", "type": "string", "required": false, "description": "Hexadecimal block number, or latest, earliest. Defaults to latest." },
+          { "name": "address", "type": "string|array", "required": false, "description": "Contract address or array of addresses." },
+          { "name": "topics", "type": "array", "required": false, "description": "Array of 32-byte topic values; each position can be a single value, an array of values (OR), or null (wildcard)." }
+        ]
+      }
+    ],
+    "returns": "A filter ID (hexadecimal string).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_sendBundle": {
+    "method": "eth_sendBundle",
+    "description": "Privately sends a bundle of signed transactions to be executed atomically, allowing the caller to define transaction execution order. This enables services such as frontrunning protection, gas abstraction, and revert protection. Due to being sent atomically, the bundle will only be executed if all transactions are confirmed.",
+    "params": [
+      {
+        "txs": ["0x1234567890abcdef...", "0x1234567890abcdef..."],
+        "blockNumber": "0x123..."
+      }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "bundleHash": "0x1234567890abcdef..."
+      }
+    },
+    "paramsDocs": [
+      { "name": "txs", "type": "array", "required": true, "description": "An array of signed transactions to execute in the bundle." },
+      { "name": "blockNumber", "type": "string", "required": true, "description": "Hexadecimal block number for the block the bundle is valid in." },
+      { "name": "minTimestamp", "type": "number", "required": false, "description": "Minimum timestamp for which the bundle is valid, in seconds since the unix epoch." },
+      { "name": "maxTimestamp", "type": "number", "required": false, "description": "Maximum timestamp for which the bundle is valid, in seconds since the unix epoch." }
+    ],
+    "returns": "An object containing bundleHash, the hash of the executed bundle.",
+    "playgroundEnabled": false,
+    "ciRunnable": false,
+    "category": "eth"
+  },
+  "eth_sendRawTransaction": {
+    "method": "eth_sendRawTransaction",
+    "description": "Submits a pre-signed and serialized transaction and returns the transaction hash if successful. This endpoint can help prevent transactions being rejected due to exceeding the sequencer's per-block line limit. If the line count check fails, it returns an error message indicating the transaction is likely to be rejected.",
+    "params": ["0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833"],
+    "exampleResponse": {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
+    },
+    "paramsDocs": [
+      { "name": "transaction data", "type": "string", "required": true, "description": "The signed transaction data." }
+    ],
+    "returns": "The 32-byte transaction hash, or the zero hash if the transaction is not yet available.",
+    "playgroundEnabled": false,
+    "ciRunnable": false,
+    "category": "eth"
+  },
+  "eth_syncing": {
+    "method": "eth_syncing",
+    "description": "Returns the sync status of the node. Returns `false` when the node is fully synced.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": false
+    },
+    "paramsDocs": [],
+    "returns": "false if the node is synced, or an object with startingBlock, currentBlock, and highestBlock if syncing is in progress.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "eth_uninstallFilter": {
+    "method": "eth_uninstallFilter",
+    "description": "Removes a filter. Call this when you no longer need the filter to free resources on the node. Filters also expire automatically after a period of inactivity.",
+    "params": ["0x10ff687202f305efab..."],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": true
+    },
+    "paramsDocs": [
+      { "name": "filterId", "type": "string", "required": true, "description": "The filter ID to remove." }
+    ],
+    "returns": "true if the filter was found and removed, false otherwise.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "eth"
+  },
+  "linea_estimateGas": {
+    "method": "linea_estimateGas",
+    "description": "Generates and returns an estimate of how much gas is necessary to allow the transaction to complete and be published on Ethereum. The transaction will not be added to the blockchain.",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      }
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 53,
+      "result": {
+        "baseFeePerGas": "0x7",
+        "gasLimit": "0xcf08",
+        "priorityFeePerGas": "0x43a82a4"
+      }
+    },
+    "paramsDocs": [
+      {
+        "name": "call",
+        "type": "object",
+        "required": true,
+        "description": "Transaction call object.",
+        "children": [
+          { "name": "from", "type": "string", "required": false, "description": "20 bytes - the address the transaction is sent from." },
+          { "name": "to", "type": "string", "required": false, "description": "20 bytes - the address the transaction is directed to." },
+          { "name": "gas", "type": "string", "required": false, "description": "Hexadecimal value of the gas provided for the transaction execution." },
+          { "name": "gasPrice", "type": "string", "required": false, "description": "Hexadecimal value of the gas price used for each paid gas." },
+          { "name": "maxPriorityFeePerGas", "type": "string", "required": false, "description": "Maximum fee, in wei, the sender is willing to pay per gas above the base fee." },
+          { "name": "maxFeePerGas", "type": "string", "required": false, "description": "Maximum total fee (base fee + priority fee), in wei, the sender is willing to pay per gas." },
+          { "name": "value", "type": "string", "required": false, "description": "Hexadecimal value of the value sent with this transaction." },
+          { "name": "data", "type": "string", "required": false, "description": "Hash of the method signature and encoded parameters." }
+        ]
+      },
+      {
+        "name": "stateOverride",
+        "type": "object",
+        "required": false,
+        "description": "Object that contains the address-to-state mapping to override state values. Each entry specifies a state that will be temporarily overridden before executing the call.",
+        "children": [
+          { "name": "balance", "type": "string", "required": false, "description": "Hexadecimal of the temporary account balance for the call execution." },
+          { "name": "nonce", "type": "string", "required": false, "description": "Hexadecimal of the temporary nonce value for the call execution." },
+          { "name": "code", "type": "string", "required": false, "description": "Bytecode to inject into the account." },
+          { "name": "stateDiff", "type": "object", "required": false, "description": "key:value pairs to override individual slots in the account storage." }
+        ]
+      }
+    ],
+    "returns": "Hexadecimal values representing the recommended gas limit, the base fee per gas, and the priority fee per gas.",
+    "playgroundEnabled": true,
+    "ciRunnable": true,
+    "category": "linea"
+  },
+  "linea_getProof": {
+    "method": "linea_getProof",
+    "description": "Returns the account and storage values, including the Merkle proof, of the specified account. The supplied block parameter must be an L2 block that has been finalized on L1.",
+    "params": [
+      "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
+      ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"],
+      "0x7AA88B"
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "accountProof": {
+          "key": "0x87f21c771eac9c547eb22312997153d3a1fc40f6",
+          "leafIndex": 2410424,
+          "proof": {
+            "proofRelatedNodes": [
+              "0x000000000000000000000000000000000000000000000000000000000075965e0a85198ef8a5f75a15db565de5bff89b409ff5e507a7be546149c32b99044df3",
+              "0x008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809008a47a2a53dd5183a2dc127c399a004e2a6c7e60f73e104d7d79e6a2bd7e809",
+              "0x060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b060f08aed06ffb90efc9705dc38d37a7000da1add99cef1b8a84b9e72e7c8b7b",
+              "..."
+            ],
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000001f2f46337996eabca16927c459f3fbdb8fb82672c464aa332b613a3c08db27c03dcbfed33825518e0122265146c2948b3bcb9b173348556e13c462f7a6b1a86f7d11acadc51eaeba164e92ebb5ecbe6c64ebc7d0190f93bf0edebeadf610ad80000000000000000000000000000000000000000000000000000000000001c85"
+          }
+        },
+        "storageProofs": [
+          {
+            "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "leftLeafIndex": 0,
+            "leftProof": {
+              "proofRelatedNodes": ["..."],
+              "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+            },
+            "rightLeafIndex": 2,
+            "rightProof": {
+              "proofRelatedNodes": ["..."],
+              "value": "0x0000000000000000000000000000000000000000000000000000000000000064"
+            }
+          }
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "address", "type": "string", "required": true, "description": "Address (20 bytes) for which the proof is requested." },
+      { "name": "storageKeys", "type": "array", "required": true, "description": "Array of 32-byte storage keys to be proofed and included." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized (must be an L2 block finalized on L1)." }
+    ],
+    "returns": "Object containing accountProof (key, leafIndex, proof with proofRelatedNodes and value) and storageProofs (array of entries with key, leftLeafIndex/leftProof, rightLeafIndex/rightProof).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "linea"
+  },
+  "linea_getTransactionExclusionStatusV1": {
+    "method": "linea_getTransactionExclusionStatusV1",
+    "description": "Queries a temporary database maintained by the transaction exclusion API service to check if a transaction was rejected by the sequencer, connected P2P node, or RPC nodes for exceeding data line limits that would prevent the prover from generating a proof.",
+    "params": ["0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": "1",
+      "result": {
+        "txHash": "0x526e56101cf39c1e717cef9cedf6fdddb42684711abda35bae51136dbb350ad7",
+        "from": "0x4d144d7b9c96b26361d6ac74dd1d8267edca4fc2",
+        "nonce": "0x64",
+        "txRejectionStage": "SEQUENCER",
+        "reasonMessage": "Transaction line count for module ADD=402 is above the limit 70",
+        "blockNumber": "0x3039",
+        "timestamp": "2024-08-22T09:18:51Z"
+      }
+    },
+    "paramsDocs": [
+      { "name": "txHash", "type": "string", "required": true, "description": "The hash of the subject transaction." }
+    ],
+    "returns": "Object with txHash, from, nonce, txRejectionStage (SEQUENCER, RPC, or P2P), reasonMessage, blockNumber (sequencer rejections only), and timestamp; null if the transaction was not rejected or is older than seven days.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "linea"
+  },
+  "net_listening": {
+    "method": "net_listening",
+    "description": "Returns `true` if the node is actively listening for network connections.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": true
+    },
+    "paramsDocs": [],
+    "returns": "Boolean; true if the node is listening, false otherwise.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "net"
+  },
+  "net_peerCount": {
+    "method": "net_peerCount",
+    "description": "Returns the number of peers currently connected to the node.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x64"
+    },
+    "paramsDocs": [],
+    "returns": "Hexadecimal integer of the peer count.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "net"
+  },
+  "net_version": {
+    "method": "net_version",
+    "description": "Returns the network ID as a decimal string. On Linea Mainnet this is `59144`. On Linea Sepolia it is `59141`.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "59144"
+    },
+    "paramsDocs": [],
+    "returns": "Decimal string of the network ID.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "net"
+  },
+  "trace_block": {
+    "method": "trace_block",
+    "description": "Returns all traces for every transaction in a block, in the OpenEthereum/Parity trace format.",
+    "params": ["0x1ce53dd"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "action": {
+            "callType": "call",
+            "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+            "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+            "gas": "0x209ae",
+            "input": "0x455ee4aa...",
+            "value": "0x0"
+          },
+          "result": {
+            "gasUsed": "0x136e2",
+            "output": "0x"
+          },
+          "blockNumber": 30299101,
+          "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "transactionPosition": 0,
+          "subtraces": 1,
+          "traceAddress": [],
+          "type": "call"
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest, earliest, pending, finalized." }
+    ],
+    "returns": "Array of trace objects across all transactions in the block; each trace includes transactionHash and transactionPosition to identify which transaction it belongs to.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "trace"
+  },
+  "trace_call": {
+    "method": "trace_call",
+    "description": "Simulates a call and returns the trace in the OpenEthereum/Parity format, without broadcasting a transaction. Similar to `debug_traceCall` but returns the OpenEthereum trace shape.",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      ["trace"],
+      "latest"
+    ],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+        "stateDiff": null,
+        "trace": [
+          {
+            "action": {
+              "callType": "call",
+              "from": "0x0000000000000000000000000000000000000000",
+              "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+              "gas": "0xffac48",
+              "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+              "value": "0x0"
+            },
+            "result": {
+              "gasUsed": "0x25fe",
+              "output": "0x000000000000000000000000000000000000000000000000000000000026009c"
+            },
+            "subtraces": 1,
+            "traceAddress": [],
+            "type": "call"
+          }
+        ]
+      }
+    },
+    "paramsDocs": [
+      { "name": "transaction", "type": "object", "required": true, "description": "Transaction call object (from, to, gas, gasPrice, value, data)." },
+      { "name": "traceTypes", "type": "array", "required": true, "description": "Array of trace types to return. Valid values: \"trace\", \"stateDiff\", \"vmTrace\"." },
+      { "name": "blockParameter", "type": "string", "required": true, "description": "Hexadecimal block number, or latest." }
+    ],
+    "returns": "Object with fields corresponding to the requested trace types: output (hex-encoded call return data), trace (array of call trace objects), stateDiff (state changes), vmTrace (VM-level trace).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "trace"
+  },
+  "trace_transaction": {
+    "method": "trace_transaction",
+    "description": "Returns all traces for a given transaction in the OpenEthereum/Parity trace format. Traces include internal calls that are not visible in a standard transaction receipt.",
+    "params": ["0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": [
+        {
+          "action": {
+            "callType": "call",
+            "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+            "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+            "gas": "0x209ae",
+            "input": "0x455ee4aa...",
+            "value": "0x0"
+          },
+          "result": {
+            "gasUsed": "0x136e2",
+            "output": "0x"
+          },
+          "blockHash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+          "blockNumber": 30299101,
+          "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "transactionPosition": 0,
+          "subtraces": 1,
+          "traceAddress": [],
+          "type": "call"
+        }
+      ]
+    },
+    "paramsDocs": [
+      { "name": "transactionHash", "type": "string", "required": true, "description": "32-byte transaction hash." }
+    ],
+    "returns": "Array of trace objects. Each trace includes an action object (callType, from, to, gas, input, value) and a result object (gasUsed, output).",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "trace"
+  },
+  "web3_clientVersion": {
+    "method": "web3_clientVersion",
+    "description": "Returns the client software version running the node.",
+    "params": [],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "Geth/v1.17.2-stable-be4dc0c4/linux-amd64/go1.26.1"
+    },
+    "paramsDocs": [],
+    "returns": "String describing the client and its version.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "web3"
+  },
+  "web3_sha3": {
+    "method": "web3_sha3",
+    "description": "Returns the Keccak-256 hash of the given data. Note: despite the name, this method returns Keccak-256 (as used throughout Ethereum for function selectors, event topics, and address derivation), not the standardised SHA-3 (FIPS-202).",
+    "params": ["0x68656c6c6f20776f726c64"],
+    "exampleResponse": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": "0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad"
+    },
+    "paramsDocs": [
+      { "name": "data", "type": "string", "required": true, "description": "Hexadecimal string to hash." }
+    ],
+    "returns": "32-byte Keccak-256 hash of the input.",
+    "playgroundEnabled": false,
+    "ciRunnable": true,
+    "category": "web3"
+  }
+}
