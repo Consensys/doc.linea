@@ -32,7 +32,11 @@ export function useRpcCall(
     const controller = new AbortController();
     abortRef.current = controller;
 
-    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    let timedOut = false;
+    const timeoutId = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, REQUEST_TIMEOUT_MS);
 
     setStatus("loading");
     setError(null);
@@ -51,25 +55,33 @@ export function useRpcCall(
       });
 
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status} ${res.statusText}`);
+        let detail = `HTTP ${res.status} ${res.statusText}`;
+        try {
+          const body = await res.json();
+          if (body?.error?.message) {
+            detail = body.error.message;
+          }
+        } catch {
+          // body wasn't JSON, stick with the HTTP status line
+        }
+        throw new Error(detail);
       }
 
       const data = await res.json();
       setResponse(data);
       setStatus("success");
     } catch (e) {
-      if (
-        controller.signal.aborted &&
-        !(e instanceof Error && e.name === "AbortError")
-      ) {
-        // Swallow abort errors from unmount or re-run.
+      if (e instanceof DOMException && e.name === "AbortError") {
+        if (timedOut) {
+          setError("Request timed out after 15 seconds.");
+          setResponse(null);
+          setStatus("error");
+          return;
+        }
+        // Request was superseded or unmounted — silently ignore.
         return;
       }
-      if (e instanceof DOMException && e.name === "AbortError") {
-        setError("Request timed out or was cancelled.");
-      } else {
-        setError(e instanceof Error ? e.message : "Request failed.");
-      }
+      setError(e instanceof Error ? e.message : "Request failed.");
       setResponse(null);
       setStatus("error");
     } finally {
