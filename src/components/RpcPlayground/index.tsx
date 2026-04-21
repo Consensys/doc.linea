@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import CodeBlock from "@theme/CodeBlock";
-import clsx from "clsx";
 
 import { CheckIcon, CopyIcon, PlayIcon } from "../icons";
 import { LANGUAGES, Language, renderCode } from "./languages";
@@ -34,19 +33,13 @@ export default function RpcPlayground({
 
   const prismLang = LANGUAGES.find((l) => l.id === language)?.prism ?? "bash";
 
-  const showLive = status === "success" || status === "error";
-  const responseTitle =
-    status === "error"
-      ? "Error"
-      : showLive
-        ? "Live response"
-        : "Example response";
+  const hasRun = status === "success" || status === "error";
 
   const responseBody: string = (() => {
     if (status === "error") {
       return error ?? "Request failed.";
     }
-    const value = showLive ? response : exampleResponse;
+    const value = hasRun ? response : exampleResponse;
     try {
       return JSON.stringify(value, null, 2);
     } catch {
@@ -66,90 +59,57 @@ export default function RpcPlayground({
 
   return (
     <div className={styles.root}>
-      <div className={styles.panel}>
-        <div className={styles.header}>
-          <span className={styles.panelLabel}>Request</span>
-          <div className={styles.toolbar}>
-            <label className={styles.langSelect}>
-              <span className={styles.srOnly}>Language</span>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value as Language)}
-                aria-label="Language">
-                {LANGUAGES.map((l) => (
-                  <option key={l.id} value={l.id}>
-                    {l.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button
-              type="button"
-              className={styles.iconBtn}
-              onClick={handleCopy}
-              aria-label={copied ? "Copied" : "Copy code"}>
-              {copied ? (
-                <CheckIcon aria-hidden="true" />
-              ) : (
-                <CopyIcon aria-hidden="true" />
-              )}
-              <span className={styles.iconBtnLabel}>
-                {copied ? "Copied!" : "Copy"}
-              </span>
-            </button>
-            <button
-              type="button"
-              className={styles.runBtn}
-              onClick={run}
-              disabled={status === "loading"}
-              aria-label={
-                status === "loading" ? "Running request" : "Run request"
-              }>
-              {status === "loading" ? (
-                <>
-                  <span className={styles.spinner} aria-hidden="true" />
-                  <span>Running…</span>
-                </>
-              ) : (
-                <>
-                  <PlayIcon className={styles.runIcon} aria-hidden="true" />
-                  <span>Run</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-        <div className={styles.codeWrap}>
-          <CodeBlock language={prismLang}>{code}</CodeBlock>
-        </div>
-      </div>
-
-      <div
-        className={clsx(
-          styles.panel,
-          styles.responsePanel,
-          status === "success" && styles.responseLive,
-          status === "error" && styles.responseError,
-        )}>
-        <div className={styles.header}>
-          <span className={styles.panelLabel}>{responseTitle}</span>
-          {showLive && (
-            <span
-              className={clsx(
-                styles.badge,
-                status === "error" && styles.badgeError,
-                status === "success" && styles.badgeLive,
-              )}>
-              {status === "error" ? "Error" : "Live"}
-            </span>
+      <div className={styles.toolbar}>
+        <label className={styles.langSelect}>
+          <span className={styles.srOnly}>Language</span>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value as Language)}
+            aria-label="Language">
+            {LANGUAGES.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          onClick={handleCopy}
+          aria-label={copied ? "Copied" : "Copy code"}>
+          {copied ? (
+            <CheckIcon aria-hidden="true" />
+          ) : (
+            <CopyIcon aria-hidden="true" />
           )}
-        </div>
-        <div className={styles.codeWrap}>
-          <CodeBlock language={status === "error" ? "text" : "json"}>
-            {responseBody}
-          </CodeBlock>
-        </div>
+          <span>{copied ? "Copied!" : "Copy"}</span>
+        </button>
+        <button
+          type="button"
+          className={styles.runBtn}
+          onClick={run}
+          disabled={status === "loading"}
+          aria-label={status === "loading" ? "Running request" : "Run request"}>
+          {status === "loading" ? (
+            <>
+              <span className={styles.spinner} aria-hidden="true" />
+              <span>Running…</span>
+            </>
+          ) : (
+            <>
+              <PlayIcon className={styles.runIcon} aria-hidden="true" />
+              <span>Run</span>
+            </>
+          )}
+        </button>
       </div>
+      <div className={styles.requestBlock}>
+        <CodeBlock language={prismLang}>{code}</CodeBlock>
+      </div>
+      <CodeBlock language={status === "error" ? "text" : "json"}>
+        {responseBody}
+      </CodeBlock>
     </div>
   );
 }

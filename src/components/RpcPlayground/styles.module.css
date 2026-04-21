@@ -1,51 +1,31 @@
 .root {
-  display: flex;
-  flex-direction: column;
   margin: 24px 0;
-  border: 1px solid var(--linea-border);
-  border-radius: var(--linea-radius-md);
-  overflow: hidden;
-  background: var(--page-background);
   font-family: AtypText, sans-serif;
-}
-
-.panel {
-  background: var(--page-background);
-}
-
-.responsePanel {
-  border-top: 1px solid var(--linea-border);
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0;
-  padding: 8px 12px;
-  /* Equalises the request and response header heights so the label sits at
-     the same vertical offset in both, even though the request header carries
-     the tall Run button and the response header only has a label. Matches
-     the Run button's total height (14px text + 8px padding-y + 2px border). */
-  min-height: 40px;
-  border-bottom: 1px solid var(--linea-border-subtle);
-  background: var(--linea-surface-elevated);
-  flex-wrap: wrap;
-  box-sizing: border-box;
-}
-
-.panelLabel {
-  font-size: var(--font-body-sm);
-  font-weight: 400;
-  color: var(--linea-text-secondary);
 }
 
 .toolbar {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 6px;
+  margin: 0 0 8px;
   flex-wrap: wrap;
+}
+
+/* Collapse the global codeBlockContainer top margin on the request block so
+   the toolbar feels visually attached to its code. The response keeps its
+   natural 1.5rem margin — matching every other ```json block on the site. */
+.requestBlock :global([class*="codeBlockContainer"]) {
+  margin-top: 0 !important;
+}
+
+/* Hide the request block's built-in copy button — the toolbar above already
+   owns Copy. The response block keeps its built-in copy, matching every
+   other code block on the site. Matched by partial class name because
+   Docusaurus emits hashed CSS-module class names (no stable .theme-* alias
+   exists for this element). */
+.requestBlock :global([class*="buttonGroup"]) {
+  display: none;
 }
 
 .langSelect {
@@ -174,62 +154,6 @@
   }
 }
 
-.codeWrap {
-  max-height: 520px;
-  overflow: auto;
-  /* Explicit dark surface — matches the site-wide code-block background
-     (var(--linea-surface-code)) so both request and response panels
-     read as the same dark code surface regardless of which Prism
-     language pathway Docusaurus takes. */
-  background: var(--linea-surface-code);
-}
-
-.codeWrap :global(.theme-code-block) {
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* The site-wide rule in docusaurus-overrides.css forces
-     margin: 1.5rem 0 !important
-   on every codeBlockContainer. Inside our unified playground panel that
-   24 px top+bottom margin creates a visible gap between request and
-   response. We must re-override with !important to neutralise it.
-   Matched by partial class name because Docusaurus emits hashed CSS-module
-   class names (no stable .theme-* alias exists for this element). */
-.codeWrap :global([class*="codeBlockContainer"]) {
-  margin: 0 !important;
-}
-
-/* Docusaurus renders its own copy/word-wrap buttons on every CodeBlock.
-   Our toolbar owns copy already, so hide the built-in button group. Same
-   partial-class-name rationale as above. */
-.codeWrap :global([class*="buttonGroup"]) {
-  display: none;
-}
-
-.badge {
-  font-size: var(--font-body-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: var(--linea-radius-pill);
-  border: 1px solid transparent;
-}
-
-.badgeLive {
-  color: var(--linea-success-accent);
-  border-color: var(--linea-success-accent);
-  background: rgb(16 185 129 / 10%);
-}
-
-.badgeError {
-  color: var(--linea-error-accent);
-  border-color: var(--linea-error-accent);
-  background: rgb(239 68 68 / 10%);
-}
-
 .srOnly {
   position: absolute;
   width: 1px;
@@ -243,10 +167,6 @@
 }
 
 @media (max-width: 480px) {
-  .header {
-    padding: 8px 10px;
-  }
-
   .toolbar {
     gap: 4px;
   }
