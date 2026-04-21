@@ -23,10 +23,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  margin: 0;
   padding: 8px 12px;
+  /* Equalises the request and response header heights so the label sits at
+     the same vertical offset in both, even though the request header carries
+     the tall Run button and the response header only has a label. Matches
+     the Run button's total height (14px text + 8px padding-y + 2px border). */
+  min-height: 40px;
   border-bottom: 1px solid var(--linea-border-subtle);
   background: var(--linea-surface-elevated);
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .panelLabel {
