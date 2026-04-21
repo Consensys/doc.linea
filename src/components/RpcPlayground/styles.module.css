@@ -1,17 +1,21 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   margin: 24px 0;
-  font-family: AtypText, sans-serif;
-}
-
-.panel {
   border: 1px solid var(--linea-border);
   border-radius: var(--linea-radius-md);
   overflow: hidden;
   background: var(--page-background);
+  font-family: AtypText, sans-serif;
+}
+
+.panel {
+  background: var(--page-background);
   transition: border-color 0.15s;
+}
+
+.panel + .panel {
+  border-top: 1px solid var(--linea-border);
 }
 
 .header {
@@ -26,10 +30,8 @@
 }
 
 .panelLabel {
-  font-size: var(--font-body-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: var(--font-body-sm);
+  font-weight: 400;
   color: var(--linea-text-secondary);
 }
 
@@ -115,10 +117,6 @@
   height: 14px;
 }
 
-.iconBtnLabel {
-  /* Only show label on wider viewports — icon alone is enough when space tight */
-}
-
 .runBtn {
   display: inline-flex;
   align-items: center;
@@ -173,6 +171,11 @@
 .codeWrap {
   max-height: 520px;
   overflow: auto;
+  /* Explicit dark surface — matches the site-wide code-block background
+     (var(--linea-surface-code)) so both request and response panels
+     read as the same dark code surface regardless of which Prism
+     language pathway Docusaurus takes. */
+  background: var(--linea-surface-code);
 }
 
 .codeWrap :global(.theme-code-block) {
@@ -190,7 +193,7 @@
 }
 
 .responsePanel {
-  border-left-width: 3px;
+  border-left: 3px solid transparent;
 }
 
 .responseLive {
@@ -238,10 +241,6 @@
 @media (max-width: 480px) {
   .header {
     padding: 8px 10px;
-  }
-
-  .iconBtnLabel {
-    display: none;
   }
 
   .toolbar {

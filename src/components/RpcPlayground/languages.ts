@@ -6,8 +6,6 @@ export const LANGUAGES: { id: Language; label: string; prism: string }[] = [
   { id: "viem", label: "Viem", prism: "javascript" },
 ];
 
-const paramsToJson = (params: unknown[]): string => JSON.stringify(params);
-
 const paramsPretty = (params: unknown[]): string =>
   JSON.stringify(params, null, 2);
 
@@ -16,9 +14,11 @@ function renderCurl(
   params: unknown[],
   endpoint: string,
 ): string {
-  const body = `{"jsonrpc":"2.0","method":"${method}","params":${paramsToJson(
-    params,
-  )},"id":1}`;
+  const body = JSON.stringify(
+    { jsonrpc: "2.0", method, params, id: 1 },
+    null,
+    2,
+  );
   return `curl ${endpoint} \\
   -X POST \\
   -H "Content-Type: application/json" \\
