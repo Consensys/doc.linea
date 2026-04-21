@@ -52,18 +52,19 @@ In the [example response](#response) the account exists but the slot doesn't.
 ### Request
 
 ```bash
-curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
--X POST \
--H "Content-Type: application/json" \
--d '{
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
     "jsonrpc": "2.0",
     "method": "linea_getProof",
     "params": [
-        "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
-            ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"], "0x7AA88B"
+      "0x87f21c771EAC9c547Eb22312997153D3A1fC40F6",
+      ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"],
+      "0x7AA88B"
     ],
     "id": 1
-}'
+  }'
 ```
 
 ### Response
