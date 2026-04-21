@@ -151,32 +151,33 @@ selectors needed.
 
 ## Which pages get the playground
 
-### Runnable on rpc.linea.build (29 pages — use `<RpcPlayground>`)
+### Runnable on rpc.linea.build (31 pages — use `<RpcPlayground>`)
 
 ```
-eth_blockNumber, eth_call, eth_chainId, eth_estimateGas, eth_feeHistory,
-eth_gasPrice, eth_getBalance, eth_getBlockByHash, eth_getBlockByNumber,
-eth_getBlockReceipts, eth_getBlockTransactionCountByHash,
-eth_getBlockTransactionCountByNumber, eth_getCode, eth_getLogs,
-eth_getStorageAt, eth_getTransactionByBlockHashAndIndex,
+eth_accounts, eth_blockNumber, eth_call, eth_chainId, eth_estimateGas,
+eth_feeHistory, eth_gasPrice, eth_getBalance, eth_getBlockByHash,
+eth_getBlockByNumber, eth_getBlockReceipts,
+eth_getBlockTransactionCountByHash, eth_getBlockTransactionCountByNumber,
+eth_getCode, eth_getLogs, eth_getStorageAt,
+eth_getTransactionByBlockHashAndIndex,
 eth_getTransactionByBlockNumberAndIndex, eth_getTransactionByHash,
 eth_getTransactionCount, eth_getTransactionReceipt,
 eth_maxPriorityFeePerGas, eth_syncing, linea_estimateGas, linea_getProof,
-net_listening, net_peerCount, net_version, web3_clientVersion, web3_sha3
+linea_getTransactionExclusionStatusV1, net_listening, net_peerCount,
+net_version, web3_clientVersion, web3_sha3
 ```
 
-### Skip — keep existing static examples (16 pages)
+### Skip — keep existing static examples (14 pages)
 
-**Not supported on public RPC:** `debug_traceBlockByHash`,
+**Response too large for a playground panel:** `debug_traceBlockByHash`,
 `debug_traceBlockByNumber`, `debug_traceCall`, `debug_traceTransaction`,
 `trace_block`, `trace_call`, `trace_transaction`
 
-**Require signed data / non-public endpoint:** `eth_sendRawTransaction`,
-`eth_sendBundle`, `linea_getTransactionExclusionStatusV1`
+**Require signed data:** `eth_sendRawTransaction`, `eth_sendBundle`
 
-**Stateful — stale filter IDs would always error:** `eth_getFilterChanges`,
+**Stateful — stale filter IDs always error:** `eth_getFilterChanges`,
 `eth_getFilterLogs`, `eth_newBlockFilter`, `eth_newFilter`,
-`eth_uninstallFilter`, `eth_accounts`
+`eth_uninstallFilter`
 
 ## Risk notes
 
@@ -189,7 +190,7 @@ net_listening, net_peerCount, net_version, web3_clientVersion, web3_sha3
   spamming Run would get 429s; we render that as an error. No mitigation.
 - **TabItem `groupId="sdk-lang"` on `linea_estimateGas`:** the current page
   uses a tab group that syncs across the site. Replacing with `<RpcPlayground>`
-  breaks that sync on this single page. Accepted: consistency across the 29
+  breaks that sync on this single page. Accepted: consistency across the 31
   pages matters more than a rarely-used cross-page sync.
 - **Example response drift:** `exampleResponse` shows stale block numbers /
   hashes. Acceptable — it's a placeholder, the Run button fetches fresh data.
@@ -198,7 +199,7 @@ net_listening, net_peerCount, net_version, web3_clientVersion, web3_sha3
 
 1. `yarn typecheck` passes.
 2. `yarn build` passes.
-3. `yarn start`, open each of the 29 playground pages:
+3. `yarn start`, open each of the 31 playground pages:
    - Page renders without hydration warnings.
    - Run fires request, response replaces placeholder.
    - Language dropdown switches code correctly.
