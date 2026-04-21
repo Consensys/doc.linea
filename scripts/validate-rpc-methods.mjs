@@ -38,7 +38,9 @@ function parseArgs(argv) {
   const out = {
     endpoint: "https://rpc.linea.build",
     timeout: 30_000,
-    concurrency: 4,
+    // Default 2 to stay within rpc.linea.build's free-tier rate limits.
+    // CI or power users can override with --concurrency=N.
+    concurrency: 2,
     only: null,
   };
   for (const arg of argv.slice(2)) {
