@@ -1,116 +1,95 @@
 ---
 title: Codex
-description: Codex is a blockchain data API providing real-time and historical DeFi data across 80+ networks via GraphQL, including Linea.
+description: Real-time and historical token, price, holder, and trade data for Linea via GraphQL.
 ---
 
-[Codex](https://www.codex.io/?utm_source=linea&utm_medium=partner-docs) is a
-blockchain data API that provides real-time and historical DeFi data across 80+
-networks via GraphQL, including Linea. With access to over 70 million tokens and
-700 million wallets, Codex delivers sub-second data for building token explorers,
-trading bots, portfolio trackers, and DeFi dashboards.
+[Codex](https://www.codex.io/) is a blockchain data API for real-time and historical DeFi data. Linea is fully supported. Meaningall Codex data primitives (tokens, prices, charts, holders, wallets, trades, and live subscriptions) are available for Linea, backed by indexing 80+ million tokens, 700 million wallets, and 28 billion transactions across 80+ networks.
 
-## GraphQL API
+## What you can do
 
-Codex exposes a single GraphQL endpoint with 73 query operations for fetching
-current and historical data. All requests are sent as HTTPS POST to
-`https://graph.codex.io/graphql`.
+All of Codex's token endpoints are available for Linea, allowing applications to:
 
-Key query capabilities include:
+- **Discover tokens**: filter and search Linea tokens by liquidity, market cap, age, volume, holder count, and other metrics.
+- **Read prices and charts**: real-time and historical prices, plus OHLCV candlestick data for any Linea token across any timeframe.
+- **Look up holders and balances**: holder counts, top-holder distribution, and token balances for any Linea wallet.
+- **Query DEX trades and pairs**: swap events and token pair data across Linea DEXs.
+- **Stream live updates**: WebSocket subscriptions for price ticks, trades, and pair events on Linea tokens as they happen.
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Data available</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Token data</strong></td>
-      <td>Real-time and historical prices, OHLCV candlestick charts, metadata, and scam filtering</td>
-    </tr>
-    <tr>
-      <td><strong>DEX trades</strong></td>
-      <td>Swap events across decentralized exchanges with pair-level detail</td>
-    </tr>
-    <tr>
-      <td><strong>Liquidity pools</strong></td>
-      <td>Pool reserves, volume, fees, and newly created pairs</td>
-    </tr>
-    <tr>
-      <td><strong>Wallet activity</strong></td>
-      <td>Token balances, transaction history, and holdings across 80+ networks</td>
-    </tr>
-    <tr>
-      <td><strong>Analytics</strong></td>
-      <td>Aggregated volume, liquidity, unique wallet metrics, and holder tracking</td>
-    </tr>
-    <tr>
-      <td><strong>Launchpad monitoring</strong></td>
-      <td>Alerts for new token launches and early token discovery</td>
-    </tr>
-  </tbody>
-</table>
+For a comprehensive list of endpoints available for Linea, see the [Codex Linea reference](https://docs.codex.io/networks/linea).
 
-## Real-time subscriptions
+## Quick example
 
-Codex supports 25 real-time data streams via WebSocket
-(`wss://graph.codex.io/graphql`), enabling live updates for:
-
-- Token price changes and trade events
-- New and updated DEX pairs
-- Wallet activity and balance changes
-- Launchpad and new token events
-
-## Webhooks
-
-Webhooks provide push-based notifications for on-chain events, delivering data to
-your server as events occur without requiring persistent WebSocket connections.
-
-## SDK
-
-Codex provides a [TypeScript/JavaScript SDK](https://www.npmjs.com/package/@codex-data/sdk)
-that acts as a thin wrapper around the GraphQL API with predefined queries,
-mutations, and built-in subscription connection handling.
-
-```bash
-npm install @codex-data/sdk
-```
+Fetch the top 10 Linea tokens by 24-hour trading volume, with price, market cap, liquidity, and holder metrics:
 
 ```ts
 import { Codex } from "@codex-data/sdk";
 
 const sdk = new Codex("YOUR_API_KEY");
 
-// Get all tokens on Linea (network ID 59144)
-const tokens = await sdk.queries.filterTokens({
+const { filterTokens } = await sdk.queries.filterTokens({
   filters: {
-    network: [59144],
+    network: [59144], // Linea's network ID
+    liquidity: { gt: 10000 },
   },
+  rankings: [{ attribute: "volume24", direction: "DESC" }],
   limit: 10,
 });
 
-console.log(tokens);
+for (const result of filterTokens.results ?? []) {
+  console.log({
+    name: result.token.name,
+    symbol: result.token.symbol,
+    address: result.token.address,
+    priceUSD: result.priceUSD,
+    volume24: result.volume24,
+    liquidity: result.liquidity,
+    marketCap: result.marketCap,
+    holders: result.holders,
+  });
+}
 ```
 
-Alternatively, you can write custom GraphQL queries directly against the API:
+The same query as a raw GraphQL request:
 
 ```bash
 curl -X POST https://graph.codex.io/graphql \
   -H "Content-Type: application/json" \
   -H "Authorization: YOUR_API_KEY" \
-  -d '{"query": "{ filterTokens(filters: { network: [59144] }, limit: 10) { results { token { name symbol address } } } }"}'
+  -d '{
+    "query": "query { filterTokens(filters: { network: [59144], liquidity: { gt: 10000 } }, rankings: [{ attribute: volume24, direction: DESC }], limit: 10) { results { token { name symbol address } priceUSD volume24 liquidity marketCap holders } } }"
+  }'
 ```
 
-## Get started
+## Integrating Codex
 
-- [Sign up for free](https://dashboard.codex.io/signup) - 10,000 requests/month
-  on the free plan
-- [API documentation](https://docs.codex.io/?utm_source=linea&utm_medium=partner-docs) -
-  full API reference and guides
-- [GraphQL Explorer](https://docs.codex.io/explore) - interactively build and
-  test queries
-- [Recipes and guides](https://docs.codex.io/recipes) - tutorials for common use
-  cases like token discovery, price charts, and wallet analytics
+Codex exposes one GraphQL endpoint with several access modes. Pick the one that fits your delivery needs.
+
+### GraphQL endpoint
+
+All queries and mutations are issued as HTTPS POST to `https://graph.codex.io/graphql`. 65 query operations cover every data category listed above.
+
+### TypeScript SDK
+
+The [`@codex-data/sdk`](https://www.npmjs.com/package/@codex-data/sdk) package is a thin wrapper around the GraphQL API with typed queries, mutations, and built-in subscription handling.
+
+```bash
+npm install @codex-data/sdk
+```
+
+### WebSocket subscriptions
+
+24 real-time streams are available over `wss://graph.codex.io/graphql`, including price updates, chart data, trade events, new and updated DEX pairs, and wallet activity.
+
+### Webhooks
+
+For push-based delivery without a persistent WebSocket, Codex webhooks POST on-chain events to your server as they occur.
+
+## Resources
+
+- [Sign up for free](https://dashboard.codex.io/signup) — 10,000 requests/month on the free plan
+- [Linea reference](https://docs.codex.io/networks/linea) — Linea-specific endpoint coverage
+- [Full API documentation](https://docs.codex.io/)
+- [GraphQL Explorer](https://docs.codex.io/explore) — interactively build and test queries
+- [Recipes and guides](https://docs.codex.io/recipes)
 - [GitHub](https://github.com/Codex-Data)
-- [Discord community](https://discord.com/invite/mFpUhT3vAq)
+- [Discord](https://discord.com/invite/mFpUhT3vAq)
