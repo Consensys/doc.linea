@@ -1,0 +1,210 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+  font-family: AtypText, sans-serif;
+}
+
+.panel {
+  border: 1px solid var(--linea-border);
+  border-radius: var(--linea-radius-md);
+  overflow: hidden;
+  background: var(--page-background);
+  transition: border-color 0.15s;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--linea-border-subtle);
+  background: var(--linea-surface-elevated);
+  flex-wrap: wrap;
+}
+
+.panelLabel {
+  font-size: var(--font-body-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--linea-text-secondary);
+}
+
+.langSelect {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.langSelect select {
+  appearance: none;
+  font-family: inherit;
+  font-size: var(--font-body-sm);
+  font-weight: 500;
+  color: var(--linea-text-primary);
+  background: var(--page-background);
+  border: 1px solid var(--linea-border);
+  border-radius: var(--linea-radius-sm);
+  padding: 4px 26px 4px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.langSelect select:hover {
+  border-color: var(--linea-text-muted);
+  background: var(--linea-hover-bg);
+}
+
+.langSelect select:focus-visible {
+  outline: 2px solid var(--linea-active-color);
+  outline-offset: 1px;
+}
+
+.langSelect::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--linea-text-secondary);
+  border-bottom: 1.5px solid var(--linea-text-secondary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.codeWrap {
+  /* CodeBlock brings its own padding and background — we just need overflow
+     control and to strip the outer margin the doc layout usually applies. */
+  max-height: 520px;
+  overflow: auto;
+}
+
+.codeWrap :global(.theme-code-block) {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 14px;
+  border-top: 1px solid var(--linea-border-subtle);
+  background: var(--linea-surface-elevated);
+}
+
+.runBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: var(--font-body-sm);
+  font-weight: 600;
+  color: #fff;
+  background: var(--linea-brand-purple);
+  border: none;
+  border-radius: var(--linea-radius-md);
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.runBtn:hover:not(:disabled) {
+  background: var(--linea-purple-hover);
+}
+
+.runBtn:focus-visible {
+  outline: 2px solid var(--linea-brand-cyan);
+  outline-offset: 2px;
+}
+
+.runBtn:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
+.runIcon {
+  /* nudges the triangle a touch rightward for optical balance */
+  margin-left: 1px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgb(255 255 255 / 35%);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: rpc-playground-spin 0.7s linear infinite;
+}
+
+@keyframes rpc-playground-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.responsePanel {
+  border-left-width: 3px;
+}
+
+.responseLive {
+  border-left-color: var(--linea-success-accent);
+}
+
+.responseError {
+  border-left-color: var(--linea-error-accent);
+}
+
+.badge {
+  font-size: var(--font-body-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--linea-radius-pill);
+  border: 1px solid transparent;
+}
+
+.badgeLive {
+  color: var(--linea-success-accent);
+  border-color: var(--linea-success-accent);
+  background: rgb(16 185 129 / 10%);
+}
+
+.badgeError {
+  color: var(--linea-error-accent);
+  border-color: var(--linea-error-accent);
+  background: rgb(239 68 68 / 10%);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 10px;
+  }
+
+  .actions {
+    padding: 8px 10px;
+  }
+
+  .runBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

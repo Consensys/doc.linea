@@ -4,6 +4,8 @@ description: 'Returns the current priority fee per gas on Linea, in wei.'
 image: /img/socialCards/ethmaxpriorityfeepergas.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_maxPriorityFeePerGas`
 
 Returns the current priority fee per gas in wei. This is the tip paid to validators above the base
@@ -19,21 +21,12 @@ Hexadecimal value of the current max priority fee per gas in wei.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_maxPriorityFeePerGas","params":[],"id":1}'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x396c8ee"
-}
-```
+<RpcPlayground
+  method="eth_maxPriorityFeePerGas"
+  params={[]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: "0x396c8ee"
+  }}
+/>

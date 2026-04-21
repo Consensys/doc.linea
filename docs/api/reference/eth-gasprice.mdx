@@ -4,6 +4,8 @@ description: 'Returns the current gas price on Linea, in wei.'
 image: /img/socialCards/ethgasprice.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_gasPrice`
 
 Returns the current gas price in wei.
@@ -18,21 +20,12 @@ Hexadecimal value of the current gas price in wei.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":1}'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x27f6780"
-}
-```
+<RpcPlayground
+  method="eth_gasPrice"
+  params={[]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: "0x27f6780"
+  }}
+/>

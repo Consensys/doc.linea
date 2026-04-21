@@ -4,8 +4,7 @@ description: Reference content for the linea_estimateGas method.
 image: /img/socialCards/lineaestimategas.jpg
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import RpcPlayground from '@site/src/components/RpcPlayground';
 
 # `linea_estimateGas`
 
@@ -55,118 +54,24 @@ fee per gas.
 
 ## Example
 
-:::tip
-
-You can also call the API using [Infura's supported Linea endpoints](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
-
-:::
-
-### Request
-
-<Tabs groupId="sdk-lang">
-  <TabItem value="curl">
-
-  ```bash
-  curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
-  ```
-
-  </TabItem>
-  <TabItem value="ethers.js">
-
-  ```javascript
-  type LineaEstimateGasResponse = {
-    baseFeePerGas: string;
-    priorityFeePerGas: string;
-    gasLimit: string;
-  };
-
-  const provider = new ethers.JsonRpcProvider("<RPC_URL>");
-
-  const params = {
-    from: "0x...", // Signer address
-    to: "0x...", // Recipient address
-    value: ethers.parseEther("1").toString(), // Value in wei
-    data: "0x...", // Encoded call in case of smart contract interaction
-  };
-
-  const fees: LineaEstimateGasResponse = await provider.send("linea_estimateGas", [params]);
-  console.log(fees);
-  ```
-  </TabItem>
-  <TabItem value="viem">
-
-  ```javascript
-  import { createPublicClient, http, parseEther } from 'viem'
-  import { linea } from 'viem/chains'
-  import { estimateGas } from 'viem/linea'
-
-  async function EstimateGas() {
-    const client = createPublicClient({
-      chain: linea,
-      transport: http(),
-    });
-
-    try {
-      const gasEstimate = await estimateGas(client, {
-        account: '0x...', // Source account's address
-        to: '0x...', // Destination account's address
-        value: parseEther('0.004') // Amount of ETH to transfer
-      });
-      console.log('Gas Estimate:', gasEstimate);
-    } catch (error) {
-      console.error('Error estimating gas:', error);
+<RpcPlayground
+  method="linea_estimateGas"
+  params={[
+    {
+      from: "0x971e727e956690b9957be6d51Ec16E73AcAC83A7",
+      gas: "0x21000"
     }
-  }
-
-  EstimateGas();
-  ```
-
-  </TabItem>
-</Tabs>
-
-### Response
-
-<Tabs groupId="sdk-lang">
-  <TabItem value="curl">
-
-```JSON
-{
-  "jsonrpc": "2.0",
-  "id": 53,
-  "result": {
-    "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
-  }
-}
-```
-
-  </TabItem>
-  <TabItem value="ethers.js">
-
-  ```javascript
-  {
-    baseFeePerGas: "0x7",
-    gasLimit: "0xcf08",
-    priorityFeePerGas: "0x43a82a4"
-  }
-  ```
-  </TabItem>
-  <TabItem value="viem">
-
-  ```javascript
-  {
-    baseFeePerGas: 7n,
-    gasLimit: 53000n,
-    priorityFeePerGas: 4444716n
-  }
-  ```
-
-  </TabItem>
-</Tabs>
+  ]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 53,
+    result: {
+      baseFeePerGas: "0x7",
+      gasLimit: "0xcf08",
+      priorityFeePerGas: "0x43a82a4"
+    }
+  }}
+/>
 
 Where:
 - `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.
