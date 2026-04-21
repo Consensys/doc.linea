@@ -4,10 +4,13 @@ description: Returns the network ID of the connected Linea network as a decimal 
 image: /img/socialCards/netversion.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.net_version;
+
 # `net_version`
 
-Returns the network ID as a decimal string. On Linea Mainnet this is `59144`. On Linea Sepolia it
-is `59141`.
+{m.description}
 
 ## Parameters
 
@@ -15,7 +18,7 @@ None.
 
 ## Returns
 
-Decimal string of the network ID.
+{m.returns}
 
 ## Example
 

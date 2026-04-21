@@ -4,11 +4,13 @@ description: Simulates a call on Linea and returns OpenEthereum-style traces.
 image: /img/socialCards/tracecall.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.trace_call;
+
 # `trace_call`
 
-Simulates a call and returns the trace in the OpenEthereum/Parity format, without broadcasting a
-transaction. Similar to [`debug_traceCall`](debug-tracecall) but returns the OpenEthereum trace
-shape.
+{m.description}
 
 ## Parameters
 
@@ -18,7 +20,7 @@ shape.
 
 ## Returns
 
-Object with fields corresponding to the requested trace types:
+{m.returns}
 
 - `output`: Hex-encoded call return data.
 - `trace`: Array of call trace objects (if `"trace"` was requested).

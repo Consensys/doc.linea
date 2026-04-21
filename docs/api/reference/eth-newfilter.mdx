@@ -4,11 +4,13 @@ description: Creates a log filter on Linea and returns a filter ID for polling.
 image: /img/socialCards/ethnewfilter.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_newFilter;
+
 # `eth_newFilter`
 
-Creates a log filter and returns a filter ID. Use the ID with
-[`eth_getFilterChanges`](eth-getfilterchanges) to poll for new logs, or
-[`eth_getFilterLogs`](eth-getfilterlogs) to read all matching logs at once.
+{m.description}
 
 ## Parameters
 
@@ -20,7 +22,7 @@ Creates a log filter and returns a filter ID. Use the ID with
 
 ## Returns
 
-A filter ID (hexadecimal string).
+{m.returns}
 
 ## Example
 

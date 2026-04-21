@@ -4,9 +4,13 @@ description: Returns the client software version running the Linea RPC node.
 image: /img/socialCards/web3clientversion.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.web3_clientVersion;
+
 # `web3_clientVersion`
 
-Returns the client software version running the node.
+{m.description}
 
 ## Parameters
 
@@ -14,7 +18,7 @@ None.
 
 ## Returns
 
-String describing the client and its version.
+{m.returns}
 
 ## Example
 

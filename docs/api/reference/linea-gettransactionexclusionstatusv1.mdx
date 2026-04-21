@@ -4,11 +4,13 @@ description: Reference content for the linea_getTransactionExclusionStatusV1 met
 image: /img/socialCards/lineagettransactionexclusionstatusv1.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.linea_getTransactionExclusionStatusV1;
+
 # `linea_getTransactionExclusionStatusV1`
 
-Queries a temporary database maintained by the transaction exclusion API service to check if a 
-transaction was rejected by the sequencer, connected P2P node, or RPC nodes for exceeding data line limits 
-that would prevent the prover from generating a proof.
+{m.description}
 
 
 :::info
@@ -26,6 +28,8 @@ will return `null`.
 `txHash`: [Required] The hash of the subject transaction.
 
 ## Returns
+
+{m.returns}
 
 - `txHash`: The hash of the subject transaction. 
 - `from`: The public address of the account that sent the transaction. 

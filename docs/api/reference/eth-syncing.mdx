@@ -4,9 +4,13 @@ description: Returns the sync status of the Linea RPC node.
 image: /img/socialCards/ethsyncing.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_syncing;
+
 # `eth_syncing`
 
-Returns the sync status of the node. Returns `false` when the node is fully synced.
+{m.description}
 
 ## Parameters
 
@@ -14,8 +18,7 @@ None.
 
 ## Returns
 
-`false` if the node is synced, or an object with `startingBlock`, `currentBlock`, and
-`highestBlock` if syncing is in progress.
+{m.returns}
 
 ## Example
 

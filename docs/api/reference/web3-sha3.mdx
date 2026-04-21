@@ -4,11 +4,13 @@ description: Returns the Keccak-256 hash of the given data.
 image: /img/socialCards/web3sha3.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.web3_sha3;
+
 # `web3_sha3`
 
-Returns the Keccak-256 hash of the given data. Note: despite the name, this method returns
-Keccak-256 (as used throughout Ethereum for function selectors, event topics, and address
-derivation), not the standardised SHA-3 (FIPS-202).
+{m.description}
 
 ## Parameters
 
@@ -16,7 +18,7 @@ derivation), not the standardised SHA-3 (FIPS-202).
 
 ## Returns
 
-32-byte Keccak-256 hash of the input.
+{m.returns}
 
 ## Example
 

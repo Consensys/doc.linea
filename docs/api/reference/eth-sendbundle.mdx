@@ -4,6 +4,10 @@ description: Send a bundle of signed transactions to be executed atomically.
 image: /img/socialCards/ethsendbundle.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_sendBundle;
+
 # `eth_sendBundle`
 
 :::note
@@ -15,13 +19,7 @@ This method is in private beta and not publicly available for use.
 
 :::
 
-Privately sends a bundle of signed transactions to be executed atomically, allowing the caller to 
-define transaction execution order. This enables services such as:
-- Frontrunning protection
-- Gas abstraction
-- Revert protection.
-
-Due to being sent atomically, the bundle will only be executed if all transactions are confirmed.
+{m.description}
 
 The method can also improve UX, as users can review and approve a bundle of transactions with one 
 click, rather than multiple clicks. (Assuming the dapp and wallet being used have implemented [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792), 
@@ -49,6 +47,8 @@ Additional optional parameters supported [elsewhere](https://docs.flashbots.net/
 are not supported on Linea.
 
 ## Returns
+
+{m.returns}
 
 - `bundleHash`: The hash of the executed bundle.
 

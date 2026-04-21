@@ -6,6 +6,10 @@ description: >-
 image: /img/socialCards/debugtraceblockbynumber.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.debug_traceBlockByNumber;
+
 # `debug_traceBlockByNumber`
 
 :::warning Tracer is required
@@ -16,7 +20,7 @@ supported.
 
 :::
 
-Replays all transactions in a block by block number and returns traces for each.
+{m.description}
 
 ## Parameters
 
@@ -26,8 +30,7 @@ Replays all transactions in a block by block number and returns traces for each.
 
 ## Returns
 
-Array of trace results, one per transaction in the block. Each entry has a `result` field
-containing the trace output (same structure as [`debug_traceTransaction`](debug-tracetransaction)).
+{m.returns}
 
 ## Example
 

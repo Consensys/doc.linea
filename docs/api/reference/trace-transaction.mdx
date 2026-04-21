@@ -4,10 +4,13 @@ description: Returns OpenEthereum-style traces for a Linea transaction.
 image: /img/socialCards/tracetransaction.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.trace_transaction;
+
 # `trace_transaction`
 
-Returns all traces for a given transaction in the OpenEthereum/Parity trace format. Traces include
-internal calls that are not visible in a standard transaction receipt.
+{m.description}
 
 ## Parameters
 
@@ -15,8 +18,7 @@ internal calls that are not visible in a standard transaction receipt.
 
 ## Returns
 
-Array of trace objects. Each trace includes an `action` object (`callType`, `from`, `to`, `gas`,
-`input`, `value`) and a `result` object (`gasUsed`, `output`).
+{m.returns}
 
 ## Example
 

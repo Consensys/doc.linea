@@ -4,9 +4,13 @@ description: Returns the number of peers currently connected to the Linea RPC no
 image: /img/socialCards/netpeercount.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.net_peerCount;
+
 # `net_peerCount`
 
-Returns the number of peers currently connected to the node.
+{m.description}
 
 ## Parameters
 
@@ -14,7 +18,7 @@ None.
 
 ## Returns
 
-Hexadecimal integer of the peer count.
+{m.returns}
 
 ## Example
 

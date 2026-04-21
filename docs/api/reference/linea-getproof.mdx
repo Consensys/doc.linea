@@ -4,10 +4,13 @@ description: Reference content for the linea_getProof method.
 image: /img/socialCards/lineagetproof.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.linea_getProof;
+
 # `linea_getProof`
 
-Returns the account and storage values, including the Merkle proof, of the specified account.
-The supplied block parameter must be an L2 block that has been finalized on L1.
+{m.description}
 
 - When an account or storage slot exists, the response includes the `leafIndex` and
     a proof of existence.
@@ -29,6 +32,8 @@ In the [example response](#response) the account exists but the slot doesn't.
       :::
 
 ## Returns
+
+{m.returns}
 
 - `accountProof`: Provides proof data for the account:
   - `key`: The address of the account for which the proof is generated.

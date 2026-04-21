@@ -4,9 +4,13 @@ description: Returns OpenEthereum-style traces for every transaction in a Linea 
 image: /img/socialCards/traceblock.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.trace_block;
+
 # `trace_block`
 
-Returns all traces for every transaction in a block, in the OpenEthereum/Parity trace format.
+{m.description}
 
 ## Parameters
 
@@ -14,9 +18,7 @@ Returns all traces for every transaction in a block, in the OpenEthereum/Parity 
 
 ## Returns
 
-Array of trace objects across all transactions in the block. Each trace includes `transactionHash`
-and `transactionPosition` to identify which transaction it belongs to. See
-[`trace_transaction`](trace-transaction) for the trace object shape.
+{m.returns} See [`trace_transaction`](trace-transaction) for the trace object shape.
 
 ## Example
 

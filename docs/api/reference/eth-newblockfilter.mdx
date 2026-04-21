@@ -4,10 +4,13 @@ description: Creates a filter to receive notifications when new Linea blocks arr
 image: /img/socialCards/ethnewblockfilter.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_newBlockFilter;
+
 # `eth_newBlockFilter`
 
-Creates a filter to receive notifications when new blocks are produced. Poll the filter with
-[`eth_getFilterChanges`](eth-getfilterchanges) to retrieve new block hashes since the last poll.
+{m.description}
 
 ## Parameters
 
@@ -15,7 +18,7 @@ None.
 
 ## Returns
 
-A filter ID (hexadecimal string).
+{m.returns}
 
 ## Example
 

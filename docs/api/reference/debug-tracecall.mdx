@@ -6,6 +6,10 @@ description: >-
 image: /img/socialCards/debugtracecall.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.debug_traceCall;
+
 # `debug_traceCall`
 
 :::warning Tracer is required
@@ -16,8 +20,7 @@ supported.
 
 :::
 
-Simulates a call at a given block and returns the trace—without submitting a transaction. Useful
-for debugging contract interactions before sending them.
+{m.description}
 
 ## Parameters
 
@@ -28,7 +31,7 @@ for debugging contract interactions before sending them.
 
 ## Returns
 
-Same trace output as [`debug_traceTransaction`](debug-tracetransaction), but for a simulated call.
+{m.returns}
 
 ## Example—`callTracer`
 

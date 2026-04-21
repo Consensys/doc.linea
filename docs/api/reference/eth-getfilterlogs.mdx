@@ -4,10 +4,13 @@ description: Returns all logs matching a Linea filter's criteria since it was cr
 image: /img/socialCards/ethgetfilterlogs.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getFilterLogs;
+
 # `eth_getFilterLogs`
 
-Returns all logs matching the filter criteria since the filter was created. Only works with log
-filters created by [`eth_newFilter`](eth-newfilter), not block filters.
+{m.description}
 
 ## Parameters
 
@@ -15,7 +18,7 @@ filters created by [`eth_newFilter`](eth-newfilter), not block filters.
 
 ## Returns
 
-Array of log objects with the same shape as the response from [`eth_getLogs`](eth-getlogs).
+{m.returns}
 
 ## Example
 

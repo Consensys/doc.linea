@@ -4,10 +4,13 @@ description: Polls a Linea filter for new data since the last poll.
 image: /img/socialCards/ethgetfilterchanges.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getFilterChanges;
+
 # `eth_getFilterChanges`
 
-Polls a filter for new data since the last poll. For log filters, returns new logs. For block
-filters, returns new block hashes.
+{m.description}
 
 ## Parameters
 
@@ -15,8 +18,7 @@ filters, returns new block hashes.
 
 ## Returns
 
-Array of log objects (for log filters) or block hashes (for block filters). Returns an empty array
-if nothing has changed since the last poll.
+{m.returns}
 
 ## Example
 

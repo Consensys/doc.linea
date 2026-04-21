@@ -6,6 +6,10 @@ description: >-
 image: /img/socialCards/debugtraceblockbyhash.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.debug_traceBlockByHash;
+
 # `debug_traceBlockByHash`
 
 :::warning Tracer is required
@@ -16,7 +20,7 @@ supported.
 
 :::
 
-Replays all transactions in a block by block hash and returns traces for each.
+{m.description}
 
 ## Parameters
 
@@ -26,7 +30,7 @@ Replays all transactions in a block by block hash and returns traces for each.
 
 ## Returns
 
-Array of trace results with the same shape as [`debug_traceBlockByNumber`](debug-traceblockbynumber).
+{m.returns}
 
 ## Example
 

@@ -4,6 +4,10 @@ description: Replays a Linea transaction and returns an execution trace.
 image: /img/socialCards/debugtracetransaction.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.debug_traceTransaction;
+
 # `debug_traceTransaction`
 
 :::warning Tracer is required
@@ -14,8 +18,7 @@ supported.
 
 :::
 
-Replays a transaction and returns the execution trace. Useful for debugging failed transactions,
-analyzing internal calls, and inspecting state changes.
+{m.description}
 
 ## Parameters
 
@@ -25,7 +28,7 @@ analyzing internal calls, and inspecting state changes.
 
 ## Returns
 
-Depends on the tracer:
+{m.returns}
 
 - **`callTracer`**—Returns the call tree (nested `CALL`, `DELEGATECALL`, `STATICCALL` frames) with `from`, `to`, `gas`, `gasUsed`, `input`, `output`, and any nested `calls`.
 - **`prestateTracer`**—Returns the pre-execution state of every account touched by the transaction: balances, nonces, code, and storage values.

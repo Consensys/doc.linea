@@ -6,9 +6,13 @@ description: >-
 image: /img/socialCards/netlistening.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.net_listening;
+
 # `net_listening`
 
-Returns `true` if the node is actively listening for network connections.
+{m.description}
 
 ## Parameters
 
@@ -16,7 +20,7 @@ None.
 
 ## Returns
 
-Boolean. `true` if the node is listening, `false` otherwise.
+{m.returns}
 
 ## Example
 

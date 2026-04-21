@@ -4,6 +4,10 @@ description: Simulate transaction submission to help prevent failed transactions
 image: /img/socialCards/ethsendrawtransaction.jpg
 ---
 
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_sendRawTransaction;
+
 # `eth_sendRawTransaction`
 
 :::note
@@ -15,10 +19,7 @@ unique error responses.
 
 :::
 
-Submits a pre-signed and serialized transaction and returns the transaction hash if successful. 
-This endpoint can help prevent transactions being rejected due to exceeding the sequencer's 
-per-block line limit. If the line count check fails, it returns an error message indicating the 
-transaction is likely to be rejected.
+{m.description}
 
 :::info
 
@@ -39,7 +40,7 @@ block, a [line count check is performed to ensure it conforms to the requirement
 
 ## Returns
 
-The 32-byte transaction hash, or the zero hash if the transaction is not yet available.
+{m.returns}
 
 ## Example
 
