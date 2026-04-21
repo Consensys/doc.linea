@@ -4,8 +4,6 @@ description: Returns the client software version running the Linea RPC node.
 image: /img/socialCards/web3clientversion.jpg
 ---
 
-import RpcPlayground from '@site/src/components/RpcPlayground';
-
 # `web3_clientVersion`
 
 Returns the client software version running the node.
@@ -20,12 +18,21 @@ String describing the client and its version.
 
 ## Example
 
-<RpcPlayground
-  method="web3_clientVersion"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "Geth/v1.17.2-stable-be4dc0c4/linux-amd64/go1.26.1"
-  }}
-/>
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "Geth/v1.17.2-stable-be4dc0c4/linux-amd64/go1.26.1"
+}
+```

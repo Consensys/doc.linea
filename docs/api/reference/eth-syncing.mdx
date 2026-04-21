@@ -4,8 +4,6 @@ description: Returns the sync status of the Linea RPC node.
 image: /img/socialCards/ethsyncing.jpg
 ---
 
-import RpcPlayground from '@site/src/components/RpcPlayground';
-
 # `eth_syncing`
 
 Returns the sync status of the node. Returns `false` when the node is fully synced.
@@ -21,12 +19,21 @@ None.
 
 ## Example
 
-<RpcPlayground
-  method="eth_syncing"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: false
-  }}
-/>
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": false
+}
+```

@@ -254,7 +254,6 @@ const sidebars = {
             "api/reference/eth-gettransactioncount",
             "api/reference/eth-gettransactionreceipt",
             "api/reference/eth-maxpriorityfeepergas",
-            "api/reference/eth-syncing",
           ],
         },
         {
@@ -285,6 +284,7 @@ const sidebars = {
           type: "category",
           label: "Network and utility methods",
           items: [
+            "api/reference/eth-syncing",
             "api/reference/net-version",
             "api/reference/net-listening",
             "api/reference/net-peercount",

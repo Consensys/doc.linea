@@ -6,8 +6,6 @@ description: >-
 image: /img/socialCards/netlistening.jpg
 ---
 
-import RpcPlayground from '@site/src/components/RpcPlayground';
-
 # `net_listening`
 
 Returns `true` if the node is actively listening for network connections.
@@ -22,12 +20,21 @@ Boolean. `true` if the node is listening, `false` otherwise.
 
 ## Example
 
-<RpcPlayground
-  method="net_listening"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: true
-  }}
-/>
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"net_listening","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": true
+}
+```
