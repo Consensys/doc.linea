@@ -20,6 +20,7 @@
     "swizzle": "docusaurus swizzle",
     "typecheck": "tsc",
     "typecheck-staged": "tsc-files --noEmit",
+    "validate:rpc": "node scripts/validate-rpc-methods.mjs",
     "write-heading-ids": "docusaurus write-heading-ids",
     "write-translations": "docusaurus write-translations"
   },
