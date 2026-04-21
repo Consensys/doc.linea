@@ -191,10 +191,20 @@
   box-shadow: none;
 }
 
+/* The site-wide rule in docusaurus-overrides.css forces
+     margin: 1.5rem 0 !important
+   on every codeBlockContainer. Inside our unified playground panel that
+   24 px top+bottom margin creates a visible gap between request and
+   response. We must re-override with !important to neutralise it.
+   Matched by partial class name because Docusaurus emits hashed CSS-module
+   class names (no stable .theme-* alias exists for this element). */
+.codeWrap :global([class*="codeBlockContainer"]) {
+  margin: 0 !important;
+}
+
 /* Docusaurus renders its own copy/word-wrap buttons on every CodeBlock.
-   Our toolbar owns copy already, so hide the built-in button group. Matched
-   by partial class name because Docusaurus emits hashed CSS-module classes
-   (no stable .theme-* alias exists for this element). */
+   Our toolbar owns copy already, so hide the built-in button group. Same
+   partial-class-name rationale as above. */
 .codeWrap :global([class*="buttonGroup"]) {
   display: none;
 }
