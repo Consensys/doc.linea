@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-bottom: 1px solid var(--linea-border-subtle);
   background: var(--linea-surface-elevated);
   flex-wrap: wrap;
@@ -31,6 +31,13 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--linea-text-secondary);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .langSelect {
@@ -76,25 +83,40 @@
   pointer-events: none;
 }
 
-.codeWrap {
-  /* CodeBlock brings its own padding and background — we just need overflow
-     control and to strip the outer margin the doc layout usually applies. */
-  max-height: 520px;
-  overflow: auto;
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: var(--font-body-sm);
+  font-weight: 500;
+  color: var(--linea-text-secondary);
+  background: var(--page-background);
+  border: 1px solid var(--linea-border);
+  border-radius: var(--linea-radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.codeWrap :global(.theme-code-block) {
-  margin: 0;
-  border-radius: 0;
-  box-shadow: none;
+.iconBtn:hover {
+  background: var(--linea-hover-bg);
+  border-color: var(--linea-text-muted);
+  color: var(--linea-text-primary);
 }
 
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 14px;
-  border-top: 1px solid var(--linea-border-subtle);
-  background: var(--linea-surface-elevated);
+.iconBtn:focus-visible {
+  outline: 2px solid var(--linea-active-color);
+  outline-offset: 1px;
+}
+
+.iconBtn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.iconBtnLabel {
+  /* Only show label on wider viewports — icon alone is enough when space tight */
 }
 
 .runBtn {
@@ -106,15 +128,16 @@
   font-weight: 600;
   color: #fff;
   background: var(--linea-brand-purple);
-  border: none;
-  border-radius: var(--linea-radius-md);
-  padding: 8px 18px;
+  border: 1px solid var(--linea-brand-purple);
+  border-radius: var(--linea-radius-sm);
+  padding: 4px 14px;
   cursor: pointer;
   transition: background 0.15s, opacity 0.15s;
 }
 
 .runBtn:hover:not(:disabled) {
   background: var(--linea-purple-hover);
+  border-color: var(--linea-purple-hover);
 }
 
 .runBtn:focus-visible {
@@ -128,7 +151,6 @@
 }
 
 .runIcon {
-  /* nudges the triangle a touch rightward for optical balance */
   margin-left: 1px;
 }
 
@@ -146,6 +168,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.codeWrap {
+  max-height: 520px;
+  overflow: auto;
+}
+
+.codeWrap :global(.theme-code-block) {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Docusaurus renders its own copy/word-wrap buttons on every CodeBlock.
+   Our toolbar owns copy already, so hide the built-in button group. Matched
+   by partial class name because Docusaurus emits hashed CSS-module classes
+   (no stable .theme-* alias exists for this element). */
+.codeWrap :global([class*="buttonGroup"]) {
+  display: none;
 }
 
 .responsePanel {
@@ -199,12 +240,11 @@
     padding: 8px 10px;
   }
 
-  .actions {
-    padding: 8px 10px;
+  .iconBtnLabel {
+    display: none;
   }
 
-  .runBtn {
-    width: 100%;
-    justify-content: center;
+  .toolbar {
+    gap: 4px;
   }
 }
