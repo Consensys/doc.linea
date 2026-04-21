@@ -5,10 +5,13 @@ image: /img/socialCards/ethgetcode.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getCode;
 
 # `eth_getCode`
 
-Returns the bytecode at a given contract address. Returns `0x` if the address is not a contract.
+{m.description}
 
 ## Parameters
 
@@ -17,18 +20,10 @@ Returns the bytecode at a given contract address. Returns `0x` if the address is
 
 ## Returns
 
-The bytecode at the given address, as a hex string.
+{m.returns}
 
 ## Example
 
 This example reads the bytecode of the USDC proxy contract.
 
-<RpcPlayground
-  method="eth_getCode"
-  params={["0x176211869ca2b568f2a7d4ee941e073a821ee1ff", "latest"]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x60806040526004361061005a5760003560e01c80635c60da1b116100435780635c60da1b146101315780638f2839701461016f578063f851a440146101af5761005a565b80633659cfe6146100645780634f1ef286146100a4575b6100626101c4565b..."
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

@@ -5,10 +5,13 @@ image: /img/socialCards/ethestimategas.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_estimateGas;
 
 # `eth_estimateGas`
 
-Returns an estimate of gas needed to execute a transaction. The transaction is not sent.
+{m.description}
 
 :::note
 
@@ -25,21 +28,8 @@ Linea's L1 data-submission costs.
 
 ## Returns
 
-Hexadecimal value of the estimated gas.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_estimateGas"
-  params={[
-    {
-      to: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
-      data: "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
-    }
-  ]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x7b17"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

@@ -5,10 +5,13 @@ image: /img/socialCards/ethgetbalance.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getBalance;
 
 # `eth_getBalance`
 
-Returns the ETH balance of an address at a given block.
+{m.description}
 
 ## Parameters
 
@@ -17,16 +20,8 @@ Returns the ETH balance of an address at a given block.
 
 ## Returns
 
-Hexadecimal value of the balance in wei.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_getBalance"
-  params={["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x1805af891ff10a"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

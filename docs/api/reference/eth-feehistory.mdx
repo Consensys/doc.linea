@@ -5,10 +5,13 @@ image: /img/socialCards/ethfeehistory.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_feeHistory;
 
 # `eth_feeHistory`
 
-Returns historical gas information across a range of blocks, useful for tracking fee trends.
+{m.description}
 
 ## Parameters
 
@@ -18,29 +21,8 @@ Returns historical gas information across a range of blocks, useful for tracking
 
 ## Returns
 
-- `oldestBlock`: Hexadecimal block number of the oldest block in the range.
-- `baseFeePerGas`: Array of base fees per gas for each block (includes the next block after the range).
-- `gasUsedRatio`: Array of gas used ratios for each block.
-- `reward`: Array of effective priority fee arrays at the requested percentiles (present when `rewardPercentiles` is supplied).
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_feeHistory"
-  params={["0x4", "latest", [25, 50, 75]]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: {
-      oldestBlock: "0x1ce5452",
-      baseFeePerGas: ["0x7", "0x7", "0x7", "0x7", "0x7"],
-      gasUsedRatio: [0.000026867, 0.0000930045, 0.0000379375, 0.0000485935],
-      reward: [
-        ["0x27f6779", "0x27f6779", "0x27f6779"],
-        ["0x27f6779", "0x27f6779", "0x27f6779"],
-        ["0x27f6779", "0x27f6779", "0x27f6779"],
-        ["0x27f6779", "0x27f6779", "0x27f6779"]
-      ]
-    }
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

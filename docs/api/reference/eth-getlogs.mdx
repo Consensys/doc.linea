@@ -5,10 +5,13 @@ image: /img/socialCards/ethgetlogs.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getLogs;
 
 # `eth_getLogs`
 
-Returns logs matching a given filter object.
+{m.description}
 
 ## Parameters
 
@@ -21,42 +24,10 @@ Returns logs matching a given filter object.
 
 ## Returns
 
-Array of log objects. Each log includes `address`, `topics`, `data`, `blockNumber`,
-`transactionHash`, `transactionIndex`, `blockHash`, `logIndex`, and `removed`.
+{m.returns}
 
 ## Example
 
 This example retrieves ERC-20 `Transfer` events from the USDC contract across a range of blocks.
 
-<RpcPlayground
-  method="eth_getLogs"
-  params={[
-    {
-      fromBlock: "0x1ce3100",
-      toBlock: "0x1ce3110",
-      address: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
-      topics: [
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-      ]
-    }
-  ]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: [
-      {
-        address: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
-        topics: [
-          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-          "0x000000000000000000000000...",
-          "0x000000000000000000000000..."
-        ],
-        data: "0x...",
-        blockNumber: "0x1ce3105",
-        transactionHash: "0x...",
-        logIndex: "0x0",
-        removed: false
-      }
-    ]
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

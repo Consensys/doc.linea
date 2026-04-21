@@ -7,10 +7,13 @@ image: /img/socialCards/ethgettransactioncount.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getTransactionCount;
 
 # `eth_getTransactionCount`
 
-Returns the number of transactions sent from an address (the account nonce).
+{m.description}
 
 ## Parameters
 
@@ -19,16 +22,8 @@ Returns the number of transactions sent from an address (the account nonce).
 
 ## Returns
 
-Hexadecimal integer of the number of transactions sent from the address.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_getTransactionCount"
-  params={["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x0"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

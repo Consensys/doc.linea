@@ -5,10 +5,13 @@ image: /img/socialCards/ethgetstorageat.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getStorageAt;
 
 # `eth_getStorageAt`
 
-Returns the value stored at a given storage slot of a contract address.
+{m.description}
 
 ## Parameters
 
@@ -18,18 +21,10 @@ Returns the value stored at a given storage slot of a contract address.
 
 ## Returns
 
-The 32-byte value at the given storage position, as a hex string.
+{m.returns}
 
 ## Example
 
 This example reads the 32-byte value at storage position `0x0` of the USDC contract.
 
-<RpcPlayground
-  method="eth_getStorageAt"
-  params={["0x176211869ca2b568f2a7d4ee941e073a821ee1ff", "0x0", "latest"]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x00000000000000000000000085e54b6659b11b09ece200728bb775332ebcea65"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

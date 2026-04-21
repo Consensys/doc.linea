@@ -5,11 +5,13 @@ image: /img/socialCards/ethcall.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_call;
 
 # `eth_call`
 
-Executes a call message without creating a transaction on the blockchain. Commonly used to read
-data from smart contracts.
+{m.description}
 
 ## Parameters
 
@@ -24,24 +26,10 @@ data from smart contracts.
 
 ## Returns
 
-Hexadecimal return data from the executed contract call.
+{m.returns}
 
 ## Example
 
 This example calls `balanceOf(address)` on the USDC contract for a given holder.
 
-<RpcPlayground
-  method="eth_call"
-  params={[
-    {
-      to: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
-      data: "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
-    },
-    "latest"
-  ]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x000000000000000000000000000000000000000000000000000000000026009c"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

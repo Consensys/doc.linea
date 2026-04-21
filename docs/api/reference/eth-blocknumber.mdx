@@ -5,10 +5,13 @@ image: /img/socialCards/ethblocknumber.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_blockNumber;
 
 # `eth_blockNumber`
 
-Returns the number of the most recent block.
+{m.description}
 
 ## Parameters
 
@@ -16,16 +19,8 @@ None.
 
 ## Returns
 
-Hexadecimal integer of the current block number.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_blockNumber"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x1ce5452"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

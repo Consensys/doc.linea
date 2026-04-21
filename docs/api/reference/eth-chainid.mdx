@@ -5,11 +5,13 @@ image: /img/socialCards/ethchainid.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_chainId;
 
 # `eth_chainId`
 
-Returns the chain ID of the connected network. Linea Mainnet is `0xe708` (59144). Linea Sepolia is
-`0xe705` (59141).
+{m.description}
 
 ## Parameters
 
@@ -17,16 +19,8 @@ None.
 
 ## Returns
 
-Hexadecimal value of the chain ID.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_chainId"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0xe708"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

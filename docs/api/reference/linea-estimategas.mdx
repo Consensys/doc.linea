@@ -5,11 +5,13 @@ image: /img/socialCards/lineaestimategas.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.linea_estimateGas;
 
 # `linea_estimateGas`
 
-Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
-and be published on Ethereum. The transaction will not be added to the blockchain.
+{m.description}
 
 For more information about estimating gas, see our [guide](../../network/how-to/gas-fees.mdx), and
 for more information about how this API formulates the transaction costs, see the
@@ -49,29 +51,11 @@ using `linea_estimateGas` for more accurate results.
 
 ## Returns
 
-Hexadecimal values representing the recommended gas limit, the base fee per gas, and the priority 
-fee per gas.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="linea_estimateGas"
-  params={[
-    {
-      to: "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
-      data: "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
-    }
-  ]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 53,
-    result: {
-      baseFeePerGas: "0x7",
-      gasLimit: "0xcf08",
-      priorityFeePerGas: "0x43a82a4"
-    }
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />
 
 Where:
 - `baseFeePerGas` - Uses the Linea base fee which is set at 7 wei.

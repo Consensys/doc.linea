@@ -5,11 +5,13 @@ image: /img/socialCards/ethaccounts.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_accounts;
 
 # `eth_accounts`
 
-Returns a list of addresses owned by the node. On the public Linea RPC endpoint the node does not
-manage any accounts, so this method always returns an empty array.
+{m.description}
 
 ## Parameters
 
@@ -17,16 +19,8 @@ None.
 
 ## Returns
 
-Array of 20-byte addresses owned by the node. On `rpc.linea.build` this is always `[]`.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_accounts"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: []
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

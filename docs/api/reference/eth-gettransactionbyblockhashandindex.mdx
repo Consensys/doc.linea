@@ -5,10 +5,13 @@ image: /img/socialCards/ethgettransactionbyblockhashandindex.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getTransactionByBlockHashAndIndex;
 
 # `eth_getTransactionByBlockHashAndIndex`
 
-Returns transaction data by block hash and transaction index position.
+{m.description}
 
 ## Parameters
 
@@ -17,31 +20,8 @@ Returns transaction data by block hash and transaction index position.
 
 ## Returns
 
-A transaction object with the same shape as [`eth_getTransactionByHash`](eth-gettransactionbyhash),
-or `null` if no transaction is found at the given index.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_getTransactionByBlockHashAndIndex"
-  params={[
-    "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
-    "0x0"
-  ]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: {
-      hash: "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
-      blockNumber: "0x1ce53dd",
-      transactionIndex: "0x0",
-      from: "0xd26c8000ec8778de5257305c9acdd79f16f87867",
-      to: "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
-      value: "0x0",
-      gas: "0x2635a",
-      gasPrice: "0x257e36f",
-      nonce: "0xc824c",
-      type: "0x2"
-    }
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

@@ -5,11 +5,13 @@ image: /img/socialCards/ethmaxpriorityfeepergas.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_maxPriorityFeePerGas;
 
 # `eth_maxPriorityFeePerGas`
 
-Returns the current priority fee per gas in wei. This is the tip paid to validators above the base
-fee.
+{m.description}
 
 ## Parameters
 
@@ -17,16 +19,8 @@ None.
 
 ## Returns
 
-Hexadecimal value of the current max priority fee per gas in wei.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_maxPriorityFeePerGas"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x396c8ee"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

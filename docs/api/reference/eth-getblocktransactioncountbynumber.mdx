@@ -5,10 +5,13 @@ image: /img/socialCards/ethgetblocktransactioncountbynumber.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_getBlockTransactionCountByNumber;
 
 # `eth_getBlockTransactionCountByNumber`
 
-Returns the number of transactions in a block, given the block number.
+{m.description}
 
 ## Parameters
 
@@ -16,16 +19,8 @@ Returns the number of transactions in a block, given the block number.
 
 ## Returns
 
-Hexadecimal integer of the transaction count.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_getBlockTransactionCountByNumber"
-  params={["0x1ce53dd"]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x1"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />

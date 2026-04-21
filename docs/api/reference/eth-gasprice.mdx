@@ -5,10 +5,13 @@ image: /img/socialCards/ethgasprice.jpg
 ---
 
 import RpcPlayground from '@site/src/components/RpcPlayground';
+import methods from '@site/static/data/rpc-methods.json';
+
+export const m = methods.eth_gasPrice;
 
 # `eth_gasPrice`
 
-Returns the current gas price in wei.
+{m.description}
 
 ## Parameters
 
@@ -16,16 +19,8 @@ None.
 
 ## Returns
 
-Hexadecimal value of the current gas price in wei.
+{m.returns}
 
 ## Example
 
-<RpcPlayground
-  method="eth_gasPrice"
-  params={[]}
-  exampleResponse={{
-    jsonrpc: "2.0",
-    id: 1,
-    result: "0x27f6780"
-  }}
-/>
+<RpcPlayground method={m.method} params={m.params} exampleResponse={m.exampleResponse} />
