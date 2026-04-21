@@ -21,11 +21,19 @@ export function useRpcCall(
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  // Reset state whenever the documented method or endpoint changes so that a
+  // RpcPlayground instance reused across RPC reference pages (via client-side
+  // navigation or MDX re-render) never shows a previous method's live response
+  // or error. The cleanup aborts any in-flight request before the reset — and
+  // also on unmount.
   useEffect(() => {
+    setStatus("idle");
+    setResponse(null);
+    setError(null);
     return () => {
       abortRef.current?.abort();
     };
-  }, []);
+  }, [endpoint, method]);
 
   const run = useCallback(async () => {
     abortRef.current?.abort();

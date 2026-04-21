@@ -76,36 +76,42 @@ async function callRpc({ endpoint, method, params, timeout, id }) {
         reason: `HTTP ${res.status}: non-JSON response (${text.slice(0, 120)})`,
       };
     }
-    if (!res.ok) {
-      return {
-        ok: false,
-        reason: `HTTP ${res.status}: ${JSON.stringify(body)}`,
-      };
-    }
+    // Some gateways wrap JSON-RPC errors (including -32601 method-not-found) in
+    // non-2xx HTTP responses. Judge support from the JSON-RPC envelope, not HTTP
+    // status: a well-formed envelope with a non-fatal error is still a PASS. A
+    // non-2xx status is surfaced as context via httpSuffix but is never the sole
+    // reason to fail.
+    const httpSuffix = res.ok ? "" : ` [HTTP ${res.status}]`;
     if (body.jsonrpc !== "2.0") {
       return {
         ok: false,
-        reason: `missing/invalid jsonrpc field: ${body.jsonrpc}`,
+        reason: `missing/invalid jsonrpc field: ${body.jsonrpc}${httpSuffix}`,
       };
     }
     if (body.id !== id) {
-      return { ok: false, reason: `id mismatch: sent ${id}, got ${body.id}` };
+      return {
+        ok: false,
+        reason: `id mismatch: sent ${id}, got ${body.id}${httpSuffix}`,
+      };
     }
     const hasResult = Object.prototype.hasOwnProperty.call(body, "result");
     const hasError = Object.prototype.hasOwnProperty.call(body, "error");
     if (!hasResult && !hasError) {
-      return { ok: false, reason: "response has neither result nor error" };
+      return {
+        ok: false,
+        reason: `response has neither result nor error${httpSuffix}`,
+      };
     }
     if (hasError && body.error?.code === METHOD_NOT_FOUND) {
       return {
         ok: false,
-        reason: `method not found (-32601): ${body.error?.message ?? ""}`,
+        reason: `method not found (-32601): ${body.error?.message ?? ""}${httpSuffix}`,
       };
     }
     if (hasError) {
       return {
         ok: true,
-        note: `ok with rpc error ${body.error?.code}: ${body.error?.message ?? ""}`,
+        note: `ok with rpc error ${body.error?.code}: ${body.error?.message ?? ""}${httpSuffix}`,
       };
     }
     return { ok: true };
