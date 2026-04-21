@@ -10,11 +10,12 @@
 }
 
 .panel {
+  position: relative;
   background: var(--page-background);
   transition: border-color 0.15s;
 }
 
-.panel + .panel {
+.responsePanel {
   border-top: 1px solid var(--linea-border);
 }
 
@@ -209,16 +210,28 @@
   display: none;
 }
 
-.responsePanel {
-  border-left: 3px solid transparent;
+/* Live / error accent is a ::before stripe inside the response panel rather
+   than a border-left. A transparent border-left participates in layout
+   (shifts content 3 px, interacts with the root's overflow: hidden and
+   border-radius at the corner miter) which caused the visible gap the user
+   flagged. A positioned stripe has zero layout effect. */
+.responseLive::before,
+.responseError::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  pointer-events: none;
 }
 
-.responseLive {
-  border-left-color: var(--linea-success-accent);
+.responseLive::before {
+  background: var(--linea-success-accent);
 }
 
-.responseError {
-  border-left-color: var(--linea-error-accent);
+.responseError::before {
+  background: var(--linea-error-accent);
 }
 
 .badge {
