@@ -1,0 +1,42 @@
+---
+title: Enable forced transactions
+description: Enable forced transactions on Linea.
+sidebar_position: 1
+image: /img/socialCards/enable-forced-transactions.jpg
+---
+
+:::caution[Status]
+
+🚧 Forced transactions are not yet live. This documentation describes the intended design.
+
+:::
+
+## Enable forced transactions
+
+Support for [forced transaction](../../protocol/forced-transactions.mdx) submission is not enabled by default. To enable forced transaction submission for smart
+contracts on your Linea instance, you need to:
+
+1. Deploy the
+[`AddressFilter`](https://github.com/Consensys/linea-monorepo/blob/feat/tx-gateway/docs/forced-transactions-architecture.md#3-addressfilter)
+contract. It maintains a list of addresses that cannot participate in forced transactions. This is used for various
+purposes, including filtering EVM precompiles as destination addresses and ensuring compliance with regulatory
+obligations such as anti-money laundering (AML) and know-your-customer (KYC) requirements.
+2. Deploy the
+[`ForcedTransactionGateway`](https://github.com/Consensys/linea-monorepo/blob/feat/tx-gateway/docs/forced-transactions-architecture.md#1-forcedtransactiongateway)
+contract. It is the user-facing contract that validates and submits forced transactions.
+3. Have the `DEFAULT_ADMIN_ROLE` or access to that administrator.
+
+:::tip
+
+Note that the `AddressFilter` contract is required to [initiate your Linea instance](../how-it-works/core-components.mdx#onchain-system-contracts), so this dependency should already be met.
+
+:::
+
+Once both contracts are deployed, the user who has the `DEFAULT_ADMIN_ROLE` on the smart contract that performs the Linea
+Rollup and L1 Message Service access control operations must grant the relevant `FORCED_TRANSACTION_SENDER_ROLE` to the
+`ForcedTransactionGateway` contract, allowing the submission of forced transactions.
+
+## Next steps
+
+- Learn more about [forced transactions](../../protocol/forced-transactions.mdx).
+- Learn how to [submit forced transactions](../../protocol/how-to/forced-transactions.mdx) on Linea Public Mainnet.

@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.button {
+  background-color: var(--linea-brand-purple);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--linea-radius-pill);
+  transition: all 0.3s ease;
+  box-shadow: none;
+  min-height: 52px;
+}
+
+.button:hover {
+  background-color: var(--linea-brand-yellow);
+  color: var(--linea-black);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px color-mix(in sRGB, var(--linea-brand-yellow) 30%, transparent);
+  text-decoration: none;
+}

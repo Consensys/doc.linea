@@ -1,0 +1,113 @@
+.root {
+  color: var(--linea-text-primary);
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 1rem);
+  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  margin-bottom: 10px;
+  color: var(--linea-text-primary);
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-md);
+  font-weight: 500;
+}
+
+.scrollArea {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.list {
+  margin: 0;
+  padding: 0 0 0 14px;
+  border-left: 1px solid var(--linea-brand-purple);
+  list-style: none;
+}
+
+.childList {
+  margin-top: 4px;
+  margin-left: 4px;
+  padding-left: 12px;
+  border-left: none;
+}
+
+.item {
+  list-style: none;
+}
+
+.releaseItem + .releaseItem {
+  margin-top: 6px;
+}
+
+.link {
+  display: block;
+  padding: 2px 0 2px 12px;
+  color: var(--linea-text-secondary);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--linea-text-primary);
+  text-decoration: none;
+}
+
+.releaseLink {
+  position: relative;
+}
+
+.releaseLink::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: -19px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--linea-brand-purple);
+  border-radius: var(--linea-radius-round);
+  background: var(--ifm-background-color);
+}
+
+.childLink {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.label {
+  display: block;
+  color: inherit;
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-sm);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.releaseLink .label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--linea-text-primary);
+}
+
+.meta {
+  display: block;
+  margin-top: 2px;
+  color: var(--linea-text-muted);
+  font-family: AtypText, sans-serif;
+  font-size: var(--font-body-xs);
+  line-height: 1.4;
+}
+
+.root :global(.table-of-contents__link--active) {
+  color: var(--linea-active-color);
+}
+
+.root :global(.table-of-contents__link--active) .label {
+  color: var(--linea-active-color);
+}
+
+.root :global(.table-of-contents__link--active)::before {
+  border-color: var(--linea-active-color);
+  background: var(--linea-active-color);
+}

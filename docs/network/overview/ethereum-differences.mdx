@@ -9,7 +9,8 @@ image: /img/socialCards/ethereum-differences.jpg
 
 This page outlines Ethereum Mainnet functionality that differs on Linea, or is not yet available on 
 Linea. Absence from this page indicates that the functionality is available on Linea and identical to 
-behavior on Ethereum Mainnet; if you're experiencing otherwise, please get in touch via Discord.
+behavior on Ethereum Mainnet; if you're experiencing otherwise, please contact us via the
+[support site](https://support.linea.build/).
 
 :::note 
 
@@ -128,10 +129,12 @@ and include:
 Linea does not support type 3 (`0x3` or "blob") transactions. This type is used on Ethereum Mainnet 
 primarily for layer 2 rollups to cheaply post data on L1.
 
-## EIP-7702
+## EIP-7702 (type 4 transactions)
 
-EIP-7702 is not yet supported on Linea, and is scheduled to be activated with Beta v6.0, in early 
-2026.
+Linea supports [EIP-7702](/protocol/eip-7702) type `0x04` transactions as of
+[Beta v5.0](../../changelog/release-notes.mdx#beta-v50). This allows EOAs to delegate to smart
+contract logic, enabling features like transaction batching, gas sponsorship, and session keys.
+See the [EIP-7702 support](/protocol/eip-7702) page for details.
 
 ## Next steps
 

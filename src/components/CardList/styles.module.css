@@ -1,0 +1,33 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  border: 2px solid var(--linea-border);
+  border-radius: var(--linea-radius-md);
+  margin: 1em;
+  padding: 1em;
+  transition: box-shadow 0.3s ease;
+  height: 200px;
+  width: 200px;
+  overflow: scroll;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+}
+
+.cardTitle {
+  font-weight: normal;
+}
+
+.card:hover .cardTitle {
+  font-weight: bold;
+}

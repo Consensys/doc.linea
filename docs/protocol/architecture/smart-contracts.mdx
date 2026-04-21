@@ -13,6 +13,14 @@ these contracts and services is essential for operators managing deployments.
 
 ### Finalization contract
 
+:::info
+
+In the Linea Public Mainnet deployment, this contract is referred to as the [`LineaRollup`](../../network/build/contracts.mdx). It provides rollup settlement and messaging functionality. Operators running private or hybrid
+networks may reuse the same contract pattern or deploy functionally equivalent contracts as part of
+their finalization design.
+
+:::
+
 This contract is deployed to the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
 **Purpose:**  
@@ -27,15 +35,6 @@ It enables secure interactions between Linea and the finalization layer.
 - Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
   transitions
 - Anchors Linea state to Ethereum-level security guarantees
-
-:::info
-
-In the Linea Public Mainnet deployment, this contract is referred to as the 
-[Linea Rollup and L1 Message Service](../../network/build/contracts.mdx). It provides rollup settlement and messaging functionality. Operators running private or hybrid
-networks may reuse the same contract pattern or deploy functionally equivalent contracts as part of
-their finalization design.
-
-:::
 
 ### Native message bridge smart contract
 

@@ -19,6 +19,277 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### April 21, 2026
+
+#### L1
+- **[Nonce 75](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Safe upgrade to version 1.4.1
+  - Verification
+    - `ChangedMasterCopy` event emitted with `0x41675c099f32341bf84bfc5382af534df5c7461a` as the singleton.
+    - `ChangedFallbackHandler`event emitted with `0xfd0732dc9e303f09fcef3a7388ad10a83459ec99` as the handler.
+
+- **[Nonce 74](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Rotation of two Security Council Addresses.
+  - Verification:
+    - Two addresses are removed and replaced with two new ones ( TBD )
+    - Thresholds at the end of the transaction remain unchanged.
+
+- **[Nonce 73](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Add verifier at index 0 fixing 2 correctness issues preventing the generation of proofs in some cases.
+    - Set Predeposit Guarantee Policy to non-strict on the vault dashboard.
+    - Grant Two Node Operation roles for non-strict flow on the vault dashboard.
+    - Set the FeeRecipient on the vault dashboard to the Payment Splitter.
+    - Adjust yield parameters to allow 20 BPS worth of ETH to be sent to the vault.
+    - Decrease the rate limit at the exit of the withdrawal tunnel to 10,000 ETH per day.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the transaction logs:
+    - `VerifierAddressChanged` records the new verifier `0x218c3339ff3fea595c02ac31ca8a782f5028c4dc`, at index 0.
+    - `PDGPolicyEnacted` event emitted with `pdgPolicy` having value `2`.
+    - `RoleGranted` 1 role granted to the node operator depositor `0xbe315a487bf2839a6d07ee91acfdf189af8bcf9d`.
+      - `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` (`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`).
+    - `RoleGranted` 1 role granted to the node operator depositor `0xcf9a8acbedbf57f9ee2f0c9cd0991277dbfb5da1`.
+      - `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` (`0x7b564705f4e61596c4a9469b6884980f89e475befabdb849d69719f0791628be`).
+    - `FeeRecipientSet` set to the payment splitter address `0x4d2504c498bb7e63bcc7bc11f781d30d99b6febb`.
+    - `WithdrawalReserveParametersSet`
+      - `newTargetWithdrawalReservePercentageBps` should change to `9980`from the old value of `9985`.
+      - All other parameters old and new remain unchanged.
+
+    - `LimitAmountChanged` contains the security council address, the new limit in Wei `10000000000000000000000`. The other two parameters will have one `false` and one `true` depending on execution timing.
+
+#### L2
+- **[Nonce 55](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Safe upgrade to version 1.4.1
+  - Verification
+    - `ChangedMasterCopy` event emitted with `0x29fcb43b46531bca003ddc8fcb67ffe91900c762` as the singleton.
+    - `ChangedFallbackHandler`event emitted with `0xfd0732dc9e303f09fcef3a7388ad10a83459ec99` as the handler.
+
+- **[Nonce 54](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Rotation of two Security Council Addresses.
+  - Verification:
+    - Two addresses are removed and replaced with two new ones ( TBD )
+    - Thresholds at the end of the transaction remain unchanged.
+
+- **[Nonce 53](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD)**
+  - Actions: 
+    - Decrease the rate limit at the entrance of the withdrawal tunnel to 8,000 ETH per day.
+  - Verification:
+    - `LimitAmountChanged` contains the security council address, the new limit in Wei `8000000000000000000000`. The other two parameters will have one `false` and one `true` depending on execution timing.
+
+### April 17, 2026
+#### L1
+- **[Nonce 72](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xf2df9a80b654c181f9930b3a152192216d79d6e1f3821d5e3232662512b3c0bf)**
+
+The following addresses are setup-time generated addresses and should be treated as placeholders in review:
+- `Dynamic Vault`: `0x14a022ef11a41770757652aa6607ef9d7e270b72`
+- `Dynamic Dashboard`: `0x93e37c24e4c58db1fbb53e6247e4441e021c0123`
+- `VaultHub OssifiableProxy`: `0x1d201be093d847f6446530efb0e8fb426d176709`
+- `Bootstrap Admin`: `0x02ca7772ff14a9f6c1a08af385aa96bb1b34175a`
+
+- Actions:
+  - Transfer `1 ETH` of reserve funds into `YieldManager`.
+  - Create a new Lido StVault vault/dashboard pair via the vendor initialization flow.
+  - Initialize `Dynamic Vault`, set its beacon, depositor, node operator, and fund it with `1 ETH`.
+  - Initialize `Dynamic Dashboard` and configure:
+    - confirm expiry = `86400`
+    - fee rate = `990`
+    - fee recipient = `Governance Safe`
+  - Grant dashboard roles during setup:
+    - grant `DEFAULT_ADMIN_ROLE` to `Bootstrap Admin`
+    - grant `NODE_OPERATOR_MANAGER_ROLE` (`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`) to `Governance Safe`
+    - grant `DEFAULT_ADMIN_ROLE` to `Governance Safe`
+    - grant the following dashboard operational roles to `0xeb63cabdd78537b9b72a2afb573f7caa91bd8d94`:
+      - `FUND_ROLE`
+      - `WITHDRAW_ROLE`
+      - `MINT_ROLE`
+      - `REBALANCE_ROLE`
+      - `PAUSE_BEACON_CHAIN_DEPOSITS_ROLE`
+      - `REQUEST_VALIDATOR_EXIT_ROLE`
+      - `RESUME_BEACON_CHAIN_DEPOSITS_ROLE`
+      - `TRIGGER_VALIDATOR_WITHDRAWAL_ROLE`
+      - `VOLUNTARY_DISCONNECT_ROLE`
+  - Reconfigure dashboard role administration so several node-operator roles are now administered by `NODE_OPERATOR_MANAGER_ROLE`.
+  - Revoke `DEFAULT_ADMIN_ROLE` from `Bootstrap Admin`, leaving the governance Safe as the remaining default admin.
+  - Transfer `Dynamic Vault` ownership from `Dynamic Dashboard` to `VaultHub OssifiableProxy`.
+  - Connect `Dynamic Vault` on `VaultHub OssifiableProxy` with configured share limit, reserve ratio, and fee parameters.
+  - Register `Yield Provider` in `YieldManager` as vendor `1` (`LIDO_STVAULT`).
+  - Set the yield provider's `primaryEntrypoint` to `Dynamic Dashboard`.
+  - Set the yield provider's `ossifiedEntrypoint` to `Dynamic Vault`.
+  - Account for an initial `usersFundsIncrement` of `1000000000000000000` wei (`1 ETH`) in `YieldManager`.
+  - Add L2 yield recipient `Linea Consortium Multisig` via `YieldManager.addL2YieldRecipient`.
+
+- Verification:
+  - Event order:
+    - Reserve funding:
+      - `ReserveFundsReceived(amount = 1000000000000000000)` on `Yield Manager`.
+    - Vault bootstrap:
+      - `BeaconUpgraded(beacon = `StakingVault Beacon`)`.
+      - ``OwnershipTransferred(previousOwner = 0x0000000000000000000000000000000000000000, newOwner = `Dynamic Dashboard`)``.
+      - ``DepositorSet(previousDepositor = 0x0000000000000000000000000000000000000000, newDepositor = `Predeposit Guarantee`)``.
+      - ``NodeOperatorSet(nodeOperator = `Node Operator`)``.
+      - `Initialized(version = 1)` on `Dynamic Vault`.
+    - Dashboard bootstrap and configuration:
+      - ``RoleGranted(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Bootstrap Admin`, sender = `Bootstrap Admin`)``.
+      - ``ConfirmExpirySet(sender = `Bootstrap Admin`, oldConfirmExpiry = 0, newConfirmExpiry = 86400)``.
+      - `Initialized()` on `Dynamic Dashboard`.
+      - ``FeeRateSet(sender = `Bootstrap Admin`, oldFeeRate = 0, newFeeRate = 990)``.
+      - ``FeeRecipientSet(sender = `Bootstrap Admin`, oldFeeRecipient = 0x0000000000000000000000000000000000000000, newFeeRecipient = `Governance Safe`)``.
+    - Dashboard role administration:
+      - ``RoleGranted(role = `NODE_OPERATOR_MANAGER_ROLE` [`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`], account = `Governance Safe`, sender = `Bootstrap Admin`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_MANAGER_ROLE` [`0x59783a4ae82167eefad593739a5430c1d9e896a16c35f1e5285ddd0c0980885c`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_FEE_EXEMPT_ROLE` [`0xcceeef0309e9a678ed7f11f20499aeb00a9a4b0d50e53daa428f8591debc583a`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` [`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+      - ``RoleAdminChanged(role = `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` [`0x7b564705f4e61596c4a9469b6884980f89e475befabdb849d69719f0791628be`], previousAdminRole = `DEFAULT_ADMIN_ROLE`, newAdminRole = `NODE_OPERATOR_MANAGER_ROLE`)``.
+    - Dashboard funding and vault connection:
+      - ``Approval(owner = `Dynamic Dashboard`, spender = `wstETH`, value = type(uint256).max)`` on `stETH`.
+      - `EtherFunded(amount = 1000000000000000000)`.
+      - ``OwnershipTransferStarted(previousOwner = `Dynamic Dashboard`, newOwner = `VaultHub OssifiableProxy`)``.
+      - ``OwnershipTransferred(previousOwner = `Dynamic Dashboard`, newOwner = `VaultHub OssifiableProxy`)``.
+      - ``VaultConnected(vault = `Dynamic Vault`, shareLimit = 4071000000000000000000, reserveRatioBP = 5000, forcedRebalanceThresholdBP = 4975, infraFeeBP = 100, liquidityFeeBP = 650, reservationFeeBP = 0)`` on `VaultHub OssifiableProxy`.
+        - The values above are defaults from vault construction.
+    - YieldManager dashboard permissions:
+      - ``RoleGranted(role = `FUND_ROLE` [`0x933b7d5c112a4d05b489cea0b2ced98acb27d3d0fc9827c92cdacb2d6c5559c2`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `WITHDRAW_ROLE` [`0x355caf1c2580ed8185acb5ea3573b71f85186b41bdf69e3eb8f1fcd122a562df`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `MINT_ROLE` [`0xe996ac9b332538bb1fa3cd6743aa47011623cdb94bd964a494ee9d371e4a27d3`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `REBALANCE_ROLE` [`0x3f82ecf462ddac43fc17ba11472c35f18b7760b4f5a5fc50b9625f9b5a22cf62`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `PAUSE_BEACON_CHAIN_DEPOSITS_ROLE` [`0xa90c7030a27f389f9fc8ed21a0556f40c88130cc14a80db936bed68261819b2c`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `REQUEST_VALIDATOR_EXIT_ROLE` [`0x32d0d6546e21c13ff633616141dc9daad87d248d1d37c56bf493d06d627ecb7b`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `RESUME_BEACON_CHAIN_DEPOSITS_ROLE` [`0x59d005e32db662b94335d6bedfeb453fd2202b9f0cc7a6ed498d9098171744b0`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `TRIGGER_VALIDATOR_WITHDRAWAL_ROLE` [`0xea19d3b23bd90fdd52445ad672f2b6fb1fef7230d49c6a827c1cd288d02994d5`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+      - ``RoleGranted(role = `VOLUNTARY_DISCONNECT_ROLE` [`0x9586321ac05f110e4b4a0a42aba899709345af0ca78910e8832ddfd71fed2bf4`], account = `Yield Manager`, sender = `Bootstrap Admin`)``.
+    - Final dashboard admin handoff and factory events:
+      - ``RoleGranted(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Governance Safe`, sender = `Bootstrap Admin`)``.
+      - ``RoleRevoked(role = `DEFAULT_ADMIN_ROLE` [`0x0000000000000000000000000000000000000000000000000000000000000000`], account = `Bootstrap Admin`, sender = `Bootstrap Admin`)``.
+      - ``VaultCreated(vault = `Dynamic Vault`)``.
+      - ``DashboardCreated(dashboard = `Dynamic Dashboard`, vault = `Dynamic Vault`, admin = `Governance Safe`)``.
+    - YieldManager registration and recipient allowlist:
+      - The address `Yield Manager` emits `ReserveFundsReceived`, `YieldProviderAdded`, and `L2YieldRecipientAdded`.
+      - `YieldProviderVendor = 1` maps to `LIDO_STVAULT`.
+      - ``YieldProviderAdded(yieldProvider = `Yield Provider`, yieldProviderVendor = 1 [`LIDO_STVAULT`], primaryEntrypoint = `Dynamic Dashboard`, ossifiedEntrypoint = `Dynamic Vault`, usersFundsIncrement = 1000000000000000000)``.
+      - ``L2YieldRecipientAdded(l2YieldRecipient = `Linea Consortium Multisig`)``.
+    - Safe execution:
+      - `ExecutionSuccess(txHash = 0x53c3eef9e10234fa62c0263866d74f9e91387fea309d487bd0933ec5e77db521, payment = 0)`.
+
+
+### March 31, 2026
+#### L1
+
+- **[Nonce 71](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x79b3c0c29ffcc04b3f3035e4c07e4558fecde523de668202bfc77cddc1ca358b)**
+  - Actions: 
+    - Add replacement verifier at index 1 supporting Small Fields and Dynamic Chain Configuration.
+  - Verification:
+    - Set verifier: `VerifierAddressChanged` records the new verifier `0x0D0f070386edC441A63fB8FAe8FB937Bbd88c5Cb`, at index 1.
+
+- **[Nonce 70](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x50157aa17891dbfeb34de0a149e7cf6ca28eb85c6fdd8eaf44855e9a15dead5a)**
+  - Actions: 
+    - Add verifier at index 1 supporting Small Fields and Dynamic Chain Configuration.
+    - Upgrade the LineaRollup to support Pause Cooldown and Dynamic Chain Configuration.
+    - Upgrade the TokenBridge to support Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the TokenBridge as part of the Pause Cooldown.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the LineaRollup.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge.
+    - Cancel proposal to set verifier with address `0xe1eb4fa40bef91727c1b28915d9262aad10ae5b3` at index 1.
+    - Set linea.eth target on the L1Resolver contract for name resolution.
+    - Set the linea.eth ENS record to point to the new L1Resolver of `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
+
+  - Verification: - Audits: 
+    - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
+      - Deployment addresses
+      - `0xe68697690e8ff196a6abb3e1385156d87df85332` Linea Rollup will use the audited implementation address.
+      - `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff` TokenBridge will use the audited implementation address.
+    - Set verifier: `VerifierAddressChanged` records the new verifier `0x1442833180e253844897339aFb5800c797547987`, at index 1.
+    - Linea Rollup events: 
+      - `RoleGranted` 3 roles granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+        - `PAUSE_STATE_DATA_SUBMISSION_ROLE` (0x21aba2dd4535739d4ca4cddb3c024036bfcc88cfce067cb0847e7ad0f9cfaa55).
+        - `UNPAUSE_STATE_DATA_SUBMISSION_ROLE`(0x4df33217c89b6f12af38ba46035cb312b5e88de78d22279286830fe079b642cd).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `(Un)pauseTypeRoleSet` for index 13 (`STATE_DATA_SUBMISSION_PAUSE_TYPE`).
+        - To pause the type `PAUSE_STATE_DATA_SUBMISSION_ROLE` is required.
+        - To remove the pause the type `UNPAUSE_STATE_DATA_SUBMISSION_ROLE` is required.
+      - `LineaRollupVersionChanged` "7.0" to "7.1" (hex encoded)
+      - `Upgraded Event` containing the audited implementation address `0xe68697690e8ff196a6abb3e1385156d87df85332`.
+      - `Initialized` - reinitialized to 8.
+    - TokenBridge events: 
+      - `RoleGranted` 1 role granted to the security council `0x892bb7EeD71efB060ab90140e7825d8127991DD3`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0xf0e003f0de2d583ae28fa8cbf66aa096cdace3ff`.
+      - `Initialized` - reinitialized to 3.
+    - Cancel event:
+      - `Cancelled` Event with ID=`0x899614cfc5a477e3272042f2e6eb576aec8b7c41a97cf09f404c4835947dba89`. [Proposal transaction](https://etherscan.io/tx/0x0aab939e1ad1f3f3bdef61add591c35b7e3f2e791700fe3d6e3a3729f0bc97e2/advanced#eventlog#596)
+    - TargetSet event: Contains function call parameters.
+    - Resolver changed event:
+      - `NewResolver` should be emitted with the node and the new L1Resolver `0x1507ce9421232fdbd302f5ebe4590f8d77febbff`
+
+#### L2
+
+- **[Nonce 52](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0x9d01eb3c9c109e02fe603b492fa81538ab1526467116739d45d837b0d4ff00b4)**
+  - Actions: 
+    - Upgrade the L2 Message Service to support Pause Cooldown.
+    - Upgrade the TokenBridge to support Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the L2 Message Service as part of the Pause Cooldown.
+    - Grant the `SECURITY_COUNCIL_ROLE` to the TokenBridge as part of the Pause Cooldown.
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the L2 Message Service
+    - Grant the `PAUSE_ALL_ROLE` to the Emergency Pauser account on the TokenBridge
+ - Verification: - Audits: 
+    - [Links to audits](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration):
+      - Deployment addresses
+      - `0x9976fd7eddb78156a002de74c9158e884702273d` L2 Message Service will use the audited implementation address.
+      - `0x4a496167f187a97379e763f693a499ce1182848b` TokenBridge will use the audited implementation address.
+    - L2 Message Service events: 
+      - `RoleGranted` 1 role granted to the security council `0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0x9976fd7eddb78156a002de74c9158e884702273d`
+      - `Initialized` - reinitialized to 3      
+    - TokenBridge events: 
+      - `RoleGranted` 1 role granted to the security council `0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD`.
+        - `SECURITY_COUNCIL_ROLE` (0x1453a531db80c85f2d944d498709d84959bc5bf839eefe9acb784571e5a32118).
+      - `RoleGranted` 1 roles granted to the Emergency Pauser `0x2532bfdc9ba58b13358a9c5c05136d6938bc42d0`.
+        - `PAUSE_ALL_ROLE` (0x56bdc3c9ec86cb7db110a7699b2ade72f0b8819727d9f7d906b012641505fa77).
+      - `Upgraded Event` containing the audited implementation address `0x4a496167f187a97379e763f693a499ce1182848b`
+      - `Initialized` - reinitialized to 3
+
+### March 24, 2026
+#### L1
+
+- **[Nonce 69](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x4bd7cb5cab64c9d64778f35bfe1cddbdceec5a57849f99b9ba54d86d580776fb)**
+  - Actions: 
+    - Add verifier at index 1 supporting EIP-7702 Type-4 transactions.
+    - Unset verifier at index 4.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the transaction logs:
+    - Set verifier: `VerifierAddressChanged` records the new verifier `0x66355689a9f067eeb9dc9d899e4192676988279c`, at index 1.
+    - Unset: `VerifierAddressChanged` unset the verifier at index 4.
+
+### March 23, 2026
+#### L1
+
+- **[Nonce 68](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x8b95fefc5a0dcc6c4242699e280dd4ec6b10820835394545d4170c35ad72c8f6)**
+  - Actions: 
+    - Add verifier at index 0 supporting EIP-7702 Type-4 transactions.
+    - Unset no longer used verifier at index 3.
+  - Verification: Events confirming the verifier changes were emitted and are viewable in the 
+  transaction logs:
+    - Set EIP-7702: `VerifierAddressChanged` records the new verifier `0xC83ed08E2262fBa264D528C749c051f8fC526897`, at index 0.
+    - Unset: `VerifierAddressChanged` unset the verifier at index 3.
+
+### March 04, 2026
+#### L2
+- **[Nonce 51](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0x16c878b15579d7418f6df9ed006fa6c35294422df86691c273821b48fe7bc627)**
+  - Actions: Account rotation.
+    - Grant `L1_L2_MESSAGE_SETTER_ROLE` (`0x4705265620026983c754c5288b65446d794a03174326ec6d7c0b5c7f1fd67415`) to the new address (`0x2b0f9c76970975aec03784efd763623757ef7652`).
+    - Revoke `L1_L2_MESSAGE_SETTER_ROLE` (`0x4705265620026983c754c5288b65446d794a03174326ec6d7c0b5c7f1fd67415`) from the existing address (`0xc1c6b09d1eb6fca0ff3ca11027e5bc4aedb47f67`).
+
+  - Verification
+    - Corresponding `RoleGranted` and `RoleRevoked` events emitted matching the addresses and `L1_L2_MESSAGE_SETTER_ROLE` hash value.
+
 ### February 26, 2026
 #### L1
 - **[Nonce 67](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xa1c97a648c46f47e3c9e377c7a372294d9fa4eacb464e7e32932ac1c91cd819c)**
