@@ -1,29 +1,51 @@
 .root {
   margin: 24px 0;
-  font-family: AtypText, sans-serif;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 24px 0 8px;
+}
+
+/* First header in the component doesn't need extra top space — the parent
+   ## Example heading already provides vertical separation. */
+.root > .sectionHeader:first-child {
+  margin-top: 0;
+}
+
+/* Match the site's article h3 typography so labels look like the
+   ### Request / ### Response headings on static method pages. */
+.label {
+  font-family: AtypDisplay, sans-serif;
+  font-size: var(--font-heading-lg);
+  font-weight: 500;
+  color: var(--linea-text-primary);
+  line-height: 1.3;
 }
 
 .toolbar {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   gap: 6px;
-  margin: 0 0 8px;
   flex-wrap: wrap;
 }
 
-/* Collapse the global codeBlockContainer top margin on the request block so
-   the toolbar feels visually attached to its code. The response keeps its
-   natural 1.5rem margin — matching every other ```json block on the site. */
-.requestBlock :global([class*="codeBlockContainer"]) {
+/* Collapse the global codeBlockContainer top margin on our code blocks so
+   they sit tight under their section headers. */
+.requestBlock :global([class*="codeBlockContainer"]),
+.responseBlock :global([class*="codeBlockContainer"]) {
   margin-top: 0 !important;
 }
 
 /* Hide the request block's built-in copy button — the toolbar above already
-   owns Copy. The response block keeps its built-in copy, matching every
-   other code block on the site. Matched by partial class name because
-   Docusaurus emits hashed CSS-module class names (no stable .theme-* alias
-   exists for this element). */
+   owns Copy. The response block keeps its built-in copy button, matching
+   every other ```json block on the site. Matched by partial class name
+   because Docusaurus emits hashed CSS-module class names (no stable
+   .theme-* alias exists for this element). */
 .requestBlock :global([class*="buttonGroup"]) {
   display: none;
 }
@@ -152,6 +174,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: var(--font-body-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: var(--linea-radius-pill);
+  border: 1px solid transparent;
+  line-height: 1.4;
+}
+
+.badgeLive {
+  color: var(--linea-success-accent);
+  border-color: var(--linea-success-accent);
+  background: rgb(16 185 129 / 10%);
+}
+
+.badgeError {
+  color: var(--linea-error-accent);
+  border-color: var(--linea-error-accent);
+  background: rgb(239 68 68 / 10%);
 }
 
 .srOnly {
