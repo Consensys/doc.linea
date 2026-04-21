@@ -71,13 +71,22 @@ async function callRpc({ endpoint, method, params, timeout, id }) {
     try {
       body = JSON.parse(text);
     } catch {
-      return { ok: false, reason: `HTTP ${res.status}: non-JSON response (${text.slice(0, 120)})` };
+      return {
+        ok: false,
+        reason: `HTTP ${res.status}: non-JSON response (${text.slice(0, 120)})`,
+      };
     }
     if (!res.ok) {
-      return { ok: false, reason: `HTTP ${res.status}: ${JSON.stringify(body)}` };
+      return {
+        ok: false,
+        reason: `HTTP ${res.status}: ${JSON.stringify(body)}`,
+      };
     }
     if (body.jsonrpc !== "2.0") {
-      return { ok: false, reason: `missing/invalid jsonrpc field: ${body.jsonrpc}` };
+      return {
+        ok: false,
+        reason: `missing/invalid jsonrpc field: ${body.jsonrpc}`,
+      };
     }
     if (body.id !== id) {
       return { ok: false, reason: `id mismatch: sent ${id}, got ${body.id}` };
@@ -88,10 +97,16 @@ async function callRpc({ endpoint, method, params, timeout, id }) {
       return { ok: false, reason: "response has neither result nor error" };
     }
     if (hasError && body.error?.code === METHOD_NOT_FOUND) {
-      return { ok: false, reason: `method not found (-32601): ${body.error?.message ?? ""}` };
+      return {
+        ok: false,
+        reason: `method not found (-32601): ${body.error?.message ?? ""}`,
+      };
     }
     if (hasError) {
-      return { ok: true, note: `ok with rpc error ${body.error?.code}: ${body.error?.message ?? ""}` };
+      return {
+        ok: true,
+        note: `ok with rpc error ${body.error?.code}: ${body.error?.message ?? ""}`,
+      };
     }
     return { ok: true };
   } catch (e) {
@@ -122,8 +137,12 @@ async function main() {
   if (opts.only) runnable = runnable.filter((m) => opts.only.has(m.method));
   const skipped = all.length - runnable.length;
 
-  console.log(`validate-rpc-methods: ${runnable.length} runnable, ${skipped} skipped`);
-  console.log(`endpoint: ${opts.endpoint}  timeout: ${opts.timeout}ms  concurrency: ${opts.concurrency}`);
+  console.log(
+    `validate-rpc-methods: ${runnable.length} runnable, ${skipped} skipped`,
+  );
+  console.log(
+    `endpoint: ${opts.endpoint}  timeout: ${opts.timeout}ms  concurrency: ${opts.concurrency}`,
+  );
   console.log("");
 
   let id = 1;
@@ -149,11 +168,15 @@ async function main() {
   const failed = results.length - passed;
 
   console.log("");
-  console.log(`summary: ${passed} passed, ${failed} failed, ${skipped} skipped (ciRunnable: false)`);
+  console.log(
+    `summary: ${passed} passed, ${failed} failed, ${skipped} skipped (ciRunnable: false)`,
+  );
   process.exit(failed === 0 ? 0 : 1);
 }
 
 main().catch((e) => {
-  console.error(`validate-rpc-methods: unexpected error: ${e.stack || e.message}`);
+  console.error(
+    `validate-rpc-methods: unexpected error: ${e.stack || e.message}`,
+  );
   process.exit(2);
 });
