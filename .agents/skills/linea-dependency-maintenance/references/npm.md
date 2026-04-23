@@ -1,5 +1,8 @@
 # npm Dependency Maintenance
 
+<!-- markdownlint-disable -->
+<!-- vale off -->
+
 Use these notes only for npm repositories with `package-lock.json`, npm CI, or npm-based hosting/deploy detection.
 
 ## Rules

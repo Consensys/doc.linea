@@ -1,5 +1,8 @@
 # pnpm Dependency Maintenance
 
+<!-- markdownlint-disable -->
+<!-- vale off -->
+
 Use these notes for pnpm repositories with `pnpm-lock.yaml`, `pnpm-workspace.yaml`, catalogs, overrides, or pnpm-specific CI.
 
 ## Rules

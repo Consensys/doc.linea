@@ -7,6 +7,9 @@ metadata:
 
 # Dependency Maintenance
 
+<!-- markdownlint-disable -->
+<!-- vale off -->
+
 Use this workflow to maximize safe dependency progress without changing the repository's package-manager contract or hiding remaining risk.
 
 ## Preflight
@@ -49,7 +52,7 @@ pnpm why <package> -r
 When registry-age gates matter, use the bundled helper as a reproducible first pass:
 
 ```bash
-node <skill-dir>/scripts/eligible-updates.mjs --manager auto --days 3
+node <skill-dir>/scripts/eligible-updates --manager auto --days 3
 ```
 
 Replace `<skill-dir>` with the directory containing this `SKILL.md`. Adjust `--days` or `--minutes` to match the repo policy.
@@ -117,4 +120,4 @@ Pause before contract deployments, public API breakage, package-manager migratio
 
 - For npm/package-lock repositories, read `references/npm.md`.
 - For pnpm workspace/catalog/override repositories, read `references/pnpm.md`.
-- For reproducible release-age inventory, run `scripts/eligible-updates.mjs`.
+- For reproducible release-age inventory, run `scripts/eligible-updates`.
