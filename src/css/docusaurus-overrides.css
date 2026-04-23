@@ -2207,8 +2207,12 @@ article li {
 
 /* Code blocks styling per Figma - EXACT specs */
 /* Main container - only this should have padding */
+/* color is always set to a light value because the background is always
+   var(--linea-surface-code) regardless of the page theme, ensuring the title
+   and all other header text have sufficient contrast in both light and dark mode */
 div[class*="codeBlockContainer"] {
   background-color: var(--linea-surface-code) !important;
+  color: var(--linea-code-text) !important;
   border-radius: var(--linea-radius-md) !important;
   padding: 20px !important;
   margin: 1.5rem 0 !important;
@@ -2218,6 +2222,14 @@ div[class*="codeBlockContainer"] {
   position: relative !important;
   /* Clip the button so it never falls outside the block */
   overflow: hidden !important;
+}
+
+/* Code block title — always displayed on the dark #121212 container, so text
+   must be light; also reset the border-bottom which Docusaurus sets using a
+   light-mode-tuned emphasis variable that looks wrong on the dark surface */
+div[class*="codeBlockTitle"] {
+  color: var(--linea-code-text) !important;
+  border-bottom-color: rgb(255 255 255 / 15%) !important;
 }
 
 /* Remove ALL padding from inner content wrapper */
@@ -2244,10 +2256,13 @@ div[class*="codeBlockContainer"][data-large-block] div[class*="buttonGroup"] {
 }
 
 /* Copy button icon — consistent colour in both light and dark mode.
-   The code block background is always #121212 so we always use light tones. */
+   The code block background is always #121212 so we always use light tones.
+   Reset border and background from Docusaurus defaults that are tuned for
+   a light code surface. */
 div[class*="codeBlockContainer"] div[class*="buttonGroup"] button {
-  color: #a0a0a0 !important;
+  color: var(--linea-text-subtle) !important;
   background: transparent !important;
+  border: none !important;
   transition: color 0.2s ease, background 0.2s ease !important;
 }
 
