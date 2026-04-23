@@ -1,0 +1,29 @@
+{
+  "skill_name": "linea-dependency-maintenance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In an npm Docusaurus/Vercel repo with package-lock.json, refresh eligible non-major dependencies, keep npm as the package manager, avoid pnpm files, document skipped majors, and prepare a PR summary with validation.",
+      "expected_output": "Uses npm only, preserves package-lock.json, checks registry publish dates, avoids npm audit fix --force, validates lint/typecheck/build/audit, and documents blocked updates.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "In a pnpm monorepo with pnpm-workspace catalogs, minimumReleaseAge: 4320, and many pnpm overrides, bump safe patch/minor dependencies, clean stale overrides, and create issues for majors.",
+      "expected_output": "Updates catalog entries where appropriate, respects the 3-day maturity window and exclusions, regenerates pnpm-lock.yaml, minimizes overrides, validates affected workspaces, and tracks majors separately.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "An audit report shows vulnerable transitive packages where the only patched version is a major that upstream tools may not support. Decide what to update now and what to track.",
+      "expected_output": "Avoids forcing incompatible major overrides, records dependency paths and advisories, applies only compatible direct or targeted transitive fixes, and opens follow-up issues for blocked items.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "A dependency PR fails CI after a safe update. Inspect logs, identify whether it is introduced or baseline debt, apply the smallest safe fix, and update the PR summary.",
+      "expected_output": "Uses CI logs rather than guessing, reproduces narrowly when possible, classifies the failure, narrows or reverts the problematic update if needed, and keeps the PR description aligned with the actual update set.",
+      "files": []
+    }
+  ]
+}
