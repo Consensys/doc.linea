@@ -8,9 +8,11 @@ Use these notes only for npm repositories with `package-lock.json`, npm CI, or n
 ## Rules
 
 - Keep npm as the only package manager unless the user explicitly asks for a migration.
-- Do not commit `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `yarn.lock`, or `packageManager` changes to an npm repo just to inspect dependencies.
+- Do not commit `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `yarn.lock`, or `packageManager` changes to an npm repo just to
+  inspect dependencies.
 - Preserve existing version specifier style. Exact pins stay exact; intentional ranges stay ranges.
-- Do not rely on `npm audit fix --force` for dependency-refresh PRs because it can apply semver-major changes or obscure why the tree changed.
+- Do not rely on `npm audit fix --force` for dependency-refresh PRs because it can apply semver-major changes or obscure
+  why the tree changed.
 
 ## Baseline
 
@@ -59,4 +61,5 @@ npm run build
 npm audit --json > /tmp/npm-audit-after.json || true
 ```
 
-If build/prebuild scripts mutate generated docs, images, or metadata unrelated to dependency maintenance, restore those unrelated files before staging.
+If build/prebuild scripts mutate generated docs, images, or metadata unrelated to dependency maintenance, restore those
+unrelated files before staging.
