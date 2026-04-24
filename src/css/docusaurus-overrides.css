@@ -796,7 +796,7 @@ html[data-theme="dark"] .navbar {
   font-size: 12px;
   line-height: 20px;
   text-transform: uppercase;
-  font-weight: medium;
+  font-weight: 500;
   border-radius: 0.25rem;
   border: 1px solid;
   border-inline-start-width: 5px;
@@ -1281,7 +1281,6 @@ a.menu__link {
   justify-content: center !important;
   padding: 0 !important;
   background: transparent !important;
-  background-color: transparent !important;
   margin: 0 !important;
   border-radius: 0 !important;
   z-index: 100 !important;
@@ -1334,7 +1333,6 @@ a.menu__link {
 
 .container.padding-top--md .padding-bottom--lg {
   margin: 0;
-  margin-right: 0 !important;
   margin-left: 10px;
   max-width: 99%;
   padding: 0 20px !important;
