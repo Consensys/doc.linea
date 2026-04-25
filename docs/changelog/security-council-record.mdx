@@ -22,18 +22,24 @@ you can take to verify this information.
 ### April 21, 2026
 
 #### L1
-- **[Nonce 75](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+- **[Nonce 75](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x9dedb4f3c41b6306ef681bad3241c77493d95fb30f034d1615404c50d2025d2b)**
   - Actions: 
     - Safe upgrade to version 1.4.1
   - Verification
     - `ChangedMasterCopy` event emitted with `0x41675c099f32341bf84bfc5382af534df5c7461a` as the singleton.
     - `ChangedFallbackHandler`event emitted with `0xfd0732dc9e303f09fcef3a7388ad10a83459ec99` as the handler.
 
-- **[Nonce 74](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+- **[Nonce 74](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x7e4b9f81e4f2272285a96d615c831533bd4bdcf61ce3b681036dd05fba97cb8b)**
   - Actions: 
+    - Adjust Yield Manager Withdrawal Parameters.
     - Rotation of two Security Council Addresses.
   - Verification:
-    - Two addresses are removed and replaced with two new ones ( TBD )
+    - `WithdrawalReserveParametersSet`
+      - `newTargetWithdrawalReservePercentageBps` should change to `9980`from the old value of `9888`.
+      - All other parameters old and new remain unchanged.
+    - Two addresses are removed and replaced with two new owners
+      - `RemovedOwner` containing `0x99234cd9b532f30538ac797d33c212e3b69fd087` replaced by `AddedOwner` event containing `0x0f4df4939a6b126a088a40b4bbf9f30337acbfe4`
+      - `RemovedOwner` containing `0x497515578b0be54d2f0f32cf3f08b85bf8ceb6ab` replaced by `AddedOwner` event containing `0xd6481cc92ed746ebc679788654723ce49d45ebea`
     - Thresholds at the end of the transaction remain unchanged.
 
 - **[Nonce 73](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x4743afd65119c20228fa721e0f40df3c80be8f5cfd533d3e93096c2b57331f0d)**
