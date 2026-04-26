@@ -63,7 +63,7 @@ fee per gas.
   curl https://rpc.linea.build \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045","value": "0x16345785d8a0000"}],"id": 53}'
+  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045","value": "0x16345785d8a0000"}],"id": 1}'
   ```
 
   </TabItem>
@@ -128,7 +128,7 @@ fee per gas.
 ```JSON
 {
   "jsonrpc": "2.0",
-  "id": 53,
+  "id": 1,
   "result": {
     "baseFeePerGas": "0x7",
     "gasLimit": "0x5208",
@@ -212,6 +212,6 @@ curl https://rpc.linea.build \
           }
       }
   ],
-  "id":53
+  "id":1
 }'
 ```
