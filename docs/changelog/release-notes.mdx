@@ -10,8 +10,12 @@ release_toc:
     sepolia: 29 April 2026
   beta-v53:
     label: Prover performance optimizations
-    mainnet: 29 April 2026
-    sepolia: 20 March 2026
+    mainnet: 4 May 2026 (target)
+    sepolia: 27 April 2026
+  beta-v521:
+    label: Pause Cooldown and Dynamic Chain Configuration
+    mainnet: 1 April 2026
+    sepolia: 24 March 2026
   beta-v52:
     label: Small fields
     mainnet: 1 April 2026
@@ -179,6 +183,19 @@ Finality under 30min: Reduce Linea's [hard finality](../network/overview/transac
 <ChangelogEntry tag="performance">
 
 Prover performance optimizations. Proof generation time ~40% faster.
+
+</ChangelogEntry>
+
+## Beta v5.2.1
+
+<ChangelogDate sectionId="beta-v521" />
+
+<ChangelogEntry tag="upgrade">
+
+Modularizes the `LineaRollup`, `TokenBridge`, and `L2MessageService` contracts and deploys a new verifier supporting Small Fields and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 67 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
+
+- **Pause Cooldown.** New pause mechanism enforced by `PAUSE_ALL_ROLE` (granted to an Emergency Pauser EOA controlled by the SOC) and `SECURITY_COUNCIL_ROLE` (granted to the Security Council multisig). Applied to `LineaRollup`, `L2MessageService`, and the L1/L2 `TokenBridge` contracts; replaces the prior Zodiac-based pause flow. Satisfies the user-exit-window requirement of [L2Beat Stage 1](https://medium.com/l2beat/introducing-stages-a-framework-to-evaluate-rollups-maturity-d290bb22befe).
+- **Dynamic Chain Configuration (DCC).** The verifier accepts chain-specific parameters (`chainId`, `l2MessageServiceAddress`, `baseFee`, `coinbase`) at proof verification time, allowing a single verifier contract to validate proofs for multiple [Linea stack](../stack/index.mdx) networks instead of requiring a per-chain verifier deployment.
 
 </ChangelogEntry>
 
