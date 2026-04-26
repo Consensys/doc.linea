@@ -9,6 +9,16 @@ image: /img/socialCards/ethnewblockfilter.jpg
 Creates a filter to receive notifications when new blocks are produced. Poll the filter with
 [`eth_getFilterChanges`](eth-getfilterchanges) to retrieve new block hashes since the last poll.
 
+:::warning Filter polling on the public endpoint
+
+Filter IDs are server-side state, scoped to the node that created them. On a load-balanced public
+endpoint like `rpc.linea.build`, a follow-up `eth_getFilterChanges` request may land on a different
+backend that has no record of the filter and silently return an empty result. For reliable block
+tracking in production, poll [`eth_blockNumber`](eth-blocknumber) directly or use a private RPC
+endpoint with sticky sessions.
+
+:::
+
 ## Parameters
 
 None.

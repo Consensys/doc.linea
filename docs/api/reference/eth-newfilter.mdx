@@ -10,6 +10,16 @@ Creates a log filter and returns a filter ID. Use the ID with
 [`eth_getFilterChanges`](eth-getfilterchanges) to poll for new logs, or
 [`eth_getFilterLogs`](eth-getfilterlogs) to read all matching logs at once.
 
+:::warning Filter polling on the public endpoint
+
+Filter IDs are server-side state, scoped to the node that created them. On a load-balanced public
+endpoint like `rpc.linea.build`, a follow-up `eth_getFilterChanges` or `eth_getFilterLogs` request
+may land on a different backend that has no record of the filter and silently return an empty
+result. For reliable event consumption in production, use [`eth_getLogs`](eth-getlogs) with explicit
+block ranges, or a private RPC endpoint with sticky sessions.
+
+:::
+
 ## Parameters
 
 - `filter`: _\[required]_ Filter object (same shape as [`eth_getLogs`](eth-getlogs)):

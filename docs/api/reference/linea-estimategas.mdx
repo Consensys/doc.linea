@@ -63,7 +63,7 @@ fee per gas.
   curl https://rpc.linea.build \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff","data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"}],"id": 53}'
+  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045","value": "0x16345785d8a0000"}],"id": 53}'
   ```
 
   </TabItem>
@@ -131,8 +131,8 @@ fee per gas.
   "id": 53,
   "result": {
     "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
+    "gasLimit": "0x5208",
+    "priorityFeePerGas": "0x25d1eb6"
   }
 }
 ```
@@ -143,8 +143,8 @@ fee per gas.
   ```javascript
   {
     baseFeePerGas: "0x7",
-    gasLimit: "0xcf08",
-    priorityFeePerGas: "0x43a82a4"
+    gasLimit: "0x5208",
+    priorityFeePerGas: "0x25d1eb6"
   }
   ```
   </TabItem>
@@ -153,8 +153,8 @@ fee per gas.
   ```javascript
   {
     baseFeePerGas: 7n,
-    gasLimit: 53000n,
-    priorityFeePerGas: 4444716n
+    gasLimit: 21000n,
+    priorityFeePerGas: 39574198n
   }
   ```
 
