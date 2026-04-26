@@ -13,8 +13,8 @@ Creates a log filter and returns a filter ID. Use the ID with
 ## Parameters
 
 - `filter`: _\[required]_ Filter object (same shape as [`eth_getLogs`](eth-getlogs)):
-  - `fromBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. Defaults to `latest`.
-  - `toBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. Defaults to `latest`.
+  - `fromBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. The default is `latest`.
+  - `toBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. The default is `latest`.
   - `address`: _\[optional]_ Contract address or array of addresses.
   - `topics`: _\[optional]_ Array of 32-byte topic values. Each position can be a single value, an array of values (OR), or `null` (wildcard).
 

@@ -8,7 +8,7 @@ image: /img/socialCards/ethsendrawtransaction.jpg
 
 :::note
 
-`eth_sendRawTransaction` is functionally very similar to the [Ethereum Mainnet equivalent](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendrawtransaction). 
+`eth_sendRawTransaction` is functionally similar to the [Ethereum Mainnet equivalent](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_sendrawtransaction). 
 
 The difference lies in the [error responses](#errors). On Linea, `eth_sendRawTransaction` has some 
 unique error responses.
@@ -16,8 +16,8 @@ unique error responses.
 :::
 
 Submits a pre-signed and serialized transaction and returns the transaction hash if successful. 
-This endpoint can help prevent transactions being rejected due to exceeding the sequencer's 
-per-block line limit. If the line count check fails, it returns an error message indicating the 
+This endpoint can help prevent transactions being rejected due to exceeding the per-block line
+limit enforced by the sequencer. If the line count check fails, it returns an error message indicating the 
 transaction is likely to be rejected.
 
 :::info
