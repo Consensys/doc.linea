@@ -13,7 +13,7 @@ shape.
 ## Parameters
 
 - `transaction`: _\[required]_ Transaction call object (`from`, `to`, `gas`, `gasPrice`, `value`, `data`).
-- `traceTypes`: _\[required]_ Array of trace types to return. Valid values: `"trace"`, `"stateDiff"`, `"vmTrace"`.
+- `traceTypes`: _\[required]_ Array of trace types to return. Valid values: `"trace"`, `"stateDiff"`. (`"vmTrace"` is not supported on `rpc.linea.build`.)
 - `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`.
 
 ## Returns
@@ -23,7 +23,6 @@ Object with fields corresponding to the requested trace types:
 - `output`: Hex-encoded call return data.
 - `trace`: Array of call trace objects (if `"trace"` was requested).
 - `stateDiff`: State changes caused by the call (if `"stateDiff"` was requested).
-- `vmTrace`: VM-level trace (if `"vmTrace"` was requested).
 
 ## Example
 
