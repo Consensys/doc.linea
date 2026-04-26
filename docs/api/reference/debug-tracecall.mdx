@@ -16,7 +16,7 @@ supported.
 
 :::
 
-Simulates a call at a given block and returns the trace—without submitting a transaction. Useful
+Simulates a call at a given block and returns the trace, without submitting a transaction. Useful
 for debugging contract interactions before sending them.
 
 ## Parameters
@@ -30,7 +30,7 @@ for debugging contract interactions before sending them.
 
 Same trace output as [`debug_traceTransaction`](debug-tracetransaction), but for a simulated call.
 
-## Example—`callTracer`
+## Example: `callTracer`
 
 This example simulates `balanceOf(address)` on the USDC contract.
 
@@ -87,4 +87,4 @@ curl https://rpc.linea.build \
 ```
 
 `prestateTracer` is also supported and returns the pre-execution state of every account the call
-would touch, identical in shape to the [`debug_traceTransaction` `prestateTracer` response](debug-tracetransaction#exampleprestatetracer).
+would touch, identical in shape to the [`debug_traceTransaction` `prestateTracer` response](debug-tracetransaction#example-prestatetracer).

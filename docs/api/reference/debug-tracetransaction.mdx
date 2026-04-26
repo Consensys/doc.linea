@@ -27,10 +27,10 @@ analyzing internal calls, and inspecting state changes.
 
 Depends on the tracer:
 
-- **`callTracer`**—Returns the call tree (nested `CALL`, `DELEGATECALL`, `STATICCALL` frames) with `from`, `to`, `gas`, `gasUsed`, `input`, `output`, and any nested `calls`.
-- **`prestateTracer`**—Returns the pre-execution state of every account touched by the transaction: balances, nonces, code, and storage values.
+- **`callTracer`**: returns the call tree (nested `CALL`, `DELEGATECALL`, `STATICCALL` frames) with `from`, `to`, `gas`, `gasUsed`, `input`, `output`, and any nested `calls`.
+- **`prestateTracer`**: returns the pre-execution state of every account touched by the transaction: balances, nonces, code, and storage values.
 
-## Example—`callTracer`
+## Example: `callTracer`
 
 ### Request
 
@@ -76,7 +76,7 @@ curl https://rpc.linea.build \
 }
 ```
 
-## Example—`prestateTracer`
+## Example: `prestateTracer`
 
 ### Request
 
