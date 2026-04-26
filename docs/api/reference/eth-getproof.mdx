@@ -1,0 +1,88 @@
+---
+title: eth_getProof
+description: Returns the Merkle proof for an account and its requested storage slots on Linea.
+image: /img/socialCards/ethgetproof.jpg
+---
+
+# `eth_getProof`
+
+Returns the account's balance, nonce, code hash, storage root, and Merkle-Patricia proof for the
+account, along with proofs for any requested storage slots.
+
+For Linea-specific sparse-Merkle proofs (used to verify state against Linea's L2 state root), see
+[`linea_getProof`](linea-getproof) instead.
+
+## Parameters
+
+- `address`: _\[required]_ 20-byte address whose proof to return.
+- `storageKeys`: _\[required]_ Array of 32-byte storage slot keys to include in the proof. Pass `[]` for an account-only proof.
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Object containing the account proof and one storage proof per requested key:
+
+- `address`: The address.
+- `balance`: Account balance, in wei.
+- `codeHash`: Hash of the account's bytecode.
+- `nonce`: Account transaction count.
+- `storageHash`: Root hash of the account's storage trie.
+- `accountProof`: Array of RLP-encoded MPT nodes proving the account against the block's state root.
+- `storageProof`: Array of objects, one per requested key, each containing `key`, `value`, and `proof` (RLP-encoded MPT nodes proving the value against `storageHash`).
+
+## Example
+
+This example retrieves the account and storage-slot-0 proof for the USDC contract.
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getProof",
+    "params": [
+      "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+      ["0x0000000000000000000000000000000000000000000000000000000000000000"],
+      "latest"
+    ],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+:::note
+The response below is illustrative. Proof bytes are tied to the world-state root at the requested
+block and will differ for any specific request.
+:::
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+    "balance": "0x0",
+    "codeHash": "0x469a90ba4c77663d6a9512da10e00f54cae91fda8007c53ad1ba2789457ea5fb",
+    "nonce": "0x1",
+    "storageHash": "0xea97ee6d42bafce4b84d45ce489f1747061af6a9edb60800827971440cbded58",
+    "accountProof": [
+      "0xf90211a0a4cf806aec3b83ce03a29b6a4274f071fb1eebf4d60ff6af8ba872bdd28051bc...",
+      "..."
+    ],
+    "storageProof": [
+      {
+        "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "value": "0x85e54b6659b11b09ece200728bb775332ebcea65",
+        "proof": [
+          "0xf90211a0b869c91e1bde2e2068e99c8a3e9af339adea563e4adba095277715ebd33e20cc...",
+          "..."
+        ]
+      }
+    ]
+  }
+}
+```

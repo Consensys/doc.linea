@@ -247,6 +247,7 @@ const sidebars = {
             "api/reference/eth-getblocktransactioncountbynumber",
             "api/reference/eth-getcode",
             "api/reference/eth-getlogs",
+            "api/reference/eth-getproof",
             "api/reference/eth-getstorageat",
             "api/reference/eth-gettransactionbyblockhashandindex",
             "api/reference/eth-gettransactionbyblocknumberandindex",
