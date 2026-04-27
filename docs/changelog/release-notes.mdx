@@ -10,8 +10,12 @@ release_toc:
     sepolia: 29 April 2026
   beta-v53:
     label: Prover performance optimizations
-    mainnet: 29 April 2026
-    sepolia: 20 March 2026
+    mainnet: 4 May 2026 (target)
+    sepolia: 27 April 2026
+  beta-v521:
+    label: Pause Cooldown and Dynamic Chain Configuration
+    mainnet: 1 April 2026
+    sepolia: 24 March 2026
   beta-v52:
     label: Small fields
     mainnet: 1 April 2026
@@ -179,6 +183,19 @@ Finality under 30min: Reduce Linea's [hard finality](../network/overview/transac
 <ChangelogEntry tag="performance">
 
 Prover performance optimizations. Proof generation time ~40% faster.
+
+</ChangelogEntry>
+
+## Beta v5.2.1
+
+<ChangelogDate sectionId="beta-v521" />
+
+<ChangelogEntry tag="upgrade">
+
+Upgrades Linea's core rollup, bridge, and messaging contracts and deploys a new verifier to support Pause Cooldown and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 52 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
+
+- **Pause Cooldown.** Adds a new pause mechanism for Linea's core contracts, including an Emergency Pauser account managed by Linea's security operations team. This replaces the previous governance-managed pause process and ensures no non-Security-Council member can pause indefinitely, supporting the user exit window expected for L2Beat Stage 1.
+- **Dynamic Chain Configuration (DCC).** Lets the verifier use chain-specific settings at proof verification time, so each [Linea stack](../stack/index.mdx) network can use its own verifier deployment without requiring a new prover circuit for each chain.
 
 </ChangelogEntry>
 
