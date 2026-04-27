@@ -12,8 +12,8 @@ image: /img/socialCards/forced-transactions.jpg
 :::
 
 Forced transactions allow users to submit L2 transactions through L1 with a guaranteed processing deadline on the L2.
-This provides a fallback submission path for users when the normal L2 transaction submission route -- through L2 RPC
-providers -- is unavailable, unreliable, or censoring.
+This provides a fallback submission path for users when the normal L2 transaction submission route, through L2 RPC
+providers, is unavailable, unreliable, or censoring.
 
 :::info
 
@@ -32,7 +32,7 @@ signed L2 transaction to the `ForcedTransactionGateway` contract on L1.
 Forced transactions do not bypass the sequencer; the sequencer is still required to produce blocks and process them.
 What they bypass is the normal L2 RPC submission path. Once stored on L1, a forced transaction is guaranteed to be
 processed by the sequencer within a specified block deadline. Typically, the sequencer will process the transaction
-well before this deadline -- the deadline is the **latest acceptable block, not the target block**. If the sequencer
+well before this deadline, which is the **latest acceptable block, not the target block**. If the sequencer
 fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will
 revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces
 the sequencer to process the transaction, else the rollup cannot make forward progress.
@@ -47,7 +47,7 @@ Forced transactions guarantee *processing*, not necessarily inclusion or success
 required to process each forced transaction before its deadline, but processing can still result in the transaction
 being rejected or failing on the L2.
 
-A forced transaction can be rejected outright -- and proven invalid rather than included -- in cases such as targeting
+A forced transaction can be rejected outright, and proven invalid rather than included, in cases such as targeting
 an L2 deny-listed address or calling an invalid or unsupported precompile. In other cases, the transaction is included
 in a block but reverts during execution.
 
