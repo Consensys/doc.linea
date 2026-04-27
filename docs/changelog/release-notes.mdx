@@ -192,10 +192,10 @@ Prover performance optimizations. Proof generation time ~40% faster.
 
 <ChangelogEntry tag="upgrade">
 
-Refactors the `LineaRollup`, `TokenBridge`, and `L2MessageService` contracts into modular components and deploys a new verifier supporting Small Fields and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 67 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
+Upgrades Linea's core rollup, bridge, and messaging contracts and deploys a new verifier to support Pause Cooldown and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 52 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
 
-- **`Pause Cooldown`.** New pause mechanism enforced by `PAUSE_ALL_ROLE` (granted to an `Emergency Pauser` EOA controlled by the SOC) and `SECURITY_COUNCIL_ROLE` (granted to the Security Council multisig). Applied to `LineaRollup`, `L2MessageService`, and the L1/L2 `TokenBridge` contracts; replaces the prior Zodiac-based pause flow. Satisfies the user-exit-window requirement of [L2Beat Stage 1](https://medium.com/l2beat/introducing-stages-a-framework-to-evaluate-rollups-maturity-d290bb22befe).
-- **Dynamic Chain Configuration (DCC).** The verifier accepts chain-specific parameters (`chainId`, `l2MessageServiceAddress`, `baseFee`, `coinbase`) at proof verification time, allowing a single verifier contract to validate proofs for multiple [Linea stack](../stack/index.mdx) networks instead of requiring a per-chain verifier deployment.
+- **Pause Cooldown.** Adds a new pause mechanism for Linea's core contracts, including an Emergency Pauser account managed by Linea's security operations team and the Security Council multisig. This replaces the previous governance-managed pause process and supports the user exit window expected for L2Beat Stage 1.
+- **Dynamic Chain Configuration (DCC).** Lets the verifier use chain-specific settings at proof verification time, so a single verifier can support multiple [Linea stack](../stack/index.mdx) networks instead of requiring a separate verifier deployment for each one.
 
 </ChangelogEntry>
 
