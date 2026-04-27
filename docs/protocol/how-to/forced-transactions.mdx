@@ -28,43 +28,65 @@ See the Linea contract addresses and ABIs in the monorepo for production integra
 // Pseudocode example (ethers v6)
 import {
   AbiCoder,
-  keccak256,
   Contract,
-  BrowserProvider
+  JsonRpcProvider,
+  id,
+  keccak256
 } from "ethers";
 
 // assume provider + contract already initialized
-// const provider = new BrowserProvider(window.ethereum);
+// const provider = new JsonRpcProvider(L1_RPC_URL);
 // const lineaRollup = new Contract(address, abi, provider);
 
-// 1. Get the latest FinalizedStateUpdated event
-const events = await lineaRollup.queryFilter(
-  lineaRollup.filters.FinalizedStateUpdated()
-);
+// 1. Read the last finalized L2 block number from the rollup contract
+const currentL2BlockNumber: bigint = await lineaRollup.currentL2BlockNumber();
 
-if (events.length === 0) {
-  throw new Error("No FinalizedStateUpdated events found");
+// 2. Target the FinalizedStateUpdated event for that exact block.
+//    The event signature is FinalizedStateUpdated(uint256,uint256,uint256,uint256)
+//    with the L2 block number as the indexed topic — so we can filter on
+//    [eventTopic, blockNumberTopic] to fetch a single log instead of scanning
+//    the full event history.
+const abiCoder = AbiCoder.defaultAbiCoder();
+const eventTopic = id("FinalizedStateUpdated(uint256,uint256,uint256,uint256)");
+const blockNumberTopic = abiCoder.encode(["uint256"], [currentL2BlockNumber]);
+
+const logs = await provider.getLogs({
+  address: await lineaRollup.getAddress(),
+  topics: [eventTopic, blockNumberTopic],
+  fromBlock: 0,
+  toBlock: "latest"
+});
+
+if (logs.length === 0) {
+  throw new Error(
+    `No FinalizedStateUpdated event found for L2 block ${currentL2BlockNumber}`
+  );
 }
 
-const latestEvent = events[events.length - 1];
+// 3. Decode the event
+const latestLog = logs[logs.length - 1];
+const parsed = lineaRollup.interface.parseLog({
+  topics: latestLog.topics as string[],
+  data: latestLog.data
+});
 
-// 2. Extract values from the event
+if (!parsed) {
+  throw new Error("Failed to parse FinalizedStateUpdated event");
+}
+
 const {
-  blockNumber,              // L2 block number (indexed)
   timestamp,                // Finalization timestamp
   messageNumber,            // L1->L2 message number
   forcedTransactionNumber   // Last finalized forced tx number
-} = latestEvent.args;
+} = parsed.args;
 
-// 3. Query rolling hashes from contract state
-const messageRollingHash = await lineaRollup.rollingHashes(messageNumber);
+// 4. Query rolling hashes from contract state
+const [messageRollingHash, forcedTransactionRollingHash] = await Promise.all([
+  lineaRollup.rollingHashes(messageNumber),
+  lineaRollup.forcedTransactionRollingHashes(forcedTransactionNumber)
+]);
 
-const forcedTransactionRollingHash =
-  await lineaRollup.forcedTransactionRollingHashes(
-    forcedTransactionNumber
-  );
-
-// 4. Construct the LastFinalizedState object
+// 5. Construct the LastFinalizedState object
 const lastFinalizedState = {
   timestamp,
   messageNumber,
@@ -73,21 +95,19 @@ const lastFinalizedState = {
   forcedTransactionRollingHash
 };
 
-// 5. OPTIONAL: Verify it matches the contract's stored hash
-const abiCoder = AbiCoder.defaultAbiCoder();
-
-const encoded = abiCoder.encode(
-  ["uint256", "bytes32", "uint256", "bytes32", "uint256"],
-  [
-    messageNumber,
-    messageRollingHash,
-    forcedTransactionNumber,
-    forcedTransactionRollingHash,
-    timestamp
-  ]
+// 6. OPTIONAL: Verify it matches the contract's stored hash
+const expectedHash = keccak256(
+  abiCoder.encode(
+    ["uint256", "bytes32", "uint256", "bytes32", "uint256"],
+    [
+      messageNumber,
+      messageRollingHash,
+      forcedTransactionNumber,
+      forcedTransactionRollingHash,
+      timestamp
+    ]
+  )
 );
-
-const expectedHash = keccak256(encoded);
 
 const storedHash = await lineaRollup.currentFinalizedState();
 

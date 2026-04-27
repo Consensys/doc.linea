@@ -11,9 +11,9 @@ image: /img/socialCards/forced-transactions.jpg
 
 :::
 
-Forced transactions allow users to submit L2 transactions directly to the L1 with a guaranteed processing deadline
-on the L2. This manual submission mechanism ensures that users can submit transactions even when the normal L2 path is
-blocked or delayed.
+Forced transactions allow users to submit L2 transactions through L1 with a guaranteed processing deadline on the L2.
+This provides a fallback submission path for users when the normal L2 transaction submission route -- through L2 RPC
+providers -- is unavailable, unreliable, or censoring.
 
 :::info
 
@@ -24,17 +24,18 @@ In the case of the Linea public network, the L1 is Ethereum which serves as the
 
 ## What are forced transactions?
 
-Forced transactions protect users against sequencer censorship or failure. If the sequencer is down or becomes
-uncooperative, users retain the ability to send transactions and withdraw assets at any time by submitting them
-directly to L1, bypassing the sequencer entirely. To undertake a forced transaction, the user submits a signed
-L2 transaction directly to L1.
+Forced transactions protect users against censorship or unavailability of the normal L2 submission path. If L2 RPC
+providers are unreachable, refusing to relay, or otherwise unreliable, users retain the ability to submit
+transactions and withdraw assets by sending them through L1. To undertake a forced transaction, the user submits a
+signed L2 transaction to the `ForcedTransactionGateway` contract on L1.
 
-Forced transactions are guaranteed to be processed by the sequencer within a specified block deadline. Typically, the
-sequencer will process the transaction well before this deadline -- the deadline is
-the **latest acceptable block, not the target block**. If the sequencer fails to process the forced transaction before
-its deadline, the L1 proof verification transaction for that batch will revert. As a result, the batch cannot be finalized
-on Ethereum. This potential for batch failure effectively forces the sequencer to process the transaction else the rollup
-cannot make forward progress.
+Forced transactions do not bypass the sequencer; the sequencer is still required to produce blocks and process them.
+What they bypass is the normal L2 RPC submission path. Once stored on L1, a forced transaction is guaranteed to be
+processed by the sequencer within a specified block deadline. Typically, the sequencer will process the transaction
+well before this deadline -- the deadline is the **latest acceptable block, not the target block**. If the sequencer
+fails to process the forced transaction before its deadline, the L1 proof verification transaction for that batch will
+revert. As a result, the batch cannot be finalized on Ethereum. This potential for batch failure effectively forces
+the sequencer to process the transaction, else the rollup cannot make forward progress.
 
 Forced transactions are chained using a rolling hash that commits to the complete ordered sequence of forced transactions,
 ensuring processing and storage. This mechanism prevents skipped forced transactions, unauthorized inserted transactions,
@@ -42,9 +43,13 @@ and reordering attacks.
 
 ### Processing vs. execution
 
-Note that forced transactions guarantee *inclusion* not success. For example, while sequencer's role is to process the
-transaction, the transaction may still execute and revert. This means that a forced transaction successfully processed by
-the sequencer can still fail on the L2.
+Forced transactions guarantee *processing*, not necessarily inclusion or successful execution. The sequencer is
+required to process each forced transaction before its deadline, but processing can still result in the transaction
+being rejected or failing on the L2.
+
+A forced transaction can be rejected outright -- and proven invalid rather than included -- in cases such as targeting
+an L2 deny-listed address or calling an invalid or unsupported precompile. In other cases, the transaction is included
+in a block but reverts during execution.
 
 After a forced transaction is processed by the sequencer, the prover attempts to generate a zero-knowledge proof attesting
 to the validity of the state transition for that batch. At this stage, the transaction may fail to execute on the L2 for
