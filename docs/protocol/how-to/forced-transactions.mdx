@@ -43,7 +43,7 @@ const currentL2BlockNumber: bigint = await lineaRollup.currentL2BlockNumber();
 
 // 2. Target the FinalizedStateUpdated event for that exact block.
 //    The event signature is FinalizedStateUpdated(uint256,uint256,uint256,uint256)
-//    with the L2 block number as the indexed topic — so we can filter on
+//    with the L2 block number as the indexed topic, so we can filter on
 //    [eventTopic, blockNumberTopic] to fetch a single log instead of scanning
 //    the full event history.
 const abiCoder = AbiCoder.defaultAbiCoder();
