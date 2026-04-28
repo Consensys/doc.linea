@@ -116,6 +116,15 @@ if (expectedHash !== storedHash) {
 }
 ```
 
+:::caution[Retry on stale finalized state]
+
+The rollup may finalize a new batch on L1 between the moment you read `LastFinalizedState` and the moment your
+`submitForcedTransaction` call is included on L1. If that happens, the gateway will revert because the supplied
+state no longer matches `currentFinalizedState`. Be prepared to re-read the latest finalized state and retry the
+submission.
+
+:::
+
 Once you have the correct values, you can construct a forced transaction submission with the following fields:
 The last finalized L2 state on L1:
 

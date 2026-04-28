@@ -47,9 +47,10 @@ Forced transactions guarantee *processing*, not necessarily inclusion or success
 required to process each forced transaction before its deadline, but processing can still result in the transaction
 being rejected or failing on the L2.
 
-A forced transaction can be rejected outright, and proven invalid rather than included, in cases such as targeting
-an L2 deny-listed address or calling an invalid or unsupported precompile. In other cases, the transaction is included
-in a block but reverts during execution.
+A forced transaction can be rejected outright, and proven invalid rather than included, for a number of reasons.
+Examples include targeting an L2 deny-listed address, calling an invalid or unsupported precompile, supplying an
+invalid gas configuration, or breaching gas-consumption limits. In other cases, the transaction is included in a
+block but reverts during execution.
 
 After a forced transaction is processed by the sequencer, the prover attempts to generate a zero-knowledge proof attesting
 to the validity of the state transition for that batch. At this stage, the transaction may fail to execute on the L2 for
