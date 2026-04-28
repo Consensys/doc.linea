@@ -84,7 +84,10 @@ const config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           includeCurrentVersion: true,
-          remarkPlugins: [remarkEmdash],
+          remarkPlugins: [
+            remarkEmdash,
+            [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }],
+          ],
         },
         blog: false, // Disable blog feature
         theme: {
