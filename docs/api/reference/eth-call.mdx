@@ -1,0 +1,59 @@
+---
+title: eth_call
+description: Executes a read-only call on Linea without creating a transaction.
+image: /img/socialCards/ethcall.jpg
+---
+
+# `eth_call`
+
+Executes a call message without creating a transaction on the blockchain. Commonly used to read
+data from smart contracts.
+
+## Parameters
+
+- `transaction`: _\[required]_ Transaction call object:
+  - `from`: _\[optional]_ 20-byte sender address.
+  - `to`: _\[required]_ 20-byte contract address.
+  - `gas`: _\[optional]_ Hexadecimal gas provided.
+  - `gasPrice`: _\[optional]_ Hexadecimal gas price.
+  - `value`: _\[optional]_ Hexadecimal value in wei.
+  - `data`: _\[optional]_ Hash of the method signature and encoded parameters.
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Hexadecimal return data from the executed contract call.
+
+## Example
+
+This example calls `balanceOf(address)` on the USDC contract for a given holder.
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_call",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      "latest"
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x000000000000000000000000000000000000000000000000000000000026009c"
+}
+```

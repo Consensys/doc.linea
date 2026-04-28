@@ -1,0 +1,45 @@
+---
+title: eth_getFilterChanges
+description: Polls a Linea filter for new data since the last poll.
+image: /img/socialCards/ethgetfilterchanges.jpg
+---
+
+# `eth_getFilterChanges`
+
+Polls a filter for new data since the last poll. For log filters, returns new logs. For block
+filters, returns new block hashes.
+
+## Parameters
+
+- `filterId`: _\[required]_ The filter ID returned by [`eth_newFilter`](eth-newfilter) or [`eth_newBlockFilter`](eth-newblockfilter).
+
+## Returns
+
+Array of log objects (for log filters) or block hashes (for block filters). Returns an empty array
+if nothing has changed since the last poll.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getFilterChanges",
+    "params": ["0x10ff687202f305efab..."],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": []
+}
+```

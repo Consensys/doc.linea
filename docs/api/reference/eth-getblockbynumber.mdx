@@ -1,0 +1,57 @@
+---
+title: eth_getBlockByNumber
+description: Returns block information on Linea by block number.
+image: /img/socialCards/ethgetblockbynumber.jpg
+---
+
+# `eth_getBlockByNumber`
+
+Returns block information by block number.
+
+## Parameters
+
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+- `fullTransactions`: _\[required]_ If `true`, returns full transaction objects. If `false`, returns only transaction hashes.
+
+## Returns
+
+A block object, or `null` if no block is found. Key fields include `number`, `hash`, `parentHash`,
+`timestamp`, `gasUsed`, `gasLimit`, `baseFeePerGas`, and `transactions`.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockByNumber",
+    "params": ["0x1ce53dd", false],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "number": "0x1ce53dd",
+    "hash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+    "parentHash": "0x23498a882e8897c7e936846951d66744ba0da6052e23a76c23b8c7d98bc30d14",
+    "timestamp": "0x69e5bc55",
+    "gasUsed": "0x1458e",
+    "gasLimit": "0x77359400",
+    "baseFeePerGas": "0x7",
+    "miner": "0x8f81e2e3f8b46467523463835f965ffe476e1c9e",
+    "transactions": [
+      "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259"
+    ]
+  }
+}
+```

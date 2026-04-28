@@ -1,0 +1,66 @@
+---
+title: eth_newFilter
+description: Creates a log filter on Linea and returns a filter ID for polling.
+image: /img/socialCards/ethnewfilter.jpg
+---
+
+# `eth_newFilter`
+
+Creates a log filter and returns a filter ID. Use the ID with
+[`eth_getFilterChanges`](eth-getfilterchanges) to poll for new logs, or
+[`eth_getFilterLogs`](eth-getfilterlogs) to read all matching logs at once.
+
+:::warning Filter polling on the public endpoint
+
+Filter IDs are server-side state, scoped to the node that created them. On a load-balanced public
+endpoint like `rpc.linea.build`, a follow-up `eth_getFilterChanges` or `eth_getFilterLogs` request
+may land on a different backend that has no record of the filter and silently return an empty
+result. For reliable event consumption in production, use [`eth_getLogs`](eth-getlogs) with explicit
+block ranges, or a private RPC endpoint with sticky sessions.
+
+:::
+
+## Parameters
+
+- `filter`: _\[required]_ Filter object (same shape as [`eth_getLogs`](eth-getlogs)):
+  - `fromBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. The default is `latest`.
+  - `toBlock`: _\[optional]_ Hexadecimal block number, or `latest`, `earliest`. The default is `latest`.
+  - `address`: _\[optional]_ Contract address or array of addresses.
+  - `topics`: _\[optional]_ Array of 32-byte topic values. Each position can be a single value, an array of values (OR), or `null` (wildcard).
+
+## Returns
+
+A filter ID (hexadecimal string).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_newFilter",
+    "params": [
+      {
+        "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        ]
+      }
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x10ff687202f305efab..."
+}
+```

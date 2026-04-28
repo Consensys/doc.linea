@@ -1,0 +1,80 @@
+---
+title: trace_call
+description: Simulates a call on Linea and returns OpenEthereum-style traces.
+image: /img/socialCards/tracecall.jpg
+---
+
+# `trace_call`
+
+Simulates a call and returns the trace in the OpenEthereum/Parity format, without broadcasting a
+transaction. Similar to [`debug_traceCall`](debug-tracecall) but returns the OpenEthereum trace
+shape.
+
+## Parameters
+
+- `transaction`: _\[required]_ Transaction call object (`from`, `to`, `gas`, `gasPrice`, `value`, `data`).
+- `traceTypes`: _\[required]_ Array of trace types to return. Valid values: `"trace"`, `"stateDiff"`. (`"vmTrace"` is not supported on `rpc.linea.build`.)
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`.
+
+## Returns
+
+Object with fields corresponding to the requested trace types:
+
+- `output`: Hex-encoded call return data.
+- `trace`: Array of call trace objects (if `"trace"` was requested).
+- `stateDiff`: State changes caused by the call (if `"stateDiff"` was requested).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "trace_call",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      },
+      ["trace"],
+      "latest"
+    ],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "output": "0x000000000000000000000000000000000000000000000000000000000026009c",
+    "stateDiff": null,
+    "trace": [
+      {
+        "action": {
+          "callType": "call",
+          "from": "0x0000000000000000000000000000000000000000",
+          "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+          "gas": "0xffac48",
+          "input": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045",
+          "value": "0x0"
+        },
+        "result": {
+          "gasUsed": "0x25fe",
+          "output": "0x000000000000000000000000000000000000000000000000000000000026009c"
+        },
+        "subtraces": 1,
+        "traceAddress": [],
+        "type": "call"
+      }
+    ]
+  }
+}
+```

@@ -1,0 +1,66 @@
+---
+title: trace_block
+description: Returns OpenEthereum-style traces for every transaction in a Linea block.
+image: /img/socialCards/traceblock.jpg
+---
+
+# `trace_block`
+
+Returns all traces for every transaction in a block, in the OpenEthereum/Parity trace format.
+
+## Parameters
+
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Array of trace objects across all transactions in the block. Each trace includes `transactionHash`
+and `transactionPosition` to identify which transaction it belongs to. See
+[`trace_transaction`](trace-transaction) for the trace object shape.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "trace_block",
+    "params": ["0x1ce53dd"],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "action": {
+        "callType": "call",
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "gas": "0x209ae",
+        "input": "0x455ee4aa...",
+        "value": "0x0"
+      },
+      "result": {
+        "gasUsed": "0x136e2",
+        "output": "0x"
+      },
+      "blockNumber": 30299101,
+      "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      "transactionPosition": 0,
+      "subtraces": 1,
+      "traceAddress": [],
+      "type": "call"
+    }
+  ]
+}
+```

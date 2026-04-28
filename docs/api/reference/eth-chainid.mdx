@@ -1,0 +1,39 @@
+---
+title: eth_chainId
+description: Returns the chain ID of the connected Linea network.
+image: /img/socialCards/ethchainid.jpg
+---
+
+# `eth_chainId`
+
+Returns the chain ID of the connected network. Linea Mainnet is `0xe708` (59144). Linea Sepolia is
+`0xe705` (59141).
+
+## Parameters
+
+None.
+
+## Returns
+
+Hexadecimal value of the chain ID.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0xe708"
+}
+```

@@ -1,0 +1,69 @@
+---
+title: debug_traceBlockByHash
+description: >-
+  Replays every transaction in a Linea block, identified by hash, and returns
+  structured traces.
+image: /img/socialCards/debugtraceblockbyhash.jpg
+---
+
+# `debug_traceBlockByHash`
+
+:::warning Tracer is required
+
+On `rpc.linea.build`, the default tracer is **not supported**. You must specify a tracer in the
+options object. Supported tracers are `callTracer` and `prestateTracer`. `flatCallTracer` is not
+supported.
+
+:::
+
+Replays all transactions in a block by block hash and returns traces for each.
+
+## Parameters
+
+- `blockHash`: _\[required]_ 32-byte block hash.
+- `options`: _\[required]_ Object specifying the tracer:
+  - `tracer`: _\[required]_ `"callTracer"` or `"prestateTracer"`.
+
+## Returns
+
+Array of trace results with the same shape as [`debug_traceBlockByNumber`](debug-traceblockbynumber).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "debug_traceBlockByHash",
+    "params": [
+      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+      {"tracer": "callTracer"}
+    ],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "txHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      "result": {
+        "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+        "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "gasUsed": "0x1458e",
+        "calls": [...],
+        "type": "CALL"
+      }
+    }
+  ]
+}
+```

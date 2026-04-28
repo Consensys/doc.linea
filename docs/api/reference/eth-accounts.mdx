@@ -1,0 +1,39 @@
+---
+title: eth_accounts
+description: Returns a list of addresses owned by the connected node.
+image: /img/socialCards/ethaccounts.jpg
+---
+
+# `eth_accounts`
+
+Returns a list of addresses owned by the node. On the public Linea RPC endpoint the node does not
+manage any accounts, so this method always returns an empty array.
+
+## Parameters
+
+None.
+
+## Returns
+
+Array of 20-byte addresses owned by the node. On `rpc.linea.build` this is always `[]`.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": []
+}
+```

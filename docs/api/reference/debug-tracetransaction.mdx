@@ -1,0 +1,115 @@
+---
+title: debug_traceTransaction
+description: Replays a Linea transaction and returns an execution trace.
+image: /img/socialCards/debugtracetransaction.jpg
+---
+
+# `debug_traceTransaction`
+
+:::warning Tracer is required
+
+On `rpc.linea.build`, the default tracer is **not supported**. You must specify a tracer in the
+options object. Supported tracers are `callTracer` and `prestateTracer`. `flatCallTracer` is not
+supported.
+
+:::
+
+Replays a transaction and returns the execution trace. Useful for debugging failed transactions,
+analyzing internal calls, and inspecting state changes.
+
+## Parameters
+
+- `transactionHash`: _\[required]_ 32-byte hash of the transaction to trace.
+- `options`: _\[required]_ Object specifying the tracer:
+  - `tracer`: _\[required]_ `"callTracer"` or `"prestateTracer"`.
+
+## Returns
+
+Depends on the tracer:
+
+- **`callTracer`**: returns the call tree (nested `CALL`, `DELEGATECALL`, `STATICCALL` frames) with `from`, `to`, `gas`, `gasUsed`, `input`, `output`, and any nested `calls`.
+- **`prestateTracer`**: returns the pre-execution state of every account touched by the transaction: balances, nonces, code, and storage values.
+
+## Example: `callTracer`
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "debug_traceTransaction",
+    "params": [
+      "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      {"tracer": "callTracer"}
+    ],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+    "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+    "gas": "0x2635a",
+    "gasUsed": "0x1458e",
+    "input": "0x455ee4aa...",
+    "output": "0x",
+    "calls": [
+      {
+        "from": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+        "to": "0xc76cabfb0d247b4dc0b38b00b2ca92f8e8c9d32b",
+        "gas": "0x1ee7d",
+        "gasUsed": "0x12364",
+        "type": "DELEGATECALL"
+      }
+    ],
+    "type": "CALL"
+  }
+}
+```
+
+## Example: `prestateTracer`
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "debug_traceTransaction",
+    "params": [
+      "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      {"tracer": "prestateTracer"}
+    ],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "0xd26c8000ec8778de5257305c9acdd79f16f87867": {
+      "balance": "0x...",
+      "nonce": 820300
+    },
+    "0x6d7ac5d23266c9fea16463b877005bff6de531a7": {
+      "balance": "0x0",
+      "code": "0x608060405..."
+    }
+  }
+}
+```

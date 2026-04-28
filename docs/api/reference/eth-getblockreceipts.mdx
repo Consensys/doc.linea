@@ -1,0 +1,73 @@
+---
+title: eth_getBlockReceipts
+description: Returns all transaction receipts for a given block on Linea.
+image: /img/socialCards/ethgetblockreceipts.jpg
+---
+
+# `eth_getBlockReceipts`
+
+Returns all transaction receipts for a given block.
+
+## Parameters
+
+- `blockParameter`: _\[required]_ Hexadecimal block number, or `latest`, `earliest`, `pending`, `finalized`.
+
+## Returns
+
+Array of transaction receipt objects for the block. Each receipt has the same shape as the response
+from [`eth_getTransactionReceipt`](eth-gettransactionreceipt).
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockReceipts",
+    "params": ["0x1ce53dd"],
+    "id": 1
+  }'
+```
+
+### Response (abbreviated)
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      "transactionIndex": "0x0",
+      "blockHash": "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550",
+      "blockNumber": "0x1ce53dd",
+      "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+      "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+      "gasUsed": "0x1458e",
+      "cumulativeGasUsed": "0x1458e",
+      "effectiveGasPrice": "0x257e36f",
+      "status": "0x1",
+      "type": "0x2",
+      "contractAddress": null,
+      "logs": [
+        {
+          "address": "0xdb3a3929269281f157a58d91289185f21e30a1e0",
+          "topics": [
+            "0x3e393433c9275f1194d1ed44cea161cd2d35166f1906855d6119da515057537d",
+            "0x00000000000000000000000008ede5c20c6cb3b5f84f918322126ab207ac6cd0"
+          ],
+          "data": "0x",
+          "blockNumber": "0x1ce53dd",
+          "transactionHash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+          "logIndex": "0x0",
+          "removed": false
+        }
+      ]
+    }
+  ]
+}
+```

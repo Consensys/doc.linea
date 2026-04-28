@@ -22,9 +22,8 @@ Ethereum, which can vary based on the size of the calldata.
 :::note
 
 `linea_estimateGas` uses the same inputs as the standard
-[`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas), but 
-returns the recommended gas limit, the base fee per gas, and the priority fee per gas. We recommend 
-using `linea_estimateGas` for more accurate results.
+[`eth_estimateGas`](./eth-estimategas.mdx), but returns the recommended gas limit, the base fee per
+gas, and the priority fee per gas. We recommend using `linea_estimateGas` for more accurate results.
 
 :::
 
@@ -55,22 +54,16 @@ fee per gas.
 
 ## Example
 
-:::tip
-
-You can also call the API using [Infura's supported Linea endpoints](https://docs.metamask.io/services/reference/linea/json-rpc-methods/).
-
-:::
-
 ### Request
 
 <Tabs groupId="sdk-lang">
   <TabItem value="curl">
 
   ```bash
-  curl https://linea-mainnet.infura.io/v3/YOUR-API-KEY \
+  curl https://rpc.linea.build \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"from": "0x971e727e956690b9957be6d51Ec16E73AcAC83A7","gas":"0x21000"}],"id": 53}'
+  -d '{"jsonrpc": "2.0","method": "linea_estimateGas","params": [{"to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045","value": "0x16345785d8a0000"}],"id": 1}'
   ```
 
   </TabItem>
@@ -135,11 +128,11 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
 ```JSON
 {
   "jsonrpc": "2.0",
-  "id": 53,
+  "id": 1,
   "result": {
     "baseFeePerGas": "0x7",
-    "gasLimit": "0xcf08",
-    "priorityFeePerGas": "0x43a82a4"
+    "gasLimit": "0x5208",
+    "priorityFeePerGas": "0x25d1eb6"
   }
 }
 ```
@@ -150,8 +143,8 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   ```javascript
   {
     baseFeePerGas: "0x7",
-    gasLimit: "0xcf08",
-    priorityFeePerGas: "0x43a82a4"
+    gasLimit: "0x5208",
+    priorityFeePerGas: "0x25d1eb6"
   }
   ```
   </TabItem>
@@ -160,8 +153,8 @@ You can also call the API using [Infura's supported Linea endpoints](https://doc
   ```javascript
   {
     baseFeePerGas: 7n,
-    gasLimit: 53000n,
-    priorityFeePerGas: 4444716n
+    gasLimit: 21000n,
+    priorityFeePerGas: 39574198n
   }
   ```
 
@@ -196,7 +189,7 @@ The example sets a custom ETH balance for the sender (to cover gas costs) and mo
 balance within the ERC-20 contract's storage for the duration of the call.
 
 ```json
-curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
+curl https://rpc.linea.build \
 -X POST \
 -H "Content-Type: application/json" \
 -d '{
@@ -219,6 +212,6 @@ curl https://linea-mainnet.infura.io/v3/<YOUR-API-KEY> \
           }
       }
   ],
-  "id":53
+  "id":1
 }'
 ```

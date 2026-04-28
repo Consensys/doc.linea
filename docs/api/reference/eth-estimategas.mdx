@@ -1,0 +1,57 @@
+---
+title: eth_estimateGas
+description: Estimates the gas required to execute a transaction on Linea.
+image: /img/socialCards/ethestimategas.jpg
+---
+
+# `eth_estimateGas`
+
+Returns an estimate of gas needed to execute a transaction. The transaction is not sent.
+
+:::note
+
+For more accurate gas estimation on Linea, use [`linea_estimateGas`](linea-estimategas) instead. It
+returns the gas limit, base fee per gas, and priority fee per gas in a single call, accounting for
+Linea's L1 data-submission costs.
+
+:::
+
+## Parameters
+
+- `transaction`: _\[required]_ Transaction call object (same fields as [`eth_call`](eth-call)).
+- `blockParameter`: _\[optional]_ Hexadecimal block number, or `latest`.
+
+## Returns
+
+Hexadecimal value of the estimated gas.
+
+## Example
+
+### Request
+
+```bash
+curl https://rpc.linea.build \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_estimateGas",
+    "params": [
+      {
+        "to": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "data": "0x70a08231000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045"
+      }
+    ],
+    "id": 1
+  }'
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x7b17"
+}
+```
