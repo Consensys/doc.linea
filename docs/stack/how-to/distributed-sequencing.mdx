@@ -77,7 +77,11 @@ validators. Block production therefore requires three one-way network hops, plus
 overhead (~50ms) for Engine API communication. The block-building window (the time available
 for transaction execution after consensus overhead) is:
 
-> **`block_building_window / effective_block_time`** = `configured_block_time - (3 × inter_validator_latency + ~50ms)`
+:::tip[Block-building window formula]
+
+**block_building_window / effective_block_time** = configured_block_time - (3 × inter_validator_latency + ~50ms)
+
+:::
 
 Where `inter_validator_latency` is the **one-way** latency between two validators, **not**
 round-trip ping. If you measure with the `ping` command, divide by 2 to get one-way latency.
@@ -94,7 +98,7 @@ that absorbs `3 × latency + ~50ms` overhead.
 - **Cross-region, for example EU↔US** (~50ms one-way, ~100ms ping): consensus overhead ~200ms.
   With a 1s block time, you get ~800ms of block-building window.
 - **Long haul, for example EU↔Asia** (~150ms one-way, ~300ms ping): consensus overhead ~500ms.
-  A 1s block time leaves ~500ms execution window; use a 2s block time for safety (~1.5s execution window).
+  A 1s block time leaves ~500ms block-building window; use a 2s block time for safety (~1.5s block-building window).
 
 A 4s block time is the recommended setting for global validator distribution. It leaves
 comfortable block-building window plus safety margin across all tested deployment scenarios.
@@ -124,12 +128,12 @@ topology that suits your needs and apply the latency formula above to validate i
   finality, which is the time before users see their transactions confirmed. Throughput is reduced by
   inter-validator latency itself.
 - **Block inclusion limits:** transactions that take longer to execute than the block-building
-  execution window cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
+  window cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
   may not fit.
 
 :::tip[Minimum block-building window]
 
-Allow at least 500ms of block-building time (configured block time minus consensus overhead) so
+Allow at least 500ms of block-building window (configured block time minus consensus overhead) so
 transactions of typical complexity have room to execute.
 
 :::
