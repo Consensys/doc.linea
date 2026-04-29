@@ -53,7 +53,7 @@ No coordinator-side changes are required when running multi-validator Maru.
   </div>
 </div>
 
-### What multi-validator Maru protects, and what it does not
+### Scope of fault tolerance
 
 Multi-validator Maru decentralizes block ordering and execution: with 4 validators, block
 production continues if one validator goes offline. The sequencer is no longer a single point
@@ -79,7 +79,7 @@ for transaction execution after consensus overhead) is:
 
 :::tip[Block-building window formula]
 
-**block_building_window / effective_block_time** = configured_block_time - (3 × inter_validator_latency + ~50ms)
+**block_building_window (or effective_block_time)** = configured_block_time - (3 × inter_validator_latency + ~50ms)
 
 :::
 
