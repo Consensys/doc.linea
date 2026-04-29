@@ -74,10 +74,10 @@ config change.
 
 QBFT consensus runs in three phases per block, each requiring a one-way message between
 validators. Block production therefore requires three one-way network hops, plus a small fixed
-overhead (~50ms) for Engine API communication. The block-building budget (the time available
+overhead (~50ms) for Engine API communication. The block-building window (the time available
 for transaction execution after consensus overhead) is:
 
-> **`block_building_budget / effective_block_time`** = `configured_block_time - (3 × inter_validator_latency + ~50ms)`
+> **`block_building_window / effective_block_time`** = `configured_block_time - (3 × inter_validator_latency + ~50ms)`
 
 Where `inter_validator_latency` is the **one-way** latency between two validators, **not**
 round-trip ping. If you measure with the `ping` command, divide by 2 to get one-way latency.
@@ -88,16 +88,16 @@ that absorbs `3 × latency + ~50ms` overhead.
 ### Worked examples
 
 - **Same data center** (~5ms one-way): consensus overhead ~65ms. With a 1s block time, you
-  get ~935ms of building budget.
+  get ~935ms of block-building window.
 - **Same region** (~25ms one-way, ~50ms ping): consensus overhead ~125ms. With a 1s block
-  time, you get ~875ms of building budget.
+  time, you get ~875ms of block-building window.
 - **Cross-region, for example EU↔US** (~50ms one-way, ~100ms ping): consensus overhead ~200ms.
-  With a 1s block time, you get ~800ms of building budget.
+  With a 1s block time, you get ~800ms of block-building window.
 - **Long haul, for example EU↔Asia** (~150ms one-way, ~300ms ping): consensus overhead ~500ms.
-  A 1s block time leaves ~500ms budget; use a 2s block time for safety (~1.5s budget).
+  A 1s block time leaves ~500ms execution window; use a 2s block time for safety (~1.5s execution window).
 
 A 4s block time is the recommended setting for global validator distribution. It leaves
-comfortable block-building budget plus safety margin across all tested deployment scenarios.
+comfortable block-building window plus safety margin across all tested deployment scenarios.
 
 ## Topology recommendations
 
@@ -124,10 +124,10 @@ topology that suits your needs and apply the latency formula above to validate i
   finality, which is the time before users see their transactions confirmed. Throughput is reduced by
   inter-validator latency itself.
 - **Block inclusion limits:** transactions that take longer to execute than the block-building
-  budget cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
+  execution window cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
   may not fit.
 
-:::tip[Minimum block-building budget]
+:::tip[Minimum block-building window]
 
 Allow at least 500ms of block-building time (configured block time minus consensus overhead) so
 transactions of typical complexity have room to execute.
@@ -180,7 +180,7 @@ Shanghai, Cancun, Prague), so changes apply at a future point all validators agr
 
 Procedure:
 
-1. If the new validator does not yet have a key pair, generate one using the [`PrivateKeyGenerator`](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
+1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
 2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
 3. Each operator updates their genesis file with the new validator list, keyed to the agreed timestamp.
 4. Block time must remain consistent across validators.
@@ -203,9 +203,9 @@ prefixed with `maru_`. Key metrics for operators:
 For diagnosing consensus slowdowns, additional `maru_consensus_phase_*` histograms break latency
 down by QBFT phase.
 
-**Recommended alert threshold:** trigger when the block-building budget (configured block time
+**Recommended alert threshold:** trigger when the block-building window (configured block time
 minus P95 of `maru_consensus_block_latency`) drops below 500ms. This is the same minimum
-block-building budget recommended in [Things to know before deploying](#things-to-know-before-deploying)
+block-building window recommended in [Things to know before deploying](#things-to-know-before-deploying)
 above.
 
 ### Failure modes and recovery
