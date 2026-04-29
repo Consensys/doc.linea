@@ -188,7 +188,7 @@ Procedure:
 
 1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
 2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
-3. Each operator updates their genesis file with the new validator list, keyed to the agreed timestamp.
+3. Each operator updates their genesis file with the new validator list, set to activate at the agreed timestamp.
 4. Block time must remain consistent across validators.
 
 This is a coordinated operation, not a runtime config change. There is no onchain governance or
