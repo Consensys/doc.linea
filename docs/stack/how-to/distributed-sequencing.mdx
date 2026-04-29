@@ -127,9 +127,11 @@ topology that suits your needs and apply the latency formula above to validate i
 - **Block time vs throughput:** longer block times don't reduce throughput. They slow down soft
   finality, which is the time before users see their transactions confirmed. Throughput is reduced by
   inter-validator latency itself.
-- **Block inclusion limits:** transactions that take longer to execute than the block-building
-  window cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
-  may not fit.
+- **Block inclusion limits:** a transaction's execution time must fit within the block-building window. 
+  Simple transactions (e.g. ERC-20 transfers) always fit. Computationally heavy transactions can exceed the window in narrow configurations; 
+  when this happens, the transaction is excluded from the block, remains in the mempool, and is retried on subsequent blocks. If the configuration cannot accommodate it (window too narrow), the transaction will keep failing until it's evicted from the mempool.
+
+
 
 :::tip[Minimum block-building window]
 
