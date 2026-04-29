@@ -476,6 +476,7 @@ const sidebars = {
       collapsible: false,
       items: [
         "stack/how-to/forced-transactions",
+        "stack/how-to/distributed-sequencing",
       ],
     },
   ],
