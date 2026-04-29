@@ -7,13 +7,13 @@ image: /img/socialCards/distributed-sequencing.jpg
 
 Maru supports multi-validator deployments using QBFT (Quorum Byzantine Fault Tolerance) consensus.
 Multiple sequencer nodes coordinate to produce blocks, providing fault tolerance for chains where a
-single sequencer is not acceptable. With `3f+1` validators, the chain tolerates `f` failures:
-4 validators tolerate 1, 7 tolerate 2, 10 tolerate 3. See the
-[Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
-for the protocol details.
+single sequencer is not acceptable.
 
 By default, Linea Mainnet runs Maru with a single validator. The multi-validator setup described on
 this page applies to Stack operators running their own Linea-based chain.
+
+See the [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
+for protocol details.
 
 :::note
 
@@ -28,6 +28,7 @@ apply to Maru.
 - Multi-party or consortium chains where multiple operators must participate in sequencing.
 - Geographic redundancy: the chain continues if one region or one validator goes down.
 - Not relevant for standard Linea Mainnet users, or for single-operator chains.
+- Maru is fully permissioned: the validator set is fixed in the genesis file, with no permissionless or hybrid mode.
 
 ## How it fits into the Linea Stack
 
@@ -48,33 +49,26 @@ No coordinator-side changes are required when running multi-validator Maru.
       src="/img/multi-validator-diagram.png"
       alt="Multi-validator Maru deployment on the Linea Stack: four Maru validators running QBFT consensus, each paired 1:1 with a Besu execution node, feeding into the unchanged downstream Linea Stack (Coordinator, Prover, State Manager, RPC nodes, L1 contracts, Bridge)."
     />
+    <p><em>Multi-validator Maru architecture: four QBFT validators, 1:1 paired with Besu nodes, feeding the unchanged downstream Linea Stack via a single designated Besu.</em></p>
   </div>
 </div>
 
 ### What multi-validator Maru protects, and what it does not
 
 Multi-validator Maru decentralizes block ordering and execution: with 4 validators, block
-production continues if one validator goes offline. The sequencer is no longer a single point in
-the chain that, if it dies, halts the chain.
+production continues if one validator goes offline. The sequencer is no longer a single point
+that, if it dies, halts the chain.
 
 The rest of the Linea Stack (coordinator, prover, state manager, RPC nodes, L1 contracts, bridge)
 is still centralized. The coordinator runs in one place and connects to a single designated Besu
 node as its source of truth, not to all four interchangeably. If the coordinator goes down,
 batching, proving, and L1 finality posting stop.
 
-Multi-validator Maru protects sequencing only. It does not protect L1 finality posting, proving,
-or RPC service.
-
 ### Single-validator to multi-validator migration
 
 Migrating an existing single-validator chain to multi-validator on a running network is supported,
 but requires a scheduled, coordinated genesis update across all operators. It is not a runtime
 config change.
-
-## Permissioning
-
-Maru is fully permissioned. The validator set is fixed in the genesis file; there is no
-permissionless or hybrid mode.
 
 ## Block time and latency
 
@@ -97,9 +91,9 @@ that absorbs `3 × latency + ~50ms` overhead.
   get ~935ms of building budget.
 - **Same region** (~25ms one-way, ~50ms ping): consensus overhead ~125ms. With a 1s block
   time, you get ~875ms of building budget.
-- **Cross-region, e.g. EU↔US** (~50ms one-way, ~100ms ping): consensus overhead ~200ms.
+- **Cross-region, for example EU↔US** (~50ms one-way, ~100ms ping): consensus overhead ~200ms.
   With a 1s block time, you get ~800ms of building budget.
-- **Long haul, e.g. EU↔Asia** (~150ms one-way, ~300ms ping): consensus overhead ~500ms.
+- **Long haul, for example EU↔Asia** (~150ms one-way, ~300ms ping): consensus overhead ~500ms.
   A 1s block time leaves ~500ms budget; use a 2s block time for safety (~1.5s budget).
 
 A 4s block time is the recommended setting for global validator distribution. It leaves
@@ -112,11 +106,14 @@ as soon as one node goes down, the chain halts. With 4 validators, 1 can go down
 continues; expect 1 missed round in every 4 (the offline validator's proposal slot is skipped, so
 that block's time effectively doubles).
 
+The QBFT fault tolerance threshold is `3f+1`: with 4 validators, 1 can fail; with 7, 2 can fail;
+with 10, 3 can fail.
+
 The `3 × latency` consensus overhead is a fundamental QBFT property and does not change with
 validator count. Adding more validators improves fault tolerance but increases latency variance.
 
-4-validator setups are the only configuration tested to date. Higher counts are expected to work
-but may require additional LibP2P configuration tuning.
+Only 4-validator setups have been tested. Higher counts are expected to work but may require
+additional LibP2P configuration tuning.
 
 Geographic distribution depends on the operator's goals (latency, regulatory, redundancy). Pick a
 topology that suits your needs and apply the latency formula above to validate it works.
@@ -128,8 +125,14 @@ topology that suits your needs and apply the latency formula above to validate i
   inter-validator latency itself.
 - **Block inclusion limits:** transactions that take longer to execute than the block-building
   budget cannot fit in a block. ERC-20 transfers are fast and unaffected. Complex transactions
-  may not fit. We recommend at least 500ms of block-building time (configured block time minus
-  consensus overhead) so transactions of typical complexity have room to execute.
+  may not fit.
+
+:::tip[Minimum block-building budget]
+
+Allow at least 500ms of block-building time (configured block time minus consensus overhead) so
+transactions of typical complexity have room to execute.
+
+:::
 
 ## Setup
 
@@ -177,14 +180,9 @@ Shanghai, Cancun, Prague), so changes apply at a future point all validators agr
 
 Procedure:
 
-1. If the new validator does not yet have a key pair, generate one using the
-   [PrivateKeyGenerator](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator)
-   tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and
-   shares only the public address.
-2. All existing validator operators agree on a future timestamp far enough ahead for everyone to
-   update their genesis file in time.
-3. Each operator updates their genesis file with the new validator list, keyed to the agreed
-   timestamp.
+1. If the new validator does not yet have a key pair, generate one using the [`PrivateKeyGenerator`](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
+2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
+3. Each operator updates their genesis file with the new validator list, keyed to the agreed timestamp.
 4. Block time must remain consistent across validators.
 
 This is a coordinated operation, not a runtime config change. There is no on-chain governance or
@@ -213,10 +211,9 @@ above.
 ### Failure modes and recovery
 
 - **Single validator down (3 of 4 still active):** consensus continues normally.
-- **Quorum lost (e.g. 2 of 4 validators offline):** the chain halts. Recovery options:
-  1. Bring at least one offline validator back online to restore quorum, or
-  2. The remaining operators coordinate a scheduled genesis update to add a new validator that
-     is online.
+- **Quorum lost (for example, 2 of 4 validators offline):** the chain halts. Recovery options:
+    1. Bring at least one offline validator back online to restore quorum, or
+    2. The remaining operators coordinate a scheduled genesis update to add a new validator that is online.
 
 If consensus cannot complete within the configured block time, the protocol automatically
 advances to a missed round and changes the proposer for that slot. The affected slot is skipped
