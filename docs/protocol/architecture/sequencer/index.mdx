@@ -39,6 +39,17 @@ There is typically one sequencer instance per network. Although by applying a Qu
 
 :::
 
+## Transaction validity conditions
+
+In addition to standard EVM validity checks (signature, nonce, balance, gas limits), the sequencer
+enforces a Linea-specific **profitability threshold**: each transaction's fee must cover the cost
+of processing and proving it. Transactions that fall below this threshold are rejected from the
+mempool.
+
+See [predictable pricing](../../../network/overview/predictable-pricing.mdx) for how Linea's fee
+mechanism shapes the base fee, and
+[Ethereum differences](../../../network/overview/ethereum-differences.mdx) for a broader comparison.
+
 
 
 
