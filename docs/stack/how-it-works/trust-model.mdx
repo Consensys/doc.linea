@@ -52,12 +52,11 @@ For the full list of roles, see [LineaRollup contracts reference](/network/build
 
 ## Trust assumptions per deployment model
 
-| Trust dimension | Public rollup (L1 = Ethereum) | Private validium (L2 on Ethereum) | Private validium (L3 on Linea Mainnet) |
+| Trust dimension | Rollup, finalized to Ethereum | Validium, finalized to Ethereum | Validium, finalized to Linea Mainnet |
 | --- | --- | --- | --- |
-| Data availability | Ethereum | Operator-run archive nodes or DA committee | Operator-run archive nodes or DA committee |
-| Finality anchor | Ethereum | Ethereum | Linea Mainnet (which itself anchors to Ethereum) |
-| Sequencer trust | Operator can reorder/delay; cannot forge state | Same | Same |
-| Bridge trust | Cryptographic proof + admin key for upgrades/pauses | Same | Adds Linea Mainnet bridge trust on top |
+| Data availability provided by | Ethereum (EIP-4844 blobs) | Operator-run archive nodes or DA committee | Operator-run archive nodes or DA committee |
+| Finalization layer | Ethereum | Ethereum | Linea Mainnet (which itself anchors to Ethereum) |
+| Bridge trust to the finalization layer | Canonical bridge: ZK proofs + admin keys for upgrades/pauses | Same as rollup | Canonical bridge to Linea Mainnet (proofs + admin keys), plus Linea Mainnet's own canonical bridge to Ethereum |
 | Inherited trust assumptions | Ethereum L1 only | Ethereum L1 only | Ethereum L1 + Linea Mainnet (sequencer, prover, Security Council, admin keys) |
 | State reconstruction without operator | Yes, from L1 blobs | No, depends on operator-run DA | No, depends on operator-run DA |
 
