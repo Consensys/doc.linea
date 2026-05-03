@@ -1,0 +1,108 @@
+---
+title: Trust model
+description: >-
+  Trust assumptions, control responsibilities, and failure modes for Linea stack
+  deployments
+sidebar_position: 3
+image: /img/socialCards/trust-model.jpg
+---
+
+This page describes the trust assumptions, control responsibilities, and failure modes of a Linea Stack deployment. It is meant for architects and operators evaluating Linea Stack before deployment.
+
+What this page covers: who operates each component, what each component can do unilaterally, what participants can independently verify, what happens when something fails, and how trust assumptions change across deployment models.
+
+What this page does not cover: configuration flags, deployment topology, or component internals. For those, see [Core components](./core-components) and [Deployment models](./deployment-models).
+
+## Trust assumptions per component
+
+| Component | Operated by | Can do unilaterally | Cannot do | Independently verifiable by participants |
+| --- | --- | --- | --- | --- |
+| Sequencer | Operator | Order, delay, or omit transactions within a block | Forge state. Invalid blocks fail proof verification | Block contents and ordering, by running a full or archive node |
+| Prover | Operator | Stall proof generation, halting finalization | Produce a valid proof for an invalid state transition | Proof verification by reading the verifier contract on the finalization layer |
+| Coordinator | Operator | Stall the conflation, prover, submission pipeline | Modify state independently of the sequencer or prover | L1 submission events |
+| Data availability (rollup) | Ethereum | (none) | Withhold data: DA is on L1 as EIP-4844 blobs | State reconstruction from L1 blobs |
+| Data availability (validium) | DA committee chosen by operator | Withhold data, halting recovery | Forge state: proofs still verify on L1 | What participants observe via DA committee access |
+| Canonical bridge (to Ethereum / Linea-anchored chain) | Operator (admin keys) + protocol (proofs) | Pause bridging via pause roles; upgrade contracts | Forge messages: both sides verify ZK proofs | Bridge events and proof verification on the finalization layer |
+| Trusted bridge (to private or non-anchored chain) | Operator (admin keys) + trusted relayer | Pause bridging; relayer can withhold or delay messages | Forge messages: relayer signs over verified source-chain events | Bridge events on each side; no shared proof. Depends on trust in the relayer |
+| System contracts | Operator (role holders) | Pause, upgrade, change verifier address, change rate limits | Bypass role gating: every privileged function is role-gated | Role assignments and contract state on the finalization layer |
+| Participant nodes | Each participant | Read state visible to them, broadcast transactions | Modify network state | Their own observed state, by running a node |
+
+## Admin keys and upgrade authority
+
+The Stack contracts ship with a fixed set of roles. Holders are decided by the operator at deploy time. The most consequential decisions:
+
+| Role | What it can do | Recommended holder |
+| --- | --- | --- |
+| `DEFAULT_ADMIN_ROLE` | Grant or revoke any other role | Multisig or governance contract; assignable only at initialization |
+| `OPERATOR_ROLE` | Submit blobs/calldata, finalize blocks | Day-to-day operator address |
+| `SECURITY_COUNCIL_ROLE` | Reserved for governance pause/upgrade authority | Governance contract |
+| `PAUSE_*_ROLE` / `UNPAUSE_*_ROLE` | Pause and unpause specific subsystems (L1↔L2, L2→L1, finalization, state submission, etc.) | Split between operator (pause) and governance (unpause) for fast incident containment |
+| `VERIFIER_SETTER_ROLE` | Change the verifier contract for a given proof type | Governance contract |
+| `RATE_LIMIT_SETTER_ROLE` | Change L2→L1 withdrawal rate limits | Governance contract |
+
+Contracts are upgradeable via the OpenZeppelin upgradeable proxy pattern. Upgrade authority is held by `DEFAULT_ADMIN_ROLE`. There is no protocol-enforced timelock: operators must implement timelocks via the governance contract holding the role.
+
+:::warning
+`DEFAULT_ADMIN_ROLE` cannot be assigned through `__Permissions_init`. It is set only via the explicit `defaultAdmin` initializer field. Plan the holder before initialization.
+:::
+
+For the full list of roles, see [LineaRollup contracts reference](/network/build/contracts).
+
+## Trust assumptions per deployment model
+
+| Trust dimension | Public rollup (L1=Ethereum) | Private validium (L2 on Ethereum) | Private validium (L3 on Linea Mainnet) |
+| --- | --- | --- | --- |
+| Data availability | Ethereum | Operator-run DA committee | Operator-run DA committee |
+| Finality anchor | Ethereum | Ethereum | Linea Mainnet (which itself anchors to Ethereum) |
+| Sequencer trust | Operator can reorder/delay; cannot forge state | Same | Same |
+| Bridge trust | Cryptographic proof + admin key for upgrades/pauses | Same | Adds Linea Mainnet bridge trust on top |
+| Inherited trust assumptions | Ethereum L1 only | Ethereum L1 only | Ethereum L1 + Linea Mainnet (sequencer, prover, Security Council, admin keys) |
+| State reconstruction without operator | Yes, from L1 blobs | No: depends on DA committee | No: depends on DA committee |
+
+A private validium deployed as L3 on Linea Mainnet inherits Linea Mainnet's trust assumptions in addition to its own. See [Linea Mainnet risk disclosures](/network/risk-disclosures) for those.
+
+## Failure modes and recovery
+
+| Failure | Participant impact | Recovery path | Status |
+| --- | --- | --- | --- |
+| Sequencer halt | Block production stops; pending transactions not included | Operator restart; multi-sequencer setups via distributed sequencing (QBFT) | Single-sequencer is the default; multi-sequencer is operator-implemented |
+| Prover stall | Proofs not generated; finalization stops; soft-finalized blocks remain on L2 but not finalized to L1 | Operator restart; alternate prover instance | Single-prover is the default |
+| Coordinator stall | L1 submission stops; same effect as prover stall downstream | Operator restart | Single-coordinator is the default |
+| DA withhold (validium) | Participants cannot reconstruct state independently; new state still verifiable via proof | Operator-defined wind-down procedure; depends on consortium agreement | Operator-defined; not protocol-enforced |
+| Finality layer reorg | Affects depth of L1 finality; ZK proofs once accepted on L1 cannot be reorged without breaking L1 | Wait for L1 finality depth | Inherent to L1 finality model |
+| Admin key compromise | Compromised role can act within its scope until revoked; `DEFAULT_ADMIN_ROLE` compromise affects all roles | Multi-sig key revocation via Web3Signer/KMS; emergency pause via `PAUSE_ALL_ROLE`; contract pause via Multi-Sig Governance Contract | Operator-implemented |
+| Bridge halt | Cross-chain transfers stop | Pause roles can halt bridging; resumption via unpause role | Live |
+| Forced transaction (escape hatch) | Allows participants to bypass a censoring sequencer | L1-submitted forced transactions, gated by `AddressFilter` | **Not yet live**; planned |
+
+The default deployment topology assumes single-instance sequencer, prover, and coordinator. For high availability, operators run multi-instance setups via the Fleet plugin (documented separately).
+
+## What participants can independently verify
+
+The set of guarantees a participant can verify *without* trusting the operator depends on the deployment model.
+
+**Public rollup**
+
+- Full transaction history, by reading L1 blobs and reconstructing L2 state.
+- Proof validity, by reading the verifier contract on L1.
+- Bridge events and message status, on L1.
+- Contract role assignments and admin actions, on L1.
+
+**Private validium (L2 on Ethereum)**
+
+- Proof validity, by reading the verifier contract on L1.
+- That a state transition was proved, even if its contents are private.
+- Bridge events on L1.
+- Their own observed state, by running a node with DA committee access.
+- They cannot reconstruct state without DA committee access. This is the validium trade-off.
+
+**Private validium (L3 on Linea Mainnet)**
+
+- Same as private validium on L2, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).
+- Verifying the L3 chain end-to-end requires verifying both the L3 proof on Linea Mainnet and Linea Mainnet's proofs on Ethereum.
+
+## See also
+
+- [Linea Mainnet risk disclosures](/network/risk-disclosures): applies when finalizing to Linea Mainnet
+- [Core components](./core-components)
+- [Deployment models](./deployment-models)
+- [LineaRollup contracts reference](/network/build/contracts)
