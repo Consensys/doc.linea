@@ -21,7 +21,7 @@ What this page does not cover: configuration flags, deployment topology, or comp
 | Prover | Operator | Stall proof generation, halting finalization | Produce a valid proof for an invalid state transition | Proof verification by reading the verifier contract on the finalization layer |
 | Coordinator | Operator | Stall the pipeline that conflates blocks, requests proofs, and submits them to L1 | Modify state independently of the sequencer or prover | L1 submission events |
 | Data availability (rollup) | Ethereum | N/A | Withhold data, since DA is on L1 as EIP-4844 blobs | State reconstruction from L1 blobs |
-| Data availability (validium) | Operator-run archive nodes or DA committee | Withhold data, halting recovery | Forge state, since proofs still verify on L1 | What participants observe via DA committee access |
+| Data availability (validium) | Operator-run archive nodes or DA committee | Withhold data, halting recovery | Forge state, since proofs still verify on L1 | What participants observe via access to the operator's DA layer |
 | Canonical bridge (to Ethereum / Linea-anchored chain) | Operator (admin keys) + protocol (proofs) | Pause bridging via pause roles; upgrade contracts | Forge messages, since both sides verify ZK proofs | Bridge events and proof verification on the finalization layer |
 | Trusted bridge (to private or non-anchored chain) | Operator (admin keys) + trusted relayer | Pause bridging; relayer can withhold or delay messages | Forge messages, since the relayer signs over verified source-chain events | Bridge events on each side; no shared proof, so verifiability depends on trust in the relayer |
 | System contracts | Operator (role holders) | Pause, upgrade, change verifier address, change rate limits | Bypass role gating, since every privileged function is role-gated | Role assignments and contract state on the finalization layer |
@@ -60,7 +60,7 @@ For the full list of roles, see [LineaRollup contracts reference](/network/build
 | Inherited trust assumptions | Ethereum L1 only | Ethereum L1 only | Ethereum L1 + Linea Mainnet (sequencer, prover, Security Council, admin keys) |
 | State reconstruction without operator | Yes, from L1 blobs | No, depends on operator-run DA | No, depends on operator-run DA |
 
-A private validium deployed as L3 on Linea Mainnet inherits Linea Mainnet's trust assumptions in addition to its own. See [Linea Mainnet risk disclosures](/network/risk-disclosures) for those.
+A validium finalized to Linea Mainnet inherits Linea Mainnet's trust assumptions in addition to its own. See [Linea Mainnet risk disclosures](/network/risk-disclosures) for those.
 
 ## Failure modes and recovery
 
@@ -81,14 +81,14 @@ The default deployment topology assumes single-instance sequencer, prover, and c
 
 The set of guarantees a participant can verify *without* trusting the operator depends on the deployment model.
 
-**Public rollup**
+**Rollup, finalized to Ethereum**
 
 - Full transaction history, by reading L1 blobs and reconstructing L2 state.
 - Proof validity, by reading the verifier contract on L1.
 - Bridge events and message status, on L1.
 - Contract role assignments and admin actions, on L1.
 
-**Private validium (L2 on Ethereum)**
+**Validium, finalized to Ethereum**
 
 - Proof validity, by reading the verifier contract on L1.
 - That a state transition was proved, even if its contents are private.
@@ -96,9 +96,9 @@ The set of guarantees a participant can verify *without* trusting the operator d
 - Their own observed state, by running a node with access to the operator's DA layer.
 - They cannot reconstruct state without access to the operator's DA layer. This is the validium trade-off.
 
-**Private validium (L3 on Linea Mainnet)**
+**Validium, finalized to Linea Mainnet**
 
-- Same as private validium on L2, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).
+- Same as validium finalized to Ethereum, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).
 - Verifying the L3 chain end-to-end requires verifying both the L3 proof on Linea Mainnet and Linea Mainnet's proofs on Ethereum.
 
 ## See also
