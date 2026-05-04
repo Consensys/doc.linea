@@ -6,23 +6,36 @@ User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
-# Explicit allow for major AI search and answer-engine crawlers
+# Explicit allow for major AI search and answer-engine crawlers.
+#
+# IMPORTANT: per RFC 9309 each crawler picks the single most-specific
+# matching group and does NOT merge in directives from the wildcard
+# group. Content-Signal must therefore be repeated in every named
+# group below, otherwise these crawlers would see "Allow: /" but
+# none of the search/ai-input/ai-train signals. Do not "DRY this up"
+# by collapsing it back into User-agent: * only.
 User-agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 User-agent: CCBot
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Sitemap: https://docs.linea.build/sitemap.xml
