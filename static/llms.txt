@@ -1,0 +1,116 @@
+# Linea Documentation
+
+> Linea is a secure, low-cost, Ethereum-equivalent layer 2 zk-rollup developed by Consensys. It scales Ethereum by leveraging zero-knowledge proofs (zk-SNARKs) over a fully EVM-equivalent execution environment, providing fast finality, low fees, and recoverable state guarantees. This site is the canonical developer and operator documentation for the Linea network, the Linea protocol, the Linea stack, and the Linea JSON-RPC and SDK APIs.
+
+## About Linea
+- Type: zkEVM Layer 2 (Ethereum rollup)
+- Equivalence: EVM-equivalent (Type 2 zkEVM)
+- Proof system: lattice-based zk-SNARKs
+- Finality: fast, deterministic on Ethereum L1
+- Builder: Consensys
+- Ecosystem hub: https://linea.build
+- Bridge: https://bridge.linea.build
+- Block explorer: https://lineascan.build
+- Status page: https://linea.statuspage.io
+- Source: https://github.com/Consensys/linea-monorepo
+
+## Quickstart and onboarding
+- [Network quickstart](https://docs.linea.build/network/quickstart): Get started building on Linea, including network endpoints, wallet setup, and first deploys.
+- [Network overview](https://docs.linea.build/network/overview): What Linea is, the security and equivalence guarantees, and core network features.
+- [API quickstart](https://docs.linea.build/api/quickstart): How to read and write to Linea over JSON-RPC.
+- [Protocol quickstart](https://docs.linea.build/protocol/quickstart): Entry point for protocol architecture, prover, sequencer, and coordinator details.
+- [Stack quickstart](https://docs.linea.build/stack/quickstart): Entry point for operators deploying their own Linea-stack network.
+
+## Network features
+- [Transaction finality](https://docs.linea.build/network/overview/transaction-finality): How and when transactions are final on Linea and on Ethereum L1.
+- [Predictable pricing](https://docs.linea.build/network/overview/predictable-pricing): Linea's gas pricing model and fee components.
+- [Public data](https://docs.linea.build/network/overview/public-data): What data is published on L1 and how to access it.
+- [Recoverable state](https://docs.linea.build/network/overview/recoverable-state): The guarantees that allow Linea state to be recovered without trusted operators.
+- [Differences from Ethereum](https://docs.linea.build/network/overview/ethereum-differences): Concrete behavioural differences developers must account for.
+- [Yield Boost](https://docs.linea.build/network/overview/yield-boost): Native ETH yield mechanism and risk disclosures.
+
+## Build on Linea
+- [Build overview](https://docs.linea.build/network/build): Index of build guides, tools, and references.
+- [Launch an app](https://docs.linea.build/network/build/launch-an-app): End-to-end path from deploy to listing in the Linea Hub.
+- [Connect to Linea](https://docs.linea.build/network/build/connect): RPC endpoints and chain IDs (mainnet 59144, Sepolia testnet 59141).
+- [Block explorers](https://docs.linea.build/network/build/block-explorers): Lineascan and other explorers.
+- [Bridge](https://docs.linea.build/network/build/bridge): The canonical Linea bridge to and from Ethereum.
+- [Smart contracts](https://docs.linea.build/network/build/contracts): Pre-deployed contracts, addresses, and verified code.
+- [Get testnet ETH](https://docs.linea.build/network/build/get-testnet-eth): Faucets and testnet onboarding.
+- [Send and receive messages](https://docs.linea.build/network/build/send-receive-messages): Cross-chain messaging on Linea.
+- [Tools](https://docs.linea.build/network/build/tools): Account abstraction, indexing, paymasters, and developer tooling.
+
+## How-to guides
+- [Recover state](https://docs.linea.build/network/how-to/recover-state)
+- [Estimate gas costs](https://docs.linea.build/network/how-to/gas-fees)
+- [Bridge tokens to Linea](https://docs.linea.build/network/how-to/bridge)
+- [Connect a wallet to your dapp](https://docs.linea.build/network/how-to/connect-wallet)
+- [Deploy a smart contract](https://docs.linea.build/network/how-to/deploy-smart-contract): Hardhat, Foundry, Remix, thirdweb, Cookbook, Atlas.
+- [Verify a smart contract](https://docs.linea.build/network/how-to/verify-smart-contract): Hardhat, Foundry, Atlas.
+- [Run a node](https://docs.linea.build/network/how-to/run-a-node): Linea Besu, Maru, Besu, Geth, Erigon, plus bootnodes and migration guides.
+- [Migrate a dapp](https://docs.linea.build/network/how-to/migrate-dapp)
+- [Add an RPC fallback](https://docs.linea.build/network/how-to/fallback)
+- [Verify users with Proof of Humanity](https://docs.linea.build/network/how-to/verify-users-with-proof-of-humanity)
+- [Write and deploy assertions](https://docs.linea.build/network/how-to/write-and-deploy-assertions)
+
+## Tutorials
+- [Build an AI agent on Linea](https://docs.linea.build/network/tutorials/aiagent-quickstart)
+- [Build your first dapp](https://docs.linea.build/network/tutorials/first-dapp)
+- [Build a marketplace dapp](https://docs.linea.build/network/tutorials/marketplace-dapp)
+- [Build a voting dapp](https://docs.linea.build/network/tutorials/voting-dapp)
+- [Upgrade an EOA to a smart account (EIP-7702)](https://docs.linea.build/network/tutorials/eip-7702)
+- [Ecosystem tutorials, including USDC](https://docs.linea.build/network/tutorials/ecosystem-tutorials)
+
+## API reference
+- [JSON-RPC API overview](https://docs.linea.build/api/reference): Index of every supported JSON-RPC method on rpc.linea.build.
+- [Linea SDK](https://docs.linea.build/api/linea-sdk): TypeScript SDK for cross-chain messaging and bridge claim flows.
+- [Token API](https://docs.linea.build/api/token-api): Token metadata and balance API reference.
+- Linea-specific JSON-RPC methods:
+  - [linea_estimateGas](https://docs.linea.build/api/reference/linea-estimategas)
+  - [eth_sendBundle](https://docs.linea.build/api/reference/eth-sendbundle)
+  - [eth_sendRawTransaction](https://docs.linea.build/api/reference/eth-sendrawtransaction)
+  - [linea_getProof](https://docs.linea.build/api/reference/linea-getproof)
+  - [linea_getTransactionExclusionStatusV1](https://docs.linea.build/api/reference/linea-gettransactionexclusionstatusv1)
+- Smart contract reference:
+  - [LineaRollup](https://docs.linea.build/api/linea-smart-contracts/linearollup)
+  - [zkEVM v2](https://docs.linea.build/api/linea-smart-contracts/zkevmv2)
+  - [Token bridge](https://docs.linea.build/api/linea-smart-contracts/tokenbridge)
+  - [Message service](https://docs.linea.build/api/linea-smart-contracts/messageservice)
+
+## Protocol
+- [Architecture overview](https://docs.linea.build/protocol/architecture): Core components and how they interact.
+- [Sequencer](https://docs.linea.build/protocol/architecture/sequencer): Block building, traces generation, conflation.
+- [Prover](https://docs.linea.build/protocol/architecture/prover): Circuit building, proving pipeline, prover limits.
+- [State manager](https://docs.linea.build/protocol/architecture/state-manager): EVM state representation in the rollup.
+- [Smart contracts](https://docs.linea.build/protocol/architecture/smart-contracts): On-L1 contracts that anchor Linea.
+- [Coordinator](https://docs.linea.build/protocol/architecture/coordinator): Orchestrates sequencing, proving, and finalisation.
+- [Interoperability](https://docs.linea.build/protocol/architecture/interoperability): Canonical token bridge and message service.
+- [RPC services](https://docs.linea.build/protocol/architecture/rpc-services): RPC topology, scaling, and operational design.
+- [Forced transactions](https://docs.linea.build/protocol/forced-transactions): Censorship-resistance via L1-forced inclusion.
+- [EIP-7702 on Linea](https://docs.linea.build/protocol/eip-7702): Account-abstraction support for EOAs.
+- [Tokenomics](https://docs.linea.build/protocol/tokenomics): The LINEA token, supply, distribution, and burn mechanics.
+- [Glossary of zero-knowledge terms](https://docs.linea.build/protocol/reference/zero-knowledge-glossary)
+- [Linea repositories](https://docs.linea.build/protocol/reference/repos)
+
+## Linea stack (operators)
+- [Stack overview](https://docs.linea.build/stack): What the Linea stack is and who it is for.
+- [Features](https://docs.linea.build/stack/features): Compliance, data availability, instant finality, security, privacy (Validium).
+- [How it works](https://docs.linea.build/stack/how-it-works): Protocol components, deployment models, data availability and finalisation.
+- [Forced transactions for stack operators](https://docs.linea.build/stack/how-to/forced-transactions)
+
+## Changelog and risk
+- [Changelog and release notes](https://docs.linea.build/changelog/release-notes): Network upgrades and deployments by date.
+- [Risk disclosures](https://docs.linea.build/network/risk-disclosures): Known risks for users and integrators.
+
+## Key facts
+- Linea mainnet chain ID: 59144
+- Linea Sepolia testnet chain ID: 59141
+- Public RPC base URL: https://rpc.linea.build
+- Linea is fully EVM-equivalent: contracts compiled for Ethereum mainnet run unmodified on Linea.
+- Linea uses zero-knowledge proofs to remove the seven-day fraud-proof window required by optimistic rollups.
+- Linea is incubated within Consensys, the company behind MetaMask, Infura, and Truffle.
+- The canonical bridge anchors withdrawals and deposits on Ethereum L1 with state recovery guarantees.
+
+## Authoring and licensing
+- Source repository for these docs: https://github.com/Consensys/doc.linea
+- Docs licence: see repository LICENSE

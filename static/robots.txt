@@ -1,4 +1,28 @@
+# Default group + Content Signals (Cloudflare-led robots.txt extension)
+# Institutional posture: index us, use us as RAG/answer-engine context,
+# but do NOT use us for training corpora. Training-corpus inclusion is a
+# separate decision flagged for leadership.
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Explicit allow for major AI search and answer-engine crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://docs.linea.build/sitemap.xml
