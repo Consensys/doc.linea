@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6.4.0
         with:
-          node-version: 22.22.2
+          node-version: 24.14.1
 
       - name: Install dependencies
         run: npm ci
