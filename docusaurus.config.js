@@ -561,8 +561,16 @@ const config = {
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "name": "Linea",
         "url": "https://docs.linea.build",
-        "logo": "https://docs.linea.build/img/favicons/favicon-96x96.png"
+        "logo": "https://docs.linea.build/img/favicons/favicon-96x96.png",
+        "sameAs": [
+          "https://github.com/Consensys/doc.linea",
+          "https://x.com/LineaBuild",
+          "https://www.linkedin.com/company/lineabuild/",
+          "https://www.youtube.com/@LineaBuild",
+          "https://www.reddit.com/r/LineaBuild/"
+        ]
       }
     `,
     },
