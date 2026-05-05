@@ -337,9 +337,9 @@ const sidebars = {
       label: "Mechanisms",
       collapsible: false,
       items: [
-        "protocol/forced-transactions",
-        "protocol/eip-7702",
         "protocol/tokenomics",
+        "protocol/eip-7702",
+        "protocol/forced-transactions",
       ],
     },
     {
