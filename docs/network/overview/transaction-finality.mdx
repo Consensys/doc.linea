@@ -11,8 +11,10 @@ A Linea transaction moves through two finality states before it is permanently s
 ## Transaction lifecycle
 
 When you submit a transaction on Linea, it follows this path: the
-[sequencer](/protocol/architecture/sequencer) includes it in an L2 block (soft finality, ~2
-seconds), then the [Coordinator](/protocol/architecture/coordinator) groups blocks into a batch
+[sequencer](/protocol/architecture/sequencer)
+[validates and includes](/protocol/architecture/sequencer#transaction-validity-conditions) it in
+an L2 block, reaching soft finality in approximately 1 second. The
+[Coordinator](/protocol/architecture/coordinator) then groups blocks into a batch
 and submits it to Ethereum. The [prover](/protocol/architecture/prover) generates a
 [ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) for the batch, which
 is verified by the [Linea rollup contract](/protocol/architecture/smart-contracts) on L1. Once the
@@ -27,16 +29,15 @@ For the full protocol-level breakdown, see
 
 When the [sequencer](/protocol/architecture/sequencer) orders, executes, and seals your
 transaction into an L2 block, it has reached **soft finality**. This happens within approximately
-2 seconds—Linea's block time.
+1 second, which is Linea's block time.
 
 At soft finality:
 
 - The transaction is confirmed on Linea and visible in your wallet
-- Linea [**does not reorg**](/protocol/reference/zero-knowledge-glossary#reorgs)—once a
-  transaction reaches soft finality on Linea, it will not be removed or reordered by Linea
+- Once a transaction reaches soft finality on Linea, it will not be removed or reordered by Linea
 - Ethereum (L1) may still reorg, but this does not affect Linea's confirmed state
 
-For most application use cases—swaps, transfers, in-app interactions—soft finality is sufficient.
+For most application use cases, including swaps, transfers, and in-app interactions, soft finality is sufficient.
 
 ## Hard finality
 
@@ -109,8 +110,8 @@ finalized state, use the `finalized` JSON-RPC tag described above.
 1. Create a JavaScript file (for example `index.js`) and copy the following code:
 
    :::info
-   Replace the Infura endpoint with your preferred Ethereum L1 RPC provider. Any L1 endpoint
-   works—Infura, Alchemy, a self-hosted node, etc.
+   Replace the Infura endpoint with your preferred Ethereum L1 RPC provider. You can use any L1
+   endpoint, including Infura, Alchemy, or a self-hosted node.
    :::
 
    ```javascript title="index.js"

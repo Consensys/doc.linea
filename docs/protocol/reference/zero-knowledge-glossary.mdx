@@ -198,11 +198,11 @@ so congestion forces the price up.
 
 Transaction ordering is implemented by the [Linea Besu Sequencer](../architecture#sequencer) plugin. The 
 plugin employs a first-come, first-served (FCFS) policy across blocks, with gas price prioritization within 
-each block, and operates on a uniform 2 second block time. This provides predictable, transparent ordering.
+each block, and operates on a uniform 1 second block time. This provides predictable, transparent ordering.
 
 - Inter-block (across blocks): Transactions are processed strictly in the order produced by the validator, 
 ensuring fairness between blocks without look-ahead bias or MEV extraction.
-- Intra-block (within a block): Within the 2-second block window, transactions are prioritized by total gas 
+- Intra-block (within a block): Within the 1-second block window, transactions are prioritized by total gas
 price (legacy transactions) / priority fee (for [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) 
 transactions)--highest first, allowing users to pay more for inclusion priority while maintaining 
 FCFS discipline between blocks.

@@ -39,7 +39,22 @@ There is typically one sequencer instance per network. Although by applying a Qu
 
 :::
 
+## Transaction validity conditions
 
+In addition to standard EVM validity checks (signature, nonce, balance, gas limits), the sequencer
+applies a Linea-specific **profitability threshold** during transaction pool admission and
+block-building selection. The threshold uses the same gas price calculation described in
+[estimate gas costs](../../../network/how-to/gas-fees.mdx#variable-cost-and-linea_estimategas),
+including the compressed transaction size, gas denominator, fixed/variable costs, and
+context-specific margin.
+
+Transactions that do not meet the threshold can be rejected from the mempool or skipped during
+selection. This profitability check does not apply to sequencer-prioritized system transactions,
+including forced transactions.
+
+See [predictable pricing](../../../network/overview/predictable-pricing.mdx) for how Linea's fee
+mechanism shapes the base fee, and
+[Ethereum differences](../../../network/overview/ethereum-differences.mdx) for a broader comparison.
 
 
 
