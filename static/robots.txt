@@ -22,7 +22,15 @@ User-agent: OAI-SearchBot
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
+User-agent: ChatGPT-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
 User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-agent: anthropic-ai
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
@@ -36,6 +44,15 @@ Allow: /
 
 User-agent: CCBot
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-agent: cohere-ai
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+User-agent: Bytespider
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Crawl-delay: 10
 Allow: /
 
 Sitemap: https://docs.linea.build/sitemap.xml
