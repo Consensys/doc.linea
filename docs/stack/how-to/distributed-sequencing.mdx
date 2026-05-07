@@ -1,0 +1,240 @@
+---
+title: Set up distributed sequencing
+description: Run Maru in multi-validator mode with QBFT consensus on a Linea Stack chain.
+sidebar_position: 2
+image: /img/socialCards/distributed-sequencing.jpg
+---
+
+Maru supports multi-validator deployments using QBFT (Quorum Byzantine Fault Tolerance) consensus.
+Multiple sequencer nodes coordinate to produce blocks, providing fault tolerance for chains where a
+single sequencer is not acceptable.
+
+By default, Linea Mainnet runs Maru with a single validator. The multi-validator setup described on
+this page applies to Stack operators running their own Linea-based chain.
+
+See the [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
+for protocol details.
+
+:::note
+
+The QBFT algorithm description applies, but Maru manages consensus state independently from Besu.
+Besu-specific details such as `extraData` encoding and JSON-RPC validator management methods do not
+apply to Maru.
+
+:::
+
+## When to use it
+
+- Multi-party or consortium chains where multiple operators must participate in sequencing.
+- Geographic redundancy: the chain continues if one region or one validator goes down.
+- Not relevant for standard Linea Mainnet users, or for single-operator chains.
+- Maru is fully permissioned: the validator set is fixed in the genesis file, with no permissionless or hybrid mode.
+
+## How it fits into the Linea Stack
+
+Maru is the sequencer consensus layer; Besu is the execution layer. Multi-validator Maru changes
+only sequencer fault tolerance. The [prover, coordinator, state manager](../how-it-works/core-components.mdx#core-protocol-components),
+RPC nodes, L1 contracts, and bridge are unchanged.
+
+L2 block time is set on Maru. L1 finality cadence is set on the coordinator and is independent.
+
+Each Maru validator pairs 1:1 with a Besu execution node. A single Besu node cannot serve multiple
+Maru validators.
+
+No coordinator-side changes are required when running multi-validator Maru.
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/multi-validator-diagram.png"
+      alt="Multi-validator Maru deployment on the Linea Stack: four Maru validators running QBFT consensus, each paired 1:1 with a Besu execution node, feeding into the unchanged downstream Linea Stack (Coordinator, Prover, State Manager, RPC nodes, L1 contracts, Bridge)."
+    />
+    <p><em>Multi-validator Maru architecture: four QBFT validators, 1:1 paired with Besu nodes, feeding the unchanged downstream Linea Stack via a single designated Besu.</em></p>
+  </div>
+</div>
+
+### Scope of fault tolerance
+
+Multi-validator Maru decentralizes block ordering and execution: with 4 validators, block
+production continues if one validator goes offline. The sequencer is no longer a single point
+that, if it dies, halts the chain.
+
+The rest of the Linea Stack (coordinator, prover, state manager, RPC nodes, L1 contracts, bridge)
+is still centralized. The coordinator runs in one place and connects to a single designated Besu
+node as its source of truth, not to all four interchangeably. If the coordinator goes down,
+batching, proving, and L1 finality posting stop.
+
+### Single-validator to multi-validator migration
+
+Migrating an existing single-validator chain to multi-validator on a running network is supported,
+but requires a scheduled, coordinated genesis update across all operators. It is not a runtime
+config change.
+
+## Block time and latency
+
+QBFT consensus runs in three phases per block, each requiring a one-way message between
+validators. Block production therefore requires three one-way network hops, plus a small fixed
+overhead (~50ms) for Engine API communication. The block-building window (the time available
+for transaction execution after consensus overhead) is:
+
+:::tip[Block-building window formula]
+
+**block_building_window (or effective_block_time)** = configured_block_time - (3 × inter_validator_latency + ~50ms)
+
+:::
+
+Where `inter_validator_latency` is the **one-way** latency between two validators, **not**
+round-trip ping. If you measure with the `ping` command, divide by 2 to get one-way latency.
+
+Before deploying, measure the latency between your validators and pick a configured block time
+that absorbs `3 × latency + ~50ms` overhead.
+
+### Worked examples
+
+- **Same data center** (~5ms one-way): consensus overhead ~65ms. With a 1s block time, you
+  get ~935ms of block-building window.
+- **Same region** (~25ms one-way, ~50ms ping): consensus overhead ~125ms. With a 1s block
+  time, you get ~875ms of block-building window.
+- **Cross-region, for example EU↔US** (~50ms one-way, ~100ms ping): consensus overhead ~200ms.
+  With a 1s block time, you get ~800ms of block-building window.
+- **Long haul, for example EU↔Asia** (~150ms one-way, ~300ms ping): consensus overhead ~500ms.
+  A 1s block time leaves ~500ms block-building window; use a 2s block time for safety (~1.5s block-building window).
+
+A 4s block time is the recommended setting for global validator distribution. It leaves
+comfortable block-building window plus safety margin across all tested deployment scenarios.
+
+## Topology recommendations
+
+**Minimum: 4 validators.** With 2 or 3 validators, the setup provides no fault tolerance benefit:
+as soon as one node goes down, the chain halts. With 4 validators, 1 can go down while the chain
+continues; expect 1 missed round in every 4 (the offline validator's proposal slot is skipped, so
+that block's time effectively doubles).
+
+The QBFT fault tolerance threshold is `3f+1`: with 4 validators, 1 can fail; with 7, 2 can fail;
+with 10, 3 can fail.
+
+The `3 × latency` consensus overhead is a fundamental QBFT property and does not change with
+validator count. Adding more validators improves fault tolerance but increases latency variance.
+
+Only 4-validator setups have been tested. Higher counts are expected to work but may require
+additional LibP2P configuration tuning.
+
+Geographic distribution depends on the operator's goals (latency, regulatory, redundancy). Pick a
+topology that suits your needs and apply the latency formula above to validate it works.
+
+## Things to know before deploying
+
+- **Block time vs throughput:** longer block times don't reduce throughput. They slow down soft
+  finality, which is the time before users see their transactions confirmed. Throughput is reduced by
+  inter-validator latency itself.
+- **Block inclusion limits:** a transaction's execution time must fit within the block-building window. 
+  Simple transactions (e.g. ERC-20 transfers) always fit. Computationally heavy transactions can exceed the window in narrow configurations; 
+  when this happens, the transaction is excluded from the block, remains in the mempool, and is retried on subsequent blocks. If the configuration cannot accommodate it (window too narrow), the transaction will keep failing until it's evicted from the mempool.
+
+
+
+:::tip[Minimum block-building window]
+
+Allow at least 500ms of block-building window (configured block time minus consensus overhead) so
+transactions of typical complexity have room to execute.
+
+:::
+
+## Setup
+
+### Prerequisites
+
+Hardware requirements per validator are the same as a current single-validator
+[Maru deployment](../../network/how-to/run-a-node/maru.mdx).
+
+Use direct, static peering between validators rather than P2P discovery. Indirect routing adds
+latency and reduces consensus performance.
+
+A key generation script is provided
+([Maru PrivateKeyGenerator](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator)).
+Generate validator keys in advance, then populate the genesis file with the validator addresses.
+
+For multi-party deployments where validators are run by independent operators: each operator
+generates their own key locally and shares only the public address. Private keys never leave the
+operator's environment. All public addresses are then collected into the genesis file.
+
+Private keys are saved by the corresponding validator and mounted as files on the filesystem at
+runtime.
+
+:::warning[Key rotation]
+
+Validator keys are mounted as files on the filesystem. Key rotation is a heavyweight operation: it
+requires fork management and a coordinated network update across all validators. Plan key
+rotations carefully and avoid them when possible.
+
+:::
+
+### Configuration
+
+A reference K3S setup is available at
+[`Consensys/maru/chaos-testing`](https://github.com/Consensys/maru/tree/main/chaos-testing). For
+genesis file structure, see the
+[genesis-maru.json template](https://github.com/Consensys/maru/blob/main/docker/initialization/genesis-maru.json.template).
+
+## Operations
+
+### Validator set management
+
+Adding or removing a validator on a running chain is done via a scheduled Maru genesis file
+update. The genesis file is keyed by timestamp (similar to Ethereum hard fork schedules:
+Shanghai, Cancun, Prague), so changes apply at a future point all validators agree on.
+
+Procedure:
+
+1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
+2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
+3. Each operator updates their genesis file with the new validator list, set to activate at the agreed timestamp.
+4. Block time must remain consistent across validators.
+
+This is a coordinated operation, not a runtime config change. There is no onchain governance or
+RPC method to add or remove validators dynamically.
+
+### Monitoring
+
+Maru exposes Prometheus metrics on its metrics port (configurable, default `9545`). Metrics are
+prefixed with `maru_`. Key metrics for operators:
+
+- `maru_consensus_block_latency` (histogram, ms): total consensus time per block. **P95 is the
+  value to alert on.** Tagged by `role` (proposer / non-proposer).
+- `maru_engine_api_request_latency` (timer): Engine API request latency between Maru and its
+  paired Besu. Tagged by `method`, `status`.
+- `maru_metadata_cl_block_height` (gauge): latest beacon chain block height. Useful for liveness
+  checks.
+
+For diagnosing consensus slowdowns, additional `maru_consensus_phase_*` histograms break latency
+down by QBFT phase.
+
+**Recommended alert threshold:** trigger when the block-building window (configured block time
+minus P95 of `maru_consensus_block_latency`) drops below 500ms. This is the same minimum
+block-building window recommended in [Things to know before deploying](#things-to-know-before-deploying)
+above.
+
+### Failure modes and recovery
+
+- **Single validator down (3 of 4 still active):** consensus continues normally.
+- **Quorum lost (for example, 2 of 4 validators offline):** the chain halts. Recovery options:
+    1. Bring at least one offline validator back online to restore quorum, or
+    2. The remaining operators coordinate a scheduled genesis update to add a new validator that is online.
+
+If consensus cannot complete within the configured block time, the protocol automatically
+advances to a missed round and changes the proposer for that slot. The affected slot is skipped
+and the next proposer takes over.
+
+### Upgrades
+
+Rolling upgrades are supported: with 4 validators, you can take 1 offline at a time without
+halting consensus. Expect missed rounds during the upgrade window: the offline validator's turn
+to propose blocks will be skipped. For larger validator sets, more validators can be taken
+offline simultaneously, up to the `f` failure tolerance.
+
+## Resources
+
+- [Maru repository](https://github.com/Consensys/maru)
+- [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
+- [PrivateKeyGenerator tool](https://github.com/Consensys/maru/tree/main/jvm-libs/utils#1-privatekeygenerator)
+- [Reference K3S deployment](https://github.com/Consensys/maru/tree/main/chaos-testing)
