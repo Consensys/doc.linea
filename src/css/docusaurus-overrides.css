@@ -1578,6 +1578,47 @@ button.clean-btn.menu__caret {
   .theme-doc-toc-mobile .table-of-contents__link {
     font-size: 14px !important;
   }
+
+  .release-notes-mobile-toc .table-of-contents__link {
+    padding: 4px 0;
+  }
+
+  .release-notes-mobile-toc__version,
+  .release-notes-mobile-toc__feature,
+  .release-notes-mobile-toc__date {
+    display: block;
+    font-family: AtypText, sans-serif;
+    line-height: 1.4;
+  }
+
+  .release-notes-mobile-toc__version {
+    color: var(--linea-text-primary);
+    font-weight: 500;
+  }
+
+  .release-notes-mobile-toc__feature {
+    margin-top: 2px;
+    color: var(--linea-text-secondary);
+    font-size: var(--font-body-xs);
+  }
+
+  .release-notes-mobile-toc__date {
+    margin-top: 2px;
+    color: var(--linea-text-muted);
+    font-size: var(--font-body-xs);
+  }
+
+  .release-notes-mobile-toc
+    .table-of-contents__link--active
+    .release-notes-mobile-toc__version {
+    color: var(--linea-active-color);
+  }
+}
+
+@media (min-width: 997px), print {
+  .release-notes-mobile-toc {
+    display: none;
+  }
 }
 
 /* Expand sidebar button styles are in section 14b above */
