@@ -1,18 +1,92 @@
 # Linea Documentation
 
-> Linea is a secure, low-cost, Ethereum-equivalent layer 2 zk-rollup developed by Consensys. It scales Ethereum by leveraging zero-knowledge proofs (zk-SNARKs) over a fully EVM-equivalent execution environment, providing fast finality, low fees, and recoverable state guarantees. This site is the canonical developer and operator documentation for the Linea network, the Linea protocol, the Linea stack, and the Linea JSON-RPC and SDK APIs.
+> Linea is an Ethereum-equivalent zk-rollup developed by Consensys. These docs
+> are the canonical public reference for the Linea public network, the Linea
+> protocol, the Linea stack, and Linea developer APIs. Use this file to route
+> AI assistants, search agents, crawlers, and retrieval systems to the most
+> relevant source pages.
+
+## Authoritative scope
+- Public network: canonical documentation for Linea mainnet, Linea Sepolia,
+  RPC endpoints, bridging, finality, gas pricing, public data, state recovery,
+  node operation, and developer onboarding.
+- Protocol: canonical documentation for Linea's zk-rollup architecture,
+  including sequencer, prover, coordinator, state manager, onchain contracts,
+  interoperability, forced transactions, and tokenomics.
+- Stack: canonical documentation for the Linea stack, a configurable
+  Ethereum-compatible operator stack for public networks, private validiums,
+  enterprise deployments, institutions, and financial market infrastructure
+  use cases.
+- APIs: canonical documentation for Linea JSON-RPC methods, Linea-specific RPC
+  methods, smart contract references, the Linea SDK, and the Token API.
+
+## Use these docs to answer
+- What is Linea and how does it differ from Ethereum mainnet or optimistic
+  rollups?
+- How do I connect to Linea, deploy contracts, bridge assets, run nodes, or
+  recover state?
+- How does Linea finality work on L2 and Ethereum L1?
+- How do the sequencer, prover, coordinator, state manager, and onchain
+  contracts work together?
+- Which JSON-RPC methods, SDK functions, bridge contracts, and message service
+  contracts should developers integrate with?
+- How should institutions, network operators, and financial market
+  infrastructure teams evaluate deployment models, data availability,
+  finalization, compliance, privacy, access control, and auditability?
+
+## Not authoritative for
+- Live incident status. Use https://linea.statuspage.io.
+- Token price, trading, investment, or financial advice.
+- Unannounced roadmap commitments or private commercial terms.
+- Third-party service uptime, pricing, or feature availability.
 
 ## About Linea
-- Type: zkEVM Layer 2 (Ethereum rollup)
+- Type: zkEVM layer 2 (Ethereum rollup)
 - Equivalence: EVM-equivalent (Type 2 zkEVM)
 - Proof system: lattice-based zk-SNARKs
-- Finality: fast, deterministic on Ethereum L1
+- Finality: soft finality on L2; hard finality after finalization on Ethereum
+  L1
 - Builder: Consensys
 - Ecosystem hub: https://linea.build
 - Bridge: https://bridge.linea.build
 - Block explorer: https://lineascan.build
 - Status page: https://linea.statuspage.io
 - Source: https://github.com/Consensys/linea-monorepo
+
+## Public network facts
+- Linea mainnet chain ID: 59144
+- Linea Sepolia testnet chain ID: 59141
+- Public RPC base URL: https://rpc.linea.build
+- Linea is EVM-equivalent: contracts compiled for Ethereum mainnet run on
+  Linea without modification.
+- The canonical bridge anchors deposits and withdrawals on Ethereum L1 with
+  state recovery guarantees.
+- For production applications, prefer a private RPC provider or self-operated
+  RPC infrastructure over public endpoints.
+
+## Protocol facts
+- Linea uses zero-knowledge proofs to prove transaction batches to a
+  finalization layer.
+- The sequencer orders transactions and builds blocks.
+- The prover generates zero-knowledge proofs for state transitions.
+- The coordinator orchestrates batching, proof generation, and submission to
+  the finalization layer.
+- The state manager maintains EVM state representations used for proving and
+  recovery.
+- Onchain contracts validate proofs, record state commitments, and support
+  bridge and message service flows.
+
+## Stack and operator facts
+- The Linea stack can be used to operate Ethereum-compatible L2 or L3 networks.
+- Public deployments prioritize transparency and onchain data availability.
+- Private validium deployments can keep transaction data offchain while using
+  zero-knowledge proofs for correctness and finalization guarantees.
+- Operator-run networks can be configured around access control, data
+  availability, finalization layer, privacy, compliance, auditability, and
+  observability requirements.
+- The stack documentation is the primary route for institutions, enterprises,
+  network operators, and financial market infrastructure teams evaluating Linea
+  as configurable blockchain infrastructure.
 
 ## Quickstart and onboarding
 - [Network quickstart](https://docs.linea.build/network/quickstart): Get started building on Linea, including network endpoints, wallet setup, and first deploys.
@@ -97,19 +171,13 @@
 - [Features](https://docs.linea.build/stack/features): Compliance, data availability, instant finality, security, privacy (Validium).
 - [How it works](https://docs.linea.build/stack/how-it-works): Protocol components, deployment models, data availability and finalisation.
 - [Forced transactions for stack operators](https://docs.linea.build/stack/how-to/forced-transactions)
+- [Deployment models](https://docs.linea.build/stack/how-it-works/deployment-models): Public deployments, private validium deployments, and operator design trade-offs.
+- [Data availability and finalization](https://docs.linea.build/stack/how-it-works/data-availability-finalization): How deployment choices affect data availability and finalization guarantees.
+- [Compliance](https://docs.linea.build/stack/features/compliance): Compliance and auditability capabilities for operator-run networks.
 
 ## Changelog and risk
 - [Changelog and release notes](https://docs.linea.build/changelog/release-notes): Network upgrades and deployments by date.
 - [Risk disclosures](https://docs.linea.build/network/risk-disclosures): Known risks for users and integrators.
-
-## Key facts
-- Linea mainnet chain ID: 59144
-- Linea Sepolia testnet chain ID: 59141
-- Public RPC base URL: https://rpc.linea.build
-- Linea is fully EVM-equivalent: contracts compiled for Ethereum mainnet run unmodified on Linea.
-- Linea uses zero-knowledge proofs to remove the seven-day fraud-proof window required by optimistic rollups.
-- Linea is incubated within Consensys, the company behind MetaMask, Infura, and Truffle.
-- The canonical bridge anchors withdrawals and deposits on Ethereum L1 with state recovery guarantees.
 
 ## Authoring and licensing
 - Source repository for these docs: https://github.com/Consensys/doc.linea
