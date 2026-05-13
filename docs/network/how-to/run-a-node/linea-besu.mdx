@@ -13,7 +13,7 @@ import NodeSize from "../../../../src/components/NodeSize";
 import LastUpdated from "../../../../src/components/LastUpdated";
 
 Linea Besu is a Besu distribution with Linea-specific plugins bundled and configured through
-profiles in the [linea-besu-package](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package).
+profiles in the [Linea Besu package](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu/package).
 Advanced profiles enable extra Linea features such as `linea_estimateGas`.
 
 :::warning
@@ -35,7 +35,7 @@ blockchain, rather than just following it. Use Linea Besu if:
 
 ### Step 1. Download the relevant `docker-compose.yaml` file
 
-To run a Linea Besu node, access the [`/docker` directory](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu-package/docker)
+To run a Linea Besu node, access the [`/docker` directory](https://github.com/Consensys/linea-monorepo/tree/main/linea-besu/package/docker)
 in the Linea Besu repository. This directory is the source of truth for Linea Besu compose profiles.
 Each profile supports different Linea Besu plugin configurations depending on your use case.
 
@@ -43,16 +43,16 @@ Each profile supports different Linea Besu plugin configurations depending on yo
   <TabItem value="mainnet" label="Mainnet">
 
     Download the appropriate `.yaml` file for your use case:
-    - [`basic-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-mainnet.yaml): Creates a basic follower node on Linea Mainnet with no plugins enabled.
-    - [`advanced-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-mainnet.yaml): Creates an advanced node on Linea Mainnet with plugins that enable support
+    - [`basic-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu/package/docker/docker-compose-basic-mainnet.yaml): Creates a basic follower node on Linea Mainnet with no plugins enabled.
+    - [`advanced-mainnet`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu/package/docker/docker-compose-advanced-mainnet.yaml): Creates an advanced node on Linea Mainnet with plugins that enable support
     for `linea_estimateGas` and the `finalized` block parameter tag.
 
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
     Download the appropriate `.yaml` file for your use case:
-    - [`basic-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-basic-sepolia.yaml): Creates a basic follower node on Linea Sepolia with no plugins enabled.
-    - [`advanced-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/docker/docker-compose-advanced-sepolia.yaml): Creates an advanced node on Linea Sepolia with plugins that enable support
+    - [`basic-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu/package/docker/docker-compose-basic-sepolia.yaml): Creates a basic follower node on Linea Sepolia with no plugins enabled.
+    - [`advanced-sepolia`](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu/package/docker/docker-compose-advanced-sepolia.yaml): Creates an advanced node on Linea Sepolia with plugins that enable support
     for `linea_estimateGas` and the `finalized` block parameter tag.
 
   </TabItem>
@@ -197,4 +197,4 @@ The node will attempt to find peers to begin synchronizing and to download the w
 ## Note on profiles and genesis
 
 Profiles already embed the Linea network and do not require a genesis file. See the
-[linea-besu-package README](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu-package/README.md).
+[Linea Besu package README](https://github.com/Consensys/linea-monorepo/blob/main/linea-besu/package/README.md).
