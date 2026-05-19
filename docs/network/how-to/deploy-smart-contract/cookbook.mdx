@@ -166,18 +166,18 @@ do not need any arguments, leave the array empty.
 
     ```
     INFURA_API_KEY_LINEA_SEPOLIA = "<YOUR API KEY HERE>"
-    WALLET_PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
+    PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
     ```
 
 1. In the `hardhat.config.js` file, add the following lines:
 
     ```js
-    const INFURA_API_KEY_LINEA_SEPOLIA = process.env.INFURA_API_KEY_LINEA;
+    const INFURA_API_KEY_LINEA_SEPOLIA = process.env.INFURA_API_KEY_LINEA_SEPOLIA;
     ```
 
     ```js
     lineaSepolia: {
-    url: `https://linea-sepolia.io/v3/${INFURA_API_KEY_LINEA}`,
+    url: `https://linea-sepolia.infura.io/v3/${INFURA_API_KEY_LINEA_SEPOLIA}`,
     accounts: [PRIVATE_KEY],
     },
    ```
@@ -191,7 +191,7 @@ do not need any arguments, leave the array empty.
 1. Deploy the smart contract to the Linea Sepolia testnet
 
 ```
-npx hardhat run --network (lineaSepolia) scripts/deploy.js
+npx hardhat run --network lineaSepolia scripts/deploy.js
 ```
 
 Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
@@ -204,7 +204,7 @@ on the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
 
     ```
     INFURA_API_KEY_LINEA = "<YOUR API KEY HERE>"
-    WALLET_PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
+    PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
     ```
 
 1. In the `hardhat.config.js` file, add the following lines:
@@ -215,7 +215,7 @@ on the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
 
     ```js
     linea: {
-    url: `https://linea-mainnet.io/v3/${INFURA_API_KEY_LINEA}`,
+    url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY_LINEA}`,
     accounts: [PRIVATE_KEY],
     },
     ```
@@ -229,7 +229,7 @@ on the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
 1. Deploy the smart contract to the Linea Mainnet:
 
 ```
-npx hardhat run --network (linea) scripts/deploy.js
+npx hardhat run --network linea scripts/deploy.js
 ```
 
 Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
