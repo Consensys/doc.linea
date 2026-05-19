@@ -74,8 +74,6 @@ A private validium on Linea Mainnet inherits Linea Mainnet's trust assumptions i
 | DA withhold (validium) | Participants without the required DA or RBAC access cannot reconstruct or verify affected private data | Operator-defined wind-down procedure; depends on consortium agreement and is not protocol-enforced |
 | Finality layer reorg | Affects depth of finality on the selected finalization layer | Wait for the required finality depth on the selected finalization layer |
 | Admin key compromise | Compromised role can act within its scope until revoked; `DEFAULT_ADMIN_ROLE` compromise affects all roles | Revoke or rotate compromised authority through the deployment's governance or multisig process; use emergency pause roles where available |
-| Bridge halt | Cross-chain transfers stop | Pause roles can halt bridging; resumption depends on the corresponding unpause role |
-| Forced transaction (escape hatch) | Allows participants to bypass a censoring sequencer where forced transactions are enabled | L1-submitted forced transactions, gated by `AddressFilter` when configured |
 
 ## What participants can independently verify
 
