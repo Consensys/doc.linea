@@ -38,13 +38,13 @@ Importantly, the Yield Boost design ensures that user withdrawals are always sup
 
 **To ensure that ETH withdrawals from Linea back to the L1 are always supported, the system incorporates a multi-layered withdrawal resilience strategy, including the liquidity buffer, permissionless withdrawals, and a last-resort stETH withdrawal process.**
 
-To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer.
+To support withdrawals of ETH from Linea back to Ethereum, the liquidity buffer, a reserve of unstaked ETH, is retained within the L1 bridge contract, targeting around 40% of the Total Value Staked (TVS). In the [default flow](../../../protocol/yield-boost-architecture#l1-eth-flow), when a user wishes to withdraw their ETH from Linea, the request is fulfilled instantly from this buffer.
 
 The system automatically rebalances funds between the Lido v3 stVault , referred to as the `StakingVault`, and the buffer to maintain sufficient liquidity. If this buffer is ever depleted, the following permissionless mechanisms activate:
 
-- Any user can [force rebalancing and unstaking](../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user is able to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
+- Any user can [force rebalancing and unstaking](../../../protocol/yield-boost-architecture#4-permissionless-flows) by calling a smart contract to replenish the bridge reserves. Even if node operators become unresponsive or malicious, withdrawals are permissionless and censorship-resistant. Any user is able to force rebalancing and unstaking to retrieve their assets. Withdrawals can never be permanently blocked by an operator.
 
-- As a last-resort mechanism, the user can opt to [mint stETH against the `StakingVault` collateral](../../protocol/yield-boost-architecture#5-lst-withdrawal) rather than wait for the ETH balance to be sufficient. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
+- As a last-resort mechanism, the user can opt to [mint stETH against the `StakingVault` collateral](../../../protocol/yield-boost-architecture#5-lst-withdrawal) rather than wait for the ETH balance to be sufficient. This process is permissionless and censorship-resistant, and it is the final backstop to ensure that users can always withdraw their funds.
 
 ## Core mechanism
 
@@ -79,7 +79,7 @@ Beyond its individual components, the integrity of the Linea Yield Boost system 
 
 * **Valid yield reporting**: Reported yield sent to the L2 for distribution must be net of all system obligations (such as, LST liabilities and protocol fees).
 * **User principal protection**: A user's principal deposit can never be used to settle system obligations; these must be paid exclusively from unreported, newly generated yield.
-* **Beacon chain deposit restriction**: Deposits to the `StakingVault` are automatically paused if the withdrawal reserve is in deficit, if there are outstanding stETH liabilities, or if the [ossification process](../../protocol/yield-boost-architecture#6-ossification-withdrawal) has been initiated or completed.
+* **Beacon chain deposit restriction**: Deposits to the `StakingVault` are automatically paused if the withdrawal reserve is in deficit, if there are outstanding stETH liabilities, or if the [ossification process](../../../protocol/yield-boost-architecture#6-ossification-withdrawal) has been initiated or completed.
 
 ### Liveness properties
 
