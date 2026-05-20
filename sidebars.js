@@ -467,6 +467,7 @@ const sidebars = {
           label: "Protocol components",
         },
         "stack/how-it-works/deployment-models",
+        "stack/how-it-works/trust-model",
         "stack/how-it-works/data-availability-finalization",
       ],
     },
