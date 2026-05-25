@@ -26,9 +26,9 @@ layer client, [Maru](./maru.mdx), for the node to function.
 :::warning Current Erigon support
 
 Erigon support for current Linea is merged upstream in
-[erigontech/erigon#20298](https://github.com/erigontech/erigon/pull/20298), and the Erigon team
-said it will land in `v3.5`. Until an official `v3.5` or later Docker image is published, build a
-local image from the #20298 merge commit and use that image in the compose file.
+[erigontech/erigon#20298](https://github.com/erigontech/erigon/pull/20298). Until an official
+Erigon release containing that change is available, build a local image from the #20298 merge commit
+and use that image in the compose file.
 
 :::
 
@@ -47,8 +47,8 @@ git checkout 34ac22904b0de1b14cf054a7cf2c0d02461215f3
 docker build -t erigon-linea:pr-20298 .
 ```
 
-After Erigon publishes a `v3.5` or later image, you can skip this step and use the official release
-image in the compose file instead.
+After Erigon publishes an official image containing #20298, you can skip this step and use the
+official release image in the compose file instead.
 
 ### Step 2. Download the Linea node example config
 
@@ -104,9 +104,9 @@ published Erigon image, for example `erigontech/erigon:2.61.0`.
 
 :::warning
 
-Until Erigon publishes `v3.5` or later, do not use the Erigon image tag already set in the
-monorepo compose file. Replace the Erigon image in both `erigon-init` and `erigon-node` with the
-local image you built in Step 1.
+Until Erigon publishes an official image containing #20298, do not use the Erigon image tag already
+set in the monorepo compose file. Replace the Erigon image in both `erigon-init` and `erigon-node`
+with the local image you built in Step 1.
 
 :::
 
@@ -130,8 +130,8 @@ erigon-init:
     - --datadir=/home/erigon/.local/share/erigon
 ```
 
-When Erigon publishes `v3.5` or later, replace `erigon-linea:pr-20298` with the official release
-image tag.
+When Erigon publishes an official image containing #20298, replace `erigon-linea:pr-20298` with the
+official release image tag.
 
 ### Step 4. Start the Erigon node
 
@@ -149,7 +149,7 @@ node.
 ## Alternative: Run using the binary distribution
 
 :::info
-Until Erigon publishes `v3.5` or later, use a binary built from the
+Until Erigon publishes an official release containing #20298, use a binary built from the
 [#20298 merge commit](https://github.com/erigontech/erigon/pull/20298) rather than a published
 release binary. Ensure you review
 [Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites)
