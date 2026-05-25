@@ -139,9 +139,9 @@ const sidebars = {
             "network/how-to/run-a-node/maru",
             "network/how-to/run-a-node/besu",
             "network/how-to/run-a-node/geth",
+            "network/how-to/run-a-node/erigon",
             "network/how-to/run-a-node/bootnodes",
             "network/how-to/run-a-node/beta-v4-migration",
-            "network/how-to/run-a-node/erigon",
           ],
         },
         {

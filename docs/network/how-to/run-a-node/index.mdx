@@ -34,6 +34,11 @@ to Linea-specific features.
       <td>The most widely used open-source Ethereum client, written in Go.</td>
       <td>❌</td>
     </tr>
+    <tr>
+      <td>[Erigon](./erigon.mdx)</td>
+      <td>A Go-based Ethereum client focused on performance and saving disk space. Until a published Erigon `v3.5` or later image is available, build the image from the Linea support merge commit.</td>
+      <td>❌</td>
+    </tr>
   </tbody>
 </table>
 
@@ -54,7 +59,9 @@ Quick steps:
 
 Next actions:
 - Default compose examples: [Linea Besu](./linea-besu.mdx) and [Maru](./maru.mdx).
-- Alternative EL clients: [Besu](./besu.mdx) or [Geth](./geth.mdx) to follow the chain.
+- Alternative EL clients: [Besu](./besu.mdx), [Geth](./geth.mdx), or [Erigon](./erigon.mdx) to follow the chain.
+  Erigon currently requires a locally built image until a published Erigon `v3.5` or later release is
+  available.
 - Upgrades: see [upgrade guides](./beta-v4-migration.mdx).
 - Bootnodes: see [bootnodes](./bootnodes.mdx) if you need to override defaults.
 
