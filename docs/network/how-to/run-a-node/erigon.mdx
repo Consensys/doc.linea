@@ -2,8 +2,7 @@
 title: Erigon
 description: Install the Erigon client to run a Linea node.
 image: /img/socialCards/erigon.jpg
-unlisted: true
-sidebar_position: 8
+sidebar_position: 6
 ---
 
 import Tabs from "@theme/Tabs";
@@ -11,39 +10,167 @@ import TabItem from "@theme/TabItem";
 
 import VolumeCreation from "./volume-creation.mdx";
 
-:::note
-
-This section is undergoing maintenance. Similarly to Ethereum, and as of Linea [Beta v4](../../../changelog/release-notes.mdx#beta-v40), 
-Linea uses a dual-layer architecture, with a consensus layer client, Maru, and an execution layer 
-client of your choice. 
-
-This section will be updated shortly to reflect this new architecture and is inaccurate for the time
-being.
-
-:::
-
 Erigon is a client implementation focused on performance and saving disk space, written in Go.
 
 :::info important
-Install and run an Erigon if you want to follow the Linea network by 
+Install and run Erigon if you want to follow the Linea network by
 maintaining a local copy of the blockchain. However, if you want to interact with the network and use
 Linea-specific methods and features, you should [install Linea Besu](./linea-besu.mdx) instead.
 :::
 
-You can run Erigon from a [binary distribution](#run-using-the-binary-distribution) or [using Docker](#run-using-docker).
+Please note that you must run any execution layer client such as Erigon alongside Linea's consensus
+layer client, [Maru](./maru.mdx), for the node to function.
 
-## Run using the binary distribution
+## Run using Docker
 
-:::info
-Ensure you review [Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites)
-before installing the Erigon client.
+:::warning Current Erigon support
 
-If you're not comfortable with installing the binary distribution, consider using [Docker](#run-using-docker) instead.
+Erigon support for current Linea is merged upstream in
+[erigontech/erigon#20298](https://github.com/erigontech/erigon/pull/20298), and the Erigon team
+said it will land in `v3.5`. Until an official `v3.5` or later Docker image is published, build a
+local image from the #20298 merge commit and use that image in the compose file.
+
 :::
 
-### Step 1. Install Erigon
+### Prerequisites
 
-[Download and install the Erigon client](https://erigon.gitbook.io/erigon/basic-usage/getting-started).
+- [Docker](https://docker.com/products/docker-desktop/)
+
+### Step 1. Build an Erigon image from the Linea merge commit
+
+Build the Docker image from the #20298 merge commit:
+
+```bash
+git clone https://github.com/erigontech/erigon.git
+cd erigon
+git checkout 34ac22904b0de1b14cf054a7cf2c0d02461215f3
+docker build -t erigon-linea:pr-20298 .
+```
+
+After Erigon publishes a `v3.5` or later image, you can skip this step and use the official release
+image in the compose file instead.
+
+### Step 2. Download the Linea node example config
+
+Use the Linea monorepo's `docs/getting-started` directory as the example Docker Compose
+configuration. The same directory contains the Geth genesis file that Erigon should initialize from.
+
+<Tabs groupId="networks" className="my-tabs">
+  <TabItem value="mainnet" label="Mainnet">
+  
+  Download or clone the
+  [`docs/getting-started/linea-mainnet`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet)
+  directory from the Linea monorepo.
+
+  Use the
+  [`geth/geth-genesis.json`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
+  file as the Erigon genesis file. The Erigon services in the example compose file expect
+  `./genesis.json`, so copy the Geth genesis file to that name:
+
+  ```bash
+  cp geth/geth-genesis.json genesis.json
+  ```
+
+  :::note[bootnodes]
+  You can choose from a range of bootnodes for Linea Mainnet. The Docker Compose file uses all
+  bootnodes by default.
+
+  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
+  :::
+  
+  </TabItem>
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
+  
+  Download or clone the
+  [`docs/getting-started/linea-sepolia`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-sepolia)
+  directory from the Linea monorepo.
+
+  Use the
+  [`geth/geth-genesis.json`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
+  file as the Erigon genesis file. The Erigon services in the example compose file expect
+  `./genesis.json`, so copy the Geth genesis file to that name:
+
+  ```bash
+  cp geth/geth-genesis.json genesis.json
+  ```
+
+  </TabItem>
+</Tabs>
+
+### Step 3. Update the Erigon services in Docker Compose
+
+The monorepo's Docker Compose example includes Erigon services, but it may still reference an older
+published Erigon image, for example `erigontech/erigon:2.61.0`.
+
+:::warning
+
+Until Erigon publishes `v3.5` or later, do not use the Erigon image tag already set in the
+monorepo compose file. Replace the Erigon image in both `erigon-init` and `erigon-node` with the
+local image you built in Step 1.
+
+:::
+
+```yaml
+erigon-init:
+  image: erigon-linea:pr-20298
+
+erigon-node:
+  image: erigon-linea:pr-20298
+```
+
+Also make sure Erigon initializes the same data directory that the node uses. The compose example
+mounts the Erigon volume at `/home/erigon/.local/share/erigon/`; if `erigon-init` still has
+`--datadir=/data`, change it to:
+
+```yaml
+erigon-init:
+  command:
+    - init
+    - /genesis.json
+    - --datadir=/home/erigon/.local/share/erigon
+```
+
+When Erigon publishes `v3.5` or later, replace `erigon-linea:pr-20298` with the official release
+image tag.
+
+### Step 4. Start the Erigon node
+
+In a terminal, navigate to the Linea monorepo directory for your network. Start the Erigon services
+from that compose file:
+
+```bash
+docker compose up erigon-init erigon-node
+```
+
+The compose file initializes Erigon from the Geth genesis JSON, then starts the Erigon execution
+client. Keep [Maru](./maru.mdx) running alongside your chosen execution client for a full Linea
+node.
+
+## Alternative: Run using the binary distribution
+
+:::info
+Until Erigon publishes `v3.5` or later, use a binary built from the
+[#20298 merge commit](https://github.com/erigontech/erigon/pull/20298) rather than a published
+release binary. Ensure you review
+[Erigon's software prerequisites](https://erigon.gitbook.io/erigon/basic-usage/getting-started#software-prerequisites)
+before building the Erigon client.
+
+If you're not comfortable with installing the binary distribution, use [Docker](#run-using-docker)
+instead.
+:::
+
+### Step 1. Build Erigon
+
+Build Erigon from the #20298 merge commit:
+
+```bash
+git clone https://github.com/erigontech/erigon.git
+cd erigon
+git checkout 34ac22904b0de1b14cf054a7cf2c0d02461215f3
+make erigon
+```
+
+Use the resulting `build/bin/erigon` binary in the commands below, or add it to your `PATH`.
 
 ### Step 2. Download the genesis file
 
@@ -53,21 +180,23 @@ directory specified by [`datadir` in Step 4](#step-4-bootstrap-your-node).
 <Tabs groupId="networks" className="my-tabs">
   <TabItem value="mainnet" label="Mainnet">
   
-  Mainnet [`genesis.json`](pathname:///files/erigon/mainnet/genesis.json) file.
+  Download the current Linea Mainnet
+  [`geth-genesis.json`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
+  file from the Linea monorepo. Save it in your Erigon data directory as `genesis.json`.
   
   </TabItem>
   <TabItem value="Linea Sepolia" label="Linea Sepolia">
   
-  Sepolia [`genesis.json`](pathname:///files/erigon/sepolia/genesis.json) file.
+  Download the current Linea Sepolia
+  [`geth-genesis.json`](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
+  file from the Linea monorepo. Save it in your Erigon data directory as `genesis.json`.
   
   </TabItem>
 </Tabs>
 
 ### Step 3. Define disk space volume (optional)
 
-Define a volume size appropriate to your expected usage. As of October 8, 2024, Erigon nodes use:
-- Full nodes: 122GB.
-- Archive nodes: 472GB.
+Define a volume size appropriate to your expected usage. Erigon full nodes use over 200GB.
 
 Use these figures as a basis to determine the extent to which you want to future-proof your node.
 
@@ -158,46 +287,6 @@ Start the node using the following command:
 </Tabs>
 
 The Erigon node will attempt to find peers to begin synchronizing and to download the world state.
-
-## Run using Docker
-
-### Prerequisites
-
-Download and install [Docker](https://docker.com/products/docker-desktop/) and ensure it is 
-running.
-
-### Step 1. Download configuration files
-
-Download the configuration files for the relevant network. Ensure that you download the files to the same directory.
-
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
-  
-  Download the mainnet [`docker-compose.yml`](pathname:///files/erigon/mainnet/docker-compose.yml) and [`genesis.json`](pathname:///files/erigon/mainnet/genesis.json)
-  files.
-
-  :::note[bootnodes]
-  You can choose from a range of bootnodes for Linea Mainnet. The above command uses 
-  all bootnodes by default.
-
-  The [bootnodes page](bootnodes.mdx) contains a full list of available bootnodes.
-  :::
-  
-  </TabItem>
-  <TabItem value="Linea Sepolia" label="Linea Sepolia">
-  
-  Download the Sepolia testnet [`docker-compose.yml`](pathname:///files/erigon/sepolia/docker-compose.yml) and [`genesis.json`](pathname:///files/erigon/sepolia/genesis.json)
-  files.
-
-  </TabItem>
-</Tabs>
-
-### Step 2. Start the Erigon node
-
-Open up a terminal where the both `docker-compose.yml` and `genesis.json` are located (they should be in the same directory)
-and run `docker compose up`
-
-The node should now be running and looking for peers to sync.
 
 ## Confirm the node is running
 
