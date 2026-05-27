@@ -56,7 +56,7 @@ export default function CopyPageButton(): React.ReactNode {
   };
 
   return (
-    <div className={styles.wrapper} ref={wrapperRef}>
+    <div className={styles.wrapper} ref={wrapperRef} data-markdown-ignore>
       <button
         type="button"
         className={styles.trigger}

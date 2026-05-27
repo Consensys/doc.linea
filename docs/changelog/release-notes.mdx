@@ -128,11 +128,6 @@ release_toc:
     phase: Historical summary
 ---
 
-import CodeBlock from "@theme/CodeBlock";
-import zkEVM2 from "!!raw-loader!/files/testnet/2023-06-13-release/zkEVM2.abi";
-import L2MessageService from "!!raw-loader!/files/testnet/2023-06-13-release/L2MessageService.abi";
-import TokenBridgeL1 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL1.abi";
-import TokenBridgeL2 from "!!raw-loader!/files/testnet/2023-06-13-release/TokenBridgeL2.abi";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { ChangelogEntry, ChangelogDate, ChangelogSubtitle } from "@site/src/components/changelog/ChangelogEntry";
@@ -292,9 +287,9 @@ institutional use cases.
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Mainnet:</span></div>
 
 - Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
-- Shanghai: 10am UTC, 23 October, 2025
-- Cancun: 10am UTC, 28 October, 2025
-- Prague: 10:10am UTC, 28 October, 2025
+- Shanghai: 10 AM UTC, 23 October, 2025
+- Cancun: 10 AM UTC, 28 October, 2025
+- Prague: 10:10 AM UTC, 28 October, 2025
 
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Sepolia:</span></div>
 
@@ -424,7 +419,7 @@ Raises the block gas limit to 2B.
 
 - Full implementation of new arithmetization, with all modules from the Linea specification except
 the hub's consistency arguments.
-- Proof of all the activated modules (i.e. excluding the hub consistency arguments).
+- Proof of all the activated modules, excluding the hub consistency arguments.
 
 </ChangelogEntry>
 
@@ -861,54 +856,14 @@ To decrease L1 costs, we implemented the following features:
       an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a
       proof aggregating N proofs is N times cheaper.
 
-<details>
-
-  <summary>Learn more about proof aggregation</summary>
-
-  Generating a zkSNARK proof on L1 is an essential step for finalizing transactions, as a verified
-  proof demonstrates the integrity and validity of the submitted transactions.
-
-  Previously, Linea generated one proof per batch of transactions. After Alpha v2, Linea began
-  to recursively aggregate multiple proofs into one.
-
-  The verification process on L1 costs ~400,000 gas — a cost that previously had to be covered for
-  every batch. This gas cost is the same, however, for verifying a single batch of conflated batches
-  (as Linea did in Alpha v1) as it is for verifying an aggregated proof representing multiple
-  batches (as in Alpha v2). A proof that aggregates N proofs is N times cheaper, as the cost
-  remains consistent.
-
-  With Alpha v2 upgrades, Linea now averages ~30 batches per final proof, making the process
-  1/30th as costly as it was in Alpha v1.
-</details>
-
 - Data compression:
   - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
-
-<details>
-
-  <summary>Learn more about data compression</summary>
-
-  Data compression significantly reduces the cost of posting L2 transaction and messaging data
-  to L1.
-
-  The system leverages the Linea prover's ability to operate with a compressed input, meaning it
-  can decompress `calldata` or blob data to validate L2 state transitions. The data passed to the
-  L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions
-  in each block.
-
-  The data compression algorithm is completely lossless, and can achieve compression ratios of up to
-  15:1 (where the data is 15 times smaller than its uncompressed state). This affords Linea
-  the ability to submit data about far more transactions in each batch: before Alpha v2,
-  Linea averaged ~150 transactions per batch; afterwards, it averages ~1,500.
-
-  As a result, significantly more transactions can be processed for the same computational cost on L1.
-  The combination of blobs and data compression further amplifies the gas fee savings that are
-  passed on to Linea users.
-</details>
 
 - Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
   - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there
       is a 32x calldata size reduction for message hashes
+
+For more detail, see [Alpha v2 technical details](./alpha-v2-technical-details.mdx).
 
 ### Smart contract changes
 
@@ -1157,9 +1112,9 @@ to a push model. It also improves EVM prover coverage, and provides batch confla
   - The Postman Service is Linea's off-chain message delivery service. It's decentralized, permissionless, and
       used to claim messages once the protocol has anchored the message hashes. The first release will only
       contain the following scenarios:
-    - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas
+    - Dapps/protocols operating the SDK (to be released) claiming messages and paying for gas
       - The protocol can filter messages based on origin or destination smart-contracts
-    - Linea operating the SDK for dApps/Protocols that aren't yet integrated
+    - Linea operating the SDK for dapps/protocols that aren't yet integrated
   - If messages don't get delivered by the postman, the message can be manually claimed by calling
       `claimMessage` with the `MessageSent` event parameters or by using the SDK.
 - Update prover to integrate with the new architecture and support Batch Conflation
@@ -1256,10 +1211,7 @@ Contracts audit is in progress. This doesn't reflect final versions.
 
   - Bridging partners, to send messages, will need to call the new contract address with a different ABI.
 
-    <details>
-      <summary>zkEVM2.abi</summary>
-      <CodeBlock language="json">{zkEVM2}</CodeBlock>
-    </details>
+    ABI: [zkEVM2.abi](/files/testnet/2023-06-13-release/zkEVM2.abi)
 
   - Contracts:
     - [Transparent Proxy](https://goerli.etherscan.io/address/0x70BaD09280FD342D02fe64119779BC1f0791BAC2#readProxyContract)
@@ -1269,10 +1221,7 @@ Contracts audit is in progress. This doesn't reflect final versions.
 
   - Bridging partners, to send messages, will need to call the new contract address with a different ABI.
 
-    <details>
-      <summary>L2MessageService.abi</summary>
-      <CodeBlock language="json">{L2MessageService}</CodeBlock>
-    </details>
+    ABI: [L2MessageService.abi](/files/testnet/2023-06-13-release/L2MessageService.abi)
 
   - Contracts
     - Transparent Proxy: `0xC499a572640B64eA1C8c194c43Bc3E19940719dC`
@@ -1286,10 +1235,7 @@ Major changes are applied to the Canonical Token Bridge as described in our [doc
 
 - **L1 (Goerli)**
 
-  <details>
-    <summary>TokenBridge.abi</summary>
-    <CodeBlock language="json">{TokenBridgeL1}</CodeBlock>
-  </details>
+  ABI: [TokenBridgeL1.abi](/files/testnet/2023-06-13-release/TokenBridgeL1.abi)
 
   - Contracts
     - [Transparent Proxy](https://goerli.etherscan.io/address/0xaA012D038E6440535Ec66eDf2DA592F4F8398133)
@@ -1297,10 +1243,7 @@ Major changes are applied to the Canonical Token Bridge as described in our [doc
 
 - **L2 (Linea)**
 
-  <details>
-    <summary>TokenBridge.abi</summary>
-    <CodeBlock language="json">{TokenBridgeL2}</CodeBlock>
-  </details>
+  ABI: [TokenBridgeL2.abi](/files/testnet/2023-06-13-release/TokenBridgeL2.abi)
 
   - Contracts
     - Transparent Proxy: `0xB191E3d98074f92584E5205B99c3F17fB2068927`

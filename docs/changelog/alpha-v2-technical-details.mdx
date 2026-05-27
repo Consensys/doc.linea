@@ -1,0 +1,30 @@
+---
+title: Alpha v2 technical details
+description: Historical technical details for the Linea Alpha v2 release.
+displayed_sidebar: changelogSidebar
+image: /img/socialCards/alpha-v2-technical-details.jpg
+---
+
+# Alpha v2 technical details
+
+This page preserves additional technical context for the [Alpha v2 release notes](./release-notes.mdx#alpha-v2).
+
+## Proof aggregation
+
+Generating a zkSNARK proof on L1 is an essential step for finalizing transactions, as a verified proof demonstrates the integrity and validity of the submitted transactions.
+
+Previously, Linea generated one proof per batch of transactions. After Alpha v2, Linea began to recursively aggregate multiple proofs into one.
+
+The verification process on L1 costs approximately 400,000 gas, a cost that previously had to be covered for every batch. This gas cost is the same, however, for verifying a single batch of conflated batches as it is for verifying an aggregated proof representing multiple batches. A proof that aggregates N proofs is N times cheaper, as the cost remains consistent.
+
+With Alpha v2 upgrades, Linea averages approximately 30 batches per final proof, making the process 1/30th as costly as it was in Alpha v1.
+
+## Data compression
+
+Data compression significantly reduces the cost of posting L2 transaction and messaging data to L1.
+
+The Linea prover can operate with a compressed input, meaning it can decompress `calldata` or blob data to validate L2 state transitions. The data passed to the L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions in each block.
+
+The data compression algorithm is lossless, and can achieve compression ratios of up to 15:1. This affords Linea the ability to submit data about far more transactions in each batch: before Alpha v2, Linea averaged approximately 150 transactions per batch; afterward, it averages approximately 1,500.
+
+As a result, significantly more transactions can be processed for the same computational cost on L1. The combination of blobs and data compression further amplifies the gas fee savings that are passed on to Linea users.

@@ -1,5 +1,39 @@
 {
   "cleanUrls": true,
+  "routes": [
+    {
+      "src": "^/$",
+      "has": [
+        { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
+      ],
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=300, must-revalidate",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "dest": "/index.md"
+    },
+    {
+      "src": "^/((?!(?:search|404)/?$)(?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+?)/?$",
+      "has": [
+        { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
+      ],
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=300, must-revalidate",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "dest": "/$1.md"
+    }
+  ],
   "redirects": [
     { "source": "/en/latest", "destination": "/", "permanent": true },
     { "source": "/en/latest/", "destination": "/", "permanent": true },
@@ -72,6 +106,32 @@
     }
   ],
   "headers": [
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/:path((?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/:path*.md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
+        { "key": "X-Robots-Tag", "value": "noindex" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
