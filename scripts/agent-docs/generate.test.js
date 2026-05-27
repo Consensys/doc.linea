@@ -226,7 +226,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   assert.match(pageMarkdown, /```tsx\n<h1>Example heading<\/h1>\n```/);
   assert.match(
     pageMarkdown,
-    /```\n<Web3AuthProvider>\n<\/Web3AuthProvider>\n```/,
+    /```tsx\n<Web3AuthProvider>\n<\/Web3AuthProvider>\n```/,
   );
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);
 

@@ -131,6 +131,16 @@ function createTurndownService() {
     return code.textContent;
   }
 
+  function getCodeLanguage(...nodes) {
+    for (const node of nodes) {
+      const className = node?.getAttribute("class") || "";
+      const languageMatch = className.match(/language-([A-Za-z0-9_+-]+)/);
+      if (languageMatch) return languageMatch[1];
+    }
+
+    return "";
+  }
+
   turndown.addRule("fencedCodeBlockWithLanguage", {
     filter(node) {
       return (
@@ -142,9 +152,7 @@ function createTurndownService() {
     replacement(content, node) {
       void content;
       const code = node.firstChild;
-      const className = code.getAttribute("class") || "";
-      const languageMatch = className.match(/language-([A-Za-z0-9_+-]+)/);
-      const language = languageMatch ? languageMatch[1] : "";
+      const language = getCodeLanguage(code, node);
       const text = getCodeText(code).replace(/\n+$/, "");
       return `\n\n\`\`\`${language}\n${text}\n\`\`\`\n\n`;
     },
