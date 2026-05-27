@@ -384,8 +384,12 @@ function htmlToMarkdown({ html, route, metadata, baseUrl = DEFAULT_BASE_URL }) {
   );
 }
 
-function addMarkdownIgnoreAttributes(html) {
-  const $ = cheerio.load(html, { decodeEntities: false });
+function shouldIgnoreGeneratedDocEmphasisArtifacts(route) {
+  return normalizeRoute(route).startsWith("/api/linea-smart-contracts/");
+}
+
+function addMarkdownIgnoreAttributes(html, { route } = {}) {
+  const $ = cheerio.load(html);
   $(
     [
       '[role="region"][aria-label="Skip to main content"]',
@@ -394,11 +398,13 @@ function addMarkdownIgnoreAttributes(html) {
     ].join(","),
   ).attr("data-markdown-ignore", "");
 
-  $("p, li")
-    .filter(function isGeneratedDocEmphasisArtifact() {
-      return $(this).text().trim().startsWith("_");
-    })
-    .attr("data-markdown-ignore", "");
+  if (shouldIgnoreGeneratedDocEmphasisArtifacts(route)) {
+    $("p, li")
+      .filter(function isGeneratedDocEmphasisArtifact() {
+        return $(this).text().trim().startsWith("_");
+      })
+      .attr("data-markdown-ignore", "");
+  }
 
   return $.html();
 }
@@ -507,7 +513,9 @@ function generateAgentDocs({
 
     const docMetadata = metadata.get(route) || {};
     const html = fs.readFileSync(htmlPath, "utf8");
-    const htmlWithMarkdownIgnores = addMarkdownIgnoreAttributes(html);
+    const htmlWithMarkdownIgnores = addMarkdownIgnoreAttributes(html, {
+      route,
+    });
     fs.writeFileSync(htmlPath, htmlWithMarkdownIgnores);
     const markdown = htmlToMarkdown({
       html: htmlWithMarkdownIgnores,

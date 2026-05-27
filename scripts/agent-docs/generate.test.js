@@ -27,6 +27,7 @@ function createFixture() {
   <url><loc>https://docs.linea.build/</loc></url>
   <url><loc>https://docs.linea.build/network/quickstart</loc></url>
   <url><loc>https://docs.linea.build/api/token-api/reference</loc></url>
+  <url><loc>https://docs.linea.build/api/linea-smart-contracts/messageservice/l1/l1messagemanager</loc></url>
   <url><loc>https://docs.linea.build/search</loc></url>
 </urlset>`,
   );
@@ -57,7 +58,7 @@ function createFixture() {
         <h1>Get started</h1>
         <p>Build on Linea.</p>
         <h2>1. Configure a node</h2>
-        <p>_Generated contract doc emphasis artifact.</p>
+        <p>_Legitimate underscore-led content should stay.</p>
         <p><code>field</code>: <em>[required]</em> Required field with OPERATOR_ROLE and 31000-31003.</p>
         <pre><code class="language-bash">
           <div class="token-line"><span>npm install</span><br></div>
@@ -73,6 +74,10 @@ function createFixture() {
           </li>
         </ol>
         <pre><code class="language-tsx">&lt;h1&gt;Example heading&lt;/h1&gt;</code></pre>
+        <pre tabindex="0" class="prism-code language-tsx"><code class="codeBlockLines">
+          <div class="token-line"><span class="token tag punctuation">&lt;</span><span class="token tag class-name">Web3AuthProvider</span><span class="token tag punctuation">&gt;</span><br></div>
+          <div class="token-line"><span class="token tag punctuation">&lt;/</span><span class="token tag class-name">Web3AuthProvider</span><span class="token tag punctuation">&gt;</span><br></div>
+        </code></pre>
         <div><p>Was this page helpful?</p><button>Yes</button><button>No</button></div>
       </article></main>
     </body></html>`,
@@ -114,6 +119,21 @@ function createFixture() {
       <link rel="alternate" type="text/plain" href="/llms.txt">
     </head><body>
       <main><h1>Search</h1></main>
+    </body></html>`,
+  );
+
+  writeFile(
+    root,
+    "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.html",
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/api/linea-smart-contracts/messageservice/l1/l1messagemanager.md">
+    </head><body>
+      <main><article>
+        <h1>L1MessageManager</h1>
+        <p>_Generated contract doc emphasis artifact.</p>
+        <p>Contract docs body.</p>
+      </article></main>
     </body></html>`,
   );
 
@@ -169,6 +189,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
 
   assert.deepEqual(result.routes.sort(), [
     "/",
+    "/api/linea-smart-contracts/messageservice/l1/l1messagemanager",
     "/api/token-api/reference",
     "/network/quickstart",
   ]);
@@ -188,6 +209,10 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     pageMarkdown,
     /`field`: _\[required\]_ Required field with OPERATOR_ROLE and 31000-31003\./,
   );
+  assert.match(
+    pageMarkdown,
+    /_Legitimate underscore-led content should stay\./,
+  );
   assert.match(pageMarkdown, /```bash\nnpm install\nnpm test\n```/);
   assert.match(
     pageMarkdown,
@@ -198,9 +223,25 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     pageMarkdown,
     /Page chrome that agents should not receive/,
   );
-  assert.doesNotMatch(pageMarkdown, /Generated contract doc emphasis artifact/);
   assert.match(pageMarkdown, /```tsx\n<h1>Example heading<\/h1>\n```/);
+  assert.match(
+    pageMarkdown,
+    /```\n<Web3AuthProvider>\n<\/Web3AuthProvider>\n```/,
+  );
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);
+
+  const contractMarkdown = fs.readFileSync(
+    path.join(
+      root,
+      "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.md",
+    ),
+    "utf8",
+  );
+  assert.match(contractMarkdown, /Contract docs body\./);
+  assert.doesNotMatch(
+    contractMarkdown,
+    /Generated contract doc emphasis artifact/,
+  );
 
   const redocMarkdown = fs.readFileSync(
     path.join(root, "build/api/token-api/reference.md"),
@@ -225,6 +266,16 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   assert.doesNotMatch(quickstartHtml, /<pre data-markdown-ignore/);
   assert.match(
     quickstartHtml,
+    /_Legitimate underscore-led content should stay\./,
+  );
+  assert.match(
+    fs.readFileSync(
+      path.join(
+        root,
+        "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.html",
+      ),
+      "utf8",
+    ),
     /<p data-markdown-ignore="">_Generated contract doc emphasis artifact\.<\/p>/,
   );
   assert.match(
@@ -261,8 +312,8 @@ test("checks llms.txt coverage, markdown links, and page directives", () => {
 
   assert.equal(report.ok, true);
   assert.equal(report.failures.length, 0);
-  assert.equal(report.coveredRoutes, 3);
-  assert.equal(report.totalRoutes, 3);
+  assert.equal(report.coveredRoutes, 4);
+  assert.equal(report.totalRoutes, 4);
 });
 
 test("fails when a built page advertises a missing markdown alternate", () => {
