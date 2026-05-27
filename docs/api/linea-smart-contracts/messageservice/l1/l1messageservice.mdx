@@ -31,8 +31,8 @@ function sendMessage(address _to, uint256 _fee, bytes _calldata) external payabl
 
 Adds a message for sending cross-chain and emits MessageSent.
 
-The message number is preset (nextMessageNumber) and only incremented at the end if successful for the next caller.
-This function should be called with a msg.value = _value + _fee. The fee will be paid on the destination chain.
+The message number is preset (`nextMessageNumber`) and only incremented at the end if successful for the next caller.
+This function should be called with a `msg.value` equal to `_value` plus `_fee`. The fee will be paid on the destination chain.
 
 #### Parameters
 
@@ -57,7 +57,7 @@ if tree depth is different than proof size, it will revert with ProofLengthDiffe
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _params | struct IL1MessageService.ClaimMessageWithProofParams | Collection of claim data with proof and supporting data. |
+| _params | `struct IL1MessageService.ClaimMessageWithProofParams` | Collection of claim data with proof and supporting data. |
 
 ### sender
 

@@ -287,9 +287,9 @@ institutional use cases.
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Mainnet:</span></div>
 
 - Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
-- Shanghai: 10am UTC, 23 October, 2025
-- Cancun: 10am UTC, 28 October, 2025
-- Prague: 10:10am UTC, 28 October, 2025
+- Shanghai: 10 AM UTC, 23 October, 2025
+- Cancun: 10 AM UTC, 28 October, 2025
+- Prague: 10:10 AM UTC, 28 October, 2025
 
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Sepolia:</span></div>
 
@@ -419,7 +419,7 @@ Raises the block gas limit to 2B.
 
 - Full implementation of new arithmetization, with all modules from the Linea specification except
 the hub's consistency arguments.
-- Proof of all the activated modules (i.e. excluding the hub consistency arguments).
+- Proof of all the activated modules, excluding the hub consistency arguments.
 
 </ChangelogEntry>
 
@@ -1112,9 +1112,9 @@ to a push model. It also improves EVM prover coverage, and provides batch confla
   - The Postman Service is Linea's off-chain message delivery service. It's decentralized, permissionless, and
       used to claim messages once the protocol has anchored the message hashes. The first release will only
       contain the following scenarios:
-    - DApps/protocols operating the SDK (to be released) claiming messages and paying for gas
+    - Dapps/protocols operating the SDK (to be released) claiming messages and paying for gas
       - The protocol can filter messages based on origin or destination smart-contracts
-    - Linea operating the SDK for dApps/Protocols that aren't yet integrated
+    - Linea operating the SDK for dapps/protocols that aren't yet integrated
   - If messages don't get delivered by the postman, the message can be manually claimed by calling
       `claimMessage` with the `MessageSent` event parameters or by using the SDK.
 - Update prover to integrate with the new architecture and support Batch Conflation

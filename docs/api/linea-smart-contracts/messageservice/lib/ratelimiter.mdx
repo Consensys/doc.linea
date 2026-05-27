@@ -59,7 +59,7 @@ Initialises the limits and period for the rate limiter.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | _periodInSeconds | uint256 | The length of the period in seconds. |
-| _limitInWei | uint256 | The limit allowed in the period in Wei. |
+| _limitInWei | uint256 | The limit allowed in the period in wei. |
 
 ### _addUsedAmount
 
@@ -69,8 +69,8 @@ function _addUsedAmount(uint256 _usedAmount) internal
 
 Increments the amount used in the period.
 
-The amount determining logic is external to this (e.g. fees are included when calling here).
-Ignores the calculation if _usedAmount is zero.
+The amount determining logic is external to this (for example, fees are included when calling here).
+Ignores the calculation if `_usedAmount` is zero.
 Reverts if the limit is breached.
 
 #### Parameters
