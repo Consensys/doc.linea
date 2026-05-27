@@ -31,8 +31,8 @@ function sendMessage(address _to, uint256 _fee, bytes _calldata) external payabl
 
 Adds a message for sending cross-chain and emits MessageSent.
 
-The message number is preset (`nextMessageNumber`) and only incremented at the end if successful for the next caller.
-This function should be called with a `msg.value` equal to `_value` plus `_fee`. The fee will be paid on the destination chain.
+_The message number is preset (`nextMessageNumber`) and only incremented at the end if successful for the next caller.
+This function should be called with a `msg.value` equal to `_value` plus `_fee`. The fee will be paid on the destination chain._
 
 #### Parameters
 

@@ -61,9 +61,9 @@ function _addL2MerkleRoots(bytes32[] _newRoots, uint256 _treeDepth) internal
 
 Add the L2 Merkle roots to the storage.
 
-This function is called during block finalization.
-The _treeDepth does not need to be checked to be non-zero as it is,
-already enforced to be non-zero in the circuit, and used in the proof's public input.
+_This function is called during block finalization.
+The `_treeDepth` does not need to be checked to be non-zero as it is,
+already enforced to be non-zero in the circuit, and used in the proof's public input._
 
 #### Parameters
 
