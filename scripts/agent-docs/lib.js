@@ -509,9 +509,10 @@ function generateAgentDocs({
 
     const docMetadata = metadata.get(route) || {};
     const html = fs.readFileSync(htmlPath, "utf8");
-    fs.writeFileSync(htmlPath, addMarkdownIgnoreAttributes(html));
+    const htmlWithMarkdownIgnores = addMarkdownIgnoreAttributes(html);
+    fs.writeFileSync(htmlPath, htmlWithMarkdownIgnores);
     const markdown = htmlToMarkdown({
-      html,
+      html: htmlWithMarkdownIgnores,
       route,
       metadata: docMetadata,
       baseUrl,

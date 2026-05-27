@@ -175,7 +175,12 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     /```js\nconst config = \{\n  url: `https:\/\/rpc\.linea\.build\/`,\n  matcher: \/\\\[a-z\\\._-]\+\/,\n\};\n```/,
   );
   assert.doesNotMatch(pageMarkdown, /Sidebar that agents should not receive/);
-  assert.doesNotMatch(pageMarkdown, /Page chrome that agents should not receive/);
+  assert.doesNotMatch(
+    pageMarkdown,
+    /Page chrome that agents should not receive/,
+  );
+  assert.doesNotMatch(pageMarkdown, /Generated contract doc emphasis artifact/);
+  assert.doesNotMatch(pageMarkdown, /Example heading/);
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);
 
   const redocMarkdown = fs.readFileSync(
