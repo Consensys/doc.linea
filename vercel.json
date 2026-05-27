@@ -1,19 +1,29 @@
 {
   "cleanUrls": true,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
+      "src": "^/$",
       "has": [
         { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
       ],
-      "destination": "/index.md"
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=300, must-revalidate"
+      },
+      "dest": "/index.md"
     },
     {
-      "source": "/((?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+)",
+      "src": "^/((?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+?)/?$",
       "has": [
         { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
       ],
-      "destination": "/$1.md"
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=300, must-revalidate"
+      },
+      "dest": "/$1.md"
     }
   ],
   "redirects": [

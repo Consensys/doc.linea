@@ -18,6 +18,7 @@
     "lint:style:fix": "npm run lint:style -- --fix",
     "agent-docs:test": "node --test scripts/agent-docs/*.test.js",
     "agent-docs:check": "node scripts/agent-docs/check.js",
+    "agent-docs:verify-preview": "node scripts/agent-docs/verify-preview.js",
     "serve": "docusaurus serve",
     "start": "docusaurus start",
     "swizzle": "docusaurus swizzle",

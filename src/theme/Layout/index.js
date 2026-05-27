@@ -3,12 +3,27 @@ import OriginalLayout from "@theme-original/Layout";
 import { useLocation } from "@docusaurus/router";
 import Head from "@docusaurus/Head";
 
-function getMarkdownPath(pathname) {
+const MARKDOWN_ALTERNATE_SKIPPED_PATHS = new Set(["/search"]);
+
+function normalizePathname(pathname) {
   if (!pathname || pathname === "/") {
+    return "/";
+  }
+
+  return pathname.replace(/\/$/, "");
+}
+
+function getMarkdownPath(pathname) {
+  const normalized = normalizePathname(pathname);
+  if (normalized === "/") {
     return "/index.md";
   }
 
-  return `${pathname.replace(/\/$/, "")}.md`;
+  return `${normalized}.md`;
+}
+
+function hasMarkdownAlternate(pathname) {
+  return !MARKDOWN_ALTERNATE_SKIPPED_PATHS.has(normalizePathname(pathname));
 }
 
 function AgentLinks() {
@@ -23,12 +38,14 @@ function AgentLinks() {
         href="/llms.txt"
         title="Linea documentation index"
       />
-      <link
-        rel="alternate"
-        type="text/markdown"
-        href={markdownPath}
-        title="Markdown version of this page"
-      />
+      {hasMarkdownAlternate(pathname) && (
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href={markdownPath}
+          title="Markdown version of this page"
+        />
+      )}
     </Head>
   );
 }

@@ -63,7 +63,11 @@ function findHtmlPath(buildDir, route) {
   return null;
 }
 
-function readSitemapRoutes({ buildDir, baseUrl = DEFAULT_BASE_URL }) {
+function readSitemapRoutes({
+  buildDir,
+  baseUrl = DEFAULT_BASE_URL,
+  includeSkipped = false,
+}) {
   const sitemapPath = path.join(buildDir, "sitemap.xml");
   const sitemap = fs.readFileSync(sitemapPath, "utf8");
   const parser = new XMLParser({ ignoreAttributes: false });
@@ -78,7 +82,7 @@ function readSitemapRoutes({ buildDir, baseUrl = DEFAULT_BASE_URL }) {
     .map((loc) => new URL(loc))
     .filter((url) => url.origin === base.origin)
     .map((url) => normalizeRoute(url.pathname))
-    .filter((route) => !SKIPPED_ROUTES.has(route));
+    .filter((route) => includeSkipped || !SKIPPED_ROUTES.has(route));
 }
 
 function readDocsMetadata(siteDir) {
@@ -390,12 +394,6 @@ function addMarkdownIgnoreAttributes(html) {
     ].join(","),
   ).attr("data-markdown-ignore", "");
 
-  $("pre")
-    .filter(function isHtmlLikeCodeBlock() {
-      return /<\/?[A-Za-z][^>]*>/.test($(this).text());
-    })
-    .attr("data-markdown-ignore", "");
-
   $("p, li")
     .filter(function isGeneratedDocEmphasisArtifact() {
       return $(this).text().trim().startsWith("_");
@@ -553,23 +551,91 @@ function readLlmsLinks(llms, baseUrl = DEFAULT_BASE_URL) {
     .map((url) => url.toString());
 }
 
+function readMarkdownAlternateHrefs(html) {
+  const $ = cheerio.load(html);
+
+  return $("link[rel='alternate'][type='text/markdown']")
+    .map((index, element) => {
+      void index;
+      return $(element).attr("href");
+    })
+    .get()
+    .filter(Boolean);
+}
+
+function getPathForSameOriginUrl(href, baseUrl = DEFAULT_BASE_URL) {
+  const base = new URL(baseUrl);
+  const url = new URL(href, base);
+  if (url.origin !== base.origin) return null;
+  return url.pathname;
+}
+
 function checkAgentDocs({
   siteDir = process.cwd(),
   buildDir = path.join(siteDir, "build"),
   baseUrl = DEFAULT_BASE_URL,
 } = {}) {
   const failures = [];
-  const routes = readSitemapRoutes({ buildDir, baseUrl }).filter((route) =>
+  const resolvedBuildDir = path.resolve(buildDir);
+  const allHtmlRoutes = readSitemapRoutes({
+    buildDir,
+    baseUrl,
+    includeSkipped: true,
+  }).filter((route) => Boolean(findHtmlPath(buildDir, route)));
+  const routes = allHtmlRoutes.filter((route) => !SKIPPED_ROUTES.has(route));
+  const llmsPath = path.join(buildDir, "llms.txt");
+
+  for (const route of allHtmlRoutes) {
+    const htmlPath = findHtmlPath(buildDir, route);
+    const html = fs.readFileSync(htmlPath, "utf8");
+    for (const href of readMarkdownAlternateHrefs(html)) {
+      let pathname;
+      try {
+        pathname = getPathForSameOriginUrl(href, baseUrl);
+      } catch {
+        failures.push(`${route} has invalid Markdown alternate href: ${href}`);
+        continue;
+      }
+
+      if (!pathname) {
+        failures.push(
+          `${route} has non-same-origin Markdown alternate href: ${href}`,
+        );
+        continue;
+      }
+
+      const localMarkdownPath = path.resolve(
+        buildDir,
+        decodeURIComponent(pathname.replace(/^\//, "")),
+      );
+      if (
+        localMarkdownPath !== resolvedBuildDir &&
+        !localMarkdownPath.startsWith(`${resolvedBuildDir}${path.sep}`)
+      ) {
+        failures.push(
+          `${route} has Markdown alternate outside build output: ${href}`,
+        );
+        continue;
+      }
+
+      if (!pathname.endsWith(".md") || !fs.existsSync(localMarkdownPath)) {
+        failures.push(
+          `${route} has Markdown alternate without generated file: ${href}`,
+        );
+      }
+    }
+  }
+
+  const routesWithHtml = routes.filter((route) =>
     Boolean(findHtmlPath(buildDir, route)),
   );
-  const llmsPath = path.join(buildDir, "llms.txt");
 
   if (!fs.existsSync(llmsPath)) {
     failures.push("build/llms.txt is missing");
     return {
       ok: false,
       failures,
-      totalRoutes: routes.length,
+      totalRoutes: routesWithHtml.length,
       coveredRoutes: 0,
     };
   }
@@ -594,7 +660,7 @@ function checkAgentDocs({
   }
 
   const linkSet = new Set(sameOriginLinks);
-  const expectedLinks = routes.map((route) =>
+  const expectedLinks = routesWithHtml.map((route) =>
     getMarkdownUrlForRoute(route, baseUrl),
   );
   const missingLinks = expectedLinks.filter((url) => !linkSet.has(url));
@@ -604,7 +670,7 @@ function checkAgentDocs({
     );
   }
 
-  for (const route of routes) {
+  for (const route of routesWithHtml) {
     const markdownPath = path.join(buildDir, getMarkdownPathForRoute(route));
     if (!fs.existsSync(markdownPath)) {
       failures.push(`${getMarkdownPathForRoute(route)} is missing`);
@@ -622,7 +688,7 @@ function checkAgentDocs({
   return {
     ok: failures.length === 0,
     failures,
-    totalRoutes: routes.length,
+    totalRoutes: routesWithHtml.length,
     coveredRoutes: expectedLinks.length - missingLinks.length,
   };
 }

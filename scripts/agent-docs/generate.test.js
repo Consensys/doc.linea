@@ -34,7 +34,10 @@ function createFixture() {
   writeFile(
     root,
     "build/index.html",
-    `<!doctype html><html><body>
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/index.md">
+    </head><body>
       <nav>Navigation that agents should not receive</nav>
       <main><article><h1>Linea Docs</h1><p>Homepage body.</p></article></main>
       <footer>Footer that agents should not receive</footer>
@@ -44,7 +47,10 @@ function createFixture() {
   writeFile(
     root,
     "build/network/quickstart.html",
-    `<!doctype html><html><body>
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/network/quickstart.md">
+    </head><body>
       <aside>Sidebar that agents should not receive</aside>
       <main><article>
         <div data-markdown-ignore>Page chrome that agents should not receive</div>
@@ -75,7 +81,10 @@ function createFixture() {
   writeFile(
     root,
     "build/api/token-api/reference.html",
-    `<!doctype html><html><body>
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/api/token-api/reference.md">
+    </head><body>
       <div class="menu-content">Redoc navigation that agents should not receive</div>
       <div class="api-content">
         <h1>Linea Token API</h1>
@@ -95,6 +104,16 @@ function createFixture() {
         </table>
         <div class="redoc-json"><code>{"logo": "<a href="https://example.com/logo.png">https://example.com/logo.png</a>"}</code></div>
       </div>
+    </body></html>`,
+  );
+
+  writeFile(
+    root,
+    "build/search.html",
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+    </head><body>
+      <main><h1>Search</h1></main>
     </body></html>`,
   );
 
@@ -180,7 +199,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     /Page chrome that agents should not receive/,
   );
   assert.doesNotMatch(pageMarkdown, /Generated contract doc emphasis artifact/);
-  assert.doesNotMatch(pageMarkdown, /Example heading/);
+  assert.match(pageMarkdown, /```tsx\n<h1>Example heading<\/h1>\n```/);
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);
 
   const redocMarkdown = fs.readFileSync(
@@ -203,7 +222,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     path.join(root, "build/network/quickstart.html"),
     "utf8",
   );
-  assert.match(quickstartHtml, /<pre data-markdown-ignore/);
+  assert.doesNotMatch(quickstartHtml, /<pre data-markdown-ignore/);
   assert.match(
     quickstartHtml,
     /<p data-markdown-ignore="">_Generated contract doc emphasis artifact\.<\/p>/,
@@ -244,4 +263,31 @@ test("checks llms.txt coverage, markdown links, and page directives", () => {
   assert.equal(report.failures.length, 0);
   assert.equal(report.coveredRoutes, 3);
   assert.equal(report.totalRoutes, 3);
+});
+
+test("fails when a built page advertises a missing markdown alternate", () => {
+  const root = createFixture();
+  generateAgentDocs({
+    siteDir: root,
+    buildDir: path.join(root, "build"),
+    baseUrl: "https://docs.linea.build",
+  });
+  writeFile(
+    root,
+    "build/search.html",
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/markdown" href="/search.md">
+    </head><body><main><h1>Search</h1></main></body></html>`,
+  );
+
+  const report = checkAgentDocs({
+    siteDir: root,
+    buildDir: path.join(root, "build"),
+    baseUrl: "https://docs.linea.build",
+  });
+
+  assert.equal(report.ok, false);
+  assert.deepEqual(report.failures, [
+    "/search has Markdown alternate without generated file: /search.md",
+  ]);
 });
