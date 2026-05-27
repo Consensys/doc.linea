@@ -61,6 +61,7 @@ function createFixture() {
             <p>Add a config file.</p>
             <pre><code class="language-js">const config = {
   url: \`https://rpc.linea.build/\`,
+  matcher: /\\[a-z\\._-]+/,
 };</code></pre>
           </li>
         </ol>
@@ -170,7 +171,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   assert.match(pageMarkdown, /```bash\nnpm install\nnpm test\n```/);
   assert.match(
     pageMarkdown,
-    /```js\nconst config = \{\n  url: `https:\/\/rpc\.linea\.build\/`,\n\};\n```/,
+    /```js\nconst config = \{\n  url: `https:\/\/rpc\.linea\.build\/`,\n  matcher: \/\\\[a-z\\\._-]\+\/,\n\};\n```/,
   );
   assert.doesNotMatch(pageMarkdown, /Sidebar that agents should not receive/);
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);

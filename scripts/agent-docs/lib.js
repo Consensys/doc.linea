@@ -297,10 +297,30 @@ function outdentFencedCodeBlocks(markdown) {
     .join("\n");
 }
 
+function replaceOutsideFencedCodeBlocks(markdown, pattern, replacement) {
+  const lines = markdown.split("\n");
+  let inFence = false;
+
+  return lines
+    .map((line) => {
+      if (/^```/.test(line)) {
+        inFence = !inFence;
+        return line;
+      }
+
+      if (inFence) return line;
+
+      return line.replace(pattern, replacement);
+    })
+    .join("\n");
+}
+
 function normalizeMarkdown(markdown) {
-  return outdentFencedCodeBlocks(markdown)
-    .replace(/\u00a0/g, " ")
-    .replace(/\\([\[\]_.-])/g, "$1")
+  return replaceOutsideFencedCodeBlocks(
+    outdentFencedCodeBlocks(markdown).replace(/\u00a0/g, " "),
+    /\\([\[\]_.-])/g,
+    "$1",
+  )
     .replace(/^(#{1,6})\s+(\d+\.\s+)/gm, "$1 Section $2")
     .replace(/[ \t]+\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
