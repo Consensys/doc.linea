@@ -9,7 +9,7 @@
       "destination": "/index.md"
     },
     {
-      "source": "^/(?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$)(.+?)/?$",
+      "source": "/((?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+)",
       "has": [
         { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
       ],
