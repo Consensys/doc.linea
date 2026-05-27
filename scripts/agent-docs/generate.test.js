@@ -47,6 +47,7 @@ function createFixture() {
     `<!doctype html><html><body>
       <aside>Sidebar that agents should not receive</aside>
       <main><article>
+        <div data-markdown-ignore>Page chrome that agents should not receive</div>
         <h1>Get started</h1>
         <p>Build on Linea.</p>
         <h2>1. Configure a node</h2>
@@ -174,6 +175,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     /```js\nconst config = \{\n  url: `https:\/\/rpc\.linea\.build\/`,\n  matcher: \/\\\[a-z\\\._-]\+\/,\n\};\n```/,
   );
   assert.doesNotMatch(pageMarkdown, /Sidebar that agents should not receive/);
+  assert.doesNotMatch(pageMarkdown, /Page chrome that agents should not receive/);
   assert.doesNotMatch(pageMarkdown, /Was this page helpful/);
 
   const redocMarkdown = fs.readFileSync(

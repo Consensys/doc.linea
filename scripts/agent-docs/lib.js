@@ -7,7 +7,8 @@ const TurndownService = require("turndown");
 const { gfm } = require("turndown-plugin-gfm");
 
 const DEFAULT_BASE_URL = "https://docs.linea.build";
-const MAX_LLMS_CHARS = 50000;
+const MAX_LLMS_CHARS = 100000;
+const LLMS_WARNING_CHARS = Math.floor(MAX_LLMS_CHARS * 0.8);
 const SKIPPED_ROUTES = new Set(["/search"]);
 
 const GROUPS = [
@@ -235,9 +236,13 @@ function prepareRedocForMarkdown($) {
   });
 }
 
+// Markdown extraction has two chrome-removal layers: source components can mark
+// UI-only wrappers with data-markdown-ignore, and these selectors cover
+// third-party or generated DOM that cannot be annotated in React.
 function removeChrome($) {
   $(
     [
+      "[data-markdown-ignore]",
       "script",
       "style",
       "noscript",
@@ -471,6 +476,11 @@ function buildLlmsTxt({ siteDir, pages, baseUrl = DEFAULT_BASE_URL }) {
       `Generated llms.txt is ${llms.length} characters, exceeding ${MAX_LLMS_CHARS}.`,
     );
   }
+  if (llms.length >= LLMS_WARNING_CHARS) {
+    console.warn(
+      `Generated llms.txt is ${llms.length} characters, above the ${LLMS_WARNING_CHARS} character warning threshold.`,
+    );
+  }
 
   return llms;
 }
@@ -566,6 +576,10 @@ function checkAgentDocs({
   const llms = fs.readFileSync(llmsPath, "utf8");
   if (llms.length > MAX_LLMS_CHARS) {
     failures.push(`build/llms.txt exceeds ${MAX_LLMS_CHARS} characters`);
+  } else if (llms.length >= LLMS_WARNING_CHARS) {
+    console.warn(
+      `build/llms.txt is ${llms.length} characters, above the ${LLMS_WARNING_CHARS} character warning threshold.`,
+    );
   }
 
   const sameOriginLinks = readLlmsLinks(llms, baseUrl);

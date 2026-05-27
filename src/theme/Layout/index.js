@@ -1,7 +1,7 @@
 import React from "react";
 import OriginalLayout from "@theme-original/Layout";
 import { useLocation } from "@docusaurus/router";
-import styles from "./styles.module.css";
+import Head from "@docusaurus/Head";
 
 function getMarkdownPath(pathname) {
   if (!pathname || pathname === "/") {
@@ -11,23 +11,32 @@ function getMarkdownPath(pathname) {
   return `${pathname.replace(/\/$/, "")}.md`;
 }
 
-function AgentDirective() {
+function AgentLinks() {
   const { pathname } = useLocation();
   const markdownPath = getMarkdownPath(pathname);
 
   return (
-    <div className={styles.agentDirective}>
-      For AI agents: see <a href="/llms.txt">llms.txt</a> for the complete Linea
-      documentation index. This page is available as Markdown at{" "}
-      <a href={markdownPath}>{markdownPath}</a>.
-    </div>
+    <Head>
+      <link
+        rel="alternate"
+        type="text/plain"
+        href="/llms.txt"
+        title="Linea documentation index"
+      />
+      <link
+        rel="alternate"
+        type="text/markdown"
+        href={markdownPath}
+        title="Markdown version of this page"
+      />
+    </Head>
   );
 }
 
 export default function Layout(props) {
   return (
     <OriginalLayout {...props}>
-      <AgentDirective />
+      <AgentLinks />
       {props.children}
     </OriginalLayout>
   );
