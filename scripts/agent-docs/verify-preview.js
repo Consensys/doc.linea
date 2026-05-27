@@ -94,6 +94,26 @@ async function main() {
     "/search advertises a missing /search.md alternate",
   );
 
+  const searchViaAccept = await fetchText("/search", {
+    headers: { Accept: "text/markdown" },
+  });
+  assert(
+    searchViaAccept.ok,
+    `Accept: text/markdown search route returned HTTP ${searchViaAccept.status}`,
+  );
+  assert(
+    searchViaAccept.contentType.includes("text/html"),
+    `Accept: text/markdown search route returned ${searchViaAccept.contentType || "no content-type"}`,
+  );
+
+  const notFoundViaAccept = await fetchText("/404", {
+    headers: { Accept: "text/markdown" },
+  });
+  assert(
+    !notFoundViaAccept.contentType.includes("text/markdown"),
+    "Accept: text/markdown /404 route returned a Markdown response",
+  );
+
   const missingPage = await fetchText("/this-route-does-not-exist-for-agents");
   assert(
     !/href=["']\/404\.md["']/.test(missingPage.text),
