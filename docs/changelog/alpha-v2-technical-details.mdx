@@ -23,8 +23,8 @@ With Alpha v2 upgrades, Linea averages approximately 30 batches per final proof,
 
 Data compression significantly reduces the cost of posting L2 transaction and messaging data to L1.
 
-The system leverages the Linea prover's ability to operate with a compressed input, meaning it can decompress `calldata` or blob data to validate L2 state transitions. The data passed to the L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions in each block.
+The Linea prover can operate with a compressed input, meaning it can decompress `calldata` or blob data to validate L2 state transitions. The data passed to the L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions in each block.
 
-The data compression algorithm is lossless, and can achieve compression ratios of up to 15:1. This affords Linea the ability to submit data about far more transactions in each batch: before Alpha v2, Linea averaged approximately 150 transactions per batch; afterwards, it averages approximately 1,500.
+The data compression algorithm is lossless, and can achieve compression ratios of up to 15:1. This affords Linea the ability to submit data about far more transactions in each batch: before Alpha v2, Linea averaged approximately 150 transactions per batch; afterward, it averages approximately 1,500.
 
 As a result, significantly more transactions can be processed for the same computational cost on L1. The combination of blobs and data compression further amplifies the gas fee savings that are passed on to Linea users.
