@@ -31,8 +31,8 @@ function sendMessage(address _to, uint256 _fee, bytes _calldata) external payabl
 
 Adds a message for sending cross-chain and emits MessageSent.
 
-_The message number is preset (nextMessageNumber) and only incremented at the end if successful for the next caller.
-This function should be called with a msg.value = _value + _fee. The fee will be paid on the destination chain._
+The message number is preset (nextMessageNumber) and only incremented at the end if successful for the next caller.
+This function should be called with a msg.value = _value + _fee. The fee will be paid on the destination chain.
 
 #### Parameters
 
@@ -74,4 +74,3 @@ _The message sender address is set temporarily in the transient storage when cla
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | originalSender | address | The message sender address that is stored temporarily in the transient storage when claiming. |
-

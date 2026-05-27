@@ -5,6 +5,7 @@
   "scripts": {
     "prebuild": "node scripts/generateSocialCard.js && node scripts/updateCategories.js",
     "build": "docusaurus build",
+    "postbuild": "node scripts/agent-docs/generate.js",
     "clean-slate": "bash ./clean-slate.sh",
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
@@ -15,6 +16,8 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:style": "stylelint \"**/*.css\"",
     "lint:style:fix": "npm run lint:style -- --fix",
+    "agent-docs:test": "node --test scripts/agent-docs/*.test.js",
+    "agent-docs:check": "node scripts/agent-docs/check.js",
     "serve": "docusaurus serve",
     "start": "docusaurus start",
     "swizzle": "docusaurus swizzle",
@@ -62,6 +65,7 @@
     "@mermaid-js/layout-elk": "0.1.9",
     "axios": "1.16.0",
     "browserslist": "4.28.2",
+    "cheerio": "1.1.2",
     "clsx": "2.1.1",
     "concurrently": "9.2.1",
     "dompurify": "3.4.2",
@@ -77,6 +81,8 @@
     "react-player": "3.4.0",
     "redocusaurus": "2.5.0",
     "sharp": "0.34.5",
+    "turndown": "7.2.0",
+    "turndown-plugin-gfm": "1.0.2",
     "yaml": "2.8.4"
   },
   "devDependencies": {

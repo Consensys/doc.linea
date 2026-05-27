@@ -60,7 +60,7 @@ export default function FeedbackWidget(): React.ReactNode {
 
   if (phase === "submitted") {
     return (
-      <div className={styles.widget}>
+      <div className={styles.widget} data-markdown-ignore>
         <p className={styles.thanks}>Thanks for your feedback!</p>
       </div>
     );
@@ -68,7 +68,7 @@ export default function FeedbackWidget(): React.ReactNode {
 
   if (phase === "error") {
     return (
-      <div className={styles.widget}>
+      <div className={styles.widget} data-markdown-ignore>
         <p className={styles.error}>
           Something went wrong. Please try again later.
         </p>
@@ -77,7 +77,7 @@ export default function FeedbackWidget(): React.ReactNode {
   }
 
   return (
-    <div className={styles.widget}>
+    <div className={styles.widget} data-markdown-ignore>
       {phase === "initial" && (
         <>
           <p className={styles.prompt}>Was this page helpful?</p>
