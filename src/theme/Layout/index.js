@@ -3,7 +3,7 @@ import OriginalLayout from "@theme-original/Layout";
 import { useLocation } from "@docusaurus/router";
 import Head from "@docusaurus/Head";
 
-const MARKDOWN_ALTERNATE_SKIPPED_PATHS = new Set(["/search"]);
+const MARKDOWN_ALTERNATE_SKIPPED_PATHS = new Set(["/404", "/search"]);
 
 function normalizePathname(pathname) {
   if (!pathname || pathname === "/") {

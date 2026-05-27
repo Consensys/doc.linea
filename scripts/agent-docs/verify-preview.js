@@ -10,6 +10,12 @@ if (!previewUrl) {
 }
 
 const baseUrl = new URL(previewUrl);
+const EXPECTED_NEGOTIATED_MARKDOWN_HEADERS = new Map([
+  ["x-content-type-options", "nosniff"],
+  ["x-frame-options", "SAMEORIGIN"],
+  ["referrer-policy", "strict-origin-when-cross-origin"],
+  ["permissions-policy", "camera=(), microphone=(), geolocation=()"],
+]);
 
 function buildUrl(pathname) {
   return new URL(pathname, baseUrl).toString();
@@ -21,6 +27,7 @@ async function fetchText(pathname, options) {
 
   return {
     contentType: response.headers.get("content-type") || "",
+    headers: response.headers,
     ok: response.ok,
     status: response.status,
     text,
@@ -49,6 +56,16 @@ function assertMarkdownResponse(label, result) {
   );
 }
 
+function assertExpectedHeaders(label, result, expectedHeaders) {
+  for (const [headerName, expectedValue] of expectedHeaders) {
+    const actualValue = result.headers.get(headerName) || "";
+    assert(
+      actualValue === expectedValue,
+      `${label} returned ${headerName}: ${actualValue || "missing"}; expected ${expectedValue}`,
+    );
+  }
+}
+
 async function main() {
   const publicDataViaAccept = await fetchText("/network/overview/public-data", {
     headers: { Accept: "text/markdown" },
@@ -56,6 +73,11 @@ async function main() {
   assertMarkdownResponse(
     "Accept: text/markdown public-data route",
     publicDataViaAccept,
+  );
+  assertExpectedHeaders(
+    "Accept: text/markdown public-data route",
+    publicDataViaAccept,
+    EXPECTED_NEGOTIATED_MARKDOWN_HEADERS,
   );
   assert(
     /^#\s+Public data/m.test(publicDataViaAccept.text),
@@ -70,6 +92,12 @@ async function main() {
   assert(
     !/href=["']\/search\.md["']/.test(searchPage.text),
     "/search advertises a missing /search.md alternate",
+  );
+
+  const missingPage = await fetchText("/this-route-does-not-exist-for-agents");
+  assert(
+    !/href=["']\/404\.md["']/.test(missingPage.text),
+    "unknown routes advertise a missing /404.md alternate",
   );
 
   const appMarkdown = await fetchText("/network/build/launch-an-app/app.md");

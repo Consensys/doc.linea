@@ -9,7 +9,11 @@
       "headers": {
         "Content-Type": "text/markdown; charset=utf-8",
         "X-Robots-Tag": "noindex",
-        "Cache-Control": "public, max-age=300, must-revalidate"
+        "Cache-Control": "public, max-age=300, must-revalidate",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
       },
       "dest": "/index.md"
     },
@@ -21,7 +25,11 @@
       "headers": {
         "Content-Type": "text/markdown; charset=utf-8",
         "X-Robots-Tag": "noindex",
-        "Cache-Control": "public, max-age=300, must-revalidate"
+        "Cache-Control": "public, max-age=300, must-revalidate",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
       },
       "dest": "/$1.md"
     }

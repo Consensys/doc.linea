@@ -9,7 +9,7 @@ const { gfm } = require("turndown-plugin-gfm");
 const DEFAULT_BASE_URL = "https://docs.linea.build";
 const MAX_LLMS_CHARS = 100000;
 const LLMS_WARNING_CHARS = Math.floor(MAX_LLMS_CHARS * 0.8);
-const SKIPPED_ROUTES = new Set(["/search"]);
+const SKIPPED_ROUTES = new Set(["/404", "/search"]);
 
 const GROUPS = [
   { title: "Start here", test: (route) => route === "/" },
@@ -61,6 +61,41 @@ function findHtmlPath(buildDir, route) {
     if (fs.existsSync(fullPath)) return fullPath;
   }
   return null;
+}
+
+function getRouteForHtmlPath(relativeHtmlPath) {
+  const normalizedPath = relativeHtmlPath.split(path.sep).join("/");
+  if (normalizedPath === "index.html") return "/";
+  if (normalizedPath.endsWith("/index.html")) {
+    return normalizeRoute(`/${normalizedPath.slice(0, -"/index.html".length)}`);
+  }
+  if (normalizedPath.endsWith(".html")) {
+    return normalizeRoute(`/${normalizedPath.slice(0, -".html".length)}`);
+  }
+
+  return null;
+}
+
+function readBuiltHtmlRoutes(buildDir) {
+  const routes = new Set();
+
+  function walk(directory) {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+        continue;
+      }
+
+      if (!entry.isFile() || !entry.name.endsWith(".html")) continue;
+
+      const route = getRouteForHtmlPath(path.relative(buildDir, fullPath));
+      if (route) routes.add(route);
+    }
+  }
+
+  walk(buildDir);
+  return [...routes].sort();
 }
 
 function readSitemapRoutes({
@@ -502,14 +537,66 @@ function getTitleFromMarkdown(markdown) {
   return title ? title[1].trim() : "Linea documentation";
 }
 
+function readMarkdownAlternateHrefs(html) {
+  const $ = cheerio.load(html);
+
+  return $("link[rel='alternate'][type='text/markdown']")
+    .map((index, element) => {
+      void index;
+      return $(element).attr("href");
+    })
+    .get()
+    .filter(Boolean);
+}
+
+function getPathForSameOriginUrl(href, baseUrl = DEFAULT_BASE_URL) {
+  const base = new URL(baseUrl);
+  const url = new URL(href, base);
+  if (url.origin !== base.origin) return null;
+  return url.pathname;
+}
+
+function readBuiltMarkdownAlternateRoutes(
+  buildDir,
+  baseUrl = DEFAULT_BASE_URL,
+) {
+  return readBuiltHtmlRoutes(buildDir).filter((route) => {
+    if (SKIPPED_ROUTES.has(route)) return false;
+
+    const htmlPath = findHtmlPath(buildDir, route);
+    const html = fs.readFileSync(htmlPath, "utf8");
+    const expectedPathname = `/${getMarkdownPathForRoute(route)}`;
+
+    return readMarkdownAlternateHrefs(html).some((href) => {
+      try {
+        return getPathForSameOriginUrl(href, baseUrl) === expectedPathname;
+      } catch {
+        return false;
+      }
+    });
+  });
+}
+
 function generateAgentDocs({
   siteDir = process.cwd(),
   buildDir = path.join(siteDir, "build"),
   baseUrl = DEFAULT_BASE_URL,
 } = {}) {
-  const routes = readSitemapRoutes({ buildDir, baseUrl });
+  const sitemapRoutes = readSitemapRoutes({ buildDir, baseUrl });
+  const sitemapRouteSet = new Set(sitemapRoutes);
+  const alternateRoutes = readBuiltMarkdownAlternateRoutes(buildDir, baseUrl);
+  const seenRoutes = new Set(sitemapRoutes);
+  const routes = [
+    ...sitemapRoutes,
+    ...alternateRoutes.filter((route) => {
+      if (seenRoutes.has(route)) return false;
+      seenRoutes.add(route);
+      return true;
+    }),
+  ];
   const metadata = readDocsMetadata(siteDir);
   const pages = [];
+  const llmsPages = [];
   const skipped = [];
 
   for (const route of routes) {
@@ -535,14 +622,16 @@ function generateAgentDocs({
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     fs.writeFileSync(outputPath, `${markdown}\n`);
 
-    pages.push({
+    const page = {
       route,
       title: docMetadata.title || getTitleFromMarkdown(markdown),
       description: docMetadata.description,
-    });
+    };
+    pages.push(page);
+    if (sitemapRouteSet.has(route)) llmsPages.push(page);
   }
 
-  const llms = buildLlmsTxt({ siteDir, pages, baseUrl });
+  const llms = buildLlmsTxt({ siteDir, pages: llmsPages, baseUrl });
   fs.writeFileSync(path.join(buildDir, "llms.txt"), llms);
 
   return {
@@ -567,25 +656,6 @@ function readLlmsLinks(llms, baseUrl = DEFAULT_BASE_URL) {
     .map((url) => url.toString());
 }
 
-function readMarkdownAlternateHrefs(html) {
-  const $ = cheerio.load(html);
-
-  return $("link[rel='alternate'][type='text/markdown']")
-    .map((index, element) => {
-      void index;
-      return $(element).attr("href");
-    })
-    .get()
-    .filter(Boolean);
-}
-
-function getPathForSameOriginUrl(href, baseUrl = DEFAULT_BASE_URL) {
-  const base = new URL(baseUrl);
-  const url = new URL(href, base);
-  if (url.origin !== base.origin) return null;
-  return url.pathname;
-}
-
 function checkAgentDocs({
   siteDir = process.cwd(),
   buildDir = path.join(siteDir, "build"),
@@ -593,15 +663,18 @@ function checkAgentDocs({
 } = {}) {
   const failures = [];
   const resolvedBuildDir = path.resolve(buildDir);
-  const allHtmlRoutes = readSitemapRoutes({
+  const allSitemapHtmlRoutes = readSitemapRoutes({
     buildDir,
     baseUrl,
     includeSkipped: true,
   }).filter((route) => Boolean(findHtmlPath(buildDir, route)));
-  const routes = allHtmlRoutes.filter((route) => !SKIPPED_ROUTES.has(route));
+  const allBuiltHtmlRoutes = readBuiltHtmlRoutes(buildDir);
+  const routes = allSitemapHtmlRoutes.filter(
+    (route) => !SKIPPED_ROUTES.has(route),
+  );
   const llmsPath = path.join(buildDir, "llms.txt");
 
-  for (const route of allHtmlRoutes) {
+  for (const route of allBuiltHtmlRoutes) {
     const htmlPath = findHtmlPath(buildDir, route);
     const html = fs.readFileSync(htmlPath, "utf8");
     for (const href of readMarkdownAlternateHrefs(html)) {
