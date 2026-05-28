@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { sheets } from "@googleapis/sheets";
 import { GoogleAuth } from "google-auth-library";
+import { sanitizeFeedbackText } from "./feedback-sanitize";
 
 // ---------- Types ----------
 
@@ -9,28 +10,6 @@ interface FeedbackBody {
   rating: "yes" | "no";
   reason?: string;
   timestamp?: string;
-}
-
-// ---------- Sanitize ----------
-
-function stripHtml(text: string): string {
-  let prev = text;
-  // Loop to handle nested tags like <<script>script>
-  while (true) {
-    const next = prev.replace(/<[^>]*>/g, "");
-    if (next === prev) return next;
-    prev = next;
-  }
-}
-
-function sanitize(text: string): string {
-  return stripHtml(text)
-    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown images
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // strip markdown links
-    .replace(/@/g, "@\u200B") // break GitHub @mentions
-    .replace(/#(\d)/g, "#\u200B$1") // break GitHub #issue references
-    .slice(0, 1000)
-    .trim();
 }
 
 function isValidPageUrl(url: string): boolean {
@@ -160,7 +139,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: "invalid page_url" });
   }
 
-  const cleanReason = reason ? sanitize(reason) : "";
+  const cleanReason = reason ? sanitizeFeedbackText(reason) : "";
 
   if (rating === "no" && !cleanReason) {
     return res
