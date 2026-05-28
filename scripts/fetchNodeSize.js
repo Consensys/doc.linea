@@ -3,6 +3,24 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
+const NODE_SIZE_TARGETS = Object.freeze([
+  Object.freeze({
+    network: "mainnet",
+    cluster: "linea-prod-eks",
+    pvc: "data-linea-besu-full-0",
+  }),
+  Object.freeze({
+    network: "mainnet",
+    cluster: "linea-prod-eks",
+    pvc: "data-linea-besu-archive-v3-0",
+  }),
+  Object.freeze({
+    network: "mainnet",
+    cluster: "linea-prod-eks",
+    pvc: "data-linea-geth-archive-v2-0",
+  }),
+]);
+
 // Function to calculate the daily increase using "Range", matching the "Reduce" transformation in Grafana
 const calculateDailyIncrease = (values) => {
   // Sort values by timestamp to ensure they're in order
@@ -40,13 +58,9 @@ const fetchData = async () => {
   const baseUrl =
     "https://mimir.o11y.web3factory.consensys.net/prometheus/api/v1/query_range";
 
-  const configFilePath = path.join(__dirname, "../linea-node-size/config.json");
-  console.log(`Reading configuration from ${configFilePath}`);
-  const config = JSON.parse(fs.readFileSync(configFilePath, "utf8"));
-
   const results = [];
 
-  for (const { network, cluster, pvc } of config) {
+  for (const { network, cluster, pvc } of NODE_SIZE_TARGETS) {
     console.log(
       `Fetching data for network: ${network}, cluster: ${cluster}, pvc: ${pvc}`,
     );
