@@ -2,22 +2,21 @@ const MAX_REASON_LENGTH = 1000;
 
 function stripHtmlTags(text: string): string {
   let result = "";
-  let insideTag = false;
+  let cursor = 0;
 
-  for (const char of text) {
-    if (char === "<") {
-      insideTag = true;
-      continue;
+  while (cursor < text.length) {
+    const tagStart = text.indexOf("<", cursor);
+    if (tagStart === -1) {
+      return result + text.slice(cursor);
     }
 
-    if (char === ">") {
-      insideTag = false;
-      continue;
+    const tagEnd = text.indexOf(">", tagStart + 1);
+    if (tagEnd === -1) {
+      return result + text.slice(cursor);
     }
 
-    if (!insideTag) {
-      result += char;
-    }
+    result += text.slice(cursor, tagStart);
+    cursor = tagEnd + 1;
   }
 
   return result;
