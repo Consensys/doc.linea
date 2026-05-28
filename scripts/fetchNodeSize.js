@@ -128,9 +128,12 @@ const fetchData = async () => {
   const dataFilePath = path.join(__dirname, "../linea-node-size/data.json");
   let existingData = {};
 
-  if (fs.existsSync(dataFilePath)) {
-    const fileContent = fs.readFileSync(dataFilePath, "utf8");
-    existingData = JSON.parse(fileContent);
+  try {
+    existingData = JSON.parse(fs.readFileSync(dataFilePath, "utf8"));
+  } catch (err) {
+    if (err.code !== "ENOENT") {
+      throw err;
+    }
   }
 
   const currentDate = new Date();
@@ -144,7 +147,9 @@ const fetchData = async () => {
   existingData[currentYear][currentWeek] = results;
 
   console.log(`Writing results to ${dataFilePath}`);
-  fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
+  const tempDataFilePath = `${dataFilePath}.tmp`;
+  fs.writeFileSync(tempDataFilePath, JSON.stringify(existingData, null, 2));
+  fs.renameSync(tempDataFilePath, dataFilePath);
   console.log("Node size data fetched and saved.");
 };
 
