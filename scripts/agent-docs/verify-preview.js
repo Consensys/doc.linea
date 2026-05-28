@@ -16,6 +16,11 @@ const EXPECTED_NEGOTIATED_MARKDOWN_HEADERS = new Map([
   ["referrer-policy", "strict-origin-when-cross-origin"],
   ["permissions-policy", "camera=(), microphone=(), geolocation=()"],
 ]);
+const EXPECTED_API_CATALOG_ANCHORS = [
+  "https://rpc.linea.build/",
+  "https://rpc.sepolia.linea.build/",
+  "https://token-api.linea.build/tokens",
+];
 
 function buildUrl(pathname) {
   return new URL(pathname, baseUrl).toString();
@@ -66,7 +71,61 @@ function assertExpectedHeaders(label, result, expectedHeaders) {
   }
 }
 
+function assertApiCatalog(label, result) {
+  assert(result.ok, `${label} returned HTTP ${result.status}`);
+  assert(
+    result.contentType.includes("application/linkset+json"),
+    `${label} returned ${result.contentType || "no content-type"}`,
+  );
+
+  let catalog;
+  try {
+    catalog = JSON.parse(result.text);
+  } catch (error) {
+    throw new Error(`${label} returned invalid JSON: ${error.message}`);
+  }
+
+  assert(Array.isArray(catalog.linkset), `${label} is missing linkset[]`);
+  const anchors = new Set(catalog.linkset.map((entry) => entry.anchor));
+  for (const anchor of EXPECTED_API_CATALOG_ANCHORS) {
+    assert(anchors.has(anchor), `${label} is missing ${anchor}`);
+  }
+}
+
 async function main() {
+  const homepage = await fetchText("/");
+  assert(homepage.ok, `/ returned HTTP ${homepage.status}`);
+  const homepageLink = homepage.headers.get("link") || "";
+  assert(
+    homepageLink.includes('rel="api-catalog"') &&
+      homepageLink.includes("/.well-known/api-catalog"),
+    "/ is missing the API catalog Link header",
+  );
+  assert(
+    homepageLink.includes("/llms.txt"),
+    "/ is missing the llms.txt Link header",
+  );
+
+  const apiCatalog = await fetchText("/.well-known/api-catalog");
+  assertApiCatalog("API catalog", apiCatalog);
+
+  const apiCatalogViaAccept = await fetchText("/.well-known/api-catalog", {
+    headers: { Accept: "text/markdown" },
+  });
+  assertApiCatalog("Accept: text/markdown API catalog", apiCatalogViaAccept);
+
+  const apiCatalogHead = await fetchText("/.well-known/api-catalog", {
+    method: "HEAD",
+  });
+  assert(
+    apiCatalogHead.ok,
+    `HEAD API catalog returned HTTP ${apiCatalogHead.status}`,
+  );
+  assert(
+    (apiCatalogHead.headers.get("link") || "").includes('rel="api-catalog"'),
+    "HEAD API catalog is missing the API catalog Link header",
+  );
+
   const publicDataViaAccept = await fetchText("/network/overview/public-data", {
     headers: { Accept: "text/markdown" },
   });
