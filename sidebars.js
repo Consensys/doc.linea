@@ -448,6 +448,7 @@ const sidebars = {
           label: "Instant finality",
         },
         "stack/features/security",
+        "stack/features/rbac",
         {
           type: "doc",
           id: "stack/features/validium",
