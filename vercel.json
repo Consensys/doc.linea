@@ -10,6 +10,7 @@
         "Content-Type": "text/markdown; charset=utf-8",
         "X-Robots-Tag": "noindex",
         "Cache-Control": "public, max-age=300, must-revalidate",
+        "Link": "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"; title=\"Linea API catalog\", </llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"Linea llms.txt\"",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "SAMEORIGIN",
         "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -18,7 +19,7 @@
       "dest": "/index.md"
     },
     {
-      "src": "^/((?!(?:search|404)/?$)(?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+?)/?$",
+      "src": "^/((?!(?:search|404)/?$)(?!\\.well-known(?:/|$))(?!.*\\.(?:abi|css|gif|ico|jpg|jpeg|js|json|md|png|sol|svg|toml|txt|webp|woff|woff2|xml|yml|zip)$).+?)/?$",
       "has": [
         { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
       ],
@@ -115,6 +116,24 @@
     {
       "source": "/",
       "headers": [
+        {
+          "key": "Link",
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"; title=\"Linea API catalog\", </llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"Linea llms.txt\""
+        },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+        },
+        {
+          "key": "Link",
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\"; title=\"Linea API catalog\""
+        },
         { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
       ]
     },
