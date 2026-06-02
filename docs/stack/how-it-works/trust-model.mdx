@@ -19,7 +19,7 @@ In this page, **operator** means the entity or consortium responsible for deploy
 
 | Component | Operated by | Can do unilaterally | Cannot do | Independently verifiable by participants |
 | --- | --- | --- | --- | --- |
-| Sequencer | Operator | Order, delay, or omit transactions within a block | Forge state, since invalid blocks fail proof verification | Public rollup block contents and ordering by running a full or archive node; in validium or RBAC deployments, transactions or blocks only to the extent participants have the relevant data and access |
+| Sequencer | Operator | Order, delay, or omit transactions within a block | Forge state, since invalid blocks fail proof verification | Public rollup block contents and ordering by running a full or archive node; in validium or [RBAC](../features/rbac.mdx) deployments, transactions or blocks only to the extent participants have the relevant data and access |
 | Prover | Operator | Stall proof generation, halting finalization | Produce a valid proof for an invalid state transition | Proof verification by reading the verifier contract on the finalization layer |
 | Coordinator | Operator | Stall the pipeline that conflates blocks, requests proofs, and submits them to the finalization layer | Modify state independently of the sequencer or prover | Submission events on the finalization layer |
 | Data availability (rollup) | Ethereum | N/A | Withhold data, since DA is on L1 as EIP-4844 blobs | State reconstruction from L1 blobs |
@@ -27,7 +27,7 @@ In this page, **operator** means the entity or consortium responsible for deploy
 | Canonical bridge (to Ethereum / Linea-anchored chain) | Operator (admin keys) + protocol (proofs) | Pause bridging via pause roles; upgrade contracts through the proxy upgrade path | In the normal protocol path, process unproved messages, since messages are tied to verified state transitions | Bridge events, proof verification, role assignments, proxy admin, and implementation addresses on the finalization layer |
 | Trusted bridge (to private or non-anchored chain) | Operator (admin keys) + trusted relayer | Pause bridging; relayer can withhold or delay messages | In the normal relayer path, process messages that are not signed over source-chain events | Bridge events on each side; no shared proof, so verifiability depends on trust in the relayer, its keys, and the bridge upgrade/admin model |
 | System contracts | Operator (role holders) + proxy upgrade authority | Pause, change verifier address, change rate limits, and upgrade contracts through the proxy upgrade path | Bypass role gating in the deployed implementation, since privileged functions are role-gated | Role assignments, contract state, proxy admin, and implementation addresses on the finalization layer |
-| Participant nodes | Each participant | Read state visible to them, broadcast transactions | Modify network state | Their own observed state, subject to the deployment's data access model; not every participant in a validium or RBAC deployment necessarily runs a full or archive node |
+| Participant nodes | Each participant | Read state visible to them, broadcast transactions | Modify network state | Their own observed state, subject to the deployment's data access model; not every participant in a validium or [RBAC](../features/rbac.mdx) deployment necessarily runs a full or archive node |
 
 ## Admin keys and upgrade authority
 
@@ -71,7 +71,7 @@ A private validium on Linea Mainnet inherits Linea Mainnet's trust assumptions i
 | Sequencer halt | Block production stops; pending transactions not included | Operator restart or failover to redundant sequencer infrastructure. In distributed sequencing or validator consensus deployments, recovery follows the configured QBFT or validator process. |
 | Prover stall | Proofs not generated; finalization stops; soft-finalized blocks remain on L2 but not finalized to the finalization layer | Operator restart or failover to an alternate prover instance where deployed |
 | Coordinator stall | Submission to the finalization layer stops; same effect as prover stall downstream | Operator restart or failover to an alternate coordinator instance where deployed |
-| DA withhold (validium) | Participants without the required DA or RBAC access cannot reconstruct or verify affected private data | Operator-defined wind-down procedure; depends on consortium agreement and is not protocol-enforced |
+| DA withhold (validium) | Participants without the required DA or [RBAC](../features/rbac.mdx) access cannot reconstruct or verify affected private data | Operator-defined wind-down procedure; depends on consortium agreement and is not protocol-enforced |
 | Finality layer reorg | Affects depth of finality on the selected finalization layer | Wait for the required finality depth on the selected finalization layer |
 | Admin key compromise | Compromised role can act within its scope until revoked; `DEFAULT_ADMIN_ROLE` compromise affects all roles | Revoke or rotate compromised authority through the deployment's governance or multisig process; use emergency pause roles where available |
 
@@ -93,12 +93,12 @@ The set of guarantees a participant can verify *without* trusting the operator d
 - Transactions or blocks they are authorized to access, using the relevant data and [Merkle proofs](/protocol/architecture/state-manager#merkle-trees) against posted state roots. This does not by itself establish global transaction ordering for participants who do not have access to the full ordered data set.
 - Bridge events on L1.
 - Their own observed state, by running a node or using an authorized interface where the deployment grants access.
-- They cannot reconstruct full state or history without the required operator DA access. This is the validium trade-off, and RBAC settings may further limit which data each participant can observe.
+- They cannot reconstruct full state or history without the required operator DA access. This is the validium trade-off, and [RBAC](../features/rbac.mdx) settings may further limit which data each participant can observe.
 
 **Private validium on Linea Mainnet**
 
 - Proof validity and state-transition correctness, by reading the verifier contract on Linea Mainnet. A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
-- Same validium and RBAC caveats as private validium on Ethereum, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).
+- Same validium and [RBAC](../features/rbac.mdx) caveats as private validium on Ethereum, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).
 - Verifying the chain end-to-end requires verifying both the private validium proof on Linea Mainnet and Linea Mainnet's proofs on Ethereum.
 
 ## See also

@@ -31,7 +31,7 @@ Consider these factors when configuring your deployment model design:
 - Regulatory compliance: Do you need KYC/KYT controls and selective disclosure?
 - Data availability guarantees: How important are onchain data availability guarantees?
 - Network topology: Do you need a private network with controlled membership?
-- Access control: Do you need RBAC on RPC endpoints and APIs?
+- Access control: Do you need [RBAC](../features/rbac.mdx) on RPC endpoints and APIs?
 
 ## Compare deployment models
 
@@ -57,7 +57,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 ### Security considerations
 
 - Minimum node count: 4 nodes for Quorum-Based Byzantine Fault Tolerance (QBFT) fault tolerance
-- Access controls: Whether or not to implement RBAC on RPC endpoints
+- Access controls: Whether or not to implement [RBAC](../features/rbac.mdx) on RPC endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a hardware
   security module (HSM) or key management service (KMS)
 
@@ -71,7 +71,7 @@ financial institutions requiring privacy.
 
 - Data availability: Transaction data can be stored offchain in a private node set
 - Privacy: Transaction details not visible on the finalization layer
-- Access control: RPC endpoints protected by Role-Based Access Control (RBAC); only authorized
+- Access control: RPC endpoints protected by Role-Based Access Control ([RBAC](../features/rbac.mdx)); only authorized
   participants can view data
 - [Finalization](../../network/overview/transaction-finality.mdx): State commitments and proofs
   posted to the finalization layer
@@ -90,7 +90,7 @@ privacy, compliance, and access control features:
 ### Security considerations
 
 - Minimum node count: 4 Maru nodes for QBFT fault tolerance
-- Access controls: RBAC on RPC endpoints and API portal
+- Access controls: [RBAC](../features/rbac.mdx) on RPC endpoints and API portal
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a
   hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology with controlled peering
