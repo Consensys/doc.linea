@@ -1,0 +1,79 @@
+---
+title: Role-based access control
+description: >-
+  Understand how RBAC controls access to protected Linea Stack RPC, API, and
+  tooling surfaces.
+sidebar_position: 5
+image: /img/socialCards/role-based-access-control.jpg
+---
+
+Role-based access control (RBAC) is an operator-configured access-control layer for Linea Stack
+deployments. It helps operators control who can use protected RPC endpoints, APIs, API portals, and
+related tooling surfaces.
+
+RBAC is especially relevant for [private validium](./validium.mdx) deployments, where operators may
+combine offchain data availability, controlled network membership, and selective disclosure to support
+privacy and compliance requirements.
+
+:::important
+
+RBAC is not cryptographic privacy. It controls access to protected services and data surfaces, but it
+does not make public-chain data private, replace zero-knowledge proofs, or provide data availability.
+
+:::
+
+## What RBAC controls
+
+In a Linea Stack deployment, RBAC can be used around operator-controlled access surfaces, including:
+
+- RPC endpoints that expose blockchain data or accept transactions
+- APIs and API portals used to manage or interact with the deployment
+- Explorer and tooling surfaces that show deployment data
+- Participant access to data in deployments where visibility is intentionally restricted
+
+The operator decides which surfaces are exposed, who can use them, and how access is granted for the
+deployment.
+
+## How RBAC fits with private validium
+
+In a public deployment, transaction data is designed for broad visibility, and public RPC access is
+designed for broad availability. In a private validium deployment, transaction data may be kept
+offchain, and access to network functionality may be restricted.
+
+RBAC is one part of that controlled-access model. It can help limit access to RPC endpoints, APIs,
+API portals, and related tooling. It works alongside other deployment choices such as private data
+availability, network isolation, key management, and operator procedures.
+
+RBAC determines which protected interfaces and data a participant can access. In deployments that
+use RBAC, the operator defines those access rules and can change them as part of operating the
+deployment.
+
+## Visibility and verification
+
+Participants can still verify proof validity on the finalization layer. For transactions, blocks,
+or state they are authorized to access, they may also verify that data against posted state roots
+using the deployment's available data. RBAC does not change the proof system; it changes which
+protected data and interfaces a participant can access.
+
+For the broader trust model, see [Trust model](../how-it-works/trust-model.mdx).
+
+## Limitations
+
+RBAC should be described with these limits:
+
+- RBAC does not encrypt data or hide data that is published to a public chain or finalization layer.
+- RBAC does not replace private data availability, data-retention, or selective-disclosure design.
+- RBAC does not replace zero-knowledge proof verification, governance, admin-key security, key
+  management, monitoring, or incident response.
+- RBAC does not guarantee that every participant can verify full state or history. Verification
+  depends on the deployment model, available data, and participant access.
+
+## Related docs
+
+- [Privacy](./validium.mdx): how private validium deployments use offchain data availability and
+  controlled access.
+- [Security](./security.mdx): how RBAC fits into operational security controls.
+- [Deployment models](../how-it-works/deployment-models.mdx): how access control factors into
+  deployment design.
+- [RPC services](../../protocol/architecture/rpc-services.mdx): how RPC services expose blockchain
+  data and can sit behind access controls.
