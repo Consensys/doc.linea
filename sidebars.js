@@ -477,6 +477,7 @@ const sidebars = {
       label: "How to",
       collapsible: false,
       items: [
+        "stack/how-to/run-lineth-stack-sepolia",
         "stack/how-to/distributed-sequencing",
         "stack/how-to/forced-transactions",
       ],
