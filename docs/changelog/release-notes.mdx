@@ -194,7 +194,7 @@ Prover performance optimizations. Proof generation time ~40% faster.
 
 <ChangelogEntry tag="upgrade">
 
-Upgrades Linea's core rollup, bridge, and messaging contracts and deploys a new verifier to support Pause Cooldown and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 52 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/Consensys/linea-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
+Upgrades Linea's core rollup, bridge, and messaging contracts and deploys a new verifier to support Pause Cooldown and Dynamic Chain Configuration. Executed via [Security Council nonces 70 (L1) and 52 (L2)](./security-council-record.mdx); see the [audit reports](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/audits.md#modularization-pause-cooldown-and-dynamic-chain-configuration).
 
 - **Pause Cooldown.** Adds a new pause mechanism for Linea's core contracts, including an Emergency Pauser account managed by Linea's security operations team. This replaces the previous governance-managed pause process and ensures no non-Security-Council member can pause indefinitely, supporting the user exit window expected for L2Beat Stage 1.
 - **Dynamic Chain Configuration (DCC).** Lets the verifier use chain-specific settings at proof verification time, so each [Linea stack](../stack/index.mdx) network can use its own verifier deployment without requiring a new prover circuit for each chain.
