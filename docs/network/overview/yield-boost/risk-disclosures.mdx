@@ -42,4 +42,10 @@ Yield Boost relies on a combination of smart contracts deployed on Ethereum Main
 
 In the event of a successful exploit or hack, users could lose some or all of the ETH backing Yield Boost. Such losses could be permanent, and Linea may not be able to recover or reimburse affected funds. To mitigate these threats, Yield Boost smart contracts undergo security reviews and audits, critical operations are restricted or rate-limited where possible to reduce the impact of potential exploits, and Linea maintains incident response processes and monitoring intended to detect abnormal activity and enable rapid response.
 
+## Technical Implementation Limitations
+
+Yield Boost smart contracts cannot directly read live Ethereum validator staking state. Some contract behavior therefore relies on protocol-specific accounting, oracle reports, withdrawal-reserve checks, and automation-assisted flows to manage staking, unstaking, liabilities, and reserve replenishment.
+
+Certain implementation patterns that may appear unusual in isolation are intentional design tradeoffs for operating with delayed or externally reported staking state. Reports submitted through Linea's bug bounty program should evaluate these behaviors against the documented Yield Boost architecture and the actual security impact to user funds, withdrawal availability, or yield accounting.
+
 Neither Consensys nor Linea take possession, custody, or control of any digital asset on Linea or bridged to Linea unless expressly stated in a written contract signed by the respective party.  As a result, no one can execute a transaction on your behalf, and Linea cannot reverse any transaction that has been finalized onchain. Users should carefully consider these risks and only participate if they are comfortable with the potential outcomes described above.
