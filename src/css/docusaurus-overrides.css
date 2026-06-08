@@ -334,9 +334,11 @@ html[data-theme='dark'] .header-release-notes-link::before {
   font-weight: 400;
   margin-right: 20px;
   color: var(--linea-brand-navy);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+}
+
+.navbar__items .support-link {
+  line-height: 1.4;
+  padding: 8px 12px;
 }
 
 .support-link svg {
@@ -373,6 +375,7 @@ html[data-theme='dark'] .header-release-notes-link::before {
     align-items: center;
     border-radius: 0.25rem;
     display: flex;
+    gap: 6px;
   }
 
   .navbar__items .support-link {
@@ -555,7 +558,8 @@ a.navbar__brand {
 .navbar__link[href="/protocol/quickstart"]::before,
 .navbar__link[href="/stack/quickstart"]::before,
 .navbar__link[href="/api/quickstart"]::before,
-.navbar__link[href="/changelog/release-notes"]::before {
+.navbar__link[href="/changelog/release-notes"]::before,
+.navbar__link[href="/support"]::before {
   content: "";
   display: inline-block;
   width: 8px;
@@ -572,7 +576,8 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"]::before,
 [data-theme="dark"] .navbar__link[href="/api/quickstart"]::before,
-[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before {
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before,
+[data-theme="dark"] .navbar__link[href="/support"]::before {
   border-color: white;
 }
 
@@ -581,7 +586,8 @@ a.navbar__brand {
 .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
 .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
 .navbar__link[href="/api/quickstart"].navbar__link--active::before,
-.navbar__link[href="/changelog/release-notes"].navbar__link--active::before {
+.navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
+.navbar__link[href="/support"].navbar__link--active::before {
   background-color: var(--linea-brand-navy);
 }
 
@@ -589,7 +595,8 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/api/quickstart"].navbar__link--active::before,
-[data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before {
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/support"].navbar__link--active::before {
   background-color: white;
 }
 
@@ -607,7 +614,8 @@ a.navbar__brand {
 .navbar__link[href="/protocol/quickstart"]:hover::before,
 .navbar__link[href="/stack/quickstart"]:hover::before,
 .navbar__link[href="/api/quickstart"]:hover::before,
-.navbar__link[href="/changelog/release-notes"]:hover::before {
+.navbar__link[href="/changelog/release-notes"]:hover::before,
+.navbar__link[href="/support"]:hover::before {
   background-color: var(--linea-brand-navy);
 }
 
@@ -615,7 +623,8 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/api/quickstart"]:hover::before,
-[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before {
+[data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/support"]:hover::before {
   background-color: white;
 }
 
@@ -626,7 +635,7 @@ a.navbar__brand {
   .navbar__link[href="/stack/quickstart"]::before,
   .navbar__link[href="/api/quickstart"]::before,
   .navbar__link[href="/changelog/release-notes"]::before,
-  .support-link[href="https://support.linea.build/"]::before {
+  .navbar__link[href="/support"]::before {
     display: none;
   }
 }

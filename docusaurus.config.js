@@ -182,10 +182,10 @@ const config = {
             label: "Changelog",
           },
           {
-            href: "https://support.linea.build/",
+            to: "/support",
             label: "Support",
             position: "right",
-            class: "support-link",
+            className: "support-link",
           },
         ],
       },
@@ -241,7 +241,7 @@ const config = {
               },
               {
                 label: "User support",
-                to: "https://support.linea.build/",
+                to: "/support",
               },
               {
                 label: "Give feedback",
