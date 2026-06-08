@@ -6,9 +6,9 @@ image: /img/socialCards/run-a-local-lineth-stack.jpg
 ---
 
 Run a local Lineth Stack L2, using either Sepolia for public L1 finality or a
-local L1 for development and rehearsals. The quickstart starts a local L2
-chain, deploys the required contracts, posts data to Sepolia, and verifies L1
-finality through `finalizeBlocks`.
+local L1 for development and testing. The quickstart starts a local L2
+chain, deploys the required contracts, and verifies L1 finality through
+`finalizeBlocks`.
 
 Lineth Stack is the Linea zk-rollup stack documented in this Stack section.
 This quickstart is intended for operators, architects, and engineers evaluating
@@ -25,15 +25,16 @@ quickstart material in production.
 
 ## What this quickstart runs
 
-The quickstart runs a local Lineth Stack L2 with:
+The quickstart runs a local Lineth Stack L2 with these services. For component
+details, see [Protocol components](/stack/how-it-works/core-components).
 
 - Linea Besu sequencer and an L2 Besu RPC follower
 - Maru consensus layer client
 - Shomei state manager
-- Coordinator
+- Coordinator for batching, proof orchestration, and submissions
 - Postman for L1-to-L2 and L2-to-L1 message relay
 - Web3Signer for generated runtime signer keys used by Coordinator and Postman
-- Prover
+- Prover for proof generation
 - Local L2 Blockscout API backend and frontend
 
 Sepolia mode is the default public-finality path. In Sepolia mode, the stack
@@ -41,12 +42,12 @@ uses your Sepolia RPC endpoint, deploys quickstart-specific L1 contracts to
 Sepolia from the generated deployer account, deploys matching contracts on the
 local L2, and submits L1 data and finalization transactions.
 
-Local L1 mode is also available for development, CI, rehearsals, and periods
+Local L1 mode is also available for development, CI, testing, and periods
 when Sepolia gas, RPC, or funding conditions make repeated testing unreliable.
 
 ## Before you start
 
-Required for all modes:
+Required for all modes. These are quickstart minimums for the monorepo stack:
 
 | Requirement | Minimum |
 | --- | --- |
@@ -139,7 +140,7 @@ Treat the run as successful when `status.sh` confirms:
 - a blob transaction appears as data availability only
 - a separate finalization transaction advances `rollup currentL2BlockNumber`
 
-:::warning
+:::caution
 
 Do not treat `Submit Blobs` as finalization. Blob submission publishes data for
 availability. Only a successful `finalizeBlocks` transaction advances the
@@ -148,12 +149,14 @@ Sepolia rollup state.
 :::
 
 On Sepolia Etherscan, finalization may appear as method selector `0x755bc62f`
-instead of a decoded name. That selector is
-`finalizeBlocks(bytes,uint256,tuple)`.
+instead of a decoded name. For the current quickstart rollup contract, that
+selector corresponds to `finalizeBlocks(bytes,uint256,FinalizationDataV4)`.
+Etherscan may display the struct argument as `tuple` because Solidity structs
+are ABI-encoded as tuples.
 
 ## Optional: run local L1 mode
 
-Use local L1 mode when you need a repeatable development or rehearsal path that
+Use local L1 mode when you need a repeatable development or testing path that
 does not depend on Sepolia RPC, gas, or funding. Local L1 mode starts
 quickstart-scoped Besu and Teku L1 services inside the same Compose stack.
 
@@ -240,10 +243,14 @@ timing evidence. The output directory is ignored by git.
 Stop the stack while keeping state:
 
 ```bash
-docker compose --env-file versions.env --env-file .env --profile stack-partial-prover --profile local-l1 stop
+docker compose --env-file versions.env --env-file .env --profile stack-partial-prover stop
 ```
 
-The `local-l1` profile is needed only when stopping a stack started with
+The raw Compose commands use `--profile stack-partial-prover` because it is the
+quickstart's main Compose profile. The default `PROVER_DEV_OVERRIDE=true` still
+runs dev-proof behavior inside that profile.
+
+Add `--profile local-l1` when stopping a stack started with
 `L1_MODE=local`.
 
 Wipe generated artifacts, Docker volumes, chain data, and deploy caches:
@@ -261,6 +268,9 @@ generated Sepolia deployer.
 
 Use raw Compose logs only when debugging. The official start flow is
 `./scripts/start.sh --tail`.
+
+The `stack-partial-prover` profile name is the quickstart Compose profile name;
+it does not mean `PROVER_DEV_OVERRIDE=false` is enabled.
 
 ```bash
 docker compose --env-file versions.env --env-file .env --profile stack-partial-prover logs -f --tail=120
@@ -288,7 +298,7 @@ Reattach to the guided progress view with:
   from the repository checkout.
 - Sepolia is the default public-finality path. Using another external L1
   requires configuration and timing review.
-- Local L1 mode is for development and rehearsals; it does not prove public
+- Local L1 mode is for development and testing; it does not prove public
   Sepolia finality.
 - L1 contracts are owned by the generated deployer account. Timelock and
   Security Council flows are out of scope.
