@@ -256,9 +256,10 @@ Cancun hard fork.
 
 ### Step 1: New genesis files
 
-First, find the files here:
-- [Maru](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/maru/maru-genesis.json)
-- [Besu](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/besu-genesis.json)
+Maru and Linea Besu now embed the network configuration (including genesis) in
+their images — Maru via `--network linea-mainnet` and Linea Besu via its bundled
+profile — so you no longer download separate genesis files for them. Geth still
+requires a genesis file:
 - [Geth](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 
 ### Step 2: Update `docker-compose.yml`
