@@ -26,13 +26,13 @@ Confirmation: We will announce the mainnet upgrade go/no-go decision on Monday e
 This upgrade requires updating BOTH your Execution Layer (EL) and Consensus Layer (Maru) clients:
 
 #### Sepolia Testnet:
-- **Besu & Maru versions**: See the latest versions in the [Sepolia docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
-- **Geth**: See version and configuration in the [Sepolia Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Besu & Maru versions**: See the latest versions in the [Sepolia docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Geth**: See version and configuration in the [Sepolia Geth docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
 - **Other EL clients**: Check for Fusaka-compatible versions
 
 #### Mainnet:
-- **Besu & Maru versions**: See the latest versions in the [Mainnet docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
-- **Geth**: See version and configuration in the [Mainnet Geth docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Besu & Maru versions**: See the latest versions in the [Mainnet docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Geth**: See version and configuration in the [Mainnet Geth docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
 - **Other EL clients**: Check for Fusaka-compatible versions
 
 ### Verify your upgrade
@@ -145,8 +145,8 @@ Replace your-node-name with a unique identifier for your node (e.g., mycompany-n
 ##### Docker Compose example:
 
 For the latest Docker Compose configurations with current versions, see:
-- **Sepolia**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
-- **Mainnet**: [docker-compose.yml](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
+- **Sepolia**: [docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-sepolia/docker-compose.yml)
+- **Mainnet**: [docker-compose.yml](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/docker-compose.yml)
 
 To add Ethstats monitoring, add this flag to your Besu service:
 ```yaml
@@ -257,13 +257,13 @@ Cancun hard fork.
 ### Step 1: New genesis files
 
 First, find the files here:
-- [Maru](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/maru/maru-genesis.json)
-- [Besu](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/besu-genesis.json)
-- [Geth](https://github.com/Consensys/linea-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
+- [Maru](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/maru/maru-genesis.json)
+- [Besu](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/besu/besu-genesis.json)
+- [Geth](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
 
 ### Step 2: Update `docker-compose.yml`
 
-Retrieve the [updated `docker-compose.yml`](https://github.com/Consensys/linea-monorepo/tree/main/docs/getting-started/linea-mainnet) 
+Retrieve the [updated `docker-compose.yml`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet) 
 file from the Linea monorepo. 
 
 Alternatively, update your existing `docker-compose.yml` file manually with the new `linea-besu-package` 

@@ -151,7 +151,7 @@ Use direct, static peering between validators rather than P2P discovery. Indirec
 latency and reduces consensus performance.
 
 A key generation script is provided
-([Maru PrivateKeyGenerator](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)).
+([Maru PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)).
 Generate validator keys in advance, then populate the genesis file with the validator addresses.
 
 For multi-party deployments where validators are run by independent operators: each operator
@@ -172,9 +172,9 @@ rotations carefully and avoid them when possible.
 ### Configuration
 
 A reference K3S setup is available at
-[`linea-monorepo/maru/chaos-testing`](https://github.com/Consensys/linea-monorepo/tree/main/maru/chaos-testing). For
+[`linea-monorepo/maru/chaos-testing`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/chaos-testing). For
 genesis file structure, see the
-[genesis-maru.json template](https://github.com/Consensys/linea-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
+[genesis-maru.json template](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
 
 ## Operations
 
@@ -186,7 +186,7 @@ Shanghai, Cancun, Prague), so changes apply at a future point all validators agr
 
 Procedure:
 
-1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
+1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
 2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
 3. Each operator updates their genesis file with the new validator list, set to activate at the agreed timestamp.
 4. Block time must remain consistent across validators.
@@ -234,7 +234,7 @@ offline simultaneously, up to the `f` failure tolerance.
 
 ## Resources
 
-- [Maru repository](https://github.com/Consensys/linea-monorepo/tree/main/maru)
+- [Maru repository](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru)
 - [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
-- [PrivateKeyGenerator tool](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)
-- [Reference K3S deployment](https://github.com/Consensys/linea-monorepo/tree/main/maru/chaos-testing)
+- [PrivateKeyGenerator tool](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)
+- [Reference K3S deployment](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/chaos-testing)
