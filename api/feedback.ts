@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { sheets } from "@googleapis/sheets";
-import { GoogleAuth } from "google-auth-library";
+import { GoogleAuth } from "googleapis-common";
 import { sanitizeFeedbackText } from "./feedback-sanitize";
 
 // ---------- Types ----------
