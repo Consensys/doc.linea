@@ -5,13 +5,13 @@
 .hero {
   background: var(--linea-text-color-1) url('/img/hero_pattern.svg') no-repeat center;
   background-size: cover;
-  color: #f8f7f2;
+  color: var(--linea-white);
   margin: 0 auto;
   min-height: 450px;
   width: calc(100vw - 2.5rem);
   display: flex;
   align-items: center;
-  border-radius: 14px;
+  border-radius: var(--linea-radius-lg);
   overflow: hidden;
 }
 
@@ -28,28 +28,28 @@
 }
 
 .hero h1 {
-  color: #f8f7f2;
-  font-size: 3.5rem;
+  color: var(--linea-white);
+  font-size: var(--font-display-lg);
   line-height: 1.05;
   margin: 0;
 }
 
 .intro {
-  color: #f8f7f2;
-  font-size: 1.15rem;
+  color: var(--linea-white);
+  font-size: var(--font-heading-md);
   line-height: 1.6;
   margin: 20px auto 0;
   max-width: 640px;
 }
 
 .primaryButton {
-  background: white;
+  background: var(--linea-white);
   border: 0;
-  border-radius: 30px;
+  border-radius: var(--linea-radius-pill);
   color: var(--linea-black) !important;
   cursor: pointer;
-  font-family: 'Atyp Display', sans-serif;
-  font-size: 15px;
+  font-family: AtypDisplay, sans-serif;
+  font-size: var(--font-body-sm);
   font-weight: 500;
   margin-top: 32px;
   min-height: 48px;
@@ -65,8 +65,8 @@
 }
 
 .status {
-  color: #f8f7f2;
-  font-size: 0.95rem;
+  color: var(--linea-white);
+  font-size: var(--font-body-md);
   line-height: 1.5;
   margin: 16px auto 0;
   max-width: 520px;
@@ -83,7 +83,7 @@
 
 .resources h2 {
   color: var(--linea-text-primary);
-  font-size: 2rem;
+  font-size: var(--font-display-md);
   margin: 0 0 24px;
 }
 
@@ -95,7 +95,7 @@
 
 .resourceCard {
   border: 1px solid var(--linea-border);
-  border-radius: 8px;
+  border-radius: var(--linea-radius-md);
   color: var(--linea-text-primary) !important;
   min-height: 148px;
   padding: 24px;
@@ -114,7 +114,7 @@
 .resourceCard span {
   display: block;
   font-family: AtypDisplay, sans-serif;
-  font-size: 1.25rem;
+  font-size: var(--font-heading-md);
   font-weight: 500;
   margin-bottom: 12px;
 }
@@ -138,7 +138,7 @@
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-display-lg);
   }
 
   .resourceGrid {
@@ -152,11 +152,11 @@
   }
 
   .hero h1 {
-    font-size: 2.25rem;
+    font-size: var(--font-display-md);
   }
 
   .intro {
-    font-size: 1rem;
+    font-size: var(--font-body-md);
   }
 
   .primaryButton {
