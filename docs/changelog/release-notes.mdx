@@ -287,9 +287,9 @@ institutional use cases.
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Mainnet:</span></div>
 
 - Paris: 22 October, 2025, [block 24787631](https://lineascan.build/block/countdown/24787631)
-- Shanghai: 10 AM UTC, 23 October, 2025
-- Cancun: 10 AM UTC, 28 October, 2025
-- Prague: 10:10 AM UTC, 28 October, 2025
+- Shanghai: 10:00 UTC, 23 October, 2025
+- Cancun: 10:00 UTC, 28 October, 2025
+- Prague: 10:10 UTC, 28 October, 2025
 
 <div className="changelog-date"><span className="changelog-date__arrow">→</span><span>Linea Sepolia:</span></div>
 
@@ -856,14 +856,54 @@ To decrease L1 costs, we implemented the following features:
       an aggregated proof vs. a proof for a single batch of conflated blocks, the average cost of verifying a
       proof aggregating N proofs is N times cheaper.
 
+<details>
+
+  <summary>Learn more about proof aggregation</summary>
+
+  Generating a zkSNARK proof on L1 is an essential step for finalizing transactions, as a verified
+  proof demonstrates the integrity and validity of the submitted transactions.
+
+  Previously, Linea generated one proof per batch of transactions. After Alpha v2, Linea began
+  to recursively aggregate multiple proofs into one.
+
+  The verification process on L1 costs ~400,000 gas — a cost that previously had to be covered for
+  every batch. This gas cost is the same, however, for verifying a single batch of conflated batches
+  (as Linea did in Alpha v1) as it is for verifying an aggregated proof representing multiple
+  batches (as in Alpha v2). A proof that aggregates N proofs is N times cheaper, as the cost
+  remains consistent.
+
+  With Alpha v2 upgrades, Linea now averages ~30 batches per final proof, making the process
+  1/30th as costly as it was in Alpha v1.
+</details>
+
 - Data compression:
   - This reduces the call data cost on L1 by compressing L2 block data. (Post EIP-4844 this will be stored in blobs)
+
+<details>
+
+  <summary>Learn more about data compression</summary>
+
+  Data compression significantly reduces the cost of posting L2 transaction and messaging data
+  to L1.
+
+  The system leverages the Linea prover's ability to operate with a compressed input, meaning it
+  can decompress `calldata` or blob data to validate L2 state transitions. The data passed to the
+  L1 smart contract can therefore be considerably smaller, driving down the sum cost of transactions
+  in each block.
+
+  The data compression algorithm is completely lossless, and can achieve compression ratios of up to
+  15:1 (where the data is 15 times smaller than its uncompressed state). This affords Linea
+  the ability to submit data about far more transactions in each batch: before Alpha v2,
+  Linea averaged ~150 transactions per batch; afterwards, it averages ~1,500.
+
+  As a result, significantly more transactions can be processed for the same computational cost on L1.
+  The combination of blobs and data compression further amplifies the gas fee savings that are
+  passed on to Linea users.
+</details>
 
 - Switched L2 to L1 messaging anchoring from individual hashes to Merkle trees:
   - Due to the size of the Merkle trees (32 messages) requiring only one Merkle root to be anchored, there
       is a 32x calldata size reduction for message hashes
-
-For more detail, see [Alpha v2 technical details](./alpha-v2-technical-details.mdx).
 
 ### Smart contract changes
 
