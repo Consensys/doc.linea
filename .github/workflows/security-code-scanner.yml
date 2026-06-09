@@ -15,6 +15,8 @@ on:
         required: false
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   security-scan:
     uses: MetaMask/action-security-code-scanner/.github/workflows/security-scan.yml@0a58c584f25e8c121927884b5e8a86e846090e5c

@@ -6,6 +6,8 @@ on:
     branches: [ main ]
     paths: ['docs/**']
 
+permissions: {}
+
 jobs:
   case:
     name: Check for case being inconsistent
