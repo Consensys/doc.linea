@@ -24,7 +24,7 @@ jobs:
       security-events: write
     with:
       repo: ${{ github.repository }}
-      scanner-ref: 'v2'
+      scanner-ref: 0a58c584f25e8c121927884b5e8a86e846090e5c
       paths-ignored: |
         node_modules
         **/node_modules/**
