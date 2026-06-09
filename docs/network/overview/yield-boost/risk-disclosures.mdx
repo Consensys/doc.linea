@@ -44,7 +44,7 @@ In the event of a successful exploit or hack, users could lose some or all of th
 
 ## Technical Implementation Limitations
 
-Yield Boost smart contracts cannot directly read live Ethereum validator staking state. Some contract behavior therefore relies on protocol-specific accounting, oracle reports, withdrawal-reserve checks, and automation-assisted flows to manage staking, unstaking, liabilities, and reserve replenishment.
+Ethereum smart contracts cannot directly observe live validator staking state. As a result, Yield Boost relies on protocol-specific accounting, oracle reports, reserve checks, and automation-assisted flows to coordinate staking operations and track protocol state.
 
 Certain implementation patterns are intentional consequences of Yield Boost's broader system architecture and integrations with external staking infrastructure. When assessing potential security issues, researchers should consider the complete protocol design, technical specification (https://hackmd.io/@kyzooroast/Hk7DQXH6lx), audit reports (https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/audits.md#yield-boost-smart-contract-audits), and system-level invariants rather than evaluating individual contracts in isolation, as some behaviors are driven by protocol assumptions and integrations that are not immediately apparent from the Linea contracts alone.
 
