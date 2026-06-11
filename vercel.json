@@ -36,6 +36,12 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/:match*",
+      "has": [{ "type": "host", "value": "support.linea.build" }],
+      "destination": "https://docs.linea.build/support",
+      "permanent": true
+    },
     { "source": "/en/latest", "destination": "/", "permanent": true },
     { "source": "/en/latest/", "destination": "/", "permanent": true },
     {
