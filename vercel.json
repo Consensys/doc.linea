@@ -2,6 +2,15 @@
   "cleanUrls": true,
   "routes": [
     {
+      "src": "^/(.*)$",
+      "has": [{ "type": "host", "value": "support.linea.build" }],
+      "status": 308,
+      "headers": {
+        "Location": "https://docs.linea.build/support"
+      },
+      "dest": "/"
+    },
+    {
       "src": "^/$",
       "has": [
         { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
@@ -36,12 +45,6 @@
     }
   ],
   "redirects": [
-    {
-      "source": "/:match*",
-      "has": [{ "type": "host", "value": "support.linea.build" }],
-      "destination": "https://docs.linea.build/support",
-      "permanent": true
-    },
     { "source": "/en/latest", "destination": "/", "permanent": true },
     { "source": "/en/latest/", "destination": "/", "permanent": true },
     {
