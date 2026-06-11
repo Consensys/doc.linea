@@ -1,0 +1,60 @@
+name: renovatebot
+
+on:
+  schedule:
+    - cron: "15 3 14,28 * *"
+
+  # push:
+    # branches:
+    #   - main
+    # paths:
+    #   - '.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      minimum_release_age:
+        description: 'Override minimumReleaseAge in days (leave empty for config default; 0 requires protocol-galileo membership)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  renovatebot-check:
+    runs-on: ubuntu-24.04
+    environment: security
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Check protocol-galileo membership
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.minimum_release_age == '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data } = await github.rest.teams.getMembershipForUserInOrg({
+              org: context.repo.owner,
+              team_slug: 'protocol-galileo',
+              username: context.actor,
+            });
+            if (data.state !== 'active') {
+              core.setFailed(`${context.actor} must be an active member of protocol-galileo to set minimumReleaseAge to 0`);
+            }
+
+      - name: Set minimum release age override
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.minimum_release_age != ''
+        env:
+          MINIMUM_RELEASE_AGE: ${{ github.event.inputs.minimum_release_age }}
+        run: |
+          if ! [[ "$MINIMUM_RELEASE_AGE" =~ ^[0-9]+$ ]]; then
+            echo "Invalid minimumReleaseAge: must be a non-negative integer"
+            exit 1
+          fi
+          echo "RENOVATE_MINIMUM_RELEASE_AGE=$MINIMUM_RELEASE_AGE days" >> $GITHUB_ENV
+
+      - name: Run renovatebot
+        uses: ConsenSys/github-actions/renovatebot@979fb3e168f8f7af5e59378a02420c8f6fc4a6a9 # main
+        with:
+          GH_APP_ID: ${{ secrets.GH_APP_ID }}
+          GH_PRIVATE_KEY: ${{ secrets.GH_PRIVATE_KEY }}
+          GH_REPOSITORY: ${{ github.repository }}
