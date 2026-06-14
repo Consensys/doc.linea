@@ -1,19 +1,20 @@
 ---
 title: Data availability and finalization
 description: >-
-  Understanding data availability and the finalization layer choices for
-  enterprise Linea
+  Understanding data availability and the finalization layer choices for Linea
+  Enterprise
 sidebar_position: 3
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
-This section covers the considerations enterprise Linea operators must take into account when configuring data availability and finalization.
+This section covers the considerations Linea Enterprise operators must take into account when configuring data availability and finalization.
 
 :::important
 
-Understanding the role [data availability](../../protocol/architecture#data-availability) and [finalization](#finality-design-options) in the protocol is essential for deploying and operating a Linea network.
+Understanding the role [data availability](../../protocol/architecture#data-availability) and [finalization](#finality-design-options) in the protocol is essential for deploying and operating a network built on Lineth.
 
 :::
+
 
 The following examples show different combinations of data availability and finalization:
 
@@ -81,7 +82,7 @@ In a public network, transaction data is posted to the finalization layer, allow
 
 ## Finalization layer
 
-The finalization layer is the blockchain where your Linea network submits proofs and state
+The finalization layer is the blockchain where your Lineth deployment submits proofs and state
 commitments for verification and hard finality. It also determines the layer of your network:
 
 - L2: If your finalization layer is an L1 (such as, Ethereum), your network is an L2
@@ -89,8 +90,8 @@ commitments for verification and hard finality. It also determines the layer of 
 
 **Examples:**
 
-- Private Linea instance finalizing to Linea Mainnet = L3 (L3 → L2 → L1)
-- Private Linea instance finalizing to Ethereum = L2 (L2 → L1)
+- Private network built on Lineth finalizing to Linea Mainnet = L3 (L3 → L2 → L1)
+- Private network built on Lineth finalizing to Ethereum = L2 (L2 → L1)
 - Public Linea Mainnet finalizing to Ethereum = L2 (L2 → L1)
 
 ### Finalization layer options
@@ -150,4 +151,3 @@ Without the rollup and verifier contracts on your finalization layer, your coord
 finalize batches. These contracts are required for proof verification and state finalization.
 
 :::
-

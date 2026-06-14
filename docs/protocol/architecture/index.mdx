@@ -1,17 +1,17 @@
 ---
 title: Architecture
-description: Protocol architecture overview and core components of Linea
+description: Protocol architecture overview and core components of Lineth
 image: /img/socialCards/architecture.jpg
 ---
 
-Linea's architecture supports a configurable protocol that delivers a developer-ready layer 2 network, scaling Ethereum by providing an Ethereum-equivalent execution environment.
+Lineth architecture supports a configurable protocol that delivers developer-ready layer 2 and layer 3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
 
 Operators and network designers configure their stack to shape what the protocol guarantees, for example:
 
   - Finalization layer: alters security guarantees
   - Data availability layer: alters privacy guarantees
 
-The following represents one of many possible configurations for a Linea Network:
+The following represents one of many possible configurations for a network built on Lineth:
 
 <div className="responsive-graphic">
   <picture>
@@ -42,7 +42,7 @@ Mainnet and temporarily making data available there.
 
 :::
 
-## What runs where in Linea?
+## What runs where in Lineth?
 
 Lineth (formerly the Linea Stack) is comprised of several broad classes of components:
 
@@ -80,7 +80,7 @@ Internal protocol services are required for proof generation and finalization.
 
 #### Sequencer
 
-The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea rules. Typically deployed as a protected internal service.
+The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Lineth rules. Typically deployed as a protected internal service.
 
 > With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
 
@@ -118,10 +118,10 @@ Lineth includes system contracts deployed in two locations:
   proofs and records finalized state roots. This contract must be deployed on the
   [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
-- **On the Linea network itself:** Application-specific contracts are deployed on the Linea network
+- **On the deployed network itself:** Application-specific contracts are deployed on the network
   instance to enable token issuance, workflow automation, and other network-specific functionality.
 
-- **On both layers:** Bridge contracts are deployed on both the destination chain and the Linea network to enable cross-chain token transfers and message passing.
+- **On both layers:** Bridge contracts are deployed on both the destination chain and the deployed network to enable cross-chain token transfers and message passing.
 
 See more about the system contracts: [smart contracts](./smart-contracts.mdx).
 
@@ -152,7 +152,7 @@ Web3Signer ensures that signing operations are access‑controlled, and auditabl
 ## Data availability
 
 Data availability is crucial in preserving and providing access to transaction data required to reconstruct the
-state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
+state of the network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
 wants to verify or reconstruct the historical state.
 
 :::info Data availability
@@ -205,7 +205,7 @@ for [private networks](../../stack/how-it-works/deployment-models.mdx#private-va
 These architectural components support transactions from submission to finalization.
 
 1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
-2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks, enforcing Linea-specific [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
+2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks, enforcing Lineth [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
 3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
    the [tracer](./sequencer/traces-generator.mdx) generates traces.
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
