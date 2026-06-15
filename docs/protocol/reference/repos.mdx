@@ -21,7 +21,7 @@ The principal Linea repository. This includes the:
 - Sequencer: responsible for ordering, building, and executing blocks
 - Smart contracts: covering Linea's core functions
 
-## [`linea-specification`](https://github.com/Consensys/linea-specification)
+## [`linea-specification`](https://github.com/LFDT-Lineth/lineth-monorepo)
 
 Specification of the constraint system underlying Linea's zkEVM.
 
@@ -30,7 +30,7 @@ Linea's constraint system aims to capture the logic of valid EVM executions.
 
 The constraints specified here are implemented in the `linea-constraints` repo.
 
-## [`linea-constraints`](https://github.com/Consensys/linea-constraints)
+## [`linea-constraints`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer-constraints)
 
 Implementation of the constraint system specified in the `linea-specification` repo.
 
@@ -40,7 +40,7 @@ of the EVM execution). The production of such traces is the job of the `linea-tr
 
 Constraints and traces are two of the inputs to the prover.
 
-## [`linea-tracer`](https://github.com/Consensys/linea-tracer)
+## [`linea-tracer`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer)
 
 Linea-Besu plugin which produces the traces that the constraint system applies and that serve as inputs to the prover.
 
@@ -48,7 +48,7 @@ Tracing refers to the process of extracting data from the execution of an EVM cl
 construct large matrices known as execution traces. Execution traces are subject to the constraint 
 system specified in the `linea-specification` repo and implemented in the `linea-constraints` repo.
 
-## [`linea-besu-upstream`](https://github.com/Consensys/linea-besu-upstream)
+## [`linea-besu-upstream`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/linea-besu)
 
 A Besu build configured for Linea.
 
