@@ -119,6 +119,16 @@
   text-align: center;
 }
 
+.subtitle .subtitleLink {
+  color: var(--linea-brand-cyan);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.subtitle .subtitleLink:hover {
+  color: #f8f7f2;
+}
+
 @media (max-width: 1250px) {
   .logo {
     height: 38px;
