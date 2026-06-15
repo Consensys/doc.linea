@@ -30,6 +30,7 @@ const sidebars = {
         "network/overview/public-data",
         "network/overview/recoverable-state",
         "network/overview/ethereum-differences",
+        "network/overview/tokenomics",
         {
           type: "category",
           label: "Yield Boost",
@@ -395,7 +396,6 @@ const sidebars = {
       label: "Mechanisms",
       collapsible: false,
       items: [
-        "protocol/tokenomics",
         "protocol/eip-7702",
         "protocol/forced-transactions",
       ],
