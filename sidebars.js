@@ -366,6 +366,7 @@ const sidebars = {
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
+            "protocol/architecture/prover/risc-v-overview",
             {
               type: "doc",
               id: "protocol/architecture/prover/trace-expansion",
