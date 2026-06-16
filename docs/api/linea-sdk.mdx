@@ -75,7 +75,7 @@ from the blockchain and does not require private keys.
 signing credentials with `l1SignerPrivateKeyOrWallet` and `l2SignerPrivateKeyOrWallet`, depending
 on which layer you need.
 
-See the [SDK README](https://github.com/Consensys/linea-monorepo/tree/main/sdk#field-explanations) 
+See the [SDK README](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/ts-libs/sdk) 
 for a full list of configuration options.
 
 ### Claim
@@ -87,7 +87,7 @@ on the block explorer as a `MessageSent` event.
 <Tabs className="my-tabs">
   <TabItem value="L1" label="Claim on L1">
     The contract function for claiming on L1, `claimMessageWithProof`, is complex and requires a Merkle 
-    proof, Merkle root, and leaf index for the message. The SDK simplifies this by using its [`L1ClaimingService`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/ethereum/L1ClaimingService.ts) 
+    proof, Merkle root, and leaf index for the message. The SDK simplifies this by using its [`L1ClaimingService`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/ethereum/L1ClaimingService.ts) 
     to handle the complex logic, meaning you only need to call `claimMessage`. 
 
     For example:
@@ -130,7 +130,7 @@ on the block explorer as a `MessageSent` event.
     This code checks to locate the message from L1, then whether it's claimable yet on L2. If it is,
     it calls `claim` to claim the message.
 
-    See the [`L2MessageServiceClient`](https://github.com/Consensys/linea-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/linea/L2MessageServiceClient.ts) 
+    See the [`L2MessageServiceClient`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/c6550573d3e1840fcfb97c00fc8697933c7b373f/sdk/src/clients/linea/L2MessageServiceClient.ts) 
     for the source code.
   </TabItem>
 </Tabs>

@@ -1,8 +1,8 @@
 ---
 title: Set up distributed sequencing
-description: Run Maru in multi-validator mode with QBFT consensus on a Linea Stack chain.
+description: Run Maru in multi-validator mode with QBFT consensus on a Lineth chain.
 sidebar_position: 2
-image: /img/socialCards/distributed-sequencing.jpg
+image: /img/socialCards/set-up-distributed-sequencing.jpg
 ---
 
 Maru supports multi-validator deployments using QBFT (Quorum Byzantine Fault Tolerance) consensus.
@@ -10,7 +10,7 @@ Multiple sequencer nodes coordinate to produce blocks, providing fault tolerance
 single sequencer is not acceptable.
 
 By default, Linea Mainnet runs Maru with a single validator. The multi-validator setup described on
-this page applies to Stack operators running their own Linea-based chain.
+this page applies to Lineth operators running their own chain built on Lineth.
 
 See the [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
 for protocol details.
@@ -30,7 +30,7 @@ apply to Maru.
 - Not relevant for standard Linea Mainnet users, or for single-operator chains.
 - Maru is fully permissioned: the validator set is fixed in the genesis file, with no permissionless or hybrid mode.
 
-## How it fits into the Linea Stack
+## How it fits into Lineth
 
 Maru is the sequencer consensus layer; Besu is the execution layer. Multi-validator Maru changes
 only sequencer fault tolerance. The [prover, coordinator, state manager](../how-it-works/core-components.mdx#core-protocol-components),
@@ -47,9 +47,9 @@ No coordinator-side changes are required when running multi-validator Maru.
   <div class="img-large">
     <img
       src="/img/multi-validator-diagram.webp"
-      alt="Multi-validator Maru deployment on the Linea Stack: four Maru validators running QBFT consensus, each paired 1:1 with a Besu execution node, feeding into the unchanged downstream Linea Stack (Coordinator, Prover, State Manager, RPC nodes, L1 contracts, Bridge)."
+      alt="Multi-validator Maru deployment on Lineth: four Maru validators running QBFT consensus, each paired 1:1 with a Besu execution node, feeding into the unchanged downstream Lineth (Coordinator, Prover, State Manager, RPC nodes, L1 contracts, Bridge)."
     />
-    <p><em>Multi-validator Maru architecture: four QBFT validators, 1:1 paired with Besu nodes, feeding the unchanged downstream Linea Stack via a single designated Besu.</em></p>
+    <p><em>Multi-validator Maru architecture: four QBFT validators, 1:1 paired with Besu nodes, feeding the unchanged downstream Lineth via a single designated Besu.</em></p>
   </div>
 </div>
 
@@ -59,7 +59,7 @@ Multi-validator Maru decentralizes block ordering and execution: with 4 validato
 production continues if one validator goes offline. The sequencer is no longer a single point
 that, if it dies, halts the chain.
 
-The rest of the Linea Stack (coordinator, prover, state manager, RPC nodes, L1 contracts, bridge)
+The rest of Lineth (formerly the Linea Stack), including the coordinator, prover, state manager, RPC nodes, L1 contracts, and bridge,
 is still centralized. The coordinator runs in one place and connects to a single designated Besu
 node as its source of truth, not to all four interchangeably. If the coordinator goes down,
 batching, proving, and L1 finality posting stop.
@@ -151,7 +151,7 @@ Use direct, static peering between validators rather than P2P discovery. Indirec
 latency and reduces consensus performance.
 
 A key generation script is provided
-([Maru PrivateKeyGenerator](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)).
+([Maru PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator)).
 Generate validator keys in advance, then populate the genesis file with the validator addresses.
 
 For multi-party deployments where validators are run by independent operators: each operator
@@ -172,9 +172,9 @@ rotations carefully and avoid them when possible.
 ### Configuration
 
 A reference K3S setup is available at
-[`linea-monorepo/maru/chaos-testing`](https://github.com/Consensys/linea-monorepo/tree/main/maru/chaos-testing). For
+[`lineth-monorepo/maru/chaos-testing`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/chaos-testing). For
 genesis file structure, see the
-[genesis-maru.json template](https://github.com/Consensys/linea-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
+[genesis-maru.json template](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
 
 ## Operations
 
@@ -186,7 +186,7 @@ Shanghai, Cancun, Prague), so changes apply at a future point all validators agr
 
 Procedure:
 
-1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
+1. If the new validator does not yet have a key pair, generate one using the [PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator) tool (see [Prerequisites](#prerequisites)). The new operator keeps the private key locally and shares only the public address.
 2. All existing validator operators agree on a future timestamp far enough ahead for everyone to update their genesis file in time.
 3. Each operator updates their genesis file with the new validator list, set to activate at the agreed timestamp.
 4. Block time must remain consistent across validators.
@@ -234,7 +234,7 @@ offline simultaneously, up to the `f` failure tolerance.
 
 ## Resources
 
-- [Maru repository](https://github.com/Consensys/linea-monorepo/tree/main/maru)
+- [Maru repository](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru)
 - [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
-- [PrivateKeyGenerator tool](https://github.com/Consensys/linea-monorepo/tree/main/maru/jvm-libs/utils#1-privatekeygenerator)
-- [Reference K3S deployment](https://github.com/Consensys/linea-monorepo/tree/main/maru/chaos-testing)
+- [PrivateKeyGenerator tool](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator)
+- [Reference K3S deployment](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/chaos-testing)

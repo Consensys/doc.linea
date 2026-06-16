@@ -25,7 +25,9 @@ bridge be a centralized arbiter and point of failure.
 
 - **Without Permit**
   - User should first allow the bridge to transfer tokens on their behalf
-  - This is done by calling `allowance()` on the TokenBridge.
+  - This is done by calling `approve(address spender, uint256 amount)` on the ERC-20 token contract,
+    setting the TokenBridge as the spender. You can use `allowance(owner, spender)` on the ERC-20
+    token contract to check the approved amount.
   - Then, the user should call the `bridgeToken()` method.
 - **With Permit**
   - User can call `bridgeTokenWithPermit()` to pass permit data in a single transaction

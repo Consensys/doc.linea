@@ -21,6 +21,9 @@ The prover generates 3 types of zero-knowledge proofs to verify state transition
 Proof generation is computationally intensive and may be distributed across multiple prover
 instances for performance.
 
+The Lineth proving architecture is also evolving toward
+[guest-program-based proof generation](./risc-v-overview.mdx) with RISC-V.
+
 ## How does it do it?
 
 The prover produces proofs in two stages:
@@ -36,5 +39,3 @@ There are multiple operations involved:
 2. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
 
 This provides cryptographic guarantees to state correctness without requiring third parties to re-execute transactions. Furthermore, the prover provides immediate correctness for transaction batches upon verification. This process enables Linea to provide secure, efficient, and cost-effective transaction scaling, while ensuring trustless execution.
-
-

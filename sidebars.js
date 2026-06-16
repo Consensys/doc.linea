@@ -30,6 +30,7 @@ const sidebars = {
         "network/overview/public-data",
         "network/overview/recoverable-state",
         "network/overview/ethereum-differences",
+        "network/overview/tokenomics",
         {
           type: "category",
           label: "Yield Boost",
@@ -328,6 +329,7 @@ const sidebars = {
     },
     { type: "doc", id: "protocol/quickstart", className: "intro-section-item" },
     { type: "doc", id: "protocol/overview", className: "intro-section-item" },
+    { type: "doc", id: "protocol/linea-vs-lineth", className: "intro-section-item" },
     {
       type: "category",
       label: "Architecture",
@@ -365,6 +367,7 @@ const sidebars = {
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
+            "protocol/architecture/prover/risc-v-overview",
             {
               type: "doc",
               id: "protocol/architecture/prover/trace-expansion",
@@ -395,7 +398,6 @@ const sidebars = {
       label: "Mechanisms",
       collapsible: false,
       items: [
-        "protocol/tokenomics",
         "protocol/eip-7702",
         "protocol/forced-transactions",
       ],

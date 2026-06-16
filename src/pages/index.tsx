@@ -87,9 +87,9 @@ export default function Home(): React.ReactNode {
   const communityCards = [
     {
       title: "Get support",
-      link: "https://support.linea.build/",
+      link: "/support",
       description: (
-        <>Find help through the Linea support site and builder resources.</>
+        <>Find help through Linea support resources and builder guidance.</>
       ),
     },
     {
