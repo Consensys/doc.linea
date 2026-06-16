@@ -1,17 +1,17 @@
 ---
 title: Architecture
-description: Protocol architecture overview and core components of Linea
+description: Protocol architecture overview and core components of Lineth
 image: /img/socialCards/architecture.jpg
 ---
 
-Linea's architecture supports a configurable protocol that delivers a developer-ready layer 2 network, scaling Ethereum by providing an Ethereum-equivalent execution environment.
+Lineth architecture supports a configurable protocol that delivers developer-ready layer 2 and layer 3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
 
 Operators and network designers configure their stack to shape what the protocol guarantees, for example:
 
   - Finalization layer: alters security guarantees
   - Data availability layer: alters privacy guarantees
 
-The following represents one of many possible configurations for a Linea Network:
+The following represents one of many possible configurations for a network built on Lineth:
 
 <div className="responsive-graphic">
   <picture>
@@ -26,7 +26,7 @@ The following represents one of many possible configurations for a Linea Network
     <img
       src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
       alt={
-        "Linea protocol architecture diagram showing validator and full nodes, RPC services, " +
+        "Lineth architecture diagram showing validator and full nodes, RPC services, " +
         "internal protocol services, and finalization to Ethereum. This section details those components shown in this image and how they define the protocol's behavior and guarantees: What runs where, Core components, Maru, Linea Besu, Internal protocol services, Sequencer, Coordinator, Prover, State manager, Tracer, Transaction lifecycle, Onchain system contracts, Auxiliary services, Block explorer, Web3Signer, Data availability, Network topology, Full nodes, RPC nodes, Next steps"
       }
     />
@@ -42,9 +42,9 @@ Mainnet and temporarily making data available there.
 
 :::
 
-## What runs where in Linea?
+## What runs where in Lineth?
 
-The Linea stack is comprised of several broad classes of components:
+Lineth (formerly the Linea Stack) is comprised of several broad classes of components:
 
 - [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/how-it-works/deployment-models), node services may be configured to be private or semi-private.
 - [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks.
@@ -55,10 +55,10 @@ The Linea stack is comprised of several broad classes of components:
 
 ## Core components
 
-The Linea stack consists of the following core components. Each component has a clear operational
+Lineth consists of the following core components. Each component has a clear operational
 responsibility and deployment footprint.
 
-As an EVM-compatible system, the Linea stack uses a dual-layer architecture with separate consensus and execution layers.
+As an EVM-compatible system, Lineth uses a dual-layer architecture with separate consensus and execution layers.
 
 ### Consensus client: Maru
 
@@ -80,7 +80,7 @@ Internal protocol services are required for proof generation and finalization.
 
 #### Sequencer
 
-The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Linea rules. Typically deployed as a protected internal service.
+The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Lineth rules. Typically deployed as a protected internal service.
 
 > With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
 
@@ -112,17 +112,17 @@ The [trace generator](./sequencer/traces-generator.mdx) generates execution trac
 
 Smart contracts execute small programs that rely on the EVM's trustless correctness guarantees. Once deployed, they are immutable.
 
-The Linea stack includes system contracts deployed in two locations:
+Lineth includes system contracts deployed in two locations:
 
 - **On the finalization layer:** The finalization contract validates
   [zk-SNARK](../../protocol/reference/zero-knowledge-glossary.mdx#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge)
   proofs and records finalized state roots. This contract must be deployed on the
   [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
-- **On the Linea network itself:** Application-specific contracts are deployed on the Linea network
+- **On the deployed network itself:** Application-specific contracts are deployed on the network
   instance to enable token issuance, workflow automation, and other network-specific functionality.
 
-- **On both layers:** Bridge contracts are deployed on both the destination chain and the Linea network to enable cross-chain token transfers and message passing.
+- **On both layers:** Bridge contracts are deployed on both the destination chain and the deployed network to enable cross-chain token transfers and message passing.
 
 See more about the system contracts: [smart contracts](./smart-contracts.mdx).
 
@@ -153,7 +153,7 @@ Web3Signer ensures that signing operations are access‑controlled, and auditabl
 ## Data availability
 
 Data availability is crucial in preserving and providing access to transaction data required to reconstruct the
-state of the Linea Network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
+state of the network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
 wants to verify or reconstruct the historical state.
 
 :::info Data availability
@@ -206,7 +206,7 @@ for [private networks](../../stack/how-it-works/deployment-models.mdx#private-va
 These architectural components support transactions from submission to finalization.
 
 1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
-2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks, enforcing Linea-specific [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
+2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks, enforcing Lineth [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
 3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
    the [tracer](./sequencer/traces-generator.mdx) generates traces.
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.

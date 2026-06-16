@@ -329,6 +329,7 @@ const sidebars = {
     },
     { type: "doc", id: "protocol/quickstart", className: "intro-section-item" },
     { type: "doc", id: "protocol/overview", className: "intro-section-item" },
+    { type: "doc", id: "protocol/linea-vs-lineth", className: "intro-section-item" },
     {
       type: "category",
       label: "Architecture",

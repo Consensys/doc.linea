@@ -1,14 +1,14 @@
 ---
 title: Smart contracts
-description: Onchain system contracts and auxiliary services for the Linea stack
+description: Onchain system contracts and auxiliary services for Lineth
 sidebar_position: 3
 image: /img/socialCards/smart-contracts.jpg
 ---
 
-As an EVM-equivalent environment, Linea smart contracts can be written in any language that compiles to EVM bytecode.
+As an EVM-equivalent environment, smart contracts can be written in any language that compiles to EVM bytecode.
 
-The Linea stack includes onchain system contracts deployed on the finalization layer and on the
-Linea network itself, as well as auxiliary services that support network operations. Understanding
+Lineth (formerly the Linea Stack) includes onchain system contracts deployed on the finalization layer and on the
+deployed network itself, as well as auxiliary services that support network operations. Understanding
 these contracts and services is essential for operators managing deployments.
 
 ### Finalization contract
@@ -24,17 +24,17 @@ their finalization design.
 This contract is deployed to the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
 
 **Purpose:**  
-It enables secure interactions between Linea and the finalization layer.
+It enables secure interactions between the deployed network and the finalization layer.
 
 **Functionality:**
 
 - Validates zk-SNARK proofs attesting to correct state transitions for batches of transactions
 - Records finalized state roots on the finalization layer
 - Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
-  between the Linea network and the finalization layer
+  between the deployed network and the finalization layer
 - Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
   transitions
-- Anchors Linea state to Ethereum-level security guarantees
+- Anchors network state to Ethereum-level security guarantees
 
 ### Native message bridge smart contract
 
@@ -43,7 +43,7 @@ finalization layer and the ZK-EVM.
 
 **Functionality:**
 
-- Enables crosschain calls, instructing Linea to perform specific operations (minting,
+- Enables crosschain calls, instructing the deployed network to perform specific operations (minting,
   contract interaction, data relay)
 - Sends proofs or withdrawal requests back to the finalization layer
 - Supports functionality beyond token transfers
@@ -57,16 +57,16 @@ finalization layer and the ZK-EVM.
 - Uses non-custodial escrow, event tracking, and ZK-proof validation to guarantee trustlessness
 - Enables Linea to interoperate directly with Ethereum while preserving asset security
 
-**Deposit flow (finalization layer → Linea network):**
+**Deposit flow (finalization layer → deployed network):**
 
 - Users send ETH or ERC-20 tokens to the Native Token Bridge contract on the finalization layer
 - Contract locks (escrows) these assets and emits an event
-- Once observed by the contract on the Linea network, an equivalent amount is minted or released to the
+- Once observed by the contract on the deployed network, an equivalent amount is minted or released to the
   user's account
 
-**Withdrawal flow (Linea network → finalization layer):**
+**Withdrawal flow (deployed network → finalization layer):**
 
-- Users request withdrawal from the Linea network
+- Users request withdrawal from the deployed network
 - Withdrawal is processed in a batch and proven valid using zk-SNARKs
 - Proof and withdrawal claim are submitted to the bridge contract on the finalization layer
 - Upon verification, the bridge contract unlocks and releases the withdrawn assets
@@ -98,4 +98,3 @@ For upgradeable contracts, the Linea adopts the [OpenZeppelin Transparent Upgrad
 ## Next steps
 
 - Discover the Public Linea network's [smart contracts](../../network/build/contracts)
-

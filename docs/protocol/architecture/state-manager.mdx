@@ -21,7 +21,7 @@ changed.
 
 ## What does it do?
 
-The state manager maintains Linea's state representation optimized for
+The state manager maintains the network's state representation optimized for
 proof generation:
 
 - Tracks state changes block by block
@@ -30,7 +30,7 @@ proof generation:
 - Serves [`linea_getProof`](../../api/reference/linea-getproof) RPC endpoints
 
 The state manager is the part of the execution client responsible for updating the state of the 
-network globally, and the state of every account individually.  It tracks the current state of user accounts, smart contracts, and balances on the Linea Network. The state manager also audits the
+network globally, and the state of every account individually.  It tracks the current state of user accounts, smart contracts, and balances on the network. The state manager also audits the
 "read" access made in the EVM, meaning it monitors, verifies, and logs all operations where the
 EVM needs to read data from the blockchain state.
 
@@ -39,7 +39,7 @@ The main task of the state manager is to receive blocks that have been executed 
 
 ## How does it do it?
 
-Linea uses two data structure types to manage state: 
+Lineth uses two data structure types to manage state:
 
 1. A Merkle-Patricia Trie to record the world state, maintain consensus, and process blocks. This 
 mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/). 
@@ -49,8 +49,8 @@ efficiently track, manage, and update storage slots representing accounts.
 It then passes this updated network state information to the [prover](./prover/index.mdx) 
 in the form of Merkle proofs for submission to Ethereum Mainnet (L1). 
 
-Below, we'll explain the element of Linea's state management in greater detail, focussing on the 
-SMT configuration that sets Linea apart.
+Below, we'll explain the element of Lineth state management in greater detail, focussing on the
+SMT configuration that sets Lineth apart.
 
 ## Merkle trees
 
@@ -263,7 +263,7 @@ The accumulator, built using a sparse Merkle tree, is simultaneously:
 
 - A data structure on which we can perform operations;
 - A dataset that we can summarize using a short string at any time (i.e. the root hash);
-- A tool that can be used by the Linea protocol to verify that a given operation triggered a 
+- A tool that can be used by Lineth to verify that a given operation triggered a
 transition from hash A to hash B.
 
 Once the accumulator has processed the trace information it receives about a new block and updated
