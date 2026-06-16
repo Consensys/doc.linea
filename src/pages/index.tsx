@@ -28,8 +28,7 @@ function HomepageHeader() {
           <Link className={styles.subtitleLink} to="/protocol/linea-vs-lineth">
             Lineth
           </Link>{" "}
-          is the open-source
-          stack that powers it.
+          is the open-source stack that powers it.
         </p>
         <div className={styles.buttons}>
           <Link
@@ -62,9 +61,10 @@ export default function Home(): React.ReactNode {
       title: "Learn about Lineth components",
       link: "/stack/how-it-works",
       description: (
-        <>Explore Lineth's deployment models, data availability, finalization, and trust model.
-
-</>
+        <>
+          Explore Lineth&apos;s deployment models, data availability,
+          finalization, and trust model.
+        </>
       ),
       iconSrc: "/img/card_icon_understand.png",
     },
@@ -80,9 +80,7 @@ export default function Home(): React.ReactNode {
       title: "Build and deploy on Linea",
       link: "/network/quickstart",
       description: (
-        <>
-          Build, launch, and grow your application on the Linea Mainnet.
-        </>
+        <>Build, launch, and grow your application on the Linea Mainnet.</>
       ),
       iconSrc: "/img/card_icon_build.png",
     },
