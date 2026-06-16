@@ -53,8 +53,8 @@ At hard finality:
 
 - The transaction is cryptographically proven on Ethereum and inherits its security guarantees
 - It is anchored to Ethereum's security guarantees
-- The current median time to hard finality is under 1 hour 40 minutes, and is expected to reach
-  approximately 30 minutes as proving performance improves
+- The current median time to hard finality is approximately 2 hours. Planned finality improvements
+  are expected to reduce hard finality to under 30 minutes.
 - Hard finality should never exceed 16 hours under normal operating conditions
 
 Hard finality is required for cross-layer withdrawals, CEX deposit confirmations, and any use case
@@ -82,9 +82,7 @@ curl https://rpc.linea.build \
   -d '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["finalized",false],"id":1}'
 ```
 
-The `finalized` tag is supported by all applicable JSON-RPC methods on Linea Mainnet and Linea
-Sepolia, with the exception of `eth_call`. On Linea, `eth_call` does not currently support the
-`finalized` block tag.
+The `finalized` tag is supported by applicable JSON-RPC methods on Linea Mainnet and Linea Sepolia.
 
 ### Query the rollup contract
 
