@@ -33,35 +33,33 @@ see [Linea vs Lineth](https://docs.linea.build/protocol/linea-vs-lineth).
 The site is organized into four documentation tabs plus a changelog. Each maps to a top-level directory under
 `docs/`:
 
-| Tab | Audience | Directory |
-| --- | --- | --- |
-| Public network | Users and app builders working on Linea mainnet and testnet | `docs/network` |
-| Protocol | Readers who want to understand how Linea works (zero-knowledge, prover, architecture) | `docs/protocol` |
-| Stack | Teams running or operating the Linea stack (Lineth) | `docs/stack` |
-| APIs & SDK | Developers integrating via the APIs, SDK, and smart contracts | `docs/api` |
-| Changelog | Release notes and the security council record | `docs/changelog` |
+| Tab | Subject | Audience | Directory |
+| --- | --- | --- | --- |
+| Public network | Linea | Users and app builders working on Linea mainnet and testnet | `docs/network` |
+| Protocol | Linea | Readers who want to understand how Linea works (zero-knowledge, prover, architecture) | `docs/protocol` |
+| Stack | Lineth | Teams running or operating the Lineth stack that powers Linea | `docs/stack` |
+| APIs & SDK | Linea | Developers integrating via the APIs, SDK, and smart contracts | `docs/api` |
+| Changelog | Linea | Release notes and the security council record | `docs/changelog` |
 
 ## Repository structure
 
+The directories you are most likely to touch:
+
 ```
 doc.linea/
-├── docs/                  # Documentation content (.mdx), one folder per tab
-│   ├── network/           # Public network tab
-│   ├── protocol/          # Protocol tab (includes linea-vs-lineth.mdx, ZK glossary)
-│   ├── stack/             # Stack tab
-│   ├── api/               # APIs & SDK tab (linea-smart-contracts is auto-generated)
-│   └── changelog/         # Release notes and security council record
-├── src/                   # React components, theme, custom pages, CSS
-├── static/img/            # Images and SVGs, mirroring the docs/ structure
-├── scripts/               # Build helpers and the agent-docs/ LLM pipeline
-├── sidebars.js            # Sidebar / navigation definitions
-├── redirects.json         # Client-side redirects for moved or renamed pages
-├── docusaurus.config.js   # Docusaurus site configuration (navbar, plugins, etc.)
-├── vercel.json            # Vercel routing, headers, and markdown content negotiation
-├── AGENTS.md              # Guidance for AI coding agents working in this repo
-├── .nvmrc                 # Pinned Node.js version
-└── LICENSE
+├── docs/                # Documentation content (.mdx)
+│   ├── network/         # Public network tab
+│   ├── protocol/        # Protocol tab (includes linea-vs-lineth.mdx and the ZK glossary)
+│   ├── stack/           # Stack tab (the Lineth stack)
+│   ├── api/             # APIs & SDK tab (linea-smart-contracts/ is auto-generated, don't edit)
+│   └── changelog/       # Release notes and security council record
+├── static/img/          # Images and SVGs, mirroring the docs/ structure
+└── src/                 # Site components, theme, and CSS (see "Working with AI agents")
 ```
+
+Build configuration, the `scripts/` codegen helpers (social cards, categories, the `llms.txt` pipeline), the
+`api/` Vercel serverless functions (the docs feedback endpoint), `sidebars.js`, `redirects.json`, `vercel.json`,
+and the agent tooling (`AGENTS.md`, `.cursor/rules/`) all live at the repo root.
 
 ## Requirements
 
@@ -262,12 +260,33 @@ The site is deployed on Vercel:
 - Every pull request gets a unique Vercel preview URL so you can review your changes in context.
 - Production deploys automatically from the `main` branch.
 
-## Agent and LLM docs
+## Working with AI agents
 
-On build, the `postbuild` step (`scripts/agent-docs/generate.js`) emits an `llms.txt` index and a Markdown
-version of each route. Vercel serves these via content negotiation: requests with an `Accept: text/markdown`
-header receive the Markdown variant of a page rather than HTML. The `llms.txt` file and a
-`/.well-known/api-catalog` are advertised through response `Link` headers (see `vercel.json`).
+If you change anything under `src/` (React components, swizzled theme, or CSS), follow the rules in
+[`AGENTS.md`](AGENTS.md) at the repo root. It is the canonical guidance for AI coding agents and human
+contributors alike, and covers:
+
+- **CSS architecture**: `src/css/custom.css` is an import-only entry point; styles live in ordered layer files
+  (tokens, fonts, base, utilities, Docusaurus overrides, vendor overrides), with component styles in co-located
+  CSS Modules.
+- **Design tokens**: always use the `var(--linea-*)` tokens in `src/css/tokens.css`; never hardcode brand hex
+  values.
+- **Forbidden patterns** and selector guidelines for Docusaurus overrides.
+- **Release notes data model**: `docs/changelog/release-notes.mdx` uses a `release_toc` front matter map as the
+  single source of truth for dates and TOC metadata.
+- **Visual verification**: how to check affected pages in light and dark mode, at desktop and mobile, after any
+  CSS change.
+
+Editor-specific mirrors of these rules live in `.cursor/rules/` (for Cursor) and `.agents/skills/` (packaged
+agent skills).
+
+### Machine-readable docs (`llms.txt`)
+
+Separately from the rules above, the site publishes a machine-readable copy of itself for LLM consumers. On
+build, the `postbuild` step (`scripts/agent-docs/generate.js`) emits an `llms.txt` index and a Markdown version
+of each route. Vercel serves these via content negotiation: a request with an `Accept: text/markdown` header
+receives the Markdown variant of a page rather than HTML. The `llms.txt` file and a `/.well-known/api-catalog`
+are advertised through response `Link` headers (see `vercel.json`).
 
 Validate this pipeline locally with `npm run agent-docs:check` and `npm run agent-docs:verify-preview`.
 
