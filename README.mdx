@@ -7,7 +7,7 @@ built with [Docusaurus](https://docusaurus.io/) v3 and deployed on Vercel.
 
 - [Live site: docs.linea.build](https://docs.linea.build/)
 - [Documentation for builders](https://docs.linea.build/)
-- [Lineth (stack and infrastructure runner docs)](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs)
+- [Lineth monorepo (open-source stack source)](https://github.com/LFDT-Lineth/lineth-monorepo)
 - [Linea vs Lineth explained](https://docs.linea.build/protocol/linea-vs-lineth)
 - [Community forum](https://community.linea.build/)
 - [X](https://x.com/LineaBuild)
@@ -25,21 +25,27 @@ itself is published at [`docs.linea.build`](https://docs.linea.build/).
 
 ## What this repo documents
 
-This repository documents **Linea**, the layer 2 network, brand, token, and governance. It is distinct from
-**Lineth**, the open-source stack and protocol that powers Linea, which is documented in the
-[LFDT-Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs). For the full distinction,
-see [Linea vs Lineth](https://docs.linea.build/protocol/linea-vs-lineth).
+This repository is the source for docs.linea.build, which documents **both** Linea and Lineth:
 
-The site is organized into four documentation tabs plus a changelog. Each maps to a top-level directory under
+- **Linea** is the public, permissionless zkEVM Layer 2 network, along with its brand, token, tokenomics, and
+  governance.
+- **Lineth (formerly the Linea Stack)** is the open-source ZK-rollup stack and technical protocol that powers
+  Linea Mainnet and other networks built on it.
+
+Linea Mainnet is built on Lineth. For the authoritative distinction, see
+[Linea and Lineth](https://docs.linea.build/protocol/linea-vs-lineth). The Lineth source code lives in the
+[LFDT-Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo).
+
+The site is organized into four documentation tabs plus a changelog, each mapping to a top-level directory under
 `docs/`:
 
-| Tab | Subject | Audience | Directory |
+| Tab | Documents | Audience | Directory |
 | --- | --- | --- | --- |
-| Public network | Linea | Users and app builders working on Linea mainnet and testnet | `docs/network` |
-| Protocol | Linea | Readers who want to understand how Linea works (zero-knowledge, prover, architecture) | `docs/protocol` |
-| Stack | Lineth | Teams running or operating the Lineth stack that powers Linea | `docs/stack` |
-| APIs & SDK | Linea | Developers integrating via the APIs, SDK, and smart contracts | `docs/api` |
-| Changelog | Linea | Release notes and the security council record | `docs/changelog` |
+| Public network (Linea Mainnet) | Linea | Users and app builders transacting on and building for Linea Mainnet and Sepolia | `docs/network` |
+| Protocol | Lineth | Readers learning how the Lineth protocol works (zero-knowledge proofs, prover, architecture, contracts) | `docs/protocol` |
+| Stack | Lineth | Operators deploying and running their own networks on Lineth | `docs/stack` |
+| APIs & SDK | Linea | Developers using the Linea JSON-RPC API, smart contract reference, Linea SDK, and Token API | `docs/api` |
+| Changelog | Linea and Lineth | Releases, upgrades, and tooling updates across the Lineth stack and protocol and the Linea network, plus the Linea Security Council record | `docs/changelog` |
 
 ## Repository structure
 
@@ -47,12 +53,12 @@ The directories you are most likely to touch:
 
 ```
 doc.linea/
-├── docs/                # Documentation content (.mdx)
-│   ├── network/         # Public network tab
-│   ├── protocol/        # Protocol tab (includes linea-vs-lineth.mdx and the ZK glossary)
-│   ├── stack/           # Stack tab (the Lineth stack)
-│   ├── api/             # APIs & SDK tab (linea-smart-contracts/ is auto-generated, don't edit)
-│   └── changelog/       # Release notes and security council record
+├── docs/                # Documentation content (.mdx) for both Linea and Lineth
+│   ├── network/         # Public network (Linea Mainnet) tab: Linea
+│   ├── protocol/        # Protocol tab: the Lineth protocol (includes linea-vs-lineth.mdx and the ZK glossary)
+│   ├── stack/           # Stack tab: Lineth (the open-source stack operators deploy)
+│   ├── api/             # APIs & SDK tab: Linea (linea-smart-contracts/ is auto-generated, don't edit)
+│   └── changelog/       # Releases across Lineth and the Linea network, plus the security council record
 ├── static/img/          # Images and SVGs, mirroring the docs/ structure
 └── src/                 # Site components, theme, and CSS (see "Working with AI agents")
 ```
