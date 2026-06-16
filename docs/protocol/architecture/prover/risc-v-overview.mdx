@@ -1,0 +1,84 @@
+---
+title: RISC-V proving architecture
+description: How RISC-V can support guest-program-based proving in Lineth.
+sidebar_position: 1
+image: /img/socialCards/risc-v-proving-architecture.jpg
+---
+
+Lineth (formerly the Linea Stack) is evolving toward a RISC-V-based proving architecture. In this
+proving context, RISC-V is the execution target for guest programs: programs that define the
+computation the protocol needs to prove. Instead of representing every proving task only through
+bespoke constraints and circuits, a guest program can be compiled to RISC-V, executed in the Lineth
+proving system, and composed into the broader proof-generation flow.
+
+## Why RISC-V matters for proving
+
+RISC-V is an open instruction-set architecture. In a proving system, it can provide a common
+execution target for programs that need to be proven.
+
+Using RISC-V as a proving target lets Lineth move toward a model where proof logic is represented as
+guest programs. A guest program defines the computation to prove, compiles to RISC-V, and runs inside
+the Lineth proving system, which can produce a proof for that computation.
+
+This creates a clearer architectural boundary between the program being proven and the Lineth
+proving system that executes and proves it.
+
+That boundary matters for Ethereum compatibility. Ethereum EVM upgrades and forks can change the
+execution behavior the protocol needs to prove. With a RISC-V guest-program model, guest programs can
+encode those execution-rule changes in program logic, which can make backward compatibility and EVM
+upgrade support easier than reshaping broad parts of bespoke proving constraints or circuits for each
+EVM change.
+
+## What RISC-V enables
+
+RISC-V gives Lineth a common proving target for computation that needs to be verified. This supports:
+
+- a more general architecture for expressing proof programs;
+- easier backward compatibility and adaptation to Ethereum EVM upgrades and forks through
+  guest-program logic;
+- a path to evolve proving logic without tying every change to a single bespoke circuit shape;
+- future optionality for proving programs outside EVM execution, without making that a current public
+  product commitment;
+- composition into the broader proof-generation flow.
+
+## Relationship to the prover
+
+The [prover](./index.mdx) generates the proofs that support protocol correctness guarantees.
+The current proof-generation path is organized around execution proofs, compression proofs,
+aggregation proofs, [trace expansion](./trace-expansion.mdx), and
+[circuit execution and runtime](./proving.mdx).
+
+The RISC-V architecture is a proving-system evolution within that same protocol role. It is designed
+to change the proving target and the way proof-generating programs are represented, while preserving
+the prover's high-level purpose: producing proofs that let the network verify state transitions. The
+[coordinator](../coordinator.mdx) still orchestrates proof generation and finality submission
+according to the network's deployment model.
+
+RISC-V is therefore best understood as part of the prover architecture, not as a standalone
+deployment model or access-control feature.
+
+## High-level flow
+
+At a high level, the planned RISC-V proving architecture follows this flow:
+
+1. A guest program defines the computation that must be proven, such as EVM execution logic.
+2. The guest program is compiled to RISC-V.
+3. The Lineth proving system executes the RISC-V program and produces a proof for that computation.
+4. Proofs can be composed into the broader proof-generation flow.
+5. The [coordinator](../coordinator.mdx) submits the resulting proof data to the finalization layer
+   according to the network's deployment model.
+
+At the protocol level, Lineth still proves that state transitions are valid and finalizes those proofs
+through the configured finalization layer.
+
+## Status
+
+RISC-V is not used in production on Linea Mainnet today. It is planned for a future proving
+architecture upgrade.
+
+## Related pages
+
+- [Prover](./index.mdx)
+- [Trace expansion](./trace-expansion.mdx)
+- [Circuit execution and runtime](./proving.mdx)
+- [Module limits](./prover-limits.mdx)

@@ -1,0 +1,53 @@
+---
+title: Linea and Lineth
+description: >-
+  How the public Linea network relates to Lineth, the open-source rollup stack
+  that powers it.
+image: /img/socialCards/linea-and-lineth.jpg
+---
+
+**Linea Mainnet is built on Lineth.** The names are related but distinct: **Linea** is the public network, brand, token, and governance context, and **Lineth** is the technical stack and protocol that powers it. This page states the distinction once, authoritatively, so the rest of the documentation can use each name precisely.
+
+## What is Linea
+
+**Linea** is the public, permissionless zkEVM Layer 2 network that scales Ethereum, along with its brand, token, tokenomics, and governance:
+
+- **Linea Mainnet** and **Linea Sepolia**: the public network and its testnet.
+- The **Linea** brand, the **Linea Consortium** that governs the **Linea Protocol**, and user- and developer-facing products such as the **Linea SDK**.
+
+When the documentation means the network you transact on, the product, or its governance, it says **Linea**.
+
+## What is Lineth
+
+**Lineth (formerly the Linea Stack)** is the open-source ZK-rollup stack, codebase, and technical protocol: the protocol components, onchain contracts, and operational tooling that operators deploy. It applies to all chains built on it. It is an incubating project at [LF Decentralized Trust (LFDT)](https://www.lfdecentralizedtrust.org/), where the open-source Linea Stack was contributed and renamed Lineth.
+
+When the documentation means the technical stack, protocol, codebase, deployable components, or the LFDT project, it says **Lineth**.
+
+## How they relate
+
+Linea Mainnet is built on Lineth.
+
+Lineth is both:
+
+- The **foundation of Linea Mainnet**.
+- A **stack operators can deploy** to launch their own Ethereum-compatible networks (Layer 2 or Layer 3), with configurable privacy, data availability, and finalization, while inheriting zero-knowledge security guarantees and Ethereum compatibility.
+
+A network an operator builds with Lineth is its own Ethereum-compatible network, not the public Linea network.
+
+:::note
+
+This mirrors the [LFDT naming model](https://github.com/LF-Decentralized-Trust/wiki/wiki/Naming-Guidelines#sub-project-naming-guidelines): the public network keeps its established name (Linea), while the donated open-source code project takes a distinct name (Lineth), following the same pattern as Hedera (network) and Hiero (LFDT project).
+
+:::
+
+## When each name applies
+
+- **Linea**: Linea Mainnet-specific brand, token, tokenomics, Linea Consortium, Linea Mainnet, Linea Sepolia, Linea SDK.
+- **Lineth**: the technical stack and protocol, including the open-source rollup stack, codebase, components, clients, contracts, tooling, LFDT project, and all chains built on it.
+
+On first reference within a page, the stack is introduced as **"Lineth (formerly the Linea Stack)"**, then **Lineth** thereafter.
+
+## Next steps
+
+- Read the [Linea network overview](../network/overview/index.mdx).
+- Explore [Lineth](../stack/index.mdx), the open-source stack.
