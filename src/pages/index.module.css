@@ -119,14 +119,19 @@
   text-align: center;
 }
 
+/* The global `a:not(...)` reset in base.css colors links via
+   --linea-link-highlight-color, and PostCSS expands its :not() list into a
+   chained selector whose specificity can't be beaten naturally. Override the
+   token locally instead so the global rule resolves to cyan on the
+   always-navy hero in both themes (no !important needed). */
 .subtitle .subtitleLink {
-  color: var(--linea-brand-cyan);
-  text-decoration: none;
+  --linea-link-highlight-color: var(--linea-brand-cyan);
+  font-weight: 700;
   transition: color 0.3s ease;
 }
 
 .subtitle .subtitleLink:hover {
-  color: #f8f7f2;
+  --linea-link-highlight-color: var(--linea-white);
 }
 
 @media (max-width: 1250px) {
