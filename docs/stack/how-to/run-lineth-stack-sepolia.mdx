@@ -72,18 +72,18 @@ Before using Sepolia mode, check current Sepolia gas conditions in your RPC
 provider or explorer. The quickstart currently requires at least 2 ETH on the
 generated deployer; 3 ETH gives more room during Sepolia congestion.
 
-The Linea prover image is `linux/amd64` only. On Apple Silicon, keep
+The Lineth prover image is `linux/amd64` only. On Apple Silicon, keep
 `PROVER_DEV_OVERRIDE=true` for normal testing and demos. Partial proving is
 much slower on M-series machines.
 
 ## Configure Sepolia mode
 
-Clone the [Linea monorepo](https://github.com/Consensys/linea-monorepo), then
+Clone the [Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo), then
 run:
 
 ```bash
-git clone https://github.com/Consensys/linea-monorepo.git
-cd linea-monorepo/docs/getting-started/linea-stack
+git clone https://github.com/LFDT-Lineth/lineth-monorepo.git
+cd lineth-monorepo/docs/getting-started/lineth-stack
 cp .env.example .env
 $EDITOR .env
 ```
