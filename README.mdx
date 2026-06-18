@@ -1,7 +1,8 @@
 # Linea documentation
 
-Source for [`docs.linea.build`](https://docs.linea.build/), the official Linea documentation site. The site is
-built with [Docusaurus](https://docusaurus.io/) v3 and deployed on Vercel.
+Source for [`docs.linea.build`](https://docs.linea.build/), the official Linea
+documentation site. The site is built with [Docusaurus](https://docusaurus.io/)
+v3 and deployed on Vercel.
 
 ## Quick links
 
@@ -16,36 +17,42 @@ built with [Docusaurus](https://docusaurus.io/) v3 and deployed on Vercel.
 
 ## What is Linea?
 
-[Linea](https://linea.build/) is a developer-ready layer 2 network, scaling Ethereum by providing
-an Ethereum-equivalent environment in which to execute transactions, which are then submitted to
-Ethereum Mainnet through a zero-knowledge rollup.
+[Linea](https://linea.build/) is a developer-ready layer 2 network, scaling
+Ethereum by providing an Ethereum-equivalent environment in which to execute
+transactions, which are then submitted to Ethereum Mainnet through a
+zero-knowledge rollup.
 
-This documentation repository is built using [Docusaurus](https://docusaurus.io/), and the site
-itself is published at [`docs.linea.build`](https://docs.linea.build/).
+This documentation repository is built using
+[Docusaurus](https://docusaurus.io/), and the site itself is published at
+[`docs.linea.build`](https://docs.linea.build/).
 
 ## What this repo documents
 
-This repository is the source for docs.linea.build, which documents **both** Linea and Lineth:
+This repository is the source for docs.linea.build, which documents **both**
+Linea and Lineth:
 
-- **Linea** is the public, permissionless zkEVM Layer 2 network, along with its brand, token, tokenomics, and
-  governance.
-- **Lineth (formerly the Linea Stack)** is the open-source ZK-rollup stack and technical protocol that powers
-  Linea Mainnet and other networks built on it. Lineth is an enterprise-grade EVM layer 2 framework for developing public, permissioned or private networks.
+- **Linea** is the public, permissionless zkEVM Layer 2 network, along with its
+  brand, token, tokenomics, and governance.
+- **Lineth (formerly the Linea Stack)** is the open-source ZK-rollup stack and
+  technical protocol that powers Linea Mainnet and other networks built on it.
+  Lineth is an enterprise-grade EVM layer 2 framework for developing public,
+  permissioned or private networks.
 
 Linea Mainnet is built on Lineth. For the authoritative distinction, see
-[Linea and Lineth](https://docs.linea.build/protocol/linea-vs-lineth). The Lineth source code lives in the
+[Linea and Lineth](https://docs.linea.build/protocol/linea-vs-lineth). The
+Lineth source code lives in the
 [LFDT-Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo).
 
-The site is organized into four documentation tabs plus a changelog, each mapping to a top-level directory under
-`docs/`:
+The site is organized into four documentation tabs plus a changelog, each
+mapping to a top-level directory under `docs/`:
 
-| Tab | Documents | Audience | Directory |
-| --- | --- | --- | --- |
-| Public network (Linea Mainnet) | Linea | Users and app builders transacting on and building for Linea Mainnet and Sepolia | `docs/network` |
-| Protocol | Lineth | Readers learning how the Lineth protocol works (zero-knowledge proofs, prover, architecture, contracts) | `docs/protocol` |
-| Stack | Lineth | Operators deploying and running their own networks on Lineth | `docs/stack` |
-| APIs & SDK | Linea | Developers using the Linea JSON-RPC API, smart contract reference, Linea SDK, and Token API | `docs/api` |
-| Changelog | Linea and Lineth | Releases, upgrades, and tooling updates across the Lineth stack and protocol and the Linea network, plus the Linea Security Council record | `docs/changelog` |
+| Tab                            | Documents        | Audience                                                                                                                                   | Directory        |
+| ------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| Public network (Linea Mainnet) | Linea            | Users and app builders transacting on and building for Linea Mainnet and Sepolia                                                           | `docs/network`   |
+| Protocol                       | Lineth           | Readers learning how the Lineth protocol works (zero-knowledge proofs, prover, architecture, contracts)                                    | `docs/protocol`  |
+| Stack                          | Lineth           | Operators deploying and running their own networks on Lineth                                                                               | `docs/stack`     |
+| APIs & SDK                     | Linea            | Developers using the Linea JSON-RPC API, smart contract reference, Linea SDK, and Token API                                                | `docs/api`       |
+| Changelog                      | Linea and Lineth | Releases, upgrades, and tooling updates across the Lineth stack and protocol and the Linea network, plus the Linea Security Council record | `docs/changelog` |
 
 ## Repository structure
 
@@ -53,7 +60,7 @@ The directories you are most likely to touch:
 
 ```
 doc.linea/
-├── docs/                
+├── docs/
 │   ├── network/         # Public network (Linea Mainnet)
 │   ├── protocol/        # Protocol tab: the Lineth protocol (includes linea-vs-lineth.mdx and the ZK glossary)
 │   ├── stack/           # Stack tab: Lineth (the open-source stack operators deploy)
@@ -63,22 +70,25 @@ doc.linea/
 └── src/                 # Site components, theme, and CSS (see "Working with AI agents")
 ```
 
-Build configuration, the `scripts/` codegen helpers (social cards, categories, the `llms.txt` pipeline), the
-`api/` Vercel serverless functions (the docs feedback endpoint), `sidebars.js`, `redirects.json`, `vercel.json`,
-and the agent tooling (`AGENTS.md`, `.cursor/rules/`) all live at the repo root.
+Build configuration, the `scripts/` codegen helpers (social cards, categories,
+the `llms.txt` pipeline), the `api/` Vercel serverless functions (the docs
+feedback endpoint), `sidebars.js`, `redirects.json`, `vercel.json`, and the
+agent tooling (`AGENTS.md`, `.cursor/rules/`) all live at the repo root.
 
 ## Requirements
 
 - **Node.js `24.14.1`** (pinned in `.nvmrc` and `engines` in `package.json`).
 - **npm** as the package manager.
 
-It is highly recommended that you use a tool like [`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
-to manage Node.js versions. From the root of the project, run `nvm install` followed by `nvm use` to install and
-select the version specified in `.nvmrc`.
+It is highly recommended that you use a tool like
+[`nvm`](https://github.com/nvm-sh/nvm#installing-and-updating) to manage Node.js
+versions. From the root of the project, run `nvm install` followed by `nvm use`
+to install and select the version specified in `.nvmrc`.
 
 ## Running locally
 
-You need Node.js installed to run live previews of the docs locally. See [Requirements](#requirements) above.
+You need Node.js installed to run live previews of the docs locally. See
+[Requirements](#requirements) above.
 
 1. Install dependencies (only needed once, or when dependencies change):
 
@@ -99,50 +109,59 @@ You need Node.js installed to run live previews of the docs locally. See [Requir
    npm run serve
    ```
 
-   `npm run build` generates static content into the `build` directory, which can be served by any static host.
+   `npm run build` generates static content into the `build` directory, which
+   can be served by any static host.
 
-If you hit stale cache or build issues, `npm run clear` clears the Docusaurus cache, and `npm run clean-slate`
-performs a fuller reset.
+If you hit stale cache or build issues, `npm run clear` clears the Docusaurus
+cache, and `npm run clean-slate` performs a fuller reset.
 
 ## Common commands
 
-| Command | Description |
-| --- | --- |
-| `npm run start` | Start the local dev server with hot reload |
-| `npm run build` | Build the static site into `build/` |
-| `npm run serve` | Serve a local production build |
-| `npm run clear` | Clear the Docusaurus cache |
-| `npm run clean-slate` | Full local reset |
-| `npm run lint` | Run all linters (`lint:js` + `lint:style`) |
-| `npm run lint:js` | Lint JavaScript and TypeScript with ESLint (`lint:js:fix` to autofix) |
-| `npm run lint:style` | Lint CSS with Stylelint (`lint:style:fix` to autofix) |
-| `npm run format` | Format files with Prettier |
-| `npm run typecheck` | Type-check with TypeScript |
-| `npm run agent-docs:check` | Validate the generated agent / LLM docs |
-| `npm run agent-docs:verify-preview` | Verify agent docs against a preview deployment |
-| `npm run agent-docs:test` | Run the agent-docs script tests |
+| Command                             | Description                                                           |
+| ----------------------------------- | --------------------------------------------------------------------- |
+| `npm run start`                     | Start the local dev server with hot reload                            |
+| `npm run build`                     | Build the static site into `build/`                                   |
+| `npm run serve`                     | Serve a local production build                                        |
+| `npm run clear`                     | Clear the Docusaurus cache                                            |
+| `npm run clean-slate`               | Full local reset                                                      |
+| `npm run lint`                      | Run all linters (`lint:js` + `lint:style`)                            |
+| `npm run lint:js`                   | Lint JavaScript and TypeScript with ESLint (`lint:js:fix` to autofix) |
+| `npm run lint:style`                | Lint CSS with Stylelint (`lint:style:fix` to autofix)                 |
+| `npm run format`                    | Format files with Prettier                                            |
+| `npm run typecheck`                 | Type-check with TypeScript                                            |
+| `npm run agent-docs:check`          | Validate the generated agent / LLM docs                               |
+| `npm run agent-docs:verify-preview` | Verify agent docs against a preview deployment                        |
+| `npm run agent-docs:test`           | Run the agent-docs script tests                                       |
 
 ## Writing conventions
 
-This documentation applies the [Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
-other than for images and other media, for which we have [specific guidelines](#adding-images).
+This documentation applies the
+[Consensys style guide](https://docs-template.consensys.net/contribute/style-guide),
+other than for images and other media, for which we have
+[specific guidelines](#adding-images).
 
 ### Orthography
 
-- Use sentence case for all headings and subheadings. More generally, and if in doubt, stick to lowercase for
-  nouns unless you are referencing a product name or feature.
-- Use [descriptive link text](https://developers.google.com/style/link-text?hl=en): embed the link in your
-  statement rather than asking the reader to "click here" or similar.
+- Use sentence case for all headings and subheadings. More generally, and if in
+  doubt, stick to lowercase for nouns unless you are referencing a product name
+  or feature.
+- Use
+  [descriptive link text](https://developers.google.com/style/link-text?hl=en):
+  embed the link in your statement rather than asking the reader to "click here"
+  or similar.
 
 ### Markdown style
 
-- **Use `.mdx` files.** The docs site is standardized on `.mdx` rather than `.md` so that React components and
-  other elements render properly.
-- **Use HTML-like formatting** rather than traditional Markdown formatting. For example, create a `<table>`
-  rather than using the Markdown syntax with dashes and vertical lines. In many cases HTML syntax is easier to
-  maintain, and some elements we frequently use, such as `<Tabs>`, _must_ use HTML syntax, so applying HTML
-  universally helps avoid a mix of both styles.
-- Use YAML front matter at the top of each file (check existing files for an example):
+- **Use `.mdx` files.** The docs site is standardized on `.mdx` rather than
+  `.md` so that React components and other elements render properly.
+- **Use HTML-like formatting** in docs content rather than traditional Markdown
+  formatting. For example, create a `<table>` rather than using the Markdown
+  syntax with dashes and vertical lines. In many cases HTML syntax is easier to
+  maintain, and some elements we frequently use, such as `<Tabs>`, _must_ use
+  HTML syntax, so applying HTML universally helps avoid a mix of both styles.
+  (This rule applies to the `.mdx` pages under `docs/`, not to this README.)
+- Use YAML front matter at the top of each file (check existing files for an
+  example):
 
   ```
   ---
@@ -151,22 +170,23 @@ other than for images and other media, for which we have [specific guidelines](#
   ---
   ```
 
-  > [!TIP]
   > You may notice a field in the front matter called `image`, like
-  > `image: /img/socialCards/architecture.jpg`. **This field is auto-generated on build, so don't add it
-  > manually.**
+  > `image: /img/socialCards/architecture.jpg`. **This field is auto-generated
+  > on build, so don't add it manually.**
 
 - Link to other docs pages with site-relative paths and no `.mdx` extension.
-- When you move or rename a page, add an entry to `redirects.json` so existing links keep working.
+- When you move or rename a page, add an entry to `redirects.json` so existing
+  links keep working.
 
-> [!NOTE]
-> The files at `api/linea-smart-contracts` are automatically generated, and should not be edited.
+> The files at `docs/api/linea-smart-contracts` are automatically generated, and
+> should not be edited.
 
 ### Adding images
 
-Any images for articles should be added to the `/static/img/` directory. Here, the `/img` folder structure
-mirrors that of the docs, and images are stored in the corresponding subdirectory. If you have added a _new_
-article in `/docs`, create the new subdirectory in `/img` according to this structure.
+Any images for articles should be added to the `/static/img/` directory. Here,
+the `/img` folder structure mirrors that of the docs, and images are stored in
+the corresponding subdirectory. If you have added a _new_ article in `/docs`,
+create the new subdirectory in `/img` according to this structure.
 
 Use the following JSX formatting to add an image into an article:
 
@@ -181,41 +201,53 @@ Use the following JSX formatting to add an image into an article:
 </div>
 ```
 
-To adjust the display size of the image, change the size class to one of: `img-xsmall`, `img-small`,
-`img-medium`, `img-large`. Adhere to these predefined sizings where possible.
+To adjust the display size of the image, change the size class to one of:
+`img-xsmall`, `img-small`, `img-medium`, `img-large`. Adhere to these predefined
+sizings where possible.
 
-For SVG files, place the import statement at the top of the file, beneath the front matter:
+For SVG files, place the import statement at the top of the file, beneath the
+front matter:
 
 ```
 import MySVGGraphic from "/img/path-to-file/image.svg";
 ```
+
 ```
 <div className="img-large">
   <MySVGGraphic />
 </div>
 ```
 
-As above, you can adjust the display size of the SVG by changing the class applied.
+As above, you can adjust the display size of the SVG by changing the class
+applied.
 
-A social card for any new article will be generated and applied when the site builds, so there is no need to
-manually create or add one.
+A social card for any new article will be generated and applied when the site
+builds, so there is no need to manually create or add one.
 
 ### Contribute to the Zero-Knowledge glossary
 
-Diving into zero-knowledge rollups and getting stumped by the technical jargon? We maintain an open source
-Zero-Knowledge glossary to define common terms you might encounter in the L2 landscape.
+Diving into zero-knowledge rollups and getting stumped by the technical jargon?
+We maintain an open source Zero-Knowledge glossary to define common terms you
+might encounter in the L2 landscape.
 
-[Fork our repo](https://github.com/Consensys/doc.linea/fork) and add a term in alphabetical order to
-`docs/protocol/reference/zero-knowledge-glossary.mdx`. Then make a pull request and tag us for review.
+[Fork our repo](https://github.com/Consensys/doc.linea/fork) and add a term in
+alphabetical order to `docs/protocol/reference/zero-knowledge-glossary.mdx`.
+Then make a pull request and tag us for review.
 
 ### Additional resources
 
-View the [Consensys doc contribution guidelines](https://docs-template.consensys.net/) for information on how to:
+View the
+[Consensys doc contribution guidelines](https://docs-template.consensys.net/)
+for information on how to:
 
-- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution) using forks and pull requests.
-- Consult the [documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
-- [Format your Markdown](https://docs-template.consensys.net/contribute/format-markdown) correctly.
-- [Preview the docs](https://docs-template.consensys.net/contribute/preview) locally.
+- [Submit a contribution](https://docs-template.consensys.net/contribute/submit-a-contribution)
+  using forks and pull requests.
+- Consult the
+  [documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
+- [Format your Markdown](https://docs-template.consensys.net/contribute/format-markdown)
+  correctly.
+- [Preview the docs](https://docs-template.consensys.net/contribute/preview)
+  locally.
 
 ## Quality checks before pushing
 
@@ -227,117 +259,142 @@ npm run lint:style  # CSS only
 npm run typecheck   # TypeScript
 ```
 
-Spelling and style (Vale) and link checking run automatically in CI on your PR. The main linter, Vale, checks
-spelling, formatting, and adherence to various style guides. Please pay attention to its suggestions and
-warnings: these will not prevent your PR from building, but you should address them nevertheless. See our
-[guidance on using Vale](https://docs-template.consensys.net/contribute/run-vale) for more information.
+Spelling and style (Vale) and link checking run automatically in CI on your PR.
+The main linter, Vale, checks spelling, formatting, and adherence to various
+style guides. Please pay attention to its suggestions and warnings: these will
+not prevent your PR from building, but you should address them nevertheless. See
+our
+[guidance on using Vale](https://docs-template.consensys.net/contribute/run-vale)
+for more information.
 
 ## Continuous integration
 
 The following GitHub Actions workflows run on pull requests:
 
-| Workflow | Trigger | Description |
-| --- | --- | --- |
-| `build` | PR and push to `main` | Builds the Docusaurus site |
-| `lint` | PR to `main` | Runs ESLint and Stylelint |
-| `spelling` | PR to `main` | Vale spelling and style check (advisory, won't block the build) |
-| `links` | PR to `main` | Link checking with linkspector |
-| `case` | PR to `main` (on `docs/**`) | Enforces filename and casing conventions |
-| `nightly` | Daily schedule and manual dispatch | Scheduled checks |
-| `security-code-scanner` | PR and push to `main` | Security code scanning |
+| Workflow                | Trigger                            | Description                                                     |
+| ----------------------- | ---------------------------------- | --------------------------------------------------------------- |
+| `build`                 | PR and push to `main`              | Builds the Docusaurus site                                      |
+| `lint`                  | PR to `main`                       | Runs ESLint and Stylelint                                       |
+| `spelling`              | PR to `main`                       | Vale spelling and style check (advisory, won't block the build) |
+| `links`                 | PR to `main`                       | Link checking with Linkspector                                  |
+| `case`                  | PR to `main` (on `docs/**`)        | Enforces filename and casing conventions                        |
+| `nightly`               | Daily schedule and manual dispatch | Scheduled checks                                                |
+| `security-code-scanner` | PR and push to `main`              | Security code scanning                                          |
 
 ## Commit conventions
 
-This repo follows [Conventional Commits](https://www.conventionalcommits.org/). Use a standard type and a short,
-imperative description, for example:
+This repo follows [Conventional Commits](https://www.conventionalcommits.org/).
+Use a standard type and a short, imperative description, for example:
 
 ```
 docs: clarify bridging guide
 ```
 
-The repo configures `commitlint` (`@commitlint/config-conventional`, standard types) and uses `lint-staged` with
-Prettier for formatting. Run `npm run lint` and `npm run format` locally before pushing so your changes are clean.
-Published release notes live as documentation content under `docs/changelog`.
+The repo configures `commitlint` (`@commitlint/config-conventional`, standard
+types) and uses `lint-staged` with Prettier for formatting. Run `npm run lint`
+and `npm run format` locally before pushing so your changes are clean. Published
+release notes live as documentation content under `docs/changelog`.
 
 ## Deployment and previews
 
 The site is deployed on Vercel:
 
-- Every pull request gets a unique Vercel preview URL so you can review your changes in context.
+- Every pull request gets a unique Vercel preview URL so you can review your
+  changes in context.
 - Production deploys automatically from the `main` branch.
 
 ## Working with AI agents
 
-If you change anything under `src/` (React components, swizzled theme, or CSS), follow the rules in
-[`AGENTS.md`](AGENTS.md) at the repo root. It is the canonical guidance for AI coding agents and human
-contributors alike, and covers:
+If you change anything under `src/` (React components, swizzled theme, or CSS),
+follow the rules in [`AGENTS.md`](AGENTS.md) at the repo root. It is the
+canonical guidance for AI coding agents and human contributors alike, and
+covers:
 
-- **CSS architecture**: `src/css/custom.css` is an import-only entry point; styles live in ordered layer files
-  (tokens, fonts, base, utilities, Docusaurus overrides, vendor overrides), with component styles in co-located
-  CSS Modules.
-- **Design tokens**: always use the `var(--linea-*)` tokens in `src/css/tokens.css`; never hardcode brand hex
-  values.
+- **CSS architecture**: `src/css/custom.css` is an import-only entry point;
+  styles live in ordered layer files (tokens, fonts, base, utilities, Docusaurus
+  overrides, vendor overrides), with component styles in co-located CSS Modules.
+- **Design tokens**: always use the `var(--linea-*)` tokens in
+  `src/css/tokens.css`; never hardcode brand hex values.
 - **Forbidden patterns** and selector guidelines for Docusaurus overrides.
-- **Release notes data model**: `docs/changelog/release-notes.mdx` uses a `release_toc` front matter map as the
-  single source of truth for dates and TOC metadata.
-- **Visual verification**: how to check affected pages in light and dark mode, at desktop and mobile, after any
-  CSS change.
+- **Release notes data model**: `docs/changelog/release-notes.mdx` uses a
+  `release_toc` front matter map as the single source of truth for dates and TOC
+  metadata.
+- **Visual verification**: how to check affected pages in light and dark mode,
+  at desktop and mobile, after any CSS change.
 
-Editor-specific mirrors of these rules live in `.cursor/rules/` (for Cursor) and `.agents/skills/` (packaged
-agent skills).
+Editor-specific mirrors of these rules live in `.cursor/rules/` (for Cursor) and
+`.agents/skills/` (packaged agent skills).
 
 ### Machine-readable docs (`llms.txt`)
 
-Separately from the rules above, the site publishes a machine-readable copy of itself for LLM consumers. On
-build, the `postbuild` step (`scripts/agent-docs/generate.js`) emits an `llms.txt` index and a Markdown version
-of each route. Vercel serves these via content negotiation: a request with an `Accept: text/markdown` header
-receives the Markdown variant of a page rather than HTML. The `llms.txt` file and a `/.well-known/api-catalog`
-are advertised through response `Link` headers (see `vercel.json`).
+Separately from the rules above, the site publishes a machine-readable copy of
+itself for LLM consumers. On build, the `postbuild` step
+(`scripts/agent-docs/generate.js`) emits an `llms.txt` index and a Markdown
+version of each route. Vercel serves these via content negotiation: a request
+with an `Accept: text/markdown` header receives the Markdown variant of a page
+rather than HTML. The `llms.txt` file and a `/.well-known/api-catalog` are
+advertised through response `Link` headers (see `vercel.json`).
 
-Validate this pipeline locally with `npm run agent-docs:check` and `npm run agent-docs:verify-preview`.
+Validate this pipeline locally with `npm run agent-docs:check` and
+`npm run agent-docs:verify-preview`.
 
 ## Contributing
 
 See something missing? Error in our documentation?
 [Create an issue](https://github.com/Consensys/doc.linea/issues).
 
-Alternatively, help us improve our documentation. [Fork our repo](https://github.com/Consensys/doc.linea/fork),
-create a pull request, and tag us for review. You can also get in touch via the
+Alternatively, help us improve our documentation.
+[Fork our repo](https://github.com/Consensys/doc.linea/fork), create a pull
+request, and tag us for review. You can also get in touch via the
 [community forum](https://community.linea.build/) or [Linea Support](/support).
 
 Please follow these steps to contribute:
 
-1. Make an issue describing the change you wish to make _before_ you start working on it, and
+1. Make an issue describing the change you wish to make _before_ you start
+   working on it, and
    [link to it in your pull request](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
-   We provide issue templates for [bug reports](.github/ISSUE_TEMPLATE/bug-report.yml),
+   We provide issue templates for
+   [bug reports](.github/ISSUE_TEMPLATE/bug-report.yml),
    [enhancements](.github/ISSUE_TEMPLATE/enhancement.yml), and
    [partner contributions](.github/ISSUE_TEMPLATE/partner-contribution.yml).
-   > This is particularly important if you are an ecosystem contributor: submitting your details in an
-   > issue first makes it much easier for our docs team to process your contributions.
-2. [Fork our repo](https://github.com/Consensys/doc.linea/fork) so that you are able to work on it.
-3. Make your changes, paying attention to our [writing conventions](#writing-conventions).
-4. Review your changes locally. See the [guide on running locally](#running-locally).
-5. Submit your changes as a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+   > This is particularly important if you are an ecosystem contributor:
+   > submitting your details in an issue first makes it much easier for our docs
+   > team to process your contributions.
+2. [Fork our repo](https://github.com/Consensys/doc.linea/fork) so that you are
+   able to work on it.
+3. Make your changes, paying attention to our
+   [writing conventions](#writing-conventions).
+4. Review your changes locally. See the
+   [guide on running locally](#running-locally).
+5. Submit your changes as a
+   [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
    New pull requests are reviewed regularly.
 
-Our team will do our best to help you get the PR over the line, though we cannot guarantee our capacity. For this
-reason, please do not submit a PR if you think you'll be unable to address necessary changes, fix linter errors,
-or otherwise address feedback. If you're in this position, consider creating an issue instead.
+Our team will do our best to help you get the PR over the line, though we cannot
+guarantee our capacity. For this reason, please do not submit a PR if you think
+you'll be unable to address necessary changes, fix linter errors, or otherwise
+address feedback. If you're in this position, consider creating an issue
+instead.
 
-Please return to any submitted PRs regularly to help us work through feedback and merge as soon as we can. If you
-do not return to your PR for edits within three months of our reviewing, we will close the PR.
+Please return to any submitted PRs regularly to help us work through feedback
+and merge as soon as we can. If you do not return to your PR for edits within
+three months of our reviewing, we will close the PR.
 
 ### Guidance for ecosystem contributions
 
-By "ecosystem contributions", we mean contributions from projects in the Linea ecosystem, such as dapps,
-libraries, or tooling. If your submission is in this category, please keep the following guidelines in mind:
+By "ecosystem contributions", we mean contributions from projects in the Linea
+ecosystem, such as dapps, libraries, or tooling. If your submission is in this
+category, please keep the following guidelines in mind:
 
-- Your contribution should be informative above all; the docs are not a marketing tool for your project. We may
-  request edits to adjust your writing style if we feel it falls on the wrong side of this line. We encourage you
-  to write about your project's features and benefits, but please avoid superlatives or selling your project.
-- You are responsible for maintaining the information about your project. Out-of-date docs are an inconvenience
-  for users at best, or leave a negative impression of your project at worst. This includes keeping links to
-  external sites up-to-date and returning for updates as your project matures.
+- Your contribution should be informative above all; the docs are not a
+  marketing tool for your project. We may request edits to adjust your writing
+  style if we feel it falls on the wrong side of this line. We encourage you to
+  write about your project's features and benefits, but please avoid
+  superlatives or selling your project.
+- You are responsible for maintaining the information about your project.
+  Out-of-date docs are an inconvenience for users at best, or leave a negative
+  impression of your project at worst. This includes keeping links to external
+  sites up-to-date and returning for updates as your project matures.
 
 ## License
 
