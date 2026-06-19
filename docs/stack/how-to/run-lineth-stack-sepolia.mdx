@@ -1,8 +1,8 @@
 ---
 title: Run a local Lineth Stack
 description:
-  Start a local Lineth Stack L2 with either Sepolia L1 finality or local L1
-  finality.
+  Start a local Lineth Stack L2 with finality on either Sepolia L1 or a local
+  L1.
 sidebar_position: 0
 image: /img/socialCards/run-a-local-lineth-stack.jpg
 ---
@@ -55,6 +55,10 @@ rather than public Sepolia.
 
 Required for all modes. These are quickstart minimums for the monorepo stack:
 
+These requirements are quickstart guidance and may change as the Lineth Stack
+evolves. For the latest values, check the Lineth monorepo documentation before
+running the stack.
+
 | Requirement             | Minimum                                               |
 | ----------------------- | ----------------------------------------------------- |
 | Docker                  | v24+                                                  |
@@ -70,10 +74,6 @@ Required only for Sepolia mode:
 | ----------- | ------------------------------------------------- |
 | Sepolia RPC | HTTPS endpoint                                    |
 | Sepolia ETH | Enough for deployment and runtime account top-ups |
-
-These requirements are quickstart guidance and may change as the Lineth Stack
-evolves. For the latest values, check the Lineth monorepo documentation before
-running the stack.
 
 For the normal quickstart flow, you do not need host Node.js, pnpm, Foundry, or
 Gradle; the required tooling runs in Docker.
