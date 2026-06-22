@@ -1,40 +1,41 @@
 ---
-title: Linea repositories
+title: Source repositories
+description: Source repositories for Lineth, Linea Mainnet components, and supporting libraries.
 sidebar_position: 7
-image: /img/socialCards/linea-repositories.jpg
+image: /img/socialCards/source-repositories.jpg
 ---
 
 import DocCardList from "@theme/DocCardList";
 
-Linea is open source, meaning you can inspect the code yourself. 
+Lineth and Linea are open source, meaning you can inspect the code yourself.
 
-This page describes each repository that hosts the Linea software and its purpose.
+This page describes the source repositories for Lineth, Linea Mainnet components, and supporting libraries.
 
 ## [`lineth-monorepo`](https://github.com/LFDT-Lineth/lineth-monorepo)
 
-The principal Linea repository. This includes the:
+The primary Lineth repository. It includes the components that power Linea Mainnet and operator-built networks:
 
 - Coordinator: responsible for multiple orchestrations
-- Linea-Besu plugins: to support the sequencer, tracer, and RPC nodes
+- Linea Besu plugins: to support the sequencer, tracer, and RPC nodes
 - Postman: for executing cross-chain messages
 - Prover: in charge of generating ZK proofs
 - Sequencer: responsible for ordering, building, and executing blocks
-- Smart contracts: covering Linea's core functions
+- Smart contracts: covering rollup and message-service functions
 
-## [`linea-specification`](https://github.com/LFDT-Lineth/lineth-monorepo)
+## [`arithmetization`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/arithmetization)
 
-Specification of the constraint system underlying Linea's zkEVM.
+Specification and arithmetization of the constraint system underlying Lineth's zkEVM.
 
 Constraints are mathematical equations and a constraint system is a collection of such equations. 
-Linea's constraint system aims to capture the logic of valid EVM executions.
+Lineth's constraint system aims to capture the logic of valid EVM executions.
 
-The constraints specified here are implemented in the `linea-constraints` repo.
+The constraints specified here are implemented in the `tracer-constraints` directory.
 
-## [`linea-constraints`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer-constraints)
+## [`tracer-constraints`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer-constraints)
 
-Implementation of the constraint system specified in the `linea-specification` repo.
+Implementation of the constraint system specified in the `arithmetization` directory.
 
-Linea's constraint system applies to so-called "traces", which are large matrices of fixed width 
+Lineth's constraint system applies to so-called "traces", which are large matrices of fixed width
 (that is, a fixed number of columns or "registries") and variable depth (correlating with the complexity 
 of the EVM execution). The production of such traces is the job of the `linea-tracer` repo.
 
@@ -42,11 +43,11 @@ Constraints and traces are two of the inputs to the prover.
 
 ## [`linea-tracer`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer)
 
-Linea-Besu plugin which produces the traces that the constraint system applies and that serve as inputs to the prover.
+Linea Besu plugin which produces the traces that the constraint system applies and that serve as inputs to the prover.
 
 Tracing refers to the process of extracting data from the execution of an EVM client in order to 
 construct large matrices known as execution traces. Execution traces are subject to the constraint 
-system specified in the `linea-specification` repo and implemented in the `linea-constraints` repo.
+system specified in the `arithmetization` directory and implemented in the `tracer-constraints` directory.
 
 ## [`linea-besu-upstream`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/linea-besu)
 
@@ -59,12 +60,12 @@ As Linea is EVM-equivalent, it is compatible with
 
 ## [`gnark`](https://github.com/Consensys/gnark)
 
-Linea's zk-SNARK with a high-level API to design circuits and efficient cryptographic primitives.
+The proving library used for zk-SNARK circuits and efficient cryptographic primitives.
 
 ## [`shomei`](https://github.com/Consensys/shomei)
 
-A plugin that extends Besu's functionality by maintaining and updating Linea's state. 
+A state manager used by Lineth deployments to maintain and update network state.
 
 ## [`maru`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru)
 
-Linea's consensus layer client, implementing the QBFT consensus algorithm.
+Lineth's consensus layer client, implementing the QBFT consensus algorithm.
