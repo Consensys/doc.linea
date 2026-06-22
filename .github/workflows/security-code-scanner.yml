@@ -19,7 +19,7 @@ permissions: {}
 
 jobs:
   security-scan:
-    uses: MetaMask/action-security-code-scanner/.github/workflows/security-scan.yml@0a58c584f25e8c121927884b5e8a86e846090e5c
+    uses: MetaMask/action-security-code-scanner/.github/workflows/security-scan.yml@ff5edd492dfd4a70813066fe9f1552a2ac13766f
     permissions:
       actions: read
       contents: read
