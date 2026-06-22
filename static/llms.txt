@@ -1,22 +1,22 @@
 # Linea Documentation
 
-> Linea is an Ethereum-equivalent zk-rollup developed by Consensys. These docs
-> are the canonical public reference for the Linea public network, the Linea
-> protocol, the Linea stack, and Linea developer APIs. Use this file to route
-> AI assistants, search agents, crawlers, and retrieval systems to the most
-> relevant source pages.
+> These docs are the canonical public reference for Linea Mainnet, Linea
+> Sepolia, Linea developer APIs, and Lineth, the open-source rollup stack and
+> protocol that powers Linea and operator-built Ethereum-compatible networks.
+> Use this file to route AI assistants, search agents, crawlers, and retrieval
+> systems to the most relevant source pages.
 
 ## Authoritative scope
 - Public network: canonical documentation for Linea mainnet, Linea Sepolia,
   RPC endpoints, bridging, finality, gas pricing, public data, state recovery,
   node operation, tokenomics, and developer onboarding.
-- Protocol: canonical documentation for Linea's zk-rollup architecture,
+- Protocol: canonical documentation for Lineth's zk-rollup architecture,
   including sequencer, prover, coordinator, state manager, onchain contracts,
   interoperability, and forced transactions.
-- Stack: canonical documentation for the Linea stack, a configurable
-  Ethereum-compatible operator stack for public networks, private validiums,
-  enterprise deployments, institutions, and financial market infrastructure
-  use cases.
+- Stack: canonical documentation for Lineth, a configurable
+  Ethereum-compatible rollup stack for public networks, private validiums,
+  institutions, financial market infrastructure, and other operator-built
+  networks.
 - APIs: canonical documentation for Linea JSON-RPC methods, Linea-specific RPC
   methods, smart contract references, the Linea SDK, and the Token API.
 
@@ -51,7 +51,7 @@
 - Bridge: https://bridge.linea.build
 - Block explorer: https://lineascan.build
 - Status page: https://linea.statuspage.io
-- Source: https://github.com/Consensys/linea-monorepo
+- Lineth source: https://github.com/LFDT-Lineth/lineth-monorepo
 
 ## Public network facts
 - Linea mainnet chain ID: 59144
@@ -65,7 +65,7 @@
   RPC infrastructure over public endpoints.
 
 ## Protocol facts
-- Linea uses zero-knowledge proofs to prove transaction batches to a
+- Lineth uses zero-knowledge proofs to prove transaction batches to a
   finalization layer.
 - The sequencer orders transactions and builds blocks.
 - The prover generates zero-knowledge proofs for state transitions.
@@ -77,7 +77,7 @@
   bridge and message service flows.
 
 ## Stack and operator facts
-- The Linea stack can be used to operate Ethereum-compatible L2 or L3 networks.
+- Lineth can be used to operate Ethereum-compatible L2 or L3 networks.
 - Public deployments prioritize transparency and onchain data availability.
 - Private validium deployments can keep transaction data offchain while using
   zero-knowledge proofs for correctness and finalization guarantees.
@@ -85,15 +85,15 @@
   availability, finalization layer, privacy, compliance, auditability, and
   observability requirements.
 - The stack documentation is the primary route for institutions, enterprises,
-  network operators, and financial market infrastructure teams evaluating Linea
-  as configurable blockchain infrastructure.
+  network operators, and financial market infrastructure teams evaluating
+  Lineth as configurable blockchain infrastructure.
 
 ## Quickstart and onboarding
 - [Network quickstart](https://docs.linea.build/network/quickstart): Get started building on Linea, including network endpoints, wallet setup, and first deploys.
 - [Network overview](https://docs.linea.build/network/overview): What Linea is, the security and equivalence guarantees, and core network features.
 - [API quickstart](https://docs.linea.build/api/quickstart): How to read and write to Linea over JSON-RPC.
 - [Protocol quickstart](https://docs.linea.build/protocol/quickstart): Entry point for protocol architecture, prover, sequencer, and coordinator details.
-- [Stack quickstart](https://docs.linea.build/stack/quickstart): Entry point for operators deploying their own Linea-stack network.
+- [Stack quickstart](https://docs.linea.build/stack/quickstart): Entry point for operators deploying their own network using Lineth.
 
 ## Network features
 - [Transaction finality](https://docs.linea.build/network/overview/transaction-finality): How and when transactions are final on Linea and on Ethereum L1.
@@ -166,8 +166,8 @@
 - [Glossary of zero-knowledge terms](https://docs.linea.build/protocol/reference/zero-knowledge-glossary)
 - [Linea repositories](https://docs.linea.build/protocol/reference/repos)
 
-## Linea stack (operators)
-- [Stack overview](https://docs.linea.build/stack): What the Linea stack is and who it is for.
+## Lineth for operators
+- [Stack overview](https://docs.linea.build/stack): What Lineth is and who it is for.
 - [Features](https://docs.linea.build/stack/features): Compliance, data availability, instant finality, security, privacy (Validium).
 - [How it works](https://docs.linea.build/stack/how-it-works): Protocol components, deployment models, data availability and finalisation.
 - [Forced transactions for stack operators](https://docs.linea.build/stack/how-to/forced-transactions)

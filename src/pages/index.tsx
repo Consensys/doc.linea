@@ -114,7 +114,7 @@ export default function Home(): React.ReactNode {
     <>
       <Layout
         title={`Welcome`}
-        description="An EVM-equivalent network, scaling the Ethereum experience. Secured with a zero-knowledge rollup to Ethereum, built on lattice-based cryptography, and powered by Consensys.">
+        description="Documentation for Linea Mainnet, the public zkEVM network, and Lineth, the open-source rollup stack that powers it.">
         <HomepageHeader />
         <main>
           <CardGrid heading="Start building" cards={startBuildingCards} />
