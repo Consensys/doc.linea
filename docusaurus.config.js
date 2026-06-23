@@ -154,20 +154,20 @@ const config = {
             type: "doc",
             docId: "network/quickstart/index",
             position: "left",
-            label: "Public network",
+            label: "Linea Mainnet",
             activeBaseRegex: "^/network/",
           },
           {
             type: "doc",
             docId: "protocol/quickstart",
             position: "left",
-            label: "Protocol",
+            label: "Lineth Protocol",
           },
           {
             type: "doc",
             docId: "stack/quickstart",
             position: "left",
-            label: "Stack",
+            label: "Lineth Stack",
           },
           {
             type: "doc",
