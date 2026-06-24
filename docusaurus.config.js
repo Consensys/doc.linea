@@ -159,15 +159,15 @@ const config = {
           },
           {
             type: "doc",
-            docId: "protocol/quickstart",
-            position: "left",
-            label: "Lineth Protocol",
-          },
-          {
-            type: "doc",
             docId: "stack/quickstart",
             position: "left",
             label: "Lineth Stack",
+          },
+          {
+            type: "doc",
+            docId: "protocol/architecture",
+            position: "left",
+            label: "Protocol",
           },
           {
             type: "doc",
