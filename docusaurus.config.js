@@ -165,7 +165,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "protocol/architecture",
+            docId: "protocol/quickstart",
             position: "left",
             label: "Protocol",
           },
