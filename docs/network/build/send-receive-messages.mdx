@@ -163,34 +163,29 @@ need to call one of these methods using the parameters detailed in the [interfac
     - L2: `claimMessage` 
     - L1: `claimMessageWithProof`
 
-#### Option 2: Use the Linea SDK
+#### Option 2: Use the Lineth SDK
 
-The [Linea SDK](../../api/linea-sdk.mdx) (view the [npm package](https://npmjs.com/package/@consensys/linea-sdk?activeTab=readme))
-simplifies the execution of messages on the destination layer.
+The [Lineth SDK](../../api/linea-sdk.mdx) (view the [npm package](https://npmjs.com/package/@lfdt-lineth/sdk-viem))
+simplifies claiming messages on the destination layer.
 
-Install the SDK using the package manager of your choice. For example:
+Install the SDK alongside viem, which is a required peer dependency:
 
 ```bash
-npm install @consensys/linea-sdk
+npm install @lfdt-lineth/sdk-viem viem
 ```
 
-Refer to the [SDK README](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/ts-libs/sdk) for 
-directions on initializing the SDK and enabling read-write mode. 
+Refer to the [SDK documentation](../../api/linea-sdk.mdx) for 
+client setup. To claim a message, use `claimOnL2` for an L1 to L2 message, or `claimOnL1` (with a
+Merkle proof) for an L2 to L1 message.
 
-Now you can use the `claim()` function on the destination layer to claim messages, passing the 
-message hash as an argument:
-
-```js
-const tx = await l2Contract.claim(message);
-```
-
-You can call `claim()` either on the `l1Contract` or `l2Contract` depending on which you need.
+See [Claim messages](../../api/linea-sdk.mdx#claim-messages) in the SDK reference for the full
+parameters and code examples.
 
 ## Claim old messages
 
 The Linea native bridge app only retains unclaimed message for 90 days; if your bridge transfer is
 older than this, you'll need to claim it outside of the native bridge app using a block explorer or 
-the Linea SDK. We recommend you use the SDK, particularly if you're claiming on L1.
+the Lineth SDK. We recommend you use the SDK, particularly if you're claiming on L1.
 
 :::note
 
@@ -271,8 +266,8 @@ for more information.
     We don't recommend manually claiming messages on L1 with `claimMessageWithProof`, as gathering
     the parameters is complex and involves querying for various events to reconstruct the proof.
 
-    Instead, we recommend using the Linea SDK, which abstracts away most of this complexity. See 
-    the [SDK documentation](../../api/linea-sdk.mdx#claim) for guidance on claiming on L1.
+    Instead, we recommend using the Lineth SDK, which abstracts away most of this complexity. See 
+    the [SDK documentation](../../api/linea-sdk.mdx#claim-messages) for guidance on claiming on L1.
   </TabItem>
 </Tabs>
 
