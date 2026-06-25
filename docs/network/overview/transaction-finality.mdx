@@ -51,14 +51,14 @@ containing that verification transaction is itself
 
 At hard finality:
 
-- The transaction is cryptographically proven on Ethereum and inherits its security guarantees
-- It is anchored to Ethereum's security guarantees
+- The transaction is cryptographically proven on Ethereum
+- It is anchored to Ethereum once the L1 verification transaction reaches Ethereum finality
 - The current median time to hard finality is approximately 2 hours. Planned finality improvements
   are expected to reduce hard finality to under 30 minutes.
 - Hard finality should never exceed 16 hours under normal operating conditions
 
 Hard finality is required for cross-layer withdrawals, CEX deposit confirmations, and any use case
-where Ethereum-level security guarantees are needed.
+where Ethereum L1 settlement assurances are needed.
 
 ## What you should care about
 

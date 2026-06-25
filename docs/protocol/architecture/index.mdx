@@ -6,10 +6,11 @@ image: /img/socialCards/architecture.jpg
 
 Lineth architecture supports a configurable protocol that delivers developer-ready layer 2 and layer 3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
 
-Operators and network designers configure their stack to shape what the protocol guarantees, for example:
+Operators and network designers configure their stack to shape protocol behavior and trust
+assumptions, for example:
 
-  - Finalization layer: alters security guarantees
-  - Data availability layer: alters privacy guarantees
+  - Finalization layer: affects settlement and security assumptions
+  - Data availability layer: affects privacy and reconstruction assumptions
 
 The following represents one of many possible configurations for a network built on Lineth:
 
@@ -48,7 +49,8 @@ Lineth (formerly the Linea Stack) is comprised of several broad classes of compo
 
 - [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/how-it-works/deployment-models), node services may be configured to be private or semi-private.
 - [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks.
-- [Smart contracts](#onchain-system-contracts): Versionable, immutable onchain contracts.
+- [Smart contracts](#onchain-system-contracts): Versioned onchain contracts, with immutability or
+  upgrade controls depending on deployment.
 - [Auxiliary services](#auxiliary-services):
   - Block explorer: While theoretically optional, explorer data simplifies transaction building, auditing, and troubleshooting.
   - Web3Signer: Secure signing service ensuring that nodes may sign without revealing keys.
@@ -110,7 +112,8 @@ The [state manager](./state-manager.mdx) maintains a state representation optimi
 The [trace generator](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.
 ## Onchain system contracts
 
-Smart contracts execute small programs that rely on the EVM's trustless correctness guarantees. Once deployed, they are immutable.
+Smart contracts execute small programs according to EVM rules. Once deployed, they are immutable unless
+they are explicitly designed with upgradeability or administrative controls.
 
 Lineth includes system contracts deployed in two locations:
 
@@ -218,7 +221,8 @@ These architectural components support transactions from submission to finalizat
 5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs;
 the [prover](./prover/index.mdx) generates compression proofs.
 6. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization
-layer; after verification and epoch delay, transactions reach hard finality.
+layer; after verification and any configured delay, transactions reach hard finality on the selected
+finalization layer.
 
 :::info
 
