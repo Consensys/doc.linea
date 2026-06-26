@@ -23,7 +23,7 @@ Lineth supports two primary deployment models:
 - Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
 availability.
 - Private Validium deployments, which retain transaction data offchain while using
-zero-knowledge proofs to support correctness and finality.
+zk-SNARK proofs to support correctness and finality.
 
 Consider these factors when configuring your deployment model design:
 
@@ -66,7 +66,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 ## Private validium
 
 A private network instance, a validium, keeps transaction data offchain while maintaining
-cryptographic guarantees through zero-knowledge (zk) proofs. This model is ideal for regulated
+cryptographic guarantees through zk-SNARK proofs. This model is ideal for regulated
 financial institutions requiring privacy.
 
 ### Characteristics
@@ -200,7 +200,7 @@ flowchart TB
 
   %% Proof spine (exit from bottom via anchor)
   Coordinator --> CoordOut
-  CoordOut --> ZKProofs[zk proofs]:::neutral
+  CoordOut --> ZKProofs[zk-SNARK proofs]:::neutral
 
   %% =========================
   %% Bottom row: align finalization layer and external blockchains

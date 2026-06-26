@@ -9,8 +9,8 @@ Lineth architecture supports a configurable protocol that delivers developer-rea
 Operators and network designers configure their stack to shape protocol behavior and trust
 assumptions, for example:
 
-  - Finalization layer: affects settlement and security assumptions
-  - Data availability layer: affects privacy and reconstruction assumptions
+  - Finalization layer: affects settlement and security
+  - Data availability layer: affects privacy and state reconstruction
 
 The following represents one of many possible configurations for a network built on Lineth:
 
@@ -99,7 +99,7 @@ submission to the finalization layer.
 
 #### Prover
 
-The [prover](./prover/index.mdx) generates zero-knowledge proofs for state transitions. Provers may be
+The [prover](./prover/index.mdx) generates zk-SNARK proofs for state transitions. Provers may be
 scaled horizontally to meet throughput requirements. The Lineth proving architecture is also
 evolving toward [guest-program-based proof generation](./prover/risc-v-overview.mdx) with RISC-V.
 

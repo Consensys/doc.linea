@@ -32,8 +32,8 @@ It enables secure interactions between the deployed network and the finalization
 - Records finalized state roots on the finalization layer
 - Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
   between the deployed network and the finalization layer
-- Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
-  transitions
+- Anchors L2 message Merkle roots at finalization, so L2 to L1 messages are accepted only after the
+  batch's zk-SNARK proof is verified and a Merkle proof confirms their inclusion
 
 ### Native message bridge smart contract
 
@@ -53,7 +53,7 @@ finalization layer and the ZK-EVM.
 
 **Functionality:**
 
-- Uses non-custodial escrow, event tracking, and ZK-proof validation to reduce bridge trust
+- Uses non-custodial escrow, event tracking, and zk-SNARK proof validation to reduce bridge trust
   assumptions
 - Enables the deployed network to interoperate directly with Ethereum while preserving protocol-level asset security
 

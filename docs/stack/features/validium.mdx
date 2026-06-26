@@ -6,7 +6,7 @@ image: /img/socialCards/privacy.jpg
 ---
 
 Private Validium is a deployment model for Lineth (formerly the Linea Stack) that keeps transaction data offchain while
-maintaining cryptographic guarantees through zero-knowledge proofs. It is designed for regulated
+maintaining cryptographic guarantees through zk-SNARK proofs. It is designed for regulated
 financial institutions and applications requiring privacy, compliance controls, and selective data
 disclosure.
 
@@ -28,9 +28,9 @@ transition is generated and submitted to the finalization layer.
 ### Offchain data availability
 
 Transaction data is stored offchain in a private node set, so only state commitments and
-zero-knowledge proofs go onchain. This keeps transactions private, but it also means you can
+zk-SNARK proofs go onchain. This keeps transactions private, but it also means you can
 reconstruct or independently verify history only if you have access to the offchain data, which the
-deployment's RBAC and governance rules control.
+deployment's role-based access control (RBAC) and governance rules control.
 
 With the relevant data, a participant can verify their own state against the onchain commitments
 using [Merkle proofs](../../protocol/architecture/state-manager.mdx#merkle-trees). Unlike a public
@@ -38,7 +38,7 @@ network, a validium does not give every participant a full view of all transacti
 
 ### Role-based access control
 
-[Role-based access control (RBAC)](./rbac.mdx) controls access to network functionality:
+[RBAC](./rbac.mdx) controls access to network functionality:
 
 - RPC endpoints: Access controlled by API keys and permissions
 - API portal: Institution-level access controls
@@ -89,7 +89,7 @@ Private Validium deployments include:
 - Execution layer: [Linea Besu](../../protocol/reference/repos.mdx#linea-besu-upstream) with sequencer plugins
 - [Coordinator](../../protocol/architecture/coordinator.mdx): Orchestrates proof generation and
   [finalization](../../network/overview/transaction-finality.mdx)
-- [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs
+- [Prover](../../protocol/architecture/prover/index.mdx): Generates zk-SNARK proofs
 - [State manager](../../protocol/architecture/state-manager.mdx): Maintains state for proof generation
 - Private RPC nodes: RBAC-protected RPC endpoints
 - API portal: Controlled access to network functionality
@@ -108,7 +108,7 @@ Private Validium requires trust in:
 ### Security features
 
 - Minimum node count: 4 nodes for QBFT fault tolerance
-- Access controls: Role-Based Access control (RBAC) on RPC and API endpoints
+- Access controls: RBAC on RPC and API endpoints
 - Key management: Supports [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing backed
   by a hardware security module (HSM) or key management service (KMS)
 - Network isolation: Private network topology
