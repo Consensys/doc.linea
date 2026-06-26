@@ -7,18 +7,19 @@ sidebar_position: 3
 image: /img/socialCards/instant-finality.jpg
 ---
 
-Lineth (formerly the Linea Stack) deployments can provide fast application-level finality at block
-commitment, while settlement finality depends on proof generation, proof
-submission, and the selected finalization layer.
+Lineth (formerly the Linea Stack) deployments can provide instant finality at the application level:
+a block is final as soon as it is produced, before the next block. Settlement finality, when the
+state commitment is verified on the selected finalization layer, is a separate and slower step.
 
-## What finality means
+## What is instant finality?
 
 Finality is the point at which a transaction becomes immutable under the
-deployment's security assumptions. For enterprise deployments, distinguish
+deployment's security assumptions. Instant finality means a block becomes final before the next block
+is produced, giving immediate application-level finality. For enterprise deployments, distinguish
 between:
 
 - Application-level finality: when a transaction is accepted as final by the
-  configured network
+  configured network. With instant finality, this happens at block production.
 - Settlement finality: when the corresponding state commitment is verified and
   finalized on the selected finalization layer
 
