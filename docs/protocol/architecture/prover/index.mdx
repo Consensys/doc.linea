@@ -40,6 +40,6 @@ There are multiple operations involved:
 2. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
 
 This provides cryptographic guarantees for state correctness without requiring third parties to
-re-execute transactions. The proof verifies correctness for transaction batches when accepted by the
+re-execute transactions. The proof verifies correctness for transaction batches before being accepted by the
 finalization layer. This process enables the protocol to provide secure, efficient, and cost-effective
 transaction scaling while reducing trust assumptions around execution correctness.
