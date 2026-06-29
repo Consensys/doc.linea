@@ -64,14 +64,14 @@
     "@easyops-cn/docusaurus-search-local": "0.55.2",
     "@mdx-js/react": "3.1.1",
     "@mermaid-js/layout-elk": "0.1.9",
-    "axios": "1.17.0",
-    "browserslist": "4.28.2",
+    "axios": "1.18.1",
+    "browserslist": "4.28.4",
     "cheerio": "1.2.0",
     "clsx": "2.1.1",
     "concurrently": "10.0.3",
     "dompurify": "3.4.11",
     "dotenv": "17.4.2",
-    "fast-xml-parser": "5.8.0",
+    "fast-xml-parser": "5.9.3",
     "gray-matter": "4.0.3",
     "hast-util-is-element": "3.0.0",
     "ignore": "7.0.5",
@@ -82,14 +82,14 @@
     "react-dom": "19.2.7",
     "react-player": "3.4.0",
     "redocusaurus": "2.5.0",
-    "sharp": "0.34.5",
+    "sharp": "0.35.2",
     "turndown": "7.2.4",
     "turndown-plugin-gfm": "1.0.2",
     "yaml": "2.9.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "21.0.2",
-    "@commitlint/config-conventional": "21.0.2",
+    "@commitlint/cli": "21.1.0",
+    "@commitlint/config-conventional": "21.1.0",
     "@docusaurus/module-type-aliases": "3.10.1",
     "@docusaurus/tsconfig": "3.10.1",
     "@eslint/compat": "2.1.0",
@@ -104,7 +104,7 @@
     "@semantic-release/release-notes-generator": "14.1.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@vercel/node": "5.8.12",
+    "@vercel/node": "5.8.18",
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.5",
@@ -112,17 +112,17 @@
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react": "7.37.5",
-    "globals": "17.6.0",
+    "globals": "17.7.0",
     "google-auth-library": "10.7.0",
     "googleapis-common": "8.0.2",
-    "lint-staged": "17.0.7",
-    "prettier": "3.8.3",
-    "semantic-release": "25.0.3",
-    "stylelint": "17.12.0",
+    "lint-staged": "17.0.8",
+    "prettier": "3.8.4",
+    "semantic-release": "25.0.5",
+    "stylelint": "17.13.0",
     "stylelint-config-standard": "40.0.0",
     "tsc-files": "1.1.4",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.60.1"
+    "typescript-eslint": "8.62.0"
   },
   "engines": {
     "node": "24.18.0"
@@ -139,12 +139,6 @@
       "minimatch": "10.2.5",
       "smol-toml": "1.6.1"
     },
-    "fast-xml-parser": "5.8.0",
-    "follow-redirects": "1.16.0",
-    "lodash": "4.18.1",
-    "lodash-es": "4.18.1",
-    "mermaid": "11.14.0",
-    "serialize-javascript": "7.0.5",
-    "webpack-dev-server": "5.2.5"
+    "serialize-javascript": "7.0.5"
   }
 }
