@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": ["github-actions", "npm"],
+  "dependencyDashboard": false,
+  "packageRules": [
+    {
+      "description": "Pin all GitHub Actions to SHA digests",
+      "matchManagers": ["github-actions"],
+      "pinDigests": true,
+      "minimumReleaseAge": "7 days",
+      "groupName": "Renovatebot GHA Updates"
+    },
+    {
+      "description": "Allow immediate updates for ConsenSys/github-actions",
+      "matchManagers": ["github-actions"],
+      "matchPackagePrefixes": ["ConsenSys/github-actions"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Group npm dependency updates",
+      "matchManagers": ["npm"],
+      "minimumReleaseAge": "7 days",
+      "groupName": "npm dependencies"
+    }
+  ]
+}
