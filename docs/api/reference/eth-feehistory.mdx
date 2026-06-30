@@ -4,6 +4,8 @@ description: Returns historical gas and priority fee data across a range of Line
 image: /img/socialCards/ethfeehistory.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_feeHistory`
 
 Returns historical gas information across a range of blocks, useful for tracking fee trends.
@@ -23,36 +25,22 @@ Returns historical gas information across a range of blocks, useful for tracking
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "eth_feeHistory",
-    "params": ["0x4", "latest", [25, 50, 75]],
-    "id": 1
-  }'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "oldestBlock": "0x1ce5452",
-    "baseFeePerGas": ["0x7", "0x7", "0x7", "0x7", "0x7"],
-    "gasUsedRatio": [0.000026867, 0.0000930045, 0.0000379375, 0.0000485935],
-    "reward": [
-      ["0x27f6779", "0x27f6779", "0x27f6779"],
-      ["0x27f6779", "0x27f6779", "0x27f6779"],
-      ["0x27f6779", "0x27f6779", "0x27f6779"],
-      ["0x27f6779", "0x27f6779", "0x27f6779"]
-    ]
-  }
-}
-```
+<RpcPlayground
+  method="eth_feeHistory"
+  params={["0x4", "latest", [25, 50, 75]]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: {
+      oldestBlock: "0x1ce5452",
+      baseFeePerGas: ["0x7", "0x7", "0x7", "0x7", "0x7"],
+      gasUsedRatio: [0.000026867, 0.0000930045, 0.0000379375, 0.0000485935],
+      reward: [
+        ["0x27f6779", "0x27f6779", "0x27f6779"],
+        ["0x27f6779", "0x27f6779", "0x27f6779"],
+        ["0x27f6779", "0x27f6779", "0x27f6779"],
+        ["0x27f6779", "0x27f6779", "0x27f6779"]
+      ]
+    }
+  }}
+/>

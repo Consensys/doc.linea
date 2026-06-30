@@ -4,6 +4,8 @@ description: Returns a list of addresses owned by the connected node.
 image: /img/socialCards/ethaccounts.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_accounts`
 
 Returns a list of addresses owned by the node. On the public Linea RPC endpoint the node does not
@@ -19,21 +21,12 @@ Array of 20-byte addresses owned by the node. On `rpc.linea.build` this is alway
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": []
-}
-```
+<RpcPlayground
+  method="eth_accounts"
+  params={[]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: []
+  }}
+/>
