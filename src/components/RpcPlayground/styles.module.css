@@ -158,8 +158,15 @@
 }
 
 .runBtn:disabled {
-  cursor: wait;
   opacity: 0.75;
+}
+
+.runBtnLoading:disabled {
+  cursor: wait;
+}
+
+.runBtnUnavailable:disabled {
+  cursor: not-allowed;
 }
 
 .runIcon {
@@ -174,6 +181,12 @@
   border-top-color: #fff;
   border-radius: 50%;
   animation: rpc-playground-spin 0.7s linear infinite;
+}
+
+.runNote {
+  margin: 6px 0 0;
+  font-size: var(--font-body-xs);
+  color: var(--linea-text-muted);
 }
 
 @keyframes rpc-playground-spin {

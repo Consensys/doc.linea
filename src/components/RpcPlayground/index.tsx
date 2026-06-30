@@ -35,6 +35,8 @@ export default function RpcPlayground({
   const prismLang = LANGUAGES.find((l) => l.id === language)?.prism ?? "bash";
 
   const isCurl = language === "curl";
+  const isRunning = isCurl && status === "loading";
+  const isRunDisabled = !isCurl || isRunning;
   // The playground only runs raw fetch (curl-equivalent) calls, so the live
   // response is only meaningful while Curl is selected. Switching to
   // ethers.js / viem hides the live state and falls back to the static
@@ -109,25 +111,28 @@ export default function RpcPlayground({
             </button>
             <button
               type="button"
-              className={styles.runBtn}
+              className={clsx(
+                styles.runBtn,
+                isRunning && styles.runBtnLoading,
+                !isCurl && styles.runBtnUnavailable,
+              )}
               onClick={run}
-              disabled={status === "loading" || language !== "curl"}
+              disabled={isRunDisabled}
               title={
-                language !== "curl"
-                  ? "Switch to Curl to run the request live"
-                  : undefined
+                !isCurl ? "Switch to Curl to run the request live" : undefined
               }
+              aria-describedby={!isCurl ? "rpc-playground-run-note" : undefined}
               aria-label={
-                language !== "curl"
+                !isCurl
                   ? "Run request (Curl only)"
-                  : status === "loading"
+                  : isRunning
                     ? "Running request"
                     : "Run request"
               }>
-              {status === "loading" ? (
+              {isRunning ? (
                 <>
                   <span className={styles.spinner} aria-hidden="true" />
-                  <span>Running…</span>
+                  <span>Running...</span>
                 </>
               ) : (
                 <>
@@ -138,6 +143,12 @@ export default function RpcPlayground({
             </button>
           </div>
         </div>
+        {!isCurl && (
+          <p id="rpc-playground-run-note" className={styles.runNote}>
+            Live requests are available for Curl only. Copy this SDK example to
+            run it in your app.
+          </p>
+        )}
         <div className={styles.codeWrap}>
           <CodeBlock language={prismLang}>{code}</CodeBlock>
         </div>
@@ -164,8 +175,9 @@ export default function RpcPlayground({
         </div>
         {language !== "curl" && (
           <p className={styles.responseNote}>
-            ethers.js and viem unwrap this envelope and convert hex values to
-            BigNumber/BigInt. See the SDK docs for the exact return shape.
+            ethers.js and viem return the JSON-RPC method result instead of the
+            raw envelope shown here. Convert hex quantities explicitly when you
+            need typed numeric values.
           </p>
         )}
       </div>
