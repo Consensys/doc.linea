@@ -4,6 +4,8 @@ description: Returns the chain ID of the connected Linea network.
 image: /img/socialCards/ethchainid.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_chainId`
 
 Returns the chain ID of the connected network. Linea Mainnet is `0xe708` (59144). Linea Sepolia is
@@ -19,21 +21,12 @@ Hexadecimal value of the chain ID.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0xe708"
-}
-```
+<RpcPlayground
+  method="eth_chainId"
+  params={[]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: "0xe708"
+  }}
+/>

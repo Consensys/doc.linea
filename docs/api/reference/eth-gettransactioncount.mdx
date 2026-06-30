@@ -6,6 +6,8 @@ description: >-
 image: /img/socialCards/ethgettransactioncount.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_getTransactionCount`
 
 Returns the number of transactions sent from an address (the account nonce).
@@ -21,29 +23,12 @@ Hexadecimal integer of the number of transactions sent from the address.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "eth_getTransactionCount",
-    "params": [
-      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-      "latest"
-    ],
-    "id": 1
-  }'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x0"
-}
-```
+<RpcPlayground
+  method="eth_getTransactionCount"
+  params={["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045", "latest"]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: "0x0"
+  }}
+/>

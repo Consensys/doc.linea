@@ -4,6 +4,8 @@ description: 'Returns the number of transactions in a Linea block, given the blo
 image: /img/socialCards/ethgetblocktransactioncountbyhash.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_getBlockTransactionCountByHash`
 
 Returns the number of transactions in a block, given the block hash.
@@ -18,28 +20,12 @@ Hexadecimal integer of the transaction count, or `null` if no block is found.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "eth_getBlockTransactionCountByHash",
-    "params": [
-      "0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550"
-    ],
-    "id": 1
-  }'
-```
-
-### Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x1"
-}
-```
+<RpcPlayground
+  method="eth_getBlockTransactionCountByHash"
+  params={["0x8ebe90fa04dbbf92199c07cbb56c1f908343c69f3dd246a2f7d95272589dc550"]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: "0x1"
+  }}
+/>

@@ -4,6 +4,8 @@ description: Returns a transaction on Linea by block number and transaction inde
 image: /img/socialCards/ethgettransactionbyblocknumberandindex.jpg
 ---
 
+import RpcPlayground from '@site/src/components/RpcPlayground';
+
 # `eth_getTransactionByBlockNumberAndIndex`
 
 Returns transaction data by block number and transaction index position.
@@ -20,37 +22,23 @@ or `null` if no transaction is found at the given index.
 
 ## Example
 
-### Request
-
-```bash
-curl https://rpc.linea.build \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "eth_getTransactionByBlockNumberAndIndex",
-    "params": ["0x1ce53dd", "0x0"],
-    "id": 1
-  }'
-```
-
-### Response (abbreviated)
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "hash": "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
-    "blockNumber": "0x1ce53dd",
-    "transactionIndex": "0x0",
-    "from": "0xd26c8000ec8778de5257305c9acdd79f16f87867",
-    "to": "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
-    "value": "0x0",
-    "gas": "0x2635a",
-    "gasPrice": "0x257e36f",
-    "nonce": "0xc824c",
-    "type": "0x2"
-  }
-}
-```
+<RpcPlayground
+  method="eth_getTransactionByBlockNumberAndIndex"
+  params={["0x1ce53dd", "0x0"]}
+  exampleResponse={{
+    jsonrpc: "2.0",
+    id: 1,
+    result: {
+      hash: "0x972fd73b83ee0d567143ebc67509d4fc98fa1b1941c2c145a342d3d10715c259",
+      blockNumber: "0x1ce53dd",
+      transactionIndex: "0x0",
+      from: "0xd26c8000ec8778de5257305c9acdd79f16f87867",
+      to: "0x6d7ac5d23266c9fea16463b877005bff6de531a7",
+      value: "0x0",
+      gas: "0x2635a",
+      gasPrice: "0x257e36f",
+      nonce: "0xc824c",
+      type: "0x2"
+    }
+  }}
+/>
