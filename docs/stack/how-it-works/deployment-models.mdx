@@ -1,18 +1,18 @@
 ---
 title: Deployment models
 description: >-
-  Learn how to choose and configure Linea deployment models for enterprise use
+  Learn how to choose and configure Lineth deployment models for enterprise use
   cases
 sidebar_position: 2
 image: /img/socialCards/deployment-models.jpg
 ---
 
-A deployment model describes how a network built on Lineth is configured. Different deployment models allow operators to balance privacy, regulatory requirements, and security guarantees according to their use case. 
+A deployment model describes how a network built on Lineth is configured. Different deployment models allow operators to balance privacy, regulatory requirements, and security assumptions according to their use case.
 
 Lineth (formerly the Linea Stack) is designed to support detailed customizations for factors including, but not restricted to:
 
-- Access control: Who may access the mempool, the ledger, and transaction data all impact the nature of
-the system
+- Access control: Who may access the mempool, ledger, and transaction data affects the nature of
+  the system
 - Data availability: Asset recovery by users ties directly to data availability guarantees
 - Finalization speed: Block size on the ledger impacts the soft finality speed of transactions
 - Finalization layer: Where finalization occurs impacts the security assumptions and hard finality speeds
@@ -23,7 +23,7 @@ Lineth supports two primary deployment models:
 - Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
 availability.
 - Private Validium deployments, which retain transaction data offchain while using
-zero-knowledge proofs to preserve correctness and finality guarantees.
+zk-SNARK proofs to support correctness and finality.
 
 Consider these factors when configuring your deployment model design:
 
@@ -35,7 +35,7 @@ Consider these factors when configuring your deployment model design:
 
 ## Compare deployment models
 
-This following section presents two model types, public and private. 
+The following section presents two model types, public and private.
 
 ## Public
 
@@ -56,7 +56,9 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 
 ### Security considerations
 
-- Minimum node count: 4 nodes for Quorum-Based Byzantine Fault Tolerance (QBFT) fault tolerance
+- Validator topology: If the deployment uses a
+  [multi-validator QBFT design](../how-to/distributed-sequencing), at least 4 Maru validators are
+  required to tolerate one faulty validator
 - Access controls: Whether or not to implement [RBAC](../features/rbac.mdx) on RPC endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a hardware
   security module (HSM) or key management service (KMS)
@@ -64,7 +66,7 @@ Public deployments such as Linea Mainnet are fully public networks with onchain 
 ## Private validium
 
 A private network instance, a validium, keeps transaction data offchain while maintaining
-cryptographic guarantees through zero-knowledge (zk) proofs. This model is ideal for regulated
+cryptographic guarantees through zk-SNARK proofs. This model is ideal for regulated
 financial institutions requiring privacy.
 
 ### Characteristics
@@ -76,6 +78,9 @@ financial institutions requiring privacy.
 - [Finalization](../../network/overview/transaction-finality.mdx): State commitments and proofs
   posted to the finalization layer
 - Network topology: Private network with controlled node membership
+
+In private validium deployments, participant visibility depends on RBAC settings and data
+availability access. Some participants may verify only the data they are authorized to access.
 
 ### Use cases
 
@@ -89,7 +94,8 @@ privacy, compliance, and access control features:
 
 ### Security considerations
 
-- Minimum node count: 4 Maru nodes for QBFT fault tolerance
+- Validator topology: At least 4 Maru validators are required for a
+  [QBFT design](../how-to/distributed-sequencing) that tolerates one faulty validator
 - Access controls: [RBAC](../features/rbac.mdx) on RPC endpoints and API portal
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a
   hardware security module (HSM) or key management service (KMS)
@@ -194,7 +200,7 @@ flowchart TB
 
   %% Proof spine (exit from bottom via anchor)
   Coordinator --> CoordOut
-  CoordOut --> ZKProofs[zk proofs]:::neutral
+  CoordOut --> ZKProofs[zk-SNARK proofs]:::neutral
 
   %% =========================
   %% Bottom row: align finalization layer and external blockchains
@@ -226,4 +232,5 @@ flowchart TB
 
 ## Next steps
 
-Consider also, the design decisions required to determine the [finality mechanism](./data-availability-finalization.mdx#finality-design-options).
+Also consider the design decisions required to determine the
+[finality mechanism](./data-availability-finalization.mdx#finality-design-options).
