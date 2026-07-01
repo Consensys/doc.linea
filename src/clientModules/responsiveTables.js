@@ -1,6 +1,10 @@
 function wrapResponsiveTables() {
   const tables = document.querySelectorAll(
-    [".theme-doc-markdown table", ".redoc-markdown table"].join(","),
+    [
+      ".theme-doc-markdown table",
+      ".redocusaurus .redoc-markdown table",
+      ".redocusaurus .api-content table",
+    ].join(","),
   );
 
   tables.forEach((table) => {
