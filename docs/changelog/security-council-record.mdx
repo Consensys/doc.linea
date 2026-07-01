@@ -19,6 +19,22 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### July 06, 2026
+#### L1
+- **[Nonce 76](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3)**
+  - Actions: 
+    - Change Staking Vault to STRICT Mode via Vault Dashboard.
+    - Change Fee recipient to newly created Payment Splitter.
+    - Fully exit one validator with 1 Wei transfer for the validator exit.
+  - Verification
+    - `PDGPolicyEnacted` event emitted with `0` as the `pdgPolicy`. See [Lido documentation](https://github.com/lidofinance/docs/blob/70fba94e70370247af310d5be870ee2c0aa5f319/docs/contracts/dashboard.md#pdgpolicy).
+    - `FeeRecipientSet` event emitted with `0x4d2504c498bb7e63bcc7bc11f781d30d99b6febb` as the `oldFeeRecipient` and `0x3f6227e81c46f608ff7fc3ace997b955dd345541` as the `newFeeRecipient`.
+    - Event from execution layer withdrawal contract [EIP-7002](https://eips.ethereum.org/EIPS/eip-7002) address `0x00000961ef480eb55e80d19ad83579a64c007002` containing concatenated data comprised of 
+      - `0x2df8ccb91c80c9600ea9436b1f940c48cc008ca7` - Staking Vault address
+      - `8ee790c95e5fea2076c2efe0d59f6afae0cc0803406a8584abec5d0392e0b624c2e39cb07308ec85ebfadfd8054a7b30` - Validator Public Key excluding 0x
+      - `0000000000000000` - amount signalling full withdrawal
+    - `ValidatorWithdrawalsTriggered` containing the validator public key `0x8ee790c95e5fea2076c2efe0d59f6afae0cc0803406a8584abec5d0392e0b624c2e39cb07308ec85ebfadfd8054a7b30`, empty `amountsInGwei` array, `0` excess, and the security council `0x892bb7eed71efb060ab90140e7825d8127991dd3` as `refundRecipient`.
+
 ### April 28, 2026
 
 #### L1
