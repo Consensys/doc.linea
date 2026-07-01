@@ -1,5 +1,7 @@
 function wrapResponsiveTables() {
-  const tables = document.querySelectorAll(".theme-doc-markdown table");
+  const tables = document.querySelectorAll(
+    [".theme-doc-markdown table", ".redoc-markdown table"].join(","),
+  );
 
   tables.forEach((table) => {
     if (table.closest(".linea-table-wrapper")) {

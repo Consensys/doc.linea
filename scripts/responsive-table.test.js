@@ -23,6 +23,9 @@ test("table CSS keeps native table layout and moves overflow to the wrapper", ()
   const tableRule = baseCss.match(
     /\.linea-table-wrapper\s*>\s*table\s*\{[^}]+\}/s,
   )?.[0];
+  const cellRule = baseCss.match(
+    /\.linea-table-wrapper\s*>\s*table\s+thead\s+th,\s*\.linea-table-wrapper\s*>\s*table\s+tbody\s+td\s*\{[^}]+\}/s,
+  )?.[0];
 
   assert.ok(wrapperRule, "expected a .linea-table-wrapper rule");
   assert.match(wrapperRule, /overflow-x:\s*auto/);
@@ -35,7 +38,10 @@ test("table CSS keeps native table layout and moves overflow to the wrapper", ()
   assert.doesNotMatch(tableRule, /width:\s*max-content/);
   assert.doesNotMatch(tableRule, /overflow-x:\s*auto/);
 
-  assert.match(baseCss, /min-width:\s*min\(12rem,\s*45vw\)/);
+  assert.ok(cellRule, "expected responsive cell sizing to be scoped");
+  assert.match(cellRule, /min-width:\s*min\(12rem,\s*45vw\)/);
+  assert.match(cellRule, /max-width:\s*min\(32rem,\s*85vw\)/);
+  assert.doesNotMatch(baseCss, /table\s+thead\s+th,\s*table\s+tbody\s+td\s*\{/);
 });
 
 test("table scrollbar styling targets the responsive wrapper", () => {
@@ -50,7 +56,8 @@ test("client module wraps raw MDX table elements that bypass MDXComponents", () 
   const source = readRepoFile("src/clientModules/responsiveTables.js");
 
   assert.match(config, /responsiveTables\.js/);
-  assert.match(source, /querySelectorAll\([^)]*table/);
+  assert.match(source, /\.theme-doc-markdown table/);
+  assert.match(source, /\.redoc-markdown table/);
   assert.match(source, /className\s*=\s*"linea-table-wrapper"/);
   assert.match(source, /onRouteDidUpdate/);
 });

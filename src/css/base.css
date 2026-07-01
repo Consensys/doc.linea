@@ -147,8 +147,8 @@ table thead th {
   border-right: 1px solid var(--linea-border);
 }
 
-table thead th,
-table tbody td {
+.linea-table-wrapper > table thead th,
+.linea-table-wrapper > table tbody td {
   min-width: min(12rem, 45vw);
   max-width: min(32rem, 85vw);
   vertical-align: top;
