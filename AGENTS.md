@@ -154,6 +154,13 @@ export default function MyComponent({ active }) {
 - Keep selector nesting depth under 4 levels.
 - Reuse `--ifm-*` variables when Infima already provides the token you need.
 
+## Responsive tables
+
+- Markdown tables are wrapped by `src/theme/MDXComponents/index.js`; raw HTML
+  tables in MDX are wrapped by `src/clientModules/responsiveTables.js`.
+- Keep horizontal scrolling on `.linea-table-wrapper`, not directly on `table`,
+  so tables retain native column sizing while dense tables remain scrollable.
+
 ---
 
 ## Release notes data model

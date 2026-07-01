@@ -2428,34 +2428,34 @@ div[class*="codeBlockContainer"] pre::-webkit-scrollbar-thumb:hover {
 }
 
 /* Custom scrollbar for tables - thin, rounded, themed */
-table::-webkit-scrollbar {
+.linea-table-wrapper::-webkit-scrollbar {
   height: 6px;
   width: 0;
 }
 
-table::-webkit-scrollbar-track {
+.linea-table-wrapper::-webkit-scrollbar-track {
   background: var(--linea-surface-elevated);
   border-radius: 3px;
 }
 
-table::-webkit-scrollbar-thumb {
+.linea-table-wrapper::-webkit-scrollbar-thumb {
   background: #c5c5bd;
   border-radius: 3px;
 }
 
-table::-webkit-scrollbar-thumb:hover {
+.linea-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #a0a098;
 }
 
-[data-theme="dark"] table::-webkit-scrollbar-track {
+[data-theme="dark"] .linea-table-wrapper::-webkit-scrollbar-track {
   background: var(--linea-surface-elevated);
 }
 
-[data-theme="dark"] table::-webkit-scrollbar-thumb {
+[data-theme="dark"] .linea-table-wrapper::-webkit-scrollbar-thumb {
   background: #555;
 }
 
-[data-theme="dark"] table::-webkit-scrollbar-thumb:hover {
+[data-theme="dark"] .linea-table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #777;
 }
 
