@@ -1,17 +1,16 @@
 ---
 title: Run a local Lineth Stack
-description:
-  Start a local Lineth Stack L2 with finality on either Sepolia L1 or a local
-  L1.
+description: >-
+  Use the guided wizard to configure and start a local Lineth Stack L2 with L1
+  finality, settling to either a local L1 or Sepolia.
 sidebar_position: 0
 image: /img/socialCards/run-a-local-lineth-stack.jpg
 ---
 
-Run a local Lineth Stack L2 with L1 finality in either Sepolia mode or local L1
-mode. Sepolia mode finalizes against public Sepolia, while local L1 mode
-finalizes against a local development L1. The quickstart starts a local L2
-chain, deploys the required contracts, and verifies L1 finality through
-`finalizeBlocks`.
+The Lineth Stack quickstart starts a local L2 chain, deploys the required
+contracts, and verifies L1 finality through `finalizeBlocks`. A guided wizard
+walks you through the configuration, so you choose how the stack settles to L1
+and how it proves blocks, then start it from a single command.
 
 Lineth Stack is the Linea zk-rollup stack documented in this Stack section. This
 quickstart is intended for operators, architects, and engineers evaluating how
@@ -41,15 +40,9 @@ details, see [Protocol components](/stack/how-it-works/core-components).
 - Prover for proof generation
 - Local L2 Blockscout block explorer, including API backend and frontend
 
-Sepolia mode is the default public L1 finality path. In Sepolia mode, the stack
-uses your Sepolia RPC endpoint, deploys quickstart-specific L1 contracts to
-Sepolia from the generated deployer account, deploys matching contracts on the
-local L2, and submits L1 data and finalization transactions.
-
-Local L1 mode is also available for development, CI, testing, and periods when
-Sepolia gas, RPC, or funding conditions make repeated testing unreliable. It
-still exercises L1 finality, but settlement is against the local development L1
-rather than public Sepolia.
+The L2 is always local. What differs between modes is where the stack settles
+its L1 finality: public Sepolia, which is the primary path, or a local
+development L1 that the stack runs for you for easier testing.
 
 ## Before you start
 
@@ -66,70 +59,87 @@ before running the stack.
 | Docker Compose          | v2.19+                                                |
 | Shell                   | POSIX-compatible shell such as `sh`, `bash`, or `zsh` |
 | RAM, dev-proof mode     | 8 GB Docker Desktop minimum                           |
-| RAM, partial-proof mode | 30-32 GB assigned to Docker; 128 GB recommended       |
+| RAM, partial-proof mode | 32 GB minimum assigned to Docker; 128 GB recommended  |
 | Disk                    | About 30 GB free                                      |
 
 Required only for Sepolia mode:
 
-| Requirement | Minimum                                           |
-| ----------- | ------------------------------------------------- |
-| Sepolia RPC | HTTPS endpoint                                    |
-| Sepolia ETH | Enough for deployment and runtime account top-ups |
+| Requirement | Minimum                                                       |
+| ----------- | ------------------------------------------------------------- |
+| Sepolia RPC | Reliable HTTPS endpoint: a paid RPC plan, or your own Sepolia node |
+| Sepolia ETH | Enough for deployment and runtime account top-ups             |
 
 For the normal quickstart flow, you do not need host Node.js, pnpm, Foundry, or
 Gradle; the required tooling runs in Docker.
 
-Before using Sepolia mode, check current Sepolia gas conditions in your RPC
-provider or explorer. The quickstart currently requires at least 2 ETH on the
-generated deployer; 3 ETH gives more room during Sepolia congestion.
+The Lineth prover image is `linux/amd64` only. On Apple Silicon, choose the
+Dev proofs prover mode, which is the default. Partial proving is much slower on
+M-series machines.
 
-The Lineth prover image is `linux/amd64` only. On Apple Silicon, keep
-`PROVER_DEV_OVERRIDE=true` for normal testing and demos. Partial proving is much
-slower on M-series machines.
-
-## Configure Sepolia mode
-
-For full configuration options and an environment variable reference, see the
-[`docs/getting-started/lineth-stack`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/lineth-stack)
-README in the monorepo.
+## Configure and start the stack
 
 Clone the [Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo),
-then run:
+then run the wizard:
 
 ```bash
 git clone https://github.com/LFDT-Lineth/lineth-monorepo.git
 cd lineth-monorepo/docs/getting-started/lineth-stack
-cp .env.example .env
-$EDITOR .env
+./scripts/start.sh --wizard
 ```
 
-Set these required values in `.env`:
+The wizard is the recommended way to configure the quickstart. It asks a short
+series of questions, writes your `.env` file, and can start the stack for you. If
+a `.env` file already exists, the wizard backs it up before making changes.
 
-```bash
-L1_MODE=sepolia
-L1_RPC_URL=https://sepolia.infura.io/v3/<your-project-id>
-```
+The wizard asks for:
 
-Keep `.env` as the single runtime config file. Do not commit `.env` or files
-under `artifacts/`.
+1. **L1 mode**: `Local L1` or `Sepolia`. See
+   [Choose your L1 mode](#choose-your-l1-mode) below.
+2. **Prover mode**: `Dev proofs` (default, fast dummy proofs for laptops and
+   demos) or `Partial prover` (real partial proving, resource-heavy).
+3. **Sepolia L1 RPC URL**: asked only when you choose Sepolia mode.
+4. **Next step**: what to do after writing `.env`:
+   - Save `.env` only, and do not start now.
+   - Save `.env` and start the stack, reusing any existing quickstart containers
+     and volumes.
+   - Save `.env`, clear existing quickstart state, then start the stack. This
+     runs `./scripts/reset.sh` first.
+   - Cancel and leave `.env` unchanged.
 
-## Start the stack
+When you choose to start, the wizard runs the same guided boot flow as
+`./scripts/start.sh --tail`: it checks ports, checks the L1 network, generates
+runtime wallets, Web3Signer key config, L2 genesis, and service configuration,
+pulls Docker images, starts services, deploys contracts, prints links, waits for
+first finality, and prints the result.
 
-Start the quickstart with:
+### Choose your L1 mode
 
-```bash
-./scripts/start.sh --tail
-```
+Both modes exercise L1 finality. Sepolia is the primary path, since it settles
+against public Sepolia and exercises real public L1 finality. Local L1 is
+offered for ease of testing when you want a faster, self-contained run.
 
-The command checks ports, checks the L1 network, generates runtime wallets,
-Web3Signer key config, L2 genesis, and service configuration, pulls Docker
-images, starts services, deploys contracts, prints links, waits for first
-finality, and prints the result.
+- **Sepolia** settles against public Sepolia. It needs a reliable Sepolia RPC
+  endpoint, which can be either a paid RPC plan or your own local Sepolia node,
+  plus a funded deployer account. Check current Sepolia gas conditions in your
+  RPC provider or explorer before you start, and make sure the deployer has
+  enough ETH to cover deployment and runtime top-ups at current gas. The
+  quickstart currently requires at least 2 ETH on the generated deployer; 3 ETH
+  gives more room during Sepolia congestion.
+- **Local L1** is offered for ease of testing. The stack runs a
+  quickstart-scoped Besu and Teku L1 inside the same Compose stack, so there is
+  no external RPC, no real ETH, and no public gas spend, which makes it handy for
+  repeatable development, CI, and demos. The wizard clears `L1_RPC_URL` for this
+  mode. Local L1 mode has no Etherscan and no public settlement; bridge and
+  finality flows still run against contracts deployed on the local L1.
 
-On a clean Sepolia checkout, the first run generates an encrypted deployer
+### Fund the deployer in Sepolia mode
+
+On a clean Sepolia checkout, the first start generates an encrypted deployer
 keystore under `artifacts/accounts/deployer-keystore/`, prints the generated
-deployer address and funding requirement, then exits before Docker pull and
-startup. Fund that generated Sepolia address and rerun:
+deployer address and funding requirement, then exits before the Docker pull and
+startup.
+
+Fund that generated Sepolia address, then start again:
 
 ```bash
 ./scripts/start.sh --tail
@@ -157,47 +167,16 @@ Treat the run as successful when `status.sh` confirms:
 :::caution
 
 Do not treat `Submit Blobs` as finalization. Blob submission publishes data for
-Data Availability. Only a successful `finalizeBlocks` transaction advances the
+data availability. Only a successful `finalizeBlocks` transaction advances the
 Sepolia rollup `finalized` state.
 
 :::
 
-On Sepolia Etherscan, finalization may appear as method selector `0x755bc62f`
-instead of a decoded name. For the current quickstart rollup contract, that
-selector corresponds to `finalizeBlocks(bytes,uint256,FinalizationDataV4)`.
-Etherscan may display the struct argument as `tuple` because Solidity structs
-are ABI-encoded as tuples.
-
-## Optional: Run local L1 mode
-
-Use local L1 mode when you need a repeatable development or testing path that
-does not depend on Sepolia RPC, gas, or funding. Local L1 mode starts
-quickstart-scoped Besu and Teku L1 services inside the same Compose stack.
-
-```bash
-cp .env.example .env
-$EDITOR .env
-```
-
-Set:
-
-```bash
-L1_MODE=local
-PROVER_DEV_OVERRIDE=true
-```
-
-In local L1 mode, `L1_RPC_URL` can stay empty and Sepolia deployer settings are
-ignored.
-
-Then run:
-
-```bash
-./scripts/start.sh --tail
-```
-
-Local L1 mode has no Etherscan, no public settlement, and no real Sepolia gas
-spend. Bridge and finality flows still exercise the local stack code paths
-against contracts deployed on the local L1.
+In Sepolia mode, finalization may appear on Sepolia Etherscan as method selector
+`0x755bc62f` instead of a decoded name. For the current quickstart rollup
+contract, that selector corresponds to
+`finalizeBlocks(bytes,uint256,FinalizationDataV4)`. Etherscan may display the
+struct argument as `tuple` because Solidity structs are ABI-encoded as tuples.
 
 ## Optional: Run traffic and bridge smokes
 
@@ -243,7 +222,8 @@ generated wallets, Web3Signer key config, L2 genesis files, rendered service
 configuration, deployment addresses, and timing data.
 
 Do not edit these files manually during a normal run. Use `./scripts/reset.sh`
-to regenerate them.
+to regenerate them. Keep `.env` as the single runtime config file, and do not
+commit `.env` or files under `artifacts/`.
 
 ## Export evidence
 
@@ -269,7 +249,7 @@ The raw Compose commands use `--profile stack-partial-prover` because it is the
 quickstart's main Compose profile. The default `PROVER_DEV_OVERRIDE=true` still
 runs dev-proof behavior inside that profile.
 
-Add `--profile local-l1` when stopping a stack started with `L1_MODE=local`.
+Add `--profile local-l1` when stopping a stack started in local L1 mode.
 
 Wipe generated artifacts, Docker volumes, chain data, and deploy caches:
 
@@ -282,10 +262,42 @@ default, so funded test ETH is not stranded by routine local resets. Use
 `./scripts/reset.sh --forget-deployer` only when you intentionally want a new
 generated Sepolia deployer.
 
+## Advanced: configure `.env` manually
+
+The wizard is the recommended path, but you can configure the quickstart by hand
+if you prefer to edit `.env` directly or script the setup. Copy the example file,
+set the values for your mode, then start with `--tail`:
+
+```bash
+cp .env.example .env
+$EDITOR .env
+```
+
+For Sepolia mode, set:
+
+```bash
+L1_MODE=sepolia
+L1_RPC_URL=https://sepolia.infura.io/v3/<your-project-id>
+```
+
+For local L1 mode, set:
+
+```bash
+L1_MODE=local
+PROVER_DEV_OVERRIDE=true
+```
+
+In local L1 mode, `L1_RPC_URL` can stay empty and Sepolia deployer settings are
+ignored. Then start the stack:
+
+```bash
+./scripts/start.sh --tail
+```
+
 ## Advanced debugging
 
-Use raw Compose logs only when debugging. The official start flow is
-`./scripts/start.sh --tail`.
+Use raw Compose logs only when debugging. The official start flow is the wizard
+or `./scripts/start.sh --tail`.
 
 The `stack-partial-prover` profile name is the quickstart Compose profile name;
 it does not mean `PROVER_DEV_OVERRIDE=false` is enabled.
@@ -294,8 +306,8 @@ it does not mean `PROVER_DEV_OVERRIDE=false` is enabled.
 docker compose --env-file versions.env --env-file .env --profile stack-partial-prover logs -f --tail=120
 ```
 
-Add `--profile local-l1` when reading raw Compose logs for a stack started with
-`L1_MODE=local`, especially if you need local L1 service logs.
+Add `--profile local-l1` when reading raw Compose logs for a stack started in
+local L1 mode, especially if you need local L1 service logs.
 
 For a narrower service log view:
 
@@ -314,14 +326,14 @@ Reattach to the guided progress view with:
 
 - This quickstart is monorepo-bound. Deploy tooling uses contracts and scripts
   from the repository checkout.
-- Sepolia is the default public L1 finality path. Using another external L1
+- Sepolia is the supported public L1 finality path. Using another external L1
   requires configuration and timing review.
 - Local L1 mode provides local L1 finality for development and testing; it does
   not prove public Sepolia finality.
 - L1 contracts are owned by the generated deployer account. Timelock and
   Security Council flows are out of scope.
-- Dev-proof mode is the default evaluation path. Partial proving is opt-in and
-  resource-heavy.
+- Dev-proof mode is the recommended evaluation path. Partial proving is opt-in
+  and resource-heavy.
 - Full proving is out of scope.
 - This quickstart supports Rollup mode only.
 - The verifier setup is quickstart-only and does not represent production
