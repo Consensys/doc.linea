@@ -102,6 +102,14 @@ sup {
    4. TABLES
    ============================================================ */
 
+.linea-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Tables styling per Figma */
 table {
   font-family: AtypText, sans-serif;
@@ -113,9 +121,15 @@ table {
   width: 100%;
   min-width: 100%;
   margin: 1.5rem 0;
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  display: table;
+}
+
+.linea-table-wrapper > table {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  display: table;
+  table-layout: auto;
 }
 
 table thead {
@@ -131,6 +145,14 @@ table thead th {
   font-size: var(--font-body-md);
   border-bottom: 1px solid var(--linea-border);
   border-right: 1px solid var(--linea-border);
+}
+
+table thead th,
+table tbody td {
+  min-width: min(12rem, 45vw);
+  max-width: min(32rem, 85vw);
+  vertical-align: top;
+  overflow-wrap: break-word;
 }
 
 table thead th:last-child {
