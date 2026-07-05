@@ -154,7 +154,7 @@ export default function DocItemLayout({ children }) {
         <DocVersionBanner />
         <div className={styles.docItemContainer}>
           <article>
-            <div data-markdown-ignore>
+            <div data-markdown-ignore className="article-breadcrumbs-wrapper">
               <DocBreadcrumbs />
             </div>
             <div className={styles.titleRow} data-markdown-ignore>
@@ -166,12 +166,16 @@ export default function DocItemLayout({ children }) {
                 {!hideCopyButton && <CopyPageButton />}
               </div>
             </div>
-            {docTOC.mobile && <div data-markdown-ignore>{docTOC.mobile}</div>}
+            {docTOC.mobile && (
+              <div data-markdown-ignore className="article-mobile-toc-wrapper">
+                {docTOC.mobile}
+              </div>
+            )}
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
             <ContractsWarning />
             <FeedbackWidget key={metadata.permalink} />
-            <div data-markdown-ignore>
+            <div data-markdown-ignore className="article-footer-wrapper">
               <DocItemFooter />
             </div>
           </article>

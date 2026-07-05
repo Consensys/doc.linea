@@ -3,7 +3,7 @@
  * 1499px — responsive graphic
  * 1380px — navbar inner width
  * 1320px — search input desktop max
- * 1200px — hide TOC column
+ *  996px — hide TOC column (was 1200px)
  * 1080px — release notes link hide / search expand
  *  996px — Docusaurus mobile (navbar/sidebar collapse) [PRINCIPAL]
  *  768px — compact layout
@@ -1030,6 +1030,21 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   }
 }
 
+/* Hide the left docs sidebar under 1200px so it doesn't crowd narrow
+   laptop/tablet viewports. The Docusaurus mobile drawer (rendered below
+   996px via useWindowSize) continues to provide sidebar navigation on
+   actual mobile. Between 996–1200px the sidebar is hidden and the main
+   content reflows to fill the full width. */
+@media (max-width: 1200px) {
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+
+  [class*="docMainContainer"] {
+    max-width: 100% !important;
+  }
+}
+
 /* Left border on sidebar — Protocol, Stack, APIs & SDK sections only */
 html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
 html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
@@ -1518,7 +1533,7 @@ button.clean-btn.menu__caret {
   color: rgb(255 255 255 / 45%);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 996px) {
   /* hides TOC when viewport gets too slim */
   ul.table-of-contents {
     visibility: hidden;
@@ -1546,12 +1561,12 @@ button.clean-btn.menu__caret {
     flex-direction: column;
   }
 
-  article > nav.theme-doc-breadcrumbs { order: 1; }
-  article > .theme-doc-toc-mobile     { order: 2; }
-  article > [class*="titleRow"]        { order: 3; }
-  article > .theme-doc-markdown        { order: 4; }
-  article > *                          { order: 5; }
-  article > footer.theme-doc-footer    { order: 6; }
+  article > .article-breadcrumbs-wrapper   { order: 1; }
+  article > .article-mobile-toc-wrapper     { order: 2; }
+  article > [class*="titleRow"]             { order: 3; }
+  article > .theme-doc-markdown              { order: 4; }
+  article > *                                { order: 5; }
+  article > .article-footer-wrapper          { order: 6; }
 
   .theme-doc-toc-mobile {
     background: var(--ifm-background-color) !important;
@@ -1627,7 +1642,7 @@ button.clean-btn.menu__caret {
 
 /* Expand sidebar button styles are in section 14b above */
 
-@media (max-width: 1200px) {
+@media (max-width: 996px) {
   div .col .col--3 {
     display: none !important;
   }
