@@ -3,7 +3,7 @@
  * 1499px — responsive graphic
  * 1380px — navbar inner width
  * 1320px — search input desktop max
- *  996px — hide TOC column (was 1200px)
+ * 1200px — hide TOC column (desktop sidebar too narrow below this; swap to inline mobile TOC)
  * 1080px — release notes link hide / search expand
  *  996px — Docusaurus mobile (navbar/sidebar collapse) [PRINCIPAL]
  *  768px — compact layout
@@ -1518,7 +1518,7 @@ button.clean-btn.menu__caret {
   color: rgb(255 255 255 / 45%);
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1200px) {
   /* hides TOC when viewport gets too slim */
   ul.table-of-contents {
     visibility: hidden;
@@ -1625,9 +1625,20 @@ button.clean-btn.menu__caret {
   }
 }
 
+/* In the 996-1200px band the desktop "Release history" sidebar is too
+   narrow to read (entries wrap badly). Hide it and show the inline mobile
+   TOC ("On this page" collapsible) above the content instead — it takes
+   the full article width so nothing wraps. */
+@media (min-width: 997px) and (max-width: 1200px) {
+  .release-notes-mobile-toc {
+    display: block !important;
+    margin: 1rem 0;
+  }
+}
+
 /* Expand sidebar button styles are in section 14b above */
 
-@media (max-width: 996px) {
+@media (max-width: 1200px) {
   div .col .col--3 {
     display: none !important;
   }

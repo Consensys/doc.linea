@@ -7,9 +7,15 @@
   margin-top: 35px;
 }
 
-@media (min-width: 996px) {
+@media (min-width: 1200px) {
   .docItemCol {
     max-width: 75% !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .docItemCol {
+    max-width: 99.2% !important;
   }
 }
 
