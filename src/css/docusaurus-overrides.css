@@ -1030,21 +1030,6 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   }
 }
 
-/* Hide the left docs sidebar under 1200px so it doesn't crowd narrow
-   laptop/tablet viewports. The Docusaurus mobile drawer (rendered below
-   996px via useWindowSize) continues to provide sidebar navigation on
-   actual mobile. Between 996–1200px the sidebar is hidden and the main
-   content reflows to fill the full width. */
-@media (max-width: 1200px) {
-  .theme-doc-sidebar-container {
-    display: none !important;
-  }
-
-  [class*="docMainContainer"] {
-    max-width: 100% !important;
-  }
-}
-
 /* Left border on sidebar — Protocol, Stack, APIs & SDK sections only */
 html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
 html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
