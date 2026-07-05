@@ -1625,17 +1625,6 @@ button.clean-btn.menu__caret {
   }
 }
 
-/* In the 996-1200px band the desktop "Release history" sidebar is too
-   narrow to read (entries wrap badly). Hide it and show the inline mobile
-   TOC ("On this page" collapsible) above the content instead — it takes
-   the full article width so nothing wraps. */
-@media (min-width: 997px) and (max-width: 1200px) {
-  .release-notes-mobile-toc {
-    display: block !important;
-    margin: 1rem 0;
-  }
-}
-
 /* Expand sidebar button styles are in section 14b above */
 
 @media (max-width: 1200px) {
