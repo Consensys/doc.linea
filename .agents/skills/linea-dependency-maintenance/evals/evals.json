@@ -30,6 +30,12 @@
       "prompt": "A dependency PR adds new packages and edits package.json with caret (^) and tilde (~) ranges. Bring it in line with the dependency-maintenance policy before it merges.",
       "expected_output": "Treats every ^/~ range in dependencies/devDependencies as a policy violation and rewrites it to an exact pin, keeps catalog:/workspace: references intact and pins the concrete version at the catalog definition, leaves intentional peerDependencies ranges and engines (>=) constraints untouched, and regenerates the lockfile.",
       "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Refresh the GitHub Actions used in .github/workflows and .github/actions. Some actions have newer releases, some released in the last few days, and some have a new semver-major.",
+      "expected_output": "Inventories every external uses: pin, bumps only releases older than the 7-day action maturity window (longer than the JS gate), updates both the commit SHA and its version comment together, pins to a full 40-character SHA (never a tag/branch ref), holds releases younger than the cutoff, tracks or applies semver-major action bumps per the user's instruction, leaves local (./) actions unpinned, and leaves Dependabot's github-actions job enabled.",
+      "files": []
     }
   ]
 }
