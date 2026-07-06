@@ -1,0 +1,485 @@
+#!/usr/bin/env node
+
+// Report GitHub Actions pins that have a newer same-major release older than a maturity window.
+// Requires an authenticated `gh` CLI (used for the GitHub API so auth and rate limits are handled).
+
+const { execFileSync } = require("node:child_process");
+const { readdirSync, readFileSync, statSync, existsSync } = require("node:fs");
+const { join, extname } = require("node:path");
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const MINUTE_MS = 60 * 1000;
+const SHA_RE = /^[0-9a-f]{40}$/;
+const USES_RE = /uses:\s*([^\s'"#]+)(?:\s*#\s*(\S+))?/;
+
+function parseArgs(argv) {
+  // Actions use a 7-day maturity window (longer than the 3-day JS/npm/pnpm gate).
+  const args = { days: 7, minutes: null, dir: ".github" };
+  for (let index = 2; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--days" && next) {
+      args.days = Number(next);
+      index += 1;
+    } else if (arg === "--minutes" && next) {
+      args.minutes = Number(next);
+      index += 1;
+    } else if (arg === "--dir" && next) {
+      args.dir = next;
+      index += 1;
+    } else if (arg === "--help") {
+      console.error("Usage: eligible-actions [--days N | --minutes N] [--dir .github]");
+      process.exit(0);
+    }
+  }
+  return args;
+}
+
+function walk(dir) {
+  const files = [];
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) {
+      files.push(...walk(full));
+    } else if ([".yml", ".yaml"].includes(extname(full))) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
+// Collect every `uses:` pin, keyed by action path (uses value before @). Multiple files may reference the same action; flag SHA drift.
+function collectPins(dir) {
+  const occurrences = new Map();
+  for (const file of walk(dir)) {
+    for (const line of readFileSync(file, "utf8").split("\n")) {
+      const match = line.match(USES_RE);
+      if (!match) continue;
+      const ref = match[1];
+      const comment = String(match[2] ?? "").trim();
+      if (ref.startsWith("./") || ref.startsWith(".\\")) continue; // local action, not pinned
+      const [owner, repoName, at] = splitRef(ref);
+      if (!owner || !repoName) continue;
+      const key = actionPathFromRef(ref);
+      const sha = SHA_RE.test(at) ? at : "";
+      const list = occurrences.get(key) ?? [];
+      list.push({ file, sha, ref: at, comment });
+      occurrences.set(key, list);
+    }
+  }
+  return [...occurrences.entries()].map(([key, hits]) => finalizePin(key, hits));
+}
+
+function pickComment(comments) {
+  const unique = [...new Set(comments.filter(Boolean))].sort();
+  return unique[0] ?? "";
+}
+
+function hasCommentDrift(comments) {
+  const standard = [...new Set(comments.filter(isStandardVersion))];
+  if (standard.length <= 1) return false;
+  return new Set(standard.map((comment) => parseVersion(comment)?.raw)).size > 1;
+}
+
+function finalizePin(repo, hits) {
+  const files = [...new Set(hits.map((hit) => hit.file))].sort();
+  const hasMutableRef = hits.some((hit) => hit.sha === "" && hit.ref !== "");
+  const inventoryComment = pickComment(hits.map((hit) => hit.comment));
+  const bySha = new Map();
+  for (const hit of hits.filter((item) => item.sha !== "")) {
+    const bucket = bySha.get(hit.sha) ?? {
+      sha: hit.sha,
+      comments: new Set(),
+      files: new Set(),
+    };
+    if (hit.comment) bucket.comments.add(hit.comment);
+    bucket.files.add(hit.file);
+    bySha.set(hit.sha, bucket);
+  }
+
+  const pinVariants = [...bySha.values()]
+    .map((variant) => ({
+      sha: variant.sha,
+      comment: pickComment([...variant.comments]),
+      files: [...variant.files].sort(),
+    }))
+    .sort((a, b) => a.sha.localeCompare(b.sha));
+
+  const conflictingPins = pinVariants.length > 1;
+  const pinned = !hasMutableRef && pinVariants.length > 0;
+  const primary = pinVariants[0];
+  const primaryComments = primary ? [...bySha.get(primary.sha).comments] : [];
+  const canonicalComment = primary ? pickComment(primaryComments) : inventoryComment;
+  const commentDrift =
+    !conflictingPins && pinVariants.length === 1 && hasCommentDrift(primaryComments);
+
+  return {
+    repo,
+    pinned,
+    sha: !conflictingPins && primary ? primary.sha : "",
+    ref: hits.find((hit) => hit.sha === "")?.ref ?? primary?.sha ?? "",
+    comment: pinned && !conflictingPins ? canonicalComment : inventoryComment,
+    conflictingPins,
+    commentDrift,
+    pinVariants: conflictingPins ? pinVariants : [],
+    files,
+  };
+}
+
+function splitRef(ref) {
+  const [path, at] = ref.split("@");
+  const [owner, repo] = path.split("/");
+  return [owner, repo, at ?? ""];
+}
+
+// Inventory keys use the full `uses` path before `@`; GitHub API calls always use owner/repo only.
+function actionPathFromRef(ref) {
+  return ref.split("@")[0];
+}
+
+function apiRepo(actionPath) {
+  const parts = actionPath.split("/");
+  if (parts.length < 2 || !parts[0] || !parts[1]) return "";
+  return `${parts[0]}/${parts[1]}`;
+}
+
+function parseVersion(value) {
+  const match = String(value ?? "").match(/(\d+)\.(\d+)\.(\d+)/);
+  if (!match) return null;
+  return {
+    raw: `${match[1]}.${match[2]}.${match[3]}`,
+    major: +match[1],
+    minor: +match[2],
+    patch: +match[3],
+  };
+}
+
+// A comment we can compare against release tags: exactly `vX.Y.Z` or `X.Y.Z`. Anything else (e.g. `post-v2.0.6`,
+// an untagged commit) cannot be ranked reliably, so we flag it for manual review instead of suggesting a bump.
+function isStandardVersion(comment) {
+  return /^v?\d+\.\d+\.\d+$/.test(String(comment ?? "").trim());
+}
+
+function compareVersions(a, b) {
+  const pa = parseVersion(a);
+  const pb = parseVersion(b);
+  if (!pa || !pb) return 0;
+  return pa.major - pb.major || pa.minor - pb.minor || pa.patch - pb.patch;
+}
+
+function classify(current, target) {
+  const c = parseVersion(current);
+  const t = parseVersion(target);
+  if (!c || !t) return "unknown";
+  if (t.major !== c.major) return "major";
+  if (t.minor !== c.minor) return "minor";
+  if (t.patch !== c.patch) return "patch";
+  return "same";
+}
+
+function gh(path) {
+  const raw = execFileSync("gh", ["api", path], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  return JSON.parse(raw);
+}
+
+function ghList(path, maxPages = 10) {
+  const items = [];
+  for (let page = 1; page <= maxPages; page += 1) {
+    try {
+      const batch = gh(`${path}?per_page=100&page=${page}`);
+      if (!Array.isArray(batch) || batch.length === 0) break;
+      items.push(...batch);
+      if (batch.length < 100) break;
+    } catch {
+      break;
+    }
+  }
+  return items;
+}
+
+function releaseCandidates(repo) {
+  let releases = [];
+  try {
+    releases = ghList(`repos/${repo}/releases`);
+  } catch {
+    releases = [];
+  }
+
+  const fromReleases = releases
+    .filter(
+      (release) =>
+        !release.draft && !release.prerelease && isStandardVersion(release.tag_name),
+    )
+    .map((release) => ({
+      tag: release.tag_name,
+      published: release.published_at,
+    }));
+
+  let tags = [];
+  try {
+    tags = ghList(`repos/${repo}/tags`);
+  } catch {
+    tags = [];
+  }
+  const fromTags = tags
+    .filter((tag) => isStandardVersion(tag.name))
+    .map((tag) => ({ tag: tag.name, published: null }));
+
+  const byTag = new Map();
+  for (const candidate of fromReleases) byTag.set(candidate.tag, candidate);
+  for (const candidate of fromTags) {
+    if (!byTag.has(candidate.tag)) byTag.set(candidate.tag, candidate);
+  }
+  return [...byTag.values()];
+}
+
+function sameMajorNewer(candidates, current) {
+  const currentMajor = parseVersion(current)?.major;
+  return candidates
+    .filter((item) => parseVersion(item.tag).major === currentMajor)
+    .filter((item) => compareVersions(item.tag, current) > 0)
+    .sort((a, b) => compareVersions(a.tag, b.tag))
+    .reverse();
+}
+
+// Newest same-major release strictly newer than `current` whose publish date is at/older than the cutoff.
+function selectEligible(repo, current, cutoff) {
+  const sameMajor = sameMajorNewer(releaseCandidates(repo), current);
+
+  for (const item of sameMajor) {
+    const published = item.published ?? commitDate(repo, item.tag);
+    if (!published || new Date(published) > cutoff) continue;
+    const sha = commitSha(repo, item.tag);
+    if (!sha) return null;
+    return { tag: item.tag, published, sha };
+  }
+  return null;
+}
+
+function selectBlockedTooFresh(repo, current, cutoff) {
+  const sameMajor = sameMajorNewer(releaseCandidates(repo), current);
+
+  for (const item of sameMajor) {
+    const published = item.published ?? commitDate(repo, item.tag);
+    if (published && new Date(published) > cutoff) {
+      const sha = commitSha(repo, item.tag);
+      if (!sha) return null;
+      return { tag: item.tag, published, sha };
+    }
+  }
+  return null;
+}
+
+function tagLookupCandidates(tag) {
+  const trimmed = String(tag ?? "").trim();
+  const parsed = parseVersion(trimmed);
+  if (!parsed) return [trimmed];
+  const bare = parsed.raw;
+  const withV = `v${bare}`;
+  return [...new Set([trimmed, bare, withV])];
+}
+
+function commitSha(repo, tag) {
+  for (const candidate of tagLookupCandidates(tag)) {
+    try {
+      return gh(`repos/${repo}/commits/${candidate}`).sha;
+    } catch {
+      // try next tag form
+    }
+  }
+  return "";
+}
+
+function commitDate(repo, tag) {
+  for (const candidate of tagLookupCandidates(tag)) {
+    try {
+      return gh(`repos/${repo}/commits/${candidate}`).commit.committer.date;
+    } catch {
+      // try next tag form
+    }
+  }
+  return null;
+}
+
+function releaseDate(repo, tag) {
+  for (const candidate of tagLookupCandidates(tag)) {
+    try {
+      return gh(`repos/${repo}/releases/tags/${candidate}`).published_at;
+    } catch {
+      // try next tag form
+    }
+  }
+  return null;
+}
+
+function currentPinState(repo, current, currentSha, cutoff) {
+  const currentPublished =
+    releaseDate(repo, current) ?? commitDate(repo, current);
+  const tagSha = commitSha(repo, current);
+  const tooFresh = currentPublished
+    ? new Date(currentPublished) > cutoff
+    : false;
+  return {
+    currentPublished: currentPublished ?? "",
+    currentMature: currentPublished ? !tooFresh : false,
+    currentShaMatchesTag: tagSha ? tagSha === currentSha : null,
+    note: tooFresh ? "current pin is younger than the maturity window" : "",
+  };
+}
+
+function newestOverall(repo) {
+  try {
+    const latest = gh(`repos/${repo}/releases/latest`).tag_name;
+    return parseVersion(latest) ? latest : "";
+  } catch {
+    return "";
+  }
+}
+
+function main() {
+  const args = parseArgs(process.argv);
+  if (!existsSync(args.dir))
+    throw new Error(`Directory not found: ${args.dir}`);
+
+  const windowMs =
+    args.minutes != null ? args.minutes * MINUTE_MS : args.days * DAY_MS;
+  if (!Number.isFinite(windowMs) || windowMs < 0)
+    throw new Error("Release-age window must be a positive number");
+
+  const now = new Date();
+  const cutoff = new Date(now.getTime() - windowMs);
+  const rows = [];
+
+  for (const pin of collectPins(args.dir)) {
+    if (pin.conflictingPins) {
+      rows.push({
+        repo: pin.repo,
+        pinned: pin.pinned,
+        conflictingPins: true,
+        pinVariants: pin.pinVariants,
+        ref: pin.ref,
+        note: pin.pinned
+          ? "multiple SHAs pinned for this action — reconcile before bumping"
+          : "multiple SHAs pinned for this action — remove mutable refs and reconcile before bumping",
+        files: pin.files,
+      });
+      continue;
+    }
+    if (pin.commentDrift) {
+      rows.push({
+        repo: pin.repo,
+        pinned: pin.pinned,
+        current: pin.comment,
+        currentSha: pin.sha,
+        commentDrift: true,
+        ref: pin.ref,
+        note: "same SHA with conflicting version comments — align comments before bumping",
+        files: pin.files,
+      });
+      continue;
+    }
+    if (!pin.pinned) {
+      rows.push({
+        repo: pin.repo,
+        pinned: false,
+        ref: pin.ref,
+        comment: pin.comment,
+        files: pin.files,
+      });
+      continue;
+    }
+    if (!isStandardVersion(pin.comment)) {
+      rows.push({
+        repo: pin.repo,
+        pinned: true,
+        current: pin.comment,
+        currentSha: pin.sha,
+        note: "non-standard version comment — resolve and verify manually",
+        files: pin.files,
+      });
+      continue;
+    }
+    const current = pin.comment;
+    const ghRepo = apiRepo(pin.repo);
+    const currentState = currentPinState(ghRepo, current, pin.sha, cutoff);
+    if (currentState.currentShaMatchesTag !== true) {
+      const shaNote =
+        currentState.currentShaMatchesTag === false
+          ? "pinned SHA does not match the version comment tag — reconcile before bumping"
+          : "unable to verify pinned SHA against version tag — reconcile before bumping";
+      rows.push({
+        repo: pin.repo,
+        pinned: true,
+        current,
+        currentSha: pin.sha,
+        currentPublished: currentState.currentPublished,
+        currentMature: currentState.currentMature,
+        currentShaMatchesTag: currentState.currentShaMatchesTag,
+        eligibleTag: "",
+        eligibleSha: "",
+        eligiblePublished: "",
+        blockedTooFreshTag: "",
+        blockedTooFreshSha: "",
+        blockedTooFreshPublished: "",
+        updateType: "",
+        latest: newestOverall(ghRepo),
+        majorAvailable: false,
+        note: [shaNote, currentState.note].filter(Boolean).join("; "),
+        files: pin.files,
+      });
+      continue;
+    }
+    const latest = newestOverall(ghRepo);
+    const eligible = selectEligible(ghRepo, current, cutoff);
+    const blockedTooFresh = eligible
+      ? null
+      : selectBlockedTooFresh(ghRepo, current, cutoff);
+    rows.push({
+      repo: pin.repo,
+      pinned: true,
+      current,
+      currentSha: pin.sha,
+      currentPublished: currentState.currentPublished,
+      currentMature: currentState.currentMature,
+      currentShaMatchesTag: currentState.currentShaMatchesTag,
+      eligibleTag: eligible?.tag ?? "",
+      eligibleSha: eligible?.sha ?? "",
+      eligiblePublished: eligible?.published ?? "",
+      blockedTooFreshTag: blockedTooFresh?.tag ?? "",
+      blockedTooFreshSha: blockedTooFresh?.sha ?? "",
+      blockedTooFreshPublished: blockedTooFresh?.published ?? "",
+      updateType: eligible ? classify(current, eligible.tag) : "",
+      latest,
+      majorAvailable: latest ? classify(current, latest) === "major" : false,
+      note:
+        currentState.note ||
+        (blockedTooFresh
+          ? "newer same-major release is younger than the maturity window"
+          : ""),
+      files: pin.files,
+    });
+  }
+
+  console.log(
+    JSON.stringify(
+      {
+        now: now.toISOString(),
+        cutoff: cutoff.toISOString(),
+        ...(args.minutes != null ? { minutes: args.minutes } : { days: args.days }),
+        rows,
+      },
+      null,
+      2,
+    ),
+  );
+}
+
+try {
+  main();
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exit(1);
+}
