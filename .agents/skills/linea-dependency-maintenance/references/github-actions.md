@@ -58,7 +58,7 @@ grep -rnE 'uses:\s+[^./]' .github/workflows .github/actions
   (` # vX.Y.Z` or ` # X.Y.Z`, space before `#`):
   ```bash
   grep -rnE 'uses:\s+[^./][^@]+@[^ ]+' .github/workflows .github/actions \
-    | grep -vE '@[0-9a-f]{40} +# v?[0-9]+\\.[0-9]+\\.[0-9]+'
+    | grep -vE '@[0-9a-f]{40} +# v?[0-9]+\.[0-9]+\.[0-9]+'
   ```
   The command should print nothing. Any line it prints is an unpinned action, a tag/branch ref, or a non-standard
   version comment (for example `#v7.2.0` without a leading space).
