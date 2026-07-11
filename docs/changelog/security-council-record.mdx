@@ -19,6 +19,44 @@ You can view the LSC account history here:
 Transactions are designated by their nonce, and each entry details the action taken and the steps
 you can take to verify this information. 
 
+### July 14, 2026
+#### L1
+- **[Nonce 77](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0xc4851acbe9045a5d9d14f340470987d40500464d8430feda1995eb67506dbafd)**
+  - Actions: 
+    - Revoke `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` for the node operator account.
+    - Revoke `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` for the node operator account.
+    - Adjust Yield Manager parameters ramping up to 10% of funds.
+    - Add verifier at index 1 replacing existing unused validator to support the coinbase change and allowed circuit ids.
+    - Upgrade the LineaRollup implementation containing future forced transaction support.
+  - Verification
+     - [Links to audits](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/audits.md#eighth-audit-round):
+      - Deployment addresses
+      - `0x59290394dDC1cF84e671701A929710643c343530` Linea Rollup will use the audited implementation address.
+      - `0x526AE78F0103Ae73F05449ae30eb626C1003784E` Address Filter will use the audited implementation address.
+     - `RoleRevoked` event - 1 role revoked for the node operator depositor `0xbe315a487bf2839a6d07ee91acfdf189af8bcf9d`.
+      - `NODE_OPERATOR_UNGUARANTEED_DEPOSIT_ROLE` (`0x5c17b14b08ace6dda14c9642528ae92de2a73d59eacb65c71f39f309a5611063`).
+    - `RoleRevoked` event - 1 role revoked for the node operator depositor `0xcf9a8acbedbf57f9ee2f0c9cd0991277dbfb5da1`.
+      - `NODE_OPERATOR_PROVE_UNKNOWN_VALIDATOR_ROLE` (`0x7b564705f4e61596c4a9469b6884980f89e475befabdb849d69719f0791628be`).
+    - `WithdrawalReserveParametersSet` event
+      - `newTargetWithdrawalReservePercentageBps` should change to `9000`from the old value of `9888`.
+      - `newMinimumWithdrawalReservePercentageBps` should change to `8500`from the old value of `9000`.
+      - All other parameters old and new remain unchanged.
+    - `VerifierAddressChanged` records the new verifier `0x09ac9f7e5fb37e241e0b1e52aaf01efe0a488a77`, at index 1.
+    - `Upgraded` event recording new audited implementation address `0x59290394ddc1cf84e671701a929710643c343530`.
+    - `ForcedTransactionFeeSet` event recording 0.001 ETH in Wei (`1000000000000000`).
+    - `AddressFilterChanged` event recording the new audited AddressFilter address `0x526ae78f0103ae73f05449ae30eb626c1003784e` from the `0x0000000000000000000000000000000000000000` value.
+    - `LineaRollupVersionChanged` event recording the change from `"7.1"` to  `"8.0"` in hex.
+    - `Initialized` event recording the new OpenZeppelin version of `9`.
+
+
+### July 14, 2026
+#### L2
+- **[Nonce 55](https://app.safe.global/transactions/tx?safe=linea:0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD&id=multisig_0xf5cc7604a5ef3565b4D2050D65729A06B68AA0bD_0x8d3ec7fa5f5bcb06cbb3db431765a28583395ed4627872b8e9abab83c2491919)**
+  - Actions: 
+    - Disable Zodiac Module.
+  - Verification
+    - `DisabledModule` event emitted with `0x3886a948ea7b4053312c3ae31a13776144aa6239` as the module address being disabled.
+
 ### July 06, 2026
 #### L1
 - **[Nonce 76](https://app.safe.global/transactions/tx?safe=eth:0x892bb7EeD71efB060ab90140e7825d8127991DD3&id=multisig_0x892bb7EeD71efB060ab90140e7825d8127991DD3_0x08294477fc0fbc2ea7fc8237fd418be368ddd85e0af061350f1a540a46a4bc81)**
