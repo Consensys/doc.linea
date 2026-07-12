@@ -476,6 +476,14 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      collapsible: false,
+      items: [
+        "stack/reference/linea-besu-plugin-options",
+      ],
+    },
+    {
+      type: "category",
       label: "How to",
       collapsible: false,
       items: [

@@ -1,0 +1,73 @@
+---
+title: Linea-Besu plugin options
+slug: /stack/reference/linea-besu-plugin-options
+description: Auto-generated reference of Linea-Besu plugin CLI options, grouped by plugin and feature.
+draft: false
+---
+
+{/* Human-owned wrapper. Automation only updates `_generated/` partials. Seeded once by scripts/besu-plugin-options; place new partial imports when groups appear. */}
+
+import SequencerBundleSequencer from "./_generated/sequencer/bundle-sequencer.mdx";
+import SequencerLivenessConfig from "./_generated/sequencer/liveness-config.mdx";
+import SequencerProfitabilityConfig from "./_generated/sequencer/profitability-config.mdx";
+import SequencerRejectedTxReportingConfig from "./_generated/sequencer/rejected-tx-reporting-config.mdx";
+import SequencerRpcConfigSequencer from "./_generated/sequencer/rpc-config-sequencer.mdx";
+import SequencerTracerSequencerConfig from "./_generated/sequencer/tracer-sequencer-config.mdx";
+import SequencerTransactionPoolValidatorConfig from "./_generated/sequencer/transaction-pool-validator-config.mdx";
+import SequencerTransactionSelectorConfig from "./_generated/sequencer/transaction-selector-config.mdx";
+import SequencerTransactionValidatorConfig from "./_generated/sequencer/transaction-validator-config.mdx";
+import TracerL1L2BridgeSharedConfig from "./_generated/tracer/l1-l2-bridge-shared-config.mdx";
+import TracerTracerSharedConfig from "./_generated/tracer/tracer-shared-config.mdx";
+import TracerRpcConfig from "./_generated/tracer/rpc-config.mdx";
+import TracerTracerReadiness from "./_generated/tracer/tracer-readiness.mdx";
+import TracerTracesEndpointConfig from "./_generated/tracer/traces-endpoint-config.mdx";
+
+:::note Advanced options
+
+Options marked **Advanced** are flagged `hidden` in the source: they are real operator flags but are not surfaced in the CLI help output. They are included here intentionally so operators can discover and tune them.
+
+:::
+
+:::note Forced transactions excluded
+
+The `LineaForcedTransactionCliOptions` group is intentionally excluded because the forced-transactions feature is unreleased. TODO: include this group once the feature ships.
+
+:::
+
+This reference documents **the plugin options** across **3 plugins** and **14 option groups** (7 standard, 56 advanced). Only plugin-specific options (flags starting with `--plugin-`) are listed. Defaults and descriptions are taken verbatim from the source.
+
+## Sequencer
+
+<SequencerBundleSequencer />
+
+<SequencerLivenessConfig />
+
+<SequencerProfitabilityConfig />
+
+<SequencerRejectedTxReportingConfig />
+
+<SequencerRpcConfigSequencer />
+
+<SequencerTracerSequencerConfig />
+
+<SequencerTransactionPoolValidatorConfig />
+
+<SequencerTransactionSelectorConfig />
+
+<SequencerTransactionValidatorConfig />
+
+## Tracer
+
+<TracerL1L2BridgeSharedConfig />
+
+<TracerTracerSharedConfig />
+
+<TracerRpcConfig />
+
+<TracerTracerReadiness />
+
+<TracerTracesEndpointConfig />
+
+## State recovery
+
+_No plugin-specific CLI options were found in this plugin._

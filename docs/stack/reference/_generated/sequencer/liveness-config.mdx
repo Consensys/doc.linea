@@ -1,0 +1,20 @@
+### Liveness service
+
+Config-file key: `liveness-config`
+
+| Option                                                         | Description                                                                                                             | Default  | Type           | Visibility |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
+| `--plugin-linea-liveness-enabled`                              | Enable the Linea liveness service (default: false)                                                                      | `false`  | BOOLEAN        | Advanced   |
+| `--plugin-linea-liveness-max-block-age-seconds`                | Maximum age of the last block in seconds before reporting (default: 60)                                                 | `60`     | LONG           | Advanced   |
+| `--plugin-linea-liveness-bundle-max-timestamp-surplus-seconds` | Additional seconds for the max timestamp of bundle (default: 12)                                                        | `12`     | LONG           | Advanced   |
+| `--plugin-linea-liveness-contract-address`                     | Address of the LineaSequencerUptimeFeed contract (default: `${DEFAULT-VALUE}`)                                          |          | SMC_ADDRESS    | Advanced   |
+| `--plugin-linea-liveness-signer-url`                           | URL of the Web3Signer service, in charge of signing transactions                                                        |          | URL            | Advanced   |
+| `--plugin-linea-liveness-signer-key-id`                        | Key ID to use with Web3Signer, the public key in hex corresponding to the private key in charge of signing transactions |          | PUBLIC_KEY_HEX | Advanced   |
+| `--plugin-linea-liveness-signer-address`                       | Ethereum address corresponding to the Web3Signer key ID                                                                 |          | EOA_ADDRESS    | Advanced   |
+| `--plugin-linea-liveness-tls-enabled`                          | Enable TLS connection to Web3Signer (default: false)                                                                    | `false`  | BOOLEAN        | Advanced   |
+| `--plugin-linea-liveness-tls-key-store-path`                   | Path to the TLS key store file                                                                                          |          | FILE_PATH      | Advanced   |
+| `--plugin-linea-liveness-tls-key-store-password`               | TLS key store password                                                                                                  |          | PASSWORD       | Advanced   |
+| `--plugin-linea-liveness-tls-trust-store-path`                 | Path to the TLS trust store file                                                                                        |          | FILE_PATH      | Advanced   |
+| `--plugin-linea-liveness-tls-trust-store-password`             | TLS trust store password                                                                                                |          | PASSWORD       | Advanced   |
+| `--plugin-linea-liveness-gas-limit`                            | Gas limit for transactions (default: 100000)                                                                            | `100000` | LONG           | Advanced   |
+| `--plugin-linea-liveness-gas-price`                            | Gas price in Wei for transactions. (default: 7)                                                                         | `7`      | LONG           | Advanced   |

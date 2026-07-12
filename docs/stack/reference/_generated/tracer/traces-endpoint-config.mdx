@@ -1,0 +1,10 @@
+### Traces endpoint
+
+Config-file key: `traces-endpoint-config`
+
+| Option                                                         | Description                                                       | Default | Type    | Visibility |
+| -------------------------------------------------------------- | ----------------------------------------------------------------- | ------- | ------- | ---------- |
+| `--plugin-linea-conflated-trace-generation-traces-output-path` | Path to where traces will be written                              |         | PATH    | Advanced   |
+| `--plugin-linea-rpc-caching`                                   | Reuse existing trace files when available                         | `true`  | CACHING | Advanced   |
+| `--plugin-linea-conflated-trace-generation-trace-compression`  | Specify whether or not to employ trace compression                | `true`  | BOOL    | Advanced   |
+| `--plugin-linea-conflated-trace-generation-trace-file-version` | Specify major version of trace file format to use (e.g. v1 or v2) | `2`     | INT     | Advanced   |
