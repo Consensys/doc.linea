@@ -5,22 +5,10 @@ description: Auto-generated reference of Linea-Besu plugin CLI options, grouped 
 draft: false
 ---
 
-{/* Human-owned wrapper. Automation only updates `_generated/` partials. Seeded once by scripts/besu-plugin-options; place new partial imports when groups appear. */}
+{/* Human-owned wrapper. Automation only updates `_generated/` partials. Seeded once by scripts/besu-plugin-options; place new partial imports when plugins appear. */}
 
-import SequencerBundleSequencer from "./_generated/sequencer/bundle-sequencer.mdx";
-import SequencerLivenessConfig from "./_generated/sequencer/liveness-config.mdx";
-import SequencerProfitabilityConfig from "./_generated/sequencer/profitability-config.mdx";
-import SequencerRejectedTxReportingConfig from "./_generated/sequencer/rejected-tx-reporting-config.mdx";
-import SequencerRpcConfigSequencer from "./_generated/sequencer/rpc-config-sequencer.mdx";
-import SequencerTracerSequencerConfig from "./_generated/sequencer/tracer-sequencer-config.mdx";
-import SequencerTransactionPoolValidatorConfig from "./_generated/sequencer/transaction-pool-validator-config.mdx";
-import SequencerTransactionSelectorConfig from "./_generated/sequencer/transaction-selector-config.mdx";
-import SequencerTransactionValidatorConfig from "./_generated/sequencer/transaction-validator-config.mdx";
-import TracerL1L2BridgeSharedConfig from "./_generated/tracer/l1-l2-bridge-shared-config.mdx";
-import TracerTracerSharedConfig from "./_generated/tracer/tracer-shared-config.mdx";
-import TracerRpcConfig from "./_generated/tracer/rpc-config.mdx";
-import TracerTracerReadiness from "./_generated/tracer/tracer-readiness.mdx";
-import TracerTracesEndpointConfig from "./_generated/tracer/traces-endpoint-config.mdx";
+import Sequencer from "./_generated/sequencer.mdx";
+import Tracer from "./_generated/tracer.mdx";
 
 :::note Advanced options
 
@@ -34,39 +22,11 @@ The `LineaForcedTransactionCliOptions` group is intentionally excluded because t
 
 :::
 
-This reference documents **the plugin options** across **3 plugins** and **14 option groups** (7 standard, 56 advanced). Only plugin-specific options (flags starting with `--plugin-`) are listed. Defaults and descriptions are taken verbatim from the source.
+This reference documents **63 plugin options** across **3 plugins** and **14 option groups** (7 standard, 56 advanced). Only plugin-specific options (flags starting with `--plugin-`) are listed. Defaults and descriptions are taken verbatim from the source.
 
-## Sequencer
+<Sequencer />
 
-<SequencerBundleSequencer />
-
-<SequencerLivenessConfig />
-
-<SequencerProfitabilityConfig />
-
-<SequencerRejectedTxReportingConfig />
-
-<SequencerRpcConfigSequencer />
-
-<SequencerTracerSequencerConfig />
-
-<SequencerTransactionPoolValidatorConfig />
-
-<SequencerTransactionSelectorConfig />
-
-<SequencerTransactionValidatorConfig />
-
-## Tracer
-
-<TracerL1L2BridgeSharedConfig />
-
-<TracerTracerSharedConfig />
-
-<TracerRpcConfig />
-
-<TracerTracerReadiness />
-
-<TracerTracesEndpointConfig />
+<Tracer />
 
 ## State recovery
 

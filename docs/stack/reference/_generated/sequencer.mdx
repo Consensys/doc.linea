@@ -1,0 +1,115 @@
+## Sequencer
+
+### Sequencer — Bundle
+
+Config-file key: `bundle-sequencer`
+
+| Option                                       | Description                                                                                  | Default | Type           | Visibility |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------- | ------- | -------------- | ---------- |
+| `--plugin-linea-bundles-forward-urls`        | A comma separated list of endpoint to which incoming bundles will be forwarded (default: []) | `[]`    | SET&lt;URL&gt; | Standard   |
+| `--plugin-linea-bundles-forward-retry-delay` | Number of milliseconds to wait before retrying a failed forward (default: 1000)              | `1000`  | INTEGER        | Standard   |
+| `--plugin-linea-bundles-forward-timeout`     | Number of milliseconds to wait before a forward times out (default: 5000)                    | `5000`  | INTEGER        | Standard   |
+
+### Sequencer — Liveness service
+
+Config-file key: `liveness-config`
+
+| Option                                                         | Description                                                                                                             | Default  | Type           | Visibility |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------- | -------------- | ---------- |
+| `--plugin-linea-liveness-enabled`                              | Enable the Linea liveness service (default: false)                                                                      | `false`  | BOOLEAN        | Advanced   |
+| `--plugin-linea-liveness-max-block-age-seconds`                | Maximum age of the last block in seconds before reporting (default: 60)                                                 | `60`     | LONG           | Advanced   |
+| `--plugin-linea-liveness-bundle-max-timestamp-surplus-seconds` | Additional seconds for the max timestamp of bundle (default: 12)                                                        | `12`     | LONG           | Advanced   |
+| `--plugin-linea-liveness-contract-address`                     | Address of the LineaSequencerUptimeFeed contract (default: `${DEFAULT-VALUE}`)                                          |          | SMC_ADDRESS    | Advanced   |
+| `--plugin-linea-liveness-signer-url`                           | URL of the Web3Signer service, in charge of signing transactions                                                        |          | URL            | Advanced   |
+| `--plugin-linea-liveness-signer-key-id`                        | Key ID to use with Web3Signer, the public key in hex corresponding to the private key in charge of signing transactions |          | PUBLIC_KEY_HEX | Advanced   |
+| `--plugin-linea-liveness-signer-address`                       | Ethereum address corresponding to the Web3Signer key ID                                                                 |          | EOA_ADDRESS    | Advanced   |
+| `--plugin-linea-liveness-tls-enabled`                          | Enable TLS connection to Web3Signer (default: false)                                                                    | `false`  | BOOLEAN        | Advanced   |
+| `--plugin-linea-liveness-tls-key-store-path`                   | Path to the TLS key store file                                                                                          |          | FILE_PATH      | Advanced   |
+| `--plugin-linea-liveness-tls-key-store-password`               | TLS key store password                                                                                                  |          | PASSWORD       | Advanced   |
+| `--plugin-linea-liveness-tls-trust-store-path`                 | Path to the TLS trust store file                                                                                        |          | FILE_PATH      | Advanced   |
+| `--plugin-linea-liveness-tls-trust-store-password`             | TLS trust store password                                                                                                |          | PASSWORD       | Advanced   |
+| `--plugin-linea-liveness-gas-limit`                            | Gas limit for transactions (default: 100000)                                                                            | `100000` | LONG           | Advanced   |
+| `--plugin-linea-liveness-gas-price`                            | Gas price in Wei for transactions. (default: 7)                                                                         | `7`      | LONG           | Advanced   |
+
+### Sequencer — Profitability
+
+Config-file key: `profitability-config`
+
+| Option                                                   | Description                                                                                                                                                                                                          | Default                                                         | Type    | Visibility |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------- | ---------- |
+| `--plugin-linea-fixed-gas-cost-wei`                      | Fixed gas cost in Wei (default: 0)                                                                                                                                                                                   | `0`                                                             | INTEGER | Advanced   |
+| `--plugin-linea-variable-gas-cost-wei`                   | Variable gas cost in Wei (default: 10000000000)                                                                                                                                                                      | `10000000000`                                                   | INTEGER | Advanced   |
+| `--plugin-linea-min-margin`                              | Minimum margin of a transaction to be selected (default: 1)                                                                                                                                                          | `1`                                                             | FLOAT   | Advanced   |
+| `--plugin-linea-estimate-gas-min-margin`                 | Recommend a specific gas price when using linea_estimateGas (default: 1)                                                                                                                                             | `1`                                                             | FLOAT   | Advanced   |
+| `--plugin-linea-tx-pool-min-margin`                      | The min margin an incoming tx must have to be accepted in the txpool (default: 0.5)                                                                                                                                  | `0.5`                                                           | FLOAT   | Advanced   |
+| `--plugin-linea-tx-pool-profitability-check-api-enabled` | Enable the profitability check for txs received via API? (default: true)                                                                                                                                             | `true`                                                          | BOOLEAN | Advanced   |
+| `--plugin-linea-tx-pool-profitability-check-p2p-enabled` | Enable the profitability check for txs received via p2p? (default: false)                                                                                                                                            | `false`                                                         | BOOLEAN | Advanced   |
+| `--plugin-linea-extra-data-pricing-enabled`              | Enable setting pricing parameters via extra data field (default: false)                                                                                                                                              | `false`                                                         | BOOLEAN | Advanced   |
+| `--plugin-linea-extra-data-set-min-gas-price-enabled`    | Enable setting min gas price runtime value via extra data field (default: true)                                                                                                                                      | `true`                                                          | BOOLEAN | Advanced   |
+| `--plugin-linea-profitability-metrics-buckets`           | List of buckets to use to create the histogram for ratio between the effective priority fee and the calculate profitable priority of the tx (default: [0.1, 0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.2, 1.5, 2.0, 5.0, 10.0]) | `[0.1, 0.3, 0.5, 0.7, 0.9, 1.0, 1.1, 1.2, 1.5, 2.0, 5.0, 10.0]` | FLOAT[] | Advanced   |
+| `--plugin-linea-compressed-tx-cache-size`                | Variable gas cost in Wei (default: 10000)                                                                                                                                                                            | `10000`                                                         | INTEGER | Advanced   |
+
+### Sequencer — Rejected Tx reporting
+
+Config-file key: `rejected-tx-reporting-config`
+
+| Option                                | Description                                                                                             | Default | Type      | Visibility |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------- | --------- | ---------- |
+| `--plugin-linea-rejected-tx-endpoint` | Endpoint URI for reporting rejected transactions. Specify a valid URI to enable reporting.              |         | URL       | Advanced   |
+| `--plugin-linea-node-type`            | Linea Node type to use when reporting rejected transactions. (Valid values: `${COMPLETION-CANDIDATES}`) |         | NODE_TYPE | Advanced   |
+
+### Sequencer — RPC
+
+Config-file key: `rpc-config-sequencer`
+
+| Option                                                      | Description                                                                                                      | Default | Type    | Visibility |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- | ------- | ---------- |
+| `--plugin-linea-estimate-gas-compatibility-mode-enabled`    | Set to true to return the min mineable gas price \* multiplier, instead of the profitable price (default: false) | `false` | BOOLEAN | Standard   |
+| `--plugin-linea-estimate-gas-compatibility-mode-multiplier` | Set to multiplier to apply to the min priority fee per gas when the compatibility mode is enabled (default: 1.2) | `1.2`   | FLOAT   | Standard   |
+
+### Sequencer — Tracer
+
+Config-file key: `tracer-sequencer-config`
+
+| Option                                  | Description                                                                        | Default                | Type   | Visibility |
+| --------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------- | ------ | ---------- |
+| `--plugin-linea-module-limit-file-path` | Path to the toml file containing the module limits (default: moduleLimitFile.toml) | `moduleLimitFile.toml` | STRING | Advanced   |
+
+### Sequencer — Transaction pool validator
+
+Config-file key: `transaction-pool-validator-config`
+
+| Option                                                | Description                                                                                                    | Default             | Type    | Visibility |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- | ------- | ---------- |
+| `--plugin-linea-deny-list-path`                       | Path to the file containing the deny list (default: lineaDenyList.txt)                                         | `lineaDenyList.txt` | STRING  | Advanced   |
+| `--plugin-linea-bundle-overriding-deny-list-path`     | Path to the file containing the deny list for bundles. (default: value used for --plugin-linea-deny-list-path) |                     | STRING  | Advanced   |
+| `--plugin-linea-max-tx-gas-limit`                     | Maximum gas limit for a transaction (default: 30000000)                                                        | `30000000`          | INT     | Advanced   |
+| `--plugin-linea-max-tx-calldata-size`                 | Maximum size for the calldata of a Transaction. If set, the calldata validator is enabled.                     |                     | INTEGER | Advanced   |
+| `--plugin-linea-tx-pool-simulation-check-api-enabled` | Enable the simulation check for txs received via API? (default: false)                                         | `false`             | BOOLEAN | Advanced   |
+| `--plugin-linea-tx-pool-simulation-check-p2p-enabled` | Enable the simulation check for txs received via p2p? (default: false)                                         | `false`             | BOOLEAN | Advanced   |
+
+### Sequencer — Transaction selector
+
+Config-file key: `transaction-selector-config`
+
+| Option                                              | Description                                                                                                                                                                                                                     | Default    | Type    | Visibility |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------- | ---------- |
+| `--plugin-linea-max-block-calldata-size`            | Maximum size for the calldata of a block. If set, the raw calldata size selector is enabled.                                                                                                                                    |            | INTEGER | Advanced   |
+| `--plugin-linea-blob-size-limit`                    | Maximum compressed block size in bytes (block must fit in blob when compressed). If set, the compression-aware selector is enabled.                                                                                             |            | INTEGER | Advanced   |
+| `--plugin-linea-compressed-block-header-overhead`   | Estimated compressed block header overhead in bytes. Subtracted from blobSizeLimit during the fast-path compression check to account for block header data that is not included in per-tx compression estimates (default: 1024) | `1024`     | INTEGER | Advanced   |
+| `--plugin-linea-over-line-count-limit-cache-size`   | Max number of transactions that go over the line count limit we keep track of (default: 10000)                                                                                                                                  | `10000`    | INTEGER | Advanced   |
+| `--plugin-linea-max-block-gas`                      | Sets max gas per block (default: 30000000)                                                                                                                                                                                      | `30000000` | LONG    | Advanced   |
+| `--plugin-linea-max-bundle-pool-size-bytes`         | Sets max memory size, in bytes, that the bundle txpool can occupy (default: 16777216)                                                                                                                                           | `16777216` | LONG    | Advanced   |
+| `--plugin-linea-max-bundle-block-gas`               | Sets max amount of block gas bundle transactions can use (default: 15000000)                                                                                                                                                    | `15000000` | LONG    | Advanced   |
+| `--plugin-linea-events-deny-list-path`              | Path to the file containing the events deny list                                                                                                                                                                                |            | STRING  | Advanced   |
+| `--plugin-linea-events-bundle-deny-list-path`       | Path to the file containing the events deny list for bundles                                                                                                                                                                    |            | STRING  | Advanced   |
+| `--plugin-linea-blob-compressor-version-timestamps` | Comma-separated map of BlobCompressorVersion to Instant, e.g. V2=2025-01-01T00:00:00Z,V3=2026-01-01T00:00:00Z .Available versions: `${COMPLETION-CANDIDATES}` . (default: `${DEFAULT-VALUE}`)                                   |            | MAP     | Advanced   |
+
+### Sequencer — Transaction validator
+
+Config-file key: `transaction-validator-config`
+
+| Option                                    | Description                                                | Default | Type    | Visibility |
+| ----------------------------------------- | ---------------------------------------------------------- | ------- | ------- | ---------- |
+| `--plugin-linea-blob-tx-enabled`          | Enable blob transactions? (default: false)                 | `false` | BOOLEAN | Advanced   |
+| `--plugin-linea-delegate-code-tx-enabled` | Enable EIP7702 delegate code transactions? (default: true) | `true`  | BOOLEAN | Advanced   |
