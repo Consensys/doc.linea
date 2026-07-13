@@ -4,10 +4,10 @@
 
 Config-file key: `l1-l2-bridge-shared-config`
 
-| Option                                | Description                                                            | Default | Type       | Visibility |
-| ------------------------------------- | ---------------------------------------------------------------------- | ------- | ---------- | ---------- |
-| `--plugin-linea-l1l2-bridge-contract` | The address of the L1 L2 bridge contract (default: `${DEFAULT-VALUE}`) |         | ADDRESS    | Standard   |
-| `--plugin-linea-l1l2-bridge-topic`    | The log topic of the L1 L2 bridge (default: `${DEFAULT-VALUE}`)        |         | HEX_STRING | Standard   |
+| Option                                | Description                                                                                                     | Default                                                              | Type       | Visibility |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- | ---------- |
+| `--plugin-linea-l1l2-bridge-contract` | The address of the L1 L2 bridge contract (default: 0x0000000000000000000000000000000000000000)                  | `0x0000000000000000000000000000000000000000`                         | ADDRESS    | Standard   |
+| `--plugin-linea-l1l2-bridge-topic`    | The log topic of the L1 L2 bridge (default: 0x0000000000000000000000000000000000000000000000000000000000000000) | `0x0000000000000000000000000000000000000000000000000000000000000000` | HEX_STRING | Standard   |
 
 ### Tracer — Tracer shared
 
@@ -34,7 +34,7 @@ Config-file key: `tracer-readiness`
 | --------------------------------------------------- | -------------------------------------------------------------------------------------- | --------- | ----------- | ---------- |
 | `--plugin-linea-tracer-readiness-server-port`       | HTTP server port for tracer readiness plugin                                           | `8548`    | SERVER_PORT | Advanced   |
 | `--plugin-linea-tracer-readiness-server-host`       | HTTP server host for tracer readiness plugin                                           | `0.0.0.0` | SERVER_HOST | Advanced   |
-| `--plugin-linea-tracer-readiness-max-blocks-behind` | Maximum number of block behind the head of the chain to treat negligible in state sync |           | BLOCK_COUNT | Advanced   |
+| `--plugin-linea-tracer-readiness-max-blocks-behind` | Maximum number of block behind the head of the chain to treat negligible in state sync | `0`       | BLOCK_COUNT | Advanced   |
 
 ### Tracer — Traces endpoint
 
