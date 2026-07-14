@@ -220,7 +220,8 @@ These architectural components support transactions from submission to finalizat
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
 5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs;
 the [prover](./prover/index.mdx) generates compression proofs.
-6. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization
+6. Blob submission: the coordinator submits compressed batch data to the finalization layer as EIP-4844 blob transactions for data availability.
+7. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization
 layer; after verification and any configured delay, transactions reach hard finality on the selected
 finalization layer.
 
