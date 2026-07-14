@@ -32,8 +32,8 @@ It enables secure interactions between the deployed network and the finalization
 - Records finalized state roots on the finalization layer
 - Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
   between the deployed network and the finalization layer
-- Anchors L2 message Merkle roots at finalization, so L2 to L1 messages are accepted only after the
-  batch's zk-SNARK proof is verified and a Merkle proof confirms their inclusion
+- Anchors L2 message Merkle roots as part of a successful batch finalization
+- When an L2-to-L1 message is claimed, verifies its Merkle proof against an anchored root before delivering the message
 
 ### Native message bridge smart contract
 
