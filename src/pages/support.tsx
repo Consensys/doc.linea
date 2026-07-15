@@ -200,9 +200,7 @@ export default function Support(): React.ReactNode {
           </div>
         </section>
 
-        <section
-          className={styles.resources}
-          aria-labelledby="support-resources">
+        <section className={styles.resources} aria-label="Support resources">
           <div className={styles.resourcesInner}>
             <div className={styles.audienceSection}>
               <h2 id="support-resources">Linea Mainnet users</h2>
@@ -213,6 +211,16 @@ export default function Support(): React.ReactNode {
                   onClick={showIntercom}>
                   <span>Contact support</span>
                   <p>Open the support messenger for help with Linea Mainnet.</p>
+                  {intercomStatus === "delayed" && (
+                    <p className={styles.resourceStatus} role="status">
+                      Support messenger is still loading.
+                    </p>
+                  )}
+                  {intercomStatus === "error" && (
+                    <p className={styles.resourceStatus} role="status">
+                      Support messenger did not load. Try again.
+                    </p>
+                  )}
                 </button>
                 <Link
                   className={styles.resourceCard}

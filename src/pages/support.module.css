@@ -153,6 +153,11 @@
   margin: 0;
 }
 
+.resourceCard .resourceStatus {
+  font-size: var(--font-body-sm);
+  margin-top: 12px;
+}
+
 @media (max-width: 996px) {
   .hero {
     min-height: 360px;
