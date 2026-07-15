@@ -1,21 +1,25 @@
 ---
-title: Linea-Besu plugin options
-slug: /stack/reference/linea-besu-plugin-options
-description: Auto-generated reference of Linea-Besu plugin CLI options, grouped by plugin and feature.
+title: Linea Besu plugin configuration reference
+slug: /stack/reference/linea-besu-plugin-configuration
+description: CLI configuration options for the Linea Besu sequencer, tracer, and state recovery plugins.
 draft: false
 ---
 
 {/* Human-owned wrapper. Automation only updates `_generated/` partials. Seeded once by scripts/besu-plugin-options; place new partial imports when plugins appear. */}
 
+import Provenance from "./_generated/provenance.mdx";
 import Sequencer from "./_generated/sequencer.mdx";
 import Tracer from "./_generated/tracer.mdx";
 
-:::note Advanced options
+:::caution Advanced options
 
-Options marked **Advanced** are flagged `hidden` in the source: they are real operator flags but are not surfaced in the CLI help output. They are included here intentionally so operators can discover and tune them.
-
+Options marked Advanced are hidden from the standard CLI help output but are included for completeness. Their presence does not indicate that changing them is recommended or supported for every deployment. Verify their applicability against the relevant release and deployment guidance.
 :::
+:::note Defaults
 
+  Defaults are values defined in the plugin source. They are not recommended production settings and may be overridden by deployment configuration.
+
+  :::
 :::note Forced transactions excluded
 
 The `LineaForcedTransactionCliOptions` group is intentionally excluded because the forced-transactions feature is unreleased. TODO: include this group once the feature ships.
@@ -23,6 +27,8 @@ The `LineaForcedTransactionCliOptions` group is intentionally excluded because t
 :::
 
 This reference lists plugin-specific options (flags starting with `--plugin-`), grouped by plugin and feature. Descriptions come from the Java `@Option` sources; defaults are shown in the Default column (picocli help text `(default: …)` is omitted there to avoid duplication).
+
+<Provenance />
 
 <Sequencer />
 
