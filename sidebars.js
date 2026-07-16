@@ -208,18 +208,19 @@ const sidebars = {
     },
     "network/risk-disclosures",
   ],
-  apiSidebar: [
+  referenceSidebar: [
     {
       type: "html",
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    { type: "doc", id: "api/quickstart", className: "intro-section-item" },
+    { type: "doc", id: "reference", className: "intro-section-item" },
     {
       type: "category",
-      label: "JSON-RPC API reference",
+      label: "RPC and APIs",
       collapsible: false,
       items: [
+        { type: "doc", id: "api/quickstart", label: "Overview" },
         "api/reference/index",
         {
           type: "category",
@@ -279,12 +280,24 @@ const sidebars = {
             "api/reference/trace-call",
           ],
         },
+        "api/token-api/index",
       ],
     },
-    "api/linea-sdk",
     {
       type: "category",
-      label: "Smart contract reference",
+      label: "SDKs and libraries",
+      collapsible: false,
+      items: ["api/linea-sdk"],
+    },
+    {
+      type: "category",
+      label: "Component configuration",
+      collapsible: false,
+      items: ["stack/reference/linea-besu-plugin-options"],
+    },
+    {
+      type: "category",
+      label: "Smart contracts",
       collapsible: false,
       items: [
         {
@@ -319,7 +332,6 @@ const sidebars = {
         "api/linea-smart-contracts/zkevmv2",
       ],
     },
-    "api/token-api/index",
   ],
   protocolSidebar: [
     {
@@ -472,14 +484,6 @@ const sidebars = {
         "stack/how-it-works/deployment-models",
         "stack/how-it-works/trust-model",
         "stack/how-it-works/data-availability-finalization",
-      ],
-    },
-    {
-      type: "category",
-      label: "Reference",
-      collapsible: false,
-      items: [
-        "stack/reference/linea-besu-plugin-options",
       ],
     },
     {
