@@ -1489,7 +1489,9 @@ button.clean-btn.menu__caret {
 }
 
 /* Non-collapsible top-level section header labels (Introduction, Features, etc.) */
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+.theme-doc-sidebar-item-category-level-1:not(.sidebar-collapsible-section)
+  > .menu__list-item-collapsible
+  > .menu__link {
   font-size: var(--font-body-xs) !important;
   font-weight: 500 !important;
   font-family: AtypText, sans-serif !important;
@@ -1500,7 +1502,10 @@ button.clean-btn.menu__caret {
   cursor: default;
 }
 
-[data-theme="dark"] .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+[data-theme="dark"]
+  .theme-doc-sidebar-item-category-level-1:not(.sidebar-collapsible-section)
+  > .menu__list-item-collapsible
+  > .menu__link {
   color: rgb(255 255 255 / 45%) !important;
 }
 

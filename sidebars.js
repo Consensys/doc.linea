@@ -298,7 +298,9 @@ const sidebars = {
     {
       type: "category",
       label: "Smart contracts",
-      collapsible: false,
+      className: "sidebar-collapsible-section",
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
