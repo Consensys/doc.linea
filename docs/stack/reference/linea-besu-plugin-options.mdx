@@ -9,7 +9,7 @@ draft: false
 image: /img/socialCards/linea-besu-plugin-configuration-reference.jpg
 ---
 
-{/* Human-owned wrapper. Automation only updates `_generated/` partials. Seeded once by scripts/besu-plugin-options; place new partial imports when plugins appear. */}
+{/* Human-owned wrapper. Automation only updates `_generated/` partials. Add new partial imports when plugins appear. */}
 
 import Provenance from "./_generated/provenance.mdx";
 import Sequencer from "./_generated/sequencer.mdx";
@@ -30,7 +30,7 @@ The `LineaForcedTransactionCliOptions` group is excluded because the forced-tran
 
 :::
 
-This reference lists plugin-specific options (flags starting with `--plugin-`), grouped by plugin and feature. Descriptions come from the Java `@Option` sources; defaults are shown in the Default column (picocli help text `(default: …)` is omitted there to avoid duplication).
+This reference lists plugin-specific options (flags starting with `--plugin-`), grouped by plugin and feature. Descriptions come from the Java `@Option` sources; defaults are shown in the Default column. Repeated `(default: …)` text is omitted from descriptions.
 
 <Provenance />
 
