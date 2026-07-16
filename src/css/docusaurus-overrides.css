@@ -3,7 +3,7 @@
  * 1499px — responsive graphic
  * 1380px — navbar inner width
  * 1320px — search input desktop max
- * 1200px — hide TOC column
+ * 1200px — hide TOC column (desktop sidebar too narrow below this; swap to inline mobile TOC)
  * 1080px — release notes link hide / search expand
  *  996px — Docusaurus mobile (navbar/sidebar collapse) [PRINCIPAL]
  *  768px — compact layout
@@ -1546,12 +1546,12 @@ button.clean-btn.menu__caret {
     flex-direction: column;
   }
 
-  article > nav.theme-doc-breadcrumbs { order: 1; }
-  article > .theme-doc-toc-mobile     { order: 2; }
-  article > [class*="titleRow"]        { order: 3; }
-  article > .theme-doc-markdown        { order: 4; }
-  article > *                          { order: 5; }
-  article > footer.theme-doc-footer    { order: 6; }
+  article > .article-breadcrumbs-wrapper   { order: 1; }
+  article > .article-mobile-toc-wrapper     { order: 2; }
+  article > [class*="titleRow"]             { order: 3; }
+  article > .theme-doc-markdown              { order: 4; }
+  article > *                                { order: 5; }
+  article > .article-footer-wrapper          { order: 6; }
 
   .theme-doc-toc-mobile {
     background: var(--ifm-background-color) !important;
