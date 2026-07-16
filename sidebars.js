@@ -220,7 +220,7 @@ const sidebars = {
       label: "RPC and APIs",
       collapsible: false,
       items: [
-        { type: "doc", id: "api/quickstart", label: "Overview" },
+        { type: "doc", id: "api/quickstart", label: "API overview" },
         "api/reference/index",
         {
           type: "category",
