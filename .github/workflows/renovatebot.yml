@@ -17,19 +17,20 @@ on:
         default: ''
         type: string
 
-permissions:
-  contents: read
+permissions: {} # lock everything by default (least-privilege)
 
 jobs:
   renovatebot-check:
     runs-on: ubuntu-24.04
     environment: security
+    permissions:
+      contents: read  # least-privilege for this job only
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Check protocol-galileo membership
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.minimum_release_age == '0'
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const { data } = await github.rest.teams.getMembershipForUserInOrg({
