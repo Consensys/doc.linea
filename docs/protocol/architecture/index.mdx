@@ -220,10 +220,10 @@ These architectural components support transactions from submission to finalizat
 4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
 5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs;
 the [prover](./prover/index.mdx) generates compression proofs.
-6. Data submission: the contracts define three data-submission models:
-   - Compressed batch data submitted as EIP-4844 blobs. The current Coordinator uses this model for rollup deployments.
-   - Compressed batch data submitted as calldata. The current Coordinator does not provide a calldata submitter.
-   - Shnarf-only submission for validium deployments, without publishing the compressed batch data. The current Coordinator uses this model for validium deployments.
+6. Data submission: Lineth contracts define three data-submission models:
+   - Compressed data submitted as EIP-4844 blobs. Supported by the Coordinator. The finalization contract must implement `IAcceptEip4844Blobs`.
+   - Compressed data submitted as calldata. The current Coordinator does not provide a calldata submitter. The finalization contract must implement `IAcceptCalldataBlobs`.
+   - Shnarf-only submission for validium deployments, without publishing the compressed batch data to the finalization layer. Supported by the Coordinator. The finalization contract must implement `IAcceptShnarfData`.
 7. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization
 layer; after verification and any configured delay, transactions reach hard finality on the selected
 finalization layer.
