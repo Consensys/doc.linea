@@ -81,7 +81,11 @@
   margin: 0 auto;
 }
 
-.resources h2 {
+.audienceSection + .audienceSection {
+  margin-top: 48px;
+}
+
+.audienceSection h2 {
   color: var(--linea-text-primary);
   font-size: var(--font-display-md);
   margin: 0 0 24px;
@@ -90,7 +94,7 @@
 .resourceGrid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .resourceCard {
@@ -117,6 +121,23 @@
   font-size: var(--font-heading-md);
   font-weight: 500;
   margin-bottom: 12px;
+}
+
+.resourceTitle {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.resourceTitle span {
+  margin-bottom: 0;
+}
+
+.resourceIcon {
+  flex: 0 0 auto;
+  height: 24px;
+  width: 24px;
 }
 
 .resourceCard p {
