@@ -113,10 +113,7 @@ The operator determines where transaction data is stored to suit privacy and sec
 ```mermaid
 %%{init: {
   "themeVariables": {
-    "fontFamily": "AtypText, sans-serif",
-    "clusterBkg": "#40454c",
-    "clusterBorder": "#808080",
-    "titleColor": "#f8f7f2"
+    "fontFamily": "AtypText, sans-serif"
   },
   "flowchart": {
     "useMaxWidth": true,
@@ -127,13 +124,12 @@ The operator determines where transaction data is stored to suit privacy and sec
   }
 }}%%
 flowchart TB
-  %% =========================
-  %% Styling (Linea docs palette; theme CSS adjusts light/dark)
-  %% =========================
-  classDef core fill:#3b0ea8,color:#ffffff,stroke:#3b0ea8,stroke-width:1px;
-  classDef access fill:#ECECFF,color:#121212,stroke:#9370DB,stroke-width:1.5px;
-  classDef control fill:#ECECFF,color:#121212,stroke:#9370DB,stroke-width:1.5px,stroke-dasharray: 6 4;
-  classDef neutral fill:#ECECFF,color:#121212,stroke:#9370DB,stroke-width:1px;
+  %% Node colors come from CSS (theme-aware). Keep classDef free of fill/color
+  %% so Mermaid does not inject #svgId !important rules that block overrides.
+  classDef core stroke-width:1.5px;
+  classDef access stroke-width:1.5px;
+  classDef control stroke-width:1.5px,stroke-dasharray:6 4;
+  classDef neutral stroke-width:1.5px;
   classDef invisible fill:transparent,stroke:transparent,color:transparent;
 
   %% =========================

@@ -1704,42 +1704,31 @@ button.clean-btn.menu__caret {
 }
 
 /*
- * Deployment-models flowchart: Linea palette + readable contrast in both
- * themes. Mermaid classDef colors are static; theme text color often
- * overrides node label color, so fills and label colors are forced here.
+ * Deployment-models flowchart:
+ * - Tone down Mermaid's default yellow subgraph backgrounds.
+ * - Core: light purple fill + dark purple border (reversed in dark mode).
+ * - Access / neutral / control: light cyan fill + darker cyan border
+ *   (reversed in dark mode). Control also uses a dashed stroke.
+ *   Fill/stroke are set here (not in classDef) so Mermaid's #svgId
+ *   classDef !important rules do not block theme overrides.
  */
 .theme-doc-markdown .mermaid-deployment {
-  /* Match Mermaid default-theme sequence actors (forced-transactions). */
-  --mermaid-actor-bg: #ececff;
-  --mermaid-actor-border: #9370db;
-  --mermaid-actor-text: #121212;
   --mermaid-cluster-bg: #e8e9eb;
   --mermaid-cluster-border: #c0c0c0;
   --mermaid-cluster-text: var(--linea-text-primary);
-  --mermaid-core-bg: #3b0ea8;
+  --mermaid-core-bg: #ececff;
   --mermaid-core-stroke: #3b0ea8;
-  --mermaid-core-text: #fff;
-  --mermaid-access-bg: var(--mermaid-actor-bg);
-  --mermaid-access-stroke: var(--mermaid-actor-border);
-  --mermaid-access-text: var(--mermaid-actor-text);
-  --mermaid-control-bg: var(--mermaid-actor-bg);
-  --mermaid-control-stroke: var(--mermaid-actor-border);
-  --mermaid-control-text: var(--mermaid-actor-text);
-  --mermaid-neutral-bg: var(--mermaid-actor-bg);
-  --mermaid-neutral-stroke: var(--mermaid-actor-border);
-  --mermaid-neutral-text: var(--mermaid-actor-text);
+  --mermaid-cyan-bg: #e6faff;
+  --mermaid-cyan-stroke: #2eb9dc;
 }
 
 [data-theme="dark"] .theme-doc-markdown .mermaid-deployment {
-  /* Match Mermaid dark-theme sequence actors (forced-transactions). */
-  --mermaid-actor-bg: #1f2020;
-  --mermaid-actor-border: #ccc;
-  --mermaid-actor-text: #f8f7f2;
   --mermaid-cluster-bg: rgb(64 69 76);
   --mermaid-cluster-border: #808080;
   --mermaid-core-bg: #2a0a7a;
-  --mermaid-core-stroke: var(--linea-purple-hover);
-  --mermaid-core-text: #fff;
+  --mermaid-core-stroke: #a8a8e8;
+  --mermaid-cyan-bg: #004166;
+  --mermaid-cyan-stroke: var(--linea-brand-cyan);
 }
 
 .theme-doc-markdown .mermaid-deployment .cluster rect {
@@ -1755,58 +1744,23 @@ button.clean-btn.menu__caret {
 
 .theme-doc-markdown .mermaid-deployment .node.core rect,
 .theme-doc-markdown .mermaid-deployment .node.core .basic.label-container {
-  fill: var(--mermaid-core-bg) !important;
+  fill: var(--mermaid-core-bg) !important; /* beat theme .node rect fill */
   stroke: var(--mermaid-core-stroke) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .node.access rect,
-.theme-doc-markdown .mermaid-deployment .node.access .basic.label-container {
-  fill: var(--mermaid-access-bg) !important;
-  stroke: var(--mermaid-access-stroke) !important;
+.theme-doc-markdown .mermaid-deployment .node.access .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.neutral rect,
+.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.control rect,
+.theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
+  fill: var(--mermaid-cyan-bg) !important;
+  stroke: var(--mermaid-cyan-stroke) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .node.control rect,
 .theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
-  fill: var(--mermaid-control-bg) !important;
-  stroke: var(--mermaid-control-stroke) !important;
-}
-
-.theme-doc-markdown .mermaid-deployment .node.neutral rect,
-.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container {
-  fill: var(--mermaid-neutral-bg) !important;
-  stroke: var(--mermaid-neutral-stroke) !important;
-}
-
-.theme-doc-markdown .mermaid-deployment .node.core .nodeLabel,
-.theme-doc-markdown .mermaid-deployment .node.core span,
-.theme-doc-markdown .mermaid-deployment .node.core foreignObject div,
-.theme-doc-markdown .mermaid-deployment .node.core text {
-  color: var(--mermaid-core-text) !important;
-  fill: var(--mermaid-core-text) !important;
-}
-
-.theme-doc-markdown .mermaid-deployment .node.access .nodeLabel,
-.theme-doc-markdown .mermaid-deployment .node.access span,
-.theme-doc-markdown .mermaid-deployment .node.access foreignObject div,
-.theme-doc-markdown .mermaid-deployment .node.access text {
-  color: var(--mermaid-access-text) !important;
-  fill: var(--mermaid-access-text) !important;
-}
-
-.theme-doc-markdown .mermaid-deployment .node.control .nodeLabel,
-.theme-doc-markdown .mermaid-deployment .node.control span,
-.theme-doc-markdown .mermaid-deployment .node.control foreignObject div,
-.theme-doc-markdown .mermaid-deployment .node.control text {
-  color: var(--mermaid-control-text) !important;
-  fill: var(--mermaid-control-text) !important;
-}
-
-.theme-doc-markdown .mermaid-deployment .node.neutral .nodeLabel,
-.theme-doc-markdown .mermaid-deployment .node.neutral span,
-.theme-doc-markdown .mermaid-deployment .node.neutral foreignObject div,
-.theme-doc-markdown .mermaid-deployment .node.neutral text {
-  color: var(--mermaid-neutral-text) !important;
-  fill: var(--mermaid-neutral-text) !important;
+  stroke-dasharray: 6 4;
 }
 
 /* responsive classes for architecture diagram */

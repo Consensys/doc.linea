@@ -47,7 +47,6 @@ const config = {
     require.resolve("./src/clientModules/codeBlockClassifier.js"),
     require.resolve("./src/clientModules/responsiveTables.js"),
     require.resolve("./src/clientModules/sidebarOffset.js"),
-    require.resolve("./src/clientModules/mermaidDeploymentColors.js"),
   ],
 
   markdown: {
