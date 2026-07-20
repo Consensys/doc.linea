@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
-import { DiscordIcon } from "@site/src/components/icons";
+import { DiscordIcon, GitHubIcon } from "@site/src/components/icons";
 
 import styles from "./support.module.css";
 
@@ -175,8 +175,8 @@ export default function Support(): React.ReactNode {
           <div className={styles.heroContent}>
             <h1>Linea Support</h1>
             <p className={styles.intro}>
-              Pick the situation that best describes you to find the right
-              support, documentation, or community resource.
+              Can&apos;t find what you need in the docs? Contact support or
+              choose the resources for your situation below.
             </p>
             <button
               id="intercom-button"
@@ -205,23 +205,6 @@ export default function Support(): React.ReactNode {
             <div className={styles.audienceSection}>
               <h2 id="support-resources">Linea Mainnet users</h2>
               <div className={styles.resourceGrid}>
-                <button
-                  type="button"
-                  className={clsx(styles.resourceCard, styles.resourceButton)}
-                  onClick={showIntercom}>
-                  <span>Contact support</span>
-                  <p>Open the support messenger for help with Linea Mainnet.</p>
-                  {intercomStatus === "delayed" && (
-                    <p className={styles.resourceStatus} role="status">
-                      Support messenger is still loading.
-                    </p>
-                  )}
-                  {intercomStatus === "error" && (
-                    <p className={styles.resourceStatus} role="status">
-                      Support messenger did not load. Try again.
-                    </p>
-                  )}
-                </button>
                 <Link
                   className={styles.resourceCard}
                   to="https://linea.statuspage.io/">
@@ -234,23 +217,12 @@ export default function Support(): React.ReactNode {
                   <span>Stuck transaction</span>
                   <p>Use MetaMask guidance to cancel a stuck transaction.</p>
                 </Link>
-                <Link className={styles.resourceCard} to="/search">
-                  <span>Search docs</span>
-                  <p>Find public Linea docs, guides, and references.</p>
-                </Link>
               </div>
             </div>
 
             <div className={styles.audienceSection}>
-              <h2>Building on Linea</h2>
+              <h2>Linea builders</h2>
               <div className={styles.resourceGrid}>
-                <Link className={styles.resourceCard} to="/search">
-                  <span>Search developer docs</span>
-                  <p>
-                    Find guides, tools, and API references for building on
-                    Linea.
-                  </p>
-                </Link>
                 <Link
                   className={styles.resourceCard}
                   to="https://community.linea.build/">
@@ -267,12 +239,18 @@ export default function Support(): React.ReactNode {
             </div>
 
             <div className={styles.audienceSection}>
-              <h2>Running or evaluating the Lineth stack</h2>
+              <h2>Lineth stack operators and evaluators</h2>
               <div className={styles.resourceGrid}>
                 <Link
                   className={styles.resourceCard}
                   to="https://github.com/LFDT-Lineth/lineth-monorepo">
-                  <span>Lineth on GitHub</span>
+                  <div className={styles.resourceTitle}>
+                    <GitHubIcon
+                      className={styles.resourceIcon}
+                      aria-hidden="true"
+                    />
+                    <span>Lineth on GitHub</span>
+                  </div>
                   <p>
                     Explore the source code for the Lineth open-source stack.
                   </p>

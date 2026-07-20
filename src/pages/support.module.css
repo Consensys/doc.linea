@@ -109,13 +109,6 @@
     transform 0.2s ease;
 }
 
-.resourceButton {
-  background: transparent;
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
-}
-
 .resourceCard:hover,
 .resourceCard:focus {
   border-color: var(--linea-brand-purple);
@@ -151,11 +144,6 @@
   color: var(--linea-text-secondary);
   line-height: 1.5;
   margin: 0;
-}
-
-.resourceCard .resourceStatus {
-  font-size: var(--font-body-sm);
-  margin-top: 12px;
 }
 
 @media (max-width: 996px) {
