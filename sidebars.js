@@ -471,6 +471,7 @@ const sidebars = {
           id: "stack/features/security",
           label: "Security and assurance",
         },
+        "stack/features/compliance",
       ],
     },
     {
@@ -484,6 +485,7 @@ const sidebars = {
           id: "stack/how-it-works/core-components",
           label: "Deployment components",
         },
+        "stack/features/data-availability",
         "stack/how-it-works/data-availability-finalization",
         {
           type: "doc",
@@ -508,6 +510,7 @@ const sidebars = {
           id: "stack/how-to/distributed-sequencing",
           label: "Configure distributed sequencing",
         },
+        "stack/how-to/forced-transactions",
       ],
     },
   ],
