@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: LinkCheck
-        uses: ConsenSys/github-actions/docs-link-check@68e0677c7c567c2447fc82d43dc4fceb4b31a680 # main
+        uses: Consensys/github-actions/docs-link-check@68e0677c7c567c2447fc82d43dc4fceb4b31a680 # main
         with:
           CONFIG_FILE: .linkspector.yml
 
@@ -31,7 +31,7 @@ jobs:
     permissions: {}   # zero scopes
     steps:
       - name: Slack Notification
-        uses: ConsenSys/github-actions/slack-notify@68e0677c7c567c2447fc82d43dc4fceb4b31a680 # main
+        uses: Consensys/github-actions/slack-notify@68e0677c7c567c2447fc82d43dc4fceb4b31a680 # main
         with:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
