@@ -1,10 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { ThemeClassNames, useWindowSize } from "@docusaurus/theme-common";
-import {
-  useDoc,
-  useSidebarBreadcrumbs,
-} from "@docusaurus/plugin-content-docs/client";
+import { useDoc } from "@docusaurus/plugin-content-docs/client";
 import DocItemPaginator from "@theme/DocItem/Paginator";
 import DocVersionBanner from "@theme/DocVersionBanner";
 import DocVersionBadge from "@theme/DocVersionBadge";
@@ -136,15 +133,6 @@ function useDocTOC() {
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC();
   const { metadata } = useDoc();
-  const breadcrumbs = useSidebarBreadcrumbs();
-
-  // Get parent category label from breadcrumbs
-  // Find the last category-type breadcrumb (parent category)
-  const categoryLabel = breadcrumbs
-    ?.slice()
-    .reverse()
-    .find((item) => item.type === "category")?.label;
-
   const hideCopyButton = metadata.frontMatter?.hide_copy_button;
 
   return (
@@ -154,14 +142,14 @@ export default function DocItemLayout({ children }) {
         <DocVersionBanner />
         <div className={styles.docItemContainer}>
           <article>
-            <div data-markdown-ignore className="article-breadcrumbs-wrapper">
+            <div
+              data-markdown-ignore
+              className={clsx(
+                styles.docItemHeader,
+                "article-breadcrumbs-wrapper",
+              )}>
               <DocBreadcrumbs />
-            </div>
-            <div className={styles.titleRow} data-markdown-ignore>
-              {categoryLabel && (
-                <span className={styles.categoryLabel}>{categoryLabel}</span>
-              )}
-              <div className={styles.titleRowRight}>
+              <div className={styles.docItemHeaderActions}>
                 <DocVersionBadge />
                 {!hideCopyButton && <CopyPageButton />}
               </div>
