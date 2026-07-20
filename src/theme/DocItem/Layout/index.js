@@ -147,8 +147,7 @@ export default function DocItemLayout({ children }) {
               className={clsx(
                 styles.docItemHeader,
                 "article-breadcrumbs-wrapper",
-              )}
-            >
+              )}>
               <DocBreadcrumbs />
               <div className={styles.docItemHeaderActions}>
                 <DocVersionBadge />

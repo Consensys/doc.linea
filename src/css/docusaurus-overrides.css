@@ -917,7 +917,7 @@ html[data-theme="dark"] .navbar {
   font-size: 14px;
 }
 
-/* Breadcrumbs styling per Figma (bottom spacing lives on .docItemHeader) */
+/* Breadcrumbs styling per Figma */
 nav[aria-label="Breadcrumbs"] {
   font-family: 'Atyp Text', sans-serif;
   font-size: 12px;
@@ -926,14 +926,10 @@ nav[aria-label="Breadcrumbs"] {
   margin-bottom: 0;
 }
 
-/*
- * Breadcrumb labels: !important needed to beat `article a` link color,
- * which otherwise makes linked crumbs purple/cyan while unlinked category
- * spans stay muted/gray.
- */
 nav[aria-label="Breadcrumbs"] a,
 nav[aria-label="Breadcrumbs"] .breadcrumbs__link {
   color: var(--linea-text-primary) !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
   padding: 5px 10px;
   border-radius: var(--linea-radius-round);
@@ -2325,19 +2321,18 @@ code {
   letter-spacing: 0.28px;
 }
 
-/* Inline code (pills): relative size so it scales in headings */
+/* Inline code (pills) per Figma */
 :not(pre) > code {
-  font-size: 0.875em; /* 14px at body-md (16px); scales with parent */
+  font-size: 0.875em;
   letter-spacing: 0.2px;
   background-color: var(--linea-surface-elevated);
   color: var(--linea-text-primary);
   padding: 0 5px;
   border-radius: var(--linea-radius-sm);
   position: relative;
-  top: -0.08em; /* optical align with surrounding text */
+  top: -0.08em;
 }
 
-/* Keep pill styling in headings, sized just under the heading text */
 article :is(h2, h3, h4, h5, h6) code {
   font-size: 0.85em;
 }

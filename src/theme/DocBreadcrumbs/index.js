@@ -69,8 +69,7 @@ function BreadcrumbsItem({ children, active }) {
     <li
       className={clsx("breadcrumbs__item", {
         "breadcrumbs__item--active": active,
-      })}
-    >
+      })}>
       {children}
     </li>
   );
@@ -94,8 +93,7 @@ export default function DocBreadcrumbs() {
   if (sectionItem) {
     const sectionHref = normalizeHref(sectionItem.href);
     const rest = breadcrumbs.filter(
-      (item, idx) =>
-        !(idx === 0 && normalizeHref(item.href) === sectionHref),
+      (item, idx) => !(idx === 0 && normalizeHref(item.href) === sectionHref),
     );
     allItems = [
       { label: sectionItem.label, href: sectionItem.href, _isSection: true },
@@ -115,8 +113,7 @@ export default function DocBreadcrumbs() {
           id: "theme.docs.breadcrumbs.navAriaLabel",
           message: "Breadcrumbs",
           description: "The ARIA label for the breadcrumbs",
-        })}
-      >
+        })}>
         <ul className="breadcrumbs">
           {homePageRoute && <HomeBreadcrumbItem />}
           {allItems.map((item, idx) => {
