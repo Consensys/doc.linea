@@ -7,4 +7,4 @@
 | `data_availability.max_nb_batches`            | MaxNbBatches is the maximum number of execution batches allowed in a single DA proof.           | `100`                        | `int`      | required; gt=0      |
 | `data_availability.max_uncompressed_nb_bytes` | MaxUncompressedNbBytes is the maximum number of bytes in the uncompressed blob payload.         | —                            | `int`      | required; gt=0      |
 | `data_availability.prover_mode`               | ProverMode stores the kind of prover to use.                                                    | —                            | `string`   | required; dev\|full |
-| `data_availability.requests_root_dir`         |                                                                                                 | `/shared/prover-compression` | `string`   | required            |
+| `data_availability.requests_root_dir`         | RequestsRootDir is the root directory for incoming job requests and completed results.          | `/shared/prover-compression` | `string`   | required            |
