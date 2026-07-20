@@ -557,7 +557,7 @@ a.navbar__brand {
 .navbar__link[href="/network/quickstart"]::before,
 .navbar__link[href="/protocol/quickstart"]::before,
 .navbar__link[href="/stack/quickstart"]::before,
-.navbar__link[href="/api/quickstart"]::before,
+.navbar__link[href="/reference"]::before,
 .navbar__link[href="/changelog/release-notes"]::before,
 .navbar__link[href="/support"]::before {
   content: "";
@@ -575,7 +575,7 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/network/quickstart"]::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"]::before,
-[data-theme="dark"] .navbar__link[href="/api/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/reference"]::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before,
 [data-theme="dark"] .navbar__link[href="/support"]::before {
   border-color: white;
@@ -585,7 +585,7 @@ a.navbar__brand {
 .navbar__link[href="/network/quickstart"].navbar__link--active::before,
 .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
 .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
-.navbar__link[href="/api/quickstart"].navbar__link--active::before,
+.navbar__link[href="/reference"].navbar__link--active::before,
 .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
 .navbar__link[href="/support"].navbar__link--active::before {
   background-color: var(--linea-brand-navy);
@@ -594,7 +594,7 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/network/quickstart"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
-[data-theme="dark"] .navbar__link[href="/api/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/reference"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/support"].navbar__link--active::before {
   background-color: white;
@@ -613,7 +613,7 @@ a.navbar__brand {
 .navbar__link[href="/network/quickstart"]:hover::before,
 .navbar__link[href="/protocol/quickstart"]:hover::before,
 .navbar__link[href="/stack/quickstart"]:hover::before,
-.navbar__link[href="/api/quickstart"]:hover::before,
+.navbar__link[href="/reference"]:hover::before,
 .navbar__link[href="/changelog/release-notes"]:hover::before,
 .navbar__link[href="/support"]:hover::before {
   background-color: var(--linea-brand-navy);
@@ -622,7 +622,7 @@ a.navbar__brand {
 [data-theme="dark"] .navbar__link[href="/network/quickstart"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/stack/quickstart"]:hover::before,
-[data-theme="dark"] .navbar__link[href="/api/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/reference"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/support"]:hover::before {
   background-color: white;
@@ -633,7 +633,7 @@ a.navbar__brand {
   .navbar__link[href="/network/quickstart"]::before,
   .navbar__link[href="/protocol/quickstart"]::before,
   .navbar__link[href="/stack/quickstart"]::before,
-  .navbar__link[href="/api/quickstart"]::before,
+  .navbar__link[href="/reference"]::before,
   .navbar__link[href="/changelog/release-notes"]::before,
   .navbar__link[href="/support"]::before {
     display: none;
@@ -1030,9 +1030,10 @@ nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   }
 }
 
-/* Left border on sidebar — Protocol, Stack, APIs & SDK sections only */
+/* Left border on sidebar — Protocol, Stack, and Reference sections only */
 html[class*="docs-doc-id-stack"] .theme-doc-sidebar-container,
 html[class*="docs-doc-id-protocol"] .theme-doc-sidebar-container,
+html[class*="docs-doc-id-reference"] .theme-doc-sidebar-container,
 html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   border-left: 1px solid var(--linea-border) !important;
 }
@@ -1488,7 +1489,9 @@ button.clean-btn.menu__caret {
 }
 
 /* Non-collapsible top-level section header labels (Introduction, Features, etc.) */
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+.theme-doc-sidebar-item-category-level-1:not(.sidebar-collapsible-section)
+  > .menu__list-item-collapsible
+  > .menu__link {
   font-size: var(--font-body-xs) !important;
   font-weight: 500 !important;
   font-family: AtypText, sans-serif !important;
@@ -1499,7 +1502,10 @@ button.clean-btn.menu__caret {
   cursor: default;
 }
 
-[data-theme="dark"] .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+[data-theme="dark"]
+  .theme-doc-sidebar-item-category-level-1:not(.sidebar-collapsible-section)
+  > .menu__list-item-collapsible
+  > .menu__link {
   color: rgb(255 255 255 / 45%) !important;
 }
 

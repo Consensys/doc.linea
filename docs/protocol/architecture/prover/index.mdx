@@ -39,4 +39,7 @@ There are multiple operations involved:
 1. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. 
 2. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
 
-This provides cryptographic guarantees to state correctness without requiring third parties to re-execute transactions. Furthermore, the prover provides immediate correctness for transaction batches upon verification. This process enables Linea to provide secure, efficient, and cost-effective transaction scaling, while ensuring trustless execution.
+This provides cryptographic guarantees for state correctness without requiring third parties to
+re-execute transactions. The proof verifies correctness for transaction batches before being accepted by the
+finalization layer. This process enables the protocol to provide secure, efficient, and cost-effective
+transaction scaling while reducing trust assumptions around execution correctness.

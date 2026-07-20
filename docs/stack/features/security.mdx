@@ -5,26 +5,37 @@ sidebar_position: 4
 image: /img/socialCards/security.jpg
 ---
 
-Lineth (formerly the Linea Stack), together with operator-controlled integrations, offers certain security capabilities. These capabilities are provided through both protocol-level guarantees and operator-controlled integrations.
+Lineth (formerly the Linea Stack) combines cryptographic protocol guarantees with
+operator-controlled security integrations.
 
 ## Define security capabilities
 
-Lineth provides protocol-level guarantees, while operators implement operational controls.
+Lineth provides protocol-level guarantees under the configured deployment model, while operators
+implement the operational controls required for production use.
 
-### Protocol-level guarantees 
+### Protocol-level guarantees
 
-The protocol offers certain security guarantees:
+Lineth supports:
 
-- Cryptographic correctness guarantees via zk-SNARKs
-- Byzantine fault tolerant consensus (QBFT)
-- Finalization security inherited from the finalization layer
-- Protocol-level security invariants
+- State transition correctness through zk-SNARK proof verification
+- Byzantine fault tolerant consensus for deployments using QBFT
+- Settlement assurances inherited from the selected finalization layer
+- Bridge and message execution gated by verified state commitments
 
 ### Operational security integrations 
 
-Operators retain full control over their secure boundaries:
+Operators define and operate their secure boundaries:
 
 - Infrastructure isolation and network security controls
 - [Role-based access control (RBAC)](./rbac.mdx) for APIs and services
 - Secure key management via KMS-backed signing and remote signing through [Web3Signer](../../protocol/architecture#web3signer)
+- High-security governance contracts or multisig controls for privileged roles, proxy administration,
+  and upgrades
 - Monitoring and incident response tooling
+
+Governance contracts and multisig controls should be treated as critical security infrastructure.
+They can hold privileged roles, coordinate emergency response, or control upgrade authority depending
+on the deployment. Linea Mainnet's
+[Security Council transaction record](../../changelog/security-council-record) is one example of how
+such controls can be documented publicly. For upgrade mechanics, see the
+[OpenZeppelin Transparent Upgradeable Proxy pattern](../../protocol/architecture/smart-contracts#contract-versioning).

@@ -16,7 +16,13 @@ const GROUPS = [
   { title: "Network", test: (route) => route.startsWith("/network/") },
   { title: "Protocol", test: (route) => route.startsWith("/protocol/") },
   { title: "Stack", test: (route) => route.startsWith("/stack/") },
-  { title: "API reference", test: (route) => route.startsWith("/api/") },
+  {
+    title: "Reference",
+    test: (route) =>
+      route === "/reference" ||
+      route.startsWith("/reference/") ||
+      route.startsWith("/api/"),
+  },
   {
     title: "Changelog and risk",
     test: (route) => route.startsWith("/changelog/"),
