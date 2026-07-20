@@ -97,44 +97,53 @@ Once processed, the prover generates a proof of the transaction and the correspo
 
 The complete lifecycle of a forced transaction is as follows:
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
-    participant App as Dapp backend
-    participant Gateway as ForcedTransactionGateway (L1)
+    participant App as Dapp
+    participant Gateway as Gateway (L1)
     participant Rollup as LineaRollup (L1)
-    participant Coordinator as Coordinator (offchain)
+    participant Coordinator as Coordinator
     participant Sequencer as Sequencer (L2)
-    participant Stack as Proving stack
-    participant L1 as Finalization layer (Ethereum)
+    participant Stack as Prover
+    participant L1 as Finalization (L1)
 
     %% ======================
     %% Step 1: Submission (L1)
     %% ======================
     rect rgb(64, 69, 76)
-        App->>Rollup: Step 1a: Read latest finalized state + rolling hashes
-        App->>Gateway: Step 1b: submitForcedTransaction(...) + fee
-        Gateway->>Rollup: Step 1c: Store forced transaction
+        App->>Rollup: 1a: Read finalized state + rolling hashes
+        App->>Gateway: 1b: submitForcedTransaction + fee
+        Gateway->>Rollup: 1c: Store forced transaction
     end
 
     %% ======================
     %% Step 2: Ordering (L1 enforced)
     %% ======================
     rect rgb(64, 69, 76)
-        Rollup-->>Coordinator: Step 2a: Emit ForcedTransactionAdded
-        Coordinator->>Sequencer: Step 2b: Forward in canonical order
+        Rollup-->>Coordinator: 2a: Emit ForcedTransactionAdded
+        Coordinator->>Sequencer: 2b: Forward in canonical order
     end
 
     %% ======================
     %% Step 3: Processing (L2 → L1 finalization)
     %% ======================
     rect rgb(64, 69, 76)
-        Sequencer->>Sequencer: Step 3a: Process before deadline
-        Sequencer->>Stack: Step 3b: Include in batch
-        Stack->>Stack: Step 3c: Generate zk proof
-        Stack->>L1: Step 3d: Submit proof + state root
-        L1->>L1: Step 3e: Verify and finalize batch
+        Sequencer->>Sequencer: 3a: Process before deadline
+        Sequencer->>Stack: 3b: Include in batch
+        Stack->>Stack: 3c: Generate zk proof
+        Stack->>L1: 3d: Submit proof + state root
+        L1->>L1: 3e: Verify and finalize batch
     end
 ```
+</div>
 
 <small>
 
