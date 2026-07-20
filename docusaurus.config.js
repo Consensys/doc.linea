@@ -164,9 +164,10 @@ const config = {
           },
           {
             type: "doc",
-            docId: "api/quickstart",
+            docId: "reference",
             position: "left",
-            label: "APIs & SDK",
+            label: "Reference",
+            activeBaseRegex: "^/(reference|api)(/|$)",
           },
           {
             type: "doc",

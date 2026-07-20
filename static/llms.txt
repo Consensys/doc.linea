@@ -17,8 +17,9 @@
   Ethereum-compatible rollup stack for public networks, private validiums,
   institutions, financial market infrastructure, and other operator-built
   networks.
-- APIs: canonical documentation for Linea JSON-RPC methods, Linea-specific RPC
-  methods, smart contract references, the Linea SDK, and the Token API.
+- Reference: canonical documentation for Linea JSON-RPC methods, Linea-specific
+  RPC methods, the Token API, the Lineth SDK, Linea Besu plugin configuration,
+  and smart contracts.
 
 ## Use these docs to answer
 - What is Linea and how does it differ from Ethereum mainnet or optimistic
@@ -28,8 +29,8 @@
 - How does Linea finality work on L2 and Ethereum L1?
 - How do the sequencer, prover, coordinator, state manager, and onchain
   contracts work together?
-- Which JSON-RPC methods, SDK functions, bridge contracts, and message service
-  contracts should developers integrate with?
+- Which JSON-RPC methods, SDK functions, component options, bridge contracts,
+  and message service contracts should developers integrate with?
 - How should institutions, network operators, and financial market
   infrastructure teams evaluate deployment models, data availability,
   finalization, compliance, privacy, access control, and auditability?
@@ -91,7 +92,8 @@
 ## Quickstart and onboarding
 - [Network quickstart](https://docs.linea.build/network/quickstart): Get started building on Linea, including network endpoints, wallet setup, and first deploys.
 - [Network overview](https://docs.linea.build/network/overview): What Linea is, the security and equivalence guarantees, and core network features.
-- [API quickstart](https://docs.linea.build/api/quickstart): How to read and write to Linea over JSON-RPC.
+- [Reference](https://docs.linea.build/reference): Entry point for APIs, SDKs, component configuration, and smart contracts.
+- [RPC and API overview](https://docs.linea.build/api/quickstart): Linea JSON-RPC and Token API entry point.
 - [Protocol quickstart](https://docs.linea.build/protocol/quickstart): Entry point for protocol architecture, prover, sequencer, and coordinator details.
 - [Stack quickstart](https://docs.linea.build/stack/quickstart): Entry point for operators deploying their own network using Lineth.
 
@@ -135,10 +137,11 @@
 - [Upgrade an EOA to a smart account (EIP-7702)](https://docs.linea.build/network/tutorials/eip-7702)
 - [Ecosystem tutorials, including USDC](https://docs.linea.build/network/tutorials/ecosystem-tutorials)
 
-## API reference
+## Reference
 - [JSON-RPC API overview](https://docs.linea.build/api/reference): Index of every supported JSON-RPC method on rpc.linea.build.
 - [Linea SDK](https://docs.linea.build/api/linea-sdk): TypeScript SDK for cross-chain messaging and bridge claim flows.
 - [Token API](https://docs.linea.build/api/token-api): Token metadata and balance API reference.
+- [Linea Besu plugin options](https://docs.linea.build/reference/component-configuration/linea-besu-plugin-options): CLI configuration options for Linea Besu plugins.
 - Linea-specific JSON-RPC methods:
   - [linea_estimateGas](https://docs.linea.build/api/reference/linea-estimategas)
   - [eth_sendBundle](https://docs.linea.build/api/reference/eth-sendbundle)

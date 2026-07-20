@@ -306,6 +306,61 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   assert.doesNotMatch(llms, /https:\/\/docs\.linea\.build\/search\.md/);
 });
 
+test("groups API and Reference routes together under Reference", () => {
+  const root = createFixture();
+  const sitemapPath = path.join(root, "build/sitemap.xml");
+  const sitemap = fs
+    .readFileSync(sitemapPath, "utf8")
+    .replace(
+      "  <url><loc>https://docs.linea.build/search</loc></url>",
+      [
+        "  <url><loc>https://docs.linea.build/reference</loc></url>",
+        "  <url><loc>https://docs.linea.build/reference/component-configuration/linea-besu-plugin-options</loc></url>",
+        "  <url><loc>https://docs.linea.build/search</loc></url>",
+      ].join("\n"),
+    );
+  fs.writeFileSync(sitemapPath, sitemap);
+
+  writeFile(
+    root,
+    "build/reference/index.html",
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/reference.md">
+    </head><body>
+      <main><article><h1>Reference</h1><p>Reference landing page.</p></article></main>
+    </body></html>`,
+  );
+  writeFile(
+    root,
+    "build/reference/component-configuration/linea-besu-plugin-options.html",
+    `<!doctype html><html><head>
+      <link rel="alternate" type="text/plain" href="/llms.txt">
+      <link rel="alternate" type="text/markdown" href="/reference/component-configuration/linea-besu-plugin-options.md">
+    </head><body>
+      <main><article><h1>Linea Besu plugin configuration reference</h1><p>Plugin options.</p></article></main>
+    </body></html>`,
+  );
+
+  generateAgentDocs({
+    siteDir: root,
+    buildDir: path.join(root, "build"),
+    baseUrl: "https://docs.linea.build",
+  });
+
+  const llms = fs.readFileSync(path.join(root, "build/llms.txt"), "utf8");
+  const referenceSection = llms.match(/## Reference\n([\s\S]*?)(?=\n## |\s*$)/);
+
+  assert(referenceSection, "llms.txt should include a Reference section");
+  assert.match(referenceSection[1], /\/api\/token-api\/reference\.md/);
+  assert.match(referenceSection[1], /\/reference\.md/);
+  assert.match(
+    referenceSection[1],
+    /\/reference\/component-configuration\/linea-besu-plugin-options\.md/,
+  );
+  assert.doesNotMatch(llms, /## API reference/);
+});
+
 test("checks llms.txt coverage, markdown links, and page directives", () => {
   const root = createFixture();
   generateAgentDocs({
