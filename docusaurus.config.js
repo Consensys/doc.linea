@@ -152,7 +152,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "stack/quickstart",
+            docId: "stack/index",
             position: "left",
             label: "Lineth Stack",
           },

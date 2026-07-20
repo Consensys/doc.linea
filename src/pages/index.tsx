@@ -58,21 +58,21 @@ function HomepageHeader() {
 export default function Home(): React.ReactNode {
   const startBuildingCards = [
     {
-      title: "Learn about Lineth components",
-      link: "/stack/how-it-works",
+      title: "Evaluate and design with Lineth",
+      link: "/stack",
       description: (
         <>
-          Explore Lineth&apos;s deployment models, data availability,
-          finalization, and trust model.
+          Start from the Stack overview to evaluate Lineth, review deployment
+          architecture, and run build and test workflows.
         </>
       ),
       iconSrc: "/img/card_icon_understand.png",
     },
     {
       title: "Launch your own chain",
-      link: "/stack",
+      link: "/stack/how-to/run-lineth-stack-sepolia",
       description: (
-        <>Deploy your own Ethereum-compatible network using Lineth.</>
+        <>Deploy a local Ethereum-compatible network using Lineth.</>
       ),
       iconSrc: "/img/card_icon_launch.png",
     },
