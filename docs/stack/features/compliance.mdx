@@ -50,23 +50,23 @@ compliance design:
 
 What participants can verify depends on the deployment model. For the trust and
 verification boundaries, see
-[Trust and responsibilities](../how-it-works/trust-model). For where data is
-stored and who can see it, see [Privacy and data visibility](./validium).
+[Trust and responsibilities](../how-it-works/trust-model.mdx). For where data is
+stored and who can see it, see [Privacy and data visibility](./validium.mdx).
 
 ## Operator-owned compliance controls
 
 Operators are responsible for the controls a compliance program requires. Lineth
 provides mechanisms operators can configure, but does not own the program:
 
-- Access policy: [RBAC](./rbac) on RPC endpoints and API surfaces controls
+- Access policy: [RBAC](./rbac.mdx) on RPC endpoints and API surfaces controls
   who can read or submit
 - Data availability arrangement: operators choose where transaction data is
   stored and who can reconstruct it; see
-  [Data availability and finalization](../how-it-works/data-availability-finalization)
+  [Data availability and finalization](../how-it-works/data-availability-finalization.mdx)
 - Key management: remote signing backed by HSM or KMS via
-  [Web3Signer](../../protocol/architecture#web3signer)
+  [Web3Signer](../../protocol/architecture/index.mdx#web3signer)
 - Governance and upgrade authority: multisig, governance contract, or timelock
-  for privileged roles; see [Security and assurance](./security)
+  for privileged roles; see [Security and assurance](./security.mdx)
 - External integrations: operators connect external compliance, monitoring, and
   logging systems to their deployment
 
@@ -85,8 +85,8 @@ provides mechanisms operators can configure, but does not own the program:
 
 | Question                                                    | Page                                                                                     |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Who operates what, and what can each component do?          | [Trust and responsibilities](../how-it-works/trust-model)                            |
-| Who can see what data?                                      | [Privacy and data visibility](./validium)                                            |
-| What is protocol versus operator, and what evidence exists? | [Security and assurance](./security)                                                 |
-| How is access to RPC and APIs controlled?                   | [Access control](./rbac)                                                             |
-| How do data availability and finalization choices interact? | [Data availability and finalization](../how-it-works/data-availability-finalization) |
+| Who operates what, and what can each component do?          | [Trust and responsibilities](../how-it-works/trust-model.mdx)                            |
+| Who can see what data?                                      | [Privacy and data visibility](./validium.mdx)                                            |
+| What is protocol versus operator, and what evidence exists? | [Security and assurance](./security.mdx)                                                 |
+| How is access to RPC and APIs controlled?                   | [Access control](./rbac.mdx)                                                             |
+| How do data availability and finalization choices interact? | [Data availability and finalization](../how-it-works/data-availability-finalization.mdx) |

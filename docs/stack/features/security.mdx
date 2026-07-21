@@ -10,7 +10,7 @@ image: /img/socialCards/security.jpg
 Use this page to separate Lineth (formerly the Linea Stack) protocol guarantees,
 operator-controlled security measures, and available assurance evidence. For
 trust boundaries and privileged authority, see
-[Trust and responsibilities](../how-it-works/trust-model).
+[Trust and responsibilities](../how-it-works/trust-model.mdx).
 
 ## What this page does and does not cover
 
@@ -47,7 +47,7 @@ Under the configured deployment model, Lineth provides:
   tied to verified state transitions in the normal protocol path.
 
 For the trust boundaries behind each of these, see
-[Trust and responsibilities](../how-it-works/trust-model).
+[Trust and responsibilities](../how-it-works/trust-model.mdx).
 
 ## Operator-controlled security surfaces
 
@@ -55,9 +55,9 @@ Operators define and operate their own security boundary. Lineth does not ship a
 production security operations program. Operators are responsible for:
 
 - Infrastructure isolation and network security controls
-- [Role-based access control (RBAC)](./rbac) for APIs and services
+- [Role-based access control (RBAC)](./rbac.mdx) for APIs and services
 - Key management via KMS-backed signing and remote signing through
-  [Web3Signer](../../protocol/architecture#web3signer)
+  [Web3Signer](../../protocol/architecture/index.mdx#web3signer)
 - Governance contracts or multisig controls for privileged roles, proxy
   administration, and upgrades
 - Monitoring and incident response tooling
@@ -66,21 +66,21 @@ Governance contracts and multisig controls should be treated as critical
 security infrastructure. They can hold privileged roles, coordinate emergency
 response, or control upgrade authority depending on the deployment. Linea
 Mainnet's
-[Security Council transaction record](../../changelog/security-council-record)
+[Security Council transaction record](../../changelog/security-council-record.mdx)
 is one example of how such controls can be documented publicly. For upgrade
 mechanics, see the
-[OpenZeppelin Transparent Upgradeable Proxy pattern](../../protocol/architecture/smart-contracts#contract-versioning).
+[OpenZeppelin Transparent Upgradeable Proxy pattern](../../protocol/architecture/smart-contracts.mdx#contract-versioning).
 
 ## Assurance evidence today
 
 What is published today:
 
-- [Linea Mainnet Security Council transaction record](../../changelog/security-council-record):
+- [Linea Mainnet Security Council transaction record](../../changelog/security-council-record.mdx):
   a public example of multisig-governed security and upgrade operations for
   Linea Mainnet
-- [Linea Mainnet risk disclosures](../../network/risk-disclosures): risk
+- [Linea Mainnet risk disclosures](../../network/risk-disclosures.mdx): risk
   disclosures that apply when finalizing to Linea Mainnet
-- [LineaRollup contracts reference](../../network/build/contracts): the onchain
+- [LineaRollup contracts reference](../../network/build/contracts.mdx): the onchain
   contracts and roles that govern a deployment
 
 What is not published here:

@@ -9,8 +9,8 @@ image: /img/socialCards/deployment-models.jpg
 
 Use this page to compare documented Lineth deployment models and the trade-offs
 they create for access, data availability, and finalization. Related evaluation
-paths include [trust and responsibilities](./trust-model) and
-[privacy and data visibility](../features/validium).
+paths include [trust and responsibilities](./trust-model.mdx) and
+[privacy and data visibility](../features/validium.mdx).
 
 ## Customization factors
 
@@ -40,11 +40,11 @@ When configuring a deployment, consider:
 - Privacy requirements: should transaction data remain private to authorized
   participants?
 - Regulatory and compliance obligations: what controls does your program
-  require, and who owns them? See [Compliance](../features/compliance).
+  require, and who owns them? See [Compliance](../features/compliance.mdx).
 - Data availability guarantees: how important is onchain data availability for
   your participants?
 - Network topology: do you need a private network with controlled membership?
-- Access control: do you need [RBAC](../features/rbac) on RPC endpoints and
+- Access control: do you need [RBAC](../features/rbac.mdx) on RPC endpoints and
   APIs?
 
 ## Public
@@ -69,11 +69,11 @@ data availability.
 ### Security considerations
 
 - Validator topology: if the deployment uses a
-  [multi-validator QBFT design](../how-to/distributed-sequencing), at least 4
+  [multi-validator QBFT design](../how-to/distributed-sequencing.mdx), at least 4
   Maru validators are required to tolerate one faulty validator
-- Access controls: whether to implement [RBAC](../features/rbac) on RPC
+- Access controls: whether to implement [RBAC](../features/rbac.mdx) on RPC
   endpoints
-- [Key management](../../protocol/architecture/index#web3signer): remote
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
   (KMS)
 
@@ -90,17 +90,17 @@ and access-control design; Lineth does not certify a deployment as compliant.
   set
 - Data visibility: transaction details are not posted to the finalization layer;
   what participants can see depends on the deployment's data availability and
-  [RBAC](../features/rbac) configuration
-- Access control: RPC endpoints protected by [RBAC](../features/rbac); only
+  [RBAC](../features/rbac.mdx) configuration
+- Access control: RPC endpoints protected by [RBAC](../features/rbac.mdx); only
   authorized participants can view data they are scoped to
-- [Finalization](../../network/overview/transaction-finality): state
+- [Finalization](../../network/overview/transaction-finality.mdx): state
   commitments and proofs are posted to the finalization layer
 - Network topology: private network with controlled node membership
 
 In private validium deployments, participant visibility depends on RBAC settings
 and data availability access. Some participants may verify only the data they
 are authorized to access. For the trust trade-off, see
-[Trust and responsibilities](./trust-model).
+[Trust and responsibilities](./trust-model.mdx).
 
 ### Use cases
 
@@ -113,16 +113,16 @@ are authorized to access. For the trust trade-off, see
 
 Operators with regulatory or compliance obligations are responsible for
 designing their own compliance program. See
-[Compliance](../features/compliance) for what protocol evidence exists and
+[Compliance](../features/compliance.mdx) for what protocol evidence exists and
 what is not claimed.
 
 ### Security considerations
 
 - Validator topology: at least 4 Maru validators are required for a
-  [QBFT design](../how-to/distributed-sequencing) that tolerates one faulty
+  [QBFT design](../how-to/distributed-sequencing.mdx) that tolerates one faulty
   validator
-- Access controls: [RBAC](../features/rbac) on RPC endpoints and API portal
-- [Key management](../../protocol/architecture/index#web3signer): remote
+- Access controls: [RBAC](../features/rbac.mdx) on RPC endpoints and API portal
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
   (KMS)
 - Network isolation: private network topology with controlled peering
@@ -257,4 +257,4 @@ flowchart TB
 ## Next steps
 
 Also consider the design decisions required to determine the
-[finality mechanism](./data-availability-finalization#finality-design-options).
+[finality mechanism](./data-availability-finalization.mdx#finality-design-options).

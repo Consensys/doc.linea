@@ -20,7 +20,7 @@ const SIDEBAR_SECTIONS = {
   },
   stackSidebar: {
     label: "Lineth Stack",
-    href: "/stack/quickstart",
+    href: "/stack",
   },
   protocolSidebar: {
     label: "Protocol",
@@ -87,7 +87,7 @@ export default function DocBreadcrumbs() {
   const sectionItem = getSectionItem(sidebar?.name);
 
   // Always include the top-level section. On section landing pages the first
-  // crumb is the same route (e.g. Get started → /stack/quickstart); replace it
+  // crumb is the same route (e.g. Overview → /stack); replace it
   // with the section label so we show "Lineth Stack" instead of omitting it.
   let allItems = breadcrumbs;
   if (sectionItem) {

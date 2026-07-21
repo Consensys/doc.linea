@@ -27,7 +27,7 @@ export const relatedDocs = [
 Use this page to scan Lineth capabilities that matter when evaluating a
 deployment, and to find the pages that go deeper on each one. For design choices
 and operator responsibilities, continue to
-[deployment architecture](../how-it-works/index).
+[deployment architecture](../how-it-works/index.mdx).
 
 ## What Lineth provides
 
@@ -49,7 +49,7 @@ Using Lineth, an operator can deploy:
 - Custom L2 or L3 networks that finalize on Ethereum or on Linea Mainnet
 
 For the trade-offs between these models, see
-[Deployment models](../how-it-works/deployment-models).
+[Deployment models](../how-it-works/deployment-models.mdx).
 
 ## Protocol capabilities
 
@@ -60,7 +60,7 @@ proof means the operator cannot finalize an invalid state transition through the
 normal proof path. Proofs do not by themselves make transaction contents
 private; data visibility depends on the deployment's data availability and
 access model. For the data-visibility distinction, see
-[Privacy and data visibility](./validium).
+[Privacy and data visibility](./validium.mdx).
 
 ### EVM-compatible execution
 
@@ -68,7 +68,7 @@ Lineth runs EVM-compatible contract execution, so existing Solidity contracts
 and Ethereum tooling generally work. Compatibility is constrained by the
 deployment's configuration and by the differences between any chain and
 Ethereum. For the differences between Linea and Ethereum, see
-[Linea and Ethereum](../../network/overview/ethereum-differences).
+[Linea and Ethereum](../../network/overview/ethereum-differences.mdx).
 
 ### Quorum-Based Byzantine Fault Tolerance consensus
 
@@ -81,7 +81,7 @@ Byzantine Fault Tolerance (QBFT), which provides:
 
 Single-validator deployments do not use QBFT and rely on the operator trust
 model instead. For the trust assumptions per model, see
-[Trust and responsibilities](../how-it-works/trust-model).
+[Trust and responsibilities](../how-it-works/trust-model.mdx).
 
 ### Dual-layer architecture
 
@@ -94,12 +94,12 @@ the operator's deployment.
 
 | Question                                                        | Page                                                                                     |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Who operates what, and what can each component do?              | [Trust and responsibilities](../how-it-works/trust-model)                            |
-| Who can see what data?                                          | [Privacy and data visibility](./validium)                                            |
-| What is protocol versus operator, and what evidence exists?     | [Security and assurance](./security)                                                 |
-| What protocol evidence can operators use for compliance design? | [Compliance](./compliance)                                                           |
-| How do data availability and finalization choices interact?     | [Data availability and finalization](../how-it-works/data-availability-finalization) |
-| How is access to RPC and APIs controlled?                       | [Access control](./rbac)                                                             |
+| Who operates what, and what can each component do?              | [Trust and responsibilities](../how-it-works/trust-model.mdx)                            |
+| Who can see what data?                                          | [Privacy and data visibility](./validium.mdx)                                            |
+| What is protocol versus operator, and what evidence exists?     | [Security and assurance](./security.mdx)                                                 |
+| What protocol evidence can operators use for compliance design? | [Compliance](./compliance.mdx)                                                           |
+| How do data availability and finalization choices interact?     | [Data availability and finalization](../how-it-works/data-availability-finalization.mdx) |
+| How is access to RPC and APIs controlled?                       | [Access control](./rbac.mdx)                                                             |
 
 ## Related documentation
 
