@@ -5,102 +5,101 @@ sidebar_position: 0
 image: /img/socialCards/features.jpg
 ---
 
-import DocCardList from '@theme/DocCardList';
+import DocCardList from "@theme/DocCardList";
 
 export const relatedDocs = [
   {
-    type: 'link',
-    href: '/stack/how-it-works/deployment-models',
-    label: 'Deployment Models',
-    description: 'Discover more about the different deployment models for Lineth.',
+    type: "link",
+    href: "/stack/how-it-works/deployment-models",
+    label: "Deployment models",
+    description:
+      "Compare public and private validium deployment models and their trade-offs.",
   },
-    {
-    type: 'link',
-    href: '/stack/how-it-works/data-availability-finalization',
-    label: 'Data availability and finalization',
-    description: 'Configure data availability and finalization options to suit your business logic.',
+  {
+    type: "link",
+    href: "/stack/how-it-works/data-availability-finalization",
+    label: "Data availability and finalization",
+    description:
+      "How deployment choices affect data availability and finalization.",
   },
 ];
 
-Use this page to scan Lineth capabilities that matter when evaluating a deployment. For design choices and operator responsibilities, continue to [deployment architecture](../how-it-works/index.mdx).
+Use this page to scan Lineth capabilities that matter when evaluating a
+deployment, and to find the pages that go deeper on each one. For design choices
+and operator responsibilities, continue to
+[deployment architecture](../how-it-works/index).
 
-:::tip
+## What Lineth provides
 
-[Reach out](https://forms.gle/eip4XrYhPFDuLtDQ8) for assistance in designing your
-enterprise deployment. From transaction ordering, to data availability, to block times, Lineth's rich
-extensible architecture supports tailored ledger configurations to match your enterprise needs.
+Lineth is a ZK-rollup stack. A deployment combines a consensus layer, an
+execution layer, a Prover, a Coordinator, and a set of onchain contracts on a
+finalization layer. Operators choose the deployment model, data availability
+arrangement, finalization layer, and access controls.
 
-:::
+The capabilities below are scoped by the deployment model an operator chooses.
+None of them is a product, SLA, or commercial packaging claim.
 
-## Deployment model features
+## Deployment model capabilities
 
-Using Lineth, you can deploy:
+Using Lineth, an operator can deploy:
 
-- Public networks, such as Linea Mainnet
-- Private validium networks, with offchain data availability and controlled access
-- Custom L2 or L3 networks
+- Public networks, such as Linea Mainnet, with onchain data availability
+- Private validium networks, with offchain data availability and controlled
+  access
+- Custom L2 or L3 networks that finalize on Ethereum or on Linea Mainnet
 
-### Private validium
+For the trade-offs between these models, see
+[Deployment models](../how-it-works/deployment-models).
 
-A private validium configuration provides:
+## Protocol capabilities
 
-- Offchain data availability: transaction data stored privately
-- RBAC: [Role-based access control](./rbac.mdx) for RPC and API endpoints
-- Privacy: transaction details not visible on finalization layer
-- Compliance: Selective data disclosure
-- API portal: controlled access to network functionality
+### State transition correctness
 
-See more on [private validiums](./validium.mdx).
+Lineth uses zk-SNARK proofs to verify that state transitions are valid. A valid
+proof means the operator cannot finalize an invalid state transition through the
+normal proof path. Proofs do not by themselves make transaction contents
+private; data visibility depends on the deployment's data availability and
+access model. For the data-visibility distinction, see
+[Privacy and data visibility](./validium).
 
-### Public
+### EVM-compatible execution
 
-Public deployments provide:
-
-- Onchain data availability: Linea Mainnet posts all data via EIP-4844 blobs to Ethereum
-- Full transparency: All transactions visible on finalization layer
-- Open access: No access controls required
-
-## Core features
-
-### Zero-knowledge proofs
-
-Lineth uses zero-knowledge proofs to:
-
-- Verify state transitions without revealing transaction details
-- Provide cryptographic guarantees of correctness
-- Enable efficient finalization on the finalization layer
-
-### EVM equivalence
-
-Full EVM compatibility enables:
-
-- Deploy existing Ethereum smart contracts without modification
-- Use standard Ethereum tooling and libraries
-- Maintain compatibility with Ethereum ecosystem
-
-Learn about the differences between [Linea and Ethereum](../../network/overview/ethereum-differences)
-
-### Dual-layer architecture
-
-Separation of consensus and execution provides:
-
-- Client diversity and network resilience
-- Modular deployment and scaling
-- Operational flexibility
+Lineth runs EVM-compatible contract execution, so existing Solidity contracts
+and Ethereum tooling generally work. Compatibility is constrained by the
+deployment's configuration and by the differences between any chain and
+Ethereum. For the differences between Linea and Ethereum, see
+[Linea and Ethereum](../../network/overview/ethereum-differences).
 
 ### Quorum-Based Byzantine Fault Tolerance consensus
 
-Quorum-Based Byzantine Fault Tolerance (QBFT) consensus enables:
+For deployments that use multi-validator consensus, Lineth supports Quorum-Based
+Byzantine Fault Tolerance (QBFT), which provides:
 
-- Fault tolerance (3f+1 nodes)
-- Fast finality
-- Decentralized block production (with sufficient validators)
+- Fault tolerance with `3f+1` validators, tolerating `f` faulty validators
+- Single-slot finality under the deployment's QBFT safety assumptions
+- Distributed block production when enough validators participate
 
-## Review security, data availability, and compliance
+Single-validator deployments do not use QBFT and rely on the operator trust
+model instead. For the trust assumptions per model, see
+[Trust and responsibilities](../how-it-works/trust-model).
 
-- Understand [security features](./security.mdx)
-- Review [data availability features](./data-availability.mdx)
-- Explore [compliance and audit features](./compliance.mdx)
+### Dual-layer architecture
+
+Lineth separates consensus and execution. This lets operators choose different
+client configurations and scale consensus and execution independently. It does
+not by itself provide client diversity or network resilience; those depend on
+the operator's deployment.
+
+## Where to go next
+
+| Question                                                        | Page                                                                                     |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Who operates what, and what can each component do?              | [Trust and responsibilities](../how-it-works/trust-model)                            |
+| Who can see what data?                                          | [Privacy and data visibility](./validium)                                            |
+| What is protocol versus operator, and what evidence exists?     | [Security and assurance](./security)                                                 |
+| What protocol evidence can operators use for compliance design? | [Compliance](./compliance)                                                           |
+| How do data availability and finalization choices interact?     | [Data availability and finalization](../how-it-works/data-availability-finalization) |
+| How is access to RPC and APIs controlled?                       | [Access control](./rbac)                                                             |
 
 ## Related documentation
 

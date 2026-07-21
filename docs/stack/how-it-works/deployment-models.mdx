@@ -1,113 +1,137 @@
 ---
 title: Deployment models
 description: >-
-  Learn how to choose and configure Lineth deployment models for enterprise use
-  cases
+  How to compare Lineth public and private validium deployment models and their
+  trade-offs
 sidebar_position: 2
 image: /img/socialCards/deployment-models.jpg
 ---
 
-Use this page to compare documented Lineth deployment models and the trade-offs they create for access, data availability, and finalization. Related evaluation paths include [trust and responsibilities](./trust-model.mdx) and [privacy and data visibility](../features/validium.mdx).
+Use this page to compare documented Lineth deployment models and the trade-offs
+they create for access, data availability, and finalization. Related evaluation
+paths include [trust and responsibilities](./trust-model) and
+[privacy and data visibility](../features/validium).
 
-Lineth (formerly the Linea Stack) is designed to support detailed customizations for factors including, but not restricted to:
+## Customization factors
 
-- Access control: Who may access the mempool, ledger, and transaction data affects the nature of
-  the system
-- Data availability: Asset recovery by users ties directly to data availability guarantees
-- Finalization speed: Block size on the ledger impacts the soft finality speed of transactions
-- Finalization layer: Where finalization occurs impacts the security assumptions and hard finality speeds
-- Transaction ordering: custom rulesets can be applied for bespoke ordering logic
+Lineth is designed to support customizations for factors including:
+
+- Access control: who may access the mempool, ledger, and transaction data
+- Data availability: how transaction data is stored and who can reconstruct it
+- Finalization speed: block size and configuration affect soft finality speed
+- Finalization layer: where finalization occurs affects security assumptions and
+  hard finality speed
+- Transaction ordering: operators can apply custom ordering rulesets
+
+Operators own these choices. Lineth does not prescribe a single deployment
+shape, and the public docs do not assert that any specific configuration is
+production-ready or commercially supported.
+
+## Two primary models
 
 Lineth supports two primary deployment models:
 
-- Public deployments, such as Linea Mainnet, which are fully public networks with onchain data
-availability.
-- Private Validium deployments, which retain transaction data offchain while using
-zk-SNARK proofs to support correctness and finality.
+- Public deployments, such as Linea Mainnet, with onchain data availability
+- Private validium deployments, with offchain data availability and controlled
+  access
 
-Consider these factors when configuring your deployment model design:
+When configuring a deployment, consider:
 
-- Privacy requirements: Do you need transaction data to remain private?
-- Regulatory compliance: Do you need KYC/KYT controls and selective disclosure?
-- Data availability guarantees: How important are onchain data availability guarantees?
-- Network topology: Do you need a private network with controlled membership?
-- Access control: Do you need [RBAC](../features/rbac.mdx) on RPC endpoints and APIs?
-
-## Compare deployment models
-
-The following section presents two model types, public and private.
+- Privacy requirements: should transaction data remain private to authorized
+  participants?
+- Regulatory and compliance obligations: what controls does your program
+  require, and who owns them? See [Compliance](../features/compliance).
+- Data availability guarantees: how important is onchain data availability for
+  your participants?
+- Network topology: do you need a private network with controlled membership?
+- Access control: do you need [RBAC](../features/rbac) on RPC endpoints and
+  APIs?
 
 ## Public
 
-Public deployments such as Linea Mainnet are fully public networks with onchain data availability.
+Public deployments such as Linea Mainnet are fully public networks with onchain
+data availability.
 
 ### Characteristics
 
-- Data availability: In Linea Mainnet, transaction data is posted onchain via EIP-4844 blobs
-- Public access: Public Linea RPC endpoint
-- Transparency: All transactions visible on the finalization layer
-- Finalization: State commitments, proofs, and data posted to the finalization layer
+- Data availability: transaction data is posted onchain via EIP-4844 blobs
+- Public access: public RPC endpoint
+- Transparency: all transactions are visible on the finalization layer
+- Finalization: state commitments, proofs, and data are posted to the
+  finalization layer
 
 ### Use cases
 
-- Public networks requiring maximum transparency
-- Applications benefiting from onchain data availability guarantees
-- Networks prioritizing decentralization over privacy
+- Networks requiring maximum transparency
+- Applications that benefit from onchain data availability
+- Networks that prioritize open access over transaction privacy
 
 ### Security considerations
 
-- Validator topology: If the deployment uses a
-  [multi-validator QBFT design](../how-to/distributed-sequencing), at least 4 Maru validators are
-  required to tolerate one faulty validator
-- Access controls: Whether or not to implement [RBAC](../features/rbac.mdx) on RPC endpoints
-- [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a hardware
-  security module (HSM) or key management service (KMS)
+- Validator topology: if the deployment uses a
+  [multi-validator QBFT design](../how-to/distributed-sequencing), at least 4
+  Maru validators are required to tolerate one faulty validator
+- Access controls: whether to implement [RBAC](../features/rbac) on RPC
+  endpoints
+- [Key management](../../protocol/architecture/index#web3signer): remote
+  signing backed by a hardware security module (HSM) or key management service
+  (KMS)
 
 ## Private validium
 
-A private network instance, a validium, keeps transaction data offchain while maintaining
-cryptographic guarantees through zk-SNARK proofs. This model is ideal for regulated
-financial institutions requiring privacy.
+A private validium keeps transaction data offchain while using zk-SNARK proofs
+to support state-transition correctness and finalization. Whether this model
+suits a regulated environment depends on the operator's own compliance, privacy,
+and access-control design; Lineth does not certify a deployment as compliant.
 
 ### Characteristics
 
-- Data availability: Transaction data can be stored offchain in a private node set
-- Privacy: Transaction details not visible on the finalization layer
-- Access control: RPC endpoints protected by Role-Based Access Control ([RBAC](../features/rbac.mdx)); only authorized
-  participants can view data
-- [Finalization](../../network/overview/transaction-finality.mdx): State commitments and proofs
-  posted to the finalization layer
-- Network topology: Private network with controlled node membership
+- Data availability: transaction data can be stored offchain in a private node
+  set
+- Data visibility: transaction details are not posted to the finalization layer;
+  what participants can see depends on the deployment's data availability and
+  [RBAC](../features/rbac) configuration
+- Access control: RPC endpoints protected by [RBAC](../features/rbac); only
+  authorized participants can view data they are scoped to
+- [Finalization](../../network/overview/transaction-finality): state
+  commitments and proofs are posted to the finalization layer
+- Network topology: private network with controlled node membership
 
-In private validium deployments, participant visibility depends on RBAC settings and data
-availability access. Some participants may verify only the data they are authorized to access.
+In private validium deployments, participant visibility depends on RBAC settings
+and data availability access. Some participants may verify only the data they
+are authorized to access. For the trust trade-off, see
+[Trust and responsibilities](./trust-model).
 
 ### Use cases
 
-For most enterprise and regulated financial use cases, a Private Validium provides the necessary
-privacy, compliance, and access control features:
+- Workflows where transaction data should not be public
+- Multi-party workflows where participants should not see all transaction
+  details
+- Operators who accept the validium trade-off: state-transition correctness is
+  proven onchain, but data reconstruction without the operator depends on the
+  deployment's data availability arrangement
 
-- Regulated financial applications requiring transaction privacy
-- Institutions needing KYC/KYT compliance controls
-- Applications requiring selective data disclosure to auditors and regulators
-- Multi-party workflows where participants should not see all transaction details
+Operators with regulatory or compliance obligations are responsible for
+designing their own compliance program. See
+[Compliance](../features/compliance) for what protocol evidence exists and
+what is not claimed.
 
 ### Security considerations
 
-- Validator topology: At least 4 Maru validators are required for a
-  [QBFT design](../how-to/distributed-sequencing) that tolerates one faulty validator
-- Access controls: [RBAC](../features/rbac.mdx) on RPC endpoints and API portal
-- [Key management](../../protocol/architecture/index.mdx#web3signer): remote signing backed by a
-  hardware security module (HSM) or key management service (KMS)
-- Network isolation: Private network topology with controlled peering
+- Validator topology: at least 4 Maru validators are required for a
+  [QBFT design](../how-to/distributed-sequencing) that tolerates one faulty
+  validator
+- Access controls: [RBAC](../features/rbac) on RPC endpoints and API portal
+- [Key management](../../protocol/architecture/index#web3signer): remote
+  signing backed by a hardware security module (HSM) or key management service
+  (KMS)
+- Network isolation: private network topology with controlled peering
 
 ### Example validium system setup
 
-The following network setup presents how an enterprise validium instance of Linea may be configured
-to serve as an interoperable payment system with KYC and KYT (know your customer and know your transaction
-respectively) auditing capabilities. 
-
-The operator determines where transaction data is stored to suit privacy and security requirements (not shown below).
+The following network setup presents how an operator-run validium instance of
+Lineth may be configured. The operator determines where transaction data is
+stored to suit privacy and security requirements (not shown below).
 
 ```mermaid
 flowchart TB
@@ -130,7 +154,7 @@ flowchart TB
   %% =========================
   %% Operator-controlled boundary
   %% =========================
-  subgraph PrivateNetwork["Linea Private Network"]
+  subgraph PrivateNetwork["Lineth private network"]
     direction TB
 
     subgraph AccessTooling["Access and tooling"]
@@ -233,4 +257,4 @@ flowchart TB
 ## Next steps
 
 Also consider the design decisions required to determine the
-[finality mechanism](./data-availability-finalization.mdx#finality-design-options).
+[finality mechanism](./data-availability-finalization#finality-design-options).

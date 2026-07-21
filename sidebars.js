@@ -478,14 +478,17 @@ const sidebars = {
       type: "category",
       label: "Deployment architecture",
       collapsible: false,
-      link: { type: "doc", id: "stack/how-it-works/index" },
       items: [
+        {
+          type: "doc",
+          id: "stack/how-it-works/index",
+          label: "Overview",
+        },
         {
           type: "doc",
           id: "stack/how-it-works/core-components",
           label: "Deployment components",
         },
-        "stack/features/data-availability",
         "stack/how-it-works/data-availability-finalization",
         {
           type: "doc",

@@ -7,36 +7,89 @@ sidebar_position: 4
 image: /img/socialCards/security.jpg
 ---
 
-Use this page to separate Lineth (formerly the Linea Stack) protocol guarantees, operator-controlled security measures, and available assurance evidence. For trust boundaries and privileged authority, see [Trust and responsibilities](../how-it-works/trust-model.mdx).
+Use this page to separate Lineth (formerly the Linea Stack) protocol guarantees,
+operator-controlled security measures, and available assurance evidence. For
+trust boundaries and privileged authority, see
+[Trust and responsibilities](../how-it-works/trust-model).
 
-## Define security capabilities
+## What this page does and does not cover
 
-Lineth provides protocol-level guarantees under the configured deployment model, while operators
-implement the operational controls required for production use.
+This page covers:
 
-### Protocol-level guarantees
+- Protocol guarantees that hold under a given deployment model
+- Operator-controlled security surfaces
+- Where assurance evidence is published today and where it is not
 
-Lineth supports:
+This page does not cover:
 
-- State transition correctness through zk-SNARK proof verification
-- Byzantine fault tolerant consensus for deployments using QBFT
-- Settlement assurances inherited from the selected finalization layer
-- Bridge and message execution gated by verified state commitments
+- A complete audit catalog or proof-system maturity statement. Lineth does not
+  publish a consolidated assurance hub; links below point to the evidence that
+  is public today.
+- Production operations guidance (monitoring, incident response, disaster
+  recovery). That is out of scope for the current Stack docs.
+- Commercial support or SLA commitments.
 
-### Operational security integrations 
+## Protocol-level guarantees
 
-Operators define and operate their secure boundaries:
+Under the configured deployment model, Lineth provides:
+
+- State-transition correctness through zk-SNARK proof verification on the
+  finalization layer. A valid proof means the operator cannot finalize an
+  invalid state transition through the normal proof path.
+- Byzantine fault tolerant consensus for deployments that use QBFT with `3f+1`
+  validators. Single-validator deployments do not use QBFT and rely on the
+  operator trust model.
+- Settlement finality on the selected finalization layer, scoped to that layer's
+  own finality assumptions. A deployment finalizing to Ethereum inherits
+  Ethereum L1 finality; a deployment finalizing to Linea Mainnet inherits Linea
+  Mainnet's finality, which itself anchors to Ethereum.
+- Bridge and message execution gated by verified state commitments. Messages are
+  tied to verified state transitions in the normal protocol path.
+
+For the trust boundaries behind each of these, see
+[Trust and responsibilities](../how-it-works/trust-model).
+
+## Operator-controlled security surfaces
+
+Operators define and operate their own security boundary. Lineth does not ship a
+production security operations program. Operators are responsible for:
 
 - Infrastructure isolation and network security controls
-- [Role-based access control (RBAC)](./rbac.mdx) for APIs and services
-- Secure key management via KMS-backed signing and remote signing through [Web3Signer](../../protocol/architecture#web3signer)
-- High-security governance contracts or multisig controls for privileged roles, proxy administration,
-  and upgrades
+- [Role-based access control (RBAC)](./rbac) for APIs and services
+- Key management via KMS-backed signing and remote signing through
+  [Web3Signer](../../protocol/architecture#web3signer)
+- Governance contracts or multisig controls for privileged roles, proxy
+  administration, and upgrades
 - Monitoring and incident response tooling
 
-Governance contracts and multisig controls should be treated as critical security infrastructure.
-They can hold privileged roles, coordinate emergency response, or control upgrade authority depending
-on the deployment. Linea Mainnet's
-[Security Council transaction record](../../changelog/security-council-record) is one example of how
-such controls can be documented publicly. For upgrade mechanics, see the
+Governance contracts and multisig controls should be treated as critical
+security infrastructure. They can hold privileged roles, coordinate emergency
+response, or control upgrade authority depending on the deployment. Linea
+Mainnet's
+[Security Council transaction record](../../changelog/security-council-record)
+is one example of how such controls can be documented publicly. For upgrade
+mechanics, see the
 [OpenZeppelin Transparent Upgradeable Proxy pattern](../../protocol/architecture/smart-contracts#contract-versioning).
+
+## Assurance evidence today
+
+What is published today:
+
+- [Linea Mainnet Security Council transaction record](../../changelog/security-council-record):
+  a public example of multisig-governed security and upgrade operations for
+  Linea Mainnet
+- [Linea Mainnet risk disclosures](../../network/risk-disclosures): risk
+  disclosures that apply when finalizing to Linea Mainnet
+- [LineaRollup contracts reference](../../network/build/contracts): the onchain
+  contracts and roles that govern a deployment
+
+What is not published here:
+
+- A consolidated audit or assurance hub covering component, version, and
+  deployment scope
+- Proof-system maturity statements or current security-review conclusions
+- Per-deployment assurance artifacts
+
+Operators who need assurance evidence for a specific deployment should confirm
+what is available with the operator of that deployment. Lineth does not
+generalize one audit or review to all deployments.

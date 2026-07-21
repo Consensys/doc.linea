@@ -105,14 +105,14 @@ Enterprise operators typically select between two options for the finalization l
 - Direct finalization on Ethereum
 - Higher costs and longer finality times
 - Direct Ethereum settlement
-- Suitable for: High-value applications requiring Ethereum L1 settlement assurances
+- Suitable for: deployments that require direct Ethereum L1 settlement
 
 **Linea Mainnet L2:**
 
 - Finalization on Linea Mainnet (which finalizes to Ethereum)
 - Lower costs and faster finality times
-- Inherits security from Ethereum (via Linea Mainnet)
-- Suitable for: Applications that can accept L2 finalization
+- Finality inherits Linea Mainnet's assumptions, which themselves anchor to Ethereum
+- Suitable for: deployments that can accept L2 finalization
 
 #### Operational implications
 
@@ -127,10 +127,10 @@ When choosing a finalization layer, consider the following:
 
 | Configuration | Description | Summary | Indications |
 |--------------|-------------|---------|-------------|
-| **Standalone Linea Enterprise – Single validator** | In a single-validator standalone deployment, transaction acceptance is immediate and deterministic under the operator trust model. The single authorized validator produces blocks and executes transactions. Once a block is produced and committed by the validator, transactions in that block are accepted as final by the deployment. No consensus-driven forks or reorganizations are expected by design. | Immediate, deterministic application-level finality with a single trusted validator. | Prioritizes simplicity and low latency. Suitable for private or highly controlled environments where validator trust is explicit. |
-| **Standalone Linea Enterprise – Multiple validators (QBFT)** | In a multivalidator standalone deployment, Linea Enterprise uses a Byzantine Fault Tolerant consensus protocol (QBFT) to achieve finality among authorized validators. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized by the validator set. Once finalized, blocks are irreversible under the deployment's QBFT safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
-| **Layer 2 Linea Enterprise – Single validator** | When deployed as an Ethereum Layer 2 with a single validator (sequencer), Linea Enterprise combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, transactions in that block are accepted as final at the L2 application level under the operator trust model.<br/>No consensus-driven forks or reorganizations are expected by design.<br/>L2 state is periodically committed to Ethereum Layer 1.<br/>When the commitment is finalized, the L2 state receives settlement finality on Ethereum. | Balances fast performance with explicit operator trust and slower Ethereum L1 settlement finality. |
-| **Layer 2 Linea Enterprise – Multiple validators (QBFT)** | When deployed as an Ethereum Layer 2 with multiple validators, Linea Enterprise combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides settlement finality at regular checkpoints. | Suitable for regulated or high-assurance environments that require fast application-level finality under normal conditions, and slower Ethereum settlement finality for global settlement. |
+| **Standalone Lineth – Single validator** | In a single-validator standalone deployment, transaction acceptance is immediate and deterministic under the operator trust model. The single authorized validator produces blocks and executes transactions. Once a block is produced and committed by the validator, transactions in that block are accepted as final by the deployment. No consensus-driven forks or reorganizations are expected by design. | Immediate, deterministic application-level finality with a single trusted validator. | Prioritizes simplicity and low latency. Suitable for private or highly controlled environments where validator trust is explicit. |
+| **Standalone Lineth – Multiple validators (QBFT)** | In a multivalidator standalone deployment, Lineth uses a Byzantine Fault Tolerant consensus protocol (QBFT) to achieve finality among authorized validators. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized by the validator set. Once finalized, blocks are irreversible under the deployment's QBFT safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
+| **Layer 2 Lineth – Single validator** | When deployed as an Ethereum Layer 2 with a single validator (sequencer), Lineth combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, transactions in that block are accepted as final at the L2 application level under the operator trust model.<br/>No consensus-driven forks or reorganizations are expected by design.<br/>L2 state is periodically committed to Ethereum Layer 1.<br/>When the commitment is finalized, the L2 state receives settlement finality on Ethereum. | Balances fast performance with explicit operator trust and slower Ethereum L1 settlement finality. |
+| **Layer 2 Lineth – Multiple validators (QBFT)** | When deployed as an Ethereum Layer 2 with multiple validators, Lineth combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides settlement finality at regular checkpoints. | Suitable for environments that require fast application-level finality under normal conditions and slower Ethereum settlement finality for global settlement. |
 
 ### Smart contract requirements
 
