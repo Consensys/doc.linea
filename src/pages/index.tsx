@@ -30,26 +30,6 @@ function HomepageHeader() {
           </Link>{" "}
           is the open-source stack that powers it.
         </p>
-        <div className={styles.buttons}>
-          <Link
-            className={clsx(
-              "button button--secondary button--lg",
-              styles.bannerButton,
-              styles.bannerButtonPrimary,
-            )}
-            to="/protocol/overview">
-            Discover Lineth
-          </Link>
-          <Link
-            className={clsx(
-              "button button--secondary button--lg",
-              styles.bannerButton,
-              styles.bannerButtonSecondary,
-            )}
-            to="/network/quickstart">
-            Build on Linea
-          </Link>
-        </div>
       </div>
     </header>
   );
@@ -58,18 +38,23 @@ function HomepageHeader() {
 export default function Home(): React.ReactNode {
   const startBuildingCards = [
     {
-      title: "Evaluate and design with Lineth",
-      link: "/stack",
-      description: (
+      title: (
         <>
-          Start from the Stack overview to evaluate Lineth, review deployment
-          architecture, and run build and test workflows.
+          Build on <strong>Linea</strong>
         </>
       ),
-      iconSrc: "/img/card_icon_understand.png",
+      link: "/network/quickstart",
+      description: (
+        <>Build, launch, and grow your application on Linea Mainnet.</>
+      ),
+      iconSrc: "/img/card_icon_build.png",
     },
     {
-      title: "Launch your own chain",
+      title: (
+        <>
+          Launch your own <strong>Lineth</strong> chain
+        </>
+      ),
       link: "/stack/how-to/run-lineth-stack-sepolia",
       description: (
         <>Deploy a local Ethereum-compatible network using Lineth.</>
@@ -77,12 +62,19 @@ export default function Home(): React.ReactNode {
       iconSrc: "/img/card_icon_launch.png",
     },
     {
-      title: "Build and deploy on Linea",
-      link: "/network/quickstart",
-      description: (
-        <>Build, launch, and grow your application on the Linea Mainnet.</>
+      title: (
+        <>
+          Learn about the <strong>protocol</strong>
+        </>
       ),
-      iconSrc: "/img/card_icon_build.png",
+      link: "/protocol/quickstart",
+      description: (
+        <>
+          Explore how Lineth processes transactions, generates proofs, and
+          finalizes state.
+        </>
+      ),
+      iconSrc: "/img/card_icon_understand.png",
     },
   ];
 
@@ -117,7 +109,7 @@ export default function Home(): React.ReactNode {
         description="Documentation for Linea Mainnet, the public zkEVM network, and Lineth, the open-source rollup stack that powers it.">
         <HomepageHeader />
         <main>
-          <CardGrid heading="Start building" cards={startBuildingCards} />
+          <CardGrid cards={startBuildingCards} />
           <CardGrid
             heading="Join the community"
             cards={communityCards}

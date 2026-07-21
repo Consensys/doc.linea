@@ -1,7 +1,12 @@
 /* main background handled globally in custom.css */
 
+.section {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
 .cardContainer {
-  padding: 60px 67px;
+  padding: 24px 67px;
   margin: 0 auto;
   max-width: 1444px;
 }
@@ -12,7 +17,7 @@
   font-size: 40px;
   font-weight: 400;
   color: var(--linea-text-primary);
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   line-height: 1.4;
 }
 
@@ -107,12 +112,12 @@
 
 @media (max-width: 996px) {
   .cardContainer {
-    padding: 40px 24px;
+    padding: 16px 24px;
   }
 
   .heading {
     font-size: 28px;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
   }
 
   .card {
@@ -130,12 +135,12 @@
 
 @media (max-width: 768px) {
   .section {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
   }
 
   .cardContainer {
-    padding: 40px 24px 0;
+    padding: 16px 24px 0;
   }
 
   .heading {
