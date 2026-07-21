@@ -4,7 +4,7 @@
 
 .docItemContainer header + *,
 .docItemContainer article > *:first-child {
-  margin-top: 35px;
+  margin-top: 0;
 }
 
 @media (min-width: 1200px) {
@@ -25,35 +25,35 @@
   }
 }
 
-/* adjusts Y position of the main article section in the layout */
-nav[aria-label="Breadcrumbs"] {
-  margin-top: 0 !important;
-}
-
-/* Title row: category label left, copy button right */
-.titleRow {
+/* Breadcrumbs + copy page button on one row */
+.docItemHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 24px;
-  margin-bottom: 16px;
+  gap: 1rem;
+  margin-bottom: 24px;
 }
 
-.categoryLabel {
-  color: var(--linea-highlight-color-2);
-  font-family: 'Atyp Text', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
+.docItemHeader > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-[data-theme="dark"] .categoryLabel {
-  color: var(--linea-purple-light);
-}
-
-.titleRowRight {
+.docItemHeaderActions {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* adjusts Y position of the main article section in the layout */
+nav[aria-label="Breadcrumbs"] {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 996px) {
+  .docItemHeader {
+    flex-wrap: wrap;
+  }
 }

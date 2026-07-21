@@ -5,7 +5,7 @@ import { ArrowIcon } from "@site/src/components/icons";
 import styles from "./styles.module.css";
 
 type CardItem = {
-  title: string;
+  title: React.ReactNode;
   link: string;
   description: React.ReactNode;
   iconSrc?: string;
@@ -37,7 +37,7 @@ function Card({ title, link, description, iconSrc }: CardItem) {
 }
 
 type Props = {
-  heading: string;
+  heading?: string;
   cards: CardItem[];
   equalizeHeights?: boolean;
 };
@@ -85,7 +85,7 @@ export default function CardGrid({
     <section
       className={clsx("margin-top--lg", "margin-bottom--lg", styles.section)}>
       <div className={styles.cardContainer}>
-        <h2 className={styles.heading}>{heading}</h2>
+        {heading && <h2 className={styles.heading}>{heading}</h2>}
         <div className="row" ref={rowRef}>
           {cards.map((props, idx) => (
             <Card key={idx} {...props} />

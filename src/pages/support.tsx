@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import { DiscordIcon, GitHubIcon } from "@site/src/components/icons";
 
 import styles from "./support.module.css";
 
@@ -167,15 +168,15 @@ export default function Support(): React.ReactNode {
 
   return (
     <Layout
-      title="Linea Support"
-      description="Contact Linea support or find docs search, status, and stuck transaction resources.">
+      title="Linea and Lineth support resources"
+      description="Find support and community resources for Linea Mainnet users, developers building on Linea, and Lineth stack operators and evaluators.">
       <main className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.heroContent}>
             <h1>Linea Support</h1>
             <p className={styles.intro}>
-              Need help with Linea? Contact support or use the resources below
-              to find the right next step.
+              Can&apos;t find what you need in the docs? Contact support or
+              choose the resources for your situation below.
             </p>
             <button
               id="intercom-button"
@@ -199,28 +200,77 @@ export default function Support(): React.ReactNode {
           </div>
         </section>
 
-        <section
-          className={styles.resources}
-          aria-labelledby="support-resources">
+        <section className={styles.resources} aria-label="Support resources">
           <div className={styles.resourcesInner}>
-            <h2 id="support-resources">Support resources</h2>
-            <div className={styles.resourceGrid}>
-              <Link className={styles.resourceCard} to="/search">
-                <span>Search docs</span>
-                <p>Find public Linea docs, guides, and references.</p>
-              </Link>
-              <Link
-                className={styles.resourceCard}
-                to="https://linea.statuspage.io/">
-                <span>Status</span>
-                <p>Check Linea network and service status.</p>
-              </Link>
-              <Link
-                className={styles.resourceCard}
-                to="https://support.metamask.io/manage-crypto/transactions/how-to-speed-up-or-cancel-a-pending-transaction/#canceling-a-transaction">
-                <span>Stuck transaction</span>
-                <p>Use MetaMask guidance to cancel a stuck transaction.</p>
-              </Link>
+            <div className={styles.audienceSection}>
+              <h2 id="support-resources">Linea Mainnet users</h2>
+              <div className={styles.resourceGrid}>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://linea.statuspage.io/">
+                  <span>Status</span>
+                  <p>Check Linea network and service status.</p>
+                </Link>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://support.metamask.io/manage-crypto/transactions/how-to-speed-up-or-cancel-a-pending-transaction/#canceling-a-transaction">
+                  <span>Stuck transaction</span>
+                  <p>Use MetaMask guidance to cancel a stuck transaction.</p>
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.audienceSection}>
+              <h2>Linea builders</h2>
+              <div className={styles.resourceGrid}>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://community.linea.build/">
+                  <span>Linea community</span>
+                  <p>Join discussions with the Linea community.</p>
+                </Link>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://linea.build/hub">
+                  <span>Linea Hub</span>
+                  <p>Explore apps and tokens, or list your app on Linea.</p>
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.audienceSection}>
+              <h2>Lineth stack operators and evaluators</h2>
+              <div className={styles.resourceGrid}>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://github.com/LFDT-Lineth/lineth-monorepo">
+                  <div className={styles.resourceTitle}>
+                    <GitHubIcon
+                      className={styles.resourceIcon}
+                      aria-hidden="true"
+                    />
+                    <span>Lineth on GitHub</span>
+                  </div>
+                  <p>
+                    Explore the source code for the Lineth open-source stack.
+                  </p>
+                </Link>
+                <Link
+                  className={styles.resourceCard}
+                  to="https://discord.gg/hyperledger">
+                  <div className={styles.resourceTitle}>
+                    <DiscordIcon
+                      className={styles.resourceIcon}
+                      aria-hidden="true"
+                    />
+                    <span>LF Decentralized Trust Discord</span>
+                  </div>
+                  <p>
+                    Join the open-source community for LF Decentralized Trust
+                    projects on Discord.
+                  </p>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
