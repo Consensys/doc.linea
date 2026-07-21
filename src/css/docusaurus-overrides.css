@@ -1651,18 +1651,6 @@ button.clean-btn.menu__caret {
   max-width: none !important;
 }
 
-/* Scale a Mermaid diagram to the content column (no horizontal scroll). */
-.theme-doc-markdown .mermaid-fit .docusaurus-mermaid-container {
-  overflow-x: visible;
-}
-
-.theme-doc-markdown .mermaid-fit .docusaurus-mermaid-container svg {
-  display: block;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-}
-
 /* Prevent clipping of text inside node boxes (svg/foreignObject) */
 .theme-doc-markdown .docusaurus-mermaid-container svg,
 .theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
@@ -1673,59 +1661,37 @@ button.clean-btn.menu__caret {
 /*
  * Sequence-diagram highlight rects use a dark fill in the MDX source
  * (rgb(64, 69, 76)) that works with Mermaid's dark-mode text. In light
- * mode, override to a light gray so message text stays readable.
+ * mode, override so message text stays readable.
  */
 [data-theme="light"]
   .theme-doc-markdown
   .docusaurus-mermaid-container
   svg
   rect[fill="rgb(64, 69, 76)"] {
-  fill: #e8e9eb;
+  fill: var(--linea-mermaid-sequence-rect-bg);
 }
 
 /*
- * Deployment-models flowchart:
- * - Tone down Mermaid's default yellow subgraph backgrounds.
- * - Core: light purple fill + dark purple border (reversed in dark mode).
- * - Access / neutral / control: light cyan fill + darker cyan border
- *   (reversed in dark mode). Control also uses a dashed stroke.
- *   Fill/stroke are set here (not in classDef) so Mermaid's #svgId
- *   classDef !important rules do not block theme overrides.
+ * Deployment-models flowchart theme overrides.
+ * Colors come from --linea-mermaid-* tokens (tokens.css).
+ * Fill/stroke are set here (not in classDef) so Mermaid's #svgId
+ * classDef !important rules do not block theme overrides.
  */
-.theme-doc-markdown .mermaid-deployment {
-  --mermaid-cluster-bg: #e8e9eb;
-  --mermaid-cluster-border: #c0c0c0;
-  --mermaid-cluster-text: var(--linea-text-primary);
-  --mermaid-core-bg: #ececff;
-  --mermaid-core-stroke: #3b0ea8;
-  --mermaid-cyan-bg: #e6faff;
-  --mermaid-cyan-stroke: #2eb9dc;
-}
-
-[data-theme="dark"] .theme-doc-markdown .mermaid-deployment {
-  --mermaid-cluster-bg: rgb(64 69 76);
-  --mermaid-cluster-border: #808080;
-  --mermaid-core-bg: #2a0a7a;
-  --mermaid-core-stroke: #a8a8e8;
-  --mermaid-cyan-bg: #004166;
-  --mermaid-cyan-stroke: var(--linea-brand-cyan);
-}
-
 .theme-doc-markdown .mermaid-deployment .cluster rect {
-  fill: var(--mermaid-cluster-bg) !important; /* override Mermaid clusterBkg */
-  stroke: var(--mermaid-cluster-border) !important;
+  fill: var(--linea-mermaid-cluster-bg) !important; /* override Mermaid clusterBkg */
+  stroke: var(--linea-mermaid-cluster-border) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .cluster-label,
 .theme-doc-markdown .mermaid-deployment .cluster-label span,
 .theme-doc-markdown .mermaid-deployment .cluster-label foreignObject div {
-  color: var(--mermaid-cluster-text) !important; /* readable subgraph titles */
+  color: var(--linea-text-primary) !important; /* readable subgraph titles */
 }
 
 .theme-doc-markdown .mermaid-deployment .node.core rect,
 .theme-doc-markdown .mermaid-deployment .node.core .basic.label-container {
-  fill: var(--mermaid-core-bg) !important; /* beat theme .node rect fill */
-  stroke: var(--mermaid-core-stroke) !important;
+  fill: var(--linea-mermaid-core-bg) !important; /* beat theme .node rect fill */
+  stroke: var(--linea-mermaid-core-stroke) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .node.access rect,
@@ -1734,8 +1700,8 @@ button.clean-btn.menu__caret {
 .theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container,
 .theme-doc-markdown .mermaid-deployment .node.control rect,
 .theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
-  fill: var(--mermaid-cyan-bg) !important;
-  stroke: var(--mermaid-cyan-stroke) !important;
+  fill: var(--linea-mermaid-cyan-bg) !important;
+  stroke: var(--linea-mermaid-cyan-stroke) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .node.control rect,
