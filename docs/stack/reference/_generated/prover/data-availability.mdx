@@ -2,7 +2,7 @@
 
 | Config key                                    | Description                                                                                     | Default                      | Type       | Allowed / required  |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------- | ---------- | ------------------- |
-| `data_availability.dict_nb_bytes`             | DictNbBytes number of bytes in the prover dictionary                                            | `65536`                      | `int`      | gt=0                |
+| `data_availability.dict_nb_bytes`             | DictNbBytes is the number of bytes in the prover dictionary.                                    | `65536`                      | `int`      | gt=0                |
 | `data_availability.dict_paths`                | DictPaths points to dictionaries used for decompressing executions data stored in the DA layer. | —                            | `[]string` |                     |
 | `data_availability.max_nb_batches`            | MaxNbBatches is the maximum number of execution batches allowed in a single DA proof.           | `100`                        | `int`      | required; gt=0      |
 | `data_availability.max_uncompressed_nb_bytes` | MaxUncompressedNbBytes is the maximum number of bytes in the uncompressed blob payload.         | —                            | `int`      | required; gt=0      |
