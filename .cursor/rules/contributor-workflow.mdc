@@ -1,0 +1,49 @@
+---
+description: Contribution workflow requirements for docs.linea.build — issue-first process, redirects, and PR hygiene.
+alwaysApply: true
+---
+
+# Contributor workflow
+
+See [CONTRIBUTING.md](../../CONTRIBUTING.md) for the full contribution workflow. The rules
+below highlight requirements that are most often missed.
+
+## Issue first
+
+Open an issue describing the change before starting work on it, and link the issue from
+the pull request. Use the templates in `.github/ISSUE_TEMPLATE/` (bug report, enhancement,
+partner contribution). This matters especially for ecosystem/partner contributions — filing
+an issue first makes it much easier for the docs team to process the contribution.
+
+## Redirects
+
+Every deleted, renamed, or moved page needs a matching entry in `redirects.json`, and every
+internal link that pointed at the old path needs updating. `onBrokenLinks` is configured to
+fail the build, so a missed redirect or stale link breaks CI, not just the reader's
+experience.
+
+## Auto-generated content
+
+`docs/api/linea-smart-contracts/` is automatically generated. Don't hand-edit it — change
+the generator/source instead.
+
+## Factual accuracy
+
+Don't state as fact any protocol behavior, API parameter, CLI option, or return value you
+haven't verified against source code, a spec, or a published reference. If uncertain, use
+the `[VERIFY]` marker (`editorial-voice.mdc`) rather than guessing.
+
+## Ecosystem contributions
+
+Contributions from ecosystem projects (dapps, libraries, tooling) should stay informative
+rather than promotional — see the ecosystem-contribution guidance in
+[CONTRIBUTING.md](../../CONTRIBUTING.md). The contributor is responsible for keeping their
+project's information current after merge.
+
+## Pull requests
+
+- Follow [Conventional Commits](https://www.conventionalcommits.org/) (`docs: clarify
+  bridging guide`); `commitlint` enforces this.
+- Run `npm run lint` and `npm run typecheck` locally before pushing.
+- Return to open PRs for review feedback — PRs inactive for three months after review get
+  closed (see CONTRIBUTING.md).
