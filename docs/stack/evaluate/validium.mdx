@@ -1,28 +1,19 @@
 ---
 title: Privacy and data visibility
-description: >-
-  Where Lineth deployment data is published, retained, visible, and verifiable
+description: 'Where Lineth deployment data is published, retained, visible, and verifiable'
 sidebar_position: 5
-image: /img/socialCards/privacy.jpg
+image: /img/socialCards/privacy-and-data-visibility.jpg
 ---
 
-Use this page to evaluate what a Lineth (formerly the Linea Stack) deployment
+This page describes what a Lineth (formerly the Linea Stack) deployment
 publishes, retains offchain, makes visible, and allows participants to verify.
-For access policy, see [Access control](./rbac.mdx).
 
-## What this page does and does not cover
+For access policy, see [Access control](../deployment/rbac.mdx).
+For regulatory compliance, see [Compliance](./compliance.mdx).
 
-This page covers data visibility: where transaction data is stored, who can see
-it, and what participants can verify.
-
-This page does not cover:
-
-- Cryptographic private execution or private state. Lineth does not publish a
-  shipped capability for on-chain ZK privacy; do not infer it from validium or
-  RBAC.
-- Regulatory compliance. See [Compliance](./compliance.mdx) for what protocol
-  evidence exists and what is not claimed.
-- Access policy configuration. See [Access control](./rbac.mdx).
+This page does not cover cryptographic private execution or private state.
+Lineth does not publish a shipped capability for onchain ZK privacy;
+do not infer it from validium or RBAC.
 
 ## Validium data flow
 
@@ -40,7 +31,7 @@ State commitments and proofs are posted onchain. Transaction data is not.
 | -------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Finalization layer               | State commitments, zk-SNARK proofs, bridge messages     | Anyone reading the finalization layer                                        |
 | Operator data availability layer | Transaction data, full ordered history                  | Participants the operator authorizes, per the deployment's data access model |
-| RPC and API surfaces             | State and transactions the caller is authorized to view | Callers with [RBAC](./rbac.mdx) permissions for the relevant endpoint        |
+| RPC and API surfaces             | State and transactions the caller is authorized to view | Callers with [RBAC](../deployment/rbac.mdx) permissions for the relevant endpoint        |
 
 Offchain data availability changes where transaction data lives. It does not by
 itself make transactions cryptographically private. A participant with access to
@@ -56,11 +47,11 @@ participant can verify their own state against the onchain commitments using
 Unlike a public network, a validium does not give every participant a full view
 of all transactions or their ordering. Reconstruction or independent
 verification of full history requires access to the offchain data, which the
-deployment's [RBAC](./rbac.mdx) and governance rules control.
+deployment's [RBAC](../deployment/rbac.mdx) and governance rules control.
 
 ## Access control
 
-[RBAC](./rbac.mdx) controls access to network functionality:
+[RBAC](../deployment/rbac.mdx) controls access to network functionality:
 
 - RPC endpoints: access controlled by API keys and permissions
 - API portal: institution-level access controls
@@ -81,7 +72,7 @@ A private validium can finalize on:
   finality
 
 See
-[a comparison of finalization layer options](../how-it-works/data-availability-finalization.mdx#finalization-layer).
+[a comparison of finalization layer options](../deployment/data-availability-finalization.mdx#finalization-layer).
 
 ## Architecture
 
@@ -116,12 +107,12 @@ Private validium requires trust in:
   selected finalization layer
 
 For the full trust-boundary and failure-mode treatment, see
-[Trust and responsibilities](../how-it-works/trust-model.mdx).
+[Trust and responsibilities](./trust-model.mdx).
 
 ### Security features
 
 - Minimum node count: 4 nodes for QBFT fault tolerance
-- Access controls: [RBAC](./rbac.mdx) on RPC and API endpoints
+- Access controls: [RBAC](../deployment/rbac.mdx) on RPC and API endpoints
 - Key management: supports
   [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing
   backed by a hardware security module (HSM) or key management service (KMS)
@@ -137,6 +128,6 @@ required for verification and recovery.
 ## Next steps
 
 - Learn more about selecting a
-  [deployment model](../how-it-works/deployment-models.mdx)
+  [deployment model](./deployment-models.mdx)
 - Review [security and assurance](./security.mdx)
 - Review [compliance](./compliance.mdx)

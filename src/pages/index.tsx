@@ -55,7 +55,7 @@ export default function Home(): React.ReactNode {
           Launch your own <strong>Lineth</strong> chain
         </>
       ),
-      link: "/stack/how-to/run-lineth-stack-sepolia",
+      link: "/stack",
       description: (
         <>Deploy a local Ethereum-compatible network using Lineth.</>
       ),

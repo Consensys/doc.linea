@@ -4,29 +4,20 @@ description: >-
   Protocol guarantees, operator controls, and assurance evidence for Lineth
   deployments
 sidebar_position: 4
-image: /img/socialCards/security.jpg
+image: /img/socialCards/security-and-assurance.jpg
 ---
 
-Use this page to separate Lineth (formerly the Linea Stack) protocol guarantees,
-operator-controlled security measures, and available assurance evidence. For
-trust boundaries and privileged authority, see
-[Trust and responsibilities](../how-it-works/trust-model.mdx).
+This page describes Lineth (formerly the Linea Stack) protocol guarantees,
+operator-controlled security measures, and available assurance evidence.
 
-## What this page does and does not cover
+For trust boundaries and privileged authority, see
+[Trust and responsibilities](./trust-model.mdx).
 
-This page covers:
+This page does not include:
 
-- Protocol guarantees that hold under a given deployment model
-- Operator-controlled security surfaces
-- Where assurance evidence is published today and where it is not
-
-This page does not cover:
-
-- A complete audit catalog or proof-system maturity statement. Lineth does not
-  publish a consolidated assurance hub; links below point to the evidence that
-  is public today.
+- A complete audit catalog or proof-system maturity statement.
 - Production operations guidance (monitoring, incident response, disaster
-  recovery). That is out of scope for the current Stack docs.
+  recovery).
 - Commercial support or SLA commitments.
 
 ## Protocol-level guarantees
@@ -47,7 +38,7 @@ Under the configured deployment model, Lineth provides:
   tied to verified state transitions in the normal protocol path.
 
 For the trust boundaries behind each of these, see
-[Trust and responsibilities](../how-it-works/trust-model.mdx).
+[Trust and responsibilities](./trust-model.mdx).
 
 ## Operator-controlled security surfaces
 
@@ -55,7 +46,7 @@ Operators define and operate their own security boundary. Lineth does not ship a
 production security operations program. Operators are responsible for:
 
 - Infrastructure isolation and network security controls
-- [Role-based access control (RBAC)](./rbac.mdx) for APIs and services
+- [Role-based access control (RBAC)](../deployment/rbac.mdx) for APIs and services
 - Key management via KMS-backed signing and remote signing through
   [Web3Signer](../../protocol/architecture/index.mdx#web3signer)
 - Governance contracts or multisig controls for privileged roles, proxy

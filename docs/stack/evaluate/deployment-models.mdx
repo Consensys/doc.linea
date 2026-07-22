@@ -7,44 +7,42 @@ sidebar_position: 2
 image: /img/socialCards/deployment-models.jpg
 ---
 
-Use this page to compare documented Lineth deployment models and the trade-offs
+This page describes the Lineth deployment models and the trade-offs
 they create for access, data availability, and finalization. Related evaluation
-paths include [trust and responsibilities](./trust-model.mdx) and
-[privacy and data visibility](../features/validium.mdx).
+paths include [Trust and responsibilities](./trust-model.mdx) and
+[Privacy and data visibility](./validium.mdx).
 
 ## Customization factors
 
-Lineth is designed to support customizations for factors including:
+An operator can customize the following in a Lineth deployment:
 
 - Access control: who may access the mempool, ledger, and transaction data
 - Data availability: how transaction data is stored and who can reconstruct it
 - Finalization speed: block size and configuration affect soft finality speed
-- Finalization layer: where finalization occurs affects security assumptions and
+- Finalization layer: whether you finalize on Ethereum or Linea affects security assumptions and
   hard finality speed
 - Transaction ordering: operators can apply custom ordering rulesets
 
-Operators own these choices. Lineth does not prescribe a single deployment
-shape, and the public docs do not assert that any specific configuration is
-production-ready or commercially supported.
+Operators own these choices. Lineth does not recommend a specific set of customizations.
 
 ## Two primary models
 
 Lineth supports two primary deployment models:
 
-- Public deployments, such as Linea Mainnet, with onchain data availability
-- Private validium deployments, with offchain data availability and controlled
+- [Public deployments](#public), such as Linea Mainnet, with onchain data availability
+- [Private validium deployments](#private-validium), with offchain data availability and controlled
   access
 
 When configuring a deployment, consider:
 
 - Privacy requirements: should transaction data remain private to authorized
   participants?
-- Regulatory and compliance obligations: what controls does your program
-  require, and who owns them? See [Compliance](../features/compliance.mdx).
+- Regulatory and [compliance](./compliance.mdx) obligations: what controls does your program
+  require, and who owns them?
 - Data availability guarantees: how important is onchain data availability for
   your participants?
 - Network topology: do you need a private network with controlled membership?
-- Access control: do you need [RBAC](../features/rbac.mdx) on RPC endpoints and
+- Access control: do you need [RBAC](../deployment/rbac.mdx) on RPC endpoints and
   APIs?
 
 ## Public
@@ -71,7 +69,7 @@ data availability.
 - Validator topology: if the deployment uses a
   [multi-validator QBFT design](../how-to/distributed-sequencing.mdx), at least 4
   Maru validators are required to tolerate one faulty validator
-- Access controls: whether to implement [RBAC](../features/rbac.mdx) on RPC
+- Access controls: whether to implement [RBAC](../deployment/rbac.mdx) on RPC
   endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
@@ -90,8 +88,8 @@ and access-control design; Lineth does not certify a deployment as compliant.
   set
 - Data visibility: transaction details are not posted to the finalization layer;
   what participants can see depends on the deployment's data availability and
-  [RBAC](../features/rbac.mdx) configuration
-- Access control: RPC endpoints protected by [RBAC](../features/rbac.mdx); only
+  [RBAC](../deployment/rbac.mdx) configuration
+- Access control: RPC endpoints protected by [RBAC](../deployment/rbac.mdx); only
   authorized participants can view data they are scoped to
 - [Finalization](../../network/overview/transaction-finality.mdx): state
   commitments and proofs are posted to the finalization layer
@@ -113,7 +111,7 @@ are authorized to access. For the trust trade-off, see
 
 Operators with regulatory or compliance obligations are responsible for
 designing their own compliance program. See
-[Compliance](../features/compliance.mdx) for what protocol evidence exists and
+[Compliance](./compliance.mdx) for what protocol evidence exists and
 what is not claimed.
 
 ### Security considerations
@@ -121,7 +119,7 @@ what is not claimed.
 - Validator topology: at least 4 Maru validators are required for a
   [QBFT design](../how-to/distributed-sequencing.mdx) that tolerates one faulty
   validator
-- Access controls: [RBAC](../features/rbac.mdx) on RPC endpoints and API portal
+- Access controls: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API portal
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
   (KMS)
@@ -129,8 +127,8 @@ what is not claimed.
 
 ### Example validium system setup
 
-The following network setup presents how an operator-run validium instance of
-Lineth may be configured. The operator determines where transaction data is
+The following is an example validium network setup.
+The operator determines where transaction data is
 stored to suit privacy and security requirements (not shown below).
 
 ```mermaid
@@ -257,4 +255,4 @@ flowchart TB
 ## Next steps
 
 Also consider the design decisions required to determine the
-[finality mechanism](./data-availability-finalization.mdx#finality-design-options).
+[finality mechanism](../deployment/data-availability-finalization.mdx#finality-design-options).

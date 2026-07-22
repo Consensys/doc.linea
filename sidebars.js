@@ -454,24 +454,24 @@ const sidebars = {
       label: "Evaluate Lineth",
       collapsible: false,
       items: [
-        { type: "doc", id: "stack/features/index", label: "Capabilities" },
-        "stack/how-it-works/deployment-models",
+        "stack/evaluate/index",
+        "stack/evaluate/deployment-models",
         {
           type: "doc",
-          id: "stack/how-it-works/trust-model",
+          id: "stack/evaluate/trust-model",
           label: "Trust and responsibilities",
         },
         {
           type: "doc",
-          id: "stack/features/validium",
+          id: "stack/evaluate/validium",
           label: "Privacy and data visibility",
         },
         {
           type: "doc",
-          id: "stack/features/security",
+          id: "stack/evaluate/security",
           label: "Security and assurance",
         },
-        "stack/features/compliance",
+        "stack/evaluate/compliance",
       ],
     },
     {
@@ -479,25 +479,21 @@ const sidebars = {
       label: "Deployment architecture",
       collapsible: false,
       items: [
+        "stack/deployment/index",
         {
           type: "doc",
-          id: "stack/how-it-works/index",
-          label: "Overview",
-        },
-        {
-          type: "doc",
-          id: "stack/how-it-works/core-components",
+          id: "stack/deployment/core-components",
           label: "Deployment components",
         },
-        "stack/how-it-works/data-availability-finalization",
+        "stack/deployment/data-availability-finalization",
         {
           type: "doc",
-          id: "stack/features/fast-finality",
+          id: "stack/deployment/fast-finality",
           label: "Finality design",
         },
         {
           type: "doc",
-          id: "stack/features/rbac",
+          id: "stack/deployment/rbac",
           label: "Access control",
         },
       ],
