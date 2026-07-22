@@ -493,6 +493,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "stack/deployment/distributed-sequencing",
+          label: "Multi-validator consensus",
+        },
+        {
+          type: "doc",
           id: "stack/deployment/rbac",
           label: "Access control",
         },

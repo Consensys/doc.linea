@@ -181,9 +181,10 @@
 - [Deployment components](https://docs.linea.build/stack/deployment/core-components): Required and optional operator footprint.
 - [Data availability and finalization](https://docs.linea.build/stack/deployment/data-availability-finalization): How deployment choices affect data availability and finalization.
 - [Finality design](https://docs.linea.build/stack/deployment/fast-finality): Application-level and settlement finality choices.
+- [Multi-validator consensus](https://docs.linea.build/stack/deployment/distributed-sequencing): Maru QBFT design, fault-tolerance scope, topology, and latency trade-offs.
 - [Access control](https://docs.linea.build/stack/deployment/rbac): Operator-configured access policy for protected surfaces.
 - [Run a local Lineth Stack](https://docs.linea.build/stack/how-to/run-lineth-stack-sepolia): Non-production local Stack workflow.
-- [Configure distributed sequencing](https://docs.linea.build/stack/how-to/distributed-sequencing): Bounded distributed-sequencing setup.
+- [Configure distributed sequencing](https://docs.linea.build/stack/how-to/distributed-sequencing): Set up and operate Maru multi-validator mode.
 - [Forced transactions for stack operators](https://docs.linea.build/stack/how-to/forced-transactions): Enable forced transactions on a Lineth deployment (not yet live).
 
 ## Changelog and risk

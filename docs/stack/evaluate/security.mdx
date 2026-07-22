@@ -29,7 +29,8 @@ Under the configured deployment model, Lineth provides:
   invalid state transition through the normal proof path.
 - Byzantine fault tolerant consensus for deployments that use QBFT with `3f+1`
   validators. Single-validator deployments do not use QBFT and rely on the
-  operator trust model.
+  operator trust model. See
+  [Multi-validator consensus](../deployment/distributed-sequencing.mdx).
 - Settlement finality on the selected finalization layer, scoped to that layer's
   own finality assumptions. A deployment finalizing to Ethereum inherits
   Ethereum L1 finality; a deployment finalizing to Linea Mainnet inherits Linea
