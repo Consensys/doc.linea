@@ -2170,11 +2170,13 @@ details > div {
   font-weight: 600;
 }
 
+/* Panel sits flush under the active tab; Infima's .margin-top--md otherwise
+   leaves a gap that breaks the shared background with the tab. */
 .tabs-container > div.margin-top--md {
   background-color: var(--linea-surface-elevated);
   border-radius: var(--linea-radius-md);
   padding: 20px;
-  margin-top: 0 !important;
+  margin-top: 0 !important; /* override Infima utility margin */
 }
 
 /* Pills/badges styling per Figma */
