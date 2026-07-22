@@ -120,10 +120,31 @@ const config = {
       mermaid: {
         options: {
           useMaxWidth: false,
+          fontFamily: "AtypText, sans-serif",
+          themeVariables: {
+            fontFamily: "AtypText, sans-serif",
+          },
           flowchart: {
             useMaxWidth: false,
             wrappingWidth: 280,
           },
+        },
+      },
+      zoom: {
+        selectors: [
+          'div.mermaid[data-processed="true"]',
+          "div.docusaurus-mermaid-container",
+          ".drawio",
+          ".theme-doc-markdown img",
+        ],
+        wrap: true,
+        timeout: 1000,
+        excludeClass: "panzoom-exclude",
+        enableWheelZoom: false,
+        enableDoubleClickResetZoom: false,
+        toolbar: {
+          enabled: true,
+          position: "top-right",
         },
       },
       tableOfContents: {
@@ -308,6 +329,7 @@ const config = {
         redirects: redirectsData,
       },
     ],
+    "@r74tech/docusaurus-plugin-panzoom",
     function excludeApiPlugin() {
       return {
         name: "exclude-api-directory",

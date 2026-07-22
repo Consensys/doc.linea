@@ -1636,6 +1636,15 @@ button.clean-btn.menu__caret {
   min-height: fit-content;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  font-family: AtypText, sans-serif;
+}
+
+/* Mermaid sets font-family on SVG text nodes; override to match body text. */
+.theme-doc-markdown .docusaurus-mermaid-container svg text,
+.theme-doc-markdown .docusaurus-mermaid-container svg tspan,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject * {
+  font-family: AtypText, sans-serif !important; /* override Mermaid inline font-family */
 }
 
 .theme-doc-markdown .docusaurus-mermaid-container svg {
@@ -1647,6 +1656,57 @@ button.clean-btn.menu__caret {
 .theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
 .theme-doc-markdown .docusaurus-mermaid-container svg foreignObject * {
   overflow: visible !important;
+}
+
+/*
+ * Sequence-diagram highlight rects use a dark fill in the MDX source
+ * (rgb(64, 69, 76)) that works with Mermaid's dark-mode text. In light
+ * mode, override so message text stays readable.
+ */
+[data-theme="light"]
+  .theme-doc-markdown
+  .docusaurus-mermaid-container
+  svg
+  rect[fill="rgb(64, 69, 76)"] {
+  fill: var(--linea-mermaid-sequence-rect-bg);
+}
+
+/*
+ * Deployment-models flowchart theme overrides.
+ * Colors come from --linea-mermaid-* tokens (tokens.css).
+ * Fill/stroke are set here (not in classDef) so Mermaid's #svgId
+ * classDef !important rules do not block theme overrides.
+ */
+.theme-doc-markdown .mermaid-deployment .cluster rect {
+  fill: var(--linea-mermaid-cluster-bg) !important; /* override Mermaid clusterBkg */
+  stroke: var(--linea-mermaid-cluster-border) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .cluster-label,
+.theme-doc-markdown .mermaid-deployment .cluster-label span,
+.theme-doc-markdown .mermaid-deployment .cluster-label foreignObject div {
+  color: var(--linea-text-primary) !important; /* readable subgraph titles */
+}
+
+.theme-doc-markdown .mermaid-deployment .node.core rect,
+.theme-doc-markdown .mermaid-deployment .node.core .basic.label-container {
+  fill: var(--linea-mermaid-core-bg) !important; /* beat theme .node rect fill */
+  stroke: var(--linea-mermaid-core-stroke) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .node.access rect,
+.theme-doc-markdown .mermaid-deployment .node.access .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.neutral rect,
+.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.control rect,
+.theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
+  fill: var(--linea-mermaid-cyan-bg) !important;
+  stroke: var(--linea-mermaid-cyan-stroke) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .node.control rect,
+.theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
+  stroke-dasharray: 6 4;
 }
 
 /* responsive classes for architecture diagram */
