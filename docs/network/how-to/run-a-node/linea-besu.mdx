@@ -101,15 +101,12 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
       docker compose -f ./your-file-path/docker-compose-advanced-sepolia.yaml up
       ```
 
-      Alternatively, you can run a node without downloading a `.yaml` file with a `docker run`
-      command. For example:
+      Use the canonical Sepolia compose file from the [Linea Besu package `docker`
+      directory](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/linea-besu/package/docker)
+      as the source of truth for the supported `linea-besu-package` image tag. That file is kept up
+      to date as new releases ship, so you do not have to pin a specific tag in your own config.
 
-      ```bash
-      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:beta-v4.0-rc11-20251004063519-a5c4c31
-      ```
-
-      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
-      name with a more recent version from the releases page.
+      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1.
 
     </TabItem>
 </Tabs>
