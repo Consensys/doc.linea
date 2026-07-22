@@ -50,8 +50,8 @@ Don't add an `image` field manually — the social card is generated automatical
   relative links within the same tab.
 - Use descriptive link text embedded in the sentence. Don't use "click here" or a bare
   URL.
-- If you move or rename a page, add an entry to `redirects.json` so existing links and
-  bookmarks keep working, and update any internal links that pointed to the old path.
+- If you move or rename a page, see `.cursor/rules/contributor-workflow.mdc` for the
+  `redirects.json` requirement.
 
 ## Images
 

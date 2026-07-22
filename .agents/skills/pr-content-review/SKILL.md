@@ -57,7 +57,13 @@ of truth for full criteria:
 - Frontmatter has `title` and `description`; no manually added `image`.
 - Links are relative where possible, have no `.mdx` extension, and use descriptive text.
 - Lines respect the 100-character limit without breaking words or URLs.
-- `redirects.json` updated if the page was moved, renamed, or removed.
+
+### Contributor workflow (`contributor-workflow.mdc`)
+
+- An issue exists and is linked from the PR (see CONTRIBUTING.md).
+- `redirects.json` updated if the page was moved, renamed, or removed, and every internal
+  link that pointed at the old path is updated too.
+- `docs/api/linea-smart-contracts/` wasn't hand-edited (it's auto-generated).
 
 ### Content and accuracy
 

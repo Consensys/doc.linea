@@ -33,11 +33,18 @@ Ask the user for anything they haven't already provided:
    [README.mdx](../../../README.mdx)).
 5. **Source material** — what code, spec, PR, or other reference verifies the content?
 
-## Step 1: Load the relevant rules
+## Step 1: Confirm an issue exists, then load the relevant rules
 
-Read these before scaffolding, and apply them by reference rather than restating them in
-the draft:
+Per `.cursor/rules/contributor-workflow.mdc`, an issue should exist for this change
+*before* work starts. Ask the user whether one's already open; if not, point them to
+[CONTRIBUTING.md](../../../CONTRIBUTING.md) and the templates in `.github/ISSUE_TEMPLATE/`
+so they can open one before you invest time scaffolding and drafting — this matters most
+for ecosystem/partner contributors.
 
+Then read these rule files before scaffolding, and apply them by reference rather than
+restating them in the draft:
+
+- `.cursor/rules/contributor-workflow.mdc` — issue-first workflow, redirects, PR hygiene.
 - `.cursor/rules/content-structure.mdc` — tab, audience, tone, and page-structure
   conventions.
 - `.cursor/rules/editorial-voice.mdc` — voice, heading style, and the `[VERIFY]` marker
@@ -91,5 +98,5 @@ After creating the page, remind the user to:
 1. Add an entry to `redirects.json` if any page was moved, renamed, or removed.
 2. Preview locally with `npm run start`.
 3. Run `npm run lint` and `npm run typecheck` before opening a PR.
-4. Open an issue describing the change first if one doesn't already exist — see
-   [CONTRIBUTING.md](../../../CONTRIBUTING.md).
+4. Link the issue from Step 1 in the pull request description (see
+   [CONTRIBUTING.md](../../../CONTRIBUTING.md)).
