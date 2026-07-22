@@ -120,6 +120,18 @@
   flex-shrink: 0;
 }
 
+/*
+ * MDX Mermaid wrappers:
+ * - `.mermaid-fit` scales the diagram to the content column.
+ * - `.mermaid-deployment` is the theme hook for deployment-models colors
+ *   (applied in docusaurus-overrides.css via --linea-mermaid-* tokens).
+ */
+.mermaid-fit,
+.mermaid-deployment {
+  width: 100%;
+  margin: 0 auto 20px;
+}
+
 .mermaid-xsmall svg,
 .mermaid-small svg,
 .mermaid-medium svg,
@@ -129,6 +141,18 @@
   max-width: inherit !important;
   height: auto !important;
   margin: 0 auto;
+}
+
+/* Beat `.theme-doc-markdown … svg { max-width: none }` so fit-to-width works. */
+.theme-doc-markdown .mermaid-fit .docusaurus-mermaid-container {
+  overflow-x: visible;
+}
+
+.theme-doc-markdown .mermaid-fit .docusaurus-mermaid-container svg {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 @media (max-width: 768px) {

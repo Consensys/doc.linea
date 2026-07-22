@@ -131,22 +131,34 @@ The following is an example validium network setup.
 The operator determines where transaction data is
 stored to suit privacy and security requirements (not shown below).
 
+<div class="mermaid-fit mermaid-deployment">
 ```mermaid
+%%{init: {
+  "themeVariables": {
+    "fontFamily": "AtypText, sans-serif"
+  },
+  "flowchart": {
+    "useMaxWidth": true,
+    "nodeSpacing": 16,
+    "rankSpacing": 24,
+    "padding": 12,
+    "wrappingWidth": 200
+  }
+}}%%
 flowchart TB
-  %% =========================
-  %% Styling (Linea-inspired)
-  %% =========================
-  classDef core fill:#0E5E56,color:#ffffff,stroke:#0E5E56,stroke-width:1px;
-  classDef access fill:#ffffff,color:#000000,stroke:#0E5E56,stroke-width:1.5px;
-  classDef control fill:#ffffff,color:#0E5E56,stroke:#0E5E56,stroke-width:1.5px,stroke-dasharray: 6 4;
-  classDef neutral fill:#ffffff,color:#000000,stroke:#000000,stroke-width:1px;
+  %% Node colors come from CSS (theme-aware). Keep classDef free of fill/color
+  %% so Mermaid does not inject #svgId !important rules that block overrides.
+  classDef core stroke-width:1.5px;
+  classDef access stroke-width:1.5px;
+  classDef control stroke-width:1.5px,stroke-dasharray:6 4;
+  classDef neutral stroke-width:1.5px;
   classDef invisible fill:transparent,stroke:transparent,color:transparent;
 
   %% =========================
   %% External actors + control plane
   %% =========================
   TrustedPartners[Trusted partners]:::neutral
-  RBAC[RBAC / access control]:::control
+  RBAC["RBAC /<br/>access control"]:::control
   TrustedPartners --> RBAC
 
   %% =========================
@@ -163,21 +175,21 @@ flowchart TB
 
     subgraph RPCServices["RPC services"]
       direction TB
-      NearHead[Near-head RPC nodes]:::access
-      Archive[Archive RPC nodes]:::access
+      NearHead["Near-head<br/>RPC nodes"]:::access
+      Archive["Archive<br/>RPC nodes"]:::access
     end
 
     subgraph OnchainContracts["Onchain system contracts"]
       direction LR
       subgraph ContractsCore["Messaging and application contracts"]
         direction TB
-        ApplicationContract[Application contract]:::core
-        MessageBridgeContracts[Message bridge contracts]:::core
+        ApplicationContract["Application<br/>contract"]:::core
+        MessageBridgeContracts["Message bridge<br/>contracts"]:::core
       end
       subgraph ContractsTokens["Token contracts"]
         direction TB
-        TokenManagementContract[Token management contract]:::core
-        TokenBridgeContracts[Token bridge contracts]:::core
+        TokenManagementContract["Token management<br/>contract"]:::core
+        TokenBridgeContracts["Token bridge<br/>contracts"]:::core
       end
     end
 
@@ -203,7 +215,7 @@ flowchart TB
       CoordOut(( )):::invisible
     end
 
-    ValidiumRelayers[Validium message relayers]:::control
+    ValidiumRelayers["Validium message<br/>relayers"]:::control
   end
 
   %% RBAC controls access/tooling
@@ -232,13 +244,13 @@ flowchart TB
 
     subgraph FinalizationLayer["Finalization layer"]
       direction LR
-      FinalizationContract[Finalization / message bridge contract]:::core
-      FinalizationTokenBridge[Token bridge contract]:::core
+      FinalizationContract["Finalization /<br/>message bridge contract"]:::core
+      FinalizationTokenBridge["Token bridge<br/>contract"]:::core
     end
 
     subgraph ExternalChains["External blockchains"]
       direction LR
-      EnterpriseChain[Enterprise blockchain]:::neutral
+      EnterpriseChain["Enterprise<br/>blockchain"]:::neutral
       PublicChain[Public blockchain]:::neutral
     end
   end
@@ -251,6 +263,7 @@ flowchart TB
   ValidiumRelayers --> EnterpriseChain
   ValidiumRelayers --> PublicChain
 ```
+</div>
 
 ## Next steps
 

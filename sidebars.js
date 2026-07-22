@@ -293,7 +293,10 @@ const sidebars = {
       type: "category",
       label: "Component configuration",
       collapsible: false,
-      items: ["stack/reference/linea-besu-plugin-options"],
+      items: [
+        "stack/reference/linea-besu-plugin-options",
+        "stack/reference/linea-prover-options",
+      ],
     },
     {
       type: "category",
