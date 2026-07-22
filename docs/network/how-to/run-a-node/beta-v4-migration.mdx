@@ -240,7 +240,7 @@ Supported EL clients include:
   - Post-Shanghai: v1.16.x  
 - Erigon: Latest release
 - Nethermind: Latest release
-- Linea-specific: A new `linea-besu-package` release is available via Docker: `consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b`
+- Linea-specific: Use the `linea-besu-package` release referenced in the canonical [Mainnet `docker-compose.yml`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet) in the Linea monorepo, or pick the latest tag from the [releases page](https://github.com/LFDT-Lineth/lineth-monorepo/releases).
 
 ## Upgrade to Cancun and Prague
 
@@ -265,17 +265,13 @@ requires a genesis file:
 ### Step 2: Update `docker-compose.yml`
 
 Retrieve the [updated `docker-compose.yml`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet) 
-file from the Linea monorepo. 
+file from the Linea monorepo. This canonical compose file pins the supported `linea-besu-package`
+image tag for Mainnet and is kept up to date as new releases ship; using it avoids pinning a
+tag in your own config that will go stale.
 
-Alternatively, update your existing `docker-compose.yml` file manually with the new `linea-besu-package` 
-image (`rc17`):
-
-```yaml
-  besu-node:
-      hostname: el-client
-      container_name: linea-besu
-      image: consensys/linea-besu-package:beta-v4.0-rc17-20251024131506-d32162b 
-```
+If you need to update an existing `docker-compose.yml` manually, copy the `besu-node` service
+definition (including the `image:` line) from the canonical compose file linked above rather
+than pinning a specific tag here.
 
 ### Step 3: Reinitialize your node
 
