@@ -75,7 +75,7 @@ from Linea.
 - [**`LineaRollup`:**](../network/build/contracts#deployed-contracts) L1 bridge
   contract and message service that holds user-deposited ETH collateral and
   serves as the accounting anchor for Yield Boost.
-- **`L1MessageService`:** L1 contract that holds the withdrawal reserve — the
+- **`L1MessageService`:** L1 contract that holds the withdrawal reserve: the
   unstaked ETH that pays out bridge redemptions. The reserve is distinct from
   the `LineaRollup` accounting anchor: principal deposits are accounted by
   `LineaRollup`, while the liquid withdrawal reserve is held by
@@ -346,7 +346,7 @@ deficit.
 `unstakePermissionless()` requests a partial withdrawal from a single validator.
 The caller supplies a validator-container proof (pubkey, withdrawal credentials,
 effective balance, and activation epochs), which is verified against the
-EIP-4788 beacon chain root — the proof verifies the validator container, not its
+EIP-4788 beacon chain root. The proof verifies the validator container, not its
 exit status. The amount is capped to the remaining reserve deficit that other
 liquidity sources cannot cover. This gives a censorship-resistant way to start
 replenishment when the operator is unavailable.

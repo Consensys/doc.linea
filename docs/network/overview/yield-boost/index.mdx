@@ -68,8 +68,8 @@ permissionless withdrawals, and a last-resort stETH withdrawal process. These
 are liveness properties (eventual, not instant), distinct from the hard safety
 properties below.**
 
-To support withdrawals of ETH from Linea back to Ethereum, a liquidity buffer —
-a reserve of unstaked ETH — is retained within the L1 message service contract,
+To support withdrawals of ETH from Linea back to Ethereum, a liquidity buffer
+(a reserve of unstaked ETH) is retained within the L1 message service contract,
 targeting around 40% of the Total Value Staked (TVS). In the
 [default flow](../../../protocol/yield-boost-architecture#l1-eth-flow), when a
 user wishes to withdraw their ETH from Linea, the request is fulfilled from this
@@ -84,8 +84,8 @@ are available:
   [trigger unstaking and reserve replenishment](../../../protocol/yield-boost-architecture#4-permissionless-flows)
   by calling a smart contract when the reserve is in deficit. The call is capped
   to the remaining deficit and is only available while the reserve is below the
-  minimum threshold. This is censorship-resistant — an operator cannot
-  permanently block it — but the beacon chain still takes time to fulfil the
+  minimum threshold. This is censorship-resistant: an operator cannot
+  permanently block it, but the beacon chain still takes time to fulfil the
   withdrawal, so the user may experience a delay.
 
 - As a last-resort mechanism, the user can opt to
@@ -146,8 +146,8 @@ resilience:
    withdrawal path available to users. Even if operators become unresponsive or
    malicious, permissionless mechanisms exist to allow any user to trigger
    unstaking and reserve replenishment when the reserve is in deficit.
-   Withdrawals may be delayed — the beacon chain takes time to fulfil unstaking
-   — but an operator cannot permanently block them.
+   Withdrawals may be delayed (the beacon chain takes time to fulfil unstaking),
+   but an operator cannot permanently block them.
 
 2. **Non-custodial asset management**: The system is designed so that no
    privileged role or operator can extract user funds or divert value from the
