@@ -158,7 +158,45 @@ do not need any arguments, leave the array empty.
 
 ### Deploy the smart contract
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
+
+<TabItem value="Mainnet" label="Mainnet" default>
+
+1. In your `.env` file, add your Infura Linea API key and add your wallet private key.
+
+    ```
+    INFURA_API_KEY_LINEA = "<YOUR API KEY HERE>"
+    PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
+    ```
+
+1. In the `hardhat.config.js` file, add the following lines:
+
+    ```js
+    const INFURA_API_KEY_LINEA = process.env.INFURA_API_KEY_LINEA;
+    ```
+
+    ```js
+    linea: {
+    url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY_LINEA}`,
+    accounts: [PRIVATE_KEY],
+    },
+    ```
+
+1. In the `hardhat.config.js` file, uncomment the following line:
+
+    ```js
+    const PRIVATE_KEY = process.env.PRIVATE_KEY;
+    ```
+
+1. Deploy the smart contract to the Linea Mainnet:
+
+```
+npx hardhat run --network linea scripts/deploy.js
+```
+
+Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
+on the [Linea Mainnet block explorer](https://lineascan.build/). 
+</TabItem> 
 
 <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
@@ -196,44 +234,6 @@ npx hardhat run --network lineaSepolia scripts/deploy.js
 
 Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
 on the [Linea Sepolia block explorer](https://sepolia.lineascan.build/).
-</TabItem> 
-
-<TabItem value="Mainnet" label="Mainnet">
-
-1. In your `.env` file, add your Infura Linea API key and add your wallet private key.
-
-    ```
-    INFURA_API_KEY_LINEA = "<YOUR API KEY HERE>"
-    PRIVATE_KEY = "<YOUR PRIVATE KEY HERE>"
-    ```
-
-1. In the `hardhat.config.js` file, add the following lines:
-
-    ```js
-    const INFURA_API_KEY_LINEA = process.env.INFURA_API_KEY_LINEA;
-    ```
-
-    ```js
-    linea: {
-    url: `https://linea-mainnet.infura.io/v3/${INFURA_API_KEY_LINEA}`,
-    accounts: [PRIVATE_KEY],
-    },
-    ```
-
-1. In the `hardhat.config.js` file, uncomment the following line:
-
-    ```js
-    const PRIVATE_KEY = process.env.PRIVATE_KEY;
-    ```
-
-1. Deploy the smart contract to the Linea Mainnet:
-
-```
-npx hardhat run --network linea scripts/deploy.js
-```
-
-Hardhat will return the deployed smart contract address in your terminal. View and verify your smart contract
-on the [Linea Mainnet block explorer](https://lineascan.build/). 
 </TabItem> 
 
 </Tabs>

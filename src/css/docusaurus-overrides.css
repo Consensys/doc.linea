@@ -2132,10 +2132,19 @@ details > div {
   color: #a78bfa;
 }
 
-/* Tabs styling per Figma */
+/*
+ * Tabs styling per Figma, plus the "common region" selection indicator
+ * (NN/g "Tabs, Used Right"): https://www.nngroup.com/articles/tabs-used-right/
+ * The selected tab and its panel share one background fill (a surface
+ * color distinct from the page background) so the boundary of the tabbed
+ * content stays visible for its entire length, however long. Unselected
+ * tabs sit directly on the page background for contrast.
+ */
 .tabs {
   border-bottom: none;
-  margin-bottom: 24px;
+  gap: 4px;
+  margin-bottom: 0;
+  padding: 0 20px;
 }
 
 .tabs__item {
@@ -2144,8 +2153,10 @@ details > div {
   font-weight: 400;
   padding: 10px 16px;
   border-bottom: 1px solid transparent;
+  border-radius: var(--linea-radius-sm) var(--linea-radius-sm) 0 0;
   color: var(--linea-text-secondary);
   transition: all 0.2s ease;
+  margin-bottom: 0;
 }
 
 .tabs__item:hover {
@@ -2153,8 +2164,19 @@ details > div {
 }
 
 .tabs__item--active {
-  border-bottom-color: var(--linea-brand-purple);
+  border-bottom-color: transparent;
   color: var(--linea-text-primary);
+  background-color: var(--linea-surface-elevated);
+  font-weight: 600;
+}
+
+/* Panel sits flush under the active tab; Infima's .margin-top--md otherwise
+   leaves a gap that breaks the shared background with the tab. */
+.tabs-container > div.margin-top--md {
+  background-color: var(--linea-surface-elevated);
+  border-radius: var(--linea-radius-md);
+  padding: 20px;
+  margin-top: 0 !important; /* override Infima utility margin */
 }
 
 /* Pills/badges styling per Figma */

@@ -25,7 +25,7 @@ Yul. If you would like to verify using Blockscout, please use the [Blockscout AP
 
 If you want to verify a contract that has already been deployed, you can use the following commands:
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
@@ -33,7 +33,7 @@ forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https
 ```
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```bash
 forge verify-contract --etherscan-api-key LINEASCAN_API_KEY --verifier-url https://api-sepolia.lineascan.build/api CONTRACT_ADDRESS path_to_contract:contract_name --watch
@@ -66,7 +66,7 @@ Contract successfully verified
 
 If you want to verify a contract as it is being deployed for the first time, you can use the following commands:
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
@@ -74,7 +74,7 @@ forge create --rpc-url https://linea.infura.io/v3/INFURA_API_KEY src/Counter.sol
 ```
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```bash
 forge create --rpc-url https://linea-sepolia.infura.io/v3/INFURA_API_KEY src/Counter.sol:Counter --private-key YOUR_PRIVATE_KEY --verify --verifier-url https://api-sepolia.lineascan.build/api --etherscan-api-key LINEASCAN_API_KEY
@@ -113,7 +113,7 @@ linea-mainnet = { key = "${LINEASCAN_API_KEY}", chain = 59144, url = "https://ap
 
 Then, to verify your smart contracts, you can simply run:
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
@@ -121,7 +121,7 @@ forge verify-contract --chain linea-mainnet YOUR_CONTRACT_ADDRESS path_to_contra
 ```
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```bash
 forge verify-contract --chain linea-sepolia YOUR_CONTRACT_ADDRESS path_to_contract:contract_name --watch

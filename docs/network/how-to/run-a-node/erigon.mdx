@@ -55,8 +55,8 @@ official release image in the compose file instead.
 Use the Linea monorepo's `docs/getting-started` directory as the example Docker Compose
 configuration. The same directory contains the Geth genesis file that Erigon should initialize from.
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
   
   Download or clone the
   [`docs/getting-started/linea-mainnet`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet)
@@ -177,8 +177,8 @@ Use the resulting `build/bin/erigon` binary in the commands below, or add it to 
 Download the genesis file for the relevant network. In the example, we'll download the file to the
 directory specified by [`datadir` in Step 4](#step-4-bootstrap-your-node).
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
   
   Download the current Linea Mainnet
   [`geth-genesis.json`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
@@ -211,8 +211,8 @@ If you run out of space, or need to actively maintain how much space is being us
 
 Bootstrap the node using the following command:
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
   
     ```bash
     erigon --datadir $HOME/erigon-mainnet-data/ init $HOME/erigon-mainnet-data/genesis.json
@@ -233,8 +233,8 @@ Bootstrap the node using the following command:
 
 Start the node using the following command:
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
   
     ```bash
     erigon \
