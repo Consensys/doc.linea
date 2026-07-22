@@ -17,11 +17,11 @@ components may not yet be active.
 Linea Yield Boost is a protocol-level mechanism that converts idle bridged ETH
 into a sustainable source of ecosystem incentives.
 
-By programmatically staking a portion of ETH held in Linea’s `LineaRollup` using
-Lido v3 stVaults on Ethereum, Yield Boost generates a continuous stream of
-rewards. These staking rewards are redirected to strengthen the Linea ecosystem,
-creating a long-term, self-sustaining economic engine aligned with Ethereum
-mainnet security.
+By programmatically staking a portion of surplus ETH from the
+`L1MessageService` withdrawal reserve using Lido v3 stVaults on Ethereum, Yield
+Boost generates a continuous stream of rewards. These staking rewards are
+redirected to strengthen the Linea ecosystem, creating a long-term,
+self-sustaining economic engine aligned with Ethereum mainnet security.
 
 ## Why Yield Boost exists
 
@@ -69,7 +69,7 @@ are liveness properties (eventual, not instant), distinct from the hard safety
 properties below.**
 
 To support withdrawals of ETH from Linea back to Ethereum, a liquidity buffer
-(a reserve of unstaked ETH) is retained within the L1 message service contract,
+(a reserve of unstaked ETH) is retained within the `L1MessageService` contract,
 targeting around 40% of the Total Value Staked (TVS). In the
 [default flow](../../../protocol/yield-boost-architecture#l1-eth-flow), when a
 user wishes to withdraw their ETH from Linea, the request is fulfilled from this
@@ -259,10 +259,10 @@ functionality and design of Linea Yield Boost.
 **Do I receive stETH on Linea?**
 
 - No. Users retain standard, fungible 1:1 ETH on Linea. The staking process
-  occurs in the background on the L1 within the `LineaRollup` contracts. You do
-  not hold a wrapped or rebasing token, and your ETH balance on Linea reflects
-  the value deposited. The system earns yield to reinforce and improve the
-  ecosystem you are using.
+  occurs in the background on L1 from the `L1MessageService` withdrawal
+  reserve. You do not hold a wrapped or rebasing token, and your ETH balance on
+  Linea reflects the value deposited. The system earns yield to reinforce and
+  improve the ecosystem you are using.
 
 **Do I ever lose access to my ETH on the L1 or the L2?**
 
