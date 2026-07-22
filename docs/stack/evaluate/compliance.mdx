@@ -1,0 +1,80 @@
+---
+title: Compliance
+description: >-
+  Protocol evidence operators can use in a compliance program, and what Lineth
+  does not claim
+sidebar_position: 1
+image: /img/socialCards/compliance.jpg
+---
+
+This page describes what protocol evidence a Lineth (formerly the Linea
+Stack) deployment produces that operators can use in their own compliance
+program, and what Lineth does not claim.
+
+This page does not include:
+
+- Mapping to specific regulatory frameworks.
+- A certification or attestation that a deployment is compliant.
+- Data retention or deletion product features. Operators implement retention and
+  disclosure against their own policy using the deployment's data availability
+  and access controls.
+
+## zk-SNARK proofs are not a compliance program
+
+zk-SNARK proofs verify state-transition correctness. They do not by themselves
+provide a complete compliance program. A compliance program needs controls,
+evidence, retention, disclosure, and ownership that go beyond proof
+verification.
+
+## Protocol evidence a deployment produces
+
+A Lineth deployment produces the following evidence that operators can use in a
+compliance design:
+
+- State commitments posted to the finalization layer
+- zk-SNARK proof verification records on the finalization layer
+- Finalization records on the finalization layer
+- Transaction history retained by the deployment's data availability model
+
+What participants can verify depends on the deployment model. For the trust and
+verification boundaries, see
+[Trust and responsibilities](./trust-model.mdx). For where data is
+stored and who can see it, see [Privacy and data visibility](./validium.mdx).
+
+## Operator-owned compliance controls
+
+Operators are responsible for the controls a compliance program requires. Lineth
+provides mechanisms operators can configure, but does not own the program:
+
+- Access policy: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API surfaces controls
+  who can read or submit
+- Data availability arrangement: operators choose where transaction data is
+  stored and who can reconstruct it; see
+  [Data availability and finalization](../deployment/data-availability-finalization.mdx)
+- Key management: remote signing backed by HSM or KMS via
+  [Web3Signer](../../protocol/architecture/index.mdx#web3signer)
+- Governance and upgrade authority: multisig, governance contract, or timelock
+  for privileged roles; see [Security and assurance](./security.mdx)
+- External integrations: operators connect external compliance, monitoring, and
+  logging systems to their deployment
+
+## What Lineth does not claim
+
+- Lineth does not certify a deployment as compliant with any specific
+  regulation.
+- Lineth does not publish a control-to-framework mapping.
+- Private validium and RBAC are access and data-visibility mechanisms, not
+  cryptographic private execution or ZK privacy. Do not infer regulatory
+  compliance from them.
+- Lineth does not own data retention or disclosure policy. Operators implement
+  it.
+
+## Where to go next
+
+| Question                                                    | Page                                                                                     |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Who operates what, and what can each component do?          | [Trust and responsibilities](./trust-model.mdx)                            |
+| Who can see what data?                                      | [Privacy and data visibility](./validium.mdx)                                            |
+| What is protocol versus operator, and what evidence exists? | [Security and assurance](./security.mdx)                                                 |
+| How is access to RPC and APIs controlled?                   | [Access control](../deployment/rbac.mdx)                                                             |
+| How do data availability and finalization choices interact? | [Data availability and finalization](../deployment/data-availability-finalization.mdx) |

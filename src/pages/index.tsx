@@ -55,9 +55,9 @@ export default function Home(): React.ReactNode {
           Launch your own <strong>Lineth</strong> chain
         </>
       ),
-      link: "/stack/quickstart",
+      link: "/stack",
       description: (
-        <>Deploy your own Ethereum-compatible network using Lineth.</>
+        <>Deploy a custom Ethereum-compatible network using Lineth.</>
       ),
       iconSrc: "/img/card_icon_launch.png",
     },

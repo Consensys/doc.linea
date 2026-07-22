@@ -1,0 +1,271 @@
+---
+title: Deployment models
+description: >-
+  How to compare Lineth public and private validium deployment models and their
+  trade-offs
+sidebar_position: 2
+image: /img/socialCards/deployment-models.jpg
+---
+
+This page describes the Lineth deployment models and the trade-offs
+they create for access, data availability, and finalization. Related evaluation
+paths include [Trust and responsibilities](./trust-model.mdx) and
+[Privacy and data visibility](./validium.mdx).
+
+## Customization factors
+
+An operator can customize the following in a Lineth deployment:
+
+- Access control: who may access the mempool, ledger, and transaction data
+- Data availability: how transaction data is stored and who can reconstruct it
+- Finalization speed: block size and configuration affect soft finality speed
+- Finalization layer: whether you finalize on Ethereum or Linea affects security assumptions and
+  hard finality speed
+- Transaction ordering: operators can apply custom ordering rulesets
+
+Operators own these choices. Lineth does not recommend a specific set of customizations.
+
+## Two primary models
+
+Lineth supports two primary deployment models:
+
+- [Public deployments](#public), such as Linea Mainnet, with onchain data availability
+- [Private validium deployments](#private-validium), with offchain data availability and controlled
+  access
+
+When configuring a deployment, consider:
+
+- Privacy requirements: should transaction data remain private to authorized
+  participants?
+- Regulatory and [compliance](./compliance.mdx) obligations: what controls does your program
+  require, and who owns them?
+- Data availability guarantees: how important is onchain data availability for
+  your participants?
+- Network topology: do you need a private network with controlled membership?
+- Access control: do you need [RBAC](../deployment/rbac.mdx) on RPC endpoints and
+  APIs?
+
+## Public
+
+Public deployments such as Linea Mainnet are fully public networks with onchain
+data availability.
+
+### Characteristics
+
+- Data availability: transaction data is posted onchain via EIP-4844 blobs
+- Public access: public RPC endpoint
+- Transparency: all transactions are visible on the finalization layer
+- Finalization: state commitments, proofs, and data are posted to the
+  finalization layer
+
+### Use cases
+
+- Networks requiring maximum transparency
+- Applications that benefit from onchain data availability
+- Networks that prioritize open access over transaction privacy
+
+### Security considerations
+
+- Validator topology: if the deployment uses a
+  [multi-validator QBFT design](../deployment/distributed-sequencing.mdx), at least 4
+  Maru validators are required to tolerate one faulty validator
+- Access controls: whether to implement [RBAC](../deployment/rbac.mdx) on RPC
+  endpoints
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote
+  signing backed by a hardware security module (HSM) or key management service
+  (KMS)
+
+## Private validium
+
+A private validium keeps transaction data offchain while using zk-SNARK proofs
+to support state-transition correctness and finalization. Whether this model
+suits a regulated environment depends on the operator's own compliance, privacy,
+and access-control design; Lineth does not certify a deployment as compliant.
+
+### Characteristics
+
+- Data availability: transaction data can be stored offchain in a private node
+  set
+- Data visibility: transaction details are not posted to the finalization layer;
+  what participants can see depends on the deployment's data availability and
+  [RBAC](../deployment/rbac.mdx) configuration
+- Access control: RPC endpoints protected by [RBAC](../deployment/rbac.mdx); only
+  authorized participants can view data they are scoped to
+- [Finalization](../../network/overview/transaction-finality.mdx): state
+  commitments and proofs are posted to the finalization layer
+- Network topology: private network with controlled node membership
+
+In private validium deployments, participant visibility depends on RBAC settings
+and data availability access. Some participants may verify only the data they
+are authorized to access. For the trust trade-off, see
+[Trust and responsibilities](./trust-model.mdx).
+
+### Use cases
+
+- Workflows where transaction data should not be public
+- Multi-party workflows where participants should not see all transaction
+  details
+- Operators who accept the validium trade-off: state-transition correctness is
+  proven onchain, but data reconstruction without the operator depends on the
+  deployment's data availability arrangement
+
+Operators with regulatory or compliance obligations are responsible for
+designing their own compliance program. See
+[Compliance](./compliance.mdx) for what protocol evidence exists and
+what is not claimed.
+
+### Security considerations
+
+- Validator topology: at least 4 Maru validators are required for a
+  [QBFT design](../deployment/distributed-sequencing.mdx) that tolerates one faulty
+  validator
+- Access controls: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API portal
+- [Key management](../../protocol/architecture/index.mdx#web3signer): remote
+  signing backed by a hardware security module (HSM) or key management service
+  (KMS)
+- Network isolation: private network topology with controlled peering
+
+### Example validium system setup
+
+The following is an example validium network setup.
+The operator determines where transaction data is
+stored to suit privacy and security requirements (not shown below).
+
+<div class="mermaid-fit mermaid-deployment">
+```mermaid
+%%{init: {
+  "themeVariables": {
+    "fontFamily": "AtypText, sans-serif"
+  },
+  "flowchart": {
+    "useMaxWidth": true,
+    "nodeSpacing": 16,
+    "rankSpacing": 24,
+    "padding": 12,
+    "wrappingWidth": 200
+  }
+}}%%
+flowchart TB
+  %% Node colors come from CSS (theme-aware). Keep classDef free of fill/color
+  %% so Mermaid does not inject #svgId !important rules that block overrides.
+  classDef core stroke-width:1.5px;
+  classDef access stroke-width:1.5px;
+  classDef control stroke-width:1.5px,stroke-dasharray:6 4;
+  classDef neutral stroke-width:1.5px;
+  classDef invisible fill:transparent,stroke:transparent,color:transparent;
+
+  %% =========================
+  %% External actors + control plane
+  %% =========================
+  TrustedPartners[Trusted partners]:::neutral
+  RBAC["RBAC /<br/>access control"]:::control
+  TrustedPartners --> RBAC
+
+  %% =========================
+  %% Operator-controlled boundary
+  %% =========================
+  subgraph PrivateNetwork["Lineth private network"]
+    direction TB
+
+    subgraph AccessTooling["Access and tooling"]
+      direction LR
+      APIPortal[API portal]:::access
+      BlockExplorer[Block explorer]:::access
+    end
+
+    subgraph RPCServices["RPC services"]
+      direction TB
+      NearHead["Near-head<br/>RPC nodes"]:::access
+      Archive["Archive<br/>RPC nodes"]:::access
+    end
+
+    subgraph OnchainContracts["Onchain system contracts"]
+      direction LR
+      subgraph ContractsCore["Messaging and application contracts"]
+        direction TB
+        ApplicationContract["Application<br/>contract"]:::core
+        MessageBridgeContracts["Message bridge<br/>contracts"]:::core
+      end
+      subgraph ContractsTokens["Token contracts"]
+        direction TB
+        TokenManagementContract["Token management<br/>contract"]:::core
+        TokenBridgeContracts["Token bridge<br/>contracts"]:::core
+      end
+    end
+
+    subgraph InternalServices["Internal protocol services"]
+      direction TB
+
+      subgraph CoreRow["Core services"]
+        direction LR
+        StateManager[State manager]:::core
+        Tracer[Tracer]:::core
+        Prover[Prover]:::core
+      end
+
+      subgraph ExecRow["Execution services"]
+        direction LR
+        Web3Signer[Web3 signer]:::core
+        Sequencer[Sequencer]:::core
+      end
+
+      Coordinator[Coordinator]:::core
+
+      %% Anchor node to force proof flow to exit from the bottom
+      CoordOut(( )):::invisible
+    end
+
+    ValidiumRelayers["Validium message<br/>relayers"]:::control
+  end
+
+  %% RBAC controls access/tooling
+  RBAC --> APIPortal
+  RBAC --> BlockExplorer
+
+  %% Tooling consumes RPC
+  APIPortal --> RPCServices
+  BlockExplorer --> RPCServices
+
+  %% RPC reads chain state
+  RPCServices --> OnchainContracts
+
+  %% Internal services interact with onchain contracts
+  InternalServices --> OnchainContracts
+
+  %% Proof spine (exit from bottom via anchor)
+  Coordinator --> CoordOut
+  CoordOut --> ZKProofs[zk-SNARK proofs]:::neutral
+
+  %% =========================
+  %% Bottom row: align finalization layer and external blockchains
+  %% =========================
+  subgraph BottomRow["Finalization and interoperability"]
+    direction LR
+
+    subgraph FinalizationLayer["Finalization layer"]
+      direction LR
+      FinalizationContract["Finalization /<br/>message bridge contract"]:::core
+      FinalizationTokenBridge["Token bridge<br/>contract"]:::core
+    end
+
+    subgraph ExternalChains["External blockchains"]
+      direction LR
+      EnterpriseChain["Enterprise<br/>blockchain"]:::neutral
+      PublicChain[Public blockchain]:::neutral
+    end
+  end
+
+  %% Proof submission to finalization
+  ZKProofs --> FinalizationContract
+
+  %% Relaying path
+  OnchainContracts --> ValidiumRelayers
+  ValidiumRelayers --> EnterpriseChain
+  ValidiumRelayers --> PublicChain
+```
+</div>
+
+## Next steps
+
+Also consider the design decisions required to determine the
+[finality mechanism](../deployment/data-availability-finalization.mdx#finality-design-options).
