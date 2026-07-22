@@ -64,7 +64,20 @@ from the `L1MessageService` reserve when liquid ETH is available.
 - **Automation service:** Triggers routine stake/unstake, reserve top-ups, and
   yield reports.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "themeVariables": {
+    "fontFamily": "AtypText, sans-serif"
+  },
+  "flowchart": {
+    "useMaxWidth": true,
+    "nodeSpacing": 16,
+    "rankSpacing": 24,
+    "padding": 12,
+    "wrappingWidth": 200
+  }
+}}%%
 flowchart TD
     User([User])
     Auto([Automation Service])
@@ -77,20 +90,15 @@ flowchart TD
 
     User -->|Deposit ETH| BR
     BR -->|Withdraw ETH| User
-    Auto -.->|Automatically rebalances ETH between the L1MessageService reserve and StakingVault, and requests unstaking| YM
+    Auto -.->|Rebalance reserve and vault; request unstaking| YM
     L1 -->|Rebalance extra ETH to earn rewards| YM
     YM -->|Move ETH to staking vault| SV
     NO -.->|Triggers staking| SV
     SV -->|Stake| BC
     BC -->|Unstake| SV
     SV -->|Withdraw ETH| L1
-
-    classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
-    classDef permissionless fill:#cce5ff,stroke:#004085,stroke-width:1px,color:#004085
-
-    class NO,Auto admin
-    class User permissionless
 ```
+</div>
 
 > The node operator's deposit trigger is part of an automated process agreed
 > beforehand. The node operator runs validator infrastructure.
@@ -123,7 +131,20 @@ Steps:
    `L2MessageService` unlocks the corresponding ETH on L2.
 7. The `L2YieldDistributor` sends unlocked ETH to designated recipients.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "themeVariables": {
+    "fontFamily": "AtypText, sans-serif"
+  },
+  "flowchart": {
+    "useMaxWidth": true,
+    "nodeSpacing": 16,
+    "rankSpacing": 24,
+    "padding": 12,
+    "wrappingWidth": 200
+  }
+}}%%
 flowchart TB
     subgraph L2["L2"]
       direction TB
@@ -138,21 +159,13 @@ flowchart TB
     YM -.->|Report net yield| LR[LineaRollup]
     LR -.->|Emit synthetic MessageSent message| L2MS[L2MessageService]
     L2MS -->|Distribute yield| L2YD[L2YieldDistributor]
-
-    classDef l2 fill:#d4edda,stroke:#155724,stroke-width:1px,color:#155724
-    classDef admin fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
-
-    class L2MS,L2YD l2
-    class FeeRecipient admin
 ```
+</div>
 
 **Legend**
 
 - **Solid line:** Fund movement (ETH/stETH transfer)
 - **Dashed line:** Function call or event (no funds move)
-- **Red:** Privileged operator
-- **Blue:** Permissionless
-- **Green:** L2
 
 No ETH is bridged during yield reporting. The synthetic `MessageSent` event
 states how much new yield is available on L2. Reported yield is net of
@@ -195,7 +208,15 @@ withdrawal can be delayed even when permissionless calls succeed. See
 Surplus ETH in the `L1MessageService` withdrawal reserve (above the minimum) is
 routed to the `StakingVault` for beacon-chain staking.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor Auto as Automation Service
     participant L1 as L1MessageService
@@ -213,6 +234,7 @@ sequenceDiagram
     Note over NO: Decides when/how much to deposit
     SV-->>BC: stake ETH
 ```
+</div>
 
 ### 2. Reserve replenishment
 
@@ -220,7 +242,15 @@ Two phases: request beacon-chain withdrawal, then move arrived ETH to the
 `L1MessageService` reserve. Replenishment after a deficit targets the configured
 target reserve (not only the minimum).
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor Auto as Automation Service
     participant L1 as L1MessageService
@@ -244,10 +274,19 @@ sequenceDiagram
         SV-->>L1: send ETH
     end
 ```
+</div>
 
 ### 3. Yield reporting
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor Auto as Automation Service
     participant YM as YieldManager
@@ -277,6 +316,7 @@ sequenceDiagram
     LR-->>L2MS: emit MessageSent (synthetic)
     L2MS->>L2YD: distribute yield
 ```
+</div>
 
 ### 4. Permissionless flows
 
@@ -294,7 +334,15 @@ cannot cover.
 Beacon-chain fulfilment is asynchronous: the withdrawal is requested onchain;
 ETH arrives only after the beacon chain processes it.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor U as Anyone
     participant L1 as L1MessageService
@@ -321,6 +369,7 @@ sequenceDiagram
         SV-->>L1: send ETH
     end
 ```
+</div>
 
 `unstakePermissionless()` is capped to the remaining deficit minus available
 liquidity in the `YieldManager` and provider. `replenishWithdrawalReserve()` is
@@ -333,7 +382,15 @@ If the `L1MessageService` reserve lacks sufficient ETH, the withdrawal recipient
 can request an LST withdrawal. stETH is minted against `StakingVault` collateral
 and sent to the designated recipient. This is last resort.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor U as User
     participant L1 as L1MessageService
@@ -347,6 +404,7 @@ sequenceDiagram
     DB-->>U: send stETH
     Note over YM: Pauses Beacon deposits,<br/>creates interest-bearing liability
 ```
+</div>
 
 Minting creates an LST liability that accrues interest. The system prioritizes
 repaying it from later fund flows and yield. New beacon deposits are paused
@@ -358,7 +416,15 @@ Ossification permanently locks the `StakingVault` implementation, opting out of
 future Lido upgrades. The Security Council initiates; the automation service
 progressively returns staked funds to the `L1MessageService` reserve.
 
+<div class="mermaid-fit">
 ```mermaid
+%%{init: {
+  "sequence": {
+    "useMaxWidth": true,
+    "actorMargin": 0,
+    "width": 150
+  }
+}}%%
 sequenceDiagram
     actor SC as Security Council
     actor Auto as Automation Service
@@ -383,6 +449,7 @@ sequenceDiagram
         SV-->>L1: send ETH
     end
 ```
+</div>
 
 ## Quick reference
 
