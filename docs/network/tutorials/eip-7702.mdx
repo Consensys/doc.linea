@@ -3,12 +3,13 @@ title: Upgrade your EOA to a smart account
 description: A step-by-step guide to upgrade your EOA to a smart account.
 ---
 
-In this tutorial, you'll add a flow in your dapp to upgrade an externally owned account (EOA) to a smart account using
+This tutorial will walk you through upgrading an externally owned account (EOA) to a smart account using
 an [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) transaction. This enables your dapp to
 support account abstraction features like batch transactions, gas sponsorship, and
 programmable logic for your users.
 
 ## Prerequisites
+
 - Install Node.js v18 or later.
 - Install Yarn, npm, or another package manager.
 
@@ -22,7 +23,7 @@ This tutorial uses Wagmi for wallet connection. Install the following dependenci
 npm install wagmi viem@2.x @tanstack/react-query
 ```
 
-### 2. Create the App provider
+### 2. Create the app provider
 
 Create an `AppProvider` component that wraps `WagmiProvider`, and `QueryClientProvider` to provide
 Wagmi and TanStack Query context to your application. 
@@ -129,9 +130,9 @@ sendCalls.mutate({
 })
 ```
 
-## Resources
+## Next steps
 
-- [Learn more about EIP-7702](https://eips.ethereum.org/EIPS/eip-7702).
-- [Learn more about EIP-5792](https://eips.ethereum.org/EIPS/eip-5792).
+- Learn more about [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702).
+- Learn more about [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792).
 - See [MetaMask Smart Accounts Kit EIP-7702 quickstart](https://docs.metamask.io/smart-accounts-kit/get-started/smart-account-quickstart/eip7702/) to upgrade embedded EOAs to smart account.
 

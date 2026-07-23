@@ -20,8 +20,8 @@ You'll be able to add any custom action to improve it.
 
 ### 1. Set up the environment
 
-To start, clone the main ElizaOS repo.
-There's also a starter-kit if you prefer, but we recommend using the full package:
+Clone the main ElizaOS repo.
+There's also a starter kit if you prefer, but we recommend using the full package:
 
 ```bash
 git clone https://github.com/elizaOS/eliza.git # Starter kit: eliza-starter.git
@@ -34,7 +34,7 @@ This sets up the framework on your local machine.
 ElizaOS is iterating fast, so steps in this tutorial are subject to change.
 :::
 
-Be sure you're using the right version of Node.
+Ensure you're using the correct Node version.
 If you get an error message, it can help to start again with a clean Node modules installation. 
 
 Then, checkout to the latest version of ElizaOS:
@@ -49,11 +49,9 @@ pnpm install
 
 Installation can take some time.
 
-### 2. Configure the AI agent for Linea
+### 2. Set up the `.env` file
 
 ElizaOS uses environment variables stored in a `.env` file to manage configurations, including blockchain settings.
-
-#### Set up the `.env` file
 
 Copy the `.env.example` file in a `.env` file in the root directory and configure it as follows:
 
@@ -68,10 +66,10 @@ Be sure to keep this key private and do not reuse it to store funds.
 
 You'll also need a `modelProvider` (unless you feel comfortable running a local model on your computer; it can be slow
 depending on your computer's performance).
-You can add your API key in the `.env` file, depending on which provider you'll use (OpenAI, Anthropic, Gaia, etc.).
+Add your API key in the `.env` file, depending on which provider you'll use (OpenAI, Anthropic, Gaia, etc.).
 Some `modelProvider`s provide different options, such as enabling you to choose a specific model for certain actions. 
 
-#### Install the EVM plugin
+### 3. Install the EVM plugin
 
 You'll use the [EVM Plugin](https://github.com/elizaOS/eliza/blob/main/packages/docs/packages/plugins/evm.md) to interact
 with the Linea blockchain.
@@ -105,9 +103,9 @@ At the top of the file, add the following:
 
 This will allow you to use all the actions in the EVM plugin and configure your AI agent to use your provider.
 
-### 3. How it works
+### 4. How it works
 
-If you check the `/plugin-evm` folder, you'll see different types of files:
+The `/plugin-evm` folder contains different types of files:
 
 #### Actions files
 
@@ -307,7 +305,7 @@ You can modify these to use AA wallets, for example, or connect your agent with 
 
 #### Templates
 
-A very important section: every time you send a prompt to the agent, it'll try to determine if you're trying to perform
+Every time you send a prompt to the agent, it'll try to determine if you're trying to perform
 an action, then use the template for this action. 
 
 Here's the transfer template:
@@ -373,7 +371,7 @@ Now, process the user's request and provide your response.
 `;
 ```
 
-### 4. Run the AI agent
+### 5. Run the AI agent
 
 Start the agent with:
 
@@ -403,10 +401,8 @@ You can modify this by changing the templates in the EVM plugin.
 
 ## Conclusion
 
-In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that is able to send transactions on
+In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that can send transactions on
 Linea and interact with contracts.
 
-There's much more you can do with ElizaOS.
-The framework is evolving fast, so be ready to devote plenty of time if you plan to explore it further.
-
-For more details, see the [ElizaOS documentation](https://github.com/elizaOS/eliza).
+For more information on what you can do with ElizaOS, see the
+[ElizaOS documentation](https://github.com/elizaOS/eliza).
