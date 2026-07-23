@@ -6,24 +6,23 @@ image: /img/socialCards/usdc-quickstart.jpg
 
 USDC, [issued by Circle](https://developers.circle.com/stablecoins/what-is-usdc),
 enables the seamless transfer of digital dollars on the Linea network using a smart contract. 
-This guide will walk you through building a simple React app that allows users to connect their
+This tutorial will walk you through building a simple React app that allows users to connect their
 wallet and send USDC transactions over Linea Sepolia.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
-
-- ✅ Development environment
-  - [Node.js (16+)](https://nodejs.org/) installed (comes with `npm`).
-  - MetaMask browser extension installed.
-- ✅ Fund your wallet
-  - Native gas token (ETH on Linea Sepolia) to cover transaction fees.
+- Install [Node.js (16+)](https://nodejs.org/) installed (comes with `npm`).
+- Install the MetaMask browser extension.
+- Fund your wallet with:
+  - Native gas tokens (ETH on Linea Sepolia) to cover transaction fees.
   - USDC tokens for testing. ([Use a faucet](../../build/get-testnet-eth.mdx) to get 
   testnet USDC and ETH.)
 
-## Project setup
+## Steps
 
-### Step 1: Create a new project
+### 1. Set up your project
+
+#### Create a new project
 
 Run the following commands to set up your project:
 
@@ -33,7 +32,7 @@ cd usdc-transfer-app
 npm init -y
 ```
 
-### Step 2: Install dependencies
+#### Install dependencies
 
 Run the following command to install the required libraries:
 
@@ -41,7 +40,7 @@ Run the following command to install the required libraries:
 npm install react@latest react-dom@latest @types/react@latest @types/react-dom@latest @vitejs/plugin-react@latest typescript@latest vite@latest viem@latest
 ```
 
-### Step 3: Configure `package.json`
+#### Configure `package.json`
 
 After installing dependencies, open your `package.json` file and verify that it looks similar to this:
 
@@ -81,9 +80,9 @@ project using:
 npm run dev
 ```
 
-## Configure blockchain clients
+### 2. Configure blockchain clients
 
-### Public client (for reading blockchain data)
+#### Public client (for reading blockchain data)
 
 Create a `src/clients.ts` file and add:
 
@@ -97,7 +96,7 @@ export const publicClient = createPublicClient({
 });
 ```
 
-### Wallet client (for sending transactions)
+#### Wallet client (for sending transactions)
 
 Modify `src/clients.ts`:
 
@@ -110,7 +109,7 @@ export const walletClient = createWalletClient({
 });
 ```
 
-## Define USDC contract details
+### 3. Define USDC contract details
 
 Add this to `src/constants.ts`:
 
@@ -138,7 +137,7 @@ export const USDC_ABI = [
 ];
 ```
 
-## Implement wallet connection and USDC transfer
+### 4. Implement wallet connection and USDC transfer
 
 Create `src/App.tsx`:
 
@@ -193,7 +192,7 @@ function USDCApp() {
 export default USDCApp;
 ```
 
-## Configure your entry point
+### 5. Configure your entry point
 
 Create `src/main.tsx`:
 
@@ -209,7 +208,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 ```
 
-## Create your HTML file
+### 6. Create your HTML file
 
 Create `index.html`:
 
@@ -228,7 +227,7 @@ Create `index.html`:
 </html>
 ```
 
-## Start your app
+### 7. Start your app
 
 Run the following command:
 

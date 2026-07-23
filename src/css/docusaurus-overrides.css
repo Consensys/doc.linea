@@ -1736,12 +1736,18 @@ button.clean-btn.menu__caret {
   }
 }
 
-/* Details element styling - subtle, low contrast */
+/* Details element styling - subtle, low contrast.
+   Infima's `.alert` class (also applied to this element by Docusaurus's
+   Details component) sets its own horizontal padding via
+   `--ifm-alert-padding-horizontal` (~1rem). That class selector outranks
+   our plain `details` selector, so without !important our smaller intended
+   padding here was silently losing and the box read as more indented than
+   intended. */
 details {
   background-color: var(--page-background) !important;
   border: 1px solid rgb(0 0 0 / 8%) !important;
   border-radius: 0;
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.375rem !important;
   margin: 1rem 0;
 }
 
@@ -1750,10 +1756,16 @@ details {
   border: 1px solid rgb(255 255 255 / 10%) !important;
 }
 
+/* Docusaurus's Details CSS module also sets `padding-left: 1rem` on this
+   same element (via its own class selector), which outranks our plain-tag
+   selector and was winning over our shorthand's implicit `padding-left: 0`
+   - that extra 1rem was pushing the arrow and summary text further right
+   than intended. !important forces our (no left padding) value to win. */
 details > summary {
   cursor: pointer;
   font-weight: 500;
-  padding: 0.0625rem 0;
+  font-size: var(--font-body-md);
+  padding: 0.75rem !important;
   list-style: none;
   position: relative;
   color: inherit;
@@ -1767,27 +1779,58 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
+/* Docusaurus's own Details component ships a default arrow on this same
+   `::before` (from its CSS module, e.g. `.details_xxx > summary::before`).
+   That selector carries a class, which outranks our plain-tag selector in
+   specificity, so without !important here properties we share with it
+   (position, top, left, border-width, border-color, transform...) are
+   silently won by their defaults - which is why tweaks like the vertical
+   nudge below had no visible effect. !important forces ours to win. */
 details > summary::before {
-  content: "";
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--linea-link-highlight-color);
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
+  content: "" !important;
+  display: inline-block !important;
+  position: relative !important;
+  top: -1px !important;
+  left: auto !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-style: solid !important;
+  border-width: 5px 0 5px 8px !important;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color) !important;
+  margin-right: 0.5rem !important;
+  vertical-align: middle !important;
+  transform: rotate(0deg) !important;
+  transform-origin: center !important;
+  transition: transform 0.2s ease !important;
 }
 
 details[open] > summary::before {
-  transform: rotate(90deg);
-  margin-right: 0.5rem;
+  transform: rotate(90deg) !important;
+  margin-right: 0.5rem !important;
 }
 
+/* This div is the Collapsible wrapper that Docusaurus animates directly
+   (it toggles `display`/`height` inline via JS for the expand/collapse
+   transition). Margin or padding placed here isn't captured by that height
+   animation, so it snaps in/out in a single frame right as `display` flips
+   between "none" and "block" - the "flash" when opening/closing. Keep only
+   horizontal padding here; put vertical spacing on the inner content div
+   below instead, where it animates smoothly as part of the revealed height. */
 details > div {
-  margin-top: 0.75rem;
   padding-left: 1.5rem;
+}
+
+/* The actual content wrapper Docusaurus renders one level deeper
+   (`.collapsibleContent`). Its box is never itself toggled to
+   `display: none`/`height: 0`, so margin/padding here move smoothly with
+   the height transition instead of jumping.
+   This element also carries Docusaurus's own `.collapsibleContent` class,
+   which sets `margin-top: 1rem` (plus the border-top divider line) via a
+   class selector that outranks our plain structural one - so our
+   margin-top below needs !important to actually win and move the divider
+   line closer to the summary. */
+details > div > div {
+  margin-top: 0.25rem !important;
   padding-bottom: 0.5rem;
 }
 
@@ -2332,6 +2375,23 @@ div[class*="codeBlockContent"] {
   padding: 0 !important;
   margin: 0 !important;
   position: static !important;
+}
+
+/* Code block title bar.
+   The container above forces a uniform 20px padding for the no-title case,
+   which otherwise pushes a titled block's title down/right by its own
+   default padding on top of that 20px. Cancel the container's padding on
+   the top/left/right with a negative margin, then reapply a smaller,
+   consistent inset so the title sits closer to the block's top-left corner
+   and lines up horizontally with the code below it. The title text always
+   sits on the code block's dark background (#121212), in both light and
+   dark site themes, so its color and divider are fixed rather than
+   theme-dependent. */
+div[class*="codeBlockContainer"] div[class*="codeBlockTitle"] {
+  color: #f8f7f2 !important;
+  border-bottom-color: rgb(255 255 255 / 12%) !important;
+  margin: -10px -20px 0.75rem -20px !important;
+  padding: 10px 20px 0.75rem 20px !important;
 }
 
 /* Copy button: default = vertically centered (small / single-line blocks) */
