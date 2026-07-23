@@ -1,190 +1,64 @@
 # AI Agent Instructions
 
-Rules for AI coding agents (Claude Code, GitHub Copilot, Cursor, etc.) working
-on this Docusaurus v3 documentation site.
+Rules for AI coding agents (Claude Code, GitHub Copilot, Cursor, Codex, etc.) working on
+this Docusaurus v3 documentation site, [`docs.linea.build`](https://docs.linea.build).
 
-## When these rules apply
+## Repository areas
 
-Apply the CSS/styling rules below when modifying files under `src/` — components,
-theme overrides, stylesheets, or layouts. Ignore them for documentation content
-changes (`.md`, `.mdx` files where only prose is edited).
+| Tab | Directory | Documents |
+| --- | --- | --- |
+| Linea Mainnet | `docs/network` | Linea Mainnet |
+| Lineth Stack | `docs/stack` | Lineth (the operator stack) |
+| Protocol | `docs/protocol` | Lineth (the protocol) |
+| Reference | `docs/api` | Linea and Lineth |
+| Changelog | `docs/changelog` | Linea and Lineth |
 
----
+See [README.mdx](README.mdx) for full tab descriptions, audiences, and the `src/`
+component/theme layout.
 
-## CSS architecture
+## Critical rules
 
-The CSS is split into ordered layers. `src/css/custom.css` is the Docusaurus
-entry point and contains **only `@import` statements** — never add rules to it.
+1. **Do not invent protocol or API behavior.** Never state as fact any parameter, return
+   value, or behavior you haven't verified against source code, a spec, or another
+   authoritative reference. If uncertain, mark it `[VERIFY]` (see `editorial-voice.mdc`).
+2. **Use Linea and Lineth precisely.** They're related but distinct terms. Check
+   [`/protocol/linea-vs-lineth`](docs/protocol/linea-vs-lineth.mdx) before asserting which
+   one applies to a claim, and don't guess from memory. See `.cursor/rules/terminology.mdc`.
+3. **Never hardcode brand colors, spacing, or radii in `src/`.** Use the `var(--linea-*)`
+   design tokens in `src/css/tokens.css`. See `.cursor/rules/css-styling.mdc`.
+4. **Verify before requesting review.** Preview locally with `npm run start`, and confirm
+   `npm run build` succeeds.
+5. **Pass CI.** PRs run ESLint/Stylelint, TypeScript, Vale spelling/style, and link
+   checking. Fix warnings before requesting review; see
+   [Quality checks before pushing](README.mdx#quality-checks-before-pushing).
 
-| Layer file | Purpose |
-|---|---|
-| `tokens.css` | Design tokens (`:root`, `[data-theme]` custom properties) |
-| `fonts.css` | `@font-face` declarations (AtypDisplay, AtypText) |
-| `base.css` | Element resets (body, headings, tables, form elements) |
-| `utilities.css` | Utility classes consumed from MDX (`.video-container`, `.img-*`, `.mermaid-*`) |
-| `docusaurus-overrides.css` | Overrides for Infima / Docusaurus UI (navbar, sidebar, TOC, breadcrumbs, admonitions, code blocks, pagination, search) |
-| `vendor-overrides.css` | Third-party plugin overrides (Algolia DocSearch) |
+## AI guidance
 
-Component-specific styles use co-located **CSS Modules** (`styles.module.css`)
-next to the component file.
+Detailed rules live in `.cursor/rules/` and apply automatically in Cursor when editing a
+file matching their `globs`. Other agents should read the relevant file directly before
+editing matching content:
 
-### Where to add new styles
+| Rule file | Applies to | Covers |
+| --- | --- | --- |
+| `content-structure.mdc` | `docs/**/*.{md,mdx}` | Tab/audience/tone, page structure |
+| `editorial-voice.mdc` | `docs/**/*.{md,mdx}` | Voice, heading style, `[VERIFY]` markers |
+| `terminology.mdc` | `docs/**/*.{md,mdx}` | Casing, Linea/Lineth naming, component capitalization |
+| `markdown-formatting.mdc` | `docs/**/*.{md,mdx}` | Frontmatter, links, line wrapping, images |
+| `contributor-workflow.mdc` | repo-wide | Issue-first workflow, redirects, PR hygiene |
+| `css-styling.mdc` | `src/**/*.{css,tsx,jsx,ts,js}` | CSS architecture, design tokens, forbidden patterns |
 
-- **React component** → `src/components/<Name>/styles.module.css` (CSS Module)
-- **Swizzled Docusaurus component** → `src/theme/<Name>/styles.module.css`
-- **New design token** → `src/css/tokens.css`
-- **Docusaurus theme override** → `src/css/docusaurus-overrides.css`
-- **Utility class used in MDX** → `src/css/utilities.css`
-- **Never** add rules to `custom.css`
+Agent skills live under `.agents/skills/<skill-name>/SKILL.md` and are loaded when the
+task matches the skill's description:
 
----
+- **author-doc-page**: scaffold or draft a new documentation page to editorial standards.
+- **pr-content-review**: structured editorial pass before opening or merging a PR.
+- **linea-dependency-maintenance**: safe npm and GitHub Actions dependency updates.
 
-## Design tokens
+Skills apply the rule files by reference. If you're extending a skill or rule, keep each
+fact in exactly one file and link to it from everywhere else, rather than restating it.
 
-Always use tokens instead of hardcoded values. The full token set is in
-`src/css/tokens.css`.
+### Machine-readable docs (`llms.txt`)
 
-### Brand palette (constant across themes)
-
-| Token | Value |
-|---|---|
-| `--linea-brand-navy` | `#190066` |
-| `--linea-brand-purple` | `#6119ef` |
-| `--linea-brand-cyan` | `#61dfff` |
-| `--linea-brand-pink` | `#fcd6ff` |
-| `--linea-brand-yellow` | `#fff068` |
-| `--linea-purple-hover` | `#8e5dff` |
-
-### Theme-aware tokens (auto-switch light ↔ dark)
-
-| Token | Light | Dark |
-|---|---|---|
-| `--linea-text-primary` | `#121212` | `#f8f7f2` |
-| `--linea-text-secondary` | `#525252` | `#d1d1d1` |
-| `--linea-text-muted` | `#808080` | `#808080` |
-| `--linea-text-subtle` | `#a0a0a0` | `#a0a0a0` |
-| `--linea-border` | `#e5e5e5` | `#333` |
-| `--linea-border-subtle` | `#e5e5e5` | `#2d2d2d` |
-| `--linea-surface-elevated` | `#efefeb` | `#2f2f2f` |
-| `--linea-hover-bg` | `#EFEFEB` | `rgb(255 255 255 / 8%)` |
-| `--linea-active-color` | `#6119ef` | `#a78bfa` |
-| `--linea-active-bg` | `rgb(97 25 239 / 10%)` | `rgb(161 107 250 / 15%)` |
-
-### Border radii
-
-| Token | Value |
-|---|---|
-| `--linea-radius-sm` | `4px` |
-| `--linea-radius-md` | `10px` |
-| `--linea-radius-lg` | `15px` |
-| `--linea-radius-pill` | `50px` |
-| `--linea-radius-round` | `100px` |
-
-### Typography
-
-| Token | Value |
-|---|---|
-| `--font-display-lg` | `40px` |
-| `--font-display-md` | `32px` |
-| `--font-heading-lg` | `24px` |
-| `--font-heading-md` | `18px` |
-| `--font-body-md` | `16px` |
-| `--font-body-sm` | `14px` |
-| `--font-body-xs` | `12px` |
-
-Heading font: `AtypDisplay, sans-serif`. Body font: `AtypText, sans-serif`.
-
----
-
-## Forbidden patterns
-
-| Pattern | Why | Alternative |
-|---|---|---|
-| Hardcoded `#190066`, `#6119ef`, `#8e5dff`, `#e5e5e5`, `#333` | Breaks token system | Use `var(--linea-*)` tokens |
-| `!important` without a comment | Specificity wars | Increase specificity naturally; comment if unavoidable |
-| Build-hash selectors (`.admonitionContent_BuS1`) | Break across Docusaurus versions | Use `.theme-admonition-content` |
-| Inline `style={{}}` on components | Unmaintainable, no dark-mode | Use CSS Module |
-| Inline `<svg>` in component JSX/TSX | Clutters markup, duplicates easily | Extract to `src/components/icons/` |
-| DOM style mutations (`e.target.style`) | Hard to debug | Use `clsx` + class toggling |
-| ID selectors (`#my-id`) | Over-specific | Use classes |
-| New rules in `custom.css` | It's an import-only entry point | Choose the correct layer file |
-
----
-
-## Dark mode
-
-- Use theme-aware tokens so a single CSS rule handles both themes.
-- Only use `[data-theme="dark"]` when the token system cannot express the
-  difference (e.g., SVG data URIs with embedded fill colors).
-- New theme-aware tokens go in `src/css/tokens.css` under both `[data-theme]`
-  blocks.
-
----
-
-## Component style pattern
-
-```tsx
-import styles from './styles.module.css';
-import clsx from 'clsx';
-
-export default function MyComponent({ active }) {
-  return <div className={clsx(styles.root, active && styles.active)} />;
-}
-```
-
-```css
-/* styles.module.css */
-.root {
-  border: 1px solid var(--linea-border);
-  border-radius: var(--linea-radius-md);
-  color: var(--linea-text-primary);
-}
-.active {
-  color: var(--linea-active-color);
-  background: var(--linea-active-bg);
-}
-```
-
----
-
-## Selector guidelines for Docusaurus overrides
-
-- Prefer `.theme-*` stable class names over `[class*="..."]` attribute selectors.
-- If `[class*="..."]` is the only option, add a comment explaining why.
-- Keep selector nesting depth under 4 levels.
-- Reuse `--ifm-*` variables when Infima already provides the token you need.
-
-## Responsive tables
-
-- Markdown tables are wrapped by `src/theme/MDXComponents/index.js`; raw HTML
-  tables in MDX are wrapped by `src/clientModules/responsiveTables.js`.
-- Keep horizontal scrolling on `.linea-table-wrapper`, not directly on `table`,
-  so tables retain native column sizing while dense tables remain scrollable.
-
----
-
-## Release notes data model
-
-`docs/changelog/release-notes.mdx` uses a `release_toc` front matter map as the
-single source of truth for both page dates and TOC metadata. When adding or
-editing a release entry:
-
-1. Add/update the entry in `release_toc` front matter (one inline YAML line per
-   release: `id: { label, mainnet, sepolia }` or `{ label, date }` or `{ phase }`).
-2. Use `<ChangelogDate sectionId="<id>" />` in the body. It reads dates from
-   front matter. Do not pass `mainnet`/`sepolia` as inline props.
-3. The custom TOC (`src/theme/DocItem/TOC/Desktop/index.js`) reads from the same
-   front matter map. No separate JS metadata.
-
----
-
-## Visual verification
-
-After any CSS change, visually inspect the affected pages in both light and dark
-mode, at desktop (1440 px) and mobile (390 px) viewports, to confirm zero
-regressions. Key pages to check:
-
-- `/` (homepage)
-- `/network/overview/public-data` (doc page with sidebar + TOC)
-- `/changelog/release-notes` (changelog layout)
-- `/api/reference/eth-sendrawtransaction` (API reference with code blocks)
+Separately from the rules above, the site publishes a machine-readable copy of itself for
+LLM consumers on build (`scripts/agent-docs/generate.js`). Validate this pipeline with
+`npm run agent-docs:check` and `npm run agent-docs:verify-preview`.

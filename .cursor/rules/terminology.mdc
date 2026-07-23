@@ -1,0 +1,53 @@
+---
+description: Required spelling, casing, and naming for product terms and technical concepts across docs.linea.build.
+globs: docs/**/*.{mdx,md}
+alwaysApply: false
+---
+
+# Terminology
+
+## Casing of common terms
+
+- Use "dapp" rather than "dApp" or "DApp", and capitalize like any other noun.
+- Use "onchain" rather than "on-chain" or "on chain", and capitalize like any other noun.
+- Use "offchain" rather than "off-chain" or "off chain", and capitalize like any other noun.
+- Use lowercase "web2" and "web3" (never "Web2"/"Web3"), except at the start of a sentence.
+
+## Linea vs. Lineth naming
+
+Linea and Lineth are related but distinct terms, and getting them right matters for
+technical accuracy:
+
+- **Linea** is the public Mainnet network, brand, token, tokenomics, governance, and the
+  Linea SDK.
+- **Lineth** is the open-source ZK-rollup stack, protocol, codebase, components, onchain
+  contracts, and tooling that Linea Mainnet and other networks are built on.
+
+Do not assert which term applies to a given page from memory. The canonical explanation,
+including the tab-to-product mapping (which tabs document Linea vs. Lineth), lives at
+[Linea and Lineth](/protocol/linea-vs-lineth) (`docs/protocol/linea-vs-lineth.mdx`). Read
+that page first, and match the naming already used on neighboring pages in the same
+section.
+
+Where a page already uses a term consistently, keep matching it rather than introducing a
+new term. If you're unsure whether a name is final, leave the existing wording in place and
+note your question in the pull request description rather than guessing.
+
+## Component and role capitalization
+
+Capitalize the names of defined Lineth/Linea components and roles, and use that casing
+consistently within a page:
+
+- Coordinator
+- Sequencer
+- Prover
+- Postman
+- Corset
+- Security Council
+
+Keep generic technical concepts lowercase unless they start a sentence: blob, base fee,
+gas, data availability, finality, soft finality, hard finality.
+
+Pick one casing per term per page and don't drift partway through. This is one of the
+most common review flags. When unsure, match the casing already used in the surrounding
+pages in the same tab.
