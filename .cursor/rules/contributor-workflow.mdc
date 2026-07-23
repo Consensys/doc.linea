@@ -1,5 +1,5 @@
 ---
-description: Contribution workflow requirements for docs.linea.build — issue-first process, redirects, and PR hygiene.
+description: Contribution workflow requirements for docs.linea.build. Issue-first process, redirects, and PR hygiene.
 alwaysApply: true
 ---
 
@@ -12,7 +12,7 @@ below highlight requirements that are most often missed.
 
 Open an issue describing the change before starting work on it, and link the issue from
 the pull request. Use the templates in `.github/ISSUE_TEMPLATE/` (bug report, enhancement,
-partner contribution). This matters especially for ecosystem/partner contributions — filing
+partner contribution). This matters especially for ecosystem/partner contributions: filing
 an issue first makes it much easier for the docs team to process the contribution.
 
 ## Redirects
@@ -24,7 +24,7 @@ experience.
 
 ## Auto-generated content
 
-`docs/api/linea-smart-contracts/` is automatically generated. Don't hand-edit it — change
+`docs/api/linea-smart-contracts/` is automatically generated. Don't hand-edit it; change
 the generator/source instead.
 
 ## Factual accuracy
@@ -36,7 +36,7 @@ the `[VERIFY]` marker (`editorial-voice.mdc`) rather than guessing.
 ## Ecosystem contributions
 
 Contributions from ecosystem projects (dapps, libraries, tooling) should stay informative
-rather than promotional — see the ecosystem-contribution guidance in
+rather than promotional. See the ecosystem-contribution guidance in
 [CONTRIBUTING.md](../../CONTRIBUTING.md). The contributor is responsible for keeping their
 project's information current after merge.
 
@@ -45,5 +45,5 @@ project's information current after merge.
 - Follow [Conventional Commits](https://www.conventionalcommits.org/) (`docs: clarify
   bridging guide`); `commitlint` enforces this.
 - Run `npm run lint` and `npm run typecheck` locally before pushing.
-- Return to open PRs for review feedback — PRs inactive for three months after review get
+- Return to open PRs for review feedback. PRs inactive for three months after review get
   closed (see CONTRIBUTING.md).

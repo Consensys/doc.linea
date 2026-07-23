@@ -12,14 +12,14 @@ alwaysApply: false
   elements (like `<Tabs>`) render correctly. This rule doesn't apply to root-level files
   such as this repo's own `README.mdx`/`CONTRIBUTING.md`.
 - Prefer HTML-like formatting over plain Markdown syntax for elements like tables (use
-  `<table>` rather than pipe/dash Markdown tables) — several elements already require HTML
+  `<table>` rather than pipe/dash Markdown tables). Several elements already require HTML
   syntax (`<Tabs>`, images), so using it everywhere avoids mixing both styles on one page.
 
 ## Line wrapping
 
 - Default to US English usage.
 - Respect the 100-character line limit from `.editorconfig`. Use the full 100 characters
-  before wrapping — don't break lines early at convenient points, and only wrap when a
+  before wrapping. Don't break lines early at convenient points, and only wrap when a
   line would actually exceed the limit.
 - Never break words or URLs when wrapping a line.
 
@@ -40,7 +40,7 @@ description: Description of the article
 ---
 ```
 
-Don't add an `image` field manually — the social card is generated automatically on build.
+Don't add an `image` field manually: the social card is generated automatically on build.
 
 ## Links
 

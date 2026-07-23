@@ -2,7 +2,7 @@
 
 Thanks for helping improve the [Linea documentation](https://docs.linea.build/). This
 guide covers the contribution workflow. For editorial standards (voice, terminology,
-formatting), see [AGENTS.md](AGENTS.md) and `.cursor/rules/` — they apply to human and AI
+formatting), see [AGENTS.md](AGENTS.md) and `.cursor/rules/`: they apply to human and AI
 contributors alike.
 
 ## Before you start
@@ -22,14 +22,14 @@ We provide issue templates for [bug reports](.github/ISSUE_TEMPLATE/bug-report.y
 1. [Fork the repo](https://github.com/Consensys/doc.linea/fork) so you can work on it.
 2. Make your changes. See [Writing conventions](README.mdx#writing-conventions) and
    AGENTS.md's linked rule files for editorial standards.
-3. Review your changes locally — see
+3. Review your changes locally. See
    [Running locally](README.mdx#running-locally) and
    [Quality checks before pushing](README.mdx#quality-checks-before-pushing).
 4. Submit your changes as a
    [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
 New pull requests are reviewed regularly. Our team does its best to help you get the PR
-over the line, though we can't guarantee capacity — please don't open a PR if you think
+over the line, though we can't guarantee capacity. Please don't open a PR if you think
 you'll be unable to address feedback, fix linter errors, or otherwise respond to review
 comments. If that's the case, consider opening an issue instead so the docs team can pick
 it up.
@@ -43,7 +43,7 @@ By "ecosystem contributions," we mean contributions from projects in the Linea e
 such as dapps, libraries, or tooling. If your submission is in this category:
 
 - Keep it informative above all. The docs aren't a marketing channel for your project.
-  We may request edits if writing falls too far toward promotional tone — write about your
+  We may request edits if writing falls too far toward promotional tone: write about your
   project's features and benefits, but avoid superlatives or selling your project.
 - You're responsible for maintaining the information about your project. Out-of-date docs
   are an inconvenience for users at best and a bad look for your project at worst. This

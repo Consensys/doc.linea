@@ -24,34 +24,34 @@ from the start.
 
 Ask the user for anything they haven't already provided:
 
-1. **Tab** — which tab is this for? (Linea Mainnet, Lineth Stack, Protocol, Reference,
+1. **Tab**: which tab is this for? (Linea Mainnet, Lineth Stack, Protocol, Reference,
    Changelog)
-2. **Content type** — concept/explanation, how-to guide, reference, or tutorial?
-3. **Topic** — what is the page about?
-4. **File path** — where should the file live? Suggest one based on the tab and topic if
+2. **Content type**: concept/explanation, how-to guide, reference, or tutorial?
+3. **Topic**: what is the page about?
+4. **File path**: where should the file live? Suggest one based on the tab and topic if
    the user doesn't specify (see the directory table in
    [README.mdx](../../../README.mdx)).
-5. **Source material** — what code, spec, PR, or other reference verifies the content?
+5. **Source material**: what code, spec, PR, or other reference verifies the content?
 
 ## Step 1: Confirm an issue exists, then load the relevant rules
 
 Per `.cursor/rules/contributor-workflow.mdc`, an issue should exist for this change
 *before* work starts. Ask the user whether one's already open; if not, point them to
 [CONTRIBUTING.md](../../../CONTRIBUTING.md) and the templates in `.github/ISSUE_TEMPLATE/`
-so they can open one before you invest time scaffolding and drafting — this matters most
+so they can open one before you invest time scaffolding and drafting. This matters most
 for ecosystem/partner contributors.
 
 Then read these rule files before scaffolding, and apply them by reference rather than
 restating them in the draft:
 
-- `.cursor/rules/contributor-workflow.mdc` — issue-first workflow, redirects, PR hygiene.
-- `.cursor/rules/content-structure.mdc` — tab, audience, tone, and page-structure
+- `.cursor/rules/contributor-workflow.mdc`: issue-first workflow, redirects, PR hygiene.
+- `.cursor/rules/content-structure.mdc`: tab, audience, tone, and page-structure
   conventions.
-- `.cursor/rules/editorial-voice.mdc` — voice, heading style, and the `[VERIFY]` marker
+- `.cursor/rules/editorial-voice.mdc`: voice, heading style, and the `[VERIFY]` marker
   convention.
-- `.cursor/rules/terminology.mdc` — casing, Linea vs. Lineth naming, and component
+- `.cursor/rules/terminology.mdc`: casing, Linea vs. Lineth naming, and component
   capitalization.
-- `.cursor/rules/markdown-formatting.mdc` — frontmatter, links, and file conventions.
+- `.cursor/rules/markdown-formatting.mdc`: frontmatter, links, and file conventions.
 
 Also check how existing pages in the same folder are structured, and match their
 conventions for headings, frontmatter fields, and intro style.
@@ -71,7 +71,7 @@ Fill in the scaffold with content based on what the user provides:
 - Identify the audience for this tab (`content-structure.mdc`) and write for it.
 - Define jargon on first use (`editorial-voice.mdc`).
 - Use the correct casing for Linea/Lineth, components, and roles
-  (`terminology.mdc`) — check `/protocol/linea-vs-lineth` if you're unsure which product a
+  (`terminology.mdc`). Check `/protocol/linea-vs-lineth` if you're unsure which product a
   claim belongs to.
 - Mark anything you can't verify with `[VERIFY]` rather than guessing.
 - No marketing language or superlatives ("best-in-class", "powerful", "seamless").
