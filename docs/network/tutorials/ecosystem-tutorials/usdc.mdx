@@ -1,18 +1,18 @@
 ---
-title: USDC quickstart
+title: Transfer USDC on Linea
 description: Build a simple dapp to transfer USDC on Linea.
 image: /img/socialCards/usdc-quickstart.jpg
 ---
 
-USDC, [issued by Circle](https://developers.circle.com/stablecoins/what-is-usdc),
-enables the seamless transfer of digital dollars on the Linea network using a smart contract. 
-This tutorial will walk you through building a simple React app that allows users to connect their
-wallet and send USDC transactions over Linea Sepolia.
+USDC, [issued by Circle](https://developers.circle.com/stablecoins/what-is-usdc), enables the seamless
+transfer of digital dollars on the Linea network using a smart contract. 
+This tutorial walks you through building a simple React app that allows users to connect their wallet
+and send USDC transactions over Linea Sepolia.
 
 ## Prerequisites
 
-- Install [Node.js (16+)](https://nodejs.org/) installed (comes with `npm`).
-- Install the MetaMask browser extension.
+- Install [Node.js](https://nodejs.org/) version 16 or later (comes with `npm`).
+- Install the [MetaMask](https://metamask.io) browser extension.
 - Fund your wallet with:
   - Native gas tokens (ETH on Linea Sepolia) to cover transaction fees.
   - USDC tokens for testing. ([Use a faucet](../../build/get-testnet-eth.mdx) to get 
@@ -22,8 +22,6 @@ wallet and send USDC transactions over Linea Sepolia.
 
 ### 1. Set up your project
 
-#### Create a new project
-
 Run the following commands to set up your project:
 
 ```bash
@@ -32,15 +30,11 @@ cd usdc-transfer-app
 npm init -y
 ```
 
-#### Install dependencies
-
 Run the following command to install the required libraries:
 
 ```bash
 npm install react@latest react-dom@latest @types/react@latest @types/react-dom@latest @vitejs/plugin-react@latest typescript@latest vite@latest viem@latest
 ```
-
-#### Configure `package.json`
 
 After installing dependencies, open your `package.json` file and verify that it looks similar to this:
 

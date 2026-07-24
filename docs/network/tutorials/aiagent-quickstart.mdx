@@ -4,21 +4,22 @@ description: A quickstart guide to building a simple AI agent on Linea.
 image: /img/socialCards/build-an-ai-agent.jpg
 ---
 
-ElizaOS is an open-source framework for creating AI agents that interact with blockchain networks.
-This tutorial will guide you through setting up an AI agent on the Linea blockchain using ElizaOS.
-By the end, your agent will be able to execute smart contract transactions and interact with the blockchain autonomously.
+[ElizaOS](https://www.elizaos.ai/) is an open-source framework for creating AI agents that interact
+with blockchain networks.
+This tutorial walks you through setting up an AI agent on the Linea blockchain using ElizaOS.
+By the end, your agent will be able to execute smart contract transactions and interact with the
+blockchain autonomously.
 You'll be able to add any custom action to improve it.
 
 ## Prerequisites
 
 - Install [Node.js](https://nodejs.org/) (24.18.0) and [pnpm](https://pnpm.io/).
-- Basic knowledge of TypeScript and blockchain concepts.
-- Access to a Linea RPC endpoint and a funded Ethereum wallet for testing.
+- Ensure you have a wallet with testnet ETH, and access to a Linea RPC endpoint.
   We recommend using a development wallet.
 
 ## Steps
 
-### 1. Set up the environment
+### 1. Set up your project
 
 Clone the main ElizaOS repo.
 There's also a starter kit if you prefer, but we recommend using the full package:
@@ -35,9 +36,9 @@ ElizaOS is iterating fast, so steps in this tutorial are subject to change.
 :::
 
 Ensure you're using the correct Node version.
-If you get an error message, it can help to start again with a clean Node modules installation. 
+If you get an error message, try starting again with a clean Node modules installation. 
 
-Then, checkout to the latest version of ElizaOS:
+Checkout to the latest version of ElizaOS:
 
 ```bash
 git checkout $(git describe --tags --abbrev=0)
@@ -49,9 +50,10 @@ pnpm install
 
 Installation can take some time.
 
-### 2. Set up the `.env` file
+### 2. Configure `.env` variables
 
-ElizaOS uses environment variables stored in a `.env` file to manage configurations, including blockchain settings.
+ElizaOS uses environment variables stored in a `.env` file to manage configurations, including
+blockchain settings.
 
 Copy the `.env.example` file in a `.env` file in the root directory and configure it as follows:
 
@@ -61,18 +63,17 @@ EVM_RPC_URL=https://rpc.linea.build
 EVM_PRIVATE_KEY=your_private_key_here
 ```
 
-Replace `your_private_key_here` with your Ethereum **development** private key.
-Be sure to keep this key private and do not reuse it to store funds.
+Replace `your_private_key_here` with the private key of your Ethereum development wallet with testnet funds.
+Be sure to keep this key private and do not reuse it to store real funds.
 
-You'll also need a `modelProvider` (unless you feel comfortable running a local model on your computer; it can be slow
+You'll also need a `modelProvider` (unless you're running a local model on your computer; it can be slow
 depending on your computer's performance).
 Add your API key in the `.env` file, depending on which provider you'll use (OpenAI, Anthropic, Gaia, etc.).
-Some `modelProvider`s provide different options, such as enabling you to choose a specific model for certain actions. 
+Some `modelProvider`s support different options, such as choosing a specific model for certain actions. 
 
 ### 3. Install the EVM plugin
 
-You'll use the [EVM Plugin](https://github.com/elizaOS/eliza/blob/main/packages/docs/packages/plugins/evm.md) to interact
-with the Linea blockchain.
+You'll use the [EVM Plugin](https://docs.elizaos.ai/plugin-registry/defi/evm) to interact with the Linea blockchain.
 
 If you used the main repository, it should already be installed, otherwise, you need to install it:
 
@@ -295,8 +296,8 @@ export const transferAction: Action = {
 
 #### Contracts artifacts and sources
 
-If you want to allow your agent to deploy new contracts or interact with existing contracts, you can put them in this
-folder to be able to refer to the ABI in your actions files.
+If you want to allow your agent to deploy new contracts or interact with existing contracts, you can put
+them in this folder to be able to refer to the ABI in your actions files.
 
 #### Providers
 
@@ -389,8 +390,8 @@ pnpm start:client
 The interface is available by default on `localhost:5173`.
 If you want to interact with multiple agents, launch them on different ports.
 
-You can ask your agent to send some ETH to another address or bridge a token from one chain to another (though for that,
-you'll need to add more chains in your configuration).
+You can ask your agent to send some ETH to another address or bridge a token from one chain to another
+(for that, you'll need to add more chains in your configuration).
 By default, the agent will need the exact name of the chain, for example:
 
 ```bash
@@ -401,8 +402,8 @@ You can modify this by changing the templates in the EVM plugin.
 
 ## Conclusion
 
-In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that can send transactions on
-Linea and interact with contracts.
+In this introductory tutorial, you learned how to use ElizaOS to create an AI agent that can send
+transactions on Linea and interact with contracts.
 
 For more information on what you can do with ElizaOS, see the
-[ElizaOS documentation](https://github.com/elizaOS/eliza).
+[ElizaOS documentation](https://docs.elizaos.ai/).

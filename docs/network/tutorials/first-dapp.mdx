@@ -5,34 +5,36 @@ image: /img/socialCards/build-your-first-dapp-on-linea.jpg
 toc_max_heading_level: 4
 ---
 
-This tutorial will walk you through creating a Linea dapp that allows users to stake certain tokens in your contract.
+This tutorial will walk you through creating a simple Linea dapp that allows users to stake tokens in a contract.
 
 :::note
 
-As Linea uses the London version of Ethereum, a small number of recent opcodes are [not available](../overview/ethereum-differences.mdx).
+As Linea uses the London version of Ethereum, a small number of recent opcodes are
+[not available](../overview/ethereum-differences.mdx).
 
 :::
 
 ## Prerequisites
 
-- Basic blockchain and web development knowledge.
-- A [MetaMask](https://metamask.io) wallet installed funded with [Linea Sepolia (testnet) ETH](../build/get-testnet-eth.mdx).
-- [Node](https://nodejs.org/en/download/package-manager) and a package manager ([pnpm](https://pnpm.io/installation),
-  [npm](https://docs.npmjs.com/cli/v10/configuring-npm/install), or [yarn](https://classic.yarnpkg.com/lang/en/docs/install/))
+- Install [Node.js](https://nodejs.org/en/download) and a package manager (this tutorial uses
+  [pnpm](https://pnpm.io/installation)).
+- Install the [MetaMask](https://metamask.io) wallet and fund it with
+  [Linea Sepolia ETH](../build/get-testnet-eth.mdx).
 
 ## Steps
 
-### 1. Set up the contract in Remix
+### 1. Create the staking contract
 
-Start with the staking contract.
-To simplify the deployment, you'll use Remix, an online tool that speeds up Solidity development.
-For a complete development environment, you can use [Foundry](https://book.getfoundry.sh/) or [Hardhat](https://hardhat.org/).
+You'll create a simple staking contract.
+Use [Remix](https://remix.live/), an online tool that speeds up Solidity development.
+For a complete development environment, you can also use [Foundry](https://www.getfoundry.sh/) or
+[Hardhat](https://hardhat.org/).
 
 :::note
-You can follow the steps directly on the images if you don't know how to use Remix.
+You can follow the steps directly on the images included in this tutorial if you don't know how to use Remix.
 :::
 
-1. Go to [Remix](https://remix.ethereum.org/) and create a new file in the contracts folder.
+1. Go to the [Remix IDE](https://remix.ethereum.org/) and create a new file in the contracts folder.
 
 2. Copy and paste the following code:
 
@@ -81,8 +83,9 @@ You can follow the steps directly on the images if you don't know how to use Rem
     ```
 
     This is a simplified version of a staking contract with an allowlist.
-    It allows you to stake virtually any ERC-20, and contains the two basic functions `stake` and `withdraw`.
-    The allowlist is set up when the contract is deployed; there are other versions where the allowlist can be modified, usually by the owner.
+    It allows you to stake any ERC-20, and contains the two basic functions `stake` and `withdraw`.
+    The allowlist is set up when the contract is deployed; there are other versions where the allowlist
+    can be modified, usually by the owner.
 
 <div class="center-container">
   <div class="img-large">
@@ -96,7 +99,8 @@ You can follow the steps directly on the images if you don't know how to use Rem
 ### 2. Compile the contract
 
 1. Go to the **Solidity Compiler** tab.
-  Select the London version in the EVM Version list under Advanced Configurations (to avoid any compatibility problems).
+  Select the London version in the EVM Version list under **Advanced Configurations** (to avoid any
+  compatibility issues).
 
 2. Select **Compile**.
     
@@ -109,7 +113,7 @@ You can follow the steps directly on the images if you don't know how to use Rem
   </div>
 </div>
 
-You can also get the ABI on this page, after compiling the code, you'll see this below the compile button:
+After compiling the code, you'll see this below the compile button:
     
 <div class="center-container">
   <div class="img-large">
@@ -120,7 +124,7 @@ You can also get the ABI on this page, after compiling the code, you'll see this
   </div>
 </div>
     
-You can copy the ABI using the button at the bottom.
+Copy the ABI using the button at the bottom.
 Save it in a JSON file, as you'll need it later.
 
 ### 3. Deploy the contract
@@ -155,7 +159,8 @@ Save it in a JSON file, as you'll need it later.
 2. Check that the contract is the one you want to deploy.
 
 3. Enter the list of tokens you want to allowlist.
-  For this tutorial, three ERC-20 contracts have been deployed for your use (you can copy and paste directly into the field): 
+  For this tutorial, three ERC-20 contracts have been deployed for your use (you can copy and paste
+  directly into the field): 
 
     ```solidity
     ["0x46871676658472B99720F2a368CDa6430c1647b9","0xB7D70343639aF53a02f6ea7d9cde240fc72de6Dd","0x66a6F52C2100FB82EE21FD1380b4D516CB540c93"]
@@ -169,9 +174,10 @@ Save it in a JSON file, as you'll need it later.
     - [Mint link for WATER](https://sepolia.lineascan.build/address/0x66a6f52c2100fb82ee21fd1380b4d516cb540c93#writeContract#F3)
 
 4. Select **Deploy** and confirm the transaction in MetaMask.
-  You should see success logs appear in the console at the bottom right.
-  The contract address can be copied by going to recorded transactions (under the deploy button), but you can also find it by
-  searching for your address on the [Sepolia Linea explorer](https://sepolia.lineascan.build).
+  You'll see success logs in the console at the bottom right.
+  You can copy the contract address by going to recorded transactions (under the deploy button), but you
+  can also find it by searching for your address on the
+  [Sepolia Linea explorer](https://sepolia.lineascan.build).
 
 <div class="center-container">
   <div class="img-large">
@@ -185,11 +191,11 @@ Save it in a JSON file, as you'll need it later.
 
 ### 4. Set up the frontend with RainbowKit
 
-You'll create a frontend using RainbowKit, which will set up a new [Next.js](https://nextjs.org/) app built on top of wagmi.
-These libraries simplify how to handle reading chain state, wallet connections, sending transactions, listening for events and
-state changes, and more.
+Use RainbowKit to set up a new [Next.js](https://nextjs.org/) app built on top of wagmi.
+These libraries simplify how to handle reading chain state, wallet connections, sending transactions,
+listening for events and state changes, and more.
 
-1. Run this command: `pnpm create @rainbow-me/rainbowkit@latest` and choose a project name.
+1. Run `pnpm create @rainbow-me/rainbowkit@latest` and choose a project name.
 2. Run `cd yourprojectname` and open the project in your IDE (run `code .` to open it in VS Code).
 3. Configure the chain to Linea Sepolia by modifying the `src/wagmi.ts` file:
 
@@ -207,8 +213,7 @@ state changes, and more.
 
 ### 5. Configure and style the frontend
 
-Configure the project and set up some styling.
-Use `shadcn` with `tailwindcss` to make it easier:
+Configure and style the project using shadcn with Tailwind CSS:
 
 ```bash
 pnpm install -D tailwindcss postcss autoprefixer lucide-react
@@ -216,9 +221,10 @@ npx tailwindcss init -p
 npx shadcn-ui@latest init
 ```
 
-Press `enter` each time to choose the default parameters (feel free to use your preferred configuration).
+Press `enter` each time to choose the default parameters (or use your preferred configuration).
 
-Depending on your system, you might have some differences, so use the following to ensure you have the configuration expected by this tutorial:
+Depending on your system, you might have some differences, so use the following to ensure you have the
+configuration expected by this tutorial:
 
 1. You should have an `app` folder, with a `global.css` file inside.
   You can move it to `src/pages/globals.css` and edit the import at the top of `_app.tsx`:
@@ -227,7 +233,8 @@ Depending on your system, you might have some differences, so use the following 
     import './globals.css';
     ```
 
-2. Shadcn works by manually adding each component with the `pnpm dlx shadcn-ui@atest add <component>`, so be sure to do it for each import.
+2. shadcn works by manually adding each component with the `pnpm dlx shadcn-ui@atest add <component>`,
+  so be sure to do it for each import.
   Run this command to add all the components you'll use:
 
     ```bash
@@ -248,8 +255,9 @@ Depending on your system, you might have some differences, so use the following 
     }
     ```
 
-5. You can delete the empty folders (these might vary depending on your system, but you should have an empty `app` folder at least).
-  Also, if you have both `tailwind.config.js` and `tailwind.config.ts` you should remove the `tailwind.config.js` file.
+5. You can delete the empty folders (these might vary depending on your system, but you should have an
+  empty `app` folder at least).
+  Also, if you have both `tailwind.config.js` and `tailwind.config.ts`, remove the `tailwind.config.js` file.
 
 The configuration is done.
 You should have a project structure like this:
@@ -281,8 +289,8 @@ You'll do that in the `src/pages/index.tsx` file, which will be your main page.
 You can remove the content in this file and start from scratch.
     
 Define an empty page with a connect button and some useful debug information.
-Use the `ConnectButton` from RainbowKit to handle the wallet connection, and the `useAccount` hook from Wagmi to get the
-connected account information.
+Use the `ConnectButton` from RainbowKit to handle the wallet connection, and the `useAccount` hook from
+Wagmi to get the connected account information.
 
 ```tsx
 import type { NextPage } from 'next';
@@ -558,7 +566,7 @@ This tutorial won't explain this code, since it's mostly React state management.
 You define the list of tokens as a constant to simplify.
 The `StakingCard` component handles all the token selection and inputs as well. 
 
-You can then add it to the page (in React, it means you have to put this code in `return( ... )`):
+Add it to the page (in React, this means putting the following in `return( ... )`):
 
 ```tsx
 {/* Main content */}
@@ -570,12 +578,14 @@ You can then add it to the page (in React, it means you have to put this code in
 
 ### 8. Integrate the contract
 
-For now, nothing is connected to the blockchain.
-Note that the `mockFetchAmountStakableForToken` and `mockFetchAmountStakedForToken`  functions just return a constant.
+Until now, nothing is connected to the blockchain.
+Note that the `mockFetchAmountStakableForToken` and `mockFetchAmountStakedForToken`  functions just
+return a constant.
 You'll use the `useReadContracts` hook for this purpose.
 You'll also use `useWatchBlockNumber` to reread the state on each new block.
     
-Before doing that, create an `abi.json` file in `src/pages` and paste the ABI from the smart contract (step 5 from the first part).
+Before doing that, create an `abi.json` file in `src/pages` and paste the ABI from the smart contract
+(saved from [step 2](#2-compile-the-contract)).
     
 Define the contract address and ABI:
 
@@ -657,7 +667,8 @@ useEffect(() => {
   }, [token])
 ```
 
-Optionally, you can use the `isLoading` boolean to add animation while fetching values for the two inputs, "Stake" and "Unstake":
+Optionally, you can use the `isLoading` boolean to add animation while fetching values for the two
+inputs, "Stake" and "Unstake":
     
 ```tsx
 <Input
@@ -676,13 +687,13 @@ Optionally, you can use the `isLoading` boolean to add animation while fetching 
 />
 ```
 
-If you choose a token on your dapp now, the frontend should automatically fetch the token decimals, available balances, and staked balances. 
+If you choose a token on your dapp now, the frontend automatically fetches the token decimals,
+available balances, and staked balances.
 
 ### 9. Send a transaction
 
 You can now handle the deposit and withdraw transactions.
-In this last part, you'll prepare and send a transaction.
-You'll use the `useWriteContract` hook.
+Prepare and send a transaction using the `useWriteContract` hook:
 
 ```tsx
 import { useAccount, useReadContracts, useWriteContract } from "wagmi";
@@ -774,12 +785,12 @@ return (
 )
 ```
 
-You should be able to stake and unstake from the list of allowlisted tokens.
+You can now stake and unstake from the list of allowlisted tokens.
 
-This tutorial only demonstrated using read and write operations in the frontend.
-Most Wagmi hooks return a lot of data such as `isLoading` or `error`, which are useful for building complex frontends.
+This tutorial demonstrated using read and write operations in the frontend.
+Most Wagmi hooks return additional data such as `isLoading` or `error`, which are useful for building
+more complex frontends.
 See the [Wagmi documentation](https://wagmi.sh/react/getting-started) for more information.
-This tutorial also omits error handling for simplicity.
 
 ## Next steps
 
@@ -789,4 +800,4 @@ This tutorial also omits error handling for simplicity.
 
 - See [Solidity by Example](https://solidity-by-example.org/), which is a useful website when creating smart contracts.
 
-- See the [full codebase on GitHub](https://github.com/Gwen-M/linea-first-dapp).
+- See the [full example dapp](https://github.com/Gwen-M/linea-first-dapp) on GitHub.
