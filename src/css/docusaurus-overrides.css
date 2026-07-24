@@ -1736,7 +1736,7 @@ button.clean-btn.menu__caret {
   }
 }
 
-/* Details element styling - subtle, low contrast. */
+/* Details element styling - subtle, low contrast */
 details {
   background-color: var(--page-background) !important;
   border: 1px solid rgb(0 0 0 / 8%) !important;
@@ -1753,7 +1753,6 @@ details {
 details > summary {
   cursor: pointer;
   font-weight: 500;
-  font-size: var(--font-body-md);
   padding: 0.75rem !important;
   list-style: none;
   position: relative;
@@ -1769,26 +1768,12 @@ details > summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  content: "" !important;
-  display: inline-block !important;
+  display: inline-block;
   position: relative !important;
   top: -1px !important;
-  left: auto !important;
-  width: 0 !important;
-  height: 0 !important;
-  border-style: solid !important;
   border-width: 5px 0 5px 8px !important;
   border-color: transparent transparent transparent var(--linea-link-highlight-color) !important;
-  margin-right: 0.5rem !important;
-  vertical-align: middle !important;
-  transform: rotate(0deg) !important;
-  transform-origin: center !important;
-  transition: transform 0.2s ease !important;
-}
-
-details[open] > summary::before {
-  transform: rotate(90deg) !important;
-  margin-right: 0.5rem !important;
+  margin-right: 0.5rem;
 }
 
 details > div {
@@ -1796,7 +1781,7 @@ details > div {
 }
 
 details > div > div {
-  margin-top: 0.25rem !important;
+  margin-top: 0.2rem !important;
   padding-bottom: 0.5rem;
 }
 
@@ -2345,10 +2330,11 @@ div[class*="codeBlockContent"] {
 
 /* Code block title bar. */
 div[class*="codeBlockContainer"] div[class*="codeBlockTitle"] {
-  color: #f8f7f2 !important;
-  border-bottom-color: rgb(255 255 255 / 12%) !important;
-  margin: -10px -20px 0.75rem !important;
-  padding: 10px 20px 0.75rem !important;
+  color: #f8f7f2;
+  border-bottom-color: rgb(255 255 255 / 12%);
+  margin: -10px -20px 0.75rem;
+  padding: 10px 20px 0.75rem;
+  font-size: 16px;
 }
 
 /* Copy button: default = vertically centered (small / single-line blocks) */
