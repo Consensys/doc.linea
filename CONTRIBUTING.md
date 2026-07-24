@@ -50,12 +50,29 @@ such as dapps, libraries, or tooling. If your submission is in this category:
   includes keeping links to external sites current and returning for updates as your
   project matures.
 
-## Contributing to the Zero-Knowledge glossary
+## Contributing to the glossary
 
-If you're diving into zero-knowledge rollups and getting stumped by jargon: we maintain an
-open source glossary. [Fork the repo](https://github.com/Consensys/doc.linea/fork) and add
-a term in alphabetical order to `docs/protocol/reference/zero-knowledge-glossary.mdx`, then
-open a pull request and tag us for review.
+If you're stumped by Linea, Lineth, or zero-knowledge jargon: we maintain an open source
+glossary at
+[`/protocol/reference/zero-knowledge-glossary`](https://docs.linea.build/protocol/reference/zero-knowledge-glossary).
+The glossary page is generated, so don't edit it directly:
+
+1. [Fork the repo](https://github.com/Consensys/doc.linea/fork).
+2. Add your term, in alphabetical order, to `src/lib/glossary.json` with a `term` and a
+   `definition`. Keep definitions to a short paragraph or two, and link to other glossary
+   terms with `[term](#slug)` where useful.
+3. Run `npm run glossary:generate` to regenerate
+   `docs/protocol/reference/zero-knowledge-glossary.mdx` from `src/lib/glossary.json`.
+4. Open a pull request and tag us for review.
+
+To show a glossary term as a hover tooltip inline in a page, import and use the
+`GlossaryTerm` component (`src/theme/GlossaryTerm`):
+
+```mdx
+import GlossaryTerm from "@theme/GlossaryTerm";
+
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> orchestrates batching...
+```
 
 ## Additional resources
 

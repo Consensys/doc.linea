@@ -1030,7 +1030,12 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   flex-direction: column !important;
 }
 
-.thin-scrollbar {
+/* Scoped to the left docs sidebar's scroll region only. `.thin-scrollbar` is a
+   shared Docusaurus class also used by the right-hand TOC and by CodeBlock's
+   scroll container; a bare `.thin-scrollbar` selector here previously clobbered
+   the TOC's own `max-height`/`overflow-y`/`position: sticky`, which made long
+   TOCs (like the glossary) unable to scroll within themselves. */
+[class*="sidebarViewport"] .thin-scrollbar {
   background-color: var(--page-background);
   margin: 0;
   padding: 10px 16px;
@@ -1045,36 +1050,36 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
 }
 
 /* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
-.thin-scrollbar::-webkit-scrollbar {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar {
   appearance: none;
   width: 7px;
   background: transparent;
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #ededed;
   border-radius: var(--linea-radius-sm);
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-track {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #2d2d2d;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #d1d1d1;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #4d4d4d;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
 
