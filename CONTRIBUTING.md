@@ -71,8 +71,16 @@ To show a glossary term as a hover tooltip inline in a page, import and use the
 ```mdx
 import GlossaryTerm from "@theme/GlossaryTerm";
 
-The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> orchestrates batching...
+The <GlossaryTerm term="Coordinator" /> orchestrates batching, and the
+<GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> orders transactions.
 ```
+
+- Self-close (`<GlossaryTerm term="Coordinator" />`) when the visible label matches the
+  glossary term exactly.
+- Wrap children (`<GlossaryTerm term="Sequencer">sequencer</GlossaryTerm>`) when the page
+  uses a different casing, plural, or shortened form than the glossary entry.
+- The `term` prop must match a `term` string in `src/lib/glossary.json` (matching is
+  case-insensitive, but keep it consistent with the glossary entry for clarity).
 
 ## Additional resources
 
