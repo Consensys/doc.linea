@@ -4,16 +4,16 @@
 }
 
 .glossaryTerm {
-  color: var(--ifm-font-color-base);
+  color: var(--linea-text-primary);
   text-decoration: underline dotted !important;
-  text-underline-offset: 3px;
+  text-underline-offset: 2px;
   cursor: help;
   transition: all 0.2s;
   font-weight: normal !important;
 }
 
 .glossaryTerm:hover {
-  color: var(--ifm-color-primary-dark);
+  color: var(--linea-link-highlight-color);
 }
 
 .tooltip {
@@ -27,7 +27,7 @@
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 0.5rem;
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-  font-size: 0.875rem;
+  font-size: var(--font-body-md);
   font-weight: normal;
   font-style: normal;
   text-decoration: none;
@@ -66,8 +66,12 @@
 }
 
 .tooltip a {
-  color: var(--ifm-color-primary);
+  color: var(--linea-text-primary);
   text-decoration: underline;
+}
+
+.tooltip a:hover {
+  color: var(--linea-link-highlight-color);
 }
 
 /* Dark mode adjustments */
@@ -81,6 +85,5 @@
   .tooltip {
     max-width: 250px;
     min-width: 180px;
-    font-size: 0.8125rem;
   }
 }

@@ -32,28 +32,3 @@ section.
 Where a page already uses a term consistently, keep matching it rather than introducing a
 new term. If you're unsure whether a name is final, leave the existing wording in place and
 note your question in the pull request description rather than guessing.
-
-## Component and role capitalization
-
-Capitalize the names of defined Lineth/Linea components and roles, and use that casing
-consistently within a page:
-
-- Coordinator
-- Sequencer
-- Prover
-- Tracer
-- Maru
-- Postman
-- Corset
-- Security Council
-
-Keep generic technical concepts lowercase unless they start a sentence: blob, base fee,
-gas, data availability, finality, soft finality, hard finality, operator, state manager,
-finalization layer, conflation.
-
-See the [glossary](/protocol/reference/zero-knowledge-glossary) for definitions of these
-and other Linea/Lineth-specific terms.
-
-Pick one casing per term per page and don't drift partway through. This is one of the
-most common review flags. When unsure, match the casing already used in the surrounding
-pages in the same tab.

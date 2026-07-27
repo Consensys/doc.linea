@@ -59,8 +59,7 @@ The glossary page is generated, so don't edit it directly:
 
 1. [Fork the repo](https://github.com/Consensys/doc.linea/fork).
 2. Add your term, in alphabetical order, to `src/lib/glossary.json` with a `term` and a
-   `definition`. Keep definitions to a short paragraph or two, and link to other glossary
-   terms with `[term](#slug)` where useful.
+   `definition`. Keep definitions to a short paragraph or two.
 3. Run `npm run glossary:generate` to regenerate
    `docs/protocol/reference/zero-knowledge-glossary.mdx` from `src/lib/glossary.json`.
 4. Open a pull request and tag us for review.

@@ -6,30 +6,30 @@ description: >-
 image: /img/socialCards/transaction-finality.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 A Linea transaction moves through two finality states before it is permanently settled on Ethereum.
 
 ## Transaction lifecycle
 
-When you submit a transaction on Linea, it follows this path: the
-[sequencer](/protocol/architecture/sequencer)
-[validates and includes](/protocol/architecture/sequencer#transaction-validity-conditions) it in
-an L2 block, reaching soft finality in approximately 1 second. The
-[Coordinator](/protocol/architecture/coordinator) then groups blocks into a batch
-and submits it to Ethereum. The [prover](/protocol/architecture/prover) generates a
-[ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) for the batch, which
-is verified by the [Linea rollup contract](/protocol/architecture/smart-contracts) on L1. Once the
-L1 block containing the proof is
+When you submit a transaction on Linea, it follows this path: the <GlossaryTerm term="Sequencer">sequencer
+</GlossaryTerm> validates and includes it in an L2 block, reaching <GlossaryTerm term="Soft finality">soft
+finality</GlossaryTerm> in approximately 1 second.
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> then groups blocks into a batch and submits it to Ethereum.
+The <GlossaryTerm term="Prover">prover</GlossaryTerm> generates a <GlossaryTerm term="Zero-knowledge proof">ZK
+proof</GlossaryTerm> for the batch, which is verified by the
+[Linea rollup contract](/protocol/architecture/smart-contracts) on L1.
+Once the L1 block containing the proof is
 [finalized by Ethereum's consensus](https://ethereum.org/developers/docs/consensus-mechanisms/pos#finality),
-the transaction reaches hard finality.
+the transaction reaches <GlossaryTerm term="Hard finality">hard finality</GlossaryTerm>.
 
 For the full protocol-level breakdown, see
 [Architecture: Transaction lifecycle](/protocol/architecture#transaction-lifecycle).
 
 ## Soft finality
 
-When the [sequencer](/protocol/architecture/sequencer) orders, executes, and seals your
-transaction into an L2 block, it has reached **soft finality**. This happens within approximately
-1 second, which is Linea's block time.
+When the sequencer orders, executes, and seals your transaction into an L2 block, it has reached soft finality.
+This happens within approximately 1 second, which is Linea's block time.
 
 At soft finality:
 
@@ -41,11 +41,9 @@ For most application use cases, including swaps, transfers, and in-app interacti
 
 ## Hard finality
 
-Hard finality is reached when the
-[ZK proof](/protocol/reference/zero-knowledge-glossary#zero-knowledge-proof) covering your
-transaction's batch has been verified by the
-[Linea rollup contract](/protocol/architecture/smart-contracts) on Ethereum, and the L1 block
-containing that verification transaction is itself
+Hard finality is reached when the ZK proof covering your transaction's batch has been verified by the
+[Linea rollup contract](/protocol/architecture/smart-contracts) on Ethereum, and the L1 block containing that
+verification transaction is itself
 [finalized by Ethereum's consensus](https://ethereum.org/developers/docs/consensus-mechanisms/pos#finality)
 (two epochs / ~12.8 minutes).
 
@@ -92,7 +90,7 @@ to retrieve the value of the current finalized L2 block number stored in the `cu
 variable.
 
 :::note
-Etherscan reads contract state from the **latest** L1 block, not the **finalized** one. The value
+Etherscan reads contract state from the latest L1 block, not the finalized one. The value
 shown may therefore be slightly ahead of the actual hard-finalized L2 block number. For exact
 finalized state, use the `finalized` JSON-RPC tag described above.
 :::

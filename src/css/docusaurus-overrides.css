@@ -2195,9 +2195,10 @@ details > div > div {
 
 article a,
 .theme-doc-markdown a {
-  color: var(--linea-inline-link-color) !important;
-  text-decoration: none;
-  font-family: 'Atyp Text', sans-serif;
+  color: var(--linea-text-primary) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-family: AtypText, sans-serif;
   font-weight: 400;
   font-size: inherit;
   transition: color 0.2s ease;
@@ -2218,8 +2219,13 @@ article a.submission-button:hover,
 
 article a:hover,
 .theme-doc-markdown a:hover {
-  color: var(--linea-inline-link-hover) !important;
+  color: var(--linea-link-highlight-color) !important;
   opacity: 1;
+}
+
+article a:hover code,
+.theme-doc-markdown a:hover code {
+  color: var(--linea-link-highlight-color) !important;
 }
 
 /* Headings styling per Figma - EXACT specs */

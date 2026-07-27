@@ -5,6 +5,8 @@ sidebar_position: 3
 image: /img/socialCards/public-data.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 ## What is public network data?
 
 One of the main value propositions of a public blockchain network is that it be, well, _public_. This means that the information about what’s going on the network needs to be readily available. Networks like Ethereum have this more or less built in and available as part of the software: each node has an API that will return any information you ask for; if you have a lot of requests, well, you just need more nodes.
@@ -21,15 +23,15 @@ By leveraging the expertise and resources of Infura, Consensys, and the Ethereum
 
 ## Client-facing RPC-API nodes
 
-- [RPC nodes](../../protocol/architecture/rpc-services.mdx) do the “traditional” work of EVM nodes:
-  - They receive updated network state information from the [sequencer](../../protocol/architecture/sequencer/index.mdx) and
-    [state manager](../../protocol/architecture/state-manager.mdx), and providing information about that state to users and
-    dapps when they request it.
-  - They receive incoming transactions.
+[RPC nodes](../../protocol/architecture/rpc-services.mdx) do the "traditional" work of EVM nodes:
+- They receive updated network state information from the <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm>
+  and <GlossaryTerm term="State manager">state manager</GlossaryTerm>, and provide information about that state
+  to users and dapps when they request it.
+- They receive incoming transactions.
 
 To handle the traffic, Infura runs the nodes behind a load balancer. Those transactions submitted by users are, therefore,
 balanced across the nodes, and are thereby routed into the memory pool, for subsequent ingestion and processing by the
-[coordinator](../../protocol/architecture/coordinator.mdx) and sequencer.
+<GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>.
 
 ### Archive nodes
 

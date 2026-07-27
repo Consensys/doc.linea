@@ -5,6 +5,8 @@ sidebar_position: 4
 image: /img/socialCards/ethereum-differences.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 # The differences between Ethereum and Linea
 
 This page outlines Ethereum Mainnet functionality that differs on Linea, or is not yet available on 
@@ -110,8 +112,9 @@ when compared to Ethereum Mainnet, only the root of the previous block is availa
 
 ## Call data
 
-Linea's sequencer limits the size of call data, so that transactions can fit into the corresponding 
-blob. The current limit is 60000 bytes.
+Linea's <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> limits the size of call data, so that
+transactions can fit into the corresponding blob.
+The current limit is 60000 bytes.
 
 ## JSON-RPC API
 
@@ -127,15 +130,16 @@ and include:
 ## Type 3 transactions
 
 Linea does not support type 3 (`0x3` or "blob") transactions. This type is used on Ethereum Mainnet 
-primarily for layer 2 rollups to cheaply post data on L1.
+primarily for L2 rollups to cheaply post data on L1.
 
 ## EIP-7702 (type 4 transactions)
 
 Linea supports [EIP-7702](/protocol/eip-7702) type `0x04` transactions as of
-[Beta v5.0](../../changelog/release-notes.mdx#beta-v50). This allows EOAs to delegate to smart
-contract logic, enabling features like transaction batching, gas sponsorship, and session keys.
+[Beta v5.0](../../changelog/release-notes.mdx#beta-v50).
+This allows externally owned accounts (EOAs) to delegate to smart contract logic, enabling features like
+transaction batching, gas sponsorship, and session keys.
 See the [EIP-7702 support](/protocol/eip-7702) page for details.
 
 ## Next steps
 
-- Learn how [pricing is calculated](./predictable-pricing.mdx) on Linea
+Learn how [pricing is calculated](./predictable-pricing.mdx) on Linea.
