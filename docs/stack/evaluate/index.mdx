@@ -15,10 +15,11 @@ one. For design choices and operator responsibilities, continue to
 
 ## What Lineth provides
 
-Lineth is a ZK-rollup stack. A deployment combines a consensus layer, an
-execution layer, a Prover, a Coordinator, and a set of onchain contracts on a
-finalization layer. Operators choose the deployment model, data availability
-arrangement, finalization layer, and access controls.
+Lineth is a <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> stack.
+A deployment combines a consensus layer, an execution layer, a <GlossaryTerm term="Prover">prover</GlossaryTerm>,
+a <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>, and a set of onchain contracts on a
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
+Operators choose the deployment model, data availability arrangement, finalization layer, and access controls.
 
 The following capabilities depend on the deployment model chosen.
 
@@ -26,9 +27,8 @@ The following capabilities depend on the deployment model chosen.
 
 Using Lineth, an operator can deploy:
 
-- Public networks, such as Linea Mainnet, with onchain data availability
-- Private validium networks, with offchain data availability and controlled
-  access
+- Public networks, such as Linea Mainnet, with onchain data availability.
+- Private validium networks, with offchain data availability and controlled access.
 
 For the trade-offs between these models, see
 [Deployment models](./deployment-models.mdx).
@@ -37,8 +37,8 @@ For the trade-offs between these models, see
 
 ### State transition correctness
 
-Lineth uses zk-SNARK proofs to verify that state transitions are valid. A valid
-proof means the operator cannot finalize an invalid state transition through the
+Lineth uses <GlossaryTerm term="zk-SNARK" /> proofs to verify that state transitions are valid.
+A valid proof means the operator cannot finalize an invalid state transition through the
 normal proof path. Proofs do not by themselves make transaction contents
 private; data visibility depends on the deployment's data availability and
 access model. For the data-visibility distinction, see
@@ -52,10 +52,10 @@ deployment's configuration and by the differences between any chain and
 Ethereum. For the differences between Linea and Ethereum, see
 [Linea and Ethereum](../../network/overview/ethereum-differences.mdx).
 
-### Quorum-Based Byzantine Fault Tolerance consensus
+### QBFT consensus
 
-For deployments that use multi-validator consensus, Lineth supports Quorum-Based
-Byzantine Fault Tolerance (QBFT), which provides:
+For deployments that use multi-validator consensus, Lineth supports
+<GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm>, which provides:
 
 - Fault tolerance with `3f+1` validators, tolerating `f` faulty validators
 - Single-slot finality under the deployment's QBFT safety assumptions

@@ -2298,6 +2298,13 @@ article p {
   margin-bottom: 1rem;
 }
 
+article strong,
+.theme-doc-markdown strong,
+article b,
+.theme-doc-markdown b {
+  font-weight: 600;
+}
+
 /* Lists styling */
 article ul,
 article ol {

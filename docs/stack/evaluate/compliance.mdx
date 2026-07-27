@@ -7,8 +7,9 @@ sidebar_position: 1
 image: /img/socialCards/compliance.jpg
 ---
 
-This page describes what protocol evidence a Lineth (formerly the Linea
-Stack) deployment produces that operators can use in their own compliance
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+This page describes what protocol evidence a <GlossaryTerm term="Lineth" /> deployment produces that operators can use in their own compliance
 program, and what Lineth does not claim.
 
 This page does not include:
@@ -21,7 +22,7 @@ This page does not include:
 
 ## zk-SNARK proofs are not a compliance program
 
-zk-SNARK proofs verify state-transition correctness. They do not by themselves
+<GlossaryTerm term="zk-SNARK" /> proofs verify state-transition correctness. They do not by themselves
 provide a complete compliance program. A compliance program needs controls,
 evidence, retention, disclosure, and ownership that go beyond proof
 verification.
@@ -31,7 +32,7 @@ verification.
 A Lineth deployment produces the following evidence that operators can use in a
 compliance design:
 
-- State commitments posted to the finalization layer
+- State commitments posted to the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>
 - zk-SNARK proof verification records on the finalization layer
 - Finalization records on the finalization layer
 - Transaction history retained by the deployment's data availability model
@@ -43,7 +44,7 @@ stored and who can see it, see [Privacy and data visibility](./validium.mdx).
 
 ## Operator-owned compliance controls
 
-Operators are responsible for the controls a compliance program requires. Lineth
+<GlossaryTerm term="Operator">Operators</GlossaryTerm> are responsible for the controls a compliance program requires. Lineth
 provides mechanisms operators can configure, but does not own the program:
 
 - Access policy: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API surfaces controls
@@ -63,7 +64,7 @@ provides mechanisms operators can configure, but does not own the program:
 - Lineth does not certify a deployment as compliant with any specific
   regulation.
 - Lineth does not publish a control-to-framework mapping.
-- Private validium and RBAC are access and data-visibility mechanisms, not
+- <GlossaryTerm term="Validium">Private validium</GlossaryTerm> and RBAC are access and data-visibility mechanisms, not
   cryptographic private execution or ZK privacy. Do not infer regulatory
   compliance from them.
 - Lineth does not own data retention or disclosure policy. Operators implement
