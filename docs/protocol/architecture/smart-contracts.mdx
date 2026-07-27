@@ -5,9 +5,11 @@ sidebar_position: 3
 image: /img/socialCards/smart-contracts.jpg
 ---
 
-As an EVM-equivalent environment, smart contracts can be written in any language that compiles to EVM bytecode.
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-Lineth (formerly the Linea Stack) includes onchain system contracts deployed on the finalization layer and on the
+As an <GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm>-equivalent environment, smart contracts can be written in any language that compiles to EVM bytecode.
+
+<GlossaryTerm term="Lineth" /> includes onchain system contracts deployed on the finalization layer and on the
 deployed network itself, as well as auxiliary services that support network operations. Understanding
 these contracts and services is essential for operators managing deployments.
 
@@ -28,7 +30,7 @@ It enables secure interactions between the deployed network and the finalization
 
 **Functionality:**
 
-- Validates zk-SNARK proofs attesting to correct state transitions for batches of transactions
+- Validates <GlossaryTerm term="zk-SNARK" /> proofs attesting to correct state transitions for batches of transactions
 - Records finalized state roots on the finalization layer
 - Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
   between the deployed network and the finalization layer
@@ -38,7 +40,7 @@ It enables secure interactions between the deployed network and the finalization
 ### Native message bridge smart contract
 
 **Purpose:** Facilitates secure, proven communication of arbitrary messages and data between the
-finalization layer and the ZK-EVM.
+finalization layer and the <GlossaryTerm term="zkEVM" />.
 
 **Functionality:**
 
@@ -82,7 +84,7 @@ finalization layer and the ZK-EVM.
 
 Before each Linea Smart Contract release that targets the [public network](../../network/overview/index.mdx), the new version is prepared and tested. Testing includes static code analysis, formal verification is conducted where applicable, and documentation is updated. 
 
-Linea developers write in [Solidity](https://www.soliditylang.org/). Each Smart Contract is audited by 2-3 external auditors. Smart Contracts are deployed on target environments using production deployment keys and the auditors confirm the correct deployment of the contracts.
+Linea developers write in [Solidity](https://www.soliditylang.org/). Each smart contract is audited by 2-3 external auditors. Smart contracts are deployed on target environments using production deployment keys and the auditors confirm the correct deployment of the contracts.
 
 The Linea Operational Safe multisignature account and the Linea Security Council Safe multisignature account must both sign to upgrade the system.
 
