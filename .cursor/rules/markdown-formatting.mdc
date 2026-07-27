@@ -22,6 +22,9 @@ alwaysApply: false
   before wrapping. Don't break lines early at convenient points, and only wrap when a
   line would actually exceed the limit.
 - Never break words or URLs when wrapping a line.
+- Use semantic line breaks: start each new sentence on a new line, even when it would
+  still fit within the 100-character limit on the previous line. This is independent of
+  the wrap rule above and keeps future diffs scoped to the sentence that changed.
 
 ## Headings
 
@@ -58,3 +61,26 @@ Don't add an `image` field manually: the social card is generated automatically 
 Add new images to `/static/img/`, mirroring the `docs/` folder structure. See
 [README.mdx](../../README.mdx#adding-images) for the exact JSX pattern and size classes
 (`img-xsmall`, `img-small`, `img-medium`, `img-large`).
+
+## UI element references
+
+Use **bold**, not *italics*, to reference a UI element the reader interacts with (a
+button, tab, menu item, or field label), for example "Select **Compile**" or "Go to the
+**Solidity Compiler** tab." Reserve italics for true emphasis.
+
+## Collapsible content
+
+Wrap optional or supplementary content that would interrupt the main flow of a page (a
+file-tree dump, an edge-case troubleshooting note) in a collapsible block instead of
+inline text or a deeply nested sub-heading:
+
+```mdx
+<details>
+<summary>Project structure</summary>
+<div>
+
+Content goes here.
+
+</div>
+</details>
+```

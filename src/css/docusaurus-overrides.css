@@ -1741,7 +1741,7 @@ details {
   background-color: var(--page-background) !important;
   border: 1px solid rgb(0 0 0 / 8%) !important;
   border-radius: 0;
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.375rem !important;
   margin: 1rem 0;
 }
 
@@ -1753,7 +1753,8 @@ details {
 details > summary {
   cursor: pointer;
   font-weight: 500;
-  padding: 0.0625rem 0;
+  font-size: var(--font-body-md);
+  padding: 0.75rem !important;
   list-style: none;
   position: relative;
   color: inherit;
@@ -1768,26 +1769,20 @@ details > summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  content: "";
   display: inline-block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--linea-link-highlight-color);
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-
-details[open] > summary::before {
-  transform: rotate(90deg);
+  position: relative !important;
+  top: -1px !important;
+  border-width: 5px 0 5px 8px !important;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color) !important;
   margin-right: 0.5rem;
 }
 
 details > div {
-  margin-top: 0.75rem;
   padding-left: 1.5rem;
+}
+
+details > div > div {
+  margin-top: 0.2rem !important;
   padding-bottom: 0.5rem;
 }
 
@@ -2332,6 +2327,15 @@ div[class*="codeBlockContent"] {
   padding: 0 !important;
   margin: 0 !important;
   position: static !important;
+}
+
+/* Code block title bar. */
+div[class*="codeBlockContainer"] div[class*="codeBlockTitle"] {
+  color: #f8f7f2;
+  border-bottom-color: rgb(255 255 255 / 12%);
+  margin: -10px -20px 0.75rem;
+  padding: 10px 20px 0.75rem;
+  font-size: 16px;
 }
 
 /* Copy button: default = vertically centered (small / single-line blocks) */
