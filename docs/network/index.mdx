@@ -1,17 +1,46 @@
 ---
-title: Overview
-description: 'Overview of Linea Mainnet, the public zkEVM L2 network built on Lineth.'
+title: Linea Mainnet
+description: >-
+  Overview of Linea Mainnet, the public zkEVM L2 network built on Lineth, with
+  quick links to start building.
 sidebar_position: 0
-image: /img/socialCards/overview.jpg
+image: /img/socialCards/linea-mainnet.jpg
 ---
 
 import ActionCards from '@site/src/components/ActionCards';
 
 Linea Mainnet is the public, permissionless zkEVM layer 2 network built on
-[Lineth](../../protocol/linea-vs-lineth.mdx). It processes Ethereum-compatible transactions,
-generates zero-knowledge proofs, and finalizes state to Ethereum.
+[Lineth](../protocol/linea-vs-lineth.mdx).
+Get started building on Linea:
 
-For protocol mechanics, see [how the Lineth protocol works](../../protocol/overview.mdx).
+<ActionCards
+  cards={[
+    {
+      text: "Deploy a smart contract to Linea",
+      description: "Launch your first contract using your preferred tooling.",
+      href: "/network/build/launch-an-app/deploy",
+    },
+    {
+      text: "Bridge tokens to Linea",
+      description: "Move ETH and other tokens between Ethereum and Linea.",
+      href: "/network/how-to/bridge",
+    },
+    {
+      text: "Run a node",
+      description: "Sync and operate a Linea node with your preferred client.",
+      href: "/network/how-to/run-a-node",
+    },
+    {
+      text: "Recover state from the public network",
+      description: "Reconstruct Linea's state independently of the operator.",
+      href: "/network/how-to/recover-state",
+    },
+  ]}
+/>
+
+Linea processes Ethereum-compatible transactions, generates zero-knowledge proofs, and finalizes state to Ethereum.
+
+For protocol mechanics, see [how the Lineth protocol works](../protocol/index.mdx).
 
 Linea is a secure, low-cost, and Ethereum-equivalent layer 2 blockchain built to bring the world
 onchain without compromising on security and decentralization.
@@ -24,7 +53,7 @@ Built as a layer above Ethereum, Linea inherits the robust security and decentra
 Ethereum network while significantly increasing throughput and reducing transaction fees to
 negligible amounts.
 
-→ Learn about [Linea's architecture](../../protocol/architecture/index.mdx)
+→ Learn about [Linea's architecture](../protocol/architecture/index.mdx)
 
 ## Advanced zero-knowledge proof technology
 
@@ -32,7 +61,7 @@ By leveraging zero-knowledge (zk) proofs, Linea removes the seven-day lockup per
 fraud proofs in other layer 2 solutions built according to the optimistic rollup model. Using zk
 proofs ensures user funds are always available and can be withdrawn instantly and at no cost.
 
-→ Learn about how proofs fit within [Linea's transaction lifecycle](../../protocol/architecture/index.mdx#transaction-lifecycle)
+→ Learn about how proofs fit within [Linea's transaction lifecycle](../protocol/architecture/index.mdx#transaction-lifecycle)
 
 ## True Ethereum equivalence
 
@@ -41,25 +70,25 @@ fully compatible with the Ethereum Virtual Machine (EVM). This means that any Et
 projects and assets can be seamlessly deployed on and bridged to Linea without any code base
 changes.
 
-→ Learn about the small differences between building on [Ethereum and Linea](./ethereum-differences.mdx)
+→ Learn about the small differences between building on [Ethereum and Linea](./overview/ethereum-differences.mdx)
 
 ## Fast finality
 
 Soft finality within 1s because Linea has short block times and does not reorg confirmed L2 transactions.
 
-→ Learn about Linea's [finality lifecycle](./transaction-finality.mdx)
+→ Learn about Linea's [finality lifecycle](./overview/transaction-finality.mdx)
 
 ## Predictable pricing
 
 Clarity over Linea prices for transactions, how to estimate fees, and how Layer 1 and Layer 2 costs are accounted for.
 
-→ Learn about Linea's [pricing strategy](./predictable-pricing.mdx)
+→ Learn about Linea's [pricing strategy](./overview/predictable-pricing.mdx)
 
 ## Recoverable state
 
 Dedicated plugin to reconstruct Linea's state as it was at the last point in time data was finalized.
 
-→ Learn about [recovering state](./recoverable-state.mdx)
+→ Learn about [recovering state](./overview/recoverable-state.mdx)
 
 ## Scale with MetaMask
 
@@ -71,10 +100,12 @@ and swaps for your users, and access millions of the most engaged onchain users 
   cards={[
     {
       text: "MetaMask smart accounts",
+      description: "Add account abstraction to your app with MetaMask.",
       href: "/network/build/tools/account-abstraction/metamask",
     },
     {
       text: "Use the MetaMask SDK",
+      description: "Build a voting dapp using the MetaMask SDK.",
       href: "/network/tutorials/voting-dapp",
     },
   ]}

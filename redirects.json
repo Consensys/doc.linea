@@ -21,25 +21,23 @@
         ]
     },
     {
-        "to": "/network/overview",
+        "to": "/network",
         "from": [
-            "/network",
             "/network/index",
             "/network/concepts",
             "/build-on-linea/tooling/linea-safe",
             "/developers/guides/linea-safe",
-            "/network/how-to/linea-safe"
-        ]
-    },
-    {
-        "to": "/network/quickstart",
-        "from": [
+            "/network/how-to/linea-safe",
+            "/network/overview",
+            "/network/overview/index",
             "/build-on-linea",
             "/get-started",
             "/build-on-linea/quickstart",
             "/developers/quickstart",
             "/developers/guides",
-            "/developers/quickstart/goerli-to-sepolia"
+            "/developers/quickstart/goerli-to-sepolia",
+            "/network/quickstart",
+            "/network/quickstart/index"
         ]
     },
     {
@@ -123,6 +121,16 @@
         "from": [
             "/notices/security-council-record",
             "/security-council-record"
+        ]
+    },
+    {
+        "to": "/protocol",
+        "from": [
+            "/protocol/overview",
+            "/protocol/overview/index",
+            "/protocol/quickstart",
+            "/protocol/quickstart/index",
+            "/protocol/index"
         ]
     },
     {

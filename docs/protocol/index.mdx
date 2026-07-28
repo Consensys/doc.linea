@@ -1,18 +1,41 @@
 ---
-title: Overview
-description: 'A high-level overview of how the Lineth protocol processes transactions, generates proofs, and finalizes state.'
-sidebar_position: 1
-image: /img/socialCards/overview.jpg
+title: Protocol
+description: >-
+  Learn more about the Lineth protocol, including the components that make up
+  its architecture, and how it processes transactions, generates proofs, and
+  finalizes state.
+sidebar_position: 0
+image: /img/socialCards/protocol.jpg
 ---
 
-## How the Lineth protocol works
+import ActionCards from '@site/src/components/ActionCards';
 
 Lineth provides the technical protocol used by Linea Mainnet and other networks built with Lineth.
 This page focuses on the protocol flow: how transactions move from execution to proof generation and
 finalized state.
 
+<ActionCards
+  cards={[
+    {
+      text: "Learn more about the state manager",
+      description: "How Lineth tracks and proves Ethereum-compatible state.",
+      href: "/protocol/architecture/state-manager",
+    },
+    {
+      text: "Learn more about the prover",
+      description: "How the prover generates zero-knowledge validity proofs.",
+      href: "/protocol/architecture/prover",
+    },
+    {
+      text: "Reference the glossary and repos",
+      description: "Browse zero-knowledge terms and Linea's source repositories.",
+      href: "/protocol/reference/repos",
+    },
+  ]}
+/>
+
 For the deployable stack and operator overview, see [Lineth](../stack/index.mdx). For the public
-network overview, see [Linea Mainnet](../network/overview/index.mdx).
+network overview, see [Linea Mainnet](../network/index.mdx).
 
 ## Protocol flow
 
@@ -51,4 +74,4 @@ execution, batching, proving, onchain contracts, and finalization, see
 - New to the Linea and Lineth names? See [Linea and Lineth](./linea-vs-lineth.mdx) for how the public network relates to the open-source stack.
 - Review the [architecture](./architecture/index.mdx) for component-level protocol details.
 - Read the [Lineth overview](../stack/index.mdx) for the deployable stack and operator view.
-- Understand [Linea Mainnet](../network/overview/index.mdx) as a public deployment of the protocol.
+- Understand [Linea Mainnet](../network/index.mdx) as a public deployment of the protocol.

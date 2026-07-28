@@ -5,6 +5,8 @@ sidebar_position: 1
 image: /img/socialCards/lineth-stack.jpg
 ---
 
+import ActionCards from '@site/src/components/ActionCards';
+
 Lineth (formerly the Linea Stack) is the collection of protocol components, onchain contracts, and operational
 capabilities that operators use to deploy and run their own Layer 2 or Layer 3 networks, inheriting a
 zero-knowledge proof system and Ethereum-compatible execution.
@@ -15,8 +17,30 @@ operational procedures for a network built on Lineth.
 
 For how Lineth relates to the public Linea network, see [Linea and Lineth](../protocol/linea-vs-lineth.mdx).
 
-Use this section to [evaluate Lineth](./evaluate/index.mdx), design a [deployment architecture](./deployment/index.mdx), or [build and test](./how-to/run-lineth-stack-sepolia.mdx) a local deployment. For protocol internals, see the [Protocol](../protocol/overview.mdx) documentation.
-
+<ActionCards
+  cards={[
+    {
+      text: "Evaluate Lineth",
+      description: "Assess deployment models, security, and trust assumptions.",
+      href: "/stack/evaluate",
+    },
+    {
+      text: "Design a deployment architecture",
+      description: "Choose components and settings for your Lineth deployment.",
+      href: "/stack/deployment",
+    },
+    {
+      text: "Build and test a local deployment",
+      description: "Run a local Lineth Stack settling to a local L1 or Sepolia.",
+      href: "/stack/how-to/run-lineth-stack-sepolia",
+    },
+    {
+      text: "Learn about protocol internals",
+      description: "Explore how the Lineth protocol works under the hood.",
+      href: "/protocol",
+    },
+  ]}
+/>
 
 ## Why Lineth exists
 
@@ -39,7 +63,7 @@ As blockchain adoption grows, many organizations encounter a common set of const
 
 Lineth lets you run an Ethereum-equivalent network tailored to
 enterprise requirements, using [open source technology](../protocol/reference/repos.mdx), while remaining anchored to the same protocol foundations
-as [Linea Mainnet](../network/overview/index.mdx). The interoperability between Linea and Ethereum allows networks built on Lineth to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
+as [Linea Mainnet](../network/index.mdx). The interoperability between Linea and Ethereum allows networks built on Lineth to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
 
 ## What Lineth provides
 

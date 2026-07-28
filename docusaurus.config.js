@@ -166,7 +166,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "network/quickstart/index",
+            docId: "network/index",
             position: "left",
             label: "Linea Mainnet",
             activeBaseRegex: "^/network/",
@@ -179,7 +179,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "protocol/quickstart",
+            docId: "protocol/index",
             position: "left",
             label: "Protocol",
           },

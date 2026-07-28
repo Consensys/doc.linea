@@ -18,8 +18,7 @@ const sidebars = {
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    { type: "doc", id: "network/quickstart/index", className: "intro-section-item" },
-    { type: "doc", id: "network/overview/index", className: "intro-section-item" },
+    { type: "doc", id: "network/index", className: "intro-section-item" },
     {
       type: "category",
       label: "Features",
@@ -345,8 +344,7 @@ const sidebars = {
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    { type: "doc", id: "protocol/quickstart", className: "intro-section-item" },
-    { type: "doc", id: "protocol/overview", className: "intro-section-item" },
+    { type: "doc", id: "protocol/index", className: "intro-section-item" },
     { type: "doc", id: "protocol/linea-vs-lineth", className: "intro-section-item" },
     {
       type: "category",
