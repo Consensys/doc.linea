@@ -45,15 +45,14 @@ Contracts are upgradeable via the [OpenZeppelin Transparent Upgradeable Proxy pa
 ## Protocol rules and configurable controls
 
 "Immutable" can be misleading for an upgradeable deployment.
-The current implementation enforces some rules without an operator override, but authorized
-upgrades can replace that implementation and change the rules for future state transitions.
-Evaluate a deployment across three control classes:
+The following classification brings together controls described across the deployment,
+configuration, and contract documentation:
 
 | Control class | Examples | How it changes |
 | --- | --- | --- |
 | Enforced by the deployed protocol version | State-transition constraints, proof verification, message authentication, and role checks | Not bypassable through ordinary configuration. Changes require a protocol or contract upgrade. |
 | Fixed when a network or contract is deployed | Chain and genesis settings, deployment model, finalization layer, initial role holders, and contract initializer values | Requires genesis changes, contract redeployment, reinitialization where supported, or an upgrade, depending on the value. |
-| Configurable by authorized operators | Component configuration, validator and node topology, data availability operations, role assignments, pauses, verifier selection, and rate limits | Changes through deployment configuration, operational procedures, or role-gated onchain transactions. |
+| Configurable by authorized operators | Component configuration, validator and node topology, data availability operations, and role-gated contract controls | Changes through deployment configuration, operational procedures, or authorized onchain transactions. |
 
 An operator cannot change an enforced rule through a runtime setting merely because the operator
 runs the infrastructure.
@@ -62,7 +61,8 @@ party that controls the software release and deployment process can propose chan
 protocol components.
 The deployment's governance process determines who approves and executes those changes.
 
-For exposed component settings, see the
+For the underlying details, see [Deployment models](./deployment-models),
+[Deployment components](../deployment/core-components), and the
 [Linea Besu plugin configuration](/reference/component-configuration/linea-besu-plugin-options)
 and [Prover configuration](/reference/component-configuration/linea-prover-options) references.
 The presence of a configuration key does not mean that changing it is safe or supported for every
