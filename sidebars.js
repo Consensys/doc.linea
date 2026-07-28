@@ -437,6 +437,7 @@ const sidebars = {
           id: "protocol/reference/repos",
           label: "Linea repositories",
         },
+        "protocol/reference/security-audits",
         {
           type: "doc",
           id: "protocol/reference/zero-knowledge-glossary",
