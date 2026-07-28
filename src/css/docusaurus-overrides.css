@@ -1083,6 +1083,16 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   background: #666;
 }
 
+/* The default right-hand `@theme/TOC` (theme-doc-toc-desktop) also carries the
+   shared `.thin-scrollbar` class, and relied on the padding from the bare
+   `.thin-scrollbar` rule above before it was scoped to the sidebar. Restore
+   just the padding here, without the overflow-y/max-height overrides above,
+   since `@theme/TOC` already manages its own height/scroll behavior and
+   reintroducing those would bring back the glossary TOC scroll bug. */
+.theme-doc-toc-desktop.thin-scrollbar {
+  padding: 10px 16px;
+}
+
 /* Collapse sidebar button fully managed in section 14b below */
 
 /* Standardize sidebar menu indentation - reduce and make consistent */

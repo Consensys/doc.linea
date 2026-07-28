@@ -18,6 +18,12 @@
 .scrollArea {
   overflow-y: auto;
   min-height: 0;
+  /* Left/right padding gives .releaseLink::before (the timeline dot, offset to
+     left: -19px) room to render without being clipped by this container's
+     overflow. This used to come from the shared global `.thin-scrollbar` rule
+     in docusaurus-overrides.css, but that rule is now scoped to the left docs
+     sidebar only, so it's set explicitly here instead. */
+  padding: 10px 16px;
 }
 
 .list {
