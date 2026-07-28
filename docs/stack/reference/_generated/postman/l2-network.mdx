@@ -1,0 +1,10 @@
+### L2 network
+
+| Env var                     | Description                                                                 | Default | Type                | Required |
+| --------------------------- | --------------------------------------------------------------------------- | ------- | ------------------- | -------- |
+| `ENABLE_LINEA_ESTIMATE_GAS` | When true, use Linea's linea_estimateGas endpoint for L2 gas fee estimation | `false` | `boolean`           | optional |
+| `L2_CONTRACT_ADDRESS`       | Address of the message service contract on this network                     | —       | `address`           | required |
+| `L2_L1_CALLDATA_ENABLED`    | When true, process and claim messages that carry calldata                   | `false` | `boolean`           | optional |
+| `L2_L1_EOA_ENABLED`         | When true, process and claim EOA (empty calldata) messages                  | `false` | `boolean`           | optional |
+| `L2_MESSAGE_TREE_DEPTH`     | Depth of the L2 message Merkle tree                                         | —       | `number (positive)` | optional |
+| `L2_RPC_URL`                | JSON-RPC endpoint URL for the network node                                  | —       | `string (url)`      | required |

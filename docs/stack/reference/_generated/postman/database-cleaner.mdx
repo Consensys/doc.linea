@@ -1,0 +1,7 @@
+### Database cleaner
+
+| Env var                        | Description                                                                     | Default | Type                | Required |
+| ------------------------------ | ------------------------------------------------------------------------------- | ------- | ------------------- | -------- |
+| `DB_CLEANER_ENABLED`           | When true, periodically delete old claimed/finalized messages from the database | `false` | `boolean`           | required |
+| `DB_CLEANING_INTERVAL`         | Interval in ms between database cleaning runs                                   | —       | `number (positive)` | optional |
+| `DB_DAYS_BEFORE_NOW_TO_DELETE` | Retain finalized messages for this many days before deleting them               | —       | `number (positive)` | optional |
