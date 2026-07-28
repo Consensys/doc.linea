@@ -412,23 +412,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Mechanisms",
-      collapsible: false,
-      items: [
-        "protocol/eip-7702",
-        "protocol/forced-transactions",
-      ],
-    },
-    {
-      type: "category",
-      label: "How to",
-      collapsible: false,
-      items: [
-        "protocol/how-to/forced-transactions",
-      ],
-    },
-    {
-      type: "category",
       label: "Reference",
       collapsible: false,
       items: [
@@ -443,6 +426,23 @@ const sidebars = {
           id: "protocol/reference/zero-knowledge-glossary",
           label: "Glossary",
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "Mechanisms",
+      collapsible: false,
+      items: [
+        "protocol/eip-7702",
+        "protocol/forced-transactions",
+      ],
+    },
+    {
+      type: "category",
+      label: "How to",
+      collapsible: false,
+      items: [
+        "protocol/how-to/forced-transactions",
       ],
     },
   ],
