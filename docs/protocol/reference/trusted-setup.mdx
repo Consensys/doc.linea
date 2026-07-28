@@ -1,0 +1,65 @@
+---
+title: Trusted setup
+description: >-
+  The public MPC ceremonies and structured reference strings used by the Lineth
+  proving system.
+sidebar_position: 9
+image: /img/socialCards/trusted-setup.jpg
+---
+
+Lineth uses structured reference strings (SRSs) produced by previously completed public
+multi-party computation (MPC) ceremonies.
+It does not depend on a Linea-operated ceremony or an active MPC network for normal proof
+generation.
+
+## Reused public ceremonies
+
+The proving system uses ceremony outputs for three curves:
+
+| Curve | Use in the proving system | Public ceremony |
+| --- | --- | --- |
+| BN254 | Final and emulation proofs verified on Ethereum | [Aztec Ignition](https://github.com/AztecProtocol/ignition-verification), with 176 participants |
+| BLS12-377 | Execution and other inner wrapper proofs | [Aleo Setup I](https://github.com/AleoNet/aleo-setup), with 106 participants |
+| BW6-761 | Recursive aggregation proofs | [Celo Plumo](https://github.com/celo-org/snark-setup), with 55 participants |
+
+The [L2BEAT Linea prover catalog](https://l2beat.com/zk-catalog/lineaprover) documents the
+ceremony mapping and participant counts.
+The Lineth Prover source accepts SRS assets labeled `aztec`, `aleo`, and `celo` for these curves.
+
+## Security assumption
+
+Each ceremony allowed participants to add private randomness to the SRS in sequence.
+The setup remains sound if at least one participant in each applicable ceremony generated their
+contribution honestly and destroyed the secret randomness afterward.
+
+If every contribution to an applicable ceremony were compromised, an attacker with the resulting
+secret could undermine proof soundness for proof layers that use that SRS.
+The ceremony repositories publish the contribution and verification procedures for their outputs.
+
+## No ongoing MPC requirement
+
+Normal Lineth proving does not require ceremony participants to coordinate or contribute again.
+The Prover:
+
+1. Loads the completed SRS assets from disk.
+2. Uses PLONK setup to derive circuit-specific proving and verifying keys.
+3. Generates proofs without involving the ceremony participants.
+
+Circuit changes can require regenerating circuit assets, proving keys, verifying keys, and the
+verifier contract.
+They do not require another MPC while the existing SRS supports the required circuit size and the
+same curve and commitment scheme remain in use.
+A change that requires a different curve, commitment scheme, or larger SRS requires a suitable new
+SRS, which may require another ceremony.
+
+## Ethereum blob setup is separate
+
+EIP-4844 blob commitments use the separate
+[Ethereum KZG ceremony](https://ceremony.ethereum.org/), not the three proving-system SRSs listed
+above.
+That ceremony is complete and does not require ongoing MPC participation during normal blob use.
+
+## See also
+
+- [Trace expansion and proving](../architecture/prover)
+- [Trust and responsibilities](/stack/evaluate/trust-model)
