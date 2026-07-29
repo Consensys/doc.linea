@@ -8,70 +8,61 @@ sidebar_position: 0
 image: /img/socialCards/protocol.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
 import ActionCards from '@site/src/components/ActionCards';
 
-Lineth provides the technical protocol used by Linea Mainnet and other networks built with Lineth.
-This page focuses on the protocol flow: how transactions move from execution to proof generation and
-finalized state.
+<GlossaryTerm term="Lineth" /> provides the technical protocol used by Linea Mainnet and other networks built on it.
+This section describes the protocol internals, including the components that make up its architecture, and how it
+processes transactions, generates proofs, and finalizes state.
+
+Learn more about the Lineth protocol:
 
 <ActionCards
   cards={[
     {
-      text: "Learn more about the state manager",
-      description: "How Lineth tracks and proves Ethereum-compatible state.",
+      text: "Linea and Lineth",
+      description: "Learn how the public network relates to the open-source protocol stack.",
+      href: "/protocol/linea-vs-lineth",
+    },
+    {
+      text: "State manager",
+      description: "Learn how Lineth tracks and proves Ethereum-compatible state.",
       href: "/protocol/architecture/state-manager",
     },
     {
-      text: "Learn more about the prover",
-      description: "How the prover generates zero-knowledge validity proofs.",
+      text: "Prover",
+      description: "Learn how the prover generates zero-knowledge validity proofs.",
       href: "/protocol/architecture/prover",
     },
     {
-      text: "Reference the glossary and repos",
-      description: "Browse zero-knowledge terms and Linea's source repositories.",
+      text: "Source code",
+      description: "Browse Lineth and Linea source repositories.",
       href: "/protocol/reference/repos",
     },
   ]}
 />
 
-For the deployable stack and operator overview, see [Lineth](../stack/index.mdx). For the public
+For the deployable stack and operator overview, see [Lineth Stack](../stack/index.mdx). For the public
 network overview, see [Linea Mainnet](../network/index.mdx).
 
-## Protocol flow
+## Protocol overview
 
 At a high level, the Lineth protocol processes transactions through four stages.
 
-### 1. Execute transactions
+1. **Execute transactions:** Transactions enter an Ethereum-compatible execution environment.
+  Smart contracts run against the current network state, and each accepted transaction produces a deterministic
+  state transition.
 
-Transactions enter an Ethereum-compatible execution environment. Smart contracts run against the
-current network state, and each accepted transaction produces a deterministic state transition.
+2. **Batch and trace blocks:** Executed blocks are grouped into batches.
+  The protocol records the execution traces needed to prove that each state transition was computed correctly.
 
-### 2. Batch and trace blocks
+3. **Generate validity proofs:** The proving system uses those traces to generate zero-knowledge proofs.
+  A verifier can check the proofs without replaying every transaction in the batch.
 
-Executed blocks are grouped into batches. The protocol records the execution traces needed to prove
-that each state transition was computed correctly.
+4. **Submit for data availability and finalization:** The protocol submits the information required for data
+  availability, verification, and finalization to the configured finalization layer. 
+  Data availability and finalization choices depend on the deployment model: Linea Mainnet is one deployment that
+  finalizes to Ethereum, while other Lineth-based networks can use different finalization paths.
 
-### 3. Generate validity proofs
-
-The proving system uses those traces to generate zero-knowledge proofs. A verifier can check the
-proofs without replaying every transaction in the batch.
-
-### 4. Submit for data availability and finalization
-
-The protocol submits the information required for data availability, verification, and finalization
-to the configured finalization layer. Data availability and finalization choices depend on the
-deployment model: Linea Mainnet is one deployment that finalizes to Ethereum, while other
-Lineth-based networks can use different finalization paths.
-
-## Component details
-
-This overview is intentionally high level. For the architecture and component-level details behind
-execution, batching, proving, onchain contracts, and finalization, see
-[architecture](./architecture/index.mdx).
-
-## Next steps
-
-- New to the Linea and Lineth names? See [Linea and Lineth](./linea-vs-lineth.mdx) for how the public network relates to the open-source stack.
-- Review the [architecture](./architecture/index.mdx) for component-level protocol details.
-- Read the [Lineth overview](../stack/index.mdx) for the deployable stack and operator view.
-- Understand [Linea Mainnet](../network/index.mdx) as a public deployment of the protocol.
+For the architecture and component-level details behind execution, batching, proving, onchain contracts, and
+finalization, see [architecture](./architecture/index.mdx).
