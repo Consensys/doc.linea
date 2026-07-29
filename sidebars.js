@@ -382,7 +382,7 @@ const sidebars = {
           type: "category",
           label: "Prover",
           collapsible: true,
-          collapsed: true,
+          collapsed: false,
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
             "protocol/architecture/prover/risc-v-overview",
@@ -393,9 +393,9 @@ const sidebars = {
             },
             "protocol/architecture/prover/proving",
             "protocol/architecture/prover/prover-limits",
+            "protocol/architecture/prover/trusted-setup",
           ],
         },
-        "protocol/architecture/prover/trusted-setup",
         "protocol/architecture/smart-contracts",
         "protocol/architecture/coordinator",
         {
