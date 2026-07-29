@@ -395,6 +395,7 @@ const sidebars = {
             "protocol/architecture/prover/prover-limits",
           ],
         },
+        "protocol/architecture/prover/trusted-setup",
         "protocol/architecture/smart-contracts",
         "protocol/architecture/coordinator",
         {
@@ -421,7 +422,6 @@ const sidebars = {
           id: "protocol/reference/repos",
           label: "Linea repositories",
         },
-        "protocol/reference/trusted-setup",
         "protocol/reference/security-audits",
         {
           type: "doc",
