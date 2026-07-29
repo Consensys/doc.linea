@@ -1,0 +1,8 @@
+### L1 network
+
+| Env var                  | Description                                                | Default | Type           | Required |
+| ------------------------ | ---------------------------------------------------------- | ------- | -------------- | -------- |
+| `L1_CONTRACT_ADDRESS`    | Address of the message service contract on this network    | —       | `address`      | required |
+| `L1_L2_CALLDATA_ENABLED` | When true, process and claim messages that carry calldata  | `false` | `boolean`      | optional |
+| `L1_L2_EOA_ENABLED`      | When true, process and claim EOA (empty calldata) messages | `false` | `boolean`      | optional |
+| `L1_RPC_URL`             | JSON-RPC endpoint URL for the network node                 | —       | `string (url)` | required |

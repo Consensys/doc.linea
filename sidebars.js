@@ -295,6 +295,7 @@ const sidebars = {
       collapsible: false,
       items: [
         "stack/reference/linea-besu-plugin-options",
+        "stack/reference/linea-postman-options",
         "stack/reference/linea-prover-options",
       ],
     },
@@ -412,6 +413,24 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      collapsible: false,
+      items: [
+        {
+          type: "doc",
+          id: "protocol/reference/repos",
+          label: "Linea repositories",
+        },
+        "protocol/reference/security-audits",
+        {
+          type: "doc",
+          id: "protocol/reference/zero-knowledge-glossary",
+          label: "Glossary",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Mechanisms",
       collapsible: false,
       items: [
@@ -422,14 +441,6 @@ const sidebars = {
     {
       type: "category",
       label: "How to",
-      collapsible: false,
-      items: [
-        "protocol/how-to/forced-transactions",
-      ],
-    },
-    {
-      type: "category",
-      label: "Reference",
       collapsible: false,
       items: [
         {
@@ -443,6 +454,7 @@ const sidebars = {
           id: "protocol/reference/zero-knowledge-glossary",
           label: "Glossary",
         },
+        "protocol/how-to/forced-transactions",
       ],
     },
   ],
