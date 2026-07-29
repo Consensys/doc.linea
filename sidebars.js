@@ -382,7 +382,7 @@ const sidebars = {
           type: "category",
           label: "Prover",
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
             "protocol/architecture/prover/risc-v-overview",
