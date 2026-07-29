@@ -107,7 +107,7 @@ linea-mainnet = "https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"
 
 To deploy the smart contract, run:
 
-<Tabs className="my-tabs">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
@@ -116,7 +116,7 @@ forge create --rpc-url linea-mainnet src/Counter.sol:Counter --private-key $PRIV
 
 </TabItem>
 
-<TabItem value="Sepolia" label="Sepolia">
+<TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```bash
 forge create --rpc-url linea-sepolia src/Counter.sol:Counter --private-key $PRIVATE_KEY

@@ -1443,5 +1443,80 @@
         "from": [
             "/technology/burn"
         ]
+    },
+    {
+        "to": "/stack",
+        "from": [
+            "/stack/quickstart"
+        ]
+    },
+    {
+        "to": "/stack/evaluate",
+        "from": [
+            "/stack/features",
+            "/stack/features/index"
+        ]
+    },
+    {
+        "to": "/stack/evaluate/security",
+        "from": [
+            "/stack/features/security"
+        ]
+    },
+    {
+        "to": "/stack/evaluate/validium",
+        "from": [
+            "/stack/features/validium"
+        ]
+    },
+    {
+        "to": "/stack/evaluate/compliance",
+        "from": [
+            "/stack/features/compliance"
+        ]
+    },
+    {
+        "to": "/stack/deployment/data-availability-finalization",
+        "from": [
+            "/stack/features/data-availability",
+            "/stack/how-it-works/data-availability-finalization"
+        ]
+    },
+    {
+        "to": "/stack/deployment/fast-finality",
+        "from": [
+            "/stack/features/fast-finality"
+        ]
+    },
+    {
+        "to": "/stack/deployment/rbac",
+        "from": [
+            "/stack/features/rbac"
+        ]
+    },
+    {
+        "to": "/stack/deployment",
+        "from": [
+            "/stack/how-it-works",
+            "/stack/how-it-works/index"
+        ]
+    },
+    {
+        "to": "/stack/deployment/core-components",
+        "from": [
+            "/stack/how-it-works/core-components"
+        ]
+    },
+    {
+        "to": "/stack/evaluate/deployment-models",
+        "from": [
+            "/stack/how-it-works/deployment-models"
+        ]
+    },
+    {
+        "to": "/stack/evaluate/trust-model",
+        "from": [
+            "/stack/how-it-works/trust-model"
+        ]
     }
 ]

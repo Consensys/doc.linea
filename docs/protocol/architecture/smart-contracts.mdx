@@ -21,7 +21,7 @@ their finalization design.
 
 :::
 
-This contract is deployed to the [finalization layer](../../stack/how-it-works/data-availability-finalization.mdx).
+This contract is deployed to the [finalization layer](../../stack/deployment/data-availability-finalization.mdx).
 
 **Purpose:**  
 It enables secure interactions between the deployed network and the finalization layer.
@@ -32,9 +32,8 @@ It enables secure interactions between the deployed network and the finalization
 - Records finalized state roots on the finalization layer
 - Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
   between the deployed network and the finalization layer
-- Ensures messages execute only when the underlying zk-SNARK proof attests to correct state
-  transitions
-- Anchors network state to Ethereum-level security guarantees
+- Anchors L2 message Merkle roots as part of a successful batch finalization
+- When an L2-to-L1 message is claimed, verifies its Merkle proof against an anchored root before delivering the message
 
 ### Native message bridge smart contract
 
@@ -54,8 +53,9 @@ finalization layer and the ZK-EVM.
 
 **Functionality:**
 
-- Uses non-custodial escrow, event tracking, and ZK-proof validation to guarantee trustlessness
-- Enables Linea to interoperate directly with Ethereum while preserving asset security
+- Uses non-custodial escrow, event tracking, and zk-SNARK proof validation to reduce bridge trust
+  assumptions
+- Enables the deployed network to interoperate directly with Ethereum while preserving protocol-level asset security
 
 **Deposit flow (finalization layer → deployed network):**
 

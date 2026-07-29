@@ -1,0 +1,133 @@
+---
+title: Privacy and data visibility
+description: 'Where Lineth deployment data is published, retained, visible, and verifiable'
+sidebar_position: 5
+image: /img/socialCards/privacy-and-data-visibility.jpg
+---
+
+This page describes what a Lineth (formerly the Linea Stack) deployment
+publishes, retains offchain, makes visible, and allows participants to verify.
+
+For access policy, see [Access control](../deployment/rbac.mdx).
+For regulatory compliance, see [Compliance](./compliance.mdx).
+
+This page does not cover cryptographic private execution or private state.
+Lineth does not publish a shipped capability for onchain ZK privacy;
+do not infer it from validium or RBAC.
+
+## Validium data flow
+
+In validium mode, the Lineth deployment proves state transitions using zk-SNARKs
+while retaining transaction data within a private data availability layer. After
+blocks are produced by the Sequencer, they are aggregated and batched, and a
+zk-SNARK proof attesting to the resulting state transition is generated and
+submitted to the finalization layer.
+
+State commitments and proofs are posted onchain. Transaction data is not.
+
+## Data visibility by layer
+
+| Layer                            | What is published                                       | Who can see it                                                               |
+| -------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Finalization layer               | State commitments, zk-SNARK proofs, bridge messages     | Anyone reading the finalization layer                                        |
+| Operator data availability layer | Transaction data, full ordered history                  | Participants the operator authorizes, per the deployment's data access model |
+| RPC and API surfaces             | State and transactions the caller is authorized to view | Callers with [RBAC](../deployment/rbac.mdx) permissions for the relevant endpoint        |
+
+Offchain data availability changes where transaction data lives. It does not by
+itself make transactions cryptographically private. A participant with access to
+the offchain data can read it; a participant without access cannot.
+
+## Offchain data availability
+
+Transaction data is stored offchain in a private node set, so only state
+commitments and zk-SNARK proofs go onchain. With the relevant data, a
+participant can verify their own state against the onchain commitments using
+[Merkle proofs](../../protocol/architecture/state-manager.mdx#merkle-trees).
+
+Unlike a public network, a validium does not give every participant a full view
+of all transactions or their ordering. Reconstruction or independent
+verification of full history requires access to the offchain data, which the
+deployment's [RBAC](../deployment/rbac.mdx) and governance rules control.
+
+## Access control
+
+[RBAC](../deployment/rbac.mdx) controls access to network functionality:
+
+- RPC endpoints: access controlled by API keys and permissions
+- API portal: institution-level access controls
+- Transaction visibility: participants see only transactions they are authorized
+  to view
+
+RBAC is an access policy. It controls who can call an endpoint or view data the
+deployment exposes. It is not a cryptographic privacy mechanism and does not
+hide data from the operator or from participants who already hold the data.
+
+## Finalization layer options
+
+A private validium can finalize on:
+
+- Ethereum L1: direct finalization on Ethereum, with higher costs and longer
+  finality times
+- Linea Mainnet: finalization on Linea Mainnet, with lower costs and faster
+  finality
+
+See
+[a comparison of finalization layer options](../deployment/data-availability-finalization.mdx#finalization-layer).
+
+## Architecture
+
+Private validium deployments include:
+
+- Consensus layer: [Maru](../../protocol/reference/repos.mdx#maru) with
+  Quorum-Based Byzantine Fault Tolerance (QBFT) consensus (minimum 4 nodes, see
+  [multi-validator consensus](../deployment/distributed-sequencing.mdx))
+- Execution layer:
+  [Linea Besu](../../protocol/reference/repos.mdx#linea-besu-upstream) with
+  sequencer plugins
+- [Coordinator](../../protocol/architecture/coordinator.mdx): orchestrates proof
+  generation and [finalization](../../network/overview/transaction-finality.mdx)
+- [Prover](../../protocol/architecture/prover/index.mdx): generates zk-SNARK
+  proofs
+- [State manager](../../protocol/architecture/state-manager.mdx): maintains
+  state for proof generation
+- Private RPC nodes: RBAC-protected RPC endpoints
+- API portal: controlled access to network functionality
+- Data availability: private node set for data storage
+
+## Trust and security
+
+### Trust assumptions
+
+Private validium requires trust in:
+
+- Data availability providers: they must make data available when needed
+- Validator set: must follow consensus protocol (QBFT provides fault tolerance
+  with `3f+1` validators)
+- Finalization layer: the deployment inherits the finality assumptions of the
+  selected finalization layer
+
+For the full trust-boundary and failure-mode treatment, see
+[Trust and responsibilities](./trust-model.mdx).
+
+### Security features
+
+- Minimum node count: 4 nodes for QBFT fault tolerance
+- Access controls: [RBAC](../deployment/rbac.mdx) on RPC and API endpoints
+- Key management: supports
+  [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing
+  backed by a hardware security module (HSM) or key management service (KMS)
+- Network isolation: private network topology
+
+### Data availability
+
+Where deployments use a private node set for data storage, participants must
+trust that data availability providers will make data available when needed, or
+operate under a consortium model that gives them direct access to the data
+required for verification and recovery.
+
+## Next steps
+
+- Learn more about selecting a
+  [deployment model](./deployment-models.mdx)
+- Review [security and assurance](./security.mdx)
+- Review [compliance](./compliance.mdx)

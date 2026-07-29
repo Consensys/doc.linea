@@ -1,0 +1,38 @@
+---
+title: Deployment architecture
+sidebar_label: Overview
+description: Apply Lineth components and design choices to an operator deployment
+sidebar_position: 1
+image: /img/socialCards/deployment-architecture.jpg
+---
+
+Use this section to design a Lineth (formerly the Linea Stack) deployment: required components, data availability and finalization choices, finality design, and access control. For mechanism internals, see the [Protocol architecture](../../protocol/architecture/index.mdx).
+
+## Architecture
+
+As an Ethereum-equivalent network, Lineth uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility. 
+
+- Understand the core [components](./core-components.mdx) that make up the stack
+- Learn more about the [protocol architecture](../../protocol/architecture/index.mdx)
+
+## Deployment models
+
+Lineth allows operators to tweak the deployment model according to their business case, for example, a network built on Lineth can be operated as:
+
+- Private Validium: Offchain data availability, ideal for regulated financial applications
+- Public: Fully public network with onchain data availability
+
+See more on the [deployment options](../evaluate/deployment-models.mdx).
+
+## Data availability and finalization
+
+For details on
+L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
+model, see [data availability and finalization](./data-availability-finalization.mdx).
+
+:::important
+
+Understanding data availability and finalization is key to good deployment decisions. 
+
+:::
+

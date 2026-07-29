@@ -11,15 +11,15 @@ export default function ContributeBanner(): React.ReactNode {
       <div className={styles.bannerContainer}>
         <div className={styles.banner}>
           <div className={styles.content}>
-            <h2 className={styles.title}>Contribute to Linea</h2>
+            <h2 className={styles.title}>Contribute to Lineth</h2>
             <p className={styles.description}>
-              Join the Linea developer community and learn how to contribute.
+              Join the Lineth developer community and learn how to contribute.
             </p>
             <Link
               className={styles.button}
-              to="https://github.com/Consensys/doc.linea">
+              to="https://github.com/LFDT-Lineth/lineth-monorepo">
               <GitHubIcon width="14" height="14" className={styles.icon} />
-              Contribute
+              <span className={styles.buttonText}>Contribute</span>
             </Link>
           </div>
           <div className={styles.illustration}>

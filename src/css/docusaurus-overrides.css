@@ -556,7 +556,7 @@ a.navbar__brand {
 /* Use href-based selectors since Docusaurus doesn't pass through custom data attributes */
 .navbar__link[href="/network/quickstart"]::before,
 .navbar__link[href="/protocol/quickstart"]::before,
-.navbar__link[href="/stack/quickstart"]::before,
+.navbar__link[href="/stack"]::before,
 .navbar__link[href="/reference"]::before,
 .navbar__link[href="/changelog/release-notes"]::before,
 .navbar__link[href="/support"]::before {
@@ -574,7 +574,7 @@ a.navbar__brand {
 
 [data-theme="dark"] .navbar__link[href="/network/quickstart"]::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
-[data-theme="dark"] .navbar__link[href="/stack/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/stack"]::before,
 [data-theme="dark"] .navbar__link[href="/reference"]::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before,
 [data-theme="dark"] .navbar__link[href="/support"]::before {
@@ -584,7 +584,7 @@ a.navbar__brand {
 /* ONLY when active, fill the dot */
 .navbar__link[href="/network/quickstart"].navbar__link--active::before,
 .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
-.navbar__link[href="/stack/quickstart"].navbar__link--active::before,
+.navbar__link[href="/stack"].navbar__link--active::before,
 .navbar__link[href="/reference"].navbar__link--active::before,
 .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
 .navbar__link[href="/support"].navbar__link--active::before {
@@ -593,7 +593,7 @@ a.navbar__brand {
 
 [data-theme="dark"] .navbar__link[href="/network/quickstart"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
-[data-theme="dark"] .navbar__link[href="/stack/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/stack"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/reference"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/support"].navbar__link--active::before {
@@ -612,7 +612,7 @@ a.navbar__brand {
 
 .navbar__link[href="/network/quickstart"]:hover::before,
 .navbar__link[href="/protocol/quickstart"]:hover::before,
-.navbar__link[href="/stack/quickstart"]:hover::before,
+.navbar__link[href="/stack"]:hover::before,
 .navbar__link[href="/reference"]:hover::before,
 .navbar__link[href="/changelog/release-notes"]:hover::before,
 .navbar__link[href="/support"]:hover::before {
@@ -621,7 +621,7 @@ a.navbar__brand {
 
 [data-theme="dark"] .navbar__link[href="/network/quickstart"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
-[data-theme="dark"] .navbar__link[href="/stack/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/stack"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/reference"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/support"]:hover::before {
@@ -632,7 +632,7 @@ a.navbar__brand {
 @media (max-width: 996px) {
   .navbar__link[href="/network/quickstart"]::before,
   .navbar__link[href="/protocol/quickstart"]::before,
-  .navbar__link[href="/stack/quickstart"]::before,
+  .navbar__link[href="/stack"]::before,
   .navbar__link[href="/reference"]::before,
   .navbar__link[href="/changelog/release-notes"]::before,
   .navbar__link[href="/support"]::before {
@@ -923,11 +923,13 @@ nav[aria-label="Breadcrumbs"] {
   font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
-nav[aria-label="Breadcrumbs"] a {
-  color: var(--linea-text-muted);
+nav[aria-label="Breadcrumbs"] a,
+nav[aria-label="Breadcrumbs"] .breadcrumbs__link {
+  color: var(--linea-text-primary) !important;
+  font-weight: 400 !important;
   text-decoration: none !important;
   padding: 5px 10px;
   border-radius: var(--linea-radius-round);
@@ -940,34 +942,13 @@ nav[aria-label="Breadcrumbs"] a:hover {
   text-decoration: none !important;
 }
 
-nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
-  color: var(--linea-text-primary);
-}
-
-[data-theme="dark"] nav[aria-label="Breadcrumbs"] a {
-  color: var(--linea-text-subtle) !important;
-  text-decoration: none !important;
-}
-
 [data-theme="dark"] nav[aria-label="Breadcrumbs"] a:hover {
   color: var(--linea-purple-hover) !important;
-  background-color: transparent !important;
-  text-decoration: none !important;
-}
-
-[data-theme="dark"] nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active a {
-  color: var(--linea-text-primary);
 }
 
 /* Remove background from active breadcrumb item */
 nav[aria-label="Breadcrumbs"] .breadcrumbs__item--active .breadcrumbs__link {
   background-color: transparent !important;
-}
-
-/* Hide non-collapsible section header items (Introduction, Features, etc.)
-   They render as <span> not <a>, and are not the active item */
-.breadcrumbs__item:not(.breadcrumbs__item--active):has(> span.breadcrumbs__link) {
-  display: none;
 }
 
 /* ============================================================
@@ -1546,7 +1527,7 @@ button.clean-btn.menu__caret {
 
 /* Mobile TOC ("On this page") - collapsed and expanded states */
 @media (max-width: 996px) {
-  /* Reorder: TOC above the purple category title */
+  /* Reorder: breadcrumbs/header, then mobile TOC, then content */
   article {
     display: flex;
     flex-direction: column;
@@ -1554,10 +1535,9 @@ button.clean-btn.menu__caret {
 
   article > .article-breadcrumbs-wrapper   { order: 1; }
   article > .article-mobile-toc-wrapper     { order: 2; }
-  article > [class*="titleRow"]             { order: 3; }
-  article > .theme-doc-markdown              { order: 4; }
-  article > *                                { order: 5; }
-  article > .article-footer-wrapper          { order: 6; }
+  article > .theme-doc-markdown              { order: 3; }
+  article > *                                { order: 4; }
+  article > .article-footer-wrapper          { order: 5; }
 
   .theme-doc-toc-mobile {
     background: var(--ifm-background-color) !important;
@@ -1656,6 +1636,15 @@ button.clean-btn.menu__caret {
   min-height: fit-content;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  font-family: AtypText, sans-serif;
+}
+
+/* Mermaid sets font-family on SVG text nodes; override to match body text. */
+.theme-doc-markdown .docusaurus-mermaid-container svg text,
+.theme-doc-markdown .docusaurus-mermaid-container svg tspan,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
+.theme-doc-markdown .docusaurus-mermaid-container svg foreignObject * {
+  font-family: AtypText, sans-serif !important; /* override Mermaid inline font-family */
 }
 
 .theme-doc-markdown .docusaurus-mermaid-container svg {
@@ -1667,6 +1656,57 @@ button.clean-btn.menu__caret {
 .theme-doc-markdown .docusaurus-mermaid-container svg foreignObject,
 .theme-doc-markdown .docusaurus-mermaid-container svg foreignObject * {
   overflow: visible !important;
+}
+
+/*
+ * Sequence-diagram highlight rects use a dark fill in the MDX source
+ * (rgb(64, 69, 76)) that works with Mermaid's dark-mode text. In light
+ * mode, override so message text stays readable.
+ */
+[data-theme="light"]
+  .theme-doc-markdown
+  .docusaurus-mermaid-container
+  svg
+  rect[fill="rgb(64, 69, 76)"] {
+  fill: var(--linea-mermaid-sequence-rect-bg);
+}
+
+/*
+ * Deployment-models flowchart theme overrides.
+ * Colors come from --linea-mermaid-* tokens (tokens.css).
+ * Fill/stroke are set here (not in classDef) so Mermaid's #svgId
+ * classDef !important rules do not block theme overrides.
+ */
+.theme-doc-markdown .mermaid-deployment .cluster rect {
+  fill: var(--linea-mermaid-cluster-bg) !important; /* override Mermaid clusterBkg */
+  stroke: var(--linea-mermaid-cluster-border) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .cluster-label,
+.theme-doc-markdown .mermaid-deployment .cluster-label span,
+.theme-doc-markdown .mermaid-deployment .cluster-label foreignObject div {
+  color: var(--linea-text-primary) !important; /* readable subgraph titles */
+}
+
+.theme-doc-markdown .mermaid-deployment .node.core rect,
+.theme-doc-markdown .mermaid-deployment .node.core .basic.label-container {
+  fill: var(--linea-mermaid-core-bg) !important; /* beat theme .node rect fill */
+  stroke: var(--linea-mermaid-core-stroke) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .node.access rect,
+.theme-doc-markdown .mermaid-deployment .node.access .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.neutral rect,
+.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container,
+.theme-doc-markdown .mermaid-deployment .node.control rect,
+.theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
+  fill: var(--linea-mermaid-cyan-bg) !important;
+  stroke: var(--linea-mermaid-cyan-stroke) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .node.control rect,
+.theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
+  stroke-dasharray: 6 4;
 }
 
 /* responsive classes for architecture diagram */
@@ -1701,7 +1741,7 @@ details {
   background-color: var(--page-background) !important;
   border: 1px solid rgb(0 0 0 / 8%) !important;
   border-radius: 0;
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.375rem !important;
   margin: 1rem 0;
 }
 
@@ -1713,7 +1753,8 @@ details {
 details > summary {
   cursor: pointer;
   font-weight: 500;
-  padding: 0.0625rem 0;
+  font-size: var(--font-body-md);
+  padding: 0.75rem !important;
   list-style: none;
   position: relative;
   color: inherit;
@@ -1728,26 +1769,20 @@ details > summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  content: "";
   display: inline-block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--linea-link-highlight-color);
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-
-details[open] > summary::before {
-  transform: rotate(90deg);
+  position: relative !important;
+  top: -1px !important;
+  border-width: 5px 0 5px 8px !important;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color) !important;
   margin-right: 0.5rem;
 }
 
 details > div {
-  margin-top: 0.75rem;
   padding-left: 1.5rem;
+}
+
+details > div > div {
+  margin-top: 0.2rem !important;
   padding-bottom: 0.5rem;
 }
 
@@ -1925,12 +1960,12 @@ details > div {
 }
 
 .theme-admonition-content a {
-  text-decoration: underline;
-  font-weight: 500;
+  text-decoration: none;
+  font-weight: 400;
 }
 
 .theme-admonition-content a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Admonition inline code per Figma */
@@ -2092,10 +2127,19 @@ details > div {
   color: #a78bfa;
 }
 
-/* Tabs styling per Figma */
+/*
+ * Tabs styling per Figma, plus the "common region" selection indicator
+ * (NN/g "Tabs, Used Right"): https://www.nngroup.com/articles/tabs-used-right/
+ * The selected tab and its panel share one background fill (a surface
+ * color distinct from the page background) so the boundary of the tabbed
+ * content stays visible for its entire length, however long. Unselected
+ * tabs sit directly on the page background for contrast.
+ */
 .tabs {
   border-bottom: none;
-  margin-bottom: 24px;
+  gap: 4px;
+  margin-bottom: 0;
+  padding: 0 20px;
 }
 
 .tabs__item {
@@ -2104,8 +2148,10 @@ details > div {
   font-weight: 400;
   padding: 10px 16px;
   border-bottom: 1px solid transparent;
+  border-radius: var(--linea-radius-sm) var(--linea-radius-sm) 0 0;
   color: var(--linea-text-secondary);
   transition: all 0.2s ease;
+  margin-bottom: 0;
 }
 
 .tabs__item:hover {
@@ -2113,8 +2159,19 @@ details > div {
 }
 
 .tabs__item--active {
-  border-bottom-color: var(--linea-brand-purple);
+  border-bottom-color: transparent;
   color: var(--linea-text-primary);
+  background-color: var(--linea-surface-elevated);
+  font-weight: 600;
+}
+
+/* Panel sits flush under the active tab; Infima's .margin-top--md otherwise
+   leaves a gap that breaks the shared background with the tab. */
+.tabs-container > div.margin-top--md {
+  background-color: var(--linea-surface-elevated);
+  border-radius: var(--linea-radius-md);
+  padding: 20px;
+  margin-top: 0 !important; /* override Infima utility margin */
 }
 
 /* Pills/badges styling per Figma */
@@ -2133,11 +2190,10 @@ details > div {
 
 article a,
 .theme-doc-markdown a {
-  color: var(--linea-text-primary) !important;
-  text-decoration: underline;
-  text-decoration-style: solid;
+  color: var(--linea-inline-link-color) !important;
+  text-decoration: none;
   font-family: 'Atyp Text', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-size: inherit;
   transition: color 0.2s ease;
 }
@@ -2157,13 +2213,8 @@ article a.submission-button:hover,
 
 article a:hover,
 .theme-doc-markdown a:hover {
-  color: var(--linea-brand-purple) !important;
+  color: var(--linea-inline-link-hover) !important;
   opacity: 1;
-}
-
-[data-theme="dark"] article a:hover,
-[data-theme="dark"] .theme-doc-markdown a:hover {
-  color: var(--linea-purple-hover) !important;
 }
 
 /* Headings styling per Figma - EXACT specs */
@@ -2278,6 +2329,15 @@ div[class*="codeBlockContent"] {
   position: static !important;
 }
 
+/* Code block title bar. */
+div[class*="codeBlockContainer"] div[class*="codeBlockTitle"] {
+  color: #f8f7f2;
+  border-bottom-color: rgb(255 255 255 / 12%);
+  margin: -10px -20px 0.75rem;
+  padding: 10px 20px 0.75rem;
+  font-size: 16px;
+}
+
 /* Copy button: default = vertically centered (small / single-line blocks) */
 div[class*="buttonGroup"] {
   position: absolute !important;
@@ -2349,12 +2409,18 @@ code {
 
 /* Inline code (pills) per Figma */
 :not(pre) > code {
-  font-size: var(--font-body-xs);
-  letter-spacing: 0.24px;
+  font-size: 0.875em;
+  letter-spacing: 0.2px;
   background-color: var(--linea-surface-elevated);
   color: var(--linea-text-primary);
   padding: 0 5px;
   border-radius: var(--linea-radius-sm);
+  position: relative;
+  top: -0.08em;
+}
+
+article :is(h2, h3, h4, h5, h6) code {
+  font-size: 0.85em;
 }
 
 [data-theme="dark"] :not(pre) > code {

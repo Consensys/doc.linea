@@ -1,0 +1,21 @@
+### Claiming
+
+| Env var                           | Description                                                                    | Default | Type                      | Required |
+| --------------------------------- | ------------------------------------------------------------------------------ | ------- | ------------------------- | -------- |
+| `GAS_ESTIMATION_PERCENTILE`       | Percentile (0–100) used when estimating gas fees from recent blocks            | —       | `number (min 0, max 100)` | optional |
+| `L1_CLAIM_VIA_ADDRESS`            | Optional proxy/router address to call when submitting claim transactions       | —       | `address`                 | optional |
+| `L1_L2_ENABLE_POSTMAN_SPONSORING` | When true, the Postman sponsors gas for eligible zero-fee claim transactions   | `false` | `boolean`                 | optional |
+| `L1_MAX_GAS_FEE_ENFORCED`         | When true, reject claims whose estimated fee exceeds maxFeePerGasCap           | `false` | `boolean`                 | optional |
+| `L2_CLAIM_VIA_ADDRESS`            | Optional proxy/router address to call when submitting claim transactions       | —       | `address`                 | optional |
+| `L2_L1_ENABLE_POSTMAN_SPONSORING` | When true, the Postman sponsors gas for eligible zero-fee claim transactions   | `false` | `boolean`                 | optional |
+| `L2_MAX_GAS_FEE_ENFORCED`         | When true, reject claims whose estimated fee exceeds maxFeePerGasCap           | `false` | `boolean`                 | optional |
+| `MAX_BUMPS_PER_CYCLE`             | Maximum number of gas-fee bumps allowed within a single retry cycle            | —       | `number (nonnegative)`    | optional |
+| `MAX_CLAIM_GAS_LIMIT`             | Maximum gas limit allowed for a claim transaction                              | —       | `bigint (positive)`       | optional |
+| `MAX_FEE_PER_GAS_CAP`             | Maximum maxFeePerGas (wei) allowed for claim transactions                      | —       | `bigint (positive)`       | optional |
+| `MAX_NONCE_DIFF`                  | Maximum allowed difference between the database nonce and the on-chain nonce   | —       | `number (positive)`       | optional |
+| `MAX_NUMBER_OF_RETRIES`           | Maximum number of claim submission retries before giving up a cycle            | —       | `number (nonnegative)`    | optional |
+| `MAX_POSTMAN_SPONSOR_GAS_LIMIT`   | Maximum gas limit for Postman-sponsored claim transactions                     | —       | `bigint (positive)`       | optional |
+| `MAX_RETRY_CYCLES`                | Maximum number of full claim retry cycles before marking the message as failed | —       | `number (nonnegative)`    | optional |
+| `MESSAGE_SUBMISSION_TIMEOUT`      | Timeout in ms waiting for a submitted claim transaction to be mined            | —       | `number (positive)`       | optional |
+| `PROFIT_MARGIN`                   | Minimum profit margin required before claiming a fee-paying message            | —       | `number (nonnegative)`    | optional |
+| `RETRY_DELAY_IN_SECONDS`          | Delay in seconds between claim retry attempts                                  | —       | `number (positive)`       | optional |
