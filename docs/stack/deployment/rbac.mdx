@@ -7,7 +7,11 @@ sidebar_position: 5
 image: /img/socialCards/access-control.jpg
 ---
 
-This page describes operator-configured access control for protected Lineth (formerly the Linea Stack) RPC, API, and tooling surfaces. For data visibility choices, see [Privacy and data visibility](../evaluate/validium.mdx).
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+This page describes <GlossaryTerm term="Operator">operator</GlossaryTerm>-configured access control for
+protected <GlossaryTerm term="Lineth" /> RPC, API, and tooling surfaces.
+For data visibility choices, see [Privacy and data visibility](../evaluate/validium.mdx).
 
 :::important
 
@@ -18,7 +22,7 @@ does not make public-chain data private, replace zero-knowledge proofs, or provi
 
 ## What RBAC controls
 
-In a Lineth deployment, RBAC can be used around operator-controlled access surfaces, including:
+In a Lineth deployment, role-based access control (RBAC) can be used around operator-controlled access surfaces, including:
 
 - RPC endpoints that expose blockchain data or accept transactions
 - APIs and API portals used to manage or interact with the deployment
@@ -31,7 +35,8 @@ deployment.
 ## How RBAC fits with private validium
 
 In a public deployment, transaction data is designed for broad visibility, and public RPC access is
-designed for broad availability. In a private validium deployment, transaction data may be kept
+designed for broad availability.
+In a <GlossaryTerm term="Validium">private validium</GlossaryTerm> deployment, transaction data may be kept
 offchain, and access to network functionality may be restricted.
 
 RBAC is one part of that controlled-access model. It can help limit access to RPC endpoints, APIs,

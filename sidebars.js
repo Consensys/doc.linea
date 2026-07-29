@@ -411,6 +411,24 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      collapsible: false,
+      items: [
+        {
+          type: "doc",
+          id: "protocol/reference/repos",
+          label: "Linea repositories",
+        },
+        "protocol/reference/security-audits",
+        {
+          type: "doc",
+          id: "protocol/reference/zero-knowledge-glossary",
+          label: "Glossary",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Mechanisms",
       collapsible: false,
       items: [
@@ -424,23 +442,6 @@ const sidebars = {
       collapsible: false,
       items: [
         "protocol/how-to/forced-transactions",
-      ],
-    },
-    {
-      type: "category",
-      label: "Reference",
-      collapsible: false,
-      items: [
-        {
-          type: "doc",
-          id: "protocol/reference/repos",
-          label: "Linea repositories",
-        },
-        {
-          type: "doc",
-          id: "protocol/reference/zero-knowledge-glossary",
-          label: "Glossary",
-        },
       ],
     },
   ],

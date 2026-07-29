@@ -7,13 +7,15 @@ sidebar_position: 4
 image: /img/socialCards/multi-validator-consensus.jpg
 ---
 
-This page describes Maru multi-validator consensus using Quorum-Based Byzantine
-Fault Tolerance (QBFT) in a Lineth deployment: when to use it, how it fits the
-stack, what fault tolerance it provides, and how topology and latency affect
-block time.
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-Multi-validator Maru improves **sequencer** fault tolerance and distributed
-block ordering. It does not by itself make the coordinator, prover, state
+This page describes Maru multi-validator consensus using Quorum-Based Byzantine Fault Tolerance (QBFT) in a
+<GlossaryTerm term="Lineth" /> deployment: when to use it, how it fits the stack, what fault tolerance it
+provides, and how topology and latency affect block time.
+
+Multi-validator Maru improves <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> fault tolerance and
+distributed block ordering.
+It does not by itself make the coordinator, prover, state
 manager, RPC nodes, L1 contracts, or bridge highly available.
 
 For setup, monitoring, and recovery steps, see
@@ -45,8 +47,8 @@ design on this page applies to Lineth operators running their own chain.
 
 Maru is the sequencer consensus layer; Besu is the execution layer.
 Multi-validator Maru changes only sequencer fault tolerance. The
-[prover, coordinator, state manager](./core-components.mdx#core-protocol-components),
-RPC nodes, L1 contracts, and bridge are unchanged.
+<GlossaryTerm term="Prover">prover</GlossaryTerm>, <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>,
+<GlossaryTerm term="State manager">state manager</GlossaryTerm>, RPC nodes, L1 contracts, and bridge are unchanged.
 
 L2 block time is set on Maru. L1 finality cadence is set on the coordinator and
 is independent.

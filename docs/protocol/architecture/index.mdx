@@ -4,10 +4,13 @@ description: Protocol architecture overview and core components of Lineth
 image: /img/socialCards/architecture.jpg
 ---
 
-Lineth architecture supports a configurable protocol that delivers developer-ready layer 2 and layer 3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-Operators and network designers configure their stack to shape protocol behavior and trust
-assumptions, for example:
+<GlossaryTerm term="Lineth" /> architecture supports a configurable protocol that delivers developer-ready L2 and
+L3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
+
+<GlossaryTerm term="Operator">Operators</GlossaryTerm> and network designers configure their stack to shape
+protocol behavior and trust assumptions, for example:
 
   - Finalization layer: affects settlement and security
   - Data availability layer: affects privacy and state reconstruction
@@ -37,15 +40,15 @@ The following represents one of many possible configurations for a network built
 :::tip[Mainnet]
 
 The example configuration matches that of [Linea's Public Mainnet](/network). While this
-zero-knowledge rollup protocol is agnostic to the finalization layer (it's unopinionated on where
-proofs are written), this configuration finalizes transactions by submitting proofs to Ethereum
-Mainnet and temporarily making data available there.
+<GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> protocol is agnostic to the finalization
+layer (it's unopinionated on where proofs are written), this configuration finalizes transactions by submitting
+proofs to Ethereum Mainnet and temporarily making data available there.
 
 :::
 
 ## What runs where in Lineth?
 
-Lineth (formerly the Linea Stack) is comprised of several broad classes of components:
+Lineth is comprised of several broad classes of components:
 
 - [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/evaluate/deployment-models), node services may be configured to be private or semi-private.
 - [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks.
@@ -117,10 +120,9 @@ they are explicitly designed with upgradeability or administrative controls.
 
 Lineth includes system contracts deployed in two locations:
 
-- **On the finalization layer:** The finalization contract validates
-  [zk-SNARK](../../protocol/reference/zero-knowledge-glossary.mdx#zk-snark-zero-knowledge-succinct-non-interactive-argument-of-knowledge)
-  proofs and records finalized state roots. This contract must be deployed on the
-  [finalization layer](../../stack/deployment/data-availability-finalization.mdx).
+- **On the finalization layer:** The finalization contract validates <GlossaryTerm term="zk-SNARK" /> proofs and
+  records finalized state roots.
+  This contract must be deployed on the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
 - **On the deployed network itself:** Application-specific contracts are deployed on the network
   instance to enable token issuance, workflow automation, and other network-specific functionality.
@@ -166,7 +168,7 @@ How data availability is handled depends on the
 Another blockchain may provide data availability, operators may run nodes specifically for data
 availability, or they may leverage third-party data availability providers.
 
-- Private Validium: Data stored offchain with private node set; no onchain data posting
+- <GlossaryTerm term="Validium">Private validium</GlossaryTerm>: Data stored offchain with private node set; no onchain data posting
 - Public Mainnet: Data posted to finalization layer using EIP-4844 blobs
 
 For details on data availability and choices around finalization layers, see
@@ -196,7 +198,7 @@ consensus clients communicate via the Engine API.
 
 Full nodes may maintain complete network state and can be configured to participate in consensus, in which case they are referred to as validator nodes:
 
-- **Validator nodes:** Participate in Quorum-Based Byzantine Fault Tolerance (QBFT) consensus.
+- **Validator nodes:** Participate in <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus.
 - **Full nodes:** Maintain full chain state, verify blocks, and serve [RPC requests](#rpc-nodes). Full nodes do not necessarily participate in consensus.
 
 #### RPC nodes
@@ -206,8 +208,9 @@ RPC nodes expose JSON-RPC APIs to applications and users. They may be optimized 
   recent state or configured as
 [archive nodes](./rpc-services.mdx#archive-nodes) for historical queries.
 
-RPC nodes may be also be deployed behind load balancers and access controls (Role-Based Access control (RBAC))
-for [private networks](../../stack/evaluate/deployment-models.mdx#private-validium).
+RPC nodes may be also be deployed behind load balancers and access controls
+(<GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>) for
+[private networks](../../stack/evaluate/deployment-models.mdx#private-validium).
 
 ## Transaction lifecycle
 

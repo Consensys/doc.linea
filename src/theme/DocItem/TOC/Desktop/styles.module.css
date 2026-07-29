@@ -18,6 +18,17 @@
 .scrollArea {
   overflow-y: auto;
   min-height: 0;
+  /* flex-grow lets this region fill the remaining space in the .root flex
+     column (bounded by .root's max-height) instead of hugging its own content
+     height. Not required for internal scrolling itself (min-height: 0 plus
+     overflow-y: auto already give this item an automatic min size of 0, so it
+     shrinks to fit regardless), but restores the exact sizing behavior this
+     element used to get, before it was scoped to the left docs sidebar only.
+     Padding gives .releaseLink::before (the timeline dot, offset to
+     left: -19px) room to render without being clipped by this container's
+     overflow. */
+  flex: 1 1 auto;
+  padding: 10px 16px;
 }
 
 .list {
