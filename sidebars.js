@@ -421,6 +421,7 @@ const sidebars = {
           id: "protocol/reference/repos",
           label: "Linea repositories",
         },
+        "protocol/reference/trusted-setup",
         "protocol/reference/security-audits",
         {
           type: "doc",
@@ -443,17 +444,6 @@ const sidebars = {
       label: "How to",
       collapsible: false,
       items: [
-        {
-          type: "doc",
-          id: "protocol/reference/repos",
-          label: "Linea repositories",
-        },
-        "protocol/reference/trusted-setup",
-        {
-          type: "doc",
-          id: "protocol/reference/zero-knowledge-glossary",
-          label: "Glossary",
-        },
         "protocol/how-to/forced-transactions",
       ],
     },
