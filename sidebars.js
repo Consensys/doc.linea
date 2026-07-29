@@ -374,11 +374,6 @@ const sidebars = {
           ],
         },
         {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
-        },
-        {
           type: "category",
           label: "Prover",
           collapsible: true,
@@ -396,8 +391,6 @@ const sidebars = {
             "protocol/architecture/prover/trusted-setup",
           ],
         },
-        "protocol/architecture/smart-contracts",
-        "protocol/architecture/coordinator",
         {
           type: "category",
           label: "Interoperability",
@@ -409,12 +402,19 @@ const sidebars = {
             "protocol/architecture/interoperability/canonical-message-service",
           ],
         },
+        "protocol/architecture/coordinator",
+        {
+          type: "doc",
+          id: "protocol/architecture/state-manager",
+          label: "EVM state manager",
+        },
+        "protocol/architecture/smart-contracts",
         "protocol/architecture/rpc-services",
       ],
     },
     {
       type: "category",
-      label: "Reference",
+      label: "Resources",
       collapsible: false,
       items: [
         {
