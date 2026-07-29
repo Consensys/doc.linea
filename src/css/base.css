@@ -49,16 +49,6 @@ abbr:where([title]) {
   text-decoration: underline dotted;
 }
 
-/* :where() keeps this selector's specificity pinned to the bare `a` element
-   (0,0,1), matching :not()'s Selectors Level 4 spec. Without it, the
-   production build's browser-compat CSS processing (needed for the old
-   browsers in our browserslist config, e.g. iOS Safari 11) downlevels the
-   :not() selector list into a chain of individual :not()s. That chain is
-   spec-valid for matching, but it also sums each :not()'s specificity
-   (0,5,1) instead of taking the max, which then outranks the `.theme-doc-markdown a`
-   / `article a` link-styling rules below and silently reintroduces this
-   inherited (usually "none") text-decoration in prod only, not in local dev
-   (`npm start`, which skips that compat pass). */
 a:not(:where(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-contents__link)) {
   font-family: inherit;
   color: var(--linea-link-highlight-color);
