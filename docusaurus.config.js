@@ -169,7 +169,7 @@ const config = {
             docId: "network/index",
             position: "left",
             label: "Linea Mainnet",
-            activeBaseRegex: "^/network/",
+            activeBaseRegex: "^/network(/|$)",
           },
           {
             type: "doc",
