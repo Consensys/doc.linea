@@ -1030,7 +1030,12 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   flex-direction: column !important;
 }
 
-.thin-scrollbar {
+/* Scoped to the left docs sidebar's scroll region only. `.thin-scrollbar` is a
+   shared Docusaurus class also used by the right-hand TOC and by CodeBlock's
+   scroll container; a bare `.thin-scrollbar` selector here previously clobbered
+   the TOC's own `max-height`/`overflow-y`/`position: sticky`, which made long
+   TOCs (like the glossary) unable to scroll within themselves. */
+[class*="sidebarViewport"] .thin-scrollbar {
   background-color: var(--page-background);
   margin: 0;
   padding: 10px 16px;
@@ -1045,37 +1050,47 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
 }
 
 /* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
-.thin-scrollbar::-webkit-scrollbar {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar {
   appearance: none;
   width: 7px;
   background: transparent;
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #ededed;
   border-radius: var(--linea-radius-sm);
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-track {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #2d2d2d;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #d1d1d1;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #4d4d4d;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666;
+}
+
+/* The default right-hand `@theme/TOC` (theme-doc-toc-desktop) also carries the
+   shared `.thin-scrollbar` class, and relied on the padding from the bare
+   `.thin-scrollbar` rule above before it was scoped to the sidebar. Restore
+   just the padding here, without the overflow-y/max-height overrides above,
+   since `@theme/TOC` already manages its own height/scroll behavior and
+   reintroducing those would bring back the glossary TOC scroll bug. */
+.theme-doc-toc-desktop.thin-scrollbar {
+  padding: 10px 16px;
 }
 
 /* Collapse sidebar button fully managed in section 14b below */
@@ -2190,9 +2205,10 @@ details > div > div {
 
 article a,
 .theme-doc-markdown a {
-  color: var(--linea-inline-link-color) !important;
-  text-decoration: none;
-  font-family: 'Atyp Text', sans-serif;
+  color: var(--linea-text-primary) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-family: AtypText, sans-serif;
   font-weight: 400;
   font-size: inherit;
   transition: color 0.2s ease;
@@ -2213,8 +2229,13 @@ article a.submission-button:hover,
 
 article a:hover,
 .theme-doc-markdown a:hover {
-  color: var(--linea-inline-link-hover) !important;
+  color: var(--linea-link-highlight-color) !important;
   opacity: 1;
+}
+
+article a:hover code,
+.theme-doc-markdown a:hover code {
+  color: var(--linea-link-highlight-color) !important;
 }
 
 /* Headings styling per Figma - EXACT specs */
@@ -2285,6 +2306,13 @@ article p {
   color: var(--banner-text);
   line-height: var(--line-height-default);
   margin-bottom: 1rem;
+}
+
+article strong,
+.theme-doc-markdown strong,
+article b,
+.theme-doc-markdown b {
+  font-weight: 600;
 }
 
 /* Lists styling */

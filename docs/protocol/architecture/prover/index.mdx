@@ -5,9 +5,11 @@ sidebar_position: 14
 image: /img/socialCards/trace-expansion-and-proving.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 ## What is it?
 
-The module responsible for generating the final set of data for a zero-knowledge proof, and producing that proof.
+The module responsible for generating the final set of data for a <GlossaryTerm term="Zero-knowledge proof">zero-knowledge proof</GlossaryTerm>, and producing that proof.
 
 ## What does it do?
 
@@ -32,12 +34,12 @@ The prover produces proofs in two stages:
 - Inner proof: recursively reduces the trace into a smaller proof object to make aggregation efficient.
 - Outer proof: is generated with the Consensys-maintained
   [gnark library](../../../protocol/reference/repos.mdx#gnark), further compressing the result into
-  a Zero-Knowledge Succinct Non-interactive Argument of Knowledge (zk-SNARK).
+  a <GlossaryTerm term="zk-SNARK" />.
 
 There are multiple operations involved:
 
 1. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. 
-2. gnark takes in that prepared, or "expanded", trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
+2. gnark takes in that prepared, or "expanded," trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
 
 This provides cryptographic guarantees for state correctness without requiring third parties to
 re-execute transactions. The proof verifies correctness for transaction batches before being accepted by the
