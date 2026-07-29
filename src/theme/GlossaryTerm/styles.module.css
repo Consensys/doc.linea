@@ -3,8 +3,8 @@
   display: inline;
 }
 
-.glossaryTerm {
-  color: var(--linea-text-primary);
+.glossaryTermWrapper .glossaryTerm {
+  color: var(--linea-text-primary) !important;
   text-decoration: underline dotted !important;
   text-underline-offset: 2px;
   cursor: help;
@@ -12,8 +12,8 @@
   font-weight: inherit !important;
 }
 
-.glossaryTerm:hover {
-  color: var(--linea-link-highlight-color);
+.glossaryTermWrapper .glossaryTerm:hover {
+  color: var(--linea-link-highlight-color) !important;
 }
 
 .tooltip {
