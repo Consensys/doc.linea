@@ -16,7 +16,7 @@ import styles from "./styles.module.css";
 const SIDEBAR_SECTIONS = {
   networkSidebar: {
     label: "Linea Mainnet",
-    href: "/network/quickstart",
+    href: "/network",
   },
   stackSidebar: {
     label: "Lineth Stack",
@@ -24,7 +24,7 @@ const SIDEBAR_SECTIONS = {
   },
   protocolSidebar: {
     label: "Protocol",
-    href: "/protocol/quickstart",
+    href: "/protocol",
   },
   referenceSidebar: {
     label: "Reference",

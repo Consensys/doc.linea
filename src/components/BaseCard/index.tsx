@@ -6,17 +6,24 @@ import styles from "./styles.module.css";
 type BaseCardProps = {
   href: string;
   text: string;
+  description?: string;
   image?: string;
 };
 
 export default function BaseCard({
   href,
   text,
+  description,
   image,
 }: BaseCardProps): React.ReactNode {
   return (
     <Link to={href} className={styles.card}>
-      <p className={styles.text}>{text}</p>
+      <div className={styles.content}>
+        <p className={styles.text}>{text}</p>
+        {description ? (
+          <p className={styles.description}>{description}</p>
+        ) : null}
+      </div>
       <div className={styles.arrowButton}>
         <ArrowIcon />
       </div>
