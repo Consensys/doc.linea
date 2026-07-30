@@ -5,14 +5,14 @@ sidebar_position: 2
 image: /img/socialCards/set-up-distributed-sequencing.jpg
 ---
 
-This page covers how to set up and operate Maru in multi-validator mode with
-Quorum-Based Byzantine Fault Tolerance (QBFT) consensus on a Lineth chain.
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-For when to use multi-validator consensus, fault-tolerance scope, topology, and
-latency trade-offs, see
-[Multi-validator consensus](../deployment/distributed-sequencing.mdx).
+This page describes how to set up and operate <GlossaryTerm term="Maru"/> in
+[multi-validator](../deployment/distributed-sequencing.mdx) mode with
+<GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus on a
+<GlossaryTerm term="Lineth" /> chain.
 
-## Before you start
+## Prerequisites
 
 - Confirm that multi-validator Maru fits your deployment goals and that you can
   meet the [topology and latency guidance](../deployment/distributed-sequencing.mdx#topology-recommendations)
@@ -20,20 +20,17 @@ latency trade-offs, see
 - Plan block time using the
   [block-building window formula](../deployment/distributed-sequencing.mdx#block-time-and-latency)
   before you configure validators.
+- Hardware requirements per validator are the same as a current single-validator
+  [Maru deployment](../../network/how-to/run-a-node/maru.mdx).
 
-## Setup
-
-### Prerequisites
-
-Hardware requirements per validator are the same as a current single-validator
-[Maru deployment](../../network/how-to/run-a-node/maru.mdx).
+## Set up and configure validators
 
 Use direct, static peering between validators rather than P2P discovery.
 Indirect routing adds latency and reduces consensus performance.
 
-A key generation script is provided
-([Maru PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator)).
-Generate validator keys in advance, then populate the genesis file with the
+Use Maru's key generation script
+([Maru PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator))
+to generate validator keys in advance, then populate the genesis file with the
 validator addresses.
 
 For multi-party deployments where validators are run by independent operators:
@@ -53,27 +50,23 @@ possible.
 
 :::
 
-### Configuration
-
 A reference K3S setup is available at
 [`lineth-monorepo/maru/chaos-testing`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/chaos-testing).
 For genesis file structure, see the
-[genesis-maru.json template](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
+[`genesis-maru.json` template](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
 
-## Operations
+## Manage the validator set
 
-### Validator set management
-
-Adding or removing a validator on a running chain is done via a scheduled Maru
+You can add or remove a validator on a running chain using a scheduled Maru
 genesis file update. The genesis file is keyed by timestamp (similar to Ethereum
 hard fork schedules: Shanghai, Cancun, Prague), so changes apply at a future
 point all validators agree on.
 
-Procedure:
+To manage the validator set:
 
 1. If the new validator does not yet have a key pair, generate one using the
    [PrivateKeyGenerator](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru/utils#1-privatekeygenerator)
-   tool (see [Prerequisites](#prerequisites)). The new operator keeps the private
+   tool. The new operator keeps the private
    key locally and shares only the public address.
 2. All existing validator operators agree on a future timestamp far enough ahead
    for everyone to update their genesis file in time.
@@ -84,7 +77,7 @@ Procedure:
 This is a coordinated operation, not a runtime config change. There is no
 onchain governance or RPC method to add or remove validators dynamically.
 
-### Monitoring
+## Monitor Maru
 
 Maru exposes Prometheus metrics on its metrics port (configurable, default
 `9545`). Metrics are prefixed with `maru_`. Key metrics for operators:
@@ -105,12 +98,14 @@ histograms break latency down by QBFT phase.
 500ms. This matches the minimum block-building window in
 [Multi-validator consensus](../deployment/distributed-sequencing.mdx#things-to-know-before-deploying).
 
-### Failure modes and recovery
+## Restore lost quorum
 
-- **Single validator down (3 of 4 still active):** consensus continues normally.
-- **Quorum lost (for example, 2 of 4 validators offline):** the chain halts.
-  Recovery options:
-  1. Bring at least one offline validator back online to restore quorum, or
+The following are potential failure modes:
+
+- **Single validator down (3 of 4 still active):** Consensus continues normally.
+- **Quorum lost (for example, 2 of 4 validators offline):** The chain halts.
+  Restore quorum via one of the following:
+  1. Bring at least one offline validator back online.
   2. The remaining operators coordinate a scheduled genesis update to add a new
      validator that is online.
 
@@ -118,18 +113,17 @@ If consensus cannot complete within the configured block time, the protocol
 automatically advances to a missed round and changes the proposer for that slot.
 The affected slot is skipped and the next proposer takes over.
 
-### Upgrades
+## Upgrade validators
 
-Rolling upgrades are supported: with 4 validators, you can take 1 offline at a
+You can apply rolling upgrades: with 4 validators, you can take 1 offline at a
 time without halting consensus. Expect missed rounds during the upgrade window:
 the offline validator's turn to propose blocks will be skipped. For larger
 validator sets, more validators can be taken offline simultaneously, up to the
 `f` failure tolerance.
 
-## Next steps
+## Resources
 
-- Review [Multi-validator consensus](../deployment/distributed-sequencing.mdx)
-  if you still need to validate topology or latency assumptions.
+- [Multi-validator consensus](../deployment/distributed-sequencing.mdx)
 - [Maru repository](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/maru)
 - [Besu QBFT documentation](https://besu.hyperledger.org/private-networks/how-to/configure/consensus/qbft)
   (algorithm background only; Maru manages consensus state independently)
