@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 type ActionCard = {
   text: string;
   href: string;
+  description?: string;
   image?: string;
 };
 

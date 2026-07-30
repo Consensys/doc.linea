@@ -43,7 +43,7 @@ export default function Home(): React.ReactNode {
           Build on <strong>Linea</strong>
         </>
       ),
-      link: "/network/quickstart",
+      link: "/network",
       description: (
         <>Build, launch, and grow your application on Linea Mainnet.</>
       ),
@@ -67,7 +67,7 @@ export default function Home(): React.ReactNode {
           Learn about the <strong>protocol</strong>
         </>
       ),
-      link: "/protocol/quickstart",
+      link: "/protocol",
       description: (
         <>
           Explore how Lineth processes transactions, generates proofs, and

@@ -13,9 +13,18 @@ const SKIPPED_ROUTES = new Set(["/404", "/search"]);
 
 const GROUPS = [
   { title: "Start here", test: (route) => route === "/" },
-  { title: "Network", test: (route) => route.startsWith("/network/") },
-  { title: "Protocol", test: (route) => route.startsWith("/protocol/") },
-  { title: "Stack", test: (route) => route.startsWith("/stack/") },
+  {
+    title: "Network",
+    test: (route) => route === "/network" || route.startsWith("/network/"),
+  },
+  {
+    title: "Protocol",
+    test: (route) => route === "/protocol" || route.startsWith("/protocol/"),
+  },
+  {
+    title: "Stack",
+    test: (route) => route === "/stack" || route.startsWith("/stack/"),
+  },
   {
     title: "Reference",
     test: (route) =>

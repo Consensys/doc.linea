@@ -554,8 +554,8 @@ a.navbar__brand {
 
 /* Dot indicators for navbar items - EXACT Figma specs */
 /* Use href-based selectors since Docusaurus doesn't pass through custom data attributes */
-.navbar__link[href="/network/quickstart"]::before,
-.navbar__link[href="/protocol/quickstart"]::before,
+.navbar__link[href="/network"]::before,
+.navbar__link[href="/protocol"]::before,
 .navbar__link[href="/stack"]::before,
 .navbar__link[href="/reference"]::before,
 .navbar__link[href="/changelog/release-notes"]::before,
@@ -572,8 +572,8 @@ a.navbar__brand {
   background-color: transparent;
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"]::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/network"]::before,
+[data-theme="dark"] .navbar__link[href="/protocol"]::before,
 [data-theme="dark"] .navbar__link[href="/stack"]::before,
 [data-theme="dark"] .navbar__link[href="/reference"]::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before,
@@ -582,8 +582,8 @@ a.navbar__brand {
 }
 
 /* ONLY when active, fill the dot */
-.navbar__link[href="/network/quickstart"].navbar__link--active::before,
-.navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+.navbar__link[href="/network"].navbar__link--active::before,
+.navbar__link[href="/protocol"].navbar__link--active::before,
 .navbar__link[href="/stack"].navbar__link--active::before,
 .navbar__link[href="/reference"].navbar__link--active::before,
 .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
@@ -591,8 +591,8 @@ a.navbar__brand {
   background-color: var(--linea-brand-navy);
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"].navbar__link--active::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/network"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/protocol"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/stack"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/reference"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
@@ -610,8 +610,8 @@ a.navbar__brand {
   color: white !important;
 }
 
-.navbar__link[href="/network/quickstart"]:hover::before,
-.navbar__link[href="/protocol/quickstart"]:hover::before,
+.navbar__link[href="/network"]:hover::before,
+.navbar__link[href="/protocol"]:hover::before,
 .navbar__link[href="/stack"]:hover::before,
 .navbar__link[href="/reference"]:hover::before,
 .navbar__link[href="/changelog/release-notes"]:hover::before,
@@ -619,8 +619,8 @@ a.navbar__brand {
   background-color: var(--linea-brand-navy);
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"]:hover::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/network"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/protocol"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/stack"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/reference"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before,
@@ -630,8 +630,8 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/network/quickstart"]::before,
-  .navbar__link[href="/protocol/quickstart"]::before,
+  .navbar__link[href="/network"]::before,
+  .navbar__link[href="/protocol"]::before,
   .navbar__link[href="/stack"]::before,
   .navbar__link[href="/reference"]::before,
   .navbar__link[href="/changelog/release-notes"]::before,
