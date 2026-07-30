@@ -372,11 +372,6 @@ const sidebars = {
           ],
         },
         {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
-        },
-        {
           type: "category",
           label: "Prover",
           collapsible: true,
@@ -391,10 +386,9 @@ const sidebars = {
             },
             "protocol/architecture/prover/proving",
             "protocol/architecture/prover/prover-limits",
+            "protocol/architecture/prover/trusted-setup",
           ],
         },
-        "protocol/architecture/smart-contracts",
-        "protocol/architecture/coordinator",
         {
           type: "category",
           label: "Interoperability",
@@ -406,12 +400,19 @@ const sidebars = {
             "protocol/architecture/interoperability/canonical-message-service",
           ],
         },
+        "protocol/architecture/coordinator",
+        {
+          type: "doc",
+          id: "protocol/architecture/state-manager",
+          label: "EVM state manager",
+        },
+        "protocol/architecture/smart-contracts",
         "protocol/architecture/rpc-services",
       ],
     },
     {
       type: "category",
-      label: "Reference",
+      label: "Resources",
       collapsible: false,
       items: [
         {
@@ -511,13 +512,13 @@ const sidebars = {
       label: "Build and test",
       collapsible: false,
       items: [
-        "stack/how-to/run-lineth-stack-sepolia",
+        "stack/how-to/run-local-lineth-stack",
         {
           type: "doc",
-          id: "stack/how-to/distributed-sequencing",
-          label: "Configure distributed sequencing",
+          id: "stack/how-to/set-up-distributed-sequencing",
+          label: "Set up distributed sequencing",
         },
-        "stack/how-to/forced-transactions",
+        "stack/how-to/enable-forced-transactions",
       ],
     },
   ],
