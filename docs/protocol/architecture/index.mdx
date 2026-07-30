@@ -10,12 +10,10 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 L3 networks, scaling Ethereum by providing an Ethereum-equivalent execution environment.
 
 <GlossaryTerm term="Operator">Operators</GlossaryTerm> and network designers configure their stack to shape
-protocol behavior and trust assumptions, for example:
+protocol behavior and trust assumptions, for example, choosing the
+[data availability and finalization](../../stack/deployment/data-availability-finalization.mdx) design.
 
-  - Finalization layer: affects settlement and security
-  - Data availability layer: affects privacy and state reconstruction
-
-The following represents one of many possible configurations for a network built on Lineth:
+The following represents a possible configuration for a network built on Lineth:
 
 <div className="responsive-graphic">
   <picture>
@@ -31,59 +29,80 @@ The following represents one of many possible configurations for a network built
       src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
       alt={
         "Lineth architecture diagram showing validator and full nodes, RPC services, " +
-        "internal protocol services, and finalization to Ethereum. This section details those components shown in this image and how they define the protocol's behavior and guarantees: What runs where, Core components, Maru, Linea Besu, Internal protocol services, Sequencer, Coordinator, Prover, State manager, Tracer, Transaction lifecycle, Onchain system contracts, Auxiliary services, Block explorer, Web3Signer, Data availability, Network topology, Full nodes, RPC nodes, Next steps"
+        "internal protocol services, and finalization to Ethereum. This section details those components shown in this image and how they define the protocol's behavior and guarantees: Components overview, Nodes, Consensus client Maru, Execution clients, Linea Besu, RPC nodes, Internal protocol services, Sequencer, Coordinator, Prover, State manager, Tracer, Onchain system contracts, Auxiliary services, Block explorer, Web3Signer, Data availability, Transaction lifecycle, Next steps"
       }
     />
   </picture>
 </div>
 
-:::tip[Mainnet]
+:::note Mainnet example
 
-The example configuration matches that of [Linea's Public Mainnet](/network). While this
+This example configuration represents [Linea Mainnet](/network). While the Lineth
 <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> protocol is agnostic to the finalization
 layer (it's unopinionated on where proofs are written), this configuration finalizes transactions by submitting
 proofs to Ethereum Mainnet and temporarily making data available there.
 
 :::
 
-## What runs where in Lineth?
+## Components overview
 
 Lineth is comprised of several broad classes of components:
 
-- [Nodes](#network-topology): A fully-public network provides externally reachable nodes. In other [deployment types](../../stack/evaluate/deployment-models), node services may be configured to be private or semi-private.
-- [Internal protocol services](#internal-protocol-services): While these are plugins to or components of Linea Besu nodes, traffic between these services remains within the operator’s trusted network boundary and does not traverse public networks.
+- [Nodes](#nodes): A fully public network provides externally reachable nodes. In other [deployment types](../../stack/evaluate/deployment-models), node services may be configured to be private or semi-private.
+- [Internal protocol services](#internal-protocol-services): While these are plugins to or components of <GlossaryTerm term="Linea Besu"/> nodes, traffic between these services remains within the operator's trusted network boundary and does not traverse public networks.
 - [Smart contracts](#onchain-system-contracts): Versioned onchain contracts, with immutability or
   upgrade controls depending on deployment.
 - [Auxiliary services](#auxiliary-services):
-  - Block explorer: While theoretically optional, explorer data simplifies transaction building, auditing, and troubleshooting.
+  - Block explorer: While this is optional, explorer data simplifies transaction building, auditing, and troubleshooting.
   - Web3Signer: Secure signing service ensuring that nodes may sign without revealing keys.
 
-## Core components
+## Nodes
 
-Lineth consists of the following core components. Each component has a clear operational
-responsibility and deployment footprint.
+Every Lineth node runs two clients: an execution client, which executes transactions and
+maintains EVM state, and the consensus client, [Maru](../reference/repos.mdx#maru), which
+orders blocks and propagates them to peers. The two communicate over the standard Ethereum
+[Engine API](https://github.com/ethereum/execution-apis/blob/main/src/engine/common.md).
 
-As an EVM-compatible system, Lineth uses a dual-layer architecture with separate consensus and execution layers.
+Any node can also expose [JSON-RPC](./rpc-services.mdx) to serve applications, users, or internal
+services, either publicly or only within the operator's network.
 
 ### Consensus client: Maru
 
-[Maru](../reference/repos.mdx#maru), the consensus client, runs on validator nodes to:
+[Maru](../reference/repos.mdx#maru) implements
+<GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus and runs
+on every node, in one of two roles:
 
-  - Coordinate block production with the execution layer
-  - Manage validator sets and consensus participation
-  - Provide P2P networking for block propagation
-  - Expose API endpoints for monitoring and control
+- **Validator:** Proposes and votes on blocks as part of the QBFT validator set. Maru requests a
+  payload from its execution client, then signs and broadcasts the resulting block.
+- **Follower:** Receives blocks from peers and passes them to its execution client for execution,
+  without voting.
+
+In both roles, Maru manages validator sets, provides P2P block propagation, and exposes API
+endpoints for monitoring and control.
 
 ### Execution client: Linea Besu
 
-The execution layer client, [Linea Besu](../reference/repos.mdx#linea-besu-upstream), executes
-transactions and maintains the EVM state. It works in coordination with Maru, making a [full node](#full-nodes).
+Any Ethereum execution client that implements the Engine API can serve as a Lineth execution client
+and integrate with Maru, including Linea Besu, Besu, Geth, Erigon, and Nethermind.
+This promotes client diversity and compatibility with existing Ethereum node tooling and infrastructure.
 
-### Internal protocol services
+[Linea Besu](../reference/repos.mdx#linea-besu-upstream) is a distribution of
+[Besu](https://docs.besu-eth.org/) that bundles several Lineth-specific plugins with preset startup profiles.
+These plugins implement the protocol functions that a standard Ethereum client doesn't provide: trace
+generation for the <GlossaryTerm term="Prover">prover</GlossaryTerm>, Lineth block-building rules,
+<GlossaryTerm term="State manager">state manager</GlossaryTerm> integration, and the `linea_` RPC namespace.
+
+The <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> and
+<GlossaryTerm term="Tracer">trace generation</GlossaryTerm> depend on those plugins, so those roles require Linea
+Besu. Nodes that follow the chain or serve standard Ethereum JSON-RPC can run any execution client.
+For the full plugin set and its configuration, see the
+[Linea Besu plugin reference](../../stack/reference/linea-besu-plugin-options.mdx).
+
+## Internal protocol services
 
 Internal protocol services are required for proof generation and finalization.
 
-#### Sequencer
+### Sequencer
 
 The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Lineth rules. Typically deployed as a protected internal service.
 
@@ -95,24 +114,25 @@ Because the Besu Execution Layer (EL) client is fully extensible with plugins, o
 
 :::
 
-#### Coordinator
+### Coordinator
 
 The [coordinator](./coordinator.mdx) orchestrates batching, proof generation, and
 submission to the finalization layer.
 
-#### Prover
+### Prover
 
 The [prover](./prover/index.mdx) generates zk-SNARK proofs for state transitions. Provers may be
 scaled horizontally to meet throughput requirements. The Lineth proving architecture is also
 evolving toward [guest-program-based proof generation](./prover/risc-v-overview.mdx) with RISC-V.
 
-#### State manager
+### State manager
 
 The [state manager](./state-manager.mdx) maintains a state representation optimized for proof generation and recovery.
 
-#### Tracer
+### Tracer
 
 The [trace generator](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.
+
 ## Onchain system contracts
 
 Smart contracts execute small programs according to EVM rules. Once deployed, they are immutable unless
@@ -129,7 +149,7 @@ Lineth includes system contracts deployed in two locations:
 
 - **On both layers:** Bridge contracts are deployed on both the destination chain and the deployed network to enable cross-chain token transfers and message passing.
 
-See more about the system contracts: [smart contracts](./smart-contracts.mdx).
+For more information about the system contracts, see [Smart contracts](./smart-contracts.mdx).
 
 ## Auxiliary services
 
@@ -161,73 +181,37 @@ Data availability is crucial in preserving and providing access to transaction d
 state of the network. While zk-SNARK proofs ensure the correctness of state transitions, data availability is the guarantee that the transaction data underlying these proofs remains accessible to anyone who
 wants to verify or reconstruct the historical state.
 
-:::info Data availability
+:::note Data availability by deployment
 
 How data availability is handled depends on the
 [deployment model](../../stack/evaluate/deployment-models.mdx) of the network.
-Another blockchain may provide data availability, operators may run nodes specifically for data
-availability, or they may leverage third-party data availability providers.
+The network may rely on another blockchain or third-party service to provide data availability, or
+operators may run nodes specifically for data availability.
 
 - <GlossaryTerm term="Validium">Private validium</GlossaryTerm>: Data stored offchain with private node set; no onchain data posting
-- Public Mainnet: Data posted to finalization layer using EIP-4844 blobs
+- Public deployment: Data posted to finalization layer using EIP-4844 blobs
 
-For details on data availability and choices around finalization layers, see
-[data availability and finalization](../../stack/deployment/data-availability-finalization.mdx).
+See [Data availability and finalization](../../stack/deployment/data-availability-finalization.mdx) for
+more information.
 
 :::
-
-## Network topology
-
-Network topology can be customized to suit the [deployment model](../../stack/evaluate/deployment-models.mdx), for
-example:
-
-- [Public networks](../../stack/evaluate/deployment-models#public): Data availability is onchain, and components interact with public infrastructure.
-
-- [Private networks](../../stack/evaluate/deployment-models#private-validium): Components are run within controlled infrastructure. Data availability and access controls are enforced.
-
-### Full nodes
-
-Full nodes are composed of an execution layer client such as
-[Linea Besu](../../network/how-to/run-a-node/linea-besu.mdx#run-using-docker) or [Geth](../../network/how-to/run-a-node/geth.mdx),
-and the consensus layer [Maru](../../network/how-to/run-a-node/maru.mdx). On the public network
-today, block production is handled by Linea-operated sequencer infrastructure using Linea Besu with
-the Linea sequencer plugin, paired with Maru. Linea Besu builds the execution payload, while the
-sequencer plugin applies Linea-specific block-building rules and Maru handles consensus, signing,
-and broadcasting. Non-sequencer full nodes follow the chain and can serve RPC. The execution and
-consensus clients communicate via the Engine API.
-
-Full nodes may maintain complete network state and can be configured to participate in consensus, in which case they are referred to as validator nodes:
-
-- **Validator nodes:** Participate in <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus.
-- **Full nodes:** Maintain full chain state, verify blocks, and serve [RPC requests](#rpc-nodes). Full nodes do not necessarily participate in consensus.
-
-#### RPC nodes
-
-RPC nodes expose JSON-RPC APIs to applications and users. They may be optimized for
-[near-head](./rpc-services.mdx#near-head-nodes) access, that is for low-latency access to
-  recent state or configured as
-[archive nodes](./rpc-services.mdx#archive-nodes) for historical queries.
-
-RPC nodes may be also be deployed behind load balancers and access controls
-(<GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>) for
-[private networks](../../stack/evaluate/deployment-models.mdx#private-validium).
 
 ## Transaction lifecycle
 
 These architectural components support transactions from submission to finalization.
 
-1. Submission: transactions enter the mempool via the RPC entrypoint of a [full node](#full-nodes).
-2. Block building: the [sequencer](./sequencer/index.mdx) validates, orders, and executes transactions into blocks, enforcing Lineth [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
-3. State tracking: the [state manager](./state-manager.mdx) updates the state representation;
-   the [tracer](./sequencer/traces-generator.mdx) generates traces.
-4. Conflation: the [coordinator](./coordinator.mdx) groups blocks into batches.
-5. Proof and blob generation: the [prover](./prover/index.mdx) generates execution proofs for batches and the [coordinator](./coordinator.mdx) combines batches into blobs;
-the [prover](./prover/index.mdx) generates compression proofs.
+1. Submission: Transactions enter the mempool via the RPC entrypoint of a node.
+2. Block building: The sequencer validates, orders, and executes transactions into blocks, enforcing Lineth [validity conditions](./sequencer/index.mdx#transaction-validity-conditions) including a profitability threshold.
+3. State tracking: The state manager updates the state representation;
+   the tracer generates traces.
+4. Conflation: The coordinator groups blocks into batches.
+5. Proof and blob generation: The prover generates execution proofs for batches and the coordinator combines batches into blobs;
+the prover generates compression proofs.
 6. Data submission: Lineth contracts define three data-submission models:
-   - Compressed data submitted as EIP-4844 blobs. Supported by the Coordinator. Requires the rollup to support the `IAcceptEip4844Blobs` interface.
-   - Compressed data submitted as calldata. The current Coordinator does not provide a calldata submitter. Requires the rollup to support the `IAcceptCalldataBlobs` interface.
-   - Shnarf-only submission for [private validium deployments](../../stack/evaluate/validium), without publishing the compressed batch data to the finalization layer. Supported by the Coordinator. Requires the validium to support the `IAcceptShnarfData` interface.
-7. Finalization: the [coordinator](./coordinator.mdx) submits proofs to the finalization
+   - Compressed data submitted as EIP-4844 blobs. Supported by the coordinator. Requires the rollup to support the `IAcceptEip4844Blobs` interface.
+   - Compressed data submitted as calldata. The current coordinator does not provide a calldata submitter. Requires the rollup to support the `IAcceptCalldataBlobs` interface.
+   - Shnarf-only submission for <GlossaryTerm term="Validium">private validium</GlossaryTerm> deployments, without publishing the compressed batch data to the finalization layer. Supported by the coordinator. Requires the validium to support the `IAcceptShnarfData` interface.
+7. Finalization: The coordinator submits proofs to the finalization
 layer; after verification and any configured delay, transactions reach hard finality on the selected
 finalization layer.
 

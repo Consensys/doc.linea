@@ -354,7 +354,7 @@ const sidebars = {
         {
           type: "doc",
           id: "protocol/architecture/index",
-          label: "Core components",
+          label: "Overview",
         },
         {
           type: "category",

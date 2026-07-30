@@ -1,6 +1,8 @@
 ---
 title: Canonical message service
-description: How Lineth's canonical message service passes arbitrary messages between networks.
+description: >-
+  How Lineth's canonical message service passes arbitrary messages between
+  networks.
 sidebar_position: 9
 image: /img/socialCards/canonical-message-service.jpg
 ---
@@ -18,15 +20,15 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 
 ## What is it?
 
-The canonical message service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between Linea and other networks.
+The canonical message service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between a <GlossaryTerm term="Lineth" /> network and other networks.
 
 ## What does it do?
 
 If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The canonical message service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
 
-One of the most important things that the message service transfers is information about the current state of the Ethereum network, from Ethereum to Linea, and in return, an updated [Merkle tree](../state-manager.mdx#merkle-trees) and a <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> from Linea to Ethereum, every time Linea reports back about activity on the network. In other words, the canonical message service transmits the rollup data.
+One of the most important things that the message service transfers is information about the current state of the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>, from that layer to the Lineth network, and in return, an updated [Merkle tree](../state-manager.mdx#merkle-trees) and a <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> from the network back to the finalization layer, every time the network reports back about its activity. In other words, the canonical message service transmits the rollup data.
 
-However, the service is not limited or restricted to use by Linea's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
+However, the service is not limited or restricted to use by the network's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
 
 <div class="center-container">
   <div class="img-large">
@@ -39,15 +41,15 @@ However, the service is not limited or restricted to use by Linea's core functio
 
 ## How does it do it?
 
-The canonical message service consists of three main elements: two smart contracts, and the postman service in between. As you may have guessed already, the smart contracts are [on Linea and Ethereum](../../../network/build/send-receive-messages.mdx#contracts), and are almost exactly the same. They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+The canonical message service consists of three main elements: two smart contracts, and the postman service in between. One smart contract is deployed on the Lineth network and one on the finalization layer, and they are almost exactly the same. On Linea Mainnet, these are the [contracts on Linea and Ethereum](../../../network/build/send-receive-messages.mdx#contracts). They allow for ETH to be minted on the target network, for example, though they are not limited to that.
 
 A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the postman.
 
-The postman service is currently centralized, but will be decentralized. The postman "listens" for calls being made to one of the contracts, either on Linea or Ethereum, and passes the submitted information to the other network.
+The postman service is currently centralized, but will be decentralized. The postman "listens" for calls being made to one of the contracts, either on the network or the finalization layer, and passes the submitted information to the other network.
 
 Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users can either choose to manually _pull_ the transferred assets out of the destination end of the bridge, or pay up-front and allow the assets to be _pushed_ directly to the destination address.
 
-There's an additional layer of logic, though, which serves to ensure that the message delivered to the L2 is valid. Essentially, a message is sent from Ethereum, relayed through the message service, and is delivered to the Linea smart contract. That smart contract checks the message received against the list of messages sent on the Ethereum side, verifies that it exists on the L1, and only then accepts it as a valid message:
+There's an additional layer of logic, though, which serves to ensure that the message delivered to the Lineth network is valid. Essentially, a message is sent from the finalization layer, relayed through the message service, and is delivered to the smart contract on the network. That smart contract checks the message received against the list of messages sent on the finalization layer side, verifies that it exists there, and only then accepts it as a valid message:
 
 <div class="center-container">
   <div class="img-large">

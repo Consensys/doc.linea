@@ -5,6 +5,8 @@ sidebar_position: 2
 image: /img/socialCards/evm-state-manager.jpg
 ---
 
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 ## What is it?
 
 The state manager consists of a Besu node with [Shomei](../../protocol/reference/repos.mdx#shomei)
@@ -47,7 +49,7 @@ mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethere
 efficiently track, manage, and update storage slots representing accounts. 
 
 It then passes this updated network state information to the [prover](./prover/index.mdx) 
-in the form of Merkle proofs for submission to Ethereum Mainnet (L1). 
+in the form of Merkle proofs for submission to the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>. 
 
 Below, we'll explain the element of Lineth state management in greater detail, focussing on the
 SMT configuration that sets Lineth apart.
@@ -80,14 +82,14 @@ Cryptographic hashes are deterministic, which means you can reverse the hash fun
 data which it encoded. If you have the hash of the root—the only node without a parent—you can 
 theoretically derive from it the data of any node in the entire tree. 
 
-As a layer 2 (L2) network, Linea is in the business of making transacting faster and more efficient.
-Linea implements a sparse Merkle tree to track account state and generate and store proofs, and 
+As a rollup stack, Lineth is in the business of making transacting faster and more efficient.
+Lineth implements a sparse Merkle tree to track account state and generate and store proofs, and 
 unlock greater efficiency when compared to standard Merkle trees, which require recomputation for 
 every block, leading to excessive computational demands.
 
 ### Sparse Merkle trees
 
-Linea's state management uses sparse Merkle trees to minimize computation and contribute to the 
+Lineth's state management uses sparse Merkle trees to minimize computation and contribute to the 
 blockchain's efficiency. 
 
 A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf nodes are filled 
@@ -126,18 +128,18 @@ correspond to _non-empty_ subtrees.
 
 ## Cryptographic accumulator
 
-In this context, we can consider Linea's sparse Merkle tree as a type of "cryptographic 
+In this context, we can consider Lineth's sparse Merkle tree as a type of "cryptographic 
 accumulator". A cryptographic accumulator is a type of cryptographic primitive encoding a collection 
 of items into very short strings and allowing read/write operations to be proven. Merkle trees and 
 sparse Merkle trees are elementary examples of accumulators but there are others with more powerful 
 capabilities.
 
-Linea's state manager uses an extended version of a sparse Merkle tree that enables it to prove all 
+Lineth's state manager uses an extended version of a sparse Merkle tree that enables it to prove all 
 CRUD (create, read, update, delete) operations for a key-addressed database. As an outline, the 
 construction uses a sparse Merkle tree to store the nodes of a sorted doubly-linked list that 
 encodes all the non-zero items of the state.
 
-Linea's state manager uses the accumulator to track the account trie of Linea but also the storage 
+Lineth's state manager uses the accumulator to track the network's account trie but also the storage 
 of every contract separately.
 
 The leaves of the tree have the following structure: `prev || next || hKey || hVal`.
@@ -162,7 +164,7 @@ All leaves in the tree are populated with default/zero values at initialization.
 deterministic hashing function will ensure that these leaves are always represented by the same 
 hash, empty leaves can be easily recognized by the accumulator. 
 
-However, in order for the state manager to update a storage slot with data about a Linea account's 
+However, in order for the state manager to update a storage slot with data about an account's 
 contents, it must know which empty leaf to overwrite, and exactly where these empty leaves are. A 
 further consideration is that we require the index of any 'new' leaf—an empty leaf being updated 
 so that it stores data—to be overwritten in a deterministic way. This requirement means that anyone 
@@ -179,7 +181,7 @@ The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a [M
 - World state, which keeps track of accounts, and;
 - Account storage state (or simply 'storage'), which keeps track of the contents of each account. 
 
-On Linea, we adapt this structure. The Merkle-Patricia Trie is still used for world state, but the
+Lineth adapts this structure. The Merkle-Patricia Trie is still used for world state, but the
 custom cryptographic accumulator described above is used for account storage state.
 
 The accumulator can perform the following operations:
@@ -200,7 +202,7 @@ These operations are applied to two trees; [world state](#world-state) and [acco
 
 The world state tree maps all accounts that exist on the blockchain—contracts and externally-owned 
 accounts (EOAs)—and points towards the account storage state for each. While on Ethereum Mainnet,
-this data is stored in a standard trie, Linea uses the accumulator to map accounts as key:value 
+this data is stored in a standard trie, Lineth uses the accumulator to map accounts as key:value 
 pairs. Otherwise, the implementation is similar to the EVM.
 
 Their structure is as follows:
@@ -209,7 +211,7 @@ Their structure is as follows:
 - `Val`: Hash(`nonce`, `balance`, `storageRoot`, `codeHash`, `keccakCodeHash`, `CodeSize`)
 
 Critically, every piece of data fed into the `Val` (value) hash function must have a finite field
-interpretation. The data must be formatted this way to enable the Linea prover to correctly 
+interpretation. The data must be formatted this way to enable the prover to correctly 
 access the world state when verifying proofs. Each element is formatted as follows (all elements
 require one field, other than `keccakCodeHash`):
 
@@ -246,7 +248,7 @@ In both cases, the `MSB` refers to the first 16 bytes of a 'word', and `LSB` the
 this context refers to the natural unit of data used by the EVM, which is 256-bit (32 byte) chunks. 
 
 For example, if the data regarding a contract's code was encoded in a `byte32`, the standard data
-type for words on the EVM and equivalents like Linea, it might look like this:
+type for words on EVM-equivalent environments, it might look like this:
 ```
 [a0, a1, a2, …., a15, b0, b1, …, b15]
 ```

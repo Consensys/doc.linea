@@ -9,7 +9,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 
 ## What is it?
 
-The sequencer is the heart of Linea's execution client, responsible for ordering, building, and executing blocks
+The sequencer is the heart of the <GlossaryTerm term="Lineth" /> execution client, responsible for ordering, building, and executing blocks
 in a way that allows the subsequent <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> to be made.
 
 The sequencer is not directly accessible from outside the network (to prevent DDOS attacks). Instead it's connected to the RPC nodes via P2P.
@@ -20,7 +20,7 @@ The sequencer:
 
 - Receives transactions from the network.
 - Orders and validates transactions.
-- Builds blocks according to Linea's rules.
+- Builds blocks according to Lineth's rules.
 - Enforces transaction limits (trace counts, gas limits, calldata size).
 - Ensures blocks fit within blob size constraints.
 - Executes those blocks.
@@ -28,28 +28,28 @@ The sequencer:
 
 ## How does it do it?
 
-The sequencer is a set of plugins that extends Linea's execution client [Linea Besu](https://github.com/Consensys/linea-besu).
-This implementation of the Besu execution client provides additional functionality to support Linea and its
+The sequencer is a set of plugins that extends the Lineth execution client, [Linea Besu](../../reference/repos.mdx#linea-besu-upstream).
+This implementation of the Besu execution client provides additional functionality to support Lineth and its
 requirements as a <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm>. 
 
-Linea's sequencer takes transactions from the Linea memory pool, and builds them into blocks. Furthermore, it provides data to the [coordinator](../coordinator.mdx), to ensure that 
+The sequencer takes transactions from the memory pool, and builds them into blocks. Furthermore, it provides data to the [coordinator](../coordinator.mdx), to ensure that 
 blocks are made in such a way that they can be proven by the zero-knowledge prover, and that they 
 are as compact as possible--doubly important in a situation where all data has to be written in 
-tiny, costly pieces on Ethereum Mainnet. This is done specifically by subsystems within the 
+tiny, costly pieces on the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>. This is done specifically by subsystems within the 
 sequencer: the [trace generator](./traces-generator.mdx) and [conflator](./conflation.mdx).
 
 :::info
 
 There is typically one sequencer instance per network.
 Although by applying a <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> design,
-Linea could adopt multiple sequencers in a decentralized configuration.
+Lineth could adopt multiple sequencers in a decentralized configuration.
 
 :::
 
 ## Transaction validity conditions
 
 In addition to standard EVM validity checks (signature, nonce, balance, gas limits), the sequencer
-applies a Linea-specific **profitability threshold** during transaction pool admission and
+applies a Lineth-specific **profitability threshold** during transaction pool admission and
 block-building selection. The threshold uses the same gas price calculation described in
 [estimate gas costs](../../../network/how-to/gas-fees.mdx#variable-cost-and-linea_estimategas),
 including the compressed transaction size, gas denominator, fixed/variable costs, and
