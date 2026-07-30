@@ -16,7 +16,7 @@ Deploying appchains on top of L2 networks like Linea offers significant cost and
 
 ### Archive node
 
-A node configured to retain state at every block from genesis, alongside the blocks and transactions themselves, so it can reconstruct chain state at any past block height. Archive nodes trade minimal latency and modest storage requirements for completeness, supporting auditing, forensics, and analytics. Nodes retain only current state and recent history by default.
+A node configured to retain state at every block from genesis, alongside the blocks and transactions themselves, so it can reconstruct chain state at any past block height. Archive nodes trade minimal latency and modest storage requirements for completeness, supporting auditing, forensics, and analytics.
 
 ### Arithmetization
 
@@ -97,7 +97,7 @@ In optimistic rollups, the evidence a verifier provides to question the validity
 
 ### Full node
 
-A node that runs an execution client, such as Linea Besu, paired with the consensus client Maru, and that executes and verifies every block it imports. Lineth has no light or stateless client, so every Lineth node is a full node. A full node whose Maru instance holds a validator key is a validator node.
+A node that runs an execution client, such as Linea Besu, paired with the consensus client Maru, and that executes and verifies every block it imports. A full node that also participates in consensus is called a validator node.
 
 ### gnark
 
