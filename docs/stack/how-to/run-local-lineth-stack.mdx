@@ -7,14 +7,14 @@ sidebar_position: 0
 image: /img/socialCards/run-a-local-lineth-stack.jpg
 ---
 
-The Lineth Stack quickstart starts a local L2 chain, deploys the required
-contracts, and verifies L1 finality through `finalizeBlocks`. A guided wizard
-walks you through the configuration, so you choose how the stack settles to L1
-and how it proves blocks, then start it from a single command.
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-Lineth Stack is the Linea zk-rollup stack documented in this Stack section. This
-quickstart is intended for operators, architects, and engineers evaluating how
-the stack behaves before designing a deeper deployment.
+This quickstart guide walks you through starting a local <GlossaryTerm term="Lineth" /> chain, deploying the required contracts,
+and verifying L1 finality.
+You will choose how the stack settles to L1 and how it proves blocks.
+
+This quickstart is intended for operators, architects, and engineers evaluating how
+the stack behaves before designing a production deployment.
 
 :::caution
 
@@ -27,31 +27,26 @@ quickstart material in production.
 
 ## What this quickstart runs
 
-The quickstart runs a local Lineth Stack L2 with these services. For component
+The quickstart runs a local Lineth Stack <GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> with these services. For component
 details, see [Deployment components](/stack/deployment/core-components).
 
-- Linea Besu sequencer and an L2 Besu RPC follower
-- Maru consensus layer client
-- Shomei state manager
-- Coordinator for batching, proof orchestration, L2 message data anchoring, and
+- Linea Besu <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> and an L2 Besu <GlossaryTerm term="RPC node">RPC follower</GlossaryTerm>
+- <GlossaryTerm term="Maru"/> consensus layer client
+- <GlossaryTerm term="Shomei"/> state manager
+- <GlossaryTerm term="Coordinator"/> for batching, proof orchestration, L2 message data anchoring, and
   submissions
-- Postman for L1-to-L2 and L2-to-L1 message relay
-- Web3Signer for generated runtime signer keys used by Coordinator and Postman
-- Prover for proof generation
+- <GlossaryTerm term="Postman"/> for L1-to-L2 and L2-to-L1 message relay
+- <GlossaryTerm term="Web3Signer"/> for generated runtime signer keys used by the coordinator and Postman
+- <GlossaryTerm term="Prover" /> for proof generation
 - Local L2 Blockscout block explorer, including API backend and frontend
 
 The L2 is always local. What differs between modes is where the stack settles
 its L1 finality: public Sepolia, which is the primary path, or a local
 development L1 that the stack runs for you for easier testing.
 
-## Before you start
+## Prerequisites
 
-Required for all modes. These are quickstart minimums for the monorepo stack:
-
-These requirements are quickstart guidance and may change as the Lineth Stack
-evolves. For the latest values, check the
-[Lineth Stack docs in the monorepo](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/lineth-stack)
-before running the stack.
+The following is required for both Sepolia and local L1 mode:
 
 | Requirement             | Minimum                                               |
 | ----------------------- | ----------------------------------------------------- |
@@ -62,12 +57,18 @@ before running the stack.
 | RAM, partial-proof mode | 32 GB minimum assigned to Docker; 128 GB recommended  |
 | Disk                    | About 30 GB free                                      |
 
-Required only for Sepolia mode:
+The following is required only for Sepolia mode:
 
 | Requirement | Minimum                                                       |
 | ----------- | ------------------------------------------------------------- |
 | Sepolia RPC | Reliable HTTPS endpoint: a paid RPC plan, or your own Sepolia node |
 | Sepolia ETH | Enough for deployment and runtime account top-ups             |
+
+:::note
+These requirements may change as the Lineth Stack
+evolves. See the latest values in the
+[monorepo](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/lineth-stack).
+:::
 
 For the normal quickstart flow, you do not need host Node.js, pnpm, Foundry, or
 Gradle; the required tooling runs in Docker.
@@ -76,7 +77,9 @@ The Lineth prover image is `linux/amd64` only. On Apple Silicon, choose the
 Dev proofs prover mode, which is the default. Partial proving is much slower on
 M-series machines.
 
-## Configure and start the stack
+## Steps
+
+### 1. Configure and start the stack
 
 Clone the [Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo),
 then run the wizard:
@@ -87,7 +90,7 @@ cd lineth-monorepo/docs/getting-started/lineth-stack
 ./scripts/start.sh --wizard
 ```
 
-The wizard is the recommended way to configure the quickstart. It asks a short
+The wizard asks a
 series of questions, writes your `.env` file, and can start the stack for you. If
 a `.env` file already exists, the wizard backs it up before making changes.
 
@@ -112,7 +115,7 @@ runtime wallets, Web3Signer key config, L2 genesis, and service configuration,
 pulls Docker images, starts services, deploys contracts, prints links, waits for
 first finality, and prints the result.
 
-### Choose your L1 mode
+#### Choose your L1 mode
 
 Both modes exercise L1 finality. Sepolia is the primary path, since it settles
 against public Sepolia and exercises real public L1 finality. Local L1 is
@@ -132,7 +135,7 @@ offered for ease of testing when you want a faster, self-contained run.
   mode. Local L1 mode has no Etherscan and no public settlement; bridge and
   finality flows still run against contracts deployed on the local L1.
 
-### Fund the deployer in Sepolia mode
+#### Fund the deployer in Sepolia mode
 
 On a clean Sepolia checkout, the first start generates an encrypted deployer
 keystore under `artifacts/accounts/deployer-keystore/`, prints the generated
@@ -147,7 +150,7 @@ Fund that generated Sepolia address, then start again:
 
 Keep the terminal open until it reports that first L1 finalization was observed.
 
-## Verify first finality
+### 2. Verify first finality
 
 After first finality, check status and links:
 
@@ -178,7 +181,7 @@ contract, that selector corresponds to
 `finalizeBlocks(bytes,uint256,FinalizationDataV4)`. Etherscan may display the
 struct argument as `tuple` because Solidity structs are ABI-encoded as tuples.
 
-## Optional: Run traffic and bridge smokes
+### 3. (Optional) Run traffic and bridge smokes
 
 Local L2 traffic and bridge smoke scripts are optional verification steps after
 first finality.
@@ -215,7 +218,7 @@ These scripts cover generic message relay in both directions and ERC20
 TokenBridge deposit and withdrawal. They do not test ETH withdrawals. In Sepolia
 mode, bridge smokes spend real Sepolia gas.
 
-## Generated files
+### 4. Generated files
 
 The quickstart writes generated runtime files under `artifacts/`. These include
 generated wallets, Web3Signer key config, L2 genesis files, rendered service
@@ -225,7 +228,7 @@ Do not edit these files manually during a normal run. Use `./scripts/reset.sh`
 to regenerate them. Keep `.env` as the single runtime config file, and do not
 commit `.env` or files under `artifacts/`.
 
-## Export evidence
+### 5. Export evidence
 
 Export a local support bundle when you need files to share or archive:
 
@@ -237,7 +240,7 @@ The command writes `lineth-output/`, including addresses, useful links, finality
 status, smoke-test status if smoke tests were run, deploy logs, and timing
 evidence. The output directory is ignored by git.
 
-## Stop or reset
+### 6. Stop or reset
 
 Stop the stack while keeping state:
 
@@ -262,7 +265,9 @@ default, so funded test ETH is not stranded by routine local resets. Use
 `./scripts/reset.sh --forget-deployer` only when you intentionally want a new
 generated Sepolia deployer.
 
-## Advanced: configure `.env` manually
+## Advanced
+
+### Configure `.env` manually
 
 The wizard is the recommended path, but you can configure the quickstart by hand
 if you prefer to edit `.env` directly or script the setup. Copy the example file,
@@ -294,7 +299,7 @@ ignored. Then start the stack:
 ./scripts/start.sh --tail
 ```
 
-## Advanced debugging
+### Advanced debugging
 
 Use raw Compose logs only when debugging. The official start flow is the wizard
 or `./scripts/start.sh --tail`.
