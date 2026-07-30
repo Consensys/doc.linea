@@ -513,13 +513,13 @@ const sidebars = {
       label: "Build and test",
       collapsible: false,
       items: [
-        "stack/how-to/run-lineth-stack-sepolia",
+        "stack/how-to/run-local-lineth-stack",
         {
           type: "doc",
-          id: "stack/how-to/distributed-sequencing",
-          label: "Configure distributed sequencing",
+          id: "stack/how-to/set-up-distributed-sequencing",
+          label: "Set up distributed sequencing",
         },
-        "stack/how-to/forced-transactions",
+        "stack/how-to/enable-forced-transactions",
       ],
     },
   ],
