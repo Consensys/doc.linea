@@ -51,10 +51,11 @@ When a user deposits ETH into `LineaRollup`, that ETH remains on L1. Surplus
 above the minimum reserve may be staked. Withdrawals back to the user are paid
 from the `L1MessageService` reserve when liquid ETH is available.
 
-- [**`LineaRollup`:**](../../build/contracts#deployed-contracts) L1 bridge and
-  accounting anchor for Yield Boost.
-- **`L1MessageService`:** Holds the withdrawal reserve (unstaked ETH that pays
-  bridge redemptions). Distinct from the `LineaRollup` accounting anchor.
+- [**`LineaRollup` / `L1MessageService`:**](../../build/contracts#deployed-contracts)
+  One deployed `LineaRollup` proxy/address combines both responsibilities.
+  `L1MessageService` is inherited by `LineaRollupBase` and holds the withdrawal
+  reserve (unstaked ETH that pays bridge redemptions); `LineaRollup` also
+  provides the rollup and Yield Boost accounting entry points.
 - **`YieldManager`:** Moves ETH between the `L1MessageService` reserve and the
   `StakingVault`, and calculates net yield after fees and liabilities.
 - **`StakingVault`:** Lido V3 stVault; validator withdrawals return here before
