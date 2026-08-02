@@ -173,16 +173,26 @@ obligations so L2 minting stays matched to L1 collateral growth.
 
 ## Roles and permissions
 
-| Role                            | Held by            | Permissions                                                                                                                         |
-| ------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `YIELD_PROVIDER_STAKING_ROLE`   | Automation Service | Rebalance excess ETH from the `L1MessageService` reserve into the `StakingVault`                                                    |
-| `YIELD_PROVIDER_UNSTAKER_ROLE`  | Automation Service | Rebalance ETH back into the `L1MessageService` reserve                                                                              |
-| `YIELD_REPORTER_ROLE`           | Automation Service | Trigger yield reporting (may settle fees and liabilities from staking rewards)                                                      |
-| `STAKING_PAUSE_CONTROLLER_ROLE` | Security Council   | Pause or resume node operator deposits                                                                                              |
-| `OSSIFICATION_INITIATOR_ROLE`   | Security Council   | Begin permanent shutdown of the staking vault                                                                                       |
-| `OSSIFICATION_PROCESSOR_ROLE`   | Automation Service | Finalize vault ossification                                                                                                         |
-| `SET_YIELD_MANAGER_ROLE`        | Security Council   | Configure which `YieldManager` the `LineaRollup` uses                                                                               |
-| Permissionless                  | Anyone             | Donate ETH; call permissionless unstake and reserve replenishment when the `L1MessageService` reserve is below the minimum threshold |
+| Role | Held by | Permissions |
+| --- | --- | --- |
+| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service, Security Council | Rebalance excess ETH from the `L1MessageService` reserve into the `StakingVault` |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service, Security Council | Request validator withdrawals and replenish the `L1MessageService` reserve |
+| `YIELD_REPORTER_ROLE` | Automation Service, Security Council | Trigger yield reporting, including settlement of fees and liabilities from staking rewards |
+| `STAKING_PAUSE_CONTROLLER_ROLE` | Automation Service, Security Council | Pause or resume node operator deposits |
+| `OSSIFICATION_PROCESSOR_ROLE` | Automation Service, Security Council | Progress and finalize vault ossification |
+| `OSSIFICATION_INITIATOR_ROLE` | Security Council | Begin permanent shutdown of the staking vault |
+| `SET_YIELD_PROVIDER_ROLE` | Security Council | Register or remove yield providers. Emergency removal may bypass the remaining-user-funds check and transfer Dashboard or vault ownership to a supplied nonzero address |
+| `SET_L2_YIELD_RECIPIENT_ROLE` | Security Council | Add or remove permitted recipients of yield reported to L2 |
+| `WITHDRAWAL_RESERVE_SETTER_ROLE` | Security Council | Configure the minimum and target withdrawal reserve amounts and percentages |
+| `PAUSE_NATIVE_YIELD_STAKING_ROLE` / `UNPAUSE_NATIVE_YIELD_STAKING_ROLE` | Security Council | Pause or resume funding of yield providers |
+| `PAUSE_NATIVE_YIELD_UNSTAKING_ROLE` / `UNPAUSE_NATIVE_YIELD_UNSTAKING_ROLE` | Security Council | Pause or resume operator-led unstaking and reserve replenishment |
+| `PAUSE_NATIVE_YIELD_PERMISSIONLESS_ACTIONS_ROLE` / `UNPAUSE_NATIVE_YIELD_PERMISSIONLESS_ACTIONS_ROLE` | Security Council | Pause or resume permissionless unstaking and reserve replenishment |
+| `PAUSE_NATIVE_YIELD_REPORTING_ROLE` / `UNPAUSE_NATIVE_YIELD_REPORTING_ROLE` | Security Council | Pause or resume yield reporting |
+| `PAUSE_ALL_ROLE` / `UNPAUSE_ALL_ROLE` | Security Council | Pause or resume all pausable `YieldManager` operations |
+| `SECURITY_COUNCIL_ROLE` | Security Council | Create indefinite pauses, bypass pause cooldown restrictions, and manage pause expiry |
+| `DEFAULT_ADMIN_ROLE` | Security Council | Grant or revoke `YieldManager` roles |
+| `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which `YieldManager` the `LineaRollup` uses |
+| Permissionless | Anyone | Donate ETH; call permissionless unstake and reserve replenishment when the `L1MessageService` reserve is below the minimum threshold |
 
 ## Fund flows
 
