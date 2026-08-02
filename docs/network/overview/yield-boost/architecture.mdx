@@ -82,21 +82,20 @@ flowchart TD
     User([User])
     Auto([Automation Service])
     NO([Node Operator])
-    BR[LineaRollup]
-    L1[L1MessageService\nwithdrawal reserve]
+    LR[LineaRollup proxy\nL1MessageService withdrawal reserve]
     YM[YieldManager]
     SV[StakingVault]
     BC{{beacon chain}}
 
-    User -->|Deposit ETH| BR
-    BR -->|Withdraw ETH| User
+    User -->|Deposit ETH| LR
+    LR -->|Withdraw ETH| User
     Auto -.->|Rebalance reserve and vault; request unstaking| YM
-    L1 -->|Rebalance extra ETH to earn rewards| YM
+    LR -->|Rebalance extra ETH to earn rewards| YM
     YM -->|Move ETH to staking vault| SV
     NO -.->|Triggers staking| SV
     SV -->|Stake| BC
     BC -->|Unstake| SV
-    SV -->|Withdraw ETH| L1
+    SV -->|Withdraw ETH| LR
 ```
 </div>
 
