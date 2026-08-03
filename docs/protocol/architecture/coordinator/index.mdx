@@ -22,7 +22,8 @@ The coordinator runs a set of services that share a database, each picking up wo
 makes it available:
 
 1. It [conflates](./conflation.mdx) blocks into batches, using trace counts from the
-    [tracer](../sequencer/tracer.mdx), and requests an execution proof for each batch it closes.
+    [tracer](../sequencer/traces-generator.mdx), and requests an execution proof for each batch it
+    closes.
 2. It compresses conflated batch data into blobs, and requests a compression proof for each blob.
 3. It groups consecutive proven blobs and requests an aggregation proof, a single proof that stands in
     for the whole group.

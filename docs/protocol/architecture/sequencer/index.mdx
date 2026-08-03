@@ -1,8 +1,6 @@
 ---
 title: Sequencer
-description: >-
-  How the Lineth Sequencer orders transactions, builds blocks, and prepares
-  execution traces for proving.
+description: How the Lineth Sequencer orders transactions, builds blocks, and prepares execution traces for proving.
 image: /img/socialCards/sequencer.jpg
 ---
 
@@ -30,7 +28,7 @@ executed by the EVM.
 
 The sequencer takes transactions from the memory pool, orders and validates them, and selects
 them for inclusion in a block according to Lineth's rules.
-During selection, it runs each candidate through the [tracer](./tracer.mdx) to enforce
+During selection, it runs each candidate through the [tracer](./traces-generator.mdx) to enforce
 per-block limits ([trace line counts](../prover/prover-limits.mdx), gas limits, calldata size) and
 ensure the block fits within blob size constraints, then executes and imports the block.
 

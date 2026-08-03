@@ -362,7 +362,7 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/sequencer/index" },
-          items: ["protocol/architecture/sequencer/tracer"],
+          items: ["protocol/architecture/sequencer/traces-generator"],
         },
         {
           type: "category",
