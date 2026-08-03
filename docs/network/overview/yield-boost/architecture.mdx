@@ -313,10 +313,7 @@ sequenceDiagram
     Note over YM: yield = current totalValue - last checkpoint<br/>then subtract obligations
 
     alt StakingVault funds available
-        Note over DB: Settle obligations
-        YM->>Lido: rebalanceVaultWithShares()<br/>(stETH borrow liability)
-        YM->>Lido: settleLidoFees()<br/>(protocol fees)
-        YM->>DB: disburseFee()<br/>(node operator fees)
+        Note over YM: Settle obligations:<br/>stETH borrow liability, protocol fees,<br/>node operator fees
         DB->>Fee: send node operator fees
     else Insufficient funds
         Note over DB: Skip settlement<br/>carry forward obligations
@@ -335,11 +332,8 @@ can call `unstakePermissionless()` and `replenishWithdrawalReserve()`. Both are
 deficit-gated and capped to the remaining deficit.
 
 `unstakePermissionless()` requests a partial withdrawal from a single validator.
-The caller supplies a validator-container proof (pubkey, withdrawal credentials,
-effective balance, and activation epochs), verified against the EIP-4788 beacon
-chain root. The
-amount is capped to the remaining reserve deficit that other liquidity sources
-cannot cover.
+The caller supplies a proof identifying the validator, verified against the
+beacon chain root. The amount is capped to the remaining reserve deficit.
 
 Beacon-chain fulfilment is asynchronous: the withdrawal is requested onchain;
 ETH arrives only after the beacon chain processes it.
@@ -364,7 +358,7 @@ sequenceDiagram
     rect rgba(230, 240, 255, 0.6)
         Note over L1: Phase 1 - Unstake (permissionless)
         U->>YM: unstakePermissionless()
-        Note over YM: Validate validator container<br/>against EIP-4788 Beacon root<br/>Amount capped to remaining deficit
+        Note over YM: Validate validator proof<br/>against beacon root<br/>Amount capped to remaining deficit
         YM-->>SV: triggerValidatorWithdrawals()
         SV-->>BC: request withdrawal
         Note over BC: Asynchronous withdrawal delay
@@ -380,11 +374,6 @@ sequenceDiagram
     end
 ```
 </div>
-
-`unstakePermissionless()` is capped to the remaining deficit minus available
-liquidity in the `YieldManager` and provider. `replenishWithdrawalReserve()` is
-capped to the current deficit and only available while the reserve is below the
-minimum.
 
 ### 5. LST withdrawal
 
