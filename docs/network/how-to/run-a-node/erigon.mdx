@@ -25,10 +25,24 @@ layer client, [Maru](./maru.mdx), for the node to function.
 
 :::warning Current Erigon support
 
-Erigon support for current Linea is merged upstream in
-[erigontech/erigon#20298](https://github.com/erigontech/erigon/pull/20298) and is included in the
-Erigon `v3.5` milestone. Until an official `v3.5` or later Docker image is published, build a local
-image from the #20298 merge commit and use that image in the compose file.
+Stock Erigon does not sync current Linea from scratch. Tested against
+`erigontech/erigon:v3.5.0` with `--externalcl` + Maru, it hangs at block 0
+([erigontech/erigon#22081](https://github.com/erigontech/erigon/issues/22081)),
+and earlier versions hit `[EIP-7002] Syscall failure: Empty Code` at the Fusaka
+fork because Linea's genesis allocates no code at the withdrawal/consolidation
+contract addresses ([erigontech/erigon#18160](https://github.com/erigontech/erigon/issues/18160)).
+
+The example Docker Compose file therefore references a patched Erigon image,
+`linea-erigon:v3.3.0-linea-patched`, which applies three fixes on top of Erigon `v3.3.0`:
+
+- `sentryMcDisableBlockDownload = false` (enables EL-driven bootstrap from genesis)
+- EIP-7002 empty-code syscall returns `nil` instead of erroring (Fusaka fix)
+- EIP-7251 empty-code syscall returns `nil` instead of erroring (Fusaka fix)
+
+This image is not published to a registry — you build it locally from the Dockerfile
+shipped in the monorepo at
+[`docs/getting-started/linea-mainnet/erigon-linea/`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet/erigon-linea)
+(see Step 1 below).
 
 :::
 
@@ -36,19 +50,26 @@ image from the #20298 merge commit and use that image in the compose file.
 
 - [Docker](https://docker.com/products/docker-desktop/)
 
-### Step 1. Build an Erigon image from the Linea merge commit
+### Step 1. Build the patched Erigon image
 
-Build the Docker image from the #20298 merge commit:
+Clone the Linea monorepo (if you haven't already) and build the patched Erigon image from the
+Dockerfile shipped in the repo:
 
 ```bash
-git clone https://github.com/erigontech/erigon.git
-cd erigon
-git checkout 34ac22904b0de1b14cf054a7cf2c0d02461215f3
-docker build -t erigon-linea:pr-20298 .
+git clone https://github.com/LFDT-Lineth/lineth-monorepo.git
+cd lineth-monorepo/docs/getting-started/linea-mainnet/erigon-linea
+make build
 ```
 
-After an official Erigon `v3.5` or later image is published, you can skip this step and use the
-official release image in the compose file instead.
+This builds `linea-erigon:v3.3.0-linea-patched` and loads it into your local Docker daemon. The
+getting-started compose file references this image name, so after building you can start the
+node directly.
+
+On Apple Silicon (arm64), build for arm64 so the image runs natively:
+
+```bash
+make build PLATFORM=linux/arm64
+```
 
 ### Step 2. Download the Linea node example config
 
@@ -60,16 +81,8 @@ configuration. The same directory contains the Geth genesis file that Erigon sho
   
   Download or clone the
   [`docs/getting-started/linea-mainnet`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-mainnet)
-  directory from the Linea monorepo.
-
-  Use the
-  [`geth/geth-genesis.json`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-mainnet/geth/geth-genesis.json)
-  file as the Erigon genesis file. The Erigon services in the example compose file expect
-  `./genesis.json`, so copy the Geth genesis file to that name:
-
-  ```bash
-  cp geth/geth-genesis.json genesis.json
-  ```
+  directory from the Linea monorepo. The Erigon services in the compose file already reference
+  the patched image and mount the Geth genesis file directly, so no manual edits are required.
 
   :::note[bootnodes]
   You can choose from a range of bootnodes for Linea Mainnet. The Docker Compose file uses all
@@ -83,75 +96,31 @@ configuration. The same directory contains the Geth genesis file that Erigon sho
   
   Download or clone the
   [`docs/getting-started/linea-sepolia`](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/docs/getting-started/linea-sepolia)
-  directory from the Linea monorepo.
-
-  Use the
-  [`geth/geth-genesis.json`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/getting-started/linea-sepolia/geth/geth-genesis.json)
-  file as the Erigon genesis file. The Erigon services in the example compose file expect
-  `./genesis.json`, so copy the Geth genesis file to that name:
-
-  ```bash
-  cp geth/geth-genesis.json genesis.json
-  ```
+  directory from the Linea monorepo. The Erigon services in the compose file already reference
+  the patched image and mount the Geth genesis file directly, so no manual edits are required.
 
   </TabItem>
 </Tabs>
 
-### Step 3. Update the Erigon services in Docker Compose
+### Step 3. Start the Erigon node
 
-The monorepo's Docker Compose example includes Erigon services, but it may still reference an older
-published Erigon image, for example `erigontech/erigon:2.61.0`.
-
-:::warning
-
-Until an official Erigon `v3.5` or later image is published, do not use the Erigon image tag already
-set in the monorepo compose file. Replace the Erigon image in both `erigon-init` and `erigon-node`
-with the local image you built in Step 1.
-
-:::
-
-```yaml
-erigon-init:
-  image: erigon-linea:pr-20298
-
-erigon-node:
-  image: erigon-linea:pr-20298
-```
-
-Also make sure Erigon initializes the same data directory that the node uses. The compose example
-mounts the Erigon volume at `/home/erigon/.local/share/erigon/`; if `erigon-init` still has
-`--datadir=/data`, change it to:
-
-```yaml
-erigon-init:
-  command:
-    - init
-    - /genesis.json
-    - --datadir=/home/erigon/.local/share/erigon
-```
-
-When an official Erigon `v3.5` or later image is published, replace `erigon-linea:pr-20298` with the
-official release image tag.
-
-### Step 4. Start the Erigon node
-
-In a terminal, navigate to the Linea monorepo directory for your network. Start the Erigon services
-from that compose file:
+In a terminal, navigate to the Linea monorepo directory for your network. Start the Erigon and
+Maru services from the compose file:
 
 ```bash
-docker compose up erigon-init erigon-node
+docker compose up erigon-init erigon-node maru-node
 ```
 
 The compose file initializes Erigon from the Geth genesis JSON, then starts the Erigon execution
-client. Keep [Maru](./maru.mdx) running alongside your chosen execution client for a full Linea
-node.
+client with `--externalcl` so [Maru](./maru.mdx) drives block delivery over the Engine API. Erigon
+also bootstraps its execution stage from genesis via its own block downloader, then meets the
+Maru-driven tip via backward download.
 
 ## Alternative: Run using the binary distribution
 
 :::info
-Until an official Erigon `v3.5` or later release is published, use a binary built from the
-[#20298 merge commit](https://github.com/erigontech/erigon/pull/20298) rather than a published
-release binary. Ensure you review
+Stock Erigon does not sync current Linea from scratch (see the warning above). Build the binary
+from Erigon `v3.3.0` and apply the three patches below before running. Ensure you review
 [Erigon's software prerequisites](https://docs.erigon.tech/get-started/hardware-requirements)
 before building the Erigon client.
 
@@ -161,12 +130,23 @@ instead.
 
 ### Step 1. Build Erigon
 
-Build Erigon from the #20298 merge commit:
+Build Erigon from `v3.3.0` and apply the three Linea patches (the same patches used by the
+`linea-erigon:v3.3.0-linea-patched` Docker image):
 
 ```bash
 git clone https://github.com/erigontech/erigon.git
 cd erigon
-git checkout 34ac22904b0de1b14cf054a7cf2c0d02461215f3
+git checkout v3.3.0
+
+# Patch 1: enable EL-driven block download (bootstrap fix for #22081)
+sed -i 's/const sentryMcDisableBlockDownload = true/const sentryMcDisableBlockDownload = false/' node/eth/backend.go
+
+# Patch 2: EIP-7002 empty-code syscall returns nil (Fusaka fix for #18160)
+sed -i 's/return nil, fmt.Errorf("\[EIP-7002\] Syscall failure: Empty Code at WithdrawalRequestAddress=%x", params.WithdrawalRequestAddress)/return nil, nil/' execution/protocol/rules/misc/eip7002.go
+
+# Patch 3: EIP-7251 empty-code syscall returns nil (Fusaka fix for #18160)
+sed -i 's/return nil, fmt.Errorf("\[EIP-7251\] Syscall failure: Empty Code at ConsolidationRequestAddress=%x", params.ConsolidationRequestAddress)/return nil, nil/' execution/protocol/rules/misc/eip7251.go
+
 make erigon
 ```
 
