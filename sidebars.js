@@ -85,8 +85,6 @@ const sidebars = {
       label: "How to",
       collapsible: false,
       items: [
-        "network/how-to/recover-state",
-        "network/how-to/write-and-deploy-assertions",
         {
           type: "doc",
           id: "network/how-to/gas-fees",
@@ -96,37 +94,6 @@ const sidebars = {
           type: "doc",
           id: "network/how-to/bridge",
           label: "Bridge tokens to Linea",
-        },
-        {
-          type: "doc",
-          id: "network/how-to/connect-wallet",
-          label: "Connect a wallet to your dapp",
-        },
-        {
-          type: "category",
-          label: "Deploy a smart contract",
-          collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "network/how-to/deploy-smart-contract/index" },
-          items: [
-            "network/how-to/deploy-smart-contract/thirdweb",
-            "network/how-to/deploy-smart-contract/remix",
-            "network/how-to/deploy-smart-contract/hardhat",
-            "network/how-to/deploy-smart-contract/cookbook",
-            "network/how-to/deploy-smart-contract/foundry",
-            "network/how-to/deploy-smart-contract/atlas",
-          ],
-        },
-        "network/how-to/deploy-subdomain",
-        {
-          type: "doc",
-          id: "network/how-to/fallback",
-          label: "Add a fallback for RPC requests",
-        },
-        {
-          type: "doc",
-          id: "network/how-to/migrate-dapp",
-          label: "Migrate a dapp to Linea",
         },
         {
           type: "category",
@@ -145,6 +112,28 @@ const sidebars = {
           ],
         },
         {
+          type: "doc",
+          id: "network/how-to/connect-wallet",
+          label: "Connect a wallet to your dapp",
+        },
+        "network/how-to/recover-state",
+        "network/how-to/write-and-deploy-assertions",
+        {
+          type: "category",
+          label: "Deploy a smart contract",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "network/how-to/deploy-smart-contract/index" },
+          items: [
+            "network/how-to/deploy-smart-contract/thirdweb",
+            "network/how-to/deploy-smart-contract/remix",
+            "network/how-to/deploy-smart-contract/hardhat",
+            "network/how-to/deploy-smart-contract/cookbook",
+            "network/how-to/deploy-smart-contract/foundry",
+            "network/how-to/deploy-smart-contract/atlas",
+          ],
+        },
+        {
           type: "category",
           label: "Verify a smart contract",
           collapsible: true,
@@ -155,6 +144,17 @@ const sidebars = {
             "network/how-to/verify-smart-contract/foundry",
             "network/how-to/verify-smart-contract/atlas",
           ],
+        },
+        "network/how-to/deploy-subdomain",
+        {
+          type: "doc",
+          id: "network/how-to/fallback",
+          label: "Add a fallback for RPC requests",
+        },
+        {
+          type: "doc",
+          id: "network/how-to/migrate-dapp",
+          label: "Migrate a dapp to Linea",
         },
         {
           type: "doc",
