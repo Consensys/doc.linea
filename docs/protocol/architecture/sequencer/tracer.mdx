@@ -1,0 +1,48 @@
+---
+title: Tracer
+description: How the tracer works with the sequencer and prover
+sidebar_position: 1
+image: /img/socialCards/tracer.jpg
+---
+
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+The tracer is part of the <GlossaryTerm term="Lineth" /> [sequencer](index.mdx).
+The tracer is a Besu plugin bundled with <GlossaryTerm term="Linea Besu" />.
+It generates the data the [prover](../prover/index.mdx) needs to create
+<GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>, and the data the sequencer needs to
+keep blocks provable.
+
+A _trace_ records the operations the
+<GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm> performs during execution: the
+state of the network, and the state of the accounts involved in a transaction, at each granular step of
+that transaction's execution.
+
+## How it works
+
+The tracer produces data on request, at two points in the pipeline.
+
+While the sequencer builds a block, the tracer counts the trace lines each candidate transaction would
+generate, so the sequencer can reject transactions that exceed a
+[module limit](../prover/prover-limits.mdx) and stop adding transactions once the block reaches its limits.
+
+Once blocks are built, the [coordinator](../coordinator/index.mdx) uses the tracer to prepare them
+for proving:
+
+1. The coordinator requests the trace counts for each new block.
+2. Using those counts, it decides how many consecutive blocks to
+   [conflate](../coordinator/conflation.mdx) into one batch.
+3. When it closes a batch, it requests the conflated traces for that block range.
+   The tracer re-executes those blocks, writes a single trace file, and returns its location.
+4. The coordinator passes the trace file to the prover, which uses it to generate the execution proof.
+
+Both paths are exposed through the Traces API, which internal protocol services call over RPC.
+Trace generation runs inside Linea Besu because replaying blocks requires an execution client, but the
+batch boundaries are decided by the coordinator, not the sequencer.
+
+## See also
+
+- Configure tracer behavior using the
+  [Linea Besu tracer options](../../../stack/reference/linea-besu-plugin-options.mdx#tracer).
+- See the [tracer source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer) in
+  the `lineth-monorepo`.

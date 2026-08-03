@@ -53,7 +53,7 @@ aggregation proofs, [trace expansion](./trace-expansion.mdx), and
 The RISC-V architecture is a proving-system evolution within that same protocol role. It is designed
 to change the proving target and the way proof-generating programs are represented, while preserving
 the prover's high-level purpose: producing proofs that let the network verify state transitions. The
-[coordinator](../coordinator.mdx) still orchestrates proof generation and finality submission
+[coordinator](../coordinator/index.mdx) still orchestrates proof generation and finality submission
 according to the network's deployment model.
 
 RISC-V is therefore best understood as part of the prover architecture, not as a standalone
@@ -67,7 +67,7 @@ At a high level, the planned RISC-V proving architecture follows this flow:
 2. The guest program is compiled to RISC-V.
 3. The Lineth proving system executes the RISC-V program and produces a proof for that computation.
 4. Proofs can be composed into the broader proof-generation flow.
-5. The [coordinator](../coordinator.mdx) submits the resulting proof data to the finalization layer
+5. The [coordinator](../coordinator/index.mdx) submits the resulting proof data to the finalization layer
    according to the network's deployment model.
 
 At the protocol level, Lineth still proves that state transitions are valid and finalizes those proofs

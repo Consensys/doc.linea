@@ -1,0 +1,59 @@
+---
+title: Conflation
+description: >-
+  How conflation in Lineth combines blocks into proof-sized data sets for
+  efficient proving.
+sidebar_position: 1
+image: /img/socialCards/conflation.jpg
+---
+
+import ConflationGraphic from '/img/get_started/concepts/sequencer/conflation/Linea_block_conflation.svg';
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+Conflation is the process of combining two or more blocks' worth of transactions into one data set,
+which <GlossaryTerm term="Lineth" /> proves as a single batch.
+Each batch produces one "before and after" map of the network state (a
+[Merkle tree](../state-manager.mdx#merkle-trees)) and one
+<GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm>, published to the
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
+
+<div className="img-large">
+    <ConflationGraphic />
+</div>
+
+Ethereum publishes transaction data in discrete blocks, one at a time and in order.
+In a <GlossaryTerm term="zkEVM" /> environment, the source of truth from Ethereum's perspective is the
+data submitted to it: the ZK proof, the transactions it proves, and the Merkle tree.
+The constraint is therefore not how many transactions fit in a block, but how many fit in a proof.
+Conflating blocks into batches lets Lineth generate one Merkle tree update and one proof for many blocks,
+which makes the proving system more efficient.
+
+## How it works
+
+Conflation is driven by the [coordinator](./index.mdx), using trace data from the
+[tracer](../sequencer/tracer.mdx):
+
+1. As the [sequencer](../sequencer/index.mdx) produces each block, the coordinator requests that
+   block's trace counts from the tracer.
+2. The coordinator adds the block to the batch it's assembling, and keeps adding blocks while the
+   batch stays within the proving limits.
+3. The coordinator closes the batch when the next block would breach a limit, or when another
+   boundary condition applies.
+   Batches close on trace line limits, compressed data size limits, block count limits, a time
+   deadline, or a required boundary such as a hard fork or a
+   [forced transaction](../../forced-transactions.mdx).
+4. The coordinator requests the conflated traces for the closed block range.
+   The tracer re-executes those blocks and writes a single trace file, which the coordinator passes
+   on for Merkle tree and proof generation.
+
+Generating trace data requires an execution client, so it runs inside Linea Besu, but deciding where
+batch boundaries fall is a coordinator responsibility.
+
+## See also
+
+- See the [coordinator](./index.mdx) for how conflated batches become proofs and reach the
+  finalization layer.
+- See [module limits](../prover/prover-limits.mdx) for the trace line limits that constrain how many
+  blocks fit in a batch.
+- See the [coordinator source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/coordinator)
+  in the `lineth-monorepo`.

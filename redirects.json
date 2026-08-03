@@ -406,19 +406,21 @@
         ]
     },
     {
-        "to": "/protocol/architecture/sequencer/conflation",
+        "to": "/protocol/architecture/coordinator/conflation",
         "from": [
             "/architecture/stack/sequencer/conflation",
             "/network/concepts/sequencer/conflation",
+            "/protocol/architecture/sequencer/conflation",
             "/protocol/sequencer/conflation",
             "/technology/sequencer/conflation"
         ]
     },
     {
-        "to": "/protocol/architecture/sequencer/traces-generator",
+        "to": "/protocol/architecture/sequencer/tracer",
         "from": [
             "/architecture/stack/sequencer/traces-generator",
             "/network/concepts/sequencer/traces-generator",
+            "/protocol/architecture/sequencer/traces-generator",
             "/protocol/sequencer/traces-generator",
             "/technology/sequencer/traces-generator"
         ]

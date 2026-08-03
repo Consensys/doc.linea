@@ -46,7 +46,7 @@ A circuit uses logic gates to depict the flow of data and the sequence of operat
 
 ### Conflation
 
-The process of combining two or more blocks' worth of transactions into one data set before proof generation. Conflation lets Lineth produce one Merkle tree update and one zero-knowledge proof per batch instead of per block, which makes the proving system more efficient. It happens inside the execution client, coordinated with the coordinator.
+The process of combining two or more blocks' worth of transactions into one data set before proof generation. Conflation lets Lineth produce one Merkle tree update and one zero-knowledge proof per batch instead of per block, which makes the proving system more efficient. The coordinator decides where batch boundaries fall, using trace counts from the tracer, and the trace data itself is generated inside the execution client.
 
 ### Constraint
 
@@ -135,7 +135,7 @@ The public, permissionless zkEVM Layer 2 network that scales Ethereum, along wit
 
 ### Linea Besu
 
-The execution layer client that Linea Mainnet and other Lineth deployments run to execute transactions and maintain EVM state. Linea Besu is a build of the Besu Ethereum client, extended with plugins such as the sequencer and tracer that add ZK-rollup functionality.
+The execution client that Linea Mainnet and other Lineth deployments run to execute transactions and maintain EVM state. Linea Besu is a build of the Besu execution client, extended with plugins such as the sequencer and tracer that add ZK-rollup functionality.
 
 ### Lineth
 
@@ -212,7 +212,7 @@ The main goal of scalability is to increase transaction speed (faster finality),
 
 ### Sequencer
 
-The component of the Lineth execution client responsible for ordering, building, and executing blocks in a way that allows the subsequent ZK proof to be made. It's implemented as a set of plugins extending Linea Besu, including the tracer and conflator. There's typically one sequencer per network.
+The component of the Lineth execution client responsible for ordering, building, and executing blocks in a way that allows the subsequent ZK proof to be made. It's implemented as a set of plugins extending Linea Besu, including the tracer. There's typically one sequencer per network.
 
 ### Shomei
 

@@ -362,14 +362,15 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/sequencer/index" },
-          items: [
-            {
-              type: "doc",
-              id: "protocol/architecture/sequencer/traces-generator",
-              label: "Traces generation",
-            },
-            "protocol/architecture/sequencer/conflation",
-          ],
+          items: ["protocol/architecture/sequencer/tracer"],
+        },
+        {
+          type: "category",
+          label: "Coordinator",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "protocol/architecture/coordinator/index" },
+          items: ["protocol/architecture/coordinator/conflation"],
         },
         {
           type: "category",
@@ -390,6 +391,11 @@ const sidebars = {
           ],
         },
         {
+          type: "doc",
+          id: "protocol/architecture/state-manager",
+          label: "EVM state manager",
+        },
+        {
           type: "category",
           label: "Interoperability",
           collapsible: true,
@@ -399,12 +405,6 @@ const sidebars = {
             "protocol/architecture/interoperability/canonical-token-bridge",
             "protocol/architecture/interoperability/canonical-message-service",
           ],
-        },
-        "protocol/architecture/coordinator",
-        {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
         },
         "protocol/architecture/smart-contracts",
         "protocol/architecture/rpc-services",
