@@ -30,7 +30,7 @@ jobs:
     permissions: {}   # zero scopes
     steps:
       - name: Slack Notification
-        uses: Consensys/github-actions/slack-notify@31dbb917dd78b1dc18b4838a2d7d598b359b834f # main
+        uses: Consensys/github-actions/slack-notify@3a2429772a5d3653f0662a6a66299cad96e74196 # main
         with:
           SLACK_CHANNEL: doc-ci-alerts
           SLACK_COLOR: danger
