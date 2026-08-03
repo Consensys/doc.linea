@@ -49,7 +49,8 @@ proofs to Ethereum Mainnet and temporarily making data available there.
 Lineth is comprised of several broad classes of components:
 
 - [Nodes](#nodes): A fully public network provides externally reachable nodes. In other [deployment types](../../stack/evaluate/deployment-models), node services may be configured to be private or semi-private.
-- [Internal protocol services](#internal-protocol-services): While these are plugins to or components of <GlossaryTerm term="Linea Besu"/> nodes, traffic between these services remains within the operator's trusted network boundary and does not traverse public networks.
+- [Internal protocol services](#internal-protocol-services): Operator-run services for proof generation and finalization (sequencer, coordinator, prover, state manager, and tracer).
+  Traffic between them stays inside the operator's trusted network boundary.
 - [Smart contracts](#onchain-system-contracts): Versioned onchain contracts, with immutability or
   upgrade controls depending on deployment.
 - [Auxiliary services](#auxiliary-services):

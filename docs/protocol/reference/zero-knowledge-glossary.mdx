@@ -143,7 +143,7 @@ The execution layer client that Linea Mainnet and other Lineth deployments run t
 
 ### Maru
 
-Lineth's consensus layer client. Maru runs on validator nodes to coordinate block production with the execution layer, manage validator sets and consensus participation, and provide peer-to-peer networking for block propagation, using the Quorum Byzantine Fault Tolerance (QBFT) consensus algorithm.
+Lineth's consensus layer client. Maru runs on every node, paired with an execution client, and implements the QBFT consensus algorithm. Validator nodes use Maru to propose and vote on blocks; follower nodes use it to receive blocks from peers and pass them to the execution client. In both roles, Maru provides peer-to-peer networking for block propagation and exposes API endpoints for monitoring and control.
 
 ### Operator
 
