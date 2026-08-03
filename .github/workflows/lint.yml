@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: Lint code
-        uses: Consensys/github-actions/docs-lint-all@31dbb917dd78b1dc18b4838a2d7d598b359b834f # main
+        uses: Consensys/github-actions/docs-lint-all@3a2429772a5d3653f0662a6a66299cad96e74196 # main
 
       - name: Lint markdown
-        uses: Consensys/github-actions/docs-lint-markdown@31dbb917dd78b1dc18b4838a2d7d598b359b834f # main
+        uses: Consensys/github-actions/docs-lint-markdown@3a2429772a5d3653f0662a6a66299cad96e74196 # main
