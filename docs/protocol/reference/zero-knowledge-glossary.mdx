@@ -16,7 +16,7 @@ Deploying appchains on top of L2 networks like Linea offers significant cost and
 
 ### Archive node
 
-An RPC node that maintains a complete, durable record of the blockchain from genesis, including all blocks and state transitions, so it can reconstruct chain state at any past block height. Archive nodes trade minimal latency for completeness, supporting auditing, forensics, and analytics.
+A node configured to retain state at every block from genesis, alongside the blocks and transactions themselves, so it can reconstruct chain state at any past block height. Archive nodes trade minimal latency and modest storage requirements for completeness, supporting auditing, forensics, and analytics.
 
 ### Arithmetization
 
@@ -34,19 +34,19 @@ Brakedown doesn't require a trusted setup and is plausibly post-quantum secure.
 
 ### Canonical message service
 
-The pair of smart contracts, one on Linea and one on Ethereum, plus the Postman relayer between them, that pass arbitrary user-specified messages between the two networks. It's general-purpose public infrastructure that developers can integrate into dapps, and the canonical token bridge relies on it for cross-chain interactions.
+The pair of smart contracts, one on a Lineth network and one on its finalization layer, plus the Postman relayer between them, that pass arbitrary user-specified messages between the two networks. It's general-purpose public infrastructure that developers can integrate into dapps, and the canonical token bridge relies on it for cross-chain interactions. On Linea Mainnet, the contracts are deployed on Linea and Ethereum.
 
 ### Canonical token bridge
 
-The pair of "lock and mint" contracts that let any ERC-20 token bridge between Linea and Ethereum. It relies on the canonical message service for its cross-chain interactions.
+The pair of "lock and mint" contracts that let any ERC-20 token bridge between a Lineth network and its finalization layer, which for Linea Mainnet means between Linea and Ethereum. It relies on the canonical message service for its cross-chain interactions.
 
 ### Circuit
 
-A circuit uses logic gates to depict the flow of data and the sequence of operations performed on that data in a given computational task. Circuits are used at many levels to create processing capability, including virtual machines like the Ethereum Virtual Machine, and Linea's implementation of a zkEVM.
+A circuit uses logic gates to depict the flow of data and the sequence of operations performed on that data in a given computational task. Circuits are used at many levels to create processing capability, including virtual machines like the Ethereum Virtual Machine, and Lineth's implementation of a zkEVM.
 
 ### Conflation
 
-The process of combining two or more blocks' worth of transactions into one data set before proof generation. Conflation lets Linea produce one Merkle tree update and one zero-knowledge proof per batch instead of per block, which makes the proving system more efficient. It happens inside the execution client, coordinated with the coordinator.
+The process of combining two or more blocks' worth of transactions into one data set before proof generation. Conflation lets Lineth produce one Merkle tree update and one zero-knowledge proof per batch instead of per block, which makes the proving system more efficient. It happens inside the execution client, coordinated with the coordinator.
 
 ### Constraint
 
@@ -54,7 +54,7 @@ A constraint refers to a condition imposed on mathematical operations or computa
 
 ### Coordinator
 
-Linea's coordination module for batching, proof generation, and finality submission. The coordinator monitors block production, manages conflation deadlines, batches blocks, combines batches into blobs, orchestrates execution, compression, and aggregation proofs, and submits proofs and data to the finalization layer.
+Lineth's coordination module for batching, proof generation, and finality submission. The coordinator monitors block production, manages conflation deadlines, batches blocks, combines batches into blobs, orchestrates execution, compression, and aggregation proofs, and submits proofs and data to the finalization layer.
 
 ### Corset
 
@@ -97,7 +97,7 @@ In optimistic rollups, the evidence a verifier provides to question the validity
 
 ### Full node
 
-A node that runs an execution client, such as Linea Besu, paired with the consensus client Maru, maintains full chain state, verifies blocks, and can serve RPC requests. A full node that also participates in consensus is called a validator node.
+A node that runs an execution client, such as Linea Besu, paired with the consensus client Maru, and that executes and verifies every block it imports. A full node that also participates in consensus is called a validator node.
 
 ### gnark
 
@@ -143,7 +143,7 @@ The execution layer client that Linea Mainnet and other Lineth deployments run t
 
 ### Maru
 
-Linea's consensus layer client. Maru runs on validator nodes to coordinate block production with the execution layer, manage validator sets and consensus participation, and provide peer-to-peer networking for block propagation, using the Quorum Byzantine Fault Tolerance (QBFT) consensus algorithm.
+Lineth's consensus layer client. Maru runs on every node, paired with an execution client, and implements the QBFT consensus algorithm. Validator nodes use Maru to propose and vote on blocks; follower nodes use it to receive blocks from peers and pass them to the execution client. In both roles, Maru provides peer-to-peer networking for block propagation and exposes API endpoints for monitoring and control.
 
 ### Operator
 
@@ -167,7 +167,7 @@ A protocol in which the verifier is not required to fully read the prover's mess
 
 ### Postman
 
-The service that relays messages between the canonical message service contracts on Linea and Ethereum. Postman listens for calls made to the contract on one network and passes the submitted information to the contract on the other network. It's currently centralized, but is intended to be decentralized.
+The service that relays messages between the canonical message service contracts on a Lineth network and its finalization layer. Postman listens for calls made to the contract on one network and passes the submitted information to the contract on the other network. It's currently centralized, but is intended to be decentralized.
 
 ### Prover
 
@@ -204,7 +204,7 @@ Rollup architecture is made up of the following components:
 
 ### RPC node
 
-A full node configured to expose JSON-RPC APIs to applications and users, optionally behind load balancers and RBAC. RPC nodes can be optimized for low-latency access to near-head state, or configured as archive nodes for historical queries.
+A node configured to expose JSON-RPC APIs to applications, users, or internal services, optionally behind load balancers and RBAC. Any node can serve RPC; RPC nodes differ in how much state history they retain, from current state and recent history by default up to a full archive node.
 
 ### Scaling
 
@@ -212,7 +212,7 @@ The main goal of scalability is to increase transaction speed (faster finality),
 
 ### Sequencer
 
-The component of Linea's execution client responsible for ordering, building, and executing blocks in a way that allows the subsequent ZK proof to be made. It's implemented as a set of plugins extending Linea Besu, including the tracer and conflator. There's typically one sequencer per network.
+The component of the Lineth execution client responsible for ordering, building, and executing blocks in a way that allows the subsequent ZK proof to be made. It's implemented as a set of plugins extending Linea Besu, including the tracer and conflator. There's typically one sequencer per network.
 
 ### Shomei
 

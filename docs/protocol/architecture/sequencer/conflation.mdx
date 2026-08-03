@@ -17,7 +17,8 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 Conflation is the process of combining two or more blocks' worth of transactions into one data set.
 It can then be used to produce a "before and after" map of the network state (a
 [Merkle tree](../state-manager.mdx#merkle-trees), in technical terms) as well as a
-<GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm>, which is published to Ethereum.
+<GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm>, which is published to the
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
 ## What does it do?
 
@@ -26,7 +27,7 @@ In a <GlossaryTerm term="zkEVM" /> environment, the "source of truth" from Ether
 submitted to it: the ZK proof, the list of transactions proved by it, and the Merkle tree.
 That means that it's not a question of "how many transactions fit in a block," but "how many transactions fit in
 a proof."
-By conflating multiple blocks into one, Linea's proving system becomes much more efficient.
+By conflating multiple blocks into one, Lineth's proving system becomes much more efficient.
 
 ## How does it do it?
 
