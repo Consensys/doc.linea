@@ -1,0 +1,29 @@
+---
+title: Linea Coordinator configuration reference
+sidebar_label: Linea Coordinator options
+slug: /reference/component-configuration/linea-coordinator-options
+description: 'TOML configuration options for the Linea Coordinator, grouped by config file and section.'
+draft: false
+image: /img/socialCards/linea-coordinator-configuration-reference.jpg
+---
+
+{/* Human-owned wrapper. Automation only updates `_generated/coordinator/` partials. Add new partial imports when sections appear. */}
+
+import Provenance from "./_generated/coordinator/provenance.mdx";
+import Reference from "./_generated/coordinator/reference.mdx";
+
+:::caution Advanced options
+
+Some configuration keys are operational or environment-specific and are included for completeness. Their presence does not indicate that changing them is recommended or supported for every deployment. Verify their applicability against the relevant release and deployment guidance.
+:::
+:::note Defaults
+
+  Defaults are values defined in the Coordinator Kotlin config data classes (`@ConfigDoc(default = ...)`). They are not recommended production settings and may be overridden by deployment configuration. Sample `*.toml` files are never used as the source of defaults.
+
+  :::
+
+This reference lists Linea Coordinator TOML configuration keys, grouped by config file and section. Descriptions come from `@ConfigDoc`/`@ConfigSection` annotations on the config data classes; defaults are shown in the Default column.
+
+<Provenance />
+
+<Reference />
