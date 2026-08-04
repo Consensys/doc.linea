@@ -7,37 +7,30 @@ image: /img/socialCards/build-a-marketplace-dapp.jpg
 Decentralized marketplaces are one of the most popular types of web3 dapps, and enable users to 
 buy and sell items directly on the blockchain while removing the need for any intermediaries.
 
-In this tutorial, we will build a simple marketplace dapp. 
+This tutorial walks you through building a simple marketplace dapp.
 
-We will cover both the **frontend** and **smart contract development.**
+## Prerequisites
 
-## Architecture
+- Install [Node.js](https://nodejs.org/en/download) and a package manager (this tutorial uses
+  [pnpm](https://pnpm.io/installation)).
+- Create an [Infura API key](https://docs.infura.io/dashboard/get-started/create-api/).
+- Install the [MetaMask](https://metamask.io) wallet and fund it with
+  [Linea Sepolia ETH](../build/get-testnet-eth.mdx).
 
-Let's dive into the architecture of the marketplace dapp and its components.
+## Steps
 
-The marketplace will incorporate smart contracts, a frontend, and blockchain integration. The smart 
-contract will include features such as listing items, buying items, and transferring ownership of 
-an item.
+### 1. Set up your project
 
-The frontend serves as the user interface where buyers and sellers can interact with each other 
-using the smart contract. While having a frontend and backend is important, the way the dapp 
-interacts with the Linea blockchain is also crucial. We will be using the MetaMask SDK along with 
-Wagmi and Infura RPC providers.
+Start by initializing a monorepo.
+A monorepo is a software development strategy where code for multiple projects is stored in a single
+version controlled repository.
 
-### Set up the environment
-
-We will start by initializing a monorepo. A monorepo (short for monolithic repository) is a software 
-development strategy where code for multiple projects is stored in a single version control repository.
-
-To create our monorepo, we'll use pnpm.
- 
 Create a new directory for your monorepo and initialize it:
 
 ```
 mkdir web3-marketplace-linea
 cd web3-marketplace-linea
 pnpm init
-
 ```
 
 Create a `pnpm-workspace.yaml` file in the root to define your workspace structure:
@@ -47,7 +40,7 @@ packages:
   - 'packages/*'
 ```
 
-Here's what our workspace file structure will be like:
+Your workspace file structure will look like this:
 
 ```
 packages
@@ -55,14 +48,14 @@ packages
 └── blockchain    # Smart contracts using Hardhat
 ```
 
-Let's head over to the `blockchain` directory and initialize a Hardhat project.
+Go to the `blockchain` directory and initialize a Hardhat project.
 
 ```
 cd blockchain
-npx hardhat init
+npx hardhat --init
 ```
 
-You'll be presented with several options:
+You'll be prompted with several options:
 
 ```
 ? What do you want to do? …
@@ -73,21 +66,40 @@ You'll be presented with several options:
   Quit
 ```
 
-For this tutorial we'll be using a TypeScript project. Hardhat will automatically install the 
-necessary dependencies for you.
+For this tutorial you'll use a TypeScript project.
+Hardhat will automatically install the necessary dependencies for you.
 
-### Project structure
-
+<details>
+<summary>Project structure</summary>
+<div>
 After initialization, you'll have a project structure that includes:
 
 - **`contracts/`**: Solidity contracts
 - **`ignition/`**: Ignition deployment modules
 - **`test/`**: Test files
 - **`hardhat.config.js`**: Hardhat configuration
+</div>
+</details>
 
-### Write the smart contract
+### 2. Configure `.env` variables
 
-Let's start writing the smart contract:
+Update the `.env` file in the `packages/blockchain` directory with the following values:
+
+```bash
+# Infura API key for connecting to Ethereum networks
+INFURA_API_KEY=your_infura_api_key_here
+
+# Private key of the account to be used for deployments and transactions
+ACCOUNT_PRIVATE_KEY=your_account_private_key_here
+```
+
+- Replace `your_infura_api_key_here` with your Infura API key.
+- Replace `your_account_private_key_here` with the private key of the Ethereum account you will use 
+for deploying the contract.
+
+### 3. Create the marketplace contract
+
+Create the following marketplace smart contract:
 
 ```jsx
 // SPDX-License-Identifier: MIT
@@ -190,10 +202,11 @@ contract Marketplace {
 }
 ```
 
-This contract provides a basic framework for a decentralized marketplace where users can list items 
-for sale, purchase items, and transfer ownership of items. It maintains a record of item ownership 
-and ensures that only valid transactions can occur. Let's explore the concept of the smart contract 
-a bit more:
+This contract provides a basic framework for a decentralized marketplace where users can list items for
+sale, purchase items, and transfer ownership of items.
+It maintains a record of item ownership and ensures that only valid transactions can occur.
+
+This image illustrates the concept of the smart contract:
 
 <div class="center-container">
   <div class="img-large">
@@ -228,10 +241,13 @@ a bit more:
     - **Get items by owner**:
         - The `getItemsByOwner` function returns a list of item IDs owned by a specific address.
 
-This smart contract facilitates a decentralized marketplace where items can be listed, purchased, 
-and transferred securely, with all transactions and ownership changes recorded on the blockchain.
+This smart contract facilitates a decentralized marketplace where items can be listed, purchased, and
+transferred securely, with all transactions and ownership changes recorded on the blockchain.
 
-In the `ignition` folder, let's create `Marketplace.ts`  to deploy our contract. Add the following code:
+### 4. Deploy the contract
+
+In the `ignition` folder, create `Marketplace.ts` to deploy the contract.
+Add the following code:
 
 ```jsx
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
@@ -247,53 +263,46 @@ const MarketplaceModule = buildModule("MarketplaceModule", (m) => {
 export default MarketplaceModule;
 ```
 
-To compile the contract, run the following command:
+Compile the contract by running the following command in the `blockchain` directory:
 
 ```
 npx hardhat compile
 ```
 
-### `.env` variables
-
-Before deploying the smart contract, make sure to update the `.env` file in the `packages/blockchain` 
-directory with the following values:
-
-```bash
-# Infura API key for connecting to Ethereum networks
-INFURA_API_KEY=your_infura_api_key_here
-
-# Private key of the account to be used for deployments and transactions
-ACCOUNT_PRIVATE_KEY=your_account_private_key_here
-```
-
-### Deploy the smart contract
-
-To deploy the smart contract to the Linea testnet, run the following command:
+Deploy the contract on Linea Sepolia by running the following command from the `blockchain` directory:
 
 ```bash
 npx hardhat ignition deploy ignition/modules/Marketplace.ts --network linea-testnet
 ```
 
-This will deploy the marketplace smart contract on Linea Sepolia. You can always write a script to 
-deploy quicker by writing small commands like this on `package.json` file:
+Alternatively, you can add a deployment script to your `package.json` to simplify the process.
+Add the following line in the `"scripts"` section:
 
 ```jsx
 "deploy:testnet": "npx hardhat ignition deploy ignition/modules/Marketplace.ts --network linea-testnet"
 ```
 
-After the deployment we'll get the `contract address` — make a note of this. We will need it soon 
-while integrating with the frontend. 
+Then, you can deploy the contract by running:
 
-## Frontend: Next.js with Shadcn UI
+```bash
+pnpm run deploy:testnet
+```
 
-### Create and navigate to the project directory
+After deployment, you'll receive the contract address.
+Save this address, as you'll need it when integrating with the frontend.
+
+### 5. Set up the frontend
+
+You'll set up your project frontend using Next.js with shadcn/ui.
+
+Create and navigate to the `site` directory:
 
 ```bash
 mkdir site
 cd site
 ```
 
-### Initialize Next.js project
+Initialize a Next.js project:
 
 ```bash
 npx create-next-app@latest .
@@ -308,13 +317,24 @@ When prompted, choose the following options:
 - App Router: Yes
 - Import alias: Yes (default @/*)
 
-### Install Shadcn UI CLI
+Install shadcn CLI:
 
 ```bash
-npx shadcn-ui@latest init
+npx shadcn@latest init
 ```
 
 Install the necessary UI components like buttons, cards, and input fields as needed.
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/marketplace/marketplace-ui.png"
+      alt=""
+    />
+  </div>
+</div>
+
+### 6. Configure Wagmi and MetaMask SDK
 
 Create a `wagmi.config.ts` and add the following code:
 
@@ -332,32 +352,28 @@ export const config = createConfig({
 });
 ```
 
-We will be using Wagmi and the MetaMask SDK to connect our wallet and make transactions. All that is 
-left now is to create a `ConnectWallet.tsx` UI component.
+You'll use Wagmi and MetaMask SDK to connect your wallet and make transactions.
+You just need to create a `ConnectWallet.tsx` UI component.
 
-On the `site/src` directory let's create a file called `constants.ts` and add the following:
+### 7. Add contract constants
+
+In the `site/src` directory, create a file called `constants.ts` and add the following:
 
 ```jsx
-export const CONTRACT_ADDRESS = //paste deployed contract here
+export const CONTRACT_ADDRESS = // Paste deployed contract here
 export const ABI = 
   // Paste the ABI here
 ```
 
-Remember the deployed contract address that you saved earlier? We'll add it here. Head over to the 
-`blockchain/ignition` module and find the `artifacts` folder to find the ABI.
+- Use the contract address you obtained after deployment.
+- Find the ABI in the `artifacts` folder generated by Hardhat after compilation.
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/marketplace/marketplace-ui.png"
-      alt=""
-    />
-  </div>
-</div>
+### 8. Create `app/page.tsx`
 
-Let's break down the code in `app.tsx` and explain its key aspects in more detail:
+Update `app/page.tsx` with the following code.
+These sections explain the key aspects in more detail:
 
-## React and hooks usage
+#### React and hooks usage
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -365,10 +381,9 @@ import { useAccount, useWalletClient } from "wagmi";
 ```
 
 - The component uses React's `useState` for local state management and `useEffect` for side effects.
-- It also uses custom hooks from `wagmi` (`useAccount` and `useWalletClient`) for blockchain wallet 
-integration.
+- It also uses custom hooks from Wagmi (`useAccount` and `useWalletClient`) for blockchain wallet integration.
 
-## State management
+#### State management
 
 ```jsx
 const [items, setItems] = useState<any[]>([]);
@@ -381,7 +396,7 @@ const [newItemPrice, setNewItemPrice] = useState("");
 - `items` and `ownedItems` are arrays to store marketplace items.
 - `newItemName` and `newItemPrice` are for form inputs when listing a new item.
 
-## `useEffect` for data loading
+#### `useEffect` for data loading
 
 ```jsx
 useEffect(() => {
@@ -391,9 +406,9 @@ useEffect(() => {
 ```
 
 - This effect runs once when the component mounts.
-- It calls `loadItems()` and `loadOwnedItems()` to populate the state with data from the blockchain.
+- It calls `loadItems` and `loadOwnedItems` to populate the state with data from the blockchain.
 
-## Smart contract interaction
+#### Smart contract interaction
 
 ```jsx
 const loadItems = async () => {
@@ -413,7 +428,7 @@ const loadItems = async () => {
 - This function reads data from the smart contract using `client.readContract`.
 - It first gets the total item count, then fetches details for each item.
 
-## Writing to the blockchain
+#### Writing to the blockchain
 
 ```jsx
 const listItem = async () => {
@@ -433,7 +448,7 @@ const listItem = async () => {
 - This function writes data to the blockchain (listing a new item).
 - It first simulates the contract call, then uses `walletClient.writeContract` to execute the transaction.
 
-## UI components and styling
+#### UI components and styling
 
 ```jsx
 <Card className="p-4 sm:p-6" key={index}>
@@ -455,7 +470,7 @@ const listItem = async () => {
 - Tailwind CSS classes are used for styling (`className` props).
 - Conditional rendering is used to show/hide the purchase button based on item status and ownership.
 
-## Form handling
+#### Form handling
 
 ```jsx
 <Input
@@ -470,7 +485,7 @@ const listItem = async () => {
 - Controlled inputs are used for the form fields.
 - The `value` and `onChange` props connect the input to the component's state.
 
-## Error handling
+#### Error handling
 
 ```jsx
 try {
@@ -481,10 +496,10 @@ try {
 ```
 
 - Try-catch blocks are used throughout the code to handle potential errors in asynchronous operations, 
-especially during blockchain interactions.
+  especially during blockchain interactions.
 
-The `app.tsx` can become quite large so we can also refactor the code in`site/src/app/components/` 
-directory.
+`app/page.tsx` can become quite large so you can also refactor the code in the
+`site/src/app/components/` directory.
 
 ```
 /components
@@ -495,21 +510,22 @@ directory.
   - useItems.ts
 ```
 
-View the [full code](https://github.com/meowyx/web3-marketplace-linea/blob/code-refactor/packages/site/src/app/page.tsx).
+View the
+[full code](https://github.com/meowyx/web3-marketplace-linea/blob/code-refactor/packages/site/src/app/page.tsx).
 
 You can also view the [refactored code](https://github.com/meowyx/web3-marketplace-linea/tree/code-refactor/packages/site/src/app).
 
-This component demonstrates advanced React patterns, integration with blockchain technology, and 
-modern UI practices. It showcases how to build a decentralized application frontend that interacts 
-with a smart contract while providing a user-friendly interface.
+This component demonstrates advanced React patterns, integration with blockchain technology, and modern
+UI practices.
+It showcases how to build a dapp frontend that interacts with a smart contract while providing a user-friendly interface.
 
-### Run the development server
+### 9. Start your dapp
 
 ```bash
 npm run dev
 ```
 
-Your Next.js application with Shadcn UI should now be running at `http://localhost:3000`.
+Your Next.js application with shadcn/ui is now running at `http://localhost:3000`.
 
 <div class="center-container">
   <div class="img-large">
@@ -520,18 +536,14 @@ Your Next.js application with Shadcn UI should now be running at `http://localho
   </div>
 </div>
 
-Now we should be able to list an item, buy and sell, and transfer ownership.
+You can list an item, buy and sell, and transfer ownership.
 
-In this guide, we built a simple decentralized marketplace DApp on Linea, leveraging zkEVM technology 
-for scalability and cost efficiency. We covered everything from setting up the environment to writing and deploying smart contracts, and integrating the frontend with Next.js and ShadcnUI.
+In this tutorial, you built a simple marketplace dapp on Linea, leveraging zkEVM technology for
+scalability and cost efficiency.
 
-Now you have your simple decentralized marketplace dapp! You can explore further options and expand
-on this base with enhancements such as optimizing the user experience with additional features, or
-enabling bidding on items, auctions etc. The possibilities of dapps are endless.
+## Next steps
 
-Happy coding!
+- Explore further options and expand on this base with enhancements such as optimizing the user
+  experience with additional features, or enabling bidding on items.
 
-## Resources:
-
-- GitHub repository: https://github.com/meowyx/web3-marketplace-linea
-- Deployed site: https://web3-marketplace-linea.vercel.app/
+- See the [full example dapp](https://github.com/meowyx/web3-marketplace-linea) on GitHub.

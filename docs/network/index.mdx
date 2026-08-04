@@ -1,0 +1,115 @@
+---
+title: Linea Mainnet
+description: >-
+  Overview of Linea Mainnet, the public zkEVM L2 network built on Lineth, with
+  quick links to start building.
+sidebar_position: 0
+image: /img/socialCards/linea-mainnet.jpg
+---
+
+import ActionCards from '@site/src/components/ActionCards';
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+Linea Mainnet is the public, permissionless <GlossaryTerm term="zkEVM" /> <GlossaryTerm term="Layer 2 (L2)">
+L2</GlossaryTerm> network built on <GlossaryTerm term="Lineth" />.
+Linea processes Ethereum-compatible transactions, generates <GlossaryTerm term="Zero-knowledge proof">
+ZK proofs</GlossaryTerm>, and finalizes state to Ethereum.
+
+Get started building on Linea:
+
+<ActionCards
+  cards={[
+    {
+      text: "Deploy a smart contract to Linea",
+      description: "Launch your first contract using your preferred tooling.",
+      href: "/network/build/launch-an-app/deploy",
+    },
+    {
+      text: "Bridge tokens to Linea",
+      description: "Move ETH and other tokens between Ethereum and Linea.",
+      href: "/network/how-to/bridge",
+    },
+    {
+      text: "Run a node",
+      description: "Sync and operate a Linea node with your preferred client.",
+      href: "/network/how-to/run-a-node",
+    },
+    {
+      text: "Recover state from the public network",
+      description: "Reconstruct Linea's state independently of the operator.",
+      href: "/network/how-to/recover-state",
+    },
+  ]}
+/>
+
+For protocol mechanics, see [how the Lineth protocol works](../protocol/index.mdx).
+
+Linea is incubated within Consensys.
+Our mission is to empower developers to build the next generation of decentralized applications and onboard the next billion users to web3.
+
+## Security for all
+
+Built as a layer above Ethereum, Linea inherits the robust security and decentralization of the
+Ethereum network while significantly increasing throughput and reducing transaction fees to
+negligible amounts.
+
+→ Learn about [Linea's architecture](../protocol/architecture/index.mdx)
+
+## Advanced zero-knowledge proof technology
+
+By leveraging ZK proofs, Linea removes the seven-day lockup period associated with
+<GlossaryTerm term="Fraud proof">fraud proofs</GlossaryTerm> in other L2 solutions built according to the
+optimistic rollup model.
+Using ZK proofs ensures user funds are always available and can be withdrawn instantly and at no cost.
+
+→ Learn about how proofs fit within [Linea's transaction lifecycle](../protocol/architecture/index.mdx#transaction-lifecycle)
+
+## True Ethereum equivalence
+
+Linea supports all the features that Ethereum supports.
+It's the only zero-knowledge L2 network fully compatible with the
+<GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm>.
+This means that any Ethereum-based projects and assets can be seamlessly deployed on and bridged to Linea
+without any code base changes.
+
+→ Learn about the small differences between building on [Ethereum and Linea](./overview/ethereum-differences.mdx)
+
+## Fast finality
+
+<GlossaryTerm term="Soft finality" /> within 1s because Linea has short block times and does not reorg
+confirmed L2 transactions.
+
+→ Learn about Linea's [finality lifecycle](./overview/transaction-finality.mdx)
+
+## Predictable pricing
+
+Clarity over Linea prices for transactions, how to estimate fees, and how L1 and L2 costs are accounted for.
+
+→ Learn about Linea's [pricing strategy](./overview/predictable-pricing.mdx)
+
+## Recoverable state
+
+Dedicated plugin to reconstruct Linea's state as it was at the last point in time data was finalized.
+
+→ Learn about [recovering state](./overview/recoverable-state.mdx)
+
+## Scale with MetaMask
+
+Linea is the best way for application developers to leverage MetaMask's products and distribution.
+Seamlessly integrate Linea through the MetaMask Developer portal, unlock easy on-ramping, bridging
+and swaps for your users, and access millions of the most engaged onchain users worldwide.
+
+<ActionCards
+  cards={[
+    {
+      text: "MetaMask smart accounts",
+      description: "Add account abstraction to your app with MetaMask.",
+      href: "/network/build/tools/account-abstraction/metamask",
+    },
+    {
+      text: "Use the MetaMask SDK",
+      description: "Build a voting dapp using the MetaMask SDK.",
+      href: "/network/tutorials/voting-dapp",
+    },
+  ]}
+/>

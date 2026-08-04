@@ -554,8 +554,8 @@ a.navbar__brand {
 
 /* Dot indicators for navbar items - EXACT Figma specs */
 /* Use href-based selectors since Docusaurus doesn't pass through custom data attributes */
-.navbar__link[href="/network/quickstart"]::before,
-.navbar__link[href="/protocol/quickstart"]::before,
+.navbar__link[href="/network"]::before,
+.navbar__link[href="/protocol"]::before,
 .navbar__link[href="/stack"]::before,
 .navbar__link[href="/reference"]::before,
 .navbar__link[href="/changelog/release-notes"]::before,
@@ -572,8 +572,8 @@ a.navbar__brand {
   background-color: transparent;
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"]::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]::before,
+[data-theme="dark"] .navbar__link[href="/network"]::before,
+[data-theme="dark"] .navbar__link[href="/protocol"]::before,
 [data-theme="dark"] .navbar__link[href="/stack"]::before,
 [data-theme="dark"] .navbar__link[href="/reference"]::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]::before,
@@ -582,8 +582,8 @@ a.navbar__brand {
 }
 
 /* ONLY when active, fill the dot */
-.navbar__link[href="/network/quickstart"].navbar__link--active::before,
-.navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+.navbar__link[href="/network"].navbar__link--active::before,
+.navbar__link[href="/protocol"].navbar__link--active::before,
 .navbar__link[href="/stack"].navbar__link--active::before,
 .navbar__link[href="/reference"].navbar__link--active::before,
 .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
@@ -591,8 +591,8 @@ a.navbar__brand {
   background-color: var(--linea-brand-navy);
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"].navbar__link--active::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/network"].navbar__link--active::before,
+[data-theme="dark"] .navbar__link[href="/protocol"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/stack"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/reference"].navbar__link--active::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"].navbar__link--active::before,
@@ -610,8 +610,8 @@ a.navbar__brand {
   color: white !important;
 }
 
-.navbar__link[href="/network/quickstart"]:hover::before,
-.navbar__link[href="/protocol/quickstart"]:hover::before,
+.navbar__link[href="/network"]:hover::before,
+.navbar__link[href="/protocol"]:hover::before,
 .navbar__link[href="/stack"]:hover::before,
 .navbar__link[href="/reference"]:hover::before,
 .navbar__link[href="/changelog/release-notes"]:hover::before,
@@ -619,8 +619,8 @@ a.navbar__brand {
   background-color: var(--linea-brand-navy);
 }
 
-[data-theme="dark"] .navbar__link[href="/network/quickstart"]:hover::before,
-[data-theme="dark"] .navbar__link[href="/protocol/quickstart"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/network"]:hover::before,
+[data-theme="dark"] .navbar__link[href="/protocol"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/stack"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/reference"]:hover::before,
 [data-theme="dark"] .navbar__link[href="/changelog/release-notes"]:hover::before,
@@ -630,8 +630,8 @@ a.navbar__brand {
 
 /* ensure dots are hidden on smaller screens */
 @media (max-width: 996px) {
-  .navbar__link[href="/network/quickstart"]::before,
-  .navbar__link[href="/protocol/quickstart"]::before,
+  .navbar__link[href="/network"]::before,
+  .navbar__link[href="/protocol"]::before,
   .navbar__link[href="/stack"]::before,
   .navbar__link[href="/reference"]::before,
   .navbar__link[href="/changelog/release-notes"]::before,
@@ -1030,7 +1030,12 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   flex-direction: column !important;
 }
 
-.thin-scrollbar {
+/* Scoped to the left docs sidebar's scroll region only. `.thin-scrollbar` is a
+   shared Docusaurus class also used by the right-hand TOC and by CodeBlock's
+   scroll container; a bare `.thin-scrollbar` selector here previously clobbered
+   the TOC's own `max-height`/`overflow-y`/`position: sticky`, which made long
+   TOCs (like the glossary) unable to scroll within themselves. */
+[class*="sidebarViewport"] .thin-scrollbar {
   background-color: var(--page-background);
   margin: 0;
   padding: 10px 16px;
@@ -1045,37 +1050,47 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
 }
 
 /* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
-.thin-scrollbar::-webkit-scrollbar {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar {
   appearance: none;
   width: 7px;
   background: transparent;
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #ededed;
   border-radius: var(--linea-radius-sm);
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-track {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-track {
   background: #2d2d2d;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #d1d1d1;
   border-radius: var(--linea-radius-sm);
 }
 
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b0b0b0;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #4d4d4d;
 }
 
-[data-theme="dark"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+[data-theme="dark"] [class*="sidebarViewport"] .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666;
+}
+
+/* The default right-hand `@theme/TOC` (theme-doc-toc-desktop) also carries the
+   shared `.thin-scrollbar` class, and relied on the padding from the bare
+   `.thin-scrollbar` rule above before it was scoped to the sidebar. Restore
+   just the padding here, without the overflow-y/max-height overrides above,
+   since `@theme/TOC` already manages its own height/scroll behavior and
+   reintroducing those would bring back the glossary TOC scroll bug. */
+.theme-doc-toc-desktop.thin-scrollbar {
+  padding: 10px 16px;
 }
 
 /* Collapse sidebar button fully managed in section 14b below */
@@ -1741,7 +1756,7 @@ details {
   background-color: var(--page-background) !important;
   border: 1px solid rgb(0 0 0 / 8%) !important;
   border-radius: 0;
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.375rem !important;
   margin: 1rem 0;
 }
 
@@ -1753,7 +1768,8 @@ details {
 details > summary {
   cursor: pointer;
   font-weight: 500;
-  padding: 0.0625rem 0;
+  font-size: var(--font-body-md);
+  padding: 0.75rem !important;
   list-style: none;
   position: relative;
   color: inherit;
@@ -1768,26 +1784,20 @@ details > summary::-webkit-details-marker {
 }
 
 details > summary::before {
-  content: "";
   display: inline-block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--linea-link-highlight-color);
-  margin-right: 0.5rem;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-
-details[open] > summary::before {
-  transform: rotate(90deg);
+  position: relative !important;
+  top: -1px !important;
+  border-width: 5px 0 5px 8px !important;
+  border-color: transparent transparent transparent var(--linea-link-highlight-color) !important;
   margin-right: 0.5rem;
 }
 
 details > div {
-  margin-top: 0.75rem;
   padding-left: 1.5rem;
+}
+
+details > div > div {
+  margin-top: 0.2rem !important;
   padding-bottom: 0.5rem;
 }
 
@@ -2132,10 +2142,19 @@ details > div {
   color: #a78bfa;
 }
 
-/* Tabs styling per Figma */
+/*
+ * Tabs styling per Figma, plus the "common region" selection indicator
+ * (NN/g "Tabs, Used Right"): https://www.nngroup.com/articles/tabs-used-right/
+ * The selected tab and its panel share one background fill (a surface
+ * color distinct from the page background) so the boundary of the tabbed
+ * content stays visible for its entire length, however long. Unselected
+ * tabs sit directly on the page background for contrast.
+ */
 .tabs {
   border-bottom: none;
-  margin-bottom: 24px;
+  gap: 4px;
+  margin-bottom: 0;
+  padding: 0 20px;
 }
 
 .tabs__item {
@@ -2144,8 +2163,10 @@ details > div {
   font-weight: 400;
   padding: 10px 16px;
   border-bottom: 1px solid transparent;
+  border-radius: var(--linea-radius-sm) var(--linea-radius-sm) 0 0;
   color: var(--linea-text-secondary);
   transition: all 0.2s ease;
+  margin-bottom: 0;
 }
 
 .tabs__item:hover {
@@ -2153,8 +2174,19 @@ details > div {
 }
 
 .tabs__item--active {
-  border-bottom-color: var(--linea-brand-purple);
+  border-bottom-color: transparent;
   color: var(--linea-text-primary);
+  background-color: var(--linea-surface-elevated);
+  font-weight: 600;
+}
+
+/* Panel sits flush under the active tab; Infima's .margin-top--md otherwise
+   leaves a gap that breaks the shared background with the tab. */
+.tabs-container > div.margin-top--md {
+  background-color: var(--linea-surface-elevated);
+  border-radius: var(--linea-radius-md);
+  padding: 20px;
+  margin-top: 0 !important; /* override Infima utility margin */
 }
 
 /* Pills/badges styling per Figma */
@@ -2175,7 +2207,7 @@ article a,
 .theme-doc-markdown a {
   color: var(--linea-inline-link-color) !important;
   text-decoration: none;
-  font-family: 'Atyp Text', sans-serif;
+  font-family: AtypText, sans-serif;
   font-weight: 400;
   font-size: inherit;
   transition: color 0.2s ease;
@@ -2198,6 +2230,16 @@ article a:hover,
 .theme-doc-markdown a:hover {
   color: var(--linea-inline-link-hover) !important;
   opacity: 1;
+}
+
+article a code,
+.theme-doc-markdown a code {
+  color: var(--linea-inline-link-color) !important;
+}
+
+article a:hover code,
+.theme-doc-markdown a:hover code {
+  color: var(--linea-inline-link-hover) !important;
 }
 
 /* Headings styling per Figma - EXACT specs */
@@ -2270,6 +2312,13 @@ article p {
   margin-bottom: 1rem;
 }
 
+article strong,
+.theme-doc-markdown strong,
+article b,
+.theme-doc-markdown b {
+  font-weight: 600;
+}
+
 /* Lists styling */
 article ul,
 article ol {
@@ -2310,6 +2359,15 @@ div[class*="codeBlockContent"] {
   padding: 0 !important;
   margin: 0 !important;
   position: static !important;
+}
+
+/* Code block title bar. */
+div[class*="codeBlockContainer"] div[class*="codeBlockTitle"] {
+  color: #f8f7f2;
+  border-bottom-color: rgb(255 255 255 / 12%);
+  margin: -10px -20px 0.75rem;
+  padding: 10px 20px 0.75rem;
+  font-size: 16px;
 }
 
 /* Copy button: default = vertically centered (small / single-line blocks) */

@@ -1,0 +1,88 @@
+---
+description: Page structure, audience, and tone conventions for docs.linea.build content.
+globs: docs/**/*.{mdx,md}
+alwaysApply: false
+---
+
+# Content structure
+
+## Identify the tab and audience first
+
+Before writing or editing a page, identify which tab it belongs to (see the tab-to-directory
+table in [README.mdx](../../README.mdx)) and match the tone expected for that tab's primary
+audience:
+
+| Tab | Primary audience | Tone |
+| --- | --- | --- |
+| Linea Mainnet (`docs/network`) | End users and app builders | Clear and accessible. Developer-focused sections can go deeper. |
+| Lineth Stack (`docs/stack`) | Appchain builders, enterprise operators | Technical but applied. Operational and integration focus. |
+| Protocol (`docs/protocol`) | Software architects, institutional evaluators | Deep technical. Internals and architecture are expected. |
+| Reference (`docs/api`) | Developers | Code-first and reference-style. Practical. |
+| Changelog (`docs/changelog`) | All of the above | Factual, dated, scoped to what shipped. |
+
+A page can serve more than one audience. If two audiences need substantially different
+content, consider proposing a split into two pages instead of one page trying to serve
+both. If you keep one page, lead with the simpler content and put advanced material later
+or in a separate section. Don't assume deep protocol knowledge on a Linea Mainnet page.
+
+## Page structure
+
+A typical concept or feature page follows this shape:
+
+```mdx
+---
+title: [Short, descriptive: matches the URL slug]
+description: [One sentence: what is this, why does it matter, who cares]
+---
+
+[One to two sentence opening: the big picture. No heading. Don't restate the title.]
+
+## What it is
+## Why it matters
+## What changes (if relevant)
+## Code samples (verified, near the bottom)
+## Resources
+```
+
+Adapt the specific headings to the page's content type (a how-to guide uses numbered
+steps and prerequisites instead; a reference page mirrors the API or CLI it documents).
+Match the structure of existing neighboring pages in the same section before inventing a
+new shape.
+
+Writing order: identify the tab and audience, draft the H2 headings first (check that
+they tell the full story on their own), then write the opening sentence, then fill in
+prose, then add code samples last.
+
+## Tutorial and how-to page structure
+
+Tutorial and how-to pages use this shape instead of the concept-page shape above:
+
+```mdx
+---
+title: [Short, descriptive, action-oriented: matches the URL slug]
+description: [One sentence: what you'll build or do]
+---
+
+[One to two sentence opening: what the reader will build or do. No heading. Don't restate
+the title. Prefer "This tutorial walks you through..." over "In this tutorial, we will...".]
+
+## Prerequisites
+
+- Bullet list of what to install, configure, or fund before starting.
+
+## Steps
+
+### 1. [Imperative step title]
+
+[Step content. Only add a `####` sub-heading when a step has genuinely distinct
+sub-parts, for example separate public/wallet client setup within one step.]
+
+### 2. [Imperative step title]
+
+...
+
+## Next steps
+
+- Suggested extensions to the project, and/or a link to a full example repo, written as
+  a full sentence with the link embedded in it (not a bare "Repo: <url>" line).
+```

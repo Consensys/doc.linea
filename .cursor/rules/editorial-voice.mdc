@@ -1,0 +1,56 @@
+---
+description: Editorial voice, tone, and heading style for docs.linea.build content.
+globs: docs/**/*.{mdx,md}
+alwaysApply: false
+---
+
+# Editorial voice
+
+This repository follows the [Consensys documentation style guide](https://docs-template.consensys.net/contribute/style-guide).
+The rules below are the most actionable subset for AI-assisted editing.
+
+## Headings
+
+- Use sentence case for all headings and bullet points (for example, "Key benefits", not
+  "Key Benefits").
+- Use imperative tense for headings (for example, "Configure a node", not "Configuring a
+  node" or "How to configure a node"). Keep headings as concise as possible.
+- Never restate the page title as the page's opening sentence.
+
+## Voice and clarity
+
+- Write in active voice. Prefer short, direct sentences: if a sentence needs a second
+  read, rewrite it.
+- Define jargon on first use, on every page it appears (for example: prover, coordinator,
+  base fee, blob). Don't assume a term defined on one tab carries over to another.
+- No filler or promotional language (for example, "Linea is excited to announce...").
+  Get to the point.
+- Prefer evergreen wording on concept and reference pages. Avoid date-specific claims
+  unless explicitly scoped (for example, "as of March 2026"). Release-specific detail,
+  rollout phases, and operational notes belong in `docs/changelog`, not on concept pages.
+- Don't write in first person ("I", "we'll", "let's", "our contract"), with one
+  exception: "we recommend" is allowed when giving guidance. Default to second person and
+  imperative instructions instead ("Create a file...", "Run...").
+- No emojis, decorative or otherwise, and no hype or sign-off language ("Happy
+  building!", "Let's dive in!").
+
+## Punctuation
+
+- Don't use em dashes or en dashes. Use a comma, colon, parenthesis, semicolon, or
+  rephrase the sentence into two.
+- Use only one space after a period, question mark, or colon.
+
+## Marking unverified information
+
+If you're documenting a number, address, version, or date you can't verify against source
+code, a spec, or another authoritative reference, mark it inline with `[VERIFY]` rather
+than guessing or omitting it silently. Flag any `[VERIFY]` markers in your pull request
+description so reviewers know what still needs confirmation before merge.
+
+## Lists
+
+- Numbered list items end with a full stop.
+- Bullet list fragments (not full sentences) don't end with a full stop.
+- Bullet lists written as full sentences do end with a full stop.
+- Maintain proper indentation when continuing a bullet or numbered item across multiple
+  lines.

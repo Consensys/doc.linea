@@ -39,8 +39,8 @@ To run a Linea Besu node, access the [`/docker` directory](https://github.com/LF
 in the Linea Besu repository. This directory is the source of truth for Linea Besu compose profiles.
 Each profile supports different Linea Besu plugin configurations depending on your use case.
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
 
     Download the appropriate `.yaml` file for your use case:
     - [`basic-mainnet`](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/linea-besu/package/docker/docker-compose-basic-mainnet.yaml): Creates a basic follower node on Linea Mainnet with no plugins enabled.
@@ -72,8 +72,8 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
 
 ### Step 3. Start the Linea Besu node
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
     In a terminal, navigate to your `.yaml` file's directory. Then start the node by running
     `docker compose`:
 
@@ -101,15 +101,12 @@ You can use [this page](https://whatismyip.com/) to find your public IP address.
       docker compose -f ./your-file-path/docker-compose-advanced-sepolia.yaml up
       ```
 
-      Alternatively, you can run a node without downloading a `.yaml` file with a `docker run`
-      command. For example:
+      Use the canonical Sepolia compose file from the [Linea Besu package `docker`
+      directory](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/linea-besu/package/docker)
+      as the source of truth for the supported `linea-besu-package` image tag. That file is kept up
+      to date as new releases ship, so you do not have to pin a specific tag in your own config.
 
-      ```bash
-      docker run -e BESU_PROFILE=advanced-sepolia consensys/linea-besu-package:beta-v4.0-rc11-20251004063519-a5c4c31
-      ```
-
-      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1, and replace the image
-      name with a more recent version from the releases page.
+      Adjust the `BESU_PROFILE` to match one of the profiles listed in step 1.
 
     </TabItem>
 </Tabs>
@@ -155,8 +152,8 @@ Ensure you mount the `data-path` to the custom volume when you start the node.
 In the extracted directory, find `profiles`. The `.toml` configuration files in this folder define
 the parameters for each possible profile you can select for your Linea Besu node.
 
-<Tabs groupId="networks" className="my-tabs">
-  <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+  <TabItem value="Mainnet" label="Mainnet">
     Select one according to your preferences:
     - `basic-mainnet`: Creates a basic follower node on Linea Mainnet with no plugins enabled.
     - `advanced-mainnet`: Creates an advanced node on Linea Mainnet with plugins that enable support
@@ -179,8 +176,8 @@ Now run Linea Besu, specifying your preferred profile. The `--plugin-linea-l1-rp
 only be defined if you are running an `advanced` node, since this is needed to query finalization on
 L1.
 
-<Tabs groupId="networks" className="my-tabs">
-    <TabItem value="mainnet" label="Mainnet">
+<Tabs groupId="Mainnet-Testnet" className="my-tabs">
+    <TabItem value="Mainnet" label="Mainnet">
     ```bash
     bin/besu --profile=advanced-mainnet --plugin-linea-l1-rpc-endpoint=YOUR_L1_RPC_ENDPOINT
     ```

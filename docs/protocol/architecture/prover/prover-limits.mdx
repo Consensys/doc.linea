@@ -5,18 +5,20 @@ sidebar_position: 3
 image: /img/socialCards/module-limits.jpg
 ---
 
-Linea uses module limits to keep proof complexity manageable and ensure that the prover can
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+<GlossaryTerm term="Lineth" /> uses module limits to keep proof complexity manageable and ensure that the prover can
 generate proofs efficiently without overwhelming the infrastructure. 
 
-Linea's arithmetization specification is divided into modules, and each module represents a collection
-of EVM or Linea zkEVM operations (opcodes). Modules can:
+Lineth's arithmetization specification is divided into modules, and each module represents a collection
+of <GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm> or Lineth <GlossaryTerm term="zkEVM" /> operations (opcodes). Modules can:
 - Process transaction data.
 - Manage zkEVM memory.
 - Coordinate interactions between modules.
 
 Each module has a specific limit on the number of lines of data its operations can generate, 
 regardless of its purpose. You can view these limits in the 
-[Linea source code](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docker/config/common/traces-limits-v5.toml). 
+[Lineth source code](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docker/config/common/traces-limits-v5.toml). 
 Additional lines are generated each time unique instructions are provided to a module's operations, 
 but repeat calls with the same arguments do not generate new lines.
 

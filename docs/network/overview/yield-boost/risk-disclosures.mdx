@@ -37,7 +37,7 @@ that may be used to compensate slashing losses.
 ## Delays when withdrawing ETH from Linea
 
 ETH that is actively staked is not immediately withdrawable. The
-`L1MessageService` holds a liquidity buffer of unstaked ETH for normal
+`LineaRollup` holds a liquidity buffer of unstaked ETH for normal
 withdrawals. Under high withdrawal demand or congestion in Ethereum’s validator
 exit queue, that buffer can be exhausted. Withdrawals may then be delayed until
 staked ETH becomes available again.
@@ -74,9 +74,9 @@ at risk.
 
 If safeguards fail and a malicious or catastrophic upgrade lands, funds backing
 Yield Boost could be permanently lost, and Linea would not be able to reverse or
-reimburse those losses. To mitigate this, Linea’s Security Council can
-permanently uncouple Yield Boost from Lido (ossification) before a harmful
-upgrade is executed.
+reimburse those losses. As a safeguard, Linea’s Security Council can permanently
+lock the `StakingVault` contract in its current state, opting out of any future
+Lido upgrades. This process is called ossification.
 
 ## Smart contract exploits or hacks
 

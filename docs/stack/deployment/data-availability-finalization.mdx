@@ -5,7 +5,11 @@ sidebar_position: 3
 image: /img/socialCards/data-availability-and-finalization.jpg
 ---
 
-This page compares data availability and finalization designs for a Lineth deployment and their operator consequences. For application-level versus settlement finality, see [Finality design](./fast-finality.mdx).
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+This page compares data availability and finalization designs for a <GlossaryTerm term="Lineth" /> deployment and
+their <GlossaryTerm term="Operator">operator</GlossaryTerm> consequences.
+For application-level versus settlement finality, see [Finality design](./fast-finality.mdx).
 
 :::important
 
@@ -16,17 +20,17 @@ Understanding the role of [data availability](../../protocol/architecture#data-a
 
 The following examples show different combinations of data availability and finalization:
 
-- **L2 Private Validium on Ethereum:** Offchain data availability, L1 finalization
-- **L3 Private Validium on Linea Mainnet:** Offchain data availability, L2 finalization
-- **L2 Public on Ethereum:** Onchain data availability, L1 finalization
-- **L3 Public on Linea Mainnet:** Onchain data availability, L2 finalization
+- **L2 private validium on Ethereum:** Offchain data availability, L1 finalization
+- **L3 private validium on Linea Mainnet:** Offchain data availability, L2 finalization
+- **L2 public on Ethereum:** Onchain data availability, L1 finalization
+- **L3 public on Linea Mainnet:** Onchain data availability, L2 finalization
 
 ## Data availability
 
 Lineth enables flexible data retention and disclosure policies depending on deployment
 requirements.
 
-While zk-SNARK proofs ensure the correctness of state transitions, data
+While <GlossaryTerm term="zk-SNARK" /> proofs ensure the correctness of state transitions, data
 availability (the accessibility of transaction data from a blockchain network)
 determines whether the transaction data underlying these proofs remains
 accessible to parties who need to verify or reconstruct historical state.
@@ -35,16 +39,15 @@ Data availability is the guarantee that transaction data is accessible when need
 model determines where and how data is stored.
 
 For node roles that support data availability, see
-[full nodes](../../protocol/architecture/index.mdx#full-nodes) and
 [RPC services](../../protocol/architecture/rpc-services.mdx).
 
-### Private Validium
+### Private validium
 
-In a Validium, data availability is typically provided by the Validium’s
+In a validium, data availability is typically provided by the validium’s
 [archive nodes](../../protocol/architecture/rpc-services.mdx#archive-nodes) rather than an external
 data availability solution. If sufficient archive nodes remain available, authorized participants
 with access to the data can reconstruct and verify transaction history. Because the chain is private,
-data is not posted to the finalization layer, but is instead retained within the Validium
+data is not posted to the finalization layer, but is instead retained within the validium
 infrastructure under the operational and governance controls of the participating institutions. In
 this model, assurance of data availability is primarily based on institutional guarantees, node
 redundancy, and operational SLAs across the consortium of operators.
@@ -78,7 +81,7 @@ available. This allows for maximum transparency and onchain data availability.
 
 **Operator responsibility:**
 
-- Ensure coordinator can post blobs to finalization layer
+- Ensure coordinator can post blobs to <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>
 - Monitor blob posting success and gas costs
 
 ## Finalization layer
@@ -86,8 +89,8 @@ available. This allows for maximum transparency and onchain data availability.
 The finalization layer is the blockchain where your Lineth deployment submits proofs and state
 commitments for verification and hard finality. It also determines the layer of your network:
 
-- L2: If your finalization layer is an L1 (such as, Ethereum), your network is an L2
-- L3: If your finalization layer is an L2 (such as, Linea Mainnet), your network is an L3.
+- L2: If your finalization layer is an L1 (such as Ethereum), your network is an L2
+- L3: If your finalization layer is an L2 (such as Linea Mainnet), your network is an L3.
 
 **Examples:**
 
@@ -127,20 +130,21 @@ When choosing a finalization layer, consider the following:
 | Configuration | Description | Summary | Indications |
 |--------------|-------------|---------|-------------|
 | **Standalone Lineth – Single validator** | In a single-validator standalone deployment, transaction acceptance is immediate and deterministic under the operator trust model. The single authorized validator produces blocks and executes transactions. Once a block is produced and committed by the validator, transactions in that block are accepted as final by the deployment. No consensus-driven forks or reorganizations are expected by design. | Immediate, deterministic application-level finality with a single trusted validator. | Prioritizes simplicity and low latency. Suitable for private or highly controlled environments where validator trust is explicit. |
-| **Standalone Lineth – Multiple validators (QBFT)** | In a multivalidator standalone deployment, Lineth uses a Byzantine Fault Tolerant consensus protocol (QBFT) to achieve finality among authorized validators. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized by the validator set. Once finalized, blocks are irreversible under the deployment's QBFT safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
-| **Layer 2 Lineth – Single validator** | When deployed as an Ethereum Layer 2 with a single validator (sequencer), Lineth combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, transactions in that block are accepted as final at the L2 application level under the operator trust model.<br/>No consensus-driven forks or reorganizations are expected by design.<br/>L2 state is periodically committed to Ethereum Layer 1.<br/>When the commitment is finalized, the L2 state receives settlement finality on Ethereum. | Balances fast performance with explicit operator trust and slower Ethereum L1 settlement finality. |
-| **Layer 2 Lineth – Multiple validators (QBFT)** | When deployed as an Ethereum Layer 2 with multiple validators, Lineth combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides settlement finality at regular checkpoints. | Suitable for environments that require fast application-level finality under normal conditions and slower Ethereum settlement finality for global settlement. |
+| **Standalone Lineth – Multiple validators (QBFT)** | In a multi-validator standalone deployment, Lineth uses <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> to achieve finality among authorized validators. | A block proposer produces a block for a given height.<br/>Validators vote in quorum-based rounds.<br/>When a supermajority (≥2/3) of validators commit a block, it is finalized by the validator set. Once finalized, blocks are irreversible under the deployment's QBFT safety assumptions. Finality is typically achieved within seconds. | Provides strong single-slot finality with Byzantine fault tolerance. Suitable for environments requiring distributed trust among multiple validators. |
+| **Layer 2 Lineth – Single validator** | When deployed as an Ethereum L2 with a single validator (sequencer), Lineth combines fast L2 execution with periodic L1 commitments. | A single authorized validator produces blocks and executes transactions on the L2.<br/>Once a block is produced and committed, transactions in that block are accepted as final at the L2 application level under the operator trust model.<br/>No consensus-driven forks or reorganizations are expected by design.<br/>L2 state is periodically committed to Ethereum L1.<br/>When the commitment is finalized, the L2 state receives settlement finality on Ethereum. | Balances fast performance with explicit operator trust and slower Ethereum L1 settlement finality. |
+| **Layer 2 Lineth – Multiple validators (QBFT)** | When deployed as an Ethereum L2 with multiple validators, Lineth combines Byzantine Fault Tolerant L2 finality with Ethereum Proof-of-Stake finality. | QBFT consensus among authorized validators provides single-slot L2 finality.<br/>Ethereum Proof-of-Stake consensus provides settlement finality at regular checkpoints. | Suitable for environments that require fast application-level finality under normal conditions and slower Ethereum settlement finality for global settlement. |
 
 ### Smart contract requirements
 
 The finalization layer must deploy the following smart contracts:
 
 1. Rollup contract: Stores rollup blocks, monitors state updates, and tracks deposits
-2. Verifier contract: Verifies zk-SNARK proofs submitted by your coordinator
+2. Verifier contract: Verifies zk-SNARK proofs submitted by your
+  <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>
 
 Together, these contracts allow your coordinator to finalize batches and state. The process is as follows:
 
-1. The [coordinator](../../protocol/architecture/coordinator.mdx) submits proofs, state commitments, and data-availability payloads to the finalization layer.
+1. The coordinator submits proofs, state commitments, and data-availability payloads to the finalization layer.
 2. The rollup contract receives the submission.
 3. The rollup contract calls the verifier contract to verify the proof.
 4. The verifier contract uses the submitted commitments and data-availability payloads to verify proof validity.

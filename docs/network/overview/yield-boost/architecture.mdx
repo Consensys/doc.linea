@@ -1,7 +1,7 @@
 ---
 title: Architecture
 description: ETH fund flow and role permissions in the Linea Yield Boost staking system.
-image: /img/socialCards/yield-boost.jpg
+image: /img/socialCards/architecture.jpg
 sidebar_position: 1
 ---
 
@@ -25,7 +25,7 @@ governs if this page and the spec conflict.
 
 ## High-level architecture
 
-Surplus ETH above the `L1MessageService` withdrawal reserve minimum may be
+Surplus ETH above the `LineaRollup` withdrawal reserve minimum may be
 staked via a Lido V3 stVault (`StakingVault`). Beacon-chain rewards are reported
 as net yield to Linea (L2) for distribution.
 
@@ -49,17 +49,15 @@ as net yield to Linea (L2) for distribution.
 
 When a user deposits ETH into `LineaRollup`, that ETH remains on L1. Surplus
 above the minimum reserve may be staked. Withdrawals back to the user are paid
-from the `L1MessageService` reserve when liquid ETH is available.
+from the `LineaRollup` reserve when liquid ETH is available.
 
-- [**`LineaRollup` / `L1MessageService`:**](../../build/contracts#deployed-contracts)
-  One deployed `LineaRollup` proxy/address combines both responsibilities.
-  `L1MessageService` is inherited by `LineaRollupBase` and holds the withdrawal
-  reserve (unstaked ETH that pays bridge redemptions); `LineaRollup` also
-  provides the rollup and Yield Boost accounting entry points.
-- **`YieldManager`:** Moves ETH between the `L1MessageService` reserve and the
+- [**`LineaRollup`:**](../../build/contracts#deployed-contracts) Holds the
+  withdrawal reserve (unstaked ETH that pays bridge redemptions) and provides
+  the rollup and Yield Boost accounting entry points.
+- **`YieldManager`:** Moves ETH between the `LineaRollup` reserve and the
   `StakingVault`, and calculates net yield after fees and liabilities.
 - **`StakingVault`:** Lido V3 stVault; validator withdrawals return here before
-  ETH moves back to the `L1MessageService` reserve.
+  ETH moves back to the `LineaRollup` reserve.
 - **Beacon chain:** Where validators stake and earn rewards.
 - **Node operator:** Deposits from the vault to the beacon chain.
 - **Automation service:** Triggers routine stake/unstake, reserve top-ups, and
@@ -83,7 +81,7 @@ flowchart TD
     User([User])
     Auto([Automation Service])
     NO([Node Operator])
-    LR[LineaRollup proxy\nL1MessageService withdrawal reserve]
+    LR[LineaRollup\nwithdrawal reserve]
     YM[YieldManager]
     SV[StakingVault]
     BC{{beacon chain}}
@@ -109,7 +107,7 @@ flowchart TD
   [L1 ETH flow](#l1-eth-flow)).
 - **[Dashboard](https://docs.lido.fi/contracts/dashboard#what-is-dashboard):**
   Lido V3 management layer around the `StakingVault`.
-- **[Lido](https://docs.lido.fi/):** Provides the `StakingVault` and dashboard.
+- **[Lido](https://docs.lido.fi/):** Provides the `StakingVault` and `Dashboard`.
 - **Fee recipient:** Receives node operator fees when settled.
 - **Security Council:** See [Key participants](#key-participants).
 - **[L2MessageService](../../build/contracts):** Receives L1 messages and unlocks
@@ -119,7 +117,7 @@ flowchart TD
 Steps:
 
 1. The automation service triggers a yield report on the `YieldManager`.
-2. The `YieldManager` reads vault `totalValue` from the dashboard (beacon stake
+2. The `YieldManager` reads vault `totalValue` from the `Dashboard` (beacon stake
    plus vault balance; updated by the Lido Oracle Committee).
 3. Yield is current `totalValue` minus the last checkpoint, minus outstanding
    obligations.
@@ -127,9 +125,9 @@ Steps:
    protocol fees to Lido; operator fees to the fee recipient). Otherwise
    obligations carry forward.
 5. The `YieldManager` reports remaining net yield to the `LineaRollup`.
-6. The `LineaRollup` emits a synthetic `MessageSent` event. The
-   `L2MessageService` unlocks the corresponding ETH on L2.
-7. The `L2YieldDistributor` sends unlocked ETH to designated recipients.
+6. The `LineaRollup` emits a synthetic `MessageSent` event.
+7. The `L2MessageService` unlocks the corresponding ETH on L2.
+8. The `L2YieldDistributor` sends unlocked ETH to designated recipients.
 
 <div class="mermaid-fit">
 ```mermaid
@@ -168,15 +166,16 @@ flowchart TB
 - **Dashed line:** Function call or event (no funds move)
 
 No ETH is bridged during yield reporting. The synthetic `MessageSent` event
-states how much new yield is available on L2. Reported yield is net of
-obligations so L2 minting stays matched to L1 collateral growth.
+states how much new yield is available on L2. Fees and liabilities are deducted
+before yield is reported, ensuring that ETH unlocked on L2 is always fully
+backed by corresponding collateral growth on L1.
 
 ## Roles and permissions
 
 | Role | Held by | Permissions |
 | --- | --- | --- |
-| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service, Security Council | Rebalance excess ETH from the `L1MessageService` reserve into the `StakingVault` |
-| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service, Security Council | Request validator withdrawals and replenish the `L1MessageService` reserve |
+| `YIELD_PROVIDER_STAKING_ROLE` | Automation Service, Security Council | Rebalance excess ETH from the `LineaRollup` reserve into the `StakingVault` |
+| `YIELD_PROVIDER_UNSTAKER_ROLE` | Automation Service, Security Council | Request validator withdrawals and replenish the `LineaRollup` reserve |
 | `YIELD_REPORTER_ROLE` | Automation Service, Security Council | Trigger yield reporting, including settlement of fees and liabilities from staking rewards |
 | `STAKING_PAUSE_CONTROLLER_ROLE` | Automation Service, Security Council | Pause or resume node operator deposits |
 | `OSSIFICATION_PROCESSOR_ROLE` | Automation Service, Security Council | Progress and finalize vault ossification |
@@ -192,15 +191,16 @@ obligations so L2 minting stays matched to L1 collateral growth.
 | `SECURITY_COUNCIL_ROLE` | Security Council | Create indefinite pauses, bypass pause cooldown restrictions, and manage pause expiry |
 | `DEFAULT_ADMIN_ROLE` | Security Council | Grant or revoke `YieldManager` roles |
 | `SET_YIELD_MANAGER_ROLE` | Security Council | Configure which `YieldManager` the `LineaRollup` uses |
-| Permissionless | Anyone | Donate ETH; call permissionless unstake and reserve replenishment when the `L1MessageService` reserve is below the minimum threshold |
+| Permissionless | Anyone | Donate ETH; call permissionless unstake and reserve replenishment when the `LineaRollup` reserve is below the minimum threshold |
 
 ## Fund flows
 
-1. **Staking** (routine): Automation moves surplus from the `L1MessageService`
+1. **Staking** (routine): Automation moves surplus from the `LineaRollup`
    reserve into the `StakingVault`.
 2. **Reserve replenishment** (routine): Automation requests validator withdrawal,
    then moves arrived ETH back to the reserve.
-3. **Yield reporting** (routine): Net yield after obligations is relayed to L2.
+3. **Yield reporting** (routine): After paying fees and liabilities, the
+   remaining yield is reported to L2.
 4. **Permissionless flows** (fallback): Anyone may call
    `unstakePermissionless` and `replenishWithdrawalReserve` when the reserve is
    in deficit. Both are deficit-gated and capped to the remaining deficit.
@@ -215,7 +215,7 @@ withdrawal can be delayed even when permissionless calls succeed. See
 
 ### 1. Staking
 
-Surplus ETH in the `L1MessageService` withdrawal reserve (above the minimum) is
+Surplus ETH in the `LineaRollup` withdrawal reserve (above the minimum) is
 routed to the `StakingVault` for beacon-chain staking.
 
 <div class="mermaid-fit">
@@ -229,7 +229,7 @@ routed to the `StakingVault` for beacon-chain staking.
 }}%%
 sequenceDiagram
     actor Auto as Automation Service
-    participant L1 as L1MessageService
+    participant L1 as LineaRollup
     participant YM as YieldManager
     participant DB as Dashboard
     participant SV as StakingVault
@@ -249,7 +249,7 @@ sequenceDiagram
 ### 2. Reserve replenishment
 
 Two phases: request beacon-chain withdrawal, then move arrived ETH to the
-`L1MessageService` reserve. Replenishment after a deficit targets the configured
+`LineaRollup` reserve. Replenishment after a deficit targets the configured
 target reserve (not only the minimum).
 
 <div class="mermaid-fit">
@@ -263,7 +263,7 @@ target reserve (not only the minimum).
 }}%%
 sequenceDiagram
     actor Auto as Automation Service
-    participant L1 as L1MessageService
+    participant L1 as LineaRollup
     participant YM as YieldManager
     participant SV as StakingVault
     participant BC as Beacon chain
@@ -327,7 +327,7 @@ sequenceDiagram
 
 ### 4. Permissionless flows
 
-When the `L1MessageService` withdrawal reserve drops below the minimum, anyone
+When the `LineaRollup` withdrawal reserve drops below the minimum, anyone
 can call `unstakePermissionless()` and `replenishWithdrawalReserve()`. Both are
 deficit-gated and capped to the remaining deficit.
 
@@ -349,7 +349,7 @@ ETH arrives only after the beacon chain processes it.
 }}%%
 sequenceDiagram
     actor U as Anyone
-    participant L1 as L1MessageService
+    participant L1 as LineaRollup
     participant YM as YieldManager
     participant SV as StakingVault
     participant BC as Beacon chain
@@ -377,7 +377,7 @@ sequenceDiagram
 
 ### 5. LST withdrawal
 
-If the `L1MessageService` reserve lacks sufficient ETH, the withdrawal recipient
+If the `LineaRollup` lacks sufficient ETH for a withdrawal, the recipient
 can request an LST withdrawal. stETH is minted against `StakingVault` collateral
 and sent to the designated recipient. This is last resort.
 
@@ -392,7 +392,7 @@ and sent to the designated recipient. This is last resort.
 }}%%
 sequenceDiagram
     actor U as User
-    participant L1 as L1MessageService
+    participant L1 as LineaRollup
     participant YM as YieldManager
     participant DB as Dashboard
 
@@ -413,7 +413,7 @@ while such liabilities are outstanding.
 
 Ossification permanently locks the `StakingVault` implementation, opting out of
 future Lido upgrades. The Security Council initiates; the automation service
-progressively returns staked funds to the `L1MessageService` reserve.
+progressively returns staked funds to the `LineaRollup` reserve.
 
 <div class="mermaid-fit">
 ```mermaid
@@ -430,7 +430,7 @@ sequenceDiagram
     participant YM as YieldManager
     participant DB as Dashboard
     participant SV as StakingVault
-    participant L1 as L1MessageService
+    participant L1 as LineaRollup
 
     SC->>YM: initiateOssification()
     YM-->>DB: voluntaryDisconnect()
@@ -454,15 +454,15 @@ sequenceDiagram
 
 | Fund movement                    | Source                                                   | Destination                                 | Trigger                              | Role required                                                 |
 | -------------------------------- | -------------------------------------------------------- | ------------------------------------------- | ------------------------------------ | ------------------------------------------------------------- |
-| Stake excess reserve             | `L1MessageService` reserve                               | `StakingVault`                              | Automation Service                   | `YIELD_PROVIDER_STAKING_ROLE`                                 |
-| Beacon chain deposit             | `StakingVault`                                           | Node operators                              | Node Operator decision               | Node Operator                                                 |
+| Stake excess reserve             | `LineaRollup` reserve                               | `StakingVault`                              | Automation Service                   | `YIELD_PROVIDER_STAKING_ROLE`                                 |
+| Beacon chain deposit             | `StakingVault`                                           | Beacon chain validators                              | Node Operator decision               | Node Operator                                                 |
 | Report yield to L2               | synthetic MessageSent event                              | L2YieldDistributor                          | Automation Service                   | `YIELD_REPORTER_ROLE`                                         |
-| Operator replenish reserve       | `StakingVault`                                           | `L1MessageService` reserve                  | Reserve below target                 | `YIELD_PROVIDER_UNSTAKER_ROLE`                                |
+| Operator replenish reserve       | `StakingVault`                                           | `LineaRollup` reserve                  | Reserve below target                 | `YIELD_PROVIDER_UNSTAKER_ROLE`                                |
 | Permissionless unstake           | Validators                                               | `StakingVault`                              | Reserve below minimum                | Permissionless                                                |
-| Permissionless replenish reserve | `StakingVault`                                           | `L1MessageService` reserve                  | Reserve below minimum                | Permissionless                                                |
+| Permissionless replenish reserve | `StakingVault`                                           | `LineaRollup` reserve                  | Reserve below minimum                | Permissionless                                                |
 | LST withdrawal                   | Lido Protocol (minted against `StakingVault` collateral) | User                                        | Insufficient ETH for user withdrawal | Permissionless (user)                                         |
-| Ossification withdrawal          | `StakingVault`                                           | `L1MessageService` reserve                  | Security Council initiates           | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
-| Donation                         | External                                                 | `L1MessageService` reserve / `StakingVault` | Voluntary                            | Permissionless                                                |
+| Ossification withdrawal          | `StakingVault`                                           | `LineaRollup` reserve                  | Security Council initiates           | `OSSIFICATION_INITIATOR_ROLE` + `OSSIFICATION_PROCESSOR_ROLE` |
+| Donation                         | External                                                 | `LineaRollup` reserve / `StakingVault` | Voluntary                            | Permissionless                                                |
 
 ## See also
 

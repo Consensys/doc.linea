@@ -47,7 +47,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 First, we'll need to add a custom chain like so:
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```javascript
@@ -74,7 +74,7 @@ etherscan: {
 ```
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```javascript
 networks: {
@@ -113,7 +113,7 @@ The Etherscan `apiKey` and network name for your custom chain must match the net
 
 To verify your contract, run the following command:
 
-<Tabs>
+<Tabs groupId="Mainnet-Testnet">
   <TabItem value="Mainnet" label="Mainnet" default>
 
 ```bash
@@ -121,7 +121,7 @@ npx hardhat verify --network linea_mainnet <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT
 ```
 
   </TabItem>
-  <TabItem value="Testnet" label="Testnet">
+  <TabItem value="Linea Sepolia" label="Linea Sepolia">
 
 ```bash
 npx hardhat verify --network linea_sepolia <DEPLOYED_CONTRACT_ADDRESS> <CONTRACT_ARGUMENTS>

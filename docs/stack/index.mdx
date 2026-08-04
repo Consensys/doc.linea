@@ -5,24 +5,52 @@ sidebar_position: 1
 image: /img/socialCards/lineth-stack.jpg
 ---
 
+import ActionCards from '@site/src/components/ActionCards';
+import GlossaryTerm from '@theme/GlossaryTerm';
+
 Lineth (formerly the Linea Stack) is the collection of protocol components, onchain contracts, and operational
 capabilities that operators use to deploy and run their own Layer 2 or Layer 3 networks, inheriting a
-zero-knowledge proof system and Ethereum-compatible execution.
-
-In the Stack documentation, an **operator** is the entity or consortium responsible for deploying,
-administering, and running the network infrastructure, contracts, keys, access controls, and
-operational procedures for a network built on Lineth.
-
+<GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> system and Ethereum-compatible execution.
 For how Lineth relates to the public Linea network, see [Linea and Lineth](../protocol/linea-vs-lineth.mdx).
 
-Use this section to [evaluate Lineth](./evaluate/index.mdx), design a [deployment architecture](./deployment/index.mdx), or [build and test](./how-to/run-lineth-stack-sepolia.mdx) a local deployment. For protocol internals, see the [Protocol](../protocol/overview.mdx) documentation.
+Get started with Lineth:
 
+<ActionCards
+  cards={[
+    {
+      text: "Evaluate Lineth",
+      description: "Assess deployment models, security, and trust assumptions.",
+      href: "/stack/evaluate",
+    },
+    {
+      text: "Design a deployment architecture",
+      description: "Choose components and settings for your Lineth deployment.",
+      href: "/stack/deployment",
+    },
+    {
+      text: "Build and test a local deployment",
+      description: "Run a local Lineth Stack settling to a local L1 or Sepolia.",
+      href: "/stack/how-to/run-local-lineth-stack",
+    },
+    {
+      text: "Learn about protocol internals",
+      description: "Explore how the Lineth protocol works under the hood.",
+      href: "/protocol",
+    },
+  ]}
+/>
+
+:::note
+In the Lineth Stack documentation, an **operator** is the entity or consortium responsible for deploying,
+administering, and running the network infrastructure, contracts, keys, access controls, and
+operational procedures for a network built on Lineth.
+:::
 
 ## Why Lineth exists
 
 :::info Configurable
 
-Lineth supports operators who need more control than a Layer 1 network can offer while
+Lineth supports operators who need more control than a L1 network can offer while
 preserving Ethereum compatibility and configurable security assumptions. Whether you are deploying a
 private network for regulated environments, you favor selective data availability, or are operating a
 fully public network, Lineth gives you the components and operational model to do so.
@@ -31,25 +59,26 @@ fully public network, Lineth gives you the components and operational model to d
 
 As blockchain adoption grows, many organizations encounter a common set of constraints:
 
-- Layer 1 transactions can be expensive and slow
-- Public networks do not offer sufficient privacy or control
-- Bespoke infrastructure is costly to build and difficult to maintain
-- Regulatory, governance, and operational requirements are hard to enforce on open systems
+- L1 transactions can be expensive and slow.
+- Public networks do not offer sufficient privacy or control.
+- Bespoke infrastructure is costly to build and difficult to maintain.
+- Regulatory, governance, and operational requirements are hard to enforce on open systems.
 - Interoperability between private systems and public blockchains remains fragmented.
 
 Lineth lets you run an Ethereum-equivalent network tailored to
 enterprise requirements, using [open source technology](../protocol/reference/repos.mdx), while remaining anchored to the same protocol foundations
-as [Linea Mainnet](../network/overview/index.mdx). The interoperability between Linea and Ethereum allows networks built on Lineth to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
+as [Linea Mainnet](../network/index.mdx). The interoperability between Linea and Ethereum allows networks built on Lineth to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
 
 ## What Lineth provides
 
 At a high level, Lineth provides:
 
 - **Cost-efficient transactions:** Greatly reduce transaction costs compared with Ethereum L1 execution by
-moving execution to a network built on Lineth while using the selected finalization layer for settlement.
+  moving execution to a network built on Lineth while using the selected
+  <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm> for settlement.
 
-- **Fast transactions:** Linea's 1s block times support near-instant
-[soft finality](../network/overview/transaction-finality.mdx#soft-finality).
+- **Fast transactions:** Linea's 1s block times support near-instant <GlossaryTerm term="Soft finality">soft
+  finality</GlossaryTerm>.
 
 - **Ethereum-anchored interoperability:** Access Ethereum liquidity through rollup and bridge
 components, with trust assumptions that depend on the deployment model, data availability design,
@@ -76,16 +105,16 @@ blockchains through standardized bridge components.
 
 Lineth serves technical operators and infrastructure teams who:
 
-- Need to run and operate their own network built on Lineth
-- Require privacy, governance, or regulatory controls not available on public networks
+- Need to run and operate their own network built on Lineth.
+- Require privacy, governance, or regulatory controls not available on public networks.
 - Want infrastructure that can be designed for production use with the appropriate deployment,
-  operations, security, and governance model
+  operations, security, and governance model.
 - Are responsible for deployment, monitoring, maintenance, and incident response.
 
 It assumes familiarity with distributed systems and blockchain infrastructure, but does not require
 deep protocol expertise.
 
-## Next steps
+## Start building
 
-Ready to build? [Reach out through support](/support) to enquire about our rollup-as-a-service
+Ready to build? [Contact support](/support) to inquire about our rollup-as-a-service
 or to access our dedicated design team who will configure the stack to your business needs.

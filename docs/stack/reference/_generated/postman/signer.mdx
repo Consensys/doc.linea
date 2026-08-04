@@ -1,0 +1,24 @@
+### Signer
+
+| Env var | Description | Default | Type | Required |
+| --- | --- | --- | --- | --- |
+| `L1_AWS_KMS_KEY_ID` | AWS KMS key ID or ARN used for signing | — | `string` | optional; used when L1_SIGNER_TYPE is "aws-kms" |
+| `L1_AWS_KMS_REGION` | AWS region of the KMS key (falls back to default SDK region) | — | `string` | optional; included only when set (aws-kms) |
+| `L1_SIGNER_PRIVATE_KEY` | Hex-encoded 32-byte private key used to sign transactions | — | `hex private key (32 bytes)` | optional; used when L1_SIGNER_TYPE is "private-key" |
+| `L1_SIGNER_TYPE` | Signer backend type: "private-key" (local key), "web3signer" (remote), or "aws-kms" | `private-key` | `string (private-key\|web3signer\|aws-kms)` | required; allowed: private-key\|web3signer\|aws-kms |
+| `L1_WEB3_SIGNER_ENDPOINT` | Web3Signer HTTP(S) endpoint URL | — | `string` | optional; used when L1_SIGNER_TYPE is "web3signer" |
+| `L1_WEB3_SIGNER_PUBLIC_KEY` | Public key of the Web3Signer signing account | — | `hex string` | optional; used when L1_SIGNER_TYPE is "web3signer" |
+| `L1_WEB3_SIGNER_TLS_KEYSTORE_PASSWORD` | Password for the Web3Signer client keystore | — | `string` | optional; included with TLS object |
+| `L1_WEB3_SIGNER_TLS_KEYSTORE_PATH` | Path to the PKCS12 client keystore used for mTLS with Web3Signer | — | `string` | optional; TLS object included only when this path is set |
+| `L1_WEB3_SIGNER_TLS_TRUSTSTORE_PASSWORD` | Password for the Web3Signer truststore | — | `string` | optional; included with TLS object |
+| `L1_WEB3_SIGNER_TLS_TRUSTSTORE_PATH` | Path to the PKCS12 truststore used to verify the Web3Signer server | — | `string` | optional; included with TLS object |
+| `L2_AWS_KMS_KEY_ID` | AWS KMS key ID or ARN used for signing | — | `string` | optional; used when L2_SIGNER_TYPE is "aws-kms" |
+| `L2_AWS_KMS_REGION` | AWS region of the KMS key (falls back to default SDK region) | — | `string` | optional; included only when set (aws-kms) |
+| `L2_SIGNER_PRIVATE_KEY` | Hex-encoded 32-byte private key used to sign transactions | — | `hex private key (32 bytes)` | optional; used when L2_SIGNER_TYPE is "private-key" |
+| `L2_SIGNER_TYPE` | Signer backend type: "private-key" (local key), "web3signer" (remote), or "aws-kms" | `private-key` | `string (private-key\|web3signer\|aws-kms)` | required; allowed: private-key\|web3signer\|aws-kms |
+| `L2_WEB3_SIGNER_ENDPOINT` | Web3Signer HTTP(S) endpoint URL | — | `string` | optional; used when L2_SIGNER_TYPE is "web3signer" |
+| `L2_WEB3_SIGNER_PUBLIC_KEY` | Public key of the Web3Signer signing account | — | `hex string` | optional; used when L2_SIGNER_TYPE is "web3signer" |
+| `L2_WEB3_SIGNER_TLS_KEYSTORE_PASSWORD` | Password for the Web3Signer client keystore | — | `string` | optional; included with TLS object |
+| `L2_WEB3_SIGNER_TLS_KEYSTORE_PATH` | Path to the PKCS12 client keystore used for mTLS with Web3Signer | — | `string` | optional; TLS object included only when this path is set |
+| `L2_WEB3_SIGNER_TLS_TRUSTSTORE_PASSWORD` | Password for the Web3Signer truststore | — | `string` | optional; included with TLS object |
+| `L2_WEB3_SIGNER_TLS_TRUSTSTORE_PATH` | Path to the PKCS12 truststore used to verify the Web3Signer server | — | `string` | optional; included with TLS object |

@@ -1,6 +1,8 @@
 .card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--homepage-card-background);
   border-radius: var(--linea-radius-md);
   padding: 24px;
@@ -27,24 +29,39 @@
   opacity: 1;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .text {
-  font-family: 'Atyp Display', sans-serif;
+  font-family: AtypDisplay, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
   color: var(--linea-text-primary);
   margin: 0;
-  max-width: 72%;
 }
 
 [data-theme="dark"] .text {
   color: var(--linea-text-primary);
 }
 
+.description {
+  font-family: AtypText, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--linea-text-secondary);
+  margin: 0;
+}
+
+[data-theme="dark"] .description {
+  color: var(--linea-text-secondary);
+}
+
 .arrowButton {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
+  margin-top: 24px;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -80,7 +97,6 @@
 
 @media (max-width: 768px) {
   .text {
-    max-width: 80%;
     font-size: 16px;
   }
 }

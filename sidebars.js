@@ -18,8 +18,7 @@ const sidebars = {
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    { type: "doc", id: "network/quickstart/index", className: "intro-section-item" },
-    { type: "doc", id: "network/overview/index", className: "intro-section-item" },
+    { type: "doc", id: "network/index", className: "intro-section-item" },
     {
       type: "category",
       label: "Features",
@@ -296,6 +295,7 @@ const sidebars = {
       collapsible: false,
       items: [
         "stack/reference/linea-besu-plugin-options",
+        "stack/reference/linea-postman-options",
         "stack/reference/linea-prover-options",
       ],
     },
@@ -345,8 +345,7 @@ const sidebars = {
       value: "Introduction",
       className: "sidebar-section-divider",
     },
-    { type: "doc", id: "protocol/quickstart", className: "intro-section-item" },
-    { type: "doc", id: "protocol/overview", className: "intro-section-item" },
+    { type: "doc", id: "protocol/index", className: "intro-section-item" },
     { type: "doc", id: "protocol/linea-vs-lineth", className: "intro-section-item" },
     {
       type: "category",
@@ -356,7 +355,7 @@ const sidebars = {
         {
           type: "doc",
           id: "protocol/architecture/index",
-          label: "Core components",
+          label: "Overview",
         },
         {
           type: "category",
@@ -374,11 +373,6 @@ const sidebars = {
           ],
         },
         {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
-        },
-        {
           type: "category",
           label: "Prover",
           collapsible: true,
@@ -393,10 +387,9 @@ const sidebars = {
             },
             "protocol/architecture/prover/proving",
             "protocol/architecture/prover/prover-limits",
+            "protocol/architecture/prover/trusted-setup",
           ],
         },
-        "protocol/architecture/smart-contracts",
-        "protocol/architecture/coordinator",
         {
           type: "category",
           label: "Interoperability",
@@ -408,7 +401,32 @@ const sidebars = {
             "protocol/architecture/interoperability/canonical-message-service",
           ],
         },
+        "protocol/architecture/coordinator",
+        {
+          type: "doc",
+          id: "protocol/architecture/state-manager",
+          label: "EVM state manager",
+        },
+        "protocol/architecture/smart-contracts",
         "protocol/architecture/rpc-services",
+      ],
+    },
+    {
+      type: "category",
+      label: "Resources",
+      collapsible: false,
+      items: [
+        {
+          type: "doc",
+          id: "protocol/reference/repos",
+          label: "Linea repositories",
+        },
+        "protocol/reference/security-audits",
+        {
+          type: "doc",
+          id: "protocol/reference/zero-knowledge-glossary",
+          label: "Glossary",
+        },
       ],
     },
     {
@@ -426,23 +444,6 @@ const sidebars = {
       collapsible: false,
       items: [
         "protocol/how-to/forced-transactions",
-      ],
-    },
-    {
-      type: "category",
-      label: "Reference",
-      collapsible: false,
-      items: [
-        {
-          type: "doc",
-          id: "protocol/reference/repos",
-          label: "Linea repositories",
-        },
-        {
-          type: "doc",
-          id: "protocol/reference/zero-knowledge-glossary",
-          label: "Glossary",
-        },
       ],
     },
   ],
@@ -512,13 +513,13 @@ const sidebars = {
       label: "Build and test",
       collapsible: false,
       items: [
-        "stack/how-to/run-lineth-stack-sepolia",
+        "stack/how-to/run-local-lineth-stack",
         {
           type: "doc",
-          id: "stack/how-to/distributed-sequencing",
-          label: "Configure distributed sequencing",
+          id: "stack/how-to/set-up-distributed-sequencing",
+          label: "Set up distributed sequencing",
         },
-        "stack/how-to/forced-transactions",
+        "stack/how-to/enable-forced-transactions",
       ],
     },
   ],

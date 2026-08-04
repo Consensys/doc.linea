@@ -1,0 +1,86 @@
+---
+description: Markdown/MDX formatting conventions for docs.linea.build content files.
+globs: docs/**/*.{mdx,md}
+alwaysApply: false
+---
+
+# Markdown formatting
+
+## File format
+
+- Use `.mdx` for all pages under `docs/` (not `.md`), so React components and Docusaurus
+  elements (like `<Tabs>`) render correctly. This rule doesn't apply to root-level files
+  such as this repo's own `README.mdx`/`CONTRIBUTING.md`.
+- Prefer HTML-like formatting over plain Markdown syntax for elements like tables (use
+  `<table>` rather than pipe/dash Markdown tables). Several elements already require HTML
+  syntax (`<Tabs>`, images), so using it everywhere avoids mixing both styles on one page.
+
+## Line wrapping
+
+- Default to US English usage.
+- Respect the 100-character line limit from `.editorconfig`. Use the full 100 characters
+  before wrapping. Don't break lines early at convenient points, and only wrap when a
+  line would actually exceed the limit.
+- Never break words or URLs when wrapping a line.
+- Use semantic line breaks: start each new sentence on a new line, even when it would
+  still fit within the 100-character limit on the previous line. This is independent of
+  the wrap rule above and keeps future diffs scoped to the sentence that changed.
+
+## Headings
+
+- Don't add a top-level `# Heading` unless you want the rendered page heading to read
+  differently from the frontmatter `title` (Docusaurus pulls `title` for the sidebar
+  label, not the H1).
+
+## Frontmatter
+
+Every page needs YAML frontmatter with at least `title` and `description`:
+
+```mdx
+---
+title: Title of the article
+description: Description of the article
+---
+```
+
+Don't add an `image` field manually: the social card is generated automatically on build.
+
+## Links
+
+- Link to other docs pages with site-relative paths and no `.mdx` extension (for example,
+  `./transaction-finality`, not `./transaction-finality.mdx`).
+- The `](/` pattern is an absolute link; `](./` and `](../` are relative links. Prefer
+  relative links within the same tab.
+- Use descriptive link text embedded in the sentence. Don't use "click here" or a bare
+  URL.
+- If you move or rename a page, see `.cursor/rules/contributor-workflow.mdc` for the
+  `redirects.json` requirement.
+
+## Images
+
+Add new images to `/static/img/`, mirroring the `docs/` folder structure. See
+[README.mdx](../../README.mdx#adding-images) for the exact JSX pattern and size classes
+(`img-xsmall`, `img-small`, `img-medium`, `img-large`).
+
+## UI element references
+
+Use **bold**, not *italics*, to reference a UI element the reader interacts with (a
+button, tab, menu item, or field label), for example "Select **Compile**" or "Go to the
+**Solidity Compiler** tab." Reserve italics for true emphasis.
+
+## Collapsible content
+
+Wrap optional or supplementary content that would interrupt the main flow of a page (a
+file-tree dump, an edge-case troubleshooting note) in a collapsible block instead of
+inline text or a deeply nested sub-heading:
+
+```mdx
+<details>
+<summary>Project structure</summary>
+<div>
+
+Content goes here.
+
+</div>
+</details>
+```

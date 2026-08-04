@@ -1,0 +1,53 @@
+---
+title: Linea Postman configuration reference
+sidebar_label: Linea Postman options
+slug: /reference/component-configuration/linea-postman-options
+description: Environment variable configuration for the Linea Postman, grouped by section.
+draft: false
+image: /img/socialCards/linea-postman-configuration-reference.jpg
+---
+
+{/* Human-owned wrapper. Automation only updates `_generated/postman/` partials. Add new partial imports when sections appear. */}
+
+import Provenance from "./_generated/postman/provenance.mdx";
+import General from "./_generated/postman/general.mdx";
+import L1Network from "./_generated/postman/l1-network.mdx";
+import L2Network from "./_generated/postman/l2-network.mdx";
+import Listener from "./_generated/postman/listener.mdx";
+import Claiming from "./_generated/postman/claiming.mdx";
+import Signer from "./_generated/postman/signer.mdx";
+import Database from "./_generated/postman/database.mdx";
+import DatabaseCleaner from "./_generated/postman/database-cleaner.mdx";
+import Api from "./_generated/postman/api.mdx";
+
+:::caution Advanced options
+
+These are environment variables for Postman deployments. Their presence does not indicate that changing them is recommended or supported for every deployment. Verify their applicability against the relevant release and deployment guidance. Secret and endpoint variables (RPC URLs, private keys, contract addresses, database passwords, signer endpoints) are listed by name only, never with live values.
+:::
+:::note Defaults
+
+  Defaults are literal fallbacks defined in the Postman source (`envLoader.ts`). Placeholders such as empty strings or `0x` are omitted from the Default column. These are not recommended production settings and may be overridden by deployment configuration. `.env` / `.env.sample` files are never used as the source of defaults.
+
+  :::
+
+This reference lists Linea Postman environment variables, grouped by section. Variable names and defaults come from `envLoader.ts`; descriptions and types come from Zod `.describe()` on `schema.ts`.
+
+<Provenance />
+
+<General />
+
+<L1Network />
+
+<L2Network />
+
+<Listener />
+
+<Claiming />
+
+<Signer />
+
+<Database />
+
+<DatabaseCleaner />
+
+<Api />

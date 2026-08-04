@@ -1,0 +1,241 @@
+{
+  "description": "Linea, Lineth, and zero-knowledge terms used across docs.linea.build.",
+  "terms": [
+    {
+      "term": "Appchain",
+      "definition": "A blockchain network custom-made and optimized for a specific application's needs. An appchain is generally not a full-blown blockchain, but offers an optimized execution environment for the application, while still relying on an underlying blockchain for consensus.\n\nDeploying appchains on top of L2 networks like Linea offers significant cost and customization capabilities."
+    },
+    {
+      "term": "Archive node",
+      "definition": "A node configured to retain state at every block from genesis, alongside the blocks and transactions themselves, so it can reconstruct chain state at any past block height. Archive nodes trade minimal latency and modest storage requirements for completeness, supporting auditing, forensics, and analytics."
+    },
+    {
+      "term": "Arithmetization",
+      "definition": "The process of turning computational problems into equations. It can be summarized as turning computer programs into \"math,\" so that they can be analyzed using cryptographic algebraic techniques."
+    },
+    {
+      "term": "Blockchain trilemma",
+      "definition": "Blockchain network builders face a tradeoff between three factors: decentralization, security, and scalability (or speed). Often, designing a system that optimizes for one compromises another."
+    },
+    {
+      "term": "Brakedown",
+      "definition": "The first built system that provides linear-time SNARKs for NP, meaning the prover incurs O(N) finite field operations to prove the satisfiability of an N-sized R1CS instance. Brakedown's prover is faster, both concretely and asymptotically, than prior SNARK implementations.\n\nBrakedown doesn't require a trusted setup and is plausibly post-quantum secure."
+    },
+    {
+      "term": "Canonical message service",
+      "definition": "The pair of smart contracts, one on a Lineth network and one on its finalization layer, plus the Postman relayer between them, that pass arbitrary user-specified messages between the two networks. It's general-purpose public infrastructure that developers can integrate into dapps, and the canonical token bridge relies on it for cross-chain interactions. On Linea Mainnet, the contracts are deployed on Linea and Ethereum."
+    },
+    {
+      "term": "Canonical token bridge",
+      "definition": "The pair of \"lock and mint\" contracts that let any ERC-20 token bridge between a Lineth network and its finalization layer, which for Linea Mainnet means between Linea and Ethereum. It relies on the canonical message service for its cross-chain interactions."
+    },
+    {
+      "term": "Circuit",
+      "definition": "A circuit uses logic gates to depict the flow of data and the sequence of operations performed on that data in a given computational task. Circuits are used at many levels to create processing capability, including virtual machines like the Ethereum Virtual Machine, and Lineth's implementation of a zkEVM."
+    },
+    {
+      "term": "Conflation",
+      "definition": "The process of combining two or more blocks' worth of transactions into one data set before proof generation. Conflation lets Lineth produce one Merkle tree update and one zero-knowledge proof per batch instead of per block, which makes the proving system more efficient. It happens inside the execution client, coordinated with the coordinator."
+    },
+    {
+      "term": "Constraint",
+      "definition": "A constraint refers to a condition imposed on mathematical operations or computation to ensure the correctness, efficiency, or security of an algorithm."
+    },
+    {
+      "term": "Coordinator",
+      "definition": "Lineth's coordination module for batching, proof generation, and finality submission. The coordinator monitors block production, manages conflation deadlines, batches blocks, combines batches into blobs, orchestrates execution, compression, and aggregation proofs, and submits proofs and data to the finalization layer."
+    },
+    {
+      "term": "Corset",
+      "definition": "The tool that takes conflated trace data from the coordinator and expands it in preparation for gnark, the second stage of proof generation. Corset's output lets gnark produce the inner and outer proofs that make up the prover's zk-SNARK."
+    },
+    {
+      "term": "Data availability",
+      "definition": "The guarantee that block proposers are required to publish the data for each block, which nodes participating in Ethereum's consensus store locally. Rather than having to trust that block producers are honest, all nodes on the Ethereum network execute the transactions to verify that the new information is valid.\n\nData availability is one of the ways in which an L2 differs from a sidechain."
+    },
+    {
+      "term": "Elliptic curve cryptography (ECC)",
+      "definition": "A method of encrypting information used in many applications, including in public blockchain networks. It is commonly used to create \"public-private key pairs\": a pair of cryptographic elements. The public key can be used to encrypt things which can then only be decrypted by the private key.\n\nECC uses mathematical theories surrounding elliptic curves to render the encryption extremely difficult to decipher without the correct private key."
+    },
+    {
+      "term": "Ethereum Virtual Machine (EVM)",
+      "definition": "A stack-based virtual machine that executes bytecode. In Ethereum, the execution model specifies how the system state is altered given a series of bytecode instructions and a small tuple of environmental data. This is specified through a formal model of a virtual state machine."
+    },
+    {
+      "term": "Execution trace",
+      "definition": "A record of what happened during the execution of a transaction. This is usually represented as a list, in which each item is the state of the machine at a specific clock time, which includes information such as:\n\n- Who was the caller\n- Block number\n- What contracts were invoked\n- What data was changed\n\nThis is relevant to ZK-rollups because execution traces are used to construct the validity proof verified by the verifier contract on Ethereum."
+    },
+    {
+      "term": "Finalization layer",
+      "definition": "The blockchain where a Lineth deployment submits proofs and state commitments for verification and hard finality. If the finalization layer is Ethereum (an L1), the deployment is an L2. If the finalization layer is Linea (an L2), the deployment is an L3."
+    },
+    {
+      "term": "Fraud proof",
+      "definition": "In optimistic rollups, the evidence a verifier provides to question the validity of a batch of transactions. Depending on how they're executed, these proofs analyze a section of transactions and attempt to confirm their validity."
+    },
+    {
+      "term": "Full node",
+      "definition": "A node that runs an execution client, such as Linea Besu, paired with the consensus client Maru, and that executes and verifies every block it imports. A full node that also participates in consensus is called a validator node."
+    },
+    {
+      "term": "gnark",
+      "definition": "A software library that offers users the ability to design and run computational circuits in zk-SNARKs through a high-level API."
+    },
+    {
+      "term": "Groth16",
+      "definition": "A circuit-specific preprocessing general-purpose zk-SNARK construction. It has become a de-facto standard used in several blockchain projects due to the constant size of its proof, and its appealing verifier time.\n\nOn the downside, Groth16 needs a circuit-specific trusted setup for its preprocessing phase."
+    },
+    {
+      "term": "Hard finality",
+      "definition": "The point at which the L2 state containing a transaction is confirmed and committed on the selected finalization layer, after the corresponding zk-SNARK proof is verified. Hard finality is irreversible."
+    },
+    {
+      "term": "Hash function",
+      "definition": "A mathematical function that converts a data input of any chosen length and size into an output that is encrypted and has a fixed length and size. Once converted, the hash cannot be reverse-engineered to reveal the original input of data. This makes the data input more secure against decryption."
+    },
+    {
+      "term": "Keccak",
+      "definition": "(Pronounced \"ketchak\") A versatile cryptographic function best known for its uses in hashing. It provides increased levels of security when compared to older hash algorithms."
+    },
+    {
+      "term": "Layer 1 (L1)",
+      "definition": "The underlying foundation and base blockchain that various L2 networks build on top of. For example, Ethereum is an L1 that is comprised of node operators to secure and validate the network, block producers, the history of transaction data, and the consensus mechanism of the blockchain itself."
+    },
+    {
+      "term": "Layer 2 (L2)",
+      "definition": "A separate blockchain that increases transaction speed and throughput, while deriving its security from Ethereum. L2s rely on Ethereum for data availability by posting their transaction data onto Ethereum."
+    },
+    {
+      "term": "Linea",
+      "definition": "The public, permissionless zkEVM Layer 2 network that scales Ethereum, along with its brand, token, tokenomics, and governance: Linea Mainnet, Linea Sepolia, the Linea brand, and the Linea Consortium that governs the Linea Protocol. Linea Mainnet is built on Lineth."
+    },
+    {
+      "term": "Linea Besu",
+      "definition": "The execution layer client that Linea Mainnet and other Lineth deployments run to execute transactions and maintain EVM state. Linea Besu is a build of the Besu Ethereum client, extended with plugins such as the sequencer and tracer that add ZK-rollup functionality."
+    },
+    {
+      "term": "Lineth",
+      "definition": "(Formerly the Linea Stack) The open-source ZK-rollup stack, codebase, and technical protocol that's the foundation of Linea Mainnet. Operators can deploy this stack to launch their own Ethereum-compatible L2 or L3 networks."
+    },
+    {
+      "term": "Maru",
+      "definition": "Lineth's consensus layer client. Maru runs on every node, paired with an execution client, and implements the QBFT consensus algorithm. Validator nodes use Maru to propose and vote on blocks; follower nodes use it to receive blocks from peers and pass them to the execution client. In both roles, Maru provides peer-to-peer networking for block propagation and exposes API endpoints for monitoring and control."
+    },
+    {
+      "term": "Operator",
+      "definition": "The entity or consortium responsible for deploying, administering, and running the network infrastructure, contracts, keys, access controls, and operational procedures for a network built on Lineth."
+    },
+    {
+      "term": "Optimistic rollup",
+      "definition": "A rollup of transactions that use fraud proofs to offer increased L2 transaction throughput while using the security provided by Mainnet (L1). Unlike Plasma, a similar L2 solution, optimistic rollups can handle more complex transaction types – anything possible in the EVM. However, in order to release assets back on the L1, users must wait for a seven-day challenge period. Liquidity providers can help alleviate distributing L1 ETH immediately, but this relies on trust in the security of the provider, and doesn't provide a mechanism for transferring NFTs."
+    },
+    {
+      "term": "Oracle",
+      "definition": "A computational entity or service that provides information or answers to specific queries."
+    },
+    {
+      "term": "Polynomial commitment",
+      "definition": "A cryptographic primitive that allows a party to publicly commit to a value or a piece of information without ever revealing the actual value itself. This allows us to prove that a polynomial satisfies some properties without ever revealing what the polynomial is. Additionally, this is useful for ZK-rollups because the commitment is smaller than the polynomial itself."
+    },
+    {
+      "term": "Polynomial IOP (Interactive Oracle Proof)",
+      "definition": "A protocol in which the verifier is not required to fully read the prover's messages (the traces and constraints generated from arithmetization). Instead, the verifier has oracle access to the prover's messages. This oracle is repeatedly queried to create the concrete proof system, or polynomial commitment for the validity proof."
+    },
+    {
+      "term": "Postman",
+      "definition": "The service that relays messages between the canonical message service contracts on a Lineth network and its finalization layer. Postman listens for calls made to the contract on one network and passes the submitted information to the contract on the other network. It's currently centralized, but is intended to be decentralized."
+    },
+    {
+      "term": "Prover",
+      "definition": "The Lineth component that generates ZK proofs of state transitions, handling proof-generation requests from the coordinator and Linea Besu. The prover produces three types of proofs (execution, compression, and aggregation) and combines them into a zk-SNARK that the finalization layer verifies. Provers may be scaled horizontally to meet throughput requirements."
+    },
+    {
+      "term": "Quorum Byzantine Fault Tolerance (QBFT)",
+      "definition": "The Byzantine-fault-tolerant consensus algorithm that Maru implements to let a validator set produce and finalize blocks, tolerating faulty validators in a `3f+1` validator set."
+    },
+    {
+      "term": "Reorg",
+      "definition": "A chain reorganization that occurs when the blockchain discards one recent branch of blocks and switches to a different, competing branch that the protocol now considers the canonical chain.\n\nEthereum’s Layer 1 uses the Gasper proof-of-stake consensus algorithm which is designed to minimize trust assumptions and maximize security. Gasper allows for global decentralized settlement, but finality takes 64 slots, or 12.8 minutes.\n\nWhile Ethereum may reorg, Linea does not. The zero knowledge validity proof created by Linea attests to a specific and correct L2 chain state, and any attempt to reorganize the L2 would invalidate the ZK proof and the state it testifies to on that's recorded on Ethereum. Therefore, L1 finality provides the firmest security guarantees against block reorganization by Linea.\n\nFurthermore, Linea takes action to ensure that interoperability between the public network and the Layer 1 preserves the property of preventing block reorganizations. Before any interoperating transaction anchored to Layer 1 state (for example, a deposit of a token into the bridge), Linea will wait for the Layer 1 state to be finalized before committing the appropriate action on the Layer 2. This ensures that even a reorganization of Ethereum, which is an expected and normal part of operations, does not result in a reorganization of the Linea L2."
+    },
+    {
+      "term": "Role-based access control (RBAC)",
+      "definition": "Operator-configured access control for protected Lineth RPC, API, and tooling surfaces. RBAC determines which protected interfaces and data a participant can access, but it is not cryptographic privacy: it doesn't encrypt public-chain data, replace zero-knowledge proof verification, or provide data availability on its own."
+    },
+    {
+      "term": "Rollup",
+      "definition": "A type of L2 scaling solution that batches multiple transactions and submits them to Ethereum in a single transaction. This allows for reductions in gas costs and increases in transaction throughput. There are optimistic and zero-knowledge rollups, which use different security methods to offer these scalability gains.\n\nRollup architecture is made up of the following components:\n\n- Rollup contract: contract on the L1 stores rollup blocks, monitors state updates on the rollup, and tracks user deposits\n- Offchain VM: computation and state storage on another virtual machine separate from the Ethereum Virtual Machine\n- Aggregators/sequencers/operators/validators: nodes that aggregate transactions, compress the underlying data, and publish the block on Ethereum\n- Verifier contract: contract on the L1 that verifies the validity proof"
+    },
+    {
+      "term": "RPC node",
+      "definition": "A node configured to expose JSON-RPC APIs to applications, users, or internal services, optionally behind load balancers and RBAC. Any node can serve RPC; RPC nodes differ in how much state history they retain, from current state and recent history by default up to a full archive node."
+    },
+    {
+      "term": "Scaling",
+      "definition": "The main goal of scalability is to increase transaction speed (faster finality), and transaction throughput (high transactions per second), without sacrificing decentralization or security."
+    },
+    {
+      "term": "Sequencer",
+      "definition": "The component of the Lineth execution client responsible for ordering, building, and executing blocks in a way that allows the subsequent ZK proof to be made. It's implemented as a set of plugins extending Linea Besu, including the tracer and conflator. There's typically one sequencer per network."
+    },
+    {
+      "term": "Shomei",
+      "definition": "A state manager that communicates with Linea Besu, via a corresponding plugin, to maintain and update network state using sparse Merkle trees. Shomei is the component behind Lineth's state manager."
+    },
+    {
+      "term": "Sidechain",
+      "definition": "A scaling solution that uses a separate chain with different, often faster, consensus rules. A bridge is needed to connect these sidechains to Mainnet. Rollups also use sidechains, but they operate in collaboration with Mainnet instead. Sidechains are not L2 solutions, because they do not leverage Ethereum for data availability and security."
+    },
+    {
+      "term": "Soft finality",
+      "definition": "The point at which a block is confirmed and committed on the L2 itself, before its state is committed on the finalization layer. On Linea Mainnet, soft finality is reached in about 1 second."
+    },
+    {
+      "term": "State manager",
+      "definition": "The Lineth component that maintains the network's state representation for proof generation and recovery. It consists of a Besu node with the Shomei plugin and a Shomei node that uses sparse Merkle trees to track state changes block by block, generate Merkle proofs for state transitions, and serve `linea_getProof` RPC requests."
+    },
+    {
+      "term": "Tracer",
+      "definition": "The Linea Besu plugin, part of the sequencer, that generates the execution traces the prover needs to create zero-knowledge proofs. The tracer provides trace counts for batch-size calculations and produces conflated trace files as prover input."
+    },
+    {
+      "term": "Transaction fee",
+      "definition": "A fee you need to pay whenever you use the Ethereum network. Examples include: sending funds from your wallet, or a dapp interaction, like swapping tokens or buying a collectible. You can think of this like a service charge. This fee will change based on how busy the network is. This is because miners or sequencers, the people responsible for processing your transaction depending on the network, are likely to prioritize transactions with higher fees--so congestion forces the price up."
+    },
+    {
+      "term": "Transaction order",
+      "definition": "Transaction ordering is implemented by the Linea Besu Sequencer plugin. The plugin employs a first-come, first-served (FCFS) policy across blocks, with gas price prioritization within each block, and operates on a uniform 1 second block time. This provides predictable, transparent ordering.\n\n- Inter-block (across blocks): Transactions are processed strictly in the order produced by the validator, ensuring fairness between blocks without look-ahead bias or MEV extraction.\n- Intra-block (within a block): Within the 1-second block window, transactions are prioritized by total gas price (legacy transactions) / priority fee (for EIP-1559 transactions)--highest first, allowing users to pay more for inclusion priority while maintaining FCFS discipline between blocks."
+    },
+    {
+      "term": "Validity proof",
+      "definition": "A security model for certain L2 solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use fraud proofs."
+    },
+    {
+      "term": "Validium",
+      "definition": "A deployment model in which a Lineth network proves state transitions with zk-SNARKs but keeps transaction data in a private data availability layer instead of publishing it to the finalization layer. Only state commitments and proofs are posted onchain, so participants without access to the offchain data can't independently reconstruct or verify the full transaction history."
+    },
+    {
+      "term": "Verifiable computation",
+      "definition": "Verifiable computation allows a \"weak computer\" (Ethereum L1) to offload computation to a potentially untrusted, but \"powerful computer\" (Linea L2). The \"powerful computer\" must return a validity proof of the correctness of its results. Verifying the proof is cheaper than performing the computation from scratch."
+    },
+    {
+      "term": "Web3Signer",
+      "definition": "An open-source, remote signing service that externalizes private key management from nodes. Web3Signer integrates with enterprise-grade key stores and exposes HTTP-based signing APIs so consensus and execution clients can obtain signatures on blocks, attestations, and transactions without directly holding the private keys."
+    },
+    {
+      "term": "Zero-knowledge proof",
+      "definition": "A cryptographic method that allows an individual to prove that a statement is true without conveying any additional information. This is useful for scaling blockchain networks through rollups, because it reduces the amount of information you have to provide to lower layers."
+    },
+    {
+      "term": "Zero-knowledge rollup",
+      "definition": "An L2 scaling solution that uses a zero-knowledge proof as its validity proof to post data back to Ethereum. As compared to optimistic rollups, this validity proof allows for a more secure trust assumption and removes the need for a challenge period."
+    },
+    {
+      "term": "zkEVM",
+      "definition": "A virtual machine that executes smart contracts and proves the correctness of execution using zero-knowledge proofs. zkEVMs recreate aspects of Ethereum's design, which provides an \"Ethereum-like\" experience for developers and users."
+    },
+    {
+      "term": "zk-SNARK",
+      "definition": "(Zero-Knowledge Succinct Non-interactive Argument of Knowledge) A type of ZK proof where the prover and verifier don't have to interact. With zk-SNARKs, you can verify 1 transaction or 1 billion transactions in the same amount of time."
+    }
+  ]
+}

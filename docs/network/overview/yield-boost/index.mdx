@@ -18,7 +18,7 @@ This page describes Linea Yield Boost: how surplus bridged ETH is staked on
 Ethereum, how yield is used on Linea, and what users should expect when
 withdrawing.
 
-Yield Boost stakes surplus ETH from the `L1MessageService` withdrawal reserve
+Yield Boost stakes surplus ETH from the `LineaRollup` withdrawal reserve
 into [Lido v3 stVaults](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum.
 Net staking rewards are reported to Linea (L2) and directed to ecosystem
 incentive mechanisms. They are not paid as a rebase or direct credit to the
@@ -32,7 +32,7 @@ staked on L1 in the background. You can transact with that ETH on Linea as
 usual.
 
 Withdrawals back to Ethereum are serviced from a liquidity buffer (unstaked ETH
-held by `L1MessageService`) when the reserve is healthy. Under elevated exit
+held by `LineaRollup`) when the reserve is healthy. Under elevated exit
 demand, withdrawal may be delayed while the reserve is replenished. Anyone can
 trigger deficit-gated permissionless unstaking and reserve replenishment when
 the reserve is below the minimum. As a last resort, you can withdraw as stETH
@@ -46,7 +46,7 @@ block withdrawals. Details are on the
 
 1. **Bridge and stake surplus.** ETH bridged through `LineaRollup` remains on
    L1. Surplus above the configured minimum withdrawal reserve in
-   `L1MessageService` may be moved into the `StakingVault` for beacon-chain
+   `LineaRollup` may be moved into the `StakingVault` for beacon-chain
    staking.
 2. **Earn and report yield.** Staking rewards accrue on L1. An offchain
    automation service periodically reports net yield (after system obligations)
@@ -109,7 +109,7 @@ Liveness properties must eventually hold; timing is not guaranteed:
 **Do I receive stETH on Linea?**
 
 No. You hold standard 1:1 ETH on Linea. Staking happens on L1 from the
-`L1MessageService` reserve into the `StakingVault`.
+`LineaRollup` reserve into the `StakingVault`.
 
 **Do I ever lose access to my ETH?**
 

@@ -49,7 +49,7 @@ abbr:where([title]) {
   text-decoration: underline dotted;
 }
 
-a:not(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-contents__link) {
+a:not(:where(.navbar__link, .footer__link-item, .menu__link, .support-link, .table-of-contents__link)) {
   font-family: inherit;
   color: var(--linea-link-highlight-color);
   text-decoration: inherit;
