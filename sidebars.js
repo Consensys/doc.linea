@@ -351,11 +351,7 @@ const sidebars = {
       label: "Architecture",
       collapsible: false,
       items: [
-        {
-          type: "doc",
-          id: "protocol/architecture/index",
-          label: "Overview",
-        },
+        "protocol/architecture/index",
         {
           type: "category",
           label: "Sequencer",
@@ -386,11 +382,7 @@ const sidebars = {
             "protocol/architecture/prover/trusted-setup",
           ],
         },
-        {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
-        },
+        "protocol/architecture/state-manager",
         {
           type: "category",
           label: "Interoperability",
