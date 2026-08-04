@@ -7,24 +7,35 @@ image: /img/socialCards/proving-circuit-building.jpg
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-## Corset
+Corset is part of the <GlossaryTerm term="Lineth" /> [prover](./index.mdx).
+It performs the first stage of the proving system: it compiles Lineth's <GlossaryTerm term="zkEVM" />
+rules into a constraint system, and prepares each batch's execution traces so the prover can check them
+against that system.
 
-### What is it?
+A _constraint system_ is a set of rules that a computation must satisfy.
+Proving in zero knowledge means showing that some data satisfies every rule in the system, without
+revealing the data itself.
 
-Corset is the first of two parts of the component of <GlossaryTerm term="Lineth"/>'s architecture generally referred to as "the prover."
+## How it works
 
-### What does it do?
+Corset runs at two different times.
 
-Corset takes the traces, expands them, and prepares them for the prover.
+At build time, it compiles Lineth's arithmetization: the constraint definitions, written in a Lisp
+domain-specific language, that describe what correct zkEVM execution looks like.
+The compiled constraint system is bundled into the prover, so a change to the arithmetization reaches the
+prover as a new build rather than at runtime.
 
-### How does it do it?
+At runtime, it expands the conflated traces that the [tracer](../sequencer/traces-generator.mdx) produced
+for a batch.
+Trace expansion derives the columns the constraint system checks from the columns the tracer recorded,
+producing the complete data set, or witness, that the prover proves against.
 
-Corset performs its duties through two different paths:
+## See also
 
-First, every time Lineth's overall codebase and implementation of the zkEVM is updated, Corset creates a _constraint system_. This is a term you may hear often in zk-land. A constraint, in this context, refers to a kind of test you can run on something, to make sure it’s the way it’s supposed to be. An entire constraint system allows you to define a whole set of rules, or checks, which must be fulfilled. Since the goal of Zero Knowledge technology is to _prove_ something, you can probably see where this is going: a constraint system allows you to, using math, prove that underlying conditions are a certain way, without revealing those underlying conditions.
-
-Corset–which is written in Rust–uses a Domain-Specific Language, or DSL, written in Lisp, to create a constraint system specifically designed for Lineth's zkEVM environment. This system, once built, is compiled into the Go programming language. This constraint system, which is optimized for Lineth's architecture, becomes the input for gnark, which converts it to the type of constraint system that would produce **a zk-SNARK**–the kind you would, you know, send to a smart contract on Ethereum mainnet to prove that everything on your L2 is the way you say it is.
-
-**Second** (it’s OK to take a deep breath here), Corset helps process data with _every block that’s submitted_. The trace data, generated in every block, will have to go into gnark’s implementation of Corset’s compiled constraint system, in order to produce the final proof. And because of the way Corset, and the Lisp part of it specifically, processes trace data, Corset can prepare that trace data for gnark. This process is called “trace expansion”, because it refers to taking matrices of data, and deriving certain sets of them from others–so that they can be more accurately processed by gnark.
-
-In these two modes, then–once at build time, when Corset makes the constraint system and compiles it to Go, and at the runtime of every block, when Corset takes traces and expands them into a format that will work well with gnark’s implementation of Corset’s original constraint system, Corset is the bespoke data preparation system for gnark, which is the final executor of Lineth's proving system.
+- See [Circuit execution and runtime](./proving.mdx) for the second stage of the proving system, where
+  <GlossaryTerm term="gnark" /> turns the witness into a proof.
+- See [Module limits](./prover-limits.mdx) for the per-module trace line limits that keep an expanded
+  trace within what the prover can handle.
+- See the [`go-corset` source code](https://github.com/consensys/go-corset), and Lineth's
+  [constraint definitions](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer-constraints)
+  in the `lineth-monorepo`.

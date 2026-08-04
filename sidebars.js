@@ -380,11 +380,7 @@ const sidebars = {
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
             "protocol/architecture/prover/risc-v-overview",
-            {
-              type: "doc",
-              id: "protocol/architecture/prover/trace-expansion",
-              label: "Proving: Circuit building",
-            },
+            "protocol/architecture/prover/trace-expansion",
             "protocol/architecture/prover/proving",
             "protocol/architecture/prover/prover-limits",
             "protocol/architecture/prover/trusted-setup",

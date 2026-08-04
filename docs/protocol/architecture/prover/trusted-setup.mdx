@@ -7,7 +7,9 @@ sidebar_position: 9
 image: /img/socialCards/trusted-setup.jpg
 ---
 
-Lineth uses structured reference strings (SRSs) produced by previously completed public
+import GlossaryTerm from '@theme/GlossaryTerm';
+
+<GlossaryTerm term="Lineth" /> uses structured reference strings (SRSs) produced by previously completed public
 multi-party computation (MPC) ceremonies.
 It does not depend on a Linea-operated ceremony or an active MPC network for normal proof
 generation.
@@ -24,7 +26,7 @@ The proving system uses ceremony outputs for three curves:
 
 The [L2BEAT Linea prover catalog](https://l2beat.com/zk-catalog/lineaprover) documents the
 ceremony mapping and participant counts.
-The Lineth Prover source accepts SRS assets labeled `aztec`, `aleo`, and `celo` for these curves.
+The Lineth prover source accepts SRS assets labeled `aztec`, `aleo`, and `celo` for these curves.
 
 ## Security assumption
 
@@ -35,10 +37,10 @@ If every contribution to an applicable ceremony were compromised, an attacker wi
 ## No ongoing MPC requirement
 
 Normal Lineth proving does not require ceremony participants to coordinate or contribute again.
-The Prover:
+The prover:
 
 1. Loads the completed SRS assets from disk.
-2. Uses PLONK setup to derive circuit-specific proving and verifying keys.
+2. Uses [PLONK](https://eprint.iacr.org/2019/953) setup to derive circuit-specific proving and verifying keys.
 3. Generates proofs without involving the ceremony participants.
 
 Circuit changes can require regenerating circuit assets, proving keys, verifying keys, and the
@@ -48,7 +50,7 @@ same curve and commitment scheme remain in use.
 A change that requires a different curve, commitment scheme, or larger SRS requires a suitable new
 SRS, which may require another ceremony.
 
-## Ethereum blob setup is separate
+## Ethereum blob setup
 
 EIP-4844 blob commitments use the separate
 [Ethereum KZG ceremony](https://ceremony.ethereum.org/), not the three proving-system SRSs listed

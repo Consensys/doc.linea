@@ -5,20 +5,41 @@ sidebar_position: 2
 image: /img/socialCards/proving-circuit-execution-and-runtime.jpg
 ---
 
-## gnark zk-snarks
+import GlossaryTerm from '@theme/GlossaryTerm';
 
-### What is it?
+gnark is part of the <GlossaryTerm term="Lineth" /> [prover](./index.mdx).
+It's a Go library for building and proving cryptographic circuits, used standalone in other projects as
+well as in Lineth.
 
-In Lineth, gnark is the final part of the prover. It is also standalone software which can be used in other projects to create cryptographic circuits.
+gnark completes the second stage of the proving system: after the [circuit building](trace-expansion.mdx)
+stage, it produces the proof submitted at finalization.
 
-### What does it do?
 
-Similarly to Corset, gnark has two functions: it prepares a set of “circuits”, another way of referring to a constraint system, of the kind that will create a zk-SNARK proof that can be verified in an L1 Ethereum environment. It also, in fact, _makes_ those proofs.
+## How it works
 
-### How does it do it?
+The prover first checks the expanded traces from [Corset](./trace-expansion.mdx) against the
+arithmetization, using its own proving framework.
+The result is an _inner proof_: it establishes that execution was correct, but it's too large to verify onchain.
 
-gnark’s codebase is divided into two separate APIs: a [frontend](https://pkg.go.dev/github.com/consensys/gnark/frontend) and a [backend](https://pkg.go.dev/github.com/consensys/gnark/backend). The methods in gnark’s frontend API allow developers to do the first part, creating cryptographic circuits. In other words, gnark translates Corset’s precompiled Go constraint system into a final set of “circuits”, or constraints, which will ultimately produce the SNARK proof that is submitted to the L1 network. 
+gnark turns that inner proof into one a contract can check.
+Its [frontend API](https://pkg.go.dev/github.com/consensys/gnark/frontend) defines the circuits,
+including circuits whose job is to verify a proof from an earlier stage, and its
+[backend API](https://pkg.go.dev/github.com/consensys/gnark/backend) runs those circuits at proving
+time to produce a proof at each stage.
 
-The methods in the backend API are used at runtime to consume data through the proving system created previously in the frontend, producing as a result a proof. That is, gnark accepts the “expanded” trace data for each block or set of blocks from Corset, and processes it through its prepared circuits. 
+Because each stage proves the verification of the stage before it, the proof gets smaller and
+cheaper to verify as it moves toward the finalization layer.
+Aggregation circuits then combine the proofs for several blobs into the single proof the coordinator
+submits, a <GlossaryTerm term="zk-SNARK" /> that a verifier contract can check cheaply.
 
-This completes the processing for this set of transactions: executed in an EVM environment, provably real and correct, ready to dispatch to the L1. Next the prover sends the zk proof back to the coordinator.
+The prover writes the finished proof back for the [coordinator](../coordinator/index.mdx) to pick up and submit.
+
+## See also
+
+- See [Circuit building](./trace-expansion.mdx) for the first part of the proving system that produces
+  gnark's input.
+- See [Trusted setup](./trusted-setup.mdx) for the reference strings, and the curve each proving stage
+  uses them for.
+- See the [gnark repository](../../reference/repos.mdx#gnark), and the
+  [prover source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/prover) in the
+  `lineth-monorepo`.
