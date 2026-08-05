@@ -9,37 +9,37 @@ import ActionCards from '@site/src/components/ActionCards';
 import GlossaryTerm from '@theme/GlossaryTerm';
 
 Lineth (formerly the Linea Stack) is the collection of protocol components, onchain contracts, and operational
-capabilities that you can use to deploy and run your own Layer 2 or Layer 3 network, inheriting a
+capabilities that you can use to deploy your own Layer 2 or Layer 3 network, inheriting a
 <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> system and Ethereum-compatible execution.
 [Lineth is distinct from Linea](../protocol/linea-vs-lineth.mdx), the public network built on Lineth.
 
 Use this documentation to evaluate and design a custom Lineth deployment.
-Get started with Lineth:
+Get started:
 
 <ActionCards
   cards={[
     {
       text: "Evaluate Lineth",
       description:
-        "Assess deployment models, data visibility, trust assumptions, security evidence, and compliance considerations. This section helps determine whether Lineth is a suitable foundation for your use case.",
+        "Assess deployment models, trust assumptions, privacy, security, and compliance. This section helps determine whether Lineth is a suitable foundation for your use case.",
       href: "/stack/evaluate",
     },
     {
       text: "Design a deployment architecture",
       description:
-        "Explore the components and major design choices in a Lineth deployment, including data availability, finalization, access control, and distributed sequencing. This section provides design inputs and trade-offs.",
+        "Explore the components and design choices in a Lineth deployment, including data availability, finality, and access control. This section describes design inputs and trade-offs.",
       href: "/stack/deployment",
     },
     {
-      text: "Build and test a local deployment",
+      text: "Run a local deployment",
       description:
-        "Inspect the component graph, deploy contracts, produce L2 blocks, and verify finalization against a local L1 or Sepolia. The local quickstart is an evaluation environment only.",
+        "Inspect the component graph, deploy contracts, produce L2 blocks, and verify finalization against a local L1 or Sepolia. This quickstart is an evaluation environment only.",
       href: "/stack/how-to/run-local-lineth-stack",
     },
     {
       text: "Prepare for production",
       description:
-        "A production deployment requires environment-specific architecture, security, reliability, and operational decisions that are outside the scope of these docs. Contact support to review your deployment model, production architecture, implementation plan, configuration, and ongoing operating model.",
+        "A production deployment requires environment-specific guidance that is outside the scope of these docs. Contact support to review your deployment model, production architecture, implementation plan, configuration, and operating model.",
       href: "/support",
     },
   ]}

@@ -8,6 +8,7 @@ type BaseCardProps = {
   text: string;
   description?: string;
   image?: string;
+  descriptionStyle?: React.CSSProperties;
 };
 
 export default function BaseCard({
@@ -15,13 +16,16 @@ export default function BaseCard({
   text,
   description,
   image,
+  descriptionStyle,
 }: BaseCardProps): React.ReactNode {
   return (
     <Link to={href} className={styles.card}>
       <div className={styles.content}>
         <p className={styles.text}>{text}</p>
         {description ? (
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description} style={descriptionStyle}>
+            {description}
+          </p>
         ) : null}
       </div>
       <div className={styles.arrowButton}>
