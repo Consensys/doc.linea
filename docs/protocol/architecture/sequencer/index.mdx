@@ -1,67 +1,74 @@
 ---
 title: Sequencer
 description: How the Lineth Sequencer orders transactions, builds blocks, and prepares execution traces for proving.
-sidebar_position: 11
 image: /img/socialCards/sequencer.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-## What is it?
+The sequencer is a core component of the <GlossaryTerm term="Lineth" /> execution client,
+<GlossaryTerm term="Linea Besu" />.
+The sequencer is a set of plugins, bundled with Linea Besu, that extends the [Besu](https://docs.besu-eth.org/)
+execution client.
+It is responsible for ordering, building, and executing blocks in a way that enables the creation of
+<GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>.
 
-The sequencer is the heart of the <GlossaryTerm term="Lineth" /> execution client, responsible for ordering, building, and executing blocks
-in a way that allows the subsequent <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> to be made.
+The sequencer is not directly accessible from outside the network (to prevent DDOS attacks).
+Instead, it's connected to the RPC nodes via P2P.
 
-The sequencer is not directly accessible from outside the network (to prevent DDOS attacks). Instead it's connected to the RPC nodes via P2P.
+:::note
 
-## What does it do?
+Because the Besu execution client is fully extensible with plugins, operators can extend and apply arbitrary business
+logic, such as enforcing regulatory logic at the block building level, and controlling which transactions may be
+executed by the EVM.
 
-The sequencer: 
+:::
 
-- Receives transactions from the network.
-- Orders and validates transactions.
-- Builds blocks according to Lineth's rules.
-- Enforces transaction limits (trace counts, gas limits, calldata size).
-- Ensures blocks fit within blob size constraints.
-- Executes those blocks.
-- Prepares certain data relating to the _traces_ of that execution for the zero-knowledge prover.
+## How it works
 
-## How does it do it?
+The sequencer takes transactions from the memory pool, orders and validates them, and selects
+them for inclusion in a block according to Lineth's rules.
+During selection, it runs each candidate through the [tracer](./traces-generator.mdx) to enforce
+per-block limits ([trace line counts](../prover/prover-limits.mdx), gas limits, calldata size) and
+ensure the block fits within blob size constraints, then executes and imports the block.
 
-The sequencer is a set of plugins that extends the Lineth execution client, [Linea Besu](../../reference/repos.mdx#linea-besu-upstream).
-This implementation of the Besu execution client provides additional functionality to support Lineth and its
-requirements as a <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm>. 
+The sequencer also provides the [coordinator](../coordinator/index.mdx) with the data needed to prove
+those blocks: the trace counts that determine how many blocks to
+[conflate](../coordinator/conflation.mdx) into one batch, and then the conflated trace file for that
+batch, produced by re-executing its blocks.
+This keeps proofs as compact as possible, which matters because all proof data has to be written in
+tiny, costly pieces on the
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
-The sequencer takes transactions from the memory pool, and builds them into blocks. Furthermore, it provides data to the [coordinator](../coordinator.mdx), to ensure that 
-blocks are made in such a way that they can be proven by the zero-knowledge prover, and that they 
-are as compact as possible--doubly important in a situation where all data has to be written in 
-tiny, costly pieces on the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>. This is done specifically by subsystems within the 
-sequencer: the [trace generator](./traces-generator.mdx) and [conflator](./conflation.mdx).
-
-:::info
+:::note
 
 There is typically one sequencer instance per network.
-Although by applying a <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> design,
+However, by applying a <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> design,
 Lineth could adopt multiple sequencers in a decentralized configuration.
 
 :::
 
 ## Transaction validity conditions
 
-In addition to standard EVM validity checks (signature, nonce, balance, gas limits), the sequencer
-applies a Lineth-specific **profitability threshold** during transaction pool admission and
-block-building selection. The threshold uses the same gas price calculation described in
-[estimate gas costs](../../../network/how-to/gas-fees.mdx#variable-cost-and-linea_estimategas),
-including the compressed transaction size, gas denominator, fixed/variable costs, and
-context-specific margin.
+In addition to standard EVM validity checks (signature, nonce, balance, gas limits), the sequencer applies a
+Lineth-specific profitability threshold during transaction pool admission and block-building selection.
+By default, the threshold uses the same gas price calculation described in
+[Estimate gas costs](../../../network/how-to/gas-fees.mdx#variable-cost-and-linea_estimategas), including
+the compressed transaction size, gas denominator, fixed/variable costs, and context-specific margin.
 
-Transactions that do not meet the threshold can be rejected from the mempool or skipped during
-selection. This profitability check does not apply to sequencer-prioritized system transactions,
-including forced transactions.
+Transactions that do not meet the threshold can be rejected from the mempool or skipped during selection.
+This profitability check does not apply to sequencer-prioritized system transactions, including
+[forced transactions](../../forced-transactions.mdx).
 
-See [predictable pricing](../../../network/overview/predictable-pricing.mdx) for how Linea's fee
-mechanism shapes the base fee, and
-[Ethereum differences](../../../network/overview/ethereum-differences.mdx) for a broader comparison.
+Operators can configure the fixed and variable gas costs, and separate margins for pool admission and
+block-building selection, using the sequencer's
+[profitability options](../../../stack/reference/linea-besu-plugin-options.mdx#sequencer--profitability).
 
+## See also
 
-
+- See [Predictable pricing](../../../network/overview/predictable-pricing.mdx) for how Linea Mainnet's
+  fee mechanism shapes the base fee, and
+  [Ethereum differences](../../../network/overview/ethereum-differences.mdx) for a broader comparison.
+- Configure sequencer behavior using the [Linea Besu sequencer options](../../../stack/reference/linea-besu-plugin-options.mdx#sequencer).
+- See the [sequencer source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/linea-besu/plugins/linea-sequencer)
+  in the `lineth-monorepo`.
