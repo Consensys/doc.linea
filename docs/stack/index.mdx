@@ -9,53 +9,56 @@ import ActionCards from '@site/src/components/ActionCards';
 import GlossaryTerm from '@theme/GlossaryTerm';
 
 Lineth (formerly the Linea Stack) is the collection of protocol components, onchain contracts, and operational
-capabilities that operators use to deploy and run their own Layer 2 or Layer 3 networks, inheriting a
+capabilities that you can use to deploy and run your own Layer 2 or Layer 3 network, inheriting a
 <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> system and Ethereum-compatible execution.
-For how Lineth relates to the public Linea network, see [Linea and Lineth](../protocol/linea-vs-lineth.mdx).
+[Lineth is distinct from Linea](../protocol/linea-vs-lineth.mdx), the public network built on Lineth.
 
+Use this documentation to evaluate and design a custom Lineth deployment.
 Get started with Lineth:
 
 <ActionCards
   cards={[
     {
       text: "Evaluate Lineth",
-      description: "Assess deployment models, security, and trust assumptions.",
+      description:
+        "Assess deployment models, data visibility, trust assumptions, security evidence, and compliance considerations. This section helps determine whether Lineth is a suitable foundation for your use case.",
       href: "/stack/evaluate",
     },
     {
       text: "Design a deployment architecture",
-      description: "Choose components and settings for your Lineth deployment.",
+      description:
+        "Explore the components and major design choices in a Lineth deployment, including data availability, finalization, access control, and distributed sequencing. This section provides design inputs and trade-offs.",
       href: "/stack/deployment",
     },
     {
       text: "Build and test a local deployment",
-      description: "Run a local Lineth Stack settling to a local L1 or Sepolia.",
+      description:
+        "Inspect the component graph, deploy contracts, produce L2 blocks, and verify finalization against a local L1 or Sepolia. The local quickstart is an evaluation environment only.",
       href: "/stack/how-to/run-local-lineth-stack",
     },
     {
-      text: "Learn about protocol internals",
-      description: "Explore how the Lineth protocol works under the hood.",
-      href: "/protocol",
+      text: "Prepare for production",
+      description:
+        "A production deployment requires environment-specific architecture, security, reliability, and operational decisions that are outside the scope of these docs. Contact support to review your deployment model, production architecture, implementation plan, configuration, and ongoing operating model.",
+      href: "/support",
     },
   ]}
 />
 
-:::note
-In the Lineth Stack documentation, an **operator** is the entity or consortium responsible for deploying,
-administering, and running the network infrastructure, contracts, keys, access controls, and
-operational procedures for a network built on Lineth.
+:::tip Linea Enterprise
+
+Linea Enterprise is the Consensys commercial offering for institutions that evaluate, design, deploy, or
+operate networks built on Lineth.
+An engagement may combine a supported Lineth software distribution with solution design, implementation and
+production onboarding, lifecycle and operational support, managed services, and enterprise add-ons or integrations.
+[Contact support](/support) for more information.
+
 :::
+
+For protocol mechanics beneath the operator stack, see [Protocol](../protocol/index.mdx).
+For the public network overview, see [Linea Mainnet](../network/index.mdx).
 
 ## Why Lineth exists
-
-:::info Configurable
-
-Lineth supports operators who need more control than a L1 network can offer while
-preserving Ethereum compatibility and configurable security assumptions. Whether you are deploying a
-private network for regulated environments, you favor selective data availability, or are operating a
-fully public network, Lineth gives you the components and operational model to do so.
-
-:::
 
 As blockchain adoption grows, many organizations encounter a common set of constraints:
 
@@ -68,6 +71,15 @@ As blockchain adoption grows, many organizations encounter a common set of const
 Lineth lets you run an Ethereum-equivalent network tailored to
 enterprise requirements, using [open source technology](../protocol/reference/repos.mdx), while remaining anchored to the same protocol foundations
 as [Linea Mainnet](../network/index.mdx). The interoperability between Linea and Ethereum allows networks built on Lineth to use Ethereum's digital assets and build within the open and modular DeFi ecosystem.
+
+:::note Lineth is configurable
+
+Lineth supports operators who need more control than a L1 network can offer while
+preserving Ethereum compatibility and configurable security assumptions. Whether you are deploying a
+private network for regulated environments, you favor selective data availability, or are operating a
+fully public network, Lineth gives you the components and operational model to do so.
+
+:::
 
 ## What Lineth provides
 
@@ -114,7 +126,9 @@ Lineth serves technical operators and infrastructure teams who:
 It assumes familiarity with distributed systems and blockchain infrastructure, but does not require
 deep protocol expertise.
 
-## Start building
+## Get production guidance
 
-Ready to build? [Contact support](/support) to inquire about our rollup-as-a-service
-or to access our dedicated design team who will configure the stack to your business needs.
+After evaluating and testing Lineth, [contact support](/support) and ask for
+Lineth production onboarding. The Lineth team can confirm the supported
+deployment path and the scope of any enterprise services, add-ons, integrations,
+or ongoing operational support.
