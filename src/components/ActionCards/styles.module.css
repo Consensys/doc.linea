@@ -6,6 +6,11 @@
   margin-bottom: 24px;
 }
 
+.description {
+  composes: description from "../BaseCard/styles.module.css";
+  font-size: var(--font-body-md);
+}
+
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;

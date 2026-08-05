@@ -17,7 +17,11 @@ export default function ActionCards({ cards }: Props): React.ReactNode {
   return (
     <div className={styles.grid}>
       {cards.map((card, idx) => (
-        <BaseCard key={idx} {...card} descriptionStyle={{ fontSize: 15 }} />
+        <BaseCard
+          key={idx}
+          {...card}
+          descriptionClassName={styles.description}
+        />
       ))}
     </div>
   );
