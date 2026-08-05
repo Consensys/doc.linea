@@ -1,47 +1,52 @@
 ---
-title: Trace expansion and proving
-description: How trace expansion and proving in Lineth generate zero-knowledge proofs for state transitions.
-sidebar_position: 14
-image: /img/socialCards/trace-expansion-and-proving.jpg
+title: Prover
+description: How the Lineth prover turns execution traces into zero-knowledge proofs.
+image: /img/socialCards/prover.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-## What is it?
+The prover is a <GlossaryTerm term="Lineth"/> module that turns execution traces into
+<GlossaryTerm term="zk-SNARK">zk-SNARKs</GlossaryTerm>.
+These zk-SNARKs enable the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm> to
+accept a Lineth state transition without re-executing any transactions.
 
-The module responsible for generating the final set of data for a <GlossaryTerm term="Zero-knowledge proof">zero-knowledge proof</GlossaryTerm>, and producing that proof.
+Proof generation is computationally intensive, so deployments run the prover as one or more dedicated
+instances rather than inside the execution client.
 
-## What does it do?
+## How it works
 
-The prover handles proof-generation requests from the coordinator and Linea Besu, and produces a succinct, non-interactive argument of knowledge, or zk-SNARK.
+The [coordinator](../coordinator/index.mdx) drives the prover.
+It writes each proof request, along with the conflated traces produced by the
+[tracer](../sequencer/traces-generator.mdx), to the directories the prover watches, and collects the
+finished proof from the same place.
 
-The prover generates 3 types of zero-knowledge proofs to verify state transitions:
+The prover produces three kinds of proofs:
 
-- Execution proofs: Prove the correctness of transaction execution within batches
-- Compression proofs: Prove that blob compression is valid
-- Aggregation proofs: Combine multiple proofs into a single finalization proof
+- **Execution proofs** show that the transactions in a batch executed correctly.
+- **Compression proofs** show that a blob's compressed data expands to the batches it stands for.
+- **Aggregation proofs** combine the proofs for several blobs into the single proof submitted at finalization.
 
-Proof generation is computationally intensive and may be distributed across multiple prover
-instances for performance.
+Each proof is built in two stages:
 
-The Lineth proving architecture is also evolving toward
-[guest-program-based proof generation](./risc-v-overview.mdx) with RISC-V.
+1. [Corset](trace-expansion.mdx) expands the trace data into the full constraint system, the
+    arithmetization the prover proves against.
+2. The proving system reduces that expanded data to an inner proof, then wraps it with the
+    [gnark](proving.mdx) library into an outer proof: the zk-SNARK that a verifier contract on the
+    finalization layer can check cheaply.
 
-## How does it do it?
+Because the proof accompanies the data it proves, anyone can confirm that a state transition is correct
+by checking the proof onchain, instead of trusting the operator or re-executing the transactions themselves.
 
-The prover produces proofs in two stages:
+## See also
 
-- Inner proof: recursively reduces the trace into a smaller proof object to make aggregation efficient.
-- Outer proof: is generated with the Consensys-maintained
-  [gnark library](../../../protocol/reference/repos.mdx#gnark), further compressing the result into
-  a <GlossaryTerm term="zk-SNARK" />.
-
-There are multiple operations involved:
-
-1. Corset takes in conflated trace data from the coordinator, and prepares it for the second part, gnark. 
-2. gnark takes in that prepared, or "expanded," trace data, and uses it to produce a proof of the type that can be submitted to the finalization layer, such as Ethereum in the case of Linea Public Mainnet.
-
-This provides cryptographic guarantees for state correctness without requiring third parties to
-re-execute transactions. The proof verifies correctness for transaction batches before being accepted by the
-finalization layer. This process enables the protocol to provide secure, efficient, and cost-effective
-transaction scaling while reducing trust assumptions around execution correctness.
+- See [Circuit building](./trace-expansion.mdx) and
+  [Circuit execution and runtime](./proving.mdx) for how Corset and gnark each work in detail.
+- See [Module limits](./prover-limits.mdx) for the trace line limits that keep batches provable, and
+  [Trusted setup](./trusted-setup.mdx) for the reference strings the proving system relies on.
+- See [RISC-V proving architecture](./risc-v-overview.mdx) for the planned evolution toward
+  guest-program-based proof generation.
+- Configure prover behavior using the
+  [Linea prover options](../../../stack/reference/linea-prover-options.mdx).
+- See the [prover source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/prover) in
+  the `lineth-monorepo`.

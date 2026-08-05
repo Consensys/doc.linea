@@ -1,5 +1,6 @@
 ---
 title: Architecture
+sidebar_label: Overview
 description: Protocol architecture overview and core components of Lineth
 image: /img/socialCards/architecture.jpg
 ---
@@ -107,17 +108,16 @@ Internal protocol services are required for proof generation and finalization.
 
 The [sequencer](./sequencer/index.mdx) orders transactions and builds blocks according to Lineth rules. Typically deployed as a protected internal service.
 
-> With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an external p2p service.
+:::note
 
-:::info
-
-Because the Besu Execution Layer (EL) client is fully extensible with plugins, operators can extend and apply arbitrary business logic, such as enforcing regulatory logic at the block building level, and controlling which transactions may be executed by the EVM.
+With further decentralization efforts, components such as the sequencer may be redesigned to be configurable as an
+external P2P service.
 
 :::
 
 ### Coordinator
 
-The [coordinator](./coordinator.mdx) orchestrates batching, proof generation, and
+The [coordinator](./coordinator/index.mdx) orchestrates batching, proof generation, and
 submission to the finalization layer.
 
 ### Prover
@@ -132,7 +132,7 @@ The [state manager](./state-manager.mdx) maintains a state representation optimi
 
 ### Tracer
 
-The [trace generator](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.
+The [tracer](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.
 
 ## Onchain system contracts
 

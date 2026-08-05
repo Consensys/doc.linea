@@ -351,25 +351,22 @@ const sidebars = {
       label: "Architecture",
       collapsible: false,
       items: [
-        {
-          type: "doc",
-          id: "protocol/architecture/index",
-          label: "Overview",
-        },
+        "protocol/architecture/index",
         {
           type: "category",
           label: "Sequencer",
           collapsible: true,
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/sequencer/index" },
-          items: [
-            {
-              type: "doc",
-              id: "protocol/architecture/sequencer/traces-generator",
-              label: "Traces generation",
-            },
-            "protocol/architecture/sequencer/conflation",
-          ],
+          items: ["protocol/architecture/sequencer/traces-generator"],
+        },
+        {
+          type: "category",
+          label: "Coordinator",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "protocol/architecture/coordinator/index" },
+          items: ["protocol/architecture/coordinator/conflation"],
         },
         {
           type: "category",
@@ -379,16 +376,13 @@ const sidebars = {
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
             "protocol/architecture/prover/risc-v-overview",
-            {
-              type: "doc",
-              id: "protocol/architecture/prover/trace-expansion",
-              label: "Proving: Circuit building",
-            },
+            "protocol/architecture/prover/trace-expansion",
             "protocol/architecture/prover/proving",
             "protocol/architecture/prover/prover-limits",
             "protocol/architecture/prover/trusted-setup",
           ],
         },
+        "protocol/architecture/state-manager",
         {
           type: "category",
           label: "Interoperability",
@@ -399,12 +393,6 @@ const sidebars = {
             "protocol/architecture/interoperability/canonical-token-bridge",
             "protocol/architecture/interoperability/canonical-message-service",
           ],
-        },
-        "protocol/architecture/coordinator",
-        {
-          type: "doc",
-          id: "protocol/architecture/state-manager",
-          label: "EVM state manager",
         },
         "protocol/architecture/smart-contracts",
         "protocol/architecture/rpc-services",

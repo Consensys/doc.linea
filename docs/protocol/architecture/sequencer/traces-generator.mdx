@@ -1,32 +1,47 @@
 ---
-title: Traces generation
+title: Tracer
 description: How the tracer works with the sequencer and prover
-sidebar_position: 1
-image: /img/socialCards/traces-generation.jpg
+image: /img/socialCards/tracer.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-## What is it?
+The tracer is part of the <GlossaryTerm term="Lineth" /> [sequencer](index.mdx).
+The tracer is a Besu plugin bundled with <GlossaryTerm term="Linea Besu" />.
+It generates the data the [prover](../prover/index.mdx) needs to create
+<GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>, and the data the sequencer needs to
+keep blocks provable.
 
-The [tracer](../../reference/repos.mdx#linea-tracer) run as a plugin to <GlossaryTerm term="Linea Besu" />.
-It's part of the Lineth [sequencer](./index.mdx) responsible for generating the data used by the
-[prover](../prover/index.mdx) to create <GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>. 
+A _trace_ records the operations the
+<GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm> performs during execution: the
+state of the network, and the state of the accounts involved in a transaction, at each granular step of
+that transaction's execution.
 
-## What does it do?
+## How it works
 
-Tracer provides the Traces API that surfaces essential data that's required for proof generation, and for making proofs as compact as possible. The trace generator executes blocks that have been built by the sequencer, and preserves data relating to the traces of each transaction. The tracer ensures that this data is available for all blocks in a batch, it:
+The tracer produces data on request, at two points in the pipeline.
 
-- Generates execution traces during block processing
-- Provides trace counts for batch size calculations
-- Creates conflated trace files for prover input
+While the sequencer builds a block, the tracer counts the trace lines each candidate transaction would
+generate, so the sequencer can reject transactions that exceed a
+[module limit](../prover/prover-limits.mdx) and stop adding transactions once the block reaches its limits.
 
-This data--representing the operations undertaken in the <GlossaryTerm term="Ethereum Virtual Machine (EVM)">
-EVM</GlossaryTerm> during the block execution--is then passed to the [prover](../prover/index.mdx), allowing it
-to generate the execution proof. 
+Once blocks are built, the [coordinator](../coordinator/index.mdx) uses the tracer to prepare them
+for proving:
 
-## How does it do it?
+1. The coordinator requests the trace counts for each new block.
+2. Using those counts, it decides how many consecutive blocks to
+   [conflate](../coordinator/conflation.mdx) into one batch.
+3. When it closes a batch, it requests the conflated traces for that block range.
+   The tracer re-executes those blocks, writes a single trace file, and returns its location.
+4. The coordinator passes the trace file to the prover, which uses it to generate the execution proof.
 
-Once the sequencer has built its blocks, they are executed; and in the process, the EVM produces data known as _traces_. These traces specify the state of the network, and the state of the accounts involved in the transaction, at each granular step of each transaction's execution.
+Both paths are exposed through the Traces API, which internal protocol services call over RPC.
+Trace generation runs inside Linea Besu because replaying blocks requires an execution client, but the
+batch boundaries are decided by the coordinator, not the sequencer.
 
-The sequencer then puts these traces through [trace conflation](./conflation.mdx).
+## See also
+
+- Configure tracer behavior using the
+  [Linea Besu tracer options](../../../stack/reference/linea-besu-plugin-options.mdx#tracer).
+- See the [tracer source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer) in
+  the `lineth-monorepo`.

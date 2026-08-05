@@ -1,17 +1,14 @@
 ---
 title: EVM state manager
-description: 'How Lineth manages EVM state for proving, recovery, and RPC proofs.'
-sidebar_position: 2
+description: How the Lineth state manager tracks network state and proves state transitions.
 image: /img/socialCards/evm-state-manager.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-## What is it?
-
-The state manager consists of a Besu node with [Shomei](../../protocol/reference/repos.mdx#shomei)
-plugin and a Shomei
-node that uses Sparse Merkle trees to represent state.
+The state manager maintains the network's state in the representation the proving pipeline needs.
+It consists of a Besu node running the [Shomei](../../protocol/reference/repos.mdx#shomei) plugin,
+and a Shomei node that represents state as a sparse Merkle tree.
 
 :::info
 
@@ -21,45 +18,37 @@ changed.
 
 :::
 
-## What does it do?
+## How it works
 
-The state manager maintains the network's state representation optimized for
-proof generation:
+As the [sequencer](./sequencer/index.mdx) produces blocks, the Besu node executes them and its
+Shomei plugin exposes the state changes each block made. The Shomei node imports those changes and
+applies them to its own tree, tracking the state of user accounts, smart contracts, and balances
+block by block, and deriving a new state root for each block.
 
-- Tracks state changes block by block
-- Generates Merkle proofs for state transitions
-- Provides state snapshots for recovery and initialization
-- Serves [`linea_getProof`](../../api/reference/linea-getproof) RPC endpoints
+The [coordinator](./coordinator/index.mdx) requests the Merkle proof for a batch's range of blocks
+and passes it to the [prover](./prover/index.mdx) with the rest of the proof request, so the
+resulting proof attests to the state transition that batch produced. The state manager also serves
+[`linea_getProof`](../../api/reference/linea-getproof) to callers that need an account or storage
+proof for a block already finalized on the
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
-The state manager is the part of the execution client responsible for updating the state of the 
-network globally, and the state of every account individually.  It tracks the current state of user accounts, smart contracts, and balances on the network. The state manager also audits the
-"read" access made in the EVM, meaning it monitors, verifies, and logs all operations where the
-EVM needs to read data from the blockchain state.
+Two data structures are involved:
 
-The main task of the state manager is to receive blocks that have been executed by the 
-[sequencer](./sequencer/index.mdx) and use the trace data from their execution to update the state of the network. 
+1. <GlossaryTerm term="Linea Besu"/> records the world state in a Merkle-Patricia Trie, which it uses to process blocks
+and maintain consensus. This mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/). 
+2. The state manager tracks the same state in a variant of a regular
+[Merkle tree](#merkle-trees) called a sparse Merkle tree (SMT), which is more efficient to update
+and prove.
 
-## How does it do it?
-
-Lineth uses two data structure types to manage state:
-
-1. A Merkle-Patricia Trie to record the world state, maintain consensus, and process blocks. This 
-mirrors how consensus and state are [managed on Ethereum Mainnet](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/). 
-2. A variant of a regular [Merkle tree](./state-manager.mdx#merkle-trees) called a sparse Merkle tree (SMT), which is used to more
-efficiently track, manage, and update storage slots representing accounts. 
-
-It then passes this updated network state information to the [prover](./prover/index.mdx) 
-in the form of Merkle proofs for submission to the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>. 
-
-Below, we'll explain the element of Lineth state management in greater detail, focussing on the
-SMT configuration that sets Lineth apart.
+The rest of this page explains Lineth state management in greater detail, focusing on the SMT
+configuration that sets Lineth apart.
 
 ## Merkle trees
 
 The Merkle tree and its variations are commonly used across EVM chains to store and retrieve 
 data about the state of every account on the blockchain. 
 
-A Merkle tree is comprised of 'nodes' that branch off from each other. At the base is the 'root', 
+A Merkle tree is comprised of "nodes" that branch off from each other. At the base is the root, 
 or state root, from which branches stem, and leaves stem from the branches. 
 
 <div class="img-large">
@@ -73,33 +62,29 @@ or state root, from which branches stem, and leaves stem from the branches.
   </div>
 </div>
 
-Each node, regardless of type, is represented by a cryptographic hash which encodes data about its 
-properties — for example, the contents of your account. Each hash encodes the hashes of its child 
+Each node is represented by a cryptographic hash which encodes data about its 
+properties; for example, the contents of your account. Each hash encodes the hashes of its child 
 nodes. Taken to its full extent, this cascading system means the root encodes data of the state of 
 every single account on the blockchain. 
 
-Cryptographic hashes are deterministic, which means you can reverse the hash function to get the 
-data which it encoded. If you have the hash of the root—the only node without a parent—you can 
-theoretically derive from it the data of any node in the entire tree. 
-
-As a rollup stack, Lineth is in the business of making transacting faster and more efficient.
-Lineth implements a sparse Merkle tree to track account state and generate and store proofs, and 
-unlock greater efficiency when compared to standard Merkle trees, which require recomputation for 
-every block, leading to excessive computational demands.
+Cryptographic hashes are deterministic and one-way: the same data always produces the same hash, 
+but you can't recover the data from the hash. Anyone holding the root can check whether a piece of data
+belongs in the tree by rehashing it along with the sibling hashes on its path to the root, without seeing
+the rest of the tree. 
 
 ### Sparse Merkle trees
 
-Lineth's state management uses sparse Merkle trees to minimize computation and contribute to the 
-blockchain's efficiency. 
+Lineth implements a sparse Merkle tree to track account state and generate and store proofs, which keeps 
+updates and proofs cheap enough to produce for every block.
 
 A sparse Merkle tree is a variation of a standard Merkle tree where not all leaf nodes are filled 
 with data; instead, data is only stored in nodes where it's needed. It is a complete tree of fixed 
-depth, meaning that all branches of the tree have the same length—i.e. the same number of leaves. 
+depth, meaning that all branches of the tree have the same length (the same number of leaves).
 
-At initialization—the beginning of the chain's history—all leaf nodes are set to a default value, 
+At the beginning of the chain's history, all leaf nodes are set to a default value, 
 which is typically a hash of a specific value, such as zero. Because all leaf nodes have the same 
 hash value, the parent nodes and higher-level nodes also have the same hash value. A node whose 
-hash is the default value for its level is therefore considered to represent an _empty_ subtree. 
+hash is the default value for its level is therefore considered to represent an empty subtree. 
 
 <div class="center-container">
   <div class="mermaid-medium">
@@ -118,8 +103,9 @@ hash is the default value for its level is therefore considered to represent an 
   </div>
 </div>
 
-In the example above, the children of node A (leaves) contain null values, which means node A does 
-too. Node B, meanwhile, reflects that its children also contain values.
+In the example above, node A's children are empty, so node A holds the default hash for its level,
+which marks the whole subtree beneath it as empty. Node B's hash is derived from children that do
+hold data, so it differs from the default.
 
 With this construction, we do not need to keep track of every individual node's hash. Instead, we 
 can assume hashes that reflect the default value are empty, and the subtree or node that lies 
@@ -129,7 +115,7 @@ correspond to _non-empty_ subtrees.
 ## Cryptographic accumulator
 
 In this context, we can consider Lineth's sparse Merkle tree as a type of "cryptographic 
-accumulator". A cryptographic accumulator is a type of cryptographic primitive encoding a collection 
+accumulator." A cryptographic accumulator is a type of cryptographic primitive encoding a collection 
 of items into very short strings and allowing read/write operations to be proven. Merkle trees and 
 sparse Merkle trees are elementary examples of accumulators but there are others with more powerful 
 capabilities.
@@ -165,35 +151,35 @@ deterministic hashing function will ensure that these leaves are always represen
 hash, empty leaves can be easily recognized by the accumulator. 
 
 However, in order for the state manager to update a storage slot with data about an account's 
-contents, it must know which empty leaf to overwrite, and exactly where these empty leaves are. A 
-further consideration is that we require the index of any 'new' leaf—an empty leaf being updated 
-so that it stores data—to be overwritten in a deterministic way. This requirement means that anyone 
-can theoretically reconstruct the tree simply by looking at transaction history. 
+contents, it must know which empty leaf to overwrite, and exactly where these empty leaves are.
+The index assigned to any "new" leaf—an empty leaf being updated
+so that it stores data—must also be deterministic. This requirement means that anyone 
+can reconstruct the tree by looking at transaction history. 
 
-To ensure consistency in the leaves' position, the state manager only ever inserts 'new' leaves to
+To ensure consistency in the leaves' position, the state manager only ever inserts new leaves to
 the left of the previous leaf in the tree. If this wasn't the case, and the state manager was able
 to insert any node in any position, it would be impossible to reconstitute the tree in the exact 
-same configuration, severely impacting the ability of L1 to verify the Merkle proof provided.
+same configuration, impacting the ability of L1 to verify the Merkle proof provided.
 
 ## Applying the accumulator
 
-The Ethereum Virtual Machine (EVM) uses a variant of a Merkle tree known as a [Merkle-Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/) to track:
-- World state, which keeps track of accounts, and;
-- Account storage state (or simply 'storage'), which keeps track of the contents of each account. 
+The <GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm> uses a variant of a Merkle tree known as a [Merkle-Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/) to track:
+- World state, which keeps track of accounts.
+- Account storage state, which keeps track of the contents of each account. 
 
-Lineth adapts this structure. The Merkle-Patricia Trie is still used for world state, but the
-custom cryptographic accumulator described above is used for account storage state.
+Lineth adapts this structure. Linea Besu still uses the Merkle-Patricia Trie to execute blocks, but
+the state manager tracks both trees using the custom cryptographic accumulator described above.
 
 The accumulator can perform the following operations:
-- **Insertion**: adding a new storage slot to the tree, triggered by storing a non-zero value in a 
+- **Insertion**: Add a new storage slot to the tree, triggered by storing a non-zero value in a 
 previously zero-valued slot.
-- **Update**: changing the value of an existing storage slot in the tree, triggered by storing a new 
+- **Update**: Change the value of an existing storage slot in the tree, triggered by storing a new 
 non-zero value in a previously non-zero slot.
-- **Deletion**: removing a storage slot from the tree, triggered by storing the zero value in a 
+- **Deletion**: Remove a storage slot from the tree, triggered by storing the zero value in a 
 previously non-zero slot.
-- **Read zero**: proving non-membership, triggered when a storage slot has been accessed, but not 
+- **Read zero**: Prove non-membership, triggered when a storage slot has been accessed, but not 
 updated, and its value is zero.
-- **Read non-zero**: proving membership, triggered when a storage slot has been accessed, but not 
+- **Read non-zero**: Prove membership, triggered when a storage slot has been accessed, but not 
 updated and its value is non-zero.
 
 These operations are applied to two trees; [world state](#world-state) and [account storage state](#account-storage-state).
@@ -202,7 +188,7 @@ These operations are applied to two trees; [world state](#world-state) and [acco
 
 The world state tree maps all accounts that exist on the blockchain—contracts and externally-owned 
 accounts (EOAs)—and points towards the account storage state for each. While on Ethereum Mainnet,
-this data is stored in a standard trie, Lineth uses the accumulator to map accounts as key:value 
+this data is stored in a standard trie, Lineth uses the accumulator to map accounts as key-value 
 pairs. Otherwise, the implementation is similar to the EVM.
 
 Their structure is as follows:
@@ -210,29 +196,29 @@ Their structure is as follows:
 - `HKey`: Hash(`address`)
 - `Val`: Hash(`nonce`, `balance`, `storageRoot`, `codeHash`, `keccakCodeHash`, `CodeSize`)
 
-Critically, every piece of data fed into the `Val` (value) hash function must have a finite field
-interpretation. The data must be formatted this way to enable the prover to correctly 
+Every piece of data fed into the `Val` (value) hash function must have a finite field
+interpretation. The data must be formatted this way to enable the prover to
 access the world state when verifying proofs. Each element is formatted as follows (all elements
 require one field, other than `keccakCodeHash`):
 
 - `nonce`: The nonce is written in big-endian form into a `byte32`. For instance if the nonce is 10,
 then the nonce should be encoded as `0x000000000000000000000000000000000000000000000000000000000000000a`.
 - `balance`: Formatted the same as the nonce; big-endian `byte32`.
-- `storageRoot`: The storage root should _not_ be the Keccak of the Patricia trie root as in the 
-EVM, but the “custom Merkle tree” root of the account storage state that we describe in the 
-[following section](#account-storage-state).
-- `codeHash`: The code hash should not be the Keccak of the code, it should instead be the one 
-obtained as described in the following section.
-- 2 field elements for `keccakCodeHash`: One for the 128 most significant bits and one for the 128 
+- `storageRoot`: The storage root should not be the Keccak of the Patricia trie root as in the 
+EVM, but the "custom Merkle tree" root of the account storage state described in 
+[Account storage state](#account-storage-state).
+- `codeHash`: The code hash should not be the Keccak of the code, but the one 
+obtained as described in [Account storage state](#account-storage-state).
+- Two field elements for `keccakCodeHash`: One for the 128 most significant bits and one for the 128 
 least significant bits. The Keccak code hash corresponds exactly to the Keccak hash as specified by 
-the EVM (i.e. the output of [EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052). We keep the 
-Keccak and the “custom” version for practical reasons.
+the EVM (the output of [EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052)). We keep the 
+Keccak and the "custom" version for practical reasons.
 - `codeSize`: The code size should be the same value as that returned by the CODESIZE/EXTCODESIZE 
 opcodes.
 
 ### Account storage state
 
-Also referred to as the storage trie, the account storage state is the database the state manager
+Also referred to as the "storage trie," the account storage state is the database the state manager
 accesses to retrieve data about the contents of accounts. Account storage is mainly relevant for
 contract accounts; for EOAs, the data about assets and transactions is stored in the [world state](#world-state)
 `Val`, and the `codeHash` and its variants are empty. 
@@ -244,7 +230,7 @@ following format:
 - `HKey`: Hash(`StorageKeyMSB`, `StorageKeyLSB`)
 - `Val`: Hash(`StorageValueMSB`, `StorageValueLSB`)
 
-In both cases, the `MSB` refers to the first 16 bytes of a 'word', and `LSB` the last 16. 'Word' in
+In both cases, the `MSB` refers to the first 16 bytes of a "word," and `LSB` the last 16. "Word" in
 this context refers to the natural unit of data used by the EVM, which is 256-bit (32 byte) chunks. 
 
 For example, if the data regarding a contract's code was encoded in a `byte32`, the standard data
@@ -263,13 +249,21 @@ The `MSB` takes the first 16 bytes, and the `LSB` the second 16 bytes.
 
 The accumulator, built using a sparse Merkle tree, is simultaneously: 
 
-- A data structure on which we can perform operations;
-- A dataset that we can summarize using a short string at any time (i.e. the root hash);
+- A data structure on which we can perform operations.
+- A dataset that we can summarize using a short string at any time (i.e. the root hash).
 - A tool that can be used by Lineth to verify that a given operation triggered a
 transition from hash A to hash B.
 
-Once the accumulator has processed the trace information it receives about a new block and updated
-state accordingly, it can pass a new state root hash to the prover, via the coordinator. The state
-root hash can then be used by the prover as a "witness": a verifiable method of proving that the
-transactions in each block have taken place, without having to divulge the nature of those 
-transactions.  
+Once the accumulator has processed a new block's state changes and updated state accordingly, the
+coordinator can request the proof of the resulting transition and pass it to the prover. That proof
+is the prover's witness for the state transition: the evidence that applying the block's operations
+to the previous state root produces the new one, which the prover uses without re-executing the
+transactions themselves.
+
+## See also
+
+- See the [coordinator](./coordinator/index.mdx) for how state proofs reach the prover, and the
+  [prover](./prover/index.mdx) for how they're used in proof generation.
+- See [`linea_getProof`](../../api/reference/linea-getproof) for requesting an account or storage
+  proof directly.
+- See the [`shomei` source code](https://github.com/Consensys/shomei).
