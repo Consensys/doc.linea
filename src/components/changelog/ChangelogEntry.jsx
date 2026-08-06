@@ -42,7 +42,7 @@ export function ChangelogEntry({ tag, title, product, children }) {
       <div className={styles.tagCol}>
         <span className={tagClass}>{label}</span>
         {products.map((p) => (
-          <span key={p} className={PRODUCT_STYLE_MAP[p]}>
+          <span key={p} className={`${styles.productTag} ${PRODUCT_STYLE_MAP[p]}`}>
             {PRODUCT_LABEL[p]}
           </span>
         ))}
