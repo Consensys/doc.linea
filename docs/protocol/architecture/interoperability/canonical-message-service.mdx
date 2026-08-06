@@ -1,63 +1,100 @@
 ---
 title: Canonical message service
 description: How Lineth's canonical message service passes arbitrary messages between networks.
-sidebar_position: 9
 image: /img/socialCards/canonical-message-service.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
+The canonical message service passes arbitrary messages (that is, user-specified data and native currency)
+between a <GlossaryTerm term="Lineth" /> network and its
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
+It is general-purpose infrastructure: the [canonical token bridge](./canonical-token-bridge.mdx) is built on it,
+and any contract or dapp can call it directly.
+
 <div class="center-container">
   <div class="img-large">
     <img
       src="/img/get_started/concepts/message_service/Linea_message_service_2.png"
-      alt="Linea message service architecture"
+      alt="Message service contracts on each chain, with an operator and an offchain claiming actor"
     />
   </div>
 </div>
 
-## What is it?
+## How it works
 
-The canonical message service is a combination of smart contracts and other protocols which work together to pass "arbitrary messages"--that is, user-specified data--between a <GlossaryTerm term="Lineth" /> network and other networks.
+The service is a pair of message service contracts, one deployed on the network and one on the finalization
+layer, plus the **postman**: an offchain service that watches both contracts and relays what it sees.
 
-## What does it do?
+1. A caller invokes `sendMessage` on the origin contract with a destination address, a calldata payload, any
+    native value to transfer, and an optional delivery fee.
+    The contract records the message and emits an event.
+2. The destination contract receives a [commitment](#message-commitments) to the messages the origin chain sent.
+3. Claiming the message executes it: the destination contract checks the claim against that commitment, then
+    calls the destination address with the payload and the value.
 
-If you've ever used a bridge between two blockchains, you may be used to what feels like a fairly restrictive experience; you can only send certain tokens, for example. The canonical message service itself isn't like an end-user bridge interface. It's a system through which data and assets can be permissionlessly and reliably transferred from one blockchain to another. The service, as a whole, receives requests to move something from one network to the other, and then carries that request out, delivering the message as submitted to an established smart contract on the destination network.
+Claiming is permissionless: anyone can submit the claim.
+This gives senders two delivery modes:
 
-One of the most important things that the message service transfers is information about the current state of the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>, from that layer to the Lineth network, and in return, an updated [Merkle tree](../state-manager.mdx#merkle-trees) and a <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> from the network back to the finalization layer, every time the network reports back about its activity. In other words, the canonical message service transmits the rollup data.
+- **Push**: The sender pays a fee up front, and the postman claims on their behalf, pushing the message to
+  the recipient without them doing anything.
+- **Pull**: No fee is paid, so the message sits unclaimed until the recipient, or anyone else, pulls it by
+  submitting the claim and paying the gas.
 
-However, the service is not limited or restricted to use by the network's core functionality. It is general-purpose, public infrastructure which can be used by developers, integrated into dapps, and triggered by end users.
+Push relies on the postman for convenience, not for correctness.
+The fee goes to whoever submits the claim, so if the postman is unavailable, the recipient or a third party
+can claim the message and collect the fee instead.
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/concepts/message_service/Linea_bridge_architecture.png"
-      alt="Linea bridge architecture"
-    />
-  </div>
-</div>
+## Message commitments
 
-## How does it do it?
+Each direction commits to its messages differently, because only one of the two chains sits behind a proof.
 
-The canonical message service consists of three main elements: two smart contracts, and the postman service in between. One smart contract is deployed on the Lineth network and one on the finalization layer, and they are almost exactly the same. On Linea Mainnet, these are the [contracts on Linea and Ethereum](../../../network/build/send-receive-messages.mdx#contracts). They allow for ETH to be minted on the target network, for example, though they are not limited to that.
+**Network to finalization layer.**
+Finalizing a range of blocks verifies its
+<GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> and anchors the Merkle root of the messages
+those blocks sent.
+A claim carries a Merkle proof, and the contract rejects it unless the proof places the message under an anchored root.
+Messages are therefore only claimable once the blocks that sent them are finalized.
 
-A user initiates a network-to-network transfer by executing a call on one of the contract's methods--that is, invoking a function built into the smart contract. The user could do this on their own, if they have the knowledge of how to interact with a smart contract directly, or they could do so through a frontend. If properly formulated, the smart contract will accept the request from the user, and pass it off to the postman.
-
-The postman service is currently centralized, but will be decentralized. The postman "listens" for calls being made to one of the contracts, either on the network or the finalization layer, and passes the submitted information to the other network.
-
-Once the information is delivered to the destination smart contract, the code contained in the request is executed. If the message being transferred carried orders to mint tokens, users can either choose to manually _pull_ the transferred assets out of the destination end of the bridge, or pay up-front and allow the assets to be _pushed_ directly to the destination address.
-
-There's an additional layer of logic, though, which serves to ensure that the message delivered to the Lineth network is valid. Essentially, a message is sent from the finalization layer, relayed through the message service, and is delivered to the smart contract on the network. That smart contract checks the message received against the list of messages sent on the finalization layer side, verifies that it exists there, and only then accepts it as a valid message:
+**Finalization layer to network.**
+The [coordinator](../coordinator/index.mdx) anchors incoming message hashes on the network as a rolling hash, so
+these messages are claimable without waiting for the next finalization.
+The network's rolling hash is submitted with that finalization and checked against the one the finalization-layer
+contract computed when the messages were sent, so a network that accepted messages nobody sent cannot finalize.
+In the following diagram, the check labeled "Does message exist on L1?" is the destination contract testing the
+message against the hashes already anchored on the network.
 
 <div class="center-container">
   <div class="img-large">
     <img
       src="/img/get_started/concepts/message_service/Linea_message_service_1.png"
-      alt="Linea message service verification"
+      alt="Message execution on the destination chain, gated on confirmation from the origin chain"
     />
   </div>
 </div>
 
-## Next steps
+:::note Linea Mainnet example
 
-- See how to send and recover messages from the [Public Linea network](../../../network/build/send-receive-messages.mdx)
+On [Linea Mainnet](../../../network/index.mdx), the Ethereum side of the service lives in the
+[`LineaRollup`](../../../network/build/contracts.mdx) contract, which serves as both the rollup and the L1 message
+service for messages passed across the two domains, such as token transfers, contract calls, or state
+synchronization.
+Linea-to-Ethereum (L2 to L1) messages can be claimed on Ethereum only after the L2 batch is finalized:
+finalization verifies the batch's zk-SNARK proof and anchors the corresponding L2 message Merkle root on L1.
+The message is then accepted once a Merkle proof verifies its inclusion in that finalized root.
+Ethereum-to-Linea (L1 to L2) messages don't wait for a finalization: the coordinator anchors their hashes on
+Linea as a rolling hash, and they become claimable once anchored.
+That rolling hash is submitted with the next finalization and must match the one `LineaRollup` computed when the
+messages were sent, so Linea can't finalize having accepted messages Ethereum never sent.
+
+:::
+
+## See also
+
+- See [Messaging](../../../network/build/send-receive-messages.mdx) for the contract addresses, interfaces, and
+  claim workflow on Linea Mainnet.
+- Configure postman behavior using the
+  [Linea Postman options](../../../stack/reference/linea-postman-options.mdx).
+- See the [messaging contract source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/contracts/src/messaging)
+  and the [postman source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/postman) in the
+  `lineth-monorepo`.
