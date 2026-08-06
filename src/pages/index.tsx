@@ -52,12 +52,14 @@ export default function Home(): React.ReactNode {
     {
       title: (
         <>
-          Launch your own <strong>Lineth</strong> chain
+          Design your own <strong>Lineth</strong> chain
         </>
       ),
       link: "/stack",
       description: (
-        <>Deploy a custom Ethereum-compatible network using Lineth.</>
+        <>
+          Design and deploy a custom Ethereum-compatible network using Lineth.
+        </>
       ),
       iconSrc: "/img/card_icon_launch.png",
     },
