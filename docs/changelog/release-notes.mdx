@@ -6,8 +6,14 @@ image: /img/socialCards/release-notes.jpg
 release_toc:
   beta-v54:
     label: Finality under 30min
+    mainnet: November 2026 (target)
+    sepolia: September 2026 (target)
+    lineth: '[VERIFY] version and target'
   beta-v53:
     label: Prover performance optimizations
+    mainnet: November 2026 (target)
+    sepolia: September 2026 (target)
+    lineth: '[VERIFY] version and target'
   beta-v52:
     label: Small fields and contract upgrades
     mainnet: 1 April 2026
@@ -148,20 +154,20 @@ that allows users to submit L2 transactions directly to the L1.
 */}
 
 ## Beta v5.4
-Planned release
+**Planned release**
 <ChangelogDate sectionId="beta-v54" />
 
-<ChangelogEntry tag="performance">
+<ChangelogEntry tag="performance" product="mainnet,lineth">
 
 Finality under 30min: Reduce Linea's [hard finality](../network/overview/transaction-finality#hard-finality), the point at which a ZK proof is verified on Ethereum L1, from the current ~2 hours to under 30 minutes. Thanks to prover performance improvements (including the switch to [small fields](../changelog/release-notes#beta-v52)), proof generation becomes fast enough that proofs can be submitted to L1 continuously rather than in infrequent large batches, bringing hard finality from a multi-hour wait to an on-demand experience.
 
 </ChangelogEntry>
 
 ## Beta v5.3
-Planned release
+**Planned release**
 <ChangelogDate sectionId="beta-v53" />
 
-<ChangelogEntry tag="performance">
+<ChangelogEntry tag="performance" product="mainnet,lineth">
 
 Prover performance optimizations. Proof generation time ~40% faster.
 
@@ -354,7 +360,7 @@ can handle complex workloads. This unlocks:
 - Stabler gas fees during high-traffic periods
 - Faster transaction confirmation during activity peaks.
 
-Note that the higher throughput will not enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
+Note that the higher throughput will not be enabled until the sequencer limits are removed in [Beta v3.1](#beta-v31).
 
 </ChangelogEntry>
 
@@ -364,7 +370,7 @@ Note that the higher throughput will not enabled until the sequencer limits are 
 
 <ChangelogEntry tag="feature" title="100% proven">
 
-100% of EVM operations will be covered by our zero-knowledge proofs, guaranteeing
+100% of EVM operations are covered by our zero-knowledge proofs, guaranteeing
 the integrity of all onchain data when sequencing is decentralized. Linea is the first zkEVM
 to be completely proven.
 - Reworks [prover limits](../protocol/architecture/prover/prover-limits.mdx) to reduce infrastructure costs and
@@ -429,7 +435,7 @@ the hub's consistency arguments.
 <ChangelogEntry tag="announcement">
 
 Beta v1 on Linea introduces new arithmetization. The overall objective of the Linea Beta is to prove
-100% of the zkEVM specification, an objective currently scheduled to be completed in Beta v2.
+100% of the zkEVM specification, an objective completed in Beta v2.
 
 </ChangelogEntry>
 
@@ -1230,12 +1236,11 @@ to a push model. It also improves EVM prover coverage, and provides batch confla
 
 - The anchoring and execution (claim) process has been separated into 2 steps. The deadline concept has been completely removed.
 
-:::note
-
+:::note[Historical release]
 
 This entry covers Linea's June 2023 Goerli testnet release. The contracts below are
 testnet contracts and have since been superseded. Audit reports for Linea Mainnet
-contracts are listed on the [Security audits](/protocol/reference/security-audits) page.
+contracts are listed on the [Security audits](../protocol/reference/security-audits.mdx) page.
 
 :::
 
