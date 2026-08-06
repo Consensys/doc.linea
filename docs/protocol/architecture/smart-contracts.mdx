@@ -1,102 +1,87 @@
 ---
 title: Smart contracts
-description: Onchain system contracts and auxiliary services for Lineth
-sidebar_position: 3
+description: The onchain system contracts Lineth deploys on the finalization layer and on the network.
 image: /img/socialCards/smart-contracts.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-As an <GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm>-equivalent environment, smart contracts can be written in any language that compiles to EVM bytecode.
+<GlossaryTerm term="Lineth" /> deploys system contracts on two chains: the
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>, where state transitions are verified
+and recorded, and the network itself.
+Together they establish what the network's state is and move messages and tokens between the two.
 
-<GlossaryTerm term="Lineth" /> includes onchain system contracts deployed on the finalization layer and on the
-deployed network itself, as well as auxiliary services that support network operations. Understanding
-these contracts and services is essential for operators managing deployments.
+Because the network is an <GlossaryTerm term="Ethereum Virtual Machine (EVM)">EVM</GlossaryTerm>-equivalent
+environment, these contracts, and any application contracts deployed on the network, can be written in any
+language that compiles to EVM bytecode.
 
-### Finalization contract
+## Finalization contract
 
-:::info
+Deployed on the [finalization layer](../../stack/deployment/data-availability-finalization.mdx), this contract
+is the network's onchain root of trust: nothing the network claims about its own state is accepted elsewhere
+until this contract has recorded it.
+The finalization contract:
 
-In the Linea Public Mainnet deployment, this contract is referred to as the [`LineaRollup`](../../network/build/contracts.mdx). It provides rollup settlement and messaging functionality. Operators running private or hybrid
-networks may reuse the same contract pattern or deploy functionally equivalent contracts as part of
-their finalization design.
+- Verifies the <GlossaryTerm term="zk-SNARK" /> proof submitted for each range of blocks, and records the
+  resulting finalized state.
+- Accepts the transaction data the network publishes, through whichever
+  [data submission model](./index.mdx#transaction-lifecycle) the deployment uses.
+- Anchors the Merkle roots of the messages the finalized blocks sent, and verifies the rolling hash of the
+  messages the network received.
+  See [Message commitments](./interoperability/canonical-message-service.mdx#message-commitments).
+- Queues [forced transactions](../forced-transactions.mdx) submitted on the finalization layer, so they can be
+  proven to have been processed by their deadline.
+
+:::note Linea Mainnet
+
+In the Linea Mainnet deployment, this contract is [`LineaRollup`](../../network/build/contracts.mdx) on Ethereum,
+which also serves as the L1 message service.
+Operators running other deployments can reuse the same contract or deploy an equivalent that satisfies the
+interfaces their finalization design requires.
 
 :::
 
-This contract is deployed to the [finalization layer](../../stack/deployment/data-availability-finalization.mdx).
+## Message service contracts
 
-**Purpose:**  
-It enables secure interactions between the deployed network and the finalization layer.
+A message service contract is deployed on each chain.
+Together they carry arbitrary calldata and native currency in both directions, and only deliver a message once
+it can be checked against a commitment recorded by the finalization contract.
 
-**Functionality:**
+Everything else that crosses chains, including the token bridge, is built on this pair.
+See [Canonical message service](./interoperability/canonical-message-service.mdx).
 
-- Validates <GlossaryTerm term="zk-SNARK" /> proofs attesting to correct state transitions for batches of transactions
-- Records finalized state roots on the finalization layer
-- Acts as a [canonical protocol contract for message passing](./interoperability/canonical-message-service.mdx)
-  between the deployed network and the finalization layer
-- Anchors L2 message Merkle roots as part of a successful batch finalization
-- When an L2-to-L1 message is claimed, verifies its Merkle proof against an anchored root before delivering the message
+## Token bridge contracts
 
-### Native message bridge smart contract
+A token bridge contract is deployed on each chain.
+They bridge ERC-20 tokens by escrowing the original on its home chain and minting a bridged equivalent on the
+other, sending each instruction through the message service.
+Minted supply is always matched by escrowed supply, so the bridge cannot mint tokens that were never locked.
+See [Canonical token bridge](./interoperability/canonical-token-bridge.mdx).
 
-**Purpose:** Facilitates secure, proven communication of arbitrary messages and data between the
-finalization layer and the <GlossaryTerm term="zkEVM" />.
+## Contract versioning
 
-**Functionality:**
+Contracts are immutable once deployed unless they're explicitly designed to be upgraded.
+Lineth's upgradeable contracts, including the finalization contract, message service, and token bridge, use the
+[OpenZeppelin Transparent Upgradeable Proxy](https://docs.openzeppelin.com/contracts/4.x/api/proxy#TransparentUpgradeableProxy)
+pattern (v4.x): state lives in a proxy, and an upgrade replaces the implementation the proxy delegates to.
 
-- Enables crosschain calls, instructing the deployed network to perform specific operations (minting,
-  contract interaction, data relay)
-- Sends proofs or withdrawal requests back to the finalization layer
-- Supports functionality beyond token transfers
+Who holds upgrade authority is a deployment decision, not a protocol one.
+See [Trust and responsibilities](../../stack/evaluate/trust-model.mdx) for how that authority is scoped.
 
-### Native token bridge smart contract
+:::note Linea Mainnet
 
-**Purpose:** Secure gateway for moving ETH and ERC-20 tokens to and from the finalization layer.
+Linea contracts are written in [Solidity](https://www.soliditylang.org/) and audited by two to three external
+auditors before release, alongside static analysis and, where applicable, formal verification.
+The auditors also confirm the deployment on the target environment.
+Upgrading the system requires signatures from both the Linea Operational Safe and the Linea Security Council Safe
+multisignature accounts.
 
-**Functionality:**
+:::
 
-- Uses non-custodial escrow, event tracking, and zk-SNARK proof validation to reduce bridge trust
-  assumptions
-- Enables the deployed network to interoperate directly with Ethereum while preserving protocol-level asset security
+## See also
 
-**Deposit flow (finalization layer → deployed network):**
-
-- Users send ETH or ERC-20 tokens to the Native Token Bridge contract on the finalization layer
-- Contract locks (escrows) these assets and emits an event
-- Once observed by the contract on the deployed network, an equivalent amount is minted or released to the
-  user's account
-
-**Withdrawal flow (deployed network → finalization layer):**
-
-- Users request withdrawal from the deployed network
-- Withdrawal is processed in a batch and proven valid using zk-SNARKs
-- Proof and withdrawal claim are submitted to the bridge contract on the finalization layer
-- Upon verification, the bridge contract unlocks and releases the withdrawn assets
-
-**Security:**
-
-- Enforces strict verification rules (only proven withdrawals can be processed)
-- Replay and fraud protection through state roots, proofs, and event tracking across both layers
-- Maintains a registry of supported tokens and tracks total supply to ensure minted amounts never
-  exceed locked amounts
-
-## Linea public network smart contract release
-
-Before each Linea Smart Contract release that targets the [public network](../../network/index.mdx), the new version is prepared and tested. Testing includes static code analysis, formal verification is conducted where applicable, and documentation is updated. 
-
-Linea developers write in [Solidity](https://www.soliditylang.org/). Each smart contract is audited by 2-3 external auditors. Smart contracts are deployed on target environments using production deployment keys and the auditors confirm the correct deployment of the contracts.
-
-The Linea Operational Safe multisignature account and the Linea Security Council Safe multisignature account must both sign to upgrade the system.
-
-### Contract versioning
-
-For upgradeable contracts, Linea adopts the [OpenZeppelin Transparent Upgradeable Proxy](https://docs.openzeppelin.com/contracts/5.x/api/proxy#TransparentUpgradeableProxy) pattern (v4.x). This pattern is used consistently across the platform’s core components, including but not limited to:
-
-- Core protocol contracts
-- Token Bridge contracts deployed on both Linea and Ethereum
-- Layer 2 Message Service
-
-
-## Next steps
-
-- Discover the Public Linea network's [smart contracts](../../network/build/contracts)
+- See the [contracts reference](../../network/build/contracts.mdx) for the deployed addresses and roles on Linea
+  Mainnet, and the [Security Council transaction record](../../changelog/security-council-record.mdx) for its
+  upgrade history.
+- See the [contract source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/contracts/src) in the
+  `lineth-monorepo`.
