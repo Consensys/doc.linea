@@ -73,6 +73,22 @@ message against the hashes already anchored on the network.
   </div>
 </div>
 
+:::note Linea Mainnet example
+
+On [Linea Mainnet](../../../network/index.mdx), the Ethereum side of the service lives in the
+[`LineaRollup`](../../../network/build/contracts.mdx) contract, which serves as both the rollup and the L1 message
+service for messages passed across the two domains, such as token transfers, contract calls, or state
+synchronization.
+Linea-to-Ethereum (L2 to L1) messages can be claimed on Ethereum only after the L2 batch is finalized:
+finalization verifies the batch's zk-SNARK proof and anchors the corresponding L2 message Merkle root on L1.
+The message is then accepted once a Merkle proof verifies its inclusion in that finalized root.
+Ethereum-to-Linea (L1 to L2) messages don't wait for a finalization: the coordinator anchors their hashes on
+Linea as a rolling hash, and they become claimable once anchored.
+That rolling hash is submitted with the next finalization and must match the one `LineaRollup` computed when the
+messages were sent, so Linea can't finalize having accepted messages Ethereum never sent.
+
+:::
+
 ## See also
 
 - See [Messaging](../../../network/build/send-receive-messages.mdx) for the contract addresses, interfaces, and
