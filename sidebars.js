@@ -37,6 +37,7 @@ const sidebars = {
           collapsed: true,
           link: { type: "doc", id: "network/overview/yield-boost/index" },
           items: [
+            "network/overview/yield-boost/architecture",
             "network/overview/yield-boost/risk-disclosures",
           ],
         },
