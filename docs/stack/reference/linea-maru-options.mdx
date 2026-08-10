@@ -1,0 +1,29 @@
+---
+title: Linea Maru configuration reference
+sidebar_label: Linea Maru options
+slug: /reference/component-configuration/linea-maru-options
+description: 'TOML configuration options for Linea Maru, grouped by section.'
+draft: false
+image: /img/socialCards/linea-maru-configuration-reference.jpg
+---
+
+{/* Human-owned wrapper. Automation only updates `_generated/maru/` partials. Add new partial imports when sections appear. */}
+
+import Provenance from "./_generated/maru/provenance.mdx";
+import Reference from "./_generated/maru/reference.mdx";
+
+:::caution Advanced options
+
+Some configuration keys are operational or environment-specific and are included for completeness. Their presence does not indicate that changing them is recommended or supported for every deployment. Verify their applicability against the relevant release and deployment guidance.
+:::
+:::note Defaults
+
+  Defaults are values defined in the Maru Kotlin config data classes (`@ConfigDoc(default = ...)`). They are not recommended production settings and may be overridden by deployment configuration. Sample `*.toml` files are never used as the source of defaults.
+
+  :::
+
+This reference lists Linea Maru TOML configuration keys, grouped by section. Descriptions come from `@ConfigDoc`/`@ConfigSection` annotations on the config data classes; defaults are shown in the Default column.
+
+<Provenance />
+
+<Reference />
