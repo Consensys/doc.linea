@@ -15,7 +15,12 @@ A <GlossaryTerm term="Lineth" /> network exchanges data and value with its
   arbitrary messages and native currency in both directions.
   The token bridge is built on it.
 
-In both directions, delivery is gated on state that has been verified onchain rather than on an offchain relayer
-behaving honestly.
-A message only executes on the destination chain once the contract there can check it against a commitment to the
-messages the origin chain actually sent.
+In both directions, a message executes on the destination chain only once that chain holds an onchain record of
+it, and anyone can submit the claim that triggers execution.
+
+What differs is when that record is checked against the origin chain.
+From the Lineth network to the finalization layer, messages are recorded on the finalization layer only once the
+blocks that sent them are finalized.
+From the finalization layer to the Lineth network, messages are recorded on the network first, and checked against
+the finalization layer at the next finalization.
+See [Message commitments](./canonical-message-service.mdx#message-commitments) for more information.

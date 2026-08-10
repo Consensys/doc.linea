@@ -24,7 +24,7 @@ and any contract or dapp can call it directly.
 ## How it works
 
 The service is a pair of message service contracts, one deployed on the network and one on the finalization
-layer, plus the **postman**: an offchain service that watches both contracts and relays what it sees.
+layer, plus the **Postman**: an offchain service that watches both contracts and relays what it sees.
 
 1. A caller invokes `sendMessage` on the origin contract with a destination address, a calldata payload, any
     native value to transfer, and an optional delivery fee.
@@ -36,13 +36,13 @@ layer, plus the **postman**: an offchain service that watches both contracts and
 Claiming is permissionless: anyone can submit the claim.
 This gives senders two delivery modes:
 
-- **Push**: The sender pays a fee up front, and the postman claims on their behalf, pushing the message to
+- **Push**: The sender pays a fee up front, and the Postman claims on their behalf, pushing the message to
   the recipient without them doing anything.
 - **Pull**: No fee is paid, so the message sits unclaimed until the recipient, or anyone else, pulls it by
   submitting the claim and paying the gas.
 
-Push relies on the postman for convenience, not for correctness.
-The fee goes to whoever submits the claim, so if the postman is unavailable, the recipient or a third party
+Push relies on the Postman for convenience, not for correctness.
+The fee goes to whoever submits the claim, so if the Postman is unavailable, the recipient or a third party
 can claim the message and collect the fee instead.
 
 ## Message commitments
@@ -93,8 +93,8 @@ messages were sent, so Linea can't finalize having accepted messages Ethereum ne
 
 - See [Messaging](../../../network/build/send-receive-messages.mdx) for the contract addresses, interfaces, and
   claim workflow on Linea Mainnet.
-- Configure postman behavior using the
+- Configure Postman behavior using the
   [Linea Postman options](../../../stack/reference/linea-postman-options.mdx).
 - See the [messaging contract source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/contracts/src/messaging)
-  and the [postman source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/postman) in the
+  and the [Postman source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/postman) in the
   `lineth-monorepo`.

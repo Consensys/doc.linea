@@ -60,7 +60,7 @@ conventions for headings, frontmatter fields, and intro style.
 
 Create the file with frontmatter (`title`, `description`; no `image`, see
 `markdown-formatting.mdc`) and the structure from `content-structure.mdc` for the content
-type: an opening (no heading, doesn't restate the title), then content sections, then
+type: an opening (no heading), then content sections, then
 verified code samples, then a resources section for links. How-to and tutorial pages use
 numbered steps with prerequisites listed first instead.
 
@@ -81,8 +81,7 @@ Fill in the scaffold with content based on what the user provides:
 Before finishing, check:
 
 - [ ] Frontmatter has `title` and `description`, no manual `image` field.
-- [ ] Opening answers "what" and "why" in one to two sentences, without restating the
-  title.
+- [ ] Opening answers "what" and "why" in one to two sentences.
 - [ ] Structure matches the content type and neighboring pages.
 - [ ] Terminology and casing match `terminology.mdc` and the canonical
   `/protocol/linea-vs-lineth` page.
