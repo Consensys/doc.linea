@@ -1801,6 +1801,66 @@ details > div > div {
   padding-bottom: 0.5rem;
 }
 
+/* Upcoming releases — matches the changelog card language, not the default
+   details treatment: token border, rounded corners, chevron instead of a
+   solid triangle. */
+details.upcoming-releases {
+  background-color: var(--linea-surface-muted) !important;
+  border: 1px solid var(--linea-border) !important;
+  border-radius: var(--linea-radius-md);
+  padding: 0.25rem 0.5rem !important;
+  margin: 1.5rem 0 2rem;
+}
+
+[data-theme="dark"] details.upcoming-releases {
+  background-color: var(--linea-surface-muted) !important;
+  border: 1px solid var(--linea-border) !important;
+}
+
+details.upcoming-releases > summary {
+  font-family: AtypText, sans-serif;
+  font-size: 15px;
+  color: var(--linea-text-primary);
+  padding: 0.7rem 0.75rem !important;
+}
+
+html[data-theme="dark"] details.upcoming-releases > summary {
+  color: var(--linea-text-primary) !important;
+}
+
+details.upcoming-releases > summary::before {
+  width: 7px;
+  height: 7px;
+  border: solid var(--linea-link-highlight-color);
+  border-width: 0 1.5px 1.5px 0 !important;
+  border-color: var(--linea-link-highlight-color) !important;
+  border-radius: 1px;
+  transform: rotate(-45deg) !important;
+  transition: transform 0.15s ease;
+  top: -2px !important;
+  margin-right: 0.65rem;
+}
+
+details.upcoming-releases[open] > summary::before {
+  transform: rotate(45deg) !important;
+  top: -4px !important;
+}
+
+/* Docusaurus keeps the `open` attribute set while it animates the collapse and
+   tracks real state in data-collapsed, so the closed chevron keys off that. */
+details.upcoming-releases[data-collapsed="true"] > summary::before {
+  transform: rotate(-45deg) !important;
+  top: -2px !important;
+}
+
+details.upcoming-releases > div > div {
+  padding-bottom: 0.75rem;
+}
+
+details.upcoming-releases ul {
+  margin-bottom: 0;
+}
+
 /* ============================================================
    17. ADMONITIONS
    ============================================================ */
