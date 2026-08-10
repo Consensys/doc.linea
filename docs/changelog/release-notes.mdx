@@ -4,16 +4,6 @@ description: Find out all you need to know about the latest Linea versions.
 displayed_sidebar: changelogSidebar
 image: /img/socialCards/release-notes.jpg
 release_toc:
-  beta-v54:
-    label: Finality under 30min
-    mainnet: November 2026 (target)
-    sepolia: September 2026 (target)
-    lineth: 'TBD version and target'
-  beta-v53:
-    label: Prover performance optimizations
-    mainnet: November 2026 (target)
-    sepolia: September 2026 (target)
-    lineth: 'TBD version and target'
   beta-v52:
     label: Small fields and contract upgrades
     mainnet: 1 April 2026
@@ -153,25 +143,17 @@ that allows users to submit L2 transactions directly to the L1.
 
 */}
 
-## Beta v5.4
-**Planned release**
-<ChangelogDate sectionId="beta-v54" />
+<div id="beta-v54" className="legacy-anchor" /><div id="beta-v53" className="legacy-anchor" />
 
-<ChangelogEntry tag="performance" product="mainnet,lineth">
+<details open className="upcoming-releases">
+<summary>Upcoming releases &mdash; 2 planned</summary>
 
-Finality under 30min: Reduce Linea's [hard finality](../network/overview/transaction-finality#hard-finality), the point at which a ZK proof is verified on Ethereum L1, from the current ~2 hours to under 30 minutes. Thanks to prover performance improvements (including the switch to [small fields](../changelog/release-notes#beta-v52)), proof generation becomes fast enough that proofs can be submitted to L1 continuously rather than in infrequent large batches, bringing hard finality from a multi-hour wait to an on-demand experience.
+Timings are targets and can move.
 
-</ChangelogEntry>
+- **Beta v5.3** &middot; Prover performance optimizations &mdash; Linea Mainnet Q4 2026
+- **Beta v5.4** &middot; Finality under 30min &mdash; Linea Mainnet Q4 2026
 
-## Beta v5.3
-**Planned release**
-<ChangelogDate sectionId="beta-v53" />
-
-<ChangelogEntry tag="performance" product="mainnet,lineth">
-
-Prover performance optimizations. Proof generation time ~40% faster.
-
-</ChangelogEntry>
+</details>
 
 <div id="small-fields" className="legacy-anchor" />
 

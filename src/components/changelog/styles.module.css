@@ -48,10 +48,6 @@
 }
 
 .tagCol {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
   padding-top: 2px;
 }
 
@@ -133,41 +129,6 @@
   composes: tag;
   background: #F5DDD2;
   color: #B83C18;
-}
-
-/* Product badges — outlined, so they read as a different axis to the filled type tags */
-.productTag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 13px;
-  border: 1px solid;
-  border-radius: 100px;
-  font-family: AtypText, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
-.productMainnet {
-  border-color: #5A28B8;
-  color: #5A28B8;
-}
-
-.productLineth {
-  border-color: #0B668C;
-  color: #0B668C;
-}
-
-[data-theme="dark"] .productMainnet {
-  border-color: #7848C0;
-  color: #AFA9EC;
-}
-
-[data-theme="dark"] .productLineth {
-  border-color: #61DFFF;
-  color: #61DFFF;
 }
 
 /* Dark mode tag colors */
