@@ -75,8 +75,9 @@ of truth for full criteria:
   `/protocol/linea-vs-lineth` rather than assuming.
 - Component/role capitalization (Coordinator, Sequencer, Prover, and so on) is consistent
   within the page, with no mid-page drift.
-- Unsettled product naming (for example "Linea Enterprise") matches existing usage rather
-  than introducing a new term.
+- Do not use "Linea Enterprise" as a product or offering name. Prefer "Lineth" for the
+  stack/product, and audience phrasing such as "Lineth for institutions" when needed.
+  Unsettled product naming should match existing usage rather than introducing a new term.
 
 ### Formatting (`markdown-formatting.mdc`)
 
