@@ -62,7 +62,7 @@ of truth for full criteria:
 ### Voice and clarity (`editorial-voice.mdc`)
 
 - Active voice, sentence-case and imperative headings.
-- Opening sentence doesn't restate the title.
+- Opening orients the reader in one to two sentences.
 - Jargon defined on first use.
 - No filler or promotional language.
 - Any unverified number, address, version, or date is marked `[VERIFY]`, not stated as

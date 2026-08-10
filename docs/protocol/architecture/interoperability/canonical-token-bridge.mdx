@@ -1,25 +1,61 @@
 ---
 title: Canonical token bridge
 description: How Lineth's canonical token bridge uses lock-and-mint contracts and the message service for ERC-20 transfers.
-sidebar_position: 8
 image: /img/socialCards/canonical-token-bridge.jpg
 ---
+
+import GlossaryTerm from '@theme/GlossaryTerm';
 import LineaBridgeGraphic from "/img/get_started/concepts/canonical_token_bridge/Linea_canonical_token_bridge.svg";
+
+The canonical token bridge is a pair of lock-and-mint contracts, one on the
+<GlossaryTerm term="Lineth" /> network and one on its
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>, that bridges any ERC-20 token.
+It carries no cross-chain machinery of its own: every transfer is a message sent through the
+[canonical message service](./canonical-message-service.mdx), and inherits that service's verification and
+delivery model.
 
 <div className="img-large">
   <LineaBridgeGraphic />
 </div>
 
-The canonical token bridge is the pair of [“lock & mint” contracts](../../../network/build/contracts.mdx#token-bridge-contracts) that allow bridging of any 
-ERC-20 token. The bridge relies on the
-[message service](./canonical-message-service.mdx)
-for cross-chain interactions.
+Native currency isn't bridged here.
+It moves through the message service directly, as the value attached to a message.
 
-## Next steps
+## How it works
 
-- See the UI for the [official public Linea bridge](https://linea.build/hub/bridge/).
+Bridging a token away from its original chain involves locking and minting as follows:
 
-- For the public network's workflow, ABI references, and bridge interfaces, see the
-[canonical token bridge guide](../../../network/build/bridge.mdx) and
-[contracts](../../../network/build/contracts.mdx).
+1. The bridge escrows the tokens in its own contract and sends a message instructing the bridge on the
+    destination chain to complete the transfer.
+2. That bridge mints an equivalent amount of a `BridgedToken`, an ERC-20 it controls, to the recipient.
+    The first time a given token is bridged, the destination bridge deploys the `BridgedToken` contract for it,
+    carrying over the escrowed token's name, symbol, and decimals.
 
+Bridging back reverses this: the bridge burns the `BridgedToken` and sends a message releasing the escrowed
+tokens on the original chain.
+Because minted supply on one side is always matched by escrowed supply on the other, the bridge can't mint tokens
+that were never locked.
+
+Operators can reserve token addresses so they can't be bridged, which is how tokens that need a dedicated bridge
+are kept off the canonical one.
+A token can only be reserved before it has been bridged.
+
+The following diagram illustrates a full round trip, including the
+[message service](./canonical-message-service.mdx#message-commitments) steps that sit between the two bridge contracts:
+
+<div class="center-container">
+  <div class="img-large">
+    <img
+      src="/img/get_started/concepts/message_service/Linea_bridge_architecture.png"
+      alt="Token bridge contracts locking and minting on each chain via the message service"
+    />
+  </div>
+</div>
+
+## See also
+
+- See the [bridge guide](../../../network/build/bridge.mdx) and
+  [contracts](../../../network/build/contracts.mdx) for the workflow, ABIs, and addresses on Linea
+  Mainnet, and the [Linea bridge](https://linea.build/hub/bridge/) for the public UI.
+- See the [token bridge source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/contracts/src/bridging/token)
+  in the `lineth-monorepo`.
