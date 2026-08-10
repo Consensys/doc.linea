@@ -294,10 +294,10 @@ const sidebars = {
       collapsible: false,
       items: [
         "stack/reference/linea-besu-plugin-options",
+        "stack/reference/linea-prover-options",
         "stack/reference/linea-coordinator-options",
         "stack/reference/linea-maru-options",
         "stack/reference/linea-postman-options",
-        "stack/reference/linea-prover-options",
       ],
     },
     {
