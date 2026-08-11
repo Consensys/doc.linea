@@ -474,27 +474,12 @@ const sidebars = {
       collapsible: false,
       items: [
         "stack/deployment/index",
-        {
-          type: "doc",
-          id: "stack/deployment/core-components",
-          label: "Deployment components",
-        },
+        "stack/deployment/core-components",
         "stack/deployment/data-availability-finalization",
-        {
-          type: "doc",
-          id: "stack/deployment/fast-finality",
-          label: "Finality design",
-        },
-        {
-          type: "doc",
-          id: "stack/deployment/distributed-sequencing",
-          label: "Multi-validator consensus",
-        },
-        {
-          type: "doc",
-          id: "stack/deployment/rbac",
-          label: "Access control",
-        },
+        "stack/deployment/fast-finality",
+        "stack/deployment/distributed-sequencing",
+        "stack/deployment/high-availability",
+        "stack/deployment/rbac",
       ],
     },
     {
