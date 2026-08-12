@@ -1,0 +1,46 @@
+---
+title: OpenChainBench
+image: /img/socialCards/analytics.jpg
+---
+
+[OpenChainBench](https://openchainbench.com) is an open-source, continuously-running benchmark suite
+for EVM chain infrastructure. It measures RPC provider latency, L1 finality time, and block time
+across multiple regions, giving developers neutral, reproducible data to compare providers and
+monitor network health.
+
+## Why OpenChainBench?
+
+- **Live, multi-region RPC benchmarks**: Sends identical probes to every major RPC provider from
+  three global regions every 15 seconds, reporting p50/p90/p99 latency, error rates, and stale
+  block ratios. For Linea this covers all public and paid endpoints listed on
+  [chainlist.org](https://chainlist.org).
+
+- **L1 finality and block time tracking**: Measures the wall-clock time from L2 block creation to
+  L1 finality confirmation, and tracks sequencer block time to detect anomalies in real time.
+
+- **Fully open methodology**: Every metric is a literal PromQL query against a public Prometheus
+  endpoint. The harness source is MIT licensed, data is published under CC-BY-4.0, and results are
+  reproducible locally with `docker compose up`.
+
+- **No paid tiers or sponsored rankings**: All providers are measured with the same methodology.
+  The project is vendor-neutral; no placement is sold or influenced by commercial relationships.
+
+## Get started
+
+Explore live Linea benchmarks and compare RPC providers at
+[openchainbench.com](https://openchainbench.com).
+
+**Additional resources:**
+
+- **[Methodology](https://openchainbench.com/methodology)** - Detailed explanation of probe design,
+  sampling intervals, and statistical aggregation.
+
+- **[Public API](https://openchainbench.com/api)** - OpenAPI spec for programmatic access to all
+  benchmark data.
+
+- **[GitHub repository](https://github.com/ChainBench/OpenChainBench)** - MIT-licensed harness
+  source code, open to contributions and community audits.
+
+**X:** https://x.com/OpenChainBench
+
+**GitHub:** https://github.com/ChainBench/OpenChainBench
