@@ -151,7 +151,7 @@
     },
     {
       "term": "Quorum Byzantine Fault Tolerance (QBFT)",
-      "definition": "The Byzantine-fault-tolerant consensus algorithm that Maru implements to let a validator set produce and finalize blocks, tolerating faulty validators in a `3f+1` validator set."
+      "definition": "The Byzantine-fault-tolerant consensus algorithm that Maru implements to let a validator set produce and finalize blocks. A QBFT validator set requires at least `3f+1` validators to tolerate up to `f` faulty validators."
     },
     {
       "term": "Reorg",

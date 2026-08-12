@@ -24,7 +24,8 @@ tolerate the loss of one region (`n=4`, `f=1`).
 
 In this example, each region is a self-contained deployment.
 Two of the four regions (primary and warm standby) run the finalization pipeline.
-Two supporting planes sit outside the transaction path: deployment control and observability.
+Deployment management and observability operate separately from the transaction-processing path.
+The diagram shows these as the deployment control plane and observability plane.
 
 <div class="mermaid-fit mermaid-deployment">
 ```mermaid
@@ -53,8 +54,8 @@ flowchart TB
 
   subgraph Regions["Regions"]
     direction LR
-    V1["Region 1 (primary)<br/>Validator + RPC +<br/>finalization (active)"]:::core
-    V2["Region 2 (standby)<br/>Validator + RPC +<br/>finalization (warm standby)"]:::core
+    V1["Region 1 (primary)<br/>Validator + RPC +<br/>finalization pipeline (active)"]:::core
+    V2["Region 2 (standby)<br/>Validator + RPC +<br/>finalization pipeline (warm standby)"]:::core
     V3["Region 3<br/>Validator + RPC"]:::core
     V4["Region 4<br/>Validator + RPC"]:::core
   end
