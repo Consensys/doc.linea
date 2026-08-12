@@ -94,34 +94,30 @@ generate proofs, and submit them to the
 Losing the control plane or observability plane does not stop the running network.
 Those planes can be rebuilt independently.
 
-This table summarizes which components or capabilities run in which regions:
+This table summarizes which components run in which regions:
 
-| Capability | Regions 1 and 2 (primary and standby) | Regions 3 and 4 |
+| Component | Regions 1 and 2 (primary and standby) | Regions 3 and 4 |
 | --- | --- | --- |
 | QBFT validator | Active | Active |
 | RPC services | Active | Active |
 | Finalization pipeline (coordinator, provers, related services) | Active in primary; warm standby in secondary | Not deployed |
-| Operational databases | Primary has the live (writable) DB; standby keeps a replica that can take over on failover | Not deployed |
+| Operational databases | Primary has the live (writable) DB; standby keeps a replica that can take over on [failover](#finalization-failover) | Not deployed |
 
 ### Traffic and RPC
 
-Client RPC can enter through a global entry point that routes each client to the nearest
-healthy region (for example, [AWS Global Accelerator](https://aws.amazon.com/global-accelerator/)),
-protected by a web application firewall, then a regional load balancer, reverse proxy with
-[RBAC](./rbac.mdx), and JSON-RPC routers to
+In the example design, public RPC enters through a global entry point that routes each client to the
+nearest healthy region (for example,
+[AWS Global Accelerator](https://aws.amazon.com/global-accelerator/)), protected by a web
+application firewall, then a regional load balancer, reverse proxy with [RBAC](./rbac.mdx), and
+JSON-RPC routers to
 [near-head and archive nodes](../../protocol/architecture/rpc-services.mdx).
+Private RPC can use private connectivity into each region (for example,
+[AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html)).
 
-Keep consensus peer-to-peer traffic on a path separate from this RPC routing so
-RPC failover does not disturb validator communication.
-
-In the example design:
-
-- Unhealthy regions are drained automatically and traffic redistributes to healthy regions without
-  client reconfiguration.
-- Public RPC uses the global entry point.
-- Private RPC can use private connectivity into each region (for example,
-  [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html))
-  for clients that require end-to-end private JSON-RPC.
+Unhealthy regions are drained automatically and traffic redistributes to healthy regions without
+client reconfiguration.
+Consensus peer-to-peer traffic stays on a path separate from this RPC routing so RPC failover does
+not disturb validator communication.
 
 ### Finalization failover
 
@@ -133,14 +129,17 @@ In the example design, finalization runs in the primary region, with a warm stan
 secondary region ready to take over if the primary fails.
 Failover from primary to standby is an automated process:
 
-- The standby monitors primary availability and finalization progress on the finalization layer
-  over an observation interval.
-- On failover, the standby promotes the replicated coordinator database and scales up the
-  finalization stack.
-- If both regions briefly submit, duplicate submissions are rejected by the onchain contract rather than
-  corrupting state.
-- A manual override remains available for planned failovers.
+1. The standby monitors primary availability and finalization progress on the finalization layer
+   over an observation interval.
+2. When the primary region is lost, RPC drains from that region and redistributes to healthy
+   regions while the chain keeps producing blocks.
+3. The standby detects the finalization stall, promotes the replicated coordinator database, and
+   scales up the finalization stack.
+4. Finalization resumes from the standby and catches up; users see an uninterrupted chain.
 
+If both regions briefly submit during the handoff, duplicate submissions are rejected by the
+onchain contract rather than corrupting state.
+A manual override remains available for planned failovers.
 Failback to the original primary region is typically a controlled
 <GlossaryTerm term="Operator">operator</GlossaryTerm> step after the incident is resolved.
 
@@ -173,17 +172,17 @@ sequenceDiagram
 Finalization failover depends on keeping the right data available in the standby region, and on
 choosing what to replicate versus rebuild:
 
-- **Operational databases:** Cross-region replication (for example,
+- Operational databases: Cross-region replication (for example,
   [Amazon Aurora Global Database](https://aws.amazon.com/rds/aurora/global-database/)) keeps
   standby lag low and supports automatic promotion during finalization failover.
-- **Intermediate proving artifacts:** Regenerate on demand instead of keeping a cross-region copy
+- Intermediate proving artifacts: Regenerate on demand instead of keeping a cross-region copy
   of large proving artifacts.
   Within a region, a shared file system (for example, [Amazon EFS](https://aws.amazon.com/efs/))
   can still let <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>,
   <GlossaryTerm term="Tracer">tracer</GlossaryTerm>, and
   <GlossaryTerm term="Prover">prover</GlossaryTerm>
   workloads share traces and related files.
-- **State snapshots:** Checkpoint chain state so services can restore from a trusted snapshot instead of
+- State snapshots: Checkpoint chain state so services can restore from a trusted snapshot instead of
   replaying from genesis.
   Design snapshot frequency with database backups and, for
   <GlossaryTerm term="Validium">private validium</GlossaryTerm> deployments,
@@ -192,12 +191,10 @@ choosing what to replicate versus rebuild:
 ### Key custody
 
 Signing keys for platform transactions on the finalization layer should use hardware-backed key
-management (for example, cloud KMS with HSM, integrated through <GlossaryTerm term="Web3Signer" />):
-
-- Private key material stays in the HSM boundary.
-- Multi-region keys let primary and standby sign from the same onchain address after failover,
-  without a new key ceremony.
-- Access is least-privilege and auditable.
+management (for example, cloud KMS with HSM, integrated through <GlossaryTerm term="Web3Signer" />).
+Private key material stays in the HSM boundary.
+Multi-region keys let primary and standby sign from the same onchain address after failover,
+without a new key ceremony, and access stays least-privilege and auditable.
 
 ### Failure scenarios
 
