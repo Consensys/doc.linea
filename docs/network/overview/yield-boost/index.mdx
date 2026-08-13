@@ -31,15 +31,11 @@ receive fungible 1:1 ETH on Linea. The UI may disclose that bridged ETH can be
 staked on L1 in the background. You can transact with that ETH on Linea as
 usual.
 
-Withdrawals back to Ethereum are serviced from a liquidity buffer (unstaked ETH
-held by `LineaRollup`) when the reserve is healthy. Under elevated exit
-demand, withdrawal may be delayed while the reserve is replenished. Anyone can
-trigger deficit-gated permissionless unstaking and reserve replenishment when
-the reserve is below the minimum. As a last resort, you can withdraw as stETH
-minted against vault collateral. At least one withdrawal path is designed to
-remain available; timing is not guaranteed. An operator cannot permanently
-block withdrawals. Details are on the
-[Architecture](./architecture.mdx#4-permissionless-flows) and
+You can normally withdraw ETH directly from the `LineaRollup`. An automated
+balance monitoring service helps maintain sufficient liquidity for user
+withdrawals. If liquidity is temporarily insufficient despite this safeguard,
+you can withdraw [stETH](./architecture.mdx#5-lst-withdrawal) instead. Details
+are on the [Architecture](./architecture.mdx) and
 [Risk disclosures](./risk-disclosures.mdx) pages.
 
 ## How it works
@@ -113,11 +109,10 @@ No. You hold standard 1:1 ETH on Linea. Staking happens on L1 from the
 
 **Do I ever lose access to my ETH?**
 
-You can bridge back to Ethereum. Under normal conditions the liquidity buffer
-services withdrawals. Under elevated exit demand, withdrawal may be delayed
-while permissionless replenishment runs, or you can use
-[last-resort stETH withdrawal](./architecture.mdx#5-lst-withdrawal). A path is
-designed to remain available; timing is not guaranteed. Read the
+You can normally withdraw ETH directly from the `LineaRollup`. An automated
+balance monitoring service helps maintain sufficient liquidity for withdrawals.
+If liquidity is temporarily insufficient, you can
+[withdraw stETH](./architecture.mdx#5-lst-withdrawal) instead. Read the
 [risk disclosures](./risk-disclosures.mdx).
 
 **Can I opt out of Yield Boost?**

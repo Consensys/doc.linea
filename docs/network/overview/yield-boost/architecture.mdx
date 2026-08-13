@@ -336,7 +336,10 @@ The caller supplies a proof identifying the validator, verified against the
 beacon chain root. The amount is capped to the remaining reserve deficit.
 
 Beacon-chain fulfilment is asynchronous: the withdrawal is requested onchain;
-ETH arrives only after the beacon chain processes it.
+ETH arrives only after the beacon chain processes it. The permissionless
+validator unstake path is also subject to Ethereum's withdrawal queue. When
+the queue is large, unstaking remains available but will take longer to
+complete.
 
 <div class="mermaid-fit">
 ```mermaid

@@ -47,8 +47,10 @@ principal. Users may be temporarily unable to withdraw ETH on their preferred
 schedule. Mitigations include maintaining a configured minimum reserve,
 monitoring and proactive unstaking by the automation service, permissionless
 deficit-gated unstake and replenish calls, and last-resort withdrawal as stETH
-(which can then be swapped for ETH on Ethereum mainnet). Timing is not
-guaranteed. See
+(which can then be swapped for ETH on Ethereum mainnet). The permissionless
+validator unstake path is also subject to Ethereum's withdrawal queue. When
+the queue is large, unstaking remains available but will take longer to
+complete. Timing is not guaranteed. See
 [Architecture: permissionless flows](./architecture.mdx#4-permissionless-flows)
 and
 [Architecture: LST withdrawal](./architecture.mdx#5-lst-withdrawal).
