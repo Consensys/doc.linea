@@ -18,11 +18,14 @@ This page describes Linea Yield Boost: how surplus bridged ETH is staked on
 Ethereum, how yield is used on Linea, and what users should expect when
 withdrawing.
 
-Yield Boost stakes surplus ETH from the `LineaRollup` withdrawal reserve
-into [Lido v3 stVaults](https://docs.lido.fi/lido-v3-whitepaper) on Ethereum.
-Net staking rewards are reported to Linea (L2) and directed to ecosystem
-incentive mechanisms. They are not paid as a rebase or direct credit to the
-bridger's wallet.
+Yield Boost stakes extra ETH held in Linea's native bridge on Ethereum
+into [Lido v3 stVaults](https://docs.lido.fi/lido-v3-whitepaper).
+That extra ETH is the surplus above the reserve kept liquid for user withdrawals.
+Net staking rewards go to ecosystem incentive programs on Linea.
+They are not paid as a rebase or direct credit to the user's wallet.
+
+This is a protocol-level feature of the native bridge contract on Ethereum, `LineaRollup`.
+You do not need to change how you transact or build on Linea.
 
 ## User experience
 
