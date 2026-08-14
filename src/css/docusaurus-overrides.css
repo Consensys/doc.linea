@@ -1711,12 +1711,16 @@ button.clean-btn.menu__caret {
 
 .theme-doc-markdown .mermaid-deployment .node.access rect,
 .theme-doc-markdown .mermaid-deployment .node.access .basic.label-container,
-.theme-doc-markdown .mermaid-deployment .node.neutral rect,
-.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container,
 .theme-doc-markdown .mermaid-deployment .node.control rect,
 .theme-doc-markdown .mermaid-deployment .node.control .basic.label-container {
   fill: var(--linea-mermaid-cyan-bg) !important;
   stroke: var(--linea-mermaid-cyan-stroke) !important;
+}
+
+.theme-doc-markdown .mermaid-deployment .node.neutral rect,
+.theme-doc-markdown .mermaid-deployment .node.neutral .basic.label-container {
+  fill: var(--linea-mermaid-cluster-bg) !important;
+  stroke: var(--linea-mermaid-cluster-border) !important;
 }
 
 .theme-doc-markdown .mermaid-deployment .node.control rect,
