@@ -112,11 +112,12 @@ No. You hold standard 1:1 ETH on Linea. Staking happens on L1 from the
 
 **Do I ever lose access to my ETH?**
 
-You can normally withdraw ETH directly from the `LineaRollup`. An automated
-balance monitoring service helps maintain sufficient liquidity for withdrawals.
-If liquidity is temporarily insufficient, you can
-[withdraw stETH](./architecture.mdx#5-lst-withdrawal) instead. Read the
-[risk disclosures](./risk-disclosures.mdx).
+You can normally withdraw ETH back to Ethereum from the `LineaRollup` reserve. An automated
+service helps keep enough ETH there for withdrawals.
+If the reserve is temporarily short, you can wait for staked ETH to return, or
+[withdraw stETH](./architecture.mdx#5-lst-withdrawal) instead.
+Slashing and other failures can still put funds at risk; see the
+[risk disclosures](./risk-disclosures.mdx) for more information.
 
 **Can I opt out of Yield Boost?**
 
