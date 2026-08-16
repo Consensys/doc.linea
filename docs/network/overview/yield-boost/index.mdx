@@ -33,10 +33,11 @@ You do not need to change how you transact or build on Linea.
 receive 1:1 ETH on Linea and can transact with it as usual. The native-bridge UI may disclose that bridged ETH can be
 staked on Ethereum in the background.
 
-You can normally withdraw ETH directly from the `LineaRollup`. An automated
-balance monitoring service helps maintain sufficient liquidity for user
-withdrawals. If liquidity is temporarily insufficient despite this safeguard,
-you can withdraw [stETH](./architecture.mdx#5-lst-withdrawal) instead. Details
+You can normally withdraw ETH back to Ethereum from the `LineaRollup` reserve. An automated
+service helps keep enough ETH there for
+withdrawals. If the reserve is temporarily short,
+you can wait for staked ETH to return, or [withdraw stETH](./architecture.mdx#5-lst-withdrawal) instead. 
+Waiting follows Ethereum's validator withdrawal queue; a long queue means the wait is longer. Details
 are on the [Architecture](./architecture.mdx) and
 [Risk disclosures](./risk-disclosures.mdx) pages.
 
