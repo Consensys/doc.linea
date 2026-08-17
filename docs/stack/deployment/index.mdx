@@ -57,8 +57,10 @@ Detailed production topology and supported tooling for a given deployment can be
   ]}
 />
 
+:::tip
 If you're still evaluating whether Lineth is the right stack for your use case, see [Evaluate Lineth](../evaluate/index.mdx).
 For protocol-level architecture details, see [Protocol Architecture](../../protocol/architecture/index.mdx).
+:::
 
 ## Shared components and variants
 
@@ -87,7 +89,8 @@ The following diagram illustrates an example architecture for a
 network boundary, and validium message relayers to other chains.
 A public deployment uses the same internal services; access and data availability differ.
 
-In this example, the operator determines where transaction data is stored (not shown).
+In this example, transaction data stays offchain in the operator's private node set, and is not
+shown on the diagram.
 In a public deployment, transaction data is posted to the finalization layer.
 See [Data availability and finalization](./data-availability-finalization.mdx).
 
