@@ -1801,10 +1801,9 @@ details > div > div {
   padding-bottom: 0.5rem;
 }
 
-/* Upcoming releases — matches the changelog card language, not the default
-   details treatment: token border, rounded corners, chevron instead of a
-   solid triangle. */
-details.upcoming-releases {
+/* Contrast card details: muted surface against the page background, token
+   border, rounded corners, chevron instead of a solid triangle. */
+details.contrast-card {
   background-color: var(--linea-surface-muted) !important;
   border: 1px solid var(--linea-border) !important;
   border-radius: var(--linea-radius-md);
@@ -1812,23 +1811,23 @@ details.upcoming-releases {
   margin: 1.5rem 0 2rem;
 }
 
-[data-theme="dark"] details.upcoming-releases {
+[data-theme="dark"] details.contrast-card {
   background-color: var(--linea-surface-muted) !important;
   border: 1px solid var(--linea-border) !important;
 }
 
-details.upcoming-releases > summary {
+details.contrast-card > summary {
   font-family: AtypText, sans-serif;
   font-size: 15px;
   color: var(--linea-text-primary);
   padding: 0.7rem 0.75rem !important;
 }
 
-html[data-theme="dark"] details.upcoming-releases > summary {
+html[data-theme="dark"] details.contrast-card > summary {
   color: var(--linea-text-primary) !important;
 }
 
-details.upcoming-releases > summary::before {
+details.contrast-card > summary::before {
   width: 7px;
   height: 7px;
   border: solid var(--linea-link-highlight-color);
@@ -1841,23 +1840,23 @@ details.upcoming-releases > summary::before {
   margin-right: 0.65rem;
 }
 
-details.upcoming-releases[open] > summary::before {
+details.contrast-card[open] > summary::before {
   transform: rotate(45deg) !important;
   top: -4px !important;
 }
 
 /* Docusaurus keeps the `open` attribute set while it animates the collapse and
    tracks real state in data-collapsed, so the closed chevron keys off that. */
-details.upcoming-releases[data-collapsed="true"] > summary::before {
+details.contrast-card[data-collapsed="true"] > summary::before {
   transform: rotate(-45deg) !important;
   top: -2px !important;
 }
 
-details.upcoming-releases > div > div {
+details.contrast-card > div > div {
   padding-bottom: 0.75rem;
 }
 
-details.upcoming-releases ul {
+details.contrast-card ul {
   margin-bottom: 0;
 }
 
