@@ -62,16 +62,16 @@ For protocol-level architecture details, see [Protocol Architecture](../../proto
 
 ## Shared components and variants
 
-Lineth deployments use the same [core components](core-components.mdx).
+All Lineth deployments use the same [core components](core-components.mdx).
 Internal protocol services stay inside the operator's network.
 Proofs and state commitments go to a chosen
 <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
 <GlossaryTerm term="Operator">Operators</GlossaryTerm> also choose:
 
-- [Access control](rbac.mdx): public RPC, or RPC and APIs gated by
+- [Access control](rbac.mdx): Public RPC, or RPC and APIs gated by
   <GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>
-- [Data availability](data-availability-finalization.mdx#data-availability): onchain (for example,
+- [Data availability](data-availability-finalization.mdx#data-availability): Onchain (for example,
   [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) blobs) or offchain in a
   <GlossaryTerm term="Validium">private validium</GlossaryTerm>
 - [Finalization layer](data-availability-finalization.mdx#finalization-layer): L1 (such as Ethereum) or L2 (such as Linea)

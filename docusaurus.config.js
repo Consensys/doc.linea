@@ -136,7 +136,6 @@ const config = {
           "div.docusaurus-mermaid-container",
           ".drawio",
           ".theme-doc-markdown img",
-          // Imported SVGs render as <svg>, not <img>
           ".theme-doc-markdown .img-xsmall > svg",
           ".theme-doc-markdown .img-small > svg",
           ".theme-doc-markdown .img-medium > svg",
