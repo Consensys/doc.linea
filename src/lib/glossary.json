@@ -70,6 +70,10 @@
       "definition": "The blockchain where a Lineth deployment submits proofs and state commitments for verification and hard finality. If the finalization layer is Ethereum (an L1), the deployment is an L2. If the finalization layer is Linea (an L2), the deployment is an L3."
     },
     {
+      "term": "Follower",
+      "definition": "A Maru consensus role that receives blocks from peers and passes them to its execution client for execution, without voting."
+    },
+    {
       "term": "Fraud proof",
       "definition": "In optimistic rollups, the evidence a verifier provides to question the validity of a batch of transactions. Depending on how they're executed, these proofs analyze a section of transactions and attempt to confirm their validity."
     },
@@ -208,6 +212,10 @@
     {
       "term": "Validity proof",
       "definition": "A security model for certain L2 solutions where, to increase speed, transactions are rolled up into batches and submitted to Ethereum in a single transaction. The transaction computation is done off-chain and then supplied to the main chain with a proof of their validity. This method increases the amount of transactions possible while maintaining security. Some rollups use fraud proofs."
+    },
+    {
+      "term": "Validator",
+      "definition": "A Maru consensus role that proposes and votes on blocks as part of the QBFT validator set. Maru requests a payload from its execution client, then signs and broadcasts the resulting block."
     },
     {
       "term": "Validium",
