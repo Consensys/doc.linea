@@ -1,84 +1,134 @@
 ---
 title: Evaluate Lineth
 sidebar_label: Overview
-description: Capabilities and evidence paths for evaluating a Lineth deployment
+description: >-
+  Compare Lineth deployment models, trust, privacy, security, and compliance
+  against your use case
 sidebar_position: 0
 image: /img/socialCards/evaluate-lineth.jpg
 ---
 
+import ActionCards from "@site/src/components/ActionCards";
 import GlossaryTerm from "@theme/GlossaryTerm";
 
-This page describes <GlossaryTerm term="Lineth" /> capabilities that matter
-when evaluating a deployment, and points to the pages that go deeper on each
-one. For design choices and operator responsibilities, continue to
-[deployment architecture](../deployment/index.mdx).
+This section describes <GlossaryTerm term="Lineth" /> capabilities and answers questions you might have
+when evaluating the Lineth stack for your use case.
 
-## What Lineth provides
+<ActionCards
+  cards={[
+    {
+      text: "Deployment models",
+      description:
+        "Compare public rollup and private validium trade-offs for access, data availability, and finalization.",
+      href: "/stack/evaluate/deployment-models",
+    },
+    {
+      text: "Trust and responsibilities",
+      description:
+        "See who operates each component, what they can do, and what participants can verify.",
+      href: "/stack/evaluate/trust-model",
+    },
+    {
+      text: "Privacy and data visibility",
+      description:
+        "Learn what a deployment publishes, who can see it, and what validium does not hide.",
+      href: "/stack/evaluate/validium",
+    },
+    {
+      text: "Security and assurance",
+      description:
+        "Review protocol guarantees, operator controls, and published assurance evidence.",
+      href: "/stack/evaluate/security",
+    },
+    {
+      text: "Compliance",
+      description:
+        "Use protocol evidence in a compliance program, and see what Lineth does not claim.",
+      href: "/stack/evaluate/compliance",
+    },
+  ]}
+/>
 
-Lineth is a <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> stack.
-A deployment combines a consensus layer, an execution layer, a <GlossaryTerm term="Prover">prover</GlossaryTerm>,
-a <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>, and a set of onchain contracts on a
+:::tip
+To explore the components and architectural design choices, see
+[Deployment architecture](../deployment/index.mdx).
+:::
+
+## Use cases
+
+These examples help you find the evaluation pages that match your scenario.
+They are not a recommended deployment, and they are not features Lineth ships.
+
+### Technical requirements
+
+| If you need | Likely model | Read first |
+| --- | --- | --- |
+| Open access and onchain data availability | Public | [Deployment models](./deployment-models.mdx) |
+| Transaction data kept off the finalization layer | Private validium | [Privacy and data visibility](./validium.mdx) |
+| Multi-party workflows with scoped transaction visibility | Private validium | [Privacy and data visibility](./validium.mdx) |
+| Protocol evidence for your own compliance program | Either model | [Compliance](./compliance.mdx) |
+
+[Deployment models](./deployment-models.mdx) lists further examples for each
+model.
+
+### Example institutional scenarios
+
+Operators often evaluate Lineth as the network for application workflows such
+as the following.
+Conditional settlement of two legs can be application logic on one network.
+Do not infer a shipped cross-chain atomic interoperability product from these
+examples.
+
+| Scenario | What to evaluate | Read first |
+| --- | --- | --- |
+| 24/7 settlement | Always-on execution outside banking-hour rails | [Deployment models](./deployment-models.mdx) |
+| Collateral mobility | Tokenized collateral pledged or reused with controlled visibility | [Privacy and data visibility](./validium.mdx) |
+| Atomic Delivery versus Payment (DvP) | Two legs settle together, or neither does | [Privacy and data visibility](./validium.mdx), [Trust and responsibilities](./trust-model.mdx) |
+| Intraday repo | Cash and collateral move together for a short window | [Privacy and data visibility](./validium.mdx), [Trust and responsibilities](./trust-model.mdx) |
+
+## Evaluation criteria
+
+### Deployment models
+
+An <GlossaryTerm term="Operator">operator</GlossaryTerm> can deploy a public
+network with onchain data availability, such as Linea Mainnet, or a private
+<GlossaryTerm term="Validium">validium</GlossaryTerm> with offchain data
+availability and controlled access.
+Operators also choose access control, data availability, finalization layer,
+finalization speed, and transaction ordering.
+
+### Trust and responsibilities
+
+Who operates each component, what that component can do unilaterally, and what
+participants can verify depends on the deployment model.
+Admin keys, upgrade authority, and failure modes are part of that evaluation.
+
+### Privacy and data visibility
+
+A deployment publishes state commitments and proofs to the
 <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
-<GlossaryTerm term="Operator">Operators</GlossaryTerm> choose the deployment model, data availability arrangement, finalization layer, and access controls.
+Transaction data visibility depends on the data availability and access model.
+Validium and role-based access control (RBAC) control where data lives and who
+can read it; they are not cryptographic private execution.
 
-The following capabilities depend on the deployment model chosen.
+### Security and assurance
 
-## Deployment model capabilities
+Lineth provides state-transition correctness through
+<GlossaryTerm term="zk-SNARK" /> proof verification on the finalization layer,
+plus settlement finality scoped to that layer.
+Operators own infrastructure security, keys, access control, and governance.
+Published evidence includes the trusted setup, security audits, and Linea
+Mainnet-specific records that do not certify a custom deployment.
 
-Using Lineth, an operator can deploy:
+### Compliance
 
-- Public networks, such as Linea Mainnet, with onchain data availability.
-- Private validium networks, with offchain data availability and controlled access.
+A deployment produces state commitments, proof verification records,
+finalization records, and transaction history retained by its data availability
+model.
+Operators own the compliance program.
+Lineth does not certify a deployment or map controls to a regulatory framework.
 
-For the trade-offs between these models, see
-[Deployment models](./deployment-models.mdx).
+## See also
 
-## Protocol capabilities
-
-### State transition correctness
-
-Lineth uses <GlossaryTerm term="zk-SNARK" /> proofs to verify that state transitions are valid.
-A valid proof means the operator cannot finalize an invalid state transition through the
-normal proof path. Proofs do not by themselves make transaction contents
-private; data visibility depends on the deployment's data availability and
-access model. For the data-visibility distinction, see
-[Privacy and data visibility](./validium.mdx).
-
-### EVM-compatible execution
-
-Lineth runs EVM-compatible contract execution, so existing Solidity contracts
-and Ethereum tooling generally work. Compatibility is constrained by the
-deployment's configuration and by the differences between any chain and
-Ethereum. For the differences between Linea and Ethereum, see
-[Linea and Ethereum](../../network/overview/ethereum-differences.mdx).
-
-### QBFT consensus
-
-For deployments that use multi-validator consensus, Lineth supports
-<GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm>, which provides:
-
-- Fault tolerance with `3f+1` validators, tolerating `f` faulty validators
-- Single-slot finality under the deployment's QBFT safety assumptions
-- Distributed block production when enough validators participate
-
-Single-validator deployments do not use QBFT and rely on the operator trust
-model instead. For design trade-offs, topology, and latency, see
-[Multi-validator consensus](../deployment/distributed-sequencing.mdx). For trust
-assumptions per model, see
-[Trust and responsibilities](./trust-model.mdx).
-
-### Dual-layer architecture
-
-Lineth separates consensus and execution. This lets operators choose different
-client configurations and scale consensus and execution independently. It does
-not by itself provide client diversity or network resilience; those depend on
-the operator's deployment.
-
-## Where to go next
-
-| Question                                                        | Page                                                          |
-| --------------------------------------------------------------- | ------------------------------------------------------------- |
-| Who operates what, and what can each component do?              | [Trust and responsibilities](./trust-model.mdx) |
-| Who can see what data?                                          | [Privacy and data visibility](./validium.mdx)                 |
-| What does the protocol guarantee, and what evidence exists?     | [Security and assurance](./security.mdx)                      |
-| What protocol evidence can operators use for compliance design? | [Compliance](./compliance.mdx)                                |
+- Continue to [Deployment architecture](../deployment/index.mdx) to apply these
+  choices to an operator deployment.
