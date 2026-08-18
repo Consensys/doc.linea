@@ -1,43 +1,125 @@
 ---
-title: Deployment architecture
+title: Deployment architecture overview
 sidebar_label: Overview
-description: Apply Lineth components and design choices to an operator deployment
-sidebar_position: 1
+description: >-
+  Overview of Lineth deployment architecture pages, plus an illustrative
+  production topology: shared components, boundaries, and flows
 image: /img/socialCards/deployment-architecture.jpg
 ---
 
+import ActionCards from '@site/src/components/ActionCards';
 import GlossaryTerm from '@theme/GlossaryTerm';
+import DeploymentArchitectureGraphic from '/img/stack/deployment/lineth-deployment-architecture.svg';
 
-Use this section to design a <GlossaryTerm term="Lineth" /> deployment: required components, data availability
-and finalization choices, finality design, and access control.
-For mechanism internals, see the [Protocol architecture](../../protocol/architecture/index.mdx).
+This section describes the components and design choices in a <GlossaryTerm term="Lineth" /> deployment,
+providing a high-level reference architecture you can use when designing your own deployment.
+Detailed production topology and supported tooling for a given deployment can be confirmed with the
+[Lineth team](/support) in enterprise engagements.
 
-## Architecture
+<ActionCards
+  cards={[
+    {
+      text: "Deployment components",
+      description:
+        "Required and optional components in the deployment footprint, including how they are versioned or replaced.",
+      href: "/stack/deployment/core-components",
+    },
+    {
+      text: "Data availability and finalization",
+      description:
+        "Where transaction data is stored and where proofs and state commitments settle on the chosen finalization layer.",
+      href: "/stack/deployment/data-availability-finalization",
+    },
+    {
+      text: "Finality design",
+      description:
+        "Application-level finality on the network versus settlement finality on the finalization layer, and the trade-offs between them.",
+      href: "/stack/deployment/fast-finality",
+    },
+    {
+      text: "Multi-validator consensus",
+      description:
+        "Maru multi-validator QBFT for sequencer fault tolerance and distributed block ordering within the execution path.",
+      href: "/stack/deployment/distributed-sequencing",
+    },
+    {
+      text: "High availability",
+      description:
+        "Multi-region placement of the same components: validators and RPC across regions, primary and warm-standby finalization, and failure behavior.",
+      href: "/stack/deployment/high-availability",
+    },
+    {
+      text: "Access control",
+      description:
+        "Operator-configured RBAC at the access edge for protected RPC, API, and tooling surfaces in restricted deployments.",
+      href: "/stack/deployment/rbac",
+    },
+  ]}
+/>
 
-As an Ethereum-equivalent network, Lineth uses a dual-layer architecture separating consensus from execution. This design enables modular deployment, client diversity, and operational flexibility. 
-
-- Understand the core [components](./core-components.mdx) that make up the stack
-- Learn more about the [protocol architecture](../../protocol/architecture/index.mdx)
-- Review [high availability](./high-availability.mdx) patterns for enterprise deployments
-
-## Deployment models
-
-Lineth allows <GlossaryTerm term="Operator">operators</GlossaryTerm> to tweak the deployment model according to their business case, for example, a network built on Lineth can be operated as:
-
-- Private Validium: Offchain data availability, ideal for regulated financial applications
-- Public: Fully public network with onchain data availability
-
-See more on the [deployment options](../evaluate/deployment-models.mdx).
-
-## Data availability and finalization
-
-For details on
-L2/L3 relationships, smart contract requirements, and how data availability differs by deployment
-model, see [data availability and finalization](./data-availability-finalization.mdx).
-
-:::important
-
-Understanding data availability and finalization is key to good deployment decisions. 
-
+:::tip
+If you're still evaluating whether Lineth is the right stack for your use case, see [Evaluate Lineth](../evaluate/index.mdx).
+For protocol-level architecture details, see [Protocol Architecture](../../protocol/architecture/index.mdx).
 :::
 
+## Shared components and variants
+
+All Lineth deployments use the same [core components](core-components.mdx).
+Internal protocol services stay inside the operator's network.
+Proofs and state commitments go to a chosen
+<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
+
+<GlossaryTerm term="Operator">Operators</GlossaryTerm> also choose:
+
+- [Access control](rbac.mdx): Public RPC, or RPC and APIs gated by
+  <GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>
+- [Data availability](data-availability-finalization.mdx#data-availability): Onchain (for example,
+  [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) blobs) or offchain in a
+  <GlossaryTerm term="Validium">private validium</GlossaryTerm>
+- [Finalization layer](data-availability-finalization.mdx#finalization-layer): L1 (such as Ethereum) or L2 (such as Linea)
+
+Operators own these choices,
+including [compliance](../evaluate/compliance.mdx) design.
+Lineth does not recommend a specific set of customizations.
+
+## Example architecture
+
+The following diagram illustrates an example architecture for a
+<GlossaryTerm term="Validium">validium</GlossaryTerm> deployment: RBAC at the edge, a private
+network boundary, and validium message relayers to other chains.
+A public deployment uses the same internal services; access and data availability differ.
+
+In this example, transaction data stays offchain in the operator's private node set, and is not
+shown on the diagram.
+In a public deployment, transaction data is posted to the finalization layer.
+See [Data availability and finalization](./data-availability-finalization.mdx).
+
+For regional placement, failover, and recovery, see [High availability](./high-availability.mdx).
+
+<div className="img-large">
+  <DeploymentArchitectureGraphic />
+</div>
+
+The example architecture flows as follows:
+
+1. Clients reach the API portal, block explorer, and RPC.
+   This example gates that path with [RBAC](./rbac.mdx); a public deployment can expose RPC
+   without that gate.
+2. Those tools query near-head and archive
+   <GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm>, which read chain state from
+   onchain contracts.
+3. The sequencer orders transactions and builds blocks.
+   [Multi-validator consensus](./distributed-sequencing.mdx) is a design choice that improves sequencer
+   fault tolerance.
+4. Inside the operator network, the coordinator batches blocks, the tracer produces traces,
+   and the prover generates <GlossaryTerm term="zk-SNARK" /> proofs.
+5. Proofs and state commitments leave that network when they are submitted to the
+   finalization layer contracts.
+   This validium example does not post transaction data; a public deployment posts it onchain.
+   See [Data availability and finalization](./data-availability-finalization.mdx).
+6. Interoperability with the finalization layer uses the
+   [canonical token bridge and message service](../../protocol/architecture/interoperability/index.mdx).
+   This example also shows validium message relayers to other enterprise or public chains.
+
+See [Trust and responsibilities](../evaluate/trust-model.mdx) for who operates each component, what it
+can do, and what participants can verify.
