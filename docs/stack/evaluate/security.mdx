@@ -12,15 +12,22 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 This page describes <GlossaryTerm term="Lineth" /> protocol guarantees,
 operator-controlled security measures, and available assurance evidence.
 
-For trust boundaries and privileged authority, see
-[Trust and responsibilities](./trust-model.mdx).
+This page does **not** include commercial support or SLA commitments, or certify that any custom deployment
+is secure.
 
-This page does **not** include:
+<details className="contrast-card">
+<summary>Report a security issue</summary>
+<div>
+If you encounter a security vulnerability, do not open a public GitHub issue.
 
-- Proof-system maturity statements.
-- Production operations guidance (monitoring, incident response, disaster
-  recovery).
-- Commercial support or SLA commitments.
+Follow the
+[Lineth and Linea security policy](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/security.md):
+send a private report to
+[security-report@linea.build](mailto:security-report@linea.build), or report a Linea Mainnet issue
+through the [Linea bug bounty on Immunefi](https://immunefi.com/bounty/linea/).
+The policy lists what to include in the report.
+</div>
+</details>
 
 ## Protocol-level guarantees
 
@@ -59,34 +66,62 @@ Operators are responsible for:
 
 Governance contracts and multisig controls should be treated as critical
 security infrastructure. They can hold privileged roles, coordinate emergency
-response, or control upgrade authority depending on the deployment. Linea
-Mainnet's
-[Security Council transaction record](../../changelog/security-council-record.mdx)
-is one example of how such controls can be documented publicly. For upgrade
+response, or control upgrade authority depending on the deployment. For upgrade
 mechanics, see the
 [OpenZeppelin Transparent Upgradeable Proxy pattern](../../protocol/architecture/smart-contracts.mdx#contract-versioning).
 
-## Assurance evidence today
+## Available evidence
 
-What is published today:
+The following public materials are the available assurance evidence for the Lineth stack:
 
-- [Trusted setup](../../protocol/architecture/prover/trusted-setup): the public MPC ceremonies and
-  structured reference strings used by the proving system
-- [Security audits](../../protocol/reference/security-audits): the published audit catalog
-  for Lineth protocol components and Linea Mainnet contracts
-- [Linea Mainnet Security Council transaction record](../../changelog/security-council-record.mdx):
-  a public example of multisig-governed security and upgrade operations for
-  Linea Mainnet
-- [Linea Mainnet risk disclosures](../../network/risk-disclosures.mdx): risk
-  disclosures that apply when finalizing to Linea Mainnet
-- [LineaRollup contracts reference](../../network/build/contracts.mdx): the onchain
-  contracts and roles that govern a deployment
+- [Prover architecture](../../protocol/architecture/prover/index.mdx): The documented current
+  proof path
+- [Trusted setup](../../protocol/architecture/prover/trusted-setup.mdx): The public multi-party
+  computation (MPC) ceremonies and structured reference strings used by the proving system
+- [Security audits](../../protocol/reference/security-audits.mdx): The published audit reports
+  for reviewed components and revisions
+- [Trust and responsibilities](./trust-model.mdx): Component-level trust boundaries and
+  failure modes
+- [Smart contracts](../../protocol/architecture/smart-contracts.mdx): The onchain contracts a
+  deployment uses
+- [Source repositories](../../protocol/reference/repos.mdx): The public Lineth source
 
-What is not published here:
+Linea Mainnet assurance evidence is listed in
+[Linea Mainnet-specific evidence](#linea-mainnet-specific-evidence).
 
-- Proof-system maturity statements or current security-review conclusions
-- Per-deployment assurance artifacts
+## Proof system status
 
-Operators who need assurance evidence for a specific deployment should confirm
-what is available with the operator of that deployment. Lineth does not
-generalize one audit or review to all deployments.
+Lineth does not publish a single proof system maturity rating.
+Available maturity evidence includes:
+
+- The documented current proof path: execution, compression, and aggregation proofs.
+  See [Prover architecture](../../protocol/architecture/prover/index.mdx).
+- The [trusted setup](../../protocol/architecture/prover/trusted-setup.mdx) and its security assumptions.
+- The prover implementation published in the
+  [Lineth monorepo](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/prover).
+- [Audit reports](../../protocol/reference/security-audits.mdx) for the prover, proving libraries,
+  and cryptographic primitives, which apply to the revisions named in each report.
+
+[RISC-V proving](../../protocol/architecture/prover/risc-v-overview.mdx) is under development and
+is not part of any current Lineth deployment.
+
+## Linea Mainnet-specific evidence
+
+The following materials apply to Linea Mainnet.
+Linea Mainnet is built on Lineth, so these materials can help you evaluate the Lineth stack.
+They do not certify the security of custom Lineth deployments.
+
+- [Risk disclosures](../../network/risk-disclosures.mdx)
+- [Security Council transaction record](../../changelog/security-council-record.mdx)
+- [Deployed contract addresses](../../network/build/contracts.mdx)
+- Linea Mainnet operational history and the
+  [Immunefi bug bounty](https://immunefi.com/bug-bounty/linea/information/)
+
+## What is not published
+
+Lineth does not currently publish a consolidated findings disposition, a mapping from every
+current release to its applicable audits, a proof system maturity rating, or assurance
+conclusions for custom deployments.
+
+Organizations evaluating a deployment must assess the applicable software versions,
+configuration, infrastructure, governance, and operational controls separately.

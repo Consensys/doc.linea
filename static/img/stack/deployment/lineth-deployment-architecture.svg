@@ -1,0 +1,230 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1120 980"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="lda-title lda-desc"
+>
+  <title id="lda-title">Example Lineth validium deployment architecture</title>
+  <desc id="lda-desc">
+    Trusted partners reach RBAC, which gates the API portal and block explorer
+    inside the Lineth private network. Those tools query near-head and archive
+    RPC nodes, which read onchain system contracts. Internal protocol services
+    including the coordinator, execution services, and core services also
+    interact with those contracts. zk-SNARK proofs leave internal protocol
+    services for the finalization layer. Validium message relayers connect
+    onchain contracts to
+    other enterprise and public blockchains.
+  </desc>
+  <defs>
+    <marker
+      id="lda-arrow"
+      viewBox="0 0 10 10"
+      refX="8"
+      refY="5"
+      markerWidth="7"
+      markerHeight="7"
+      orient="auto-start-reverse"
+    >
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--linea-text-primary)" />
+    </marker>
+  </defs>
+
+  <!-- Trusted partners -->
+  <rect x="486" y="12" width="148" height="40" rx="4"
+    fill="var(--linea-mermaid-pink-bg)" stroke="var(--linea-mermaid-pink-stroke)" stroke-width="1.5" />
+  <text x="560" y="37" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Trusted partners</text>
+
+  <!-- RBAC -->
+  <rect x="486" y="76" width="148" height="40" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" stroke-dasharray="6 4" />
+  <text x="560" y="101" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">RBAC</text>
+
+  <!-- Lineth private network -->
+  <rect x="20" y="140" width="1080" height="540" rx="8"
+    fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
+  <text x="36" y="162" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
+    fill="var(--linea-text-primary)">Lineth private network</text>
+
+  <!-- Access and tooling -->
+  <rect x="40" y="176" width="400" height="108" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="52" y="196" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">Access and tooling</text>
+  <rect x="56" y="208" width="168" height="56" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="140" y="241" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">API portal</text>
+  <rect x="244" y="208" width="176" height="56" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="332" y="241" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Block explorer</text>
+
+  <!-- RPC services -->
+  <rect x="40" y="300" width="400" height="108" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="52" y="320" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">RPC services</text>
+  <rect x="56" y="332" width="168" height="56" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="140" y="355" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Near-head</text>
+  <text x="140" y="371" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">RPC nodes</text>
+  <rect x="244" y="332" width="176" height="56" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="332" y="355" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Archive</text>
+  <text x="332" y="371" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">RPC nodes</text>
+
+  <!-- Onchain system contracts -->
+  <rect x="40" y="424" width="500" height="168" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="52" y="444" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">Onchain system contracts</text>
+  <rect x="56" y="452" width="228" height="124" rx="4"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="68" y="470" font-family="AtypText, sans-serif" font-size="10" font-weight="600"
+    fill="var(--linea-text-primary)">Messaging and application</text>
+  <rect x="68" y="480" width="204" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="170" y="505" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Application contract</text>
+  <rect x="68" y="528" width="204" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="170" y="553" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Message bridge contracts</text>
+  <rect x="296" y="452" width="228" height="124" rx="4"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="308" y="470" font-family="AtypText, sans-serif" font-size="10" font-weight="600"
+    fill="var(--linea-text-primary)">Token contracts</text>
+  <rect x="308" y="480" width="204" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="410" y="505" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Token management contract</text>
+  <rect x="308" y="528" width="204" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="410" y="553" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Token bridge contracts</text>
+
+  <!-- Internal protocol services -->
+  <rect x="560" y="176" width="520" height="416" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="572" y="196" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">Internal protocol services</text>
+  <rect x="716" y="208" width="208" height="48" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="820" y="237" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Coordinator</text>
+
+  <rect x="576" y="276" width="232" height="140" rx="4"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="588" y="296" font-family="AtypText, sans-serif" font-size="10" font-weight="600"
+    fill="var(--linea-text-primary)">Execution services</text>
+  <rect x="588" y="308" width="208" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="692" y="333" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Web3Signer</text>
+  <rect x="588" y="356" width="208" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="692" y="381" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Sequencer</text>
+
+  <rect x="824" y="276" width="236" height="188" rx="4"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="836" y="296" font-family="AtypText, sans-serif" font-size="10" font-weight="600"
+    fill="var(--linea-text-primary)">Core services</text>
+  <rect x="836" y="308" width="212" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="942" y="333" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">State manager</text>
+  <rect x="836" y="356" width="212" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="942" y="381" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Tracer</text>
+  <rect x="836" y="404" width="212" height="40" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="942" y="429" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Prover</text>
+
+  <!-- Relayers -->
+  <rect x="180" y="612" width="220" height="48" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" stroke-dasharray="6 4" />
+  <text x="290" y="632" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Validium message</text>
+  <text x="290" y="648" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">relayers</text>
+
+  <!-- zk-SNARK proofs -->
+  <rect x="716" y="700" width="208" height="44" rx="4"
+    fill="var(--linea-mermaid-pink-bg)" stroke="var(--linea-mermaid-pink-stroke)" stroke-width="1.5" />
+  <text x="820" y="727" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">zk-SNARK proofs</text>
+
+  <!-- Finalization and interoperability -->
+  <rect x="20" y="764" width="1080" height="196" rx="8"
+    fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
+  <text x="36" y="786" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
+    fill="var(--linea-text-primary)">Finalization and interoperability</text>
+
+  <rect x="40" y="800" width="500" height="140" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="52" y="820" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">External blockchains</text>
+  <rect x="56" y="852" width="220" height="52" rx="4"
+    fill="var(--linea-mermaid-pink-bg)" stroke="var(--linea-mermaid-pink-stroke)" stroke-width="1.5" />
+  <text x="166" y="883" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Enterprise blockchain</text>
+  <rect x="292" y="852" width="228" height="52" rx="4"
+    fill="var(--linea-mermaid-pink-bg)" stroke="var(--linea-mermaid-pink-stroke)" stroke-width="1.5" />
+  <text x="406" y="883" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Public blockchain</text>
+
+  <rect x="560" y="800" width="520" height="140" rx="6"
+    fill="transparent" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="572" y="820" font-family="AtypText, sans-serif" font-size="11" font-weight="600"
+    fill="var(--linea-text-primary)">Finalization layer</text>
+  <rect x="576" y="836" width="228" height="84" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="690" y="868" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Finalization /</text>
+  <text x="690" y="886" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">message bridge contract</text>
+  <rect x="820" y="852" width="236" height="52" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="938" y="883" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Token bridge contract</text>
+
+  <!-- Edges -->
+  <g
+    fill="none"
+    stroke="var(--linea-text-primary)"
+    stroke-width="1.25"
+    marker-end="url(#lda-arrow)"
+  >
+    <!-- Partners to RBAC -->
+    <path d="M560 52 V76" />
+    <!-- RBAC to Access and tooling -->
+    <path d="M560 116 V148 H240 V176" />
+    <!-- Access and tooling to RPC services -->
+    <path d="M240 284 V300" />
+    <!-- RPC services to onchain system contracts -->
+    <path d="M240 408 V424" />
+    <!-- Internal protocol services to onchain system contracts -->
+    <path d="M560 508 H540" />
+    <!-- Onchain contracts to relayers -->
+    <path d="M290 592 V612" />
+    <!-- Internal protocol services to proofs (leave the operator network) -->
+    <path d="M820 592 V700" />
+    <!-- Proofs to finalization layer -->
+    <path d="M820 744 V800" />
+    <!-- Relayers to external blockchains -->
+    <path d="M290 660 V800" />
+  </g>
+</svg>
