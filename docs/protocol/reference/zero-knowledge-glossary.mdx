@@ -91,10 +91,6 @@ This is relevant to ZK-rollups because execution traces are used to construct th
 
 The blockchain where a Lineth deployment submits proofs and state commitments for verification and hard finality. If the finalization layer is Ethereum (an L1), the deployment is an L2. If the finalization layer is Linea (an L2), the deployment is an L3.
 
-### Follower
-
-A Maru consensus role that receives blocks from peers and passes them to its execution client for execution, without voting.
-
 ### Fraud proof
 
 In optimistic rollups, the evidence a verifier provides to question the validity of a batch of transactions. Depending on how they're executed, these proofs analyze a section of transactions and attempt to confirm their validity.
@@ -147,7 +143,7 @@ The execution client that Linea Mainnet and other Lineth deployments run to exec
 
 ### Maru
 
-Lineth's consensus layer client. Maru runs on every node, paired with an execution client, and implements the QBFT consensus algorithm. Validator nodes use Maru to propose and vote on blocks; follower nodes use it to receive blocks from peers and pass them to the execution client. In both roles, Maru provides peer-to-peer networking for block propagation and exposes API endpoints for monitoring and control.
+Lineth's consensus layer client, implementing the QBFT consensus algorithm. Maru drives configured execution clients over the Engine API, propagates blocks to peers, and exposes API endpoints for monitoring and control. A Maru node either takes part in consensus as a validator or receives blocks from peers without voting.
 
 ### Operator
 
@@ -248,10 +244,6 @@ Transaction ordering is implemented by the Linea Besu Sequencer plugin. The plug
 
 - Inter-block (across blocks): Transactions are processed strictly in the order produced by the validator, ensuring fairness between blocks without look-ahead bias or MEV extraction.
 - Intra-block (within a block): Within the 1-second block window, transactions are prioritized by total gas price (legacy transactions) / priority fee (for EIP-1559 transactions)--highest first, allowing users to pay more for inclusion priority while maintaining FCFS discipline between blocks.
-
-### Validator
-
-A Maru consensus role that proposes and votes on blocks as part of the QBFT validator set. Maru requests a payload from its execution client, then signs and broadcasts the resulting block.
 
 ### Validity proof
 

@@ -29,10 +29,10 @@ The following components are **required**.
 :::note
 Lineth uses a [dual-layer architecture](../../protocol/architecture/index.mdx#nodes): Maru for consensus and an
 execution client for the EVM.
-Operators can configure and scale those layers independently.
-You must run Linea Besu for the sequencer and tracer roles.
-<GlossaryTerm term="Follower">Follower</GlossaryTerm> and
-<GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm> can use any Ethereum execution client, such as Besu or Geth.
+Operators can configure the consensus and execution layers separately.
+Execution clients that build blocks for Maru validators or generate traces must run Linea Besu.
+Follower and standard <GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm> can be scaled separately and may
+use another Ethereum execution client, such as Besu or Geth.
 :::
 
 ## Onchain system contracts
