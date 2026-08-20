@@ -60,9 +60,9 @@ Lineth is comprised of several broad classes of components:
 
 ## Nodes
 
-Every Lineth node runs two clients: an execution client, which executes transactions and
-maintains EVM state, and the consensus client, [Maru](../reference/repos.mdx#maru), which
-orders blocks and propagates them to peers. The two communicate over the standard Ethereum
+Every Lineth node runs a consensus client, [Maru](../reference/repos.mdx#maru), which orders blocks and
+propagates them to peers, and one or more execution clients, which execute transactions and maintain EVM state.
+Maru communicates with its execution clients over the standard Ethereum
 [Engine API](https://github.com/ethereum/execution-apis/blob/main/src/engine/common.md).
 
 Any node can also expose [JSON-RPC](./rpc-services.mdx) to serve applications, users, or internal
@@ -75,9 +75,9 @@ services, either publicly or only within the operator's network.
 on every node, in one of two roles:
 
 - **Validator:** Proposes and votes on blocks as part of the QBFT validator set. Maru requests a
-  payload from its execution client, then signs and broadcasts the resulting block.
-- **Follower:** Receives blocks from peers and passes them to its execution client for execution,
-  without voting.
+  payload from its Linea Besu execution client, then signs and broadcasts the resulting block.
+- **Non-validator:** Receives blocks from peers and passes them to its execution clients for
+  execution, without voting.
 
 In both roles, Maru manages validator sets, provides P2P block propagation, and exposes API
 endpoints for monitoring and control.
@@ -96,9 +96,13 @@ These plugins implement the protocol functions that a standard Ethereum client d
 generation for the <GlossaryTerm term="Prover">prover</GlossaryTerm>, Lineth block-building rules,
 <GlossaryTerm term="State manager">state manager</GlossaryTerm> integration, and the `linea_` RPC namespace.
 
-The <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> and
-<GlossaryTerm term="Tracer">trace generation</GlossaryTerm> depend on those plugins, so those roles require Linea
-Besu. Nodes that follow the chain or serve standard Ethereum JSON-RPC can run any execution client.
+Each Maru validator requires a dedicated Linea Besu execution client with
+<GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> plugins.
+During block building, the sequencer generates <GlossaryTerm term="Tracer">traces</GlossaryTerm> to ensure blocks
+remain within prover limits.
+Execution clients that generate prover input traces must also use Linea Besu.
+
+Nodes that follow the chain or serve standard Ethereum JSON-RPC can run any execution client.
 For the full plugin set and its configuration, see the
 [Linea Besu plugin reference](../../stack/reference/linea-besu-plugin-options.mdx).
 

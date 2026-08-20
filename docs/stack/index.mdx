@@ -52,18 +52,27 @@ For the public network overview, see [Linea Mainnet](../network/index.mdx).
 
 ## Why Lineth?
 
-Operators who need more than a public <GlossaryTerm term="Layer 1 (L1)">L1</GlossaryTerm> or
-<GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> usually face a three-way tradeoff known as the
-institutional blockchain technology trilemma:
+As blockchain adoption grows, many organizations encounter constraints in these areas:
 
-- **Privacy and control:** Permissionless networks lack the access, compliance, and data visibility
-  controls many institutions require.
-- **Liquidity and interoperability:** Standalone chains without a path to Ethereum or Linea become silos.
-- **Performance, security, and cost:** Custom L1s add fragmentation, a separate security model, and higher
-  maintenance cost.
+- **Control:** If you transact on a public network you do not operate, you inherit its governance,
+  compliance, and access model.
+  Regulatory and operational requirements are difficult to enforce unless you run the chain.
+- **Privacy:** Transaction data on a public network is visible to anyone.
+  Many deployments need scoped data visibility that permissionless chains do not provide.
+- **Interoperability:** Custom L1s and private systems without a path to Ethereum become silos, adding
+  fragmentation and requiring separate security models.
 
-Lineth is the open-source stack for running your own Ethereum-equivalent network so you can configure all
-three, instead of picking one chain type and accepting its gaps.
+Addressing these constraints with a custom
+<GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> means integrating execution,
+consensus, proving, finalization, and bridging into a single reliable system.
+Lineth provides this system as a production-grade, open-source ZK-rollup stack built from the
+technology that powers [Linea Mainnet](../network/index.mdx).
+Operators deploy Lineth as an Ethereum-compatible L2 or L3, with control over access, data availability,
+the finalization layer, and more.
+
+Lineth is an incubating project at
+[LF Decentralized Trust (LFDT)](https://www.lfdecentralizedtrust.org/), combining the production-proven
+stack with LFDT's vendor-neutral governance and open, long-term stewardship.
 
 ## Key features
 
