@@ -12,22 +12,27 @@ that set it apart from many other layer 2 tokens:
 - LINEA does not come with any governance rights
 - There's no token allocation for insiders, investors, or team members.
 
-Instead, LINEA is distributed to users as a reward for using apps and protocols on the Linea network.
+Instead, LINEA is distributed to users as a reward for using apps and protocols on the
+Linea network.
 
 The token's contract address on Linea Mainnet and Ethereum Mainnet is
 [`0x1789e0043623282D5DCc7F213d703C6D8BAfBB04`](https://lineascan.build/address/0x1789e0043623282D5DCc7F213d703C6D8BAfBB04).
 
 :::note[Need help?]
 
-This page explains the rationale behind token distribution. If you're looking for help with using
-the token, or any other common issues, see the [Linea support page](/support).
+This page explains the rationale behind token distribution.
+If you're looking for help with using the token, or any other common issues, see the
+[Linea support page](/support).
 
 :::
 
 ## Allocation
 
-LINEA had a **genesis supply of 72,009,990,000**. This is 1,000x the genesis supply of ETH on
-Ethereum. Burns reduce that amount over time; see the [token contract](https://lineascan.build/token/0x1789e0043623282D5DCc7F213d703C6D8BAfBB04) for the live `totalSupply()`.
+LINEA had a **genesis supply of 72,009,990,000**.
+This is 1,000x the genesis supply of ETH on Ethereum.
+Burns reduce that amount over time; see the
+[token contract](https://lineascan.build/token/0x1789e0043623282D5DCc7F213d703C6D8BAfBB04)
+for the live `totalSupply()`.
 
 85% of the LINEA supply is allocated to the community and ecosystem, comprising the
 Ecosystem fund, with 15% held long-term by Consensys.
@@ -63,14 +68,16 @@ The supply is allocated according to the below table:
 </table>
 
 Except for the initial allocation to Consensys, which is locked for five years, there is **no
-allocation to private investors, insiders, or employees and team members**. Instead, value is
-funneled straight into the ecosystem, the builders bringing it to fruition, and the community members
-engaging with it.
+allocation to private investors, insiders, or employees and team members**.
+Instead, value is funneled straight into the ecosystem, the builders bringing it to
+fruition, and the community members engaging with it.
 
 At the token generation event (TGE), 22% of the LINEA supply entered circulation,
-split between a user and builder airdrop, ecosystem activations, and liquidity provisioning.
+split between a user and builder airdrop, ecosystem activations, and liquidity
+provisioning (DEX liquidity).
 
-All other allocations were locked at TGE, or vest according to various schedules.
+All other allocations were locked at TGE, or vest (released over time) according to
+various schedules.
 
 ## Ecosystem (85%)
 
@@ -90,19 +97,22 @@ All tokens distributed through these airdrops are fully unlocked.
 The long-term section of the Ecosystem Fund is managed by the Linea Consortium.
 
 This 75% unlocks over 10 years, with unlocks weighted towards the earlier years to encourage
-early activation and adoption. Unlocks occur early; 10% per year in the early years, tapering to 2%
-by the tenth year.
+early activation and adoption.
+Unlocks occur early; 10% per year in the early years, tapering to 2% by the tenth year.
 
 These funds are used for:
+
 - Funding for Ethereum R&D
-- Maintaining shared ecosystem infrastructure such as audits, developer tools, and node infrastructure
+- Maintaining shared ecosystem infrastructure such as audits, developer tools, and node
+  infrastructure
 - Funding public goods, such as open-source software, research, and community programs
-- Strategic co-development with aligned organizations or emerging protocols.
+- Strategic co-development with aligned organizations or emerging protocols
 
 ## Consensys treasury (15%)
 
-15% of the total token supply is held in the Consensys treasury. This allocation is
-locked for five years and is non-transferable until a vesting schedule is complete.
+15% of the total token supply is held in the Consensys treasury.
+This allocation is locked for five years and is non-transferable until a vesting
+schedule is complete.
 
 ## Burning mechanism
 
@@ -114,12 +124,7 @@ After covering infrastructure costs, 100% of surplus revenue gets burned:
 ### How burning works on Linea
 
 Linea and the LINEA token are designed specifically to reinforce the strength of Ethereum and ETH,
-achieved through an automatic, dual-burn mechanism:
-
-- All gas fees on Linea are paid in ETH
-- 20% of net ETH profits (Linea revenue minus operating costs and subsidies) is burned,
-  reducing ETH supply
-- 80% of net ETH profits are used to burn LINEA, reducing LINEA supply.
+achieved through an automatic, dual-burn mechanism.
 
 As a result, network activity on Linea directly supports both the value of ETH and LINEA.
 
@@ -127,13 +132,15 @@ Every transaction on Linea generates gas fees paid in ETH. Instead of keeping th
 burn mechanism permanently removes ETH and LINEA tokens from circulation. This creates deflationary
 pressure on both tokens, directly benefiting holders and the broader ecosystem.
 
-This means Linea becomes a perpetual buyer of its own token while simultaneously reducing ETH supply.
+This means Linea becomes a perpetual buyer of its own token while simultaneously reducing
+ETH supply.
 
 #### Step 1: Revenue collection
 
 All gas fees from transactions on Linea are paid in ETH and automatically collected into a revenue
-vault contract. This happens continuously as users interact with the network. Every swap, transfer,
-NFT mint, or smart contract interaction contributes to this pool.
+vault contract.
+This happens continuously as users interact with the network.
+Every swap, transfer, NFT mint, or smart contract interaction contributes to this pool.
 
 #### Step 2: Covering infrastructure costs
 
@@ -142,9 +149,10 @@ Running a high-performance layer 2 network has real costs:
   transactions (anchoring and claiming)
 - **Offchain costs**: Running the mainnet infrastructure (servers, databases, monitoring systems)
 
-Once calculated, an invoice is submitted to the revenue vault. The vault automatically pays what it
-can from available funds. If there's not enough balance, it tracks the outstanding amount (called
-"arrears") and pays it off when more revenue comes in.
+Once calculated, an invoice is submitted to the revenue vault.
+The vault automatically pays what it can from available funds.
+If there's not enough balance, it tracks the outstanding amount (called "arrears") and
+pays it off when more revenue comes in.
 
 Infrastructure costs are always paid first. Burns only happen when there's surplus revenue.
 
@@ -155,7 +163,8 @@ service operated by the Linea Consortium on a regular basis:
 
 ##### ETH burn (20%)
 
-The vault takes 20% of the available surplus and sends it directly to the zero address (0x0000000000000000000000000000000000000000).
+The vault takes 20% of the available surplus and sends it directly to the zero address
+(`0x0000000000000000000000000000000000000000`).
 This ETH is permanently removed from circulation; it can never be recovered or used again.
 
 ##### LINEA burn (80%)
@@ -181,7 +190,8 @@ Every step of this process is recorded onchain:
 - Bridge transactions showing LINEA moving from L2 to L1
 - Final burn transactions on Ethereum L1
 
-You can verify everything yourself by checking the blockchain. The [**live dashboard**](https://dune.com/linea/burn-metrics)
+You can verify everything yourself by checking the blockchain.
+The [**live dashboard**](https://dune.com/linea/burn-metrics)
 makes it easy to track:
 - Total gas fees collected
 - Total ETH burned since September 11, 2024
