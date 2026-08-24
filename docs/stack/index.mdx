@@ -52,27 +52,26 @@ For the public network overview, see [Linea Mainnet](../network/index.mdx).
 
 ## Why Lineth?
 
-As blockchain adoption grows, many organizations encounter constraints in these areas:
+Organizations that need capabilities beyond those of a public
+<GlossaryTerm term="Layer 1 (L1)">L1</GlossaryTerm> or
+<GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> face "the institutional blockchain technology trilemma"--a
+three-way trade-off between the following:
 
-- **Control:** If you transact on a public network you do not operate, you inherit its governance,
-  compliance, and access model.
-  Regulatory and operational requirements are difficult to enforce unless you run the chain.
-- **Privacy:** Transaction data on a public network is visible to anyone.
-  Many deployments need scoped data visibility that permissionless chains do not provide.
-- **Interoperability:** Custom L1s and private systems without a path to Ethereum become silos, adding
-  fragmentation and requiring separate security models.
+- **Privacy and control:** Permissionless networks do not provide the configurable access, compliance,
+  governance, and data visibility controls many institutions require.
+- **Interoperability and liquidity:** Standalone networks risk becoming silos.
+  Institutions need to transact with each other and connect to liquidity and applications across public
+  ecosystems, not just within a single chain.
+- **Predictable performance, security, and cost:** Activity on shared public networks can affect capacity
+  and fees.
+  An independent L1 offers isolation, but requires operators to fund and maintain their own consensus and
+  security model.
 
-Addressing these constraints with a custom
-<GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> means integrating execution,
-consensus, proving, finalization, and bridging into a single reliable system.
-Lineth provides this system as a production-grade, open-source ZK-rollup stack built from the
-technology that powers [Linea Mainnet](../network/index.mdx).
-Operators deploy Lineth as an Ethereum-compatible L2 or L3, with control over access, data availability,
-the finalization layer, and more.
-
-Lineth is an incubating project at
-[LF Decentralized Trust (LFDT)](https://www.lfdecentralizedtrust.org/), combining the production-proven
-stack with LFDT's vendor-neutral governance and open, long-term stewardship.
+Lineth is the open-source stack for institutions and operators to run their own Ethereum-equivalent network.
+It combines configurable privacy and control, connectivity across institutional and public networks, and
+dedicated execution with more predictable costs.
+As an L2 or L3, a custom Lineth network can inherit the security of a public network while keeping private
+data off that network and avoiding the cost and complexity of maintaining a separate consensus layer.
 
 ## Key features
 
@@ -83,17 +82,14 @@ At a high level, Lineth provides:
 
 - **Ethereum-compatible execution:** Run an Ethereum-equivalent network so existing Solidity contracts
   and Ethereum tooling work.
-- **Flexible deployment models:** Deploy a public network with onchain data availability, or a
-  <GlossaryTerm term="Validium">private validium</GlossaryTerm> with offchain
-  data availability and controlled access.
+- **Configurable deployment models:** Deploy a public network with onchain data availability, or a
+  <GlossaryTerm term="Validium">private validium</GlossaryTerm> with offchain data availability and access control.
 - **Proven state transitions:** <GlossaryTerm term="zk-SNARK" /> proofs verify that state transitions are valid.
   A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
-- **Configurable data visibility:** Choose onchain data availability, or keep transaction data offchain in
-  a private validium and control who can access it.
-  This is access and data visibility control, not cryptographic private execution.
 - **Ethereum-anchored interoperability:** Bridge to Ethereum or Linea through rollup and bridge components.
-  Trust assumptions depend on the deployment model, data availability design, verifier configuration, and
-  upgrade authority.
+  Trust assumptions depend on the deployment model, data availability design, and verifier configuration.
+- **Operational clarity and control:** Clearly defined components, responsibilities, and failure boundaries
+  help you reason about trust, security, and compliance.
 
 Lineth is for technical operators and infrastructure teams who need to run their own network, including
 cases that need privacy, governance, or access controls that public networks do not provide.
