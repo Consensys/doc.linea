@@ -29,10 +29,11 @@ If you're looking for help with using the token, or any other common issues, see
 ## Allocation
 
 LINEA had a **genesis supply of 72,009,990,000**.
-This is 1,000x the genesis supply of ETH on Ethereum.
-Burns reduce that amount over time; see the
-[token contract](https://lineascan.build/token/0x1789e0043623282D5DCc7F213d703C6D8BAfBB04)
-for the live `totalSupply()`.
+This is 1,000x the genesis supply of ETH on Ethereum, and is the maximum supply.
+Burns reduce circulating LINEA over time; they are executed on Ethereum L1.
+Track burn totals on the [Dune dashboard](https://dune.com/linea/burn-metrics)
+or [growthepie](https://www.growthepie.com/quick-bites/linea-burn), not via
+`totalSupply()` on Linea or Ethereum.
 
 85% of the LINEA supply is allocated to the community and ecosystem, comprising the
 Ecosystem Fund, with 15% held long-term by Consensys.
@@ -191,11 +192,12 @@ Every step of this process is recorded onchain:
 - Final burn transactions on Ethereum L1
 
 You can verify everything yourself by checking the blockchain.
-The [**live dashboard**](https://dune.com/linea/burn-metrics)
-makes it easy to track:
+The [**Dune dashboard**](https://dune.com/linea/burn-metrics) and
+[growthepie burn tracker](https://www.growthepie.com/quick-bites/linea-burn)
+make it easy to track:
 - Total gas fees collected
-- Total ETH burned since September 11, 2024
-- Total LINEA burned since September 11, 2024
+- Total ETH burned since September 11, 2025
+- Total LINEA burned since September 11, 2025
 - Daily burn amounts for both tokens
 - Historical trends and charts
 
