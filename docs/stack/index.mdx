@@ -7,6 +7,8 @@ image: /img/socialCards/lineth-stack.jpg
 
 import ActionCards from '@site/src/components/ActionCards';
 import GlossaryTerm from '@theme/GlossaryTerm';
+import TrilemmaGraphic from '/img/stack/institutional-trilemma.svg';
+import TrilemmaGraphicMobile from '/img/stack/institutional-trilemma-mobile.svg';
 
 Lineth (formerly the Linea Stack) is the collection of protocol components, onchain contracts, and operational
 capabilities that you can use to deploy your own Layer 2 or Layer 3 network, inheriting a
@@ -54,7 +56,7 @@ For the public network overview, see [Linea Mainnet](../network/index.mdx).
 
 Organizations that need capabilities beyond those of a public
 <GlossaryTerm term="Layer 1 (L1)">L1</GlossaryTerm> or
-<GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> face "the institutional blockchain trilemma", a
+<GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> face "the institutional blockchain trilemma," a
 three-way trade-off between the following:
 
 - **Privacy and control:** Permissionless networks do not provide the configurable access, compliance,
@@ -67,11 +69,20 @@ three-way trade-off between the following:
   An independent L1 offers isolation, but requires operators to fund and maintain their own consensus and
   security model.
 
+<div className="trilemma-simple-wrap">
+  <TrilemmaGraphic />
+</div>
+<div className="trilemma-simple-wrap-mobile">
+  <TrilemmaGraphicMobile />
+</div>
+
 Lineth is the open-source stack for institutions and operators to run their own Ethereum-equivalent network.
-It combines configurable privacy and control, connectivity across institutional and public networks, and
-dedicated execution with more predictable costs.
-As an L2 or L3, a custom Lineth network can inherit the security of a public network while keeping private
-data off that network and avoiding the cost and complexity of maintaining a separate consensus layer.
+By combining configurable privacy and control, connectivity across institutional and public networks, and
+dedicated execution with more predictable costs, Lineth allows operators to optimize their position in the
+institutional trilemma.
+For example, a Lineth <GlossaryTerm term="Validium">private validium</GlossaryTerm> inherits the security
+of a public network while keeping private data off that network and avoiding the cost and complexity of
+maintaining a separate consensus layer.
 
 ## Key features
 
@@ -83,7 +94,7 @@ At a high level, Lineth provides:
 - **Ethereum-compatible execution:** Run an Ethereum-equivalent network so existing Solidity contracts
   and Ethereum tooling work.
 - **Configurable deployment models:** Deploy a public network with onchain data availability, or a
-  <GlossaryTerm term="Validium">private validium</GlossaryTerm> with offchain data availability and access control.
+  private validium with offchain data availability and access control.
 - **Proven state transitions:** <GlossaryTerm term="zk-SNARK" /> proofs verify that state transitions are valid.
   A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
 - **Ethereum-anchored interoperability:** Bridge to Ethereum or Linea through rollup and bridge components.

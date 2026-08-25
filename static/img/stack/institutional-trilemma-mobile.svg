@@ -1,0 +1,57 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="trilemma-simple"
+  viewBox="0 28 400 300"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="trilemma-simple-m-title"
+>
+  <title id="trilemma-simple-m-title">
+    The institutional blockchain trilemma: privacy and control, interoperability
+    and liquidity, and performance, security, and cost.
+  </title>
+
+  <g class="trilemma-simple-circles">
+    <circle class="trilemma-simple-privacy" cx="145" cy="128" r="90" />
+    <circle class="trilemma-simple-interop" cx="255" cy="128" r="90" />
+    <circle class="trilemma-simple-cost" cx="200" cy="222" r="90" />
+  </g>
+
+  <text
+    x="108"
+    y="108"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="108" dy="0">Privacy and</tspan>
+    <tspan x="108" dy="16">control</tspan>
+  </text>
+  <text
+    x="286"
+    y="108"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="286" dy="0">Interoperability</tspan>
+    <tspan x="286" dy="16">and liquidity</tspan>
+  </text>
+  <text
+    x="200"
+    y="268"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="200" dy="0">Performance, security,</tspan>
+    <tspan x="200" dy="16">and cost</tspan>
+  </text>
+</svg>
