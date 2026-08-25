@@ -77,7 +77,7 @@ corresponds to a published standard, the table flags it.
 
 | Primitive | Where the stack uses it | Standard |
 | --- | --- | --- |
-| ECDSA over secp256k1 | Transaction signing and validator signing | Ethereum-standard curve. Not a NIST-approved curve. |
+| ECDSA over secp256k1 | Transaction signing and validator signing | Ethereum-standard curve. |
 | ECDSA over secp256r1 (P-256) | Available to smart contracts through the `P256VERIFY` precompile ([RIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md)) | Curve approved under [FIPS 186-5](https://csrc.nist.gov/pubs/fips/186-5/final) |
 | Keccak-256 | EVM hashing, state commitments, and role identifiers | Based on the Keccak permutation standardized in [FIPS 202](https://csrc.nist.gov/pubs/fips/202/final) (SHA-3 family). Ethereum uses the pre-standardization Keccak-256 padding, not the FIPS 202 SHA3-256 output. |
 | TLS | Service-to-service and RPC endpoints | Standard TLS. Configuration is per deployment. |
