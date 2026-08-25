@@ -82,7 +82,7 @@ The following table outlines the cryptographic primitives Lineth relies on, wher
 | TLS | Service-to-service and RPC endpoints | Standard TLS. Configuration is per deployment. |
 | Key custody | Remote signing through [Web3Signer](../../protocol/architecture/index.mdx#web3signer), with optional AWS KMS-backed secp256k1 signing | AWS KMS uses FIPS 140-2 and FIPS 140-3 validated HSMs (validations held by AWS). Key custody is a deployment choice. |
 
-All signing and hashing go through established libraries (Besu, web3j, Tuweni,
+All signing and hashing go through established libraries (Besu, web3j, Tuweni, and
 BouncyCastle) or AWS KMS. The stack does not implement custom cryptographic primitives.
 
 ## Available evidence
