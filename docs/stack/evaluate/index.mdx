@@ -1,84 +1,71 @@
 ---
 title: Evaluate Lineth
 sidebar_label: Overview
-description: Capabilities and evidence paths for evaluating a Lineth deployment
+description: >-
+  Compare Lineth deployment models, trust, privacy, security, and compliance
+  against your use case
 sidebar_position: 0
 image: /img/socialCards/evaluate-lineth.jpg
 ---
 
+import ActionCards from "@site/src/components/ActionCards";
 import GlossaryTerm from "@theme/GlossaryTerm";
 
-This section describes <GlossaryTerm term="Lineth" /> capabilities and answers questions you might have
-when evaluating the Lineth stack for your use case.
+This section answers questions you might have when evaluating <GlossaryTerm term="Lineth" /> for
+your use case.
+
+<ActionCards
+  cards={[
+    {
+      text: "Deployment models",
+      description:
+        "Compare public deployment and private validium trade-offs for access, data availability, and finalization.",
+      href: "/stack/evaluate/deployment-models",
+    },
+    {
+      text: "Trust and responsibilities",
+      description:
+        "Learn who operates each component, what each component can do, and what participants can verify.",
+      href: "/stack/evaluate/trust-model",
+    },
+    {
+      text: "Privacy and data visibility",
+      description:
+        "Learn what a deployment publishes, keeps offchain, makes visible, and allows participants to verify.",
+      href: "/stack/evaluate/validium",
+    },
+    {
+      text: "Security and assurance",
+      description:
+        "Review protocol guarantees, operator controls, and published assurance evidence.",
+      href: "/stack/evaluate/security",
+    },
+    {
+      text: "Compliance",
+      description:
+        "See what protocol evidence a deployment produces, to use in your own compliance program.",
+      href: "/stack/evaluate/compliance",
+    },
+  ]}
+/>
+
+:::tip
 To explore the components and architectural design choices, see
 [Deployment architecture](../deployment/index.mdx).
+:::
 
-## What Lineth provides
+## Use cases
 
-Lineth is a <GlossaryTerm term="Zero-knowledge rollup">ZK-rollup</GlossaryTerm> stack.
-A deployment combines a consensus layer, an execution layer, a <GlossaryTerm term="Prover">prover</GlossaryTerm>,
-a <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>, and a set of onchain contracts on a
-<GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
-<GlossaryTerm term="Operator">Operators</GlossaryTerm> choose the deployment model, data availability arrangement, finalization layer, and access controls.
+A Lineth network can host institutional finance workflows such as:
 
-The following capabilities depend on the deployment model chosen.
+- **24/7 settlement:** Keep trading, funding, and cash settlement active outside normal banking hours.
+- **Collateral mobility:** Pledge, recall, and reuse tokenized collateral instead of leaving it trapped
+  across venues and ledgers.
+- **Atomic Delivery versus Payment (DvP):** Settle tokenized cash and securities together, so both flows
+  complete or neither does.
+- **Intraday repo:** Fund for the hours you need, with cash and collateral moving together.
 
-## Deployment model capabilities
-
-Using Lineth, an operator can deploy:
-
-- Public networks, such as Linea Mainnet, with onchain data availability.
-- Private validium networks, with offchain data availability and controlled access.
-
-For the trade-offs between these models, see
-[Deployment models](./deployment-models.mdx).
-
-## Protocol capabilities
-
-### State transition correctness
-
-Lineth uses <GlossaryTerm term="zk-SNARK" /> proofs to verify that state transitions are valid.
-A valid proof means the operator cannot finalize an invalid state transition through the
-normal proof path. Proofs do not by themselves make transaction contents
-private; data visibility depends on the deployment's data availability and
-access model. For the data-visibility distinction, see
-[Privacy and data visibility](./validium.mdx).
-
-### EVM-compatible execution
-
-Lineth runs EVM-compatible contract execution, so existing Solidity contracts
-and Ethereum tooling generally work. Compatibility is constrained by the
-deployment's configuration and by the differences between any chain and
-Ethereum. For the differences between Linea and Ethereum, see
-[Linea and Ethereum](../../network/overview/ethereum-differences.mdx).
-
-### QBFT consensus
-
-For deployments that use multi-validator consensus, Lineth supports
-<GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm>, which provides:
-
-- Fault tolerance with `3f+1` validators, tolerating `f` faulty validators
-- Single-slot finality under the deployment's QBFT safety assumptions
-- Distributed block production when enough validators participate
-
-Single-validator deployments do not use QBFT and rely on the operator trust
-model instead. For design trade-offs, topology, and latency, see
-[Multi-validator consensus](../deployment/distributed-sequencing.mdx). For trust
-assumptions per model, see
-[Trust and responsibilities](./trust-model.mdx).
-
-### Dual-layer architecture
-
-Lineth separates consensus and execution. This lets operators choose different
-client configurations and scale consensus and execution independently. It does
-not by itself provide client diversity or network resilience; those depend on
-the operator's deployment.
-
-## Where to go next
-
-| Question                                                        | Page                                                          |
-| --------------------------------------------------------------- | ------------------------------------------------------------- |
-| Who operates what, and what can each component do?              | [Trust and responsibilities](./trust-model.mdx) |
-| Who can see what data?                                          | [Privacy and data visibility](./validium.mdx)                 |
-| What does the protocol guarantee, and what evidence exists?     | [Security and assurance](./security.mdx)                      |
-| What protocol evidence can operators use for compliance design? | [Compliance](./compliance.mdx)                                |
+Whether you need a public network with open access and onchain data, or a
+<GlossaryTerm term="Validium">private validium</GlossaryTerm> that keeps transaction data offchain and
+controls who can access it, you can configure Lineth for either.
+Start by evaluating [deployment models](deployment-models.mdx).
