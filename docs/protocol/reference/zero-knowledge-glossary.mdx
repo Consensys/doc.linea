@@ -187,10 +187,6 @@ While Ethereum may reorg, Linea does not. The zero knowledge validity proof crea
 
 Furthermore, Linea takes action to ensure that interoperability between the public network and the Layer 1 preserves the property of preventing block reorganizations. Before any interoperating transaction anchored to Layer 1 state (for example, a deposit of a token into the bridge), Linea will wait for the Layer 1 state to be finalized before committing the appropriate action on the Layer 2. This ensures that even a reorganization of Ethereum, which is an expected and normal part of operations, does not result in a reorganization of the Linea L2.
 
-### Role-based access control (RBAC)
-
-Operator-configured access control for protected Lineth RPC, API, and tooling surfaces. RBAC determines which protected interfaces and data a participant can access, but it is not cryptographic privacy: it doesn't encrypt public-chain data, replace zero-knowledge proof verification, or provide data availability on its own.
-
 ### Rollup
 
 A type of L2 scaling solution that batches multiple transactions and submits them to Ethereum in a single transaction. This allows for reductions in gas costs and increases in transaction throughput. There are optimistic and zero-knowledge rollups, which use different security methods to offer these scalability gains.

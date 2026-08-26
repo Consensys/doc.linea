@@ -10,7 +10,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 This page describes what a <GlossaryTerm term="Lineth" /> deployment
 publishes, retains offchain, makes visible, and allows participants to verify.
 
-For access policy, see [Access control](../deployment/rbac.mdx).
+For access policy, see [Access control](../deployment/access-control.mdx).
 For regulatory compliance, see [Compliance](./compliance.mdx).
 
 This page does not cover cryptographic private execution or private state.
@@ -33,7 +33,7 @@ State commitments and proofs are posted onchain. Transaction data is not.
 | -------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Finalization layer               | State commitments, zk-SNARK proofs, bridge messages     | Anyone reading the finalization layer                                        |
 | Operator data availability layer | Transaction data, full ordered history                  | Participants the operator authorizes, per the deployment's data access model |
-| RPC and API surfaces             | State and transactions the caller is authorized to view | Callers with [RBAC](../deployment/rbac.mdx) permissions for the relevant endpoint        |
+| RPC and API surfaces             | State and transactions the caller is authorized to view | Callers with [RBAC permissions](../deployment/access-control.mdx) for the relevant endpoint        |
 
 Offchain data availability changes where transaction data lives. It does not by
 itself make transactions cryptographically private. A participant with access to
@@ -49,18 +49,14 @@ participant can verify their own state against the onchain commitments using
 Unlike a public network, a validium does not give every participant a full view
 of all transactions or their ordering. Reconstruction or independent
 verification of full history requires access to the offchain data, which the
-deployment's [RBAC](../deployment/rbac.mdx) and governance rules control.
+deployment's [access control](../deployment/access-control.mdx) and governance rules control.
 
 ## Access control
 
-[RBAC](../deployment/rbac.mdx) controls access to network functionality:
+The [privacy proxy](../deployment/access-control.mdx) controls access to JSON-RPC, APIs, and tooling,
+determined by role-based permissions.
 
-- RPC endpoints: access controlled by API keys and permissions
-- API portal: institution-level access controls
-- Transaction visibility: participants see only transactions they are authorized
-  to view
-
-RBAC is an access policy. It controls who can call an endpoint or view data the
+Access control restricts who can call an endpoint or view data the
 deployment exposes. It is not a cryptographic privacy mechanism and does not
 hide data from the operator or from participants who already hold the data.
 
@@ -114,7 +110,7 @@ For the full trust assumptions, see
 ### Security features
 
 - Minimum node count: 4 nodes for QBFT fault tolerance
-- Access controls: [RBAC](../deployment/rbac.mdx) on RPC and API endpoints
+- [Access control](../deployment/access-control.mdx): Role-based permissions on JSON-RPC, APIs, and tooling
 - Key management: supports
   [Web3Signer](../../protocol/architecture/index.mdx#web3signer) remote signing
   backed by a hardware security module (HSM) or key management service (KMS)

@@ -44,7 +44,7 @@ When configuring a deployment, consider:
 - Data availability guarantees: how important is onchain data availability for
   your participants?
 - Network topology: do you need a private network with controlled membership?
-- Access control: do you need [RBAC](../deployment/rbac.mdx) on RPC endpoints and
+- [Access control](../deployment/access-control.mdx): do you need RBAC on RPC endpoints and
   APIs?
 
 ## Public
@@ -71,7 +71,7 @@ data availability.
 - Validator topology: if the deployment uses a
   [multi-validator QBFT design](../deployment/distributed-sequencing.mdx), at least 4
   Maru validators are required to tolerate one faulty validator
-- Access controls: whether to implement [RBAC](../deployment/rbac.mdx) on RPC
+- [Access control](../deployment/access-control.mdx): whether to implement RBAC on RPC
   endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
@@ -90,8 +90,8 @@ and access-control design; Lineth does not certify a deployment as compliant.
   set
 - Data visibility: transaction details are not posted to the finalization layer;
   what participants can see depends on the deployment's data availability and
-  [RBAC](../deployment/rbac.mdx) configuration
-- Access control: RPC endpoints protected by [RBAC](../deployment/rbac.mdx); only
+  access control configuration
+- [Access control](../deployment/access-control.mdx): RPC endpoints protected by RBAC; only
   authorized participants can view data they are scoped to
 - [Finalization](../../network/overview/transaction-finality.mdx): state
   commitments and proofs are posted to the finalization layer
@@ -121,7 +121,7 @@ what is not claimed.
 - Validator topology: at least 4 Maru validators are required for a
   [QBFT design](../deployment/distributed-sequencing.mdx) that tolerates one faulty
   validator
-- Access controls: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API portal
+- [Access control](../deployment/access-control.mdx): RBAC on RPC endpoints and API portal
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
   (KMS)
