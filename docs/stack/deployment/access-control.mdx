@@ -1,9 +1,6 @@
 ---
 title: Access control
-description: >-
-  Operator-configured access policy for protected Lineth RPC, API, and tooling
-  surfaces
-sidebar_position: 5
+description: How the access control stack works, including privacy proxy, RBAC model, and block explorer
 image: /img/socialCards/access-control.jpg
 ---
 
@@ -71,16 +68,16 @@ flowchart TB
   PX["Privacy proxy"]:::access
   ND["Lineth node"]:::core
   IDX["Chain indexer"]:::access
-  POL["RBAC database"]:::neutral
-  AUD["Access log"]:::neutral
+  DB["RBAC database"]:::neutral
+  LOG["Access log"]:::neutral
 
   CL --> PX
   EX -->|"every read"| PX
   PX -->|"JSON-RPC"| ND
   PX -->|"gRPC"| IDX
   IDX -->|"indexes"| ND
-  PX -.-> POL
-  PX -.-> AUD
+  PX -.-> DB
+  PX -.-> LOG
 ```
 </div>
 
@@ -177,7 +174,3 @@ They do not receive a view of private contracts or transaction data.
   data availability and controlled access.
 - [Trust and responsibilities](../evaluate/trust-model.mdx): What participants can verify when access and
   data availability are restricted.
-- [Security and assurance](../evaluate/security.mdx): How the privacy proxy fits into operational security controls.
-- [Deployment models](../evaluate/deployment-models.mdx): How access control factors into deployment design.
-- [RPC services](../../protocol/architecture/rpc-services.mdx): How RPC services expose blockchain data and
-  can sit behind access controls.
