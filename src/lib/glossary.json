@@ -119,7 +119,7 @@
     },
     {
       "term": "Maru",
-      "definition": "Lineth's consensus layer client. Maru runs on every node, paired with an execution client, and implements the QBFT consensus algorithm. Validator nodes use Maru to propose and vote on blocks; follower nodes use it to receive blocks from peers and pass them to the execution client. In both roles, Maru provides peer-to-peer networking for block propagation and exposes API endpoints for monitoring and control."
+      "definition": "Lineth's consensus layer client, which implements the QBFT consensus algorithm. Maru communicates with its execution clients, propagates blocks to peers, and exposes API endpoints for monitoring and control. A Maru node either takes part in consensus as a validator or receives blocks from peers without voting."
     },
     {
       "term": "Operator",

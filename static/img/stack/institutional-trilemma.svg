@@ -1,0 +1,119 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="trilemma-simple"
+  viewBox="0 20 900 304"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="trilemma-simple-title"
+>
+  <title id="trilemma-simple-title">
+    The institutional blockchain trilemma: privacy and control, interoperability
+    and liquidity, and performance, security, and cost.
+  </title>
+
+  <g class="trilemma-simple-circles">
+    <circle class="trilemma-simple-privacy" cx="400" cy="132" r="90" />
+    <circle class="trilemma-simple-interop" cx="508" cy="132" r="90" />
+    <circle class="trilemma-simple-cost" cx="454" cy="226" r="90" />
+  </g>
+
+  <text
+    x="360"
+    y="112"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="360" dy="0">Privacy and</tspan>
+    <tspan x="360" dy="16">control</tspan>
+  </text>
+  <text
+    x="542"
+    y="112"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="542" dy="0">Interoperability</tspan>
+    <tspan x="542" dy="16">and liquidity</tspan>
+  </text>
+  <text
+    x="454"
+    y="268"
+    text-anchor="middle"
+    font-family="AtypText, sans-serif"
+    font-size="13"
+    font-weight="600"
+    fill="var(--linea-text-primary)"
+  >
+    <tspan x="454" dy="0">Performance, security,</tspan>
+    <tspan x="454" dy="16">and cost</tspan>
+  </text>
+
+  <line
+    x1="236"
+    y1="78"
+    x2="322"
+    y2="118"
+    stroke="var(--linea-text-muted)"
+    stroke-width="1.25"
+    stroke-dasharray="4 4"
+  />
+  <line
+    x1="664"
+    y1="78"
+    x2="586"
+    y2="118"
+    stroke="var(--linea-text-muted)"
+    stroke-width="1.25"
+    stroke-dasharray="4 4"
+  />
+  <line
+    x1="236"
+    y1="278"
+    x2="372"
+    y2="248"
+    stroke="var(--linea-text-muted)"
+    stroke-width="1.25"
+    stroke-dasharray="4 4"
+  />
+
+  <text
+    x="24"
+    y="56"
+    font-family="AtypText, sans-serif"
+    font-size="14"
+    fill="var(--linea-text-secondary)"
+  >
+    <tspan x="24" dy="0">Permissionless networks lack</tspan>
+    <tspan x="24" dy="18">configurable access, compliance,</tspan>
+    <tspan x="24" dy="18">governance, and data visibility.</tspan>
+  </text>
+  <text
+    x="668"
+    y="56"
+    font-family="AtypText, sans-serif"
+    font-size="14"
+    fill="var(--linea-text-secondary)"
+  >
+    <tspan x="668" dy="0">Standalone networks become silos,</tspan>
+    <tspan x="668" dy="18">without a path to public liquidity</tspan>
+    <tspan x="668" dy="18">and applications.</tspan>
+  </text>
+  <text
+    x="24"
+    y="256"
+    font-family="AtypText, sans-serif"
+    font-size="14"
+    fill="var(--linea-text-secondary)"
+  >
+    <tspan x="24" dy="0">A custom L1 isolates capacity and</tspan>
+    <tspan x="24" dy="18">fees, but operators fund a separate</tspan>
+    <tspan x="24" dy="18">consensus and security model.</tspan>
+  </text>
+</svg>

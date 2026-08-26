@@ -178,6 +178,65 @@
   scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
 }
 
+.trilemma-simple-wrap {
+  max-width: 840px;
+  margin: 0 auto 1rem;
+}
+
+.trilemma-simple-wrap-mobile {
+  display: none;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+}
+
+.trilemma-simple-circles {
+  mix-blend-mode: multiply;
+}
+
+.trilemma-simple-privacy,
+.trilemma-simple-interop,
+.trilemma-simple-cost {
+  fill-opacity: 0.72;
+}
+
+.trilemma-simple-privacy {
+  fill: #c4b5fd;
+}
+
+.trilemma-simple-interop {
+  fill: #7dd3fc;
+}
+
+.trilemma-simple-cost {
+  fill: #f9a8d4;
+}
+
+[data-theme="dark"] .trilemma-simple-circles {
+  mix-blend-mode: screen;
+}
+
+[data-theme="dark"] .trilemma-simple-privacy {
+  fill: #8b5cf6;
+}
+
+[data-theme="dark"] .trilemma-simple-interop {
+  fill: #22d3ee;
+}
+
+[data-theme="dark"] .trilemma-simple-cost {
+  fill: #f472b6;
+}
+
+@media (max-width: 768px) {
+  .trilemma-simple-wrap {
+    display: none;
+  }
+
+  .trilemma-simple-wrap-mobile {
+    display: block;
+  }
+}
+
 .my-tabs {
   display: inline-flex;
   justify-content: normal;
