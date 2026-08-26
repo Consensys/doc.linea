@@ -26,6 +26,9 @@ you can take to verify this information.
     - Adjust Yield Manager parameters ramping up to 60% of funds.
     - Call to the SafeExecutionConditions `0xe2ee8f0A648b8c29e72C61d65F46b7642fe83376` preventing execution before 9am UTC September 01 2026.
   - Verification
+      - [Links to audits](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/docs/audits.md#rollup-message-service-and-token-bridge)  
+        - Deployment addresses `0x052b73d934e9412045bf731574463fd026d74645` - see `Yield Manager Revision August 20th 2026`.
+      - `Upgraded` event with new implementation address `0x052b73d934e9412045bf731574463fd026d74645`
       - `WithdrawalReserveParametersSet` event
       - `newTargetWithdrawalReservePercentageBps` should change to `4000` from the old value of `9000`.
       - `newMinimumWithdrawalReservePercentageBps` should change to `3500` from the old value of `8500`.
