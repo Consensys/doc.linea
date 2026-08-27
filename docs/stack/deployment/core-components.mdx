@@ -45,32 +45,6 @@ The following [smart contracts](../../protocol/architecture/smart-contracts.mdx)
 - `LineaRollup` message bridge contract
 - Token bridge contracts
 
-## Data availability
-
-In addition to concrete components, Lineth depends on correctness-critical requirements, which may be satisfied by different implementations depending on the [deployment model](../evaluate/deployment-models.mdx).
-
-**Purpose**
-
-- Ensure transaction data and state transitions remain accessible
-- Enable reconstruction and verification of historical state
-
-**Correctness requirement**
-
-- Without data availability, the protocol cannot be independently verified
-- Loss of data availability breaks state reconstructability
-
-**Example implementations**
-
-- **Linea Public Mainnet deployment:** EIP-4844 blobs on Ethereum
-- **Private Validium deployments:** Operator-provided or outsourced data availability infrastructure
-
-**Trust model**
-
-- Data availability is within the trust boundary
-- Responsibility for data availability implementation depends on deployment model
-
-See more on [data availability considerations](./data-availability-finalization.mdx).
-
 ## Auxiliary services
 
 Auxiliary services are **not required for protocol correctness**. They are typically **optional** 
