@@ -1,0 +1,249 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 500"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="mvc-title mvc-desc"
+>
+  <title id="mvc-title">Multi-validator Maru deployment on Lineth</title>
+  <desc id="mvc-desc">
+    Four Maru validators run QBFT consensus in an all-to-all mesh. Each validator
+    pairs one-to-one with its own Linea Besu execution client over the Engine
+    API, and those execution clients stay in sync with each other over peer-to-peer
+    chain sync. A single designated Linea Besu node feeds the unchanged downstream
+    Lineth components: coordinator, prover, state manager, RPC nodes, L1 contracts,
+    and bridge.
+  </desc>
+
+  <defs>
+    <marker id="mvc-arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--linea-mermaid-cyan-stroke)" />
+    </marker>
+    <marker id="mvc-arrow-core" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--linea-mermaid-core-stroke)" />
+    </marker>
+    <marker id="mvc-arrow-muted" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--linea-text-muted)" />
+    </marker>
+  </defs>
+
+  <!-- PP Band 1: Consensus (Maru) PP -->
+
+  <circle cx="30" cy="100" r="11"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="30" y="105" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    font-weight="600" fill="var(--linea-text-primary)">1</text>
+  <text x="50" y="96" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">Consensus</text>
+  <text x="50" y="112" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">(Maru)</text>
+
+  <!-- QBFT mesh: non-adjacent pairs as arcs above the boxes -->
+  <path d="M 255 83 Q 562 -47 870 83" fill="none" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+  <path d="M 255 83 Q 460 5 665 83" fill="none" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+  <path d="M 460 83 Q 665 5 870 83" fill="none" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+
+  <!-- QBFT mesh: adjacent pairs -->
+  <line x1="336" y1="111" x2="379" y2="111" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+  <line x1="541" y1="111" x2="584" y2="111" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+  <line x1="746" y1="111" x2="789" y2="111" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+
+  <!-- Maru validator boxes -->
+  <rect x="180" y="84" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="255" y="106" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Maru</text>
+  <text x="255" y="123" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">validator 0</text>
+
+  <rect x="385" y="84" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="460" y="106" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Maru</text>
+  <text x="460" y="123" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">validator 1</text>
+
+  <rect x="590" y="84" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="665" y="106" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Maru</text>
+  <text x="665" y="123" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">validator 2</text>
+
+  <rect x="795" y="84" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)" stroke-width="1.5" />
+  <text x="870" y="106" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Maru</text>
+  <text x="870" y="123" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">validator 3</text>
+
+  <!-- Deployment notes -->
+  <text x="970" y="96" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">Static peering recommended</text>
+  <text x="970" y="112" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">(no bootnode)</text>
+  <text x="970" y="140" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">3 &#215; one-way latency + ~50 ms</text>
+  <text x="970" y="156" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">= consensus overhead</text>
+
+  <line x1="16" y1="172" x2="1184" y2="172" stroke="var(--linea-mermaid-cluster-border)"
+    stroke-width="1" stroke-dasharray="6 5" />
+
+  <!-- PP Band 2: Execution (Linea Besu) PP -->
+
+  <circle cx="30" cy="226" r="11"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="30" y="231" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    font-weight="600" fill="var(--linea-text-primary)">2</text>
+  <text x="50" y="222" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">Execution</text>
+  <text x="50" y="238" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">(Linea Besu)</text>
+
+  <!-- Engine API links -->
+  <line x1="255" y1="140" x2="255" y2="207" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="263" y="192" font-family="AtypText, sans-serif" font-size="10"
+    fill="var(--linea-text-muted)">Engine API</text>
+  <line x1="460" y1="140" x2="460" y2="207" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="468" y="192" font-family="AtypText, sans-serif" font-size="10"
+    fill="var(--linea-text-muted)">Engine API</text>
+  <line x1="665" y1="140" x2="665" y2="207" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="673" y="192" font-family="AtypText, sans-serif" font-size="10"
+    fill="var(--linea-text-muted)">Engine API</text>
+  <line x1="870" y1="140" x2="870" y2="207" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="878" y="192" font-family="AtypText, sans-serif" font-size="10"
+    fill="var(--linea-text-muted)">Engine API</text>
+
+  <!-- Linea Besu execution clients -->
+  <rect x="180" y="210" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="255" y="232" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Linea Besu</text>
+  <text x="255" y="249" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">node 0</text>
+
+  <rect x="385" y="210" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="460" y="232" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Linea Besu</text>
+  <text x="460" y="249" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">node 1</text>
+
+  <rect x="590" y="210" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="665" y="232" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Linea Besu</text>
+  <text x="665" y="249" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">node 2</text>
+
+  <rect x="795" y="210" width="150" height="54" rx="4"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="870" y="232" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">Linea Besu</text>
+  <text x="870" y="249" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
+    fill="var(--linea-text-primary)">node 3</text>
+
+  <!-- Peer-to-peer chain sync -->
+  <line x1="336" y1="237" x2="379" y2="237" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-dasharray="5 4" marker-start="url(#mvc-arrow-muted)" marker-end="url(#mvc-arrow-muted)" />
+  <line x1="541" y1="237" x2="584" y2="237" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-dasharray="5 4" marker-start="url(#mvc-arrow-muted)" marker-end="url(#mvc-arrow-muted)" />
+  <line x1="746" y1="237" x2="789" y2="237" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-dasharray="5 4" marker-start="url(#mvc-arrow-muted)" marker-end="url(#mvc-arrow-muted)" />
+  <text x="562" y="290" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">Linea Besu P2P (chain sync)</text>
+
+  <!-- Designated node feeds the downstream stack -->
+  <line x1="255" y1="266" x2="255" y2="347" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="263" y="306" font-family="AtypText, sans-serif" font-size="10"
+    fill="var(--linea-text-muted)">Designated node</text>
+
+  <line x1="16" y1="320" x2="1184" y2="320" stroke="var(--linea-mermaid-cluster-border)"
+    stroke-width="1" stroke-dasharray="6 5" />
+
+  <!-- PP Band 3: Downstream Lineth (unchanged) PP -->
+
+  <circle cx="30" cy="366" r="11"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="30" y="371" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    font-weight="600" fill="var(--linea-text-primary)">3</text>
+  <text x="50" y="358" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">Downstream</text>
+  <text x="50" y="374" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">Lineth</text>
+  <text x="50" y="390" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">(unchanged)</text>
+
+  <rect x="180" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="237" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">Coordinator</text>
+
+  <rect x="310" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="367" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">Prover</text>
+
+  <rect x="440" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="497" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">State manager</text>
+
+  <rect x="570" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="627" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">RPC nodes</text>
+
+  <rect x="700" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="757" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">L1 contracts</text>
+
+  <rect x="830" y="350" width="115" height="48" rx="4" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="887" y="378" text-anchor="middle" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-primary)">Bridge</text>
+
+  <!-- PP Legend PP -->
+
+  <rect x="16" y="420" width="1168" height="60" rx="6" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1" />
+  <text x="44" y="455" font-family="AtypText, sans-serif" font-size="12" font-weight="600"
+    fill="var(--linea-text-primary)">Legend:</text>
+
+  <line x1="120" y1="450" x2="160" y2="450" stroke="var(--linea-mermaid-cyan-stroke)"
+    stroke-width="1.5" marker-start="url(#mvc-arrow-cyan)" marker-end="url(#mvc-arrow-cyan)" />
+  <text x="170" y="455" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">QBFT consensus (3 phases)</text>
+
+  <line x1="380" y1="450" x2="420" y2="450" stroke="var(--linea-mermaid-core-stroke)"
+    stroke-width="1.5" marker-end="url(#mvc-arrow-core)" />
+  <text x="430" y="455" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">Engine API</text>
+
+  <line x1="560" y1="450" x2="600" y2="450" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-dasharray="5 4" marker-start="url(#mvc-arrow-muted)" marker-end="url(#mvc-arrow-muted)" />
+  <text x="610" y="455" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">Linea Besu P2P (chain sync)</text>
+
+  <rect x="850" y="440" width="40" height="20" rx="3" fill="transparent"
+    stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="900" y="455" font-family="AtypText, sans-serif" font-size="11"
+    fill="var(--linea-text-secondary)">Unchanged Lineth components</text>
+</svg>

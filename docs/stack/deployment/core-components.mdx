@@ -19,8 +19,10 @@ The following components are **required**.
 **Replaceability:** Versioned via protocol upgrade.
 
 - [Maru](../../protocol/architecture/index.mdx#consensus-client-maru): Consensus layer client
-- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu): Execution layer client
-- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Orders transactions and builds blocks
+- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu): Execution layer client.
+  Required for sequencer nodes and trace generation; other nodes can run any Ethereum execution client
+- [Sequencer](../../protocol/architecture/sequencer/index.mdx): Linea Besu plugins that order, build, and
+  execute blocks
 - [Coordinator](../../protocol/architecture/coordinator/index.mdx): Orchestrates batching, proof generation, and submissions
 - [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs of state transitions
 - [State manager](../../protocol/architecture/state-manager.mdx): Maintains a state representation for proof generation
@@ -31,6 +33,10 @@ Lineth uses a [dual-layer architecture](../../protocol/architecture/index.mdx#no
 execution client for the EVM.
 Operators can configure the consensus and execution layers separately.
 This enables but does not guarantee client diversity and network resilience; those depend on the operator's deployment.
+
+Each Maru validator requires its own Linea Besu execution client.
+Additional execution clients can be attached to an existing Maru node as followers, without running more
+Maru nodes.
 :::
 
 ## Onchain system contracts

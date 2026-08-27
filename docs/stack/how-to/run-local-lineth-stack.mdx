@@ -30,8 +30,10 @@ quickstart material in production.
 The quickstart runs a local Lineth Stack <GlossaryTerm term="Layer 2 (L2)">L2</GlossaryTerm> with these services. For component
 details, see [Deployment components](/stack/deployment/core-components).
 
-- Linea Besu <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> and an L2 Besu <GlossaryTerm term="RPC node">RPC follower</GlossaryTerm>
-- <GlossaryTerm term="Maru"/> consensus layer client
+- Linea Besu <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm>, and an L2 Besu
+  <GlossaryTerm term="Follower execution client">follower execution client</GlossaryTerm> that serves RPC
+- <GlossaryTerm term="Maru"/> consensus layer client, running as a
+  <GlossaryTerm term="Maru validator">validator</GlossaryTerm> and driving both execution clients
 - <GlossaryTerm term="Shomei"/> state manager
 - <GlossaryTerm term="Coordinator"/> for batching, proof orchestration, L2 message data anchoring, and
   submissions
