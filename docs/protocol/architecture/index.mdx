@@ -29,7 +29,7 @@ The following represents a possible configuration for a network built on Lineth:
     <img
       src="/img/get_started/concepts/architecture/Linea_architecture_desktop.svg"
       alt={
-        "Lineth architecture diagram showing validator and full nodes, RPC services, " +
+        "Lineth architecture diagram showing sequencer and full nodes, RPC services, " +
         "internal protocol services, and finalization to Ethereum. This section details those components shown in this image and how they define the protocol's behavior and guarantees: Components overview, Nodes, Consensus client Maru, Execution clients, Linea Besu, RPC nodes, Internal protocol services, Sequencer, Coordinator, Prover, State manager, Tracer, Onchain system contracts, Auxiliary services, Block explorer, Web3Signer, Data availability, Transaction lifecycle, Next steps"
       }
     />
@@ -74,13 +74,21 @@ services, either publicly or only within the operator's network.
 <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus and runs
 on every node, in one of two roles:
 
-- **Validator:** Proposes and votes on blocks as part of the QBFT validator set. Maru requests a
-  payload from its Linea Besu execution client, then signs and broadcasts the resulting block.
-- **Non-validator:** Receives blocks from peers and passes them to its execution clients for
-  execution, without voting.
+- **<GlossaryTerm term="Maru validator">Maru validator</GlossaryTerm>:** Proposes and votes on blocks as
+  part of the QBFT validator set. Maru requests a payload from its dedicated Linea Besu execution client,
+  then signs and broadcasts the resulting block.
+- **<GlossaryTerm term="Maru non-validator">Maru non-validator</GlossaryTerm>:** Receives blocks from peers
+  and imports them into its execution clients, without proposing or voting.
 
 In both roles, Maru manages validator sets, provides P2P block propagation, and exposes API
 endpoints for monitoring and control.
+
+A single Maru node can drive more than one execution client. Alongside the client it uses for block
+building or import, either role can drive additional
+<GlossaryTerm term="Follower execution client">follower execution clients</GlossaryTerm>, configured
+under [`follower-engine-apis`](../../stack/reference/linea-maru-options.mdx#maru).
+A follower execution client doesn't run a Maru of its own.
+
 For Maru TOML configuration keys, see the
 [Maru options](../../stack/reference/linea-maru-options.mdx).
 
@@ -98,11 +106,19 @@ generation for the <GlossaryTerm term="Prover">prover</GlossaryTerm>, Lineth blo
 
 Each Maru validator requires a dedicated Linea Besu execution client with
 <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> plugins.
+A Maru validator paired with such a client is a
+<GlossaryTerm term="Sequencer node">sequencer node</GlossaryTerm>, and that pairing is what produces
+canonical blocks.
 During block building, the sequencer generates <GlossaryTerm term="Tracer">traces</GlossaryTerm> to ensure blocks
 remain within prover limits.
 Execution clients that generate prover input traces must also use Linea Besu.
 
-Nodes that follow the chain or serve standard Ethereum JSON-RPC can run any execution client.
+Nodes that only import blocks or serve standard Ethereum JSON-RPC can run any Ethereum execution client.
+
+This makes the two layers separately configurable, but not symmetrically scalable. Because every
+validator needs its own Linea Besu, adding validators also means adding execution clients. Follower
+execution clients can be added independently, without adding more Maru nodes.
+
 For the full plugin set and its configuration, see the
 [Linea Besu plugin reference](../../stack/reference/linea-besu-plugin-options.mdx).
 

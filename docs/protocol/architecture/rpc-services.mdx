@@ -14,7 +14,15 @@ Any <GlossaryTerm term="Lineth" /> node can serve them, publicly or only within 
 nodes are typically placed behind load balancers and access controls
 (<GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>).
 
-What distinguishes one RPC node from another is how much state history it retains.
+Two things distinguish one RPC node from another: which methods it serves, and how much state history
+it retains. Serving RPC is independent of a node's consensus role.
+
+## Method availability
+
+Standard Ethereum JSON-RPC namespaces are available on any execution client. The `linea_` namespace is
+implemented by Linea Besu plugins, so a node serves those methods only if it runs Linea Besu with the
+relevant plugins enabled. A node running Geth, Erigon, Nethermind, or upstream Besu serves standard
+Ethereum methods but not the `linea_` namespace.
 
 ## State retention
 
