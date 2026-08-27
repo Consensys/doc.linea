@@ -26,7 +26,8 @@
     "typecheck": "tsc",
     "typecheck-staged": "tsc-files --noEmit",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "write-translations": "docusaurus write-translations"
+    "write-translations": "docusaurus write-translations",
+    "prepare": "husky"
   },
   "commitlint": {
     "extends": [
@@ -37,7 +38,7 @@
     "src/**/*.{ts,js,jsx,tsx}": "npm run lint:js:fix",
     "**/*.{ts,tsx}": "npm run typecheck-staged",
     "**/*.css": "npm run lint:style",
-    "**/*.{md,mdx,ts,js,tsx,jsx,json}": "npm run format"
+    "**/*.{md,mdx,ts,js,tsx,jsx,json}": "prettier --write"
   },
   "browserslist": {
     "production": [
@@ -118,6 +119,7 @@
     "globals": "17.7.0",
     "google-auth-library": "10.7.0",
     "googleapis-common": "8.0.2",
+    "husky": "^9.1.7",
     "lint-staged": "17.0.8",
     "prettier": "3.8.4",
     "semantic-release": "25.0.5",

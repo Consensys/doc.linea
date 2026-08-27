@@ -15,10 +15,20 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Lint code
-        uses: Consensys/github-actions/docs-lint-all@3a2429772a5d3653f0662a6a66299cad96e74196 # main
+        uses: Consensys/github-actions/docs-lint-all@main
 
-      - name: Lint markdown
-        uses: Consensys/github-actions/docs-lint-markdown@3a2429772a5d3653f0662a6a66299cad96e74196 # main
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/*.{md,mdx,json,ts,js,tsx,jsx,css}
+
+      - name: Prettier check
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npx prettier --check ${{ steps.changed-files.outputs.all_changed_files }}
