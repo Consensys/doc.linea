@@ -11,7 +11,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 
 One of the main value propositions of a public blockchain network is that it be, well, _public_. This means that the information about what’s going on the network needs to be readily available. Networks like Ethereum have this more or less built in and available as part of the software: each node has an API that will return any information you ask for; if you have a lot of requests, well, you just need more nodes.
 
-To be clear, that’s how Linea works too--it’s just that Ethereum's incentive mechanisms mean that anyone can stake ETH and run a validator node.  Linea doesn't rely on staking to ensure correctness. As an outcome, its nodes are run by teams at Consensys. Therefore, in order to provide for the massive interest that the network has generated, a lot of nodes have to be run. This allows dapps to ask for information about the state of the network without impeding the actual execution of transactions by overloading the client.
+Linea works the same way. The difference is that Ethereum's incentive mechanisms let anyone stake ETH and run an Ethereum validator node, whereas Linea doesn't rely on staking for correctness. Consensys teams run Linea's nodes instead, and run enough of them to meet demand. That capacity lets dapps query network state without overloading the clients that execute transactions.
 
 ## What do the public RPCs do?
 
