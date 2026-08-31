@@ -96,7 +96,7 @@ The blockchain where a Lineth deployment submits proofs and state commitments fo
 
 ### Follower execution client
 
-An execution client that a Maru node drives through its `follower-engine-apis` configuration. A follower execution client imports and executes the blocks Maru gives it, but never proposes them, so it doesn't need sequencer plugins and can be any Ethereum execution client. It doesn't run a Maru of its own, and it may or may not serve JSON-RPC. Both Maru validators and Maru non-validators can drive follower execution clients.
+An execution client that a Maru consensus client drives through its `follower-engine-apis` configuration. A follower execution client imports and executes the blocks Maru gives it, but never proposes them, so it doesn't need sequencer plugins and can be any Ethereum execution client. It doesn't run its own Maru instance, and it may or may not serve JSON-RPC. Both Maru validators and Maru non-validators can drive follower execution clients.
 
 ### Fraud proof
 
@@ -104,7 +104,7 @@ In optimistic rollups, the evidence a verifier provides to question the validity
 
 ### Full node
 
-A node that runs Maru paired with at least one execution client and validates the chain block by block, executing and verifying every block it imports. A full node keeps recent state and prunes older data, which it can regenerate on demand; an [archive node](#archive-node) is a full node that retains state at every block from genesis. Running a full node is independent of consensus role: a full node can be a [Maru validator](#maru-validator) or a [Maru non-validator](#maru-non-validator), and may or may not serve JSON-RPC.
+A node that runs Maru paired with at least one execution client and validates the chain block by block, executing and verifying every block it imports. A full node keeps recent state and prunes older data, which it can regenerate on demand; an [archive node](#archive-node) is a full node that retains state at every block from genesis. Running a full node is independent of consensus role: a full node can run a [Maru validator](#maru-validator) or a [Maru non-validator](#maru-non-validator), and may or may not serve JSON-RPC.
 
 ### gnark
 
@@ -154,11 +154,11 @@ Lineth's consensus layer client, which implements the QBFT consensus algorithm. 
 
 ### Maru non-validator
 
-A Maru node configured with the `qbft` section omitted. It receives blocks from peers and imports them into its execution clients without proposing or voting, and it can drive follower execution clients. Because it never proposes blocks, its execution clients can be any Ethereum execution client.
+A Maru consensus client configured with the `qbft` section omitted. It receives blocks from peers and imports them into its execution clients without proposing or voting, and it can drive follower execution clients. Because it never proposes blocks, its execution clients can be any Ethereum execution client.
 
 ### Maru validator
 
-A Maru node that belongs to the QBFT validator set and proposes and votes on blocks. Each Maru validator requires its own dedicated Linea Besu execution client running the sequencer plugins, which builds the payload Maru then signs and broadcasts. A validator can also drive additional follower execution clients.
+A Maru consensus client that belongs to the QBFT validator set and proposes and votes on blocks. Each Maru validator requires its own dedicated Linea Besu execution client running the sequencer plugins, which builds the payload Maru then signs and broadcasts. A validator can also drive additional follower execution clients.
 
 ### Operator
 

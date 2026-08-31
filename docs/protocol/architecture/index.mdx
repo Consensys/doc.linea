@@ -74,20 +74,20 @@ services, either publicly or only within the operator's network.
 <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> consensus and runs
 on every node, in one of two roles:
 
-- **<GlossaryTerm term="Maru validator">Maru validator</GlossaryTerm>:** Proposes and votes on blocks as
+- **Maru validator:** Proposes and votes on blocks as
   part of the QBFT validator set. Maru requests a payload from its dedicated Linea Besu execution client,
   then signs and broadcasts the resulting block.
-- **<GlossaryTerm term="Maru non-validator">Maru non-validator</GlossaryTerm>:** Receives blocks from peers
+- **Maru non-validator:** Receives blocks from peers
   and imports them into its execution clients, without proposing or voting.
 
 In both roles, Maru manages validator sets, provides P2P block propagation, and exposes API
 endpoints for monitoring and control.
 
-A single Maru node can drive more than one execution client. Alongside the client it uses for block
-building or import, either role can drive additional
+A single Maru consensus client can drive more than one execution client. Alongside the execution client it uses for block
+building or import, either Maru role can drive additional
 <GlossaryTerm term="Follower execution client">follower execution clients</GlossaryTerm>, configured
 under [`follower-engine-apis`](../../stack/reference/linea-maru-options.mdx#maru).
-A follower execution client doesn't run a Maru of its own.
+A follower execution client doesn't run its own Maru instance.
 
 For Maru TOML configuration keys, see the
 [Maru options](../../stack/reference/linea-maru-options.mdx).
