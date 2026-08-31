@@ -201,8 +201,7 @@ export default function GlossaryTerm({
               ? { top: `${tooltipStyle.top}px`, left: `${tooltipStyle.left}px` }
               : undefined
           }>
-          <strong>{term}</strong>{" "}
-          {renderDefinition(effectiveDefinition)}
+          <strong>{term}</strong> {renderDefinition(effectiveDefinition)}
         </span>
       )}
     </span>
