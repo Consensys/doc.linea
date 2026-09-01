@@ -4,162 +4,162 @@
 
 Main Maru configuration.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `allow-empty-blocks` | `Boolean` | no | `false` | active | Whether empty blocks are allowed when proposing and when validating blocks (needed in multi-validator networks). |
-| `follower-engine-apis` | `Map&lt;String, ApiEndpointDto&gt;?` | no | - | active | Named map of follower execution-layer endpoints. Each entry maps a follower name to its engine API endpoint settings. |
+| `allow-empty-blocks` | Whether empty blocks are allowed when proposing and when validating blocks (needed in multi-validator networks). | `Boolean` | no | `false` | active |
+| `follower-engine-apis` | Named map of follower execution-layer endpoints. Each entry maps a follower name to its engine API endpoint settings. | `Map&lt;String, ApiEndpointDto&gt;?` | no | - | active |
 
 ### `api`
 
 Maru JSON-RPC API settings.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `api.port` | `UInt` | no | `5060` | active | Port serving the Maru JSON-RPC API. |
+| `api.port` | Port serving the Maru JSON-RPC API. | `UInt` | no | `5060` | active |
 
 ### `defaults`
 
 Shared defaults reused by linea and fork-transition; currently provides the L2 endpoint.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `defaults.l2-eth-endpoint.endpoint` | `URL` | yes | - | active | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `defaults.l2-eth-endpoint.jwt-secret-path` | `String?` | no | - | active | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `defaults.l2-eth-endpoint.timeout` | `Duration` | no | `PT1M` | active | Overall timeout for a single request to this endpoint. |
+| `defaults.l2-eth-endpoint.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | active |
+| `defaults.l2-eth-endpoint.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | active |
+| `defaults.l2-eth-endpoint.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | active |
 
 ### `fork-transition`
 
 Protocol fork transition monitoring settings. Has defaults so the section may be omitted.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `fork-transition.l2-eth-api-endpoint.endpoint` | `URL` | yes | - | active | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `fork-transition.l2-eth-api-endpoint.jwt-secret-path` | `String?` | no | - | active | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `fork-transition.l2-eth-api-endpoint.timeout` | `Duration` | no | `PT1M` | active | Overall timeout for a single request to this endpoint. |
-| `fork-transition.protocol-transition-polling-interval` | `Duration` | no | `PT1S` | active | Interval between polls for the protocol fork transition. |
+| `fork-transition.l2-eth-api-endpoint.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | active |
+| `fork-transition.l2-eth-api-endpoint.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | active |
+| `fork-transition.l2-eth-api-endpoint.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | active |
+| `fork-transition.protocol-transition-polling-interval` | Interval between polls for the protocol fork transition. | `Duration` | no | `PT1S` | active |
 
 ### `linea`
 
 Linea-specific settings (L1/L2 endpoints, contract address). Omit on non-Linea networks. l1-eth-api is a deprecated alias of l1-eth-api-endpoint; set one of the two. l2-eth-api-endpoint falls back to defaults.l2-eth-endpoint when omitted.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `linea.contract-address` | `ByteArray` | yes | - | active | Address of the Linea rollup contract on L1 (20-byte hex). Example: `0x0000000000000000000000000000000000000000`. |
-| `linea.l1-eth-api-endpoint.endpoint` | `URL` | yes | - | active | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `linea.l1-eth-api-endpoint.jwt-secret-path` | `String?` | no | - | active | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `linea.l1-eth-api-endpoint.timeout` | `Duration` | no | `PT1M` | active | Overall timeout for a single request to this endpoint. |
-| `linea.l1-eth-api.endpoint` | `URL` | yes | - | deprecated | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `linea.l1-eth-api.jwt-secret-path` | `String?` | no | - | deprecated | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `linea.l1-eth-api.timeout` | `Duration` | no | `PT1M` | deprecated | Overall timeout for a single request to this endpoint. |
-| `linea.l1-highest-block-tag` | `String` | no | `finalized` | active | L1 block tag treated as the highest finalized block (e.g. finalized, safe, latest). |
-| `linea.l1-polling-interval` | `Duration` | no | `PT6S` | active | Interval between L1 polls for rollup contract events. |
-| `linea.l2-eth-api-endpoint.endpoint` | `URL` | yes | - | active | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `linea.l2-eth-api-endpoint.jwt-secret-path` | `String?` | no | - | active | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `linea.l2-eth-api-endpoint.timeout` | `Duration` | no | `PT1M` | active | Overall timeout for a single request to this endpoint. |
+| `linea.contract-address` | Address of the Linea rollup contract on L1 (20-byte hex). Example: `0x0000000000000000000000000000000000000000`. | `ByteArray` | yes | - | active |
+| `linea.l1-eth-api-endpoint.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | active |
+| `linea.l1-eth-api-endpoint.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | active |
+| `linea.l1-eth-api-endpoint.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | active |
+| `linea.l1-eth-api.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | deprecated |
+| `linea.l1-eth-api.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | deprecated |
+| `linea.l1-eth-api.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | deprecated |
+| `linea.l1-highest-block-tag` | L1 block tag treated as the highest finalized block (e.g. finalized, safe, latest). | `String` | no | `finalized` | active |
+| `linea.l1-polling-interval` | Interval between L1 polls for rollup contract events. | `Duration` | no | `PT6S` | active |
+| `linea.l2-eth-api-endpoint.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | active |
+| `linea.l2-eth-api-endpoint.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | active |
+| `linea.l2-eth-api-endpoint.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | active |
 
 ### `observability`
 
 Observability (metrics, health) settings.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `observability.jvm-metrics-enabled` | `Boolean` | no | `true` | active | Whether JVM-level metrics are exposed in addition to application metrics. |
-| `observability.port` | `UInt` | no | `9545` | active | Port serving observability endpoints (metrics, health). |
-| `observability.prometheus-metrics-enabled` | `Boolean` | no | `true` | active | Whether Prometheus metrics are exposed on the observability port. |
+| `observability.jvm-metrics-enabled` | Whether JVM-level metrics are exposed in addition to application metrics. | `Boolean` | no | `true` | active |
+| `observability.port` | Port serving observability endpoints (metrics, health). | `UInt` | no | `9545` | active |
+| `observability.prometheus-metrics-enabled` | Whether Prometheus metrics are exposed on the observability port. | `Boolean` | no | `true` | active |
 
 ### `p2p`
 
 P2P networking settings. Omit to disable P2P.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `p2p.discovery.advertised-ip` | `String?` | no | - | active | IP address advertised to peers for discovery. Omit to use the listen IP address. |
-| `p2p.discovery.bootnodes` | `List&lt;String&gt;` | no | - | active | Bootnode addresses (enodes) used to bootstrap discovery. |
-| `p2p.discovery.port` | `UInt` | no | `9000` | active | UDP port used for discovery. |
-| `p2p.discovery.refresh-interval` | `Duration` | yes | - | active | Interval between discovery table refresh cycles. |
-| `p2p.discovery.retry-timeout` | `Duration` | no | `PT10S` | active | Timeout before retrying a failed discovery request. |
-| `p2p.discovery.search-interval` | `Duration` | no | `PT1S` | active | Interval between discovery search runs. |
-| `p2p.discovery.search-timeout` | `Duration` | no | `PT30S` | active | Timeout for a single discovery search run. |
-| `p2p.gossiping.consider-peers-as-direct` | `Boolean` | no | `false` | active | Whether all peers are scored as direct peers (same as static peers) in gossip peer scoring (libp2p GossipPeerScoreParams.isDirect). |
-| `p2p.gossiping.d` | `Int` | no | `8` | active | Target mesh degree (number of peers each topic is gossiped to). |
-| `p2p.gossiping.d-high` | `Int` | no | `16` | active | Upper bound on the mesh degree; peers are pruned when the mesh exceeds this. Defaults to 2 * d. |
-| `p2p.gossiping.d-lazy` | `Int` | no | `6` | active | Degree of lazy (non-mesh) peers used for gossip amplification. |
-| `p2p.gossiping.d-low` | `Int` | no | `6` | active | Lower bound on the mesh degree; peers are added when the mesh drops below this. |
-| `p2p.gossiping.fanout-ttl` | `Duration` | no | `PT1M` | active | Time-to-live for gossip fanout messages sent to peers outside the mesh. |
-| `p2p.gossiping.flood-publish-max-message-size-threshold` | `Int` | no | `16384` | active | Maximum message size above which flood publishing is skipped. Defaults to 16KiB. |
-| `p2p.gossiping.gossip-factor` | `Double` | no | `0.25` | active | Fraction of non-mesh peers that receive gossip messages (libp2p gossipFactor). |
-| `p2p.gossiping.gossip-size` | `Int` | no | `3` | active | Number of history windows advertised via IHAVE messages (libp2p gossipSize). |
-| `p2p.gossiping.heartbeat-interval` | `Duration` | no | `PT0.7S` | active | Interval between gossipsub heartbeat rounds. |
-| `p2p.gossiping.history` | `Int` | no | `6` | active | Number of gossip history windows retained in the message cache (libp2p gossipHistoryLength). |
-| `p2p.gossiping.seen-ttl` | `Duration` | no | `PT780.5S` | active | Time-to-live for the seen-message cache. Defaults to 700ms * 1115. |
-| `p2p.ip-address` | `String` | no | `127.0.0.1` | active | IP address the node listens on for P2P traffic. Defaults to localhost for security. |
-| `p2p.max-peers` | `Int` | no | `25` | active | Maximum number of peers the node maintains. |
-| `p2p.peering-fork-mismatch-leeway-time` | `Duration` | no | `PT20S` | active | Leeway time during which a peer is tolerated despite a fork mismatch before being penalized. |
-| `p2p.port` | `UInt` | no | `9000` | active | TCP port the node listens on for P2P traffic. UDP discovery uses p2p.discovery.port. |
-| `p2p.reconnect-delay` | `Duration` | no | `PT5S` | active | Delay before reconnecting to a dropped peer. |
-| `p2p.reputation.ban-period` | `Duration` | no | `PT1H` | active | Duration a peer is banned after dropping below the disconnect threshold. |
-| `p2p.reputation.capacity` | `Int` | no | `1024` | active | Maximum number of peers tracked in the reputation table. |
-| `p2p.reputation.cooldown-period` | `Duration` | no | `PT2M` | active | Duration a peer's reputation is held before decaying after a change. |
-| `p2p.reputation.disconnect-score-threshold` | `Int` | no | `-10` | active | Reputation score below which a peer is disconnected. Defaults to -large-change. |
-| `p2p.reputation.large-change` | `Int` | no | `10` | active | Reputation score delta applied for a large positive/negative event. |
-| `p2p.reputation.max-reputation` | `Int` | no | `20` | active | Maximum reputation score a peer can reach. Defaults to 2 * large-change. |
-| `p2p.reputation.small-change` | `Int` | no | `3` | active | Reputation score delta applied for a small positive/negative event. |
-| `p2p.static-peers` | `List&lt;String&gt;` | no | - | active | Static peer addresses (enodes) the node stays connected to. |
-| `p2p.status-update.refresh-interval` | `Duration` | no | `PT30S` | active | Interval between peer status refreshes. |
-| `p2p.status-update.refresh-interval-leeway` | `Duration` | no | `PT5S` | active | Leeway applied to the peer status refresh interval. |
-| `p2p.status-update.timeout` | `Duration` | no | `PT10S` | active | Timeout for a single peer status update request. |
+| `p2p.discovery.advertised-ip` | IP address advertised to peers for discovery. Omit to use the listen IP address. | `String?` | no | - | active |
+| `p2p.discovery.bootnodes` | Bootnode addresses (enodes) used to bootstrap discovery. | `List&lt;String&gt;` | no | - | active |
+| `p2p.discovery.port` | UDP port used for discovery. | `UInt` | no | `9000` | active |
+| `p2p.discovery.refresh-interval` | Interval between discovery table refresh cycles. | `Duration` | yes | - | active |
+| `p2p.discovery.retry-timeout` | Timeout before retrying a failed discovery request. | `Duration` | no | `PT10S` | active |
+| `p2p.discovery.search-interval` | Interval between discovery search runs. | `Duration` | no | `PT1S` | active |
+| `p2p.discovery.search-timeout` | Timeout for a single discovery search run. | `Duration` | no | `PT30S` | active |
+| `p2p.gossiping.consider-peers-as-direct` | Whether all peers are scored as direct peers (same as static peers) in gossip peer scoring (libp2p GossipPeerScoreParams.isDirect). | `Boolean` | no | `false` | active |
+| `p2p.gossiping.d` | Target mesh degree (number of peers each topic is gossiped to). | `Int` | no | `8` | active |
+| `p2p.gossiping.d-high` | Upper bound on the mesh degree; peers are pruned when the mesh exceeds this. Defaults to 2 * d. | `Int` | no | `16` | active |
+| `p2p.gossiping.d-lazy` | Degree of lazy (non-mesh) peers used for gossip amplification. | `Int` | no | `6` | active |
+| `p2p.gossiping.d-low` | Lower bound on the mesh degree; peers are added when the mesh drops below this. | `Int` | no | `6` | active |
+| `p2p.gossiping.fanout-ttl` | Time-to-live for gossip fanout messages sent to peers outside the mesh. | `Duration` | no | `PT1M` | active |
+| `p2p.gossiping.flood-publish-max-message-size-threshold` | Maximum message size above which flood publishing is skipped. Defaults to 16KiB. | `Int` | no | `16384` | active |
+| `p2p.gossiping.gossip-factor` | Fraction of non-mesh peers that receive gossip messages (libp2p gossipFactor). | `Double` | no | `0.25` | active |
+| `p2p.gossiping.gossip-size` | Number of history windows advertised via IHAVE messages (libp2p gossipSize). | `Int` | no | `3` | active |
+| `p2p.gossiping.heartbeat-interval` | Interval between gossipsub heartbeat rounds. | `Duration` | no | `PT0.7S` | active |
+| `p2p.gossiping.history` | Number of gossip history windows retained in the message cache (libp2p gossipHistoryLength). | `Int` | no | `6` | active |
+| `p2p.gossiping.seen-ttl` | Time-to-live for the seen-message cache. Defaults to 700ms * 1115. | `Duration` | no | `PT780.5S` | active |
+| `p2p.ip-address` | IP address the node listens on for P2P traffic. Defaults to localhost for security. | `String` | no | `127.0.0.1` | active |
+| `p2p.max-peers` | Maximum number of peers the node maintains. | `Int` | no | `25` | active |
+| `p2p.peering-fork-mismatch-leeway-time` | Leeway time during which a peer is tolerated despite a fork mismatch before being penalized. | `Duration` | no | `PT20S` | active |
+| `p2p.port` | TCP port the node listens on for P2P traffic. UDP discovery uses p2p.discovery.port. | `UInt` | no | `9000` | active |
+| `p2p.reconnect-delay` | Delay before reconnecting to a dropped peer. | `Duration` | no | `PT5S` | active |
+| `p2p.reputation.ban-period` | Duration a peer is banned after dropping below the disconnect threshold. | `Duration` | no | `PT1H` | active |
+| `p2p.reputation.capacity` | Maximum number of peers tracked in the reputation table. | `Int` | no | `1024` | active |
+| `p2p.reputation.cooldown-period` | Duration a peer's reputation is held before decaying after a change. | `Duration` | no | `PT2M` | active |
+| `p2p.reputation.disconnect-score-threshold` | Reputation score below which a peer is disconnected. Defaults to -large-change. | `Int` | no | `-10` | active |
+| `p2p.reputation.large-change` | Reputation score delta applied for a large positive/negative event. | `Int` | no | `10` | active |
+| `p2p.reputation.max-reputation` | Maximum reputation score a peer can reach. Defaults to 2 * large-change. | `Int` | no | `20` | active |
+| `p2p.reputation.small-change` | Reputation score delta applied for a small positive/negative event. | `Int` | no | `3` | active |
+| `p2p.static-peers` | Static peer addresses (enodes) the node stays connected to. | `List&lt;String&gt;` | no | - | active |
+| `p2p.status-update.refresh-interval` | Interval between peer status refreshes. | `Duration` | no | `PT30S` | active |
+| `p2p.status-update.refresh-interval-leeway` | Leeway applied to the peer status refresh interval. | `Duration` | no | `PT5S` | active |
+| `p2p.status-update.timeout` | Timeout for a single peer status update request. | `Duration` | no | `PT10S` | active |
 
 ### `payload-validator`
 
 Validator execution-layer node settings. Required when qbft is set.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `payload-validator.engine-api-endpoint.endpoint` | `URL` | yes | - | active | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. |
-| `payload-validator.engine-api-endpoint.jwt-secret-path` | `String?` | no | - | active | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. |
-| `payload-validator.engine-api-endpoint.timeout` | `Duration` | no | `PT1M` | active | Overall timeout for a single request to this endpoint. |
-| `payload-validator.payload-validation-enabled` | `Boolean` | no | `true` | active | Whether to validate execution payloads received via the Engine API. Must stay true when the qbft section is set: a validator fails to start with payload validation disabled. Only followers may set it to false. |
+| `payload-validator.engine-api-endpoint.endpoint` | Engine API endpoint URL of the execution-layer node. Example: `http://el-node:8551`. | `URL` | yes | - | active |
+| `payload-validator.engine-api-endpoint.jwt-secret-path` | Optional path to the JWT secret file used for authenticated Engine API calls. Omit to disable JWT authentication. Example: `/jwt.hex`. | `String?` | no | - | active |
+| `payload-validator.engine-api-endpoint.timeout` | Overall timeout for a single request to this endpoint. | `Duration` | no | `PT1M` | active |
+| `payload-validator.payload-validation-enabled` | Whether to validate execution payloads received via the Engine API. Must stay true when the qbft section is set: a validator fails to start with payload validation disabled. Only followers may set it to false. | `Boolean` | no | `true` | active |
 
 ### `persistence`
 
 Persistent on-disk state settings.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `persistence.data-path` | `Path` | yes | - | active | Directory where Maru stores its persistent on-disk state (database, keystore). Example: `/data/maru`. |
-| `persistence.private-key-path` | `Path` | no | `data-path/private-key` | active | Path to the node private key file. Defaults to a 'private-key' file under data-path. |
+| `persistence.data-path` | Directory where Maru stores its persistent on-disk state (database, keystore). Example: `/data/maru`. | `Path` | yes | - | active |
+| `persistence.private-key-path` | Path to the node private key file. Defaults to a 'private-key' file under data-path. | `Path` | no | `data-path/private-key` | active |
 
 ### `qbft`
 
 QBFT consensus settings. Omit on follower (non-validator) nodes.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `qbft.duplicate-message-limit` | `Int` | no | `100` | active | Maximum number of duplicate QBFT messages kept per round. |
-| `qbft.fee-recipient` | `ByteArray` | yes | - | active | Fee recipient address for blocks proposed by this validator (20-byte hex). Example: `0x0000000000000000000000000000000000000000`. |
-| `qbft.future-message-max-distance` | `Long` | no | `10` | active | Maximum number of blocks a future-dated QBFT message may be ahead of the current height. |
-| `qbft.future-messages-limit` | `Long` | no | `1000` | active | Maximum number of future-dated QBFT messages queued. |
-| `qbft.message-queue-limit` | `Int` | no | `1000` | active | Maximum number of QBFT messages queued per round. |
-| `qbft.min-block-build-time` | `Duration` | no | `PT0.5S` | active | Minimum time spent building a block before proposing it. |
-| `qbft.round-expiry` | `Duration?` | no | - | active | Optional fixed expiry duration for a QBFT round. Omit to derive it from round-expiry-coefficient. |
-| `qbft.round-expiry-coefficient` | `Double` | no | `2.0` | active | Multiplier used to derive each subsequent round's expiry from the previous one. |
+| `qbft.duplicate-message-limit` | Maximum number of duplicate QBFT messages kept per round. | `Int` | no | `100` | active |
+| `qbft.fee-recipient` | Fee recipient address for blocks proposed by this validator (20-byte hex). Example: `0x0000000000000000000000000000000000000000`. | `ByteArray` | yes | - | active |
+| `qbft.future-message-max-distance` | Maximum number of blocks a future-dated QBFT message may be ahead of the current height. | `Long` | no | `10` | active |
+| `qbft.future-messages-limit` | Maximum number of future-dated QBFT messages queued. | `Long` | no | `1000` | active |
+| `qbft.message-queue-limit` | Maximum number of QBFT messages queued per round. | `Int` | no | `1000` | active |
+| `qbft.min-block-build-time` | Minimum time spent building a block before proposing it. | `Duration` | no | `PT0.5S` | active |
+| `qbft.round-expiry` | Optional fixed expiry duration for a QBFT round. Omit to derive it from round-expiry-coefficient. | `Duration?` | no | - | active |
+| `qbft.round-expiry-coefficient` | Multiplier used to derive each subsequent round's expiry from the previous one. | `Double` | no | `2.0` | active |
 
 ### `syncing`
 
 Sync settings used while catching up to the chain head.
 
-| Key | Type | Required | Default | Status | Description |
+| Key | Description | Type | Required | Default | Status |
 | --- | --- | --- | --- | --- | --- |
-| `syncing.desync-tolerance` | `ULong` | no | `5` | active | How far the sync target may be ahead of this node's head before the node is considered desynced. |
-| `syncing.download.backoff-delay` | `Duration` | no | `PT1S` | active | Backoff delay between download retries. |
-| `syncing.download.block-range-request-timeout` | `Duration` | no | `PT5S` | active | Timeout for a single block-range download request. |
-| `syncing.download.blocks-batch-size` | `UInt` | no | `100` | active | Number of blocks requested in a single download batch. |
-| `syncing.download.blocks-parallelism` | `UInt` | no | `1` | active | Number of block-range download requests issued in parallel. |
-| `syncing.download.max-retries` | `UInt` | no | `5` | active | Maximum number of retries for a failed download request. |
-| `syncing.download.use-unconditional-random-download-peer` | `Boolean` | no | `false` | active | When false (default), pick a random peer among those whose latest reported block is at least the download range end. When true, skip that end-block filter and pick any peer at random. |
-| `syncing.el-sync-status-refresh-interval` | `Duration?` | no | - | active | Optional interval to refresh the execution-layer sync status. Omit to disable. |
-| `syncing.peer-chain-height-polling-interval` | `Duration` | yes | - | active | Interval between polls for peer chain height updates. |
-| `syncing.sync-target-selection` | `SyncTargetSelection` | yes | - | active | Sync target selection strategy. Use a bare string 'Highest' to sync to the highest peer head, or an inline table \{ _type = 'MostFrequent', peer-chain-height-granularity = &lt;n&gt; \} to sync to the most frequent peer chain height. Sealed-type dispatch is enabled by the loader. |
+| `syncing.desync-tolerance` | How far the sync target may be ahead of this node's head before the node is considered desynced. | `ULong` | no | `5` | active |
+| `syncing.download.backoff-delay` | Backoff delay between download retries. | `Duration` | no | `PT1S` | active |
+| `syncing.download.block-range-request-timeout` | Timeout for a single block-range download request. | `Duration` | no | `PT5S` | active |
+| `syncing.download.blocks-batch-size` | Number of blocks requested in a single download batch. | `UInt` | no | `100` | active |
+| `syncing.download.blocks-parallelism` | Number of block-range download requests issued in parallel. | `UInt` | no | `1` | active |
+| `syncing.download.max-retries` | Maximum number of retries for a failed download request. | `UInt` | no | `5` | active |
+| `syncing.download.use-unconditional-random-download-peer` | When false (default), pick a random peer among those whose latest reported block is at least the download range end. When true, skip that end-block filter and pick any peer at random. | `Boolean` | no | `false` | active |
+| `syncing.el-sync-status-refresh-interval` | Optional interval to refresh the execution-layer sync status. Omit to disable. | `Duration?` | no | - | active |
+| `syncing.peer-chain-height-polling-interval` | Interval between polls for peer chain height updates. | `Duration` | yes | - | active |
+| `syncing.sync-target-selection` | Sync target selection strategy. Use a bare string 'Highest' to sync to the highest peer head, or an inline table \{ _type = 'MostFrequent', peer-chain-height-granularity = &lt;n&gt; \} to sync to the most frequent peer chain height. Sealed-type dispatch is enabled by the loader. | `SyncTargetSelection` | yes | - | active |
 
 ## Deprecated Keys
 
