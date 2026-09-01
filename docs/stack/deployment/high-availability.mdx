@@ -109,7 +109,7 @@ This table summarizes which components run in which regions:
 In the example design, public RPC enters through a global entry point that routes each client to the
 nearest healthy region (for example,
 [AWS Global Accelerator](https://aws.amazon.com/global-accelerator/)), protected by a web
-application firewall, then a regional load balancer, a privacy proxy for [access control](./access-control.mdx), and
+application firewall, then a regional load balancer, an [access control](./access-control.mdx) endpoint, and
 JSON-RPC routers to
 [near-head and archive nodes](../../protocol/architecture/rpc-services.mdx).
 Private RPC can use private connectivity into each region (for example,

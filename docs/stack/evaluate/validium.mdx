@@ -53,11 +53,12 @@ deployment's [access control](../deployment/access-control.mdx) and governance r
 
 ## Access control
 
-The [privacy proxy](../deployment/access-control.mdx) controls access to JSON-RPC, APIs, and tooling,
-determined by role-based permissions.
+A private validium can restrict JSON-RPC access by configuring [access control](../deployment/access-control.mdx).
+Clients send request to a single RPC endpoint that authenticates callers and enforces
+RBAC permissions.
 
-Access control restricts who can call an endpoint or view data the
-deployment exposes. It is not a cryptographic privacy mechanism and does not
+Access control restricts who can call RPC methods.
+It is not a cryptographic privacy mechanism and does not
 hide data from the operator or from participants who already hold the data.
 
 ## Finalization layer options
