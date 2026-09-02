@@ -12,9 +12,12 @@ import styles from "./styles.module.css";
 
 const DEFAULT_ROUTE_PATH = "/protocol/reference/zero-knowledge-glossary";
 
-// Render inline `code` spans and [text](url) links in a definition string,
-// since the tooltip renders plain text rather than running it through MDX.
-function renderDefinition(text, routePath) {
+// Render inline `code` spans in a definition string, since the tooltip renders
+// plain text rather than running it through MDX. Links are flattened to their
+// label text: the tooltip closes as soon as the pointer leaves the trigger, so
+// a link inside it can be seen but never reached. The glossary page renders the
+// same definitions through MDX, where the links work normally.
+function renderDefinition(text) {
   if (typeof text !== "string") return text;
   const pattern = /(`[^`]+`|\[[^\]]+\]\([^)]+\))/g;
   return text.split(pattern).map((part, i) => {
@@ -23,15 +26,7 @@ function renderDefinition(text, routePath) {
     }
     const linkMatch = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
     if (linkMatch) {
-      const [, label, href] = linkMatch;
-      // Anchor-only links (same-page cross-references within the glossary)
-      // need the glossary route prefixed so they resolve from any tooltip.
-      const resolvedHref = href.startsWith("#") ? `${routePath}${href}` : href;
-      return (
-        <Link key={i} to={resolvedHref}>
-          {label}
-        </Link>
-      );
+      return linkMatch[1];
     }
     return part;
   });
@@ -206,8 +201,7 @@ export default function GlossaryTerm({
               ? { top: `${tooltipStyle.top}px`, left: `${tooltipStyle.left}px` }
               : undefined
           }>
-          <strong>{term}</strong>{" "}
-          {renderDefinition(effectiveDefinition, effectiveRoutePath)}
+          <strong>{term}</strong> {renderDefinition(effectiveDefinition)}
         </span>
       )}
     </span>

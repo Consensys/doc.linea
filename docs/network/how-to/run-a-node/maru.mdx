@@ -15,8 +15,8 @@ clients (documented in this section), Maru is the only consensus layer client av
 Developed specifically for Linea, Maru replaces the Clique Proof of Authority consensus algorithm
 and introduces the [Quorum Byzantine Fault Tolerance](https://entethalliance.org/specs/qbft/v1/)
 (QBFT) consensus algorithm. Eventually, this change will mean Linea will be able to resemble
-Ethereum's decentralized sequencer system, where validators propose and confirm blocks. To start
-with, however, only one Linea-internal Maru node will produce blocks. 
+Ethereum's decentralized consensus, where Ethereum validators propose and confirm blocks. To start
+with, however, only one Linea-internal Maru node will produce blocks.
 
 ::::warning
 
@@ -27,7 +27,7 @@ You must run Maru alongside an execution layer client like [Besu](./besu.mdx) or
 ## Run using Docker
 
 There are two methods you can use to run Maru using Docker:
-- Clone the Linea monorepo and use `docker compose` 
+- Clone the Linea monorepo and use `docker compose`
 - Clone the Linea monorepo and build a Maru Docker image locally from `maru/`.
 
 <Tabs className="my-tabs">
@@ -42,7 +42,7 @@ There are two methods you can use to run Maru using Docker:
     directories.
 
     Clone the monorepo with:
-    
+
     ```bash
     git clone --depth 5 https://github.com/LFDT-Lineth/lineth-monorepo.git
     ```
