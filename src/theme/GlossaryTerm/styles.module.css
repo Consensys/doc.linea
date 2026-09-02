@@ -65,15 +65,6 @@
   color: var(--ifm-color-primary);
 }
 
-.tooltip a {
-  color: var(--linea-text-primary);
-  text-decoration: underline;
-}
-
-.tooltip a:hover {
-  color: var(--linea-link-highlight-color);
-}
-
 /* Dark mode adjustments */
 [data-theme="dark"] .tooltip {
   background: var(--ifm-background-surface-color);
