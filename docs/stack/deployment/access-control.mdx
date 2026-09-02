@@ -13,6 +13,8 @@ In a restricted deployment, clients send all reads and writes to a single RPC en
 That endpoint authenticates callers and enforces role-based access control (RBAC) permissions.
 
 For data visibility choices, see [Privacy and data visibility](../evaluate/validium.mdx).
+For calls between two Lineth deployments, see
+[Deployment interoperability](./deployment-interoperability.mdx).
 
 :::important
 
@@ -158,6 +160,8 @@ They do not receive a view of private contracts or transaction data.
 
 ## See also
 
+- [Deployment interoperability](./deployment-interoperability.mdx): How two Lineth deployments
+  exchange calls, and how a restricted destination authorizes them against this permission model.
 - [Privacy and data visibility](../evaluate/validium.mdx): How private validium deployments use offchain
   data availability and controlled access.
 - [Trust and responsibilities](../evaluate/trust-model.mdx): What participants can verify when access and
