@@ -1,19 +1,20 @@
 ---
 title: Sequencer
-description: How the Lineth Sequencer orders transactions, builds blocks, and prepares execution traces for proving.
+description: >-
+  How the Lineth Sequencer orders transactions, builds blocks, and prepares
+  execution traces for proving.
 image: /img/socialCards/sequencer.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-The sequencer is a core component of the <GlossaryTerm term="Lineth" /> execution client,
-<GlossaryTerm term="Linea Besu" />.
-The sequencer is a set of plugins, bundled with Linea Besu, that extends the [Besu](https://docs.besu-eth.org/)
-execution client.
-It is responsible for ordering, building, and executing blocks in a way that enables the creation of
-<GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>.
+The sequencer is a set of plugins, bundled with <GlossaryTerm term="Linea Besu" />, that extends the
+[Besu](https://docs.besu-eth.org/) execution client.
+It is responsible for ordering, building, and executing <GlossaryTerm term="Lineth" /> blocks in a way that
+enables the creation of <GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>.
 
-The sequencer is not directly accessible from outside the network (to prevent DDOS attacks).
+The <GlossaryTerm term="Sequencer node">sequencer node</GlossaryTerm> is not directly accessible from
+outside the network (to prevent DDOS attacks).
 Instead, it's connected to the RPC nodes via P2P.
 
 :::note
@@ -42,9 +43,10 @@ tiny, costly pieces on the
 
 :::note
 
-There is typically one sequencer instance per network.
-However, by applying a <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm> design,
-Lineth could adopt multiple sequencers in a decentralized configuration.
+A single-validator deployment runs one sequencer.
+[Multi-validator deployments](/stack/deployment/distributed-sequencing) run one sequencer per
+<GlossaryTerm term="Maru validator">Maru validator</GlossaryTerm>, since each validator needs its own Linea
+Besu with the sequencer plugins.
 
 :::
 

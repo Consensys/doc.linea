@@ -8,13 +8,14 @@ image: /img/socialCards/multi-validator-consensus.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
+import MultiValidatorConsensusGraphic from '/img/stack/deployment/multi-validator-consensus.svg';
 
 This page describes Maru multi-validator consensus using Quorum-Based Byzantine Fault Tolerance (QBFT) in a
 <GlossaryTerm term="Lineth" /> deployment: when to use it, how it fits the stack, what fault tolerance it
 provides, and how topology and latency affect block time.
 
-Multi-validator Maru improves <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> fault tolerance and
-distributed block ordering.
+Multi-validator Maru improves block production fault tolerance and distributes block ordering across
+operators.
 It does not by itself make the coordinator, prover, state
 manager, RPC nodes, L1 contracts, or bridge highly available.
 For stack-wide resilience patterns, see [High availability](./high-availability.mdx).
@@ -46,44 +47,41 @@ design on this page applies to Lineth operators running their own chain.
 
 ## How it fits into Lineth
 
-Maru is the sequencer consensus layer; Besu is the execution layer.
-Multi-validator Maru changes only sequencer fault tolerance. The
+Maru is the consensus layer; <GlossaryTerm term="Linea Besu" /> is the execution layer.
+Multi-validator Maru changes only block production fault tolerance. The
 <GlossaryTerm term="Prover">prover</GlossaryTerm>, <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>,
 <GlossaryTerm term="State manager">state manager</GlossaryTerm>, RPC nodes, L1 contracts, and bridge are unchanged.
 
 L2 block time is set on Maru. L1 finality cadence is set on the coordinator and
 is independent.
 
-Each Maru validator pairs 1:1 with a Besu execution node. A single Besu node
-cannot serve multiple Maru validators.
+Each <GlossaryTerm term="Maru validator">Maru validator</GlossaryTerm> pairs 1:1 with its own Linea Besu
+execution client running the <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> plugins.
+Together they form a <GlossaryTerm term="Sequencer node">sequencer node</GlossaryTerm>; one execution
+client cannot serve two Maru validators.
 
 No coordinator-side changes are required when running multi-validator Maru.
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/multi-validator-diagram.webp"
-      alt="Multi-validator Maru deployment on Lineth: four Maru validators running QBFT consensus, each paired 1:1 with a Besu execution node, feeding into the unchanged downstream Lineth (Coordinator, Prover, State Manager, RPC nodes, L1 contracts, Bridge)."
-    />
-    <p>
-      <em>
-        Multi-validator Maru architecture: four QBFT validators, 1:1 paired with
-        Besu nodes, feeding the unchanged downstream Lineth via a single
-        designated Besu.
-      </em>
-    </p>
-  </div>
+<div className="img-large">
+  <MultiValidatorConsensusGraphic />
+  <p>
+    <em>
+      Multi-validator Maru architecture: four QBFT validators, each paired 1:1
+      with its own Linea Besu execution client, feeding the unchanged downstream
+      Lineth via a single designated node.
+    </em>
+  </p>
 </div>
 
 ## Scope of fault tolerance
 
 Multi-validator Maru decentralizes block ordering and execution: with 4
-validators, block production continues if one validator goes offline. The
-sequencer is no longer a single point that, if it dies, halts the chain.
+validators, block production continues if one validator goes offline. Block
+production no longer depends on a single node that, if it dies, halts the chain.
 
 The rest of Lineth, including the coordinator, prover, state manager, RPC nodes,
 L1 contracts, and bridge, is still centralized. The coordinator runs in one
-place and connects to a single designated Besu node as its source of truth, not
+place and connects to a single designated Linea Besu node as its source of truth, not
 to all four interchangeably. If the coordinator goes down, batching, proving,
 and L1 finality posting stop.
 
