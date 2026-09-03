@@ -52,11 +52,11 @@ For the full list of roles, see [LineaRollup contracts reference](/network/build
 
 ## Trust assumptions per deployment model
 
-| Trust dimension | Public rollup on Ethereum | Private validium on Ethereum | Private validium on Linea Mainnet |
+| Trust dimension | Public deployment on Ethereum | Private validium on Ethereum | Private validium on Linea Mainnet |
 | --- | --- | --- | --- |
 | Data availability provided by | Ethereum (EIP-4844 blobs) | Operator-run archive nodes or DA committee | Operator-run archive nodes or DA committee |
 | Finalization layer | Ethereum | Ethereum | Linea Mainnet (which itself anchors to Ethereum) |
-| Bridge trust to the finalization layer | Canonical bridge: <GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>, plus admin and upgrade authority for pauses, verifier configuration, and contract upgrades | Same as rollup | Canonical bridge to Linea Mainnet (proofs plus admin and upgrade authority), plus Linea Mainnet's own bridge and governance assumptions |
+| Bridge trust to the finalization layer | Canonical bridge: <GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>, plus admin and upgrade authority for pauses, verifier configuration, and contract upgrades | Same as public deployment | Canonical bridge to Linea Mainnet (proofs plus admin and upgrade authority), plus Linea Mainnet's own bridge and governance assumptions |
 | Inherited trust assumptions | Ethereum L1 finality, plus the deployment's sequencer, prover, admin key, verifier configuration, and upgrade-authority assumptions | Ethereum L1 finality, plus the deployment's sequencer, prover, admin key, verifier, upgrade, and DA assumptions | Ethereum L1 + Linea Mainnet finality, plus Linea Mainnet sequencer, prover, Security Council, admin key, verifier, upgrade, and bridge assumptions |
 | State reconstruction without operator | Yes, while L1 blob data is available; long-term reconstruction requires independent archival of EIP-4844 blob data | No, depends on operator-run DA and the deployment's data access model | No, depends on operator-run DA and the deployment's data access model |
 
@@ -77,14 +77,14 @@ A <GlossaryTerm term="Validium">private validium</GlossaryTerm> on Linea Mainnet
 
 The set of guarantees a participant can verify *without* trusting the operator depends on the deployment model.
 
-**Public rollup on Ethereum**
+### Public deployment on Ethereum
 
 - Proof validity and state-transition correctness, by reading the verifier contract on L1. A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
 - Full transaction history while L1 blobs are retained, by reading L1 blobs and reconstructing L2 state. After EIP-4844 blob expiry, long-term reconstruction depends on independent archival of blob data.
 - Bridge events and message status, on L1.
 - Contract role assignments and admin actions, on L1.
 
-**<GlossaryTerm term="Validium">Private validium</GlossaryTerm> on Ethereum**
+### Private validium on Ethereum
 
 - Proof validity and state-transition correctness, by reading the verifier contract on L1. A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
 - That a state transition was proved, even if its transaction contents are private.
@@ -93,7 +93,7 @@ The set of guarantees a participant can verify *without* trusting the operator d
 - Their own observed state, by running a node or using an authorized interface where the deployment grants access.
 - They cannot reconstruct full state or history without the required operator DA access. This is the validium trade-off, and [access control](../deployment/access-control.mdx) settings may further limit which data each participant can observe.
 
-**<GlossaryTerm term="Validium">Private validium</GlossaryTerm> on Linea Mainnet**
+### Private validium on Linea
 
 - Proof validity and state-transition correctness, by reading the verifier contract on Linea Mainnet. A valid proof means the operator cannot finalize an invalid state transition through the normal proof path.
 - Same validium and [access control](../deployment/access-control.mdx) caveats as private validium on Ethereum, but proofs are verified on Linea Mainnet (which is itself proved to Ethereum).

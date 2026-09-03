@@ -9,56 +9,41 @@ image: /img/socialCards/deployment-models.jpg
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-This page describes the <GlossaryTerm term="Lineth" /> deployment models and the trade-offs
-they create for access, data availability, and finalization. Related evaluation
-paths include [Trust and responsibilities](./trust-model.mdx) and
-[Privacy and data visibility](./validium.mdx).
+<GlossaryTerm term="Lineth" /> supports two deployment models: **public deployments**, such as
+[Linea Mainnet](/network), with onchain data availability and open access; and **private validium deployments**,
+with offchain data availability and controlled access.
 
-## Customization factors
+Consider these questions when choosing a deployment model:
 
-An <GlossaryTerm term="Operator">operator</GlossaryTerm> can customize the following in a Lineth deployment:
-
-- Access control: who may access the mempool, ledger, and transaction data
-- Data availability: how transaction data is stored and who can reconstruct it
-- Finalization speed: block size and configuration affect soft finality speed
-- Finalization layer: whether you finalize on Ethereum or Linea affects security assumptions and
-  hard finality speed
-- Transaction ordering: operators can apply custom ordering rulesets
-
-Operators own these choices. Lineth does not recommend a specific set of customizations.
-
-## Two primary models
-
-Lineth supports two primary deployment models:
-
-- [Public deployments](#public), such as Linea Mainnet, with onchain data availability
-- [Private validium deployments](#private-validium), with offchain data availability and controlled
-  access
-
-When configuring a deployment, consider:
-
-- Privacy requirements: should transaction data remain private to authorized
-  participants?
-- Regulatory and [compliance](./compliance.mdx) obligations: what controls does your program
+- [Privacy](validium.mdx) requirements: Should transaction data remain private to authorized participants?
+- Regulatory and [compliance](./compliance.mdx) obligations: What controls does your program
   require, and who owns them?
-- Data availability guarantees: how important is onchain data availability for
+- [Data availability](../deployment/data-availability-finalization.mdx) guarantees: How important is onchain data availability for
   your participants?
-- Network topology: do you need a private network with controlled membership?
-- [Access control](../deployment/access-control.mdx): do you need RBAC on RPC endpoints and
+- Network topology: Do you need a private network with controlled membership?
+- [Access control](../deployment/access-control.mdx): Do you need role-based access control (RBAC) on RPC endpoints and
   APIs?
 
-## Public
+The following table compares how characteristics differ between public deployments and private validium deployments.
+Choose the deployment model that aligns with your requirements.
 
-Public deployments such as Linea Mainnet are fully public networks with onchain
-data availability.
+| Characteristic | Public deployments | Private validium |
+| --- | --- | --- |
+| Data availability | Transaction data is posted onchain via EIP-4844 blobs | Transaction data can be stored offchain in a private node set |
+| Access control | Public RPC endpoint | RPC endpoints protected by RBAC |
+| What is posted to the <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm> | State commitments, proofs, and transaction data | State commitments and proofs; transaction details stay offchain |
+| Who can reconstruct history | Anyone with the blob data, while it is retained | Participants the operator authorizes through DA access and RBAC |
+| Network topology | Open access | Controlled node membership |
 
-### Characteristics
+The following sections provide more details about use cases and security considerations for each model.
 
-- Data availability: transaction data is posted onchain via EIP-4844 blobs
-- Public access: public RPC endpoint
-- Transparency: all transactions are visible on the finalization layer
-- Finalization: state commitments, proofs, and data are posted to the
-  finalization layer
+## Public deployments
+
+Public deployments such as Linea Mainnet are open networks with onchain data availability.
+Transaction data is posted as EIP-4844 blobs, so state commitments, proofs, and transaction data all appear on
+the finalization layer.
+Anyone with the blob data can reconstruct history while those blobs are retained.
+RPC access is public, and node membership is not restricted.
 
 ### Use cases
 
@@ -79,28 +64,13 @@ data availability.
 
 ## Private validium
 
-A private validium keeps transaction data offchain while using zk-SNARK proofs
-to support state-transition correctness and finalization. Whether this model
+A private validium keeps transaction data offchain, using <GlossaryTerm term="zk-SNARK" /> proofs
+to support state-transition correctness and finalization.
+RPC endpoints are protected by [access control](../deployment/access-control.mdx), and node membership is controlled.
+
+Whether this model
 suits a regulated environment depends on the operator's own compliance, privacy,
 and access-control design; Lineth does not certify a deployment as compliant.
-
-### Characteristics
-
-- Data availability: transaction data can be stored offchain in a private node
-  set
-- Data visibility: transaction details are not posted to the finalization layer;
-  what participants can see depends on the deployment's data availability and
-  access control configuration
-- [Access control](../deployment/access-control.mdx): RPC endpoints protected by RBAC; only
-  authorized participants can view data they are scoped to
-- [Finalization](../../network/overview/transaction-finality.mdx): state
-  commitments and proofs are posted to the finalization layer
-- Network topology: private network with controlled node membership
-
-In private validium deployments, participant visibility depends on RBAC settings
-and data availability access. Some participants may verify only the data they
-are authorized to access. For the trust trade-off, see
-[Trust and responsibilities](./trust-model.mdx).
 
 ### Use cases
 
@@ -127,7 +97,9 @@ what is not claimed.
   (KMS)
 - Network isolation: private network topology with controlled peering
 
-## Next steps
+## See also
 
-Also consider the design decisions required to determine the
-[finality mechanism](../deployment/data-availability-finalization.mdx#finality-design-options).
+- [Trust and responsibilities](./trust-model.mdx): Trust assumptions and guarantees for each deployment model
+- [Privacy and data visibility](./validium.mdx): What a private validium publishes and who can see it
+- [Data availability and finalization](../deployment/data-availability-finalization.mdx): Where transaction
+  data is stored in each deployment model, and where proofs settle
