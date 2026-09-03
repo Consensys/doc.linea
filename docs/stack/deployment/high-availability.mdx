@@ -80,7 +80,7 @@ Each region runs a <GlossaryTerm term="Maru" /> consensus client paired with a
 <GlossaryTerm term="Quorum Byzantine Fault Tolerance (QBFT)">QBFT</GlossaryTerm>
 validator per region).
 Each region also runs public and/or private JSON-RPC gateways in front of
-<GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm>, with [access control](./rbac.mdx) where
+<GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm>, with [access control](./access-control.mdx) where
 required.
 For QBFT topology, latency, and setup, see
 [Multi-validator consensus](./distributed-sequencing.mdx) and
@@ -109,7 +109,7 @@ This table summarizes which components run in which regions:
 In the example design, public RPC enters through a global entry point that routes each client to the
 nearest healthy region (for example,
 [AWS Global Accelerator](https://aws.amazon.com/global-accelerator/)), protected by a web
-application firewall, then a regional load balancer, reverse proxy with [RBAC](./rbac.mdx), and
+application firewall, then a regional load balancer, an [access control](./access-control.mdx) endpoint, and
 JSON-RPC routers to
 [near-head and archive nodes](../../protocol/architecture/rpc-services.mdx).
 Private RPC can use private connectivity into each region (for example,

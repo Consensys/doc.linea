@@ -51,8 +51,8 @@ Detailed production topology and supported tooling for a given deployment can be
     {
       text: "Access control",
       description:
-        "Operator-configured RBAC at the access edge for protected RPC, API, and tooling surfaces in restricted deployments.",
-      href: "/stack/deployment/rbac",
+        "How to restrict access to JSON-RPC using a single endpoint that authenticates callers and enforces RBAC permissions.",
+      href: "/stack/deployment/access-control",
     },
   ]}
 />
@@ -71,8 +71,7 @@ Proofs and state commitments go to a chosen
 
 <GlossaryTerm term="Operator">Operators</GlossaryTerm> also choose:
 
-- [Access control](rbac.mdx): Public RPC, or RPC and APIs gated by
-  <GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>
+- [Access control](access-control.mdx): Public RPC, or RPC and tooling gated by role-based permissions
 - [Data availability](data-availability-finalization.mdx#data-availability): Onchain (for example,
   [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) blobs) or offchain in a
   <GlossaryTerm term="Validium">private validium</GlossaryTerm>
@@ -85,7 +84,7 @@ Lineth does not recommend a specific set of customizations.
 ## Example architecture
 
 The following diagram illustrates an example architecture for a
-<GlossaryTerm term="Validium">validium</GlossaryTerm> deployment: RBAC at the edge, a private
+<GlossaryTerm term="Validium">validium</GlossaryTerm> deployment: access control at the edge, a private
 network boundary, and validium message relayers to other chains.
 A public deployment uses the same internal services; access and data availability differ.
 
@@ -103,8 +102,7 @@ For regional placement, failover, and recovery, see [High availability](./high-a
 The example architecture flows as follows:
 
 1. Clients reach the API portal, block explorer, and RPC.
-   This example gates that path with [RBAC](./rbac.mdx); a public deployment can expose RPC
-   without that gate.
+   This example gates that path with [access control](./access-control.mdx).
 2. Those tools query near-head and archive
    <GlossaryTerm term="RPC node">RPC nodes</GlossaryTerm>, which read chain state from
    onchain contracts.

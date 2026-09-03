@@ -8,7 +8,7 @@
 >
   <title id="lda-title">Example Lineth validium deployment architecture</title>
   <desc id="lda-desc">
-    Trusted partners reach RBAC, which gates the API portal and block explorer
+    Trusted partners reach access control, which gates the API portal and block explorer
     inside the Lineth private network. Those tools query near-head and archive
     RPC nodes, which read onchain system contracts. Internal protocol services
     including the coordinator, execution services, and core services also
@@ -37,12 +37,12 @@
   <text x="560" y="37" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
     fill="var(--linea-text-primary)">Trusted partners</text>
 
-  <!-- RBAC -->
+  <!-- Access control -->
   <rect x="486" y="76" width="148" height="40" rx="4"
     fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
     stroke-width="1.5" stroke-dasharray="6 4" />
   <text x="560" y="101" text-anchor="middle" font-family="AtypText, sans-serif" font-size="12"
-    fill="var(--linea-text-primary)">RBAC</text>
+    fill="var(--linea-text-primary)">Access control</text>
 
   <!-- Lineth private network -->
   <rect x="20" y="140" width="1080" height="540" rx="8"
@@ -208,9 +208,9 @@
     stroke-width="1.25"
     marker-end="url(#lda-arrow)"
   >
-    <!-- Partners to RBAC -->
+    <!-- Partners to access control -->
     <path d="M560 52 V76" />
-    <!-- RBAC to Access and tooling -->
+    <!-- Access control to Access and tooling -->
     <path d="M560 116 V148 H240 V176" />
     <!-- Access and tooling to RPC services -->
     <path d="M240 284 V300" />
