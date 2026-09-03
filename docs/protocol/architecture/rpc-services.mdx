@@ -11,8 +11,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 RPC services expose the JSON-RPC interfaces that applications, users, and internal services use to read network
 data and submit transactions.
 Any <GlossaryTerm term="Lineth" /> node can serve them, publicly or only within the operator's network, and RPC
-nodes are typically placed behind load balancers and access controls
-(<GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>).
+nodes are typically placed behind load balancers and [access control](../../stack/deployment/access-control.mdx).
 
 Two things distinguish one RPC node from another: which methods it serves, and how much state history
 it retains. Serving RPC is independent of a node's consensus role.

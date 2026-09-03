@@ -21,7 +21,7 @@ Consider these questions when choosing a deployment model:
 - [Data availability](../deployment/data-availability-finalization.mdx) guarantees: How important is onchain data availability for
   your participants?
 - Network topology: Do you need a private network with controlled membership?
-- [Access control](../deployment/rbac.mdx): Do you need role-based access control (RBAC) on RPC endpoints and
+- [Access control](../deployment/access-control.mdx): Do you need role-based access control (RBAC) on RPC endpoints and
   APIs?
 
 The following table compares how characteristics differ between public deployments and private validium deployments.
@@ -56,7 +56,7 @@ RPC access is public, and node membership is not restricted.
 - Validator topology: if the deployment uses a
   [multi-validator QBFT design](../deployment/distributed-sequencing.mdx), at least 4
   Maru validators are required to tolerate one faulty validator
-- Access controls: whether to implement [RBAC](../deployment/rbac.mdx) on RPC
+- [Access control](../deployment/access-control.mdx): whether to implement RBAC on RPC
   endpoints
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
@@ -66,7 +66,7 @@ RPC access is public, and node membership is not restricted.
 
 A private validium keeps transaction data offchain, using <GlossaryTerm term="zk-SNARK" /> proofs
 to support state-transition correctness and finalization.
-RPC endpoints are protected by [RBAC](../deployment/rbac.mdx), and node membership is controlled.
+RPC endpoints are protected by [access control](../deployment/access-control.mdx), and node membership is controlled.
 
 Whether this model
 suits a regulated environment depends on the operator's own compliance, privacy,
@@ -91,7 +91,7 @@ what is not claimed.
 - Validator topology: at least 4 Maru validators are required for a
   [QBFT design](../deployment/distributed-sequencing.mdx) that tolerates one faulty
   validator
-- Access controls: [RBAC](../deployment/rbac.mdx) on RPC endpoints and API portal
+- [Access control](../deployment/access-control.mdx): RBAC on RPC endpoints and API portal
 - [Key management](../../protocol/architecture/index.mdx#web3signer): remote
   signing backed by a hardware security module (HSM) or key management service
   (KMS)

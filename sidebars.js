@@ -480,7 +480,8 @@ const sidebars = {
         "stack/deployment/fast-finality",
         "stack/deployment/distributed-sequencing",
         "stack/deployment/high-availability",
-        "stack/deployment/rbac",
+        "stack/deployment/access-control",
+        "stack/deployment/deployment-interoperability",
       ],
     },
     {

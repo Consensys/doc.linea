@@ -1498,9 +1498,10 @@
         ]
     },
     {
-        "to": "/stack/deployment/rbac",
+        "to": "/stack/deployment/access-control",
         "from": [
-            "/stack/features/rbac"
+            "/stack/features/rbac",
+            "/stack/deployment/rbac"
         ]
     },
     {
