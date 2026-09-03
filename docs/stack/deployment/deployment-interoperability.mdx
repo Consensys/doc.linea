@@ -27,7 +27,7 @@ directly with each other over a trusted bridge.
 The destination network's access control endpoint checks the inbound call against role-based
 access control (RBAC) permissions before it accepts the call.
 
-<div class="mermaid-small mermaid-deployment" style={{ marginBottom: "2rem" }}>
+<div class="mermaid-medium mermaid-deployment">
 ```mermaid
 %%{init: {
   "themeVariables": {
@@ -46,14 +46,15 @@ flowchart TD
   classDef core stroke-width:1.5px;
   classDef neutral stroke-width:1.5px;
 
-  U1["Unrestricted<br/>network"]:::core
+  U1["Lineth network"]:::core
   FLA["Finalization<br/>layer"]:::neutral
-  U2["Unrestricted<br/>network"]:::core
-  U1 -->|"claim"| FLA
-  U2 -->|"send"| FLA
+  U2["Lineth network<br/>(unrestricted)"]:::core
+  L["Lineth network"]:::core
+  U1 -->|"send"| FLA
+  U2 -->|"claim"| FLA
 
-  R["Restricted<br/>network"]:::core
-  U1 -->|"trusted bridge<br/>with RBAC"| R
+  R["Lineth network<br/>(restricted)"]:::core
+  L -->|"trusted bridge<br/>with RBAC"| R
 ```
 </div>
 
@@ -61,29 +62,23 @@ flowchart TD
 
 Two restricted networks can communicate with each other as follows:
 
-1. Each operator onboards organizations, groups, and users at that deployment's
-   [access control](./access-control.mdx) endpoint, and registers the contracts those groups may use.
-2. Users present credentials to the endpoint and send reads and writes to that RPC.
-   Wallets and apps do not talk to the Lineth node directly.
-3. The destination operator configures that node with the access control endpoint's
-   address and the admin credential the endpoint expects.
-   Set both, or set neither.
-   If only one is set, the node refuses to start, so a half-configured check cannot skip
-   authorization or reject every inbound call.
-   If neither is set, inbound calls are allowed without asking the endpoint.
-4. A user (or contract) stages a cross-chain call to a peer deployment.
-5. The two deployments run a two-phase commit: **prepare**, then **commit** or **abort**.
-   In the prepare phase, they simulate the inbound call until both sides agree on the same
-   result.
-6. The policy subject is the source address: `msg.sender` at the cross-chain root, not `tx.origin`.
-   The destination qualifies that address with the source chain and looks it up in its own org,
-   group, and contract grant records.
-7. In the commit phase, the destination asks its access control endpoint whether that agreed
-   call would be allowed as a live RPC request.
+1. Operators of each network configure [role-based access control (RBAC)](./access-control.mdx)
+   permissions for their network.
+   They onboard organizations, groups, and users; and register the contracts those groups may use.
+2. Each operator configures their Lineth node so its access control endpoint can evaluate the permissions
+   of inbound cross-chain calls.
+   The configuration requires the endpoint's address and an admin credential.
+3. A user (or contract) from one network initiates a cross-chain call to the other network.
+4. The two networks run a two-phase commit: **prepare**, then **commit** or **abort**.
+   In the prepare phase, they simulate the call until both sides agree on the same result.
+5. In the commit phase, the destination asks its access control endpoint whether that
+   agreed call would be allowed as a live RPC request.
+   The endpoint evaluates the original caller against the destination's own RBAC policy:
+   `msg.sender` of the cross-chain call, not `tx.origin` of the source transaction.
    If the endpoint allows the call, both sides commit.
    If it denies the call, or if the endpoint is unreachable, both sides abort.
-   Evaluation is fail-closed.
-8. Both deployments record the decision on their append-only access logs.
+6. The destination access control endpoint records the decision on its append-only
+   access log.
 
 <div class="mermaid-large mermaid-deployment" style={{ marginBottom: "2rem" }}>
 ```mermaid
@@ -118,31 +113,17 @@ sequenceDiagram
 ```
 </div>
 
-The destination allowlists which contracts may be called cross-chain by using the same contract
-grants as live RPC.
-The source deployment still enforces per-user access before the call is staged.
-There is not a separate permission list for cross-chain calls.
-
-:::info Trust assumptions and networking
+:::info Trust assumptions
 
 Deployment interoperability is a [trusted bridge](../evaluate/trust-model.mdx): there is no shared proof across the two
 Lineth networks that replaces operator and relayer trust.
-Each side trusts its own access control configuration (if any), its own permissions, and the peer
+Each side trusts its own access control configuration, its own permissions, and the peer
 deployment endpoints it has configured.
-
-The wire between peer deployments is gRPC.
-Mutual TLS is not required today.
-Until it is, run that channel on an isolated operator network and restrict it with firewalls; do
-not expose peer endpoints to the public internet.
 
 :::
 
 ## See also
 
-- [Access control](./access-control.mdx): Permission model, request pipeline, and audit.
+- [Access control](./access-control.mdx): The access control stack for restricted deployments.
 - [Interoperability](../../protocol/architecture/interoperability/index.mdx): Canonical messaging
   and token bridging to the finalization layer.
-- [Trust and responsibilities](../evaluate/trust-model.mdx): Trusted-bridge row and what
-  participants can verify.
-- [Privacy and data visibility](../evaluate/validium.mdx): Offchain data availability versus access
-  policy.

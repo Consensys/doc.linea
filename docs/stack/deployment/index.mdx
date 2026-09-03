@@ -57,7 +57,7 @@ Detailed production topology and supported tooling for a given deployment can be
     {
       text: "Deployment interoperability",
       description:
-        "Peer Lineth calls over a two-phase commit, distinct from canonical bridging. A restricted destination authorizes the call against the same access control as live RPC.",
+        "How two Lineth deployments communicate with each other, and how an access controlled destination authorizes calls.",
       href: "/stack/deployment/deployment-interoperability",
     },
   ]}
@@ -124,8 +124,6 @@ The example architecture flows as follows:
 6. Interoperability with the finalization layer uses the
    [canonical token bridge and message service](../../protocol/architecture/interoperability/index.mdx).
    This example also shows validium message relayers to other enterprise or public chains.
-   Calls between two Lineth deployments are a separate path; see
-   [Deployment interoperability](./deployment-interoperability.mdx).
 
 See [Trust and responsibilities](../evaluate/trust-model.mdx) for who operates each component, what it
 can do, and what participants can verify.
