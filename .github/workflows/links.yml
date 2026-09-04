@@ -18,6 +18,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: LinkCheck
-        uses: Consensys/github-actions/docs-link-check@3a2429772a5d3653f0662a6a66299cad96e74196 # main
+        uses: Consensys-Incorporated/github-actions/docs-link-check@3a2429772a5d3653f0662a6a66299cad96e74196 # main
         with:
           CONFIG_FILE: '.linkspector.yml'
