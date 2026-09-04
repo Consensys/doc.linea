@@ -481,6 +481,7 @@ const sidebars = {
         "stack/deployment/distributed-sequencing",
         "stack/deployment/high-availability",
         "stack/deployment/rbac",
+        "stack/deployment/key-management",
       ],
     },
     {
