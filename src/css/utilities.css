@@ -30,6 +30,20 @@
   justify-content: center;
 }
 
+/* Opt into vertical centering for MDX tables (default is top via base.css) */
+.linea-table-wrapper > table.table-valign-middle thead th,
+.linea-table-wrapper > table.table-valign-middle tbody td {
+  vertical-align: middle;
+}
+
+/* Shrink the first column to its content (for short labels like Component) */
+.linea-table-wrapper > table.table-narrow-first-col thead th:first-child,
+.linea-table-wrapper > table.table-narrow-first-col tbody td:first-child {
+  width: 1%;
+  min-width: 0;
+  max-width: 9rem;
+}
+
 /* Intro row with copy button (e.g. API quickstart) */
 .intro-with-copy {
   display: flex;

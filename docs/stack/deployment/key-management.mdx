@@ -1,0 +1,256 @@
+---
+title: Key management
+description: >-
+  Signer roles, custody backends, and operator responsibilities for Lineth
+  deployments
+image: /img/socialCards/key-management.jpg
+---
+
+import GlossaryTerm from "@theme/GlossaryTerm";
+
+<GlossaryTerm term="Operator">Operators</GlossaryTerm> choose how each
+<GlossaryTerm term="Lineth" /> component signs transactions and consensus
+messages, and who can create, store, rotate, and audit those keys.
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm>,
+<GlossaryTerm term="Sequencer">sequencer</GlossaryTerm>,
+<GlossaryTerm term="Postman"/>, and <GlossaryTerm term="Maru validator"/> use these keys to produce
+signatures.
+
+A production deployment typically keeps signing keys in hardware-backed custody: a
+hardware security module (HSM) or cloud key management service (KMS).
+This is often done through <GlossaryTerm term="Web3Signer" /> or the Postman's AWS KMS backend,
+rather than as local private keys in the process.
+
+This page describes the signer roles in the open-source stack, the key custody options
+each role can use, and the controls the operator owns.
+
+## Signer roles
+
+Each role below has its own key and its own impact if lost or compromised.
+Do not reuse one key across roles.
+
+<table className="table-valign-middle table-narrow-first-col">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>What it signs</th>
+      <th>Configuration reference</th>
+      <th>If the key is lost or compromised</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3">Coordinator</td>
+      <td>
+        Blob submission to the finalization layer
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-coordinator-options#l1-submission">
+          <code>l1-submission.blob.signer.type</code>
+        </a>
+      </td>
+      <td>
+        Submission from that address stalls or can be issued by an attacker until
+        <code>OPERATOR_ROLE</code> is revoked
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Aggregation and finalization submissions
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-coordinator-options#l1-submission">
+          <code>l1-submission.aggregation.signer.type</code>
+        </a>
+      </td>
+      <td>
+        Finalization from that address stalls or can be issued by an attacker until
+        <code>OPERATOR_ROLE</code> is revoked
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Message-anchoring transactions
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-coordinator-options#message-anchoring">
+          <code>message-anchoring.signer.type</code>
+        </a>
+      </td>
+      <td>
+        Anchoring from that address stalls or can be issued by an attacker
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2">Postman</td>
+      <td>
+        Message claim or relay on the finalization layer
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-postman-options#signer">
+          <code>L1_SIGNER_TYPE</code>
+        </a>
+      </td>
+      <td>
+        Finalization layer relay from that address stalls or can be issued by an attacker
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Message claim or relay on the Lineth network
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-postman-options#signer">
+          <code>L2_SIGNER_TYPE</code>
+        </a>
+      </td>
+      <td>
+        Lineth network relay from that address stalls or can be issued by an attacker
+      </td>
+    </tr>
+    <tr>
+      <td>Linea Besu sequencer plugin</td>
+      <td>
+        Liveness contract transactions
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-besu-plugin-options#sequencer--liveness-service">
+          <code>--plugin-linea-liveness-signer-type</code>
+        </a>
+      </td>
+      <td>
+        Liveness reporting from that address stalls or can be issued by an
+        attacker. Block production does not use this key
+      </td>
+    </tr>
+    <tr>
+      <td>Maru validator</td>
+      <td>
+        QBFT consensus messages
+      </td>
+      <td>
+        <a href="../../reference/component-configuration/linea-maru-options#persistence">
+          <code>persistence.private-key-path</code>
+        </a>
+      </td>
+      <td>
+        That validator can miss or sign unauthorized consensus messages.
+        Replacing the key is a coordinated genesis update
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Coordinator blob and aggregation signers must use an Ethereum address that
+holds the rollup contracts' [`OPERATOR_ROLE`](../evaluate/trust-model.mdx#admin-keys-and-upgrade-authority).
+Custody (how the key is stored) does not grant that role.
+Keep signer addresses aligned with the role holders in
+[Admin keys and upgrade authority](../evaluate/trust-model.mdx#admin-keys-and-upgrade-authority).
+
+## Key custody options
+
+Each signer role can configure a key custody backend.
+
+### Local private key
+
+Configure `web3j` for the coordinator or `private-key` for the Postman to load a hex-encoded
+secp256k1 private key into the process.
+Configure `local` for Maru to mount a validator key as a file.
+Use these backends for development and local testing only.
+The [local stack quickstart](../how-to/run-local-lineth-stack.mdx) generates runtime
+keys for that purpose and is not a production custody model.
+
+### Web3Signer
+
+Configure `web3signer` for the coordinator or Postman, or `WEB3SIGNER` for the
+sequencer liveness plugin, to call <GlossaryTerm term="Web3Signer" /> over HTTP.
+Optional mutual TLS uses PKCS12 keystore and truststore files.
+
+The component holds the signer's public key and endpoint, not the private key.
+Web3Signer loads keys from the stores it documents, including files, vaults, and
+cloud KMS products.
+Those stores are Web3Signer configuration.
+They are not additional Lineth signer types.
+See [Store signing keys](https://docs.web3signer.consensys.io/how-to/store-keys) in
+the Web3Signer docs.
+
+Use Web3Signer when several components must sign without holding key material,
+or when you want an HSM or KMS that Lineth does not call directly.
+
+### AWS KMS (Postman)
+
+Configure `aws-kms` for the Postman (`L1_SIGNER_TYPE` or `L2_SIGNER_TYPE`) to
+sign with an AWS KMS asymmetric key.
+Provide the key ID, ARN, or alias.
+Region is optional and falls back to the AWS SDK default.
+
+The adapter requires a key with spec `ECC_SECG_P256K1` and usage `SIGN_VERIFY`.
+It calls `kms:GetPublicKey` once to derive the Ethereum address, then `kms:Sign`
+with `MessageType=DIGEST` for each transaction.
+Credentials come from the AWS default provider chain, not from Postman config.
+The private key never leaves KMS.
+
+AWS KMS uses FIPS 140-2 and FIPS 140-3 validated HSMs (validations held by AWS).
+Key custody remains a deployment choice.
+See [Cryptographic primitives](../evaluate/security.mdx#cryptographic-primitives).
+
+The coordinator and the sequencer liveness plugin do not have a built-in
+`aws-kms` type in the open-source stack.
+To keep those keys in KMS, front AWS KMS (or another store) with Web3Signer.
+
+### Custom signer factory
+
+Configure `custom` for the coordinator or `CUSTOM` for the
+sequencer liveness plugin to resolve a named signer
+through an injected factory.
+The open-source coordinator fails if no factory is configured for that name.
+Treat `custom` as an extension point, not as a documented built-in KMS backend.
+
+Confirm any additional factory-backed backends with the [Lineth team](/support)
+for a given deployment.
+
+## Operator responsibilities
+
+Operators own the following controls:
+
+- **Key generation**: Create each key in the chosen store (local file,
+  Web3Signer store, or AWS KMS).
+- **Storage and custody**: Keep private key material out of application config
+  and source control. Prefer hardware-backed storage for production signing.
+- **Access to the signer**: Apply least-privilege IAM or signer ACL, network
+  isolation, and credential rotation for principals allowed to sign.
+- **Onchain authorization**: Grant the signer address the role it needs
+  (`OPERATOR_ROLE` for coordinator submission), and revoke it when the key is
+  retired. See
+  [Admin keys and upgrade authority](../evaluate/trust-model.mdx#admin-keys-and-upgrade-authority).
+- **Access review and audit**: Review who can use the KMS key, Web3Signer API,
+  and onchain roles. Retain and review signer and KMS audit logs against your
+  policy.
+- **Incident response**: Detect compromise, pause affected subsystems, revoke
+  roles, and replace keys.
+- **Rotation and recovery**: Plan rotation and recovery per key class:
+  - **Operational signers** (coordinator, Postman, sequencer liveness plugin) sign as a
+    specific Ethereum address. Changing the key changes the sender unless the new
+    material is the same key pair. If you change the address, update the matching
+    onchain role (for example, `OPERATOR_ROLE` for coordinator submission) before
+    the old key is retired, or submission reverts. Web3Signer can load a replacement
+    key in its store while components keep calling the same endpoint.
+  - **Maru validator keys** are mounted as files. Changing a validator key (or
+    the validator set) requires a coordinated genesis update. See
+    [Set up distributed sequencing](../how-to/set-up-distributed-sequencing.mdx#manage-the-validator-set).
+  - **Contract admin keys** (`DEFAULT_ADMIN_ROLE` and related roles) are rotated by
+    granting a new holder and revoking the old one through the deployment's
+    governance or multisig process. See
+    [Failure modes and recovery](../evaluate/trust-model.mdx#failure-modes-and-recovery).
+
+For [high-availability](high-availability.mdx) placement, hardware-backed keys that stay in an HSM
+boundary can be used from more than one region without a new key ceremony.
+
+## See also
+
+- [Access control](./rbac.mdx): RPC and API access policy, which does not
+  replace key management
+- [Trust and responsibilities](../evaluate/trust-model.mdx): onchain roles and
+  component trust boundaries
+- [Security and assurance](../evaluate/security.mdx): operator-controlled
+  security surfaces and cryptographic primitives

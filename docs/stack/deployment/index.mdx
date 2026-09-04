@@ -54,6 +54,12 @@ Detailed production topology and supported tooling for a given deployment can be
         "Operator-configured RBAC at the access edge for protected RPC, API, and tooling surfaces in restricted deployments.",
       href: "/stack/deployment/rbac",
     },
+    {
+      text: "Key management",
+      description:
+        "Signer roles, custody backends, and operator responsibilities for operational signing keys.",
+      href: "/stack/deployment/key-management",
+    },
   ]}
 />
 
@@ -73,6 +79,8 @@ Proofs and state commitments go to a chosen
 
 - [Access control](rbac.mdx): Public RPC, or RPC and APIs gated by
   <GlossaryTerm term="Role-based access control (RBAC)">RBAC</GlossaryTerm>
+- [Key management](key-management.mdx): Local keys, remote signing through
+  <GlossaryTerm term="Web3Signer" />, or Postman AWS KMS
 - [Data availability](data-availability-finalization.mdx#data-availability): Onchain (for example,
   [EIP-4844](https://eips.ethereum.org/EIPS/eip-4844) blobs) or offchain in a
   <GlossaryTerm term="Validium">private validium</GlossaryTerm>

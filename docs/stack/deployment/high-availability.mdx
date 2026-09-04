@@ -193,6 +193,7 @@ choosing what to replicate versus rebuild:
 
 Signing keys for platform transactions on the finalization layer should use hardware-backed key
 management (for example, cloud KMS with HSM, integrated through <GlossaryTerm term="Web3Signer" />).
+See [Key management](./key-management.mdx) for signer roles and custody backends.
 Private key material stays in the HSM boundary.
 Multi-region keys let primary and standby sign from the same onchain address after failover,
 without a new key ceremony, and access stays least-privilege and auditable.
