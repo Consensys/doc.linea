@@ -352,7 +352,10 @@ test("groups API and Reference routes together under Reference", () => {
   const referenceSection = llms.match(/## Reference\n([\s\S]*?)(?=\n## |\s*$)/);
 
   assert(referenceSection, "llms.txt should include a Reference section");
-  assert.match(referenceSection[1], /\/reference\/apis\/token-api\/reference\.md/);
+  assert.match(
+    referenceSection[1],
+    /\/reference\/apis\/token-api\/reference\.md/,
+  );
   assert.match(referenceSection[1], /\/reference\.md/);
   assert.match(
     referenceSection[1],
