@@ -33,7 +33,6 @@ function buildGlossaryMdx(terms) {
     "---",
     "title: Glossary",
     "description: Definitions of Linea, Lineth, and zero-knowledge terms used across docs.linea.build.",
-    "sidebar_position: 8",
     "displayed_sidebar: protocolSidebar",
     "---",
     "",

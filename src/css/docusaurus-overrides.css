@@ -1038,7 +1038,10 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
 [class*="sidebarViewport"] .thin-scrollbar {
   background-color: var(--page-background);
   margin: 0;
-  padding: 10px 16px;
+  /* Bottom padding clears the fixed Osano cookie control and the
+     "Opt-Out Signal Honored" label, which sit over the sidebar's bottom
+     edge. Without it, the last item cannot scroll above them. */
+  padding: 10px 16px 96px;
   border-radius: 0;
   flex: 1 1 auto !important;
   min-height: 0 !important;
@@ -1047,6 +1050,12 @@ html[class*="docs-doc-id-api"] .theme-doc-sidebar-container {
   /* Override Infima's scrollbar-width:thin which disables ::-webkit-scrollbar
      pseudo-elements in Chrome 121+. Setting to auto lets webkit styles take over. */
   scrollbar-width: auto !important;
+}
+
+/* Mobile doc sidebar is the navbar's secondary panel, not sidebarViewport.
+   Same clearance so the last item can scroll above the cookie control. */
+.navbar-sidebar__item .theme-doc-sidebar-menu {
+  padding-bottom: 96px;
 }
 
 /* Force sidebar scrollbar always visible (macOS hides overlay scrollbars) */
@@ -1217,6 +1226,25 @@ a.menu__link {
 [data-theme="dark"] .menu__link--active:not(.menu__link--sublist) {
   color: var(--linea-active-color) !important;
   background: var(--linea-active-bg) !important;
+}
+
+/* Category index pages use menu__link--sublist, so the rule above skips them.
+   menu__list-item-collapsible--active is set only when that category's own
+   page is current, not when a child page is. !important overrides the
+   Infima link color. */
+.menu__list-item-collapsible--active > .menu__link {
+  color: var(--linea-active-color) !important;
+  background: var(--linea-active-bg) !important;
+  border-radius: var(--linea-radius-md);
+}
+
+/* Infima removes the link background inside a collapsible
+   (`.menu__list-item-collapsible .menu__link:hover { background: none }`)
+   and paints hover on the row instead, which this file turns off.
+   Restore the same gray hover used by doc links. !important beats that Infima rule. */
+.menu__list-item-collapsible > .menu__link:hover {
+  color: var(--linea-text-primary) !important;
+  background-color: var(--linea-hover-bg) !important;
 }
 
 .menu__list-item-collapsible--active,
