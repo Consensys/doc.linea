@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const matter = require("gray-matter");
+const matter = require("@11ty/gray-matter");
 const sharp = require("sharp");
 
 const docsPath = path.join(__dirname, "../docs");
