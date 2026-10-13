@@ -89,10 +89,12 @@ Lineth includes several classes of components, each of which serve part of the t
     to the finalization layer.
   - The [**prover**](./prover/index.mdx) generates zk-SNARK proofs for state transitions.
 
+- The [**canonical bridge**](./bridge/index.mdx) moves messages and tokens between the network and the finalization layer.
+  An optional offchain relay, the **Postman**, can deliver these messages automatically.
+  Anyone can still submit the claim that executes a message.
+
 - [**Smart contracts**](./smart-contracts.mdx) execute small programs according to EVM rules.
   For example, the finalization contract verifies proofs and records state roots on the finalization layer.
-  The [**canonical bridge**](./bridge/index.mdx) includes contracts that move messages and tokens between
-  the network and the finalization layer.
 
 :::note
 With further decentralization efforts, components such as the sequencer may be redesigned to be
