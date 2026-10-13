@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const matter = require("gray-matter");
+const matter = require("@11ty/gray-matter");
 
 // paths to docs/JSON files
 const DOCS_PATH = path.join(__dirname, "../docs");
