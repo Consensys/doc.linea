@@ -126,5 +126,12 @@
       "ajv": "8.20.0"
     },
     "serialize-javascript": "7.1.2"
+  },
+  "allowScripts": {
+    "@swc/core": false,
+    "core-js": false,
+    "esbuild": false,
+    "fsevents": false,
+    "unrs-resolver": false
   }
 }
