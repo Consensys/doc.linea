@@ -23,6 +23,25 @@ You must run Maru alongside an execution layer client like [Besu](./besu.mdx) or
 
 ::::
 
+## Minimum requirements
+
+| Requirement | Minimum |
+| --- | --- |
+| Memory | 2 GB for Maru; the reference Mainnet and Sepolia configurations run Maru with a 2 GB Java heap (`JAVA_OPTS=-Xmx2g`) |
+| Network | Ports 8080 (REST API), 9000 TCP/UDP (P2P), 9090 (metrics, optional) |
+| Software | Docker, or Java 25 and Make 3.81 for the binary distribution |
+| CPU | No specific minimum; plan for the execution client's needs |
+| Storage | Small; Maru stores only its own consensus state and keystore. Size your disk for the execution client |
+
+For CPU, memory, and disk space, size your machine for the execution layer client you run
+alongside Maru, since that client executes transactions and stores the blockchain state.
+The client pages include disk space guidance for Besu, Linea Besu, Geth, and Erigon:
+
+- [Besu](./besu.mdx) and [Linea Besu](./linea-besu.mdx)
+- [Geth](./geth.mdx)
+- [Nethermind](./nethermind.mdx)
+- [Erigon](./erigon.mdx)
+
 ## Run using Docker
 
 There are two methods you can use to run Maru using Docker:
@@ -117,6 +136,6 @@ For the full TOML key reference, see [Maru options](../../../stack/reference/lin
 
 ## Next steps
 
-- [Maru options](../../../stack/reference/linea-maru-options.mdx) — TOML configuration reference
+- [Maru options](../../../stack/reference/linea-maru-options.mdx): TOML configuration reference
 - [Run multiple Maru validators](../../../stack/how-to/run-multiple-validators.mdx) on a Lineth deployment
-- [Besu](./besu.mdx) or [Geth](./geth.mdx) — pair Maru with an execution layer client
+- [Besu](./besu.mdx) or [Geth](./geth.mdx): pair Maru with an execution layer client
