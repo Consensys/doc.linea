@@ -300,12 +300,12 @@ const sidebars = {
       label: "Component configuration",
       collapsible: false,
       items: [
-        { type: "doc", id: "reference/component-configuration/index", label: "Overview" },
-        "reference/component-configuration/linea-besu",
-        "reference/component-configuration/prover",
-        "reference/component-configuration/coordinator",
-        "reference/component-configuration/maru",
-        "reference/component-configuration/postman",
+        { type: "doc", id: "stack/reference/index", label: "Overview" },
+        "stack/reference/linea-besu-plugin-options",
+        "stack/reference/linea-prover-options",
+        "stack/reference/linea-coordinator-options",
+        "stack/reference/linea-maru-options",
+        "stack/reference/linea-postman-options",
       ],
     },
     {
@@ -314,7 +314,6 @@ const sidebars = {
       className: "sidebar-collapsible-section",
       collapsible: true,
       collapsed: true,
-      link: { type: "doc", id: "reference/smart-contracts/index" },
       items: [
         {
           type: "category",

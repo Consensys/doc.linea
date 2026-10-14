@@ -315,7 +315,7 @@ test("groups API and Reference routes together under Reference", () => {
       "  <url><loc>https://docs.linea.build/search</loc></url>",
       [
         "  <url><loc>https://docs.linea.build/reference</loc></url>",
-        "  <url><loc>https://docs.linea.build/reference/component-configuration/linea-besu</loc></url>",
+        "  <url><loc>https://docs.linea.build/reference/component-configuration/linea-besu-plugin-options</loc></url>",
         "  <url><loc>https://docs.linea.build/search</loc></url>",
       ].join("\n"),
     );
@@ -333,10 +333,10 @@ test("groups API and Reference routes together under Reference", () => {
   );
   writeFile(
     root,
-    "build/reference/component-configuration/linea-besu.html",
+    "build/reference/component-configuration/linea-besu-plugin-options.html",
     `<!doctype html><html><head>
       <link rel="alternate" type="text/plain" href="/llms.txt">
-      <link rel="alternate" type="text/markdown" href="/reference/component-configuration/linea-besu.md">
+      <link rel="alternate" type="text/markdown" href="/reference/component-configuration/linea-besu-plugin-options.md">
     </head><body>
       <main><article><h1>Linea Besu plugin configuration reference</h1><p>Plugin options.</p></article></main>
     </body></html>`,
@@ -359,7 +359,7 @@ test("groups API and Reference routes together under Reference", () => {
   assert.match(referenceSection[1], /\/reference\.md/);
   assert.match(
     referenceSection[1],
-    /\/reference\/component-configuration\/linea-besu\.md/,
+    /\/reference\/component-configuration\/linea-besu-plugin-options\.md/,
   );
   assert.doesNotMatch(llms, /## API reference/);
 });

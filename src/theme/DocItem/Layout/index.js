@@ -14,6 +14,7 @@ import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import ContentVisibility from "@theme/ContentVisibility";
 import styles from "./styles.module.css";
 import ToolingCTA from "../../../components/ToolingCTA";
+import ContractsWarning from "../../../components/ContractsWarning";
 import CopyPageButton from "../../../components/CopyPageButton";
 import FeedbackWidget from "../../../components/FeedbackWidget";
 
@@ -160,6 +161,7 @@ export default function DocItemLayout({ children }) {
             )}
             <DocItemContent>{children}</DocItemContent>
             <ToolingCTA />
+            <ContractsWarning />
             <FeedbackWidget key={metadata.permalink} />
             <div data-markdown-ignore className="article-footer-wrapper">
               <DocItemFooter />

@@ -39,7 +39,7 @@ Follow these steps to set up and configure Maru validators:
    See the
    [`genesis-maru.json` template](https://github.com/LFDT-Lineth/lineth-monorepo/blob/main/maru/docker/initialization/genesis-maru.json.template).
 3. Mount each validator's private key as a file on that validator's filesystem at runtime.
-4. On each validator, set [`p2p.static-peers`](../../reference/component-configuration/maru.mdx#p2p) to the other validators' enodes.
+4. On each validator, set [`p2p.static-peers`](../reference/linea-maru-options.mdx#p2p) to the other validators' enodes.
    Use this direct, static peering instead of P2P discovery (`p2p.discovery.bootnodes`).
    Indirect routing adds latency and reduces consensus performance.
 
@@ -130,4 +130,4 @@ block's time effectively doubles.
 ## Next steps
 
 - Review [Multi-validator consensus](../deployment/multi-validator-consensus.mdx) for topology and latency recommendations.
-- Configure Maru using the [Maru options](../../reference/component-configuration/maru.mdx) reference.
+- Configure Maru using the [Maru options](../reference/linea-maru-options.mdx) reference.

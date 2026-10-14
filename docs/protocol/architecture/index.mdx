@@ -87,11 +87,11 @@ endpoints for monitoring and control.
 A single Maru consensus client can drive more than one execution client. Alongside the execution client it uses for block
 building or import, either Maru role can drive additional
 <GlossaryTerm term="Follower execution client">follower execution clients</GlossaryTerm>, configured
-under [`follower-engine-apis`](../../reference/component-configuration/maru.mdx#maru).
+under [`follower-engine-apis`](../../stack/reference/linea-maru-options.mdx#maru).
 A follower execution client doesn't run its own Maru instance.
 
 For Maru TOML configuration keys, see the
-[Maru options](../../reference/component-configuration/maru.mdx).
+[Maru options](../../stack/reference/linea-maru-options.mdx).
 
 ### Execution client: Linea Besu
 
@@ -121,7 +121,7 @@ validator needs its own Linea Besu, adding validators also means adding executio
 execution clients can be added independently, without adding more Maru nodes.
 
 For the full plugin set and its configuration, see the
-[Linea Besu plugin reference](../../reference/component-configuration/linea-besu.mdx).
+[Linea Besu plugin reference](../../stack/reference/linea-besu-plugin-options.mdx).
 
 ## Internal protocol services
 
