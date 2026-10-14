@@ -119,6 +119,11 @@ const config = {
       },
       mermaid: {
         options: {
+          // Keep the current flowchart rendering. Mermaid 12 switches the
+          // defaults to the ELK layout and the "neo" look; these are already
+          // the Mermaid 11 defaults, so nothing changes until we upgrade.
+          layout: "dagre",
+          look: "classic",
           useMaxWidth: false,
           fontFamily: "AtypText, sans-serif",
           themeVariables: {
@@ -127,6 +132,9 @@ const config = {
           flowchart: {
             useMaxWidth: false,
             wrappingWidth: 280,
+            // Size nodes to their labels. Mermaid 12 widens short labels to a
+            // 120px minimum; Mermaid 11 ignores this option.
+            minNodeWidth: 0,
           },
         },
       },
