@@ -20,6 +20,7 @@ The canonical bridge is two protocol components:
 
 In both directions, a message executes on the destination chain only once that chain holds an onchain record of
 it, and anyone can submit the claim that triggers execution.
+An optional offchain relay, the <GlossaryTerm term="Postman" />, can deliver these messages automatically.
 
 What differs is when that record is checked against the origin chain.
 From the Lineth network to the finalization layer, messages are recorded on the finalization layer only once the

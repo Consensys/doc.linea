@@ -17,8 +17,8 @@ The following components are **required**.
 
 **Replaceability:** Versioned via protocol upgrade.
 
-- [Maru](../../protocol/architecture/index.mdx#consensus-client-maru): Consensus layer client
-- [Linea Besu](../../protocol/architecture/index.mdx#execution-client-linea-besu): Execution layer client.
+- [Maru](../../protocol/architecture/nodes/index.mdx#consensus-client-maru): Consensus layer client
+- [Linea Besu](../../protocol/architecture/nodes/index.mdx#execution-client-linea-besu): Execution layer client.
   Required for sequencer nodes and trace generation; other nodes can run any Ethereum execution client
 - [Sequencer](../../protocol/architecture/sequencer/index.mdx): Linea Besu plugins that order, build, and
   execute blocks
@@ -28,7 +28,7 @@ The following components are **required**.
 - [Tracer](../../protocol/architecture/sequencer/traces-generator.mdx): Generates execution traces required for proofs
 
 :::note
-Lineth uses a [dual-layer architecture](../../protocol/architecture/index.mdx#nodes): Maru for consensus and an
+Lineth uses a [dual-layer architecture](../../protocol/architecture/nodes/index.mdx): Maru for consensus and an
 execution client for the EVM.
 Operators can configure the consensus and execution layers separately.
 This enables but does not guarantee client diversity and network resilience; those depend on the operator's deployment.
@@ -57,7 +57,7 @@ and **replaceable**.
 
 Common examples include:
 
-- [Block explorer](../../protocol/architecture/index.mdx#block-explorer)
+- [Block explorer](../../protocol/architecture/index.mdx#components-overview)
 - [Archive node service](../../protocol/architecture/rpc-services.mdx#archive-nodes)
 - [RPC load balancers](../../protocol/architecture/rpc-services.mdx)
 - [Monitoring and metrics](../how-to/monitor-a-deployment.mdx)
@@ -66,7 +66,7 @@ Common examples include:
 
 **Special cases**
 
-- [Web3Signer](../../protocol/architecture/index.mdx#web3signer): Optional remote signing service
+- [Web3Signer](https://docs.web3signer.consensys.io/): Optional remote signing service
   that can front files, vaults, and cloud key management services (KMS).
   Web3Signer is in the signing-path trust boundary.
   See [Key management](./key-management.mdx) for how to configure Web3Signer and other key custody options.
