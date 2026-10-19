@@ -364,6 +364,14 @@ const sidebars = {
         "protocol/architecture/index",
         {
           type: "category",
+          label: "Nodes",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "protocol/architecture/nodes/index" },
+          items: ["protocol/architecture/rpc-services"],
+        },
+        {
+          type: "category",
           label: "Sequencer",
           collapsible: true,
           collapsed: true,
@@ -405,7 +413,6 @@ const sidebars = {
           ],
         },
         "protocol/architecture/smart-contracts",
-        "protocol/architecture/rpc-services",
       ],
     },
     {

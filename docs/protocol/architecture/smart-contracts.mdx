@@ -57,17 +57,19 @@ At finalization, the <GlossaryTerm term="zk-SNARK" /> public input includes the 
 new final shnarf.
 The contract accepts the proof only when that new final shnarf matches one it has already recorded.
 
-How the shnarf is recorded depends on the [data submission model](./index.mdx#transaction-lifecycle):
+How the shnarf is recorded depends on the [deployment model](../../stack/evaluate/deployment-models.mdx):
 
-- **EIP-4844 blobs (<GlossaryTerm term="Rollup">rollup</GlossaryTerm>):** The contract computes the shnarf from
-  the blob posted with the submission, so the data the shnarf commits to is posted to the finalization layer.
-  When multiple blobs are submitted, the contract computes a shnarf for each blob, chains them together, and stores
-  the final shnarf.
-- **Calldata:** The contract computes the shnarf from the compressed data in the submission.
-  The coordinator does not currently provide a calldata submitter.
-- **Shnarf-only (<GlossaryTerm term="Validium">validium</GlossaryTerm>):** The coordinator computes the shnarf and
-  the contract records it.
-  The proof is still bound to the data, but the data itself is not posted to the finalization layer.
+- For a <GlossaryTerm term="Rollup">rollup</GlossaryTerm>, the coordinator submits compressed transaction data to
+  the finalization layer as EIP-4844 blobs.
+  The contract must support the `IAcceptEip4844Blobs` interface.
+  The contract computes the shnarf from the blob, so the data the shnarf commits to is posted to the finalization layer.
+  When multiple blobs are submitted, the contract computes a shnarf for each blob, chains them together, and
+  stores the final shnarf.
+- For a <GlossaryTerm term="Validium">validium</GlossaryTerm>, submission is shnarf-only.
+  The contract must support the `IAcceptShnarfData` interface.
+  The coordinator computes the shnarf and the contract records it.
+  Only proofs and state commitments are posted to the finalization layer.
+  The proof is still bound to the data, but the data itself is not posted.
 
 ## Message service contracts
 
@@ -85,6 +87,12 @@ They bridge ERC-20 tokens by escrowing the original on its home chain and mintin
 other, sending each instruction through the message service.
 Minted supply is always matched by escrowed supply, so the bridge cannot mint tokens that were never locked.
 See [Canonical token bridge](./bridge/canonical-token-bridge.mdx).
+
+## Application contracts
+
+Application contracts are deployed on the Lineth network to enable token issuance, workflow automation, and
+other network-specific functionality.
+For example, a contract can issue an ERC-20 token on the network, or release that token when a settlement condition is met.
 
 ## Contract versioning
 

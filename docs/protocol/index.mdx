@@ -50,12 +50,12 @@ network overview, see [Linea Mainnet](../network/index.mdx).
 
 At a high level, the Lineth protocol processes transactions through four stages.
 
-1. **Execute transactions:** Transactions enter an Ethereum-compatible execution environment.
-  Smart contracts run against the current network state, and each accepted transaction produces a deterministic
+1. **Execute transactions:** Transactions are submitted to an Ethereum-compatible execution environment,
+  then ordered and executed into blocks. Each accepted transaction produces a deterministic
   state transition.
 
-2. **Batch and trace blocks:** Executed blocks are grouped into batches.
-  The protocol records the execution traces needed to prove that each state transition was computed correctly.
+2. **Batch and trace blocks:** The protocol records the execution traces for those blocks and groups
+  the blocks into batches.
 
 3. **Generate validity proofs:** The proving system uses those traces to generate zero-knowledge proofs.
   A verifier can check the proofs without replaying every transaction in the batch.
@@ -65,5 +65,5 @@ At a high level, the Lineth protocol processes transactions through four stages.
   Data availability and finalization choices depend on the deployment model: Linea Mainnet is one deployment that
   finalizes to Ethereum, while other Lineth-based networks can use different finalization paths.
 
-For the architecture and component-level details behind execution, batching, proving, onchain contracts, and
-finalization, see [architecture](./architecture/index.mdx).
+For the architecture and component-level details behind these stages, see the
+[Architecture overview](./architecture/index.mdx).
