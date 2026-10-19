@@ -6,10 +6,6 @@ const darkCodeTheme = prismThemes.dracula;
 
 const redirectsData = require("./redirects.json");
 
-/** It's a public API key, so it's safe to expose it here. */
-const COOKBOOK_PUBLIC_API_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWMxOGU4YTA1MjA1MDZmZmEwMDhjNDYiLCJpYXQiOjE3MDcxODM3NTQsImV4cCI6MjAyMjc1OTc1NH0.tHX7blsbehxRJIjCQMMBxWpdjDCHiRW5sr8vkyefHVs";
-
 // const isDev = process.env.NODE_ENV === "development";
 // const baseUrl = isDev ? "/" : "/";
 
@@ -494,58 +490,6 @@ const config = {
       attributes: {
         src: "https://cmp.osano.com/AzZMxHTbQDOQD8c1J/c6086d9d-3cdb-4b84-b5ee-0acab1ebdd42/osano.js",
       },
-    },
-    {
-      tagName: "script",
-      attributes: {},
-      innerHTML: `
-      (function() {
-        var hasScheduled = false;
-
-        function mountCookbook() {
-          var element = document.getElementById('__cookbook');
-          if (!element) {
-            element = document.createElement('div');
-            element.id = '__cookbook';
-            element.dataset.apiKey = '${COOKBOOK_PUBLIC_API_KEY}';
-            document.body.appendChild(element);
-          }
-
-          var script = document.getElementById('__cookbook-script');
-          if (!script) {
-            script = document.createElement('script');
-            script.crossOrigin = 'anonymous';
-            script.integrity = 'sha384-2IAGy0MWIbMc3D8cuK6NbOkLIz4yy3pYmImC4f6TRKhfFMNEo1nFCQ2re8bysHkX';
-            script.src = 'https://cdn.jsdelivr.net/npm/@cookbookdev/docsbot@4.21.17/dist/standalone/index.cjs.js';
-
-            script.id = '__cookbook-script';
-            script.async = true;
-            document.body.appendChild(script);
-          }
-        }
-
-        function scheduleCookbook() {
-          if (hasScheduled) return;
-          hasScheduled = true;
-
-          if (window.requestIdleCallback) {
-            window.requestIdleCallback(mountCookbook, { timeout: 4000 });
-          } else {
-            setTimeout(mountCookbook, 2000);
-          }
-        }
-
-        function scheduleOnInteraction() {
-          scheduleCookbook();
-        }
-
-        window.addEventListener('pointerdown', scheduleOnInteraction, { once: true, capture: true });
-        window.addEventListener('keydown', scheduleOnInteraction, { once: true, capture: true });
-        window.addEventListener('load', function() {
-          setTimeout(scheduleCookbook, 500);
-        }, { once: true });
-      })();
-    `,
     },
     {
       tagName: "link",

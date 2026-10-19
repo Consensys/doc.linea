@@ -129,7 +129,6 @@ const sidebars = {
             "network/how-to/deploy-smart-contract/thirdweb",
             "network/how-to/deploy-smart-contract/remix",
             "network/how-to/deploy-smart-contract/hardhat",
-            "network/how-to/deploy-smart-contract/cookbook",
             "network/how-to/deploy-smart-contract/foundry",
             "network/how-to/deploy-smart-contract/atlas",
           ],

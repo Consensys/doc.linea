@@ -788,8 +788,9 @@
         ]
     },
     {
-        "to": "/network/build/tools/contracts-templates/cookbook",
+        "to": "/network/build/tools/contracts-templates",
         "from": [
+            "/network/build/tools/contracts-templates/cookbook",
             "/developers/tooling/contracts-templates/cookbook",
             "/get-started/tools/contracts-templates/cookbook",
             "/network/tooling/contracts-templates/cookbook",
@@ -1128,8 +1129,9 @@
         ]
     },
     {
-        "to": "/network/how-to/deploy-smart-contract/cookbook",
+        "to": "/network/how-to/deploy-smart-contract",
         "from": [
+            "/network/how-to/deploy-smart-contract/cookbook",
             "/developers/quickstart/deploy-smart-contract/cookbook",
             "/get-started/how-to/deploy-smart-contract/cookbook"
         ]
