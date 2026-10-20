@@ -443,7 +443,7 @@ function htmlToMarkdown({ html, route, metadata, baseUrl = DEFAULT_BASE_URL }) {
 }
 
 function shouldIgnoreGeneratedDocEmphasisArtifacts(route) {
-  return normalizeRoute(route).startsWith("/api/linea-smart-contracts/");
+  return normalizeRoute(route).startsWith("/reference/smart-contracts/");
 }
 
 function addMarkdownIgnoreAttributes(html, { route } = {}) {

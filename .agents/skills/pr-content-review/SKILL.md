@@ -51,7 +51,7 @@ including in your report. Instead:
 ## Step 2: Identify the tab and content type
 
 Read the file path to determine which tab it's in (`docs/network`, `docs/protocol`,
-`docs/stack`, `docs/api`, `docs/changelog`) and load `.cursor/rules/content-structure.mdc`
+`docs/stack`, `docs/reference`, `docs/changelog`) and load `.cursor/rules/content-structure.mdc`
 for the expected audience, tone, and structure for that tab.
 
 ## Step 3: Review against the rule files
@@ -90,7 +90,7 @@ of truth for full criteria:
 - An issue exists and is linked from the PR (see CONTRIBUTING.md).
 - `redirects.json` updated if the page was moved, renamed, or removed, and every internal
   link that pointed at the old path is updated too.
-- `docs/api/linea-smart-contracts/` wasn't hand-edited (it's auto-generated).
+- `docs/reference/smart-contracts/` wasn't hand-edited (it's auto-generated).
 
 ### Content and accuracy
 

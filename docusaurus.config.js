@@ -98,7 +98,7 @@ const config = {
         specs: [
           {
             spec: "https://token-api.linea.build/docs-yaml",
-            route: "api/token-api/reference",
+            route: "reference/apis/token-api/reference",
           },
         ],
       },
@@ -195,7 +195,7 @@ const config = {
           },
           {
             type: "doc",
-            docId: "reference",
+            docId: "reference/index",
             position: "left",
             label: "Reference",
             activeBaseRegex: "^/(reference|api)(/|$)",

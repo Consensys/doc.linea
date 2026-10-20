@@ -28,7 +28,7 @@ block by block, and deriving a new state root for each block.
 The [coordinator](./coordinator/index.mdx) requests the Merkle proof for a batch's range of blocks
 and passes it to the [prover](./prover/index.mdx) with the rest of the proof request, so the
 resulting proof attests to the state transition that batch produced. The state manager also serves
-[`linea_getProof`](../../api/reference/linea-getproof) to callers that need an account or storage
+[`linea_getProof`](../../reference/apis/linea-api/linea-getproof) to callers that need an account or storage
 proof for a block already finalized on the
 <GlossaryTerm term="Finalization layer">finalization layer</GlossaryTerm>.
 
@@ -264,6 +264,6 @@ transactions themselves.
 
 - See the [coordinator](./coordinator/index.mdx) for how state proofs reach the prover, and the
   [prover](./prover/index.mdx) for how they're used in proof generation.
-- See [`linea_getProof`](../../api/reference/linea-getproof) for requesting an account or storage
+- See [`linea_getProof`](../../reference/apis/linea-api/linea-getproof) for requesting an account or storage
   proof directly.
 - See the [`shomei` source code](https://github.com/Consensys/shomei).

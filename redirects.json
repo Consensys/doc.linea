@@ -309,14 +309,14 @@
         ]
     },
     {
-        "to": "/api/reference/linea-estimategas",
+        "to": "/reference/apis/linea-api/linea-estimategas",
         "from": [
             "/developers/reference/api/linea-estimategas",
             "/reference/api/linea-estimategas"
         ]
     },
     {
-        "to": "/api/reference",
+        "to": "/reference/apis/linea-api",
         "from": [
             "/build-on-linea/quickstart/rpc",
             "/developers/guides/linea-api",
@@ -324,7 +324,7 @@
         ]
     },
     {
-        "to": "/api/token-api",
+        "to": "/reference/apis/token-api",
         "from": [
             "/api/token-api/overview"
         ]
@@ -1158,7 +1158,7 @@
         ]
     },
     {
-        "to": "/api/linea-sdk",
+        "to": "/reference/lineth-sdk",
         "from": [
             "/developers/guides/linea-sdk"
         ]
@@ -1258,19 +1258,19 @@
         ]
     },
     {
-        "to": "/api/reference/eth-sendrawtransaction",
+        "to": "/reference/apis/linea-api/eth-sendrawtransaction",
         "from": [
             "/developers/reference/api/eth-sendrawtransaction"
         ]
     },
     {
-        "to": "/api/reference/linea-gettransactionexclusionstatusv1",
+        "to": "/reference/apis/linea-api/linea-gettransactionexclusionstatusv1",
         "from": [
             "/developers/reference/api/linea-gettransactionexclusionstatusv1"
         ]
     },
     {
-        "to": "/api/reference/linea-getproof",
+        "to": "/reference/apis/linea-api/linea-getproof",
         "from": [
             "/developers/reference/api/linea-getproof"
         ]
@@ -1572,6 +1572,524 @@
         "to": "/stack/how-to/enable-forced-transactions",
         "from": [
             "/stack/how-to/forced-transactions"
+        ]
+    },
+    {
+        "to": "/reference/apis",
+        "from": [
+            "/api/quickstart"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api",
+        "from": [
+            "/api/reference"
+        ]
+    },
+    {
+        "to": "/reference/apis/token-api",
+        "from": [
+            "/api/token-api",
+            "/api/token-api/index"
+        ]
+    },
+    {
+        "to": "/reference/apis/token-api/reference",
+        "from": [
+            "/api/token-api/reference"
+        ]
+    },
+    {
+        "to": "/reference/lineth-sdk",
+        "from": [
+            "/api/linea-sdk"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-sendbundle",
+        "from": [
+            "/api/reference/eth-sendbundle"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-sendrawtransaction",
+        "from": [
+            "/api/reference/eth-sendrawtransaction"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/linea-estimategas",
+        "from": [
+            "/api/reference/linea-estimategas"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/linea-getproof",
+        "from": [
+            "/api/reference/linea-getproof"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/linea-gettransactionexclusionstatusv1",
+        "from": [
+            "/api/reference/linea-gettransactionexclusionstatusv1"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/debug-traceblockbyhash",
+        "from": [
+            "/api/reference/debug-traceblockbyhash"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/debug-traceblockbynumber",
+        "from": [
+            "/api/reference/debug-traceblockbynumber"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/debug-tracecall",
+        "from": [
+            "/api/reference/debug-tracecall"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/debug-tracetransaction",
+        "from": [
+            "/api/reference/debug-tracetransaction"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-accounts",
+        "from": [
+            "/api/reference/eth-accounts"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-blocknumber",
+        "from": [
+            "/api/reference/eth-blocknumber"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-call",
+        "from": [
+            "/api/reference/eth-call"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-chainid",
+        "from": [
+            "/api/reference/eth-chainid"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-estimategas",
+        "from": [
+            "/api/reference/eth-estimategas"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-feehistory",
+        "from": [
+            "/api/reference/eth-feehistory"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gasprice",
+        "from": [
+            "/api/reference/eth-gasprice"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getbalance",
+        "from": [
+            "/api/reference/eth-getbalance"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getblockbyhash",
+        "from": [
+            "/api/reference/eth-getblockbyhash"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getblockbynumber",
+        "from": [
+            "/api/reference/eth-getblockbynumber"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getblockreceipts",
+        "from": [
+            "/api/reference/eth-getblockreceipts"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getblocktransactioncountbyhash",
+        "from": [
+            "/api/reference/eth-getblocktransactioncountbyhash"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getblocktransactioncountbynumber",
+        "from": [
+            "/api/reference/eth-getblocktransactioncountbynumber"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getcode",
+        "from": [
+            "/api/reference/eth-getcode"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getfilterchanges",
+        "from": [
+            "/api/reference/eth-getfilterchanges"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getfilterlogs",
+        "from": [
+            "/api/reference/eth-getfilterlogs"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getlogs",
+        "from": [
+            "/api/reference/eth-getlogs"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getproof",
+        "from": [
+            "/api/reference/eth-getproof"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-getstorageat",
+        "from": [
+            "/api/reference/eth-getstorageat"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gettransactionbyblockhashandindex",
+        "from": [
+            "/api/reference/eth-gettransactionbyblockhashandindex"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gettransactionbyblocknumberandindex",
+        "from": [
+            "/api/reference/eth-gettransactionbyblocknumberandindex"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gettransactionbyhash",
+        "from": [
+            "/api/reference/eth-gettransactionbyhash"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gettransactioncount",
+        "from": [
+            "/api/reference/eth-gettransactioncount"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-gettransactionreceipt",
+        "from": [
+            "/api/reference/eth-gettransactionreceipt"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-maxpriorityfeepergas",
+        "from": [
+            "/api/reference/eth-maxpriorityfeepergas"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-newblockfilter",
+        "from": [
+            "/api/reference/eth-newblockfilter"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-newfilter",
+        "from": [
+            "/api/reference/eth-newfilter"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/eth-uninstallfilter",
+        "from": [
+            "/api/reference/eth-uninstallfilter"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/trace-block",
+        "from": [
+            "/api/reference/trace-block"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/trace-call",
+        "from": [
+            "/api/reference/trace-call"
+        ]
+    },
+    {
+        "to": "/reference/apis/linea-api/trace-transaction",
+        "from": [
+            "/api/reference/trace-transaction"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/igenericerrors",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/igenericerrors"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/imessageservice",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/imessageservice"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/ipausemanager",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/ipausemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/ipermissionsmanager",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/ipermissionsmanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/iratelimiter",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/iratelimiter"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/il1messagemanager",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/il1messagemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/il1messagemanagerv1",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/il1messagemanagerv1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/il1messageservice",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/il1messageservice"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/ilinearollup",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/ilinearollup"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/iplonkverifier",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/iplonkverifier"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l1/izkevmv2",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l1/izkevmv2"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l2/il2messagemanager",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l2/il2messagemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l2/il2messagemanagerv1",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l2/il2messagemanagerv1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/interfaces/l2/il2messageservicev1",
+        "from": [
+            "/api/linea-smart-contracts/interfaces/l2/il2messageservicev1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/callforwardingproxy",
+        "from": [
+            "/api/linea-smart-contracts/lib/callforwardingproxy"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/l2messageservicepausemanager",
+        "from": [
+            "/api/linea-smart-contracts/lib/l2messageservicepausemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/linearolluppausemanager",
+        "from": [
+            "/api/linea-smart-contracts/lib/linearolluppausemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/mimc",
+        "from": [
+            "/api/linea-smart-contracts/lib/mimc"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/pausemanager",
+        "from": [
+            "/api/linea-smart-contracts/lib/pausemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/sparsemerkleproof",
+        "from": [
+            "/api/linea-smart-contracts/lib/sparsemerkleproof"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/tokenbridgepausemanager",
+        "from": [
+            "/api/linea-smart-contracts/lib/tokenbridgepausemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/lib/utils",
+        "from": [
+            "/api/linea-smart-contracts/lib/utils"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/linearollup",
+        "from": [
+            "/api/linea-smart-contracts/linearollup"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l1/l1messagemanager",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l1/l1messagemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l1/l1messageservice",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l1/l1messageservice"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l1/v1/l1messagemanagerv1",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l1/v1/l1messagemanagerv1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l1/v1/l1messageservicev1",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l1/v1/l1messageservicev1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l2/l2messagemanager",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l2/l2messagemanager"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l2/l2messageservice",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l2/l2messageservice"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l2/v1/l2messagemanagerv1",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l2/v1/l2messagemanagerv1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/l2/v1/l2messageservicev1",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/l2/v1/l2messageservicev1"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/lib/messagehashing",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/lib/messagehashing"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/lib/ratelimiter",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/lib/ratelimiter"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/lib/sparsemerkletreeverifier",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/lib/sparsemerkletreeverifier"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/lib/timelock",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/lib/timelock"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/lib/transientstoragehelpers",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/lib/transientstoragehelpers"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/messageservice/messageservicebase",
+        "from": [
+            "/api/linea-smart-contracts/messageservice/messageservicebase"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/tokenbridge/bridgedtoken",
+        "from": [
+            "/api/linea-smart-contracts/tokenbridge/bridgedtoken"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/tokenbridge/interfaces/itokenbridge",
+        "from": [
+            "/api/linea-smart-contracts/tokenbridge/interfaces/itokenbridge"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/tokenbridge",
+        "from": [
+            "/api/linea-smart-contracts/tokenbridge",
+            "/api/linea-smart-contracts/tokenbridge/tokenbridge"
+        ]
+    },
+    {
+        "to": "/reference/smart-contracts/zkevmv2",
+        "from": [
+            "/api/linea-smart-contracts/zkevmv2"
         ]
     }
 ]

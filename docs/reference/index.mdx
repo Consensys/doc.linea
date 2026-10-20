@@ -1,0 +1,39 @@
+---
+title: Reference
+description: Technical references for the public Linea network and for Lineth deployments.
+image: /img/socialCards/reference.jpg
+---
+
+import ActionCards from "@site/src/components/ActionCards";
+
+This section contains technical references for [Linea](../network/index.mdx), the public network,
+and [Lineth](../stack/index.mdx), the stack that powers Linea and custom networks.
+
+<ActionCards
+  cards={[
+    {
+      text: "RPC and APIs",
+      description:
+        "The Linea JSON-RPC API, including standard Ethereum methods, and the Token REST API.",
+      href: "/reference/apis",
+    },
+    {
+      text: "Lineth SDK",
+      description:
+        "An SDK to enable applications to call bridge functions between Ethereum and Linea.",
+      href: "/reference/lineth-sdk",
+    },
+    {
+      text: "Component configuration",
+      description:
+        "Configuration options for Lineth components: Linea Besu, prover, coordinator, Maru, and Postman.",
+      href: "/reference/component-configuration",
+    },
+    {
+      text: "Smart contracts",
+      description:
+        "Lineth protocol contract interfaces.",
+      href: "/reference/smart-contracts/linearollup",
+    },
+  ]}
+/>

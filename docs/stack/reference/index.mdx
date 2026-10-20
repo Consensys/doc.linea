@@ -1,0 +1,43 @@
+---
+title: Component configuration
+sidebar_label: Overview
+description: 'Configuration references for Lineth components, for any deployment.'
+slug: /reference/component-configuration
+image: /img/socialCards/component-configuration.jpg
+---
+
+import ActionCards from "@site/src/components/ActionCards";
+
+This section documents configuration options for [Lineth protocol components](../../protocol/architecture/index.mdx).
+Each page is generated from that component's source.
+
+<ActionCards
+  cards={[
+    {
+      text: "Linea Besu plugins",
+      description:
+        "CLI options for the sequencer, tracer, and state recovery plugins.",
+      href: "/reference/component-configuration/linea-besu-plugin-options",
+    },
+    {
+      text: "Prover",
+      description: "TOML options for the prover.",
+      href: "/reference/component-configuration/linea-prover-options",
+    },
+    {
+      text: "Coordinator",
+      description: "TOML options for the coordinator.",
+      href: "/reference/component-configuration/linea-coordinator-options",
+    },
+    {
+      text: "Maru",
+      description: "TOML options for the Maru consensus client.",
+      href: "/reference/component-configuration/linea-maru-options",
+    },
+    {
+      text: "Postman",
+      description: "Environment variables for the Postman service.",
+      href: "/reference/component-configuration/linea-postman-options",
+    },
+  ]}
+/>

@@ -1,0 +1,37 @@
+---
+title: RPC and APIs
+sidebar_label: Overview
+description: >-
+  JSON-RPC and Token API references for the public Linea network, and how
+  JSON-RPC behavior can differ on a custom Lineth deployment.
+image: /img/socialCards/rpc-and-apis.jpg
+---
+
+import ActionCards from "@site/src/components/ActionCards";
+import GlossaryTerm from "@theme/GlossaryTerm";
+
+This section documents APIs for the Linea network.
+
+<ActionCards
+  cards={[
+    {
+      text: "Linea API",
+      description:
+        "JSON-RPC API on Linea's public endpoint.",
+      href: "/reference/apis/linea-api",
+    },
+    {
+      text: "Token API",
+      description:
+        "Token metadata and balances for the public Linea network.",
+      href: "/reference/apis/token-api",
+    },
+  ]}
+/>
+
+:::info
+A custom Lineth deployment can [expose JSON-RPC](../../protocol/architecture/rpc-services.mdx) on its own endpoint.
+Standard Ethereum methods are available on any execution client.
+The `linea_` namespace requires <GlossaryTerm term="Linea Besu" /> with the relevant plugins enabled.
+Bundler methods and `eth_sendBundle` are served by Linea's public infrastructure.
+:::

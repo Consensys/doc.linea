@@ -10,7 +10,7 @@ this Docusaurus v3 documentation site, [`docs.linea.build`](https://docs.linea.b
 | Linea Mainnet | `docs/network` | Linea Mainnet |
 | Lineth Stack | `docs/stack` | Lineth (the operator stack) |
 | Protocol | `docs/protocol` | Lineth (the protocol) |
-| Reference | `docs/api` | Linea and Lineth |
+| Reference | `docs/reference` | Linea and Lineth |
 | Changelog | `docs/changelog` | Linea and Lineth |
 
 See [README.mdx](README.mdx) for full tab descriptions, audiences, and the `src/`
