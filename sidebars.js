@@ -313,6 +313,7 @@ const sidebars = {
       className: "sidebar-collapsible-section",
       collapsible: true,
       collapsed: true,
+      link: { type: "doc", id: "reference/smart-contracts/index" },
       items: [
         {
           type: "category",
