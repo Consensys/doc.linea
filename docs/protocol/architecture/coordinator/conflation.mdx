@@ -30,9 +30,9 @@ which makes the proving system more efficient.
 ## How it works
 
 Conflation is driven by the [coordinator](./index.mdx), using trace data from the
-[tracer](../sequencer/traces-generator.mdx):
+<GlossaryTerm term="Tracer">tracer</GlossaryTerm>:
 
-1. As the [sequencer](../sequencer/index.mdx) produces each block, the coordinator requests that
+1. As the <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> produces each block, the coordinator requests that
    block's trace counts from the tracer.
 2. The coordinator adds the block to the batch it's assembling, and keeps adding blocks while the
    batch stays within the proving limits.
@@ -50,9 +50,7 @@ batch boundaries fall is a coordinator responsibility.
 
 ## See also
 
-- See the [coordinator](./index.mdx) for how conflated batches become proofs and reach the
-  finalization layer.
-- See [module limits](../prover/prover-limits.mdx) for the trace line limits that constrain how many
+- See [module limits](../prover/module-limits.mdx) for the trace line limits that constrain how many
   blocks fit in a batch.
 - See the [coordinator source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/coordinator)
   in the `lineth-monorepo`.

@@ -22,7 +22,7 @@ By leveraging the expertise and resources of Infura, Consensys, and the Ethereum
 
 ## Client-facing RPC-API nodes
 
-[RPC nodes](../../protocol/architecture/rpc-services.mdx) do the "traditional" work of EVM nodes:
+[RPC nodes](../../protocol/architecture/nodes/rpc-services.mdx) do the "traditional" work of EVM nodes:
 - They receive updated network state information from the <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm>
   and <GlossaryTerm term="State manager">state manager</GlossaryTerm>, and provide information about that state
   to users and dapps when they request it.
@@ -34,7 +34,7 @@ balanced across the nodes, and are thereby routed into the memory pool, for subs
 
 ### Archive nodes
 
-[Archive nodes](../../protocol/architecture/rpc-services.mdx#archive-nodes) support those dapps and those research activities that rely on historical data.
+[Archive nodes](../../protocol/architecture/nodes/rpc-services.mdx#archive-nodes) support those dapps and those research activities that rely on historical data.
 
 This type of data request can be resource-intensive, and could put the live network nodes at risk of having their performance impacted, and thus threaten the overall health of the network. For this reason, Infura deploys archive nodes in a scalable architecture; these kinds of transactions aren’t being run _all_ the time–-but when they are, more nodes are spun up as needed to keep up with demand.
 

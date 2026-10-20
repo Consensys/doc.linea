@@ -68,10 +68,10 @@ flowchart TB
   V2 -.- V3
   V3 -.- V4
 
+  FL["Finalization layer<br/>(for example, Ethereum)"]:::neutral
   OBS["Observability plane"]:::control
+  Regions --> FL
   Regions -.-> OBS
-
-  V1 --> FL["Finalization layer<br/>(for example, Ethereum)"]:::neutral
 ```
 </div>
 
@@ -108,7 +108,7 @@ nearest healthy region (for example,
 [AWS Global Accelerator](https://aws.amazon.com/global-accelerator/)), protected by a web
 application firewall, then a regional load balancer, an [access control](./access-control.mdx) endpoint, and
 JSON-RPC routers to
-[near-head and archive nodes](../../protocol/architecture/rpc-services.mdx).
+[near-head and archive nodes](../../protocol/architecture/nodes/rpc-services.mdx).
 Private RPC can use private connectivity into each region (for example,
 [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html)).
 

@@ -25,7 +25,7 @@ The following components are **required**.
 - [Coordinator](../../protocol/architecture/coordinator/index.mdx): Orchestrates batching, proof generation, and submissions
 - [Prover](../../protocol/architecture/prover/index.mdx): Generates zero-knowledge proofs of state transitions
 - [State manager](../../protocol/architecture/state-manager.mdx): Maintains a state representation for proof generation
-- [Tracer](../../protocol/architecture/sequencer/traces-generator.mdx): Generates execution traces required for proofs
+- [Tracer](../../protocol/architecture/sequencer/tracer.mdx): Generates execution traces required for proofs
 
 :::note
 Lineth uses a [dual-layer architecture](../../protocol/architecture/nodes/index.mdx): Maru for consensus and an
@@ -58,8 +58,8 @@ and **replaceable**.
 Common examples include:
 
 - [Block explorer](../../protocol/architecture/index.mdx#components-overview)
-- [Archive node service](../../protocol/architecture/rpc-services.mdx#archive-nodes)
-- [RPC load balancers](../../protocol/architecture/rpc-services.mdx)
+- [Archive node service](../../protocol/architecture/nodes/rpc-services.mdx#archive-nodes)
+- [RPC load balancers](../../protocol/architecture/nodes/rpc-services.mdx)
 - [Monitoring and metrics](../how-to/monitor-a-deployment.mdx)
 - Indexer
 - API portal

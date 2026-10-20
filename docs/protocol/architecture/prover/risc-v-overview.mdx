@@ -38,17 +38,15 @@ constraints or circuits for each EVM change.
 ## Relationship to the prover
 
 The [prover](./index.mdx) generates the proofs that support protocol correctness guarantees.
-The current proof-generation path is organized around execution proofs, compression proofs,
-aggregation proofs, [trace expansion](./trace-expansion.mdx), and
-[circuit execution and runtime](./proving.mdx).
+The current proof-generation path produces execution, compression, and aggregation proofs.
+[Corset](./corset.mdx) expands the traces for each proof, and [gnark](./gnark.mdx) turns the result into a
+<GlossaryTerm term="zk-SNARK" />.
 
 The RISC-V architecture is an evolution within the prover role.
 It is designed to change the proving target and the way proof-generating programs are represented, while
 preserving the prover's high-level purpose: producing proofs that let the network verify state transitions.
-The [coordinator](../coordinator/index.mdx) still orchestrates proof generation and finality submission
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> still orchestrates proof generation and finality submission
 according to the network's deployment model.
-
-Therefore, RISC-V is part of the prover architecture, not a standalone deployment model or access-control feature.
 
 ## High-level flow
 

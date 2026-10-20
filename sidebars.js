@@ -360,7 +360,7 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/nodes/index" },
-          items: ["protocol/architecture/rpc-services"],
+          items: ["protocol/architecture/nodes/rpc-services"],
         },
         {
           type: "category",
@@ -368,7 +368,7 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           link: { type: "doc", id: "protocol/architecture/sequencer/index" },
-          items: ["protocol/architecture/sequencer/traces-generator"],
+          items: ["protocol/architecture/sequencer/tracer"],
         },
         {
           type: "category",
@@ -386,9 +386,9 @@ const sidebars = {
           link: { type: "doc", id: "protocol/architecture/prover/index" },
           items: [
             "protocol/architecture/prover/risc-v-overview",
-            "protocol/architecture/prover/trace-expansion",
-            "protocol/architecture/prover/proving",
-            "protocol/architecture/prover/prover-limits",
+            "protocol/architecture/prover/corset",
+            "protocol/architecture/prover/gnark",
+            "protocol/architecture/prover/module-limits",
             "protocol/architecture/prover/trusted-setup",
           ],
         },

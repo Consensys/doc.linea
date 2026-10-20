@@ -1,5 +1,5 @@
 ---
-title: 'Proving: Circuit execution and runtime'
+title: gnark
 description: How gnark builds circuits and generates zk-SNARK proofs for Lineth state transitions.
 image: /img/socialCards/proving-circuit-execution-and-runtime.jpg
 ---
@@ -10,17 +10,16 @@ gnark is part of the <GlossaryTerm term="Lineth" /> [prover](./index.mdx).
 It's a Go library for building and proving cryptographic circuits, used standalone in other projects as
 well as in Lineth.
 
-gnark completes the second stage of the proving system: after the [circuit building](trace-expansion.mdx)
-stage, it produces the proof submitted at finalization.
-
+gnark completes the second stage of the proving system: after [Corset](./corset.mdx) expands traces,
+gnark produces the proof submitted at finalization.
 
 ## How it works
 
-The prover first checks the expanded traces from [Corset](./trace-expansion.mdx) against the
+The prover first checks the expanded traces from [Corset](./corset.mdx) against the
 arithmetization, using its own proving framework.
 The result is an _inner proof_: it establishes that execution was correct, but it's too large to verify onchain.
 
-gnark turns that inner proof into one a contract can check.
+gnark wraps that inner proof with an _outer proof_ that a contract can check.
 Its [frontend API](https://pkg.go.dev/github.com/consensys/gnark/frontend) defines the circuits,
 including circuits whose job is to verify a proof from an earlier stage, and its
 [backend API](https://pkg.go.dev/github.com/consensys/gnark/backend) runs those circuits at proving
@@ -31,14 +30,12 @@ cheaper to verify as it moves toward the finalization layer.
 Aggregation circuits then combine the proofs for several blobs into the single proof the coordinator
 submits, a <GlossaryTerm term="zk-SNARK" /> that a verifier contract can check cheaply.
 
-The prover writes the finished proof back for the [coordinator](../coordinator/index.mdx) to pick up and submit.
+The prover writes the finished proof back for the <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> to pick up and submit.
 
 ## See also
 
-- See [Circuit building](./trace-expansion.mdx) for the first part of the proving system that produces
+- See [Corset](./corset.mdx) for the first part of the proving system that produces
   gnark's input.
-- See [Trusted setup](./trusted-setup.mdx) for the reference strings, and the curve each proving stage
-  uses them for.
 - See the [gnark repository](../../reference/repos.mdx#gnark), and the
   [prover source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/prover) in the
   `lineth-monorepo`.
