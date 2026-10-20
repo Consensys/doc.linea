@@ -164,7 +164,7 @@ need to call one of these methods using the parameters detailed in the [interfac
 
 #### Option 2: Use the Lineth SDK
 
-The [Lineth SDK](../../api/linea-sdk.mdx) (view the [npm package](https://npmjs.com/package/@lfdt-lineth/sdk-viem))
+The [Lineth SDK](../../reference/lineth-sdk.mdx) (view the [npm package](https://npmjs.com/package/@lfdt-lineth/sdk-viem))
 simplifies claiming messages on the destination layer.
 
 Install the SDK alongside viem, which is a required peer dependency:
@@ -173,11 +173,11 @@ Install the SDK alongside viem, which is a required peer dependency:
 npm install @lfdt-lineth/sdk-viem viem
 ```
 
-Refer to the [SDK documentation](../../api/linea-sdk.mdx) for 
+Refer to the [SDK documentation](../../reference/lineth-sdk.mdx) for 
 client setup. To claim a message, use `claimOnL2` for an L1 to L2 message, or `claimOnL1` (with a
 Merkle proof) for an L2 to L1 message.
 
-See [Claim messages](../../api/linea-sdk.mdx#claim-messages) in the SDK reference for the full
+See [Claim messages](../../reference/lineth-sdk.mdx#claim-messages) in the SDK reference for the full
 parameters and code examples.
 
 ## Claim old messages
@@ -266,7 +266,7 @@ for more information.
     the parameters is complex and involves querying for various events to reconstruct the proof.
 
     Instead, we recommend using the Lineth SDK, which abstracts away most of this complexity. See 
-    the [SDK documentation](../../api/linea-sdk.mdx#claim-messages) for guidance on claiming on L1.
+    the [SDK documentation](../../reference/lineth-sdk.mdx#claim-messages) for guidance on claiming on L1.
   </TabItem>
 </Tabs>
 

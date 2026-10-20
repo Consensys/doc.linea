@@ -10,7 +10,7 @@ See our [predictable pricing feature](../overview/predictable-pricing.mdx) for a
 
 :::
 
-[`linea_estimateGas`](../../api/reference/linea-estimategas.mdx) is the recommended method for estimating gas price and gas limit on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas price recommendation than the alternatives.
+[`linea_estimateGas`](../../reference/apis/linea-api/linea-estimategas.mdx) is the recommended method for estimating gas price and gas limit on Linea. Unlike other L2s, Linea does _not_ assume that all transactions will have the same gas price. Instead, a minimum gas price is applied to all transactions, and the total gas price is partly calculated based on the amount of data in a given transaction. `linea_estimateGas` takes this into account, and returns a more accurate gas price recommendation than the alternatives.
 
 Linea also supports:
 - [`eth_estimateGas`](https://docs.infura.io/api/networks/linea/json-rpc-methods/eth_estimategas)
@@ -180,4 +180,4 @@ takes precedence.
 
 ## Next steps
 
-See the API [reference page](../../api/reference/linea-estimategas.mdx) for full usage.
+See the API [reference page](../../reference/apis/linea-api/linea-estimategas.mdx) for full usage.

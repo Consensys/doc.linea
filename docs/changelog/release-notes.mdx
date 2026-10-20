@@ -371,7 +371,7 @@ supporting future decentralization and security.
 
 <ChangelogEntry tag="feature">
 
-- Adds the [`eth_sendBundle` RPC method](../api/reference/eth-sendbundle.mdx), enabling apps to
+- Adds the [`eth_sendBundle` RPC method](../reference/apis/linea-api/eth-sendbundle.mdx), enabling apps to
 protect users against MEV and improve UX in various ways.
 
 Introduces [state recovery](../network/overview/recoverable-state.mdx), enabling anyone to recover
@@ -446,7 +446,7 @@ Beta v1 on Linea introduces new arithmetization. The overall objective of the Li
 
 Add automatic claiming for L1 &rarr; L2 bridging on the Linea native bridge.
 
-Introduces the [Linea Token API](../api/token-api/) at alpha stage.
+Introduces the [Linea Token API](../reference/apis/token-api/) at alpha stage.
 
 </ChangelogEntry>
 
@@ -578,7 +578,7 @@ See our [guide](../network/overview/transaction-finality.mdx#how-to-check-finali
 
 <ChangelogEntry tag="upgrade" title="Reactivate linea_estimateGas">
 
-Reactivates [`linea_estimateGas`](../api/reference/linea-estimategas.mdx), disabling compatibility
+Reactivates [`linea_estimateGas`](../reference/apis/linea-api/linea-estimategas.mdx), disabling compatibility
 mode.
 
 </ChangelogEntry>
@@ -622,7 +622,7 @@ Available on Linea Sepolia on July 31; available on Mainnet from August 1.
 
 Activates the `linea_estimateGas` endpoint for use on Mainnet in compatibility mode.
 
-See our [reference page](../api/reference/linea-estimategas.mdx) for more information and usage.
+See our [reference page](../reference/apis/linea-api/linea-estimategas.mdx) for more information and usage.
 
 </ChangelogEntry>
 
@@ -701,7 +701,7 @@ and [Cyfrin](https://github.com/Cyfrin/cyfrin-audit-reports/blob/main/reports/20
 <ChangelogEntry tag="feature">
 
 - Introduces dynamic L1 Gwei thresholds for submitting data to L1 for finalization.
-- Adds the [`eth_sendRawTransaction`](../api/reference/eth-sendrawtransaction.mdx) method,
+- Adds the [`eth_sendRawTransaction`](../reference/apis/linea-api/eth-sendrawtransaction.mdx) method,
 available only via Besu endpoints.
 
 </ChangelogEntry>
@@ -789,7 +789,7 @@ before reducing gas fees for all users on March 27.
 **Testnet:**
 - Deployed Linea Gas API to estimate how much gas is necessary to be included and published on Ethereum.
 :::note
-Learn how to use the Linea Gas API [here](https://docs.linea.build/reference/api/linea-estimategas).
+Learn how to use the Linea Gas API [here](https://docs.linea.build/reference/apis/linea-api/linea-estimategas).
 :::
 
 ## Alpha v2
@@ -929,7 +929,7 @@ Two independent audits have been performed for this update. Reports can be found
 :::info[Note]
 
 If you are using the Linea Bridge UI, then this is already done for you. If you are a partner/user who manages
-their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../api/linea-sdk.mdx).
+their claiming outside of the Bridge UI, then we recommend looking at the updated [SDK](../reference/lineth-sdk.mdx).
 
 :::
 

@@ -193,9 +193,9 @@ deployment's block time, finalization interval, and capacity.
 - **Data availability posting:** Watch the `linea_blob_*` metrics on the coordinator to see whether it is
   submitting blobs or other data availability payloads.
 - **Finalization:** Watch the `linea_aggregation_*` metrics on the coordinator to see whether proofs are settling.
-  Confirm [`currentL2BlockNumber`](/api/linea-smart-contracts/zkevmv2#currentl2blocknumber)
+  Confirm [`currentL2BlockNumber`](/reference/smart-contracts/zkevmv2#currentl2blocknumber)
   advances after a successful
-  [`finalizeBlocks`](/api/linea-smart-contracts/linearollup#finalizeblocks) on the rollup contract,
+  [`finalizeBlocks`](/reference/smart-contracts/linearollup#finalizeblocks) on the rollup contract,
   which is when the finalized head on the Lineth network moves.
 - **Gas price:** Watch the `linea_gas_price_cap_*` metrics on the coordinator to see cost pressure on
   finalization layer submissions.

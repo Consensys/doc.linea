@@ -3,7 +3,7 @@ title: Lineth SDK
 description: >-
   A viem-based TypeScript SDK for bridging ETH and tokens and for sending and
   claiming messages between Ethereum and Linea.
-image: /img/socialCards/linea-sdk.jpg
+image: /img/socialCards/lineth-sdk.jpg
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,7 +16,11 @@ The SDK is published as two packages:
 - `@lfdt-lineth/sdk-viem`: the actions and decorators most applications use.
 - `@lfdt-lineth/sdk-core`: framework-agnostic utilities (Merkle tree, message types, chain and contract helpers). Most users get it automatically through `@lfdt-lineth/sdk-viem` and do not install it directly.
 
-It supports Ethereum Mainnet, Linea Mainnet, Sepolia, and Linea Sepolia. You select the network by passing the matching chain from `viem/chains`, and the SDK resolves the correct contract addresses for you.
+It resolves contract addresses automatically for Ethereum Mainnet, Linea Mainnet, Sepolia, and Linea Sepolia.
+Select the network by passing the matching chain from `viem/chains`.
+On a custom Lineth deployment, create viem clients for your chains and pass that deployment's
+contract addresses: `rollupAddress`, the message service address, and, when bridging tokens, the
+token bridge addresses.
 
 ## Installation
 
@@ -193,7 +197,8 @@ const l1Client = createPublicClient({ chain: sepolia, transport: http() }).exten
 const l2Client = createPublicClient({ chain: lineaSepolia, transport: http() }).extend(publicActionsL2());
 ```
 
-Each decorator accepts optional contract addresses (`lineaRollupAddress`, `l2MessageServiceAddress`, and for wallet decorators the token bridge addresses) for non-standard deployments. On the supported networks you can omit them, and the SDK resolves the correct addresses automatically.
+Each decorator accepts optional contract addresses (`rollupAddress`, `l2MessageServiceAddress`, and, for wallet decorators, the token bridge addresses) for a custom deployment.
+On Ethereum Mainnet, Linea Mainnet, Sepolia, and Linea Sepolia you can omit them, and the SDK resolves the addresses automatically.
 
 ## Core utilities
 

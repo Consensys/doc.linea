@@ -26,8 +26,8 @@ function createFixture() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://docs.linea.build/</loc></url>
   <url><loc>https://docs.linea.build/network/quickstart</loc></url>
-  <url><loc>https://docs.linea.build/api/token-api/reference</loc></url>
-  <url><loc>https://docs.linea.build/api/linea-smart-contracts/messageservice/l1/l1messagemanager</loc></url>
+  <url><loc>https://docs.linea.build/reference/apis/token-api/reference</loc></url>
+  <url><loc>https://docs.linea.build/reference/smart-contracts/messageservice/l1/l1messagemanager</loc></url>
   <url><loc>https://docs.linea.build/search</loc></url>
 </urlset>`,
   );
@@ -85,10 +85,10 @@ function createFixture() {
 
   writeFile(
     root,
-    "build/api/token-api/reference.html",
+    "build/reference/apis/token-api/reference.html",
     `<!doctype html><html><head>
       <link rel="alternate" type="text/plain" href="/llms.txt">
-      <link rel="alternate" type="text/markdown" href="/api/token-api/reference.md">
+      <link rel="alternate" type="text/markdown" href="/reference/apis/token-api/reference.md">
     </head><body>
       <div class="menu-content">Redoc navigation that agents should not receive</div>
       <div class="api-content">
@@ -134,10 +134,10 @@ function createFixture() {
 
   writeFile(
     root,
-    "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.html",
+    "build/reference/smart-contracts/messageservice/l1/l1messagemanager.html",
     `<!doctype html><html><head>
       <link rel="alternate" type="text/plain" href="/llms.txt">
-      <link rel="alternate" type="text/markdown" href="/api/linea-smart-contracts/messageservice/l1/l1messagemanager.md">
+      <link rel="alternate" type="text/markdown" href="/reference/smart-contracts/messageservice/l1/l1messagemanager.md">
     </head><body>
       <main><article>
         <h1>L1MessageManager</h1>
@@ -199,9 +199,9 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
 
   assert.deepEqual(result.routes.sort(), [
     "/",
-    "/api/linea-smart-contracts/messageservice/l1/l1messagemanager",
-    "/api/token-api/reference",
     "/network/quickstart",
+    "/reference/apis/token-api/reference",
+    "/reference/smart-contracts/messageservice/l1/l1messagemanager",
   ]);
 
   const pageMarkdown = fs.readFileSync(
@@ -243,7 +243,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   const contractMarkdown = fs.readFileSync(
     path.join(
       root,
-      "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.md",
+      "build/reference/smart-contracts/messageservice/l1/l1messagemanager.md",
     ),
     "utf8",
   );
@@ -254,7 +254,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   );
 
   const redocMarkdown = fs.readFileSync(
-    path.join(root, "build/api/token-api/reference.md"),
+    path.join(root, "build/reference/apis/token-api/reference.md"),
     "utf8",
   );
   assert.match(redocMarkdown, /Token API reference body/);
@@ -282,7 +282,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
     fs.readFileSync(
       path.join(
         root,
-        "build/api/linea-smart-contracts/messageservice/l1/l1messagemanager.html",
+        "build/reference/smart-contracts/messageservice/l1/l1messagemanager.html",
       ),
       "utf8",
     ),
@@ -290,7 +290,7 @@ test("generates markdown variants and a complete markdown-linked llms.txt", () =
   );
   assert.match(
     fs.readFileSync(
-      path.join(root, "build/api/token-api/reference.html"),
+      path.join(root, "build/reference/apis/token-api/reference.html"),
       "utf8",
     ),
     /class="menu-content" data-markdown-ignore/,
@@ -352,7 +352,10 @@ test("groups API and Reference routes together under Reference", () => {
   const referenceSection = llms.match(/## Reference\n([\s\S]*?)(?=\n## |\s*$)/);
 
   assert(referenceSection, "llms.txt should include a Reference section");
-  assert.match(referenceSection[1], /\/api\/token-api\/reference\.md/);
+  assert.match(
+    referenceSection[1],
+    /\/reference\/apis\/token-api\/reference\.md/,
+  );
   assert.match(referenceSection[1], /\/reference\.md/);
   assert.match(
     referenceSection[1],
