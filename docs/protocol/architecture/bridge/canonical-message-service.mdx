@@ -5,6 +5,9 @@ image: /img/socialCards/canonical-message-service.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
+import MessagePath from '/img/protocol/architecture/bridge/message-path.svg';
+import MessageNetworkToLayer from '/img/protocol/architecture/bridge/message-network-to-layer.svg';
+import MessageLayerToNetwork from '/img/protocol/architecture/bridge/message-layer-to-network.svg';
 
 The canonical message service passes arbitrary messages (that is, user-specified data and native currency)
 between a <GlossaryTerm term="Lineth" /> network and its
@@ -12,24 +15,16 @@ between a <GlossaryTerm term="Lineth" /> network and its
 It is general-purpose infrastructure: the [canonical token bridge](./canonical-token-bridge.mdx) is built on it,
 and any contract or dapp can call it directly.
 
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/concepts/message_service/Linea_message_service_2.png"
-      alt="Message service contracts on each chain, with an operator and an offchain claiming actor"
-    />
-  </div>
-</div>
-
 ## How it works
 
 The service is a pair of message service contracts, one deployed on the network and one on the finalization
-layer, plus the **Postman**: an offchain service that watches both contracts and relays what it sees.
+layer. An optional offchain relay, the **Postman**, watches both contracts and submits claims when a delivery fee was paid.
+Sending a message from the origin chain to the destination chain works as follows:
 
-1. A caller invokes `sendMessage` on the origin contract with a destination address, a calldata payload, any
-    native value to transfer, and an optional delivery fee.
-    The contract records the message and emits an event.
-2. The destination contract receives a [commitment](#message-commitments) to the messages the origin chain sent.
+1. A caller invokes `sendMessage()` on the origin contract with a destination address, a calldata payload, any
+    native value to transfer, and a delivery fee.
+    The contract emits the message.
+2. A [commitment](#message-commitments) to those messages is anchored on the destination contract.
 3. Claiming the message executes it: the destination contract checks the claim against that commitment, then
     calls the destination address with the payload and the value.
 
@@ -38,12 +33,16 @@ This gives senders two delivery modes:
 
 - **Push**: The sender pays a fee up front, and the Postman claims on their behalf, pushing the message to
   the recipient without them doing anything.
-- **Pull**: No fee is paid, so the message sits unclaimed until the recipient, or anyone else, pulls it by
+- **Pull**: No one is paid to claim it, so the message sits unclaimed until the recipient, or anyone else, pulls it by
   submitting the claim and paying the gas.
 
 Push relies on the Postman for convenience, not for correctness.
 The fee goes to whoever submits the claim, so if the Postman is unavailable, the recipient or a third party
 can claim the message and collect the fee instead.
+
+<div className="img-medium" style={{ maxWidth: '43%' }}>
+  <MessagePath />
+</div>
 
 ## Message commitments
 
@@ -53,46 +52,29 @@ Each direction commits to its messages differently, because only one of the two 
 Finalizing a range of blocks verifies its
 <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> and anchors the Merkle root of the messages
 those blocks sent.
-A claim carries a Merkle proof, and the contract rejects it unless the proof places the message under an anchored root.
+A claim on the finalization layer's message service carries a Merkle proof.
+The service accepts the claim only when the proof shows the message is included under that anchored root.
 Messages are therefore only claimable once the blocks that sent them are finalized.
 
-**Finalization layer to network.**
-The [coordinator](../coordinator/index.mdx) anchors incoming message hashes on the network as a rolling hash, so
-these messages are claimable without waiting for the next finalization.
-The network's rolling hash is submitted with that finalization and checked against the one the finalization-layer
-contract computed when the messages were sent, so a network that accepted messages nobody sent cannot finalize.
-In the following diagram, the check labeled "Does message exist on L1?" is the destination contract testing the
-message against the hashes already anchored on the network.
-
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/concepts/message_service/Linea_message_service_1.png"
-      alt="Message execution on the destination chain, gated on confirmation from the origin chain"
-    />
-  </div>
+<div className="img-medium" style={{ maxWidth: '43%' }}>
+  <MessageNetworkToLayer />
 </div>
 
-:::note Linea Mainnet example
+**Finalization layer to network.**
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> anchors incoming message hashes on the
+network as a rolling hash.
+Those messages are claimable once anchored, without waiting for the next finalization.
+The next finalization checks the network's rolling hash against the hash the finalization layer's message
+service computed when the messages were sent.
+If the hashes differ, the network cannot finalize, because it would be finalizing messages the
+finalization layer never sent.
 
-On [Linea Mainnet](../../../network/index.mdx), the Ethereum side of the service lives in the
-[`LineaRollup`](../../../network/build/contracts.mdx) contract, which serves as both the rollup and the L1 message
-service for messages passed across the two domains, such as token transfers, contract calls, or state
-synchronization.
-Linea-to-Ethereum (L2 to L1) messages can be claimed on Ethereum only after the L2 batch is finalized:
-finalization verifies the batch's zk-SNARK proof and anchors the corresponding L2 message Merkle root on L1.
-The message is then accepted once a Merkle proof verifies its inclusion in that finalized root.
-Ethereum-to-Linea (L1 to L2) messages don't wait for a finalization: the coordinator anchors their hashes on
-Linea as a rolling hash, and they become claimable once anchored.
-That rolling hash is submitted with the next finalization and must match the one `LineaRollup` computed when the
-messages were sent, so Linea can't finalize having accepted messages Ethereum never sent.
-
-:::
+<div className="img-large" style={{ maxWidth: '75%' }}>
+  <MessageLayerToNetwork />
+</div>
 
 ## See also
 
-- See [Messaging](../../../network/build/send-receive-messages.mdx) for the contract addresses, interfaces, and
-  claim workflow on Linea Mainnet.
 - Configure Postman behavior using the
   [Linea Postman options](../../../stack/reference/linea-postman-options.mdx).
 - See the [messaging contract source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/contracts/src/messaging)
