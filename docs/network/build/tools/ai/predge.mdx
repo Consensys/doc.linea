@@ -1,0 +1,58 @@
+---
+title: Predge
+description: Signed, bond-backed verdicts on whether an AI agent's paid job was delivered.
+---
+
+[Predge](https://predge.io) issues signed verdicts on whether an AI agent's paid job was delivered.
+An escrow contract reads the verdict before it releases payment to the agent or refunds the payer.
+Each verdict is backed by a bond that anyone can challenge for 24 hours.
+
+## How it works
+
+1. The payer or the merchant files a hash of its evidence on-chain under its own key.
+2. Predge rules refund or release and records the evidence hash it cites.
+   The arbiter contract only accepts a ruling that cites evidence already filed on-chain.
+3. For 86,400 seconds after the ruling, anyone can call `challenge`.
+   If the ruling cites evidence that nobody filed, the bond is slashed.
+
+Verdicts are also sold per call through an [x402](https://www.x402.org/) API at `api.predge.io`.
+
+## Contracts on Linea Mainnet
+
+All contracts are verified on Sourcify.
+
+<table>
+  <thead>
+    <tr>
+      <th>Contract</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`PredgeRefundArbiter`</td>
+      <td>[`0xb2972B4944Eec83946EB7B23D572AbE04F46E22c`](https://lineascan.build/address/0xb2972B4944Eec83946EB7B23D572AbE04F46E22c)</td>
+    </tr>
+    <tr>
+      <td>`PredgeValidatorBond`</td>
+      <td>[`0x800B5596a8540e752dE8f8a8AF99E927d139A643`](https://lineascan.build/address/0x800B5596a8540e752dE8f8a8AF99E927d139A643)</td>
+    </tr>
+    <tr>
+      <td>`PredgeAgentValidator` (ERC-8004 validator)</td>
+      <td>[`0x925767fdce6C819F027f55CC50464e3bCdfD2671`](https://lineascan.build/address/0x925767fdce6C819F027f55CC50464e3bCdfD2671)</td>
+    </tr>
+    <tr>
+      <td>`AgentJob` (ERC-8183 job escrow)</td>
+      <td>[`0xcBaB4a9FA4d756b4C5e2a18F055d2E0132CE7D1D`](https://lineascan.build/address/0xcBaB4a9FA4d756b4C5e2a18F055d2E0132CE7D1D)</td>
+    </tr>
+    <tr>
+      <td>`PredgeSettlement`</td>
+      <td>[`0x47BE8a7d461De505723a0Ac1d74982e53f8E412b`](https://lineascan.build/address/0x47BE8a7d461De505723a0Ac1d74982e53f8E412b)</td>
+    </tr>
+  </tbody>
+</table>
+
+Deployment receipts and sources are in the
+[predge-deploy repository](https://github.com/predgeAI/predge-deploy).
+
+View the [Predge documentation](https://predge.io/docs) for the verdict format and the API.
