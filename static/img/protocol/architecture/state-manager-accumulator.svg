@@ -1,0 +1,143 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1212 628"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="sma-title sma-desc"
+>
+  <title id="sma-title">Sparse Merkle tree storing a sorted linked list</title>
+  <desc id="sma-desc">
+    A root hashes an empty subtree and a branch of stored leaves. The leaves sit on
+    one row: head, the lowest stored hKey, the next hKey, and tail. Dashed next
+    arrows run left to right and dashed prev arrows run right to left. Stored
+    leaves carry hVal, the hash of the stored value. Head and tail have none.
+  </desc>
+
+  <defs>
+    <marker id="sma-link" viewBox="0 0 10 10" refX="10" refY="5"
+      markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.2 L 10 5 L 0 8.8 z" fill="var(--linea-text-muted)" />
+    </marker>
+  </defs>
+
+  <!-- Parent-to-child edges. Each curve leaves the parent bottom toward the
+       child, then runs straight down into the arrowhead. -->
+  <g fill="none" stroke="var(--linea-text-primary)" stroke-width="1.5">
+    <path d="M 265 88 C 265 112, 160 122, 160 156" />
+    <path d="M 501 88 C 501 112, 606 122, 606 156" />
+    <path d="M 514 260 C 514 284, 290 294, 290 328" />
+    <path d="M 698 260 C 698 284, 922 294, 922 328" />
+    <path d="M 218 392 C 218 422, 132 441, 132 476" />
+    <path d="M 362 392 C 362 422, 448 441, 448 476" />
+    <path d="M 850 392 C 850 422, 764 441, 764 476" />
+    <path d="M 994 392 C 994 422, 1080 441, 1080 476" />
+  </g>
+
+  <!-- Root -->
+  <rect x="243" y="16" width="280" height="72"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="383" y="46" text-anchor="middle" font-family="AtypText, sans-serif" font-size="18"
+    font-weight="700" fill="var(--linea-text-primary)">root</text>
+  <text x="383" y="68" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">the short string for this tree</text>
+
+  <!-- Empty subtree -->
+  <rect x="50" y="164" width="220" height="96"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="160" y="198" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">internal node</text>
+  <text x="160" y="220" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">default hash</text>
+  <text x="160" y="242" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">empty subtree</text>
+
+  <!-- Data branch -->
+  <rect x="496" y="164" width="220" height="96"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="606" y="206" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">internal node</text>
+  <text x="606" y="230" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">hash of its children</text>
+
+  <rect x="202" y="336" width="176" height="56"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="290" y="370" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">internal node</text>
+
+  <rect x="834" y="336" width="176" height="56"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="922" y="370" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">internal node</text>
+
+  <!-- Leaves, one horizontal row -->
+  <rect x="24" y="484" width="216" height="120"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="132" y="522" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">head leaf</text>
+  <text x="132" y="548" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">lowest possible hKey</text>
+  <text x="132" y="574" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">hVal: none</text>
+
+  <rect x="340" y="484" width="216" height="120"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="448" y="512" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">stored leaf</text>
+  <text x="448" y="534" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">next hKey</text>
+  <text x="448" y="554" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">(lowest stored item)</text>
+  <text x="448" y="576" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">hVal: hash of value</text>
+
+  <rect x="656" y="484" width="216" height="120"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="764" y="522" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">stored leaf</text>
+  <text x="764" y="548" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">next hKey</text>
+  <text x="764" y="574" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">hVal: hash of value</text>
+
+  <rect x="972" y="484" width="216" height="120"
+    fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+  <text x="1080" y="522" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+    font-weight="700" fill="var(--linea-text-primary)">tail leaf</text>
+  <text x="1080" y="548" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">highest possible hKey</text>
+  <text x="1080" y="574" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+    fill="var(--linea-text-primary)">hVal: none</text>
+
+  <!-- Arrowheads sit on the vertical end of each curve, tip on the child box. -->
+  <g fill="var(--linea-text-primary)">
+    <polygon points="155.5,156 160,164 164.5,156" />
+    <polygon points="601.5,156 606,164 610.5,156" />
+    <polygon points="285.5,328 290,336 294.5,328" />
+    <polygon points="917.5,328 922,336 926.5,328" />
+    <polygon points="127.5,476 132,484 136.5,476" />
+    <polygon points="443.5,476 448,484 452.5,476" />
+    <polygon points="759.5,476 764,484 768.5,476" />
+    <polygon points="1075.5,476 1080,484 1084.5,476" />
+  </g>
+
+  <!-- next leaves the left box; prev leaves the right box. -->
+  <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-dasharray="5 4" marker-end="url(#sma-link)">
+    <line x1="240" y1="524" x2="340" y2="524" />
+    <line x1="556" y1="524" x2="656" y2="524" />
+    <line x1="872" y1="524" x2="972" y2="524" />
+    <line x1="340" y1="566" x2="240" y2="566" />
+    <line x1="656" y1="566" x2="556" y2="566" />
+    <line x1="972" y1="566" x2="872" y2="566" />
+  </g>
+  <g font-family="AtypText, sans-serif" font-size="14" fill="var(--linea-text-muted)"
+    text-anchor="middle">
+    <text x="290" y="512">next</text>
+    <text x="606" y="512">next</text>
+    <text x="922" y="512">next</text>
+    <text x="290" y="586">prev</text>
+    <text x="606" y="586">prev</text>
+    <text x="922" y="586">prev</text>
+  </g>
+</svg>
