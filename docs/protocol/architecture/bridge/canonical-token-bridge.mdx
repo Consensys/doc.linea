@@ -5,7 +5,6 @@ image: /img/socialCards/canonical-token-bridge.jpg
 ---
 
 import GlossaryTerm from '@theme/GlossaryTerm';
-import LineaBridgeGraphic from "/img/get_started/concepts/canonical_token_bridge/Linea_canonical_token_bridge.svg";
 
 The canonical token bridge is a pair of lock-and-mint contracts, one on the
 <GlossaryTerm term="Lineth" /> network and one on its
@@ -14,10 +13,6 @@ It carries no cross-chain machinery of its own: every transfer is a message sent
 [canonical message service](./canonical-message-service.mdx), and inherits that service's verification and
 delivery model.
 
-<div className="img-large">
-  <LineaBridgeGraphic />
-</div>
-
 Native currency isn't bridged here.
 It moves through the message service directly, as the value attached to a message.
 
@@ -25,32 +20,54 @@ It moves through the message service directly, as the value attached to a messag
 
 Bridging a token away from its original chain involves locking and minting as follows:
 
-1. The bridge escrows the tokens in its own contract and sends a message instructing the bridge on the
-    destination chain to complete the transfer.
-2. That bridge mints an equivalent amount of a `BridgedToken`, an ERC-20 it controls, to the recipient.
-    The first time a given token is bridged, the destination bridge deploys the `BridgedToken` contract for it,
+1. The token holder calls `bridgeToken()` on the original chain's token bridge.
+    The bridge escrows the tokens and sends a message via the message service.
+    That message calls `completeBridging()` on the destination bridge.
+2. When that message is claimed, the destination bridge mints an equivalent amount of a
+    `BridgedToken`, an ERC-20 it controls, to the recipient.
+    The first time a given token is bridged, `completeBridging()` also deploys that contract,
     carrying over the escrowed token's name, symbol, and decimals.
 
-Bridging back reverses this: the bridge burns the `BridgedToken` and sends a message releasing the escrowed
-tokens on the original chain.
-Because minted supply on one side is always matched by escrowed supply on the other, the bridge can't mint tokens
-that were never locked.
+Bridging back reverses this.
+The holder calls `bridgeToken()` on the destination bridge.
+That call burns the `BridgedToken` and sends a message via the message service.
+Claiming that message calls `completeBridging()` on the original bridge.
+That call releases the escrowed tokens.
+Because minted supply on one side is always matched by escrowed supply on the other,
+the bridge can't mint tokens that were never locked.
+
+The following diagram illustrates that round trip.
+
+<div class="mermaid-fit">
+```mermaid
+sequenceDiagram
+  participant Holder as Token holder
+  participant Home as Original token bridge
+  participant Messages as Message service
+  participant Other as Destination token bridge
+
+  Note over Holder, Other: Away from the original chain
+  Holder->>Home: bridgeToken()
+  Home->>Home: Escrow the ERC-20
+  Home->>Messages: sendMessage()
+  Messages->>Other: completeBridging()
+  opt First time bridging
+  Other->>Other: Deploy BridgedToken
+  end
+  Other->>Other: Mint BridgedToken to the recipient
+
+  Note over Holder, Other: Back to the original chain
+  Holder->>Other: bridgeToken()
+  Other->>Other: Burn BridgedToken
+  Other->>Messages: sendMessage()
+  Messages->>Home: completeBridging()
+  Home->>Home: Release the escrowed ERC-20
+```
+</div>
 
 Operators can reserve token addresses so they can't be bridged, which is how tokens that need a dedicated bridge
 are kept off the canonical one.
 A token can only be reserved before it has been bridged.
-
-The following diagram illustrates a full round trip, including the
-[message service](./canonical-message-service.mdx#message-commitments) steps that sit between the two bridge contracts:
-
-<div class="center-container">
-  <div class="img-large">
-    <img
-      src="/img/get_started/concepts/message_service/Linea_bridge_architecture.png"
-      alt="Token bridge contracts locking and minting on each chain via the message service"
-    />
-  </div>
-</div>
 
 ## See also
 
