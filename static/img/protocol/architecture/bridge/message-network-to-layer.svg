@@ -1,6 +1,6 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 440 396"
+  viewBox="50 -4 392 436"
   width="100%"
   height="auto"
   role="img"
@@ -8,9 +8,10 @@
 >
   <title id="message-ntl-title">A message from the network to the finalization layer</title>
   <desc id="message-ntl-desc">
-    The sender calls sendMessage on the network. Finalization verifies the ZK proof
-    and anchors the Merkle root. A claim with a Merkle proof under that root calls
-    the recipient. Any other claim is rejected.
+    The sender calls sendMessage on the network message service. Finalization
+    verifies the ZK proof and anchors the Merkle root on the finalization layer
+    message service.     A claim is accepted when its Merkle proof shows the message is included
+    under that root. Any other claim is rejected.
   </desc>
 
   <defs>
@@ -20,58 +21,61 @@
     </marker>
   </defs>
 
-  <rect x="50" y="0" width="340" height="96" rx="10"
+  <rect x="66" y="0" width="360" height="96" rx="10"
     fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
-  <text x="220" y="22" text-anchor="middle" font-family="AtypText, sans-serif" font-size="13"
-    font-weight="600" fill="var(--linea-text-muted)">Network</text>
+  <text x="82" y="22" font-family="AtypText, sans-serif" font-size="13"
+    font-weight="600" fill="var(--linea-text-muted)">Network message service</text>
 
-  <rect x="12" y="112" width="416" height="276" rx="10"
+  <rect x="66" y="112" width="360" height="312" rx="10"
     fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
-  <text x="28" y="134" font-family="AtypText, sans-serif" font-size="13"
+  <text x="82" y="132" font-family="AtypText, sans-serif" font-size="13"
     font-weight="600" fill="var(--linea-text-muted)">Finalization layer</text>
+  <text x="82" y="148" font-family="AtypText, sans-serif" font-size="13"
+    font-weight="600" fill="var(--linea-text-muted)">message service</text>
 
   <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5"
     marker-end="url(#message-ntl-arrow)">
-    <path d="M 220 76 L 220 148" />
-    <path d="M 220 182 L 220 198" />
-    <path d="M 220 232 L 220 248" />
-    <path d="M 114 314 L 114 338" />
-    <path d="M 326 314 L 326 338" />
+    <path d="M 246 76 L 246 170" />
+    <path d="M 246 204 L 246 220" />
+    <path d="M 246 254 L 246 270" />
+    <path d="M 156 346 L 156 374" />
+    <path d="M 336 346 L 336 374" />
   </g>
   <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5">
-    <path d="M 220 296 L 220 314" />
-    <path d="M 114 314 L 326 314" />
+    <path d="M 246 328 L 246 346" />
+    <path d="M 156 346 L 336 346" />
   </g>
 
   <g font-family="AtypText, sans-serif" font-size="14" fill="var(--linea-text-primary)" text-anchor="middle">
-    <rect x="70" y="36" width="300" height="40" rx="8"
+    <rect x="96" y="36" width="300" height="40" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="220" y="61">Sender calls sendMessage()</text>
+    <text x="246" y="61">Sender calls sendMessage()</text>
 
-    <rect x="90" y="148" width="260" height="34" rx="8"
+    <rect x="116" y="170" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="220" y="170">Verify the ZK proof</text>
+    <text x="246" y="192">Verify the ZK proof</text>
 
-    <rect x="90" y="198" width="260" height="34" rx="8"
+    <rect x="116" y="220" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="220" y="220">Anchor the Merkle root</text>
+    <text x="246" y="242">Anchor the Merkle root</text>
 
-    <rect x="70" y="248" width="300" height="48" rx="8"
-      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="220" y="268">Merkle proof under</text>
-    <text x="220" y="286">the anchored root?</text>
+    <polygon points="119,299 141,270 351,270 373,299 351,328 141,328"
+      fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
+      stroke-width="1.5" stroke-linejoin="miter" />
+    <text x="246" y="293">Merkle proof shows inclusion</text>
+    <text x="246" y="311">under the anchored root?</text>
 
-    <rect x="24" y="338" width="180" height="34" rx="8"
+    <rect x="78" y="374" width="156" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="114" y="360">Call the recipient</text>
+    <text x="156" y="396">Call the recipient</text>
 
-    <rect x="236" y="338" width="180" height="34" rx="8"
+    <rect x="258" y="374" width="156" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="326" y="360">Reject the claim</text>
+    <text x="336" y="396">Reject the claim</text>
   </g>
 
   <g font-family="AtypText, sans-serif" font-size="12" fill="var(--linea-text-primary)" text-anchor="middle">
-    <text x="167" y="330">Yes</text>
-    <text x="273" y="330">No</text>
+    <text x="201" y="364">Yes</text>
+    <text x="291" y="364">No</text>
   </g>
 </svg>

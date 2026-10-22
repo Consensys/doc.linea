@@ -1,6 +1,6 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 640 394"
+  viewBox="0 -4 688 394"
   width="100%"
   height="auto"
   role="img"
@@ -8,11 +8,11 @@
 >
   <title id="message-ltn-title">A message from the finalization layer to the network</title>
   <desc id="message-ltn-desc">
-    The sender calls sendMessage on the finalization layer, which updates the rolling
-    hash. The coordinator anchors the hashes on the network, and the message can be
-    claimed once anchored. The next finalization compares that rolling hash with the
-    anchored hashes. If they match, the hashes agree. If they do not, the network
-    cannot finalize.
+    The sender calls sendMessage on the finalization layer message service, which
+    updates the rolling hash. The coordinator anchors that hash on the network
+    message service, and the message can be claimed once anchored. The next
+    finalization reads both rolling hashes and compares them. If they match,
+    finalization continues. If they do not, the network cannot finalize.
   </desc>
 
   <defs>
@@ -22,82 +22,88 @@
     </marker>
   </defs>
 
-  <rect x="170" y="0" width="300" height="140" rx="10"
+  <rect x="16" y="0" width="300" height="140" rx="10"
     fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
-  <text x="320" y="22" text-anchor="middle" font-family="AtypText, sans-serif" font-size="13"
-    font-weight="600" fill="var(--linea-text-muted)">Finalization layer</text>
+  <text x="32" y="22" font-family="AtypText, sans-serif" font-size="13"
+    font-weight="600" fill="var(--linea-text-muted)">Finalization layer message service</text>
 
-  <rect x="8" y="164" width="300" height="222" rx="10"
+  <rect x="16" y="164" width="300" height="218" rx="10"
     fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
-  <text x="24" y="186" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
-    fill="var(--linea-text-muted)">Network</text>
+  <text x="32" y="184" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
+    fill="var(--linea-text-muted)">Network message</text>
+  <text x="32" y="200" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
+    fill="var(--linea-text-muted)">service</text>
 
-  <rect x="332" y="164" width="300" height="222" rx="10"
+  <rect x="372" y="47" width="300" height="253" rx="10"
     fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
-  <text x="348" y="186" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
+  <text x="388" y="67" font-family="AtypText, sans-serif" font-size="13" font-weight="600"
     fill="var(--linea-text-muted)">Next finalization</text>
 
   <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5"
     marker-end="url(#message-ltn-arrow)">
-    <path d="M 320 126 L 320 148" />
-    <path d="M 158 156 L 158 200" />
-    <path d="M 482 156 L 482 200" />
-    <path d="M 292 224 L 348 224" />
-    <path d="M 158 248 L 158 264" />
-    <path d="M 158 298 L 158 340" />
-    <path d="M 482 248 L 482 264" />
-    <path d="M 412 326 L 412 340" />
-    <path d="M 552 326 L 552 340" />
+    <path d="M 166 74 L 166 90" />
+    <path d="M 166 124 L 166 218" />
+    <path d="M 166 266 L 166 282" />
+    <path d="M 166 316 L 166 332" />
+    <path d="M 522 131 L 522 147" />
+    <path d="M 452 211 L 452 236" />
+    <path d="M 592 211 L 592 236" />
   </g>
   <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5">
-    <path d="M 158 156 L 482 156" />
-    <path d="M 482 298 L 482 326" />
-    <path d="M 412 326 L 552 326" />
+    <path d="M 522 193 L 522 211" />
+    <path d="M 452 211 L 592 211" />
+  </g>
+  <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 4"
+    marker-end="url(#message-ltn-arrow)">
+    <path d="M 388 107 L 296 107" />
+    <path d="M 388 118 L 344 118 L 344 242 L 296 242" />
   </g>
 
   <g font-family="AtypText, sans-serif" font-size="14" fill="var(--linea-text-primary)" text-anchor="middle">
-    <rect x="190" y="36" width="260" height="44" rx="8"
+    <rect x="36" y="40" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="320" y="54">Sender calls</text>
-    <text x="320" y="72">sendMessage()</text>
+    <text x="166" y="62">Sender calls sendMessage()</text>
 
-    <rect x="190" y="92" width="260" height="34" rx="8"
+    <rect x="36" y="90" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="320" y="114">Update the rolling hash</text>
+    <text x="166" y="112">Update the rolling hash</text>
 
-    <rect x="24" y="200" width="268" height="48" rx="8"
+    <rect x="36" y="218" width="260" height="48" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="158" y="220">Coordinator anchors</text>
-    <text x="158" y="238">the message hashes</text>
+    <text x="166" y="238">Coordinator anchors</text>
+    <text x="166" y="256">the message hashes</text>
 
-    <rect x="24" y="264" width="268" height="34" rx="8"
+    <rect x="36" y="282" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="158" y="286">Claimable once anchored</text>
+    <text x="166" y="304">Claimable once anchored</text>
 
-    <rect x="44" y="340" width="228" height="34" rx="8"
+    <rect x="36" y="332" width="260" height="34" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="158" y="362">Call the recipient</text>
+    <text x="166" y="354">Call the recipient</text>
 
-    <rect x="348" y="200" width="268" height="48" rx="8"
+    <rect x="388" y="83" width="268" height="48" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="482" y="220">Compare the</text>
-    <text x="482" y="238">rolling hashes</text>
+    <text x="522" y="103">Compare the</text>
+    <text x="522" y="121">rolling hashes</text>
 
-    <rect x="392" y="264" width="180" height="34" rx="8"
-      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="482" y="286">Hashes match?</text>
+    <polygon points="439,170 457,147 587,147 605,170 587,193 457,193"
+      fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
+      stroke-width="1.5" stroke-linejoin="miter" />
+    <text x="522" y="175">Hashes match?</text>
 
-    <rect x="348" y="340" width="128" height="34" rx="8"
+    <rect x="388" y="236" width="128" height="48" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="412" y="362">Hashes agree</text>
+    <text x="452" y="256">Continue</text>
+    <text x="452" y="274">finalization</text>
 
-    <rect x="488" y="340" width="128" height="34" rx="8"
+    <rect x="528" y="236" width="128" height="48" rx="8"
       fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-    <text x="552" y="362" font-size="13">Cannot finalize</text>
+    <text x="592" y="265" font-size="13">Cannot finalize</text>
   </g>
 
   <g font-family="AtypText, sans-serif" font-size="12" fill="var(--linea-text-primary)" text-anchor="middle">
-    <text x="447" y="318">Yes</text>
-    <text x="517" y="318">No</text>
+    <text x="487" y="226">Yes</text>
+    <text x="557" y="226">No</text>
   </g>
 </svg>

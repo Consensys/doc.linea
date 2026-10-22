@@ -18,35 +18,33 @@ It moves through the message service directly, as the value attached to a messag
 
 ## How it works
 
-Bridging a token away from its original chain involves locking and minting as follows:
+Bridging a token away from its origin chain involves locking and minting as follows:
 
-1. The token holder calls `bridgeToken()` on the original chain's token bridge.
-    The bridge escrows the tokens and sends a message via the message service.
-    That message calls `completeBridging()` on the destination bridge.
+1. The token holder calls `bridgeToken()` on the origin chain's token bridge.
+    The bridge escrows the tokens and sends a message via the message service, instructing the bridge on
+    the destination chain to complete the transfer.
 2. When that message is claimed, the destination bridge mints an equivalent amount of a
     `BridgedToken`, an ERC-20 it controls, to the recipient.
-    The first time a given token is bridged, `completeBridging()` also deploys that contract,
+    The first time a given token is bridged, the destination bridge also deploys that contract,
     carrying over the escrowed token's name, symbol, and decimals.
 
 Bridging back reverses this.
 The holder calls `bridgeToken()` on the destination bridge.
-That call burns the `BridgedToken` and sends a message via the message service.
-Claiming that message calls `completeBridging()` on the original bridge.
-That call releases the escrowed tokens.
+That call burns the `BridgedToken` and sends a message releasing the escrowed tokens on the origin chain.
 Because minted supply on one side is always matched by escrowed supply on the other,
 the bridge can't mint tokens that were never locked.
 
-The following diagram illustrates that round trip.
+The following diagram illustrates the round trip.
 
 <div class="mermaid-fit">
 ```mermaid
 sequenceDiagram
   participant Holder as Token holder
-  participant Home as Original token bridge
+  participant Home as Origin token bridge
   participant Messages as Message service
   participant Other as Destination token bridge
 
-  Note over Holder, Other: Away from the original chain
+  Note over Holder, Other: Away from the origin chain
   Holder->>Home: bridgeToken()
   Home->>Home: Escrow the ERC-20
   Home->>Messages: sendMessage()
@@ -56,7 +54,7 @@ sequenceDiagram
   end
   Other->>Other: Mint BridgedToken to the recipient
 
-  Note over Holder, Other: Back to the original chain
+  Note over Holder, Other: Back to the origin chain
   Holder->>Other: bridgeToken()
   Other->>Other: Burn BridgedToken
   Other->>Messages: sendMessage()
