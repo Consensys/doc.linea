@@ -8,10 +8,9 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 import StateManagerAccumulator from '/img/protocol/architecture/state-manager-accumulator.svg';
 
 The state manager maintains the network's state in the representation the proving pipeline needs.
-It consists of a Besu execution client running the [Shomei plugin](https://github.com/Consensys/besu-shomei-plugin) (for example,
-<GlossaryTerm term="Linea Besu"/>),
-which exposes each block's state changes; and a [Shomei node](https://github.com/Consensys-Incorporated/shomei)
-that imports those changes into a sparse Merkle tree.
+It consists of a Besu execution client running the [Shomei plugin](https://github.com/Consensys/besu-shomei-plugin)
+(for example, <GlossaryTerm term="Linea Besu"/>), which exposes each block's state changes;
+and a [Shomei node](https://github.com/Consensys-Incorporated/shomei) that imports those changes into a sparse Merkle tree.
 
 :::note
 
@@ -113,7 +112,8 @@ further down that subtree can be disregarded. Only the _non-empty_ subtrees need
 
 ## Lineth's SMT as a cryptographic accumulator
 
-In this context, Lineth's SMT is a "cryptographic accumulator": a type of cryptographic primitive that encodes a collection 
+In this context, Lineth's SMT is a "cryptographic accumulator": a type of cryptographic
+primitive that encodes a collection 
 of items into very short strings and allows read/write operations to be proven. Merkle trees and 
 SMTs are elementary examples of accumulators, but there are others with more powerful 
 capabilities.
@@ -170,15 +170,11 @@ Each one is an extended SMT with its own linked list.
 
 Each accumulator can perform the following operations:
 
-- **Insertion**: Add a leaf for a key that was not stored, when its value changes from zero to
-non-zero.
-- **Update**: Change the value of a stored leaf, when a non-zero value changes to a different
-non-zero value.
+- **Insertion**: Add a leaf for a key that was not stored, when its value changes from zero to non-zero.
+- **Update**: Change the value of a stored leaf, when a non-zero value changes to a different non-zero value.
 - **Deletion**: Remove a stored leaf, when its value changes from non-zero to zero.
-- **Read zero**: Prove that a key is not stored. The key was read, not written, and its value is
-zero.
-- **Read non-zero**: Prove that a key is stored. The key was read, not written, and its value is
-non-zero.
+- **Read zero**: Prove that a key is not stored. The key was read, not written, and its value is zero.
+- **Read non-zero**: Prove that a key is stored. The key was read, not written, and its value is non-zero.
 
 ### World state
 
@@ -195,26 +191,28 @@ as a key-value pair, as follows:
 - `nonce`: The account nonce.
 - `balance`: The account balance.
 - `storageRoot`: The root of that account's [storage accumulator](#account-storage-state).
-  In contrast, in an Ethereum account, this field is the <GlossaryTerm term="Keccak" />
-  hash of the account's Patricia trie root.
-- `codeHash`: The hash of the account's code computed with Poseidon2, the hash function the Lineth prover
-uses. In contrast, in an Ethereum account, this field is the Keccak hash of the code.
+  In contrast, in an Ethereum account, this field is the <GlossaryTerm term="Keccak" /> hash of the
+  account's Patricia trie root.
+- `codeHash`: The hash of the account's code computed with Poseidon2, the hash function the Lineth
+  prover uses.
+  In contrast, in an Ethereum account, this field is the Keccak hash of the code.
 - `keccakCodeHash`: The Keccak hash of the code, which is the value returned by
-[EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052). The account keeps this hash because the
-EVM returns it, and keeps `codeHash` because that is the hash the Lineth prover checks.
+  [EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052). The account keeps this hash because the
+  EVM returns it, and keeps `codeHash` because that is the hash the Lineth prover checks.
 - `codeSize`: The size of the code in bytes, which is the value returned by the `CODESIZE` and
-`EXTCODESIZE` opcodes.
+  `EXTCODESIZE` opcodes.
 
 ### Account storage state
 
 Also referred to as the "storage trie," the account storage state records an account's storage slots.
-This is mainly relevant for contract accounts. For an EOA, the balance and nonce are in the
-[world state](#world-state) account. Its code size is zero, and `codeHash` and `keccakCodeHash`
-are the hashes of empty code.
+This is mainly relevant for contract accounts.
+For an EOA, the balance and nonce are in the [world state](#world-state) account.
+Its code size is zero, and `codeHash` and `keccakCodeHash` are the hashes of empty code.
 
 A storage slot's key and value are each a 32-byte word, the unit the EVM uses for storage.
 Each word is split into its most significant bytes (MSB), the first 16 bytes; and its least
-significant bytes (LSB), the last 16 bytes. The accumulator hashes the two halves:
+significant bytes (LSB), the last 16 bytes.
+The accumulator hashes the two halves:
 
 - `hKey`: Hash(`StorageKeyMSB`, `StorageKeyLSB`)
 - `hVal`: Hash(`StorageValueMSB`, `StorageValueLSB`) 
@@ -224,7 +222,7 @@ significant bytes (LSB), the last 16 bytes. The accumulator hashes the two halve
 The accumulator, built using a sparse Merkle tree, is simultaneously: 
 
 - A data structure on which you can perform operations.
-- A dataset that you can summarize using a short string at any time (i.e. the root hash).
+- A dataset that you can summarize using a short string (the root hash) at any time.
 - A tool that can be used by Lineth to verify that a given operation triggered a
 transition from hash A to hash B.
 
