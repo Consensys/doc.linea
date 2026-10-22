@@ -1,0 +1,98 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 -4 440 560"
+  width="100%"
+  height="auto"
+  role="img"
+  aria-labelledby="message-path-title message-path-desc"
+>
+  <title id="message-path-title">Sending and claiming a message</title>
+  <desc id="message-path-desc">
+    A caller invokes sendMessage on the origin message service, which emits the
+    message. The destination message service anchors a commitment. If a delivery fee
+    was paid, the Postman claims it and collects the fee (push). Otherwise the
+    recipient or anyone else claims it (pull). The destination checks the claim and
+    calls the recipient.
+  </desc>
+
+  <defs>
+    <marker id="message-path-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+      markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 1.2 L 10 5 L 0 8.8 Z" fill="var(--linea-text-muted)" />
+    </marker>
+  </defs>
+
+  <rect x="8" y="50" width="424" height="86" rx="10"
+    fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
+  <text x="24" y="72" font-family="AtypText, sans-serif" font-size="13"
+    font-weight="600" fill="var(--linea-text-muted)">Origin message service</text>
+
+  <rect x="8" y="178" width="424" height="370" rx="10"
+    fill="var(--linea-mermaid-cluster-bg)" stroke="var(--linea-mermaid-cluster-border)" stroke-width="1.5" />
+  <text x="24" y="200" font-family="AtypText, sans-serif" font-size="13"
+    font-weight="600" fill="var(--linea-text-muted)">Destination message service</text>
+
+  <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5"
+    marker-end="url(#message-path-arrow)">
+    <path d="M 220 34 L 220 86" />
+    <path d="M 220 120 L 220 214" />
+    <path d="M 220 248 L 220 264" />
+    <path d="M 220 310 L 220 328" />
+    <path d="M 114 328 L 114 360" />
+    <path d="M 326 328 L 326 360" />
+    <path d="M 220 424 L 220 438" />
+    <path d="M 220 486 L 220 500" />
+  </g>
+  <g fill="none" stroke="var(--linea-text-muted)" stroke-width="1.5">
+    <path d="M 114 328 L 326 328" />
+    <path d="M 114 410 L 114 424" />
+    <path d="M 326 410 L 326 424" />
+    <path d="M 114 424 L 326 424" />
+  </g>
+
+  <g font-family="AtypText, sans-serif" font-size="14" fill="var(--linea-text-primary)" text-anchor="middle">
+    <rect x="150" y="0" width="140" height="34" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="220" y="22">Caller</text>
+
+    <rect x="115" y="86" width="210" height="34" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="220" y="108">sendMessage()</text>
+
+    <rect x="90" y="214" width="260" height="34" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="220" y="236">Anchor the commitment</text>
+
+    <polygon points="132,287 154,264 286,264 308,287 286,310 154,310"
+      fill="var(--linea-mermaid-cyan-bg)" stroke="var(--linea-mermaid-cyan-stroke)"
+      stroke-width="1.5" stroke-linejoin="miter" />
+    <text x="220" y="292">Fee paid?</text>
+
+    <rect x="16" y="360" width="196" height="50" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="114" y="380">Postman claims and</text>
+    <text x="114" y="398">collects the fee (push)</text>
+
+    <rect x="228" y="360" width="196" height="50" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="326" y="380">Recipient or anyone</text>
+    <text x="326" y="398">else claims (pull)</text>
+
+    <rect x="70" y="438" width="300" height="48" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="220" y="458">Check the claim against</text>
+    <text x="220" y="476">the commitment</text>
+
+    <rect x="120" y="500" width="200" height="34" rx="8"
+      fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
+    <text x="220" y="522">Call the recipient</text>
+  </g>
+
+  <g font-family="AtypText, sans-serif" font-size="13" fill="var(--linea-text-primary)">
+    <text x="232" y="162">Emit the message</text>
+  </g>
+  <g font-family="AtypText, sans-serif" font-size="12" fill="var(--linea-text-primary)" text-anchor="middle">
+    <text x="167" y="348">Yes</text>
+    <text x="273" y="348">No</text>
+  </g>
+</svg>

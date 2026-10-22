@@ -36,7 +36,7 @@ The finalization contract:
 :::note Linea Mainnet
 
 In the Linea Mainnet deployment, this contract is [`LineaRollup`](../../network/build/contracts.mdx) on Ethereum,
-which also serves as the L1 message service.
+which also serves as the finalization layer [message service](bridge/canonical-message-service.mdx).
 Operators running other deployments can reuse the same contract or deploy an equivalent that satisfies the
 interfaces their finalization design requires.
 
@@ -73,16 +73,15 @@ How the shnarf is recorded depends on the [deployment model](../../stack/evaluat
 
 ## Message service contracts
 
-A message service contract is deployed on each chain.
+A message service contract is deployed on the Lineth network and the finalization layer.
 Together they carry arbitrary calldata and native currency in both directions, and only deliver a message once
 it can be checked against a commitment recorded by the finalization contract.
-
 Everything else that crosses chains, including the token bridge, is built on this pair.
 See [Canonical message service](./bridge/canonical-message-service.mdx).
 
 ## Token bridge contracts
 
-A token bridge contract is deployed on each chain.
+A token bridge contract is deployed on the Lineth network and the finalization layer.
 They bridge ERC-20 tokens by escrowing the original on its home chain and minting a bridged equivalent on the
 other, sending each instruction through the message service.
 Minted supply is always matched by escrowed supply, so the bridge cannot mint tokens that were never locked.
