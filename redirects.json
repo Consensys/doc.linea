@@ -425,39 +425,43 @@
         ]
     },
     {
-        "to": "/protocol/architecture/sequencer/traces-generator",
+        "to": "/protocol/architecture/sequencer/tracer",
         "from": [
             "/architecture/stack/sequencer/traces-generator",
             "/network/concepts/sequencer/traces-generator",
             "/protocol/sequencer/traces-generator",
-            "/technology/sequencer/traces-generator"
+            "/technology/sequencer/traces-generator",
+            "/protocol/architecture/sequencer/traces-generator"
         ]
     },
     {
-        "to": "/protocol/architecture/prover/prover-limits",
+        "to": "/protocol/architecture/prover/module-limits",
         "from": [
             "/architecture/stack/trace-expansion-proving/prover-limits",
             "/network/concepts/prover/prover-limits",
             "/protocol/prover/prover-limits",
-            "/technology/prover/prover-limits"
+            "/technology/prover/prover-limits",
+            "/protocol/architecture/prover/prover-limits"
         ]
     },
     {
-        "to": "/protocol/architecture/prover/proving",
+        "to": "/protocol/architecture/prover/gnark",
         "from": [
             "/architecture/stack/trace-expansion-proving/proving",
             "/network/concepts/prover/proving",
             "/protocol/prover/proving",
-            "/technology/prover/proving"
+            "/technology/prover/proving",
+            "/protocol/architecture/prover/proving"
         ]
     },
     {
-        "to": "/protocol/architecture/prover/trace-expansion",
+        "to": "/protocol/architecture/prover/corset",
         "from": [
             "/architecture/stack/trace-expansion-proving/trace-expansion",
             "/network/concepts/prover/trace-expansion",
             "/protocol/prover/trace-expansion",
-            "/technology/prover/trace-expansion"
+            "/technology/prover/trace-expansion",
+            "/protocol/architecture/prover/trace-expansion"
         ]
     },
     {
@@ -1572,6 +1576,12 @@
         "to": "/stack/how-to/enable-forced-transactions",
         "from": [
             "/stack/how-to/forced-transactions"
+        ]
+    },
+    {
+        "to": "/protocol/architecture/nodes/rpc-services",
+        "from": [
+            "/protocol/architecture/rpc-services"
         ]
     },
     {

@@ -8,7 +8,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 
 The tracer is part of the <GlossaryTerm term="Lineth" /> [sequencer](index.mdx).
 The tracer is a Besu plugin bundled with <GlossaryTerm term="Linea Besu" />.
-It generates the data the [prover](../prover/index.mdx) needs to create
+It generates the data the <GlossaryTerm term="Prover">prover</GlossaryTerm> needs to create
 <GlossaryTerm term="Zero-knowledge proof">ZK proofs</GlossaryTerm>, and the data the sequencer needs to
 keep blocks provable.
 
@@ -23,14 +23,14 @@ The tracer produces data on request, at two points in the pipeline.
 
 While the sequencer builds a block, the tracer counts the trace lines each candidate transaction would
 generate, so the sequencer can reject transactions that exceed a
-[module limit](../prover/prover-limits.mdx) and stop adding transactions once the block reaches its limits.
+[module limit](../prover/module-limits.mdx) and stop adding transactions once the block reaches its limits.
 
-Once blocks are built, the [coordinator](../coordinator/index.mdx) uses the tracer to prepare them
+Once blocks are built, the <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> uses the tracer to prepare them
 for proving:
 
 1. The coordinator requests the trace counts for each new block.
 2. Using those counts, it decides how many consecutive blocks to
-   [conflate](../coordinator/conflation.mdx) into one batch.
+   <GlossaryTerm term="Conflation">conflate</GlossaryTerm> into one batch.
 3. When it closes a batch, it requests the conflated traces for that block range.
    The tracer re-executes those blocks, writes a single trace file, and returns its location.
 4. The coordinator passes the trace file to the prover, which uses it to generate the execution proof.

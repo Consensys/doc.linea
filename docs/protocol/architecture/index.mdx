@@ -26,7 +26,7 @@ Lineth carries a transaction from submission to finalization in four stages:
 
 ### 1. Execute transactions
 
-Transactions enter the mempool through the [RPC](./rpc-services.mdx) entrypoint of a node.
+Transactions enter the mempool through the [RPC](./nodes/rpc-services.mdx) entrypoint of a node.
 The <GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> validates, orders, and executes them
 into blocks.
 Block building runs on a <GlossaryTerm term="Sequencer node">sequencer node</GlossaryTerm>: a
@@ -84,7 +84,7 @@ Lineth includes several classes of components, each of which serve part of the t
   - The [**sequencer**](./sequencer/index.mdx) orders transactions and builds blocks according to Lineth rules.
   - The [**state manager**](./state-manager.mdx) maintains a state representation optimized for proof
     generation and recovery.
-  - The [**tracer**](./sequencer/traces-generator.mdx) generates execution traces required for proof generation.
+  - The [**tracer**](./sequencer/tracer.mdx) generates execution traces required for proof generation.
   - The [**coordinator**](./coordinator/index.mdx) orchestrates batching, proof generation, and submission
     to the finalization layer.
   - The [**prover**](./prover/index.mdx) generates zk-SNARK proofs for state transitions.

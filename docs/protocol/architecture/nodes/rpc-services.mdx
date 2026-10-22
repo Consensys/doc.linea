@@ -11,7 +11,7 @@ import GlossaryTerm from '@theme/GlossaryTerm';
 RPC services expose the JSON-RPC interfaces that applications, users, and internal services use to read network
 data and submit transactions.
 Any <GlossaryTerm term="Lineth" /> node can serve them, publicly or only within the operator's network, and RPC
-nodes are typically placed behind load balancers and [access control](../../stack/deployment/access-control.mdx).
+nodes are typically placed behind load balancers and [access control](../../../stack/deployment/access-control.mdx).
 
 Two things distinguish one RPC node from another: which methods it serves, and how much state history
 it retains. Serving RPC is independent of a node's consensus role.
@@ -55,15 +55,15 @@ becomes more valuable:
   Your own node validates chain data directly from the protocol.
 - **Historical data**: Public endpoints often restrict archive access because of its storage cost.
   Your own [archive node](#archive-nodes) has no such limits.
-- **Operational control**: A self-hosted node can sit inside a private network behind load balancers and RBAC,
-  which matters for backend services, indexers, and internal tooling that need predictable access patterns and
+- **Operational control**: A self-hosted node can sit inside a private network behind load balancers and [access control](../../../stack/deployment/access-control.mdx),
+  which is useful for backend services, indexers, and internal tooling that need predictable access patterns and
   tighter security boundaries.
 
 ## See also
 
-- See [Deployment architecture](../../stack/deployment/index.mdx) for how RPC nodes fit into an
+- See [Deployment architecture](../../../stack/deployment/index.mdx) for how RPC nodes fit into an
   operator's footprint.
 - On Linea Mainnet, most users reach RPC services through their
-  [wallet](../../network/how-to/connect-wallet.mdx), and developers either use a
-  [node provider](../../network/build/tools/node-providers/index.mdx) or
-  [run their own node](../../network/how-to/run-a-node/index.mdx).
+  [wallet](../../../network/how-to/connect-wallet.mdx), and developers either use a
+  [node provider](../../../network/build/tools/node-providers/index.mdx) or
+  [run their own node](../../../network/how-to/run-a-node/index.mdx).
