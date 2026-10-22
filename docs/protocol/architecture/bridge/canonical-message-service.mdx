@@ -24,7 +24,7 @@ Sending a message from the origin chain to the destination chain works as follow
 1. A caller invokes `sendMessage()` on the origin contract with a destination address, a calldata payload, any
     native value to transfer, and an optional delivery fee.
     The contract emits the message.
-2. A [commitment](#message-commitments) to those messages is anchored on the destination contract.
+2. A [message commitment](#message-commitments) is anchored on the destination contract.
 3. Claiming the message executes it: the destination contract checks the claim against that commitment, then
     calls the destination address with the payload and the value.
 
