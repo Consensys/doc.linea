@@ -1,5 +1,5 @@
 ---
-title: 'Proving: Circuit building'
+title: Corset
 description: How Corset builds constraint systems and expands traces for the Lineth proving pipeline.
 image: /img/socialCards/proving-circuit-building.jpg
 ---
@@ -24,16 +24,16 @@ domain-specific language, that describe what correct zkEVM execution looks like.
 The compiled constraint system is bundled into the prover, so a change to the arithmetization reaches the
 prover as a new build rather than at runtime.
 
-At runtime, it expands the conflated traces that the [tracer](../sequencer/traces-generator.mdx) produced
+At runtime, it expands the <GlossaryTerm term="Conflation">conflated</GlossaryTerm> traces that the <GlossaryTerm term="Tracer">tracer</GlossaryTerm> produced
 for a batch.
 Trace expansion derives the columns the constraint system checks from the columns the tracer recorded,
-producing the complete data set, or witness, that the prover proves against.
+producing the complete data set, or *witness*, that the prover proves against.
 
 ## See also
 
-- See [Circuit execution and runtime](./proving.mdx) for the second stage of the proving system, where
-  <GlossaryTerm term="gnark" /> turns the witness into a proof.
-- See [Module limits](./prover-limits.mdx) for the per-module trace line limits that keep an expanded
+- See [gnark](./gnark.mdx) for the second stage of the proving system, where
+  the witness is turned into a proof.
+- See [Module limits](./module-limits.mdx) for the per-module trace line limits that keep an expanded
   trace within what the prover can handle.
 - See the [`go-corset` source code](https://github.com/consensys/go-corset), and Lineth's
   [constraint definitions](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/tracer-constraints)

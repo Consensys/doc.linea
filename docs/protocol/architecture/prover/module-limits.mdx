@@ -6,7 +6,7 @@ image: /img/socialCards/module-limits.jpg
 
 import GlossaryTerm from '@theme/GlossaryTerm';
 
-<GlossaryTerm term="Lineth" /> uses module limits to keep proof complexity manageable and ensure that the prover can
+<GlossaryTerm term="Lineth" /> uses module limits to keep proof complexity manageable and ensure that the [prover](./index.mdx) can
 generate proofs efficiently without overwhelming the infrastructure. 
 
 Lineth's arithmetization specification is divided into modules, and each module represents a collection
@@ -22,8 +22,8 @@ Additional lines are generated each time unique instructions are provided to a m
 but repeat calls with the same arguments do not generate new lines.
 
 High-complexity transactions that repeatedly use a large volume of operations may generate too many 
-lines of data and exceed a module's limit. Transactions that reach this point are rejected by the 
-[sequencer](../sequencer/index.mdx) to ensure that the trace data passed to the prover is of a 
+lines of data and exceed a module's limit. Transactions that reach this point are rejected by the
+<GlossaryTerm term="Sequencer">sequencer</GlossaryTerm> to ensure that the trace data passed to the prover is of a
 manageable scope, and that a proof can be generated.
 
 Transactions rejected for exceeding module limits can be identified through the following
@@ -33,9 +33,8 @@ methods, which return an error:
 - [`eth_sendRawTransaction`](../../../reference/apis/linea-api/eth-sendrawtransaction.mdx)
 
 Use [`linea_getTransactionExclusionStatusV1`](../../../reference/apis/linea-api/linea-gettransactionexclusionstatusv1.mdx)
-to get the rejection status of a transaction hash, if it was sent and didn't get rejected directly, 
+to get the rejection status of a transaction that was sent, but was not rejected immediately
 nor included in a block.
-
-This API method can be used to query the reason for transaction rejection in edge cases where
-`linea_estimateGas` or `eth_sendRawTransaction` did not return an error. It's intended to be used 
-only in cases the transaction execution differs between an RPC node and the sequencer.
+You can use this method to identify the reason for rejection in edge cases where
+`linea_estimateGas` or `eth_sendRawTransaction` do not return an error. It's intended to be used 
+only in cases the transaction execution differs between an <GlossaryTerm term="RPC node" /> and the sequencer.

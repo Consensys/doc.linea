@@ -14,12 +14,21 @@ accept a Lineth state transition without re-executing any transactions.
 Proof generation is computationally intensive, so deployments run the prover as one or more dedicated
 instances rather than inside the execution client.
 
+:::tip Evolving toward RISC-V
+
+Lineth is evolving toward a [RISC-V proving architecture](./risc-v-overview.mdx), in which guest
+programs define the computation to prove.
+It is in development and is not yet part of any Lineth deployment.
+
+:::
+
 ## How it works
 
-The [coordinator](../coordinator/index.mdx) drives the prover.
-It writes each proof request, along with the conflated traces produced by the
-[tracer](../sequencer/traces-generator.mdx), to the directories the prover watches, and collects the
+The <GlossaryTerm term="Coordinator">coordinator</GlossaryTerm> drives the prover.
+It writes each proof request, along with the <GlossaryTerm term="Conflation">conflated</GlossaryTerm> traces produced by the
+<GlossaryTerm term="Tracer">tracer</GlossaryTerm>, to the directories the prover watches, and collects the
 finished proof from the same place.
+Those traces stay within the [module limits](./module-limits.mdx) that keep a batch provable.
 
 The prover produces three kinds of proofs:
 
@@ -29,23 +38,21 @@ The prover produces three kinds of proofs:
 
 Each proof is built in two stages:
 
-1. [Corset](trace-expansion.mdx) expands the trace data into the full constraint system, the
+1. [Corset](./corset.mdx) expands the trace data into the full constraint system, the
     arithmetization the prover proves against.
 2. The proving system reduces that expanded data to an inner proof, then wraps it with the
-    [gnark](proving.mdx) library into an outer proof: the zk-SNARK that a verifier contract on the
+    [gnark](./gnark.mdx) library into an outer proof: the zk-SNARK that a verifier contract on the
     finalization layer can check cheaply.
 
 Because the proof accompanies the data it proves, anyone can confirm that a state transition is correct
 by checking the proof onchain, instead of trusting the operator or re-executing the transactions themselves.
 
+:::info
+The proving system uses reference strings from the [trusted setup](./trusted-setup.mdx).
+:::
+
 ## See also
 
-- See [Circuit building](./trace-expansion.mdx) and
-  [Circuit execution and runtime](./proving.mdx) for how Corset and gnark each work in detail.
-- See [Module limits](./prover-limits.mdx) for the trace line limits that keep batches provable, and
-  [Trusted setup](./trusted-setup.mdx) for the reference strings the proving system relies on.
-- See [RISC-V proving architecture](./risc-v-overview.mdx) for the planned evolution toward
-  guest-program-based proof generation.
 - Configure prover behavior using the
   [Prover options](../../../stack/reference/linea-prover-options.mdx).
 - See the [prover source code](https://github.com/LFDT-Lineth/lineth-monorepo/tree/main/prover) in
