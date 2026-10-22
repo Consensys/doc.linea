@@ -17,12 +17,12 @@ and any contract or dapp can call it directly.
 
 ## How it works
 
-The service is a pair of message service contracts, one deployed on the network and one on the finalization
-layer. An optional offchain relay, the **Postman**, watches both contracts and submits claims when a delivery fee was paid.
+The service is a pair of message service contracts, one deployed on the network and one on the finalization layer.
+An optional offchain relay, the **Postman**, watches both contracts and submits claims when a delivery fee was paid.
 Sending a message from the origin chain to the destination chain works as follows:
 
 1. A caller invokes `sendMessage()` on the origin contract with a destination address, a calldata payload, any
-    native value to transfer, and a delivery fee.
+    native value to transfer, and an optional delivery fee.
     The contract emits the message.
 2. A [commitment](#message-commitments) to those messages is anchored on the destination contract.
 3. Claiming the message executes it: the destination contract checks the claim against that commitment, then
@@ -33,7 +33,7 @@ This gives senders two delivery modes:
 
 - **Push**: The sender pays a fee up front, and the Postman claims on their behalf, pushing the message to
   the recipient without them doing anything.
-- **Pull**: No one is paid to claim it, so the message sits unclaimed until the recipient, or anyone else, pulls it by
+- **Pull**: No fee is paid, so the message sits unclaimed until the recipient, or anyone else, pulls it by
   submitting the claim and paying the gas.
 
 Push relies on the Postman for convenience, not for correctness.
@@ -53,7 +53,7 @@ Finalizing a range of blocks verifies its
 <GlossaryTerm term="Zero-knowledge proof">ZK proof</GlossaryTerm> and anchors the Merkle root of the messages
 those blocks sent.
 A claim on the finalization layer's message service carries a Merkle proof.
-The service accepts the claim only when the proof shows the message is included under that anchored root.
+The service accepts the claim only if the proof shows the message is included under that anchored root.
 Messages are therefore only claimable once the blocks that sent them are finalized.
 
 <div className="img-medium" style={{ maxWidth: '43%' }}>

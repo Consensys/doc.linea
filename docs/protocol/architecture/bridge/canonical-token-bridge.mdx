@@ -23,16 +23,16 @@ Bridging a token away from its origin chain involves locking and minting as foll
 1. The token holder calls `bridgeToken()` on the origin chain's token bridge.
     The bridge escrows the tokens and sends a message via the message service, instructing the bridge on
     the destination chain to complete the transfer.
-2. When that message is claimed, the destination bridge mints an equivalent amount of a
-    `BridgedToken`, an ERC-20 it controls, to the recipient.
+2. When that message is claimed, the destination bridge mints an equivalent amount of a `BridgedToken`, an
+    ERC-20 token it controls, to the recipient.
     The first time a given token is bridged, the destination bridge also deploys that contract,
     carrying over the escrowed token's name, symbol, and decimals.
 
 Bridging back reverses this.
 The holder calls `bridgeToken()` on the destination bridge.
 That call burns the `BridgedToken` and sends a message releasing the escrowed tokens on the origin chain.
-Because minted supply on one side is always matched by escrowed supply on the other,
-the bridge can't mint tokens that were never locked.
+Because minted supply on one side is always matched by escrowed supply on the other, the bridge can't mint tokens
+that were never locked.
 
 The following diagram illustrates the round trip.
 
