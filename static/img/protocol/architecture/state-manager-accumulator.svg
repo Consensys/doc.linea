@@ -24,10 +24,10 @@
   <!-- Parent-to-child edges. Each curve leaves the parent bottom toward the
        child, then runs straight down into the arrowhead. -->
   <g fill="none" stroke="var(--linea-text-primary)" stroke-width="1.5">
-    <path d="M 265 88 C 265 112, 160 122, 160 156" />
-    <path d="M 501 88 C 501 112, 606 122, 606 156" />
-    <path d="M 514 260 C 514 284, 290 294, 290 328" />
-    <path d="M 698 260 C 698 284, 922 294, 922 328" />
+    <path d="M 265 76 C 265 100, 160 122, 160 156" />
+    <path d="M 501 76 C 501 100, 606 122, 606 156" />
+    <path d="M 514 248 C 514 272, 290 294, 290 328" />
+    <path d="M 698 248 C 698 272, 922 294, 922 328" />
     <path d="M 218 392 C 218 422, 132 441, 132 476" />
     <path d="M 362 392 C 362 422, 448 441, 448 476" />
     <path d="M 850 392 C 850 422, 764 441, 764 476" />
@@ -35,30 +35,24 @@
   </g>
 
   <!-- Root -->
-  <rect x="243" y="16" width="280" height="72"
+  <rect x="243" y="16" width="280" height="60"
     fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-  <text x="383" y="46" text-anchor="middle" font-family="AtypText, sans-serif" font-size="18"
+  <text x="383" y="52" text-anchor="middle" font-family="AtypText, sans-serif" font-size="18"
     font-weight="700" fill="var(--linea-text-primary)">root</text>
-  <text x="383" y="68" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
-    fill="var(--linea-text-primary)">the short string for this tree</text>
 
   <!-- Empty subtree -->
-  <rect x="50" y="164" width="220" height="96"
+  <rect x="50" y="164" width="220" height="84"
     fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
   <text x="160" y="198" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
     font-weight="700" fill="var(--linea-text-primary)">internal node</text>
-  <text x="160" y="220" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
-    fill="var(--linea-text-primary)">default hash</text>
-  <text x="160" y="242" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+  <text x="160" y="222" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
     fill="var(--linea-text-primary)">empty subtree</text>
 
   <!-- Data branch -->
-  <rect x="496" y="164" width="220" height="96"
+  <rect x="496" y="164" width="220" height="84"
     fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-  <text x="606" y="206" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+  <text x="606" y="212" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
     font-weight="700" fill="var(--linea-text-primary)">internal node</text>
-  <text x="606" y="230" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
-    fill="var(--linea-text-primary)">hash of its children</text>
 
   <rect x="202" y="336" width="176" height="56"
     fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
@@ -82,13 +76,13 @@
 
   <rect x="340" y="484" width="216" height="120"
     fill="var(--linea-mermaid-core-bg)" stroke="var(--linea-mermaid-core-stroke)" stroke-width="1.5" />
-  <text x="448" y="512" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
+  <text x="448" y="516" text-anchor="middle" font-family="AtypText, sans-serif" font-size="17"
     font-weight="700" fill="var(--linea-text-primary)">stored leaf</text>
-  <text x="448" y="534" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+  <text x="448" y="538" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
     fill="var(--linea-text-primary)">next hKey</text>
-  <text x="448" y="554" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+  <text x="448" y="558" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
     fill="var(--linea-text-primary)">(lowest stored item)</text>
-  <text x="448" y="576" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
+  <text x="448" y="580" text-anchor="middle" font-family="AtypText, sans-serif" font-size="16"
     fill="var(--linea-text-primary)">hVal: hash of value</text>
 
   <rect x="656" y="484" width="216" height="120"

@@ -57,9 +57,9 @@ or state root, is the hash from which the branches stem, and the leaves stem fro
   <div class="mermaid-medium">
     ```mermaid
         flowchart TD
-            A[root] --> B[node] & C[node]
-            B --> D[node] & E[node]
-            C --> F[node] & G[node]
+            A[root] --> B[internal node] & C[internal node]
+            B --> D[leaf node] & E[leaf node]
+            C --> F[leaf node] & G[leaf node]
     ```
   </div>
 </div>
@@ -114,7 +114,7 @@ further down that subtree can be disregarded. Only the _non-empty_ subtrees need
 
 In this context, Lineth's SMT is a "cryptographic accumulator": a type of cryptographic
 primitive that encodes a collection 
-of items into very short strings and allows read/write operations to be proven. Merkle trees and 
+of items into short strings and allows read/write operations to be proven. Merkle trees and 
 SMTs are elementary examples of accumulators, but there are others with more powerful 
 capabilities.
 
